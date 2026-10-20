@@ -11,6 +11,7 @@
 #include "mmu.h"
 #include "loader.h"
 #include "ufs.h"
+#include "wdt.h"
 
 #define IMEM_RESTART_REASON	0x146bf65cUL	/* qcom,msm-imem restart_reason@65c */
 #define RESTART_BOOTLOADER	0x77665500U
@@ -384,6 +385,10 @@ static void cp_mark(char c0, char c1)
 void shim_main(uint64_t dtb)
 {
 	cp_mark('C','0');
+	/* Dead-man switch: default landing = Android; any hang bites within ~2 min. */
+	wr32(IMEM_RESTART_REASON, 0x77665501u);
+	wdt_arm(120, 125);
+	wdt_pet();
 #ifdef SHIM_PING
 	delay_ms(5000);
 	wr32(IMEM_RESTART_REASON, 0x77665501u);
