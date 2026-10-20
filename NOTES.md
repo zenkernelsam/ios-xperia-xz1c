@@ -1,5 +1,51 @@
 # iOS 16 on sweet (Redmi Note 10 Pro, SM7150) - working notes
 
+## >>> LILAC HANDOFF 2026-10-21 ~01:20 (Sony XZ1 Compact port, read FIRST) <<<
+
+**This fork is being ported to Sony Xperia XZ1 Compact (lilac, Docomo SO-02K,
+MSM8998, 720x1280 cmd-mode panel, UFS, 4 GB). All upstream sweet notes below
+stay valid as reference; lilac hardware constants live in `AGENTS.md`.**
+
+### State
+- Bootloader unlocked (xperable CVE-2021-1931), Android 8.0.0 47.1.F.1.105,
+  `fastboot boot` confirmed working, physical SD card = user backups (never touch).
+- Repo/worktree: `C:\Users\Cisco He\Desktop\Git\ios-xperia-xz1c`, WSL `/root/xz1c`.
+  Shim builds in WSL: `cd /root/xz1c/shim && bash build.sh` → `out/shim-boot.img`
+  (build.sh is the LILAC variant: appended-dtb style, not upstream v2 --dtb).
+  Artifacts copied to `artifacts/shim-lilac-vN.img`.
+- Tools live OUTSIDE the repo: `Patch\Xperia\unattend\usbctl.ps1` (elevated
+  USB daemon, commands in `unattend\cmd\*.cmd`: replug/hardreplug/devreset/
+  adbreset/status/ps:<ps>/stop, results `out\result.txt` UTF-16);
+  `Patch\Xperia\unlock\bindershell` (temp root), `research\lilac-stock.dtb`.
+
+### Done tonight (results, not guesses)
+- Shim boots via `fastboot boot` (ABL accepts image, runs, auto-resets).
+- **ramoops pstore backend is registered and live** (`pstore: Registered
+  ramoops`, console prz at 0xffcc0000 — 256 KiB channel shim→Android).
+- usbctl daemon verified (replug/dis-en works as SYSTEM).
+- Shim v6 = per-line incremental pstore writes; v7 = raw checkpoint marks
+  C0..C6 to prz BEFORE touching FB (crash-bisect design).
+
+### Current blocker
+- **Shim v3/v4/v5 all land back in fastboot, pstore EMPTY.** Hypothesis:
+  shim crashes before reaching its final write (likely candidates: first
+  con_clear FB write if FB_PHYS wrong, or test_ufs register access), then
+  watchdog/hang → reset with stale IMEM restart_reason 0x77665500 → fastboot.
+  v7 checkpoint run was interrupted by adb flakiness — **NEXT ACTION: boot
+  shim-lilac-v7.img, reboot to Android, read /sys/fs/pstore/console-ramoops-0;
+  last Cn marker = crash boundary.** If C0 absent → dies at/inside loader_boot
+  or earlier; if C1 absent → con_clear/FB; C4/C5 → UFS.
+- adb keeps going `offline` — Windows shows the device as "needs reboot"
+  pending-config; `devreset` (remove-device+scan) is the fix, needs daemon.
+
+### Watch next
+- Phone may sit in Android, fastboot, or off. Recovery order: adbreset cmd →
+  devreset cmd → hardreplug cmd → `ps:` anything → physical (last resort).
+- adb "unauthorized" appears after cold boots until user re-approves with
+  "always allow" (check /data/misc/adb/adb_keys exists — verify next root).
+- Do NOT sysrq-panic (froze, needed power long-press; panic_timeout likely 0).
+- Friend's display advice in AGENTS.md governs the later MDP/GUI phase.
+
 ## Agent handoff / active work (2026-10-15, latest)
 
 ### >>> UPDATE 2026-10-18 (read first, then the 10-17 handoff below) <<<

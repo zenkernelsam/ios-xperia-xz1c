@@ -12,9 +12,10 @@
 #include "loader.h"
 #include "ufs.h"
 
-#define IMEM_RESTART_REASON	0x146aa65cUL	/* qcom,msm-imem restart_reason@65c */
+#define IMEM_RESTART_REASON	0x146bf65cUL	/* qcom,msm-imem restart_reason@65c */
 #define RESTART_BOOTLOADER	0x77665500U
-#define PSHOLD			0x0c264000UL
+#define PSHOLD			0x10ac000UL
+#define APPSLOG_LBA		208260U	/* sda58: 512B sector 1666080 -> 4K block */
 
 #define GICD_BASE		0x17a00000UL
 #define GICR_BASE		0x17a60000UL
@@ -370,27 +371,73 @@ static uint32_t to_us(uint64_t ticks)
 	return ticks * 10 / 192;	/* 19.2 MHz */
 }
 
+static volatile uint32_t *cp_ps = (volatile uint32_t *)0xffcc0000UL;
+static void cp_mark(char c0, char c1)
+{
+	volatile char *d = (volatile char *)(0xffcc0000UL + 0xc);
+	static int pos;
+	cp_ps[0] = 0x43474244;
+	d[pos++] = c0; d[pos++] = c1; d[pos++] = 0x0a;
+	cp_ps[1] = 0; cp_ps[2] = pos;
+}
+
 void shim_main(uint64_t dtb)
 {
+	cp_mark('C','0');
 	struct mmu_info mi;
 
 	/* An xnu payload in the ramdisk means: boot it (MMU stays off). */
 	stage = "loader";
+	cp_mark('C','1');
 	con_clear(RED);
 	con_str("SHIM", "sweet milestone 4: xnu loader");
 	con_skip();
+	cp_mark('C','2');
 	const char *why = loader_boot(dtb);
+	cp_mark('C','3');
 	con_str("LOADER", why);
 	con_skip();
 
 	/* No payload: probe the internal UFS while the MMU is still off. */
+	con_hex("MMFR0", rsr("id_aa64mmfr0_el1"));
+	con_hex("MIDR", rsr("midr_el1"));
+	con_hex("MPIDR", rsr("mpidr_el1"));
+	con_skip();
 	stage = "ufs";
-	test_ufs();
+	cp_mark('C','4');
+	int ustage = test_ufs();
+	cp_mark('C','5');
 	con_skip();
 	/* Keep the probe results on screen (later tests clear it); reset after 3 min. */
-	con_str("UFS", "probe done, reset in ~3 min");
-	delay_ms(180000);
-	reset(20);
+	con_str("LOG", "flush to appslog");
+	uint32_t wrc = 0x1f;
+	{
+		uint32_t ln;
+		char *lb = con_log(&ln);
+		uint32_t nblk = (ln + 4095) / 4096;
+		wrc = ufs_write_blocks(APPSLOG_LBA, nblk, lb);
+		con_hex2("LOG WR", "rc=", wrc, "blocks=", nblk);
+	}
+	/* Telemetry: encode stage+rc into restart_reason, read as warmboot= next boot */
+	cp_mark('C','6');
+	con_hex2("TELE", "ustage=", ustage, "wrc=", wrc);
+	/* pstore console record at 0xffcc0000: sig/start/size/data */
+	{
+		volatile uint32_t *prz = (volatile uint32_t *)0xffcc0000UL;
+		uint32_t ln;
+		char *lb = con_log(&ln);
+		volatile char *dst = (volatile char *)(prz + 3);
+		for (uint32_t i = 0; i < ln; i++)
+			dst[i] = lb[i];
+		prz[2] = ln;			/* size */
+		prz[1] = 0;			/* start */
+		prz[0] = 0x43474244;		/* DBGC */
+	}
+	delay_ms(10000);
+	wr32(IMEM_RESTART_REASON, 0x77665501u);
+	wr32(PSHOLD, 0);
+	for (;;)
+		;
 
 	stage = "fill off";
 	uint64_t fill_off = ticks_fill(RED);

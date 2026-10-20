@@ -12,6 +12,12 @@
 #define LABEL_COLS	8
 
 volatile uint32_t *con_fb = (volatile uint32_t *)FB_BASE;
+
+/* lilac: mirror every line into a RAM log flushed to the appslog partition. */
+static char logbuf[60 * 1024] = "LILACLOG\n";
+static uint32_t logpos = 9;
+static void log_add(const char *s) { while (*s && logpos < sizeof(logbuf) - 1) logbuf[logpos++] = *s++; }
+char *con_log(uint32_t *len) { *len = logpos; return logbuf; }
 static uint32_t con_bg;
 static int row;
 
@@ -68,6 +74,7 @@ void con_skip(void)
 
 void con_str(const char *label, const char *s)
 {
+	log_add(label); log_add(": "); log_add(s); log_add("\n");
 	put_str(0, label, YELLOW);
 	put_str(LABEL_COLS, s, WHITE);
 	row++;

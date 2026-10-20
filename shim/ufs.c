@@ -13,7 +13,7 @@
 #include "console.h"
 #include "ufs.h"
 
-#define UFS_BASE	0x01d84000UL	/* ufshc@1d84000, sweet live FDT */
+#define UFS_BASE	0x01da4000UL	/* ufshc@1d84000, sweet live FDT */
 
 #define REG_CAP		0x00
 #define REG_VER		0x08
@@ -56,6 +56,7 @@ struct ucd {
 	} prdt[1];
 };
 
+static int ufs_list_ok;
 static struct utrd utrl[32] __attribute__((aligned(1024)));
 static struct ucd ucd __attribute__((aligned(128)));
 static uint8_t data[2 * BLOCK] __attribute__((aligned(4096)));
@@ -83,8 +84,8 @@ static uint32_t be32(const uint8_t *p)
  * Issue one SCSI command (read direction or no data) in slot 0.
  * Returns 0 on success, otherwise a code describing the failure stage.
  */
-static uint32_t scsi(uint8_t lun, const uint8_t *cdb, unsigned cdb_len, void *buf, uint32_t len,
-    uint32_t *ocs_out, uint32_t *status_out)
+static uint32_t scsi_dir(uint8_t lun, const uint8_t *cdb, unsigned cdb_len, void *buf, uint32_t len,
+    int write, uint32_t *ocs_out, uint32_t *status_out)
 {
 	static uint8_t tag;
 	zero(&utrl[0], sizeof(utrl[0]));
@@ -92,7 +93,7 @@ static uint32_t scsi(uint8_t lun, const uint8_t *cdb, unsigned cdb_len, void *bu
 
 	/* Command UPIU: header (12 bytes), expected length, CDB. */
 	ucd.cmd[0] = 0x01;			/* transaction type: COMMAND */
-	ucd.cmd[1] = len ? 0x40 : 0x00;		/* flags: R (data in) */
+	ucd.cmd[1] = len ? (write ? 0x20 : 0x40) : 0x00;	/* flags: R (data in) / W (data out) */
 	ucd.cmd[2] = lun;
 	ucd.cmd[3] = ++tag;
 	ucd.cmd[12] = len >> 24;
@@ -103,7 +104,7 @@ static uint32_t scsi(uint8_t lun, const uint8_t *cdb, unsigned cdb_len, void *bu
 		ucd.cmd[16 + i] = cdb[i];
 
 	uintptr_t ucd_pa = (uintptr_t)&ucd;
-	utrl[0].dw0 = (1u << 28) | ((len ? 2u : 0u) << 25) | (1u << 24);	/* UFS storage, dev->host */
+	utrl[0].dw0 = (1u << 28) | ((len ? (write ? 1u : 2u) : 0u) << 25) | (1u << 24);	/* UFS storage */
 	utrl[0].dw2 = 0x0f;			/* OCS: invalid until the host updates it */
 	utrl[0].ucdba = (uint32_t)ucd_pa;
 	utrl[0].ucdbau = (uint32_t)(ucd_pa >> 32);
@@ -139,7 +140,16 @@ static uint32_t read_blocks(uint32_t lba, uint32_t count, void *buf)
 {
 	uint8_t cdb[10] = { 0x28, 0, lba >> 24, lba >> 16, lba >> 8, lba, 0, count >> 8, count, 0 };
 	uint32_t ocs, st;
-	return scsi(0, cdb, sizeof(cdb), buf, count * BLOCK, &ocs, &st);
+	return scsi_dir(0, cdb, sizeof(cdb), buf, count * BLOCK, 0, &ocs, &st);
+}
+
+uint32_t ufs_write_blocks(uint32_t lba, uint32_t count, const void *buf)
+{
+	if (!ufs_list_ok)
+		return 9;
+	uint8_t cdb[10] = { 0x2a, 0, lba >> 24, lba >> 16, lba >> 8, lba, 0, count >> 8, count, 0 };
+	uint32_t ocs, st;
+	return scsi_dir(0, cdb, sizeof(cdb), (void *)buf, count * BLOCK, 1, &ocs, &st);
 }
 
 static uint64_t le64(const uint8_t *p)
@@ -192,7 +202,7 @@ static void list_partitions(uint32_t entry_lba, uint32_t nent)
 	}
 }
 
-void test_ufs(void)
+int test_ufs(void)
 {
 	con_str("UFS", "milestone 5 probe (read-only)");
 	uint32_t cap = ufs_rd(REG_CAP), hcs = ufs_rd(REG_HCS), hce = ufs_rd(REG_HCE);
@@ -204,11 +214,11 @@ void test_ufs(void)
 
 	if (!(hce & 1) || !(hcs & HCS_DP) || !(hcs & HCS_UTRLRDY)) {
 		con_str("UFS", "host not enabled/ready: stop");
-		return;
+		return 1;
 	}
 	if (ufs_rd(REG_UTRLDBR)) {
 		con_str("UFS", "requests outstanding: stop");
-		return;
+		return 2;
 	}
 
 	/* Take over the transfer request list: stop, point at ours, run. */
@@ -217,6 +227,7 @@ void test_ufs(void)
 	ufs_wr(REG_UTRLBA, (uint32_t)list);
 	ufs_wr(REG_UTRLBAU, (uint32_t)(list >> 32));
 	ufs_wr(REG_UTRLRSR, 1);
+	ufs_list_ok = 1;
 	con_hex2("UFS", "ours=", (uint32_t)list, "rsr=", ufs_rd(REG_UTRLRSR));
 	/*
 	 * Never ring a doorbell unless the host really uses our list: otherwise
@@ -224,29 +235,30 @@ void test_ufs(void)
 	 */
 	if (ufs_rd(REG_UTRLBA) != (uint32_t)list || ufs_rd(REG_UTRLBAU) != (uint32_t)(list >> 32) ||
 	    !(ufs_rd(REG_UTRLRSR) & 1)) {
+		ufs_list_ok = 0;
 		con_str("UFS", "list base not taken: stop");
-		return;
+		return 3;
 	}
 
 	uint32_t ocs = 0, st = 0, rc;
 	static const uint8_t tur[6] = { 0x00 };
 	/* A first command may report a unit attention; retry a few times. */
 	for (int i = 0; i < 3; i++) {
-		rc = scsi(0, tur, sizeof(tur), 0, 0, &ocs, &st);
+		rc = scsi_dir(0, tur, sizeof(tur), 0, 0, 0, &ocs, &st);
 		con_hex2("UFS TUR", "rc=", rc, "ocs/st=", ocs << 8 | st);
 		if (!rc)
 			break;
 	}
 
 	static const uint8_t cap10[10] = { 0x25 };	/* READ CAPACITY(10) */
-	rc = scsi(0, cap10, sizeof(cap10), data, 8, &ocs, &st);
+	rc = scsi_dir(0, cap10, sizeof(cap10), data, 8, 0, &ocs, &st);
 	con_hex2("UFS CAP", "rc=", rc, "ocs/st=", ocs << 8 | st);
 	if (!rc)
 		con_hex2("UFS LUN0", "lastlba=", be32(data), "blk=", be32(data + 4));
 
 	/* READ(10) LBA 0, 2 blocks: protective MBR and the GPT header. */
 	static const uint8_t rd10[10] = { 0x28, 0, 0, 0, 0, 0, 0, 0, 2, 0 };
-	rc = scsi(0, rd10, sizeof(rd10), data, 2 * BLOCK, &ocs, &st);
+	rc = scsi_dir(0, rd10, sizeof(rd10), data, 2 * BLOCK, 0, &ocs, &st);
 	con_hex2("UFS READ", "rc=", rc, "ocs/st=", ocs << 8 | st);
 	if (rc)
 		return;
@@ -261,6 +273,7 @@ void test_ufs(void)
 	uint32_t elba = gpt[72] | gpt[73] << 8;
 	con_hex2("UFS GPT", "entries=", nent, "lba=", elba);
 	if (esz != 128 || nent > 128)
-		return;
+		return 4;
 	list_partitions(elba, nent);
+	return 0;
 }
