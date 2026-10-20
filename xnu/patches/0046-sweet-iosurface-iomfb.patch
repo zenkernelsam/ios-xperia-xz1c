@@ -1055,7 +1055,7 @@
 +#define SWEET_FB_NOTIFY_TYPES           8
 +#define SWEET_FB_NOTIFY_VSYNC           5
 +#define SWEET_FB_VSYNC_US               16667
-+#define SWEET_FB_DOT_PITCH              395     /* ppi, 6.67" 1080x2400 */
++#define SWEET_FB_DOT_PITCH              319     /* ppi, 4.6" 720x1280 lilac */
 +#define SWEET_FB_FORMAT_BGRA            0x42475241
 +
 +class IOMobileFramebuffer : public IOService {

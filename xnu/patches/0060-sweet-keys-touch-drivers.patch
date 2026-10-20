@@ -736,7 +736,7 @@
 +		goto out;
 +	}
 +	st.kind = goodix ? TOUCH_GOODIX : TOUCH_FTS;
-+	printf("SWEET TOUCH: selected %s, 1080x2400, poll=10ms irq-hint=%d\n",
++	printf("SWEET TOUCH: selected %s, 720x1280, poll=10ms irq-hint=%d\n",
 +	    goodix ? "GT9896 Yellowstone" : "Focaltech 54:52", st.irq_hint);
 +	unsigned errors = 0, ticks = 0;
 +	while (!st.dead) {

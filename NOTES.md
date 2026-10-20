@@ -2,11 +2,15 @@
 
 ## >>> LILAC HANDOFF 2026-10-21 ~01:35 UPDATE (read FIRST) <<<
 
-**Phone is ABSENT from the USB bus** (all PnP entries Present=False, no 9008
-EDL). It is powered off or hard-hung — needs ONE physical power-button press
-when the user wakes. The usbctl daemon cannot help a device that is not on
-the bus; watchdog.sh keeps polling and ADB will return on its own once the
-phone is on.
+**Phone is hard-hung at hardware level** — NOT merely absent: it enumerates
+as `USB\VID_0000&PID_0002` "Unknown USB Device (Device Descriptor Request
+Failed)". The port sees a device pulling up but the USB controller never
+answers — SoC is powered but wedged. `pnputil /restart-device` succeeded,
+`/remove-device`+rescan succeeded, and it re-enumerated into the SAME error
+state = the hang is on the phone side, unrecoverable from software. **Needs
+ONE physical press: long-press power ~10s to force-off, then power on.**
+The v9 shim's self-armed watchdog is designed to make this state impossible
+going forward (any hang → bite → Android in ≤125 s).
 
 ### New since 01:20
 - Root-caused remaining sweet leftovers in shim: `GICR_BASE 0x17a60000` →
@@ -16,11 +20,17 @@ phone is on.
   - `shim-lilac-v8-ping.img` — minimal: writes `C0` to pstore prz, waits 5 s,
     sets restart_reason 0x77665501, pshold. Build: `cd shim && PING=1 bash build.sh`.
   - `shim-lilac-v8.img` — full diag = v7 checkpoints + fixed addresses.
-- TEST ORDER once ADB is back: v8-ping first, then v8. Interpretation:
+- **v9 artifacts now exist (PREFERRED)**: `shim-lilac-v9-ping.img` /
+  `shim-lilac-v9.img` = v8 code + `shim/wdt.c` APSS watchdog dead-man switch.
+  shim_main now writes restart_reason 0x77665501 then arms bark 120 s /
+  bite 125 s — any hang self-recovers to ANDROID (not fastboot) within ~2 min.
+  Register map verified from CAF watchdog_v2.c: RST+0x04 pet, EN+0x08 arm,
+  BARK+0x10, BITE+0x14, tick 32765 Hz.
+- TEST ORDER once ADB is back: v9-ping first, then v9. Interpretation:
   - ping → Android boots, pstore empty = **pstore channel dead** (ABL or kernel
     scrubs it) OR code never ran. Distinguish by `warmboot=` in cmdline.
   - ping → fastboot = **shim code didn't even run** (entry/header problem).
-  - ping works → run v8; last Cn marker = crash boundary (C2 loader_boot,
+  - ping works → run v9; last Cn marker = crash boundary (C2 loader_boot,
     C3 FB area, C4/C5 UFS probe/write).
 - mkadt.py is now fully lilac-ified (PHYS_BASE 0x9f800000 / MEM 0x5b800000,
   GICR 0x17b00000, FB 0x9d400000 720x1280, UFS 0x1da4000). Generates

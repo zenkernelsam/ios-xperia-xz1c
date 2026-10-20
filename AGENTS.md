@@ -75,10 +75,17 @@
 ## Dead-man switch / watchdog design (user sleeping = zero hands)
 
 - GOAL: any hang must self-recover to a reachable mode. NEVER power off.
-- Shim must ARM the APSS WDT itself (do not assume ABL left it running):
-  qcom WDT regs @0x17817000 — EN(+0x04? verify in kernel msm-watchdog source:
-  WDT0_EN 0x08? CHECK before writing), set bark/bite then rely on bite→pshold.
-  Before arming, write the desired recovery restart_reason to IMEM so the
+- Shim must ARM the APSS WDT itself (do not assume ABL left it running).
+  **Register map VERIFIED** against CAF `drivers/soc/qcom/watchdog_v2.c`
+  (compatible `qcom,msm-watchdog`, WDT_HZ = 32765 Hz sleep clock):
+  `WDT0_RST +0x04` (write 1 = pet), `WDT0_EN +0x08` (1 = arm, 0 = disarm),
+  `WDT0_STS +0x0C`, `WDT0_BARK_TIME +0x10`, `WDT0_BITE_TIME +0x14` —
+  all in ticks of WDT_HZ. Implemented in `shim/wdt.c`; shim_main arms
+  bark 120 s / bite 125 s right after writing restart_reason 0x77665501,
+  so ANY hang self-recovers to Android within ~2 min. CAUTION: on some
+  Qualcomm parts only a TZ scm call can truly disable a running secure
+  watchdog — if EN writes don't stick, expect bites anyway (pet early).
+- Before arming, write the desired recovery restart_reason to IMEM so the
   watchdog reset lands where we want (0x77665501 → Android w/ adb).
 - Every shim test ends by explicitly writing restart_reason + pshold reset.
   Choose landing: 0x77665501→Android, 0x77665500→fastboot.
