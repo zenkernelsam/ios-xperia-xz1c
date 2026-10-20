@@ -1,6 +1,55 @@
 # iOS 16 on sweet (Redmi Note 10 Pro, SM7150) - working notes
 
-## >>> LILAC HANDOFF 2026-10-21 ~01:35 UPDATE (read FIRST) <<<
+## >>> LILAC HANDOFF 2026-10-21 ~01:45 OVERNIGHT REPORT (read FIRST) <<<
+
+**PHONE: still hard-hung** (VID_0000&PID_0002 enumeration error, survived
+pnputil restart + remove/rescan). Needs ONE physical power-button press
+(long-press ~10 s to force off, then power on). All device-side work is
+queued and ready; watchdog.sh/usbctl remain armed.
+
+### Accomplished while phone was down (all committed)
+- **81/81 patches apply cleanly to xnu-8796.141.3** — validated locally in
+  WSL by cloning apple-oss-distributions/xnu tag + running the dxb patch
+  flow (stage scripts + `git apply` in order). Verified tree files carry
+  lilac constants. A push to main triggers CI kernel build.
+- **Display patch series lilac-ified, chain-consistent**: FB 0x9d400000,
+  720x1280, stride 2880, PPI 319 (4.6"), touch scale, iPhone-X canvas kept.
+  Sweet leftovers found+fixed: GICR 0x17b00000, mmu.h FB_PHYS 0x9d400000.
+- **APSS watchdog dead-man switch DONE** (`shim/wdt.c`): verified CAF
+  watchdog_v2.c register map (RST+0x04 pet, EN+0x08 arm, BARK+0x10,
+  BITE+0x14, 32765 Hz). shim_main writes restart_reason 0x77665501 then
+  arms bark 120 s/bite 125 s — **any hang now self-recovers to Android**.
+  New artifacts: `shim-lilac-v9.img` + `shim-lilac-v9-ping.img` (preferred).
+- **IPSW pipeline complete**: iPhone10,3 16.7.16 (20H392) downloaded
+  (6.17 GB, still signed). Extracted `research/ipsw-x/d22ap.adt` (real
+  product identity — mkadt now emits product-name 'iPhone X', real
+  product-id, @3x artwork) + `kernelcache-20H392-d22ap.macho` (stock 50 MB
+  arm64 PIE, for symbolication). `research/` is gitignored.
+- **mkadt.py fully lilac-ified** + `/tmp/lilac.adt` regenerates correctly.
+- Shim build verified: `cd /root/xz1c/shim && bash build.sh` (normal) /
+  `PING=1 bash build.sh` (minimal). Boot-img header matches stock
+  (kernel@0x8000, ramdisk@0x1000000, page 4096, hdr v0) — packaging is
+  NOT the failure suspect.
+- tools/lilac-patches.py added (idempotent display-constant converter).
+
+### TEST ORDER once ADB is back: v9-ping → v9
+- ping → Android + pstore `C0` = code runs + channel works → then v9
+  gives last-checkpoint crash boundary (C2 loader / C3 FB / C4-C5 UFS).
+- ping → Android + EMPTY pstore = pstore channel dead (ABL/kernel
+  scrubs) OR code never ran; `warmboot=` cmdline distinguishes.
+- ping → fastboot = entry-level failure (unlikely, header verified).
+- Sysrq panic corrected recipe (panic_timeout=1 first) is in the
+  01:35 section below — safe pstore end-to-end validation.
+
+### Deferred / blocked
+- 0062 touch-power RPM regs (0x18220000 sweet) — lilac needs own values,
+  deferred until touch bring-up (ClearPad i2c 0x2c, PM8998 PON).
+- xnu CI build = push to main (needs user OK for push) or `gh auth login`
+  then `gh workflow run xnu -f machine_config=SWEET`.
+- Friend's advice queued for post-bring-up: MDP/MDSS hw scaling (no CPU
+  copies), low-res start, ~1 fps lock until scheduler stable — AGENTS.md.
+
+## >>> LILAC HANDOFF 2026-10-21 ~01:35 UPDATE <<<
 
 **Phone is hard-hung at hardware level** — NOT merely absent: it enumerates
 as `USB\VID_0000&PID_0002` "Unknown USB Device (Device Descriptor Request
