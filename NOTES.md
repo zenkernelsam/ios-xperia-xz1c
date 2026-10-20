@@ -32,14 +32,27 @@ queued and ready; watchdog.sh/usbctl remain armed.
   NOT the failure suspect.
 - tools/lilac-patches.py added (idempotent display-constant converter).
 
-### TEST ORDER once ADB is back: v9-ping → v9
-- ping → Android + pstore `C0` = code runs + channel works → then v9
-  gives last-checkpoint crash boundary (C2 loader / C3 FB / C4-C5 UFS).
-- ping → Android + EMPTY pstore = pstore channel dead (ABL/kernel
-  scrubs) OR code never ran; `warmboot=` cmdline distinguishes.
-- ping → fastboot = entry-level failure (unlikely, header verified).
-- Sysrq panic corrected recipe (panic_timeout=1 first) is in the
-  01:35 section below — safe pstore end-to-end validation.
+### TEST ORDER once ADB is back
+**Step 0 (validates pstore read path alone, no shim involved):**
+```
+adb -s BH905ND69G shell su -c 'echo 1 > /proc/sys/kernel/panic;
+  echo c > /proc/sysrq-trigger'
+# panic → ramoops writes → auto-reboot ~1 s → Android
+# then: cat /sys/fs/pstore/console-ramoops-0
+# kernel log present = channel 100% good → any later empty pstore is shim-side
+```
+**Step 1 — `shim-lilac-v10-ping.img`** (writes C0, fills RED screen, writes C1,
+5 s, resets to Android). Outcome matrix:
+- red screen seen + pstore `C0\nC1` = code runs, FB OK, channel works → v9 next
+- red screen + EMPTY pstore = **channel dead** (ABL or kernel scrubs the zone)
+- NO red screen + pstore `C0` only = **con_clear FB write crashes** (XPU/map)
+- NO red screen + `C0\nC1` = FB writes don't fault but don't display either
+- NO red screen + EMPTY = never ran (or channel dead) — check `warmboot=`
+**Step 2 — `shim-lilac-v9.img`**: last Cn = crash boundary
+(C2 loader_boot/fdt, C3 con_clear/FB area, C4 test_ufs regs, C5 ufs_write).
+Code review already done: fdt parser validates magic, scsi_dir has 1 s
+timeout, LBA constant verified 4KiB units, console writes FB_BASE
+0x9d400000 — no static crash candidates remain, so the device data decides.
 
 ### Deferred / blocked
 - 0062 touch-power RPM regs (0x18220000 sweet) — lilac needs own values,

@@ -390,6 +390,9 @@ void shim_main(uint64_t dtb)
 	wdt_arm(120, 125);
 	wdt_pet();
 #ifdef SHIM_PING
+	/* Visible proof of life: red screen = code ran AND FB writes don't fault. */
+	con_clear(0x00ff0000);
+	cp_mark('C','1');
 	delay_ms(5000);
 	wr32(IMEM_RESTART_REASON, 0x77665501u);
 	wr32(PSHOLD, 0);
