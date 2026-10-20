@@ -1,6 +1,43 @@
 # iOS 16 on sweet (Redmi Note 10 Pro, SM7150) - working notes
 
-## >>> LILAC HANDOFF 2026-10-21 ~01:20 (Sony XZ1 Compact port, read FIRST) <<<
+## >>> LILAC HANDOFF 2026-10-21 ~01:35 UPDATE (read FIRST) <<<
+
+**Phone is ABSENT from the USB bus** (all PnP entries Present=False, no 9008
+EDL). It is powered off or hard-hung — needs ONE physical power-button press
+when the user wakes. The usbctl daemon cannot help a device that is not on
+the bus; watchdog.sh keeps polling and ADB will return on its own once the
+phone is on.
+
+### New since 01:20
+- Root-caused remaining sweet leftovers in shim: `GICR_BASE 0x17a60000` →
+  lilac `0x17b00000` (fixed), `mmu.h FB_PHYS 0x9c000000` → `0x9d400000` (fixed).
+  Both were in code paths after the UFS test (not the current crash cause).
+- Built TWO new artifacts, both ready in `artifacts/`:
+  - `shim-lilac-v8-ping.img` — minimal: writes `C0` to pstore prz, waits 5 s,
+    sets restart_reason 0x77665501, pshold. Build: `cd shim && PING=1 bash build.sh`.
+  - `shim-lilac-v8.img` — full diag = v7 checkpoints + fixed addresses.
+- TEST ORDER once ADB is back: v8-ping first, then v8. Interpretation:
+  - ping → Android boots, pstore empty = **pstore channel dead** (ABL or kernel
+    scrubs it) OR code never ran. Distinguish by `warmboot=` in cmdline.
+  - ping → fastboot = **shim code didn't even run** (entry/header problem).
+  - ping works → run v8; last Cn marker = crash boundary (C2 loader_boot,
+    C3 FB area, C4/C5 UFS probe/write).
+- mkadt.py is now fully lilac-ified (PHYS_BASE 0x9f800000 / MEM 0x5b800000,
+  GICR 0x17b00000, FB 0x9d400000 720x1280, UFS 0x1da4000). Generates
+  `/tmp/lilac.adt` OK. High-bank values still sweet placeholders (low-prio).
+- IPSW iPhone10,3 16.7.16 (20H392) download running via `ipsw` CLI in WSL,
+  log at `/root/xperia/research/ipsw-dl.log` (~7 GB, may still be going).
+
+### Sysrq panic test — CORRECTED procedure (fixes "phone froze" incident)
+Setting `panic_timeout` first makes it safe + self-recovering:
+```
+adb -s BH905ND69G shell su -c 'echo 1 > /proc/sys/kernel/panic;
+  echo c > /proc/sysrq-trigger'   # panic, ramoops writes, auto-reboot ~1s
+# next boot: /sys/fs/pstore/console-ramoops-0 has the kernel log → proves read path
+```
+Never run `echo c` with panic_timeout=0 (the freeze that needed long-press).
+
+## >>> LILAC HANDOFF 2026-10-21 ~01:20 (Sony XZ1 Compact port) <<<
 
 **This fork is being ported to Sony Xperia XZ1 Compact (lilac, Docomo SO-02K,
 MSM8998, 720x1280 cmd-mode panel, UFS, 4 GB). All upstream sweet notes below

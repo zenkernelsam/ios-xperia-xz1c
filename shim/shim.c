@@ -18,7 +18,7 @@
 #define APPSLOG_LBA		208260U	/* sda58: 512B sector 1666080 -> 4K block */
 
 #define GICD_BASE		0x17a00000UL
-#define GICR_BASE		0x17a60000UL
+#define GICR_BASE		0x17b00000UL
 #define GICR_SIZE		0x100000UL
 #define GICR_PE_SIZE		0x20000UL
 #define GICR_TYPER		0x08
@@ -384,6 +384,13 @@ static void cp_mark(char c0, char c1)
 void shim_main(uint64_t dtb)
 {
 	cp_mark('C','0');
+#ifdef SHIM_PING
+	delay_ms(5000);
+	wr32(IMEM_RESTART_REASON, 0x77665501u);
+	wr32(PSHOLD, 0);
+	for (;;)
+		;
+#endif
 	struct mmu_info mi;
 
 	/* An xnu payload in the ramdisk means: boot it (MMU stays off). */

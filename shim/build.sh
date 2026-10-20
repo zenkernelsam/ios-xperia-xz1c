@@ -4,6 +4,7 @@ cd "$(dirname "$0")"
 CC=aarch64-linux-gnu-gcc
 OBJCOPY=aarch64-linux-gnu-objcopy
 CFLAGS="-O2 -ffreestanding -nostdlib -fno-pic -mgeneral-regs-only -mstrict-align -fno-stack-protector -Wall -Wextra"
+[ "${PING:-0}" = 1 ] && CFLAGS="$CFLAGS -DSHIM_PING"
 mkdir -p out
 for f in start.S shim.c console.c mmu.c fdt.c loader.c ufs.c; do
 	$CC $CFLAGS -c $f -o out/${f%.*}.o
@@ -20,6 +21,8 @@ if [ -n "${1:-}" ]; then
 else
 	(cd out && rm -rf rd && mkdir rd && cd rd && find . | cpio -o -H newc --quiet | gzip -9 > ../ramdisk.bin)
 fi
-mkbootimg --kernel out/Image --ramdisk out/ramdisk.bin 	--base 0 --kernel_offset 0x8000 --ramdisk_offset 0x1000000 --second_offset 0 	--tags_offset 0x100 --pagesize 4096 --os_version 8.0.0 --os_patch_level 2018-11 	--cmdline 'androidboot.hardware=qcom' -o out/shim-boot.img
+IMG=out/shim-boot.img
+[ "${PING:-0}" = 1 ] && IMG=out/shim-ping.img
+mkbootimg --kernel out/Image --ramdisk out/ramdisk.bin 	--base 0 --kernel_offset 0x8000 --ramdisk_offset 0x1000000 --second_offset 0 	--tags_offset 0x100 --pagesize 4096 --os_version 8.0.0 --os_patch_level 2018-11 	--cmdline 'androidboot.hardware=qcom' -o "$IMG"
 gcc -O1 -Wall -o out/host_test console.c host_test.c && ./out/host_test > /dev/null
-ls -l out/Image out/shim-boot.img
+ls -l out/Image "$IMG"
