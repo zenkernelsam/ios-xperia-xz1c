@@ -55,12 +55,37 @@ timeout, LBA constant verified 4KiB units, console writes FB_BASE
 0x9d400000 — no static crash candidates remain, so the device data decides.
 
 ### Deferred / blocked
-- 0062 touch-power RPM regs (0x18220000 sweet) — lilac needs own values,
-  deferred until touch bring-up (ClearPad i2c 0x2c, PM8998 PON).
+- 0062 touch-power RPM regs (0x18220000 sweet) — lilac RPM is GLINK over
+  SMEM (msg-ram @0x778000 + irq-reg 0x17911008), NOT MMIO RSC doorbells;
+  patch needs a rewrite for lilac, deferred until touch bring-up
+  (ClearPad i2c 0x2c, PM8998 PON).
 - xnu CI build = push to main (needs user OK for push) or `gh auth login`
   then `gh workflow run xnu -f machine_config=SWEET`.
 - Friend's advice queued for post-bring-up: MDP/MDSS hw scaling (no CPU
   copies), low-res start, ~1 fps lock until scheduler stable — AGENTS.md.
+
+### iOS userspace staged (~03:20)
+- IPSW DMGs extracted to `research/ipsw-x/` (gitignored): `os.dmg` 4.73G
+  (system volume, from Ap,OS manifest entry), `sysos.dmg` 2.74G
+  (Cryptex1,SystemOS = dyld cache lives here), `appos.dmg` 10.5M
+  (Cryptex1,AppOS). Roles read from BuildManifest.plist — do NOT guess
+  by size, the 4.7G one is OS not SystemOS.
+- `research/ipsw-x/d22ap.adt` + `kernelcache-20H392-d22ap.macho` staged.
+- **mkiosroot RUNNING**: `tools/mkiosroot.sh` (LF copy — the repo file
+  has CRLF in this Windows worktree, run `sed 's/\r$//'` first) building
+  `research/ipsw-x/ios16-root-lilac.img` (16G journaled HFS+: OS root +
+  cryptexes + dsc hardlinks + systembag.kb). Log: same dir `.log`.
+  apfs-fuse mounts verified working on the SystemOS cryptex.
+- Boot cmdline for first XNU attempt (adapted from upstream NOTES):
+  `debug=0xc serial=3 cpus=1 keepsyms=1 -enable_kprintf_spam -noprogress
+  rd=ufsroot0 unentitled_ios_sim_launch=1 ignition_level=1
+  wdt_test=no_user_checkin ufsrw=1 rootrw=1 launchd_unsecure_cache=1 wdt=-1
+  sweetfb_native=1 sweetfb_hz=1`
+  (cpus=1 + 1fps per scheduler-first advice; native=1 shows real 720x1280
+  for first pixels; add sweetusb=2 later for USB live-log.)
+- Payload build once a kernel exists:
+  `python3 tools/mkpayload.py KERNEL /tmp/lilac.adt shim/out/payload.bin
+   --cmdline "..." && (cd shim && bash build.sh ../shim/out/payload.bin)`
 
 ## >>> LILAC HANDOFF 2026-10-21 ~01:35 UPDATE <<<
 
