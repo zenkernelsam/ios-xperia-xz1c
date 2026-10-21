@@ -11,7 +11,7 @@ diff --git a/osfmk/console/video_console.c b/osfmk/console/video_console.c
 index 384118e..84092bd 100644
 --- a/osfmk/console/video_console.c
 +++ b/osfmk/console/video_console.c
-@@ -2864,6 +2864,10 @@ initialize_screen(PE_Video * boot_vinfo, unsigned int op)
+@@ -2864,7 +2864,10 @@ initialize_screen(PE_Video * boot_vinfo, unsigned int op)
  				 * equivalent.
  				 */
  				unsigned int flags = VM_WIMG_WCOMB;
