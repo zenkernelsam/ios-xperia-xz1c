@@ -1,0 +1,28 @@
+hba->outstanding_tasks = 0x0
+hba->outstanding_reqs = 0x0
+hba->capabilities = 0x1587001f
+hba->nutrs = 32
+hba->nutmrs = 8
+hba->ufs_version = 0x210
+hba->irq = 0x38
+hba->auto_bkops_enabled = 0
+hba->ufshcd_state = 0x2
+hba->clk_gating.state = 0x2
+hba->eh_flags = 0x0
+hba->intr_mask = 0x71fff
+hba->ee_ctrl_mask = 0x4
+hba->errors = 0x0
+hba->uic_error = 0x0
+hba->saved_err = 0x0
+hba->saved_uic_err = 0x0
+=====
+host regs [0]: 1587001f 00000000 00000210 00000000
+host regs [10]: 01000000 00010217 00000000 00000000
+host regs [20]: 00000000 00030e75 00000000 00000000
+host regs [30]: 0000010f 00000003 00000000 00000000
+host regs [40]: 00000000 00000000 00000000 00000000
+host regs [50]: f5847000 00000000 00000000 00000000
+host regs [60]: 00000001 ffffffff 00000000 00000000
+host regs [70]: f5859000 00000000 00000000 00000000
+host regs [80]: 00000001 00000000 00000000 00000000
+host regs [90]: 00000002 15710000 00000000 00000225

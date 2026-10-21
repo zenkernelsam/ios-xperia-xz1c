@@ -140,6 +140,13 @@ const char *loader_boot(uintptr_t dtb)
 	con_hex("JUMP", entry_pa);
 	con_str("XNU", "jumping (fbcon clears screen)");
 
+	/* Leave a legal route in restart_reason: once xnu takes over, the only
+	   remaining checkpoint is C2 (0x7766C032), which ABL cannot route — a
+	   watchdog bite or xnu reset would land in fastboot instead of Android.
+	   0x77665501 makes every later reset recover to Android + adb. */
+	*(volatile uint32_t *)0x146bf65cUL = 0x77665501u;
+	__asm__ volatile("dsb sy" ::: "memory");
+
 	/* Everything was written with the MMU and caches off; drop any stale I-cache lines too. */
 	__asm__ volatile("dsb sy; ic iallu; dsb sy; isb" ::: "memory");
 	((xnu_entry_t)entry_pa)(ba_pa);

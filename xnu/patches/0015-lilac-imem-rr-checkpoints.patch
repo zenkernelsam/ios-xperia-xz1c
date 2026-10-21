@@ -1,0 +1,73 @@
+diff --git a/osfmk/arm64/arm_vm_init.c b/osfmk/arm64/arm_vm_init.c
+index a33f045..590f874 100644
+--- a/osfmk/arm64/arm_vm_init.c
++++ b/osfmk/arm64/arm_vm_init.c
+@@ -1847,6 +1847,12 @@ sweet_early_map_final(void)
+ 	    ARM_TTE_BLOCK_SH(SH_OUTER_MEMORY) |
+ 	    ARM_TTE_BLOCK_ATTRINDX(CACHE_ATTRINDX_WRITECOMB) |
+ 	    ARM_TTE_BLOCK_AF | ARM_TTE_BLOCK_PNX | ARM_TTE_BLOCK_NX;
++	/* IMEM restart_reason (0x146bf65c) at the next VA block, Device memory:
++	 * sweet_early_relocate() points early_rr one block above the FB alias. */
++	slot[1] = 0x14000000ULL | ARM_TTE_VALID | ARM_TTE_TYPE_BLOCK |
++	    ARM_TTE_BLOCK_SH(SH_OUTER_MEMORY) |
++	    ARM_TTE_BLOCK_ATTRINDX(CACHE_ATTRINDX_DISABLE) |
++	    ARM_TTE_BLOCK_AF | ARM_TTE_BLOCK_PNX | ARM_TTE_BLOCK_NX;
+ 	__asm__ volatile("dsb ishst" ::: "memory");
+ }
+ #endif
+diff --git a/osfmk/arm64/sweet_early.c b/osfmk/arm64/sweet_early.c
+index 88396e6..08ce319 100644
+--- a/osfmk/arm64/sweet_early.c
++++ b/osfmk/arm64/sweet_early.c
+@@ -10,9 +10,16 @@
+ #if defined(SWEET)
+ #include <stdint.h>
+ #include <kern/misc_protos.h>
++#include <arm64/proc_reg.h>
+ 
+ static volatile uint32_t *early_fb = (volatile uint32_t *)(uintptr_t)0x9d400000;
+ #define EARLY_FB early_fb
++/* IMEM restart_reason: mapped VA=PA by start.s (Device block 0x14000000),
++ * remapped beside the framebuffer alias by arm_vm_init. ABL echoes it into
++ * the next Android cmdline as warmboot=0x........ -- the only signal that
++ * survives a watchdog bite. 0x77664Dxx = 'M' + stage, 0x776650xx = 'P'. */
++static volatile uint32_t *early_rr = (volatile uint32_t *)(uintptr_t)0x146bf65c;
++#define EARLY_RR early_rr
+ #define EARLY_WIDTH 720u
+ #define EARLY_HEIGHT 1280u
+ #define EARLY_STRIDE (2880u / 4)
+@@ -27,6 +34,7 @@ extern unsigned char iso_font[256 * 16];
+ /* Initialized data must remain writable until disable, including panics. */
+ static unsigned int early_row, early_col;
+ static unsigned int early_started, early_disabled, early_panicking;
++static unsigned int early_last_stage;
+ 
+ static void
+ sweet_early_clear_row(void)
+@@ -92,6 +100,9 @@ sweet_early_mark(unsigned int stage, const char *label)
+ 	if (early_disabled || stage > 20) {
+ 		return;
+ 	}
++	early_last_stage = stage;
++	*EARLY_RR = 0x77664D00u | stage;
++	__asm__ volatile("dsb sy" ::: "memory");
+ 	uint32_t color = 0xff00ff00u | ((stage & 7u) * 32u << 16);
+ 	for (unsigned int y = EARLY_HEIGHT - 32; y < EARLY_HEIGHT; y++) {
+ 		for (unsigned int x = stage * 48; x < (stage + 1) * 48; x++) {
+@@ -116,6 +127,8 @@ sweet_early_panic(const char *fmt, va_list *args)
+ 		return;
+ 	}
+ 	early_panicking = 1;
++	*EARLY_RR = 0x77665000u | (early_last_stage & 0xff);
++	__asm__ volatile("dsb sy" ::: "memory");
+ 	sweet_early_string("\nSWEET EARLY PANIC: ");
+ 	va_list copy;
+ 	va_copy(copy, *args);
+@@ -130,6 +143,7 @@ sweet_early_relocate(uint64_t base)
+ {
+ 	sweet_early_mark(8, "leaving bootstrap TTBR0");
+ 	early_fb = (volatile uint32_t *)(uintptr_t)base;
++	early_rr = (volatile uint32_t *)(uintptr_t)(base + ARM_TT_L2_SIZE);
+ 	__asm__ volatile("dsb sy" ::: "memory");
+ 	sweet_early_mark(9, "kernel framebuffer VA live");
+ }
