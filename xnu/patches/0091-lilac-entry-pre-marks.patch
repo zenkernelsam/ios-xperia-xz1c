@@ -1,0 +1,33 @@
+diff --git a/osfmk/arm64/start.s b/osfmk/arm64/start.s
+--- a/osfmk/arm64/start.s
++++ b/osfmk/arm64/start.s
+@@ -509,5 +509,13 @@ LEXT(start_first_cpu)
+ 
+ 	// Unlock the core for debugging
++#if defined(SWEET)
++	/* E1 (0x7766E101): reached start_first_cpu — splits the pre-AA01
++	 * window: branch/entry vs OSLAR_EL1 vs Stage-0 FB band. */
++	MOV64	x10, 0x146bf65c
++	MOV64	x11, 0x7766E101
++	str		w11, [x10]
++	dsb		sy
++#endif
+ 	msr		OSLAR_EL1, xzr
+ 	msr		DAIFSet, #(DAIFSC_ALL)				// Disable all interrupts
+ 
+@@ -515,6 +523,15 @@ LEXT(start_first_cpu)
+ 	mov		x20, x0
+ 	mov		x21, #0
+ 
++#if defined(SWEET)
++	/* E2 (0x7766E102): survived OSLAR_EL1 + DAIFSet; next instruction
++	 * group is the Stage-0 framebuffer band write to 0x9d400000. */
++	MOV64	x10, 0x146bf65c
++	MOV64	x11, 0x7766E102
++	str		w11, [x10]
++	dsb		sy
++#endif
++
+ #if defined(SWEET)
+ 	/* Stage 0: white 64x32 band, no stack or page tables needed. */
+ 	MOV64	x0, (0x9d400000 + 1248 * 2880)

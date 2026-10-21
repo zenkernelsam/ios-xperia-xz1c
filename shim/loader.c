@@ -140,6 +140,55 @@ const char *loader_boot(uintptr_t dtb)
 	con_hex("JUMP", entry_pa);
 	con_str("XNU", "jumping (fbcon clears screen)");
 
+	/* Pre-jump mortem probes. The only channel proven to survive a WDT
+	 * bite is the IMEM restart_reason field → next cmdline warmboot=;
+	 * DDR stash regions get rewritten by the boot chain. Marks are
+	 * 0x7766D0xx (last write wins): a hang leaves the mark of the
+	 * step that killed us. */
+#define RR_MARK(x) (*(volatile uint32_t *)0x146bf65cUL = (x))
+#define PSHOLD_REG (*(volatile uint32_t *)0x10ac000UL)
+
+	/* 1) entry placement: first 64 words at entry_pa must match the
+	 *    payload source segment containing entry_va. Mismatch → reset
+	 *    with 0x7766D0<idx> (idx = 1..64, 0xff = entry not in any seg). */
+	RR_MARK(0x7766D010);
+	{
+		const uint32_t *src = 0;
+		for (uint32_t i = 0; i < p->nsegs; i++) {
+			const struct payload_seg *s = &p->segs[i];
+			uintptr_t lo = s->vmaddr + pa_of_va_base;
+			if (entry_pa >= lo && entry_pa + 4 <= lo + s->file_size) {
+				src = (const uint32_t *)(rd_start + s->file_off +
+							 (entry_pa - lo));
+				break;
+			}
+		}
+		uint32_t bad = src ? 0 : 0xff;
+		for (uint32_t i = 0; src && i < 64; i++)
+			if (((volatile uint32_t *)entry_pa)[i] != src[i]) {
+				bad = i + 1;
+				break;
+			}
+		if (bad) {
+			RR_MARK(0x7766D000 | bad);
+			__asm__ volatile("dsb sy" ::: "memory");
+			PSHOLD_REG = 0;
+			for (;;)
+				;
+		}
+	}
+
+	/* 2) FB band: kernel Stage-0 stores to 0x9d400000+1248*2880 before AA01 */
+	RR_MARK(0x7766D011);
+	*(volatile uint32_t *)(0x9d400000UL + 1248 * 2880) = 0x00ff00ff;
+	__asm__ volatile("dsb sy" ::: "memory");
+	RR_MARK(0x7766D012);
+
+	/* 3) OSLAR_EL1: first insn of start_first_cpu, suspect on QC debug-gated SoCs */
+	RR_MARK(0x7766D013);
+	__asm__ volatile("msr OSLAR_EL1, xzr" ::: "memory");
+	RR_MARK(0x7766D014);
+
 	/* Leave a legal route in restart_reason: once xnu takes over, the only
 	   remaining checkpoint is C2 (0x7766C032), which ABL cannot route — a
 	   watchdog bite or xnu reset would land in fastboot instead of Android.
