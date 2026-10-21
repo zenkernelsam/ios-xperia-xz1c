@@ -1,5 +1,15 @@
 # Working on ios-xperia-xz1c (fork of ios-sweet → Sony Xperia XZ1 Compact "lilac" / SO-02K)
 
+- **HOST CPU CAP 70%** (2026-10-21, user requirement): the Windows PC has an
+  ES CPU that hard-rebooted the machine overnight under sustained load.
+  NEVER run full-core builds/compiles. Envelope: `taskset -c 0-13` (14/20
+  cores in WSL) + `nice -n10` + `ionice -c2 -n7` for anything heavy.
+  Same spirit on Windows side. `/tmp` in WSL is wiped on every reboot —
+  keep anything valuable in the repo or `/root`. The hfsplus kernel
+  module is runtime-loaded: after any reboot re-load it with
+  `insmod /root/wslk/fs/hfsplus/hfsplus.ko` (built from WSL2-Linux-Kernel
+  linux-msft-wsl-6.18.y, exact 6.18.54.1 match; rebuild via
+  `KBUILD_MODPOST_WARN=1 make M=fs/hfsplus modules` if ever needed).
 - Read `NOTES.md` before starting; it contains the project goal, hardware facts,
   current blocker, local artifact locations and the next concrete action.
 - The user switches agents frequently. Update the active handoff in `NOTES.md`

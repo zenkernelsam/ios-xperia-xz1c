@@ -1,6 +1,38 @@
 # iOS 16 on sweet (Redmi Note 10 Pro, SM7150) - working notes
 
-## >>> LILAC HANDOFF 2026-10-21 ~01:45 OVERNIGHT REPORT (read FIRST) <<<
+## >>> LILAC HANDOFF 2026-10-21 ~08:50 MORNING UPDATE (read FIRST) <<<
+
+**HOST REBOOTED 2x overnight (ES CPU instability)** — Event 41 at ~03:42
+during rsync, then user rebooted again ~08:50 (PS/2 input dead). **HOST CPU
+CAP 70% is now a standing rule** (AGENTS.md): heavy work runs under
+`taskset -c 0-13 nice -n10 ionice -c2 -n7`. WSL `/tmp` is wiped per reboot —
+persistent stuff lives in repo or `/root`.
+
+### Phone state
+- User put it in fastboot (blue LED) but **Windows sees nothing on the bus**;
+  a `ROOT_HUB30` controller is in Error state from the crash. Needs ONE
+  USB re-plug when the user is back (or a different port to dodge the bad
+  hub). usbctl SYSTEM daemon auto-started on boot (`/sc onstart` trigger)
+  and answers `status` — recovery channel is live.
+- ADB server + device list empty; fastboot empty. Once the phone shows up
+  in fastboot, TEST ORDER below is ready.
+
+### Rebuilt/continuing under CPU cap
+- **mkiosroot RUNNING (3rd attempt, taskset 0-13)**: building
+  `research/ipsw-x/ios16-root-lilac.img`. Previous runs died at
+  rsync/copy stage in the reboots. The hfsplus.ko custom WSL2 module
+  (built /root/wslk, exact 6.18.54.1 match) makes the mount work —
+  re-insmod after every reboot: `insmod /root/wslk/fs/hfsplus/hfsplus.ko`.
+- Everything else from the overnight report below still stands
+  (81/81 patches verified, v9/v10 shims + watchdog ready, IPSW staged).
+
+### When user returns — the ONE manual step
+Re-plug USB (or swap port) → phone still in fastboot → run:
+`fastboot boot artifacts/shim-lilac-v10-ping.img` → **watch for RED flash**
+then auto-reset to Android → `su -c 'cat /sys/fs/pstore/console-ramoops-0'`.
+Outcome matrix is in the "TEST ORDER" section below.
+
+## >>> LILAC HANDOFF 2026-10-21 ~01:45 OVERNIGHT REPORT <<<
 
 **PHONE: still hard-hung** (VID_0000&PID_0002 enumeration error, survived
 pnputil restart + remove/rescan). Needs ONE physical power-button press
