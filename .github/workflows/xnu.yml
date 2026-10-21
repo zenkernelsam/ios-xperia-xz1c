@@ -1,4 +1,6 @@
 name: xnu
+# First lilac CI build trigger (Actions were enabled on the fork after the
+# initial patch-series push, so a fresh event is needed to start the run).
 
 on:
   workflow_dispatch:
