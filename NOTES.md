@@ -321,6 +321,35 @@ porting sweet to UniXNU Darwin-23 with A618 legacy HFI — closest
 trail for a future A540 GPU driver). Details in AGENTS.md "ALLY
 INTELLIGENCE".
 
+## >>> MAC HANDOFF 2026-10-22 ~01:05 (Xcode 26.3 kernel BUILT) <<<
+
+**First local xnu-8796 SWEET kernel built on the Mac — under Xcode 26.3,
+BUILD_EXIT=0.** `kernel-e02e627-1022-0103.sweet` (17,076,336 B, arm64
+cpusubtype 0) in the Fn-Sync `XNU/` folder + `.sha256` + full
+`TEST-REPORT-2026-10-22-xcode263-first-build.md`.
+
+- Requirement changed mid-session (user): use installed Xcode 26.3, NOT
+  the gated Xcode 15.4 download. Compat delta = **iig-440 emits
+  `IORPC.kernelContent`** — fixed by patch
+  `0090-lilac-xcode26-iig-iorpc-kernelcontent` (member + IOUserServer
+  plumbing mirrored from upstream xnu-10063; bidirectionally safe vs
+  CI's iig-286). No other Xcode-26 blockers hit: link, clang
+  diagnostics, host tools all clean.
+- Mac env done: dxb@6639065 in `dxb/` (gitignored now), deps installed,
+  **KDK 13.5 lives at `~/KDKs/KDK_13.5_22G74.kdk` — always pass
+  `KDKROOT` to build.sh** (sudo-free path; no `/Library/Developer/KDKs`).
+- autobuild watcher (`tools/mac-autobuild.sh`) now accepts Xcode
+  15.x|26.x and exports KDKROOT. Currently PAUSED
+  (`~/xnu-autobuild.pause` exists — rm to resume).
+- **Push pending: no git creds on this Mac.** Commit `5cb3ab3` is
+  local-only (patch + autobuild gate + HANDOVER-MAC + .gitignore).
+  Patch file also copied into `XNU/` as backup for a Windows-side push.
+- GH PAT vanished from `XNU/github-token.env` mid-session — artifacts
+  were fetched in time (telemetry kernel `7622103` + buildtree in
+  `xnu/out-mac/`). Re-drop PAT in XNU/ to re-enable gh access here.
+- Build speed reality: full build ~40 min on this Intel (CI ~20).
+  Incremental patch-loop builds should be much faster (make resume).
+
 ## >>> LILAC HANDOFF 2026-10-21 ~09:10 <<<
 
 **MORNING RESULTS — major wins + one wedge:**
