@@ -14,6 +14,9 @@ POLL="${XNU_POLL:-60}"
 KERNEL_REL="dxb/fakeroot/System/Library/Kernels/kernel.development.sweet"
 
 export MACOS_VERSION=13.5 KERNEL_CONFIG=DEVELOPMENT MACHINE_CONFIG=SWEET
+# Sudo-free KDK: manually expanded KDK bundle (pkgutil --expand-full); build.sh
+# takes it via KDKROOT and skips `sudo installer -pkg` entirely.
+export KDKROOT="${XNU_KDKROOT:-$HOME/KDKs/KDK_13.5_22G74.kdk}"
 export PATH="/usr/local/bin:/opt/homebrew/bin:$PATH"
 
 log() { printf '%s %s\n' "$(date '+%m-%d %H:%M:%S')" "$*" >>"$LOG"; }
@@ -32,12 +35,13 @@ while :; do
 		sleep "$POLL"; continue
 	fi
 
-	# Environment gate: Xcode 15.x or 26.x (the iig/IORPC incompatibility was
-	# fixed in 5cb3ab3; 26.3 produced a working SWEET kernel on 2026-10-23).
+	# Environment gate: Xcode 15.x (CI-proven) or 26.x — 16+ iig emits
+	# IORPC.kernelContent, covered by patch 0090 in the series. Other
+	# versions are untested; skip rather than risk a bad kernel.
 	XCV=$(xcodebuild -version 2>/dev/null | head -1)
 	case "$XCV" in
 		"Xcode 15."*|"Xcode 26."*) ;;
-		*) log "skip: '$XCV' is not a supported Xcode (need 15.x or 26.x)"; status "idle" "waiting for Xcode 15.x/26.x"; sleep "$POLL"; continue ;;
+		*) log "skip: '$XCV' — need Xcode 15.x or 26.x"; status "idle" "waiting for supported Xcode"; sleep "$POLL"; continue ;;
 	esac
 
 	git fetch -q origin main >>"$LOG" 2>&1
