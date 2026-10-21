@@ -708,3 +708,20 @@ What it took today (in order): 0058 HID services (Apple IOHIDFamily-1915 user cl
      cpu_init, before arm_vm_init.
   5. panic hook at top of panic_trap_to_debugger: va_copy + _doprnt(fmt, &copy, sweet_early_putc, 16).
   Verify with tools/xnu-cc.py (compile+symbols) and patch-order simulation before the single CI run.
+
+## 2026-10-21 晚 — fmem.ko 物理内存通道打通（里程碑）
+
+**成果**：`/dev/fmem` 内核模块在 stock 4.4.78-perf+ 上加载成功，可任意读写物理内存（llseek+read/write，另有 remap_pfn_range mmap 通路）。dd 验证可读真实 RAM 内容。
+
+**关键技术链条（踩过的坑全在这）**：
+1. 内核模块 ABI 三件套缺一不可：正确 CRC（MODVERSIONS）、`.plt` 节、`struct module` 布局
+2. **真 CRC 提取法**：stock kernel Image 里 `__ksymtab`/`__kcrctab` 都是零，运行时由重定位表填充。重定位记录 24B `{ins,type,sym,val}` type=0x403：ksymtab 条目 16B（value@+0,name@+8），ins%16==8 的 reloc 的 val=符号名地址；kcrctab ins 即槽位 val=CRC。按序数配对 → 6038 真值，已用 module_layout=0x5d6866f7 + __kmalloc=0xd2b09ce5 交叉验证。存 `research/symvers-REAL.txt`（WSL /root/xperia/research/）
+3. **`.plt` 节**：不能 objcopy 塞或 ld -r 后拼（会崩 load_module）。正解 = pltstub.S（`.section .plt,"ax"`）作为 `fmem_mod-objs` 一员走 Kbuild 正常链接
+4. **`struct module` 布局**：崩在 `load_module+0x11ec`（add_usage_links 读 mod+728 当 target_list）。根因 = `CONFIG_ARM64_MODULE_PLTS` 决定 `mod_arch_specific` 16B → target_list 偏移 712 vs 728。**必须用 stock /proc/config.gz（已存 research/lilac-config.gz→lilac-kernel.config）+ `make olddefconfig && make prepare` 刷 autoconf.h**（syncconfig 目标在此树不存在）
+5. 构建树：/root/k44 = whatawurst android_kernel_sony_msm8998 LA.UM.6.4.r1-03200-8x98.0（4.4.74，vermagic 与 stock 4.4.78 有差异但内核不查 vermagic 版本字符串匹配，只查 CRC/布局）
+6. 模块 Makefile：`ccflags-y := -Wno-error -Wno-missing-attributes`（Sony 内核 forbidden-warning 机制）+ `obj-m := fmem_mod.o` + `fmem_mod-objs := fmem.o pltstub.o`
+7. 崩了两次的 panic 证据：pstore `console-ramoops-0` 完整保存 panic log —— **ramoops 对内核 panic 工作正常**（间接证明 shim prz 没留下是 shim 自己的问题，不是通道问题）
+
+**产物**：`Patch\Xperia\unlock\fmem.ko`（stock-config + 真CRC + 原生plt），源 `shim/fmem.c`
+
+**下一步**：fmem 读 UFS 寄存器/IMEM/任意 RAM → 终极定位 v13 shim 的 appslog 写入为何没留下 + warmboot 编码为何读不到。手机连续两次 insmod 崩溃都靠硬件看门狗自愈，无需人工。
