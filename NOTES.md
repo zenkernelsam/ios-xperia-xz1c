@@ -1,6 +1,41 @@
 # iOS 16 on sweet (Redmi Note 10 Pro, SM7150) - working notes
 
-## >>> LILAC HANDOFF 2026-10-21 ~08:50 MORNING UPDATE (read FIRST) <<<
+## >>> LILAC HANDOFF 2026-10-21 ~09:10 (read FIRST) <<<
+
+**MORNING RESULTS — major wins + one wedge:**
+
+- ✅ **SHIM VERIFIED RUNNING ON LILAC.** `fastboot boot
+  artifacts/shim-lilac-v11-ping.img` → device reset → fastboot →
+  `fastboot reboot` → Android cmdline shows `warmboot=0x77665501`.
+  In v11 that value is only written at the very END of shim_main →
+  the shim ran to completion (entry, wdt arm, FB fill, delays, PSHOLD).
+- ✅ **IMEM telemetry channel proven end-to-end.** v11 change:
+  `cp_mark(c0,c1)` now also writes `0x7766<c0><c1>` into
+  IMEM_RESTART_REASON — next Android boot's `warmboot=` tells the LAST
+  checkpoint reached (e.g. 0x77664330 = "C0" died next step,
+  0x77665501 = completed). Survives two resets (shim→fastboot→Android).
+- 📌 **Observed: EVERYTHING resets back to fastboot after `fastboot
+  boot`** regardless of reason value — then `fastboot reboot` → Android
+  carries the sticky reason into cmdline. Corrects earlier assumption
+  that 0x77665501 routes straight to Android.
+- ⚠️ **pstore prz not surfacing**: ramoops IS registered
+  (`console [pstore0] enabled`, `ramoops: attached 0x100000@0xffc00000`)
+  yet `/sys/fs/pstore/` was EMPTY after a completed shim run whose
+  cp_marks write {DBGC,start,size,data} at 0xffcc0000. Either writes
+  don't survive this reset flavor or the prz scan rejects them.
+  warmboot channel covers us; appslog UFS write is the next log channel.
+- ✅ **iOS root image BUILT**: `research/ipsw-x/ios16-root-lilac.img`
+  (17,179,869,184 B = 16 GiB HFS+ "iOSRoot", case-sensitive; fsck
+  repaired once then "appears to be OK"). mkiosroot done at ~08:58.
+- ⚠️ **PHONE USB WEDGED AGAIN (VID_0000)** after `devreset` — LESSON:
+  removing a LIVE phone's device node wedges its USB controller.
+  Recovery ladder now stops at `replug`; never devreset on a live
+  device. Needs ONE physical replug/power-cycle.
+- Pending immediately on phone return: `fastboot boot
+  artifacts/shim-lilac-v11.img` (full diag: FDT parse + UFS probe +
+  appslog log-dump + checkpoint telemetry) → warmboot + dd appslog.
+
+## >>> LILAC HANDOFF 2026-10-21 ~08:50 MORNING UPDATE <<<
 
 **HOST REBOOTED 2x overnight (ES CPU instability)** — Event 41 at ~03:42
 during rsync, then user rebooted again ~08:50 (PS/2 input dead). **HOST CPU
