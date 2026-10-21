@@ -1,25 +1,71 @@
+edit ok: osfmk/arm64/start.s
+edit ok: osfmk/arm64/start.s
+edit ok: osfmk/arm64/arm_vm_init.c
+edit ok: osfmk/arm64/sweet_early.c
+edit ok: osfmk/arm64/sweet_early.c
+edit ok: osfmk/arm64/sweet_early.c
+edit ok: osfmk/arm64/sweet_early.c
+edit ok: osfmk/arm64/sweet_early.c
 diff --git a/osfmk/arm64/arm_vm_init.c b/osfmk/arm64/arm_vm_init.c
-index a33f045..590f874 100644
+index a33f045..175bcc5 100644
 --- a/osfmk/arm64/arm_vm_init.c
 +++ b/osfmk/arm64/arm_vm_init.c
-@@ -1847,6 +1847,12 @@ sweet_early_map_final(void)
+@@ -1847,6 +1847,20 @@ sweet_early_map_final(void)
  	    ARM_TTE_BLOCK_SH(SH_OUTER_MEMORY) |
  	    ARM_TTE_BLOCK_ATTRINDX(CACHE_ATTRINDX_WRITECOMB) |
  	    ARM_TTE_BLOCK_AF | ARM_TTE_BLOCK_PNX | ARM_TTE_BLOCK_NX;
-+	/* IMEM restart_reason (0x146bf65c) at the next VA block, Device memory:
-+	 * sweet_early_relocate() points early_rr one block above the FB alias. */
++	/* IMEM restart_reason (0x146bf65c): 16K pages => 32 MiB L2 blocks,
++	 * so the aligned block is 0x14000000 and sweet_early_relocate()
++	 * points early_rr at (block VA + 0x6bf65c). Device memory. */
 +	slot[1] = 0x14000000ULL | ARM_TTE_VALID | ARM_TTE_TYPE_BLOCK |
++	    ARM_TTE_BLOCK_SH(SH_OUTER_MEMORY) |
++	    ARM_TTE_BLOCK_ATTRINDX(CACHE_ATTRINDX_DISABLE) |
++	    ARM_TTE_BLOCK_AF | ARM_TTE_BLOCK_PNX | ARM_TTE_BLOCK_NX;
++	/* debug_region tail (0xffbff000): durable checkpoint mirror that ABL
++	 * never clobbers -- read it back via fmem from Android. The 32 MiB
++	 * block aligns to 0xfe000000. */
++	slot[2] = 0xfe000000ULL | ARM_TTE_VALID | ARM_TTE_TYPE_BLOCK |
 +	    ARM_TTE_BLOCK_SH(SH_OUTER_MEMORY) |
 +	    ARM_TTE_BLOCK_ATTRINDX(CACHE_ATTRINDX_DISABLE) |
 +	    ARM_TTE_BLOCK_AF | ARM_TTE_BLOCK_PNX | ARM_TTE_BLOCK_NX;
  	__asm__ volatile("dsb ishst" ::: "memory");
  }
  #endif
+diff --git a/osfmk/arm64/start.s b/osfmk/arm64/start.s
+index a8e4eec..4efc07d 100644
+--- a/osfmk/arm64/start.s
++++ b/osfmk/arm64/start.s
+@@ -487,6 +487,9 @@ Lsweet_mark_pixel:
+ 	MOV64	x10, 0x146bf65c
+ 	MOV64	x11, 0x7766AA01
+ 	str		w11, [x10]
++	/* durable mirror: debug_region tail survives ABL's field rewrites */
++	MOV64	x12, 0xffbff000
++	str		w11, [x12]
+ 	dsb		sy
+ #endif
+ 
+@@ -660,6 +663,15 @@ Lkernelcache_base_found:
+ 	and		x12, x10, #(ARM_TT_L2_INDEX_MASK)
+ 	lsr		x12, x12, #(ARM_TT_L2_SHIFT)
+ 	str		x11, [x13, x12, lsl #TTE_SHIFT]
++	/* Third slot: the 32MB block at 0xfe000000 (covers reserved
++	 * debug_region 0xffb00000 and pstore 0xffc00000) as Device --
++	 * durable mirror cell at 0xffbff000. */
++	MOV64	x10, 0xfe000000
++	MOV64	x11, (ARM_TTE_TYPE_BLOCK | ARM_TTE_VALID | ARM_TTE_BLOCK_SH(SH_OUTER_MEMORY) | ARM_TTE_BLOCK_ATTRINDX(CACHE_ATTRINDX_DISABLE) | ARM_TTE_BLOCK_AF | ARM_TTE_BLOCK_PNX | ARM_TTE_BLOCK_NX)
++	orr		x11, x11, x10
++	and		x12, x10, #(ARM_TT_L2_INDEX_MASK)
++	lsr		x12, x12, #(ARM_TT_L2_SHIFT)
++	str		x11, [x13, x12, lsl #TTE_SHIFT]
+ #endif
+ 
+ 	/* Ensure TTEs are visible */
 diff --git a/osfmk/arm64/sweet_early.c b/osfmk/arm64/sweet_early.c
-index 88396e6..08ce319 100644
+index 88396e6..a596974 100644
 --- a/osfmk/arm64/sweet_early.c
 +++ b/osfmk/arm64/sweet_early.c
-@@ -10,9 +10,16 @@
+@@ -10,9 +10,24 @@
  #if defined(SWEET)
  #include <stdint.h>
  #include <kern/misc_protos.h>
@@ -27,16 +73,24 @@ index 88396e6..08ce319 100644
  
  static volatile uint32_t *early_fb = (volatile uint32_t *)(uintptr_t)0x9d400000;
  #define EARLY_FB early_fb
-+/* IMEM restart_reason: mapped VA=PA by start.s (Device block 0x14000000),
-+ * remapped beside the framebuffer alias by arm_vm_init. ABL echoes it into
-+ * the next Android cmdline as warmboot=0x........ -- the only signal that
-+ * survives a watchdog bite. 0x77664Dxx = 'M' + stage, 0x776650xx = 'P'. */
++/* IMEM restart_reason: mapped VA=PA by start.s, remapped beside the
++ * framebuffer alias by arm_vm_init. ABL echoes it into the next Android
++ * cmdline as warmboot=0x........  0x77664Dxx = 'M' + stage,
++ * 0x776650xx = 'P' panic.  BUT ABL rewrites the official field on
++ * `fastboot reboot`, so every mark is mirrored into early_durable --
++ * reserved debug_region DDR tail at phys 0xffbff000 (inside the
++ * 0xfe000000 32 MiB block) that nothing else touches; read it from
++ * Android via fmem. */
 +static volatile uint32_t *early_rr = (volatile uint32_t *)(uintptr_t)0x146bf65c;
 +#define EARLY_RR early_rr
++static volatile uint32_t *early_durable =
++	(volatile uint32_t *)(uintptr_t)0xffbff000;
++#define EARLY_DURABLE early_durable
++static unsigned int early_mark_seq;
  #define EARLY_WIDTH 720u
  #define EARLY_HEIGHT 1280u
  #define EARLY_STRIDE (2880u / 4)
-@@ -27,6 +34,7 @@ extern unsigned char iso_font[256 * 16];
+@@ -27,6 +42,7 @@ extern unsigned char iso_font[256 * 16];
  /* Initialized data must remain writable until disable, including panics. */
  static unsigned int early_row, early_col;
  static unsigned int early_started, early_disabled, early_panicking;
@@ -44,30 +98,36 @@ index 88396e6..08ce319 100644
  
  static void
  sweet_early_clear_row(void)
-@@ -92,6 +100,9 @@ sweet_early_mark(unsigned int stage, const char *label)
+@@ -92,6 +108,11 @@ sweet_early_mark(unsigned int stage, const char *label)
  	if (early_disabled || stage > 20) {
  		return;
  	}
 +	early_last_stage = stage;
 +	*EARLY_RR = 0x77664D00u | stage;
++	*EARLY_DURABLE = 0x77664D00u | stage;
++	early_durable[1] = ++early_mark_seq;
 +	__asm__ volatile("dsb sy" ::: "memory");
  	uint32_t color = 0xff00ff00u | ((stage & 7u) * 32u << 16);
  	for (unsigned int y = EARLY_HEIGHT - 32; y < EARLY_HEIGHT; y++) {
  		for (unsigned int x = stage * 48; x < (stage + 1) * 48; x++) {
-@@ -116,6 +127,8 @@ sweet_early_panic(const char *fmt, va_list *args)
+@@ -116,6 +137,9 @@ sweet_early_panic(const char *fmt, va_list *args)
  		return;
  	}
  	early_panicking = 1;
 +	*EARLY_RR = 0x77665000u | (early_last_stage & 0xff);
++	*EARLY_DURABLE = 0x77665000u | (early_last_stage & 0xff);
 +	__asm__ volatile("dsb sy" ::: "memory");
  	sweet_early_string("\nSWEET EARLY PANIC: ");
  	va_list copy;
  	va_copy(copy, *args);
-@@ -130,6 +143,7 @@ sweet_early_relocate(uint64_t base)
+@@ -129,7 +153,9 @@ void
+ sweet_early_relocate(uint64_t base)
  {
  	sweet_early_mark(8, "leaving bootstrap TTBR0");
- 	early_fb = (volatile uint32_t *)(uintptr_t)base;
-+	early_rr = (volatile uint32_t *)(uintptr_t)(base + ARM_TT_L2_SIZE);
+-	early_fb = (volatile uint32_t *)(uintptr_t)base;
++	early_fb = (volatile uint32_t *)(uintptr_t)(base + 0x1400000);
++	early_rr = (volatile uint32_t *)(uintptr_t)(base + ARM_TT_L2_SIZE + 0x6bf65c);
++	early_durable = (volatile uint32_t *)(uintptr_t)(base + 2 * ARM_TT_L2_SIZE + 0x1bff000);
  	__asm__ volatile("dsb sy" ::: "memory");
  	sweet_early_mark(9, "kernel framebuffer VA live");
  }
