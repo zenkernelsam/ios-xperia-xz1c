@@ -108,6 +108,58 @@
   instance re-enumerates USB without touching the phone. adb kill-server
   + replug also recovers most cases.
 
+## ALLY INTELLIGENCE (2026-10-21 repo pulls — TOP PRIORITY, do not lose)
+
+Research clones live in `Patch\Xperia\research\`: `ios-topaz`, `ios-sweet`,
+`ios-v60`, `UniXNU` — refresh with `git fetch` before planning.
+
+### ios-topaz — THE reference port (SM6225/SD685, ARMv8.0, iOS 16.7.16 iPhone X)
+
+Status 2026-10-20: **boots to iOS home screen, touch+keys+Wi-Fi work**
+(patches now 0139). It documents every silent-boot wall we will hit —
+their README "How topaz differs from sweet" is our porting checklist.
+SD835 lilac is ALSO ARMv8.0 (Kryo 280: no LSE atomics, no ldapr, no PAN) —
+sweet is ARMv8.2 and never hit these walls, so our 84-patch series does
+NOT cover them. Porting order for lilac:
+
+| Patch | What | Priority |
+| --- | --- | --- |
+| `0081-topaz-armv8.0-no-lse-no-pan` | `-mcpu=cortex-a53` build flags on SWEET machine config, commpage `casa`→LDAXR/STXR loop, LSE/ldapr userland emulation in `handle_uncategorized` (LDAXR/STLXR on user addr, copyio recovery) | **MANDATORY** — iPhone X userland contains LSE/ldapr; boot dies silently without it. Written against SWEET config so it should apply near-cleanly |
+| `0082-topaz-boot-on-gold-cpu` | Shim wakes Gold CPU `0x100` via PSCI CPU_ON, Silver cores park in `wfi`; ADT lists only Gold cores. Needed because **Silver cores lack 16K translation granule** (ID_AA64MMFR0.TGran16=0). lilac Silver likely identical — verify with shim's MMFR0 readout | **MANDATORY** for SMP; `cpus=1` covers first boot |
+| `0088-topaz-gpt-watchdog` | GPT watchdog handling | medium — we have APSS wdt |
+| `0092-0103` | **Direct MDP scanout**: XNU publishes IOSurface-backed surfaces in contiguous RAM <4 GiB, MDP scans them directly, real dcache maintenance, double buffering, copy+flip path | **core display work** — this IS the friend's "hardware scanout, no CPU copy" advice implemented |
+| `0094-topaz-cpufreq-max` | pin CPU freq for bring-up stability | medium |
+| `0104-0111` | DSI brightness/DCS on-off + `AppleARMBacklight` | medium — cmd-mode panel relevant |
+| `0080/0083-0091` | topology skip, FT5452 touch, battery gauge | adapt: our touch is Synaptics not FocalTech |
+| `0113-0130` | **TopazModem Wi-Fi stack**: modem PAS boot through TZ from `modem_a`, GLINK/QRTR, pd-mapper/tftp/rmtfs, WLFW, copy engines, HTC/WMI/HTT, scan, WPA2-PSK 4-way IN KERNEL, Ethernet path | later — same Qualcomm modem family, huge head start |
+| `0131-0139` | SweetSurface/IOSurface maturity: client address surfaces, detach/allocsize, zombie state, empty IOAcceleratorES, publish IOSurfaceAddress | GUI stage — CoreAnimation GL renderer needs these |
+
+Topaz shim extras ours lacks: `gold_gicr_prepare()` — preps GIC
+redistributors for all Gold cores BEFORE XNU starts SMP itself (XNU
+does CPU_ON without shim). Our shim has `test_gic()` + PSCI CPU_ON
+already; add the redistributor prep when doing SMP.
+
+### UniXNU — separate architecture, mine for DESIGN not code (SM8550 device "sheng")
+
+- **Native 4 KiB kernel**: `BCM2837` machine config (ARM_PGSHIFT=12) +
+  patch clusters `native-4k-bootstrap-capacity` (page-table budget),
+  `native-4k-user-abi` (PAGE_SHIFT_CONST=hw granule at any RAM size),
+  `native-4k-signature-hash-cache` (16K CodeDirectory → 4K kernel
+  validation bridge — needed if we ever run 4K kernel with stock
+  16K-signed binaries), `pgz-aligned-validation`,
+  `zzx-pmap-sync-64bit-pa`, `ArmSmmu4K` kit. Route for using all 8
+  cores someday; docs at `research/UniXNU/docs/xnu/four-k-page-tables.md`.
+- **Native Adreno GPU WORKING** (A740 only): chain = Metal AIR →
+  metal2vulkan → SPIR-V → Turnip → NIR → IR3 → NativeAdreno KMD →
+  GMU/CP/SMMU → scanout. Renderserver composites system UI on-device.
+  A540 port = v3.0 topic; the Metal→Turnip architecture is universal.
+- `NativeUfs` (SMMU + cmd queues), `NativeAES`, `NativeMetal`,
+  `ArmDTPlatform` driver designs — reference if sweet's hacked-Apple-driver
+  approach stalls.
+
+### ios-v60 — LG V60 (SD865): GUI + touch confirmed on device,
+QCA6390 Wi-Fi in progress. Secondary reference.
+
 ## Display path — friend's field-tested advice (FOLLOW IT)
 
 - Do NOT CPU-copy/scale an IOSurface into the framebuffer — proven very laggy.
