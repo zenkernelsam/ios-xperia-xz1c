@@ -151,7 +151,7 @@ index 7f90c56..bacf85e 100644
  #include <libkern/c++/OSArray.h>
  #include <libkern/c++/OSDictionary.h>
  #include <libkern/c++/OSNumber.h>
-@@ -75,6 +76,70 @@ static uint32_t      sweet_surface_creates_logged;
+@@ -75,6 +76,72 @@ static uint32_t      sweet_surface_creates_logged;
  static uint64_t      sweet_surface_wired;       /* bytes of buffer surfaces */
  #define SWEET_SURFACE_WIRED_MAX         (1536ull << 20)
  
