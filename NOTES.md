@@ -34,6 +34,15 @@
 - Pending immediately on phone return: `fastboot boot
   artifacts/shim-lilac-v11.img` (full diag: FDT parse + UFS probe +
   appslog log-dump + checkpoint telemetry) → warmboot + dd appslog.
+- ✅ **Topaz patch import done**: 5 patches verified clean-apply and
+  committed as `0085-0089-lilac-*` (incl. MANDATORY 0086 = ARMv8.0
+  no-LSE/no-PAN emulation — iPhone X userland dies silently without it;
+  0088 = direct MDP scanout = friend's hardware-scanout advice,
+  SWEET_SCANOUT_BASE still topaz's 0xb0000000 → pick lilac carve-out
+  before enabling). 0088/0093/0094/0096/0097 topaz originals had
+  conflicts against our edits — port manually later if needed.
+- ✅ **Disk space reclaimed**: WSL vhdx compacted, C: free 28→47 GB.
+  Still large: ipsw-x 23G (IPSW 6.2G regenerates DMGs/ADT/kernelcache).
 
 ## >>> LILAC HANDOFF 2026-10-21 ~08:50 MORNING UPDATE <<<
 
