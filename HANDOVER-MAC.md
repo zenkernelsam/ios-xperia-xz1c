@@ -50,11 +50,34 @@ cd dxb && MACOS_VERSION=13.5 KERNEL_CONFIG=DEVELOPMENT MACHINE_CONFIG=SWEET bash
 ```
 Incremental relink/compile ~minutes.
 
-## Get the kernel back to Windows
+## Get the kernel back to Windows — 飞牛同步 (fnOS)
 
-On the Mac, enable Remote Login (System Settings → Sharing → Remote Login),
-then from Windows Git Bash:
+Primary channel: the Fn-Sync client, NOT scp. Works across networks,
+auto-bidirectional, no IP/firewall fiddling.
 
+**Windows side (already set up):** `C:\Users\Cisco He\Fn-Sync\XNU`
+
+**Mac side:**
+1. Install the 飞牛同步 (Fn-Sync) client for macOS, log into the same
+   fnOS account/NAS as the Windows PC.
+2. Add a sync folder: Mac local `~/XNU` ↔ the shared `XNU` space that
+   maps to the Windows directory above.
+3. After each build:
+
+```bash
+cp dxb/fakeroot/System/Library/Kernels/kernel.development.sweet ~/XNU/
+# optionally tag iterations: cp ... ~/XNU/kernel-0015-rr.try1
+```
+
+The file lands in `C:\Users\Cisco He\Fn-Sync\XNU` automatically. The
+Windows agent picks it up there — no commands needed on either side.
+
+**Bidirectional bonus:** anything dropped into the Windows XNU folder
+(pstore dumps, warmboot logs, patched sources) shows up in `~/XNU` on
+the Mac for analysis.
+
+**Fallback:** if the sync client can't reach the NAS, use Remote Login +
+scp instead:
 ```bash
 scp macuser@<mac-ip>:~/ios-xperia-xz1c/dxb/fakeroot/System/Library/Kernels/kernel.development.sweet \
     "C:/Users/Cisco He/Desktop/Git/ios-xperia-xz1c/xnu/out-mac/kernel.development.sweet"
