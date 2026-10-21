@@ -189,6 +189,51 @@ const char *loader_boot(uintptr_t dtb)
 	__asm__ volatile("msr OSLAR_EL1, xzr" ::: "memory");
 	RR_MARK(0x7766D014);
 
+	/* 4) install mark-writing exception vectors for the kernel's blind
+	 *    window: XNU doesn't set VBAR until AFTER AA01, so any exception
+	 *    between our jump and that point lands wherever the previous
+	 *    VBAR pointed (stale => wild => silent death). Each slot writes
+	 *    0x7766F0<idx> to restart_reason and spins, so warmboot reveals
+	 *    the exact exception class: 0/4=sync, 1/5=IRQ, 2/6=FIQ, 3/7=SErr. */
+	RR_MARK(0x7766D015);
+	{
+		static uint8_t vt[2048] __attribute__((aligned(2048)));
+		for (int i = 0; i < 16; i++) {
+			uint32_t *s = (uint32_t *)(vt + i * 0x80);
+			uint32_t mark = 0xF000u | (uint32_t)i;
+			s[0] = 0x52800000u | (mark << 5) | 9u;		/* mov w9, #mark */
+			s[1] = 0x72A00000u | (0x7766u << 5) | 9u;		/* movk w9, #0x7766, lsl#16 */
+			s[2] = 0x52800000u | (0xf65cu << 5) | 10u;	/* mov w10, #0xf65c */
+			s[3] = 0x72A00000u | (0x146bu << 5) | 10u;	/* movk w10, #0x146b, lsl#16 */
+			s[4] = 0xB9000149u;				/* str w9, [x10] */
+			s[5] = 0x14000000u;				/* b . */
+		}
+		uint64_t cel;
+		__asm__ volatile("mrs %0, CurrentEL" : "=r"(cel));
+		__asm__ volatile("msr VBAR_EL1, %0" :: "r"((uint64_t)vt));
+		if (cel >= (2u << 2))
+			__asm__ volatile("msr VBAR_EL2, %0" :: "r"((uint64_t)vt));
+		__asm__ volatile("dsb sy; isb" ::: "memory");
+	}
+	RR_MARK(0x7766D016);
+
+	/* Dump the console log into a pstore prz record before jumping. The
+	 * only existing writer runs at the end of shim_main and is never
+	 * reached on the xnu path (we don't return). Whether prz survives
+	 * a WDT bite is UNVERIFIED — if it does, /sys/fs/pstore shows the
+	 * full shim log (INITRD/PHYS/ENTRY/SEGS/BOOTARG/JUMP + marks). */
+	{
+		volatile uint32_t *prz = (volatile uint32_t *)0xffcc0000UL;
+		uint32_t ln;
+		char *lb = con_log(&ln);
+		volatile char *dst = (volatile char *)(prz + 3);
+		for (uint32_t i = 0; i < ln; i++)
+			dst[i] = lb[i];
+		prz[2] = ln;
+		prz[1] = 0;
+		prz[0] = 0x43474244;
+	}
+
 	/* Leave a legal route in restart_reason: once xnu takes over, the only
 	   remaining checkpoint is C2 (0x7766C032), which ABL cannot route — a
 	   watchdog bite or xnu reset would land in fastboot instead of Android.
