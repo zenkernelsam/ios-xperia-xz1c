@@ -8,12 +8,14 @@ kernels built here get scp'd over for `mkpayload` + `fastboot boot`.
 
 ```bash
 # 1) Xcode 15.4 — REQUIRED, Xcode 16+/26 iig breaks xnu-8796 IORPC ABI.
+#    *** THE ONLY MANUAL STEP *** — download needs YOUR Apple ID:
 #    developer.apple.com/download/all → Xcode_15.4.xip → unxip to /Applications
+#    (currently installed: Xcode 26.3 — DO NOT build with it)
 sudo xcode-select -s /Applications/Xcode_15.4.app/Contents/Developer
 xcodebuild -version          # must say 15.4
 xcodebuild -license accept
 
-# 2) deps
+# 2) deps (Homebrew + tools)
 brew install jq gum bash cmake ninja
 printf '#!/bin/sh\nexit 0\n' | sudo tee /usr/local/bin/xcodes && sudo chmod +x /usr/local/bin/xcodes
 
@@ -57,24 +59,36 @@ auto-bidirectional, no IP/firewall fiddling.
 
 **Windows side (already set up):** `C:\Users\Cisco He\Fn-Sync\XNU`
 
-**Mac side:**
-1. Install the 飞牛同步 (Fn-Sync) client for macOS, log into the same
-   fnOS account/NAS as the Windows PC.
-2. Add a sync folder: Mac local `~/XNU` ↔ the shared `XNU` space that
-   maps to the Windows directory above.
-3. After each build:
+**Mac side:** the 飞牛同步 client is ALREADY INSTALLED — the NAS Home
+space mounts at `~/Library/CloudStorage/飞牛同步-Home-Nas/` and
+`XNU/` inside it maps 1:1 to the Windows folder (verified 2026-10-22,
+~20 s propagation). After each build:
 
 ```bash
-cp dxb/fakeroot/System/Library/Kernels/kernel.development.sweet ~/XNU/
-# optionally tag iterations: cp ... ~/XNU/kernel-0015-rr.try1
+cp dxb/fakeroot/System/Library/Kernels/kernel.development.sweet \
+    ~/Library/CloudStorage/飞牛同步-Home-Nas/XNU/
 ```
 
 The file lands in `C:\Users\Cisco He\Fn-Sync\XNU` automatically. The
 Windows agent picks it up there — no commands needed on either side.
 
+## Fully automated: the build slave
+
+`tools/mac-autobuild.sh` is a watcher that polls origin/main every 60 s:
+new commit → `git pull` → refresh `dxb/patches/` → `build.sh` → drop
+`kernel-<sha>-<ts>.sweet` into the sync folder + write `BUILD_STATUS.txt`.
+It refuses to build unless the selected Xcode is 15.x.
+
+Install once (survives reboots):
+
+```bash
+bash tools/mac-autobuild-install.sh
+tail -f ~/xnu-autobuild.log
+```
+
 **Bidirectional bonus:** anything dropped into the Windows XNU folder
-(pstore dumps, warmboot logs, patched sources) shows up in `~/XNU` on
-the Mac for analysis.
+(pstore dumps, warmboot logs, patched sources) shows up in
+`~/Library/CloudStorage/飞牛同步-Home-Nas/XNU` on the Mac for analysis.
 
 **Fallback:** if the sync client can't reach the NAS, use Remote Login +
 scp instead:

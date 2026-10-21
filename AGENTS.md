@@ -258,6 +258,26 @@ QCA6390 Wi-Fi in progress. Secondary reference.
 - IPSW 16.7.16 download was started to `Patch\Xperia\research\` — check state.
 - arm64e/PAC impossible on SD835 → iOS 17+ is a v2.0 research topic only.
 
+## Mac build slave (Hackintosh, configured 2026-10-22)
+
+- Host: `ssh ciscohe@ciscomac.local` (macOS 15.8.1), passwordless via
+  `~/.ssh/id_ed25519` ("devin-windows-xnu"). Login password intentionally
+  NOT stored in this public repo.
+- Repo clone: `/Users/ciscohe/Desktop/ios-xperia-xz1c`, build tree `dxb/`.
+- **Xcode constraint**: must `xcode-select` 15.4 — machine currently has
+  Xcode 26.3 (breaks xnu-8796 iig). 15.4 download is Apple-ID-gated →
+  the ONE manual step left for the user.
+- `tools/mac-autobuild.sh` = watcher (poll origin/main 60 s → pull →
+  refresh dxb/patches → build → drop `kernel-<sha>-<ts>.sweet` into sync
+  folder + `BUILD_STATUS.txt`). Install once via
+  `tools/mac-autobuild-install.sh` (launchd `com.xz1c.xnu-autobuild`).
+  Refuses to build unless Xcode 15.x selected. Log `~/xnu-autobuild.log`.
+- **Kernel channel = Fn-Sync**: Mac drops into
+  `~/Library/CloudStorage/飞牛同步-Home-Nas/XNU/` ↔ Windows
+  `C:\Users\Cisco He\Fn-Sync\XNU` (verified ~20 s). Whole NAS Home space
+  is synced — keep only kernels/status files in `XNU/`.
+- Mac deps status 10-22: `jq` ok; brew/gum/cmake/ninja MISSING.
+
 ## Automation toolbox (ALL PROVEN ON DEVICE 2026-10-21)
 
 - **usbctl daemon** = SYSTEM scheduled task "XperiaUsbCtl" (installed via
