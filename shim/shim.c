@@ -380,13 +380,17 @@ static void cp_mark(char c0, char c1)
 	cp_ps[0] = 0x43474244;
 	d[pos++] = c0; d[pos++] = c1; d[pos++] = 0x0a;
 	cp_ps[1] = 0; cp_ps[2] = pos;
+	/* Mirror the checkpoint into IMEM restart_reason: after any reset the
+	   next Android cmdline shows warmboot=0x7766<c0><c1> — the last
+	   checkpoint reached even if the shim dies before finishing. */
+	wr32(IMEM_RESTART_REASON, 0x77660000u | ((uint32_t)c0 << 8) | (uint32_t)c1);
 }
 
 void shim_main(uint64_t dtb)
 {
 	cp_mark('C','0');
-	/* Dead-man switch: default landing = Android; any hang bites within ~2 min. */
-	wr32(IMEM_RESTART_REASON, 0x77665501u);
+	/* Dead-man switch: any hang bites within ~2 min and lands back in
+	   fastboot (observed: everything resets to fastboot after fastboot boot). */
 	wdt_arm(120, 125);
 	wdt_pet();
 #ifdef SHIM_PING
