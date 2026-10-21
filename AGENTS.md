@@ -313,6 +313,9 @@ QCA6390 Wi-Fi in progress. Secondary reference.
 - `ps:<powershell>` = arbitrary admin command channel (v3 script),
   `devreset` = pnputil remove-device + scan-devices (clears the
   "needs reboot" pending flag that made dis/en fail with 常规故障).
+  ⚠️ CAUTION (Xperia AGENTS incident): `devreset` once killed the
+  phone-side USB entirely (VID_0000 descriptor failure, unrecoverable
+  by software) — LAST RESORT only, prefer replug/hardreplug first.
 - **`unattend\watchdog.sh`** (bash, `nohup bash watchdog.sh &`) — autonomous
   babysitter: polls adb every ~30 s, escalates kill-server → adbreset →
   devreset → hardreplug → replug, logs to `out/watchdog.log`. Start it before
@@ -323,6 +326,12 @@ QCA6390 Wi-Fi in progress. Secondary reference.
   device node, `Disable-PnpDevice` AND `pnputil /remove-device` both fail
   (常规故障 / 需要重新启动系统). Parent is ROOT_HUB30 (uncycleable). Only a
   Windows reboot clears it — avoid triggering it; device IO still works.
+- **`unattend\arm-xnu9.sh`** (armed sentinel, 2026-10-22) — one-shot
+  experiment runner: on first sighting of BH905ND69G (adb OR fastboot) →
+  `fastboot boot artifacts/shim-xnu9-lilac.img` → waits through the WDT
+  window → harvests `warmboot=` + pstore → decodes + logs to
+  `out/arm-xnu9.log`, `arm-xnu9.DONE` marker prevents refire. Safe to
+  leave armed: the xnu9 code path contains no reachable power-off.
 - **`/sys/fs/pstore` LIVE**: `pstore: Registered ramoops` confirmed in dmesg,
   console zone at 0xffcc0000 (DTB ramoops node: console-size 0x40000,
   record-size 0x1000, ecc 0). Shim v6 writes prz {DBGC,start,size,data}
