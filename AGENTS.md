@@ -191,6 +191,13 @@ QCA6390 Wi-Fi in progress. Secondary reference.
 - `hackios.net` status: HackiOS team (Poco X5 Pro / 11 Lite demos)
   closed-source until release; topaz README says its GPU work will be
   published once HackiOS publishes source — keep watching.
+- **UniXNU unattended loop (steal if Android-adb gets too flaky)**:
+  `sheng-log=1` writes diagnostics to last 32 MiB of userdata;
+  `sheng-autoreset=N` self-resets to fastboot; then they boot a tiny
+  **Linux "log-reader" image** (busybox + USB CDC-ACM shell) that copies
+  the log window and streams it over serial — log retrieval with ZERO
+  Android/adbd dependency. Docs: `research/UniXNU/docs/devices/
+  sheng-unattended-test.md`, script `scripts/run-sheng-unattended.sh`.
 
 ## Display path — friend's field-tested advice (FOLLOW IT)
 
