@@ -779,3 +779,32 @@ What it took today (in order): 0058 HID services (Apple IOHIDFamily-1915 user cl
 **Run 3** `39626226979` (b8eacdf) — pending→running，**这是第一个补丁全过的完整构建**
 
 待办：CI 成功后 → 下 xnu-kernel artifact → mkadt + mkpayload → build.sh 打包 → `fastboot boot`（先确认手机在 fastboot 再发，避免充电屏）。观察渠道 = 0010 早期 FB 彩条 + pstore prz + warmboot 码。
+
+## 2026-10-21 深夜 — 首次 XNU 启动尝试（run 39626226979 内核）+ IMEM 遥测上线
+
+**CI 首捷**：run `39626226979` (b8eacdf) 全绿 —— 89 补丁 × xnu-8796.141.3 编译成功。
+产物：`xnu/out-665f82a/kernel.development.sweet`（17.6MB，Mach-O arm64 plain
+cpusub=0，entry 0xfffffe00074aa488，含 Kryo 280/sweet_scanout/sweet_early_mark）。
+GitHub PAT 存 `.github-token.env`（gitignored，AGENTS.md 记了用法）。
+
+**首启结果（23:50）**：`fastboot boot shim-xnu1-lilac.img` 干净完成握手。
+结果 = **跳转后挂死**：~125s 后 WDT 咬死 → 落 fastboot（蓝灯）→ reboot 后
+cmdline `warmboot=0x77665501` = loader 跳转前写的安全路由值。**无法定位死在哪**：
+- DSI cmd-mode 面板不刷帧 → FB 标记全不可见（预期）
+- pstore/DDR 在 WDT 咬死路径被 XBL 重训练清零（内核 panic 的 ramoops 能活，
+  看门狗路径不能 —— 两种复位深度不同）
+
+**遥测升级（7622103 + 0015 补丁）**：IMEM restart_reason = 唯一活到
+Android 的 32bit 信道（ABL 镜像进 cmdline 为 warmboot=）。
+- start.s 入口写 `0x7766AA01`（MMU 关，无条件可达）
+- bootstrap L2 加 `0x14000000` Device 块 → mark 1-8 可写 RR
+- `sweet_early_map_final` 加 IMEM kernel 别名 → mark 9-20 继续写
+- mark() → `0x77664Dnn`，panic() → `0x776650nn`
+- 下次启动后 warmboot 判读表：5501=死在跳转附近，AA01=start.s 内，
+  4Dnn=第 nn 个 mark 之后，50nn=第 nn 个 mark 处 panic
+- loader.c 跳转前补写 5501（防 loader 中途挂死落 fastboot）
+
+**Run `39631647523`** (7622103) 构建中 → 下内核 → mkpayload → boot v2。
+
+**踩坑备忘**：`git add -A` 把 artifacts/ 二进制全扫进了 7622103，
+已 `git rm --cached` + gitignore 修复（59c9d06）——**dump/镜像永不进库**。
