@@ -72,6 +72,15 @@
   (observed, appears in next cmdline as `warmboot=0x77665501`).
   Custom values like `0x1AC0xxxx` → device landed in fastboot (ABL routing
   unknown) — do NOT use arbitrary codes; stick to observed values.
+- **PSHOLD write = POWER OFF, not reset (2026-10-22 confirmed)** —
+  `wr32(PSHOLD,0)` powers the phone off → lands at charge mode enumerating
+  `VID_0FCE&PID_E1F4` (SONY CD-ROM + mass storage), adb/fastboot dead,
+  needs a PHYSICAL power-button press. Almost certainly the root cause of
+  every past "power-off incident", not USB drops. **RULE: dead-end code
+  may only write a mark then spin/wfe — NEVER write PSHOLD.** The armed
+  APSS WDT bites (~125 s) and recovers while preserving the mark.
+  Same class: kernel panic path reached PSCI SYSTEM_OFF → fixed by making
+  panic PSCI SYSTEM_RESET after marks (ca7ffde/b52b198).
 - **ABL mirrors restart_reason into kernel cmdline as `warmboot=0x........`**
   → 32-bit shim→Android telemetry channel, verified.
 - GICv3 `0x17a00000` (same base as sweet), timer 19.2 MHz, PSCI via SMC.
@@ -90,6 +99,17 @@
 - **DDR dies on EVERY reset** (PSHOLD and warm `adb reboot` alike) —
   RAM-based shim→Android channels are all dead. Survivors: UFS blocks,
   XBL-IMEM reason (ABL-consumed, only 0x77665500/5501 route anywhere).
+  CONFIRMED 2026-10-22: `0xffbff000` gets XBL structures every boot,
+  `0x9f400000` reads back all-0xff — no DDR stash survives a WDT bite.
+- **warmboot mark convention (0x7766xxxx, last-write-wins, echoed into
+  next cmdline)**: C-marks `0x7766<C><d>` = shim cp_mark stages (C0-C6);
+  `0x7766D0xx` = shim loader probes (D010-D016; D000+idx = entry-verify
+  mismatch at word idx); `0x7766F0xx` = shim exception vector caught
+  (idx: 0/4=sync 1/5=IRQ 2/6=FIQ 3/7=SError, t/h variants);
+  `0x7766Exxx` = kernel entry marks (E000=_start, E101=pre-OSLAR,
+  E102=pre-FB-band); `0x7766AA01` = start.s entry; `0x77664Dnn`/`50nn` =
+  kernel stage/panic marks; `0x77665501` = loader's pre-jump safe route
+  (seen alone ⇒ shim completed + jumped, kernel left no mark).
 - **UFS write mystery (parked)**: WRITE(10)+FUA+SYNC reports success,
   shim re-read sees its own data, but nothing persists across reset —
   while Android dd at sda58+1MiB survives PSHOLD. Not root-caused.
