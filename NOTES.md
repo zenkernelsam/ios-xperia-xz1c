@@ -1,6 +1,27 @@
 # iOS 16 on sweet (Redmi Note 10 Pro, SM7150) - working notes
 
-## >>> LILAC HANDOFF 2026-10-21 ~09:10 (read FIRST) <<<
+## >>> BATTLE PLAN 2026-10-21 evening (read FIRST) <<<
+
+**Immediate queue** (phone just needs ONE USB replug):
+1. `fastboot boot artifacts/shim-lilac-v11.img` — full diag: FDT parse +
+   UFS probe + appslog log-dump + checkpoint telemetry. Read `warmboot=`
+   + dd appslog for the log text.
+2. **Magisk install** (user-requested): permanent root + persistent adb
+   authorization (kill the offline/authorization flakiness forever —
+   write host pubkey into /data/misc/adb/adb_keys via root).
+3. Push to CI → first lilac xnu kernel (patch series now includes
+   topaz imports 0085-0089: ARMv8.0 emulation MANDATORY + gold-cpu +
+   MDP scanout).
+4. `tools/mkpayload.py` → payload-bearing shim → first XNU boot attempt.
+
+**New allies tracked**: ios-sweet-sagit (Mi6 = SAME MSM8998),
+xnu_kernel_sdm835 (xnu-11417 for SD835!), ios-le-pro3 (UFSICE warning —
+lilac HAS ufsice@0x1db0000, don't touch), UniXNU-sweet (dipa-studio
+porting sweet to UniXNU Darwin-23 with A618 legacy HFI — closest
+trail for a future A540 GPU driver). Details in AGENTS.md "ALLY
+INTELLIGENCE".
+
+## >>> LILAC HANDOFF 2026-10-21 ~09:10 <<<
 
 **MORNING RESULTS — major wins + one wedge:**
 
