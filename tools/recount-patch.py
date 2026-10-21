@@ -29,9 +29,11 @@ while i < len(data):
         # a context/deleted/added line always starts with ' ', '-', '+', or '\';
         # anything else (next hunk, file header, diff header) ends the hunk.
         # '--- '/'+++ ' are next-file headers (these patches have no
-        # 'diff --git' separators); a real body line needs 4+ prefix chars.
+        # 'diff --git' separators); '-- ' is a signature trailer.
+        # A real body line needs 4+ prefix chars to collide with these.
         if (line[:1] not in (' ', '-', '+', '\\') or HUNK.match(line)
-                or line.startswith('--- ') or line.startswith('+++ ')):
+                or line.startswith('--- ') or line.startswith('+++ ')
+                or line == '-- ' or line == '--'):
             break
         body.append(line)
         j += 1
