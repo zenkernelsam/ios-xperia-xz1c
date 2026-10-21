@@ -317,3 +317,12 @@ QCA6390 Wi-Fi in progress. Secondary reference.
 - NEVER touch the physical SD card (user's backups live there). Internal
   userdata is fair game ONLY after explicit user confirmation per-step.
 - adb offline storms after rapid reboots are normal; poll, don't panic.
+
+# GitHub token (CI access)
+
+- A fine/classic GitHub PAT for Actions artifacts/logs lives in
+  `.github-token.env` (git-ignored, repo root) as `GH_TOKEN=ghp_...`.
+  Use it for: artifact download, run logs, workflow_dispatch.
+  NEVER commit the file — GitHub secret-scanning auto-revokes pushed PATs.
+  curl example: `curl -H "Authorization: token $GH_TOKEN"
+  https://api.github.com/repos/zenkernelsam/ios-xperia-xz1c/actions/artifacts`
