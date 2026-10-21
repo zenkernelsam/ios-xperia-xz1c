@@ -1007,3 +1007,27 @@ panic 不再允许走到 power-off。若死法是异常/死锁而非 panic，WDT
   - `0x77664Dnn`/`0x776650nn` = 死在某 stage n（panic 路径已改 PSCI RESET）
 - **设备仍 E1F4 关机充电**——醒后：按电源键 → adb →
   `adb reboot bootloader` → `fastboot boot artifacts/shim-xnu9-lilac.img`。
+
+## 2026-10-22 ~04:10 — ARMED：一键自动化恢复+实验（只需按电源键）
+
+**unattend 设施盘点**（`Patch\Xperia\unattend\`）：
+- `usbctl.ps1` 守护进程（SYSTEM 任务 `XperiaUsbCtl`）— 提权 USB 控制
+  可用：`cmd\*.cmd` 投放 replug/hardreplug/adbreset/status/devreset。
+  确认 E1F4 设备提权 restart/dis/en 均执行成功——**手机是真关机充电**，
+  USB 重枚举唤不醒断电设备，等物理电源键。
+- `watchdog.sh` 在跑（后台 bash）— 12s 轮询 adb/fastboot，9 级恢复梯，
+  03:38 已正确判定 ESCALATED（all soft recovery failed）后继续盯梢。
+  ⚠️ 历史教训（Patch/Xperia AGENTS.md）：**`devreset` 会打挂手机侧 USB**
+  （VID_0000 描述符失败，软件救不回）——恢复阶梯止于 replug/hardreplug。
+
+**新自动化 `unattend/arm-xnu9.sh`（已 arm，PID 42584）**：
+侦测到 BH905ND69G（adb 或 fastboot 任一）→ 必要时 `adb reboot
+bootloader` → `fastboot boot artifacts/shim-xnu9-lilac.img` → 等 130s
+WDT 窗 → 等 adb → 读 `/proc/cmdline` 取 `warmboot=` → 解码落盘
+`out/arm-xnu9.log` + `arm-xnu9.DONE` 标记（one-shot，不重复触发）。
+**安全论证**：xnu9 路径无可达断电代码（verify 门 spin、panic→PSCI
+RESET、WDT armed）；全部动作=临时 fastboot boot，零分区写。
+
+**用户醒后唯一动作**：长按电源键开机（进 Android 或 VOL- 进 fastboot
+均可，哨兵两条路都接）→ 之后全自动。日志 `unattend\out\arm-xnu9.log`。
+判读矩阵见 03:25 段。
