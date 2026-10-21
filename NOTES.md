@@ -959,3 +959,17 @@ panic 不再允许走到 power-off。若死法是异常/死锁而非 panic，WDT
 **待办**：CI run 39647671029 @ ca7ffde → 用户醒后按电源键开机 → 
 重测。判读：panic 标记 0x776650nn 出现 = panic 路径坐实；
 还关机 = 死法不在 panic() 里，需查异常向量/挂死点。
+
+## 2026-10-22 ~02:20 — CI b52b198 全绿 + 备弹 rr4（等物理开机）
+
+- CI `39649191644` @ **b52b198** success → `xnu/out-rr4/` 内核验证过
+  （Mach-O arm64 + sweet_early_mark/Kryo280/sweet_scanout 全在）。
+- `artifacts/shim-xnu-rr4.img`（17.8MB）= 最新 shim（异常向量表 +
+  con_log→pstore dump + entry fail-closed）+ 全遥测内核。
+- 另一会话的 E1/E2 + shim F0xx 向量表（f2b4682/bf70eca）与我的
+  三路镜像/panic-reset（a5ef15a/ca7ffde/b52b198）已同树共存，
+  validate fail=0。
+- **手机仍关机**（E1F4 充电）— 等用户按电源键。
+  醒后流程：开机 → `adb reboot bootloader` →
+  `fastboot boot artifacts/shim-xnu-rr4.img` → 按 WIN2-STATUS
+  的判读矩阵读标记。
