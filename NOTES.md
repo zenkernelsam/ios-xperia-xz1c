@@ -1,5 +1,48 @@
 # iOS 16 on sweet (Redmi Note 10 Pro, SM7150) - working notes
 
+## >>> 2026-10-22 凌晨 ~01:10 — shim-xnu2 遥测内核启动实验 + fmem 通道 <<<
+
+**执行者**：Devin（Windows 侧，Qoder 每小时提醒触发）。测试报告门已满足：
+`Fn-Sync/XNU/BUILD_STATUS.txt`（00:57 `paused`，Mac 在手动模式）+
+`kernel/kernel.development.sweet` 00:26 交付，SHA256 `51975131…f604` 核对一致
+（= 7622103 遥测版，旧 0015，**不含**持久镜像）。
+
+**实验流程**（全部可复现）：
+`mkpayload.py xnu/out-mac/kernel.development.sweet artifacts/lilac.adt
+shim/out/payload.bin --cmdline '<标准首启参数>'` → `cd shim && bash build.sh
+../shim/out/payload.bin` → `artifacts/shim-xnu2-lilac.img`（17.8MB，Mach-O
+arm64 plain cpusub=0，entry 0xfffffe00074aa488）→ `adb reboot bootloader`
+→ `fastboot boot` 握手 6.2s → ~125s 后 APSS WDT 咬死自愈回 fastboot →
+`fastboot reboot` → adb 恢复。
+
+**结果**：`warmboot=0x77665501`。
+- 判读：5501 是 loader 跳转前写的安全路由值 → **XNU 没有留下任何 mark**
+  （连 start.s 入口 AA01 都没写）。两种可能无法区分：(a) 死在跳转到
+  AA01 之间（入口即崩），(b) 写了 mark 但 `fastboot reboot` 时 ABL 把
+  字段规范化掉了——这正是 3507486 镜像要解决的问题。
+- 与 v1（23:50，无遥测）症状一致：同样死点/同样被覆盖。
+
+**fmem 通道**（`/dev/fmem`，Patch\Xperia\unlock\fmem.ko，WSL 源 /root/fmem）：
+- 单字读验证 OK：`0x146bf65c`=0、`0xffbff000`=0（Android 启动后读，字段
+  可能已被 ABL 消费清零）。
+- ⚠️ **教训：IMEM 区（0x146bf000 块 256B）连续读 → 内核 panic**。该块内
+  有 TZ/XPU 保护字段。手机靠硬件 WDT 自愈回 adb（~40s）。**fmem 只能
+  单字外科读，禁块读 IMEM。**
+
+**已在飞行**：commit `3507486`（01:02 已推送）— 修 L2 块偏移
+（16K pages=32MiB blocks，旧版 early_rr 重映射地址错 → 标 9-20 曾写到
+错误物理址/或 fault）+ 持久镜像 `0xffbff000`（debug_region 尾，ABL
+不覆盖，fmem 可读回真实 mark）。
+
+**待办（下一手）**：镜像内核到 Fn-Sync → `shim-xnu3` → 同流程，但
+`fastboot reboot` 后用 fmem 读 `0xffbff000` 拿**真实最后 mark**
+（判读表：AA01=start.s 入口，4Dnn=mark nn 后，50nn=mark nn 处 panic）。
+
+**踩坑备忘**：
+- `tools/recount-patch.py` 增强（surrogateescape + `--- `/`+++ ` 边界）+
+  0089 hunk 计数修正 → 随本次提交。
+- fmem push 路径：`Patch\Xperia\unlock\fmem.ko` → `/data/local/tmp/`。
+
 ## >>> BATTLE PLAN 2026-10-21 night (read FIRST) <<<
 
 **Main line = XNU bring-up.** Shim-side UFS write debugging is PARKED
