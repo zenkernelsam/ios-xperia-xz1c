@@ -755,3 +755,27 @@ What it took today (in order): 0058 HID services (Apple IOHIDFamily-1915 user cl
 **产物**：`Patch\Xperia\unlock\fmem.ko`（stock-config + 真CRC + 原生plt），源 `shim/fmem.c`
 
 **下一步**：fmem 读 UFS 寄存器/IMEM/任意 RAM → 终极定位 v13 shim 的 appslog 写入为何没留下 + warmboot 编码为何读不到。手机连续两次 insmod 崩溃都靠硬件看门狗自愈，无需人工。
+
+## 2026-10-21 深夜 — 首个 XNU CI 构建调试（进行中）
+
+**Run 1** `39624758758` (9589f44) ❌ — 没死在编译，死在 **staging 脚本**：
+`0019-stage-libpthread.sh` line 3 `set: pipefail\r: invalid option name`。
+根因：**全仓库 blob 存了 CRLF**（Windows clone `core.autocrlf=true` 在文件入库后才设/绕过了转换；无 .gitattributes）。bash 吃到 `pipefail\r` 报 invalid option name，本地 WSL 复现同款错误。
+
+**修复（665f82a）**：
+- 新增 `.gitattributes`：`*.sh`/`*.patch`/`*.diff`/`xnu/patches/**` 强制 `eol=lf`（覆盖 autocrlf，Windows checkout 也保持 LF —— 这些文件只给 POSIX 工具链吃）
+- `git add --renormalize .` 123 个文件 blob → LF（本地工作文件仍是 CRLF 属正常；`git ls-files --eol` 确认 i/lf）
+- 顺手本地化 patch 0088（topaz 直抄的地址）：
+  - MDP base: lilac `0xc900000`（DTB `qcom,mdss_mdp@c900000`）→ VIG0 `ml_io_map(0x0c905000)`、CTL0 `ml_io_map(0x0c902000)`
+  - `SWEET_SCANOUT_BASE` 0xb0000000→**0x96000000**：topaz 值在 lilac 落进内核管理 RAM（0x9f800000..0xfb000000）。DTB reserved-memory 里 `pil_ipa_gpu_region` 结束 0x95300000 到 `splash_region@0x9d400000` 之间是真空 DDR 带，6×16MB=96MB 放得下（0x96000000+0x6000000=0x9c000000 < 0x9d400000）
+  - VIG0 SRC_ADDR 上电即含 ABL splash 的 FB 地址 → 运行时自验证偏移对不对
+  - 0085 cpuName 改 Kryo 280
+
+**本地补丁验证法（可复用）**：`/root/xnu-8796.tar.gz` = xnu-8796.141.3 干净源码包。验证流程 = 解 → git init → stub `xcrun`（/root/fakebin，返回含 TargetConditionals.h 的 fakesdk）→ 跑 3 个 .sh staging → 按序 `git apply --check`。结果：**89/89 全部干净套用**（0088 我加注释时 hunk 计数忘改 +70→+72，已修 b8eacdf）。
+
+**注意**：`/tmp` WSL 重启即清 —— 持久文件放 /root 或 repo。`/root/xnu-fresh` = 打过全部补丁的完整源码树（可做单文件语法预检参考）。
+
+**Run 2** `39625737146` (665f82a) — 跑了一半被 run 3 的 concurrency 取消（cancel-in-progress）
+**Run 3** `39626226979` (b8eacdf) — pending→running，**这是第一个补丁全过的完整构建**
+
+待办：CI 成功后 → 下 xnu-kernel artifact → mkadt + mkpayload → build.sh 打包 → `fastboot boot`（先确认手机在 fastboot 再发，避免充电屏）。观察渠道 = 0010 早期 FB 彩条 + pstore prz + warmboot 码。
