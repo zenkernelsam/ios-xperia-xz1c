@@ -170,11 +170,14 @@ const char *loader_boot(uintptr_t dtb)
 				break;
 			}
 		if (bad) {
+			/* fail with a diagnostic mark, then SPIN — do NOT PSHOLD:
+			 * writing PSHOLD powers the phone OFF (lands in E1F4
+			 * charge mode, needs a physical button). The armed WDT
+			 * bites within ~2 min, preserves the mark, recovers. */
 			RR_MARK(0x7766D000 | bad);
 			__asm__ volatile("dsb sy" ::: "memory");
-			PSHOLD_REG = 0;
 			for (;;)
-				;
+				__asm__ volatile("wfe");
 		}
 	}
 
