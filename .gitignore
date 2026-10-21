@@ -9,3 +9,8 @@ xnu/out/
 xnu/out-*/
 __pycache__/
 .github-token.env
+
+# local build/boot artifacts (images, dumps, ADT binaries) — never commit
+artifacts/
+xnu/out-*/
+
