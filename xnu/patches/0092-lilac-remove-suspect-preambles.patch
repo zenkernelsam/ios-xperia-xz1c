@@ -1,0 +1,41 @@
+diff --git a/osfmk/arm64/start.s b/osfmk/arm64/start.s
+--- a/osfmk/arm64/start.s
++++ b/osfmk/arm64/start.s
+@@ -222,3 +222,11 @@ LEXT(_start)
++#if defined(SWEET)
++	/* E0 (0x7766E000): literal first kernel instruction — distinguishes
++	 * "jump missed entry entirely" from "reached _start then died". */
++	MOV64	x10, 0x146bf65c
++	MOV64	x11, 0x7766E000
++	str		w11, [x10]
++	dsb		sy
++#endif
+ 	b	EXT(start_first_cpu)
+ 
+ 
+@@ -517,7 +526,9 @@ LEXT(start_first_cpu)
+ 	str		w11, [x10]
+ 	dsb		sy
+ #endif
++#if !defined(SWEET)
+ 	msr		OSLAR_EL1, xzr
++#endif
+ 	msr		DAIFSet, #(DAIFSC_ALL)				// Disable all interrupts
+ 
+ 	mov		x20, x0
+@@ -536,6 +547,7 @@ LEXT(start_first_cpu)
+ 	dsb		sy
+ #endif
+ 
+ #if defined(SWEET)
++#if 0	/* Stage-0 FB band disabled on lilac: 0x9d400000 write suspect */
+ 	/* Stage 0: white 64x32 band, no stack or page tables needed. */
+ 	MOV64	x0, (0x9d400000 + 1248 * 2880)
+@@ -552,6 +564,7 @@ Lsweet_mark_pixel:
+ 	add		x0, x0, x4
+ 	subs	x2, x2, #1
+ 	b.ne	Lsweet_mark_row
++#endif
+ 	/*
+ 	 * Checkpoint to IMEM restart_reason: ABL echoes it into the next
+ 	 * Android cmdline as warmboot=0x........ (only observed channel that
