@@ -1,0 +1,6 @@
+# Everything that a POSIX toolchain reads must keep LF endings —
+# CI runs on macOS where `set -euo pipefail\r` and CRLF patch context fail.
+*.sh    text eol=lf
+*.patch text eol=lf
+xnu/patches/** text eol=lf
+*.diff  text eol=lf

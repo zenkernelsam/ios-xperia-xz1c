@@ -30,8 +30,8 @@ index 2094443..bd72f09 100644
  		IOLog("SWEET FB: no vsync timer\n");
  		return false;
  	}
-+	fVig0 = (volatile uint32_t *)ml_io_map(0x05e05000, 0x1000);
-+	fCtl0 = (volatile uint32_t *)ml_io_map(0x05e02000, 0x1000);
++	fVig0 = (volatile uint32_t *)ml_io_map(0x0c905000, 0x1000);
++	fCtl0 = (volatile uint32_t *)ml_io_map(0x0c902000, 0x1000);
 +	if (fVig0 != NULL && fCtl0 != NULL) {
 +		fBootSrc = fVig0[0x14 / 4];
 +		fBootStride = fVig0[0x24 / 4];
@@ -155,8 +155,10 @@ index 7f90c56..bacf85e 100644
  static uint64_t      sweet_surface_wired;       /* bytes of buffer surfaces */
  #define SWEET_SURFACE_WIRED_MAX         (1536ull << 20)
  
-+/* topaz scanout pool: 6 x 16 MiB at 0xb0000000 (sweet's old low-memory kernel window) */
-+#define SWEET_SCANOUT_BASE      0xb0000000ull
++/* lilac scanout pool: 6 x 16 MiB at 0x96000000 — free DRAM gap between
++ * pil_ipa_gpu_region (ends 0x95300000) and splash_region (@0x9d400000).
++ * topaz used 0xb0000000 which on lilac lands inside kernel-managed RAM. */
++#define SWEET_SCANOUT_BASE      0x96000000ull
 +#define SWEET_SCANOUT_SLOT      (16u << 20)
 +#define SWEET_SCANOUT_SLOTS     6
 +static uint32_t sweet_scanout_used;             /* bit per slot, sweet_surface_lock */
