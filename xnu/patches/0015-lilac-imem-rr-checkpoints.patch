@@ -151,14 +151,16 @@ index 88396e6..1e87dac 100644
  	sweet_early_string("\nSWEET EARLY PANIC: ");
  	va_list copy;
  	va_copy(copy, *args);
-@@ -123,6 +170,13 @@
+@@ -123,6 +170,15 @@
  	va_end(copy);
  	sweet_early_putc('\n');
  	__asm__ volatile("dsb sy" ::: "memory");
 +	/* PSCI SYSTEM_RESET (0x84000009): the marks are already in
 +	 * IMEM/ramoops -- reset through ABL instead of falling through
 +	 * to system_off; a powered-off phone reports nothing. */
-+	__asm__ volatile("mov x0, #0x84000009; smc #0" ::: "x0", "memory");
++	__asm__ volatile("movz x0, #0x8400, lsl #16" ::: "x0", "memory");
++	__asm__ volatile("movk x0, #9" ::: "x0", "memory");
++	__asm__ volatile("smc #0" ::: "memory");
 +	for (;;) {
 +		__asm__ volatile("wfe");
 +	}
