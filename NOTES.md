@@ -1,5 +1,63 @@
 # iOS 16 on sweet (Redmi Note 10 Pro, SM7150) - working notes
 
+## >>> 2026-10-22 凌晨 ~01:55 — 死点定位系列实验 xnu3..xnu7 + 设备失联 <<<
+**执行者**：Devin（Windows 侧）。承接 xnu2 的 5501 歧义，本回合把它钉死到
+**"跳转成功、内核死于 start_first_cpu 的 AA01 之前"**，并把窗口继续切成
+E1/E2 两段（CI 内核已备好待测）。**设备最后在 xnu7 boot 时 USB 掉线，
+当前枚举为 VID_0FCE&PID_E1F4 存储模式（SONY CD-ROM），adb/fastboot 均不可达，
+需要物理电源键或自行恢复。**
+
+### 实验序列与判定
+
+| run | 内核 | shim | 结果 | 判定 |
+|---|---|---|---|---|
+| xnu3 | e02e627（Mac Xcode26.3 首编，TEST-REPORT 门） | 旧 | 5501，WDT 直回 **adb**（非 fastboot） | 同 xnu2；该内核早于 3507486，无镜像 |
+| xnu4 | **4bfe6cd**（CI，含 3507486 镜像+L2 修复） | 旧 | 5501，WDT→fastboot | 镜像位 `0xffbff000` 读到 `0xffffd6a8`/非标记数据 |
+| xnu5 | 4bfe6cd | +镜像区探针哨兵 | 5501，WDT→fastboot | **哨兵全灭 → 0xffbff000 区被启动链重写，"durable"前提证伪** |
+| xnu6 | 4bfe6cd | +entry 校验门（fail-closed，错位→0x7766D0xx+PSHOLD）+RR 探针 | 5501，~35s 回 fastboot | **校验通过：entry_pa 头 64 字与 payload 源一致，落位无问题** |
+| xnu7 | 4bfe6cd | +16 槽位标记异常向量表（0x7766F0<idx>） | **boot 命令 USB 掉线**，设备失联 | 未运行/未知 |
+
+### 硬核事实（本回合新增，覆盖旧假设）
+
+- **`0xffbff000` 不是 durable mirror**：每次启动内容为不同的 XBL 结构体
+  （`(ptr,0,0x403,0)` 表）。0x9f400000（imem_diag 通道）本轮回读全 `0xff`。
+  **WDT-bite 路径下 DDR 区都会被启动链重写/清零；唯一可靠通道 =
+  IMEM restart_reason 字段 → 下次 cmdline `warmboot=`。**
+- **5501 判读的钥匙**：shim_main 的 cp_mark 写 `0x7766<C><d>`（C2=`0x77664332`），
+  loader 跳转前写 `0x77665501`。观测到 5501 ⇒ **shim 跑完了 loader.c
+  全程并跳转**（若中途挂，字段留着上一个 cp_mark）。XNU 侧无任何 mark。
+- **已排除**：payload 落位错（xnu6 校验过）、FB 写 0x9d400000 fault、
+  `msr OSLAR_EL1` fault（xnu6 RR 探针 D011-D014 全部通过到 5501）。
+- **嫌疑收窄至**（jump→AA01 窗口内，均会走异常→陈旧 VBAR→失控）：
+  指令预取 abort（PA 区 XN——数据读可过、取指死）或 DAIF 未屏蔽窗口的
+  异步异常。=> xnu7 的标记向量表就是抓这个的：**0/4=sync 1/5=IRQ
+  2/6=FIQ 3/7=SError（读 warmboot=0x7766F0<idx>）**。
+- entry 指向 `_start`（`b start_first_cpu`），`_start_first_cpu`=0x74ac0ec；
+  AA01 前的窗口 = `b` → `msr OSLAR_EL1` → `msr DAIFSet` → 2×mov → FB band → AA01。
+- **fastboot boot USB 掉线 = 已知断电事故模式**（AGENTS.md），本次命中：
+  `Booting FAILED (usb_read failed)` → 设备枚举 E1F4/CD-ROM。
+  Disable-PnpDevice/pnputil 需管理员权限，无提权会话解不了。
+
+### 待设备恢复后的下一手（全部就绪）
+
+1. **shim-xnu8 = 向量表 shim + f2b4682 E-mark 内核**（CI run 39645489147
+   已完成，kernel.development.sweet sha256 `20f3a869…013b`，已下载于
+   `%TEMP%/kf2b4682/`）。读法：warmboot=
+   - `0x7766F0xx` → 跳转后某类异常被 shim 向量抓到（idx 见上）
+   - `0x7766E101` → 死在 OSLAR_EL1；`0x7766E102` → 死在 FB band
+   - `0x7766AA01`+ → 越过 Stage-0（里程碑），继续看 4Dnn/50nn
+   - `0x77665501` → 仍死在 `_start`→E1 之间（仅剩 b 指令/取指路径）
+2. WSL `/root/xz1c` 已备好 `shim/out/kernel-f2b4682`？**未拷贝**：
+   `%TEMP%/kf2b4682/kernel.development.sweet` → mkpayload → build.sh。
+3. 注意 USB 掉线风险：`fastboot boot` 后若 `usb_read failed` 立刻查
+   PnP；设备失联时先查 `Get-PnpDevice -PresentOnly | ? InstanceId -match VID_0FCE`。
+
+### 本回合提交
+
+- `f2b4682` shim/loader.c 探针（verify 门 + RR 标记 D010-D016 + 标记向量表）
+  + `xnu/patches/0091-lilac-entry-pre-marks.patch`（E1/E2，git apply --check 过）。
+- a5ef15a（他人提交，含 0090 iig-440 kernelContent 修复）已入 main。
+
 ## >>> 2026-10-22 凌晨 ~01:10 — shim-xnu2 遥测内核启动实验 + fmem 通道 <<<
 
 **执行者**：Devin（Windows 侧，Qoder 每小时提醒触发）。测试报告门已满足：
