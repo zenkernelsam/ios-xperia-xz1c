@@ -1031,3 +1031,31 @@ RESET、WDT armed）；全部动作=临时 fastboot boot，零分区写。
 **用户醒后唯一动作**：长按电源键开机（进 Android 或 VOL- 进 fastboot
 均可，哨兵两条路都接）→ 之后全自动。日志 `unattend\out\arm-xnu9.log`。
 判读矩阵见 03:25 段。
+
+## 2026-10-22 ~04:40 — 静态审计：死亡窗口逐指令分解 + DTB 排除一项
+
+**0092 内核 `_start`→AA01 窗口审计**（start.s 源码级）：
+```
+_start:   E000 → b start_first_cpu            # 5501↔E000 = 判决点
+sfc:      E101 → msr DAIFSet,#0xf → mov x20,x0/mov x21,#0 → E102
+          [OSLAR_EL1 已 #if !SWEET 摘除、FB 条带已 #if 0]
+          → AA01 → MSR VBAR(LowExceptionVectorBase)
+          → ldr x22..x26 ← [x20+BA_*]（boot_args 解引用）
+          → 栈/SPSel → adrp lr,arm_init → C 域
+```
+推论：E102→AA01 之间**已无指令**（两标记背靠背），若停在 E102 =
+IMEM 写本身故障（不可能，E0/E1 同款写已成功）。真正剩余嫌疑：
+(a) 5501→E000 取指 abort / 异步异常（向量表该吐 F0xx）；
+(b) E000→E101 仅一条 `b`（几乎不可能死）；
+(c) AA01 后 VBAR 接管前窗口 + boot_args 解引用。
+
+**DTB reserved-memory 排除法**（lilac-stock.dtb 全量区间）：
+保留区上限 0x9f800000（splash 结束），0x9f800000-0xffb00000 为自由池
+（末尾 0xffb00000+0xffc00000 各 1M）。payload 落位 ~0xb146b488
+**不在任何 Linux 可见保留区内** → 「payload 撞进 Linux 预留区」
+假设排除。TZ/XPU 私有保留（DTB 不可见）仍存疑 → xnu9hi 高 bank
+变体正好是判别实验。
+
+**镜像复核**：payload-xnu9 phys=0x9f800000、xnu9hi phys=0x1_00000000
+size=0xfcc00000，boot_args/entry 均正确差异化（差 72B：ADT+头部
+phys/size 字段）。两镜像确认无误。
