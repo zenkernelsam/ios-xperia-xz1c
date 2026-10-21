@@ -973,3 +973,37 @@ panic 不再允许走到 power-off。若死法是异常/死锁而非 panic，WDT
   醒后流程：开机 → `adb reboot bootloader` →
   `fastboot boot artifacts/shim-xnu-rr4.img` → 按 WIN2-STATUS
   的判读矩阵读标记。
+
+## 2026-10-22 ~03:25 — 备弹 xnu9（0092 内核，当前最全诊断集）
+
+- CI `39650021154` @ **7519915** success → `shim/out/kernel-7519915.sweet`
+  sha256 `aa60b470294fb1314a8617d76548e474a90c6e33db35beba56cf80a7c6f5b663`。
+- **二进制标记验证（capstone 窗口反汇编，全部命中）**：
+  - `0x4a64a4` movk → **E000**（`_start` 第一指令，0092 新增）
+  - `0x4a8108` → **E101**（start_first_cpu，后接 `msr daifset,#0xf`
+    —— OSLAR_EL1 已被 0092 移除，符合预期）
+  - `0x4a813c` → **E102**（FB 条带已被 #if 0 移除，符合预期）
+  - `0x4a8164` → **AA01**（Stage-0 标记保留）
+  - `0x49e508` mov w10,#0x4d00+movk w10,#0x7766 → **M 标记**
+    `0x77664D00|stage`（sweet_early.c 已编进内核）
+  - `0x49f028` mov w12,#0x5000+movk w12,#0x7766 → **panic 标记**
+    `0x77665000|early_last_stage`（ca7ffde/b52b198 panic-reset 在）
+- 注意：本内核 movk 链用 x10=IMEM/x11=mark；扫描工具见
+  `%TEMP%\scanall.py` + `diswin.py`（capstone）。
+- **新镜像（等物理开机即用）**：
+  - `artifacts/shim-xnu9-lilac.img`  sha256 `d5fd1911be8d…`
+    = 0092 内核 + lilac.adt（低 bank）+ 最新 shim
+  - `artifacts/shim-xnu9hi-lilac.img` sha256 `d4c4f5d5f1a0…`
+    = 0092 内核 + lilac-highmem.adt（高 bank，TZ/XPU 备查）
+  - 与 rr4 的关系：rr4 = b52b198（无 E0、有 OSLAR/FB），xnu9 严格更全，
+    **优先用 xnu9**；rr4 保留作对照。
+- **判读矩阵**（fastboot boot xnu9 → WDT 复位 → warmboot=）：
+  - `0x77665501` = 连 _start 都没到（取指 abort/分支死 → 查 F0xx）
+  - `0x7766F0xx` = shim 向量表抓到异常（idx: 0/4 sync,1/5 IRQ,2/6 FIQ,3/7 SErr）
+  - `0x7766E000` = 到 _start，死在 branch→start_first_cpu
+  - `0x7766E101` = 过 start_first_cpu 入口，死在 DAIF 之后
+  - `0x7766E102` = DAIF 后死亡（0092 已移除 OSLAR+FB，窗口极小）
+  - `0x7766AA01` = 过 Stage-0！进 C 域 → 之后看 4Dnn 阶段码
+  - `0x77664Dnn`/`0x776650nn` = 死在某 stage n（panic 路径已改 PSCI RESET）
+- **设备仍 E1F4 关机充电**——醒后：按电源键 → adb →
+  `adb reboot bootloader` → `fastboot boot artifacts/shim-xnu9-lilac.img`。
