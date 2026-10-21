@@ -161,6 +161,37 @@ already; add the redistributor prep when doing SMP.
 ### ios-v60 — LG V60 (SD865): GUI + touch confirmed on device,
 QCA6390 Wi-Fi in progress. Secondary reference.
 
+### NEW ALLIES pulled 2026-10-21 (same-SoC / sibling ports)
+
+- **`ios-sweet-sagit`** (Patch\Xperia\research\ios-sweet-sagit) —
+  Xiaomi Mi6 = **MSM8998, our SoC**. Fresh fork of ios-sweet, commits
+  so far: device constants in mkadt/shim + xnu-8796 machine config +
+  early FB at 0x9d400000. Their constants vs lilac: GICD 0x17a00000 and
+  GICR 0x17b00000 MATCH; IMEM 0x146aa65c ≠ ours 0x146bf65c; PSHOLD
+  0x0c264000 ≠ ours 0x10ac000; memory = TWO banks (0xb0000000+0x4d000000
+  and 0x100000000+0xfcc00000) vs our one contiguous 0x9f800000-0xffb00000.
+  Track their commits — every MSM8998 finding transfers.
+- **`xnu_kernel_sdm835`** (MC-XiaoXiao) — full **xnu-11417** tree
+  (newest-gen XNU, ~iOS 26 era) imported for SDM835. Alternative
+  lineage for the far future (post-16 port), watch it.
+- **`ios-le-pro3`** (LEX727, SD821) — early probe stage but rigorous
+  methodology (observed/source/planned separation). Notable warning:
+  their UFS has an **inline-crypto engine (UFSICE) at 0x630000 the DTB
+  didn't mention** — check whether lilac UFS likewise has ICE before
+  poking; probe must not touch it. **VERIFIED for lilac: we DO have
+  `ufsice@0x1db0000` (qcom,ice, crypto=0x83)** — separate node from the
+  ufshc@0x1da4000 host, shim probe doesn't touch it, but the XNU UFS
+  driver must coexist (never poke the ICE block). Also confirmed "no
+  atomics" on their Kryo (ARMv8.0 like us → topaz 0081 applies).
+- **`HeliumStudio-Dev/ios-raphael`** — K20 Pro (SM8150/SD855) sibling
+  fork, reached iOS lock screen + GT9886 touch verified. Useful for
+  touch/HID driver examples.
+- `oxhunnx/ios-a5xelte` (user-spotted) — repo 404 / not public (a5xelte
+  = Samsung A5 2016, Exynos — different arch anyway).
+- `hackios.net` status: HackiOS team (Poco X5 Pro / 11 Lite demos)
+  closed-source until release; topaz README says its GPU work will be
+  published once HackiOS publishes source — keep watching.
+
 ## Display path — friend's field-tested advice (FOLLOW IT)
 
 - Do NOT CPU-copy/scale an IOSurface into the framebuffer — proven very laggy.
