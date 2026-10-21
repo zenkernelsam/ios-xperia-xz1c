@@ -25,6 +25,13 @@ cd "$REPO" || { log "FATAL repo missing: $REPO"; exit 1; }
 log "=== autobuild start (poll ${POLL}s, repo $REPO) ==="
 
 while :; do
+	# Pause gate: touch ~/xnu-autobuild.pause to hold the watcher (e.g. while
+	# a human/agent does manual builds in the same dxb tree). rm to resume.
+	if [ -f "$HOME/xnu-autobuild.pause" ]; then
+		status "paused" "manual builds in progress"
+		sleep "$POLL"; continue
+	fi
+
 	# Environment gate: only build under Xcode 15.x (16+/26 iig breaks xnu-8796)
 	XCV=$(xcodebuild -version 2>/dev/null | head -1)
 	case "$XCV" in

@@ -272,6 +272,10 @@ QCA6390 Wi-Fi in progress. Secondary reference.
   folder + `BUILD_STATUS.txt`). Install once via
   `tools/mac-autobuild-install.sh` (launchd `com.xz1c.xnu-autobuild`).
   Refuses to build unless Xcode 15.x selected. Log `~/xnu-autobuild.log`.
+- **CONCURRENCY**: a Mac-side agent may run manual builds in the same
+  `dxb/` tree — `launchctl unload` the agent or `touch ~/xnu-autobuild.pause`
+  before pushing commits that would trigger a parallel build. Status as of
+  10-22: watcher UNLOADED while the Mac agent finishes Xcode setup.
 - **Kernel channel = Fn-Sync**: Mac drops into
   `~/Library/CloudStorage/飞牛同步-Home-Nas/XNU/` ↔ Windows
   `C:\Users\Cisco He\Fn-Sync\XNU` (verified ~20 s). Whole NAS Home space
