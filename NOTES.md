@@ -937,3 +937,20 @@ Android 的 32bit 信道（ABL 镜像进 cmdline 为 warmboot=）。
 4. debug_memory 0xffbff000 兜底（可能被 TZ 踩）
 
 CI run @a5ef15a 待出内核 → mkpayload → boot → 读三条通道。
+
+## 2026-10-22 深夜续 — panic→关机路径坐实 + 三路遥测第三轮
+
+**第三轮启动（rr3, 01:41）**：XNU 死后 ~30s 落 fastboot，随后**设备彻底消失**，
+USB 只剩 `VID_0FCE&PID_E1F4`（大容量存储 = 关机充电态）。replug 无法唤醒。
+
+**结论：XNU 走到 PSCI SYSTEM_OFF 关机了** —— panic/halt 路径在 QCOM 上 = 
+PMIC 断电，不是复位。物理电源键才能开机（用户睡觉中，手机充电搁置，安全）。
+**带标记的 DDR 内容随关机全失** —— 三轮里寄存器/durable 全被清或没写。
+
+**修法（ca7ffde）**：`sweet_early_panic` 写完标记后直接
+`mov x0,#0x84000009; smc #0`（PSCI SYSTEM_RESET）+ wfe 兜底 —— 
+panic 不再允许走到 power-off。若死法是异常/死锁而非 panic，WDT 125s 仍兜底。
+
+**待办**：CI run 39647671029 @ ca7ffde → 用户醒后按电源键开机 → 
+重测。判读：panic 标记 0x776650nn 出现 = panic 路径坐实；
+还关机 = 死法不在 panic() 里，需查异常向量/挂死点。
