@@ -851,3 +851,31 @@ Android 的 32bit 信道（ABL 镜像进 cmdline 为 warmboot=）。
 
 **踩坑备忘**：`git add -A` 把 artifacts/ 二进制全扫进了 7622103，
 已 `git rm --cached` + gitignore 修复（59c9d06）——**dump/镜像永不进库**。
+
+## 2026-10-22 凌晨 — 遥测修正 + 侦察轮 + 三路冗余升级（a5ef15a）
+
+**SWEET 页大小定性**：`SWEET.h` 定义 `__ARM_16K_PG__` → L2 block =
+32MiB 不是 2MiB。第一版遥测（7622103）按 2MiB 算，offset 全错：
+- FB 块 base 应为 `0x9c000000`（32MiB 对齐），FB 指针需 +`0x1400000`
+- IMEM 块 `0x14000000`，寄存器偏移 `0x6bf65c`（不是 0xbf65c）
+- durable 块 `0xfe000000` 覆盖 debug_memory(0xffb0) 和 ramoops(0xffc0)
+
+**侦察轮结果**（旧遥测内核, ~01:09）：
+- XNU ~30s 内死亡 → 复位 → fastboot（非 WDT，是 panic 类自复位）
+- warmboot=5501（ABL 覆写，官方信道经 fastboot 跳转**必失真**）
+- fmem.ko 读物理地址验证 OK：`/dev/fmem` + `dd bs=4096 skip=<page>`
+- **`0x146bf65c` 读回 `abadbabe`** — Qualcomm/ABL 的异常状态 magic
+- **`0xffbff000`（debug_memory）被活物踩**：读到 `f87d6f80 ffffffcc`
+  形状 = 64bit 内核指针残留 —— TZ/ABL 的 debug 暂存区，不可靠
+- **红线教训：乱读未映射物理地址（0x140bf65c）→ 瞬时 panic**，
+  手机 panic→fastboot 循环了一阵才缓回来。fmem 只读已知映射区。
+
+**遥测三路冗余（commit a5ef15a）**：
+1. 官方寄存器 0x146bf65c（ABL 会覆写，仅用于其路由）
+2. IMEM 空位 0x146bf200/300/400/500（同页，DTB 未定义 cell）
+3. **ramoops record prz 注入 @0xffc07000**（slot 7，prz 格式
+   {0x43474244,0,16,data}）→ Android pstore 直接显示为
+   /sys/fs/pstore/record-ramoops-* —— 不用 fmem
+4. debug_memory 0xffbff000 兜底（可能被 TZ 踩）
+
+CI run @a5ef15a 待出内核 → mkpayload → boot → 读三条通道。
