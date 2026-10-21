@@ -24,6 +24,24 @@
   user before running it.
 - Keep device dumps, serial numbers and downloaded Apple artifacts out of git.
 
+# PERMANENT ROOT + ADB (2026-10-21 evening — workflow milestone)
+
+- **Magisk v30.7 installed** to boot partition
+  (`research/magisk-patched-lilac.img`, patch of stock 47.1.F.1.105 boot).
+  `adb shell su -c 'cmd'` gives instant root (`context=u:r:magisk:s0`) —
+  no exploit, no dialog, survives reboots.
+- su policy for uid 2000 (shell) seeded via
+  `magisk --sqlite "INSERT OR REPLACE INTO policies VALUES(2000,'com.android.shell',1,0,1,1)"`
+  (run inside a bindershell root shell). **magiskd caches policies — a
+  REBOOT is required before a db-seeded policy takes effect.**
+- **adb permanently authorized**: host pubkey appended to
+  `/data/misc/adb/adb_keys` + `/data/adb/service.d/adbalways.sh`
+  re-asserts it every boot (Magisk service.d, runs as root late_start).
+  Verified: device returns `device` (not `unauthorized`) after reboot.
+- bindershell remains fallback if Magisk boot ever breaks.
+- Magisk APK at `Patch\Xperia\Magisk-v30.7.apk`; pstore still empty at
+  this point (ramoops registered but prz didn't survive — open issue).
+
 # lilac port — HARD FACTS (verify against this before changing constants)
 
 ## Device / workspace
