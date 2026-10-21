@@ -191,6 +191,12 @@ QCA6390 Wi-Fi in progress. Secondary reference.
 - `hackios.net` status: HackiOS team (Poco X5 Pro / 11 Lite demos)
   closed-source until release; topaz README says its GPU work will be
   published once HackiOS publishes source — keep watching.
+- **`dipa-studio/UniXNU-sweet`** (in research/) — the ios-sweet author
+  is porting sweet itself to the UniXNU Darwin-23 arch: has A618
+  **legacy HFI** transport (older Adreno, much closer to our A540 than
+  A740), DarwinBoot memory-bank selection, ArmCpu timer-PPI override.
+  This signals the community's GPU path forward AND gives us the
+  A5xx-era firmware trail to study for a future lilac GPU driver.
 - **UniXNU unattended loop (steal if Android-adb gets too flaky)**:
   `sheng-log=1` writes diagnostics to last 32 MiB of userdata;
   `sheng-autoreset=N` self-resets to fastboot; then they boot a tiny
