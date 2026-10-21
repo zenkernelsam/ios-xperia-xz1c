@@ -34,9 +34,14 @@ E1/E2 两段（CI 内核已备好待测）。**设备最后在 xnu7 boot 时 USB
   2/6=FIQ 3/7=SError（读 warmboot=0x7766F0<idx>）**。
 - entry 指向 `_start`（`b start_first_cpu`），`_start_first_cpu`=0x74ac0ec；
   AA01 前的窗口 = `b` → `msr OSLAR_EL1` → `msr DAIFSet` → 2×mov → FB band → AA01。
-- **fastboot boot USB 掉线 = 已知断电事故模式**（AGENTS.md），本次命中：
-  `Booting FAILED (usb_read failed)` → 设备枚举 E1F4/CD-ROM。
-  Disable-PnpDevice/pnputil 需管理员权限，无提权会话解不了。
+- **断电事故真凶≈`wr32(PSHOLD,0)`**：PSHOLD 写 0 = 断电关机，不是复位！
+  xnu7 的 `Booting FAILED (usb_read failed)` + 设备落 E1F4（SONY CD-ROM
+  充电模式，需物理电源键）最自洽解释：verify 门（或镜像被 USB 断流污染
+  后走 shim 尾部路径）走到 `PSHOLD_REG=0` → 直接断电。历史"USB 掉线
+  断电事故"很可能全是 shim 各 PSHOLD 路径（shim.c:424/531）干的。
+  **修复 bc0eb26：verify 失败改为写 mark 后 wfe 自旋，让已 armed WDT
+  咬死（mark 保留 + 设备可恢复）。新规则：任何死路代码只准写 mark +
+  自旋，禁写 PSHOLD。** Disable-PnpDevice/pnputil 需管理员，解不了 E1F4。
 
 ### 待设备恢复后的下一手（全部就绪）
 
