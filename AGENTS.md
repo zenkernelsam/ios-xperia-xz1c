@@ -125,6 +125,7 @@ NOT cover them. Porting order for lilac:
 | Patch | What | Priority |
 | --- | --- | --- |
 | `0081-topaz-armv8.0-no-lse-no-pan` | `-mcpu=cortex-a53` build flags on SWEET machine config, commpage `casa`→LDAXR/STXR loop, LSE/ldapr userland emulation in `handle_uncategorized` (LDAXR/STLXR on user addr, copyio recovery) | **MANDATORY** — iPhone X userland contains LSE/ldapr; boot dies silently without it. Written against SWEET config so it should apply near-cleanly |
+| | **IMPORTED 2026-10-21** as `0085/0086/0087/0088/0089-lilac-*`: topaz 0080+0081+0082+0092+0095 all apply CLEAN (p1) atop our 84-patch tree (verified by real apply). Constants review pending: `0088` still carries `SWEET_SCANOUT_BASE 0xb0000000` (topaz pool) — pick a lilac-safe carve-out before enabling the scanout driver; `0087` assumes Gold MPIDR `0x100-0x103` which matches lilac DTB. | |
 | `0082-topaz-boot-on-gold-cpu` | Shim wakes Gold CPU `0x100` via PSCI CPU_ON, Silver cores park in `wfi`; ADT lists only Gold cores. Needed because **Silver cores lack 16K translation granule** (ID_AA64MMFR0.TGran16=0). lilac Silver likely identical — verify with shim's MMFR0 readout | **MANDATORY** for SMP; `cpus=1` covers first boot |
 | `0088-topaz-gpt-watchdog` | GPT watchdog handling | medium — we have APSS wdt |
 | `0092-0103` | **Direct MDP scanout**: XNU publishes IOSurface-backed surfaces in contiguous RAM <4 GiB, MDP scans them directly, real dcache maintenance, double buffering, copy+flip path | **core display work** — this IS the friend's "hardware scanout, no CPU copy" advice implemented |
