@@ -83,6 +83,21 @@
 
 ## Telemetry / log channels (THIS IS HOW WE SEE WITHOUT A SCREEN)
 
+- **`delay_ms` bug — CHECK before trusting any timing/delay code**:
+  `cntfrq_el0` reads 0 under ABL → delays returned instantly until the
+  19.2 MHz fallback was added (shim.c `delay_ms`). Any pre-fix build's
+  "wait" was a no-op; timing-based telemetry decode was meaningless.
+- **DDR dies on EVERY reset** (PSHOLD and warm `adb reboot` alike) —
+  RAM-based shim→Android channels are all dead. Survivors: UFS blocks,
+  XBL-IMEM reason (ABL-consumed, only 0x77665500/5501 route anywhere).
+- **UFS write mystery (parked)**: WRITE(10)+FUA+SYNC reports success,
+  shim re-read sees its own data, but nothing persists across reset —
+  while Android dd at sda58+1MiB survives PSHOLD. Not root-caused.
+- UFS LUNs: sda=LU0, sdb=LU1, sdc=LU2 (+ well-known 49456/49476/49488).
+- Charge screen is ABL-side (SONY logo → battery icon, unaffected by
+  ramdisk overlay.d rc); `fastboot oem` accepts NO generic commands.
+  Power-off incidents correlate with USB drops during `fastboot boot`.
+
 - **pstore console record (primary, 256 KiB channel)**: DTB `ramoops` node,
   console-size 0x40000, record-size 0x1000, ecc 0, region `0xffc00000` 1 MiB.
   Zone layout = 192 record prz (0xffc00000..0xffcc0000) then console prz at

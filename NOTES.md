@@ -1,18 +1,48 @@
 # iOS 16 on sweet (Redmi Note 10 Pro, SM7150) - working notes
 
-## >>> BATTLE PLAN 2026-10-21 evening (read FIRST) <<<
+## >>> BATTLE PLAN 2026-10-21 night (read FIRST) <<<
 
-**Immediate queue** (phone just needs ONE USB replug):
-1. `fastboot boot artifacts/shim-lilac-v11.img` — full diag: FDT parse +
-   UFS probe + appslog log-dump + checkpoint telemetry. Read `warmboot=`
-   + dd appslog for the log text.
-2. **Magisk install** (user-requested): permanent root + persistent adb
-   authorization (kill the offline/authorization flakiness forever —
-   write host pubkey into /data/misc/adb/adb_keys via root).
-3. Push to CI → first lilac xnu kernel (patch series now includes
-   topaz imports 0085-0089: ARMv8.0 emulation MANDATORY + gold-cpu +
-   MDP scanout).
-4. `tools/mkpayload.py` → payload-bearing shim → first XNU boot attempt.
+**Main line = XNU bring-up.** Shim-side UFS write debugging is PARKED
+(see "UFS write saga" below — command path verified working, persistence
+mystery unsolved but NOT on the critical path).
+
+**Immediate queue:**
+1. Push `main` → CI builds first lilac xnu kernel (89 patches incl.
+   topaz ARMv8.0 imports 0085-0089). `gh` NOT authed in WSL — trigger
+   by pushing patch changes (workflow listens on `xnu/patches/**`).
+2. `tools/mkpayload.py` → payload-bearing shim → first XNU boot attempt.
+3. Shim side quests parked: UFS write persistence, screen (needs
+   DSI cmd / MDP pipe — cmd-mode panel doesn't auto-refresh).
+
+**HARDWARE TRUTHS learned tonight (update mental model):**
+- **`delay_ms` was BROKEN this whole time**: `cntfrq_el0` reads 0 in our
+  boot context → `end = now()+0` → every delay returned instantly. ALL
+  "timing telemetry" decodes were garbage (every run returned ~16s =
+  preamble + instant delays + reset). FIXED: 19.2 MHz fallback.
+  Consequences: UFS write timing never had its settle delays; the
+  "warmboot=0x77665501 → ran to completion" pings were still valid
+  (they're writes not delays), but v21-v27 timing decodes meant nothing.
+- **DDR does not survive ANY reset** (PSHOLD *or* normal `adb reboot`):
+  sentinel at 0x9f400000 wiped both ways. Only UFS and the XBL-IMEM
+  32-bit reason (consumed by ABL, can't carry payload) persist.
+- **Android's own dd writes to sda58 DO survive a raw PSHOLD**
+  (marker at +1MiB persisted). So the UFS device commits fine — our
+  shim writes report success (response UPIU ok, OCS=0, shim read-back
+  sees 'SH') yet never persist. Suspects now: delay-less timing meant
+  writes had ~1s before reset; and reads-vs-writes asymmetry at the
+  UTRD/DMA level. NOT yet root-caused — parked.
+- UFS LUN map (sysfs): sda=LU0 (main disk, GPT), sdb=LU1, sdc=LU2 +
+  well-known LUNs 49456/49476/49488. Our lun=0 targeting is correct.
+- **Charge screen = SONY logo → battery icon**, survives our overlay.d
+  init.autoboot.rc (both exec and setprop variants) — almost certainly
+  ABL-side, not Android init. `fastboot oem off-mode-charge` unknown on
+  Sony ABL (no generic oem commands at all). Manual long-press power
+  works. Auto-power-on on cable insert = ABL/PMIC territory, parked.
+- **Magisk + autoboot boot.img built & flashed** (`boot-autoboot3`):
+  Magisk 30.7 intact. overlay.d canary `overlay_rc_ran` untested.
+- `off-mode-charge` detour closed: the two power-off incidents both
+  followed USB drops mid-`fastboot boot` (send OK, response read lost)
+  — flaky USB, not a deliberate charge mode. Avoid power-offs (user).
 
 **New allies tracked**: ios-sweet-sagit (Mi6 = SAME MSM8998),
 xnu_kernel_sdm835 (xnu-11417 for SD835!), ios-le-pro3 (UFSICE warning —

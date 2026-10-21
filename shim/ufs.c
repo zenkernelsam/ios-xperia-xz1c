@@ -56,6 +56,8 @@ struct ucd {
 	} prdt[1];
 };
 
+extern void imem_diag(const char *tag, uint32_t a, uint32_t b);
+
 static int ufs_list_ok;
 static struct utrd utrl[32] __attribute__((aligned(1024)));
 static struct ucd ucd __attribute__((aligned(128)));
@@ -104,7 +106,11 @@ static uint32_t scsi_dir(uint8_t lun, const uint8_t *cdb, unsigned cdb_len, void
 		ucd.cmd[16 + i] = cdb[i];
 
 	uintptr_t ucd_pa = (uintptr_t)&ucd;
-	utrl[0].dw0 = (1u << 28) | ((len ? (write ? 1u : 2u) : 0u) << 25) | (1u << 24);	/* UFS storage */
+	/* dw0 per the LIVE driver on this device: CT=0 (SCSI, not the "UFS
+	   storage" label we first used — Linux uses UTP_CMD_TYPE_SCSI=0),
+	   DD in [26:25] (1=H2D write, 2=D2H read), bit24 = INT_CMD.
+	   QC fills [23]=crypto-enable and [4:0]=cc_index only for ICE I/O. */
+	utrl[0].dw0 = ((len ? (write ? 1u : 2u) : 0u) << 25) | (1u << 24);
 	utrl[0].dw2 = 0x0f;			/* OCS: invalid until the host updates it */
 	utrl[0].ucdba = (uint32_t)ucd_pa;
 	utrl[0].ucdbau = (uint32_t)(ucd_pa >> 32);
@@ -114,6 +120,9 @@ static uint32_t scsi_dir(uint8_t lun, const uint8_t *cdb, unsigned cdb_len, void
 		ucd.prdt[0].addr_lo = (uint32_t)buf_pa;
 		ucd.prdt[0].addr_hi = (uint32_t)(buf_pa >> 32);
 		ucd.prdt[0].dbc = len - 1;
+		/* PRDT length field = entry COUNT, not DWORDs (JESD223 DW7[15:0];
+		   Linux ufshcd.c: prd_table_length = le16(sg_segments). Writing 4
+		   made the host read 3 garbage entries → DMA to random addrs. */
 		utrl[0].prdt = (1024u / 4) << 16 | 1;
 	}
 	__asm__ volatile("dsb sy" ::: "memory");
@@ -123,12 +132,15 @@ static uint32_t scsi_dir(uint8_t lun, const uint8_t *cdb, unsigned cdb_len, void
 	while (ufs_rd(REG_UTRLDBR) & 1) {
 		if (ticks() - start > 19200000) {	/* 1 s */
 			ufs_wr(REG_UTRLCLR, ~1u);	/* clear slot 0 (write 0 to the bit) */
+			imem_diag("scsi-timeout", ufs_rd(REG_IS), utrl[0].dw2);
 			return 1;			/* timeout */
 		}
 	}
 	__asm__ volatile("dsb sy" ::: "memory");
 	*ocs_out = utrl[0].dw2 & 0xff;
 	*status_out = ucd.resp[7];		/* SCSI status in the response UPIU */
+	imem_diag("scsi-done", *ocs_out << 8 | *status_out,
+		  ucd.resp[0] << 24 | ufs_rd(REG_IS) & 0xffffff);
 	if (*ocs_out)
 		return 2;
 	if (ucd.resp[0] != 0x21)		/* RESPONSE UPIU */
@@ -136,7 +148,7 @@ static uint32_t scsi_dir(uint8_t lun, const uint8_t *cdb, unsigned cdb_len, void
 	return *status_out ? 4 : 0;
 }
 
-static uint32_t read_blocks(uint32_t lba, uint32_t count, void *buf)
+uint32_t ufs_read_blocks(uint32_t lba, uint32_t count, void *buf)
 {
 	uint8_t cdb[10] = { 0x28, 0, lba >> 24, lba >> 16, lba >> 8, lba, 0, count >> 8, count, 0 };
 	uint32_t ocs, st;
@@ -147,9 +159,35 @@ uint32_t ufs_write_blocks(uint32_t lba, uint32_t count, const void *buf)
 {
 	if (!ufs_list_ok)
 		return 9;
-	uint8_t cdb[10] = { 0x2a, 0, lba >> 24, lba >> 16, lba >> 8, lba, 0, count >> 8, count, 0 };
+	/* FUA|FUA_NV (CDB byte1 bit3|bit1): force through to the non-volatile
+	   medium — we PSHOLD-reset right after writing, an unflushed volatile
+	   cache loses the data. */
+	uint8_t cdb[10] = { 0x2a, 0x0a, lba >> 24, lba >> 16, lba >> 8, lba, 0, count >> 8, count, 0 };
 	uint32_t ocs, st;
 	return scsi_dir(0, cdb, sizeof(cdb), (void *)buf, count * BLOCK, 1, &ocs, &st);
+}
+
+uint32_t ufs_sync_cache(void)
+{
+	if (!ufs_list_ok)
+		return 9;
+	uint8_t cdb[10] = { 0x35, 0, 0, 0, 0, 0, 0, 0, 0, 0 };	/* SYNCHRONIZE CACHE(10) */
+	uint32_t ocs, st;
+	return scsi_dir(0, cdb, sizeof(cdb), 0, 0, 1, &ocs, &st);
+}
+
+/* Put the UniPro link into HIBERN8 so the device gets its orderly
+   power-state transition before we cut everything with PSHOLD. */
+#define REG_UICCMD	0x90
+#define UIC_HIBER_ENTER	0x17
+uint32_t ufs_hibernate(void)
+{
+	ufs_wr(REG_UICCMD, UIC_HIBER_ENTER);
+	uint64_t start = ticks();
+	while (ufs_rd(REG_UICCMD) != 0)
+		if (ticks() - start > 19200000)	/* 1 s */
+			return 1;
+	return 0;
 }
 
 static uint64_t le64(const uint8_t *p)
@@ -163,7 +201,7 @@ static uint64_t le64(const uint8_t *p)
 /* Name the filesystem whose superblock starts at block lba (f2fs/ext4). */
 static const char *fs_type(uint32_t lba)
 {
-	if (read_blocks(lba, 1, data))
+	if (ufs_read_blocks(lba, 1, data))
 		return "read error";
 	const uint8_t *sb = data + 1024;
 	if (sb[0] == 0x10 && sb[1] == 0x20 && sb[2] == 0xf5 && sb[3] == 0xf2)
@@ -178,7 +216,7 @@ static void list_partitions(uint32_t entry_lba, uint32_t nent)
 {
 	static uint8_t ents[128 * 128] __attribute__((aligned(4096)));
 	uint32_t blocks = (nent * 128 + BLOCK - 1) / BLOCK;
-	if (read_blocks(entry_lba, blocks, ents)) {
+	if (ufs_read_blocks(entry_lba, blocks, ents)) {
 		con_str("UFS PART", "read error");
 		return;
 	}
@@ -211,6 +249,8 @@ int test_ufs(void)
 	con_hex2("UFS", "is=", ufs_rd(REG_IS), "rsr=", ufs_rd(REG_UTRLRSR));
 	con_hex2("UFS", "utrlba=", ufs_rd(REG_UTRLBA), "hi=", ufs_rd(REG_UTRLBAU));
 	con_hex2("UFS", "dbr=", ufs_rd(REG_UTRLDBR), "nutrs=", (cap & 0x1f) + 1);
+	imem_diag("ufs-init", hce, hcs);
+	imem_diag("ufs-regs", ufs_rd(REG_UTRLBA), ufs_rd(REG_IS));
 
 	if (!(hce & 1) || !(hcs & HCS_DP) || !(hcs & HCS_UTRLRDY)) {
 		con_str("UFS", "host not enabled/ready: stop");
@@ -261,7 +301,7 @@ int test_ufs(void)
 	rc = scsi_dir(0, rd10, sizeof(rd10), data, 2 * BLOCK, 0, &ocs, &st);
 	con_hex2("UFS READ", "rc=", rc, "ocs/st=", ocs << 8 | st);
 	if (rc)
-		return;
+		return 5;
 	con_hex2("UFS MBR", "sig=", data[510] | data[511] << 8, "type=", data[450]);
 	const uint8_t *gpt = data + BLOCK;
 	char sig[9];

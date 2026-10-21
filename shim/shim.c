@@ -98,7 +98,10 @@ static uint64_t now(void)
 
 static void delay_ms(unsigned ms)
 {
-	uint64_t end = now() + rsr("cntfrq_el0") / 1000 * ms;
+	uint64_t f = rsr("cntfrq_el0");
+	if (!f)
+		f = 19200000;	/* ABL may leave CNTFRQ unset — QC timer is always 19.2 MHz */
+	uint64_t end = now() + f / 1000 * ms;
 	while (now() < end)
 		;
 }
@@ -373,6 +376,24 @@ static uint32_t to_us(uint64_t ticks)
 }
 
 static volatile uint32_t *cp_ps = (volatile uint32_t *)0xffcc0000UL;
+
+/* Diag stash: tail of the 36 MB ABL splash region (0x9d400000+32M).
+   Plain DDR — survives warm reset, nothing in Android scribbles it,
+   readable+writable via /dev/fmem. (XBL IMEM 0x146bf000 reads back
+   scrambled — TZ-secured; kernel's own restart_reason page at
+   0xffbc7000 is exclusive-reserved so memremap writes bounce.) */
+#define IMEM_DIAG	0x9f400000UL
+void imem_diag(const char *tag, uint32_t a, uint32_t b)
+{
+	static volatile uint32_t *d = (volatile uint32_t *)IMEM_DIAG;
+	d[0] = 0x44494147;	/* 'DIAG' */
+	d[1] = a;
+	d[2] = b;
+	for (int i = 0; tag[i] && i < 20; i++)
+		((volatile char *)d)[12 + i] = tag[i];
+	d += 8;			/* 32 bytes per record */
+}
+
 static void cp_mark(char c0, char c1)
 {
 	volatile char *d = (volatile char *)(0xffcc0000UL + 0xc);
@@ -388,16 +409,17 @@ static void cp_mark(char c0, char c1)
 
 void shim_main(uint64_t dtb)
 {
+	imem_diag("entry", 0x5149, (uint32_t)dtb);
 	cp_mark('C','0');
 	/* Dead-man switch: any hang bites within ~2 min and lands back in
 	   fastboot (observed: everything resets to fastboot after fastboot boot). */
 	wdt_arm(120, 125);
 	wdt_pet();
 #ifdef SHIM_PING
-	/* Visible proof of life: red screen = code ran AND FB writes don't fault. */
-	con_clear(0x00ff0000);
-	cp_mark('C','1');
-	delay_ms(5000);
+	/* Proof-of-life with a delay so timing distinguishes "ran to end"
+	   from "never jumped in": 20 s delay then reset to fastboot. */
+	imem_diag("ping", 0xdead, 0xbeef);
+	for (int i = 0; i < 20; i++) { delay_ms(1000); wdt_pet(); }
 	wr32(IMEM_RESTART_REASON, 0x77665501u);
 	wr32(PSHOLD, 0);
 	for (;;)
@@ -429,17 +451,52 @@ void shim_main(uint64_t dtb)
 	con_skip();
 	/* Keep the probe results on screen (later tests clear it); reset after 3 min. */
 	con_str("LOG", "flush to appslog");
-	uint32_t wrc = 0x1f;
+	uint32_t wrc = 0x1f, src = 0xf, mApre = 0, wrc2 = 0xf;
 	{
+		/* Pre-write baseline: does the shim see Android's 'AAAA'+marker
+		   at APPSLOG_LBA BEFORE writing? If not, our LBA view differs
+		   from Android's entirely. */
+		static uint8_t pre[4096] __attribute__((aligned(4096)));
+		uint32_t prc = ufs_read_blocks(APPSLOG_LBA, 1, pre);
+		mApre = !prc && pre[0] == 'A' && pre[2048] == 'X';
 		uint32_t ln;
 		char *lb = con_log(&ln);
 		uint32_t nblk = (ln + 4095) / 4096;
 		wrc = ufs_write_blocks(APPSLOG_LBA, nblk, lb);
-		con_hex2("LOG WR", "rc=", wrc, "blocks=", nblk);
+		/* Control write at +1 MiB — same spot where an Android dd write
+		   survived a hard PSHOLD. Separates "write path broken" from
+		   "offset-0 region special". */
+		wrc2 = ufs_write_blocks(APPSLOG_LBA + 256, 1, "SHIMDEEPMARKER77");
+		src = ufs_sync_cache();
+		con_hex2("LOG WR", "rc=", wrc, "sync=", src);
 	}
 	/* Telemetry: encode stage+rc into restart_reason, read as warmboot= next boot */
 	cp_mark('C','6');
 	con_hex2("TELE", "ustage=", ustage, "wrc=", wrc);
+	/* ABL-independent diag: IMEM survives, /dev/fmem reads it back. */
+	imem_diag("ufs-stage", ustage, wrc);
+	wdt_arm(300, 305);	/* timing run can legitimately take minutes */
+	/* Read-back forensics: does OUR write land at APPSLOG_LBA, at a
+	   shifted LBA, or nowhere? And does the shim see Android's marker?
+	   cand[] probes: exact, +1, -8, +4 blocks and the 512B-scaled LBA. */
+	uint32_t found = 7, mA = 0, rrc = 9;
+	{
+		static uint8_t rbuf[4096] __attribute__((aligned(4096)));
+		static const uint32_t cand[5] = { APPSLOG_LBA, APPSLOG_LBA + 1,
+			APPSLOG_LBA - 8, APPSLOG_LBA + 4, 1666080 };
+		for (int i = 0; i < 5; i++) {
+			uint32_t rc = ufs_read_blocks(cand[i], 1, rbuf);
+			if (!rc && rbuf[0] == 'S' && rbuf[1] == 'H') { found = i; break; }
+		}
+		rrc = ufs_read_blocks(APPSLOG_LBA, 1, rbuf);
+		mA = !rrc && rbuf[0] == 'A' && rbuf[2048] == 'X';
+		imem_diag("readback", rrc << 8 | mA,
+			  rbuf[0] << 24 | rbuf[1] << 16 | rbuf[2] << 8 | rbuf[3]);
+	}
+	/* Long powered settle — the device commits its cache in background;
+	   the surviving Android marker had ~20 s idle before its PSHOLD.
+	   No hibernate: keep the link alive so the device can drain. */
+	for (int i = 0; i < 20; i++) { delay_ms(3000); wdt_pet(); }
 	/* pstore console record at 0xffcc0000: sig/start/size/data */
 	{
 		volatile uint32_t *prz = (volatile uint32_t *)0xffcc0000UL;
@@ -452,7 +509,24 @@ void shim_main(uint64_t dtb)
 		prz[1] = 0;			/* start */
 		prz[0] = 0x43474244;		/* DBGC */
 	}
-	delay_ms(10000);
+	/* Timing telemetry: DDR doesn't survive ANY reset on this device and
+	   ABL swallows arbitrary restart_reason values, so encode the result
+	   in wall time — delay = (code+2) * 2 s, host measures time-to-
+	   fastboot and decodes. Layout:
+	     ustage!=0      -> code = 256 + ustage
+	     ustage==0      -> code = mApre*64 + wrc2*8 + wrc*4 + fbit*2 + mA
+	   fbit: 0 = 'SH' seen at APPSLOG_LBA post-write.
+	   mApre: 'AAAA'+marker seen at APPSLOG_LBA PRE-write. */
+	{
+		uint32_t fbit = (found != 0);
+		uint32_t code = ustage ? 256 + ustage
+			: mApre * 64 + (wrc2 & 0xf) * 8 + (wrc & 0xf) * 4
+				+ fbit * 2 + mA;
+		for (uint32_t i = 0; i < code + 2; i++) {
+			delay_ms(2000);
+			wdt_pet();
+		}
+	}
 	wr32(IMEM_RESTART_REASON, 0x77665501u);
 	wr32(PSHOLD, 0);
 	for (;;)
