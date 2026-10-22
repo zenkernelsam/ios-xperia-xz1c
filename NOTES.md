@@ -1059,3 +1059,47 @@ IMEM 写本身故障（不可能，E0/E1 同款写已成功）。真正剩余嫌
 **镜像复核**：payload-xnu9 phys=0x9f800000、xnu9hi phys=0x1_00000000
 size=0xfcc00000，boot_args/entry 均正确差异化（差 72B：ADT+头部
 phys/size 字段）。两镜像确认无误。
+
+## 2026-10-22 ~08:05 — xnu9 首射：~40s 早死落 fastboot，随后 Android 回启途中断电
+
+**时间线（实测，非推测）**：
+- 07:52:45 `fastboot boot artifacts/shim-xnu9-lilac.img` 成功（17,384 KB, 6.2s）
+- +40s：设备已落 **fastboot** —— 远早于 125s WDT 窗 = XNU 快速死亡
+  （panic→PSCI RESET 或异常向量路径，非看门狗）
+- `fastboot reboot` → Android 回启途中 **USB 整体消失**：
+  先 adb offline 风暴 → VID_0FCE 从 PnP 消失 → 出现 VID_0000&PID_0002
+  「描述符请求失败」节点 → 该节点也消失 → 总线零设备 ~10min
+- 恢复阶梯全部用尽无效：kill-server → usbctl adbreset → replug →
+  devreset → ps:定向 dis/en VID_0000 节点。daemon 确认 "no phone
+  device present" —— **电气级消失，等同 E1F4 断电事故，需物理电源键**。
+
+**本轮遥测丢失**：warmboot/pstore/IMEM 均未读到（设备死在 harvest
+之前）。XNU 死亡点仍是黑盒。
+
+**新风险数据点（重要）**：`fastboot boot` 死亡落 fastboot 后再
+`fastboot reboot` 回 Android —— 此转换路径本轮触发了断电。此前
+多轮同样操作正常回 Android。差异猜想（未证实）：
+(a) 本轮内核可能真的写出了非常规 restart_reason（如 0x7766E000），
+    ABL 路由到异常路径 → 后续 PMIC 级断电；
+(b) 手机当晨 adb 已在 offline 风暴（基线不稳），仅是压垮；
+(c) Android 回启时 kernel panic + panic_timeout=0 挂死 → 但挂死
+    不会断电，所以仍指向 PMIC/firmware 路径。
+**对策**：v2 哨兵在 fastboot 落地时先 `getvar all` 快照再 reboot；
+后续考虑"探针 shim"方案 —— fastboot boot 一个只读 IMEM+cmdline
+warmboot 写 pstore 的小镜像，完全绕开 Android 回启。
+
+**v1 哨兵死因**：`adb reboot bootloader` 发出时 adb 已半死，命令
+未生效；脚本无恢复梯子、无 reboot 重试，120s 后 FAIL 退出 ——
+07:51:45 阵亡，距手动拿到 fastboot 仅差 ~1 分钟。
+
+**arm-xnu10.sh（v2 哨兵，已 arm，nohup 在岗）**：
+- 恢复梯子（offline→kill-server→adbreset→replug），永不禁watch
+- reboot-verify 循环：fastboot 不出现则重发 reboot，最多 5 次
+- fastboot 落地即抓 `getvar all`（reboot 前抢 ABL 变量）
+- 记录落地延迟：<120s=早死 / ~125s=WDT
+- harvest 加 bindershell fmem 读 IMEM 5 cell（官方+4 空位）
+- 失败不退出：`exec $0` 重新武装，等下次设备现身
+- 日志 `unattend/out/arm-xnu10.log`，DONE 标记 arm-xnu10.DONE
+
+**用户下班回家后唯一动作**：按电源键开机 → 哨兵全自动完成
+boot xnu9 + 等落地 + 全通道 harvest + 解码落盘。

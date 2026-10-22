@@ -326,12 +326,26 @@ QCA6390 Wi-Fi in progress. Secondary reference.
   device node, `Disable-PnpDevice` AND `pnputil /remove-device` both fail
   (常规故障 / 需要重新启动系统). Parent is ROOT_HUB30 (uncycleable). Only a
   Windows reboot clears it — avoid triggering it; device IO still works.
-- **`unattend\arm-xnu9.sh`** (armed sentinel, 2026-10-22) — one-shot
-  experiment runner: on first sighting of BH905ND69G (adb OR fastboot) →
-  `fastboot boot artifacts/shim-xnu9-lilac.img` → waits through the WDT
-  window → harvests `warmboot=` + pstore → decodes + logs to
-  `out/arm-xnu9.log`, `arm-xnu9.DONE` marker prevents refire. Safe to
-  leave armed: the xnu9 code path contains no reachable power-off.
+- **`unattend\arm-xnu10.sh`** (armed sentinel v2, 2026-10-22, SUPERSEDES
+  arm-xnu9.sh which died on transient adb failure 07:51) — persistent
+  experiment runner: sighting → reboot-verify loop (retries `reboot
+  bootloader` up to 5x) → `fastboot boot artifacts/shim-xnu9-lilac.img`
+  → records landing mode+latency (<120s = early kernel death, ~125s =
+  WDT) → `getvar all` snapshot BEFORE any Android reboot → harvests
+  warmboot=/pstore/bindershell-fmem IMEM cells → decodes into
+  `out/arm-xnu10.log`. Re-arms itself via `exec $0` on failure — safe to
+  leave running forever.
+- **`fastboot reboot` after XNU-death CAN power the phone off**
+  (observed 2026-10-22 08:00): xnu9 died ~40s → landed fastboot →
+  `fastboot reboot` → Android re-boot died mid-way → USB vanished
+  electrically (VID_0000 descriptor-fail node, then nothing). Full
+  ladder incl. devreset could not revive — physical power button only.
+  MITIGATION in v2 sentinel: snapshot `getvar all` in fastboot first;
+  TODO: "probe shim" boot.img that harvests IMEM/cmdline→pstore without
+  ever booting Android.
+- **`adb reboot bootloader` can silently NO-OP when adb is half-dead**
+  (offline-adjacent state): command returns but device stays in Android.
+  Always verify `fastboot devices` shows the serial, retry the reboot.
 - **`/sys/fs/pstore` LIVE**: `pstore: Registered ramoops` confirmed in dmesg,
   console zone at 0xffcc0000 (DTB ramoops node: console-size 0x40000,
   record-size 0x1000, ecc 0). Shim v6 writes prz {DBGC,start,size,data}
