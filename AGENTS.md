@@ -283,6 +283,15 @@ QCA6390 Wi-Fi in progress. Secondary reference.
 - Host: `ssh ciscohe@ciscomac.local` (macOS 15.8.1), passwordless via
   `~/.ssh/id_ed25519` ("devin-windows-xnu"). Login password intentionally
   NOT stored in this public repo.
+- **USER DIRECTIVE (2026-10-22 晚): Mac is available for ongoing project
+  use — but DO NOT litter the macOS.** House rules:
+  - Work ONLY inside project dirs: `~/Desktop/ios-xperia-xz1c`,
+    `~/Library/CloudStorage/飞牛同步-Home-Nas/XNU/`, and the
+    `~/xnu-autobuild*` files we already created.
+  - NO random installs / system tweaks / new daemons / Homebrew
+    packages without asking first.
+  - Clean up temp files you create; never touch the user's personal
+    files, Desktop (except the repo clone), or system settings.
 - Repo clone: `/Users/ciscohe/Desktop/ios-xperia-xz1c`, build tree `dxb/`.
 - **Xcode constraint**: must `xcode-select` 15.4 — machine currently has
   Xcode 26.3 (breaks xnu-8796 iig). 15.4 download is Apple-ID-gated →
