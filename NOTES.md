@@ -1103,3 +1103,71 @@ warmboot 写 pstore 的小镜像，完全绕开 Android 回启。
 
 **用户下班回家后唯一动作**：按电源键开机 → 哨兵全自动完成
 boot xnu9 + 等落地 + 全通道 harvest + 解码落盘。
+
+## 2026-10-22 晚 —— hackios 侦察 + shim v7 + 第二弹药库（`0cdb885`）
+
+### 大事件：oosexgang 公开 hackios-xnu-kernel（树莓派 3/BCM2837 XNU）
+
+- 仓库：`research/hackios-xnu-kernel/`（两个仓库均已克隆：
+  `hackios` loader/UEFI + `hackios-xnu-kernel` xnu 树）。
+- 价值：**同代 xnu 早期启动防御手段的参照系** + 一个可独立验证
+  "shim→XNU 入口契约"的已知可启动内核。
+- 入口契约（与我们的 shim 完全一致）：MMU/D-cache/I-cache 全关、
+  物理地址 `br` 跳转、x0 = boot_args 物理地址、deviceTreeP 存 VA。
+- **关键防御差**：他们 `reset_vector` 开头先装
+  `LowExceptionVectorBase`（物理 VBAR！内核没起来就能抓异常）+
+  SCTLR 归一化 + 内核全程把 VBAR 物理解释到 common_start ——
+  **从第一拍起就没有异常盲区**。我们 sweet 内核的盲区（_start→
+  内核自己的 VBAR）恰好是死因嫌疑区。
+- **`XNULDRST` 槽机制**：loader 扫描内核里 `"XNULDRST"` magic，
+  把 loader 的 return stub 物理地址写进 `slot+8`；内核早期异常时
+  冲刷 loader_log 回 RAM → MMU off → `br` 到 stub，传参
+  x0/x1=log PA/len, x2=reason(0/1/2), x3-x7=ESR/ELR/FAR/LR/SP。
+- `loader_checkpoint(n)`：`slot+16` 写 n 则内核在 checkpoint n
+  主动返回 loader（reason=2）—— 可二分定位死亡点。
+- 还有 `Lsecondary_early_exception`/`psci_smp_start_fault` 二级核
+  陷阱、`loader_log` 顺序日志（内核内建 ring buffer 回交）。
+
+### shim v7（已 commit + 已打包成 xnu10/hios1 镜像）
+
+`shim/start.S` + `shim/loader.c` 新增：
+1. **跳前 CPU 快照** @ `0x146bf700..0x146bf77f`：SCTLR_EL1/TCR_EL1/
+   MAIR_EL1/TTBR0/TTBR1/VBAR_EL1/CurrentEL/DAIF/MPIDR_EL1/
+   ID_AA64PFR0/MMFTR0/ISAR0/CTR_EL0 + entry_pa + ba_pa ——
+   拿到 ABL 实际交给内核的寄存器态。
+2. **vectors2 二级异常表**（16 槽，跳内核前装进 VBAR_EL1/EL2）：
+   槽号+CurrentEL+SP+LR+ESR/ELR/FAR/SPSR(按 EL 选组)+GPRs 全泄
+   @ `0x146bf780..`，restart_reason = `0x7766F0<slot>`，spin/WDT。
+   EL1/EL2 两套系统寄存器路径都在。
+3. **XNULDRST patcher**：只扫已装载段 file_size 范围（不扫全内存，
+   保 WDT 预算），patch stub 地址、checkpoint=0、slide=
+   pa_of_va_base，DSB 后交权。
+4. **hios_return_stub**：MMU off 兜底 → x0-x7 按约泄
+   `0x146bf800..0x146bf83f` → marker `0x7766E7<reason<<4|F>` → WDT spin。
+
+### 新产物（本地构建，artifacts/，不进 git）
+
+| 文件 | 内容 |
+|---|---|
+| `artifacts/shim-xnu10-lilac.img` | v7 shim + xnu9 全遥测内核 payload（从旧镜像抽出的 SWEETXNU ramdisk）—— **首轮弹药** |
+| `artifacts/lilac-hios.adt` | mkadt-hios.py 生成：hackios 期望树 × lilac 值（18.7KB） |
+| `artifacts/payload-hios.bin` | hackios 预编译内核 + lilac-hios.adt，cmdline `-v cpus=1 debug=0x144 keepsyms=1` |
+| `artifacts/shim-hios1-lilac.img` | v7 shim + hios payload —— **第二轮弹药**：已知可启动内核做入口契约交叉验证 |
+
+### 判读矩阵（v7 新增标记）
+
+| warmboot/IMEM | 含义 |
+|---|---|
+| `0x7766F0xx` | vectors2 抓到异常，xx=槽号；`0x146bf780` 有全寄存器 dump |
+| `0x7766E70F` | hackios 内核主动返回（reason 0，有序）|
+| `0x7766E71F` | hackios 早期异常返回 —— `0x146bf800` 有 log PA/len+ESR/ELR/FAR/LR/SP |
+| `0x7766E72F` | checkpoint 返回（需 loader 写 checkpoint≠0 才触发）|
+| `0x146bf700` 区 | 跳前 CPU 态（任何实验都可先读它验证 ABL 交接）|
+
+### 待办（手机物理开机后）
+
+1. 哨兵 arm 的是 `shim-xnu10-lilac.img`（v7+our kernel）—— 第一发。
+2. 第二发 `shim-hios1-lilac.img` —— 若 hios 能过盲区而我们的不行，
+   直接坐实是 sweet 入口代码缺陷而非平台不可能。
+3. 判读优先级：`0x146bf800`（hios log，信息量最大）>
+   `0x146bf780`（vectors2 dump）> `0x146bf700`（跳前态）> official。
