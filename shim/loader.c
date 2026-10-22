@@ -192,33 +192,72 @@ const char *loader_boot(uintptr_t dtb)
 	__asm__ volatile("msr OSLAR_EL1, xzr" ::: "memory");
 	RR_MARK(0x7766D014);
 
-	/* 4) install mark-writing exception vectors for the kernel's blind
-	 *    window: XNU doesn't set VBAR until AFTER AA01, so any exception
-	 *    between our jump and that point lands wherever the previous
-	 *    VBAR pointed (stale => wild => silent death). Each slot writes
-	 *    0x7766F0<idx> to restart_reason and spins, so warmboot reveals
-	 *    the exact exception class: 0/4=sync, 1/5=IRQ, 2/6=FIQ, 3/7=SErr. */
+	/* 4) pre-jump state dump: the CPU state ABL hands us, so a kernel that
+	 *    dies before it can write anything still leaves us knowing what it
+	 *    inherited (SCTLR/TCR/MAIR/TTBR/VBAR/CurrentEL/MPIDR/feature regs).
+	 *    IMEM 0x146bf700..0x146bf77f, magic 0x77667374 at +0. */
 	RR_MARK(0x7766D015);
 	{
-		static uint8_t vt[2048] __attribute__((aligned(2048)));
-		for (int i = 0; i < 16; i++) {
-			uint32_t *s = (uint32_t *)(vt + i * 0x80);
-			uint32_t mark = 0xF000u | (uint32_t)i;
-			s[0] = 0x52800000u | (mark << 5) | 9u;		/* mov w9, #mark */
-			s[1] = 0x72A00000u | (0x7766u << 5) | 9u;		/* movk w9, #0x7766, lsl#16 */
-			s[2] = 0x52800000u | (0xf65cu << 5) | 10u;	/* mov w10, #0xf65c */
-			s[3] = 0x72A00000u | (0x146bu << 5) | 10u;	/* movk w10, #0x146b, lsl#16 */
-			s[4] = 0xB9000149u;				/* str w9, [x10] */
-			s[5] = 0x14000000u;				/* b . */
-		}
-		uint64_t cel;
-		__asm__ volatile("mrs %0, CurrentEL" : "=r"(cel));
-		__asm__ volatile("msr VBAR_EL1, %0" :: "r"((uint64_t)vt));
-		if (cel >= (2u << 2))
-			__asm__ volatile("msr VBAR_EL2, %0" :: "r"((uint64_t)vt));
-		__asm__ volatile("dsb sy; isb" ::: "memory");
+		volatile uint64_t *sd = (volatile uint64_t *)0x146bf700UL;
+		uint64_t v;
+		sd[0] = 0x77667374;
+		__asm__ volatile("mrs %0, sctlr_el1" : "=r"(v)); sd[1] = v;
+		__asm__ volatile("mrs %0, tcr_el1" : "=r"(v)); sd[2] = v;
+		__asm__ volatile("mrs %0, mair_el1" : "=r"(v)); sd[3] = v;
+		__asm__ volatile("mrs %0, ttbr0_el1" : "=r"(v)); sd[4] = v;
+		__asm__ volatile("mrs %0, ttbr1_el1" : "=r"(v)); sd[5] = v;
+		__asm__ volatile("mrs %0, vbar_el1" : "=r"(v)); sd[6] = v;
+		__asm__ volatile("mrs %0, CurrentEL" : "=r"(v)); sd[7] = v;
+		__asm__ volatile("mrs %0, daif" : "=r"(v)); sd[8] = v;
+		__asm__ volatile("mrs %0, mpidr_el1" : "=r"(v)); sd[9] = v;
+		__asm__ volatile("mrs %0, id_aa64pfr0_el1" : "=r"(v)); sd[10] = v;
+		__asm__ volatile("mrs %0, id_aa64mmfr0_el1" : "=r"(v)); sd[11] = v;
+		__asm__ volatile("mrs %0, id_aa64isar0_el1" : "=r"(v)); sd[12] = v;
+		__asm__ volatile("mrs %0, ctr_el0" : "=r"(v)); sd[13] = v;
+		sd[14] = entry_pa;
+		sd[15] = ba_pa;
+		__asm__ volatile("dsb sy" ::: "memory");
 	}
 	RR_MARK(0x7766D016);
+
+	/* 4b) install the register-dumping exception table for the kernel's
+	 *     blind window (start.S: vectors2 — IMEM dump at 0x146bf780, mark
+	 *     0x7766F0<slot>, spin for WDT). Covers EL1- and EL2-taken faults. */
+	{
+		extern char vectors2[];
+		uint64_t cel;
+		__asm__ volatile("mrs %0, CurrentEL" : "=r"(cel));
+		__asm__ volatile("msr VBAR_EL1, %0" :: "r"(vectors2));
+		if (cel >= (2u << 2))
+			__asm__ volatile("msr VBAR_EL2, %0" :: "r"(vectors2));
+		__asm__ volatile("dsb sy; isb" ::: "memory");
+	}
+	RR_MARK(0x7766D017);
+
+	/* 4c) hackios-style kernels carry an "XNULDRST" slot: patch in the PA
+	 *     of hios_return_stub so an early exception / checkpoint / orderly
+	 *     return jumps back into us — we dump x0-x7 + reason to IMEM
+	 *     (0x146bf800) and mark 0x7766E7<reason<<4>. Harmless on kernels
+	 *     that lack the slot (scan just finds nothing). */
+	{
+		extern char hios_return_stub[];
+		for (uint32_t i = 0; i < p->nsegs; i++) {
+			const struct payload_seg *s = &p->segs[i];
+			uint64_t *q = (uint64_t *)(s->vmaddr + pa_of_va_base);
+			uint64_t *end = (uint64_t *)((uint8_t *)q + (s->file_size & ~7UL));
+			for (; q < end; q++) {
+				if (*q == 0x545352444C554E58ULL /* "XNULDRST" */) {
+					q[1] = (uint64_t)hios_return_stub;
+					q[2] = 0;			/* no checkpoint stop */
+					q[3] = pa_of_va_base;		/* phys - virt slide */
+					goto patched;
+				}
+			}
+		}
+patched:
+		__asm__ volatile("dsb sy" ::: "memory");
+	}
+	RR_MARK(0x7766D018);
 
 	/* Dump the console log into a pstore prz record before jumping. The
 	 * only existing writer runs at the end of shim_main and is never

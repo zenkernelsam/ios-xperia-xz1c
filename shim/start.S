@@ -126,3 +126,121 @@ exc_common:
 	add	sp, sp, #(30 * 8)
 	ldp	x29, x30, [sp], #16
 	eret
+
+/*
+ * vectors2 — table installed right before jumping into the xnu payload.
+ * The kernel has no vectors of its own yet, so anything it raises lands
+ * here. Every slot dumps the exception registers into IMEM (survives a
+ * WDT bite, readable from Android via /dev/fmem), writes 0x7766F0<slot>
+ * to the restart_reason cell and spins for the watchdog.
+ *
+ * Exc dump area: 0x146bf780..0x146bf7ff  (pre-jump state dump uses
+ * 0x146bf700..0x146bf77f; both inside the IMEM page at 0x146bf000).
+ */
+#define IMEM_DUMP	0x146bf780
+#define IMEM_RR		0x146bf65c
+
+.macro vent2 slot
+	.balign	0x80
+	mov	w9, #\slot
+	b	exc2_common
+.endm
+
+	.balign	0x800
+	.globl vectors2
+vectors2:
+	vent2 0
+	vent2 1
+	vent2 2
+	vent2 3
+	vent2 4
+	vent2 5
+	vent2 6
+	vent2 7
+	vent2 8
+	vent2 9
+	vent2 10
+	vent2 11
+	vent2 12
+	vent2 13
+	vent2 14
+	vent2 15
+
+exc2_common:
+	mov	w10, #(IMEM_DUMP & 0xffff)
+	movk	w10, #(IMEM_DUMP >> 16), lsl #16
+	str	w9, [x10]			/* +0x00 slot */
+	mrs	x11, CurrentEL
+	str	w11, [x10, #4]			/* +0x04 CurrentEL */
+	mov	x11, sp
+	str	x11, [x10, #8]			/* +0x08 SP */
+	str	x30, [x10, #16]			/* +0x10 LR */
+	stp	x0, x1, [x10, #0x40]		/* GPRs */
+	stp	x2, x3, [x10, #0x50]
+	stp	x4, x5, [x10, #0x60]
+	stp	x6, x7, [x10, #0x70]
+	mrs	x11, CurrentEL
+	cmp	x11, #8				/* taken at EL2? */
+	b.eq	1f
+	mrs	x11, ESR_EL1
+	str	x11, [x10, #0x18]
+	mrs	x11, ELR_EL1
+	str	x11, [x10, #0x20]
+	mrs	x11, FAR_EL1
+	str	x11, [x10, #0x28]
+	mrs	x11, SPSR_EL1
+	str	x11, [x10, #0x30]
+	b	2f
+1:	mrs	x11, ESR_EL2
+	str	x11, [x10, #0x18]
+	mrs	x11, ELR_EL2
+	str	x11, [x10, #0x20]
+	mrs	x11, FAR_EL2
+	str	x11, [x10, #0x28]
+	mrs	x11, SPSR_EL2
+	str	x11, [x10, #0x30]
+2:	mov	w11, #0xf000
+	orr	w11, w11, w9			/* mark = 0x7766F000|slot */
+	movk	w11, #0x7766, lsl #16
+	str	w11, [x10, #0x38]
+	mov	w12, #(IMEM_RR & 0xffff)
+	movk	w12, #(IMEM_RR >> 16), lsl #16
+	str	w11, [x12]
+	dsb	sy
+	isb
+3:	wfe
+	b	3b
+
+/*
+ * hios_return_stub — return address handed to a hackios-style kernel via
+ * its "XNULDRST" slot: it jumps here (MMU off, physical address) with
+ *   x0/x1 = kernel log PA/len, x2 = reason (0 orderly, 1 early exception,
+ *   2 checkpoint), x3..x7 = ESR, ELR, FAR, LR, SP on reason 1.
+ * We stash the whole incoming context at 0x146bf800..0x146bf87f, write
+ * 0x7766E7<reason*16+15> to restart_reason and spin for the watchdog.
+ */
+	.balign	64
+	.globl	hios_return_stub
+hios_return_stub:
+	msr	daifset, #0xf
+	mrs	x9, sctlr_el1
+	bic	x9, x9, #1			/* MMU off, whatever the kernel left */
+	msr	sctlr_el1, x9
+	isb
+	mov	w10, #(0x146bf800 & 0xffff)
+	movk	w10, #(0x146bf800 >> 16), lsl #16
+	stp	x0, x1, [x10, #0x00]		/* log PA + len */
+	stp	x2, x3, [x10, #0x10]		/* reason + ESR */
+	stp	x4, x5, [x10, #0x20]		/* ELR + FAR */
+	stp	x6, x7, [x10, #0x30]		/* LR + SP */
+	mov	w11, #0xe700
+	orr	w11, w11, w2, lsl #4		/* mark = 0x7766E700|reason<<4 */
+	movk	w11, #0x7766, lsl #16
+	str	w11, [x10, #0x40]
+	mov	w12, #(IMEM_RR & 0xffff)
+	movk	w12, #(IMEM_RR >> 16), lsl #16
+	str	w11, [x12]
+	dsb	sy
+	isb
+4:	wfe
+	b	4b
