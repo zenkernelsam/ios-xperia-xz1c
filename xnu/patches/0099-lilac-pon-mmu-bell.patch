@@ -1,0 +1,27 @@
+diff --git a/osfmk/arm64/start.s b/osfmk/arm64/start.s
+index c0ffee1..d1a2b33 100644
+--- a/osfmk/arm64/start.s
++++ b/osfmk/arm64/start.s
+@@ -946,6 +946,22 @@ common_start:
+ 	MOV64   x0, SCTLR_EL1_DEFAULT
+ 	MSR_SCTLR_EL1_X0
+ 	isb		sy
++#if defined(SWEET)
++	/* PON doorbell 0xa2: MMU just turned on and the low-VA write now
++	 * goes through TTBR0 (V=P) -- proves the 0x8000000 slot works and
++	 * splits 'died in bootstrap asm' from 'died in C-side mark path'. */
++	MOV64	x12, 0x8420000
++	mov		w13, #0xa2
++	str		w13, [x12, #0x10]
++	mov		w13, #0x8e0
++	str		w13, [x12]
++	mov		w13, #255
++1:	ldr		w14, [x12, #8]
++	tbnz	w14, #0, 2f
++	subs	w13, w13, #1
++	b.ne	1b
++2:
++#endif
+ 
+ #if !VMAPPLE && !defined(SWEET)
+ 	MOV64   x1, SCTLR_EL1_DEFAULT
