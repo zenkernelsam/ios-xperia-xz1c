@@ -1,0 +1,32 @@
+--- a/iokit/Kernel/arm/SweetPlatformExpert.cpp
++++ b/iokit/Kernel/arm/SweetPlatformExpert.cpp
+@@ -22,10 +22,29 @@
+ 
+ OSDefineMetaClassAndStructors(SweetPlatformExpert, IODTPlatformExpert);
+ 
++/*
++ * lilac: no ARM platform driver registers PE_halt_restart, so panic ->
++ * halt_all_cpus -> PEHaltRestart(kPEPanicRestartCPU) returns -1 and the
++ * CPUs spin in wfe forever (black screen, no reset, unreachable). Wire it
++ * to PSCI so every panic/halt exits through SMC and the shim's pre-armed
++ * PON reason routes the reset back to fastboot.
++ */
++static int
++sweet_psci_halt_restart(unsigned int type)
++{
++	uint64_t fid = (type == kPEHaltCPU) ? 0x84000008ULL : 0x84000009ULL;
++	__asm__ volatile("mov x0, %0" :: "r"(fid) : "x0", "memory");
++	__asm__ volatile("smc #0" ::: "memory");
++	for (;;) {
++		__asm__ volatile("wfe");
++	}
++}
++
+ bool
+ SweetPlatformExpert::start(IOService *provider)
+ {
+ 	IOLog("SWEET: starting device-tree platform expert\n");
++	PE_halt_restart = sweet_psci_halt_restart;
+ 	if (!IODTPlatformExpert::start(provider)) {
+ 		return false;
+ 	}
