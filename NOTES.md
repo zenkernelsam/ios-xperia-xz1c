@@ -1,5 +1,21 @@
 # iOS 16 on sweet (Redmi Note 10 Pro, SM7150) - working notes
 
+## >>> 2026-10-24 03:00 — 夜间成果：PON 标记端到端实锤 + fb 真格式证据 <<<
+
+**PON `0x88e` 端到端闭环**：shim RR_MARK→SPMI→PON，XNU 死亡复位后
+Android regmap 读回 `0x02`（=`0x77665502` 低字节，loader 已跳 XNU）。
+收割：`Patch/Xperia/unattend/harvest-pon.sh`。XNU 侧标记补丁
+`0095-lilac-pon-stage-marks.patch` 已入库待 Mac 构建。
+
+**fb 真格式（待照片终验）**：Android `fb0/bits_per_pixel=32,
+stride=2944, vsize=720x2560` → MDP 吃 **XRGB8888 @2944B/行**
+（720px+64B 补齐）。shim console/loader/host_test 已改 32bpp/2944。
+BEACON=80v2 正持屏（绿/品红横带+黑/白竖条）——**明早拍屏：整齐网格=
+定案；斜切=stride 偏；仍重复=bpp 还不对**。定案后把
+`xnu/patches/0096-lilac-fbcon-32bpp-2944.patch.pending` 改名 `.patch`。
+
+**明早恢复**：拍屏 → 音量上+电源 ~10s → fastboot → patch → 继续测。
+
 ## >>> 2026-10-23 22:20 — 迷底：**镜像必须打成 Image.gz-dtb，否则 ABL 拒跳** <<<
 
 **根因（已实机验证）**：ABL 的 LinuxLoader 要求 QCOM 的 `Image.gz-dtb`
