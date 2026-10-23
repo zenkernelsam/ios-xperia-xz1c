@@ -1456,6 +1456,14 @@ void shim_main(uint64_t dtb)
 	con_str("SHIM", "sweet milestone 4: xnu loader");
 	con_skip();
 	cp_mark('C','2');
+#ifdef SHIM_RET_FASTBOOT
+	/* Unattended bring-up: pre-arm PMIC PON SOFT_RB_SPARE(0x88f) = BOOTLOADER
+	   so ANY subsequent reset (XNU panic PSCI, WDT, hang-feeds) routes back
+	   to fastboot instead of Android/charge. Verified: beacon73 wrote 0x06
+	   here and XBL landed in fastboot. XNU can overwrite it later. */
+	spmi_write_apid(4, 0x88f, 0x06);
+	con_str("PON", "reason=BOOTLOADER armed (auto fastboot on reset)");
+#endif
 	const char *why = loader_boot(dtb);
 	cp_mark('C','3');
 	con_str("LOADER", why);

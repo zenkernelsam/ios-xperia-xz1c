@@ -8,6 +8,7 @@ CFLAGS="-O2 -ffreestanding -nostdlib -fno-pic -mgeneral-regs-only -mstrict-align
 [ "${PROBE:-0}" = 1 ] && CFLAGS="$CFLAGS -DSHIM_PROBE"
 [ "${PURE:-0}" != 0 ] && CFLAGS="$CFLAGS -DSHIM_PURE=$PURE"
 [ -n "${BEACON:-}" ] && CFLAGS="$CFLAGS -DSHIM_BEACON=$BEACON"
+[ "${RET:-0}" = 1 ] && CFLAGS="$CFLAGS -DSHIM_RET_FASTBOOT"
 [ -n "${POFF:-}" ] && CFLAGS="$CFLAGS -DPAYLOAD_OFF=$POFF"
 [ -n "${KOFF:-}" ] && CFLAGS="$CFLAGS -DKENTRY_OFF=$KOFF"
 mkdir -p out
