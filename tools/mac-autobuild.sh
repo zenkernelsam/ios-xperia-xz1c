@@ -32,11 +32,12 @@ while :; do
 		sleep "$POLL"; continue
 	fi
 
-	# Environment gate: only build under Xcode 15.x (16+/26 iig breaks xnu-8796)
+	# Environment gate: Xcode 15.x or 26.x (the iig/IORPC incompatibility was
+	# fixed in 5cb3ab3; 26.3 produced a working SWEET kernel on 2026-10-23).
 	XCV=$(xcodebuild -version 2>/dev/null | head -1)
 	case "$XCV" in
-		"Xcode 15."*) ;;
-		*) log "skip: '$XCV' is not Xcode 15.x — select Xcode 15.4 first"; status "idle" "waiting for Xcode 15.x"; sleep "$POLL"; continue ;;
+		"Xcode 15."*|"Xcode 26."*) ;;
+		*) log "skip: '$XCV' is not a supported Xcode (need 15.x or 26.x)"; status "idle" "waiting for Xcode 15.x/26.x"; sleep "$POLL"; continue ;;
 	esac
 
 	git fetch -q origin main >>"$LOG" 2>&1

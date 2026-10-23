@@ -293,14 +293,16 @@ QCA6390 Wi-Fi in progress. Secondary reference.
   - Clean up temp files you create; never touch the user's personal
     files, Desktop (except the repo clone), or system settings.
 - Repo clone: `/Users/ciscohe/Desktop/ios-xperia-xz1c`, build tree `dxb/`.
-- **Xcode constraint**: must `xcode-select` 15.4 — machine currently has
-  Xcode 26.3 (breaks xnu-8796 iig). 15.4 download is Apple-ID-gated →
-  the ONE manual step left for the user.
+- **Xcode 26.3 works** (resolved 2026-10-23): commit `5cb3ab3` added the
+  Xcode-26 IORPC/iig compat; `a1e516c` produced the first SWEET kernel
+  under 26.3. No Xcode 15.4 needed. (The 15.x gate in
+  `tools/mac-autobuild.sh` is stale — it will skip under 26.3; either
+  run builds manually or relax the gate.)
 - `tools/mac-autobuild.sh` = watcher (poll origin/main 60 s → pull →
   refresh dxb/patches → build → drop `kernel-<sha>-<ts>.sweet` into sync
   folder + `BUILD_STATUS.txt`). Install once via
   `tools/mac-autobuild-install.sh` (launchd `com.xz1c.xnu-autobuild`).
-  Refuses to build unless Xcode 15.x selected. Log `~/xnu-autobuild.log`.
+  Log `~/xnu-autobuild.log`.
 - **CONCURRENCY**: a Mac-side agent may run manual builds in the same
   `dxb/` tree — `launchctl unload` the agent or `touch ~/xnu-autobuild.pause`
   before pushing commits that would trigger a parallel build. Status as of
