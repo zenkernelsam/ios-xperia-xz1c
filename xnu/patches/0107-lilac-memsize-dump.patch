@@ -1,0 +1,25 @@
+diff --git a/osfmk/arm64/start.s b/osfmk/arm64/start.s
+index f001122..e05ff06 100644
+--- a/osfmk/arm64/start.s
++++ b/osfmk/arm64/start.s
+@@ -862,4 +862,20 @@ LEXT(start_first_cpu)
+ 	str		w13, [x12, #0x10]
+ 	mov		w13, #0x8c0
+ 	str		w13, [x12]
++	/* x-register dump: 0x88b <- x24[31:24] (mem_size top byte, want 0x5b)
++	 *                  0x88a <- x23[15:8]  (physBase, want 0x80)
++	 *                  0x889 <- x20[15:8]  (boot_args PA) */
++	ubfx	x13, x24, #24, #8
++	str		w13, [x12, #0x10]
++	mov		w13, #0x8b0
++	str		w13, [x12]
++	ubfx	x13, x23, #8, #8
++	str		w13, [x12, #0x10]
++	mov		w13, #0x8a0
++	str		w13, [x12]
++	ubfx	x13, x20, #8, #8
++	str		w13, [x12, #0x10]
++	mov		w13, #0x890
++	str		w13, [x12]
++	dsb		sy
+ #endif
