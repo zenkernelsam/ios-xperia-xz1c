@@ -1,0 +1,21 @@
+diff --git a/osfmk/arm64/start.s b/osfmk/arm64/start.s
+index f001122..c03dd03 100644
+--- a/osfmk/arm64/start.s
++++ b/osfmk/arm64/start.s
+@@ -1012,6 +1012,16 @@ LEXT(start_first_cpu)
+ 	MOV64   x0, SCTLR_EL1_DEFAULT
+ 	MSR_SCTLR_EL1_X0
+ 	isb		sy
++#if defined(SWEET)
++	/* POST proof: write 'TSOP' into the durable pstore cell through the
++	 * ORIGINAL V=P slot (0xfe000000 block). Lands -> TTBR0 V=P works and
++	 * only the SPMI slot is suspect. Absent -> whole-map failure. */
++	MOV64	x12, 0xffc07100
++	movz	w13, #0x4f50
++	movk	w13, #0x5453, lsl #16		/* memory reads 'POST' */
++	str		w13, [x12]
++	dsb		sy
++#endif
+ #if defined(SWEET)
+ 	/* PON doorbell 0xa2: MMU just turned on and the low-VA write now
+ 	 * goes through TTBR0 (V=P) -- proves the 0x8000000 slot works and
