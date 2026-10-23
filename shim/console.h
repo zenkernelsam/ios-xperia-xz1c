@@ -4,7 +4,11 @@
 #define FB_BASE		0x9d400000UL	/* reserved-memory cont_splash_region */
 #define FB_W		720
 #define FB_H		1280
-#define FB_STRIDE	(FB_W * 4)	/* a8r8g8b8, matches mainline simplefb */
+#define FB_STRIDE	(FB_W * 2)	/* RGB565: ABL's GOP buffer on lilac */
+
+/* ARGB8888 -> RGB565 for the panel framebuffer. */
+#define RGB565(c)	((uint16_t)((((c) >> 8) & 0xf800) | \
+				(((c) >> 5) & 0x07e0) | (((c) >> 3) & 0x1f)))
 
 #define RED	0xffff0000U
 #define BLUE	0xff0000a0U
@@ -12,7 +16,7 @@
 #define YELLOW	0xffffff00U
 #define GREEN	0xff00ff00U
 
-extern volatile uint32_t *con_fb;
+extern volatile uint16_t *con_fb;
 
 void con_clear(uint32_t bg);
 void con_skip(void);

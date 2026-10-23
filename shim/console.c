@@ -11,24 +11,25 @@
 #define MARGIN		24
 #define LABEL_COLS	8
 
-volatile uint32_t *con_fb = (volatile uint32_t *)FB_BASE;
+volatile uint16_t *con_fb = (volatile uint16_t *)FB_BASE;
 
 /* lilac: mirror every line into a RAM log flushed to the appslog partition. */
 static char logbuf[60 * 1024] = "LILACLOG\n";
 static uint32_t logpos = 9;
 static void log_add(const char *s) { while (*s && logpos < sizeof(logbuf) - 1) logbuf[logpos++] = *s++; }
 char *con_log(uint32_t *len) { *len = logpos; return logbuf; }
-static uint32_t con_bg;
+static uint16_t con_bg;
 static int row;
 
 void con_clear(uint32_t bg)
 {
+	uint16_t px = RGB565(bg);
 	for (int y = 0; y < FB_H; y++) {
-		volatile uint32_t *line = con_fb + y * (FB_STRIDE / 4);
+		volatile uint16_t *line = con_fb + y * (FB_STRIDE / 2);
 		for (int x = 0; x < FB_W; x++)
-			line[x] = bg;
+			line[x] = px;
 	}
-	con_bg = bg;
+	con_bg = px;
 	row = 0;
 }
 
@@ -40,11 +41,12 @@ static void put_char(int col, char ch, uint32_t fg)
 	int x0 = MARGIN + col * CH_W, y0 = MARGIN + row * CH_H;
 	if (x0 + CH_W > FB_W || y0 + CH_H > FB_H)
 		return;
+	uint16_t cfg = RGB565(fg);
 	for (int gy = 0; gy < 16; gy++)
 		for (int gx = 0; gx < 8; gx++) {
-			uint32_t c = (g[gy] & (0x80 >> gx)) ? fg : con_bg;
+			uint16_t c = (g[gy] & (0x80 >> gx)) ? cfg : con_bg;
 			for (int sy = 0; sy < SCALE; sy++) {
-				volatile uint32_t *p = con_fb + (y0 + gy * SCALE + sy) * (FB_STRIDE / 4)
+				volatile uint16_t *p = con_fb + (y0 + gy * SCALE + sy) * (FB_STRIDE / 2)
 						       + x0 + gx * SCALE;
 				for (int sx = 0; sx < SCALE; sx++)
 					p[sx] = c;
@@ -90,6 +92,10 @@ void con_hex(const char *label, uint64_t v)
 void con_hex2(const char *label, const char *a, uint32_t va, const char *b, uint32_t vb)
 {
 	char buf[9];
+	log_add(label); log_add(": "); log_add(a);
+	fmt_hex(buf, va, 8); log_add(buf);
+	if (b) { log_add(" "); log_add(b); fmt_hex(buf, vb, 8); log_add(buf); }
+	log_add("\n");
 	int col = put_str(0, label, YELLOW);
 	col = col < LABEL_COLS ? LABEL_COLS : col + 1;
 	col = put_str(col, a, YELLOW);

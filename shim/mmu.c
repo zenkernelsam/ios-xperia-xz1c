@@ -20,10 +20,10 @@
 #define BLK_SIZE	(1UL << BLK_SHIFT)		/* 32MB level-2 block */
 #define NENT		2048
 
-#define ATTR_DEV	0	/* MAIR attr0 = 0x00 Device-nGnRnE */
+#define ATTR_DEV	0	/* MAIR attr0 = 0x04 Device-nGnRE, like ioremap */
 #define ATTR_WB		1	/* MAIR attr1 = 0xff Normal WB RW-alloc */
 #define ATTR_NC		2	/* MAIR attr2 = 0x44 Normal non-cacheable */
-#define MAIR_VAL	0x44ff00UL
+#define MAIR_VAL	0x44ff04UL
 
 #define D_BLOCK		1UL
 #define D_TABLE		3UL

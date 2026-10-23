@@ -1,5 +1,153 @@
 # iOS 16 on sweet (Redmi Note 10 Pro, SM7150) - working notes
 
+## >>> 2026-10-23 22:20 — 迷底：**镜像必须打成 Image.gz-dtb，否则 ABL 拒跳** <<<
+
+**根因（已实机验证）**：ABL 的 LinuxLoader 要求 QCOM 的 `Image.gz-dtb`
+格式：**gzip(Image) 后面追加原始 DTB**。只给 `Image.gz` 时 ABL 日志是：
+
+```
+Kernel Size 1: 0x2007
+Decompressing kernel image start/done
+Kernel Size Actual: 0x3000        <- 页对齐后的「压缩」内核大小
+Device Tree Load Address: 0x83200000
+DTB offset is incorrect, kernel image does not have appended DTB
+Dtb offset goes beyond the kernel size
+```
+
+然后**继续处理下一条 fastboot 命令（不跳转）**。之前的 `cat dtb.img >>
+Image` 再 gzip 是错的（DTB 被压进 gz 里）。正确做法：
+
+```bash
+NO_DTB=1 GZ=1 BEACON=N bash build.sh /root/stock-ramdisk.img
+cat out/Image.gz ../dtb.img > out/Image.gz-dtb
+mkbootimg --kernel out/Image.gz-dtb --ramdisk /root/stock-ramdisk.img \
+  --base 0 --kernel_offset 0x8000 --ramdisk_offset 0x1000000 \
+  --second_offset 0 --tags_offset 0x100 --pagesize 4096 \
+  --cmdline 'androidboot.hardware=qcom' -o out/shim-gzdtb.img
+```
+
+**验证**：beacon65（红/绿/蓝闪屏循环）用该格式 boot 后，屏幕真的出现
+shim console 输出（`65` + 数字），且**长时间不重启**。→ **没有 10 秒
+杀手**；ABL 接受镜像后正常跳转，shim 稳定运行。
+
+**重大更正（作废）**：
+- “第二发 boot 才执行 / USB timeout 即成功”是错的：第二发 boot 会让
+  ABL 崩溃 → 掉电 → 充电画面，被误当成 shim 执行后被杀。
+- 之前所有 SPMI / UFS / MMU / 看门狗 / PSHOLD 计时结论都建立在
+  **未执行的镜像**上，全部作废，需要在能跑的新格式下重测。
+- `start.S` 的 el2_setup 实验版未经证实（回滚版已验证可跑）。
+
+**屏幕通道**：console 能显示（目前是“灰白细线 + 65 + 数字”的残缺/错位
+画面，720x1280 FB 与 1080x2160 面板的几何/offset 需修正），但已可作为
+人眼遥测。
+
+**下一步**：用新格式跑诊断 beacon（SPMI arbiter 版本 / find_apid /
+PON rev / WDT 状态直接打到屏幕上），然后按同一打包格式加载 XNU payload。
+
+## >>> 2026-10-23 22:35 — shim 实测：SPMI 正常、自动回 fastboot、屏幕受限 <<<
+
+**1. shim 里的 SPMI 完全正常（实测）**：beacon72 写 PM8998 PON
+`SOFT_RB_SPARE (0x88F, bits[7:1] = reason)` 为 RECOVERY(2)→0x04，
+自复位后 Android cmdline 出现 **`warmboot=0x77665502`**。→ 之前
+“shim SPMI 失败”的结论作废。
+
+**2. 无人值守回 fastboot**：beacon73 写 reason=BOOTLOADER(3)→0x06，
+复位后 XBL 直接进 fastboot（~15-25 秒整循环）。后续实验无需按键。
+PON 寄存器映射（kernel `qpnp-power-on.c`）：
+- `0x88F = QPNP_PON_SOFT_RB_SPARE`（bits[7:1]=reason，XBL 消费）
+- `0x8E = QPNP_PON_XVDD_RB_SPARE`（bit0=UVLO dload 标志，**高 7 位空闲**，
+  可作持久 scratch；SID0+SID2 各 7 位）
+- reason: NONE=0 UNKNOWN=1 RECOVERY=2 BOOTLOADER=3 KERNEL_PANIC=0x40 …
+
+**3. UFS 写仍不落地**：beacon74 把 console logbuf（“LILACLOG…”）写到
+appslog LBA 208260 后用 TWRP 读 `sda58`，**没有 LILACLOG**。此时 shim
+确实执行完毕（25s hold + 自动回 fastboot），所以是真实的 UFS 写失败，
+需要单独排查（PRDT/FUA/缓存）。
+
+**4. 屏幕：像素格式是 RGB565，但 ABL 交接后面板疑似无信号**
+- beacon75 四段全刷白 → 屏幕出现白色；改 RGB565 console 后仍表现为
+  “白底+间隔黑线/暗白”，说明面板在 shim 阶段可能是残影/无新帧
+  （ABL ExitBootServices 可能已关显示）。TWRP 的 UI 也起不来（卡 splash）。
+- `fb=0x9d400000`（DT `splash_region@9d400000`，36 MB）；面板
+  720x1280；帧缓冲按 16bpp RGB565、stride 1440 处理（console.c 已改）。
+- 结论：**屏幕暂不可靠**，先别依赖；若要用于 XNU 调试，需要 shim 自己
+  重新初始化 DSI/MDP（大工程）。
+
+**5. 工具**：`console.c` 已改为 RGB565；`build.sh` 默认 gzdtb 打包。
+
+## >>> 2026-10-23 20:10 — 突破 2：尾部追加 DTB 导致 ABL 不跳转 <<<
+
+- `xperable -l` 读到 P_114 ABL 日志：标准 `fastboot boot` 其实已经
+  **解压并加载内核**（Kernel Load Address 0x80080000），但随后报
+  `DTB offset is incorrect, kernel image does not have appended DTB` /
+  `Dtb offset goes beyond the kernel size` → **不跳转，留在 fastboot**。
+- 根因：`shim/build.sh` 的 `cat ../dtb.img >> out/Image` 把 478KB DTB
+  追在 Image 尾部，而 Image 头 `image_size=_end`（~250KB），ABL 的
+  DTB offset 校验失败。ABL 本来就会用 x0 传 DTB，shim 不需要尾部 DTB。
+- 修复：`NO_DTB=1` 构建（build.sh 已加开关）。无 DTB 版 Image=249,856B，
+  gzip 仅 8KB；配 stock ramdisk 后，**标准 `fastboot boot` 第一发就跳转
+  执行**（USB 立即消失，beacon 的 PSHOLD 断电）。之前的"第一发暂存、
+  第二发才执行"怪癖就是 DTB 校验失败。
+- 日志还显示 `VB: DeviceInit: Device is unlocked! Skipping verification!`
+  → 解锁状态 AVB 本来就跳过；`-x -4`（boot 命令锁检查）仍必需。
+- **新镜像格式（务必）**：`NO_DTB=1 GZ=1 BEACON=N bash build.sh` →
+  `mkbootimg --kernel out/Image.gz --ramdisk <stock_ramdisk> ...`。
+- P_114 VerifiedBootDxe 已从 RAM dump（`research/VerifiedBootDxe-P114.pe`）：
+  `DeviceInit`(sub_1494) 读 unlock 字节→ `dword_C190=1` 跳过校验；
+  `-6` 补丁点 RVA 0x25FC 已是 `b 0x26F0`（原始 `tbz`），Hex-Rays 在
+  0x2460 反编译因 switch 表被补丁破坏（0x2558），反向印证补丁点。
+- 手机当前：beacon 执行后 PSHOLD 关机。开机后可读 PMIC 指纹
+  （SID0 0x88e / SID2 0x88e+0x88f），判断 shim 的 SPMI 写是否终于落地。
+
+## >>> 2026-10-22 深夜 23:40 — 谜底核心：xperable 运行时补丁 + xperable boot <<<
+
+**`fastboot boot` 从来不是"不支持"，而是缺了 xperable 的运行时补丁。**
+
+- 本地 `Patch\Xperia\xperable-1.1\...\README.rst` 写明：`-x -4` 给 ABL
+  LinuxLoader 打补丁打开 `fastboot boot` 未签名内核，`-6` 补
+  VerifiedBootDxe 跳过签名校验；**补丁只在 ABL 内存，重启即失效**。
+- 正确流程（每个新 fastboot 会话都要做）：
+  1. `cd Patch\Xperia\unlock`
+  2. `.\xperable.exe -B -U -s 0xf49880 -x -4 -6`（两句 patched successfully）
+  3. `.\xperable.exe -I <image.img> -1 -c boot -1`
+  4. 打完补丁后**第一条 boot 常不跳转，同会话再发一次**才执行
+     （USB timeout / pipe error 即成功跳出）。
+- 实测：beacon1f 在 xperable boot 后真的执行并 PSHOLD 断电。
+- 自复位闭环可用：beacon30（写 RR=0x77665500 + PSCI SYSTEM_RESET）
+  → 手机自己回到 fastboot（补丁清空可证）→ 可全自动循环。
+- 仍待查（镜像已备好）：`beacon32`（纯 delay 20s + 自复位）测
+  `delay_ms`；`beacon33`（只读 WDT0_EN + 自复位）测 WDT MMIO 是否挂总线；
+  以及 shim 的 SPMI 写为何不落地。
+- 交接详见 `Patch\Xperia\HANDOVER-BOOT-KILLER.md` 顶部两节"重大更新"。
+
+## >>> 2026-10-22 深夜 23:15 — "10s 必死"谜底：fastboot boot 路径不执行镜像 <<<
+
+完整记录见 `Patch\Xperia\HANDOVER-BOOT-KILLER.md` 顶部"重大更新"。要点：
+
+- **`fastboot boot` 在本机 ABL 上不执行自定义镜像**：全新会话第一发只
+  暂存（Booting OKAY 后仍留 fastboot），第二发 USB 掉线+断电进 E1F4，
+  **与 payload 内容无关**（PSHOLD/WDT/纯 wfe/TWRP 缝合版一致）。旧
+  "22+ 发实验全灭"大概率全是空转。
+- **10-21 的 `warmboot=0x77665501` 证据被污染**：`fastboot reboot`
+  自己就写 5501。IMEM 遥测在 fastboot boot 路径不可信。
+- **刷 boot 分区后 shim 确实执行**：beacon 延迟 8s 自复位 → 手机以
+  ~8-12s 周期循环重启；PSHOLD beacon 直接断电。对照 stock boot 正常。
+- **空 ramdisk (89B) 被 ABL 静默拒绝**；用 stock ramdisk 重打包后
+  第一发即执行。这是另一条隐藏的"全灭"原因。
+- **start.S 未提交的 el2_setup 有 UNDEF 笔误**：
+  `msr s3_4_c12_c11_3` 应为 ICH_HCR_EL2 `c11_0`（c11_3 是只读 EISR）。
+  已回滚到 HEAD，坏版本备份在 `research/start.S-el2exp-broken.bak`。
+- **新持久通道已验证**：PMIC PON spare (SID2 `0x88e/0x88f`, SID0
+  `0x88e[6:0]`) 跨冷启动保留；Android 侧经 regmap debugfs 读写。
+  但 shim 的 SPMI 写（加 AHB workaround 后）与 UFS appslog 写
+  目前都不落地，是下一步要打通的遥测通道。
+- PMIC 实测：arbiter v3；PON WD 未启用（`0x857=0`）→ 不是杀手；
+  上次断电原因 = PS_HOLD（shim 自己写的）。
+- 新代码：`SHIM_BEACON=N` 模式 + `BEACON=N GZ=1 bash build.sh`；
+  工件在 `artifacts/beacon/`。**均未提交**。
+- 设备已刷回 stock boot，Android 在线；tmp 下 b10a/b10b = appslog
+  两次 dump（本次 beacon 的写入未出现，说明 UFS 写也没落地）。
+
 ## >>> 2026-10-22 凌晨 ~01:55 — 死点定位系列实验 xnu3..xnu7 + 设备失联 <<<
 **执行者**：Devin（Windows 侧）。承接 xnu2 的 5501 歧义，本回合把它钉死到
 **"跳转成功、内核死于 start_first_cpu 的 AA01 之前"**，并把窗口继续切成

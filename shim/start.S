@@ -19,6 +19,25 @@ _head:
 	.text
 	.globl _start
 _start:
+#ifdef SHIM_BEACON
+#if SHIM_BEACON == 67
+	/* Entry-only proof: power off with the very first instruction.
+	   If ABL really jumps here the phone dies instantly; if ABL crashed
+	   instead, the watchdog fires ~10 s later. No stack, no C, no
+	   vectors, no MMU setup. */
+	ldr	x1, =0x10ac000
+	str	wzr, [x1]
+1:	wfe
+	b	1b
+#endif
+#if SHIM_BEACON == 69
+	/* Hang at the first instruction: is a plain spin stable? If the
+	   phone never returns to the charger UI, nothing kills a hung AP
+	   and every earlier fast power-cycle was our own code crashing. */
+1:	wfe
+	b	1b
+#endif
+#endif
 	msr	daifset, #0xf
 	mov	x19, x0			/* DTB pointer from ABL */
 	msr	spsel, #1
