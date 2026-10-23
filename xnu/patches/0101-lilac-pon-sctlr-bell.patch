@@ -1,0 +1,27 @@
+diff --git a/osfmk/arm64/start.s b/osfmk/arm64/start.s
+index e4f0a01..f001122 100644
+--- a/osfmk/arm64/start.s
++++ b/osfmk/arm64/start.s
+@@ -960,6 +960,22 @@ common_start:
+ #endif /* HAS_APPLE_PAC */
+ 
+ 	// Enable caches, MMU, ROP and JOP
++#if defined(SWEET)
++	/* PON doorbell 0xa4: survived TCR/TTBR/VBAR setup, MMU still off.
++	 * If this lands but 0xa2 doesn't, the MMU-on step itself kills us
++	 * (broken translation), not the C path. */
++	MOV64	x12, 0x8420000
++	mov		w13, #0xa4
++	str		w13, [x12, #0x10]
++	mov		w13, #0x8e0
++	str		w13, [x12]
++	mov		w13, #255
++1:	ldr		w14, [x12, #8]
++	tbnz	w14, #0, 2f
++	subs	w13, w13, #1
++	b.ne	1b
++2:
++#endif
+ 	MOV64   x0, SCTLR_EL1_DEFAULT
+ 	MSR_SCTLR_EL1_X0
+ 	isb		sy
