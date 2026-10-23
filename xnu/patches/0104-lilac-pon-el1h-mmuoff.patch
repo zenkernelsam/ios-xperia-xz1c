@@ -2,7 +2,7 @@ diff --git a/osfmk/arm64/start.s b/osfmk/arm64/start.s
 index f001122..b08cc02 100644
 --- a/osfmk/arm64/start.s
 +++ b/osfmk/arm64/start.s
-@@ -279,9 +279,15 @@ LEXT(LowExceptionVectorBase)
+@@ -279,9 +279,16 @@ LEXT(LowExceptionVectorBase)
  #if defined(SWEET)
  	/* EL1h synchronous vector (offset 0x200). PON:
  	 *   0x88e <- 0xc0|EC (ESR_EL1[31:26] exception class)
@@ -13,7 +13,8 @@ index f001122..b08cc02 100644
 +	 * Drop the MMU first so the writes go to PA regardless of how
 +	 * broken the bootstrap maps are. */
 +	mrs		x13, SCTLR_EL1
-+	bic		x13, x13, #(SCTLR_M_ENABLED | SCTLR_C_ENABLED | SCTLR_I_ENABLED)
++	mov		x14, #(SCTLR_M_ENABLED | SCTLR_C_ENABLED | SCTLR_I_ENABLED)
++	bic		x13, x13, x14
 +	msr		SCTLR_EL1, x13
 +	isb		sy
 +	MOV64	x12, 0x8420000
