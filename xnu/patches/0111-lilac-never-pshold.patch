@@ -1,0 +1,15 @@
+--- a/iokit/Kernel/arm/SweetPlatformExpert.cpp
++++ b/iokit/Kernel/arm/SweetPlatformExpert.cpp
+@@ -32,7 +32,10 @@
+ static int
+ sweet_psci_halt_restart(unsigned int type)
+ {
+-	uint64_t fid = (type == kPEHaltCPU) ? 0x84000008ULL : 0x84000009ULL;
++	/* lilac: never PSHOLD -- SYSTEM_OFF powers the PMIC down and the
++	 * phone wakes into the XBL charger app (dead end for unattended
++	 * runs). Force warm reset; if TZ rejects it the shim's 65s leash
++	 * still brings the device back to Android. */
++	uint64_t fid = 0x84000009ULL;
+ 	/* linger ~a few seconds so the panic text stays on screen for a human;
+ 	 * early console already drew it before we get here. */
+ 	for (volatile uint64_t i = 0; i < 400000000ULL; i++) { }
