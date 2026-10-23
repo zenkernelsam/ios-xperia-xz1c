@@ -1,0 +1,34 @@
+diff --git a/osfmk/arm64/start.s b/osfmk/arm64/start.s
+index f001122..a0bb001 100644
+--- a/osfmk/arm64/start.s
++++ b/osfmk/arm64/start.s
+@@ -978,11 +978,17 @@ LEXT(start_first_cpu)
+ #if defined(SWEET)
+ 	/* 0xa7: VBAR (KVA) written -- nothing but the PAC skip and the
+ 	 * 0xa4 bell stands between here and the SCTLR write. */
+ 	MOV64	x12, 0x8420000
+ 	mov		w13, #0xa7
+ 	str		w13, [x12, #0x10]
+ 	mov		w13, #0x8e0
+ 	str		w13, [x12]
++	mov		w13, #255
++1:	ldr		w14, [x12, #8]
++	tbnz	w14, #0, 2f
++	subs	w13, w13, #1
++	b.ne	1b
++2:
+ #endif
+ 
+ #if HAS_APPLE_PAC
+@@ -995,9 +1002,9 @@ LEXT(start_first_cpu)
+ 	 * If this lands but 0xa2 doesn't, the MMU-on step itself kills us
+ 	 * (broken translation), not the C path. */
+ 	MOV64	x12, 0x8420000
+ 	mov		w13, #0xa4
+-	str		w13, [x12, #0x10]
+-	mov		w13, #0x8e0
++	str		w13, [x12, #0x10]
++	mov		w13, #0x8b0
+ 	str		w13, [x12]
+ 	mov		w13, #255
+ 1:	ldr		w14, [x12, #8]
