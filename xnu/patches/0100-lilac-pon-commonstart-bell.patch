@@ -1,0 +1,28 @@
+diff --git a/osfmk/arm64/start.s b/osfmk/arm64/start.s
+index d1a2b33..e4f0a01 100644
+--- a/osfmk/arm64/start.s
++++ b/osfmk/arm64/start.s
+@@ -829,6 +829,23 @@
+ 
+ common_start:
+ 
++#if defined(SWEET)
++	/* PON doorbell 0xa3: made it through the bootstrap page-table
++	 * build + SWEET slot installs to common_start (MMU still off,
++	 * raw PA write). */
++	MOV64	x12, 0x8420000
++	mov		w13, #0xa3
++	str		w13, [x12, #0x10]
++	mov		w13, #0x8e0
++	str		w13, [x12]
++	mov		w13, #255
++1:	ldr		w14, [x12, #8]
++	tbnz	w14, #0, 2f
++	subs	w13, w13, #1
++	b.ne	1b
++2:
++#endif
++
+ #if HAS_NEX_PG
+ 	mov x19, lr
+ 	bl		EXT(set_nex_pg)
