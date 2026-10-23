@@ -1,24 +1,3 @@
---- a/osfmk/arm64/start.s
-+++ b/osfmk/arm64/start.s
-@@ -532,15 +532,15 @@
- 
- #if defined(SWEET)
- 	/* Stage 0: white 64x32 band, no stack or page tables needed. */
--	MOV64	x0, (0x9d400000 + 1248 * 2880)
-+	MOV64	x0, (0x9d400000 + 1248 * 1440)
- 	mov		w1, #-1
- 	mov		x2, #32
--	mov		x4, #2880
-+	mov		x4, #1440
- Lsweet_mark_row:
- 	mov		x3, #64
- 	mov		x5, x0
- Lsweet_mark_pixel:
--	str		w1, [x5], #4
-+	strh	w1, [x5], #2
- 	subs	x3, x3, #1
- 	b.ne	Lsweet_mark_pixel
- 	add		x0, x0, x4
 --- a/osfmk/arm64/sweet_early.c
 +++ b/osfmk/arm64/sweet_early.c
 @@ -12,7 +12,7 @@
@@ -74,12 +53,3 @@
  	for (unsigned int y = EARLY_HEIGHT - 32; y < EARLY_HEIGHT; y++) {
  		for (unsigned int x = stage * 48; x < (stage + 1) * 48; x++) {
  			EARLY_FB[y * EARLY_STRIDE + x] = color;
-@@ -187,7 +187,7 @@
- sweet_early_relocate(uint64_t base)
- {
- 	sweet_early_mark(8, "leaving bootstrap TTBR0");
--	early_fb = (volatile uint32_t *)(uintptr_t)(base + 0x1400000);
-+	early_fb = (volatile uint16_t *)(uintptr_t)(base + 0x1400000);
- 	early_rr = (volatile uint32_t *)(uintptr_t)(base + ARM_TT_L2_SIZE + 0x6bf65c);
- 	early_imem = (volatile uint32_t *)(uintptr_t)(base + ARM_TT_L2_SIZE + 0x6bf000);
- 	early_durable = (volatile uint32_t *)(uintptr_t)(base + 2 * ARM_TT_L2_SIZE + 0x1bff000);
