@@ -1,0 +1,44 @@
+diff --git a/osfmk/arm64/start.s b/osfmk/arm64/start.s
+index f001122..b08cc02 100644
+--- a/osfmk/arm64/start.s
++++ b/osfmk/arm64/start.s
+@@ -276,6 +276,25 @@ LEXT(LowExceptionVectorBase)
+ 	b		.
+ 	/* EL1 SP1 */
+ 	.align	7
++#if defined(SWEET)
++	/* EL1h synchronous vector (offset 0x200). PON:
++	 *   0x88e <- 0xc0|EC (ESR_EL1[31:26] exception class)
++	 *   0x88d <- FAR_EL1[27:20] (fault-address megabyte)
++	 * Channel goes through the V=P map when MMU is on; PA otherwise. */
++	MOV64	x12, 0x8420000
++	mrs		x13, ESR_EL1
++	ubfx	x13, x13, #26, #6
++	orr		x13, x13, #0xc0
++	str		w13, [x12, #0x10]
++	mov		w13, #0x8e0
++	str		w13, [x12]
++	mrs		x13, FAR_EL1
++	ubfx	x13, x13, #20, #8
++	str		w13, [x12, #0x10]
++	mov		w13, #0x8d0
++	str		w13, [x12]
++	dsb		sy
++#endif
+ 	b		.
+ 	.align	7
+ 	b		.
+@@ -986,6 +1006,13 @@ LEXT(start_first_cpu)
+ 	subs	w13, w13, #1
+ 	b.ne	1b
+ 2:
++	/* Point VBAR at the PA-resident low vectors so a synchronous
++	 * exception on MMU-on lands somewhere fetchable through TTBR0
++	 * (the KVA vectors would be unreachable if TTBR1 is broken). */
++	adrp	x12, EXT(LowExceptionVectorBase)@page
++	add		x12, x12, EXT(LowExceptionVectorBase)@pageoff
++	msr		VBAR_EL1, x12
++	isb
+ #endif
+ 	MOV64   x0, SCTLR_EL1_DEFAULT
+ 	MSR_SCTLR_EL1_X0
