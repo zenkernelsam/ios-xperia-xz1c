@@ -1,0 +1,39 @@
+diff --git a/osfmk/arm64/start.s b/osfmk/arm64/start.s
+index f001122..a0bb001 100644
+--- a/osfmk/arm64/start.s
++++ b/osfmk/arm64/start.s
+@@ -880,6 +880,17 @@ LEXT(start_first_cpu)
+ 	mov		w13, #0x890
+ 	str		w13, [x12]
+ 	dsb		sy
++	/* 0xa6: survived the dump block -- next is TCR/TTBR/MAIR stretch */
++	mov		w13, #0xa6
++	str		w13, [x12, #0x10]
++	mov		w13, #0x8e0
++	str		w13, [x12]
++	mov		w13, #255
++1:	ldr		w14, [x12, #8]
++	tbnz	w14, #0, 2f
++	subs	w13, w13, #1
++	b.ne	1b
++2:
+ #endif
+ 
+ 	// Set the translation control register.
+@@ -968,6 +975,16 @@ LEXT(start_first_cpu)
+ 1:
+ 	MSR_VBAR_EL1_X0
+ 
++#if defined(SWEET)
++	/* 0xa7: VBAR (KVA) written -- nothing but the PAC skip and the
++	 * 0xa4 bell stands between here and the SCTLR write. */
++	MOV64	x12, 0x8420000
++	mov		w13, #0xa7
++	str		w13, [x12, #0x10]
++	mov		w13, #0x8e0
++	str		w13, [x12]
++#endif
++
+ #if HAS_APPLE_PAC
+ 	PAC_INIT_KEY_STATE tmp=x0, tmp2=x1
+ #endif /* HAS_APPLE_PAC */
