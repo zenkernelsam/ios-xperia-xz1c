@@ -1,0 +1,45 @@
+diff --git a/osfmk/arm64/start.s b/osfmk/arm64/start.s
+index 807b191..c0ffee1 100644
+--- a/osfmk/arm64/start.s
++++ b/osfmk/arm64/start.s
+@@ -228,6 +228,20 @@ LEXT(_start)
+ 	MOV64	x11, 0x7766E000
+ 	str		w11, [x10]
+ 	dsb		sy
++	/* PON doorbell 0xa0 (PMIC spare 0x88e via SPMI arbiter apid-4
++	 * write channel 0x8420000): literal-first-instruction proof that
++	 * survives every reset type. Raw PA write -- no MMU needed. */
++	MOV64	x12, 0x8420000
++	mov		w13, #0xa0
++	str		w13, [x12, #0x10]
++	mov		w13, #0x8e0
++	str		w13, [x12]
++	mov		w13, #255
++1:	ldr		w14, [x12, #8]
++	tbnz	w14, #0, 2f
++	subs	w13, w13, #1
++	b.ne	1b
++2:	dsb		sy
+ #endif
+ 	b	EXT(start_first_cpu)
+ 
+@@ -566,6 +582,19 @@ LEXT(start_first_cpu)
+ 	MOV64	x10, 0x146bf65c
+ 	MOV64	x11, 0x7766AA01
+ 	str		w11, [x10]
++	/* PON doorbell 0xa1: start_first_cpu reached (PMIC survives the
++	 * reset no matter how the kernel later dies). */
++	MOV64	x12, 0x8420000
++	mov		w13, #0xa1
++	str		w13, [x12, #0x10]
++	mov		w13, #0x8e0
++	str		w13, [x12]
++	mov		w13, #255
++1:	ldr		w14, [x12, #8]
++	tbnz	w14, #0, 2f
++	subs	w13, w13, #1
++	b.ne	1b
++2:
+ 	/* durable mirror: debug_region tail survives ABL's field rewrites */
+ 	MOV64	x12, 0xffbff000
+ 	str		w11, [x12]
