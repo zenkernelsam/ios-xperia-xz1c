@@ -1,0 +1,24 @@
+diff --git a/osfmk/arm64/start.s b/osfmk/arm64/start.s
+index f001122..a07bb01 100644
+--- a/osfmk/arm64/start.s
++++ b/osfmk/arm64/start.s
+@@ -255,6 +255,18 @@ LEXT(start_first_cpu)
+ 	.global	EXT(LowExceptionVectorBase)
+ LEXT(LowExceptionVectorBase)
+ 	/* EL1 SP 0 */
+-	b		.
++#if defined(SWEET)
++	/* PON doorbell 0xee: ANY synchronous exception in the bootstrap
++	 * window lands here -- separates 'MMU-on translation abort' from
++	 * 'kept running and died later'. MMU may be on or off; the write
++	 * channel 0x8420000 is low-VA (TTBR0) or PA (MMU off). */
++	MOV64	x12, 0x8420000
++	mov		w13, #0xee
++	str		w13, [x12, #0x10]
++	mov		w13, #0x8e0
++	str		w13, [x12]
++	dsb		sy
++#endif
++	b		.
+ 	.align	7
+ LEXT(start_first_cpu)
