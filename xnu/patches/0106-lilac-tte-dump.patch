@@ -1,0 +1,36 @@
+diff --git a/osfmk/arm64/start.s b/osfmk/arm64/start.s
+index f001122..d04ee05 100644
+--- a/osfmk/arm64/start.s
++++ b/osfmk/arm64/start.s
+@@ -845,12 +845,31 @@ LEXT(start_first_cpu)
+ 	MOV64	x12, 0x8420000
+ 	mov		w13, #0xa3
+ 	str		w13, [x12, #0x10]
+ 	mov		w13, #0x8e0
+ 	str		w13, [x12]
+ 	mov		w13, #255
+ 1:	ldr		w14, [x12, #8]
+ 	tbnz	w14, #0, 2f
+ 	subs	w13, w13, #1
+ 	b.ne	1b
+ 2:
++	/* TTE dump: did the bootstrap maps actually get built?
++	 *   0x88e <- low byte of V=P L1[0]    (expect table|valid = odd)
++	 *   0x88d <- low byte of V=P L2[1276] (0x9f800000 block flags)
++	 *   0x88c <- low byte of KVA L1[0x7e0]
++	 * then re-issue the a3-equivalent tag so 0x88e still marks position. */
++	ldrb	w13, [x25]
++	str		w13, [x12, #0x10]
++	mov		w13, #0x8e0
++	str		w13, [x12]
++	mov		x14, #((2 * PGBYTES) + (1276 * 8))
++	ldrb	w13, [x25, x14]
++	str		w13, [x12, #0x10]
++	mov		w13, #0x8d0
++	str		w13, [x12]
++	mov		x14, #(PGBYTES + (0x7e0 * 8))
++	ldrb	w13, [x25, x14]
++	str		w13, [x12, #0x10]
++	mov		w13, #0x8c0
++	str		w13, [x12]
+ #endif
