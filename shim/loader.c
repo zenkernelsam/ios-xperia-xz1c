@@ -11,6 +11,7 @@
 #include "console.h"
 #include "fdt.h"
 #include "loader.h"
+#include "wdt.h"
 
 #define BOOT_LINE_LENGTH	608
 #define PAGE_16K		0x4000UL
@@ -292,6 +293,7 @@ patched:
 
 	/* Everything was written with the MMU and caches off; drop any stale I-cache lines too. */
 	__asm__ volatile("dsb sy; ic iallu; dsb sy; isb" ::: "memory");
+	wdt_arm(60, 65);	/* long leash: XNU gets 65s; if it hangs, dog still returns us to Android */
 	((xnu_entry_t)entry_pa)(ba_pa);
 	return "xnu returned";
 }
