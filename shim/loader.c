@@ -128,7 +128,7 @@ const char *loader_boot(uintptr_t dtb)
 	ba->Video.v_rowBytes = FB_STRIDE;
 	ba->Video.v_width = FB_W;
 	ba->Video.v_height = FB_H;
-	ba->Video.v_depth = 16;
+	ba->Video.v_depth = 32;	/* XRGB8888 — MDP scanout consumes 32bpp @2944 */
 	ba->deviceTreeP = adt_pa - pa_of_va_base;	/* xnu reads it with the MMU on: a VA */
 	ba->deviceTreeLength = (uint32_t)p->adt_size;
 	for (int i = 0; i < BOOT_LINE_LENGTH; i++)
@@ -140,12 +140,21 @@ const char *loader_boot(uintptr_t dtb)
 	con_hex("JUMP", entry_pa);
 	con_str("XNU", "jumping (fbcon clears screen)");
 
-	/* Pre-jump mortem probes. The only channel proven to survive a WDT
-	 * bite is the IMEM restart_reason field → next cmdline warmboot=;
-	 * DDR stash regions get rewritten by the boot chain. Marks are
-	 * 0x7766D0xx (last write wins): a hang leaves the mark of the
-	 * step that killed us. */
-#define RR_MARK(x) (*(volatile uint32_t *)0x146bf65cUL = (x))
+	/* Pre-jump mortem probes. REAL surviving channel = PON spare reg
+	 * 0x88e (PMIC-side, lives through warm AND crash resets, readable
+	 * via regmap debugfs after Android comes up). IMEM reason field
+	 * writes kept as inert corroboration (TZ rewrites tz-log region
+	 * every reset; never reached cmdline in tests).
+	 * Marks are 0x7766D0xx-family; PON carries the low byte (unique
+	 * within each family): a hang leaves the mark of the step that
+	 * killed us. */
+	int spmi_write_apid(int apid, uint16_t addr, uint8_t val);
+#define RR_MARK(x) do { \
+		spmi_write_apid(4, 0x8e, (uint8_t)((x) & 0xff)); \
+		*(volatile uint32_t *)0x146bf764UL = (x); \
+		*(volatile uint32_t *)0x146bfb14UL = 0xdeadd00dU; \
+		__asm__ volatile("dsb sy" ::: "memory"); \
+	} while (0)
 #define PSHOLD_REG (*(volatile uint32_t *)0x10ac000UL)
 
 	/* 1) entry placement: first 64 words at entry_pa must match the
@@ -181,9 +190,9 @@ const char *loader_boot(uintptr_t dtb)
 		}
 	}
 
-	/* 2) FB band: kernel Stage-0 stores to 0x9d400000+1248*2880 before AA01 */
+	/* 2) FB band: kernel Stage-0 stores to 0x9d400000+1248*2944 before AA01 */
 	RR_MARK(0x7766D011);
-	*(volatile uint32_t *)(0x9d400000UL + 1248 * 2880) = 0x00ff00ff;
+	*(volatile uint32_t *)(0x9d400000UL + 1248 * 2944) = 0x00ff00ff;
 	__asm__ volatile("dsb sy" ::: "memory");
 	RR_MARK(0x7766D012);
 
@@ -276,12 +285,10 @@ patched:
 		prz[0] = 0x43474244;
 	}
 
-	/* Leave a legal route in restart_reason: once xnu takes over, the only
-	   remaining checkpoint is C2 (0x7766C032), which ABL cannot route — a
-	   watchdog bite or xnu reset would land in fastboot instead of Android.
-	   0x77665501 makes every later reset recover to Android + adb. */
-	*(volatile uint32_t *)0x146bf65cUL = 0x77665501u;
-	__asm__ volatile("dsb sy" ::: "memory");
+	/* Handoff mark: PON 0x8e=0x02 (loader-jumped) + inert imem copy.
+	   If xnu dies instantly the harvested PON byte stays 0x02; any
+	   later mark means xnu lived that long. */
+	RR_MARK(0x77665502);
 
 	/* Everything was written with the MMU and caches off; drop any stale I-cache lines too. */
 	__asm__ volatile("dsb sy; ic iallu; dsb sy; isb" ::: "memory");

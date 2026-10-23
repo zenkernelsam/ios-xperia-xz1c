@@ -1,0 +1,63 @@
+PENDING — rename to .patch only AFTER beacon80 photo confirms the panel
+really consumes XRGB8888 @ 2944B stride (Android fb0 evidence:
+bpp=32 stride=2944 vsize=720x2560). Applies on TOP of 0093's post-state
+(reverts the 16bpp move; keeps the correct 720px width). Order: ..., 0093,
+0095, 0096.
+
+diff --git a/osfmk/arm64/sweet_early.c b/osfmk/arm64/sweet_early.c
+index 88396e6..1e87dac 100644
+--- a/osfmk/arm64/sweet_early.c
++++ b/osfmk/arm64/sweet_early.c
+@@ -12,7 +12,7 @@
+ #include <kern/misc_protos.h>
+ #include <arm64/proc_reg.h>
+ 
+-static volatile uint16_t *early_fb = (volatile uint16_t *)(uintptr_t)0x9d400000;
++static volatile uint32_t *early_fb = (volatile uint32_t *)(uintptr_t)0x9d400000;
+ #define EARLY_FB early_fb
+ /* IMEM restart_reason: mapped VA=PA by start.s, remapped beside the
+  * framebuffer alias by arm_vm_init. ABL echoes it into the next Android
+@@ -58,7 +58,7 @@ early_pon_write(uint32_t v)
+ }
+ #define EARLY_WIDTH 720u
+ #define EARLY_HEIGHT 1280u
+-#define EARLY_STRIDE (1440u / 2)
++#define EARLY_STRIDE (2944u / 4)	/* MDP: 736 dwords/line, 16px tail pad */
+ #define EARLY_SCALE 2u
+ #define EARLY_CELL_W (8u * EARLY_SCALE)
+ #define EARLY_CELL_H (16u * EARLY_SCALE)
+@@ -76,9 +76,9 @@ static unsigned int early_last_stage;
+ sweet_early_clear_row(void)
+ {
+ 	for (unsigned int y = 0; y < EARLY_CELL_H; y++) {
+-		volatile uint16_t *line = EARLY_FB + (early_row * EARLY_CELL_H + y) * EARLY_STRIDE;
++		volatile uint32_t *line = EARLY_FB + (early_row * EARLY_CELL_H + y) * EARLY_STRIDE;
+ 		for (unsigned int x = 0; x < EARLY_WIDTH; x++) {
+-			line[x] = 0x0000u;
++			line[x] = 0xff000000u;
+ 		}
+ 	}
+ }
+@@ -108,11 +108,11 @@ sweet_early_putc(char c)
+ 	const unsigned char *glyph = iso_font + (unsigned char)c * 16;
+ 	for (unsigned int gy = 0; gy < 16; gy++) {
+ 		for (unsigned int sy = 0; sy < EARLY_SCALE; sy++) {
+-			volatile uint16_t *line = EARLY_FB +
++			volatile uint32_t *line = EARLY_FB +
+ 			    (early_row * EARLY_CELL_H + gy * EARLY_SCALE + sy) * EARLY_STRIDE +
+ 			    early_col * EARLY_CELL_W;
+ 			for (unsigned int gx = 0; gx < 8; gx++) {
+-				uint16_t pixel = (glyph[gy] & (1u << gx)) ? 0xffffu : 0x0000u;
++				uint32_t pixel = (glyph[gy] & (1u << gx)) ? 0xffffffffu : 0xff000000u;
+ 				for (unsigned int sx = 0; sx < EARLY_SCALE; sx++) {
+ 					line[gx * EARLY_SCALE + sx] = pixel;
+ 				}
+@@ -139,7 +139,7 @@ sweet_early_mark(unsigned int stage, const char *label)
+ 	early_last_stage = stage;
+ 	early_stage_write(0x77664D00u | stage);
+ 	__asm__ volatile("dsb sy" ::: "memory");
+-	uint16_t color = 0x07e0u | ((uint16_t)(stage & 7u) << 8);
++	uint32_t color = 0xff00ff00u | ((stage & 7u) * 32u << 16);
+ 	for (unsigned int y = EARLY_HEIGHT - 32; y < EARLY_HEIGHT; y++) {
+ 		for (unsigned int x = stage * 48; x < (stage + 1) * 48; x++) {
+ 			EARLY_FB[y * EARLY_STRIDE + x] = color;

@@ -157,7 +157,11 @@ exc_common:
  * 0x146bf700..0x146bf77f; both inside the IMEM page at 0x146bf000).
  */
 #define IMEM_DUMP	0x146bf780
-#define IMEM_RR		0x146bf65c
+/* Real XBL reset-reason channel: field @0x146bf764 is honored only while
+ * cookie @0x146bfb14 == 0xDEADD00D; echoed as warmboot= next boot.
+ * (Old @0x146bf65c is kernel-side only — XBL never reads it.) */
+#define IMEM_RR		0x146bf764
+#define IMEM_RR_COOKIE	0x146bfb14
 
 .macro vent2 slot
 	.balign	0x80
@@ -225,6 +229,11 @@ exc2_common:
 	mov	w12, #(IMEM_RR & 0xffff)
 	movk	w12, #(IMEM_RR >> 16), lsl #16
 	str	w11, [x12]
+	mov	w12, #(IMEM_RR_COOKIE & 0xffff)
+	movk	w12, #(IMEM_RR_COOKIE >> 16), lsl #16
+	mov	w11, #0xd00d
+	movk	w11, #0xdead, lsl #16
+	str	w11, [x12]
 	dsb	sy
 	isb
 3:	wfe
@@ -258,6 +267,11 @@ hios_return_stub:
 	str	w11, [x10, #0x40]
 	mov	w12, #(IMEM_RR & 0xffff)
 	movk	w12, #(IMEM_RR >> 16), lsl #16
+	str	w11, [x12]
+	mov	w12, #(IMEM_RR_COOKIE & 0xffff)
+	movk	w12, #(IMEM_RR_COOKIE >> 16), lsl #16
+	mov	w11, #0xd00d
+	movk	w11, #0xdead, lsl #16
 	str	w11, [x12]
 	dsb	sy
 	isb

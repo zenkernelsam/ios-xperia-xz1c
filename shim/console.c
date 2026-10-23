@@ -1,6 +1,7 @@
 /*
  * Minimal text console on the ABL splash framebuffer. With the MMU off
  * every access is Device memory, so stay aligned (-mstrict-align).
+ * Panel consumes XRGB8888 @ FB_STRIDE=2944 (see console.h).
  */
 #include "console.h"
 #include "font.h"
@@ -11,25 +12,24 @@
 #define MARGIN		24
 #define LABEL_COLS	8
 
-volatile uint16_t *con_fb = (volatile uint16_t *)FB_BASE;
+volatile uint32_t *con_fb = (volatile uint32_t *)FB_BASE;
 
 /* lilac: mirror every line into a RAM log flushed to the appslog partition. */
 static char logbuf[60 * 1024] = "LILACLOG\n";
 static uint32_t logpos = 9;
 static void log_add(const char *s) { while (*s && logpos < sizeof(logbuf) - 1) logbuf[logpos++] = *s++; }
 char *con_log(uint32_t *len) { *len = logpos; return logbuf; }
-static uint16_t con_bg;
+static uint32_t con_bg;
 static int row;
 
 void con_clear(uint32_t bg)
 {
-	uint16_t px = RGB565(bg);
 	for (int y = 0; y < FB_H; y++) {
-		volatile uint16_t *line = con_fb + y * (FB_STRIDE / 2);
+		volatile uint32_t *line = con_fb + y * FB_GS;
 		for (int x = 0; x < FB_W; x++)
-			line[x] = px;
+			line[x] = bg;
 	}
-	con_bg = px;
+	con_bg = bg;
 	row = 0;
 }
 
@@ -41,12 +41,11 @@ static void put_char(int col, char ch, uint32_t fg)
 	int x0 = MARGIN + col * CH_W, y0 = MARGIN + row * CH_H;
 	if (x0 + CH_W > FB_W || y0 + CH_H > FB_H)
 		return;
-	uint16_t cfg = RGB565(fg);
 	for (int gy = 0; gy < 16; gy++)
 		for (int gx = 0; gx < 8; gx++) {
-			uint16_t c = (g[gy] & (0x80 >> gx)) ? cfg : con_bg;
+			uint32_t c = (g[gy] & (0x80 >> gx)) ? fg : con_bg;
 			for (int sy = 0; sy < SCALE; sy++) {
-				volatile uint16_t *p = con_fb + (y0 + gy * SCALE + sy) * (FB_STRIDE / 2)
+				volatile uint32_t *p = con_fb + (y0 + gy * SCALE + sy) * FB_GS
 						       + x0 + gx * SCALE;
 				for (int sx = 0; sx < SCALE; sx++)
 					p[sx] = c;

@@ -17,7 +17,14 @@ int spmi_read(uint16_t ppid, uint8_t sid, uint16_t addr);
 int spmi_write(uint16_t ppid, uint8_t sid, uint16_t addr, uint8_t val);
 int spmi_write_apid(int apid, uint16_t addr, uint8_t val);
 
-#define IMEM_RESTART_REASON	0x146bf65cUL	/* qcom,msm-imem restart_reason@65c */
+/* Real XBL reset-reason channel (from P_114/O82 XResetReasonDxe disasm):
+ * reason word @0x146bf764 is only honored while the cookie
+ * @0x146bfb14 == 0xDEADD00D; otherwise XBL falls back to the GCC
+ * reset register (the 0x52d0-family values). The old @0x146bf65c
+ * cell is kernel-side only and never reaches warmboot=. */
+#define IMEM_RESTART_REASON	0x146bf764UL
+#define IMEM_RR_COOKIE		0x146bfb14UL
+#define RR_COOKIE_MAGIC		0xdeadd00dU
 #define RESTART_BOOTLOADER	0x77665500U
 #define PSHOLD			0x10ac000UL
 #define APPSLOG_LBA		208260U	/* sda58: 512B sector 1666080 -> 4K block */
@@ -60,6 +67,13 @@ int spmi_write_apid(int apid, uint16_t addr, uint8_t val);
 static inline uint32_t rd32(uintptr_t a) { return *(volatile uint32_t *)a; }
 static inline uint64_t rd64(uintptr_t a) { return *(volatile uint64_t *)a; }
 static inline void wr32(uintptr_t a, uint32_t v) { *(volatile uint32_t *)a = v; }
+/* Write the XBL reset reason: field first, then the validity cookie.
+ * Honored by XBL next boot → routed + echoed as warmboot= in cmdline. */
+static inline void rr_route(uint32_t v) {
+	wr32(IMEM_RESTART_REASON, v);
+	wr32(IMEM_RR_COOKIE, RR_COOKIE_MAGIC);
+	__asm__ volatile("dsb sy" ::: "memory");
+}
 static inline void wr8(uintptr_t a, uint8_t v) { *(volatile uint8_t *)a = v; }
 
 extern char secondary_entry[];
@@ -134,7 +148,7 @@ static void __attribute__((noreturn)) reset(unsigned after_s)
 	con_skip();
 	con_str("RESET", after_s > 20 ? "in 40s" : "in 20s");
 	delay_ms(after_s * 1000);
-	wr32(IMEM_RESTART_REASON, RESTART_BOOTLOADER);
+	rr_route(RESTART_BOOTLOADER);
 	__asm__ volatile("dsb sy" ::: "memory");
 	smc(PSCI_SYSTEM_RESET, 0, 0, 0);
 	/* SYSTEM_RESET returned: TZ didn't take it. NEVER write PSHOLD
@@ -431,7 +445,7 @@ static void cp_mark(char c0, char c1)
 	/* Mirror the checkpoint into IMEM restart_reason: after any reset the
 	   next Android cmdline shows warmboot=0x7766<c0><c1> — the last
 	   checkpoint reached even if the shim dies before finishing. */
-	wr32(IMEM_RESTART_REASON, 0x77660000u | ((uint32_t)c0 << 8) | (uint32_t)c1);
+	rr_route(0x77660000u | ((uint32_t)c0 << 8) | (uint32_t)c1);
 }
 
 void shim_main(uint64_t dtb)
@@ -459,12 +473,10 @@ void shim_main(uint64_t dtb)
 		ver = rd32(0x800f000UL);
 		apid = spmi_find_apid(0x0008);
 		rev = spmi_read(0x0008, 0, 0x01);
-		wr32(IMEM_RESTART_REASON,
-		     0x77660000u |
+		rr_route(0x77660000u |
 		     ((uint32_t)(rev < 0 ? 0xf : rev & 0xf) << 12) |
 		     (((ver >> 28) & 0xf) << 8) |
 		     ((uint32_t)(apid < 0 ? 0xf : apid & 0xf) << 4) | 5u);
-		__asm__ volatile("dsb sy" ::: "memory");
 		delay_ms(200);
 		smc(PSCI_SYSTEM_RESET, 0, 0, 0);
 		wdt_arm(2, 3);
@@ -688,6 +700,33 @@ void shim_main(uint64_t dtb)
 		delay_ms(10);
 	}
 #endif
+#if SHIM_BEACON == 80
+	/* Display-geometry probe v2: Android fb0 reports 32bpp stride=2944
+	   (736 px/line = 720 + 64B pad to 128B). Write the test pattern in
+	   XRGB8888 @2944: top half = 16-row GREEN/MAGENTA horizontal bands,
+	   bottom half = 16-col BLACK/WHITE vertical bars. Both colours are
+	   channel-symmetric so BGR/RGB order can't fool us. A clean grid in
+	   the photo => 32bpp/2944 proven; shearing => stride off; repeat =>
+	   bpp still wrong. */
+	{
+		const int GS = 2944 / 4;	/* 736 px per FB row */
+		for (int y = 0; y < 640; y++) {
+			volatile uint32_t *ln = (volatile uint32_t *)con_fb + y * GS;
+			uint32_t c = ((y / 16) & 1) ? 0xff00ff00u : 0xffff00ffu;
+			for (int x = 0; x < 736; x++)
+				ln[x] = c;
+		}
+		for (int y = 640; y < 1280; y++) {
+			volatile uint32_t *ln = (volatile uint32_t *)con_fb + y * GS;
+			for (int x = 0; x < 736; x++)
+				ln[x] = ((x / 16) & 1) ? 0xffffffffu : 0xff000000u;
+		}
+	}
+	__asm__ volatile("dsb sy" ::: "memory");
+	con_str("GRID", "32bpp/2944: top=green/magenta bottom=bw bars");
+	for (;;)
+		__asm__ volatile("wfe");
+#endif
 #if SHIM_BEACON == 65
 	/* Unmistakable visual liveness test: cycle red/green/blue forever,
 	   1.5 s each, MMU off, no reset. If the shim runs, the panel flashes
@@ -728,7 +767,7 @@ void shim_main(uint64_t dtb)
 	{
 		int w = spmi_write_apid(4, 0x8f, 0x06);
 		(void)w;
-		wr32(IMEM_RESTART_REASON, RESTART_BOOTLOADER);
+		rr_route(RESTART_BOOTLOADER);
 		__asm__ volatile("dsb sy" ::: "memory");
 		delay_ms(2000);
 		smc(PSCI_SYSTEM_RESET, 0, 0, 0);
@@ -743,7 +782,7 @@ void shim_main(uint64_t dtb)
 	   restart reason. Shim ran -> phone comes back in FASTBOOT; shim did
 	   not run -> charger UI then Android. No MMU, no SPMI. */
 	delay_ms(5000);
-	wr32(IMEM_RESTART_REASON, RESTART_BOOTLOADER);
+	rr_route(RESTART_BOOTLOADER);
 	__asm__ volatile("dsb sy" ::: "memory");
 	smc(PSCI_SYSTEM_RESET, 0, 0, 0);
 	wdt_arm(2, 3);
@@ -817,12 +856,10 @@ void shim_main(uint64_t dtb)
 		ver = rd32(0x800f000UL);
 		apid = spmi_find_apid(0x0008);
 		rev = spmi_read(0x0008, 0, 0x01);
-		wr32(IMEM_RESTART_REASON,
-		     0x77660000u |
+		rr_route(0x77660000u |
 		     ((uint32_t)(rev < 0 ? 0xf : rev & 0xf) << 12) |
 		     (((ver >> 28) & 0xf) << 8) |
 		     ((uint32_t)(apid < 0 ? 0xf : apid & 0xf) << 4) | 6u);
-		__asm__ volatile("dsb sy" ::: "memory");
 		wdt_arm(2, 4);
 		for (;;)
 			__asm__ volatile("wfe");
@@ -1014,7 +1051,7 @@ void shim_main(uint64_t dtb)
 		uint32_t code = (a0 < 0) | ((a2 < 0) << 1);
 		for (uint32_t i = 0; i < 2 + 2 * code; i++)
 			delay_ms(1000);
-		wr32(IMEM_RESTART_REASON, RESTART_BOOTLOADER);
+		rr_route(RESTART_BOOTLOADER);
 		__asm__ volatile("dsb sy" ::: "memory");
 		smc(PSCI_SYSTEM_RESET, 0, 0, 0);
 		wr32(PSHOLD, 0);
@@ -1030,7 +1067,7 @@ void shim_main(uint64_t dtb)
 		uint32_t code = (r0 != 1) | ((w0 != 0) << 1);
 		for (uint32_t i = 0; i < 2 + 2 * code; i++)
 			delay_ms(1000);
-		wr32(IMEM_RESTART_REASON, RESTART_BOOTLOADER);
+		rr_route(RESTART_BOOTLOADER);
 		__asm__ volatile("dsb sy" ::: "memory");
 		smc(PSCI_SYSTEM_RESET, 0, 0, 0);
 		wr32(PSHOLD, 0);
@@ -1042,7 +1079,7 @@ void shim_main(uint64_t dtb)
 	/* delay_ms validation: 20 s of nothing but the arch timer, then
 	   self-reset to fastboot. Host measures the return time. */
 	delay_ms(20000);
-	wr32(IMEM_RESTART_REASON, RESTART_BOOTLOADER);
+	rr_route(RESTART_BOOTLOADER);
 	__asm__ volatile("dsb sy" ::: "memory");
 	smc(PSCI_SYSTEM_RESET, 0, 0, 0);
 	wr32(PSHOLD, 0);
@@ -1056,7 +1093,7 @@ void shim_main(uint64_t dtb)
 		volatile uint32_t w = rd32(0x17817000UL + 0x08);
 		(void)w;
 	}
-	wr32(IMEM_RESTART_REASON, RESTART_BOOTLOADER);
+	rr_route(RESTART_BOOTLOADER);
 	__asm__ volatile("dsb sy" ::: "memory");
 	smc(PSCI_SYSTEM_RESET, 0, 0, 0);
 	wr32(PSHOLD, 0);
@@ -1067,7 +1104,7 @@ void shim_main(uint64_t dtb)
 	/* Self-return test: ask TZ for SYSTEM_RESET with restart_reason =
 	   fastboot. If this lands in fastboot, future tests can loop
 	   without physical key presses. */
-	wr32(IMEM_RESTART_REASON, RESTART_BOOTLOADER);
+	rr_route(RESTART_BOOTLOADER);
 	__asm__ volatile("dsb sy" ::: "memory");
 	smc(PSCI_SYSTEM_RESET, 0, 0, 0);
 	wr32(PSHOLD, 0);
@@ -1103,7 +1140,7 @@ void shim_main(uint64_t dtb)
 		wdt_pet();
 		delay_ms(1000);
 	}
-	wr32(IMEM_RESTART_REASON, RESTART_BOOTLOADER);
+	rr_route(RESTART_BOOTLOADER);
 	__asm__ volatile("dsb sy" ::: "memory");
 	smc(PSCI_SYSTEM_RESET, 0, 0, 0);
 	wr32(PSHOLD, 0);
@@ -1117,7 +1154,7 @@ void shim_main(uint64_t dtb)
 	   fallback if TZ refuses SYSTEM_RESET. */
 	wdt_disarm();
 	delay_ms(8000);
-	wr32(IMEM_RESTART_REASON, RESTART_BOOTLOADER);
+	rr_route(RESTART_BOOTLOADER);
 	__asm__ volatile("dsb sy" ::: "memory");
 	smc(PSCI_SYSTEM_RESET, 0, 0, 0);
 	wr32(PSHOLD, 0);
@@ -1238,7 +1275,7 @@ void shim_main(uint64_t dtb)
 				__asm__ volatile("nop");
 		}
 		con_str("RST", "to fastboot now");
-		wr32(IMEM_RESTART_REASON, 0x77665500u);
+		rr_route(0x77665500u);
 		__asm__ volatile("dsb sy" ::: "memory");
 		smc(PSCI_SYSTEM_RESET, 0, 0, 0);
 	}
@@ -1441,7 +1478,7 @@ void shim_main(uint64_t dtb)
 	   from "never jumped in": 20 s delay then reset to fastboot. */
 	imem_diag("ping", 0xdead, 0xbeef);
 	for (int i = 0; i < 20; i++) { delay_ms(1000); wdt_pet(); }
-	wr32(IMEM_RESTART_REASON, 0x77665501u);
+	rr_route(0x77665501u);
 	/* PSHOLD=0 powers OFF on lilac — use a WDT bite for the warm reset. */
 	wdt_arm(2, 3);
 	for (;;)
@@ -1557,7 +1594,7 @@ void shim_main(uint64_t dtb)
 			wdt_pet();
 		}
 	}
-	wr32(IMEM_RESTART_REASON, 0x77665501u);
+	rr_route(0x77665501u);
 	/* PSHOLD=0 powers OFF on lilac — use a WDT bite for the warm reset. */
 	wdt_arm(2, 3);
 	for (;;)

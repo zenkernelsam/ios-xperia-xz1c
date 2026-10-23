@@ -133,23 +133,29 @@ def build(seed=None, qemu=False, highmem=False):
     # 6-7 Cortex-A76), one homogeneous cluster. The kernel defaults to one
     # and uses cpus=N to select an initial prefix (N <= 8).
     # QEMU retains its original single-CPU tree: its MPIDRs differ from sweet.
+    # lilac (MSM8998): MPIDR Aff1 = cluster (0 = four Kryo 280 "Silver",
+    # 1 = four Kryo 280 "Gold"), Aff0 = core in that cluster — eight valid
+    # IDs are 0x000-0x003 + 0x100-0x103. Matches SweetCPU's cluster-aware
+    # topology check (see ios-sweet-sagit 0115). cpu-id = DT order.
     cpu_nodes = []
-    for core in range(1 if qemu else 8):
-        cpu_nodes.append(node(f'cpu{core}', [
+    for i in range(1 if qemu else 8):
+        cluster = 0 if i < 4 else 1
+        core = i if i < 4 else i - 4
+        cpu_nodes.append(node(f'cpu{i}', [
             ph(),
             ('device_type', cstr('cpu')),
-            ('compatible', cstr('arm,armv8') + cstr('ARM,v8')),
-            ('reg', u32(core << 8)),  # actual MPIDR Aff1:Aff0, NOT logical ID
-            ('cpu-id', u32(core)),   # descriptive: XNU assigns IDs by DT order
-            ('cluster-id', u32(0)),  # descriptive; see ml_parse_cpu_topology
-            ('cluster-type', u32(0)),  # homogeneous CLUSTER_TYPE_SMP, not AMP
+            ('compatible', cstr('arm,armv8') + cstr('ARM,v8') + cstr('qcom,kryo280')),
+            ('reg', u32((cluster << 8) | core)),  # real MSM8998 MPIDR
+            ('cpu-id', u32(i)),    # descriptive: XNU assigns IDs by DT order
+            ('cluster-id', u32(cluster)),
+            ('cluster-type', u32(0)),  # homogeneous CLUSTER_TYPE_SMP
             ('die-cluster-id', u32(0)),
             ('cluster-core-id', u32(core)),
-            ('l2-cache-id', u32(core)),  # distinct per-core L2 nodes in live FDT
+            ('l2-cache-id', u32(i)),   # distinct per-core L2 nodes in live FDT
             ('l3-cache-id', u32(0)),     # shared L3
-            ('state', cstr('running' if core == 0 else 'stopped')),
+            ('state', cstr('running' if i == 0 else 'stopped')),
             ('timebase-frequency', u32(timebase)),
-            ('clock-frequency', u32(2304000000 if core >= 6 else 1804800000)),
+            ('clock-frequency', u32(2457000000 if cluster else 1901000000)),
             ('bus-frequency', u32(100000000)),
             ('memory-frequency', u32(1866000000)),
             ('peripheral-frequency', u32(timebase)),
