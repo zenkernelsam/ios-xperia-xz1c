@@ -1,7 +1,8 @@
 /*
  * Minimal text console on the ABL splash framebuffer. With the MMU off
  * every access is Device memory, so stay aligned (-mstrict-align).
- * Panel consumes XRGB8888 @ FB_STRIDE=2944 (see console.h).
+ * lilac panel consumes RGB888: each pixel is 3 bytes (R,G,B), 720 px
+ * per 2160-byte line (qcom,mdss-dsi-bpp=24).
  */
 #include "console.h"
 #include "font.h"
@@ -12,7 +13,7 @@
 #define MARGIN		24
 #define LABEL_COLS	8
 
-volatile uint32_t *con_fb = (volatile uint32_t *)FB_BASE;
+volatile uint8_t *con_fb = (volatile uint8_t *)FB_BASE;
 
 /* lilac: mirror every line into a RAM log flushed to the appslog partition. */
 static char logbuf[60 * 1024] = "LILACLOG\n";
@@ -22,13 +23,19 @@ char *con_log(uint32_t *len) { *len = logpos; return logbuf; }
 static uint32_t con_bg;
 static int row;
 
+static inline void put_px(int x, int y, uint32_t c)
+{
+	volatile uint8_t *p = con_fb + y * FB_STRIDE + x * 3;
+	p[0] = c >> 16;	/* R */
+	p[1] = c >> 8;	/* G */
+	p[2] = c;	/* B */
+}
+
 void con_clear(uint32_t bg)
 {
-	for (int y = 0; y < FB_H; y++) {
-		volatile uint32_t *line = con_fb + y * FB_GS;
+	for (int y = 0; y < FB_H; y++)
 		for (int x = 0; x < FB_W; x++)
-			line[x] = bg;
-	}
+			put_px(x, y, bg);
 	con_bg = bg;
 	row = 0;
 }
@@ -44,12 +51,10 @@ static void put_char(int col, char ch, uint32_t fg)
 	for (int gy = 0; gy < 16; gy++)
 		for (int gx = 0; gx < 8; gx++) {
 			uint32_t c = (g[gy] & (0x80 >> gx)) ? fg : con_bg;
-			for (int sy = 0; sy < SCALE; sy++) {
-				volatile uint32_t *p = con_fb + (y0 + gy * SCALE + sy) * FB_GS
-						       + x0 + gx * SCALE;
+			for (int sy = 0; sy < SCALE; sy++)
 				for (int sx = 0; sx < SCALE; sx++)
-					p[sx] = c;
-			}
+					put_px(x0 + gx * SCALE + sx,
+					       y0 + gy * SCALE + sy, c);
 		}
 }
 

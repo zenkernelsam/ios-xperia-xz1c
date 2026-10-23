@@ -128,7 +128,7 @@ const char *loader_boot(uintptr_t dtb)
 	ba->Video.v_rowBytes = FB_STRIDE;
 	ba->Video.v_width = FB_W;
 	ba->Video.v_height = FB_H;
-	ba->Video.v_depth = 32;	/* XRGB8888 — MDP scanout consumes 32bpp @2944 */
+	ba->Video.v_depth = 24;	/* RGB888 — panel/scanout consumes 2160 B/line */
 	ba->deviceTreeP = adt_pa - pa_of_va_base;	/* xnu reads it with the MMU on: a VA */
 	ba->deviceTreeLength = (uint32_t)p->adt_size;
 	for (int i = 0; i < BOOT_LINE_LENGTH; i++)
@@ -190,9 +190,9 @@ const char *loader_boot(uintptr_t dtb)
 		}
 	}
 
-	/* 2) FB band: kernel Stage-0 stores to 0x9d400000+1248*2944 before AA01 */
+	/* 2) FB band: kernel Stage-0 stores to 0x9d400000+1248*2160 before AA01 */
 	RR_MARK(0x7766D011);
-	*(volatile uint32_t *)(0x9d400000UL + 1248 * 2944) = 0x00ff00ff;
+	*(volatile uint32_t *)(0x9d400000UL + 1248 * 2160) = 0x00ff00ff;
 	__asm__ volatile("dsb sy" ::: "memory");
 	RR_MARK(0x7766D012);
 

@@ -701,29 +701,28 @@ void shim_main(uint64_t dtb)
 	}
 #endif
 #if SHIM_BEACON == 80
-	/* Display-geometry probe v2: Android fb0 reports 32bpp stride=2944
-	   (736 px/line = 720 + 64B pad to 128B). Write the test pattern in
-	   XRGB8888 @2944: top half = 16-row GREEN/MAGENTA horizontal bands,
-	   bottom half = 16-col BLACK/WHITE vertical bars. Both colours are
-	   channel-symmetric so BGR/RGB order can't fool us. A clean grid in
-	   the photo => 32bpp/2944 proven; shearing => stride off; repeat =>
-	   bpp still wrong. */
+	/* Display-geometry probe v3: the panel consumes RGB888 = 2160 B per
+	   line (qcom,mdss-dsi-bpp=24). Top half = 16-row RED/GREEN bands,
+	   bottom half = 16-col BLUE/WHITE bars, written byte-by-byte. */
 	{
-		const int GS = 2944 / 4;	/* 736 px per FB row */
 		for (int y = 0; y < 640; y++) {
-			volatile uint32_t *ln = (volatile uint32_t *)con_fb + y * GS;
-			uint32_t c = ((y / 16) & 1) ? 0xff00ff00u : 0xffff00ffu;
-			for (int x = 0; x < 736; x++)
-				ln[x] = c;
+			volatile uint8_t *ln = con_fb + y * FB_STRIDE;
+			uint8_t a = (y / 16) & 1, r = a ? 0 : 0xff, g = a ? 0xff : 0;
+			for (int x = 0; x < FB_W; x++) {
+				ln[x * 3] = r; ln[x * 3 + 1] = g; ln[x * 3 + 2] = 0;
+			}
 		}
-		for (int y = 640; y < 1280; y++) {
-			volatile uint32_t *ln = (volatile uint32_t *)con_fb + y * GS;
-			for (int x = 0; x < 736; x++)
-				ln[x] = ((x / 16) & 1) ? 0xffffffffu : 0xff000000u;
+		for (int y = 640; y < FB_H; y++) {
+			volatile uint8_t *ln = con_fb + y * FB_STRIDE;
+			for (int x = 0; x < FB_W; x++) {
+				uint8_t a = (x / 16) & 1;
+				ln[x * 3] = a ? 0 : 0xff; ln[x * 3 + 1] = a ? 0 : 0xff;
+				ln[x * 3 + 2] = a ? 0xff : 0xff;
+			}
 		}
 	}
 	__asm__ volatile("dsb sy" ::: "memory");
-	con_str("GRID", "32bpp/2944: top=green/magenta bottom=bw bars");
+	con_str("GRID", "RGB888/2160: top=rg bands bottom=bw bars");
 	for (;;)
 		__asm__ volatile("wfe");
 #endif
