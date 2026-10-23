@@ -1,0 +1,21 @@
+diff --git a/osfmk/arm64/start.s b/osfmk/arm64/start.s
+index f001122..a0bb001 100644
+--- a/osfmk/arm64/start.s
++++ b/osfmk/arm64/start.s
+@@ -870,6 +870,16 @@ common_start:
+ #if defined(SWEET)
+ 	/* PON doorbell 0xa3: made it through the bootstrap page-table
+ 	 * build + SWEET slot installs to common_start (MMU still off,
++	/* Pet the APSS watchdog (0x17817004=RST): the shim armed it during
++	 * its own slow boot and XNU's PON-probe traffic burns the rest of
++	 * the 10s pet window. Without this the WDT kills the kernel at a
++	 * fixed wall-time, masquerading as an MMU-on death. */
++	MOV64	x12, 0x17817000
++	mov		w13, #1
++	str		w13, [x12, #4]
++	dsb		sy
++	/* PON doorbell 0xa3: made it through the bootstrap page-table
++	 * build + SWEET slot installs to common_start (MMU still off,
+ 	 * raw PA write). */
+ 	MOV64	x12, 0x8420000
+ 	mov		w13, #0xa3
