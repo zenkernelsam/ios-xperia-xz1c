@@ -1336,13 +1336,13 @@ boot xnu9 + 等落地 + 全通道 harvest + 解码落盘。
 3. 判读优先级：`0x146bf800`（hios log，信息量最大）>
    `0x146bf780`（vectors2 dump）> `0x146bf700`（跳前态）> official。
 
-## 2026-10-24 清晨 — APSS WDT 实锤 + 无人值守收尾态
+## 2026-10-24 清晨 — 哑弹事故修正 + 无人值守收尾态
 
-**判决**：loader `wdt_disarm()` 实验 → XNU 活过 `msr SCTLR_EL1` 死亡窗口，
-跑到 panic → `SweetPlatformExpert::kPEHaltCPU` → PSCI SYSTEM_OFF →
-**落 E1F4 充电模式**（VID_0FCE&PID_01F4）。此前 a1→a7 门铃后"死"在
-SCTLR 全是 APSS WDT（shim `wdt_arm(2,3)` 3 秒 bite）的假象；内核侧
-pet（0110）救不了——loader 侧 disarm/re-arm 才是控制点。
+**事故**：06:04 起 ramdisk 误用裸 Mach-O（须 mkpayload 打成 SWEETXNU），
+06:05/06:08 两发 loader `magic_ok` 拒跳，XNU 从未执行。
+此前"WDT 实锤"结论作废（那次落充电模式 = loader 拒跳→shim 走到底
+PSHOLD）。WDT 元凶论未证实——"加探针死点提前"仍是弱旁证，待真弹复测。
+**手机现停 E1F4 充电模式**（VID_0FCE&PID_01F4，自熄屏），按电源键回 Android。
 
 **当前无人值守栈**：
 - `loader.c`：跳前 `wdt_arm(60,65)` = 65 秒长绳，挂死兜底回 Android。
