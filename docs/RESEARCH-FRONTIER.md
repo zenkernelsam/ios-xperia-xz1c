@@ -306,3 +306,15 @@ NativeMobileDisplay scanout。**实锤 GPU 合成桌面已在 sheng 工作。**
 （zap+CP 直驱）"。工作量估计 = NativeAdreno 移植里最大的一块。
 Y700 Gen4 的 Adreno 830 反而离 A740 栈近得多——
 若做 UniXNU 设备，GPU 成本比 lilac 低。
+
+## 12. bdwlan SKU 定位（部分完成）
+
+modem FAT 内有两个板级 RF 数据：`bdwlan.102` 与 `bdwlan.104`
+（各 19,152B，diff 1,731B，含频段/功率校准）。另有 `bdwlan.txt`
+（193K，该数据的 NV 文本模板）与 `wlan_mac.bin`。
+**选型机制**：WCNSS 驱动按 board_id 挑 `bdwlan.<id>`——
+XZ1C 有 G8441（国际）与 SO-02K（Docomo）两个 SKU。
+离线无法 100% 定版；两文件都已保留在
+`research/firmware-extract/fw/modem/image/`，部署时
+对照机器 persist/NV 或先两个都喂（错选只影响 RF 校准精度，
+不影响链路建立）。

@@ -56,3 +56,13 @@
 - 构建脚本: `~/Desktop/ios-assets/mk.sh`（CRLF已修，参照 ios-sweet/tools/mkiosroot.sh）
 - 固件仓库: `Patch/Xperia/research/firmware-extract/fw/{modem,bt}/`
 - 工作日志: `Patch/Xperia/RESEARCH-FRONTIER.md`
+
+## 2026-10-25 00:55 检查点（压缩后先读本文件！）
+- 已完成：userdata=21.95GiB（rootfs 16GiB 可放）；vendor.sin GPU 固件
+  86 项提取于 research/firmware-extract/fw-vendor/（a540_zap 已验证）；
+  UniXNU GPU 栈研读（A740 专用，A540 需 zap+CP 自研）；
+  文档已提交 ios-xperia-xz1c（commit: frontier research docs）。
+- bdwlan SKU：102/104 两变体已保留，待机器空闲时对照 persist 定版。
+- 触摸骨架仍是设计稿；QUP FIFO/F11 细化是下一个可并行项。
+- 待办：rootfs 写盘流程预案（UDTO 剥壳+dd，待主线授权）；
+  隔壁主线在 v106+ 调 commpage 后阶段，别碰手机。
