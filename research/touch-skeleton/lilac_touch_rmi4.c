@@ -102,6 +102,30 @@ struct rmi_pdt_entry {
 
 /* ---------------- minimal i2c engine (polled) -------------------------- */
 
+/* QUP tag-v2 constants — real values from sony
+ * include/linux/i2c/i2c-msm-v2.h (VERIFIED, not guessed) */
+#define QT2_START             0x81
+#define QT2_DATA_WRITE        0x82
+#define QT2_DATA_WRITE_N_STOP 0x83
+#define QT2_DATA_READ         0x85
+#define QT2_DATA_READ_N_NACK  0x86
+#define QT2_DATA_READ_N_STOP  0x87
+#define QT2_INPUT_EOT         0x93
+#define QT2_FLUSH_STOP        0x96
+/* tag packing (i2c_msm_tag_create):
+ *   with START:    {0x81, slave_addr, op, len}  -> 4 bytes
+ *   without START: {op, len}                    -> 2 bytes
+ * FIFO is byte-serial: write tag bytes then data bytes, in order. */
+
+/* i2c-msm-v2 status bits */
+#define QUP_I2C_STATUS_RESET 0xfffffc
+#define QUP_I2C_NACK_FLAG    (1u << 3)
+#define QUP_I2C_BUS_ACTIVE   (1u << 10)   /* VERIFY bit pos in I2C_STATUS */
+#define QUP_I2C_FLUSH        (1u << 6)    /* MASTER_CONFIG flush? verify  */
+#define QUP_RUN              0x1
+#define QUP_RESET            0x3          /* RESET_STATE */
+#define QUP_STATE_VALID      (1u << 1)
+
 static volatile uint32_t *qup = (volatile uint32_t *)QUP5_BASE;
 static volatile uint32_t *tlmm = (volatile uint32_t *)TLMM_BASE;
 
@@ -128,23 +152,71 @@ static void qup_init(void)
     wr32(QUP_CONFIG, 0);
     wr32(QUP_IO_MODES, (0 << 0));           /* fifo mode for both — VERIFY encodings */
     wr32(I2C_MASTER_CTL, (TP_I2C_HZ / 65536)); /* verify divider formula */
-    wr32(QUP_STATE, 0x1);                    /* RUN_STATE=RUN */
+    wr32(QUP_STATE, QUP_RUN);
 }
 
-/* polled i2c write-then-read (single register address) */
+/* FIFO-mode byte pump: pack stream (tag+data...) then read engine runs it */
+static void fifo_push(const uint8_t *p, int n)
+{
+    while (n--) {
+        uint32_t w = *p++;
+        /* i2c-msm-v2 packs 4 bytes/fifo word little-endian; here we emit
+         * 1 byte/word for clarity (legal but 4x slower — pack later) */
+        wr32(QUP_OUT_FIFO, w);
+    }
+}
+static void fifo_pull(uint8_t *p, int n)
+{
+    while (n--)
+        *p++ = rd32(QUP_IN_FIFO) & 0xff;
+}
+
+static int qup_wait_idle(void)
+{
+    for (int i = 0; i < 100000; i++)
+        if (!(rd32(I2C_STATUS) & QUP_I2C_BUS_ACTIVE)) return 0;
+    return -1;
+}
+
+/* i2c write: START tag4{0x81,addr,DATA_WRITE_N_STOP,len} + data */
+static int qup_i2c_write(uint8_t addr, const uint8_t *buf, int len)
+{
+    uint8_t tag[4] = {QT2_START, addr, QT2_DATA_WRITE_N_STOP, (uint8_t)len};
+    wr32(QUP_MX_OUTPUT_CNT, 4 + len);   /* block-mode total out bytes */
+    fifo_push(tag, 4);
+    fifo_push(buf, len);
+    if (qup_wait_idle()) return -1;
+    return (rd32(I2C_STATUS) & QUP_I2C_NACK_FLAG) ? -2 : 0;
+}
+
+/* i2c read:  write reg index via WRITE tag, then read via
+ *  DATA_READ_N_STOP (repeated-start handled by engine keeping addr).
+ *  VERIFY: sony path may issue second START tag for the read segment —
+ *  check i2c_msm_xfer rx msg is_new_addr behavior on device. */
+static int qup_i2c_read(uint8_t addr, uint8_t reg, uint8_t *buf, int len)
+{
+    if (qup_i2c_write(addr, &reg, 1)) return -1;
+    uint8_t tag[4] = {QT2_START, addr, QT2_DATA_READ_N_STOP, (uint8_t)len};
+    wr32(QUP_MX_INPUT_CNT, len);
+    wr32(QUP_MX_READ_CNT, len);
+    fifo_push(tag, 4);   /* tag goes to OUT fifo; engine fills IN fifo */
+    fifo_pull(buf, len);
+    if (qup_wait_idle()) return -1;
+    return 0;
+}
+
 static int tp_read(uint8_t reg, uint8_t *buf, int len)
 {
-    /* OUT FIFO: tag(QPACKET addr W) + reg ; IN: tag(QPACKET addr R)+data */
-    /* i2c-msm-v2 QPACKET: {flags[31:24], addr[23:17], tag[15:8], data[7:0]} — VERIFY packing */
-    wr32(QUP_OUT_FIFO, 0);      /* placeholder: real impl packs QPACKET */
-    (void)reg; (void)buf; (void)len;
-    return -1; /* TODO: implement QPACKET fifo writer per i2c-msm-v2.c */
+    return qup_i2c_read(TP_I2C_ADDR, reg, buf, len);
 }
 
 static int tp_write(uint8_t reg, const uint8_t *buf, int len)
 {
-    (void)reg; (void)buf; (void)len;
-    return -1; /* TODO */
+    uint8_t tmp[32];
+    if (len + 1 > (int)sizeof(tmp)) return -3;
+    tmp[0] = reg;
+    for (int i = 0; i < len; i++) tmp[1 + i] = buf[i];
+    return qup_i2c_write(TP_I2C_ADDR, tmp, len + 1);
 }
 
 /* ---------------- RMI4 layer ------------------------------------------- */
@@ -171,19 +243,54 @@ static int rmi_scan_pdt(struct rmi_pdt_entry *out, int max)
     return n;
 }
 
-/* F$11 data read — finger count + coords, then map 2159x3839 -> 720x1280 */
+/* F$11 data read — real layout from sony rmi4/rmi_f11.c (VERIFIED):
+ *   data regs at f11->data_base, layout per interrupt packet:
+ *     [0 .. n_state-1]   finger-state regs: 2 bits/finger, packed 4/byte
+ *     then n_fingers * 5 abs bytes: per finger
+ *        b0=x[11:4], b1=y[11:4], b2={y[3:0],x[3:0]}, b3={wy,wx}, b4=z
+ *     then n_fingers * 2 rel bytes (skipped; we poll abs only)
+ *   state codes: 0=none 1=present 2=inaccurate 3=reserved
+ *   coord domain 2159x3839 -> panel 720x1280 (scale /3, /3) */
+#define RMI_F11_ABS_BYTES 5
+#define RMI_F11_REL_BYTES 2
+#define FINGER_STATE_MASK 0x03
+#define TP_DOMAIN_X 2159
+#define TP_DOMAIN_Y 3839
+#define PANEL_X     720
+#define PANEL_Y     1280
+
 struct tp_finger { uint16_t x, y; uint8_t z, wx, wy, present; };
 
 static int rmi_read_fingers(const struct rmi_pdt_entry *f11,
-                            struct tp_finger *out, int max)
+                            struct tp_finger *out, int max,
+                            uint8_t n_fingers)
 {
-    /* F11 data regs: data0 = n_fingers+state?, per-finger 5-byte records:
-     *   [0] state, [1] x_lsb, [2] x_msb|(y_msb<<4 pack varies),
-     *   actual F11 layout on this TPIC = read sony clearpad parser.
-     *   FOR BRING-UP: dump raw F11 data regs and reverse the packing
-     *   from Android logcat of a known touch. */
-    (void)f11; (void)out; (void)max;
-    return -1;
+    int n_state = (n_fingers + 3) / 4;
+    int abs_len = n_fingers * RMI_F11_ABS_BYTES;
+    uint8_t pkt[4 /*state*/ + 10 * 5];
+    int total = n_state + abs_len;
+    if (n_fingers > 10 || total > (int)sizeof(pkt)) return -1;
+
+    /* F11 data_base at page0 in most clearpads — PDT row records page.
+     * Caller must pass the entry with its page; here we assume page0 or
+     * that the caller already selected the right page (TODO: carry page
+     * in pdt entry). */
+    if (tp_read(f11->data_base, pkt, total)) return -2;
+
+    int n = 0;
+    for (uint8_t i = 0; i < n_fingers && n < max; i++) {
+        uint8_t st = (pkt[i / 4] >> (2 * (i % 4))) & FINGER_STATE_MASK;
+        if (st == F11_STATE_NONE || st == 3) continue;
+        const uint8_t *p = &pkt[n_state + i * RMI_F11_ABS_BYTES];
+        struct tp_finger *f = &out[n++];
+        f->x = ((p[0] << 4) | (p[2] & 0x0F)) * PANEL_X / TP_DOMAIN_X;
+        f->y = ((p[1] << 4) | (p[2] >> 4)) * PANEL_Y / TP_DOMAIN_Y;
+        f->wx = p[3] & 0x0F;
+        f->wy = p[3] >> 4;
+        f->z  = p[4];
+        f->present = (st == F11_STATE_ACC);
+    }
+    return n;
 }
 
 /* ---------------- entry: shim-side probe ------------------------------- */
@@ -193,5 +300,13 @@ static int rmi_read_fingers(const struct rmi_pdt_entry *f11,
  *   dev_status = tp_rdb(0, SYN_DEVICE_STATUS);  // expect configured
  *   n = rmi_scan_pdt(pdt, 16);                  // find F$01/F$11/F$34
  *   // F$01 ctrl: clear sleep, enable interrupt reporting
- *   // poll GPIO125 low -> rmi_read_fingers()
+ *   // poll GPIO125 low -> rmi_read_fingers(f11e, fingers, 10, 10)
+ *   // -> {x,y,z,wx,wy,present} in PANEL coords, ready for HID digits
+ *
+ * Remaining VERIFY items before hardware run:
+ *   - I2C_STATUS bit positions (BUS_ACTIVE/NACK) vs i2c-msm-v2.h
+ *   - QUP_IO_MODES encoding for FIFO-vs-BLOCK mode
+ *   - I2C_MASTER_CTL clock divider formula for 355kHz
+ *   - whether read needs 2nd START tag (is_new_addr on rx msg)
+ *   - GCC gate clock enable for blsp1_qup5 (gcc-msm8998.c)
  */
