@@ -66,3 +66,12 @@
 - 触摸骨架仍是设计稿；QUP FIFO/F11 细化是下一个可并行项。
 - 待办：rootfs 写盘流程预案（UDTO 剥壳+dd，待主线授权）；
   隔壁主线在 v106+ 调 commpage 后阶段，别碰手机。
+
+## 2026-10-25 01:05 检查点2
+- 触摸骨架填实：QUP tag-v2 真实编码（0x81 START/0x82 W/0x83 W+STOP/
+  0x85 R/0x87 R+STOP，4B/2B 标签）+ F11 真布局（2bit/指状态打包 +
+  5B/指 abs：x=b0<<4|b2.lo、y=b1<<4|b2.hi、wx/wy/z）。gcc -Wall 零警告。
+  已提交 ios-xperia-xz1c（commit cc99944）。
+- 前次 GPU 固件/vendor/GPT 成果在 commit 42910ce+a7e8e1c。
+- 剩余并行候选：rootfs 写盘预案细化；F01 唤醒+F34 序列细化；
+  UniXNU 4K 补丁 vs sagit 0118 对照分析（主线可能需要）。
