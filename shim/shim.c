@@ -1500,6 +1500,33 @@ void shim_main(uint64_t dtb)
 	spmi_write_apid(4, 0x88f, 0x06);
 	con_str("PON", "reason=BOOTLOADER armed (auto fastboot on reset)");
 #endif
+	/* Read back LAST run doorbells before this run overwrites them:
+	   every fire self-reports the previous run marks on screen. */
+	{
+		extern int spmi_read_apid(int, uint16_t);
+		int pe = spmi_read_apid(4, 0x88e), pf = spmi_read_apid(4, 0x88f);
+		int p9 = spmi_read_apid(4, 0x889), pa = spmi_read_apid(4, 0x88a);
+		int pb = spmi_read_apid(4, 0x88b), pc = spmi_read_apid(4, 0x88c);
+		int pd = spmi_read_apid(4, 0x88d);
+		con_hex2("PONe/f", "88e=", (uint32_t)pe, " 88f=", (uint32_t)pf);
+		con_hex2("PON9/a", "889=", (uint32_t)p9, " 88a=", (uint32_t)pa);
+		con_hex2("PONb/c", "88b=", (uint32_t)pb, " 88c=", (uint32_t)pc);
+		con_hex("PON88d", (uint32_t)pd);
+		/* Post-MMU probes left by the previous XNU run: 'PST1' sits
+		   somewhere in the boot-args area (scan, the PA drifts per
+		   run) and 'POST' is at the fixed durable cell 0xffbff000. */
+		{
+			uint32_t pv = *(volatile uint32_t *)0xffbff000UL;
+			uint32_t pst_at = 0;
+			for (volatile uint32_t *q = (volatile uint32_t *)0xa1d00000UL;
+			     q < (volatile uint32_t *)0xa1e00000UL; q++) {
+				if (*q == 0x31545350u) { pst_at = (uint32_t)(uintptr_t)q; break; }
+			}
+			con_hex("POST", pv);
+			con_hex("PST1@", pst_at);
+		}
+		con_skip();
+	}
 	const char *why = loader_boot(dtb);
 	cp_mark('C','3');
 	con_str("LOADER", why);
