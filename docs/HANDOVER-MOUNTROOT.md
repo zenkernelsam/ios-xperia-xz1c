@@ -74,3 +74,19 @@ ramdisk 均已挂载验证：含 `sbin/launchd`、`sbin/mount_hfs`、
 **传输**：17GB 从 Mac 到 Windows，最快是 `scp`（LAN 内 ~100MB/s
 约 3min）或 adb push / fastboot 通道——看主线 shim 的 load 链路
 定。
+
+---
+
+## 追加 2026-10-25 10:45 — Mac 侧全部就绪 ✅
+
+**`~/Desktop/ios-assets/` 最终物资表**：
+| 文件 | 大小 | 校验 |
+|---|---|---|
+| `ramdisk/ramdisk-a.raw` | 104M | APFS Fletcher64 ✓ 含 launchd/mount_hfs |
+| `ramdisk/ramdisk-b.raw` | 102M | 同上（Erase 版） |
+| `iosroot-16.7.16.cdr` | 17G | UDTO 裸 GPT 盘 |
+| **`iosroot-hfs.raw`** | **16.84G** | **HX 魔数已验 = case-sensitive HFS+ 纯分区** |
+| `kernelcache.release.iphone10b.macho` | 49M | fat Mach-O→arm64e thin（可 IDA/binja） |
+
+ramdisk 建议先用 ramdisk-b（Erase 版，更新）。写盘走 iosroot-hfs.raw。
+中间产物 kernelcache.im4p-payload 已入 ~/.Trash。
