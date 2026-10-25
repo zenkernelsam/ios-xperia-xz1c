@@ -49,3 +49,28 @@
 - WiFi：QCA WCNSS 修正 + `wlanmdsp.mbn`/`bdwlan.*`（RESEARCH §4/12）
 - 触摸：RMI4 F11 真布局骨架（research/touch-skeleton/）
 - 注意：vfrag 中间 raw 已回收，如需重挖按 FR §9 方法重跑
+
+---
+
+## 追加 2026-10-25 10:35 — Mac 侧物资已就绪
+
+**`~/Desktop/ios-assets/` 上已有**：
+| 文件 | 大小 | 用途 |
+|---|---|---|
+| `iosroot-16.7.16.img` | 17G UDRW | 完整 rootfs 原始 DMG |
+| `iosroot-16.7.16.cdr` | 17G UDTO | 剥壳后的 raw GPT 盘 |
+| `iosroot-hfs.raw` | 16.1G | **纯 HFS 分区**（剥离 EFI/GPT，直接可 dd userdata） |
+| `ramdisk/ramdisk-a.raw` | 104M | Upgrade 版 restore ramdisk |
+| `ramdisk/ramdisk-b.raw` | 102M | Erase 版 restore ramdisk |
+| `kernelcache.release.iphone10b.macho` | 49M | 解 LZFSE 后的真 iPhoneX kernel（IDA/binja 可用） |
+
+ramdisk 均已挂载验证：含 `sbin/launchd`、`sbin/mount_hfs`、
+`sbin/fsck_hfs`——真 iOS userspace，直接可作 rd=md0。
+
+**推荐下一步（路线 A）**：shim 里把 `ramdisk-b.raw`（或 a）load 到
+内存，boot-args `rd=md0` → XNU 走 ramdisk root 起 launchd；
+确认 userspace 全链 OK 后再上 UFS。
+
+**传输**：17GB 从 Mac 到 Windows，最快是 `scp`（LAN 内 ~100MB/s
+约 3min）或 adb push / fastboot 通道——看主线 shim 的 load 链路
+定。
