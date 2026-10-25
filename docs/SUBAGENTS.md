@@ -95,3 +95,11 @@
 - 84 补丁的 fork = vanilla 无实质改动，勿当真 port。
 - ios-s9 的 s9/shim/con.c/h 是 Windows 保留名无法 checkout（git 里在）。
 - Y700 Gen4 确认 = SM8750（Adreno 830），非"Gen5 Elite"（那是 Y700 Gen5）。
+
+## 2026-10-25 16:40 检查点5（第二波 clone）
+- 新增：mu-silicium（内含 dodge/pagani SM8750 UEFI + cheeseburger
+  MSM8998 UEFI）、edk2-msm8998（Renegade MSM8998 UEFI，7设备）、
+  edk2-gunyah（明列支持 tb322fc/Y700 Gen4）、ios_sagit（MC-XiaoXiao）、
+  UniXNU 新 kit：Adreno740/AdrenoMetal/AirNir/ShengUfs/DarwinBoot。
+- 结论：lilac 未来也可走 UEFI（MSM8998 已被 cheeseburger 证明）；
+  Y700 Gen4 UEFI 底座 = mu-silicium/dodgePkg。

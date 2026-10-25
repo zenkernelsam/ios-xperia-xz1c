@@ -401,3 +401,38 @@ ios-sweet 现有 **300+ active forks**，按"设备专属补丁"筛选成色：
 - ios-sweet 上游 84 补丁是基线；**真实 port 增量 = 设备补丁 - 84**
 - 两条 GPU 路线在收敛：**freedreno/Mesa 直出**（sailfish A530 ✅、topaz A610、flame A640、Bergamota A630 进行中）vs **Metal→Vulkan→Turnip**（UniXNU A740、Snapintosh air2ir3）
 - 非高通的 Pixel 6a (Tensor) 也能跑——XNU 移植已平台无关化
+
+## 16. 普查第二波：UEFI/UniXNU 生态（2026-10-25 晚）
+
+### ⭐ lilac（MSM8998）UEFI 路线地基已存在
+
+- **`edk2-msm8998`**（edk2-porting/Renegade）：MSM8998 EDK2 UEFI，
+  覆盖 7 台同 SoC 设备（sagit/chiron/cheeseburger/dumpling/joan/
+  nx563j/mata/ocmdtwl）。**加 lilac = 抄 sagit Device 目录改板级值**
+- **`mu-silicium` cheeseburgerPkg**（OnePlus 5，MSM8998）：
+  Display✅ Internal Storage✅——**UEFI 在 MSM8998 上已被证明可跑**
+- **`ios_sagit`**（MC-XiaoXiao）：另一个独立的"Mi6 跑 iOS"项目
+  （与 ios-sweet-sagit 不同源）
+- sony 主线内核 `msm8998-sony-xperia-yoshino.dtsi`（sonyxperiadev/kernel，
+  475 行三机共享）——比 4.4 stock 更干净的寄存器/GPIO 参照
+
+### ⭐ Y700 Gen4（SM8750）UEFI 三件套齐了
+
+- **`mu-silicium`**：**dodgePkg**（OnePlus 13 SM8750，Display✅ UFS✅
+  USB✅ LinuxBoot✅）+ **paganiPkg**（OnePlus 13s，同 SM8750）——
+  Y700 的 UEFI port = 抄 dodgePkg 改板级
+- **`edk2-gunyah`**（Droid-VM）：crosvm+gunyah UEFI，**已测平台明列
+  Y700 Gen4 (tb322fc, SM8750)** 与 SM8850
+- **`tb322fc-droidspaces-kernel`**：testkey AVB 漏洞（§15）
+
+### ⭐ UniXNU 新拆分 kit（GPU/驱动工具链，Y700+iOS 通用）
+
+`Adreno740`（原 NativeAdreno 改名，A740 XNU kext）、`AdrenoMetal`
+（Metal 前端+metal2vulkan，13★）、`AirNir`（**AIR→NIR→IR3 编译器**）、
+`ShengUfs`（UFS 驱动，今日还在更新）、`DarwinBoot`（UEFI bootloader）、
+`uefi-sheng`（sheng UEFI fork）——均已 clone。A830(A740 同系) 的
+Metal 栈可直接参考；A540 需换 PM4/固件层但 AirNir/IR3 后端通用。
+
+### unixnu.com 挂名的社区 port
+`UniXNU-sagit`（dmnakzkahziamnk-a11y，Mi6 MSM8998 的 UniXNU 设备仓）
+——仓库目前仅 sheng 模板未落地，跟踪即可。
