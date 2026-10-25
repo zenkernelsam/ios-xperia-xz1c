@@ -5,6 +5,18 @@
 
 ---
 
+## >>> 2026-10-25 16:00 【副线】ios-poplar 现身：XZ1 亲兄弟已在移植 <<<
+
+`research/ios-poplar`（wakanameko fork）：Xperia XZ1 = **同 MSM8998、
+同 SoMC 平台、同 FB@0x9d400000**。已含 poplar 专属补丁 0082-0086：
+kryo280 armv8.0（MSM8998 无 LSE，commpage 需要 no-lse 版）、
+cpu-driver、cpu-startup-diag、gic-diag。做 CPU 启动/commpage 时
+对照 `ios-poplar/xnu/patches/0082*` 与 `tools/mkadt.py`（sony,poplar
+值全套）。另：`ios-sailfish`（187 补丁）已让 **Adreno 530 跑 Mesa**
+——A540 GPU 路线最近参照。全普查见 RESEARCH-FRONTIER §15。
+
+---
+
 ## >>> 2026-10-25 12:30 【副线】sagit 同构触摸驱动已上屏可用 <<<
 
 ios-sweet-sagit 今日提交 Mi6 触摸 bring-up：`0121-sagit-touch-i2c.patch`

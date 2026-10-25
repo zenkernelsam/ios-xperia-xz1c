@@ -82,3 +82,16 @@
 - Mac 物资全就绪：ramdisk-a/b.raw、iosroot-hfs.raw（HX 已验）、
   kernelcache macho、iosroot-16.7.16.cdr。
 - 主线正在 flash userdata 写 iOS rootfs（隔壁在干）。
+
+## 2026-10-25 16:00 检查点4（repo 普查完成）
+- 新增 clone（research/）：ios-poplar、ios-sailfish、Bergamota、ios-cas、
+  ios-apollo、ios-s9、ios-picasso、ios-fajita、ios-sunfish、ios-lemonadep、
+  ios-surya、ios-mondrian、ios-qemu、ios-great-exynos、pixelios-kernel、
+  hackios-xnu-kernel-sm8750、tb322fc-droidspaces-kernel、Snapintosh、
+  ios-topaz-kunzite。
+- 高价值：ios-poplar（XZ1 亲兄弟）、ios-sailfish（A530 Mesa GPU 已跑通）、
+  Bergamota（iOS 18 on SD845）、sm8750 port（Y700 芯片）、tb322fc-droidspaces
+  （Y700 testkey AVB 漏洞：锁 BL 也能跑自签内核）、Snapintosh（air2ir3）。
+- 84 补丁的 fork = vanilla 无实质改动，勿当真 port。
+- ios-s9 的 s9/shim/con.c/h 是 Windows 保留名无法 checkout（git 里在）。
+- Y700 Gen4 确认 = SM8750（Adreno 830），非"Gen5 Elite"（那是 Y700 Gen5）。

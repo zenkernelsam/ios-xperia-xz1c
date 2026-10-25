@@ -361,3 +361,43 @@ ramdisk 是 mountroot 阶段的"零写盘路线"关键弹药。
 **UniXNU-sheng 新提交**：ADSP 固件启动（2fa7290，从固件分区 boot
 DSP+IPC router）、电量计 dual-gauge 修复、thermal probe——
 电池/ADSP 子系统成熟度信号。
+
+## 15. 全网新仓普查（2026-10-25 晚，ios-sweet 生态爆发）
+
+ios-sweet 现有 **300+ active forks**，按"设备专属补丁"筛选成色：
+
+### ⭐ 对 lilac（MSM8998）直接有用
+
+| 仓库 | 设备/芯片 | 成色 |
+|---|---|---|
+| **`ios-poplar`** (wakanameko) | **Xperia XZ1 = lilac 亲兄弟，同 MSM8998/SoMC/FB@0x9d400000** | 89 补丁含 poplar 专属 0082-0086：kryo280 armv8.0、commpage-no-lse（我们没 LSE！）、cpu-driver、cpu-startup-diag、gic-diag |
+| **`ios-sweet-sagit`** | Mi6 MSM8998 | QUP5 触摸已实机（§14） |
+| **`ios-sailfish`** (joranv1, 79★) | Pixel 2016 SD821 | **187 补丁=最多**。Adreno 530 上 Mesa GPU 已跑通+WiFi+真电量+20s到锁屏，2GB RAM——**A530 是 A540 同代，GPU 路线最近参照** |
+| **`Bergamota`** (ry-diffusion, 54★) | Poco F1 SD845 | 161 补丁，**iOS 18.7.8 (iPhone XR userland)**！gpu/ 目录含 eagl（OpenGL ES over Mesa freedreno）、metal。自研 zap-split/adt-gpufw 工具链把 a630_zap 注入 ADT |
+| **`ios-fajita`** | OnePlus 6T SD845 | 84=vanilla（早期） |
+| **`ios-s9`** (syncmodz) | Galaxy S9 SD845 | 104 补丁，含 GPU study commit（注意：con.c/h 是 Windows 保留名签不出，WSL 里可取） |
+
+### ⭐ 对 Y700 Gen4（SM8750，Adreno 830）直接有用
+
+| 仓库 | 内容 |
+|---|---|
+| **`hackios-xnu-kernel-sm8750`** (SQMY-dor) | HackiOS→SM8750 port（OnePlus 13 dodge），单提交 c584700，UEFI 路线——Y700 未来路线的底座 |
+| **`tb322fc-droidspaces-kernel`** (ll1zt) | **核弹级发现：Y700 Gen4 出厂用公共 AOSP testkey 签 AVB** → 自签内核可在**锁定 BL** 上过验证！+ EDL(9008) LTBox 写入。GKI 内核 6.6.89 构建参数全记录 |
+| **`Snapintosh`** (668★) | macOS 27 on Snapdragon X2 Elite 笔记本：EL2 hypervisor + **air2ir3（AIR→ir3 shader 编译器）** + AdrenoMetal.bundle + AdrenoX2 IOGPU kext——GPU Metal 栈的独立实现，A830 参考 |
+
+### 其他真材实料（有设备补丁/日志）
+
+| 仓库 | 设备/芯片 | 状态 |
+|---|---|---|
+| `ios-apollo` (aTechGeekDev) | Mi 10T SM8250 | 115 补丁，**真机到 iOS Setup，SPI 触摸+按键全工作**（每次启动加载触摸固件） |
+| `ios-cas` (binbin323) | Mi 10 Ultra SM8250 | 101 补丁，**真机锁屏**；修过 MobileGestalt local-mac-address 坑（IONetworkController 占位服务） |
+| `ios-picasso` (minhtritt1996) | K30 5G SM7250 | 126 补丁，NOTES.md 工程日志+logs/ |
+| `ios-qemu` (lgrachov) | QEMU | 111 补丁 |
+| `pixelios-kernel` (PixOS) | Pixel 6a Tensor G1 | 106 补丁，锁屏+触摸+8核（**首个非高通**） |
+| `ios-topaz-kunzite` | POCO M8 SD6G3 | kunzite 分支，SpringBoard+USB net，GPU WIP |
+| `ios-sunfish`/`ios-surya`/`ios-mondrian`/`ios-great-exynos`/`ios-lemonadep` | Pixel4a/POCO X3/K60/Note8/OnePlus9Pro | 84 补丁=**vanilla fork，无实质改动**（早期占位） |
+
+### 生态结论
+- ios-sweet 上游 84 补丁是基线；**真实 port 增量 = 设备补丁 - 84**
+- 两条 GPU 路线在收敛：**freedreno/Mesa 直出**（sailfish A530 ✅、topaz A610、flame A640、Bergamota A630 进行中）vs **Metal→Vulkan→Turnip**（UniXNU A740、Snapintosh air2ir3）
+- 非高通的 Pixel 6a (Tensor) 也能跑——XNU 移植已平台无关化
