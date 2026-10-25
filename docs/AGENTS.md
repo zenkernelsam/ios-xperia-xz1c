@@ -5,6 +5,18 @@
 
 ---
 
+## >>> 2026-10-25 17:00 【副线】poplar 实况+sailfish GPU 细节 <<<
+
+ios-poplar 深入读后：他们正卡在 "XNU 早期 hang + GIC redistributor
+没被碰"——跟我们曾踩的 IRQ 段同类，补丁 0085/0086 的 tick 诊断+
+GICR 取证可直接借。0082 实锤：**Kryo280=ARMv8.0，无 LSE/PAN/UAO**；
+0084：只用 Gold 簇 MPIDR 0x100-103。
+GPU 参照定型 ios-sailfish：A530 序列=0119 power probe→0120 CP test
+→0121 SMMU identity→0156 VM scratch；userspace tools/sweetgl Mesa
+交叉构建+sweetgpu-ca。A540 照抄此序。
+
+---
+
 ## >>> 2026-10-25 16:00 【副线】ios-poplar 现身：XZ1 亲兄弟已在移植 <<<
 
 `research/ios-poplar`（wakanameko fork）：Xperia XZ1 = **同 MSM8998、

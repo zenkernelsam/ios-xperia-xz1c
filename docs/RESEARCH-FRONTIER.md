@@ -370,9 +370,9 @@ ios-sweet 现有 **300+ active forks**，按"设备专属补丁"筛选成色：
 
 | 仓库 | 设备/芯片 | 成色 |
 |---|---|---|
-| **`ios-poplar`** (wakanameko) | **Xperia XZ1 = lilac 亲兄弟，同 MSM8998/SoMC/FB@0x9d400000** | 89 补丁含 poplar 专属 0082-0086：kryo280 armv8.0、commpage-no-lse（我们没 LSE！）、cpu-driver、cpu-startup-diag、gic-diag |
+| **`ios-poplar`** (wakanameko) | **Xperia XZ1 = lilac 亲兄弟，同 MSM8998/SoMC/FB@0x9d400000** | 89 补丁含 poplar 专属 0082-0086：**0082 实锤 Kryo280=ARMv8.0 无 LSE/PAN/UAO**（sweet 假设 8.1+，poplar 改了 PAN 使用处）、0083 commpage 无 CASA 的 acquire CAS、0084 只用 Gold 簇 MPIDR 0x100-103 作 CPU0-3、0085 CPU 5s tick 诊断线程、0086 GIC redistributor 取证（他们卡在 XNU 早期 hang+GICR 未动——和我们同阶段互查） |
 | **`ios-sweet-sagit`** | Mi6 MSM8998 | QUP5 触摸已实机（§14） |
-| **`ios-sailfish`** (joranv1, 79★) | Pixel 2016 SD821 | **187 补丁=最多**。Adreno 530 上 Mesa GPU 已跑通+WiFi+真电量+20s到锁屏，2GB RAM——**A530 是 A540 同代，GPU 路线最近参照** |
+| **`ios-sailfish`** (joranv1, 79★) | Pixel 2016 SD821 | **187 补丁=最多**。Adreno 530 上 Mesa GPU 已跑通+WiFi+真电量+20s到锁屏，2GB RAM——**A530 是 A540 同代，GPU 路线最近参照**。内核侧 A5xx bring-up 序列全在补丁里：0119 GPU power probe→0120 CP test→0121 SMMU identity→0156 VM pad scratch；userspace 侧 `tools/sweetgl/`（mesa-setup.sh+mesa.patch=iOS 交叉构建）、`tools/sweetgpu-ca`（CoreAnimation 直渲）、`tools/gpu-shaders`——**A540 照这个顺序抄** |
 | **`Bergamota`** (ry-diffusion, 54★) | Poco F1 SD845 | 161 补丁，**iOS 18.7.8 (iPhone XR userland)**！gpu/ 目录含 eagl（OpenGL ES over Mesa freedreno）、metal。自研 zap-split/adt-gpufw 工具链把 a630_zap 注入 ADT |
 | **`ios-fajita`** | OnePlus 6T SD845 | 84=vanilla（早期） |
 | **`ios-s9`** (syncmodz) | Galaxy S9 SD845 | 104 补丁，含 GPU study commit（注意：con.c/h 是 Windows 保留名签不出，WSL 里可取） |
