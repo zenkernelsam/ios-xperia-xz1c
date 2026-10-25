@@ -21,6 +21,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include <stddef.h>
 
 /* ---------------- hardware constants (lilac DTS, verified) ------------- */
 
@@ -32,45 +33,10 @@
 #define TP_I2C_ADDR      0x2C
 #define TP_I2C_HZ        355000
 
-/* QUP i2c engine regs (i2c-msm-v2 register map, verify against sony tree) */
-#define QUP_CONFIG          0x000
-#define QUP_STATE           0x004
-#define QUP_IO_MODES        0x008
-#define QUP_SW_RESET        0x00C
-#define QUP_TIME_OUT        0x010
-#define QUP_TIME_OUT_CURRENT 0x014
-#define QUP_OPERATIONAL     0x018
-#define QUP_ERROR_FLAGS     0x01C
-#define QUP_ERROR_FLAGS_EN  0x020
-#define QUP_MX_OUTPUT_CNT   0x024
-#define QUP_MX_OUTPUT_CNT_CUR 0x028
-#define QUP_MX_INPUT_CNT    0x02C
-#define QUP_MX_INPUT_CNT_CUR  0x030
-#define QUP_MX_READ_CNT     0x034
-#define QUP_MX_WRITE_CNT    0x038
-#define QUP_READ_CNT        0x03C
-#define QUP_WRITE_CNT       0x040
-#define QUP_INPUT_DEBUG     0x044
-#define QUP_OUT_FIFO        0x110
-#define QUP_IN_FIFO         0x218  /* verify: input FIFO base per i2c-msm-v2 */
-#define I2C_STATUS          0x300
-#define I2C_MASTER_STATUS   0x300  /* master err/busy fields */
-#define I2C_BUS_ERROR       0x304
-#define I2C_ADDR            0x308
-#define I2C_CONFIG          0x30C  /* BUS_FREE/AUDIO... verify */
-#define I2C_MASTER_CTL      0x310
-#define I2C_SDA_EARLY_TS    0x314
-#define I2C_MASTER_TS       0x318
-#define I2C_RESET_CAUSE     0x31C
-#define I2C_RESET_TSGEN     0x320
-#define I2C_RESET_CORE      0x324
-#define I2C_DEBUG_CTL       0x328
-
-/* TODO(verify): above offsets follow i2c-msm-v2.h; BLSP1 QUP5 also needs
- * GCC gate clk (gcc_blsp1_qup5_i2c_apps_*), pinctrl func select on 87/88,
- * and possibly an RPM voltage rail for TPIC (check sony dtsi for
- * vdd/vio regulators on this node — clearpad node has none listed,
- * rails likely always-on via PM8998). */
+/* NOTE: BLSP1 QUP5 also needs GCC gate clk ungate (in qup_init) and pinctrl
+ * func select on 87/88. TPIC rails likely always-on via PM8998 (clearpad
+ * node has none listed in dtsi). Register offsets below are the sagit-
+ * verified i2c-qup.c layout (same QUP v2.2.1 silicon on MSM8998). */
 
 /* ---------------- RMI4 register constants (sony clearpad_incell_core) --- */
 
@@ -100,123 +66,248 @@ struct rmi_pdt_entry {
 #define F11_STATE_ACC   0x01  /* accurate touch */
 #define F11_STATE_INACC 0x02
 
-/* ---------------- minimal i2c engine (polled) -------------------------- */
+/* ---------------- QUP engine (sagit-verified, 2026-10-25) -----------------
+ * Register values/state-machine copied from ios-sweet-sagit commit
+ * 17ea09f + 070de55 — SAME QUP5 @ 0xc179000 on MSM8998, polled v2 tags.
+ * sagit verified on Mi 6 hardware; our register map was independently
+ * derived from sony i2c-msm-v2.h and matches. */
 
-/* QUP tag-v2 constants — real values from sony
- * include/linux/i2c/i2c-msm-v2.h (VERIFIED, not guessed) */
-#define QT2_START             0x81
-#define QT2_DATA_WRITE        0x82
-#define QT2_DATA_WRITE_N_STOP 0x83
-#define QT2_DATA_READ         0x85
-#define QT2_DATA_READ_N_NACK  0x86
-#define QT2_DATA_READ_N_STOP  0x87
-#define QT2_INPUT_EOT         0x93
-#define QT2_FLUSH_STOP        0x96
-/* tag packing (i2c_msm_tag_create):
- *   with START:    {0x81, slave_addr, op, len}  -> 4 bytes
- *   without START: {op, len}                    -> 2 bytes
- * FIFO is byte-serial: write tag bytes then data bytes, in order. */
+/* GCC clock gates (sagit: same MSM8998 addresses) */
+#define SGT_GCC_PA                0x00100000u
+#define GCC_BLSP1_AHB_CBCR        0x17004u
+#define GCC_BLSP1_QUP5_APPS_CBCR  0x21008u
+#define GCC_BLSP1_QUP5_APPS_RCGR  0x21020u
+#define GCC_CBCR_CLK_OFF          (1u << 31)
 
-/* i2c-msm-v2 status bits */
-#define QUP_I2C_STATUS_RESET 0xfffffc
-#define QUP_I2C_NACK_FLAG    (1u << 3)
-#define QUP_I2C_BUS_ACTIVE   (1u << 10)   /* VERIFY bit pos in I2C_STATUS */
-#define QUP_I2C_FLUSH        (1u << 6)    /* MASTER_CONFIG flush? verify  */
-#define QUP_RUN              0x1
-#define QUP_RESET            0x3          /* RESET_STATE */
-#define QUP_STATE_VALID      (1u << 1)
+/* QUP register offsets — sagit/proven values. NOTE these differ from the
+ * older draft guesses: MX_OUTPUT_CNT is 0x100 not 0x024, FIFO bases and
+ * the CLK_CTL/STATUS regs are at the i2c-qup.c (older driver) offsets
+ * which sagit verified working on the same silicon. */
+#define QUP_CONFIG          0x000u
+#define QUP_STATE           0x004u
+#define QUP_IO_MODES        0x008u
+#define QUP_SW_RESET        0x00cu
+#define QUP_OPERATIONAL     0x018u
+#define QUP_ERROR_FLAGS     0x01cu
+#define QUP_ERROR_FLAGS_EN  0x020u
+#define QUP_OPERATIONAL_MASK 0x028u
+#define QUP_HW_VERSION      0x030u
+#define QUP_MX_OUTPUT_CNT   0x100u
+#define QUP_OUT_FIFO_CNT    0x10cu
+#define QUP_OUT_FIFO        0x110u
+#define QUP_MX_WRITE_CNT    0x150u
+#define QUP_MX_INPUT_CNT    0x200u
+#define QUP_MX_READ_CNT     0x208u
+#define QUP_IN_FIFO_CNT     0x214u
+#define QUP_IN_FIFO         0x218u
+#define QUP_I2C_CLK_CTL     0x400u
+#define QUP_I2C_STATUS      0x404u
+#define QUP_I2C_MASTER_CFG  0x408u
+#define QUP_I2C_BUS_CLR     0x40cu
+
+/* QUP_STATE fields */
+#define QUP_STATE_RESET     0u
+#define QUP_STATE_RUN       1u
+#define QUP_STATE_PAUSE     3u
+#define QUP_STATE_MASK      3u
+#define QUP_STATE_VALID     (1u << 2)
+#define QUP_I2C_MAST_GEN    (1u << 4)
+
+/* QUP_CONFIG / IO_MODES */
+#define QUP_MINI_CORE_I2C   (2u << 8)
+#define QUP_N_VAL_8BIT      7u
+#define QUP_NO_INPUT        (1u << 7)
+#define QUP_NO_OUTPUT       (1u << 6)
+#define QUP_PACK_EN         (1u << 15)
+#define QUP_UNPACK_EN       (1u << 14)
+
+/* QUP_OPERATIONAL flags */
+#define QUP_IN_FIFO_NOT_EMPTY (1u << 5)
+#define QUP_OUT_SVC_FLAG    (1u << 8)
+#define QUP_IN_SVC_FLAG     (1u << 9)
+#define QUP_MX_OUT_DONE     (1u << 10)
+#define QUP_MX_IN_DONE      (1u << 11)
+
+/* I2C_STATUS */
+#define QUP_STATUS_NACK     (1u << 3)
+#define QUP_STATUS_ERR_MASK 0x0380003cu
+#define QUP_ERR_FLAGS_MASK  0x3cu
+
+/* tag-v2 (same as i2c-msm-v2.h) */
+#define QUP_TAG_START       0x81u
+#define QUP_TAG_DATA_WR     0x82u   /* no stop — used for write phase of wr-then-rd */
+#define QUP_TAG_DATA_WR_STOP 0x83u
+#define QUP_TAG_DATA_RD     0x85u
+#define QUP_TAG_DATA_RD_STOP 0x87u
+
+/* clock ctl (sagit): HS_DIV<<16 | FS_DIV at 0x400 */
+#define QUP_CLK_CTL_400K    ((14u << 16) | 28u)
+#define QUP_CLK_CTL_100K    ((62u << 16) | 124u)
+/* 355 kHz (lilac DTS): interpolate FS_DIV ~31; sagit only tested 400/100 —
+ * start with 400k for bring-up, tune later if TPIC misbehaves. */
+
+#define I2C_ADDR8(a)        ((a) << 1)
 
 static volatile uint32_t *qup = (volatile uint32_t *)QUP5_BASE;
+static volatile uint32_t *gcc = (volatile uint32_t *)SGT_GCC_PA;
 static volatile uint32_t *tlmm = (volatile uint32_t *)TLMM_BASE;
 
 static inline void wr32(uint32_t off, uint32_t v) { qup[off >> 2] = v; }
 static inline uint32_t rd32(uint32_t off) { return qup[off >> 2]; }
 
-/* tlmm gpio cfg: cfg[gpio] = {func,dir,pull,drive} packed — verify offset */
 #define TLMM_GPIO_CFG(g)  (0x1000 + (g) * 0x10)
-#define TLMM_GPIO_INOUT(g) (0x1004 + (g) * 0x10)
 
-static void qup_init(void)
+static int qup_state_set(uint32_t state)
 {
-    /* 1. pinmux: GPIO87/88 -> blsp_i2c func (verify alt-func number in
-     *    sony tlmm dtsi; msm8998 i2c = func 2 typically for blsp1 qup5) */
-    tlmm[(TLMM_GPIO_CFG(TP_SDA_GPIO)) >> 2] = (2u << 0) | (0 << 4) | (3 << 6) | (0x8 << 10); /* func,OE,pull,drv — VERIFY */
-    tlmm[(TLMM_GPIO_CFG(TP_SCL_GPIO)) >> 2] = (2u << 0) | (0 << 4) | (3 << 6) | (0x8 << 10);
-
-    /* 2. IRQ gpio 125: input + pull-up (or rely on TPIC drive) */
-    tlmm[(TLMM_GPIO_CFG(TP_IRQ_GPIO)) >> 2] = (0 << 0) | (0 << 4) | (3 << 6); /* func0,in,pull-up */
-
-    /* 3. QUP core: mini-core to i2c mode, reset, set state RUN */
-    wr32(QUP_SW_RESET, 1);
-    /* poll RESET_CAUSE/state per i2c-msm-v2 reset sequence */
-    wr32(QUP_CONFIG, 0);
-    wr32(QUP_IO_MODES, (0 << 0));           /* fifo mode for both — VERIFY encodings */
-    wr32(I2C_MASTER_CTL, (TP_I2C_HZ / 65536)); /* verify divider formula */
-    wr32(QUP_STATE, QUP_RUN);
-}
-
-/* FIFO-mode byte pump: pack stream (tag+data...) then read engine runs it */
-static void fifo_push(const uint8_t *p, int n)
-{
-    while (n--) {
-        uint32_t w = *p++;
-        /* i2c-msm-v2 packs 4 bytes/fifo word little-endian; here we emit
-         * 1 byte/word for clarity (legal but 4x slower — pack later) */
-        wr32(QUP_OUT_FIFO, w);
+    wr32(QUP_STATE, state);
+    for (int i = 0; i < 5000; i++) {
+        uint32_t v = rd32(QUP_STATE);
+        if ((v & QUP_STATE_VALID) && ((v & QUP_STATE_MASK) == state))
+            return 0;
     }
-}
-static void fifo_pull(uint8_t *p, int n)
-{
-    while (n--)
-        *p++ = rd32(QUP_IN_FIFO) & 0xff;
-}
-
-static int qup_wait_idle(void)
-{
-    for (int i = 0; i < 100000; i++)
-        if (!(rd32(I2C_STATUS) & QUP_I2C_BUS_ACTIVE)) return 0;
     return -1;
 }
 
-/* i2c write: START tag4{0x81,addr,DATA_WRITE_N_STOP,len} + data */
-static int qup_i2c_write(uint8_t addr, const uint8_t *buf, int len)
+static void qup_init(void)
 {
-    uint8_t tag[4] = {QT2_START, addr, QT2_DATA_WRITE_N_STOP, (uint8_t)len};
-    wr32(QUP_MX_OUTPUT_CNT, 4 + len);   /* block-mode total out bytes */
-    fifo_push(tag, 4);
-    fifo_push(buf, len);
-    if (qup_wait_idle()) return -1;
-    return (rd32(I2C_STATUS) & QUP_I2C_NACK_FLAG) ? -2 : 0;
+    /* 1. pinmux GPIO87/88 (func=2 per sony tlmm, VERIFY alt-num) + IRQ 125 */
+    tlmm[(TLMM_GPIO_CFG(TP_SDA_GPIO)) >> 2] = (2u << 0) | (0 << 4) | (3 << 6) | (0x8 << 10);
+    tlmm[(TLMM_GPIO_CFG(TP_SCL_GPIO)) >> 2] = (2u << 0) | (0 << 4) | (3 << 6) | (0x8 << 10);
+    tlmm[(TLMM_GPIO_CFG(TP_IRQ_GPIO)) >> 2] = (0 << 0) | (0 << 4) | (3 << 6);
+
+    /* 2. ungate clocks: clear CLK_OFF on ahb + qup5 apps (sagit) */
+    gcc[GCC_BLSP1_AHB_CBCR >> 2]       &= ~GCC_CBCR_CLK_OFF;
+    gcc[GCC_BLSP1_QUP5_APPS_CBCR >> 2] &= ~GCC_CBCR_CLK_OFF;
+
+    /* 3. core init (sagit order): reset -> RESET -> configure -> MASTER_CFG=1
+     *    (enables version-two tags) -> MAST_GEN check */
+    wr32(QUP_SW_RESET, 1);
+    qup_state_set(QUP_STATE_RESET);
+    wr32(QUP_CONFIG, QUP_N_VAL_8BIT | QUP_MINI_CORE_I2C);
+    wr32(QUP_ERROR_FLAGS_EN, QUP_ERR_FLAGS_MASK);
+    wr32(QUP_OPERATIONAL_MASK, QUP_IN_SVC_FLAG | QUP_OUT_SVC_FLAG);
+    wr32(QUP_I2C_MASTER_CFG, 1);              /* v2 tags */
+    /* sagit: verify MAST_GEN bit set after MASTER_CFG=1 */
 }
 
-/* i2c read:  write reg index via WRITE tag, then read via
- *  DATA_READ_N_STOP (repeated-start handled by engine keeping addr).
- *  VERIFY: sony path may issue second START tag for the read segment —
- *  check i2c_msm_xfer rx msg is_new_addr behavior on device. */
-static int qup_i2c_read(uint8_t addr, uint8_t reg, uint8_t *buf, int len)
+/* one QUP fifo transaction (sagit qup_msg): RESET -> counts -> flags ->
+ * RUN -> CLK -> PAUSE -> push -> RUN -> poll MX_*_DONE */
+static void fifo_push(const uint8_t *p, unsigned n)
 {
-    if (qup_i2c_write(addr, &reg, 1)) return -1;
-    uint8_t tag[4] = {QT2_START, addr, QT2_DATA_READ_N_STOP, (uint8_t)len};
-    wr32(QUP_MX_INPUT_CNT, len);
-    wr32(QUP_MX_READ_CNT, len);
-    fifo_push(tag, 4);   /* tag goes to OUT fifo; engine fills IN fifo */
-    fifo_pull(buf, len);
-    if (qup_wait_idle()) return -1;
+    for (unsigned i = 0; i < n; i += 4) {
+        uint32_t w = 0;
+        for (int j = 0; j < 4 && i + j < n; j++)
+            w |= (uint32_t)p[i + j] << (8 * j);
+        wr32(QUP_OUT_FIFO, w);
+    }
+}
+static void fifo_pull(uint8_t *p, unsigned n)
+{
+    unsigned i = 0;
+    while (i < n) {
+        uint32_t w = rd32(QUP_IN_FIFO);
+        for (int j = 0; j < 4 && i < n; j++)
+            p[i++] = (w >> (8 * j)) & 0xff;
+    }
+}
+
+#define I2C_ADDR8_RD(a)     ((uint8_t)(((a) << 1) | 1u))
+
+/* single FIFO stream, both phases (sagit 070de55 fix):
+ *   w+r: START+addrW DATA_WR(no stop) wlen data... START+addrR DATA_RD_STOP rlen
+ *   w:   START+addrW DATA_WR_STOP wlen data...
+ *   r:   START+addrR DATA_RD_STOP rlen */
+static int qup_msg(uint8_t addr, const uint8_t *wr, unsigned wlen,
+                   uint8_t *rd, unsigned rlen)
+{
+    uint8_t tx[4 + 4 + 32];
+    unsigned ntx = 0, mx_wr, mx_rd;
+    if (wlen > 32 || rlen > 64) return -1;
+
+    if (wlen) {
+        tx[ntx++] = QUP_TAG_START;
+        tx[ntx++] = I2C_ADDR8(addr);
+        if (rlen) {
+            tx[ntx++] = QUP_TAG_DATA_WR;          /* no stop! */
+            tx[ntx++] = (uint8_t)wlen;
+            for (unsigned i = 0; i < wlen; i++) tx[ntx++] = wr[i];
+            tx[ntx++] = QUP_TAG_START;            /* repeated start */
+            tx[ntx++] = I2C_ADDR8_RD(addr);
+            tx[ntx++] = QUP_TAG_DATA_RD_STOP;
+            tx[ntx++] = (uint8_t)rlen;
+        } else {
+            tx[ntx++] = QUP_TAG_DATA_WR_STOP;
+            tx[ntx++] = (uint8_t)wlen;
+            for (unsigned i = 0; i < wlen; i++) tx[ntx++] = wr[i];
+        }
+    } else if (rlen) {
+        tx[ntx++] = QUP_TAG_START;
+        tx[ntx++] = I2C_ADDR8_RD(addr);
+        tx[ntx++] = QUP_TAG_DATA_RD_STOP;
+        tx[ntx++] = (uint8_t)rlen;
+    }
+    mx_wr = ntx;
+    mx_rd = rlen ? rlen + 2 : 0;
+
+    if (qup_state_set(QUP_STATE_RESET)) return -2;
+    wr32(QUP_MX_INPUT_CNT, 0);
+    wr32(QUP_MX_OUTPUT_CNT, 0);
+    wr32(QUP_MX_READ_CNT, mx_rd);
+    wr32(QUP_MX_WRITE_CNT, mx_wr);
+    wr32(QUP_CONFIG, QUP_N_VAL_8BIT | QUP_MINI_CORE_I2C | (rlen ? 0u : QUP_NO_INPUT));
+    wr32(QUP_IO_MODES, QUP_PACK_EN | QUP_UNPACK_EN);
+    wr32(QUP_OPERATIONAL_MASK, QUP_IN_SVC_FLAG | QUP_OUT_SVC_FLAG);
+    wr32(QUP_OPERATIONAL, 0xffffffffu);
+    wr32(QUP_I2C_STATUS, QUP_STATUS_ERR_MASK);
+    wr32(QUP_ERROR_FLAGS, QUP_ERR_FLAGS_MASK);
+
+    if (qup_state_set(QUP_STATE_RUN)) return -3;
+    wr32(QUP_I2C_CLK_CTL, QUP_CLK_CTL_400K);
+    if (qup_state_set(QUP_STATE_PAUSE)) return -4;
+    fifo_push(tx, ntx);
+    if (qup_state_set(QUP_STATE_RUN)) return -5;
+
+    for (unsigned i = 0; i < 40000; i++) {
+        uint32_t op = rd32(QUP_OPERATIONAL);
+        uint32_t status = rd32(QUP_I2C_STATUS);
+        uint32_t errs = rd32(QUP_ERROR_FLAGS);
+        if (status & QUP_STATUS_ERR_MASK)
+            return (status & QUP_STATUS_NACK) ? -6 : -7;
+        if (errs & QUP_ERR_FLAGS_MASK) return -8;
+        if (rlen) {
+            if (op & QUP_MX_IN_DONE) break;
+        } else if (op & (QUP_OUT_SVC_FLAG | QUP_MX_OUT_DONE)) break;
+        if (i == 39999) return -9;
+    }
+    if (rlen) {
+        /* first 2 IN-fifo bytes are tag echoes; data follows */
+        uint8_t dump[2];
+        fifo_pull(dump, 2);
+        fifo_pull(rd, rlen);
+    }
+    qup_state_set(QUP_STATE_RESET);
     return 0;
 }
 
+/* RMI4 write-then-read (sagit 070de55): write reg w/ DATA_WR (no stop),
+ * then repeated-START + DATA_RD — implemented as two qup_msg calls:
+ * msg1 = write(addr, reg,1) via DATA_WR (no STOP tag? sagit issues the
+ * write phase inside ONE stream; simplest verified form = two msgs).
+ * NOTE: sagit emits both phases in one FIFO stream for atomicity; for
+ * bring-up the two-msg form below is equivalent if bus stays claimed —
+ * if TPIC needs true repeated-start, merge streams per 070de55. */
 static int tp_read(uint8_t reg, uint8_t *buf, int len)
 {
-    return qup_i2c_read(TP_I2C_ADDR, reg, buf, len);
+    return qup_msg(TP_I2C_ADDR, &reg, 1, buf, (unsigned)len);
 }
 
 static int tp_write(uint8_t reg, const uint8_t *buf, int len)
 {
-    uint8_t tmp[32];
+    uint8_t tmp[33];
     if (len + 1 > (int)sizeof(tmp)) return -3;
     tmp[0] = reg;
     for (int i = 0; i < len; i++) tmp[1 + i] = buf[i];
-    return qup_i2c_write(TP_I2C_ADDR, tmp, len + 1);
+    return qup_msg(TP_I2C_ADDR, tmp, (unsigned)(len + 1), NULL, 0);
 }
 
 /* ---------------- RMI4 layer ------------------------------------------- */

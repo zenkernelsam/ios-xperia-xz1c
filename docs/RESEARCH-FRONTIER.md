@@ -318,3 +318,46 @@ XZ1C 有 G8441（国际）与 SO-02K（Docomo）两个 SKU。
 `research/firmware-extract/fw/modem/image/`，部署时
 对照机器 persist/NV 或先两个都喂（错选只影响 RF 校准精度，
 不影响链路建立）。
+
+## 13. Mac 侧已剥壳物资（2026-10-25 10:35）
+
+`~/Desktop/ios-assets/` 上 ready-to-use：
+- `ramdisk/ramdisk-{a,b}.raw`——IM4P 壳已剥、Fletcher64 校验通过，
+  mount 验证含 `sbin/launchd`/`mount_hfs`/`fsck_hfs`（真 iOS userspace）
+- `iosroot-16.7.16.cdr`——UDTO 剥壳后的完整 GPT 盘
+- `iosroot-hfs.raw`——**纯 HFS 分区数据**（16.1GB），直接 dd 到 userdata
+- `kernelcache.release.iphone10b.macho`——IM4P→LZFSE 解出的 49MB
+  真 iPhoneX 内核，可用 IDA/binja 对比我们的移植
+
+ramdisk 是 mountroot 阶段的"零写盘路线"关键弹药。
+
+## 14. 仓库新货（2026-10-25 拉取）
+
+**⭐ 重大：ios-sweet-sagit 今天提交 Mi6 触摸 bring-up（同 QUP5@0xc179000）**
+- `xnu/patches/0121-sagit-touch-i2c.patch`（1111 行）：MSM8998 QUP
+  v2.2.1 polled I2C 全实现 + DSX RMI4 PDT/F01/F12 + 10ms 上报 +
+  `sweet_hid_touch` 桥接 + 锁屏合成手势注入（5844038/d02a4d8）
+- **我骨架的所有 VERIFY 项已被他们实机解决**：
+  - GCC 时钟门：`GCC_BLSP1_AHB_CBCR@0x17004` + `GCC_BLSP1_QUP5_APPS_CBCR@0x21008`
+  - 寄存器布局用 i2c-qup.c 版本（MX_OUTPUT_CNT@0x100，不是 i2c-msm-v2 的 0x024）
+  - `QUP_IO_MODES = PACK_EN|UNPACK_EN`（bit15|14）
+  - `QUP_I2C_CLK_CTL@0x400`：`400K=(14<<16)|28`、`100K=(62<<16)|124`
+  - `QUP_I2C_MASTER_CFG=1` 启用 v2 tag + `MAST_GEN` 校验
+  - 完整状态机：SW_RESET→RESET→cfg→RUN→CLK→PAUSE→push→RUN→poll
+  - write-then-read（070de55）：单 FIFO 流 `START+addrW DATA_WR(不停)
+    data... START+addrR DATA_RD_STOP len`
+- 骨架已按 sagit 版重写（touch-skeleton 仍是 F11；他们 Mi6 是 F12，
+  RMI4 框架相同但数据布局不同——**我们用 F11 因为 Sony clearpad
+  dtsi/驱动明确是 F11**）
+
+**hackios-xnu-userland 开源**（c5c92f6，10-25）：
+- `ios165/fetch-from-ipsw.py`（IPSW 提取脚本）
+- `ios165/mkvarskel.py`（/var skeleton 构建）
+- `jb-preinstall.py`（jailbreak 预装）
+- `prebuilt/userland`（可用 binaries 参考）
+
+**xnu_kext_mi6**：远程 404（可能被私有/删除），本地保留。
+
+**UniXNU-sheng 新提交**：ADSP 固件启动（2fa7290，从固件分区 boot
+DSP+IPC router）、电量计 dual-gauge 修复、thermal probe——
+电池/ADSP 子系统成熟度信号。
