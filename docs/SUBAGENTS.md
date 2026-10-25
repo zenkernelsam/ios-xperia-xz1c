@@ -75,3 +75,10 @@
 - 前次 GPU 固件/vendor/GPT 成果在 commit 42910ce+a7e8e1c。
 - 剩余并行候选：rootfs 写盘预案细化；F01 唤醒+F34 序列细化；
   UniXNU 4K 补丁 vs sagit 0118 对照分析（主线可能需要）。
+
+## 2026-10-25 12:30 检查点3
+- research 全仓拉新完毕。sagit 触摸补丁是今日最大收获（同 QUP5）。
+- 触摸骨架已升级成 sagit 验证版（commit ab21a07）。
+- Mac 物资全就绪：ramdisk-a/b.raw、iosroot-hfs.raw（HX 已验）、
+  kernelcache macho、iosroot-16.7.16.cdr。
+- 主线正在 flash userdata 写 iOS rootfs（隔壁在干）。
