@@ -25,6 +25,22 @@
   复位回 fastboot（不再跑 UFS 探测后进 Android）。内核 probe 入口也写
   一次 `0x88f=0x06`。任何复位都回 fastboot。
 
+## 2026-10-27 夜间（USB CDC 专项）
+- USB CDC（vermeer -> lilac）代码已进内核树：`bsd/dev/vermeer_usb_debug.c`、
+  `vermeer_debug.c`、`vermeer_log_ring.h`、`vermeer_usb_protocol.h`；
+  boot-arg `lilac_usbdbg=1`，默认关闭。DWC3 0x0A800000，无 SMMU，
+  DMA 直打 PA（16KB 对齐）。
+- 实机结果：halt/reset/event 地址都过，**epcmd 超时**；对焦后读到
+  `gctl=00112000 dctl=00080000 dsts=00120030 phycfg=00002500`，
+  DCTL.RUN 置不上（GCTL 是 OTG）。已试 CSFTRST 清除、GCTL
+  CoreSoftReset、完全不复位接管，均失败。**暂停**，下一步做 QUSB2
+  PHY（0x0C012000）/role 专项。
+- v206 的 PON `last step=0xb8`：A540 start（含 GPMU、非安全 CB0）
+  完整跑完，断电发生在之后。
+- 早上：手机在 fastboot。boot `shim-4k-v210-gpu-morning-boot-gzdtb.img`
+  （level 12 + GPMU + pause 150），`/cam/1/af` 对焦后抓 60–140s，
+  读 `a540 gpmu ready` / `consumed` / `post-gpmu` / `diag`。
+
 ## 待测镜像（Windows 仓根目录）
 1) `shim-4k-v198c-serr-boot-gzdtb.img`（level 13，非安全 CB0，安全 shim）
 2) `shim-4k-v200-gpmu-before-wait-boot-gzdtb.img`（level 14，GPMU 先释放）
