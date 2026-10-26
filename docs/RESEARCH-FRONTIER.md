@@ -557,3 +557,21 @@ UniXNU docs/devices 新增 SM8750 设备仓（均已 clone）：
 - `UniXNU`：+272，shader cache keying、union lookup、USB terminal
   capture、umi 触摸验证标记
 - `hackios-xnu-kernel`：+630（ramfb panel height、LICENSE、合并 PR）
+
+## 18. GPU 路线决策记录（2026-10-26，方向评审）
+
+**隔壁主线已定：sailfish 路线**（freedreno GLES + sweetgl.dylib，
+CA 切 GLES）——对 A540 是正确选择，理由：
+
+| 路线 | 实证 | 对 A540 |
+|---|---|---|
+| freedreno GLES | sailfish A530✅/topaz A610/Bergamota A630 | 唯一同代实证 |
+| Metal→Vulkan→Turnip | UniXNU A740✅/flame A640 | Turnip a5xx 支持弱（主力 a6xx+/a7xx+）|
+| AIR→NIR（hackios） | 321/456 shader 已翻译，_MTLDevice 未开工 | 远期补充 |
+
+- **内核层共享**：GPU power/CP ring/PM4/zap/SMMU 两条路线都要，
+  先 GLES 不浪费工作
+- **A830（Y700）才是 Metal→Vulkan 的主场**：gen8 同 A740，UniXNU
+  栈+myron a8xx 寄存器表对口，Turnip a8xx 活跃
+- 远期折中：hackios AIR→NIR 成熟后可在不换 KMD 的情况下给 A540
+  补 Metal shader 能力
