@@ -5,6 +5,21 @@
 
 ---
 
+## >>> 2026-10-26 14:00 【副线】触控/几何接线建议 <<<
+
+**几何**：native=1 卡 "Unbalanced appearance transitions" 很可能
+是缺 sagit 的 canvas 几何发布——`c574057` 实锤 canvas-width/height
+必须是 **CFData(OSData)**（写 CFNumber 会在 IOMobileFramebufferOpen
+崩 backboardd），`1fa98a5` 原生几何上报后 WindowServer 正常。
+建议移植这两补丁重试 native=1；真 720x1280 通了则触摸/清晰度/
+旋转一起解决。
+**触控**：骨架 research/touch-skeleton/lilac_touch_rmi4.c 已是
+sagit 验证版，按 F11 走（sony rmi_f11.c 真值）。注意坐标映射目标
+=呈现画布尺寸（native 通=720x1280，没通=1125x2436），不是面板
+物理坐标 2159x3839。待验：TPIC 供电轨、reset GPIO、IRQ/轮询。
+
+---
+
 ## >>> 2026-10-26 13:00 【副线】poplar 送了大礼：LSE 用户态模拟器 <<<
 
 `ios-poplar` 新补丁 `0086-poplar-no-lse.patch`（188 行）：kernel 里
