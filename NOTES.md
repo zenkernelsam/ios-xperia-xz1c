@@ -51,6 +51,8 @@
 - 大件临时产物在 `Xperia/_backup-temp/`（userdata/iosroot raw + iosparts，
   未入 git）。
 
+- v204（level 12 + GPMU + 诊断）：第二次实机运行存活 **>7 分钟**，未回 fastboot、未见 panic；画面停在 SWEET GPU 日志。此前一次同镜像曾出现 kernel data abort（pc/far 均为内核地址），需继续确认是否为竞态。相机改用 MJPEG 流抽帧（research/grab_stream.sh）。
+
 ## 下一步
 1) 相机恢复后：boot v200（或 v201），在 55–75s 读到 `a540` 日志，
    确认 `secure cb skipped`、`gpmu ready=1`、`consumed`。
