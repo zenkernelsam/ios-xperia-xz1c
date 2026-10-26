@@ -41,6 +41,20 @@
   （level 12 + GPMU + pause 150），`/cam/1/af` 对焦后抓 60–140s，
   读 `a540 gpmu ready` / `consumed` / `post-gpmu` / `diag`。
 
+### 2026-10-27 02:20 USB CDC 打通（COM17，内核 console）
+- 最后一块拼图 = **QUSB2 PHY 上电**：ABL 在 fastboot boot 后留下
+  PWR_CTRL1(0x210).POWER_DOWN=1；需写 (pwr&~1)|CLAMP_N_EN(2)，等
+  PLL_STATUS(0x1a0) 的 lock 位。QSCRATCH GENERAL_CFG(0x0A8F8808)
+  需置 bit8 → 置 bit0|bit3 → **再清 bit8**（PIPE clock 选 UTMI）。
+- 实机：`lilac_usbdbg=1` 启动后 Windows 出现 COM17，读到从
+  Darwin banner 开始的完整 console（161KB），含 SWEET GPU/SPMI 与
+  VERMEER USB 行；DWC3 id=5533300a、connected speed=0。
+- 读法：`research/read_com.ps1`（1MB ReadBufferSize、DTR）。复位后
+  fastboot USB 需 1–2 分钟再枚举，属正常。
+- 明早：boot `shim-4k-v211-gpu-usb-boot-gzdtb.img`（level 12 +
+  GPMU + pause 150 + `lilac_usbdbg=1`），直接读 COM 日志里的
+  `a540 gpmu ready` / `consumed` / `post-gpmu` / `diag`，不再依赖相机。
+
 ## 待测镜像（Windows 仓根目录）
 1) `shim-4k-v198c-serr-boot-gzdtb.img`（level 13，非安全 CB0，安全 shim）
 2) `shim-4k-v200-gpmu-before-wait-boot-gzdtb.img`（level 14，GPMU 先释放）
