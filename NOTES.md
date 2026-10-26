@@ -55,6 +55,17 @@
   GPMU + pause 150 + `lilac_usbdbg=1`），直接读 COM 日志里的
   `a540 gpmu ready` / `consumed` / `post-gpmu` / `diag`，不再依赖相机。
 
+### 2026-10-27 03:04 事故：A540 测试 → E1F4 充电模式
+- v217（level 12 + GPMU + `sweetgpuhalt` halt-after-b8 + USB）实机
+  触发**断电**，手机进入 E1F4（VID_0FCE&PID_E1F4，黑屏+绿灯），
+  需人工按电源键；不是复位，自动回 fastboot 机制无效。
+- 结论：**A540/GPMU 路径仍可能断电**；halt 放 b8 后也没能避免。
+  - level ≥ 12 的任何镜像**不得无人值守**运行；
+  - levels 7/9/10 + USB 日志已验证安全；
+  - 断电自动恢复（RTC/PON auto-power）仍未解决。
+- 早上：按电源键开机；若进 Android，电源+音量上 ~10s 回 fastboot；
+  然后在有人值守下测 v215（level 12 + GPMU + USB），随时准备按键。
+
 ## 待测镜像（Windows 仓根目录）
 1) `shim-4k-v198c-serr-boot-gzdtb.img`（level 13，非安全 CB0，安全 shim）
 2) `shim-4k-v200-gpmu-before-wait-boot-gzdtb.img`（level 14，GPMU 先释放）
