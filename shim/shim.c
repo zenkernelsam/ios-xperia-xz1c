@@ -1531,6 +1531,16 @@ void shim_main(uint64_t dtb)
 	cp_mark('C','3');
 	con_str("LOADER", why);
 	con_skip();
+	/* SHIM_ERR_FASTBOOT: never fall back to Android when the payload is
+	 * missing or rejected; park the next boot in fastboot instead of
+	 * running the long UFS probe and rr_route(normal boot). */
+	spmi_write_apid(4, 0x8f, 0x06);
+	__asm__ volatile("dsb sy" ::: "memory");
+	delay_ms(200);
+	smc(PSCI_SYSTEM_RESET, 0, 0, 0);
+	wdt_arm(2, 3);
+	for (;;)
+		__asm__ volatile("wfe");
 
 	/* No payload: probe the internal UFS while the MMU is still off. */
 	con_hex("MMFR0", rsr("id_aa64mmfr0_el1"));
