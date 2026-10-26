@@ -103,3 +103,11 @@
   UniXNU 新 kit：Adreno740/AdrenoMetal/AirNir/ShengUfs/DarwinBoot。
 - 结论：lilac 未来也可走 UEFI（MSM8998 已被 cheeseburger 证明）；
   Y700 Gen4 UEFI 底座 = mu-silicium/dodgePkg。
+
+## 2026-10-26 13:00 检查点6（第三波 pull+clone）
+- 主线已上 iOS Hello 屏（GUI 渲染+合成上滑）；隔壁在做 A540 GPU
+  （sailfish 路线：PM8005 S1→GPUCC→CP 直启→SMMU→Mesa FD540）。
+- poplar 给出 LSE 用户态模拟补丁（0086，MSM8998 必备）。
+- 新 clone：UniXNU-dada/erhai/hummer/piano/Pagani_SM8750/myron/
+  NativeAdreno-myron(a8xx)/pong/uefi-pong/umi。
+- NativeAdreno-myron 的 a8xx 分支 = A840 gen8 寄存器表（Y700 A830 用）。

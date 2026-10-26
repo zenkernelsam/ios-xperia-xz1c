@@ -5,6 +5,28 @@
 
 ---
 
+## >>> 2026-10-26 13:00 【副线】poplar 送了大礼：LSE 用户态模拟器 <<<
+
+`ios-poplar` 新补丁 `0086-poplar-no-lse.patch`（188 行）：kernel 里
+`sweet_emulate_lse()` 用 LDAXR/STLXR 在用户地址上原子模拟 LSE
+（LD<op>8种/SWP/CAS/LDAPR；CASP 留 EXC_BAD_INSTRUCTION）。
+**MSM8998 Kryo280 跑 iOS userland 的必备件**，直接可抄。
+另：Y700 线备齐——`NativeAdreno-myron` a8xx 分支有 A840/gen8
+寄存器表（A830 同族）；SM8750 UniXNU port 已有 5 家（Pagani 到 S6）。
+详见 RESEARCH-FRONTIER §17。
+
+---
+
+## >>> 2026-10-26 【方法论沉淀：WORKFLOW-EXPLORATION.md】<<<
+
+把本项目的高效探索方式整理成设备无关文档 `WORKFLOW-EXPLORATION.md`：
+目标/红线/证据三角、观测阶梯（屏幕→printf→环形日志→整卷 dump→参考树）、
+最小变量迭代、data-only 与整卷一致流程、无人值守闭环、离线取证、
+参考实现考古、构建/资源预算、记忆交接、反模式表，以及新设备
+（Y700）的启动清单。以后换平台先读这份，再读设备日志。
+
+---
+
 ## >>> 2026-10-25 17:00 【副线】poplar 实况+sailfish GPU 细节 <<<
 
 ios-poplar 深入读后：他们正卡在 "XNU 早期 hang + GIC redistributor
@@ -38,6 +60,142 @@ function（我们 F11、Mi6 F12）与 GPIO/addr。骨架已同步升级为
 sagit 验证版：`research/touch-skeleton/lilac_touch_rmi4.c`，
 细节见 `RESEARCH-FRONTIER.md` §14。做触摸时直接抄他们的
 qup_msg 状态机，别重新踩坑。
+
+---
+
+## >>> 2026-10-26 08:45【GUI 稳定渲染；朝向误区澄清；合成上滑打通】<<<
+
+- **朝向结论修正**：DroidCam 相机是**横装**的——照片里的"竖排文字"
+  其实是正常竖屏。用户也确认"第一次 hello 看着正常"→ **xf=0 正确**；
+  xf=4/5/6（转置）只会把画面转/拉坏（xf=4 就是用户看到的"压扁苹果"）。
+  以后不再用 xf>=4。
+- **v158（xf=0 + sweetswipe=270）**：hello 的**手写体动画逐字母绘制**
+  正常（截到单个字母帧），270s 的上滑把动画/界面划掉（进入空白页）。
+  之前 xf=6 轮的同款上滑也成功越过了 hello。HID 注入 + 触摸映射已验证。
+- **native=1 不可用**：上报 720x1280 会让 SpringBoard 卡在
+  appearance transition（"Unbalanced calls to begin/end appearance
+  transitions"），不再 present。继续 1125x2436。
+- 现场日志还显示 backboardd 创建 1125x2436/bpr4500 surface、调用
+  sel 79/55（未实现，返回 0 也工作）。
+- **阻塞**：DroidCam `frame.jpg` 多次长时间僵死（af/ping 正常），
+  需要有人在那台相机设备上把 app 划掉重开；否则无法继续判读 UI。
+- 当前手机停在 fastboot；卷健康。下一步（相机恢复后）：
+  1) xf=0、无上滑跑一轮，确认 hello 完整帧与朝向；
+  2) 上滑时间后移（~8 分钟）再划过 hello，观察设置下一屏；
+  3) 接 sagit 触摸（QUP5/F11）与 GPU/Metal（A540 抄 sailfish）。
+
+---
+
+## >>> 2026-10-26 02:00【目标达成：iOS GUI 已上屏；朝向实验待续】<<<
+
+- **目标（等根→给根→GUI/WindowServer）已达成**：
+  - UFS 根挂载 ✔（整卷 fsck 修复后回刷，全卷 md5 与镜像一致）
+  - 迁移跳过 ✔（data-only：`SyntheticDidUpgradX` + `isMigrationNeeded→NO`
+    桩，位于 com.apple.datamigrator 偏移 0x59A8）
+  - launchd 全链 ✔ / **SpringBoard exec ✔**
+  - **WindowServer + CoreAnimation 渲染真实 UI 并上屏 ✔**
+    （深蓝/浅蓝渐变背景 + 白色苹果；随后是 iOS "hello" 引导画面）
+  - 日志里同时可见 PhotosReliveWidget/GCCWidgets 等扩展因无 GPU 崩溃
+    （旁支，不影响本次目标）。
+- **朝向**：画面被旋转 90°+镜像。v154 增加 `sweetfb_xf=0..7`（整幅
+  重采样；4..7=转置+翻转）。**xf=4 实测**：CA 首帧变成"渐变底+苹果"，
+  说明变换作用在 CA 图层；竖屏视角苹果仍 90° 偏转（叶朝左）。
+  已预打包 `shim-4k-v155-xf{5,6,7}-360-gzdtb.img`（sweetar=360 秒一轮）
+  待逐一试向；若 4..7 都不对，再试 1/2/3（非转置翻转）或实现 IOMFB
+  旋转 selector。
+- **v156（已编好）**：`sweettap=<秒>`（可选 `sweettapx/y`）——到点用
+  现有 `SweetHIDTouch::touch()` 自动点一下屏幕（按下+90ms 抬起），
+  用来"点过" hello/Setup 界面；另有既有 `sweethidtest=<秒>`（周期按
+  Home/Menu 键）。产物 `k0288-4k-v156.macho`。
+- **当前设备状态**：停在 fastboot（安全）；卷干净、可随时再发。
+- **阻塞项**：DroidCam（192.168.68.57:4747）`/cam/1/frame.jpg`
+  僵死（af/ping 正常）——需要人把那台相机设备的 app 划掉重开；
+  否则无法判读朝向实验。
+- **今晚新工具**：`sweetar` 已真正生效（v155，替换了整段 SWEET 块）；
+  离线取证链（TWRP 整卷 dump + 7-Zip 浏览 HFSX + fsck_hfs + 4KiB
+  块级 diff 回写/回滚）全部脚本化，注意**绝不允许**把旧 dump 的元数据
+  块回写到已运行过的卷。
+
+---
+
+## >>> 2026-10-26 00:15【GUI 到达：SpringBoard/Setup 的 hello 界面已上屏（旋转待修）】<<<
+
+- **真机实锤**：迁移跳过 + 卷修复后，SpringBoard 已 exec 并运行，
+  WindowServer/CA **渲染出 iOS "hello" 引导画面**（深蓝渐变底 +
+  白色手写体），说明整条 UI 链路（launchd→backboardd→CA→IOSurface→
+  内核拷贝→面板）全部打通。日志中还能看到 PhotosReliveWidget/
+  GCCWidgets 等扩展因无 GPU 崩溃（"Too many corpses"），属旁支。
+- **遗留**：画面被旋转 90° 且镜像（面板扫描朝向与 iOS 逻辑方向
+  不一致；CoreDisplay 的引导 logo 是预旋转过的所以一直正确）。
+  解决方向：(a) 找出 CA/iomfb 查询 rotation 的 selector 并返回正确值；
+  (b) 在我们的拷贝路径里做 CPU 旋转/镜像。
+- **v154（已编入）**：给拷贝路径加 `sweetfb_xf=0..7` 采样变换
+  （1/2/3 翻转；4..7 转置+翻转，整幅缩放铺满面板），用于快速试朝向。
+  注意 `sweetar=` boot-arg 实际没生效（源码里仍是 `extend(2700)`，
+  之前两次替换都没命中），所以轮次仍是 45 分钟。
+- **经验**：hello 画面在启动约 **30 分钟**后才出现（大量守护进程
+  超时/崩循环之后），10 分钟窗口看不到 UI。
+- 下一步：跑 `sweetfb_xf=4`（等当前轮结束后），先用引导 logo/黑帧
+  快速判断变换是否作用于 CA 图层；若 2 分钟内 logo 被旋转则说明
+  走的是拷贝路径，可持续用短周期试 8 种组合。
+
+---
+
+## >>> 2026-10-25 23:44【SpringBoard 已在运行！迁移已跳过，AKS 状态轮询中】<<<
+
+- **整卷回刷完成**：fsck 修复镜像（16,840,130,560B）刷入后整卷 md5
+  **完全一致**（`1ef2298671178329bf3407774e81edfe`）；确认 HFS 挂载
+  恢复正常。
+- **迁移跳过 = 双保险，全部 data-only**：
+  1) `com.apple.migration.plist` 键名
+     `SyntheticDidUpgrade`→`SyntheticDidUpgradX`（卷偏移 0x318018000+0x3D）；
+  2) `com.apple.datamigrator` 里
+     `-[DMMigrationState isMigrationNeededWithBuildVersion:lastBuildVersion:clientPID:]`
+     （文件偏移 **0x59A8**，卷偏移 0x14FA21000+0x59A8，块 1,374,758）
+     改成 `mov w0,#0; ret` → 永远"无需迁移"。
+- **结果（v152b，控制台可见）**：根挂载正常、launchd 全链跑过，
+  CommCenter 崩溃循环（sig11，已知），**SpringBoard 已 exec**：
+  屏幕连续出现 `SWEET AKS: SpringBoard sel 17 arg0 0 in 1/0 out 0/0
+  -> 0x0`（kAKSGetDeviceState，我们的桩返回 `ss=0x4, sls=0`
+  即 unlocked），并有 `duetexpertd`。**没有 SpringBoard 崩溃**。
+- **v153**：默认自复位窗口 600s（`sweetar` boot-arg 仍未生效，原因
+  待查；先改默认值），便于 10 分钟一轮迭代。
+- **下一步**：跑 v153 且带 `sweetfb_noconsole=1` —— 若 SpringBoard
+  真的 present，屏幕应出现 UI（哪怕是黑/锁屏）；同时 10 分钟后回
+  fastboot 读 exec ring（PA 0xA2023DB8），确认最后 exec 序列。
+  若仍无 UI：重点查 SpringBoard 卡在 AKS 轮询/GPU(Metal) 哪一步。
+
+---
+
+## >>> 2026-10-25 23:10【事故与恢复：HFS 元数据块回写把 catalog 弄坏；整卷回刷中】<<<
+
+- **事故链**：用「旧 dump 里算出的 124 个 4KiB 块」去回写已经在运行的
+  UFS 卷（iOS 在 22:15–23:00 期间又写过盘），导致 volume header/journal
+  与当前数据错配：22:40 起 mountroot 报
+  `hfs_swap_HFSPlusBTInternalNode: catalog key #27 invalid length (0)`、
+  `Runtime corruption detected on /`、`hfs_mountfs failure 5`，随后
+  2 分钟看门狗复位。改回 124 块（state A）后变成
+  `cannot mount dirty non-journaled volumes`。
+- **修复**：Mac 上对 20:24 的整卷 dump 跑 `hdiutil attach -nomount` +
+  `fsck_hfs -y -f /dev/diskN` → **修复成功**（卷头 minor repair），
+  与 dump 相比只改 **2 块**（block 0 卷头加 unmounted 位、block 128
+  日志头）。但设备上的 catalog 节点 1444 已坏，fsck 结果救不到它 →
+  **决定整卷回刷** fsck 修好的镜像（16,840,130,560B）。
+- **红线新增（血的教训）**：**绝不要**把「旧 dump 计算出的元数据块」
+  回写到已运行过的卷；只允许**同长度、只改文件内容**（data-only）
+  的补丁（如二进制入口桩、plist 内同长度键名替换）。
+- **迁移跳过新方案（data-only）**：`/private/var/mobile/Library/
+  Preferences/com.apple.migration.plist` 里键名
+  `SyntheticDidUpgrade` → `SyntheticDidUpgradX`（同长度单字节，
+  文件数据在卷内偏移 0x318018000，字节 0x3D）。已打进待刷镜像。
+- **v152 内核**：每次 exec 把 `<seq> <comm>\n` 滚入
+  `_sweet_exec_ring`（VA 0xfffffff008023db8 → **PA 0xA2023DB8**，
+  dump 0xA2023D80/1088B，dc civac 已刷），可用 fastboot xperable
+  5 秒读出；另有 boot-arg `sweetar=<秒>` 控制自复位窗口。
+  v152 此前 ~2 分钟复位已判定为卷坏导致的 mount 失败，不是 ring 的锅，
+  待修好卷后复测。
+- 产物：`k0284-4k-v152.macho`、`shim-4k-v152-execring-gzdtb.img`、
+  `shim-4k-v152b-console-gzdtb.img`、`shim-4k-v152c-gzdtb.img`。
 
 ---
 
@@ -2875,3 +3033,46 @@ cd unlock && ./xperable.exe -B -U -s 0xf49880 -x -4 -6   # ABL 运行时补丁�
   hfsplus 模块是运行时装载，重启后需 `insmod /root/wslk/fs/hfsplus/hfsplus.ko`
   重新加载（模块文件持久在 WSL /root/wslk 下）。mkiosroot 已带 CPU 限重启。
 - **2026-10-20**：xperable CVE-2021-1931 解锁成功（`unlocked:yes`）。流程：Newflasher 降 47.1.F.1.105（删 boot/ 保 P_114、TA 已 dump）→ bindershell root → dd 写 xfl-o77（MD5 `26bd1901...` 校验过）→ xperable 打 LinuxLoader-p114 补丁 → `oem unlock Y` → `format userdata` 修复解锁后循环重启。SD 卡备份 4GB 完好。提取 `lilac-stock.dtb`，完成 iOS 移植可行性评估并克隆 4 个研究仓库到 `research/`。
+
+## >>> 2026-10-26 12:10【GPU 路线开工：sailfish A530 驱动已还原，lilac 移植要点】<<<
+
+**目标**：CA 的 GLES 渲染器跑在 Mesa freedreno(FD540) 上 → 真实 UI。
+参照 sailfish（Pixel/8996/A530，实机 20–40fps 跑通锁屏/主屏/Settings）。
+已在 Mac `/tmp/xnu-sf` 用 187 个 sailfish 补丁重建出完整参考树（GPU 文件
+全部就位：`bsd/dev/sweet_gpu.c` 84KB、`sweet_gpu.h`、`sweet_gpu_shaders.h`、
+`iokit/Kernel/arm/SweetGPU.cpp`、`SweetSurface` 的 GPU 相关改动）。
+
+**lilac(MSM8998/A540) 与 sailfish(MSM8996/A530) 的差异（已核实）**：
+- 寄存器：GPU **0x5000000**(0x40000)、SMMU **0x5040000**(64K, CB@0x48000)、
+  GPUCC **0x5065000**；sailfish 用 0xb00000/0xb40000 → 必须换。
+- zap：PAS id 13，carveout 用 `pil_ipa_gpu_region@95200000`(1MB)。
+- 固件：a540_zap.mdt/.b02、a530_pm4/pfp.fw（去 4 字节头）、可选 a540_gpmu.fw2。
+- **A540 用 3D0 内 GPMU（Cortex-M3）而不是 A6xx 的 GMU/HFI**；但**硬件可无
+  GPMU 启动**，关掉 `ADRENO_A5XX_GPMU` feature 即可走 sailfish 的 CP 直启路线。
+- 电源：VDD_GFX = **PM8005 S1（SID 5, base 0x1400，与 S4 两相）**，由 CPR4
+  @0x5061000 调压；bring-up 先绕过 CPR 固定 ~0.9V 使能。
+- GPUCC GDSC/时钟（下游 gpucc-msm8998.c）：CX GDSCR 0x1004、GX GDSCR
+  0x1094、GX_BCR 0x1090、gfx3d RCG 0x1070/分支 0x1098、rbbmtimer 0x10B0/
+  0x10D0、rbcpr 0x1030/0x1054、isense 0x1100/0x1124、xo 0x1020；AHB 用
+  GCC_GPU_CFG_AHB_CLK；GX 域 0x130 bit0 clamp/bit4 reset。
+- CX/MX 电压档走 **RPM-SMD**（pm8998_s1_level / s9_level），不是 RPMh；
+  我们树里只有 sweet_rpmh.c，需要从 sailfish 移植 `bsd/dev/sweet_rpm.c`。
+- 上电顺序（下游 kgsl）：gfx3d 频率→CX GDSC→GX GDSC（先投 gfx_vreg、
+  GX BCR reset 脉冲、清 clamp）→clk 倒序→AXI 票→a5xx_regulator_enable
+  (0xA887/0xA88D/0xA881/0xA88B)→VBIF→CP_RB/PFP/PM4→zap PAS→CP_ME_CNTL→
+  ME_INIT→非安全模式；GPMU 可跳过。
+
+**打包/用户态缺口**：
+- 我们的 `mkpayload.py` 只有 `--ramdisk`，缺 sailfish 的 `--blob
+  GPU-PM4/PFP/ZAP-MDT/ZAP-SEG`（写入 `/chosen/memory-map`）；内核 `blob()`
+  用 SecureDTLookupEntry 读取。需移植。
+- 用户态：`tools/sweetgl`（freedreno GLES + libdrm shim + EAGL 替换，
+  `eagl.c`）+ 注入 `sweetenv=backboardd:DYLD_INSERT_LIBRARIES=
+  /usr/lib/sweetgl.dylib`。lilac 需按 1125×2436 场景与 FD540 重编。
+- 安装 dylib 进根卷 = HFS 元数据变更 → 只能用「整卷离线修改+整卷回刷」
+  的一致流程，禁止块级混写（教训见 23:10 条目）。
+
+**下一步（顺序）**：① mkpayload blob 支持 + 内核 blob 访问；② SPMI 写
+（PM8005 S1）只读探测先行；③ sweet_gpu 骨架 + lilac 基址 + `sweetgpu=1`
+寄存器探测；④ 上电/GDSC/时钟→CP/zap 自检（`sweetgpu=2..8`）；⑤ SMMU+
+SweetGPU 用户态 ABI；⑥ Mesa FD540+sweetgl 注入，CA 自动走 GLES。

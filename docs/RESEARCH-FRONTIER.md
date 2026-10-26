@@ -436,3 +436,124 @@ Metal 栈可直接参考；A540 需换 PM4/固件层但 AirNir/IR3 后端通用�
 ### unixnu.com 挂名的社区 port
 `UniXNU-sagit`（dmnakzkahziamnk-a11y，Mi6 MSM8998 的 UniXNU 设备仓）
 ——仓库目前仅 sheng 模板未落地，跟踪即可。
+
+---
+
+## 17. 2026-10-26 00:10 GUI 到达 + 新情报归档（主线的下一步）
+
+**主线里程碑**：userdata 整卷 fsck 修复回刷后，SpringBoard 已 exec 且
+WindowServer/CA 已渲染出真实 UI（"hello" 引导画面）上屏——只是被
+旋转 90°+镜像（面板扫描朝向/旋转变换未实现；引导 logo 是 CoreDisplay
+按面板方向预旋转的，所以一直是对的）。下一步 = 抓 SpringBoard 用到的
+IOMFB 选择器（控制台可见时看 `SWEET FB: <proc> sel N`），据此补
+旋转/变换。
+
+**触摸（做锁屏交互直接用）**：sagit(Mi6) 0121 已实机验证，同 MSM8998：
+- QUP5 @ **0xc179000**；v2 tag；polled FIFO；read 需二次 START
+  （START+addrW 写、START+addrR 读）
+- 时钟门：**BLSP1_AHB_CBCR@0x17004** + **QUP5_APPS_CBCR@0x21008**；
+  **QUP_IO_MODES = PACK_EN|UNPACK_EN (bit15|14)**；
+  **I2C_CLK_CTL@0x400：400K = (14<<16)|28**
+- 状态机：RESET→cfg→flags→RUN→CLK→PAUSE→push→RUN→poll
+- lilac 差异：ClearPad 用 **RMI4 F11**（Sony dtsi/rmi_f11.c 真值），
+  不跟 sagit 的 F12；sagit 还带**锁屏合成手势注入**（可先注入 swipe）
+- 骨架：`research/touch-skeleton/lilac_touch_rmi4.c`（sagit 验证版）
+
+**存储**：SD-first/SD-as-appdata 为长期方案——shim 写 sdhci-msm 读
+SD 比啃 QMP v3 PHY 简单；后期只把 `/var/containers`（Bundle/Data）
+bind-mount 到 SD，keybags/log/preferences 留 NAND；UHS-I ~90MB/s、
+4K 随机差，需 A2 卡。当前单卷 NAND 方案继续用。
+
+**CPU 隐藏炸弹**：poplar 实锤 **Kryo280 = ARMv8.0，无 LSE/PAN/UAO**；
+sweet 代码若假设 8.1+ 会踩。commpage 需 no-LSE 版；只用 Gold 簇
+MPIDR 0x100-103。
+
+**GPU 抄作业**：sailfish（187 补丁）在 Adreno 530 上跑通 Mesa；
+A5xx 序列 power probe→CP test→SMMU identity→VM scratch；A540 照抄，
+Mesa iOS 交叉构建脚本可复用。
+
+**userspace 工具**：hackios-xnu-userland（fetch-from-ipsw.py /
+mkvarskel.py / jb-preinstall.py / prebuilt/userland）——持久化/JB 时用。
+UniXNU-sheng：ADSP 固件启动 + IPC router + 双电量计修复。
+（Y700/SM8750 线按用户指示暂不投入。）
+
+### 17.1 朝向实验（2026-10-26 01:05）
+
+- v154 增加 `sweetfb_xf=0..7`：拷贝路径整幅重采样（4..7 = 转置+翻转），
+  用于试面板朝向；`sweetfb_noconsole=1` 让 UI present 后不再被内核日志覆盖。
+- **xf=4 实测**：CA 首帧变成"浅蓝绿渐变 + 白色苹果"（此前 xf=0 时是
+  黑底 logo / 后来的 hello），说明变换确实作用在 CA 图层上；竖屏视角下
+  苹果仍旋转 90°（叶朝左），需要换 flip 组合。
+- v155 修好 `sweetar=<秒>`（之前两次 sed 未命中源码）：每轮可 6 分钟，
+  已预打包 `shim-4k-v155-xf{5,6,7}-360-gzdtb.img` 逐一试向。
+- 若 4..7 都不对：考虑 (a) 非转置分支的翻转（xf=1/2/3）；
+  (b) IOMFB 层实现旋转 selector（需先抓到 CA 的 selector 调用号）。
+
+### 17.2 朝向结论与触摸上滑（2026-10-26 08:20）
+
+- **重要校正**：DroidCam 相机本身是**横装**的；照片里"竖排文字"其实是
+  正常竖屏。用户也确认"第一次 hello 看着正常"→ **xf=0 才是正确朝向**；
+  xf=4/5/6（转置）反而把画面转/拉坏（xf=4 的"压扁苹果"就是拉伸测试）。
+- xf=6 下 hello 可读（因为相机横着装），但真实竖屏是旋转的——放弃转置。
+- **合成上滑已生效**：xf=6 轮里 `sweetswipe=270` 成功把 hello 划掉，
+  进入空白设置页/主屏（状态栏+home 条都在）；说明 HID 注入链路 OK。
+- v158：上滑方向按 `sweetfb_xf` 自适应（xf<4 时沿面板 y 上滑），
+  将以 **xf=0 + sweetswipe** 再验证一次"hello → 下一屏"。
+- 另：native=1（上报 720x1280）会让 SpringBoard 卡在 appearance
+  transition、不再 present；继续用 1125x2436。
+
+### 17.3 hello 完整帧与上滑时机（2026-10-26 10:45）
+
+- xf=0 下 hello 手写体完整显示（相机横装的缘故，照片里是竖排，实际正确）。
+- **动画很慢**：从出现到"hello"写完约 7 分钟（无 GPU 的 CPU 渲染），
+  270s/480s 的上滑都落在动画中途被忽略；上一轮 xf=6 的 270s 上滑之所以
+  成功，是因为那轮显示的是本地化"안녕하세요~"静态图。
+- 结论：上滑应安排在动画完成后（≥11 分钟）并**重复多次**；
+  待加 `sweetswipe` 重复模式（v159）。
+- DroidCam 仍周期性僵死（约 20-30 分钟流后），需在相机设备上重启 app。
+
+### 17.4 hello 是多语言轮播 + 触摸被"中央裁切"挡住（2026-10-26 11:25）
+
+- 观察：hello 在 hello → 你好 → hola… **循环轮播多语言问候**（不是
+  动画慢），我们每次抓帧看到的是不同语言，属正常。
+- **上滑不生效的真因**：面板只显示 1125×2436 场景的**中央 720×1280**
+  带（上下各裁掉 ~578px）。hello 的"从底部上滑"起点在 y≈95%，落在
+  可见区外，合成触摸够不到。
+- v160：`sweetfulltouch=1` 让合成触摸按整幅场景归一化（x/720、
+  y/1280），上滑改为 (360,1200)→(360,450)（94%→35%），每 60s 重复。
+- DroidCam 绕过方案：`/override` 后从 **`/video?1280x720` MJPEG 流**
+  抽最后一帧（`research/grab_cam.py`），`frame.jpg` 挂死也能观察。
+
+## 17. 第三波：lilac 直用代码 + Y700 SM8750 生态爆发（2026-10-26）
+
+### ⭐⭐ ios-poplar：iOS userland LSE 模拟器（188 行，直接可抄）
+
+`0086-poplar-no-lse.patch`：Kryo280=ARMv8.0 跑不动 iOS 16 用户态里
+绕开 capability 检查的 LSE 指令。他们在 kernel 里实现
+`sweet_emulate_lse()`（machine_routines_asm.s），用 LDAXR/STLXR
+在用户地址上原子模拟：LD<op>（8 种）、SWP、CAS、LDAPR；
+CASP 故意留 EXC_BAD_INSTRUCTION。**lilac 跑 userland 的必备补丁**。
+
+### ⭐⭐ Y700 Gen4 = SM8750 的 UniXNU port 已 5 家开花
+
+UniXNU docs/devices 新增 SM8750 设备仓（均已 clone）：
+- `UniXNU-Pagani_SM8750`（一加13T）：**UEFI 真机可跑，XNU 到 S1-S6**
+- `UniXNU-erhai`（一加 Pad2 Pro，平板同形态）/`UniXNU-hummer`（Ace5 Pro）
+  /`UniXNU-dada`（小米15）/`UniXNU-piano`（小米 Pad8 Pro+SunUEFI）
+- `UniXNU-myron`（K90PM SM8850）：**`NativeAdreno-myron` 的 `a8xx`
+  分支有 `NativeAdrenoChipA8xx`——A840/gen8 寄存器表**（对照高通
+  gen8_reg.h 核对，含 CP_GLOBAL_INT/RBBM/ring 全套）。**A830 同 gen8**
+- `UniXNU-pong`（Nothing Phone2 SM8+G1）：**home screen 已上屏**+触摸
+- `UniXNU-umi`（Mi10 SM8250）：**触摸硬件已验证**（attempt 80 记录）
+
+### ⭐ 其他动向
+- `ios-sweet-sagit`：synthetic home gesture 改成从底部 edge band 起
+- `ios-s9`：shim M11=GPU SMMU+GMU HFI 消息通道（A630 GMU 路线）
+- `Bergamota`：**iOS 26 分支已推**（+Renegade Rust 重写、web flasher）
+- `ios-apollo`→改名 **BadApple**：CoreAnimation bridge（libsweet-gl/
+  libsweet-ca 内核+用户态两半）+ 手机版 Mesa 构建完成
+- `ios-picasso`：手机上有 shell 了（sweetsh+dropbear via CI 构建）
+- `ios-mondrian`（K60/POCO F5P SD8+G1）：dyld 库注入+timer unmask
+- `UniXNU`：+272，shader cache keying、union lookup、USB terminal
+  capture、umi 触摸验证标记
+- `hackios-xnu-kernel`：+630（ramfb panel height、LICENSE、合并 PR）
