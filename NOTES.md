@@ -1,3 +1,66 @@
+# iOS 16 on Sony Xperia XZ1 Compact (lilac, MSM8998) — 当前交接（2026-10-26 21:15）
+
+> 本文档顶部为 **lilac 当前状态**。下方旧章节是上游 ios-sweet（Redmi Note
+> 10 Pro）参考日志，仅作历史资料；lilac 的权威记录以
+> `AGENTS.md`（Windows 仓 `Xperia/AGENTS.md`）为准。
+
+## 当前里程碑
+- iOS 16 已从 UFS 根启动到 GUI（launchd/SpringBoard/WindowServer，
+  hello 上屏）；迁移 data-only；卷健康。
+- GPU：VDD_GFX 900mV、CX/GX GDSC、Fabia PLL0 lock、RCG/branch、
+  RBBM/CP 可读、SMMU 恒等映射、SCM/zap 全 0/0 均已实机验证。
+- 唯一卡点：CP 不取指（RPTR=0/scratch=0）。已排除寄存器偏移/PLL/
+  SMMU/电源/zap；当前按 sagit `AdrenoStartup` 顺序推进。
+
+## 今天的关键修正
+- v196：pre-auth 写 secure CB1/2 与 SMMU 0x68/0x70 → 安全违例复位。
+- v198：`sweet_a540_start(secure_cb)`；pre-zap 只走非安全 CB0。
+- v200：GPMU 必须在等 CP 之前。sagit 在 ME_INIT 入环后立刻加载 GPMU、
+  释放 CM3、等 `GPMUReady==0xBABEFACE`，从不先等 RPTR。v200 已改为
+  GPMU 直接写 ring[n]（不碰 cp_ring/cp_rb_n），最后才等 CP。
+- 打包：`mkpayload.py` 只产裸 SWEETXNU payload，必须再封成 Android
+  boot image。ramdisk 偏移 = `4096 + round_up(kernel,4096)` = 495616；
+  工具 `research/repack_boot.py`。
+- 安全 shim：`RET=1` 时 loader 前写 `0x88f=0x06`；payload 出错也直接
+  复位回 fastboot（不再跑 UFS 探测后进 Android）。内核 probe 入口也写
+  一次 `0x88f=0x06`。任何复位都回 fastboot。
+
+## 待测镜像（Windows 仓根目录）
+1) `shim-4k-v198c-serr-boot-gzdtb.img`（level 13，非安全 CB0，安全 shim）
+2) `shim-4k-v200-gpmu-before-wait-boot-gzdtb.img`（level 14，GPMU 先释放）
+3) 计划 v201：v200 + `sweetgpupause=150`，给相机更大读屏窗口。
+
+## 发弹/取数
+- `xperable -B -U -s 0xf49880 -x -4 -6` → 必须 2/2 patched；
+  stall 就 `fastboot reboot bootloader` 等 10s 重试；未确认绝不发弹。
+- `xperable -I <img> -1 -c boot -1`，只发一发；`ANDROID!` 头必须正确。
+- 相机：只 `curl .../cam/1/frame.jpg` 单帧，每次启动 ≤4 张、间隔 ≥25s；
+  `/override` 只在卡死时救活；**禁用 grab_cam.py**。近期相机多次返回
+  200/0 字节，需要人工刷新。
+
+## 红线
+- 不写 UFS、不碰 `ufsice@0x1db0000`、不格式化 SD、不 devreset、
+  不碰 Y700（LMG710ULM）；破坏性刷写逐次确认。
+- PSHOLD 写 0 = 断电（E1F4 充电模式）；死路只写标记后 spin/wfe。
+- 只 `fastboot boot`，不 flash bootloader/modem/persist/GPT。
+
+## 源码/仓库
+- Mac：`~/Desktop/ios-xperia-xz1c`（内核 `dxb/xnu`，shim `shim/`）。
+- Windows：`C:\Users\Cisco He\Desktop\Git\Patch\Xperia`（脚本/镜像/AGENTS），
+  远端 `zenkernelsam/Patch`。
+- 大件临时产物在 `Xperia/_backup-temp/`（userdata/iosroot raw + iosparts，
+  未入 git）。
+
+## 下一步
+1) 相机恢复后：boot v200（或 v201），在 55–75s 读到 `a540` 日志，
+   确认 `secure cb skipped`、`gpmu ready=1`、`consumed`。
+2) 若 `consumed=0` 且无复位：查 TrustControl、CP_PROTECT、SMMU FSR、
+   CP_ME_CNTL；考虑把 GPMU 固件写入方式与 sagit 逐字节对齐。
+3) CP 通后：CP 环提交、SMMU VM、Mesa freedreno FD540 + `sweetgl.dylib`。
+4) 触摸（QUP5 0xc179000 / RMI4 F11 / 从机 0x2c）与几何
+   （canvas-width/height 用 4 字节 CFData，1125×2436 居中）。
+
+---
 # iOS 16 on sweet (Redmi Note 10 Pro, SM7150) - working notes
 
 ## >>> 2026-10-24 03:00 — 夜间成果：PON 标记端到端实锤 + fb 真格式证据 <<<
