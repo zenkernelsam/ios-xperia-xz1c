@@ -109,3 +109,13 @@ int spmi_write(uint16_t ppid, uint8_t sid, uint16_t addr, uint8_t val)
 	wr32(ARB_WR + off + CH_CMD, cmd);
 	return ch_wait(ARB_WR, off);
 }
+/* Read one byte via an already-known apid (mirror of spmi_write_apid). */
+int spmi_read_apid(int apid, uint16_t addr)
+{
+	uint32_t off = 0x8000 * (uint32_t)apid;
+	wr32(ARB_OBS + off + CH_CMD, (OP_READ << 27) | ((addr & 0xff) << 4));
+	int r = ch_wait(ARB_OBS, off);
+	if (r < 0)
+		return r;
+	return rd32(ARB_OBS + off + CH_RDATA0) & 0xff;
+}

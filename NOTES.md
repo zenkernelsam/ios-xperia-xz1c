@@ -1364,3 +1364,30 @@ boot xnu9 + 等落地 + 全通道 harvest + 解码落盘。
    直接坐实是 sweet 入口代码缺陷而非平台不可能。
 3. 判读优先级：`0x146bf800`（hios log，信息量最大）>
    `0x146bf780`（vectors2 dump）> `0x146bf700`（跳前态）> official。
+
+## 2026-10-24 清晨 — 哑弹事故修正 + 无人值守收尾态
+
+**事故**：06:04 起 ramdisk 误用裸 Mach-O（须 mkpayload 打成 SWEETXNU），
+06:05/06:08 两发 loader `magic_ok` 拒跳，XNU 从未执行。
+此前"WDT 实锤"结论作废（那次落充电模式 = loader 拒跳→shim 走到底
+PSHOLD）。WDT 元凶论未证实——"加探针死点提前"仍是弱旁证，待真弹复测。
+**手机现停 E1F4 充电模式**（VID_0FCE&PID_01F4，自熄屏），按电源键回 Android。
+
+**当前无人值守栈**：
+- `loader.c`：跳前 `wdt_arm(60,65)` = 65 秒长绳，挂死兜底回 Android。
+- `0111-never-pshold.patch`：SweetPlatformExpert halt 也走 SYSTEM_RESET，
+  堵死 panic→断电→充电模式死路（TZ 拒收则 wfe → 65s 狗兜底）。
+- PON 门铃全套在位（a1/a3/a4/a6/a7/a2 + TTE dump + 异常向量字节）。
+
+**明早序列**（手机在充电模式，按电源键回 Android）：
+1. Android 起 → bindershell → regmap 清 PON 基线 + 读 `0xffbff000`(POST)
+   + `0xffc07000`(ramoops prz) —— **今晚那次裸跑的标记还在 PON 里，先收割！**
+2. `adb reboot bootloader` → patch（两条 successfully）→ 发
+   `shim-dog65-gzdtb.img`（= 0111 内核 + 65s 绳）。
+3. 等 ≤75s → Android → `harvest-pon.sh` 全解码：a2? POST? 异常字节? stage-N?
+
+**判读表**：`0x88e`: a2=过了MMU | 0x8x=panic@stage-x | 0x01-20=stage标记 |
+`0x88a-d`: EC/FAR/ELR 字节 | `0xffbff000`='POST'=V=P映射铁证。
+
+**充电模式注意**：XBL 充电 App ~30s 自熄屏，LCD 无烧屏风险；
+恢复 = 按一下电源键 → 正常进 Android。

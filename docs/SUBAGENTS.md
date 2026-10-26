@@ -1,0 +1,113 @@
+# SUBAGENTS.md — 前沿研究支线（每次上下文压缩后必读）
+
+> 本文件是**副线任务**的权威记录（主线 Sony boot 在 `AGENTS.md`）。
+> 压缩后第一件事：读本文件 + `RESEARCH-FRONTIER.md` 末尾的"当前进度"。
+
+## 用户硬性约束（不可违反）
+
+1. **不碰 Sony 手机**——主线 agent 在用它调试内核。一切只读操作也要克制。
+2. **删除一律走回收站**，禁止 `rm` 真删（Mac: `osascript`/`trash`，Win: PowerShell `Microsoft.VisualBasic.FileIO.FileSystem` 或拖到回收站）。
+3. **Mac 工作全部收在 `~/Desktop/ios-assets/`**，不许碎片撒到 /tmp、~/Desktop 根等别处。
+4. **能放 Mac 编译的都放 Mac**，不用 GitHub CI。
+5. **分析别人的 repo 要分清真伪**：代码是跑通过的？还是 WIP/dummy/failure？不要被带歪（用户原话：避免兜大圈落泪）。
+6. **进度定时归档**：持续把中间结果写进 `RESEARCH-FRONTIER.md`，压缩上下文前必须落盘。
+7. 最终成果要并回 `ios-xperia-xz1c` 仓库（artifacts/脚本/文档）。
+8. **中文交流**。
+
+## 当前支线任务清单（goal）— 2026-10-25 00:30 快照
+
+| # | 任务 | 状态 |
+|---|------|------|
+| 1 | IPSW+rootfs（Mac） | ✅ `iosroot-16.7.16.img` 17GB UDRW fsck OK |
+| 2 | UFS 摸底+PHY 提取 | ✅ 完成 |
+| 3 | ADT 常量表 | ✅ mkadt.py 已全 |
+| 4 | WiFi/BT 固件提取 | ✅ modem FAT+BT 全套；vendor 残量待 adb pull |
+| 5 | Synaptics 触摸 | 🟡 硬件地图齐（§5）；骨架代码未写 |
+| 6 | 仓库更新+clone | ✅ sheng/nash/iphoneParty 已补；UniXNU 有本地改动未动 |
+| 7 | 文档归档 | ✅ RESEARCH-FRONTIER/HANDOVER-FRONTIER/AGENTS.md 已写 |
+
+**下回副线起手指引**：读 HANDOVER-FRONTIER.md「遗留待办」；
+压缩后先读本文件。
+
+## 关键已验证事实（别重复验证）
+
+- Sony `.sin` = `gzip(tar{cms + NNN sparse分片})`；分片是同 fs 的**增量变体**，
+  每片只覆盖部分区间，union 也凑不全 → 完整文件靠 `modem.000`(FAT完整) 或 adb pull。
+- lilac WiFi = **QCA Atheros**（wlanmdsp.mbn+bdwlan 在 modem 分区）→ iOS 无原生驱动。
+- `hdiutil attach` 输出**中文进度行**且顺序乱（synthesized 在前 physical 在后）；
+  找挂载点 = 抓第3字段是 `/` 开头的行；容器名在 `Apple_APFS Container diskN` 行。
+- `hdiutil attach -nomount` + `mount_apfs`/`mount -t hfs` 手动挂**都失败**
+  （"Permission denied"/"No such file"）——**靠谱做法 = plain
+  `hdiutil attach -owners on -nobrowse` 让它自动挂 /Volumes/xxx**，
+  `-owners on` 保留真实 uid/gid（必须，否则 rsync 拿不到属主）。
+- **输出镜像必须用 UDRW 扁平 dmg**（`hdiutil create` 不加 -type 默认=UDRW），
+  SPARSE 格式挂出来是 read-only；UDRW 挂出来 journaled+可写。
+- macOS sudo：`~/.supw` 存了密码（600权限），`sudo -S -k cmd < ~/.supw`；
+  整脚本以 root 跑最稳（内部 sudo 自然变 no-op）。
+- mk.sh 在 Mac：`~/Desktop/ios-assets/mk.sh`（源:ios-sweet/tools/mkiosroot.sh，
+  已修 CRLF/realpath/hdiutil解析/UDRW/owners）。产物 `iosroot-16.7.16.img`(.dmg)。
+
+## 环境
+
+- Mac: `ssh ciscohe@192.168.68.59`（免密已配），macOS 15.8.1。
+- IPSW: `~/Desktop/ios-assets/ipsw/iPhoneX_16.7.16_20H392_Restore.ipsw` (6.17GB 已下完)
+- 解包: `~/Desktop/ios-assets/ipsw-unpack/` →
+  OS=`087-86698-044.dmg`(4.7G) SystemOS=`087-86593-047.dmg`(2.7G) AppOS=`087-86715-047.dmg`(10M)
+- 构建脚本: `~/Desktop/ios-assets/mk.sh`（CRLF已修，参照 ios-sweet/tools/mkiosroot.sh）
+- 固件仓库: `Patch/Xperia/research/firmware-extract/fw/{modem,bt}/`
+- 工作日志: `Patch/Xperia/RESEARCH-FRONTIER.md`
+
+## 2026-10-25 00:55 检查点（压缩后先读本文件！）
+- 已完成：userdata=21.95GiB（rootfs 16GiB 可放）；vendor.sin GPU 固件
+  86 项提取于 research/firmware-extract/fw-vendor/（a540_zap 已验证）；
+  UniXNU GPU 栈研读（A740 专用，A540 需 zap+CP 自研）；
+  文档已提交 ios-xperia-xz1c（commit: frontier research docs）。
+- bdwlan SKU：102/104 两变体已保留，待机器空闲时对照 persist 定版。
+- 触摸骨架仍是设计稿；QUP FIFO/F11 细化是下一个可并行项。
+- 待办：rootfs 写盘流程预案（UDTO 剥壳+dd，待主线授权）；
+  隔壁主线在 v106+ 调 commpage 后阶段，别碰手机。
+
+## 2026-10-25 01:05 检查点2
+- 触摸骨架填实：QUP tag-v2 真实编码（0x81 START/0x82 W/0x83 W+STOP/
+  0x85 R/0x87 R+STOP，4B/2B 标签）+ F11 真布局（2bit/指状态打包 +
+  5B/指 abs：x=b0<<4|b2.lo、y=b1<<4|b2.hi、wx/wy/z）。gcc -Wall 零警告。
+  已提交 ios-xperia-xz1c（commit cc99944）。
+- 前次 GPU 固件/vendor/GPT 成果在 commit 42910ce+a7e8e1c。
+- 剩余并行候选：rootfs 写盘预案细化；F01 唤醒+F34 序列细化；
+  UniXNU 4K 补丁 vs sagit 0118 对照分析（主线可能需要）。
+
+## 2026-10-25 12:30 检查点3
+- research 全仓拉新完毕。sagit 触摸补丁是今日最大收获（同 QUP5）。
+- 触摸骨架已升级成 sagit 验证版（commit ab21a07）。
+- Mac 物资全就绪：ramdisk-a/b.raw、iosroot-hfs.raw（HX 已验）、
+  kernelcache macho、iosroot-16.7.16.cdr。
+- 主线正在 flash userdata 写 iOS rootfs（隔壁在干）。
+
+## 2026-10-25 16:00 检查点4（repo 普查完成）
+- 新增 clone（research/）：ios-poplar、ios-sailfish、Bergamota、ios-cas、
+  ios-apollo、ios-s9、ios-picasso、ios-fajita、ios-sunfish、ios-lemonadep、
+  ios-surya、ios-mondrian、ios-qemu、ios-great-exynos、pixelios-kernel、
+  hackios-xnu-kernel-sm8750、tb322fc-droidspaces-kernel、Snapintosh、
+  ios-topaz-kunzite。
+- 高价值：ios-poplar（XZ1 亲兄弟）、ios-sailfish（A530 Mesa GPU 已跑通）、
+  Bergamota（iOS 18 on SD845）、sm8750 port（Y700 芯片）、tb322fc-droidspaces
+  （Y700 testkey AVB 漏洞：锁 BL 也能跑自签内核）、Snapintosh（air2ir3）。
+- 84 补丁的 fork = vanilla 无实质改动，勿当真 port。
+- ios-s9 的 s9/shim/con.c/h 是 Windows 保留名无法 checkout（git 里在）。
+- Y700 Gen4 确认 = SM8750（Adreno 830），非"Gen5 Elite"（那是 Y700 Gen5）。
+
+## 2026-10-25 16:40 检查点5（第二波 clone）
+- 新增：mu-silicium（内含 dodge/pagani SM8750 UEFI + cheeseburger
+  MSM8998 UEFI）、edk2-msm8998（Renegade MSM8998 UEFI，7设备）、
+  edk2-gunyah（明列支持 tb322fc/Y700 Gen4）、ios_sagit（MC-XiaoXiao）、
+  UniXNU 新 kit：Adreno740/AdrenoMetal/AirNir/ShengUfs/DarwinBoot。
+- 结论：lilac 未来也可走 UEFI（MSM8998 已被 cheeseburger 证明）；
+  Y700 Gen4 UEFI 底座 = mu-silicium/dodgePkg。
+
+## 2026-10-26 13:00 检查点6（第三波 pull+clone）
+- 主线已上 iOS Hello 屏（GUI 渲染+合成上滑）；隔壁在做 A540 GPU
+  （sailfish 路线：PM8005 S1→GPUCC→CP 直启→SMMU→Mesa FD540）。
+- poplar 给出 LSE 用户态模拟补丁（0086，MSM8998 必备）。
+- 新 clone：UniXNU-dada/erhai/hummer/piano/Pagani_SM8750/myron/
+  NativeAdreno-myron(a8xx)/pong/uefi-pong/umi。
+- NativeAdreno-myron 的 a8xx 分支 = A840 gen8 寄存器表（Y700 A830 用）。

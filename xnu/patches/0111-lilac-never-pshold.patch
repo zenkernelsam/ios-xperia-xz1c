@@ -1,6 +1,6 @@
 --- a/iokit/Kernel/arm/SweetPlatformExpert.cpp
 +++ b/iokit/Kernel/arm/SweetPlatformExpert.cpp
-@@ -32,7 +32,10 @@
+@@ -32,7 +32,11 @@
  static int
  sweet_psci_halt_restart(unsigned int type)
  {

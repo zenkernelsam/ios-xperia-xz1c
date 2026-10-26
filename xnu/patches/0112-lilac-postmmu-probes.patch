@@ -1,0 +1,16 @@
+--- a/osfmk/arm64/start.s
++++ b/osfmk/arm64/start.s
+@@ -1101,6 +1101,13 @@ MSR_SCTLR_EL1_X0
+ 	MSR_SCTLR_EL1_X0
+ 	isb		sy
+ #if defined(SWEET)
++	/* PST1 into the boot_args page (x20 still holds its PA): the store
++	 * only lands if the bootstrap V=P identity map covers plain DRAM.
++	 * Next boot's shim reads ba+0x800 back and prints it. */
++	mov		w13, #0x5350
++	movk	w13, #0x3154, lsl #16	/* w13 = 'PST1' in memory order */
++	str		w13, [x20, #0x800]
++	dsb		sy
+ 	/* POST proof: write 'TSOP' into the durable pstore cell through the
+ 	 * ORIGINAL V=P slot (0xfe000000 block). Lands -> TTBR0 V=P works and
+ 	 * only the SPMI slot is suspect. Absent -> whole-map failure. */
