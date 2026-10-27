@@ -20,6 +20,25 @@
 - `sweet-gpu-v237-smmu-2m.diff` — v237 未提交改动（参考）
 - `usb-cdc-integration.diff` — USB CDC 的 `bsd/conf/files` + `bsd/kern/bsd_init.c` 接入改动（参考）
 
+## dxb/xnu 归档 bundle
+
+- `dxb-xnu-lilac-gpu-1d143d90d.bundle`（1.4MB，SHA256
+  `e3c1cff23e3a318d361a73256b99719b7fa32f5b978e2e45a7977d8c758e6b58`）
+  包含 `refs/heads/lilac-gpu` 与 `refs/stash`。
+- 为缩小体积，基线 `1b191cb58`（xnu-8796.141.3）未打进 bundle，
+  还原前需先从 Apple 官方仓库取得该基线。
+- 还原示例：
+
+  ```
+  git clone https://github.com/apple-oss-distributions/xnu.git dxb-xnu
+  cd dxb-xnu
+  git fetch /path/to/dxb-xnu-lilac-gpu-1d143d90d.bundle \
+      'refs/heads/lilac-gpu:lilac-gpu' 'refs/stash:refs/stash'
+  git checkout lilac-gpu
+  ```
+
+- 这是归档，不是构建输入；不要 apply 到现有 dxb 树。
+
 ## 给 Windows 侧
 
 正常 `git pull` 即可，不需要再走 bundle。不要重新应用本目录内容；
