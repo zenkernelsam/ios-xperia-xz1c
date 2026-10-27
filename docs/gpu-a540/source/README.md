@@ -19,6 +19,8 @@
 - `vermeer_usb_debug.c` / `vermeer_usb_protocol.h`
 - `sweet-gpu-v237-smmu-2m.diff` — v237 未提交改动（参考）
 - `usb-cdc-integration.diff` — USB CDC 的 `bsd/conf/files` + `bsd/kern/bsd_init.c` 接入改动（参考）
+- `dxb-extra/` — dxb 树里未跟踪的实验 patch（sagit 4K 等）归档
+- `dxb-build-local.diff` — dxb/build.sh 的本地构建参数改动
 
 ## dxb/xnu 归档 bundle
 
@@ -37,7 +39,20 @@
   git checkout lilac-gpu
   ```
 
-- 这是归档，不是构建输入；不要 apply 到现有 dxb 树。
+- 这是 git 对象归档，不是补丁；正确用法是 `git fetch`，不要 `git apply` 或 overlay。
+- 不要 apply 到现有 dxb 树。
+
+## 源码包（解压即用）
+
+- `dxb-xnu-lilac-gpu-worktree-20261027.tar.gz`（15MB，SHA256
+  `15c1a2f2313a00a55226c906cf024bcbf7177f503206582eec5104340037620d`）
+  是 dxb/xnu 当前工作区的源码快照，含 v237，已排除 `.git`、`*.orig`、
+  `*.rej` 和构建输出。
+- 解压：`tar -xzf dxb-xnu-lilac-gpu-worktree-20261027.tar.gz -C <目标目录>`，
+  会得到 `xnu/`。
+- 这是同一条源码线，不是补丁；**不要 overlay 到现有 dxb/xnu**，否则会覆盖本地改动。
+- 构建仍需 `blacktop/darwin-xnu-build` 的 `build.sh` 与 `xnu/patches`；
+  dxb 本地构建参数改动见 `dxb-build-local.diff`。
 
 ## 给 Windows 侧
 
