@@ -1512,6 +1512,13 @@ void shim_main(uint64_t dtb)
 		con_hex2("PON9/a", "889=", (uint32_t)p9, " 88a=", (uint32_t)pa);
 		con_hex2("PONb/c", "88b=", (uint32_t)pb, " 88c=", (uint32_t)pc);
 		con_hex("PON88d", (uint32_t)pd);
+		/* SHIM_STEP_DELAY: camera-free telemetry. The previous XNU run's
+		 * last A540 step is in PON 0x88e (0xb1..0xb8). Delay the jump by
+		 * (step-0xb0)*4s so the host can decode it from the time between
+		 * the boot command and the next fastboot enumeration. */
+		if (pe >= 0xb0 && pe <= 0xbf)
+			delay_ms((uint32_t)(pe - 0xb0) * 4000);
+
 		/* Post-MMU probes left by the previous XNU run: 'PST1' sits
 		   somewhere in the boot-args area (scan, the PA drifts per
 		   run) and 'POST' is at the fixed durable cell 0xffbff000. */
