@@ -1,0 +1,43 @@
+diff --git a/bsd/dev/sweet_gpu.c b/bsd/dev/sweet_gpu.c
+index 91dbee06b..c84a6bd60 100644
+--- a/bsd/dev/sweet_gpu.c
++++ b/bsd/dev/sweet_gpu.c
+@@ -148,6 +148,7 @@ static uint32_t a540_ring[8192] __attribute__((aligned(16384)));
+ static uint32_t a540_scratch[4096] __attribute__((aligned(16384)));
+ static int a540_want_gpmu;
+ static uint64_t smmu_l1[2048] __attribute__((aligned(16384)));
++static uint64_t smmu_l2b[512] __attribute__((aligned(4096)));
+ 
+ #define A540_ME_HALT 0x303u
+ #define A540_RING_CNTL (12u | (2u << 8) | (1u << 27))
+@@ -1080,9 +1081,27 @@ sweet_gpu_probe(void)
+ 			sweet_gpu_step(0x82);
+ 			printf("SWEET GPU: l8 pt=%#llx\n", pt);
+ 			if (pt) {
+-				for (uint64_t gb = 2; gb < 8; gb++) {
+-					smmu_l1[gb] = (gb << 30) | 1u | (1u << 6) |
+-					    (2u << 8) | (1u << 10);
++				int use2m = 0;
++				if (PE_parse_boot_argn("sweetgpu2m", &use2m,
++				    (int)sizeof(use2m)) && use2m == 1) {
++					for (uint32_t i = 0; i < 512; i++) {
++						smmu_l2b[i] = (0x80000000ull +
++						    (uint64_t)i * 0x200000ull) | 1u | (1u << 6) |
++						    (2u << 8) | (1u << 10);
++					}
++					flush_dcache((vm_offset_t)smmu_l2b, PAGE_SIZE, FALSE);
++					smmu_l1[2] = (uint64_t)kvtophys((vm_offset_t)smmu_l2b) | 3u;
++					printf("SWEET GPU: SMMU GB2 -> 2MB table %#llx\n",
++					    (uint64_t)kvtophys((vm_offset_t)smmu_l2b));
++					for (uint64_t gb = 3; gb < 8; gb++) {
++						smmu_l1[gb] = (gb << 30) | 1u | (1u << 6) |
++						    (2u << 8) | (1u << 10);
++					}
++				} else {
++					for (uint64_t gb = 2; gb < 8; gb++) {
++						smmu_l1[gb] = (gb << 30) | 1u | (1u << 6) |
++						    (2u << 8) | (1u << 10);
++					}
+ 				}
+ 				flush_dcache((vm_offset_t)smmu_l1, PAGE_SIZE, FALSE);
+ 				vm_offset_t cb = smmu + 0x8000u;
