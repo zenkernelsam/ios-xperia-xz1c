@@ -4,6 +4,67 @@
 > 10 Pro）参考日志，仅作历史资料；lilac 的权威记录以
 > `AGENTS.md`（Windows 仓 `Xperia/AGENTS.md`）为准。
 
+## 2026-10-27 白天（GPU CP 攻坚 v222–v237；手机全程未进充电界面）
+
+**结论先行**：A540 CP 仍不取指（RPTR=0、scratch=0、无 fault），但
+Android KGSL 冷启动链路已全部复刻、GPMU 已点亮。剩余唯一软件卡点
+指向**安全域 SMMU / hypervisor 页表**（trust=1，非安全 world 不可写）。
+
+已实机验证（level 10 + USB CDC，均安全回 fastboot）：
+- SMMU：SCTLR=0x27（CFRE）、SMR0=0x80000000（仅 SID0）、S2CR0=0
+  （translate）、TCR=0x80001c、TTBR0 smmu_l1；zap 前后映射均保持；
+  SID1/2 无有效 SMR、CB1/2 未启用；2MB 页表（v237）也无效。
+- CP：pre-halt ME=0x303（固件已停好）→ halt 0x303、VBIF 0xF；
+  释放后 ME=0x404；RB/IB/PFP 基址、RB_CNTL(bit27)、WPTR 全部 latch；
+  WPTR 14/21 都试过；RPTR 永远 0；CP_INT/HW_FAULT/sGFSR 全 0。
+- 微码：a530_pm4/pfp 的 4 字节头已按 Linux `adreno_fw_create_bo`
+  剥掉并复制到页对齐 gpu_alloc（+4、len-4）；a530v1 也试过，均无效；
+  ME_INIT payload 与下游 KGSL `_set_ordinals` 完全一致
+  （0x2F,3,0x20000000,0,0,0,0,0；A540 non-v1 workaround=0）。
+- configure：把 `sweet_a540_start` 的完整 configure（VBIF gate、perfctr、
+  HGCG、CP_PROTECT+CNTL=7、UCHE、0x0e60/0x0e04）注入 CP 测试，无变化。
+- 顺序：CP 测试放到 zap 之前 → **CP 启动即复位 SoC**（secure 固件
+  禁止 pre-zap CP）。zap→CP 才是本机可用的顺序。
+- GPMU：主机 AHB 直写 GPMU IRAM（0x8800+）+ AGC 握手 + 释放 CM3，
+  zap 前/后都能稳定 `0xA8E0=0xBABEFACE`、cm3=0；**GPMU 不是 CP 取指
+  的充分条件**。
+- SCM：zap 的 PAS init/mem_setup/auth_and_reset 全 0/0；
+  另按 KGSL `a5xx_microcode_load` 补发
+  `SET_REMOTE_STATE(0, pas 13)`（svc=1,cmd=0xA）→ 0/0，仍无效。
+- 安全寄存器：直接写 `RBBM_SECVID_TRUST_CNTL(0xF400)=0` →
+  **立即复位回 fastboot**（TZ 拒绝；v234，用户已批准）。此路封死。
+- RBBM_SW_RESET 在 level 10 即使 halt 后也会复位 SoC（v224/v227）——
+  **不要在 level 10 做**。
+
+静态证据（新）：
+- 从 shim 容器提取 lilac DTB：offset 0x34AE、totalsize 0x74CDE，
+  解析器 `research/fdt_dump.py`（Windows 仓）。
+- `gfx3d_user`：`iommus=<0x19e,0>`（SID0）、
+  `qcom,gpu-offset=0x48000`（相对 GPU base = SMMU+0x8000，CB0 位置
+  正确）、`qcom,hyp_secure_alloc`、`qcom,secure_align_mask=0xfff`；
+  `gfx3d_secure`：SID2。
+- `pil_ipa_gpu_region@95200000`（1MB，no-map）——zap carveout 基址正确。
+- `qcom,micro-mmu-control=0x6000` 是 IMPL_DEF1 的 HALT/IDLE（KGSL
+  iova_to_phys 用），不是取指路由。
+- Android 下游 KGSL 源码在
+  `research/ios_sagit/docs/gpu/reference/adreno_a5xx.c`：
+  `a5xx_rb_start` = RPTR_ADDR/RB_CNTL/RB_BASE → microcode bases +
+  zap + remote_state → ME_CNTL=0 → ME_INIT → CP_SET_SECURE_MODE →
+  GPMU。我们已全部复刻。
+- `arm-smmu-msm8998.c`：安全 SMMU 由
+  `scm_restore_sec_cfg(sec_id)` 恢复、页表页经 `hyp_assign_phys()`
+  交给 secure VM；`sec_id` 来自 `msm_dev_to_device_id()` 表（不在
+  手头参考里）。**复刻 KGSL secure IOMMU 初始化是唯一剩余软件路径**，
+  属研究级，需确认 TZ SMMU device id / hyp 协议后才能试。
+
+当前基线镜像（仓库根）：`research/shim-4k-v236-remotestate-boot-gzdtb.img`
+（GPMU+remote_state；稳定、不写 trust、回 fastboot）。v237 的 2MB
+版仅作对照。
+
+摄像头纪律（用户 2026-10-27 最终指令）：每次采集先
+`curl /cam/1/af`，等 2s，再用 `research/grab_stream.sh` 拉 MJPEG 流
+取一帧；不要假设白天不用对焦。
+
 ## 当前里程碑
 - iOS 16 已从 UFS 根启动到 GUI（launchd/SpringBoard/WindowServer，
   hello 上屏）；迁移 data-only；卷健康。
