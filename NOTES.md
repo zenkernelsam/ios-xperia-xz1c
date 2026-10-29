@@ -58,6 +58,30 @@
   0x236FF/SIZE + CTL_START kick）。
 - 离线总表：`OFFLINE-BACKLOG-20261029.md`（QSEED3/SMP/触摸 HID/xzp-ios/WDT）。
 
+## 2026-10-29 晚 最终状态（compact 前）
+
+- 只工作 D 盘；Windows 仓 `D:\Desktop\Git\Patch\Xperia`、`D:\Desktop\Git\ios-xperia-xz1c`;
+  Mac `ciscohe@192.168.68.54`；永不碰 `C:\Users\Cisco He\Desktop`。
+- **今晚镜像（release audit 全绿）**：
+  GPU v238 `676b7127` → v239 `7be14eaf`；
+  显示 v241 `78ff8a22` → v240 `da397632` → v244 `ecc5debc`；
+  SMP v243 `9d45ceac` → v242 `e0a0b3d0`；
+  HID v248 `bc1874d2`；触摸 v249 `04c96385`（355k 精确分频，含诊断）。
+  v245/v246 作废。一键 `research/run_v238.sh`。
+- **GPU 结论更新**：原厂 kgsl_iommu.c 复核显示用户 CB 非安全、
+  msm8998 跳过 SCM aperture、CB0=SMMU+0x8000；**v238 全局 aperture
+  0xFC000000 仍是首选假设**。
+- **触摸**：内核 RMI4 驱动 `bsd/dev/sweet_touch_rmi4.c` 已入树
+  （QUP5+RMI4+SweetHID，`sweetrmi4=1 sweetrmi4delay=60`）；DT 确认
+  19.2MHz→355k、无 reset GPIO/VDD、勿触发固件刷写；F$11 解析已过宿主单测。
+- **显示**：v244 `sweetfb_direct=2` 用 QSEED3 直接缩放 1125→720
+  （opmode 0xC0014401、preload 0x03040304、phase=(2^21*src)/dst）。
+- **SMP**：shim 加 `gic_prepare_smp()`（EAST GICR 0x03D00000，全部 secondary），
+  已编译并把两发镜像（cpus=4/8）做好。
+- **文档**：AGENTS 顶部有「发布审计」表与「COMPACT 纪律」；
+  `OFFLINE-BACKLOG-20261029.md` 记录 QSEED3/SMP/触摸/xzp-ios/WDT 细节。
+- 手机在充电界面，等用户晚上长按电源回 fastboot 后按清单真机验证。
+
 ## 2026-10-29 今晚实测准备（v238 / v239）
 
 - 手机今早在充电界面 → 晚上长按电源回 fastboot（`BH905ND69G`）。
