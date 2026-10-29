@@ -7,6 +7,18 @@
 
 > 2026-10-29 方向校正（师兄六项情报）见主文件 §>>> 2026-10-29。
 
+## 🔴 路径硬约束（2026-10-29，永久有效）
+
+- **绝对禁止读写 Windows `C:\Users\Cisco He\Desktop`**（即将被永久清除）。
+  本 Mac 仓不受影响，但任何文档/脚本都不得再指回该 Windows 路径。
+- Windows 唯一工作区：
+  - `D:\Desktop\Git\Patch\Xperia`
+  - `D:\Desktop\Git\ios-xperia-xz1c`
+- Windows 临时文件只放 `C:\Users\Cisco He\AppData\Local\Temp`。
+- Mac 工作区：`~/Desktop/ios-xperia-xz1c`（本机路径）。
+
+---
+
 接手前必读顺序：
 1. `Patch/Xperia/AGENTS.md` —— 顶部「当前状态/红线」+ 最新 `## >>>` 条目
    + 文末「附录A」（原本文件的硬事实/规则手册，已逐字并入）。

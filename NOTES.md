@@ -4,6 +4,32 @@
 > 10 Pro）参考日志，仅作历史资料；lilac 的权威记录以
 > `AGENTS.md`（Windows 仓 `Xperia/AGENTS.md`）为准。
 
+## 🔴 路径硬约束（2026-10-29，永久有效）
+
+- **绝对禁止读写 Windows `C:\Users\Cisco He\Desktop`**（即将被永久清除）。
+  本 Mac 仓不受影响，但任何文档/脚本都不得再指回该 Windows 路径。
+- Windows 唯一工作区：
+  - `D:\Desktop\Git\Patch\Xperia`
+  - `D:\Desktop\Git\ios-xperia-xz1c`
+- Windows 临时文件只放 `C:\Users\Cisco He\AppData\Local\Temp`。
+- Mac 工作区：`~/Desktop/ios-xperia-xz1c`（本机路径）。
+
+---
+
+## 2026-10-29 今晚实测准备（v238 / v239）
+
+- 手机今早在充电界面 → 晚上长按电源回 fastboot（`BH905ND69G`）。
+- **v238**（首选）：`research/shim-4k-v238-gva-boot-gzdtb.img`
+  （sha256 前缀 676b7127539e8030，cmdline 含
+  `sweetgpmu=1 sweetgpuresume=1 sweetgpugva=1`）——把 ring/scratch/
+  pm4/pfp 映射到 CP 全局 aperture `0xFC000000` 并以其 VA 编程 CP。
+- **v239**（备选，构建中）：v238 + 原厂 `_set_secvid`
+  （SECVID TSB base=0xEC000000 / size=256MB，`sweetgpuvid=1`）。
+- 判据：`CP consumed=1`、RPTR→WPTR、scratch=0xc0ffee01；若 RPTR 前进
+  但 scratch=0，说明取指通了、secure 写被拦，下一步看 trust 与
+  CP_SET_SECURE_MODE。
+- 完整步骤见 `Patch/Xperia/AGENTS.md` 顶部「2026-10-29 今晚实测清单」。
+
 ## 2026-10-29 方向校正（师兄六项情报 · a8020a4a / FRONTIER §29）
 
 - **① 触摸**：IC 只是 transport，必须经 IOHIDFamily 发布独立
