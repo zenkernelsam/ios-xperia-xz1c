@@ -4,6 +4,33 @@
 > 10 Pro）参考日志，仅作历史资料；lilac 的权威记录以
 > `AGENTS.md`（Windows 仓 `Xperia/AGENTS.md`）为准。
 
+## 2026-10-29 方向校正（师兄六项情报 · a8020a4a / FRONTIER §29）
+
+- **① 触摸**：IC 只是 transport，必须经 IOHIDFamily 发布独立
+  Digitizer/Touch Screen；backboardd 不起先查 IOMFB/IOSurface/sandbox，
+  别先怪触摸。lilac 的 `lilac_touch_rmi4.c`（Synaptics @0x2c）之上还要
+  叠 **IOHIDDevice 发布层**。参考：`research/ShengHidInput/NativeHidInput.cpp`、
+  `research/UniXNU-sheng/package/HidInputProbe.cpp`、myron。
+- **② WDT**：可用但有四前提：armed 读回、bite 实测标定（nabu 名义
+  240s 实际 ~40s）、复位落点记录、PON 单独判不了复位源。shim WDT 即
+  Mu 侧等价物。
+- **③ 日志**：OneSend QR 帧导出——固件期日志走 QR，不依赖 USB，是
+  相机/USB 不稳时的备胎（参考 sheng `BootLog.c` / `linux-log/`）。
+- **④ iPadOS27 GPU 分支**：Adreno740 hangcheck/restart/replay + 按需
+  页表；AdrenoMetal encoding thread/draw-stats；GopFramebuffer
+  half-float。lilac(A540) 只作架构参考，Y700 才是升级包。
+- **⑤ xzp-ios（maple/XZ Premium）stage4**：自建 UEFI → XNU 8796 →
+  UFS 0x01da4000 → 原生 APFS → launchd + IOSurface 80/80。可搬：
+  **1088MiB trick**、APFS 根、无 Mac 的 GCC 构建链、
+  `kern.redwood_switch_root`。他们领先 APFS/UEFI，我们领先 GUI/USB CDC。
+- **⑥ 全仓 sweep**：Pagani_SM8750 已 iPadOS 17.7.11 + 8 核 SMP +
+  触摸（Y700 跟它）；hummer 抄 Pagani；**cheeseburger(MSM8998) 已上
+  iPadOS 17.7.11** → lilac 天花板变软墙；picasso 第三份 CDC 参考；
+  dada/pong/data-a-live/nash 各有可借件；Y700 Gen4 TWRP 设备树可用。
+- **修正后的顺序**：今晚先 v238（CP 全局 aperture）；触摸先查
+  IOMFB/IOSurface/sandbox 再叠 HID 发布层；中期 APFS/UEFI 借 xzp-ios；
+  WDT 三前置+落点；Y700 跟 Pagani（不碰实体）。红线不变。
+
 ## 2026-10-27 白天（GPU CP 攻坚 v222–v237；手机全程未进充电界面）
 
 **结论先行**：A540 CP 仍不取指（RPTR=0、scratch=0、无 fault），但
