@@ -26,7 +26,7 @@
 /* ---------------- hardware constants (lilac DTS, verified) ------------- */
 
 #define QUP5_BASE        0x00C179000UL   /* BLSP1 QUP5 */
-#define TLMM_BASE        0x010100000UL   /* tlmm pinctrl */
+#define TLMM_BASE        0x03D00000UL    /* TLMM EAST tile (0x3400000+0x900000) */
 #define TP_SDA_GPIO      87
 #define TP_SCL_GPIO      88
 #define TP_IRQ_GPIO      125
@@ -155,7 +155,7 @@ static volatile uint32_t *tlmm = (volatile uint32_t *)TLMM_BASE;
 static inline void wr32(uint32_t off, uint32_t v) { qup[off >> 2] = v; }
 static inline uint32_t rd32(uint32_t off) { return qup[off >> 2]; }
 
-#define TLMM_GPIO_CFG(g)  (0x1000 + (g) * 0x10)
+#define TLMM_GPIO_CFG(g)  ((g) * 0x1000)  /* EAST tile, REG_SIZE 0x1000 */
 
 static int qup_state_set(uint32_t state)
 {
@@ -170,20 +170,27 @@ static int qup_state_set(uint32_t state)
 
 static void qup_init(void)
 {
-    /* 1. pinmux GPIO87/88 (func=2 per sony tlmm, VERIFY alt-num) + IRQ 125 */
-    tlmm[(TLMM_GPIO_CFG(TP_SDA_GPIO)) >> 2] = (2u << 0) | (0 << 4) | (3 << 6) | (0x8 << 10);
-    tlmm[(TLMM_GPIO_CFG(TP_SCL_GPIO)) >> 2] = (2u << 0) | (0 << 4) | (3 << 6) | (0x8 << 10);
+    /* 1. pinmux: gpio87/88 -> blsp_i2c5 (func index 3 in PINGROUP(87/88,
+     *    EAST, blsp_spi5, blsp_uart2_b, blsp_i2c5, ...)); IRQ 125 = gpio. */
+    tlmm[(TLMM_GPIO_CFG(TP_SDA_GPIO)) >> 2] = (3u << 0) | (0 << 4) | (3 << 6) | (0x8 << 10);
+    tlmm[(TLMM_GPIO_CFG(TP_SCL_GPIO)) >> 2] = (3u << 0) | (0 << 4) | (3 << 6) | (0x8 << 10);
     tlmm[(TLMM_GPIO_CFG(TP_IRQ_GPIO)) >> 2] = (0 << 0) | (0 << 4) | (3 << 6);
 
-    /* 2. ungate clocks: clear CLK_OFF on ahb + qup5 apps (sagit) */
-    gcc[GCC_BLSP1_AHB_CBCR >> 2]       &= ~GCC_CBCR_CLK_OFF;
-    gcc[GCC_BLSP1_QUP5_APPS_CBCR >> 2] &= ~GCC_CBCR_CLK_OFF;
+    /* 2. ungates (gcc-msm8998.c): AHB is a VOTED branch -> enable bit17
+     *    at 0x52004; QUP5 apps CBCR 0x21008 enable bit0, halt bit31. */
+    gcc[0x52004u >> 2] |= (1u << 17);
+    gcc[GCC_BLSP1_QUP5_APPS_CBCR >> 2] |= 1u;
+    for (int i = 0; i < 10000 && (gcc[GCC_BLSP1_QUP5_APPS_CBCR >> 2] & GCC_CBCR_CLK_OFF); i++)
+        ;
 
     /* 3. core init (sagit order): reset -> RESET -> configure -> MASTER_CFG=1
      *    (enables version-two tags) -> MAST_GEN check */
     wr32(QUP_SW_RESET, 1);
     qup_state_set(QUP_STATE_RESET);
     wr32(QUP_CONFIG, QUP_N_VAL_8BIT | QUP_MINI_CORE_I2C);
+    /* Conservative I2C clock: i2c-qup.c encoding hs=3, fs=((src/clk)/2)-3.
+     * fs=0xF7 -> ~100 kHz if QUP5 src is 50 MHz, ~38 kHz if 19.2 MHz. */
+    wr32(QUP_I2C_CLK_CTL, (3u << 8) | 0xF7u);
     wr32(QUP_ERROR_FLAGS_EN, QUP_ERR_FLAGS_MASK);
     wr32(QUP_OPERATIONAL_MASK, QUP_IN_SVC_FLAG | QUP_OUT_SVC_FLAG);
     wr32(QUP_I2C_MASTER_CFG, 1);              /* v2 tags */
@@ -394,10 +401,17 @@ static int rmi_read_fingers(const struct rmi_pdt_entry *f11,
  *   // poll GPIO125 low -> rmi_read_fingers(f11e, fingers, 10, 10)
  *   // -> {x,y,z,wx,wy,present} in PANEL coords, ready for HID digits
  *
- * Remaining VERIFY items before hardware run:
- *   - I2C_STATUS bit positions (BUS_ACTIVE/NACK) vs i2c-msm-v2.h
- *   - QUP_IO_MODES encoding for FIFO-vs-BLOCK mode
- *   - I2C_MASTER_CTL clock divider formula for 355kHz
- *   - whether read needs 2nd START tag (is_new_addr on rx msg)
- *   - GCC gate clock enable for blsp1_qup5 (gcc-msm8998.c)
+ * VERIFIED against sony-kernel-4.4 drivers/i2c/busses/i2c-qup.c (2026-10-29):
+ *   - QUP_I2C_STATUS = 0x404; BUS_ACTIVE = BIT(8);
+ *     ERROR_MASK = 0x38000fc (W1C at 0x404).
+ *   - QUP_IO_MODE = 0x008; OUTPUT_BLK_MODE = 1<<10;
+ *     INPUT_BLK_MODE = 1<<12; UNPACK_EN = 1<<14; PACK_EN = 1<<15.
+ *   - QUP_I2C_CLK_CTL = 0x400; hs_div = 3;
+ *     fs_div = ((src_clk / clk) / 2) - 3; clk_ctl = (3<<8)|(fs_div & 0xff).
+ *     QUP5 src (GCC CMD_RCGR 0x21020) is 19.2 MHz default or 50 MHz;
+ *     355 kHz -> fs=67 (0x343) at 50 MHz, fs=24 (0x318) at 19.2 MHz.
+ *     Read/set the RCG before trusting the divider.
+ *   - QUP_CONFIG uses I2C_MINI_CORE (2<<8) | I2C_N_VAL_V2 (7).
+ *   - Still unverified on hardware: repeated-START tag on RX
+ *     (is_new_addr) and the exact GCC gate bits.
  */
