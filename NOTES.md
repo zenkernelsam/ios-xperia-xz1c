@@ -1694,3 +1694,20 @@ PSHOLD）。WDT 元凶论未证实——"加探针死点提前"仍是弱旁证�
 - **北极星（METHOD-DEBUG-PORTABLE §8）**：lilac 唯一真缺口是 shim 期
   活体串口；实现顺序 panic drain 排序 → shim CDC gadget → appslog
   双槽持久盘。相机降级为月度物理抽检。
+
+## 2026-10-29 22:00 今晚实测总结（lilac）
+
+- **显示底座打通**：console 叠字根因 = console surface 4BPP BGRA stride
+  2880，却被按 boot RGB888 stride 2160 扫描。v260 修正 VIG0
+  `SRC_FORMAT=0x236FF/UNPACK/stride 2880`，v261 再清零旧行；实机
+  verbose 清晰、底部残影消失。VIG0 720×1280 直扫 + cmd kick 已验证（v241）。
+- **主页结论**：补读 COM 显示 backboardd 反复 `IOAcceleratorES -> none`，
+  无任何 `SWEET FB: swap` → 无 GPU 加速器时 SpringBoard 不合成；
+  主页卡在 GPU，不是激活/keystore。
+- **GPU CP**：v258 门禁全过（amb=1/prot=7）、GPMU cold OK、微码头有效
+  （0x5ff063/0x5ff087），`ME_CNTL=0x404` 不变、consumed=0。
+  先 halt micro-MMU 再 RBBM_SW_RESET（v259）仍整机复位 → 本 BL/TZ 禁路。
+- 镜像/内核：v260 `c8c4e865`、v261 `45040a60`；kernel `fb3b6691`/
+  `ca6ff550`；Mac xnu 提交 `7052a3f93`。
+- 下一步假设：CP 安全取指 SID2/CB2（TZ 页表）、CPZ 握手、ME_RAM 载码；
+  向 sagit 师兄要 lilac 安全 RBBM/CPZ 序列。
