@@ -1,0 +1,102 @@
+--- a/iokit/KernelConfigTables.cpp	2026-10-24 00:15:13
++++ iokit/KernelConfigTables.cpp	2026-10-24 00:15:14
+@@ -48,6 +48,12 @@
+     "     'IOProbeScore'    = 10000:32;"
+     "   },"
+     "   {"
++    "     'IOClass'         = SweetCPU;"
++    "     'IOProviderClass' = IOPlatformDevice;"
++    "     'IONameMatch'     = 'qcom,kryo280';"
++    "     'IOProbeScore'    = 10000:32;"
++    "   },"
++    "   {"
+     "     'IOClass'         = AppleKeyStore;"
+     "     'IOProviderClass' = IOResources;"
+     "     'IOMatchCategory' = AppleKeyStore;"
+--- a/iokit/Kernel/arm/SweetCPU.cpp	2026-10-24 00:15:52
++++ iokit/Kernel/arm/SweetCPU.cpp	2026-10-24 00:15:52
+@@ -238,9 +238,19 @@
+ {
+ 	const ml_topology_cpu_t *cpu = &ml_get_topology_info()->cpus[getCPUNumber()];
+ 	/* cpu_start() passes NULL,NULL: x20/x21 are set by LowResetVectorBase. */
+-	if (start_paddr != 0 || arg_paddr != 0 || cpu == ml_get_topology_info()->boot_cpu ||
++	if (start_paddr != 0 || arg_paddr != 0 ||
+ 	    __atomic_load_n(&initialized, __ATOMIC_ACQUIRE) != 0) {
+ 		panic("SWEET CPU: cpu=%u unsupported restart", getCPUNumber());
++	}
++	if (cpu == ml_get_topology_info()->boot_cpu) {
++		/*
++		 * The boot CPU is the one running this code: cpu_start() calls
++		 * cpu_machine_init() -> initCPU(true) directly for it, so there is
++		 * nothing to release and no PSCI CPU_ON to issue. Returning
++		 * KERN_SUCCESS is what lets processor_start() on CPU 0 converge
++		 * (ios-sweet-sagit 0115); panicking here stalls ml_wait_max_cpus().
++		 */
++		return KERN_SUCCESS;
+ 	}
+ 	vm_offset_t entry = ml_static_vtop((vm_offset_t)&sweet_secondary_entry);
+ 	IOLog("SWEET CPU: cpu=%u CPU_ON target=0x%x entry_pa=0x%llx context=%u\n",
+--- a/pexpert/arm/pe_fiq.c	2026-10-24 00:17:11
++++ pexpert/arm/pe_fiq.c	2026-10-24 00:17:11
+@@ -164,25 +164,13 @@
+ 		}
+ 	}
+ 
+-#if defined(SWEET)
+-	/*
+-	 * Real hardware with two security states: Group 0 is TrustZone's and
+-	 * non-secure writes to it are ignored. Everything we own is Group 1 NS
+-	 * and arrives as an IRQ (see sleh_irq). GICR_IGROUPR0 reads as zero
+-	 * from the non-secure side even after this write; delivery still works.
+-	 */
+-	gicr_write32(GICR_IGROUPR0, 0xFFFFFFFF);
+-	for (unsigned int i = 0; i < 32; i += 4) {
+-		gicr_write32(GICR_IPRIORITYR0 + i, 0xA0A0A0A0);
+-	}
+-	gicr_write32(GICR_ISENABLER0, (1U << sweet_vtimer_intid) | (1U << SWEET_IPI_SGI));
+-#else
++#if !defined(SWEET)
+ 	// Configure timers and legacy FIQ to be group 0
+ 	gicr_write32(GICR_IGROUPR0, 0x81FFFFFF);
+ 
+ 	// Enable PPI 27
+ 	gicr_write32(GICR_ISENABLER0, (1 << 27));
+-#endif /* SWEET */
++#endif /* !SWEET */
+ 
+ 	// Enable system register access
+ 	uint64_t icc_sre = __builtin_arm_rsr64("ICC_SRE_EL1");
+@@ -206,11 +194,32 @@
+ #if defined(SWEET)
+ 	// ABL leaves only ARE_NS set; Linux writes ARE_NS | EnableGrp1A | EnableGrp1
+ 	uint32_t gicd_ctlr = gicd_read32(GICD_CTLR);
+-	gicd_ctlr |= GICD_CTLR_ARE_NS | GICD_CTLR_ENABLEGRP1A | GICD_CTLR_ENABLEGRP1;
++	gicd_ctlr |= GICD_CTLR_ARE_NS;
+ 	gicd_write32(GICD_CTLR, gicd_ctlr);
+ 	while (gicd_read32(GICD_CTLR) & GICD_CTLR_RWP) {
+ 		;
+ 	}
++	gicd_ctlr |= GICD_CTLR_ENABLEGRP1A | GICD_CTLR_ENABLEGRP1;
++	gicd_write32(GICD_CTLR, gicd_ctlr);
++	while (gicd_read32(GICD_CTLR) & GICD_CTLR_RWP) {
++		;
++	}
++	/*
++	 * ORDER MATTERS (MSM8998 bring-up, ios-sweet-sagit 0117): changing
++	 * GICD_CTLR.ARE_NS resets the SGI/PPI configuration of every
++	 * redistributor (GICR_IGROUPR0/IPRIORITYR0/ISENABLER0 go back to their
++	 * reset values). ABL leaves ARE_NS clear, so programming the
++	 * redistributor first and then setting ARE_NS wipes the enables --
++	 * no timer tick and no SGI ever arrive. Program the distributor
++	 * first (ARE_NS in its own write, then the group enables), and only
++	 * then the redistributor for this PE.
++	 */
++	gicr_write32(GICR_IGROUPR0, 0xFFFFFFFF);
++	for (unsigned int i = 0; i < 32; i += 4) {
++		gicr_write32(GICR_IPRIORITYR0 + i, 0xA0A0A0A0);
++	}
++	gicr_write32(GICR_ISENABLER0, (1U << sweet_vtimer_intid) | (1U << SWEET_IPI_SGI));
++	__builtin_arm_isb(ISB_SY);
+ 	__builtin_arm_wsr64("ICC_IGRPEN1_EL1", 1);
+ 	__builtin_arm_isb(ISB_SY);
+ #else

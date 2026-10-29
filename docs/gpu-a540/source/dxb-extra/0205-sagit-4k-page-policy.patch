@@ -1,0 +1,30 @@
+diff --git a/osfmk/arm/arm_init.c b/osfmk/arm/arm_init.c
+--- a/osfmk/arm/arm_init.c
++++ b/osfmk/arm/arm_init.c
+@@ -396,6 +396,18 @@
+ 
+ 
+ 	{
++#if defined(ARM64_BOARD_CONFIG_SAGIT) && !__ARM_16K_PG__
++		/*
++		 * Mi 6 implements only the 4 KiB granule.  Use 4 KiB VM pages as well:
++		 * the 16 KiB-VM-page-over-4-KiB-PTE configuration (PAGE_RATIO == 4) is
++		 * what Apple's RAM-size rule below would pick for a >1 GiB device, but
++		 * no Apple 4 KiB-granule product shipped with more than 1 GiB, and that
++		 * path trips the write_pte_fast() 4-PTE alignment assertion (pmap.c:623)
++		 * during early mapping.  The 4 KiB page size also matches the hardware.
++		 */
++		PAGE_SHIFT_CONST = ARM_PGSHIFT;
++		page_shift_user32 = ARM_PGSHIFT;
++#else
+ 		/*
+ 		 * Select the advertised kernel page size.
+ 		 */
+@@ -416,6 +428,7 @@
+ 
+ 		/* 32-bit apps always see 16KB page size */
+ 		page_shift_user32 = PAGE_MAX_SHIFT;
++#endif
+ #ifdef  APPLETYPHOON
+ 		if (PE_parse_boot_argn("cpus_defeatures", &cpus_defeatures, sizeof(cpus_defeatures))) {
+ 			if ((cpus_defeatures & 0xF) != 0) {

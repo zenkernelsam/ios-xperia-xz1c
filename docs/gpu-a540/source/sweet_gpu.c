@@ -30,6 +30,7 @@ extern int sweet_spmi_describe(unsigned ppid);
 extern int sweet_spmi_write_ppid(unsigned ppid, unsigned addr, uint8_t value);
 
 #define PON_PPID 0x008u
+#define PON_ROUTE 0x88fu /* PON_ROUTE_ARMED */
 #define PON_SCRATCH 0x088eu
 
 /* a5xx CP registers (dword offsets into GPU 0x5000000). */
@@ -134,6 +135,7 @@ sweet_scm_call(uint32_t svc, uint32_t cmd, uint32_t arginfo, uint64_t a,
 
 static uint32_t cp_pkt7(uint32_t op, uint32_t cnt);
 static void cp_emit(uint32_t v);
+static void sweet_gpu_step(uint8_t code);
 static uint32_t cp_pkt4(uint32_t reg, uint32_t cnt);
 
 static void gpu_wr(vm_offset_t base, unsigned off, uint32_t v);
@@ -146,6 +148,7 @@ static uint32_t a540_ring[8192] __attribute__((aligned(16384)));
 static uint32_t a540_scratch[4096] __attribute__((aligned(16384)));
 static int a540_want_gpmu;
 static uint64_t smmu_l1[2048] __attribute__((aligned(16384)));
+static uint64_t smmu_l2b[512] __attribute__((aligned(4096)));
 
 #define A540_ME_HALT 0x303u
 #define A540_RING_CNTL (12u | (2u << 8) | (1u << 27))
@@ -161,7 +164,7 @@ a540_prot(uint32_t base, unsigned log2len)
 }
 
 static int
-sweet_a540_start(void)
+sweet_a540_start(int secure_cb)
 {
 	vm_offset_t gpu = ml_io_map(0x05000000u, 0x00040000u);
 	if (!gpu) {
@@ -189,10 +192,11 @@ sweet_a540_start(void)
 	printf("SWEET GPU: a540 aligned fw pm4=%#llx pfp=%#llx\n",
 	    pm4_base, pfp_base);
 
-	/* secure streams may use CB1/CB2, not CB0: give both the same map. */
-	vm_offset_t smmu = ml_io_map(0x05040000u, 0x00010000u);
-	uint64_t pt = (uint64_t)kvtophys((vm_offset_t)smmu_l1);
-	if (smmu && pt) {
+	/* Pre-auth the SMMU is secure-owned: touching CB1/2 or sACR/sCTLR
+	 * (0x68/0x70) trips a secure violation and resets the SoC. */
+	vm_offset_t smmu = secure_cb ? ml_io_map(0x05040000u, 0x00010000u) : 0;
+	uint64_t pt = smmu ? (uint64_t)kvtophys((vm_offset_t)smmu_l1) : 0;
+	if (secure_cb && smmu && pt) {
 		vm_offset_t gr1 = smmu + 0x1000u;
 		for (uint32_t cb = 1; cb <= 2; cb++) {
 			vm_offset_t cbb = smmu + 0x8000u + cb * 0x1000u;
@@ -216,6 +220,8 @@ sweet_a540_start(void)
 		    gpu_rd(smmu, 0xc00), gpu_rd(smmu, 0xc04), gpu_rd(smmu, 0xc08),
 		    gpu_rd(smmu, 0xa000), gpu_rd(gr1, 0x8));
 	}
+	if (!secure_cb)
+		printf("SWEET GPU: a540 secure cb skipped (pre-auth)\n");
 	vm_offset_t ring_va = 0, scratch_va = 0;
 	uint64_t ring_pa = gpu_alloc(&ring_va, 32768);
 	uint64_t scratch_pa = gpu_alloc(&scratch_va, 16384);
@@ -245,10 +251,12 @@ sweet_a540_start(void)
 	printf("SWEET GPU: a540 halt=%d ME=%#x VBIF=%#x trust=%#x\n",
 	    halted, gpu_rd(gpu, 0x0832u * 4u), gpu_rd(gpu, 0x3081u * 4u),
 	    gpu_rd(gpu, 0xf400u * 4u));
+	sweet_gpu_step(0xb2);
 	gpu_wr(gpu, 0x0043u * 4u, 1u);			/* RBBM_SW_RESET */
 	(void)gpu_rd(gpu, 0x0043u * 4u);
 	gpu_wr(gpu, 0x0043u * 4u, 0u);
 	delay(100);
+	sweet_gpu_step(0xb3);
 	gpu_wr(gpu, 0xa8d8u * 4u, 1u);			/* GPMU CM3 reset */
 	gpu_wr(gpu, 0xa8e0u * 4u, 0u);			/* GPMU ready */
 	gpu_wr(gpu, 0xa8e1u * 4u, 0u);			/* GPMU error */
@@ -420,6 +428,7 @@ sweet_a540_start(void)
 	gpu_wr(gpu, 103u * 4u, 0xaaa8aa00u);
 	gpu_wr(gpu, 1331u * 4u, 0x182u);
 
+	sweet_gpu_step(0xb4);
 	/* bases + ring state */
 	gpu_wr(gpu, 0x0838u * 4u, (uint32_t)pm4_base);
 	gpu_wr(gpu, 0x0839u * 4u, (uint32_t)(pm4_base >> 32));
@@ -430,6 +439,7 @@ sweet_a540_start(void)
 	gpu_wr(gpu, 0x083bu * 4u, 0u);
 	gpu_wr(gpu, 0x0802u * 4u, A540_RING_CNTL);
 	gpu_wr(gpu, 0x0807u * 4u, 0u);
+	sweet_gpu_step(0xb5);
 	gpu_wr(gpu, 0x0038u * 4u, 0u);
 	gpu_wr(gpu, 0x0037u * 4u, A540_OWNED_IRQS);
 	printf("SWEET GPU: a540 cfg ME=%#x rctl=%#x rptr=%u wptr=%u cp_mode=%#x prot=%#x\n",
@@ -455,22 +465,9 @@ sweet_a540_start(void)
 	ring[n++] = cp_pkt7(CP_NOP_OP, 0);
 	flush_dcache(ring_pa, 32768, TRUE);
 	gpu_wr(gpu, 0x0807u * 4u, n);
-	int consumed = 0;
-	for (int i = 0; i < 200; ++i) {
-		if (gpu_rd(gpu, 0x0806u * 4u) == n) {
-			consumed = 1; break;
-		}
-		delay(1000);
-	}
-	delay(1000);
-	flush_dcache(scratch_pa, PAGE_SIZE, TRUE);
-	uint32_t got = scratch[0];
-	printf("SWEET GPU: a540 consumed=%d RPTR=%u WPTR=%u scratch=%#x RBBM=%#x FAULT=%#x\n",
-	    consumed, gpu_rd(gpu, 0x0806u * 4u), n, got,
-	    gpu_rd(gpu, 0x04f5u * 4u), gpu_rd(gpu, 0x0b1au * 4u));
-	if (!(consumed && got == 0xc0ffee01u)) {
-		return 0;
-	}
+	sweet_gpu_step(0xb6);
+	/* v200 gpmu-before-wait: release GPMU before checking CP fetch. */
+	int gready = 0;
 	if (a540_want_gpmu) {
 		uint64_t gpmu_pa = 0;
 		uint32_t gpmu_len = 0;
@@ -533,41 +530,89 @@ sweet_a540_start(void)
 		gpu_wr(gpu, 0xa894u * 4u, 0u);
 		gpu_wr(gpu, 0xa893u * 4u, 0xa0080u);
 		gpu_wr(gpu, 0xa891u * 4u, 0x600040u);
-		/* CP: protected-mode off, write commands to 0x8800+, on.
-		 * Do NOT reset cp_rb_n: RPTR is already at the ME_INIT end. */
-		cp_emit(cp_pkt7(0x5fu, 1));
-		cp_emit(0u);
-		cp_emit(cp_pkt7(0x3fu, 3));
-		cp_emit((uint32_t)cmd_pa);
-		cp_emit((uint32_t)(cmd_pa >> 32));
-		cp_emit(cnt);
-		cp_emit(cp_pkt7(0x5fu, 1));
-		cp_emit(1u);
-		if (ring != cp_ring) {
-			memcpy(ring, cp_ring, cp_rb_n * 4u);
-		}
+		/* Append the type4 burst after ME_INIT at ring[n]; cp_ring and
+		 * cp_rb_n belong to the other CP test path and must not be touched. */
+		ring[n++] = cp_pkt7(0x5fu, 1);
+		ring[n++] = 0u;
+		ring[n++] = cp_pkt7(0x3fu, 3);
+		ring[n++] = (uint32_t)cmd_pa;
+		ring[n++] = (uint32_t)(cmd_pa >> 32);
+		ring[n++] = cnt;
+		ring[n++] = cp_pkt7(0x5fu, 1);
+		ring[n++] = 1u;
 		flush_dcache(ring_pa, 32768, TRUE);
-		gpu_wr(gpu, 0x0807u * 4u, cp_rb_n);
-		int gread = 0;
-		for (int i = 0; i < 300; ++i) {
-			if (gpu_rd(gpu, 0x0806u * 4u) == cp_rb_n) {
-				gread = 1; break;
-			}
-			delay(1000);
-		}
+		gpu_wr(gpu, 0x0807u * 4u, n);
 		gpu_wr(gpu, 0xa8d8u * 4u, 0u);		/* release CM3 */
-		int gready = 0;
 		for (int i = 0; i < 300; ++i) {
 			if (gpu_rd(gpu, 0xa8e0u * 4u) == 0xbabefaceu) {
 				gready = 1; break;
 			}
 			delay(1000);
 		}
-		printf("SWEET GPU: a540 gpmu read=%d ready=%d (%#x/%#x) cm3=%#x\n",
-		    gread, gready, gpu_rd(gpu, 0xa8e0u * 4u),
+		printf("SWEET GPU: a540 gpmu ready=%d (%#x/%#x) cm3=%#x\n",
+		    gready, gpu_rd(gpu, 0xa8e0u * 4u),
 		    gpu_rd(gpu, 0xa8e1u * 4u), gpu_rd(gpu, 0xa8d8u * 4u));
 	}
-	return 1;
+	sweet_gpu_step(0xb7);
+	int consumed = 0;
+	for (int i = 0; i < 200; ++i) {
+		if (gpu_rd(gpu, 0x0806u * 4u) == n) {
+			consumed = 1; break;
+		}
+		delay(1000);
+	}
+	delay(1000);
+	flush_dcache(scratch_pa, PAGE_SIZE, TRUE);
+	uint32_t got = scratch[0];
+	printf("SWEET GPU: a540 consumed=%d RPTR=%u WPTR=%u scratch=%#x RBBM=%#x FAULT=%#x gpmu=%d\n",
+	    consumed, gpu_rd(gpu, 0x0806u * 4u), n, got,
+	    gpu_rd(gpu, 0x04f5u * 4u), gpu_rd(gpu, 0x0b1au * 4u), gready);
+	if (a540_want_gpmu) {
+		/* v204: prove the CP is alive after GPMU by writing a second
+		 * value to the same scratch word. */
+		ring[n++] = cp_pkt7(CP_MEM_WRITE_OP, 3);
+		ring[n++] = (uint32_t)scratch_pa;
+		ring[n++] = (uint32_t)(scratch_pa >> 32);
+		ring[n++] = 0xc0ffee02u;
+		ring[n++] = cp_pkt7(CP_NOP_OP, 0);
+		flush_dcache(ring_pa, 32768, TRUE);
+		gpu_wr(gpu, 0x0807u * 4u, n);
+		int consumed2 = 0;
+		for (int i = 0; i < 200; ++i) {
+			if (gpu_rd(gpu, 0x0806u * 4u) == n) { consumed2 = 1; break; }
+			delay(1000);
+		}
+		delay(1000);
+		flush_dcache(scratch_pa, PAGE_SIZE, TRUE);
+		printf("SWEET GPU: a540 post-gpmu consumed=%d RPTR=%u WPTR=%u scratch=%#x\n",
+		    consumed2, gpu_rd(gpu, 0x0806u * 4u), n, scratch[0]);
+	}
+	printf("SWEET GPU: a540 diag ME_CNTL=%#x trust=%#x FSR=%#x\n",
+	    gpu_rd(gpu, 0x0860u * 4u), gpu_rd(gpu, 0xf400u * 4u),
+	    smmu ? gpu_rd(smmu, 0x58u) : 0u);
+	printf("SWEET GPU: a540 rb rptr=%u wptr=%u cntl=%#x\n",
+	    gpu_rd(gpu, 0x0806u * 4u), gpu_rd(gpu, 0x0807u * 4u),
+	    gpu_rd(gpu, 0x0802u * 4u));
+	printf("SWEET GPU: a540 bases pfp=%#x/%#x pm4=%#x/%#x prot=%#x mode=%#x\n",
+	    gpu_rd(gpu, 0x0835u * 4u), gpu_rd(gpu, 0x0836u * 4u),
+	    gpu_rd(gpu, 0x0838u * 4u), gpu_rd(gpu, 0x0839u * 4u),
+	    gpu_rd(gpu, 0x08a0u * 4u), gpu_rd(gpu, 0x0860u * 4u));
+	printf("SWEET GPU: a540 gpmu ready=%#x err=%#x cm3=%#x\n",
+	    gpu_rd(gpu, 0xa8e0u * 4u), gpu_rd(gpu, 0xa8e1u * 4u),
+	    gpu_rd(gpu, 0xa8d8u * 4u));
+	sweet_gpu_step(0xb8);
+	{
+		int h8 = 0;
+		if (PE_parse_boot_argn("sweetgpuhalt", &h8, (int)sizeof(h8)) &&
+		    h8 == 1) {
+			printf("SWEET GPU: halt after b8; WDT/auto-reset recovers\n");
+			for (;;)
+				__asm__ volatile("wfe" ::: "memory");
+		}
+	}
+	return (consumed && got == 0xc0ffee01u) || gready;
+
+
 }
 
 static int
@@ -752,10 +797,86 @@ gpu_alloc(vm_offset_t *va, vm_size_t size)
 	return ptoa_64(pmap_find_phys(kernel_pmap, (addr64_t)*va));
 }
 
+/* Host-side GPMU boot: write the firmware from the AHB side, run the
+ * AGC handshake and release CM3. Returns 1 on BABEFACE. */
+static int
+sweet_gpmu_host_boot(vm_offset_t gpu)
+{
+	int wantg = 0;
+	if (!PE_parse_boot_argn("sweetgpmu", &wantg, (int)sizeof(wantg)) ||
+	    wantg != 1) {
+		return 0;
+	}
+	if (PE_parse_boot_argn("sweetgpmu", &wantg,
+	    (int)sizeof(wantg)) && wantg == 1) {
+		uint64_t gpmu_pa = 0;
+		uint32_t gpmu_len = 0;
+		if (sweet_gpu_blob("GPU-GPMU", &gpmu_pa, &gpmu_len) &&
+		    gpmu_len >= 64) {
+			const uint32_t *g = (const uint32_t *)phystokv(gpmu_pa);
+			uint32_t remaining = g[0], metadata = g[2];
+			if (g[1] == 2 && remaining >= 3 &&
+			    remaining < gpmu_len / 4 && metadata <= remaining - 3) {
+				uint32_t first = metadata + 3;
+				uint32_t instr = remaining - metadata - 2;
+				gpu_wr(gpu, 0xa8d8u * 4u, 1u);
+				gpu_wr(gpu, 0xa8e0u * 4u, 0u);
+				gpu_wr(gpu, 0xa8e1u * 4u, 0u);
+				for (uint32_t i = 0; i < instr; i++) {
+					gpu_wr(gpu, (0x8800u + i) * 4u, g[first + i]);
+				}
+				printf("SWEET GPU: GPMU host load instr=%u rb=%#x/%#x\n",
+				    instr, gpu_rd(gpu, 0x8800u * 4u),
+				    gpu_rd(gpu, (0x8800u + instr - 1u) * 4u));
+				const uint32_t msg = 0x9807u, payload = msg + 5u;
+				gpu_wr(gpu, 0xac60u * 4u, 0x80000000u);
+				gpu_wr(gpu, 0xac80u * 4u, 0x80000000u | 6000u);
+				for (uint32_t i = 0; i < 36; i++) {
+					gpu_wr(gpu, (payload + i) * 4u, 0u);
+				}
+				gpu_wr(gpu, msg * 4u, 0x80000001u);
+				gpu_wr(gpu, (msg + 1u) * 4u, 1u);
+				gpu_wr(gpu, payload * 4u, 5448u);
+				gpu_wr(gpu, (payload + 1u) * 4u, 1u);
+				gpu_wr(gpu, (payload + 2u) * 4u, 800u);
+				gpu_wr(gpu, (payload + 3u) * 4u, 180u);
+				gpu_wr(gpu, (payload + 34u) * 4u,
+				    (1u << 24) | (1u << 17) | (2u << 8));
+				gpu_wr(gpu, (payload + 35u) * 4u, ~0x303u);
+				gpu_wr(gpu, (msg + 3u) * 4u, 36u * 4u);
+				gpu_wr(gpu, 0x9805u * 4u, 0xbabefaceu);
+				gpu_wr(gpu, 0xa892u * 4u, 0x7fu);
+				gpu_wr(gpu, 0xa894u * 4u, 0u);
+				gpu_wr(gpu, 0xa893u * 4u, 0xa0080u);
+				gpu_wr(gpu, 0xa891u * 4u, 0x600040u);
+				gpu_wr(gpu, 0xa8d8u * 4u, 0u);
+				int gr = 0;
+				for (int i = 0; i < 100; ++i) {
+					if (gpu_rd(gpu, 0xa8e0u * 4u) == 0xbabefaceu) {
+						gr = 1; break;
+					}
+					delay(1000);
+				}
+				printf("SWEET GPU: GPMU host ready=%d %#x/%#x cm3=%#x\n",
+				    gr, gpu_rd(gpu, 0xa8e0u * 4u),
+				    gpu_rd(gpu, 0xa8e1u * 4u),
+				    gpu_rd(gpu, 0xa8d8u * 4u));
+			} else {
+				printf("SWEET GPU: GPMU header bad %#x/%#x/%#x\n",
+				    remaining, g[1], metadata);
+			}
+		} else {
+			printf("SWEET GPU: GPMU blob missing\n");
+		}
+	}
+	return 0;
+}
+
 void
 sweet_gpu_probe(void)
 {
 	int level = 0;
+	int gpmu_ready = 0;
 
 	if (!PE_parse_boot_argn("sweetgpu", &level, (int)sizeof(level)) ||
 	    level < 1) {
@@ -767,6 +888,9 @@ sweet_gpu_probe(void)
 		return;
 	}
 	{
+		/* Any later reset must land in fastboot, not Android. */
+		int rr = sweet_spmi_write_ppid(PON_PPID, PON_ROUTE, 0x06);
+		printf("SWEET GPU: PON route arm rc=%d\n", rr);
 		uint8_t last = 0;
 		if (sweet_spmi_read_ppid(PON_PPID, PON_SCRATCH, &last) == 0) {
 			printf("SWEET GPU: last step=%#x\n", last);
@@ -957,9 +1081,27 @@ sweet_gpu_probe(void)
 			sweet_gpu_step(0x82);
 			printf("SWEET GPU: l8 pt=%#llx\n", pt);
 			if (pt) {
-				for (uint64_t gb = 2; gb < 8; gb++) {
-					smmu_l1[gb] = (gb << 30) | 1u | (1u << 6) |
-					    (2u << 8) | (1u << 10);
+				int use2m = 0;
+				if (PE_parse_boot_argn("sweetgpu2m", &use2m,
+				    (int)sizeof(use2m)) && use2m == 1) {
+					for (uint32_t i = 0; i < 512; i++) {
+						smmu_l2b[i] = (0x80000000ull +
+						    (uint64_t)i * 0x200000ull) | 1u | (1u << 6) |
+						    (2u << 8) | (1u << 10);
+					}
+					flush_dcache((vm_offset_t)smmu_l2b, PAGE_SIZE, FALSE);
+					smmu_l1[2] = (uint64_t)kvtophys((vm_offset_t)smmu_l2b) | 3u;
+					printf("SWEET GPU: SMMU GB2 -> 2MB table %#llx\n",
+					    (uint64_t)kvtophys((vm_offset_t)smmu_l2b));
+					for (uint64_t gb = 3; gb < 8; gb++) {
+						smmu_l1[gb] = (gb << 30) | 1u | (1u << 6) |
+						    (2u << 8) | (1u << 10);
+					}
+				} else {
+					for (uint64_t gb = 2; gb < 8; gb++) {
+						smmu_l1[gb] = (gb << 30) | 1u | (1u << 6) |
+						    (2u << 8) | (1u << 10);
+					}
 				}
 				flush_dcache((vm_offset_t)smmu_l1, PAGE_SIZE, FALSE);
 				vm_offset_t cb = smmu + 0x8000u;
@@ -974,21 +1116,18 @@ sweet_gpu_probe(void)
 				gpu_wr(cb, 0x20, (uint32_t)pt);
 				gpu_wr(cb, 0x24, (uint32_t)(pt >> 32));
 				gpu_wr(cb, 0x58, 0xffffffffu);
-				gpu_wr(cb, 0x0, (1u << 2) | (1u << 1) | 1u);
+				gpu_wr(cb, 0x0, (1u << 5) | (1u << 2) | (1u << 1) | 1u);
 				sweet_gpu_step(0x84);
 				printf("SWEET GPU: l8 cb done\n");
 				sweet_gpu_step(0x85);
 				gpu_wr(smmu, 0x800, 1u << 31);
 				sweet_gpu_step(0x86);
-				gpu_wr(smmu, 0xc00, 0x2u);
-				uint32_t s2f = gpu_rd(smmu, 0xc00);
+				/* sailfish 0123: SMR0 matches stream 0 only and S2CR0
+				 * stays translate; fault/bypass probing perturbed the
+				 * firmware state (non-zero SIDs reset this SoC). */
 				gpu_wr(smmu, 0xc00, 0x0u);
-				uint32_t s2t = gpu_rd(smmu, 0xc00);
-				gpu_wr(smmu, 0xc00, 0x1u);
-				uint32_t s2b = gpu_rd(smmu, 0xc00);
-				printf("SWEET GPU: S2CR test fault=%#x trans=%#x bypass=%#x\n",
-				    s2f, s2t, s2b);
-				gpu_wr(smmu, 0xc00, 0x0u);
+				printf("SWEET GPU: SMMU SID0 S2CR0=%#x (translate)\n",
+				    gpu_rd(smmu, 0xc00));
 				gpu_wr(smmu, 0x68, 0u);
 				gpu_wr(smmu, 0x70, 0u);
 				int sync = 0;
@@ -1008,6 +1147,15 @@ sweet_gpu_probe(void)
 	}
 
 	if (level >= 10 && level < 13) {
+		/* mainline order: GPMU up before the zap shader runs. */
+		if (level >= 10) {
+			vm_offset_t gpre = ml_io_map(0x05000000u, 0x00040000u);
+			if (gpre) {
+				gpmu_ready = sweet_gpmu_host_boot(gpre);
+				printf("SWEET GPU: pre-zap GPMU ready=%d %#x\n",
+				    gpmu_ready, gpu_rd(gpre, 0xa8e0u * 4u));
+			}
+		}
 		sweet_gpu_step(0x99);
 		printf("SWEET GPU: zap load begin\n");
 		zap_ok = sweet_zap_load();
@@ -1054,6 +1202,34 @@ sweet_gpu_probe(void)
 				    gpu_rd(gpuc, 0x0000), gpu_rd(gpuc, 0x1074),
 				    gpu_rd(gpuc, 0x1098));
 			}
+			/* Opt-in secure-mode drop (Linux no-zap fallback). */
+			{
+				int tr = 0;
+				if (PE_parse_boot_argn("sweetgputrust", &tr,
+				    (int)sizeof(tr)) && tr == 1) {
+					vm_offset_t gt = ml_io_map(0x05000000u, 0x00040000u);
+					if (gt) {
+						printf("SWEET GPU: SECVID_TRUST before=%#x\n",
+						    gpu_rd(gt, 0xf400u * 4u));
+						gpu_wr(gt, 0xf400u * 4u, 0u);
+						delay(1000);
+						printf("SWEET GPU: SECVID_TRUST after=%#x\n",
+						    gpu_rd(gt, 0xf400u * 4u));
+					}
+				}
+				/* KGSL a5xx_microcode_load: SCM SET_REMOTE_STATE(0, 13). */
+				{
+					int rsm = 0;
+					if (PE_parse_boot_argn("sweetgpuresume", &rsm,
+					    (int)sizeof(rsm)) && rsm == 1) {
+						uint64_t rr1 = 0;
+						int64_t rr = sweet_scm_call(1u, 0x0au, 0x2u, 0u,
+						    13u, 0u, &rr1);
+						printf("SWEET GPU: SCM remote_state(0,13) -> %lld/%#llx\n",
+						    rr, rr1);
+					}
+				}
+			}
 		}
 	}
 
@@ -1068,35 +1244,91 @@ sweet_gpu_probe(void)
 		printf("SWEET GPU: CP blobs %d pm4=%#llx(%u) pfp=%#llx(%u)\n",
 		    have, pm4, pm4_len, pfp, pfp_len);
 		if (gpu && have) {
+			/* GPMU: zap may have reset it; load it again if needed. */
+			if (level >= 10) {
+				gpmu_ready = sweet_gpmu_host_boot(gpu);
+			}
 			sweet_gpu_step(0x91);
 			uint64_t ring_pa = (uint64_t)kvtophys((vm_offset_t)cp_ring);
 			uint64_t scratch_pa = (uint64_t)kvtophys((vm_offset_t)cp_scratch);
-			uint64_t pm4_base = pm4, pfp_base = pfp;
+			/* Copy the header-stripped microcode into aligned pages
+			 * (sweet_a540_start layout). */
+			vm_offset_t pm4_va2 = 0, pfp_va2 = 0;
+			uint32_t pm4_bytes = pm4_len - 4u, pfp_bytes = pfp_len - 4u;
+			uint64_t pm4_base = gpu_alloc(&pm4_va2, 0x8000);
+			uint64_t pfp_base = gpu_alloc(&pfp_va2, 0x8000);
+			if (!pm4_base || !pfp_base) {
+				printf("SWEET GPU: CP fw alloc failed, using blob+4\n");
+				pm4_base = pm4 + 4u;
+				pfp_base = pfp + 4u;
+			} else {
+				memcpy((void *)pm4_va2, (const void *)phystokv(pm4 + 4),
+				    pm4_bytes);
+				memcpy((void *)pfp_va2, (const void *)phystokv(pfp + 4),
+				    pfp_bytes);
+			}
 			uint32_t *ringp = cp_ring, *scratchp = cp_scratch;
 			vm_offset_t carve = 0;
-			if (level >= 11 && zap_ok) {
-				carve = ml_io_map(ZAP_PA, ZAP_SIZE);
-				if (carve) {
-					memcpy((void *)(carve + 0x10000u),
-					    (const void *)phystokv(pm4), pm4_len);
-					memcpy((void *)(carve + 0x20000u),
-					    (const void *)phystokv(pfp), pfp_len);
-					memset((void *)(carve + 0x30000u), 0, PAGE_SIZE);
-					memset((void *)(carve + 0x40000u), 0, PAGE_SIZE);
-					ring_pa = ZAP_PA + 0x30000u;
-					scratch_pa = ZAP_PA + 0x40000u;
-					pm4_base = ZAP_PA + 0x10000u;
-					pfp_base = ZAP_PA + 0x20000u;
-					ringp = (uint32_t *)(carve + 0x30000u);
-					scratchp = (uint32_t *)(carve + 0x40000u);
-					flush_dcache(pm4_base, pm4_len, TRUE);
-					flush_dcache(pfp_base, pfp_len, TRUE);
-					printf("SWEET GPU: carve ring/ucode at %#x\n", ZAP_PA);
-				}
-			}
+			/* carveout approach removed: secure carveout only maps the
+			 * authenticated 8KB segment; host writes abort the bus. */
 			printf("SWEET GPU: CP ring=%#llx scratch=%#llx pm4=%#llx pfp=%#llx\n",
 			    ring_pa, scratch_pa, pm4_base, pfp_base);
+			/* zap auth_and_reset may reset the GPU SMMU: show its
+			 * state and restore the identity map before CP fetch. */
+			if (level >= 8) {
+				vm_offset_t sm2 = ml_io_map(0x05040000u, 0x00010000u);
+				if (sm2) {
+					vm_offset_t cb2 = sm2 + 0x8000u;
+					vm_offset_t gr12 = sm2 + 0x1000u;
+					uint64_t pt2 = (uint64_t)kvtophys((vm_offset_t)smmu_l1);
+					printf("SWEET GPU: pre-CP SMMU SMR0=%#x S2CR0=%#x SCTLR=%#x TTBR0=%#x FSR=%#x\n",
+					    gpu_rd(sm2, 0x800), gpu_rd(sm2, 0xc00), gpu_rd(cb2, 0x0),
+					    gpu_rd(cb2, 0x20), gpu_rd(cb2, 0x58));
+					gpu_wr(cb2, 0x0, 0);
+					gpu_wr(gr12, 0x0, 1u << 16);
+					gpu_wr(gr12, 0x800, 1u);
+					gpu_wr(cb2, 0x10, (7u << 15) | 1u);
+					gpu_wr(cb2, 0x30, 28u | (1u << 23));
+					gpu_wr(cb2, 0x38, 0x44u);
+					gpu_wr(cb2, 0x20, (uint32_t)pt2);
+					gpu_wr(cb2, 0x24, (uint32_t)(pt2 >> 32));
+					gpu_wr(cb2, 0x58, 0xffffffffu);
+					gpu_wr(cb2, 0x0, (1u << 5) | (1u << 2) | (1u << 1) | 1u);
+					gpu_wr(sm2, 0x800, 1u << 31);
+					gpu_wr(sm2, 0xc00, 0x0u);
+					gpu_wr(sm2, 0x68, 0u);
+					gpu_wr(sm2, 0x70, 0u);
+					int syn2 = 0;
+					for (int i = 0; i < 100; ++i) {
+						if (!(gpu_rd(sm2, 0x74) & 1u)) { syn2 = 1; break; }
+						delay(1);
+					}
+					printf("SWEET GPU: re-CP SMMU SMR0=%#x S2CR0=%#x SCTLR=%#x TTBR0=%#x FSR=%#x sync=%d\n",
+					    gpu_rd(sm2, 0x800), gpu_rd(sm2, 0xc00), gpu_rd(cb2, 0x0),
+					    gpu_rd(cb2, 0x20), gpu_rd(cb2, 0x58), syn2);
+				}
+			}
 			sweet_gpu_step(0x92);
+			/* A540: halt CP and drain VBIF before reprogramming
+			 * (sagit AdrenoStartup/Submit start() preconditions). */
+			printf("SWEET GPU: CP pre-halt ME=%#x micro=%#x/%#x/%#x/%#x\n",
+			    gpu_rd(gpu, R_CP_PFP_ME_CNTL * 4u),
+			    gpu_rd(gpu, 0x01f7u * 4u), gpu_rd(gpu, 0x01f8u * 4u),
+			    gpu_rd(gpu, 0x01f9u * 4u), gpu_rd(gpu, 0x01fau * 4u));
+			gpu_wr(gpu, 0x0038u * 4u, 0u);
+			gpu_wr(gpu, R_CP_PFP_ME_CNTL * 4u, 0x303u);
+			gpu_wr(gpu, 0x3080u * 4u, 15u);
+			int cph = 0;
+			for (int i = 0; i < 100; ++i) {
+				if ((gpu_rd(gpu, R_CP_PFP_ME_CNTL * 4u) & 0x303u) == 0x303u &&
+				    (gpu_rd(gpu, 0x3081u * 4u) & 15u) == 15u) { cph = 1; break; }
+				delay(1000);
+			}
+			printf("SWEET GPU: CP halt=%d ME=%#x VBIF=%#x trust=%#x gpmu=%#x/%#x cm3=%#x\n",
+			    cph, gpu_rd(gpu, R_CP_PFP_ME_CNTL * 4u),
+			    gpu_rd(gpu, 0x3081u * 4u), gpu_rd(gpu, 0xf400u * 4u),
+			    gpu_rd(gpu, 0xa8e0u * 4u), gpu_rd(gpu, 0xa8e1u * 4u),
+			    gpu_rd(gpu, 0xa8d8u * 4u));
 			/* a5xx_pm_resume: power the RB/CCU and SP islands. */
 			gpu_wr(gpu, R_GPMU_RBCCU_POWER_CNTL * 4u, 0x778000u);
 			int rbccu = 0;
@@ -1128,7 +1360,7 @@ sweet_gpu_probe(void)
 			gpu_wr(gpu, R_UCHE_GMEM_RANGE_MAX * 4u, 0x001fffffu);
 			gpu_wr(gpu, (R_UCHE_GMEM_RANGE_MAX + 1u) * 4u, 0u);
 			gpu_wr(gpu, R_CP_MEQ_THRESHOLDS * 4u, 0x40u);
-			gpu_wr(gpu, R_CP_MERCIU_SIZE * 4u, 0x40u);
+			gpu_wr(gpu, R_CP_MERCIU_SIZE * 4u, 0x400u);
 			gpu_wr(gpu, R_CP_ROQ_THRESHOLDS_2 * 4u, 0x80000060u);
 			gpu_wr(gpu, R_CP_ROQ_THRESHOLDS_1 * 4u, 0x40201b16u);
 			gpu_wr(gpu, R_PC_DBG_ECO_CNTL * 4u, (0x400u << 11) | (0x300u << 22));
@@ -1150,6 +1382,169 @@ sweet_gpu_probe(void)
 			for (unsigned i = 0; i < sizeof(addr_mode) / sizeof(addr_mode[0]); i++) {
 				gpu_wr(gpu, addr_mode[i] * 4u, 1u);
 			}
+	/* A540 configure (AdrenoStartup::configure, HGCG table omitted). */
+	gpu_wr(gpu, 0x3049u * 4u, 3u);			/* VBIF RR QoS */
+	gpu_wr(gpu, 0x302au * 4u, 9u);			/* VBIF gate off wrreq */
+	gpu_wr(gpu, 0x046fu * 4u, 0xffffffffu);
+	gpu_wr(gpu, 0x0093u * 4u, 1u);
+	gpu_wr(gpu, 0x002fu * 4u, 0x4000ffffu);		/* hang int */
+	gpu_wr(gpu, 0x0464u * 4u, 1u);
+	gpu_wr(gpu, 0x0bb0u * 4u, 0u);
+	gpu_wr(gpu, 0x046bu * 4u, 6u);
+	gpu_wr(gpu, 0x0e96u * 4u, 2u);
+	gpu_wr(gpu, 0x0e89u * 4u, 0xffff0000u);
+	gpu_wr(gpu, 0x0e8au * 4u, 0x1ffffu);
+	gpu_wr(gpu, 0x0e87u * 4u, 0xffff0000u);
+	gpu_wr(gpu, 0x0e88u * 4u, 0x1ffffu);
+	gpu_wr(gpu, 0x0e8bu * 4u, 0x100000u);
+	gpu_wr(gpu, 0x0e8cu * 4u, 0u);
+	gpu_wr(gpu, 0x0e8du * 4u, 0x1fffffu);
+	gpu_wr(gpu, 0x0e8eu * 4u, 0u);
+	gpu_wr(gpu, 0x0825u * 4u, 0x40u);
+	gpu_wr(gpu, 0x0826u * 4u, 0x400u);		/* A540 MERCIU */
+	gpu_wr(gpu, 0x0820u * 4u, 0x80000060u);
+	gpu_wr(gpu, 0x081fu * 4u, 0x40201b16u);
+	gpu_wr(gpu, 0x0d00u * 4u, (0x400u << 11) | (0x300u << 22));
+	gpu_wr(gpu, 0x0e81u * 4u, 1u << 29);
+	gpu_wr(gpu, 0x0833u * 4u, 0x02000000u);
+	gpu_wr(gpu, 0x0094u * 4u, 0xa6ffffffu);
+	gpu_wr(gpu, 0x0095u * 4u, 0x3fu);
+	gpu_wr(gpu, 0x0f02u * 4u, 2u << 7);
+	gpu_wr(gpu, 0x0cc6u * 4u, 2u << 1);
+	gpu_wr(gpu, 0x0e8fu * 4u, 2u);
+	gpu_wr(gpu, 0x08a0u * 4u, 7u);			/* CP_PROTECT_CNTL */
+	gpu_wr(gpu, 0x0e60u * 4u,
+	    gpu_rd(gpu, 0x0e60u * 4u) | (1u << 10) | (1u << 23));
+	gpu_wr(gpu, 0x0e04u * 4u,
+	    gpu_rd(gpu, 0x0e04u * 4u) & ~(1u << 18));
+	static const uint32_t prot[] = {
+		0x0880u + 0, 0x0880u + 1, 0x0880u + 2, 0x0880u + 3,
+		0x0880u + 4, 0x0880u + 5, 0x0880u + 6, 0x0880u + 7,
+		0x0880u + 8, 0x0880u + 9, 0x0880u + 10, 0x0880u + 11,
+		0x0880u + 12, 0x0880u + 13, 0x0880u + 14, 0x0880u + 15,
+		0x0880u + 16, 0x0880u + 17,
+	};
+	const uint32_t protv[] = {
+		a540_prot(0x4, 2), a540_prot(0x8, 3), a540_prot(0x10, 4),
+		a540_prot(0x20, 5), a540_prot(0x40, 6), a540_prot(0x80, 6),
+		a540_prot(0xf800, 4), a540_prot(0xf400, 1),
+		a540_prot(0x800, 6), a540_prot(0x840, 3), a540_prot(0x880, 5),
+		a540_prot(0xaa0, 0), a540_prot(0xcc0, 0), a540_prot(0xcf0, 1),
+		a540_prot(0xe68, 3), a540_prot(0xe70, 4), a540_prot(0xe80, 4),
+		a540_prot(0x10000, 15),
+	};
+	for (unsigned i = 0; i < sizeof(prot) / sizeof(prot[0]); i++) {
+		gpu_wr(gpu, prot[i] * 4u, protv[i]);
+	}
+	gpu_wr(gpu, 0xf803u * 4u, 0u);
+	gpu_wr(gpu, 0xf800u * 4u, 0u);
+	gpu_wr(gpu, 0xf801u * 4u, 0u);
+	gpu_wr(gpu, 0xf802u * 4u, 0u);
+	static const uint16_t modes[] = {
+		0x0860u, 0x0bc1u, 0x0c81u, 0x0cc5u, 0x0d01u, 0x0e05u,
+		0x0e41u, 0x0e61u, 0x0e80u, 0x0ec1u, 0x0f01u, 0xf810u,
+	};
+	for (unsigned i = 0; i < sizeof(modes) / sizeof(modes[0]); i++) {
+		gpu_wr(gpu, modes[i] * 4u, 1u);
+	}
+	/* A540 hardware clock gating (AdrenoStartup::hardwareClockGating). */
+	gpu_wr(gpu, 104u * 4u, 0x02222222u);
+	gpu_wr(gpu, 105u * 4u, 0x02222222u);
+	gpu_wr(gpu, 106u * 4u, 0x02222222u);
+	gpu_wr(gpu, 107u * 4u, 0x02222222u);
+	gpu_wr(gpu, 108u * 4u, 0x02222220u);
+	gpu_wr(gpu, 109u * 4u, 0x02222220u);
+	gpu_wr(gpu, 110u * 4u, 0x02222220u);
+	gpu_wr(gpu, 111u * 4u, 0x02222220u);
+	gpu_wr(gpu, 112u * 4u, 0x0000F3CFu);
+	gpu_wr(gpu, 113u * 4u, 0x0000F3CFu);
+	gpu_wr(gpu, 114u * 4u, 0x0000F3CFu);
+	gpu_wr(gpu, 115u * 4u, 0x0000F3CFu);
+	gpu_wr(gpu, 116u * 4u, 0x00000080u);
+	gpu_wr(gpu, 117u * 4u, 0x00000080u);
+	gpu_wr(gpu, 118u * 4u, 0x00000080u);
+	gpu_wr(gpu, 119u * 4u, 0x00000080u);
+	gpu_wr(gpu, 74u * 4u, 0x22222222u);
+	gpu_wr(gpu, 75u * 4u, 0x22222222u);
+	gpu_wr(gpu, 76u * 4u, 0x22222222u);
+	gpu_wr(gpu, 77u * 4u, 0x22222222u);
+	gpu_wr(gpu, 78u * 4u, 0x22222222u);
+	gpu_wr(gpu, 79u * 4u, 0x22222222u);
+	gpu_wr(gpu, 80u * 4u, 0x22222222u);
+	gpu_wr(gpu, 81u * 4u, 0x22222222u);
+	gpu_wr(gpu, 82u * 4u, 0x00002222u);
+	gpu_wr(gpu, 83u * 4u, 0x00002222u);
+	gpu_wr(gpu, 84u * 4u, 0x00002222u);
+	gpu_wr(gpu, 85u * 4u, 0x00002222u);
+	gpu_wr(gpu, 176u * 4u, 0x77777777u);
+	gpu_wr(gpu, 177u * 4u, 0x77777777u);
+	gpu_wr(gpu, 178u * 4u, 0x77777777u);
+	gpu_wr(gpu, 179u * 4u, 0x77777777u);
+	gpu_wr(gpu, 180u * 4u, 0x77777777u);
+	gpu_wr(gpu, 181u * 4u, 0x77777777u);
+	gpu_wr(gpu, 182u * 4u, 0x77777777u);
+	gpu_wr(gpu, 183u * 4u, 0x77777777u);
+	gpu_wr(gpu, 184u * 4u, 0x00007777u);
+	gpu_wr(gpu, 185u * 4u, 0x00007777u);
+	gpu_wr(gpu, 186u * 4u, 0x00007777u);
+	gpu_wr(gpu, 187u * 4u, 0x00007777u);
+	gpu_wr(gpu, 164u * 4u, 0x11111111u);
+	gpu_wr(gpu, 165u * 4u, 0x11111111u);
+	gpu_wr(gpu, 166u * 4u, 0x11111111u);
+	gpu_wr(gpu, 167u * 4u, 0x11111111u);
+	gpu_wr(gpu, 168u * 4u, 0x11111111u);
+	gpu_wr(gpu, 169u * 4u, 0x11111111u);
+	gpu_wr(gpu, 170u * 4u, 0x11111111u);
+	gpu_wr(gpu, 171u * 4u, 0x11111111u);
+	gpu_wr(gpu, 172u * 4u, 0x00001111u);
+	gpu_wr(gpu, 173u * 4u, 0x00001111u);
+	gpu_wr(gpu, 174u * 4u, 0x00001111u);
+	gpu_wr(gpu, 175u * 4u, 0x00001111u);
+	gpu_wr(gpu, 90u * 4u, 0x22222222u);
+	gpu_wr(gpu, 91u * 4u, 0x22222222u);
+	gpu_wr(gpu, 92u * 4u, 0x22222222u);
+	gpu_wr(gpu, 93u * 4u, 0x00222222u);
+	gpu_wr(gpu, 94u * 4u, 0x00444444u);
+	gpu_wr(gpu, 95u * 4u, 0x00000002u);
+	gpu_wr(gpu, 120u * 4u, 0x22222222u);
+	gpu_wr(gpu, 121u * 4u, 0x22222222u);
+	gpu_wr(gpu, 122u * 4u, 0x22222222u);
+	gpu_wr(gpu, 123u * 4u, 0x22222222u);
+	gpu_wr(gpu, 124u * 4u, 0x00222222u);
+	gpu_wr(gpu, 125u * 4u, 0x00222222u);
+	gpu_wr(gpu, 126u * 4u, 0x00222222u);
+	gpu_wr(gpu, 127u * 4u, 0x00222222u);
+	gpu_wr(gpu, 130u * 4u, 0x00022220u);
+	gpu_wr(gpu, 131u * 4u, 0x00022220u);
+	gpu_wr(gpu, 132u * 4u, 0x00022220u);
+	gpu_wr(gpu, 133u * 4u, 0x00022220u);
+	gpu_wr(gpu, 138u * 4u, 0x05522222u);
+	gpu_wr(gpu, 139u * 4u, 0x00505555u);
+	gpu_wr(gpu, 134u * 4u, 0x04040404u);
+	gpu_wr(gpu, 135u * 4u, 0x04040404u);
+	gpu_wr(gpu, 136u * 4u, 0x04040404u);
+	gpu_wr(gpu, 137u * 4u, 0x04040404u);
+	gpu_wr(gpu, 128u * 4u, 0x07444044u);
+	gpu_wr(gpu, 140u * 4u, 0x00000002u);
+	gpu_wr(gpu, 141u * 4u, 0x00000002u);
+	gpu_wr(gpu, 142u * 4u, 0x00000002u);
+	gpu_wr(gpu, 143u * 4u, 0x00000002u);
+	gpu_wr(gpu, 129u * 4u, 0x00010011u);
+	gpu_wr(gpu, 99u * 4u, 0x04222222u);
+	gpu_wr(gpu, 96u * 4u, 0x02222222u);
+	gpu_wr(gpu, 145u * 4u, 0x00002222u);
+	gpu_wr(gpu, 100u * 4u, 0x00000000u);
+	gpu_wr(gpu, 98u * 4u, 0x04104004u);
+	gpu_wr(gpu, 144u * 4u, 0x00000000u);
+	gpu_wr(gpu, 102u * 4u, 0x00000000u);
+	gpu_wr(gpu, 101u * 4u, 0x00004000u);
+	gpu_wr(gpu, 97u * 4u, 0x00000200u);
+	gpu_wr(gpu, 146u * 4u, 0x00002222u);
+	gpu_wr(gpu, 201u * 4u, 0x770u);
+	gpu_wr(gpu, 202u * 4u, 4u);
+	gpu_wr(gpu, 103u * 4u, 0xaaa8aa00u);
+	gpu_wr(gpu, 1331u * 4u, 0x182u);
+
 			sweet_gpu_step(0x93);
 			gpu_wr(gpu, R_CP_PFP_INSTR_BASE * 4u, (uint32_t)pfp_base);
 			gpu_wr(gpu, (R_CP_PFP_INSTR_BASE + 1u) * 4u, (uint32_t)(pfp_base >> 32));
@@ -1160,7 +1555,8 @@ sweet_gpu_probe(void)
 			    (uint32_t)((scratch_pa + 0x10) >> 32));
 			gpu_wr(gpu, R_CP_RB_BASE * 4u, (uint32_t)ring_pa);
 			gpu_wr(gpu, R_CP_RB_BASE_HI * 4u, (uint32_t)(ring_pa >> 32));
-			gpu_wr(gpu, R_CP_RB_CNTL * 4u, 11u | (2u << 8));
+			gpu_wr(gpu, 0x083bu * 4u, 0u);
+			gpu_wr(gpu, R_CP_RB_CNTL * 4u, 11u | (2u << 8) | (1u << 27));
 			sweet_gpu_step(0x94);
 			cp_rb_n = 0;
 			cp_emit(cp_pkt7(CP_ME_INIT_OP, 8));
@@ -1169,22 +1565,43 @@ sweet_gpu_probe(void)
 			cp_emit(0x20000000u);
 			cp_emit(0u);
 			cp_emit(0u);
-			cp_emit(0xbu);
+			cp_emit(0u);
 			cp_emit(0u);
 			cp_emit(0u);
 			cp_emit(cp_pkt7(CP_MEM_WRITE_OP, 3));
 			cp_emit((uint32_t)scratch_pa);
 			cp_emit((uint32_t)(scratch_pa >> 32));
 			cp_emit(0xc0ffee01u);
+			/* Leave secure mode (zap already authenticated). */
+			cp_emit(cp_pkt7(0x66u, 1));
+			cp_emit(0u);
+			cp_emit(cp_pkt7(0x26u, 0));
+			cp_emit(cp_pkt7(CP_MEM_WRITE_OP, 3));
+			cp_emit((uint32_t)scratch_pa);
+			cp_emit((uint32_t)(scratch_pa >> 32));
+			cp_emit(0xc0ffee02u);
 			cp_emit(cp_pkt7(CP_NOP_OP, 0));
 			if (ringp != cp_ring) {
 				memcpy(ringp, cp_ring, cp_rb_n * 4u);
 			}
 			flush_dcache(ring_pa, PAGE_SIZE, TRUE);
-			flush_dcache(pm4_base, pm4_len, TRUE);
-			flush_dcache(pfp_base, pfp_len, TRUE);
+			flush_dcache(pm4_base, pm4_bytes, TRUE);
+			flush_dcache(pfp_base, pfp_bytes, TRUE);
 			sweet_gpu_step(0x95);
+			printf("SWEET GPU: CP cfg rb=%#x/%#x cntl=%#x rptr=%u wptr=%u ctx=%#x ib=%#x/%#x pfp=%#x/%#x me=%#x stat=%#x wfi=%#x\n",
+			    gpu_rd(gpu, R_CP_RB_BASE * 4u), gpu_rd(gpu, (R_CP_RB_BASE + 1u) * 4u),
+			    gpu_rd(gpu, R_CP_RB_CNTL * 4u), gpu_rd(gpu, R_CP_RB_RPTR * 4u),
+			    gpu_rd(gpu, R_CP_RB_WPTR * 4u), gpu_rd(gpu, 0x083bu * 4u),
+			    gpu_rd(gpu, R_CP_ME_INSTR_BASE * 4u),
+			    gpu_rd(gpu, (R_CP_ME_INSTR_BASE + 1u) * 4u),
+			    gpu_rd(gpu, R_CP_PFP_INSTR_BASE * 4u),
+			    gpu_rd(gpu, (R_CP_PFP_INSTR_BASE + 1u) * 4u),
+			    gpu_rd(gpu, R_CP_PFP_ME_CNTL * 4u), gpu_rd(gpu, 0x0b14u * 4u),
+			    gpu_rd(gpu, 0x0b15u * 4u));
+			gpu_wr(gpu, 0x3080u * 4u, 0u);
 			gpu_wr(gpu, R_CP_PFP_ME_CNTL * 4u, 0u);
+			printf("SWEET GPU: CP release ME=%#x VBIF=%#x\n",
+			    gpu_rd(gpu, R_CP_PFP_ME_CNTL * 4u), gpu_rd(gpu, 0x3081u * 4u));
 			gpu_wr(gpu, R_CP_RB_WPTR * 4u, cp_rb_n);
 			int consumed = 0;
 			for (int i = 0; i < 200; ++i) {
@@ -1197,28 +1614,58 @@ sweet_gpu_probe(void)
 			delay(1000);
 			flush_dcache(scratch_pa, PAGE_SIZE, TRUE);
 			uint32_t got = scratchp[0];
-			printf("SWEET GPU: CP consumed=%d RPTR=%u WPTR=%u scratch=%#x %s\n",
-			    consumed, gpu_rd(gpu, R_CP_RB_RPTR * 4u), cp_rb_n, got,
+			printf("SWEET GPU: CP consumed=%d RPTR=%u WPTR=%u(want %u) cntl=%#x scratch=%#x %s\n",
+			    consumed, gpu_rd(gpu, R_CP_RB_RPTR * 4u),
+			    gpu_rd(gpu, R_CP_RB_WPTR * 4u), cp_rb_n,
+			    gpu_rd(gpu, R_CP_RB_CNTL * 4u), got,
 			    got == 0xc0ffee01u ? "CP WORKS" : "no write");
 			printf("SWEET GPU: CP ME_CNTL=%#x RBBM=%#x HW_FAULT=%#x\n",
 			    gpu_rd(gpu, R_CP_PFP_ME_CNTL * 4u),
 			    gpu_rd(gpu, 0x04f5u * 4u), gpu_rd(gpu, R_CP_HW_FAULT * 4u));
+			if (level >= 8) {
+				vm_offset_t sm3 = ml_io_map(0x05040000u, 0x00010000u);
+				if (sm3) {
+					vm_offset_t cb3 = sm3 + 0x8000u;
+					printf("SWEET GPU: post-CP sGFSR=%#x CB0 FSR=%#x FAR=%#x%08x FSYNR0=%#x SMR0=%#x S2CR0=%#x SCTLR=%#x\n",
+					    gpu_rd(sm3, 0x48), gpu_rd(cb3, 0x58),
+					    gpu_rd(cb3, 0x64), gpu_rd(cb3, 0x60), gpu_rd(cb3, 0x68),
+					    gpu_rd(sm3, 0x800), gpu_rd(sm3, 0xc00), gpu_rd(cb3, 0x0));
+					printf("SWEET GPU: SMMU banks SMR1=%#x S2CR1=%#x SMR2=%#x S2CR2=%#x CB1=%#x CB2=%#x sACR=%#x\n",
+					    gpu_rd(sm3, 0x804), gpu_rd(sm3, 0xc04),
+					    gpu_rd(sm3, 0x808), gpu_rd(sm3, 0xc08),
+					    gpu_rd(sm3 + 0x9000u, 0x0), gpu_rd(sm3 + 0xa000u, 0x0),
+					    gpu_rd(sm3, 0x10));
+				}
+			}
+			printf("SWEET GPU: CP later ME=%#x VBIF=%#x CP_INT=%#x INT=%#x ST3=%#x trust=%#x gpmu=%#x/%#x cm3=%#x\n",
+			    gpu_rd(gpu, R_CP_PFP_ME_CNTL * 4u), gpu_rd(gpu, 0x3081u * 4u),
+			    gpu_rd(gpu, R_CP_INTERRUPT_STATUS * 4u), gpu_rd(gpu, 0x04e1u * 4u),
+			    gpu_rd(gpu, 0x0530u * 4u), gpu_rd(gpu, 0xf400u * 4u),
+			    gpu_rd(gpu, 0xa8e0u * 4u), gpu_rd(gpu, 0xa8e1u * 4u),
+			    gpu_rd(gpu, 0xa8d8u * 4u));
+			printf("SWEET GPU: CP ahb_err=%#x status3=%#x\n",
+			    gpu_rd(gpu, 0x04f4u * 4u), gpu_rd(gpu, 0x0530u * 4u));
+			printf("SWEET GPU: CP micro2 ME=%#x st=%#x waddr=%#x raddr=%#x data=%#x stat=%#x wfi=%#x\n",
+			    gpu_rd(gpu, R_CP_PFP_ME_CNTL * 4u), gpu_rd(gpu, 0x01f7u * 4u),
+			    gpu_rd(gpu, 0x01f8u * 4u), gpu_rd(gpu, 0x01f9u * 4u),
+			    gpu_rd(gpu, 0x01fau * 4u), gpu_rd(gpu, 0x0b14u * 4u),
+			    gpu_rd(gpu, 0x0b15u * 4u));
 			sweet_gpu_step(0x97);
 		}
 	}
 
 	if (level >= 13) {
 		sweet_gpu_step(0xb1);
-		a540_want_gpmu = (level >= 14);
+		a540_want_gpmu = (level >= 13); /* v207: GPMU off at level 12 */
 		printf("SWEET GPU: A540 pre-zap A540 start (gpmu=%d)\n", a540_want_gpmu);
-		int ok13 = sweet_a540_start();
+		int ok13 = sweet_a540_start(0);
 		printf("SWEET GPU: A540 pre-zap %s\n", ok13 ? "OK" : "FAIL");
 	}
 
 	if (level >= 12 && level < 13) {
 		sweet_gpu_step(0xa1);
 		printf("SWEET GPU: A540 start enter\n");
-		int ok = sweet_a540_start();
+		int ok = sweet_a540_start(0); /* v206: no secure CB writes post-auth either */
 		printf("SWEET GPU: A540 start %s\n", ok ? "OK" : "FAIL");
 		sweet_gpu_step(0xa2);
 	}
@@ -1228,6 +1675,15 @@ sweet_gpu_probe(void)
 	    pause > 0 && pause <= 150) {
 		printf("SWEET GPU: holding console %d s\n", pause);
 		delay(pause * 1000000);
+	}
+	{
+		int hold = 0;
+		if (PE_parse_boot_argn("sweetgpuhalt", &hold,
+		    (int)sizeof(hold)) && hold == 1) {
+			printf("SWEET GPU: sweetgpuhalt=1, spinning; WDT/auto-reset recovers\n");
+			for (;;)
+				__asm__ volatile("wfe" ::: "memory");
+		}
 	}
 	printf("SWEET GPU: probe done\n");
 }
