@@ -4,6 +4,7 @@
 
 → `D:\Desktop\Git\Patch\Xperia\AGENTS.md`（2026-10-29 起迁至 D 盘）
 
+> 2026-10-29 情报二：显示零拷贝 DPU scanout 与 GPU 解耦（CPU 调度→1fps→DPU→GPU），见主文件 §情报二。
 > 2026-10-29 方向校正（师兄六项情报）见主文件 §>>> 2026-10-29（触摸/HID 顺序、xzp-ios APFS/UEFI、cheeseburger iPadOS17.7.11、WDT 四前提、QR 日志、Pagani）。
 
 ## 🔴 路径硬约束（2026-10-29，永久有效）
