@@ -31,6 +31,26 @@
   （备选 passthrough CB 直打 PA，picasso 先例）。
 - **战略顺序：CPU 调度 → 锁 1fps → DPU 零拷贝 scanout → 再上 GPU**。
 
+## 2026-10-29 COMPACT 备份（显示直扫 + 今晚）
+
+- 只工作 D 盘：`D:\Desktop\Git\Patch\Xperia` / `D:\Desktop\Git\ios-xperia-xz1c`；
+  永不碰 `C:\Users\Cisco He\Desktop`。Mac 192.168.68.54。
+- 镜像：v238 `research/shim-4k-v238-gva-boot-gzdtb.img`
+  （sha 676b7127…，sweetgpugva=1，CP 全局 aperture 0xFC000000）；
+  v239 `…-v239-gva-secvid-…`（sha 7be14eaf…，SECVID TSB
+  0xEC000000/256MB）。一键 `research/run_v238.sh`。
+- 显示直扫：内核已有 topaz 版（VIG0 0x0C905000/CTL0 0x0C902000，
+  6×16MiB@0x96000000，`sweetfb_direct` 开关）；实机日志证实 VIG0 基址
+  正确（src=0x9d400000 stride=2160，boot 720×1280 RGB888，逻辑
+  1125×2436）。现有 scanFrom 只写 SRC0_ADDR 0x14/YSTRIDE 0x24/
+  FLUSH 0x18=0x20001，**缺** SRC_FORMAT 0x30/UNPACK 0x34/
+  SRC_SIZE 0x00/OUT_SIZE 0x0C 与 QSEED3 缩放。
+- 原厂编码：SRC_SIZE=(h<<16)|w；flush VIG0=BIT(0)、CTL=BIT(17)、
+  LMn=BIT(6+n)；格式表在 mdss_mdp_format_params，QSEED3 相位
+  0x210..0x22C。下一步实现 `sweetfb_direct=2`（先 1:1，再
+  1125→720 硬件缩放），离线可构建。
+- 战略：CPU 调度 → sheng-vsync=1 → DPU 零拷贝 → GPU。
+
 ## 2026-10-29 今晚实测准备（v238 / v239）
 
 - 手机今早在充电界面 → 晚上长按电源回 fastboot（`BH905ND69G`）。
