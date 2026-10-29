@@ -4,6 +4,8 @@
 
 → `D:\Desktop\Git\Patch\Xperia\AGENTS.md`（2026-10-29 起迁至 D 盘）
 
+> 2026-10-29 方向校正（师兄六项情报）见主文件 §>>> 2026-10-29（触摸/HID 顺序、xzp-ios APFS/UEFI、cheeseburger iPadOS17.7.11、WDT 四前提、QR 日志、Pagani）。
+
 接手前必读顺序：
 1. `Patch/Xperia/AGENTS.md` —— 顶部「当前状态/红线」+ 最新 `## >>>` 条目
    + 文末「附录A」（原本文件的硬事实/规则手册，已逐字并入）。
