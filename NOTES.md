@@ -1677,3 +1677,20 @@ PSHOLD）。WDT 元凶论未证实——"加探针死点提前"仍是弱旁证�
 
 **充电模式注意**：XBL 充电 App ~30s 自熄屏，LCD 无烧屏风险；
 恢复 = 按一下电源键 → 正常进 Android。
+
+## 2026-10-29 20:10 真机首轮（v238）+ 北极星差距
+
+- **摄像头新地址**：`http://192.168.68.60:4747/`（旧 .57 作废）。
+  抓图规矩：先 `/cam/1/af` 等 2s，再 frame/stream。
+- **v238 实机**：patch 2/2 → boot 成功 → COM17 ~40s。日志显示内核
+  活到用户态（backboardd/SpringBoard/fairplayd，`VERMEER PAD` 刷屏
+  3.5 万行），**无 panic**。
+- **屏幕**：verbose 阶段花屏，随后停在苹果 logo，无文字——无 GPU 时
+  UIKit 出不来，属预期。
+- **日志缺口**：首抓 694KB 因 Git Bash `$TEMP=/tmp` 传给 PowerShell
+  变成不存在的 `D:\tmp\...` 而丢失，早期 `SWEET GPU`/`CP consumed`
+  行正好在那段。`research/run_v238.sh` 已改 `cygpath -w`，COM17 一
+  出现即读 45s；`research/wait_and_fire.sh` 等自复位后自动补抓。
+- **北极星（METHOD-DEBUG-PORTABLE §8）**：lilac 唯一真缺口是 shim 期
+  活体串口；实现顺序 panic drain 排序 → shim CDC gadget → appslog
+  双槽持久盘。相机降级为月度物理抽检。
