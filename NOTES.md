@@ -16,6 +16,21 @@
 
 ---
 
+## 2026-10-29 情报二：显示零拷贝（与 GPU 解耦）
+
+- **核心**：CPU surface 不需要 GPU——DPU scanout 只要 IOSurface 物理页。
+  显示可与 A540 GPU 解耦，先修零拷贝显示。
+- 成品：`research/unixnu-nativemobiledisplay`（NativeDpuSurface 把
+  IOSurface 物理页映进显示 SMMU CB4 → VIG0 pipe 直指 → CTL0 flush）。
+- 硬件缩放：SDE SSPP src/dst rect + scaler 表（源自 sde_hw_sspp）；
+  lilac cmd 面板可缩小源面再由 pipe 放大；调试 ~600×300。
+- 先锁 1fps：`sheng-vsync=1`；先修 CPU 调度（ArmCpu/Clutch pset，
+  Pagani 先例）。附赠 512 帧延迟仪表。
+- lilac 三关：SDE v1 寄存器表（sony-kernel-4.4 头文件）、DSI cmd-mode
+  （CTL kick + done/TE）、mdss iommu 可能同样受 hyp_secure_alloc 限制
+  （备选 passthrough CB 直打 PA，picasso 先例）。
+- **战略顺序：CPU 调度 → 锁 1fps → DPU 零拷贝 scanout → 再上 GPU**。
+
 ## 2026-10-29 今晚实测准备（v238 / v239）
 
 - 手机今早在充电界面 → 晚上长按电源回 fastboot（`BH905ND69G`）。
