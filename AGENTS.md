@@ -2,7 +2,7 @@
 
 **唯一权威工作日志与硬事实手册已统一到主目录：**
 
-→ `C:\Users\Cisco He\Desktop\Git\Patch\Xperia\AGENTS.md`
+→ `D:\Desktop\Git\Patch\Xperia\AGENTS.md`（2026-10-29 起迁至 D 盘）
 
 接手前必读顺序：
 1. `Patch/Xperia/AGENTS.md` —— 顶部「当前状态/红线」+ 最新 `## >>>` 条目
