@@ -51,6 +51,13 @@
   1125→720 硬件缩放），离线可构建。
 - 战略：CPU 调度 → sheng-vsync=1 → DPU 零拷贝 → GPU。
 
+### 2026-10-29 13:56 扫描与镜像追加
+- 全量扫描主 AGENTS/SUBAGENTS/项目指针/Mac AGENTS+NOTES：路径硬约束一致，情报一/二已入档。
+- 四镜像：v238 `676b7127`、v239 `7be14eaf`、v240 `da397632`、
+  v241 `78ff8a22`（`sweetfb_selftest=1`：720×1280 BGRA 彩条 + SRC_FORMAT
+  0x236FF/SIZE + CTL_START kick）。
+- 离线总表：`OFFLINE-BACKLOG-20261029.md`（QSEED3/SMP/触摸 HID/xzp-ios/WDT）。
+
 ## 2026-10-29 今晚实测准备（v238 / v239）
 
 - 手机今早在充电界面 → 晚上长按电源回 fastboot（`BH905ND69G`）。
