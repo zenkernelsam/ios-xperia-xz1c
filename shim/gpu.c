@@ -190,6 +190,8 @@ static struct scm_ret scm_call(uint32_t svc, uint32_t cmd, uint32_t arginfo,
 /* ---- probe ---- */
 
 static uint64_t zap_meta[2048] __attribute__((aligned(64)));
+static int g_resume_st = -999, g_resume_v;
+static int g_shut_st = -999;
 
 static void con_hex3(const char *label, const char *a, uint32_t va,
 		     const char *b, uint32_t vb, const char *c, uint32_t vc)
@@ -336,6 +338,14 @@ void shim_gpu_probe(const void *payload, uintptr_t adt_pa)
 			return;
 		}
 
+		if (str_has(p->cmdline, "shimres=1")) {
+			struct scm_ret rr = scm_call(1, 0x0au, 2u, 0u, 13u, 0u);
+			g_resume_st = (int)rr.status;
+			g_resume_v = (int)rr.value;
+		}
+		if (str_has(p->cmdline, "shimnoauth=1")) {
+			goto pas_skipped;
+		}
 		/* 1. init_image: metadata buffer (PA), image id 13 */
 		r = scm_call(2, 1, 2u | (2u << 6), GPU_PAS_ID,
 			     (uint64_t)zap_meta, 0);
@@ -365,11 +375,19 @@ void shim_gpu_probe(const void *payload, uintptr_t adt_pa)
 		r = scm_call(2, 5, 1, GPU_PAS_ID, 0, 0);
 		con_hex3("PAS auth", "st=", (uint32_t)r.status,
 			 "v=", (uint32_t)r.value, "lo=", lo);
+		if (str_has(p->cmdline, "shimshut=1")) {
+			struct scm_ret sd = scm_call(2, 6, 1, GPU_PAS_ID, 0, 0);
+			struct scm_ret rs = scm_call(1, 0x0au, 2u, 0u, 13u, 0u);
+			g_shut_st = (int)sd.status;
+			g_resume_st = (int)rs.status;
+			g_resume_v = (int)rs.value;
+		}
 		if (r.status == 0 && r.value == 0)
 			con_str("GPU PAS", "OK at shim stage");
 		else
 			con_str("GPU PAS", "auth failed");
 
+pas_skipped:
 		/* AHB reads of the GPU need its clocks: power GX/CX and GPLL0
 		 * first (same sequence proven by the kernel probe). The shim
 		 * console has a fixed row count, so clear and start a fresh page
@@ -569,6 +587,13 @@ static int shim_gpu_cp(const void *payload, uintptr_t adt_pa)
 	uint64_t scr_pa = (uint64_t)cp_scratch;
 	int mi = 0, stop = 0;
 
+	if (str_has(p->cmdline, "shimres2=1")) {
+		struct scm_ret rr = scm_call(1, 0x0au, 2u, 0u, 13u, 0u);
+		g_resume_st = (int)rr.status;
+		g_resume_v = (int)rr.value;
+	}
+	con_hex2("GPU RES", "st=", (uint32_t)g_resume_st,
+		 "v=", (uint32_t)g_resume_v);
 	if (!adt_mmap_entry(adt_pa, "GPU-PM4", &mdt_pa, &mdt_len) ||
 	    !adt_mmap_entry(adt_pa, "GPU-PFP", &seg_pa, &seg_len)) {
 		con_str("GPU CP", "fw blobs missing");
@@ -624,15 +649,6 @@ static int shim_gpu_cp(const void *payload, uintptr_t adt_pa)
 		con_str("GPU CP", "smmu identity failed");
 		return 0;
 	}
-	if (str_has(p->cmdline, "shimrst=1")) {
-		int rr;
-		con_str("GPU CP", "vendor reset requested");
-		rr = shim_gpu_reset();
-		con_hex2("GPU RST", "ok=", (uint32_t)rr,
-			 "me=", gpu_rd(R_CP_ME_CNTL));
-		if (!rr)
-			return 0;
-	}
 	con_str("GPU CP", "smmu identity ok");
 
 	/* Halt CP + drain VBIF before touching its registers. */
@@ -650,6 +666,16 @@ static int shim_gpu_cp(const void *payload, uintptr_t adt_pa)
 	if ((gpu_rd(R_CP_ME_CNTL) & 0x303u) != 0x303u) {
 		con_str("GPU CP", "halt failed");
 		return 0;
+	}
+
+	if (str_has(p->cmdline, "shimrst=1")) {
+		int rr;
+		con_str("GPU CP", "vendor reset requested");
+		rr = shim_gpu_reset();
+		con_hex2("GPU RST", "ok=", (uint32_t)rr,
+			 "me=", gpu_rd(R_CP_ME_CNTL));
+		if (!rr)
+			return 0;
 	}
 
 	/* Microcode through the AHB RAM ports (kgsl a5xx path). */
@@ -717,5 +743,15 @@ static int shim_gpu_cp(const void *payload, uintptr_t adt_pa)
 	}
 	con_hex2("GPU CP", "stopped=", (uint32_t)stop,
 		 "final_me=", gpu_rd(R_CP_ME_CNTL));
+	/* Machine-readable result in the PMIC PON spare byte, echoed by the
+	 * kernel as "last step=": 0x40 | mi<<2 | resume_ok<<1 | me404. */
+	{
+		uint32_t code = 0x40u | ((uint32_t)mi << 2) |
+		    ((g_resume_st == 0) ? 2u : 0u) |
+		    ((gpu_rd(R_CP_ME_CNTL) == 0x404u) ? 1u : 0u) |
+		    ((g_shut_st == 0) ? 16u : 0u) |
+		    ((g_resume_st == 0 && g_shut_st == 0) ? 32u : 0u);
+		spmi_write_apid(4, 0x8e, (uint8_t)code);
+	}
 	return mi;
 }
