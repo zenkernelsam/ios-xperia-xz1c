@@ -137,6 +137,20 @@ const char *loader_boot(uintptr_t dtb)
 	ba->memSizeActual = p->mem_size;
 	con_hex2("BOOTARG", "pa=", ba_pa, "top=", top);
 
+	/* Platform-stage GPU PAS probe (sagit bridge model), gated by shimgpu=1. */
+	{
+		extern void shim_gpu_probe(const void *, uintptr_t);
+		shim_gpu_probe(p, adt_pa);
+		/* Keep the result on the shim screen briefly so the camera catches it. */
+		{
+			uint64_t f, t0, t;
+			__asm__ volatile("mrs %0, cntfrq_el0" : "=r"(f));
+			__asm__ volatile("mrs %0, cntpct_el0" : "=r"(t0));
+			do { __asm__ volatile("mrs %0, cntpct_el0" : "=r"(t)); }
+			while (t - t0 < f * 4);
+		}
+	}
+
 	uintptr_t entry_pa = p->entry_va + pa_of_va_base;
 	con_hex("JUMP", entry_pa);
 	con_str("XNU", "jumping (fbcon clears screen)");

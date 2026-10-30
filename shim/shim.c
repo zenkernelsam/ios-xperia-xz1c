@@ -324,6 +324,47 @@ static void irq_window(const char *label, uintptr_t r, int src)
 	con_hex2(" pre", "tctl=", ist, "last=", irq_last);
 }
 
+/* Wake and configure every secondary redistributor (Silver 1-3 and
+ * Gold 0x100-0x103) before XNU starts SMP via PSCI CPU_ON. */
+static void gic_prepare_smp(void)
+{
+	uint64_t sre = rsr("icc_sre_el1");
+	if (!(sre & 1)) {
+		wsr("icc_sre_el1", sre | 1);
+		isb();
+	}
+	uint32_t dctlr = rd32(GICD_BASE);
+	wr32(GICD_BASE, dctlr | 0x13);
+	gicd_wait_rwp();
+	static const uint32_t affs[] = { 1, 2, 3, 0x100, 0x101, 0x102, 0x103 };
+	for (unsigned k = 0; k < sizeof(affs) / sizeof(affs[0]); k++) {
+		uintptr_t r = 0;
+		for (uintptr_t off = 0; off < GICR_SIZE; off += GICR_PE_SIZE) {
+			uint64_t typer = rd64(GICR_BASE + off + GICR_TYPER);
+			if ((uint32_t)(typer >> 32) == affs[k]) {
+				r = GICR_BASE + off;
+				break;
+			}
+			if (typer & (1 << 4))
+				break;
+		}
+		if (!r)
+			continue;
+		uint32_t waker = rd32(r + GICR_WAKER);
+		if (waker & 2) {
+			wr32(r + GICR_WAKER, waker & ~2U);
+			for (int i = 0; i < 100000 && (rd32(r + GICR_WAKER) & 4); i++)
+				;
+		}
+		wr32(r + GICR_IGROUPR0, 0xffffffff);
+		for (int id = 0; id < 32; id++)
+			wr8(r + GICR_IPRIORITYR + id, 0xa0);
+		wr32(r + GICR_ISENABLER0,
+		    (1U << VTIMER_INTID) | (1U << PTIMER_INTID) | (1U << SGI_INTID));
+	}
+	con_str("GICR", "smp secondaries prepared");
+}
+
 static void test_gic(void)
 {
 	stage = "gic sre";
@@ -450,6 +491,18 @@ static void cp_mark(char c0, char c1)
 
 void shim_main(uint64_t dtb)
 {
+	/* Unattended safety: arm the PMIC PON fastboot route before anything
+	 * can hang. Any watchdog/reset after this lands in fastboot instead of
+	 * Android or the charger image. Readback is printed on the shim screen. */
+	{
+		int before = spmi_read(0x0008, 0, 0x8f);
+		spmi_write_apid(4, 0x8f, 0x06);
+		__asm__ volatile("dsb sy" ::: "memory");
+		con_clear(0xff0000a0u);
+		con_str("PON", "fastboot route armed (early)");
+		con_hex2("PON", "route_before=", (uint32_t)before,
+			 "after=", (uint32_t)spmi_read(0x0008, 0, 0x8f));
+	}
 #ifdef SHIM_BEACON
 	/* Durable channel: PMIC PON spare bytes. They live on the PMIC, which
 	   stays powered as long as the battery is connected, so they survive
@@ -1534,6 +1587,8 @@ void shim_main(uint64_t dtb)
 		}
 		con_skip();
 	}
+	gic_prepare_smp();
+	con_hex("SHIM EL", (uint32_t)(rsr("CurrentEL") >> 2) & 3u);
 	const char *why = loader_boot(dtb);
 	cp_mark('C','3');
 	con_str("LOADER", why);
