@@ -1576,6 +1576,7 @@ void shim_main(uint64_t dtb)
 		con_skip();
 	}
 	gic_prepare_smp();
+	con_hex("SHIM EL", (uint32_t)(rsr("CurrentEL") >> 2) & 3u);
 	const char *why = loader_boot(dtb);
 	cp_mark('C','3');
 	con_str("LOADER", why);

@@ -1711,3 +1711,21 @@ PSHOLD）。WDT 元凶论未证实——"加探针死点提前"仍是弱旁证�
   `ca6ff550`；Mac xnu 提交 `7052a3f93`。
 - 下一步假设：CP 安全取指 SID2/CB2（TZ 页表）、CPZ 握手、ME_RAM 载码；
   向 sagit 师兄要 lilac 安全 RBBM/CPZ 序列。
+
+## 2026-10-30 白天离线进展（lilac）
+
+- **5:00–7:30 实机结论**：phys2（物理地址+identity，不碰 SMR/USFCFG）
+  仍 `consumed=0` → 排除寻址假设；TZ 代理 `scm_io_write(RBBM+0xF400*4,0)`
+  清 trust 导致复位 → trust 路线封死。CP 冷启动受 TZ 限制。
+- **sagit 机制**：EFI 阶段完成 CP/PFP/GPMU/ZAP/SMMU bank0 并清 trust，
+  以 40B `qcom,gpu-handoff`（version=1/flags=127/chip=0x05040001/
+  firmwareMode=1/pm4/pfp）交给 XNU；XNU 只校验与接管。
+- **离线产物**：
+  - shim EL 探针（`con_hex("SHIM EL", CurrentEL)`），与 retained 探针
+    payload 合成 **v333** `research/shim-4k-v333-shimel-boot-gzdtb.img`
+    （sha `5a5d34b7`）；`research/fire_retain.sh` 默认发它。
+  - `research/ANDROID-RECOVERY-RUNBOOK.md`（newflasher，`.ta` 9 个隔离）。
+  - **v334 假设**：我们此前无条件清零 `SECVID_TSB_CNTL/BASE/SIZE`，
+    而 vendor 在 rb_start 不动 TSB（TZ/zap 配置）。已将 TSB 写入改为
+    `sweetgputsb=1` 才执行，默认保留 TZ 值，待晚上实测。
+- 手机白天不可达（黑屏充电）；晚间 A/B 清单已写入 AGENTS。
