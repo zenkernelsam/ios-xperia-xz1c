@@ -510,6 +510,55 @@ static int shim_gpu_reset(void)
 	return gpu_rd(0xa8d8u) == 1u && !gpu_rd(0xa8e0u) && !gpu_rd(0xa8e1u);
 }
 
+static int shim_gpu_gpmu(uintptr_t adt_pa)
+{
+	uint64_t pa, len;
+	const uint32_t *g;
+	uint32_t remaining, metadata, first, instr, i, msg, payload;
+	if (!adt_mmap_entry(adt_pa, "GPU-GPMU", &pa, &len) || len < 64)
+		return 0;
+	g = (const uint32_t *)pa;
+	remaining = g[0]; metadata = g[2];
+	if (g[1] != 2 || remaining < 3 || remaining >= len / 4 ||
+	    metadata > remaining - 3)
+		return 0;
+	first = metadata + 3;
+	instr = remaining - metadata - 2;
+	gpu_wr(0xa8d8u, 1u);
+	gpu_wr(0xa8e0u, 0u);
+	gpu_wr(0xa8e1u, 0u);
+	for (i = 0; i < instr; i++)
+		gpu_wr(0x8800u + i, g[first + i]);
+	con_hex2("GPU GPMU", "instr=", instr, "w0=", gpu_rd(0x8800u));
+
+	msg = 0x9807u; payload = msg + 5u;
+	gpu_wr(0xac60u, 0x80000000u);
+	gpu_wr(0xac80u, 0x80000000u | 6000u);
+	for (i = 0; i < 36; i++)
+		gpu_wr(payload + i, 0u);
+	gpu_wr(msg, 0x80000001u);
+	gpu_wr(msg + 1u, 1u);
+	gpu_wr(payload, 5448u);
+	gpu_wr(payload + 1u, 1u);
+	gpu_wr(payload + 2u, 800u);
+	gpu_wr(payload + 3u, 180u);
+	gpu_wr(payload + 34u, (1u << 24) | (1u << 17) | (2u << 8));
+	gpu_wr(payload + 35u, ~0x303u);
+	gpu_wr(msg + 3u, 36u * 4u);
+	gpu_wr(0x9805u, 0xbabefaceu);
+	gpu_wr(0xa892u, 0x7fu);
+	gpu_wr(0xa894u, 0u);
+	gpu_wr(0xa893u, 0xa0080u);
+	gpu_wr(0xa891u, 0x600040u);
+	gpu_wr(0xa8d8u, 0u);
+	for (i = 0; i < 1000; i++) {
+		if (gpu_rd(0xa8e0u) == 0xbabefaceu)
+			return 1;
+		gpu_delay_ms(1);
+	}
+	return 0;
+}
+
 static int shim_gpu_cp(const void *payload, uintptr_t adt_pa)
 {
 	uint64_t mdt_pa, mdt_len, seg_pa, seg_len;
@@ -542,6 +591,35 @@ static int shim_gpu_cp(const void *payload, uintptr_t adt_pa)
 		 "pfp=", (uint32_t)(uintptr_t)cp_pfp);
 	con_hex2("GPU CP", "pm4b=", pm4_bytes, "pfpb=", pfp_bytes);
 
+	if (str_has(p->cmdline, "shimtsb=1")) {
+		/* Vendor hw_init zeroes the trusted stream buffer. */
+		gpu_wr(0xf803u, 0u);
+		gpu_wr(0xf800u, 0u);
+		gpu_wr(0xf801u, 0u);
+		gpu_wr(0xf802u, 0u);
+		gpu_wr(0xf810u, 1u);
+		con_hex2("GPU TSB", "base=", gpu_rd(0xf800u),
+			 "size=", gpu_rd(0xf802u));
+	}
+	if (str_has(p->cmdline, "shimcfg=1")) {
+		/* Startup::configure subset that gates CP decode. */
+		gpu_wr(0x0860u, 1u);		/* CP_ADDR_MODE_CNTL */
+		gpu_wr(0x08a0u, 7u);		/* CP_PROTECT_CNTL */
+		gpu_wr(0x0825u, 0x40u);		/* MEQ thresholds */
+		gpu_wr(0x0826u, 0x400u);	/* MERCIU */
+		gpu_wr(0x0820u, 0x80000060u);
+		gpu_wr(0x081fu, 0x40201b16u);
+		gpu_wr(0x0833u, 0x02000000u);	/* CP_CHICKEN_DBG */
+		gpu_wr(0x0093u, 1u);		/* RBBM_AHB_CNTL0 */
+		gpu_wr(0x0094u, 0xa6ffffffu);
+		con_hex2("GPU CFG", "amb=", gpu_rd(0x0860u),
+			 "prot=", gpu_rd(0x08a0u));
+	}
+	if (str_has(p->cmdline, "shimgpmu=1")) {
+		int gr = shim_gpu_gpmu(adt_pa);
+		con_hex2("GPU GPMU", "ready=", (uint32_t)gr,
+			 "rdy=", gpu_rd(0xa8e0u));
+	}
 	if (!shim_gpu_smmu_identity()) {
 		con_str("GPU CP", "smmu identity failed");
 		return 0;
