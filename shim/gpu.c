@@ -214,75 +214,8 @@ int spmi_write_apid(int apid, uint16_t addr, uint8_t val);
 
 static int shim_gpu_cp(const void *payload, uintptr_t adt_pa);
 
-static void shim_gpu_power(void)
-{
-	/* GPUCC 0x05065000: CX/GX GDSC, clamps, GPLL0 and gfx3d RCG. */
-	const uintptr_t cc = 0x05065000u;
-	int a1 = spmi_find_apid(0x514), a4 = spmi_find_apid(0x51d);
-
-	/* PM8005 S1 (GX) / S4 (CX) rails: enable at the inherited setpoint
-	 * before any GDSC or SECVID access, as the kernel does at level 2. */
-	if (a1 >= 0) {
-		spmi_write_apid(a1, 0x1446, 0x80);
-	}
-	if (a4 >= 0) {
-		spmi_write_apid(a4, 0x1d46, 0x80);
-	}
-	gpu_delay_ms(5);
-	con_hex2("GPU RAIL", "s1=", (uint32_t)a1, "s4=", (uint32_t)a4);
-	uint64_t f, t0, t;
-	int locked = 0;
-	uint32_t mode, uctl;
-
-	wr32(cc + 0x1004, 0x222000u);
-	gpu_delay_ms(10);
-	wr32(cc + 0x1090, 1u);
-	gpu_delay_ms(1);
-	wr32(cc + 0x1090, 0u);
-	wr32(cc + 0x0130, 0x11u);
-	gpu_delay_ms(1);
-	wr32(cc + 0x0130, 0x01u);
-	gpu_delay_ms(1);
-	wr32(cc + 0x0130, 0x00u);
-	wr32(cc + 0x1094, 0x222000u);
-	gpu_delay_ms(10);
-
-	con_hex2("GPU PWR", "cx=", rd32(cc + 0x1004), "gx=", rd32(cc + 0x1094));
-
-	wr32(cc + 0x0004, 0x12u);
-	wr32(cc + 0x0008, 0x3fu);
-	wr32(cc + 0x0038, 0xc00u);
-	wr32(cc + 0x0014, 0x20485699u);
-	wr32(cc + 0x0018, 0x2067u);
-	wr32(cc + 0x0010, 0x4805u);
-	wr32(cc + 0x000c, 0x7u);
-	mode = rd32(cc + 0x0000);
-	wr32(cc + 0x0000, mode & ~1u);
-	wr32(cc + 0x002c, 0x0u);
-	gpu_delay_ms(1);
-	wr32(cc + 0x0000, (mode & ~1u) | 0x4u);
-	wr32(cc + 0x002c, 0x1u);
-	__asm__ volatile("mrs %0, cntfrq_el0" : "=r"(f));
-	__asm__ volatile("mrs %0, cntpct_el0" : "=r"(t0));
-	do {
-		if (rd32(cc + 0x0000) & 0x80000000u) { locked = 1; break; }
-		__asm__ volatile("mrs %0, cntpct_el0" : "=r"(t));
-	} while ((t - t0) * 1000 < f * 5);
-	uctl = rd32(cc + 0x000c);
-	wr32(cc + 0x000c, uctl | 0x7u);
-	mode = rd32(cc + 0x0000);
-	wr32(cc + 0x0000, mode | 0x1u);
-	con_hex2("GPU PLL", "lock=", (uint32_t)locked, "mode=", rd32(cc + 0x0000));
-	wr32(cc + 0x1078, 0x0u);
-	wr32(cc + 0x107c, 0xffffffffu);
-	wr32(cc + 0x1080, 0xffffffffu);
-	wr32(cc + 0x1074, 0x101u);
-	wr32(cc + 0x1070, 0x0u);
-	gpu_delay_ms(5);
-	wr32(cc + 0x1098, 1u);
-	gpu_delay_ms(5);
-	con_hex2("GPU RCG", "cmd=", rd32(cc + 0x1070), "cfg=", rd32(cc + 0x1074));
-}
+static struct scm_ret shim_hyp_assign(uint32_t vmid);
+static void shim_gpu_power(void);
 
 void shim_gpu_probe(const void *payload, uintptr_t adt_pa)
 {
@@ -294,6 +227,14 @@ void shim_gpu_probe(const void *payload, uintptr_t adt_pa)
 		return;
 	}
 	con_str("GPU PAS", "probe enter");
+	if (str_has(p->cmdline, "shimkgsl=1")) {
+		/* kgsl order: power + CP ME_INIT first, zap afterwards. */
+		con_clear(BLUE);
+		con_str("GPU3", "kgsl order: power then CP");
+		shim_gpu_power();
+		(void)shim_gpu_cp(payload, adt_pa);
+		return;
+	}
 
 	if (!adt_mmap_entry(adt_pa, "GPU-ZAP-MDT", &mdt_pa, &mdt_len) ||
 	    !adt_mmap_entry(adt_pa, "GPU-ZAP-SEG", &seg_pa, &seg_len)) {
@@ -395,10 +336,28 @@ pas_skipped:
 		con_clear(BLUE);
 		con_str("GPU2", "power + TZ state after PAS");
 		shim_gpu_power();
+		if (str_has(p->cmdline, "shimcoff=1")) {
+			/* Power-cycle the GX domain: a cold power-on reset for the
+			 * CP core that RBBM_SW_RESET cannot provide under TZ. */
+			const uintptr_t cc = 0x05065000u;
+			wr32(cc + 0x1090, 1u);
+			wr32(cc + 0x1094, 0u);
+			gpu_delay_ms(8);
+			wr32(cc + 0x1090, 0u);
+			wr32(cc + 0x1094, 0x222000u);
+			gpu_delay_ms(10);
+			con_hex2("GPU COFF", "gx=", rd32(cc + 0x1094),
+				 "me=", rd32(0x05000000u + 0x832u * 4u));
+		}
 		/* SECVID reads stall until the full GPMU/zap power cycle has run
 		 * (kernel-level logs confirm they are readable later). Skip them
 		 * here so the shim can hand over cleanly; the CP producer stage
 		 * will revisit them after its own GPMU bring-up. */
+		if (str_has(p->cmdline, "shimsec=1")) {
+			struct scm_ret hr = shim_hyp_assign(0xAu);
+			con_hex2("GPU HYP", "st=", (uint32_t)hr.status,
+				 "v=", (uint32_t)hr.value);
+		}
 		if (str_has(p->cmdline, "shimcp=1")) {
 			(void)shim_gpu_cp(payload, adt_pa);
 		}
@@ -435,6 +394,124 @@ static void dc_clean_range(uintptr_t s, uintptr_t e)
 	for (uintptr_t a = s & ~(line - 1); a < e; a += line)
 		__asm__ volatile("dc cvac, %0" : : "r"(a) : "memory");
 	__asm__ volatile("dsb sy" ::: "memory");
+}
+
+/* hyp_assign: page -> VMID_CP_PIXEL (0xA). 7-arg SCM uses x5=extra args. */
+static struct scm_ret shim_hyp_assign(uint32_t vmid)
+{
+	static uint64_t page[512] __attribute__((aligned(4096)));
+	static struct { uint64_t addr, size; } ent __attribute__((aligned(64)));
+	static uint32_t src __attribute__((aligned(64)));
+	static struct { uint32_t vm, perm; uint64_t ctx; uint32_t ctx_size, pad; }
+	    dst __attribute__((aligned(64)));
+	static uint64_t ext[4] __attribute__((aligned(64)));
+	struct scm_ret r;
+	ent.addr = (uint64_t)(uintptr_t)page; ent.size = 4096u;
+	src = 3;			/* VMID_HLOS */
+	dst.vm = vmid; dst.perm = 4 | 2 | 1; dst.ctx = 0; dst.ctx_size = 0; dst.pad = 0;
+	ext[0] = (uint64_t)(uintptr_t)&ent; ext[1] = 16;
+	ext[2] = (uint64_t)(uintptr_t)&src; ext[3] = 4;
+	dc_clean_range((uintptr_t)&ent, (uintptr_t)&ent + 16);
+	dc_clean_range((uintptr_t)&src, (uintptr_t)&src + 4);
+	dc_clean_range((uintptr_t)&dst, (uintptr_t)&dst + 24);
+	dc_clean_range((uintptr_t)ext, (uintptr_t)ext + 32);
+	/* fn = SIP(0xC,0x16), arginfo=0x16667, x2..x5 from kernel ABI:
+	 * x2=ent_pa, x3=16, x4=src_pa, x5=ext_pa (holds 4, dst_pa, 24). */
+	{
+		uint64_t fn = (1ull << 30) | (2ull << 24) | (0xCull << 8) | 0x16u;
+		uint64_t a6 = 0;
+		register uint64_t x0 __asm__("x0"), x1 __asm__("x1");
+		register uint64_t x2 __asm__("x2"), x3 __asm__("x3");
+		register uint64_t x4 __asm__("x4"), x5 __asm__("x5");
+		register uint64_t x6 __asm__("x6"), x7 __asm__("x7");
+		uint64_t a0 = fn;
+		do {
+			x0 = a0; x1 = 0x16667u;
+			x2 = (uint64_t)(uintptr_t)&ent; x3 = 16;
+			x4 = (uint64_t)(uintptr_t)&src;
+			x5 = (uint64_t)(uintptr_t)ext;
+			x6 = a6; x7 = 0;
+			__asm__ volatile("smc #0"
+			    : "+r"(x0), "+r"(x1), "+r"(x2), "+r"(x3),
+			      "+r"(x4), "+r"(x5), "+r"(x6), "+r"(x7)
+			    :
+			    : "x8", "x9", "x10", "x11", "x12", "x13", "x14",
+			      "x15", "x16", "x17", "memory");
+			a0 = 1; a6 = x6;
+		} while (x0 == 1);
+		r.status = (int64_t)x0; r.value = x1;
+	}
+	return r;
+}
+
+static void shim_gpu_power(void)
+{
+	/* GPUCC 0x05065000: CX/GX GDSC, clamps, GPLL0 and gfx3d RCG. */
+	const uintptr_t cc = 0x05065000u;
+	int a1 = spmi_find_apid(0x514), a4 = spmi_find_apid(0x51d);
+
+	/* PM8005 S1 (GX) / S4 (CX) rails: enable at the inherited setpoint
+	 * before any GDSC or SECVID access, as the kernel does at level 2. */
+	if (a1 >= 0) {
+		spmi_write_apid(a1, 0x1446, 0x80);
+	}
+	if (a4 >= 0) {
+		spmi_write_apid(a4, 0x1d46, 0x80);
+	}
+	gpu_delay_ms(5);
+	con_hex2("GPU RAIL", "s1=", (uint32_t)a1, "s4=", (uint32_t)a4);
+	uint64_t f, t0, t;
+	int locked = 0;
+	uint32_t mode, uctl;
+
+	wr32(cc + 0x1004, 0x222000u);
+	gpu_delay_ms(10);
+	wr32(cc + 0x1090, 1u);
+	gpu_delay_ms(1);
+	wr32(cc + 0x1090, 0u);
+	wr32(cc + 0x0130, 0x11u);
+	gpu_delay_ms(1);
+	wr32(cc + 0x0130, 0x01u);
+	gpu_delay_ms(1);
+	wr32(cc + 0x0130, 0x00u);
+	wr32(cc + 0x1094, 0x222000u);
+	gpu_delay_ms(10);
+
+	con_hex2("GPU PWR", "cx=", rd32(cc + 0x1004), "gx=", rd32(cc + 0x1094));
+
+	wr32(cc + 0x0004, 0x12u);
+	wr32(cc + 0x0008, 0x3fu);
+	wr32(cc + 0x0038, 0xc00u);
+	wr32(cc + 0x0014, 0x20485699u);
+	wr32(cc + 0x0018, 0x2067u);
+	wr32(cc + 0x0010, 0x4805u);
+	wr32(cc + 0x000c, 0x7u);
+	mode = rd32(cc + 0x0000);
+	wr32(cc + 0x0000, mode & ~1u);
+	wr32(cc + 0x002c, 0x0u);
+	gpu_delay_ms(1);
+	wr32(cc + 0x0000, (mode & ~1u) | 0x4u);
+	wr32(cc + 0x002c, 0x1u);
+	__asm__ volatile("mrs %0, cntfrq_el0" : "=r"(f));
+	__asm__ volatile("mrs %0, cntpct_el0" : "=r"(t0));
+	do {
+		if (rd32(cc + 0x0000) & 0x80000000u) { locked = 1; break; }
+		__asm__ volatile("mrs %0, cntpct_el0" : "=r"(t));
+	} while ((t - t0) * 1000 < f * 5);
+	uctl = rd32(cc + 0x000c);
+	wr32(cc + 0x000c, uctl | 0x7u);
+	mode = rd32(cc + 0x0000);
+	wr32(cc + 0x0000, mode | 0x1u);
+	con_hex2("GPU PLL", "lock=", (uint32_t)locked, "mode=", rd32(cc + 0x0000));
+	wr32(cc + 0x1078, 0x0u);
+	wr32(cc + 0x107c, 0xffffffffu);
+	wr32(cc + 0x1080, 0xffffffffu);
+	wr32(cc + 0x1074, 0x101u);
+	wr32(cc + 0x1070, 0x0u);
+	gpu_delay_ms(5);
+	wr32(cc + 0x1098, 1u);
+	gpu_delay_ms(5);
+	con_hex2("GPU RCG", "cmd=", rd32(cc + 0x1070), "cfg=", rd32(cc + 0x1074));
 }
 
 static void dc_inval_range(uintptr_t s, uintptr_t e)
@@ -506,9 +583,12 @@ static int shim_gpu_reset(void)
 	if ((gpu_rd(R_CP_ME_CNTL) & 0x303u) != 0x303u ||
 	    (gpu_rd(0x3081u) & 15u) != 15u)
 		return 0;
+	con_str("GPU RST", "step1 before reset");
 	gpu_wr(0x0043u, 1u);		/* RBBM_SW_RESET_CMD */
+	con_str("GPU RST", "step2 cmd set");
 	(void)gpu_rd(0x0043u);
 	gpu_wr(0x0043u, 0u);
+	con_str("GPU RST", "step3 cmd cleared");
 	gpu_wr(R_INT_MASK, 0u);
 	gpu_wr(R_CP_ME_CNTL, 0x303u);
 	gpu_wr(0x3080u, 15u);
@@ -518,13 +598,16 @@ static int shim_gpu_reset(void)
 			break;
 		gpu_delay_ms(1);
 	}
+	con_str("GPU RST", "step4 halted");
 	pre = gpu_rd(0x0043u);
 	if (pre || gpu_rd(R_RB_RPTR) || gpu_rd(R_RB_WPTR) ||
 	    gpu_rd(R_CTX_SWITCH) || gpu_rd(0xf400u) > 1u)
 		return 0;
+	con_str("GPU RST", "step5 regs clean");
 	gpu_wr(0xa8d8u, 1u);		/* GPMU_CM3_SYSRESET */
 	gpu_wr(0xa8e0u, 0u);
 	gpu_wr(0xa8e1u, 0u);
+	con_str("GPU RST", "step6 cm3 reset");
 	return gpu_rd(0xa8d8u) == 1u && !gpu_rd(0xa8e0u) && !gpu_rd(0xa8e1u);
 }
 
@@ -594,6 +677,8 @@ static int shim_gpu_cp(const void *payload, uintptr_t adt_pa)
 	}
 	con_hex2("GPU RES", "st=", (uint32_t)g_resume_st,
 		 "v=", (uint32_t)g_resume_v);
+	con_hex2("GPU SHUT", "st=", (uint32_t)g_shut_st,
+		 "v=", 0u);
 	if (!adt_mmap_entry(adt_pa, "GPU-PM4", &mdt_pa, &mdt_len) ||
 	    !adt_mmap_entry(adt_pa, "GPU-PFP", &seg_pa, &seg_len)) {
 		con_str("GPU CP", "fw blobs missing");
@@ -751,7 +836,10 @@ static int shim_gpu_cp(const void *payload, uintptr_t adt_pa)
 		    ((gpu_rd(R_CP_ME_CNTL) == 0x404u) ? 1u : 0u) |
 		    ((g_shut_st == 0) ? 16u : 0u) |
 		    ((g_resume_st == 0 && g_shut_st == 0) ? 32u : 0u);
-		spmi_write_apid(4, 0x8e, (uint8_t)code);
+		{
+			int pa = spmi_find_apid(0x0008);
+			spmi_write_apid(pa < 0 ? 4 : pa, 0x8e, (uint8_t)code);
+		}
 	}
 	return mi;
 }

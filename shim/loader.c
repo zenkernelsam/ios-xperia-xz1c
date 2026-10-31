@@ -147,7 +147,7 @@ const char *loader_boot(uintptr_t dtb)
 			__asm__ volatile("mrs %0, cntfrq_el0" : "=r"(f));
 			__asm__ volatile("mrs %0, cntpct_el0" : "=r"(t0));
 			do { __asm__ volatile("mrs %0, cntpct_el0" : "=r"(t)); }
-			while (t - t0 < f * 4);
+			while (t - t0 < f * 12);
 		}
 	}
 
