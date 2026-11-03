@@ -1729,3 +1729,28 @@ PSHOLD）。WDT 元凶论未证实——"加探针死点提前"仍是弱旁证�
     而 vendor 在 rb_start 不动 TSB（TZ/zap 配置）。已将 TSB 写入改为
     `sweetgputsb=1` 才执行，默认保留 TZ 值，待晚上实测。
 - 手机白天不可达（黑屏充电）；晚间 A/B 清单已写入 AGENTS。
+
+## 2026-10-30 白天离线（Windows agent）
+- v341 已出：research/shim-4k-v341-ringsplit-boot-gzdtb.img (sha e7b81d46,
+  kernel d45a7462)，sweetgpuringsplit=1；sweet_gpu.c 新增双周期 ring。
+- 参考：research/ios_sagit/boot/bridge/gpu_handoff.cpp + AdrenoStartup.h
+  是 sagit 平台侧完整生产者；vendor 顺序=ME_INIT 单独→GPMU→zap→0x66+fence。
+- 打包：ADT 必须用 artifacts/lilac-v2.adt；repack_kernel_boot.py 正确；
+  ramdisk_off=495616。一键：Patch/Xperia/research/make_v341.sh。
+- 判定树在 Patch/Xperia/research/GPU-HANDOFF-LILAC-PLAN.md。
+- v342 已出：shim-4k-v342-ringsplit-nozap-boot-gzdtb.img (sha 1239a26c,
+  kernel 05655d46) = v341 + sweetgpunozap=1；源码 diff 仅 12 行。
+- 发弹顺序：v340 -> v341 -> v342 ->（可选）v338；一键
+  CONFIRM=1 bash research/fire_tonight.sh（Windows 侧）。
+- v345 CB0 对齐 (4531b3b1, kernel c0dd088f)、v346 TSB 窗口 (f1f28b23)、
+  v347 split+DMA 探针 (09ef919a, kernel 4a6a4df1) 已出并验证。
+- 今晚 9 发顺序与判定树：Patch/Xperia/research/TONIGHT-RUNBOOK.md；
+  sha 表：TONIGHT-MANIFEST.md；一键 fire_tonight.sh。
+
+## 2026-10-31 COMPACT 交接
+- 手机在 Android(Docomo)，等用户长按回 fastboot；PON route 永用 0x06
+  （0x86 实测进 Android，已回滚并禁用）。
+- 已备：v395(389b2d39) 0x06+SMMU dump；v396(107b35c0) shim hyp_assign→VMID 0xA。
+- Sony kgsl：gfx3d_secure=SID2，secure 窗口 [0xEC000000,0xFC000000)，
+  VMID_CP_PIXEL=0xA；下一步=hyp_assign 页→secure CB 页表→ME_INIT。
+- 细节见 Patch/Xperia/AGENTS.md 顶部 COMPACT 段。
