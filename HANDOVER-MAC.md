@@ -100,7 +100,7 @@ tail -f ~/xnu-autobuild.log
 scp instead:
 ```bash
 scp macuser@<mac-ip>:~/ios-xperia-xz1c/dxb/fakeroot/System/Library/Kernels/kernel.development.sweet \
-    "C:/Users/Cisco He/Desktop/Git/ios-xperia-xz1c/xnu/out-mac/kernel.development.sweet"
+    "D:/Desktop/Git/ios-xperia-xz1c/xnu/out-mac/kernel.development.sweet"
 ```
 
 Then Windows side runs the existing chain:

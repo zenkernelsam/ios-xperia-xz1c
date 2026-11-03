@@ -12,12 +12,12 @@ CFLAGS="-O2 -ffreestanding -nostdlib -fno-pic -mgeneral-regs-only -mstrict-align
 [ -n "${POFF:-}" ] && CFLAGS="$CFLAGS -DPAYLOAD_OFF=$POFF"
 [ -n "${KOFF:-}" ] && CFLAGS="$CFLAGS -DKENTRY_OFF=$KOFF"
 mkdir -p out
-for f in start.S shim.c console.c mmu.c fdt.c loader.c ufs.c wdt.c spmi.c; do
+for f in start.S shim.c console.c mmu.c fdt.c loader.c ufs.c wdt.c spmi.c gpu.c; do
 	$CC $CFLAGS -c $f -o out/${f%.*}.o
 done
-abs=$(aarch64-linux-gnu-readelf -r out/shim.o out/console.o out/mmu.o out/fdt.o out/loader.o out/ufs.o out/wdt.o out/spmi.o | grep -c ABS64 || true)
+abs=$(aarch64-linux-gnu-readelf -r out/shim.o out/console.o out/mmu.o out/fdt.o out/loader.o out/ufs.o out/wdt.o out/spmi.o out/gpu.o | grep -c ABS64 || true)
 [ "$abs" = 0 ] || { echo "error: $abs absolute relocations" >&2; exit 1; }
-$CC $CFLAGS -static -T shim.ld -Wl,--build-id=none -Wl,-N out/start.o out/shim.o out/console.o out/mmu.o out/fdt.o out/loader.o out/ufs.o out/wdt.o out/spmi.o -o out/shim.elf
+$CC $CFLAGS -static -T shim.ld -Wl,--build-id=none -Wl,-N out/start.o out/shim.o out/console.o out/mmu.o out/fdt.o out/loader.o out/ufs.o out/wdt.o out/spmi.o out/gpu.o -o out/shim.elf
 $OBJCOPY -O binary out/shim.elf out/Image
 size=$(aarch64-linux-gnu-nm out/shim.elf | awk '$3=="_end"{print strtonum("0x"$1)}')
 truncate -s "$size" out/Image

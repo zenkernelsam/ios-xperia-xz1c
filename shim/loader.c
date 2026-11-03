@@ -137,6 +137,20 @@ const char *loader_boot(uintptr_t dtb)
 	ba->memSizeActual = p->mem_size;
 	con_hex2("BOOTARG", "pa=", ba_pa, "top=", top);
 
+	/* Platform-stage GPU PAS probe (sagit bridge model), gated by shimgpu=1. */
+	{
+		extern void shim_gpu_probe(const void *, uintptr_t);
+		shim_gpu_probe(p, adt_pa);
+		/* Keep the result on the shim screen briefly so the camera catches it. */
+		{
+			uint64_t f, t0, t;
+			__asm__ volatile("mrs %0, cntfrq_el0" : "=r"(f));
+			__asm__ volatile("mrs %0, cntpct_el0" : "=r"(t0));
+			do { __asm__ volatile("mrs %0, cntpct_el0" : "=r"(t)); }
+			while (t - t0 < f * 12);
+		}
+	}
+
 	uintptr_t entry_pa = p->entry_va + pa_of_va_base;
 	con_hex("JUMP", entry_pa);
 	con_str("XNU", "jumping (fbcon clears screen)");
@@ -284,6 +298,20 @@ patched:
 		prz[2] = ln;
 		prz[1] = 0;
 		prz[0] = 0x43474244;
+	}
+
+	{
+		/* ABL UEFI-stage probe results (see research/uefi-bridge). */
+		volatile uint32_t *ab = (volatile uint32_t *)0x146bf800u;
+		if (ab[0] == 0x41424c31u) {
+			uint64_t f, t0, t;
+			con_hex2("ABL ST", "r=", ab[1], "rv=", ab[2]);
+			con_hex2("ABL F", "s=", ab[3], "v=", ab[4]);
+			__asm__ volatile("mrs %0,cntfrq_el0" : "=r"(f));
+			__asm__ volatile("mrs %0,cntpct_el0" : "=r"(t0));
+			do { __asm__ volatile("mrs %0,cntpct_el0" : "=r"(t)); }
+			while ((t - t0) * 1000 < f * 8000);	/* 8 s camera hold */
+		}
 	}
 
 	/* Handoff mark: PON 0x8e=0x02 (loader-jumped) + inert imem copy.

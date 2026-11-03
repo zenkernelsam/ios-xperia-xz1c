@@ -491,6 +491,23 @@ static void cp_mark(char c0, char c1)
 
 void shim_main(uint64_t dtb)
 {
+	/* Unattended safety: arm the PMIC PON fastboot route before anything
+	 * can hang. Any watchdog/reset after this lands in fastboot instead of
+	 * Android or the charger image. Readback is printed on the shim screen. */
+	{
+		int before = spmi_read(0x0008, 0, 0x8f);
+		int apid = spmi_find_apid(0x0008);
+		if (apid < 0)
+			apid = 4;
+		spmi_write_apid(apid, 0x8f, 0x06);
+		__asm__ volatile("dsb sy" ::: "memory");
+		con_clear(0xff0000a0u);
+		con_str("PON", "fastboot route armed (early)");
+		con_hex2("PON", "apid=", (uint32_t)apid,
+			 "before=", (uint32_t)before);
+		con_hex2("PON", "after_pmic=", (uint32_t)spmi_read(0x0008, 0, 0x8f),
+			 "after4=", (uint32_t)spmi_read(0x0008, 0, 0x8f));
+	}
 #ifdef SHIM_BEACON
 	/* Durable channel: PMIC PON spare bytes. They live on the PMIC, which
 	   stays powered as long as the battery is connected, so they survive

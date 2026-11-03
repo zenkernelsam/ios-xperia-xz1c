@@ -2,20 +2,21 @@
 
 **唯一权威工作日志与硬事实手册已统一到主目录：**
 
-→ `D:\Desktop\Git\Patch\Xperia\AGENTS.md`
+→ `D:\Desktop\Git\Patch\Xperia\AGENTS.md`（2026-10-29 起迁至 D 盘）
 
-
-> 2026-10-29 方向校正（师兄六项情报）见主文件 §>>> 2026-10-29。
+> 2026-10-29 情报二：显示零拷贝 DPU scanout 与 GPU 解耦（CPU 调度→1fps→DPU→GPU），见主文件 §情报二。
+> 2026-10-29 方向校正（师兄六项情报）见主文件 §>>> 2026-10-29（触摸/HID 顺序、xzp-ios APFS/UEFI、cheeseburger iPadOS17.7.11、WDT 四前提、QR 日志、Pagani）。
 
 ## 🔴 路径硬约束（2026-10-29，永久有效）
 
 - **绝对禁止读写 Windows `C:\Users\Cisco He\Desktop`**（即将被永久清除）。
-  本 Mac 仓不受影响，但任何文档/脚本都不得再指回该 Windows 路径。
+  不要再 `ls/cat/find/git` 指向该目录，也不要从那里复制任何文件。
 - Windows 唯一工作区：
   - `D:\Desktop\Git\Patch\Xperia`
   - `D:\Desktop\Git\ios-xperia-xz1c`
-- Windows 临时文件只放 `C:\Users\Cisco He\AppData\Local\Temp`。
-- Mac 工作区：`~/Desktop/ios-xperia-xz1c`（本机路径）。
+- 临时文件只放 `C:\Users\Cisco He\AppData\Local\Temp`（不是 Desktop）。
+- Mac 工作区仍为 `~/Desktop/ios-xperia-xz1c`（Mac 本机路径，不受此限）。
+- 若发现脚本/文档里还有 `C:\Users\Cisco He\Desktop`，一律改成 D: 对应路径。
 
 ---
 
