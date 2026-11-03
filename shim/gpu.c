@@ -217,22 +217,79 @@ static int shim_gpu_cp(const void *payload, uintptr_t adt_pa);
 static struct scm_ret shim_hyp_assign(uint32_t vmid);
 static void shim_gpu_power(void);
 
+/* GPU global aperture: kgsl places ring/ucode at GPUVA 0xFC000000, above
+ * DRAM, so this window is mapped by a dedicated 2 MiB block in CB0. */
+#define CP_WIN_VA	0xFC000000u
+#define CP_WIN_PA	0xA3000000u
+#define CP_RING_OFF	0x00000u
+#define CP_SCR_OFF	0x40000u
+#define CP_PM4_OFF	0x60000u
+#define CP_PFP_OFF	0x80000u
+
 void shim_gpu_probe(const void *payload, uintptr_t adt_pa)
 {
 	const struct payload_hdr *p = payload;
 	uint64_t mdt_pa, mdt_len, seg_pa, seg_len;
 	struct scm_ret r;
 
-	if (!str_has(p->cmdline, "shimgpu=1")) {
+	/* shimgpu=1 explicitly, or any kernel-side GPU probe (sweetgpu=N):
+	 * pre-power/PAS here so the kernel probe does not cold-start the
+	 * rails itself (that is what resets this SoC). */
+	if (!str_has(p->cmdline, "shimgpu=1") &&
+	    !str_has(p->cmdline, "sweetgpu=")) {
 		return;
 	}
 	con_str("GPU PAS", "probe enter");
+	/* kgsl order: clocks/power first. The zap shader runs on the GPU the
+	 * moment TZ authenticates it, so PAS with the GPU unclocked leaves
+	 * trust=1 and an unusable secure context bank. */
+	con_clear(BLUE);
+	con_str("GPU2", "power first (zap needs clocks)");
+	shim_gpu_power();
+	/* shimponly=1: power the GPU and hand the zap/PAS to XNU, so the
+	 * kernel-context SCM path (resume 0/0 there) is exercised cleanly. */
+	if (str_has(p->cmdline, "shimponly=1")) {
+		con_str("GPU2", "power only; XNU does PAS");
+		gpu_delay_ms(3000);
+		return;
+	}
+	/* kgsl writes these bases in a5xx_microcode_load *before* the zap is
+	 * authenticated; TZ may latch them when it starts the zap shader. */
+	{
+		const uintptr_t g = 0x05000000u;
+		wr32(g + 0x835u * 4u, CP_WIN_VA + CP_PFP_OFF);
+		wr32(g + 0x836u * 4u, 0);
+		wr32(g + 0x838u * 4u, CP_WIN_VA + CP_PM4_OFF);
+		wr32(g + 0x839u * 4u, 0);
+		wr32(g + 0x800u * 4u, CP_WIN_VA + CP_RING_OFF);
+		wr32(g + 0x801u * 4u, 0);
+		wr32(g + 0x804u * 4u, CP_WIN_VA + CP_SCR_OFF + 0x10u);
+		wr32(g + 0x805u * 4u, 0);
+		wr32(g + 0x802u * 4u, 11u | (2u << 8) | (1u << 27));
+		con_hex2("GPU BASE", "me=", rd32(g + 0x838u * 4u),
+			 "rb=", rd32(g + 0x800u * 4u));
+	}
 	if (str_has(p->cmdline, "shimkgsl=1")) {
-		/* kgsl order: power + CP ME_INIT first, zap afterwards. */
+		/* kgsl powerup order: power -> RBBM block sw reset -> trust=0.
+		 * lilac has no content protection, so Android clears trust here
+		 * instead of relying on the zap shader. Single-variable test:
+		 * does the write survive in the shim context? */
+		uint32_t tr;
+		const uintptr_t g = 0x05000000u;
 		con_clear(BLUE);
-		con_str("GPU3", "kgsl order: power then CP");
-		shim_gpu_power();
-		(void)shim_gpu_cp(payload, adt_pa);
+		con_str("GPU3", "kgsl order: power -> block reset -> trust0");
+		tr = rd32(g + 0xf400u * 4u);
+		con_hex2("GPU TRUST", "before=", tr, "sts=", rd32(g + 0x4f5u * 4u));
+		wr32(g + 0x45u * 4u, 1u << 16);
+		gpu_delay_ms(2);
+		con_hex2("GPU BLK", "ok sts=", rd32(g + 0x4f5u * 4u),
+			 "tr=", rd32(g + 0xf400u * 4u));
+		wr32(g + 0xf400u * 4u, 0u);
+		__asm__ volatile("dsb sy" ::: "memory");
+		gpu_delay_ms(2);
+		con_hex2("GPU TRUST", "after=", rd32(g + 0xf400u * 4u),
+			 "sts=", rd32(g + 0x4f5u * 4u));
+		gpu_delay_ms(20000);
 		return;
 	}
 
@@ -327,37 +384,24 @@ void shim_gpu_probe(const void *payload, uintptr_t adt_pa)
 			con_str("GPU PAS", "OK at shim stage");
 		else
 			con_str("GPU PAS", "auth failed");
+		/* kgsl a5xx_microcode_load: resume(0,13) right after the bases. */
+		{
+			struct scm_ret r2 = scm_call(1, 0x0au, 2u, 0u, 13u, 0u);
+			con_hex2("GPU RES2", "st=", (uint32_t)r2.status,
+				 "v=", (uint32_t)r2.value);
+		}
 
 pas_skipped:
-		/* AHB reads of the GPU need its clocks: power GX/CX and GPLL0
-		 * first (same sequence proven by the kernel probe). The shim
-		 * console has a fixed row count, so clear and start a fresh page
-		 * for this section. */
+		/* Power is already on (moved ahead of PAS so the zap can run).
+		 * Only print the post-PAS trust state here. */
 		con_clear(BLUE);
-		con_str("GPU2", "power + TZ state after PAS");
-		shim_gpu_power();
-		if (str_has(p->cmdline, "shimcoff=1")) {
-			/* Power-cycle the GX domain: a cold power-on reset for the
-			 * CP core that RBBM_SW_RESET cannot provide under TZ. */
-			const uintptr_t cc = 0x05065000u;
-			wr32(cc + 0x1090, 1u);
-			wr32(cc + 0x1094, 0u);
-			gpu_delay_ms(8);
-			wr32(cc + 0x1090, 0u);
-			wr32(cc + 0x1094, 0x222000u);
-			gpu_delay_ms(10);
-			con_hex2("GPU COFF", "gx=", rd32(cc + 0x1094),
-				 "me=", rd32(0x05000000u + 0x832u * 4u));
-		}
+		con_str("GPU2", "after PAS (zap)");
+		con_hex2("GPU TRUST", "post=", rd32(0x05000000u + 0xf400u * 4u),
+			 "me=", rd32(0x05000000u + 0x832u * 4u));
 		/* SECVID reads stall until the full GPMU/zap power cycle has run
 		 * (kernel-level logs confirm they are readable later). Skip them
 		 * here so the shim can hand over cleanly; the CP producer stage
 		 * will revisit them after its own GPMU bring-up. */
-		if (str_has(p->cmdline, "shimsec=1")) {
-			struct scm_ret hr = shim_hyp_assign(0xAu);
-			con_hex2("GPU HYP", "st=", (uint32_t)hr.status,
-				 "v=", (uint32_t)hr.value);
-		}
 		if (str_has(p->cmdline, "shimcp=1")) {
 			(void)shim_gpu_cp(payload, adt_pa);
 		}
@@ -385,8 +429,55 @@ static uint32_t cp_ring[4096] __attribute__((aligned(4096)));
 static uint32_t cp_scratch[1024] __attribute__((aligned(4096)));
 static uint8_t cp_pm4[0x8000] __attribute__((aligned(4096)));
 static uint8_t cp_pfp[0x8000] __attribute__((aligned(4096)));
+
+/* GPU global aperture: kgsl places ring/ucode at GPUVA 0xFC000000, above
+ * DRAM, so this window is mapped by a dedicated 2 MiB block in CB0. The
+ * backing store is a fixed DRAM window well above the loaded images (a
+ * 2 MiB-aligned static would push the linker's +/-1 MiB adrp range). */
+static uint64_t cp_l3[512] __attribute__((aligned(4096)));
 static uint64_t cp_l1[512] __attribute__((aligned(4096)));
 static uint64_t cp_l2[512] __attribute__((aligned(4096)));
+
+/* Pre-CP SMMU state, dumped line by line right after the GPMU is up: the
+ * panel freezes on the last printed line if a register read stalls the
+ * bus, which tells us exactly which offset is unsafe at this stage. */
+static void shim_smmu_dump_live(void)
+{
+	const uintptr_t sm = SMMU_BASE;
+	con_clear(BLUE);
+	con_str("GPU4", "TZ SMMU (live read)");
+	con_hex2("ID", "id0=", rd32(sm + 0x20), "id1=", rd32(sm + 0x24));
+	con_hex2("SCR", "scr0=", rd32(sm + 0x00), "micro=", rd32(sm + 0x6000));
+	/* This SMMU instance only implements SMR0-3: reading 0x810 (SMR4)
+	 * resets the SoC, so stay inside the four implemented groups. */
+	for (int i = 0; i < 4; i += 2) {
+		uint32_t a = rd32(sm + 0x800u + 4u * (uint32_t)i);
+		uint32_t b = rd32(sm + 0x800u + 4u * (uint32_t)(i + 1));
+		char lab[6];
+		lab[0] = 'S'; lab[1] = 'M'; lab[2] = 'R';
+		lab[3] = (char)('0' + i); lab[4] = 0;
+		con_hex2(lab, "a=", a, "b=", b);
+	}
+	for (int i = 0; i < 4; i += 2) {
+		uint32_t a = rd32(sm + 0xc00u + 4u * (uint32_t)i);
+		uint32_t b = rd32(sm + 0xc00u + 4u * (uint32_t)(i + 1));
+		char lab[6];
+		lab[0] = 'S'; lab[1] = '2'; lab[2] = 'C'; lab[3] = 'R';
+		lab[4] = (char)('0' + i); lab[5] = 0;
+		con_hex2(lab, "a=", a, "b=", b);
+	}
+	{
+		uintptr_t cb = sm + 0x8000u;
+		con_hex2("CB0", "sctlr=", rd32(cb + 0x00), "ttbr=", rd32(cb + 0x20));
+		con_hex2("  tcr", "", rd32(cb + 0x30), 0, 0);
+	}
+	con_hex2("TRUST", "trust=", rd32(GPU_BASE + 0xf400u * 4u),
+		 "tsb=", rd32(GPU_BASE + 0xf800u * 4u));
+	con_hex2("TSB", "base=", rd32(GPU_BASE + 0xf800u * 4u),
+		 "size=", rd32(GPU_BASE + 0xf802u * 4u));
+	/* CB5 is TZ-owned: even a read hangs the bus, so never touch it. */
+	gpu_delay_ms(20000);
+}
 
 static void dc_clean_range(uintptr_t s, uintptr_t e)
 {
@@ -396,38 +487,52 @@ static void dc_clean_range(uintptr_t s, uintptr_t e)
 	__asm__ volatile("dsb sy" ::: "memory");
 }
 
-/* hyp_assign: page -> VMID_CP_PIXEL (0xA). 7-arg SCM uses x5=extra args. */
+/* hyp_assign: hand the CP-facing buffers to VMID_CP_PIXEL (0xA) so the
+ * secure SID3/CB5 stage lets the CP read microcode and write RPTR.
+ * Vendor ABI (secure_buffer.c): 7 args; x2..x4 = args[0..2], x5 = PA of
+ * args[3..9] as little-endian u64:
+ *   x2=sg list PA, x3=sg size, x4=source vm list PA,
+ *   args[3]=dest info PA, args[4]=dest info size, args[5]=0.
+ * arginfo = SCM_ARGS(7, RO, VAL, RO, VAL, RO, VAL, VAL) = 0x1117. */
 static struct scm_ret shim_hyp_assign(uint32_t vmid)
 {
 	static uint64_t page[512] __attribute__((aligned(4096)));
-	static struct { uint64_t addr, size; } ent __attribute__((aligned(64)));
-	static uint32_t src __attribute__((aligned(64)));
+	static struct { uint64_t addr, size; } ent[1] __attribute__((aligned(4096)));
+	static uint32_t src __attribute__((aligned(4096)));
 	static struct { uint32_t vm, perm; uint64_t ctx; uint32_t ctx_size, pad; }
-	    dst __attribute__((aligned(64)));
-	static uint64_t ext[4] __attribute__((aligned(64)));
+	    dst[2] __attribute__((aligned(4096)));
+	static uint64_t ext[7] __attribute__((aligned(4096)));
+	static uint32_t ext32[8] __attribute__((aligned(4096)));
 	struct scm_ret r;
-	ent.addr = (uint64_t)(uintptr_t)page; ent.size = 4096u;
-	src = 3;			/* VMID_HLOS */
-	dst.vm = vmid; dst.perm = 4 | 2 | 1; dst.ctx = 0; dst.ctx_size = 0; dst.pad = 0;
-	ext[0] = (uint64_t)(uintptr_t)&ent; ext[1] = 16;
-	ext[2] = (uint64_t)(uintptr_t)&src; ext[3] = 4;
-	dc_clean_range((uintptr_t)&ent, (uintptr_t)&ent + 16);
+
+	page[0] = 0xc0ffee01u;
+	ent[0].addr = (uint64_t)(uintptr_t)page; ent[0].size = 4096;
+	src = 3;			/* source: VMID_HLOS only */
+	/* kgsl arm_smmu_assign_table shape: HLOS keeps RW, secure side gets R. */
+	dst[0].vm = 3; dst[0].perm = 6; dst[0].ctx = 0; dst[0].ctx_size = 0; dst[0].pad = 0;
+	dst[1].vm = vmid; dst[1].perm = 4; dst[1].ctx = 0; dst[1].ctx_size = 0; dst[1].pad = 0;
+	ext[0] = (uint64_t)(uintptr_t)&dst[0]; ext[1] = 48;
+	ext[2] = 0; ext[3] = 0; ext[4] = 0; ext[5] = 0; ext[6] = 0;
+	ext32[0] = (uint32_t)(uintptr_t)&dst[0]; ext32[1] = 48;
+	ext32[2] = 0; ext32[3] = 0; ext32[4] = 0; ext32[5] = 0; ext32[6] = 0;
+	dc_clean_range((uintptr_t)page, (uintptr_t)page + 4096);
+	dc_clean_range((uintptr_t)ent, (uintptr_t)ent + sizeof(ent));
 	dc_clean_range((uintptr_t)&src, (uintptr_t)&src + 4);
-	dc_clean_range((uintptr_t)&dst, (uintptr_t)&dst + 24);
-	dc_clean_range((uintptr_t)ext, (uintptr_t)ext + 32);
-	/* fn = SIP(0xC,0x16), arginfo=0x16667, x2..x5 from kernel ABI:
-	 * x2=ent_pa, x3=16, x4=src_pa, x5=ext_pa (holds 4, dst_pa, 24). */
+	dc_clean_range((uintptr_t)dst, (uintptr_t)dst + 48);
+	dc_clean_range((uintptr_t)ext, (uintptr_t)ext + sizeof(ext));
+	dc_clean_range((uintptr_t)ext32, (uintptr_t)ext32 + sizeof(ext32));
+
+	/* hyp_assign with the 64-bit convention (u64 extra args). */
 	{
-		uint64_t fn = (1ull << 30) | (2ull << 24) | (0xCull << 8) | 0x16u;
-		uint64_t a6 = 0;
+		uint64_t fn = 0x42000C16ull;
+		uint64_t a0 = fn, a6 = 0;
 		register uint64_t x0 __asm__("x0"), x1 __asm__("x1");
 		register uint64_t x2 __asm__("x2"), x3 __asm__("x3");
 		register uint64_t x4 __asm__("x4"), x5 __asm__("x5");
 		register uint64_t x6 __asm__("x6"), x7 __asm__("x7");
-		uint64_t a0 = fn;
 		do {
-			x0 = a0; x1 = 0x16667u;
-			x2 = (uint64_t)(uintptr_t)&ent; x3 = 16;
+			x0 = a0; x1 = 0x1117u;
+			x2 = (uint64_t)(uintptr_t)ent; x3 = (uint64_t)sizeof(ent);
 			x4 = (uint64_t)(uintptr_t)&src;
 			x5 = (uint64_t)(uintptr_t)ext;
 			x6 = a6; x7 = 0;
@@ -440,6 +545,7 @@ static struct scm_ret shim_hyp_assign(uint32_t vmid)
 			a0 = 1; a6 = x6;
 		} while (x0 == 1);
 		r.status = (int64_t)x0; r.value = x1;
+		con_hex2("HYP64", "st=", (uint32_t)x0, "v=", (uint32_t)x1);
 	}
 	return r;
 }
@@ -549,8 +655,17 @@ static int shim_gpu_smmu_identity(void)
 	for (i = 0; i < 512; i++)
 		cp_l1[i] = 0;
 	cp_l1[2] = (uint64_t)cp_l2 | 3ull;	/* GB2 = 0x80000000 */
+	/* GB3 (0xC0000000..0xFFFFFFFF): identity except the 2 MiB block that
+	 * carries the GPU global window 0xFC000000, which maps to cp_win. */
+	for (i = 0; i < 512; i++)
+		cp_l3[i] = (0xC0000000ull + (uint64_t)i * 0x200000ull) |
+		    3ull | (2ull << 8) | (1ull << 10);
+	cp_l3[(CP_WIN_VA >> 21) & 0x1ffu] = (uint64_t)CP_WIN_PA |
+	    3ull | (2ull << 8) | (1ull << 10);
+	cp_l1[3] = (uint64_t)cp_l3 | 3ull;
 	dc_clean_range((uintptr_t)cp_l1, (uintptr_t)cp_l1 + 4096);
 	dc_clean_range((uintptr_t)cp_l2, (uintptr_t)cp_l2 + 4096);
+	dc_clean_range((uintptr_t)cp_l3, (uintptr_t)cp_l3 + 4096);
 
 	wr32(sm + 0x0, 0);			/* keep global CNTL */
 	wr32(gr1 + 0x0, 1u << 16);		/* CBAR0: s1 tr, s2 bypass */
@@ -572,6 +687,25 @@ static int shim_gpu_smmu_identity(void)
 		if (!(rd32(sm + 0x74) & 1u))
 			break;
 	return (rd32(cb + 0x0) & 1u) && (rd32(sm + 0x800) == 0x80000000u);
+}
+
+/* TZ leaves stream SID3 valid and routed to CB5 in translate mode, but CB5
+ * is a secure context bank: any access to it stalls/resets the SoC. Instead,
+ * point SMR0 at SID3 so that stream lands on S2CR0 -> CB0, our identity
+ * table. This is the only non-secure route to the CP's fetch stream. */
+static void shim_smmu_route_sid3(void)
+{
+	const uintptr_t sm = SMMU_BASE;
+
+	wr32(sm + 0x800u, (1u << 31) | 3u);	/* SMR0: valid, stream SID 3 */
+	wr32(sm + 0xc00u, 0u);			/* S2CR0: translate -> CB0 */
+	wr32(sm + 0x68, 0);
+	wr32(sm + 0x70, 0);
+	for (int i = 0; i < 2000; i++)
+		if (!(rd32(sm + 0x74) & 1u))
+			break;
+	con_hex2("GPU SID3", "smr0=", rd32(sm + 0x800), "s2cr0=", rd32(sm + 0xc00));
+	con_hex2("  smr3", "v=", rd32(sm + 0x80c), "s2cr3=", rd32(sm + 0xc0c));
 }
 
 /* Vendor startup.reset(): only legal with CP halted and VBIF drained, which
@@ -666,9 +800,10 @@ static int shim_gpu_cp(const void *payload, uintptr_t adt_pa)
 	const struct payload_hdr *p = payload;
 	const uint8_t *m;
 	uint32_t phoff, pm4_bytes, pfp_bytes, i;
-	uint64_t ring_pa = (uint64_t)cp_ring;
-	uint64_t scr_pa = (uint64_t)cp_scratch;
-	int mi = 0, stop = 0;
+	uint32_t *ring = (uint32_t *)(uintptr_t)(CP_WIN_PA + CP_RING_OFF);
+	uint8_t *pm4 = (uint8_t *)(uintptr_t)(CP_WIN_PA + CP_PM4_OFF);
+	uint8_t *pfp = (uint8_t *)(uintptr_t)(CP_WIN_PA + CP_PFP_OFF);
+	int mi = 0, stop = 0, sec = 0;
 
 	if (str_has(p->cmdline, "shimres2=1")) {
 		struct scm_ret rr = scm_call(1, 0x0au, 2u, 0u, 13u, 0u);
@@ -693,12 +828,12 @@ static int shim_gpu_cp(const void *payload, uintptr_t adt_pa)
 		return 0;
 	}
 	for (i = 0; i < pm4_bytes; i++)
-		cp_pm4[i] = ((const uint8_t *)mdt_pa)[4 + i];
+		pm4[i] = ((const uint8_t *)mdt_pa)[4 + i];
 	for (i = 0; i < pfp_bytes; i++)
-		cp_pfp[i] = ((const uint8_t *)seg_pa)[4 + i];
+		pfp[i] = ((const uint8_t *)seg_pa)[4 + i];
 
-	con_hex2("GPU CP", "pm4=", (uint32_t)(uintptr_t)cp_pm4,
-		 "pfp=", (uint32_t)(uintptr_t)cp_pfp);
+	con_hex2("GPU CP", "pm4=", (uint32_t)(uintptr_t)pm4,
+		 "pfp=", (uint32_t)(uintptr_t)pfp);
 	con_hex2("GPU CP", "pm4b=", pm4_bytes, "pfpb=", pfp_bytes);
 
 	if (str_has(p->cmdline, "shimtsb=1")) {
@@ -730,11 +865,13 @@ static int shim_gpu_cp(const void *payload, uintptr_t adt_pa)
 		con_hex2("GPU GPMU", "ready=", (uint32_t)gr,
 			 "rdy=", gpu_rd(0xa8e0u));
 	}
+	shim_smmu_dump_live();
 	if (!shim_gpu_smmu_identity()) {
 		con_str("GPU CP", "smmu identity failed");
 		return 0;
 	}
 	con_str("GPU CP", "smmu identity ok");
+	shim_smmu_route_sid3();
 
 	/* Halt CP + drain VBIF before touching its registers. */
 	gpu_wr(R_INT_MASK, 0);
@@ -766,24 +903,24 @@ static int shim_gpu_cp(const void *payload, uintptr_t adt_pa)
 	/* Microcode through the AHB RAM ports (kgsl a5xx path). */
 	for (i = 0; i < pm4_bytes / 4u; i++) {
 		gpu_wr(0x082fu, i);
-		gpu_wr(0x0830u, ((const uint32_t *)cp_pm4)[i]);
+		gpu_wr(0x0830u, ((const uint32_t *)pm4)[i]);
 	}
 	for (i = 0; i < pfp_bytes / 4u; i++) {
 		gpu_wr(0x082au, i);
-		gpu_wr(0x082bu, ((const uint32_t *)cp_pfp)[i]);
+		gpu_wr(0x082bu, ((const uint32_t *)pfp)[i]);
 	}
 	gpu_wr(0x082fu, 0);
 	gpu_wr(0x082au, 0);
 	con_hex2("GPU CP", "uc_me=", gpu_rd(0x0830u), "uc_pfp=", gpu_rd(0x082bu));
 
-	/* Program instruction bases (identity PA), ring and RPTR shadow. */
-	wr32(GPU_BASE + R_PFP_BASE * 4u, (uint32_t)(uintptr_t)cp_pfp);
+	/* Program instruction bases in the GPU global aperture (0xFC000000). */
+	wr32(GPU_BASE + R_PFP_BASE * 4u, CP_WIN_VA + CP_PFP_OFF);
 	wr32(GPU_BASE + (R_PFP_BASE + 1u) * 4u, 0);
-	wr32(GPU_BASE + R_ME_BASE * 4u, (uint32_t)(uintptr_t)cp_pm4);
+	wr32(GPU_BASE + R_ME_BASE * 4u, CP_WIN_VA + CP_PM4_OFF);
 	wr32(GPU_BASE + (R_ME_BASE + 1u) * 4u, 0);
-	wr32(GPU_BASE + R_RB_BASE * 4u, (uint32_t)ring_pa);
+	wr32(GPU_BASE + R_RB_BASE * 4u, CP_WIN_VA + CP_RING_OFF);
 	wr32(GPU_BASE + (R_RB_BASE + 1u) * 4u, 0);
-	wr32(GPU_BASE + R_RB_RPTR_ADDR * 4u, (uint32_t)(scr_pa + 0x10u));
+	wr32(GPU_BASE + R_RB_RPTR_ADDR * 4u, CP_WIN_VA + CP_SCR_OFF + 0x10u);
 	wr32(GPU_BASE + (R_RB_RPTR_ADDR + 1u) * 4u, 0);
 	wr32(GPU_BASE + R_CTX_SWITCH * 4u, 0);
 	wr32(GPU_BASE + R_RB_CNTL * 4u, 11u | (2u << 8) | (1u << 27));
@@ -793,16 +930,24 @@ static int shim_gpu_cp(const void *payload, uintptr_t adt_pa)
 
 	/* One ME_INIT packet, exactly the payload sagit/AdrenoStartup uses. */
 	for (i = 0; i < 4096; i++)
-		cp_ring[i] = 0;
-	cp_ring[0] = cp_pkt7(0x48u, 8u);
-	cp_ring[1] = 0x2fu;
-	cp_ring[2] = 3u;
-	cp_ring[3] = 0x20000000u;
+		ring[i] = 0;
+	ring[0] = cp_pkt7(0x48u, 8u);
+	ring[1] = 0x2fu;
+	ring[2] = 3u;
+	ring[3] = 0x20000000u;
 	for (i = 4; i < 9; i++)
-		cp_ring[i] = 0;
-	dc_clean_range((uintptr_t)cp_ring, (uintptr_t)cp_ring + 4096);
-	dc_clean_range((uintptr_t)cp_pm4, (uintptr_t)cp_pm4 + sizeof(cp_pm4));
-	dc_clean_range((uintptr_t)cp_pfp, (uintptr_t)cp_pfp + sizeof(cp_pfp));
+		ring[i] = 0;
+	dc_clean_range((uintptr_t)ring, (uintptr_t)ring + 4096);
+	dc_clean_range((uintptr_t)pm4, (uintptr_t)pm4 + 0x8000);
+	dc_clean_range((uintptr_t)pfp, (uintptr_t)pfp + 0x8000);
+
+	/* Hand ring/scratch/ucode to VMID_CP_PIXEL before kicking the CP: after
+	 * this the HLOS side must no longer touch those pages. */
+	if (str_has(p->cmdline, "shimsec=1")) {
+		struct scm_ret hr = shim_hyp_assign(0xAu);
+		con_hex2("GPU HYP", "st=", (uint32_t)hr.status,
+			 "v=", (uint32_t)hr.value);
+	}
 
 	wr32(GPU_BASE + R_RB_WPTR * 4u, 9u);
 	wr32(GPU_BASE + 0x3080u * 4u, 0u);	/* VBIF unhalt */
@@ -811,11 +956,24 @@ static int shim_gpu_cp(const void *payload, uintptr_t adt_pa)
 		if (gpu_rd(R_RB_RPTR) == 9u) { mi = 1; break; }
 		gpu_delay_ms(1);
 	}
-	dc_inval_range((uintptr_t)cp_scratch, (uintptr_t)cp_scratch + 256);
 	con_hex2("GPU CP", "rptr=", gpu_rd(R_RB_RPTR),
 		 "mi=", (uint32_t)mi);
-	con_hex2("GPU CP", "me=", gpu_rd(R_CP_ME_CNTL),
-		 "scr=", cp_scratch[0]);
+	/* cp_scratch may belong to VMID_CP_PIXEL now: do not touch it. */
+	con_hex2("GPU CP", "me=", gpu_rd(R_CP_ME_CNTL), "scr=", 0u);
+
+	/* kgsl then asks the CP itself to leave secure mode: 0x66 + wait. */
+	ring[9] = cp_pkt7(0x66u, 1u);
+	ring[10] = 0u;
+	ring[11] = cp_pkt7(0x26u, 1u);
+	ring[12] = 0u;
+	dc_clean_range((uintptr_t)ring, (uintptr_t)ring + 64);
+	wr32(GPU_BASE + R_RB_WPTR * 4u, 13u);
+	for (i = 0; i < 2000; i++) {
+		if (gpu_rd(R_RB_RPTR) == 13u) { sec = 1; break; }
+		gpu_delay_ms(1);
+	}
+	con_hex2("GPU SEC", "rptr=", gpu_rd(R_RB_RPTR), "sec=", (uint32_t)sec);
+	con_hex2("GPU SEC", "trust=", gpu_rd(0xf400u), "me=", gpu_rd(R_CP_ME_CNTL));
 
 	/* Leave the CP halted and drained for XNU. */
 	gpu_wr(R_INT_MASK, 0);
