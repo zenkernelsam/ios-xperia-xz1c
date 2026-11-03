@@ -15,6 +15,7 @@
 #include <stdint.h>
 #include "console.h"
 #include "gpu.h"
+#include "wdt.h"
 
 #define GPU_PAS_ID	13u
 #define ZAP_PA		0x95200000u
@@ -203,10 +204,16 @@ static void con_hex3(const char *label, const char *a, uint32_t va,
 static void gpu_delay_ms(unsigned ms)
 {
 	uint64_t f, t0, t;
+	uint64_t last = 0;
 	__asm__ volatile("mrs %0, cntfrq_el0" : "=r"(f));
 	__asm__ volatile("mrs %0, cntpct_el0" : "=r"(t0));
-	do { __asm__ volatile("mrs %0, cntpct_el0" : "=r"(t)); }
-	while ((t - t0) * 1000 < f * ms);
+	do {
+		__asm__ volatile("mrs %0, cntpct_el0" : "=r"(t));
+		if ((t - t0) / f > last) {
+			last = (t - t0) / f;
+			wdt_pet();	/* long holds must not trip the APSS WDT */
+		}
+	} while ((t - t0) * 1000 < f * ms);
 }
 
 int spmi_find_apid(uint16_t ppid);
@@ -270,20 +277,15 @@ void shim_gpu_probe(const void *payload, uintptr_t adt_pa)
 			 "rb=", rd32(g + 0x800u * 4u));
 	}
 	if (str_has(p->cmdline, "shimkgsl=1")) {
-		/* A540 on lilac has ADRENO_CONTENT_PROTECTION: kgsl never clears
-		 * trust here, and SECVID_TRUST_CNTL is a protected register.
-		 * Keep only the vendor GPMU block soft reset (0x45 BIT16) and
-		 * continue into PAS + SMMU dump + CP self-test. */
+		/* lilac's TZ/RBBM refuses the GPMU block soft reset (0x45 BIT16)
+		 * from this context: the write hangs the bus even without the
+		 * protected TRUST_CNTL write. Read only, then continue into
+		 * PAS + SMMU dump + CP self-test. */
 		const uintptr_t g = 0x05000000u;
 		con_clear(BLUE);
-		con_str("GPU3", "kgsl order: power -> GPMU block reset");
+		con_str("GPU3", "kgsl order: power (no block/trust writes)");
 		con_hex2("GPU TRUST", "before=", rd32(g + 0xf400u * 4u),
 			 "sts=", rd32(g + 0x4f5u * 4u));
-		wr32(g + 0x45u * 4u, 1u << 16);
-		gpu_delay_ms(2);
-		con_hex2("GPU BLK", "ok sts=", rd32(g + 0x4f5u * 4u),
-			 "tr=", rd32(g + 0xf400u * 4u));
-		/* No trust write (protected); fall through to PAS/SMMU/CP. */
 	}
 
 	if (!adt_mmap_entry(adt_pa, "GPU-ZAP-MDT", &mdt_pa, &mdt_len) ||
@@ -469,7 +471,7 @@ static void shim_smmu_dump_live(void)
 	con_hex2("TSB", "base=", rd32(GPU_BASE + 0xf800u * 4u),
 		 "size=", rd32(GPU_BASE + 0xf802u * 4u));
 	/* CB5 is TZ-owned: even a read hangs the bus, so never touch it. */
-	gpu_delay_ms(20000);
+	gpu_delay_ms(45000);
 }
 
 static void dc_clean_range(uintptr_t s, uintptr_t e)
@@ -660,9 +662,12 @@ static int shim_gpu_smmu_identity(void)
 	dc_clean_range((uintptr_t)cp_l2, (uintptr_t)cp_l2 + 4096);
 	dc_clean_range((uintptr_t)cp_l3, (uintptr_t)cp_l3 + 4096);
 
+	con_str("ID1", "tables ready");
+	con_str("ID2", "write SCR0+CBAR");
 	wr32(sm + 0x0, 0);			/* keep global CNTL */
 	wr32(gr1 + 0x0, 1u << 16);		/* CBAR0: s1 tr, s2 bypass */
 	wr32(gr1 + 0x800, 1u);			/* CBA2R0 */
+	con_str("ID3", "write CB0 cfg");
 	wr32(cb + 0x10, (7u << 15) | 1u);	/* TTBCR2 */
 	wr32(cb + 0x30, 28u | (1u << 23));	/* TCR: 36-bit */
 	wr32(cb + 0x38, 0x44u);
@@ -670,15 +675,19 @@ static int shim_gpu_smmu_identity(void)
 	wr32(cb + 0x24, (uint32_t)(root_pa >> 32));
 	wr32(cb + 0x28, 0);
 	wr32(cb + 0x2c, 0);
+	con_str("ID4", "write CB0 enable");
 	wr32(cb + 0x58, 0xffffffffu);
 	wr32(cb + 0x0, (1u << 5) | (1u << 2) | (1u << 1) | 1u);
+	con_str("ID5", "write SMR0/S2CR0");
 	wr32(sm + 0x800, 1u << 31);		/* SMR0 valid, SID 0 */
 	wr32(sm + 0xc00, 0u);			/* S2CR0 translate */
+	con_str("ID6", "sACR sync");
 	wr32(sm + 0x68, 0);
 	wr32(sm + 0x70, 0);
 	for (i = 0; i < 2000; i++)
 		if (!(rd32(sm + 0x74) & 1u))
 			break;
+	con_str("ID7", "identity done");
 	return (rd32(cb + 0x0) & 1u) && (rd32(sm + 0x800) == 0x80000000u);
 }
 
@@ -690,6 +699,11 @@ static void shim_smmu_route_sid3(void)
 {
 	const uintptr_t sm = SMMU_BASE;
 
+	/* TZ leaves SMR3 == SID3 -> CB5. Clear it first so SID3 has exactly
+	 * one match (SMR0) and lands on our identity-mapped CB0. */
+	con_str("RT1", "clear SMR3");
+	wr32(sm + 0x80cu, 0u);			/* SMR3: invalid */
+	con_str("RT2", "route SID3->CB0");
 	wr32(sm + 0x800u, (1u << 31) | 3u);	/* SMR0: valid, stream SID 3 */
 	wr32(sm + 0xc00u, 0u);			/* S2CR0: translate -> CB0 */
 	wr32(sm + 0x68, 0);
