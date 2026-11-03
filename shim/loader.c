@@ -300,6 +300,20 @@ patched:
 		prz[0] = 0x43474244;
 	}
 
+	{
+		/* ABL UEFI-stage probe results (see research/uefi-bridge). */
+		volatile uint32_t *ab = (volatile uint32_t *)0x146bf800u;
+		if (ab[0] == 0x41424c31u) {
+			uint64_t f, t0, t;
+			con_hex2("ABL ST", "r=", ab[1], "rv=", ab[2]);
+			con_hex2("ABL F", "s=", ab[3], "v=", ab[4]);
+			__asm__ volatile("mrs %0,cntfrq_el0" : "=r"(f));
+			__asm__ volatile("mrs %0,cntpct_el0" : "=r"(t0));
+			do { __asm__ volatile("mrs %0,cntpct_el0" : "=r"(t)); }
+			while ((t - t0) * 1000 < f * 8000);	/* 8 s camera hold */
+		}
+	}
+
 	/* Handoff mark: PON 0x8e=0x02 (loader-jumped) + inert imem copy.
 	   If xnu dies instantly the harvested PON byte stays 0x02; any
 	   later mark means xnu lived that long. */
