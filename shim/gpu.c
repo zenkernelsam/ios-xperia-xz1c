@@ -873,6 +873,17 @@ static int shim_gpu_cp(const void *payload, uintptr_t adt_pa)
 			 "rdy=", gpu_rd(0xa8e0u));
 	}
 	shim_smmu_dump_live();
+	/* TZ secure-SMMU entry points (arm-smmu / msm_tz_smmu ABI). Try them
+	 * from the shim's EL context before touching CB0 routing. */
+	{
+		struct scm_ret t1, t2;
+		con_str("TZ1", "restore_sec_cfg 18/5");
+		t1 = scm_call(0xC, 2, 2u, 18u, 5u, 0u);
+		con_hex2("TZ1", "st=", (uint32_t)t1.status, "v=", (uint32_t)t1.value);
+		con_str("TZ2", "set_cb_format 18/5");
+		t2 = scm_call(0x15, 1, 3u, 18u, 5u, 1u);
+		con_hex2("TZ2", "st=", (uint32_t)t2.status, "v=", (uint32_t)t2.value);
+	}
 	if (!shim_gpu_smmu_identity()) {
 		con_str("GPU CP", "smmu identity failed");
 		return 0;
