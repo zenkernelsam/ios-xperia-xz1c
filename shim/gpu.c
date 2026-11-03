@@ -270,27 +270,20 @@ void shim_gpu_probe(const void *payload, uintptr_t adt_pa)
 			 "rb=", rd32(g + 0x800u * 4u));
 	}
 	if (str_has(p->cmdline, "shimkgsl=1")) {
-		/* kgsl powerup order: power -> RBBM block sw reset -> trust=0.
-		 * lilac has no content protection, so Android clears trust here
-		 * instead of relying on the zap shader. Single-variable test:
-		 * does the write survive in the shim context? */
-		uint32_t tr;
+		/* A540 on lilac has ADRENO_CONTENT_PROTECTION: kgsl never clears
+		 * trust here, and SECVID_TRUST_CNTL is a protected register.
+		 * Keep only the vendor GPMU block soft reset (0x45 BIT16) and
+		 * continue into PAS + SMMU dump + CP self-test. */
 		const uintptr_t g = 0x05000000u;
 		con_clear(BLUE);
-		con_str("GPU3", "kgsl order: power -> block reset -> trust0");
-		tr = rd32(g + 0xf400u * 4u);
-		con_hex2("GPU TRUST", "before=", tr, "sts=", rd32(g + 0x4f5u * 4u));
+		con_str("GPU3", "kgsl order: power -> GPMU block reset");
+		con_hex2("GPU TRUST", "before=", rd32(g + 0xf400u * 4u),
+			 "sts=", rd32(g + 0x4f5u * 4u));
 		wr32(g + 0x45u * 4u, 1u << 16);
 		gpu_delay_ms(2);
 		con_hex2("GPU BLK", "ok sts=", rd32(g + 0x4f5u * 4u),
 			 "tr=", rd32(g + 0xf400u * 4u));
-		wr32(g + 0xf400u * 4u, 0u);
-		__asm__ volatile("dsb sy" ::: "memory");
-		gpu_delay_ms(2);
-		con_hex2("GPU TRUST", "after=", rd32(g + 0xf400u * 4u),
-			 "sts=", rd32(g + 0x4f5u * 4u));
-		gpu_delay_ms(20000);
-		return;
+		/* No trust write (protected); fall through to PAS/SMMU/CP. */
 	}
 
 	if (!adt_mmap_entry(adt_pa, "GPU-ZAP-MDT", &mdt_pa, &mdt_len) ||
