@@ -17,3 +17,6 @@ xnu/out-*/
 # dxb = local darwin-xnu-build checkout + multi-GB build tree (Mac side only)
 dxb/
 
+
+# macOS Finder metadata
+.DS_Store
