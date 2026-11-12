@@ -1,0 +1,538 @@
+{
+  "version": 726,
+  "token": "6ca066fbeb50ec89",
+  "kernel_sha256": "cda82b99792d4e6ae7c93ef57481f44e69e39f577b4369a3856a889380a484bf",
+  "image_sha256": "ae44837aa254447fdd53c6270e13e02d9c058a75ccc701004e0d779370a04290",
+  "log_sha256": "19d54d4f6371df498aaa0e00a604a9af91d531b079a64b872cb1c78681c37ee4",
+  "strict_return": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "6ca066fbeb50ec89",
+    "checkpoint_bytes": 552309,
+    "log_bytes": 555369,
+    "log_sha256": "19d54d4f6371df498aaa0e00a604a9af91d531b079a64b872cb1c78681c37ee4",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      13,
+      57,
+      59
+    ],
+    "final_reset_marker_seen": true
+  },
+  "memory_entry_records": [
+    {
+      "address": "0x112000000",
+      "requested_bytes": 655360,
+      "returned_size": 655360,
+      "requested_protection": 1048579,
+      "map_page_bytes": 16384,
+      "kern_return": 2,
+      "counter": 1,
+      "descriptor_flags": 1116435
+    },
+    {
+      "address": "0x1120a0000",
+      "requested_bytes": 655360,
+      "returned_size": 655360,
+      "requested_protection": 1048579,
+      "map_page_bytes": 16384,
+      "kern_return": 2,
+      "counter": 2,
+      "descriptor_flags": 1116435
+    },
+    {
+      "address": "0x112000000",
+      "requested_bytes": 655360,
+      "returned_size": 655360,
+      "requested_protection": 1048579,
+      "map_page_bytes": 16384,
+      "kern_return": 2,
+      "counter": 3,
+      "descriptor_flags": 1116435
+    },
+    {
+      "address": "0x1120a0000",
+      "requested_bytes": 655360,
+      "returned_size": 655360,
+      "requested_protection": 1048579,
+      "map_page_bytes": 16384,
+      "kern_return": 2,
+      "counter": 4,
+      "descriptor_flags": 1116435
+    },
+    {
+      "address": "0x112000000",
+      "requested_bytes": 655360,
+      "returned_size": 655360,
+      "requested_protection": 1048579,
+      "map_page_bytes": 16384,
+      "kern_return": 2,
+      "counter": 5,
+      "descriptor_flags": 1116435
+    },
+    {
+      "address": "0x112140000",
+      "requested_bytes": 655360,
+      "returned_size": 655360,
+      "requested_protection": 1048579,
+      "map_page_bytes": 16384,
+      "kern_return": 2,
+      "counter": 6,
+      "descriptor_flags": 1116435
+    },
+    {
+      "address": "0x1121e0000",
+      "requested_bytes": 655360,
+      "returned_size": 655360,
+      "requested_protection": 1048579,
+      "map_page_bytes": 16384,
+      "kern_return": 2,
+      "counter": 7,
+      "descriptor_flags": 1116435
+    },
+    {
+      "address": "0x112140000",
+      "requested_bytes": 655360,
+      "returned_size": 655360,
+      "requested_protection": 1048579,
+      "map_page_bytes": 16384,
+      "kern_return": 2,
+      "counter": 8,
+      "descriptor_flags": 1116435
+    },
+    {
+      "address": "0x1121e0000",
+      "requested_bytes": 655360,
+      "returned_size": 655360,
+      "requested_protection": 1048579,
+      "map_page_bytes": 16384,
+      "kern_return": 2,
+      "counter": 9,
+      "descriptor_flags": 1116435
+    },
+    {
+      "address": "0x112140000",
+      "requested_bytes": 655360,
+      "returned_size": 655360,
+      "requested_protection": 1048579,
+      "map_page_bytes": 16384,
+      "kern_return": 2,
+      "counter": 10,
+      "descriptor_flags": 1116435
+    },
+    {
+      "address": "0x1120a0000",
+      "requested_bytes": 655360,
+      "returned_size": 655360,
+      "requested_protection": 1048579,
+      "map_page_bytes": 16384,
+      "kern_return": 2,
+      "counter": 11,
+      "descriptor_flags": 1116435
+    },
+    {
+      "address": "0x112000000",
+      "requested_bytes": 655360,
+      "returned_size": 655360,
+      "requested_protection": 1048579,
+      "map_page_bytes": 16384,
+      "kern_return": 2,
+      "counter": 12,
+      "descriptor_flags": 1116435
+    },
+    {
+      "address": "0x1120a0000",
+      "requested_bytes": 655360,
+      "returned_size": 655360,
+      "requested_protection": 1048579,
+      "map_page_bytes": 16384,
+      "kern_return": 2,
+      "counter": 13,
+      "descriptor_flags": 1116435
+    },
+    {
+      "address": "0x112000000",
+      "requested_bytes": 655360,
+      "returned_size": 655360,
+      "requested_protection": 1048579,
+      "map_page_bytes": 16384,
+      "kern_return": 2,
+      "counter": 14,
+      "descriptor_flags": 1116435
+    },
+    {
+      "address": "0x1120a0000",
+      "requested_bytes": 655360,
+      "returned_size": 655360,
+      "requested_protection": 1048579,
+      "map_page_bytes": 16384,
+      "kern_return": 2,
+      "counter": 15,
+      "descriptor_flags": 1116435
+    },
+    {
+      "address": "0x1121e0000",
+      "requested_bytes": 655360,
+      "returned_size": 655360,
+      "requested_protection": 1048579,
+      "map_page_bytes": 16384,
+      "kern_return": 2,
+      "counter": 16,
+      "descriptor_flags": 1116435
+    },
+    {
+      "address": "0x112140000",
+      "requested_bytes": 655360,
+      "returned_size": 655360,
+      "requested_protection": 1048579,
+      "map_page_bytes": 16384,
+      "kern_return": 2,
+      "counter": 17,
+      "descriptor_flags": 1116435
+    },
+    {
+      "address": "0x1121e0000",
+      "requested_bytes": 655360,
+      "returned_size": 655360,
+      "requested_protection": 1048579,
+      "map_page_bytes": 16384,
+      "kern_return": 2,
+      "counter": 18,
+      "descriptor_flags": 1116435
+    },
+    {
+      "address": "0x112140000",
+      "requested_bytes": 655360,
+      "returned_size": 655360,
+      "requested_protection": 1048579,
+      "map_page_bytes": 16384,
+      "kern_return": 2,
+      "counter": 19,
+      "descriptor_flags": 1116435
+    },
+    {
+      "address": "0x1121e0000",
+      "requested_bytes": 655360,
+      "returned_size": 655360,
+      "requested_protection": 1048579,
+      "map_page_bytes": 16384,
+      "kern_return": 2,
+      "counter": 20,
+      "descriptor_flags": 1116435
+    },
+    {
+      "address": "0x112000000",
+      "requested_bytes": 655360,
+      "returned_size": 655360,
+      "requested_protection": 1048579,
+      "map_page_bytes": 16384,
+      "kern_return": 2,
+      "counter": 21,
+      "descriptor_flags": 1116435
+    },
+    {
+      "address": "0x1120a0000",
+      "requested_bytes": 655360,
+      "returned_size": 655360,
+      "requested_protection": 1048579,
+      "map_page_bytes": 16384,
+      "kern_return": 2,
+      "counter": 22,
+      "descriptor_flags": 1116435
+    },
+    {
+      "address": "0x112000000",
+      "requested_bytes": 655360,
+      "returned_size": 655360,
+      "requested_protection": 1048579,
+      "map_page_bytes": 16384,
+      "kern_return": 2,
+      "counter": 23,
+      "descriptor_flags": 1116435
+    },
+    {
+      "address": "0x1120a0000",
+      "requested_bytes": 655360,
+      "returned_size": 655360,
+      "requested_protection": 1048579,
+      "map_page_bytes": 16384,
+      "kern_return": 2,
+      "counter": 24,
+      "descriptor_flags": 1116435
+    }
+  ],
+  "matched_source_shapes": [
+    {
+      "counter": 1,
+      "width": 400,
+      "height": 400,
+      "bpe": 4,
+      "pitch": 1600,
+      "raw_bytes": 640000,
+      "source": "0x112000020",
+      "offset_in_cpu_page": 32
+    },
+    {
+      "counter": 2,
+      "width": 400,
+      "height": 400,
+      "bpe": 4,
+      "pitch": 1600,
+      "raw_bytes": 640000,
+      "source": "0x1120a0020",
+      "offset_in_cpu_page": 32
+    },
+    {
+      "counter": 3,
+      "width": 400,
+      "height": 400,
+      "bpe": 4,
+      "pitch": 1600,
+      "raw_bytes": 640000,
+      "source": "0x112000020",
+      "offset_in_cpu_page": 32
+    },
+    {
+      "counter": 4,
+      "width": 400,
+      "height": 400,
+      "bpe": 4,
+      "pitch": 1600,
+      "raw_bytes": 640000,
+      "source": "0x1120a0020",
+      "offset_in_cpu_page": 32
+    },
+    {
+      "counter": 5,
+      "width": 400,
+      "height": 400,
+      "bpe": 4,
+      "pitch": 1600,
+      "raw_bytes": 640000,
+      "source": "0x112000020",
+      "offset_in_cpu_page": 32
+    },
+    {
+      "counter": 6,
+      "width": 400,
+      "height": 400,
+      "bpe": 4,
+      "pitch": 1600,
+      "raw_bytes": 640000,
+      "source": "0x112140020",
+      "offset_in_cpu_page": 32
+    },
+    {
+      "counter": 7,
+      "width": 400,
+      "height": 400,
+      "bpe": 4,
+      "pitch": 1600,
+      "raw_bytes": 640000,
+      "source": "0x1121e0020",
+      "offset_in_cpu_page": 32
+    },
+    {
+      "counter": 8,
+      "width": 400,
+      "height": 400,
+      "bpe": 4,
+      "pitch": 1600,
+      "raw_bytes": 640000,
+      "source": "0x112140020",
+      "offset_in_cpu_page": 32
+    },
+    {
+      "counter": 9,
+      "width": 400,
+      "height": 400,
+      "bpe": 4,
+      "pitch": 1600,
+      "raw_bytes": 640000,
+      "source": "0x1121e0020",
+      "offset_in_cpu_page": 32
+    },
+    {
+      "counter": 10,
+      "width": 400,
+      "height": 400,
+      "bpe": 4,
+      "pitch": 1600,
+      "raw_bytes": 640000,
+      "source": "0x112140020",
+      "offset_in_cpu_page": 32
+    },
+    {
+      "counter": 11,
+      "width": 400,
+      "height": 400,
+      "bpe": 4,
+      "pitch": 1600,
+      "raw_bytes": 640000,
+      "source": "0x1120a0020",
+      "offset_in_cpu_page": 32
+    },
+    {
+      "counter": 12,
+      "width": 400,
+      "height": 400,
+      "bpe": 4,
+      "pitch": 1600,
+      "raw_bytes": 640000,
+      "source": "0x112000020",
+      "offset_in_cpu_page": 32
+    },
+    {
+      "counter": 13,
+      "width": 400,
+      "height": 400,
+      "bpe": 4,
+      "pitch": 1600,
+      "raw_bytes": 640000,
+      "source": "0x1120a0020",
+      "offset_in_cpu_page": 32
+    },
+    {
+      "counter": 14,
+      "width": 400,
+      "height": 400,
+      "bpe": 4,
+      "pitch": 1600,
+      "raw_bytes": 640000,
+      "source": "0x112000020",
+      "offset_in_cpu_page": 32
+    },
+    {
+      "counter": 15,
+      "width": 400,
+      "height": 400,
+      "bpe": 4,
+      "pitch": 1600,
+      "raw_bytes": 640000,
+      "source": "0x1120a0020",
+      "offset_in_cpu_page": 32
+    },
+    {
+      "counter": 16,
+      "width": 400,
+      "height": 400,
+      "bpe": 4,
+      "pitch": 1600,
+      "raw_bytes": 640000,
+      "source": "0x1121e0020",
+      "offset_in_cpu_page": 32
+    },
+    {
+      "counter": 17,
+      "width": 400,
+      "height": 400,
+      "bpe": 4,
+      "pitch": 1600,
+      "raw_bytes": 640000,
+      "source": "0x112140020",
+      "offset_in_cpu_page": 32
+    },
+    {
+      "counter": 18,
+      "width": 400,
+      "height": 400,
+      "bpe": 4,
+      "pitch": 1600,
+      "raw_bytes": 640000,
+      "source": "0x1121e0020",
+      "offset_in_cpu_page": 32
+    },
+    {
+      "counter": 19,
+      "width": 400,
+      "height": 400,
+      "bpe": 4,
+      "pitch": 1600,
+      "raw_bytes": 640000,
+      "source": "0x112140020",
+      "offset_in_cpu_page": 32
+    },
+    {
+      "counter": 20,
+      "width": 400,
+      "height": 400,
+      "bpe": 4,
+      "pitch": 1600,
+      "raw_bytes": 640000,
+      "source": "0x1121e0020",
+      "offset_in_cpu_page": 32
+    },
+    {
+      "counter": 21,
+      "width": 400,
+      "height": 400,
+      "bpe": 4,
+      "pitch": 1600,
+      "raw_bytes": 640000,
+      "source": "0x112000020",
+      "offset_in_cpu_page": 32
+    },
+    {
+      "counter": 22,
+      "width": 400,
+      "height": 400,
+      "bpe": 4,
+      "pitch": 1600,
+      "raw_bytes": 640000,
+      "source": "0x1120a0020",
+      "offset_in_cpu_page": 32
+    },
+    {
+      "counter": 23,
+      "width": 400,
+      "height": 400,
+      "bpe": 4,
+      "pitch": 1600,
+      "raw_bytes": 640000,
+      "source": "0x112000020",
+      "offset_in_cpu_page": 32
+    },
+    {
+      "counter": 24,
+      "width": 400,
+      "height": 400,
+      "bpe": 4,
+      "pitch": 1600,
+      "raw_bytes": 640000,
+      "source": "0x1120a0020",
+      "offset_in_cpu_page": 32
+    }
+  ],
+  "memory_entry_record_count": 24,
+  "all_captured_errors_are_KERN_PROTECTION_FAILURE": true,
+  "all_captured_maps_are_16KiB": true,
+  "all_captured_requests_require_read_write": true,
+  "failed_400_by_400_creations": 1127,
+  "aegir_sig6_records": 20,
+  "aegir_pids": [
+    281,
+    283,
+    286,
+    287,
+    296,
+    297,
+    304,
+    305,
+    317,
+    319,
+    330,
+    331,
+    337,
+    338,
+    342,
+    343,
+    357,
+    360,
+    363,
+    367
+  ],
+  "source_region_protection_and_max_protection_not_yet_observed": true,
+  "exact_exception_cause_not_yet_observed": true,
+  "complete_panel_and_peripheral_goal_not_achieved": true
+}

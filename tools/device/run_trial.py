@@ -1,29 +1,30 @@
-"""One owned v725 stage, gated by real same-kernel prerequisites; no failure replay."""
+"""One owned diagnostic stage, gated by real same-kernel prerequisites; no failure replay."""
 import argparse,hashlib,json,os,re,subprocess,time
 from pathlib import Path
 from controller import Artifact,Journal,LiveOps,write_json,execute
-from package_trial import ROOT
+from package_trial import ROOT,prove_payload
 from policy import LogPolicy,Decision,Refuse
 from procguard import LiveLock
 from startup_watch import StartupObservation
 from trial_evidence import verify
 from clock_evidence import verify as verify_clock
+from diagnostic_candidate import verify_record
 
 def prerequisites(record, args):
-    mode=record['trial_mode'];kernel=record['kernel_sha256'];proof={}
+    mode=record['trial_mode'];kernel=record['kernel_sha256'];version=record.get('version');proof={}
     if mode!='private':
         assert args.private_evidence, 'Same-kernel private evidence is required'
-        proof['private']=verify(args.private_evidence,'private',kernel)
+        proof['private']=verify(args.private_evidence,'private',kernel,version)
     if mode in ('owner','ready','gpu'):
         assert args.rpm_evidence, 'Actual RPM clock evidence is required'
         proof['rpm']=verify_clock(args.rpm_evidence)
     if mode in ('ready','gpu'):
         assert args.owner_evidence, 'Same-kernel owner evidence is required'
-        proof['owner']=verify(args.owner_evidence,'owner',kernel)
+        proof['owner']=verify(args.owner_evidence,'owner',kernel,version)
     if mode=='gpu':
         assert args.ready_evidence and args.cpu_evidence
-        proof['ready']=verify(args.ready_evidence,'ready',kernel)
-        proof['ramcpu']=verify(args.cpu_evidence,'ramcpu',kernel)
+        proof['ready']=verify(args.ready_evidence,'ready',kernel,version)
+        proof['ramcpu']=verify(args.cpu_evidence,'ramcpu',kernel,version)
     return proof
 
 class DiagnosticPolicy(LogPolicy):
@@ -73,21 +74,22 @@ def main():
     a=p.parse_args();bundle=Path(a.bundle)
     record=json.loads((bundle/'artifacts.json').read_text())['artifacts'][0]
     Artifact(record).validate();mode=record['trial_mode'];kernel=record['kernel_sha256']
+    config=verify_record(record)
+    payload_proof=prove_payload(record)
     proof=prerequisites(record,a)
     # Audit actual Mac compile inputs before any phone/COM/camera command.
-    candidate=json.loads((ROOT/'reproducibility/surface-diag-v725.json').read_text())
     assert re.fullmatch('[0-9a-f]{64}',kernel)
-    assert hashlib.sha256((ROOT/'xnu/lilac-surface-diagnostics.patch').read_bytes()).hexdigest()==candidate['patch_sha256']
-    remote="from pathlib import Path;import hashlib,json;r=Path('Desktop/ios-xperia-xz1c');c=json.load(open(r/'build/surface-diag-v725/candidate.json'));l=json.load(open(r/'reproducibility/source-lock.json'));"
-    remote+="assert c['after_sha256']=='"+candidate['after_sha256']+"';assert hashlib.sha256((r/'build/surface-diag-v725/kernel.v725.macho').read_bytes()).hexdigest()=='"+kernel+"';"
-    remote+="bad=[p for p,h in l['audited_xnu_files'].items() if hashlib.sha256((r/'build/dxb/xnu'/p).read_bytes()).hexdigest()!=(c['after_sha256'] if p==c['source'] else h)];assert not bad,bad;print('78 actual sources and compiled kernel match diagnostic candidate')"
+    remote="import sys,json;sys.path.insert(0,'Desktop/ios-xperia-xz1c/tools');from diagnostic_candidate import audit;print(json.dumps(audit("+str(record['version'])+",kernel_sha='"+kernel+"')))"
     audit=subprocess.run(['ssh','-o','BatchMode=yes','-o','ConnectTimeout=8','ciscohe@192.168.68.54','python3 -c '+__import__('shlex').quote(remote)],capture_output=True,text=True,timeout=25)
     assert audit.returncode==0,audit.stdout+audit.stderr
-    if not a.live:print('OFFLINE: stage gates, artifact and 78 actual Mac sources verified');return 0
+    actual=json.loads(audit.stdout)
+    assert actual['source_binding']==config['binding'] and actual['kernel_sha256']==kernel
+    if not a.live:print('OFFLINE: stage gates, artifact and '+str(actual['audited_sources'])+' actual Mac sources/kernel verified');return 0
     directory=Path(a.directory).resolve()
     assert directory.is_relative_to(Path(os.environ['TEMP']).resolve()) and not directory.exists()
     directory.mkdir();write_json(directory/'stage-inputs.json',vars(a))
     write_json(directory/'prerequisites.json',proof)
+    write_json(directory/'payload-audit.json',payload_proof)
     (directory/'source-audit.log').write_text(audit.stdout+audit.stderr)
     journal=Journal(directory);lock=LiveLock(directory/'device.lock');ops=DiagnosticOps(journal)
     write_json(directory/'owner.json',{'pid':os.getpid(),'token':record['token'],'mode':mode,'max_cycles':1})
@@ -96,7 +98,7 @@ def main():
         rows=execute(json.loads((bundle/'plan.json').read_text()),{record['id']:record},ops,journal)
     finally:ops.close();lock.close()
     if rows and rows[-1]['result']=='PASS':
-        proof=verify(directory,mode,kernel)
+        proof=verify(directory,mode,kernel,record['version'])
         write_json(directory/'actual-evidence.json',proof)
         print(json.dumps(proof,indent=2),flush=True);return 0
     print(json.dumps(rows,indent=2),flush=True);return 1

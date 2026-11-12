@@ -10,4 +10,4 @@ gl5已在设备，不因整理重刷。禁止擅自flash/erase userdata、SD、T
 
 正式设备辅助工具现在位于 tools/device/：controller.py、boot_once.py、serial_worker.py、capture.py、return_evidence.py 和 Sony USB guard。fastboot/bash路径从 LILAC_FASTBOOT、LILAC_BASH 或 PATH 获取。原xperable二进制由使用者放到 assets/device-tools/xperable.exe，guard校验其SHA后仅操作Sony；boot仍走无重发的boot_once，不能用xperable内置boot重试。
 
-当前计划强制 max_cycles=1、on_pass/on_failure=stop、return_evidence=final-drain。路径迁移的20项主机故障回放通过；正式controller的v725 private/owner/ready已实机单发并完整自动返回。新的诊断准入与像素/生命周期故障回放另有8项；不能忽略SHA或同内核证据去跑旧manifest。
+当前计划强制 max_cycles=1、on_pass/on_failure=stop、return_evidence=final-drain。正式controller的v725/v726五阶段均实机单发并完整自动返回；32项主机故障回放包括20项传输与12项诊断/绑定/像素生命周期检查。每轮还会复算整个payload与发送镜像逐字节核对，不能忽略SHA或同内核证据去跑旧manifest。

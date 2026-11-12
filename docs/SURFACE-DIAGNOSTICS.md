@@ -13,7 +13,7 @@ bash tools/build/build_diagnostics.sh
 
 安装脚本只接受固定基线或已安装的诊断源，审计全部78源。构建脚本保留旧日志、对象、内核及顶层链接，移开 .cpo/.cpd、顶层 kernel 链接及其实际目标后才重编。它要求日志中出现 SweetSurface.cpp 且内核含诊断字符串，防止构建返回0但跳过链接。
 
-Windows打包使用 assets/baselines 中已验证的v724 private/ready/panel镜像、对应内核与shim。package_trial.py 提取ADT/firmware/RAM库后，先逐字节重建原完整payload，再替换新内核、token、UTC及对应模式；一次性提取文件只进入TEMP。新包仅保存在build：
+Windows打包使用 assets/baselines 中已验证的v724 private/ready/panel镜像、对应内核与shim。package_trial.py 在内存中提取ADT/firmware/RAM库后，先逐字节重建原完整payload，再替换新内核、token、UTC及对应模式。新包仅保存在build：
 
 ```powershell
 python -B tools/device/package_trial.py --mode private --kernel build/surface-diag-v725/kernel.v725.macho --output build/surface-diag-v725/private
@@ -41,4 +41,15 @@ owner_metadata.py 独立验证两次30寄存器/512根表元数据，重算根�
 
 prepare_memref_diagnostics.py 在已安装v725诊断源的固定Apple IOMemoryDescriptor.cpp 上生成两处日志，默认保持当前编译源不变。请求地址/大小、返回大小、prot、task map页掩码和真实错误码均为失败元数据；不读用户缓冲区内容，成功路径不增加日志/页面操作。原文件去掉插入块后必须逐字节相同，实际插入块在独立C++程序中经ASan/UBSan验证每处24条上限及NULL map防护。
 
-输出位于新的build/surface-diag-v726，固定增量和SHA另保存xnu/lilac-surface-memref-diagnostics.patch与reproducibility/surface-diag-v726.json。现有草案目录不会覆盖；--install用于首次生成时的显式安装。当前草案尚未安装或内核编译，现有build_diagnostics/run_trial仍对应v725；v726需要扩展版本与79源审计并重走所有同内核实机门槛。
+输出位于新的build/surface-diag-v726，固定增量和SHA另保存xnu/lilac-surface-memref-diagnostics.patch与reproducibility/surface-diag-v726.json。现有草案目录不会覆盖；后续使用 install_memref_diagnostics.py 安装已验证的草案：
+
+```bash
+python3 tools/build/install_memref_diagnostics.py
+bash tools/build/build_diagnostics.sh 726
+```
+
+diagnostic_candidate.py 将固定基线、两个诊断增量与版本绑定，并审计79源和真实编译内核SHA。构建入口先检查jq/gum/xcodes/cmake/ninja，再归档失效对象与旧内核；先前失败已经移开顶层链接时，直接重编。v726打包使用package_trial.py --version 726，投递入口从包版本读取配置，拒绝缺失/错版本源码绑定及任何旧内核的前序证据；仍重走private→owner→ready、RAM CPU→GPU五阶段。所有上机命令单发，失败不重发。
+
+当前mkpayload也接受不可变字节输入，提取blob只保存在进程内存。prove_payload在每次投递前及独立验收中，从固定基线ADT/firmware/RAM库和对应编译kernel重建整个Android镜像，要求与实际发送文件逐字节一致；镜像内核绑定覆盖payload内容。
+
+surface_permission_evidence.py读取实际GPU完整返回包，核对原始log/image/kernel、当前token及四标记后提取memory-entry/init错误和对应Surface尺寸。v726观察到24条错误2、1127次400×400创建失败和20次AegirPoster sig6；此报告明确保留源区域实际保护权限及精确异常原因仍未知的边界。

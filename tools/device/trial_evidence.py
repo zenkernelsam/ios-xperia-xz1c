@@ -1,20 +1,24 @@
-"""Verify actual v725 trial bytes, current-token metadata, stage and complete return."""
+"""Verify actual diagnostic trial bytes, current-token metadata, stage and complete return."""
 import argparse,hashlib,json,re
 from pathlib import Path
 from controller import Artifact
-from package_trial import ROOT,baseline,sha
+from package_trial import ROOT,baseline,sha,prove_payload
 from return_evidence import inspect_return
 from owner_metadata import verify as verify_owner
 from gpu_pixels import verify as verify_gpu_pixels
+from diagnostic_candidate import verify_record
 
-def verify(directory,mode,kernel_sha=None):
+def verify(directory,mode,kernel_sha=None,version=None):
     root=Path(directory)
     row=json.loads((root/'results.json').read_text(encoding='utf-8'))[-1]
     a=row['artifact']
     assert row['simulated'] is False and row['result']=='PASS' and row['live']
-    assert a['version']==725 and a['trial_mode']==mode
+    assert a['trial_mode']==mode
+    if version is not None:assert a['version']==version, 'Prerequisite version differs'
+    verify_record(a)
     if kernel_sha:assert a['kernel_sha256']==kernel_sha
     Artifact(a).validate()
+    payload_proof=prove_payload(a)
     wire=row['boot_wire']
     assert wire['serial']=='BH905ND69G' and wire['retries']==0
     assert wire['download_command_attempts']==wire['boot_command_attempts']==1
@@ -58,11 +62,12 @@ def verify(directory,mode,kernel_sha=None):
             pixels=verify_gpu_pixels(re.sub(r'\r?\n(?!SWEET|CRASH|Process|\||exec|IOK|MESA)', '', text),a['token'])
     boundary='serialized=1' if mode in ('ready','gpu') else 'serialized=0'
     assert re.search(r'SWEET LOOP MAP_BOUNDARY token='+a['token']+' '+boundary+r' claimed=1',scope)
-    report={'mode':mode,'source':str(root.resolve()),'token':a['token'],'kernel_sha256':a['kernel_sha256'],
+    report={'version':a['version'],'mode':mode,'source':str(root.resolve()),'token':a['token'],'kernel_sha256':a['kernel_sha256'],
             'image_sha256':a['sha256'],'log_sha256':sha(raw),'return_complete':returned,
             'return_seconds_with_health':row['reset_to_fastboot_seconds'],
             'single_download_boot_verified':True,'actual_stage_verified':True,
             'complete_panel_and_peripheral_goal_not_achieved':True}
+    report['payload_audit']=payload_proof
     if mode=='owner':report['snapshots']=snapshots
     if mode=='gpu':report['pixels_and_retirement']=pixels
     return report

@@ -144,12 +144,20 @@ def adt_dram(adt_blob):
             struct.unpack('<Q', chosen.prop('dram-size'))[0])
 
 
+def input_bytes(value):
+    """Accept immutable input bytes as well as paths, without temporary extraction files."""
+    if isinstance(value, bytes):
+        return value
+    with open(value, 'rb') as stream:
+        return stream.read()
+
+
 def build(kernel_path, adt_path, cmdline, ramdisk_path=None, blobs=()):
     cl = cmdline.encode()
     if len(cl) >= BOOT_LINE_LENGTH:
         raise ValueError('cmdline is %d bytes; shim accepts at most %d (refusing to truncate)' %
                          (len(cl), BOOT_LINE_LENGTH - 1))
-    buf = bytearray(open(kernel_path, 'rb').read())
+    buf = bytearray(input_bytes(kernel_path))
     m = parse_macho(buf)
     nfix = apply_chained_fixups(buf, m)
     segs = [s for s in m['segs'] if s['vmsize']]
@@ -161,14 +169,14 @@ def build(kernel_path, adt_path, cmdline, ramdisk_path=None, blobs=()):
     kernel_end = max(s['vmaddr'] + s['vmsize'] for s in segs)
     kernel_end = (kernel_end + PAGE - 1) & ~(PAGE - 1)
 
-    adt_blob = open(adt_path, 'rb').read()
+    adt_blob = input_bytes(adt_path)
     # The ADT decides where the kernel's RAM is (mkadt.py --highmem).
     PHYS_BASE, MEM_SIZE = adt_dram(adt_blob)
     pieces = [(s['vmaddr'], s['vmsize'], buf[s['fileoff']:s['fileoff'] + s['filesize']]) for s in segs]
     ramdisk = None
     extra = ([('RAMDisk', ramdisk_path)] if ramdisk_path else []) + list(blobs)
     for name, path in extra:
-        image = open(path, 'rb').read()
+        image = input_bytes(path)
         size = (len(image) + PAGE - 1) & ~(PAGE - 1)
         va = kernel_end
         kernel_end = va + size

@@ -19,6 +19,9 @@ for path,digest in lock['sweetgl']['files'].items():
 devices=json.loads((root/'reproducibility/current-device-tools.json').read_text(encoding='utf-8'))
 for path,digest in devices['sources'].items():
     assert hashlib.sha256((root/'tools/device'/path).read_bytes()).hexdigest()==digest,path
+for path,digest in devices.get('shared_sources',{}).items():
+    assert path in ('tools/diagnostic_candidate.py','tools/mkpayload.py')
+    assert hashlib.sha256((root/path).read_bytes()).hexdigest()==digest,path
 py_files=[]
 for base in ('tools','gpu'):
     for file in (root/base).rglob('*.py'):

@@ -7,19 +7,20 @@
     "gpu_pixels.py": "6a368d19a77179f59af15c6bb2ee20f76e17d23e9c0f4559d0e290d9d60d6fdc",
     "guarded_xperable.sh": "4555e0841894df5014ef0f60bd16ca7911bc8446d8a0545b6b3ce069b40dc33e",
     "owner_metadata.py": "e0f4e4fa2d54381d63128a39fbcabfe6c3ab9468a99f44cd44c37d86af84d564",
-    "package_trial.py": "458e88d23fbc673975447cbefae953c69dff0525d21bdfc3541f8011c2dca3e1",
+    "package_trial.py": "dc28118067ce6b5399742048da1842b449c881098e97a059ae06347f57ff7215",
     "policy.py": "ba20644cbf746769ae3e85953863a6c35ee8510611004b4455ca2568f0621054",
     "preflight_processes.ps1": "6586345710fe618415ce2ddd8b53d230c14c280c93f34c5fb1a190fcc7e1f91f",
     "procguard.py": "7cc150c13ca8d6fce28ec9784af8886eaaa4cdd8fad9cb3ff6befa9fd67d116d",
     "return_evidence.py": "5142d3a90e89f64f796f2ce70227b28703afbca5be582ef25b6d638b09ae7e8d",
-    "run_trial.py": "b103212545f0cb38a5b1735b2137cecd8dfb549b1181ac533d5f20ddb654225d",
+    "run_trial.py": "e851c8b61efccdc378bc7614095521db12c9dc6562b55dcf8e35b1103c553278",
     "serial_worker.py": "85c441bff24e081fc4fa759748676b130becf2a070bbacbff6b23fba96ae3fd4",
     "sony_usb_guard.py": "e1f636a6327530f28ef407732d58f0e7310494c4660010f793f4dcbe2ebdc4c6",
     "startup_watch.py": "4954543752d0582fe97575746c2f712476022581f12719fb91a7a3f3da275ead",
     "test_boot_once.py": "a8e72df6342bd734820f49bf4322f1f04e3d5737db5bf5c726e05120c64662df",
     "test_current_transport.py": "7e10c9a11f1167e69b4e197f9c3e806c0c360b347f02d926643813a583a239f3",
-    "test_trial_gates.py": "33d73d440374a4a4145dd041c5c3ad40305d57a67002dce241deee1e81b5cd53",
-    "trial_evidence.py": "3694822a3be863a386e76790756f26d47971e1f6236776b4a1b2e22431d3500f"
+    "test_trial_gates.py": "0983229466db76c0c33e3cf270ad80f0350f5ce08ece1ed63b2f139b80e10347",
+    "trial_evidence.py": "a578c12c4d1663c6a18c2bb58f6b04228348bf8e03ffc38adf76eb8f74a84f9a",
+    "surface_permission_evidence.py": "ea8fe1ce68243087ed3304f1e978f9c3a72fc754e03d73ef44fcdd34d45c26e4"
   },
   "supervisor_based_on_actual_tested_one_shot": true,
   "platform_tools_from_environment_or_PATH": true,
@@ -28,7 +29,12 @@
   "current_plan_requires_single_cycle_and_final_drain": true,
   "fault_replay_tests_passed": 20,
   "formal_v725_private_owner_ready_actual_return": true,
-  "diagnostic_fault_replay_tests_passed": 8,
+  "diagnostic_fault_replay_tests_passed": 12,
   "formal_v725_five_stages_actual_return": true,
-  "all_transport_and_diagnostic_tests_passed": 28
+  "all_transport_and_diagnostic_tests_passed": 32,
+  "shared_sources": {
+    "tools/diagnostic_candidate.py": "c1fbaf84fde505123858ca8cd0bfdc3ce90661cd6b32839b2e85c095e27932a5",
+    "tools/mkpayload.py": "5c9a3dacbdf877ffded27971ad2e737e5ee4296fada247d14d5c6051ff1f47ff"
+  },
+  "formal_v726_five_stages_actual_return": true
 }

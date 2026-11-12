@@ -1,5 +1,15 @@
 # 当前状态 — 2026-11-13
 
+Sony BH905ND69G 当前健康fastboot，无device/COM/camera worker或in-flight。Mac当前源和成功内核均v726，kernel cda82b99792d4e6ae7c93ef57481f44e69e39f577b4369a3856a889380a484bf（20,647,936B）。v726五阶段private/owner/ready/RAM CPU/GPU均实际单download/boot、retries0并完整PON06返回；回程含健康30秒分别37.297/37.766/38.125/37.688/38.375秒。
+
+v726明确捕获真实故障：24条memory-entry采样全部KERN_PROTECTION_FAILURE=2，prot0x100003要求读写、map page_mask0x3fff为16KiB，descriptor flags0x110913。关联400×400/640000B源，地址偏移32B，页覆盖655360B；本靴完整范围共1127次400×400创建失败、20次AegirPoster sig6。用户态observe_init原样转发属性，未额外注入地址。源区域的protection/max_protection和精确ObjC异常原因仍未观测，尚不能将错误2直接等同于某个已证明的只读映射契约。
+
+原GLES9a59820c所有独立像素/双向共享/生命周期核验仍通过，最后283个scatter对象全部撤销，caller active/outstanding/retained均0。相机MJPEG73帧，保存的画面仍无时间/日期/壁纸，右侧/底部截断；数据PASS与视觉INCOMPLETE分开。GPU logSHA19d54d4f6371df498aaa0e00a604a9af91d531b079a64b872cb1c78681c37ee4。
+
+版本化79源/编译内核校验与完整payload复算已完成，32项故障回放通过。mkpayload支持内存字节输入，package_trial不再落盘一次性提取blob。最新证据报告在reproducibility/v726-*-actual.json，必要原日志/单张面板图仅本地archive/evidence/v726-20261113。下一核对源区域保护权限、范围及原生创建属性的语义，再实现正确的Surface创建/共享路径。完整UI/FPS、睡眠唤醒、声音与无线目标继续active。
+
+以下v725及v724记录保持原结论：
+
 v725诊断内核3a9a27b36139423fe8ef0ef1f03f8b47a22bf38e7d4557b3f537cf8099547dad已完成private、owner、ready、RAM CPU、GPU五阶段单发验收。仅增加Surface有界日志，既有分配/pin/map/release不变。全部正常PON06返回，无人工；目前Sony健康fastboot、无worker/in-flight。
 
 GPU仍为原已验证GLES9a59820c：750×1624三角形/纹理、Surface双向、caller原VM解除后持有、小纹理动态刷新、CA隔离、160次relink/320draw与名字复用全部独立哈希通过。最后194个scatter对象全部释放/撤销，caller active/outstanding/retained均0；GPU回程38.938秒含健康30秒。原始logSHAff863fac9e36d7dee6ea0ad9b1b84f26b528fd262204ea1e47ce93282787695e。
@@ -8,7 +18,7 @@ GPU仍为原已验证GLES9a59820c：750×1624三角形/纹理、Surface双向、
 
 正式run_trial准入已补真实RPM三ACK、同内核private/owner/ready/CPU门槛、Mac78实际源及编译内核SHA。28项离线测试全部通过，包含原始RPM/owner/GPU日志故障回放；v725构建/打包/验收入口见SURFACE-DIAGNOSTICS.md。下一追查memoryReferenceCreate的底层错误/范围与权限，另核对真实CA文字/壁纸路径；不凭NULL猜改方向或扩大页面。
 
-v726离线草案已保存正式xnu/lilac-surface-memref-diagnostics.patch，IOMemoryDescriptor.cpp固定Apple前源9963ef1a→7d377fb6，只加memory-entry失败与init失败两处日志（各24条）。实际插入体的成功/flags/task/NULL-map/计数边界ASan/UBSan通过，去除日志后原文件逐字节一致。Mac仍为v725源/内核；v726未安装、未内核编译、未打包、未发手机。下一先升级版本化构建/投递审计至79源，再按新内核重新走完整准入。
+v726构建过程：IOMemoryDescriptor.cpp固定Apple前源9963ef1a→7d377fb6，只加memory-entry失败与init失败两处日志（各24条）。实际插入体的成功/flags/task/NULL-map/计数边界ASan/UBSan通过，去除日志后原文件逐字节一致。首次构建因SSH环境和jq缺项停在依赖提示，已只终止原进程并保留日志/旧对象/内核；jq已补齐，第二次实际编译及79源/字符串链接核验通过，session14180已结束。最终实机结果见本页顶部。
 
 以下为保留的v724基线记录：
 

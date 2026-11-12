@@ -1,14 +1,38 @@
 """Build a one-shot trial from exact tested baseline inputs, never from a legacy Patch path."""
-import argparse,hashlib,json,os,re,secrets,struct,subprocess,sys,tempfile,time
+import argparse,hashlib,json,secrets,struct,sys,time
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT/'tools'));import adt,mkpayload
+from diagnostic_candidate import configuration
 from controller import Artifact,SHIM_SHA
 def sha(data):return hashlib.sha256(data).hexdigest()
 BASE_HASHES={'private':'b958bd29a457cae61be27a53e1237ccdc4c1247d4cbcff238afbe34d88615162',
              'ready':'2eb112563f920669e2e932799c56b6af03e79e09a1c8e73833855a4ac1f93af1',
              'gpu':'ee284994e2ac7e280f0a3b727ce1ebb4796e3813bbd98b524fa16e6c3d5f9082'}
 BASE_KERNEL='da6ddc44fc074eb393f135e1395798483fe2a52eb420dfecea883e0833136c9a'
+
+def assemble_image(header,shim,payload):
+    result=bytearray(header);struct.pack_into('<I',result,16,len(payload))
+    result+=shim+b'\0'*(-len(shim)%4096);result+=payload+b'\0'*(-len(payload)%4096)
+    return bytes(result)
+
+def prove_payload(record):
+    """Bind the entire embedded image to the compiled kernel and exact tested input blobs."""
+    mode=record['trial_mode'];version=record['version']
+    kernel=ROOT/f'build/surface-diag-v{version}/kernel.v{version}.macho'
+    raw_kernel=kernel.read_bytes()
+    assert sha(raw_kernel)==record['kernel_sha256'], 'Compiled kernel differs from image record'
+    selected='gpu' if mode=='gpu' else 'ready' if mode in ('owner','ready') else 'private'
+    raw,_,reference,blobs,_,shim=baseline(selected,ROOT/'assets/baselines')
+    if mode=='ramcpu':blobs.append(baseline('gpu',ROOT/'assets/baselines')[3][-1])
+    expected_blobs={name:{'bytes':len(data),'sha256':sha(data)} for name,data in blobs}
+    assert expected_blobs==record['blobs'], 'Trial firmware/RAM inputs differ from tested baseline'
+    payload,_=mkpayload.build(raw_kernel,reference,record['cmdline'],blobs=blobs)
+    image=assemble_image(raw[:4096],shim,payload)
+    actual=Path(record['image']).read_bytes()
+    assert image==actual and sha(image)==record['sha256'], 'Embedded kernel/payload differs from audited inputs'
+    return {'image_sha256':sha(image),'kernel_sha256':sha(raw_kernel),'blob_count':len(blobs),
+            'complete_payload_reconstructed_from_compiled_kernel':True}
 def baseline(name,folder):
     image=folder/({'private':'v724-private.img','ready':'v724-ready.img','gpu':'v724-tested-panel.img'}[name])
     raw=image.read_bytes();assert sha(raw)==BASE_HASHES[name],image
@@ -35,16 +59,13 @@ def baseline(name,folder):
     reference=adt.serialize(tree)
     assert sha(reference)=='257076987411b50f037f70bf97524fae56ac2965e773c1bb8678d05d45480ba6'
     return raw,payload,reference,blob_data,payload[72:680].split(b'\0',1)[0].decode(),raw[4096:4096+ks]
-def prepare(mode,kernel,folder,output):
+def prepare(mode,kernel,folder,output,version=725):
+    config=configuration(version)
     selected='gpu' if mode=='gpu' else 'ready' if mode in ('owner','ready') else 'private'
     raw,payload,reference,blobs,cmd,shim=baseline(selected,folder)
-    work=Path(tempfile.mkdtemp(prefix='lilac-package-trial-',dir=os.environ['TEMP']))
-    ref=work/'reference.adt';ref.write_bytes(reference)
-    files=[]
-    for name,data in blobs:
-        p=work/(name+'.bin');p.write_bytes(data);files.append((name,str(p)))
+    files=list(blobs)
     # Prove extraction covers the complete tested baseline payload, not just the header.
-    reproduced,_=mkpayload.build(str(folder/'kernel-v724-tested.macho'),str(ref),cmd,blobs=files)
+    reproduced,_=mkpayload.build(str(folder/'kernel-v724-tested.macho'),reference,cmd,blobs=files)
     assert reproduced==payload,'Tested baseline reconstruction mismatch'
     token=secrets.token_hex(8);words=cmd.split()
     words=[('sweetloop='+token if w.startswith('sweetloop=') else 'sweetutc='+str(int(time.time())) if w.startswith('sweetutc=') else w) for w in words]
@@ -52,20 +73,22 @@ def prepare(mode,kernel,folder,output):
         words=[w.replace('sweetsample=-','sweetsample=bootdiag').replace('svmro=7','svmro=4') for w in words]
     if mode=='ramcpu':
         _,_,_,ramblobs,_,_=baseline('gpu',folder)
-        name,data=ramblobs[-1];p=work/(name+'.bin');p.write_bytes(data);files.append((name,str(p)))
+        files.append(ramblobs[-1])
     cmd=' '.join(words);assert len(cmd.encode())<=607
-    candidate,info=mkpayload.build(str(kernel),str(ref),cmd,blobs=files)
+    candidate,info=mkpayload.build(str(kernel),reference,cmd,blobs=files)
     assert b'SWEET SURF CALLER DIAG phase=' in candidate
-    result=bytearray(raw[:4096]);struct.pack_into('<I',result,16,len(candidate))
-    result+=shim+b'\0'*(-len(shim)%4096);result+=candidate+b'\0'*(-len(candidate)%4096)
+    if version==726:
+        assert b'SWEET SURF MEMREF ERROR address=' in candidate and b'SWEET SURF MEMREF INIT length=' in candidate
+    result=assemble_image(raw[:4096],shim,candidate)
     image=output/'trial.img';assert not image.exists();image.write_bytes(result)
-    m={'id':'surface-v725-'+mode,'version':725,'image':str(image),'sha256':sha(result),
+    m={'id':'surface-v'+str(version)+'-'+mode,'version':version,'image':str(image),'sha256':sha(result),
        'kernel_sha256':sha(kernel.read_bytes()),'shim_sha256':SHIM_SHA,'cmdline':cmd,'cmdline_bytes':len(cmd.encode()),
-       'token':token,'watchdog_seconds':300,'source_revision':sha((ROOT/'xnu/lilac-surface-diagnostics.patch').read_bytes()),
+       'token':token,'watchdog_seconds':300,'source_revision':config['binding']['manifest_sha256'],
+       'diagnostic_binding':config['binding'],
        'boot_sender':'sony-boot-once','boot_sender_sha256':sha((ROOT/'tools/device/boot_once.py').read_bytes()),
        'return_evidence_sha256':sha((ROOT/'tools/device/return_evidence.py').read_bytes()),
        'trial_mode':mode,'baseline_full_payload_reconstructed':True,
-       'blobs':{name:{'bytes':len(Path(path).read_bytes()),'sha256':sha(Path(path).read_bytes())} for name,path in files}}
+       'blobs':{name:{'bytes':len(data),'sha256':sha(data)} for name,data in files}}
     Artifact(m).validate()
     (output/'artifacts.json').write_text(json.dumps({'target_serial':'BH905ND69G','pon_route':6,'artifacts':[m]},indent=2)+'\n')
     common=['SWEET LOOP LIVE proto=1 token='+token,'SWEET RMI4: F12 page=']
@@ -82,8 +105,9 @@ def prepare(mode,kernel,folder,output):
         if mode=='gpu':
             common+=['sweetgl: full selftest -> PASS','sweetgl: full surface selftest -> PASS',
                      'sweetgl: caller selftest -> PASS','sweetgl: copy refresh selftest -> PASS',
+                     'sweetgl: copy context selftest -> PASS',
                      'sweetgl: bridge state selftest -> PASS','sweetgl: program life selftest -> PASS',
-                     'SWEET SURF CALLER DIAG phase=.*status=0x']
+                     'SWEET SURF CALLER DIAG phase=.*status=(0x[0-9a-f]+|0)']
     plan={'target_serial':'BH905ND69G','pon_route':6,'max_cycles':1,'budget_seconds':480,'camera_required':mode=='gpu',
           'steps':[{'artifact_id':m['id'],'observe_seconds':240,'stable_seconds':30,'return_seconds':120,'goals':common,
                     'return_evidence':'final-drain','on_pass':'stop','on_failure':'stop'}]}
@@ -95,6 +119,7 @@ def prepare(mode,kernel,folder,output):
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--mode',choices=['private','owner','ready','ramcpu','gpu'],required=True)
     p.add_argument('--kernel',required=True);p.add_argument('--baselines',default=str(ROOT/'assets/baselines'));p.add_argument('--output',required=True)
+    p.add_argument('--version',type=int,choices=[725,726],default=725)
     a=p.parse_args();out=Path(a.output).resolve();assert out.is_relative_to(ROOT/'build') and not out.exists();out.mkdir(parents=True)
-    m=prepare(a.mode,Path(a.kernel),Path(a.baselines),out)
+    m=prepare(a.mode,Path(a.kernel),Path(a.baselines),out,a.version)
     print(json.dumps({k:m[k] for k in ('trial_mode','token','kernel_sha256','sha256','cmdline_bytes')}))

@@ -1,0 +1,22 @@
+{
+  "version": 726,
+  "audited_sources": 79,
+  "source_binding": {
+    "version": 726,
+    "manifest_sha256": "9bd0990c91627214bb5ffb51adc2440dbfbc539ccb3ca159c946a15cc48cfc9b",
+    "patches": {
+      "lilac-surface-diagnostics.patch": "0fb6ad634a14f90348c3d80fec71aaf4fd81a87f69c0653c176e2cc49f86fa30",
+      "lilac-surface-memref-diagnostics.patch": "4639e8b45625320c0bef6597b4a887788acb8f8f28c604fa3878869797942647"
+    }
+  },
+  "actual_sources_match": true,
+  "kernel_sha256": "cda82b99792d4e6ae7c93ef57481f44e69e39f577b4369a3856a889380a484bf",
+  "diagnostic_markers_linked": true,
+  "build_return_code": 0,
+  "changed_sources_recompiled": [
+    "iokit/Kernel/arm/SweetSurface.cpp",
+    "iokit/Kernel/IOMemoryDescriptor.cpp"
+  ],
+  "prior_outputs_preserved": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/surface-diag-v726/prior-build-20261113-022747",
+  "kernel_bytes": 20647936
+}
