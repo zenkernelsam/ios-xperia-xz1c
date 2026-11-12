@@ -2,8 +2,8 @@
 # CI runs on macOS where `set -euo pipefail\r` and CRLF patch context fail.
 *.sh    text eol=lf
 *.patch text eol=lf
-# Unified-diff context adds one space before an unchanged source tab.
-*.patch whitespace=-space-before-tab
+# Unified-diff context prefixes unchanged tabs and blank lines with one space.
+*.patch whitespace=-space-before-tab,-blank-at-eol
 xnu/patches/** text eol=lf
 *.diff  text eol=lf
 *.py    text eol=lf
