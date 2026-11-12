@@ -30,8 +30,8 @@
   ],
   "ubuntu_trash_was_empty": true,
   "protected_flash_unlock_firmware_root_backups_retained": true,
-  "support_visible_pending_entries": 390,
-  "support_untracked_entries": 61,
+  "support_visible_pending_entries": 0,
+  "support_untracked_entries": 0,
   "full_patch_other_projects_not_touched": true,
   "source_reconstruction": {
     "xnu": {
@@ -89,5 +89,59 @@
     "no_device_operations": true,
     "rebuilt_binary_not_device_tested": true
   },
-  "homebrew_cache_exception": "Earlier Bison/Flex installation invoked Homebrew automatic cache cleanup; only Homebrew download/index caches affected. Subsequent operations disable automatic cleanup."
+  "homebrew_cache_exception": "Earlier Bison/Flex installation invoked Homebrew automatic cache cleanup; only Homebrew download/index caches affected. Subsequent operations disable automatic cleanup.",
+  "final_native_recycle_audit": {
+    "windows_batches": [
+      {
+        "label": "support_generated",
+        "files_at_move": 45821,
+        "bytes_at_move": 40557619646,
+        "native_recycle_verified_at_move": true,
+        "currently_present": false,
+        "current_count_verified": false,
+        "current_availability_unknown_reason": true
+      },
+      {
+        "label": "formal_generated",
+        "files_at_move": 31,
+        "bytes_at_move": 94032693,
+        "native_recycle_verified_at_move": true,
+        "currently_present": false,
+        "current_count_verified": false,
+        "current_availability_unknown_reason": true
+      },
+      {
+        "label": "support_final_generated",
+        "files_at_move": 72,
+        "bytes_at_move": 441837728,
+        "native_recycle_verified_at_move": true,
+        "currently_present": true,
+        "current_count_verified": true,
+        "current_availability_unknown_reason": false
+      }
+    ],
+    "stopped_temp": {
+      "directories": 378,
+      "files_at_move": 45585,
+      "bytes_at_move": 34762893461,
+      "each_native_recycle_entry_verified_at_move": true,
+      "currently_present_directories": 0
+    },
+    "all_archive_compiled_images_removed": true,
+    "tested_baseline_kernel_and_gles_hash_verified": true,
+    "source_reference_repo_count": 86,
+    "support_pending_entries": 0,
+    "protected_backups_and_firmware_not_selected": true,
+    "no_recycle_bin_emptying_performed_by_agent": true,
+    "historical_windows_recycle_entries": 488,
+    "currently_present_windows_recycle_entries": 9,
+    "currently_missing_windows_recycle_entries": 479,
+    "missing_entry_reason_not_proven": true
+  },
+  "support_local_commit": "62ae94f433d82c16fc094f7ab9bb47f7e873a594",
+  "support_remote_organization_commit": "3973d88d847442e54dea3b42a96167e0f10d2885",
+  "formal_source_commit_verified": "5811ab60950db0d86481094d92e9ab25b71f955c",
+  "source_publication_verified": true,
+  "fresh_checkout_source_validation_passed": true,
+  "fresh_checkout_transport_fault_tests_passed": 20
 }

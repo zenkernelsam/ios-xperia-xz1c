@@ -11,3 +11,5 @@ GPU核心、Surface双向1,218,000像素、caller创建后修改/GPU写回/原VM
 正式仓库当前源已重新编译XNU、GLES与shim，结果见reproducibility/build-results.json和shim-build-results.json。新内核e0eb264c/GLES f22dc3d0/shim77d425b0未上机，不代替此前实机通过的da6ddc44/9a59820c基线。
 
 下一步在整理/复现完成后核对caller acquire/prepare/map与AegirPoster异常，不先猜改色。声音CORE APR/AVS2.8已过，实际播放录音/codec/iOS16前端未过，无线同样未完成；完整目标active。
+
+整理已完成目录分类和实际回收，正式源码推送并在Windows/Mac同步，Patch/Xperia待提交项归零。经过实机验证的内核/库/打包blob已移入正式assets/baselines，SHA核对与上述基线一致；整理报告记录了部分Windows旧回收条目的当前缺失，未将历史移入验证当作当前恢复保证。

@@ -47,5 +47,6 @@
   "builder_script_bytes": 4553,
   "legacy_patch_series_archived": "D:\\Desktop\\Git\\ios-xperia-xz1c\\docs\\archive\\legacy-numbered-patches",
   "unchanged_compiled_driver_sources": true,
-  "superseded_package_native_recycle_pending": "D:\\Desktop\\Git\\ios-xperia-xz1c\\organization\\20261112\\superseded-source-package"
+  "superseded_package_native_recycle_verified_at_move": true,
+  "superseded_package_current_recycle_availability": false
 }
