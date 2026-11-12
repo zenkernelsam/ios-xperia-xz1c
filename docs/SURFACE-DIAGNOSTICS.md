@@ -36,3 +36,9 @@ RPM证据使用 clock_evidence.py 读取原v676完整CPU试验日志，核对SHA
 owner_metadata.py 独立验证两次30寄存器/512根表元数据，重算根表FNV，检查TTBR/流绑定/空闲及顺序。gpu_pixels.py 从原v724验收代码整合，核对750×1624逐像素结果、caller别名与原VM解除后持有、小纹理刷新/不变seed、CA上下文隔离、160次relink/320draw及真正名字复用，并检查回程前最终scatter/caller全部撤销。GPU观察至少180秒，相机按OPERATIONS.md的唯一流程捕获。
 
 每轮完整ACK/DRAIN/RESET/FINAL_DRAIN、健康30秒、原进程退出和独立核验后才下一轮。run_trial目录必须为不存在的TEMP子目录。真实面板、颜色、UI/FPS及声音/无线仍单独验收，不能由离屏数据推断完成。
+
+## v726 离线草案
+
+prepare_memref_diagnostics.py 在已安装v725诊断源的固定Apple IOMemoryDescriptor.cpp 上生成两处日志，默认保持当前编译源不变。请求地址/大小、返回大小、prot、task map页掩码和真实错误码均为失败元数据；不读用户缓冲区内容，成功路径不增加日志/页面操作。原文件去掉插入块后必须逐字节相同，实际插入块在独立C++程序中经ASan/UBSan验证每处24条上限及NULL map防护。
+
+输出位于新的build/surface-diag-v726，固定增量和SHA另保存xnu/lilac-surface-memref-diagnostics.patch与reproducibility/surface-diag-v726.json。现有草案目录不会覆盖；--install用于首次生成时的显式安装。当前草案尚未安装或内核编译，现有build_diagnostics/run_trial仍对应v725；v726需要扩展版本与79源审计并重走所有同内核实机门槛。

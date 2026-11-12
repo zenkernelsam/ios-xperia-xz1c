@@ -1,0 +1,32 @@
+--- a/iokit/Kernel/IOMemoryDescriptor.cpp
++++ b/iokit/Kernel/IOMemoryDescriptor.cpp
+@@ -672,6 +672,15 @@
+ 				    &actualSize, entryAddr, prot, vmne_kflags, &entry, cloneEntry);
+ 
+ 				if (KERN_SUCCESS != err) {
++					/* v726: bounded failure metadata, original memory-entry request unchanged. */
++					if ((_flags & kIOMemoryPersistent) && _task && _task != kernel_task) {
++						static volatile SInt32 lilac_entry_failures;
++						SInt32 count = OSIncrementAtomic(&lilac_entry_failures) + 1;
++						if (count <= 24) IOLog("SWEET SURF MEMREF ERROR address=%#llx requested=%llu actual=%llu prot=%#x page_mask=%#llx kr=%d count=%d\n",
++						    (unsigned long long)entryAddr, (unsigned long long)entrySize,
++						    (unsigned long long)actualSize, prot,
++						    map ? (unsigned long long)vm_map_page_mask(map) : 0, err, count);
++					}
+ 					DEBUG4K_ERROR("make_memory_entry(map %p, addr 0x%llx, size 0x%llx, prot 0x%x) err 0x%x\n", map, entryAddr, actualSize, prot, err);
+ 					break;
+ 				}
+@@ -2333,6 +2342,13 @@
+ 				IOReturn
+ 				    err = memoryReferenceCreate(0, &_memRef);
+ 				if (kIOReturnSuccess != err) {
++					/* v726: retain the true creation error hidden by withAddressRange(NULL). */
++					if ((_flags & kIOMemoryPersistent) && _task && _task != kernel_task) {
++						static volatile SInt32 lilac_init_failures;
++						SInt32 count = OSIncrementAtomic(&lilac_init_failures) + 1;
++						if (count <= 24) IOLog("SWEET SURF MEMREF INIT length=%llu flags=%#x kr=%#x count=%d\n",
++						    (unsigned long long)_length, (uint32_t)_flags, err, count);
++					}
+ 					return false;
+ 				}
+ 			}

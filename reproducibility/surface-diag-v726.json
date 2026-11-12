@@ -1,0 +1,18 @@
+{
+  "version": 726,
+  "source": "iokit/Kernel/IOMemoryDescriptor.cpp",
+  "before_sha256": "9963ef1a82cfe5e1bfca797c17c686c54eeea6e631ed349babfc80ac8c824379",
+  "after_sha256": "7d377fb6e226583b5d0aff7c6439ad937dd95c5b77a085e93e0778cd8db5e3fb",
+  "patch_sha256": "4639e8b45625320c0bef6597b4a887788acb8f8f28c604fa3878869797942647",
+  "overrides": {
+    "iokit/Kernel/arm/SweetSurface.cpp": "4cfc1c0a7dcd4251132b6fa8fd996ff3c7f6e64808f1f9275f233960580266c5",
+    "iokit/Kernel/IOMemoryDescriptor.cpp": "7d377fb6e226583b5d0aff7c6439ad937dd95c5b77a085e93e0778cd8db5e3fb"
+  },
+  "failure_messages_per_site": 24,
+  "original_source_after_removing_logs_identical": true,
+  "actual_inserted_blocks_asan_ubsan_passed": true,
+  "memory_content_reads": 0,
+  "mmio_writes": 0,
+  "device_operations": 0,
+  "installed": false
+}

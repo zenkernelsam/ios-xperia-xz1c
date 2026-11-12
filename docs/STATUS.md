@@ -8,6 +8,8 @@ GPU仍为原已验证GLES9a59820c：750×1624三角形/纹理、Surface双向、
 
 正式run_trial准入已补真实RPM三ACK、同内核private/owner/ready/CPU门槛、Mac78实际源及编译内核SHA。28项离线测试全部通过，包含原始RPM/owner/GPU日志故障回放；v725构建/打包/验收入口见SURFACE-DIAGNOSTICS.md。下一追查memoryReferenceCreate的底层错误/范围与权限，另核对真实CA文字/壁纸路径；不凭NULL猜改方向或扩大页面。
 
+v726离线草案已保存正式xnu/lilac-surface-memref-diagnostics.patch，IOMemoryDescriptor.cpp固定Apple前源9963ef1a→7d377fb6，只加memory-entry失败与init失败两处日志（各24条）。实际插入体的成功/flags/task/NULL-map/计数边界ASan/UBSan通过，去除日志后原文件逐字节一致。Mac仍为v725源/内核；v726未安装、未内核编译、未打包、未发手机。下一先升级版本化构建/投递审计至79源，再按新内核重新走完整准入。
+
 以下为保留的v724基线记录：
 
 BH905ND69G健康fastboot，无device/COM/camera worker。内核v724 SHAda6ddc44fc074eb393f135e1395798483fe2a52eb420dfecea883e0833136c9a；GLES库SHA9a59820c7e54b1626cacd49acb70a7d460be3c01c415a17429a2464bb5b11571（14,675,424B）。
