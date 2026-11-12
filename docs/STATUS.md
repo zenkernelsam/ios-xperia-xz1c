@@ -6,7 +6,7 @@ v726明确捕获真实故障：24条memory-entry采样全部KERN_PROTECTION_FAIL
 
 原GLES9a59820c所有独立像素/双向共享/生命周期核验仍通过，最后283个scatter对象全部撤销，caller active/outstanding/retained均0。相机MJPEG73帧，保存的画面仍无时间/日期/壁纸，右侧/底部截断；数据PASS与视觉INCOMPLETE分开。GPU logSHA19d54d4f6371df498aaa0e00a604a9af91d531b079a64b872cb1c78681c37ee4。
 
-版本化79源/编译内核校验与完整payload复算已完成，32项故障回放通过。mkpayload支持内存字节输入，package_trial不再落盘一次性提取blob。最新证据报告在reproducibility/v726-*-actual.json，必要原日志/单张面板图仅本地archive/evidence/v726-20261113。下一核对源区域保护权限、范围及原生创建属性的语义，再实现正确的Surface创建/共享路径。完整UI/FPS、睡眠唤醒、声音与无线目标继续active。
+版本化79源/编译内核校验与完整payload复算已完成，32项故障回放通过。mkpayload支持内存字节输入，package_trial不再落盘一次性提取blob。最新证据报告在reproducibility/v726-*-actual.json，必要原日志/单张面板图仅本地archive/evidence/v726-20261113。下一在用户态观察器记录创建前的源VM区域保护权限、范围及完整属性名/类型，沿用已通过的v726内核，仅重走新库RAM CPU/GPU准入；还需将打包/验收中的RAM库输入、SHA/大小/FNV参数化，拒绝借用旧库CPU证据。之后实现正确的Surface创建/共享路径。完整UI/FPS、睡眠唤醒、声音与无线目标继续active。
 
 以下v725及v724记录保持原结论：
 
