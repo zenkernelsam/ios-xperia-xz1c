@@ -156,7 +156,7 @@ static int adt_mmap_entry(uintptr_t adt, const char *name, uint64_t *pa,
 
 /* ---- SCM ---- */
 
-struct scm_ret { int64_t status; uint64_t value; };
+struct scm_ret { int64_t status; uint64_t value; uint64_t value2; uint64_t value3; };
 
 static struct scm_ret scm_call(uint32_t svc, uint32_t cmd, uint32_t arginfo,
 			       uint64_t a, uint64_t b, uint64_t c)
@@ -180,7 +180,7 @@ static struct scm_ret scm_call(uint32_t svc, uint32_t cmd, uint32_t arginfo,
 			a0 = 1;			/* Linux continuation */
 			a6 = x6;		/* cookie from monitor */
 		} while (x0 == 1);
-		struct scm_ret r = { (int64_t)x0, x1 };
+		struct scm_ret r = { (int64_t)x0, x1, x2, x3 };
 		if (r.status != -12 || busy >= 20)	/* -EBUSY */
 			return r;
 		for (volatile int i = 0; i < 200000; i++)
@@ -191,6 +191,9 @@ static struct scm_ret scm_call(uint32_t svc, uint32_t cmd, uint32_t arginfo,
 /* ---- probe ---- */
 
 static uint64_t zap_meta[2048] __attribute__((aligned(64)));
+/* Secure SMMU page tables owned by TZ (io-pgtable-msm-secure.c:
+ * IOMMU_SECURE_PTBL_SIZE -> allocate -> IOMMU_SECURE_PTBL_INIT). */
+static uint8_t sec_ptbl[0x10000] __attribute__((aligned(0x10000)));
 static int g_resume_st = -999, g_resume_v;
 static int g_shut_st = -999;
 
@@ -545,6 +548,48 @@ static struct scm_ret shim_hyp_assign(uint32_t vmid)
 	return r;
 }
 
+/* Map a physically contiguous 1 MiB-aligned run into TZ's secure SMMU
+ * page table (io-pgtable-msm-secure.c IOMMU_SECURE_MAP2_FLAT). 8 args:
+ * x2..x4 = PA list / count / chunk size, x5 = PA of args[3..7]
+ * (sec_id, cb, iova, len, 0). arginfo = SCM_ARGS(8, RW, VAL*7) = 0x28. */
+static struct scm_ret shim_secure_map(uint32_t sec_id, uint32_t cb,
+				      uint64_t iova, uint64_t pa, uint64_t len)
+{
+	static uint64_t pa_list[1] __attribute__((aligned(64)));
+	static uint64_t ext[5] __attribute__((aligned(64)));
+	struct scm_ret r;
+
+	pa_list[0] = pa;
+	ext[0] = sec_id; ext[1] = cb; ext[2] = iova; ext[3] = len; ext[4] = 0;
+	dc_clean_range((uintptr_t)pa_list, (uintptr_t)pa_list + sizeof(pa_list));
+	dc_clean_range((uintptr_t)ext, (uintptr_t)ext + sizeof(ext));
+
+	{
+		uint64_t fn = 0x42000C12ull;
+		uint64_t a0 = fn, a6 = 0;
+		register uint64_t x0 __asm__("x0"), x1 __asm__("x1");
+		register uint64_t x2 __asm__("x2"), x3 __asm__("x3");
+		register uint64_t x4 __asm__("x4"), x5 __asm__("x5");
+		register uint64_t x6 __asm__("x6"), x7 __asm__("x7");
+		do {
+			x0 = a0; x1 = 0x28u;
+			x2 = (uint64_t)(uintptr_t)pa_list; x3 = 1;
+			x4 = len;
+			x5 = (uint64_t)(uintptr_t)ext;
+			x6 = a6; x7 = 0;
+			__asm__ volatile("smc #0"
+			    : "+r"(x0), "+r"(x1), "+r"(x2), "+r"(x3),
+			      "+r"(x4), "+r"(x5), "+r"(x6), "+r"(x7)
+			    :
+			    : "x8", "x9", "x10", "x11", "x12", "x13", "x14",
+			      "x15", "x16", "x17", "memory");
+			a0 = 1; a6 = x6;
+		} while (x0 == 1);
+		r.status = (int64_t)x0; r.value = x1;
+	}
+	return r;
+}
+
 static void shim_gpu_power(void)
 {
 	/* GPUCC 0x05065000: CX/GX GDSC, clamps, GPLL0 and gfx3d RCG. */
@@ -663,24 +708,35 @@ static int shim_gpu_smmu_identity(void)
 	dc_clean_range((uintptr_t)cp_l3, (uintptr_t)cp_l3 + 4096);
 
 	con_str("ID1", "tables ready");
-	con_str("ID2", "write SCR0+CBAR");
-	wr32(sm + 0x0, 0);			/* keep global CNTL */
-	wr32(gr1 + 0x0, 1u << 16);		/* CBAR0: s1 tr, s2 bypass */
-	wr32(gr1 + 0x800, 1u);			/* CBA2R0 */
-	con_str("ID3", "write CB0 cfg");
-	wr32(cb + 0x10, (7u << 15) | 1u);	/* TTBCR2 */
-	wr32(cb + 0x30, 28u | (1u << 23));	/* TCR: 36-bit */
-	wr32(cb + 0x38, 0x44u);
+	con_str("ID2", "vendor CB0 init (sagit gpu_smmu.h)");
+	/* Global SCR0: fault unmatched streams while we invalidate SID0. */
+	wr32(sm + 0x0, (rd32(sm + 0x0) & ~(1u | (3u << 14) | (1u << 13))) | 0x1c36u);
+	wr32(sm + 0x800, 0);			/* SMR0 invalid */
+	wr32(cb + 0x0, 0);			/* CB0 disable */
+	wr32(sm + 0x1800, 1);
+	wr32(sm + 0x1000, 0x1f300u);
+	wr32(cb + 0x10, (7u << 15) | (1u << 4) | 2u);	/* TTBCR2, IPS=40 */
+	wr32(cb + 0x30, (1u << 23) | (2u << 12) | (64u - 28u));	/* TCR 36-bit + IRGN */
 	wr32(cb + 0x20, (uint32_t)root_pa);
 	wr32(cb + 0x24, (uint32_t)(root_pa >> 32));
 	wr32(cb + 0x28, 0);
 	wr32(cb + 0x2c, 0);
+	wr32(cb + 0x34, 0);
+	wr32(cb + 0x38, 0x44u);
+	wr32(cb + 0x3c, 0);
+	con_str("ID3", "TLBIALL before enable (CB-relative)");
+	/* sagit synchronizeContext() uses context-relative aliases; the global
+	 * 0x618/0x7f0 TLBI registers are TZ-owned and hang the bus here. */
+	wr32(cb + 0x618, 0);
+	wr32(cb + 0x7f0, 0xffffffffu);
+	for (i = 0; i < 2000; i++)
+		if (!(rd32(cb + 0x7f4) & 1u))
+			break;
 	con_str("ID4", "write CB0 enable");
-	wr32(cb + 0x58, 0xffffffffu);
-	wr32(cb + 0x0, (1u << 5) | (1u << 2) | (1u << 1) | 1u);
+	wr32(cb + 0x0, 0x1167u);
 	con_str("ID5", "write SMR0/S2CR0");
-	wr32(sm + 0x800, 1u << 31);		/* SMR0 valid, SID 0 */
 	wr32(sm + 0xc00, 0u);			/* S2CR0 translate */
+	wr32(sm + 0x800, 1u << 31);		/* SMR0 valid, SID 0 */
 	con_str("ID6", "sACR sync");
 	wr32(sm + 0x68, 0);
 	wr32(sm + 0x70, 0);
@@ -699,13 +755,18 @@ static void shim_smmu_route_sid3(void)
 {
 	const uintptr_t sm = SMMU_BASE;
 
-	/* TZ leaves SMR3 == SID3 -> CB5. Clear it first so SID3 has exactly
-	 * one match (SMR0) and lands on our identity-mapped CB0. */
+	/* TZ leaves SMR3 == SID3 -> CB5. Clear it and give SID3 its own
+	 * group (SMR1) while KEEPING SMR0 = SID0: the CP fetch may use either
+	 * stream, and both must land on our identity CB0. */
 	con_str("RT1", "clear SMR3");
 	wr32(sm + 0x80cu, 0u);			/* SMR3: invalid */
-	con_str("RT2", "route SID3->CB0");
-	wr32(sm + 0x800u, (1u << 31) | 3u);	/* SMR0: valid, stream SID 3 */
-	wr32(sm + 0xc00u, 0u);			/* S2CR0: translate -> CB0 */
+	con_str("RT2", "route SID3->CB0 via SMR1; SID2 via SMR2");
+	wr32(sm + 0x804u, (1u << 31) | 3u);	/* SMR1: valid, stream SID 3 */
+	wr32(sm + 0xc04u, 0u);			/* S2CR1: translate -> CB0 */
+	/* DT gfx3d_secure: iommus = <&kgsl_smmu 2>; the CP's secure fetch
+	 * may use SID 2, so give it its own group as well. */
+	wr32(sm + 0x808u, (1u << 31) | 2u);	/* SMR2: valid, stream SID 2 */
+	wr32(sm + 0xc08u, 0u);			/* S2CR2: translate -> CB0 */
 	wr32(sm + 0x68, 0);
 	wr32(sm + 0x70, 0);
 	for (int i = 0; i < 2000; i++)
@@ -873,6 +934,24 @@ static int shim_gpu_cp(const void *payload, uintptr_t adt_pa)
 			 "rdy=", gpu_rd(0xa8e0u));
 	}
 	shim_smmu_dump_live();
+	/* Secure SMMU page tables: TZ owns the CB and needs its own PTBL
+	 * (io-pgtable-msm-secure.c: PTBL_SIZE -> alloc -> PTBL_INIT) before
+	 * restore_sec_cfg can succeed. */
+	{
+		struct scm_ret ps = scm_call(0xC, 3, 1u, 0u, 0u, 0u);
+		con_hex3("TZ0", "size=", (uint32_t)ps.value,
+			 "flag=", (uint32_t)ps.value2, "st=", (uint32_t)ps.status);
+		if (ps.status == 0 && ps.value2 == 0 &&
+		    ps.value > 0 && ps.value <= sizeof(sec_ptbl)) {
+			dc_clean((uintptr_t)sec_ptbl,
+				 (uintptr_t)sec_ptbl + ps.value);
+			struct scm_ret pi = scm_call(0xC, 4, 0x23u,
+					(uint64_t)(uintptr_t)sec_ptbl,
+					ps.value, 0u);
+			con_hex2("TZ0b", "init st=", (uint32_t)pi.status,
+				 "v=", (uint32_t)pi.value);
+		}
+	}
 	/* TZ secure-SMMU entry points (arm-smmu / msm_tz_smmu ABI). Try them
 	 * from the shim's EL context before touching CB0 routing. */
 	{
@@ -883,6 +962,19 @@ static int shim_gpu_cp(const void *payload, uintptr_t adt_pa)
 		con_str("TZ2", "set_cb_format 18/5");
 		t2 = scm_call(0x15, 1, 3u, 18u, 5u, 1u);
 		con_hex2("TZ2", "st=", (uint32_t)t2.status, "v=", (uint32_t)t2.value);
+		if (str_has(p->cmdline, "shimmap=1")) {
+			struct scm_ret mr = shim_secure_map(18u, 5u,
+					0xEC000000ull, 0x9D400000ull, 0x100000ull);
+			con_hex2("TZM", "st=", (uint32_t)mr.status,
+				 "v=", (uint32_t)mr.value);
+			struct scm_ret rb = scm_call(0xC, 2, 2u, 18u, 5u, 0u);
+			con_hex2("TZ1b", "st=", (uint32_t)rb.status,
+				 "v=", (uint32_t)rb.value);
+		}
+		if (str_has(p->cmdline, "shimtzhold=1")) {
+			con_str("TZ", "hold 20s for camera");
+			gpu_delay_ms(20000);
+		}
 	}
 	if (!shim_gpu_smmu_identity()) {
 		con_str("GPU CP", "smmu identity failed");
@@ -918,19 +1010,152 @@ static int shim_gpu_cp(const void *payload, uintptr_t adt_pa)
 			return 0;
 	}
 
-	/* Microcode through the AHB RAM ports (kgsl a5xx path). */
-	for (i = 0; i < pm4_bytes / 4u; i++) {
-		gpu_wr(0x082fu, i);
-		gpu_wr(0x0830u, ((const uint32_t *)pm4)[i]);
-	}
-	for (i = 0; i < pfp_bytes / 4u; i++) {
-		gpu_wr(0x082au, i);
-		gpu_wr(0x082bu, ((const uint32_t *)pfp)[i]);
-	}
-	gpu_wr(0x082fu, 0);
-	gpu_wr(0x082au, 0);
-	con_hex2("GPU CP", "uc_me=", gpu_rd(0x0830u), "uc_pfp=", gpu_rd(0x082bu));
+	/* a5xx fetches PM4/PFP through the SMMU from CP_*_INSTR_BASE; the
+	 * firmware is already staged in cp_win above. Do NOT push it through
+	 * the AHB ucode ports (a4xx-era path; it corrupts the a5xx CP). */
+	con_hex2("GPU UC", "pm4w=", *(const uint32_t *)pm4,
+		 "pfpw=", *(const uint32_t *)pfp);
 
+	/* mainline a5xx_hw_init: every block in 64-bit address mode, and the
+	 * trusted stream buffer off (TSB_CNTL/base/size=0, ADDR_MODE=1). */
+	{
+		static const uint16_t am[] = {
+			0x0860, 0x0bc1, 0x0c81, 0x0cc5, 0x0d01, 0x0e05,
+			0x0e41, 0x0e61, 0x0e80, 0x0ec1, 0x0f01, 0xf810
+		};
+		for (unsigned k = 0; k < sizeof(am) / sizeof(am[0]); k++)
+			gpu_wr(am[k], 1u);
+		gpu_wr(0xf803u, 0u);
+		gpu_wr(0xf800u, 0u);
+		gpu_wr(0xf801u, 0u);
+		gpu_wr(0xf802u, 0u);
+	}
+	/* mainline a5xx_hw_init CP_PROTECT table. */
+	{
+		static const uint32_t prot[18] = {
+			0x62000010u, 0x63000020u, 0x64000040u, 0x65000080u,
+			0x66000100u, 0x66000200u, 0x6403e000u, 0x6103d000u,
+			0x66002000u, 0x63002100u, 0x65002200u, 0x60002a80u,
+			0x60003300u, 0x610033c0u, 0x630039a0u, 0x640039c0u,
+			0x64003a00u, 0x6f040000u
+		};
+		for (unsigned k = 0; k < 18; k++)
+			gpu_wr(0x880u + k, prot[k]);
+	}
+	/* mainline UCHE + block mode registers: the CP fetch path runs
+	 * through UCHE, which our shim never initialized. */
+	gpu_wr(0x0e96u, 2u);			/* UCHE_CACHE_WAYS */
+	gpu_wr(0x0e89u, 0xffff0000u);		/* UCHE_TRAP_BASE_LO */
+	gpu_wr(0x0e8au, 0x0001ffffu);		/* UCHE_TRAP_BASE_HI */
+	gpu_wr(0x0e87u, 0xffff0000u);		/* UCHE_WRITE_THRU_BASE_LO */
+	gpu_wr(0x0e88u, 0x0001ffffu);		/* UCHE_WRITE_THRU_BASE_HI */
+	gpu_wr(0x0e8bu, 0x00100000u);		/* UCHE_GMEM_RANGE_MIN_LO */
+	gpu_wr(0x0e8cu, 0u);
+	gpu_wr(0x0e8du, 0x001fffffu);		/* UCHE_GMEM_RANGE_MAX_LO */
+	gpu_wr(0x0e8eu, 0u);
+	gpu_wr(0x0e81u, 1u << 29);		/* UCHE_MODE_CNTL */
+	gpu_wr(0x0095u, 0x3fu);			/* RBBM_AHB_CNTL2 */
+	gpu_wr(0x0f02u, 2u << 7);		/* TPL1_MODE_CNTL (hbb=2) */
+	gpu_wr(0x0cc6u, 2u << 1);		/* RB_MODE_CNTL */
+	gpu_wr(0x0e8fu, 2u);			/* UCHE_DBG_ECO_CNTL_2 */
+
+	/* mainline a5xx_set_hwcg(true): RBBM clock-gating table. */
+	gpu_wr(0x068u, 0x02222222u);
+	gpu_wr(0x069u, 0x02222222u);
+	gpu_wr(0x06au, 0x02222222u);
+	gpu_wr(0x06bu, 0x02222222u);
+	gpu_wr(0x06cu, 0x02222220u);
+	gpu_wr(0x06du, 0x02222220u);
+	gpu_wr(0x06eu, 0x02222220u);
+	gpu_wr(0x06fu, 0x02222220u);
+	gpu_wr(0x070u, 0x0000f3cfu);
+	gpu_wr(0x071u, 0x0000f3cfu);
+	gpu_wr(0x072u, 0x0000f3cfu);
+	gpu_wr(0x073u, 0x0000f3cfu);
+	gpu_wr(0x074u, 0x00000080u);
+	gpu_wr(0x075u, 0x00000080u);
+	gpu_wr(0x076u, 0x00000080u);
+	gpu_wr(0x077u, 0x00000080u);
+	gpu_wr(0x04au, 0x22222222u);
+	gpu_wr(0x04bu, 0x22222222u);
+	gpu_wr(0x04cu, 0x22222222u);
+	gpu_wr(0x04du, 0x22222222u);
+	gpu_wr(0x04eu, 0x22222222u);
+	gpu_wr(0x04fu, 0x22222222u);
+	gpu_wr(0x050u, 0x22222222u);
+	gpu_wr(0x051u, 0x22222222u);
+	gpu_wr(0x052u, 0x00002222u);
+	gpu_wr(0x053u, 0x00002222u);
+	gpu_wr(0x054u, 0x00002222u);
+	gpu_wr(0x055u, 0x00002222u);
+	gpu_wr(0x0b0u, 0x77777777u);
+	gpu_wr(0x0b1u, 0x77777777u);
+	gpu_wr(0x0b2u, 0x77777777u);
+	gpu_wr(0x0b3u, 0x77777777u);
+	gpu_wr(0x0b4u, 0x77777777u);
+	gpu_wr(0x0b5u, 0x77777777u);
+	gpu_wr(0x0b6u, 0x77777777u);
+	gpu_wr(0x0b7u, 0x77777777u);
+	gpu_wr(0x0b8u, 0x00007777u);
+	gpu_wr(0x0b9u, 0x00007777u);
+	gpu_wr(0x0bau, 0x00007777u);
+	gpu_wr(0x0bbu, 0x00007777u);
+	gpu_wr(0x0a4u, 0x11111111u);
+	gpu_wr(0x0a5u, 0x11111111u);
+	gpu_wr(0x0a6u, 0x11111111u);
+	gpu_wr(0x0a7u, 0x11111111u);
+	gpu_wr(0x0a8u, 0x11111111u);
+	gpu_wr(0x0a9u, 0x11111111u);
+	gpu_wr(0x0aau, 0x11111111u);
+	gpu_wr(0x0abu, 0x11111111u);
+	gpu_wr(0x0acu, 0x00001111u);
+	gpu_wr(0x0adu, 0x00001111u);
+	gpu_wr(0x0aeu, 0x00001111u);
+	gpu_wr(0x0afu, 0x00001111u);
+	gpu_wr(0x05au, 0x22222222u);
+	gpu_wr(0x05bu, 0x22222222u);
+	gpu_wr(0x05cu, 0x22222222u);
+	gpu_wr(0x05du, 0x00222222u);
+	gpu_wr(0x05eu, 0x00444444u);
+	gpu_wr(0x05fu, 0x00000002u);
+	gpu_wr(0x078u, 0x22222222u);
+	gpu_wr(0x079u, 0x22222222u);
+	gpu_wr(0x07au, 0x22222222u);
+	gpu_wr(0x07bu, 0x22222222u);
+	gpu_wr(0x07cu, 0x00222222u);
+	gpu_wr(0x07du, 0x00222222u);
+	gpu_wr(0x07eu, 0x00222222u);
+	gpu_wr(0x07fu, 0x00222222u);
+	gpu_wr(0x082u, 0x00022220u);
+	gpu_wr(0x083u, 0x00022220u);
+	gpu_wr(0x084u, 0x00022220u);
+	gpu_wr(0x085u, 0x00022220u);
+	gpu_wr(0x08au, 0x05522222u);
+	gpu_wr(0x08bu, 0x00505555u);
+	gpu_wr(0x086u, 0x04040404u);
+	gpu_wr(0x087u, 0x04040404u);
+	gpu_wr(0x088u, 0x04040404u);
+	gpu_wr(0x089u, 0x04040404u);
+	gpu_wr(0x080u, 0x07444044u);
+	gpu_wr(0x08cu, 0x00000002u);
+	gpu_wr(0x08du, 0x00000002u);
+	gpu_wr(0x08eu, 0x00000002u);
+	gpu_wr(0x08fu, 0x00000002u);
+	gpu_wr(0x081u, 0x00010011u);
+	gpu_wr(0x063u, 0x04222222u);
+	gpu_wr(0x060u, 0x02222222u);
+	gpu_wr(0x091u, 0x00002222u);
+	gpu_wr(0x064u, 0x00000000u);
+	gpu_wr(0x062u, 0x04104004u);
+	gpu_wr(0x090u, 0x00000000u);
+	gpu_wr(0x066u, 0x00000000u);
+	gpu_wr(0x065u, 0x00004000u);
+	gpu_wr(0x061u, 0x00000200u);
+	gpu_wr(0x092u, 0x00002222u);
+	gpu_wr(0x0c9u, 0x00000770u);
+	gpu_wr(0x0cau, 0x00000004u);
+	gpu_wr(0x067u, 0xaaa8aa00u);
+	gpu_wr(0x533u, 0x00000182u);
 	/* Program instruction bases in the GPU global aperture (0xFC000000). */
 	wr32(GPU_BASE + R_PFP_BASE * 4u, CP_WIN_VA + CP_PFP_OFF);
 	wr32(GPU_BASE + (R_PFP_BASE + 1u) * 4u, 0);
@@ -941,13 +1166,34 @@ static int shim_gpu_cp(const void *payload, uintptr_t adt_pa)
 	wr32(GPU_BASE + R_RB_RPTR_ADDR * 4u, CP_WIN_VA + CP_SCR_OFF + 0x10u);
 	wr32(GPU_BASE + (R_RB_RPTR_ADDR + 1u) * 4u, 0);
 	wr32(GPU_BASE + R_CTX_SWITCH * 4u, 0);
-	wr32(GPU_BASE + R_RB_CNTL * 4u, 11u | (2u << 8) | (1u << 27));
+	wr32(GPU_BASE + R_RB_CNTL * 4u, 12u | (2u << 8) | (1u << 27));	/* 32 KiB */
 	wr32(GPU_BASE + R_RB_WPTR * 4u, 0);
 	gpu_wr(R_INT_MASK, 0);
 	gpu_wr(R_INT_CLEAR, 0xffffffffu);
+	/* Vendor configure() gates: ADDR_MODE=1, PROTECT=7. */
+	gpu_wr(0x0860u, 1u);
+	gpu_wr(0x08a0u, 7u);
+	{
+		uint32_t g_me = gpu_rd(R_ME_BASE), g_pf = gpu_rd(R_PFP_BASE);
+		uint32_t g_rb = gpu_rd(R_RB_BASE), g_rc = gpu_rd(R_RB_CNTL);
+		uint32_t g_cs = gpu_rd(R_CTX_SWITCH), g_am = gpu_rd(0x0860u);
+		uint32_t g_pr = gpu_rd(0x08a0u);
+		con_hex2("CP GATE", "me=", g_me, "pf=", g_pf);
+		con_hex2("CP GATE", "rb=", g_rb, "rc=", g_rc);
+		con_hex2("CP GATE", "cs=", g_cs, "am=", g_am);
+		con_hex2("CP GATE", "pr=", g_pr, "rptr=", gpu_rd(R_RB_RPTR));
+		if (g_me != CP_WIN_VA + CP_PM4_OFF ||
+		    g_pf != CP_WIN_VA + CP_PFP_OFF ||
+		    g_rb != CP_WIN_VA + CP_RING_OFF ||
+		    g_rc != (12u | (2u << 8) | (1u << 27)) ||
+		    g_cs != 0 || g_am != 1u || g_pr != 7u) {
+			con_str("CP GATE", "mismatch; skip kick");
+			return 0;
+		}
+	}
 
 	/* One ME_INIT packet, exactly the payload sagit/AdrenoStartup uses. */
-	for (i = 0; i < 4096; i++)
+	for (i = 0; i < 8192; i++)
 		ring[i] = 0;
 	ring[0] = cp_pkt7(0x48u, 8u);
 	ring[1] = 0x2fu;
@@ -955,7 +1201,7 @@ static int shim_gpu_cp(const void *payload, uintptr_t adt_pa)
 	ring[3] = 0x20000000u;
 	for (i = 4; i < 9; i++)
 		ring[i] = 0;
-	dc_clean_range((uintptr_t)ring, (uintptr_t)ring + 4096);
+	dc_clean_range((uintptr_t)ring, (uintptr_t)ring + 0x8000);
 	dc_clean_range((uintptr_t)pm4, (uintptr_t)pm4 + 0x8000);
 	dc_clean_range((uintptr_t)pfp, (uintptr_t)pfp + 0x8000);
 
@@ -1016,6 +1262,14 @@ static int shim_gpu_cp(const void *payload, uintptr_t adt_pa)
 			int pa = spmi_find_apid(0x0008);
 			spmi_write_apid(pa < 0 ? 4 : pa, 0x8e, (uint8_t)code);
 		}
+	}
+	/* Unambiguous camera readout: solid green = CP consumed the ring
+	 * (RPTR hit 9), solid red = it did not. */
+	if (str_has(p->cmdline, "shimcphold=1")) {
+		con_clear(mi ? 0xff00cc00u : 0xffcc0000u);
+		con_hex2("CPRES", "mi=", (uint32_t)mi,
+			 "rptr=", gpu_rd(R_RB_RPTR));
+		gpu_delay_ms(20000);
 	}
 	return mi;
 }

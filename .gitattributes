@@ -4,3 +4,14 @@
 *.patch text eol=lf
 xnu/patches/** text eol=lf
 *.diff  text eol=lf
+*.py    text eol=lf
+*.c     text eol=lf
+*.cpp   text eol=lf
+*.h     text eol=lf
+*.S     text eol=lf
+*.ld    text eol=lf
+*.mm    text eol=lf
+*.json  text eol=lf
+*.yml   text eol=lf
+*.txt   text eol=lf
+*.swift text eol=lf

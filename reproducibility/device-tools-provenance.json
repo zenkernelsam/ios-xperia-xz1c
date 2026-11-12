@@ -1,0 +1,13 @@
+{
+  "migrated_helpers": {
+    "boot_once.py": "e862e430514f7aaceb5ac5b2037a19770ba91889cb0088438e925b920dcde83c",
+    "capture.py": "6bf670ec0fd55b50ee5f83997931dee98549461435f89474dfd3b757e3b39c70",
+    "policy.py": "ba20644cbf746769ae3e85953863a6c35ee8510611004b4455ca2568f0621054",
+    "serial_worker.py": "85c441bff24e081fc4fa759748676b130becf2a070bbacbff6b23fba96ae3fd4",
+    "procguard.py": "7cc150c13ca8d6fce28ec9784af8886eaaa4cdd8fad9cb3ff6befa9fd67d116d",
+    "return_evidence.py": "5142d3a90e89f64f796f2ce70227b28703afbca5be582ef25b6d638b09ae7e8d",
+    "repack_kernel_boot.py": "4f38392c88d0c65ac8647828332ae919075681f652ffe9b95171ef537e0b196a"
+  },
+  "originals_from_patch_archive": true,
+  "device_operations": 0
+}

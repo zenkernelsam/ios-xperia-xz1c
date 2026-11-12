@@ -1,0 +1,122 @@
+diff --git a/src/freedreno/drm/freedreno_bo.c b/src/freedreno/drm/freedreno_bo.c
+index 1f99f36b..31a1a948 100644
+--- a/src/freedreno/drm/freedreno_bo.c
++++ b/src/freedreno/drm/freedreno_bo.c
+@@ -12,6 +12,13 @@
+ #include "freedreno_drm_perfetto.h"
+ #include "freedreno_priv.h"
+ 
++#ifdef __APPLE__
++void *sweet_drm_bo_map(int fd, uint64_t offset);
++#undef os_mmap
++#define os_mmap(addr, length, prot, flags, fd, offset) sweet_drm_bo_map(fd, offset)
++#define os_munmap(addr, length) 0
++#endif
++
+ simple_mtx_t table_lock = SIMPLE_MTX_INITIALIZER;
+ simple_mtx_t fence_lock = SIMPLE_MTX_INITIALIZER;
+ 
+diff --git a/src/freedreno/drm/meson.build b/src/freedreno/drm/meson.build
+index ffaf6c90..9ce4eff9 100644
+--- a/src/freedreno/drm/meson.build
++++ b/src/freedreno/drm/meson.build
+@@ -73,7 +73,7 @@ libfreedreno_drm = static_library(
+   gnu_symbol_visibility : 'hidden',
+   dependencies : libfreedreno_drm_deps,
+   # TODO
+-  link_with : [libvdrm],
++  link_with : freedreno_kmds.contains('virtio') ? [libvdrm] : [],
+   build_by_default : false,
+ )
+ 
+diff --git a/src/freedreno/meson.build b/src/freedreno/meson.build
+index 29e1bc42..29e780d0 100644
+--- a/src/freedreno/meson.build
++++ b/src/freedreno/meson.build
+@@ -22,7 +22,7 @@ subdir('ir2')
+ subdir('ir3')
+ subdir('fdl')
+ 
+-if system_has_kms_drm
++if system_has_kms_drm or host_machine.system() == 'darwin'
+   subdir('drm')
+ endif
+ 
+diff --git a/src/gallium/drivers/freedreno/freedreno_resource.c b/src/gallium/drivers/freedreno/freedreno_resource.c
+index 4a1dc734..0f3aa201 100644
+--- a/src/gallium/drivers/freedreno/freedreno_resource.c
++++ b/src/gallium/drivers/freedreno/freedreno_resource.c
+@@ -1552,6 +1552,12 @@ fd_resource_from_handle(struct pipe_screen *pscreen,
+    else
+       rsc->layout.pitchalign = MAX2(rsc->layout.pitchalign, 5);
+ 
++#if defined(__APPLE__)
++   if (is_a5xx(screen) && handle->modifier == DRM_FORMAT_MOD_LINEAR &&
++       handle->stride % 64 == 0)
++      rsc->layout.pitchalign = 6;
++#endif
++
+    if (rsc->layout.pitch0 < (prsc->width0 * rsc->layout.cpp) ||
+        fd_resource_pitch(rsc, 0) != rsc->layout.pitch0)
+       goto fail;
+diff --git a/src/gallium/drivers/freedreno/freedreno_screen.c b/src/gallium/drivers/freedreno/freedreno_screen.c
+index 2428ba6c..2caf8314 100644
+--- a/src/gallium/drivers/freedreno/freedreno_screen.c
++++ b/src/gallium/drivers/freedreno/freedreno_screen.c
+@@ -25,7 +25,9 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include "drm-uapi/drm_fourcc.h"
++#ifndef __APPLE__
+ #include <sys/sysinfo.h>
++#endif
+ 
+ #include "freedreno_fence.h"
+ #include "freedreno_perfetto.h"
+@@ -1153,9 +1155,13 @@ fd_screen_create(int fd,
+    screen->driconf.dual_color_blend_by_location =
+          driQueryOptionb(config->options, "dual_color_blend_by_location");
+ 
++#ifdef __APPLE__
++   screen->ram_size = 2ull << 30;
++#else
+    struct sysinfo si;
+    sysinfo(&si);
+    screen->ram_size = si.totalram;
++#endif
+ 
+    DBG("Pipe Info:");
+    DBG(" GPU-id:          %s", fd_dev_name(screen->dev_id));
+diff --git a/src/util/build_id.c b/src/util/build_id.c
+index 8b4f8f30..ece7cb36 100644
+--- a/src/util/build_id.c
++++ b/src/util/build_id.c
+@@ -134,3 +134,15 @@ build_id_data(const struct build_id_note *note)
+ }
+ 
+ #endif
++
++
++/* SWEET_APPLE_BUILD_ID: no dl_iterate_phdr on Darwin/iOS. */
++#ifndef HAVE_DL_ITERATE_PHDR
++#include "build_id.h"
++const struct build_id_note *build_id_find_nhdr_for_addr(const void *addr)
++{ (void)addr; return (const struct build_id_note *)(uintptr_t)1; }
++unsigned build_id_length(const struct build_id_note *note)
++{ (void)note; return 20; }
++const uint8_t *build_id_data(const struct build_id_note *note)
++{ static const uint8_t id[20] = {0}; (void)note; return id; }
++#endif
+diff --git a/src/util/build_id.h b/src/util/build_id.h
+index 2ff596e0..2bba561d 100644
+--- a/src/util/build_id.h
++++ b/src/util/build_id.h
+@@ -28,7 +28,7 @@
+ extern "C" {
+ #endif
+ 
+-#ifdef HAVE_DL_ITERATE_PHDR
++#if defined(HAVE_DL_ITERATE_PHDR) || defined(__APPLE__)
+ 
+ #include <stdint.h>
+ 

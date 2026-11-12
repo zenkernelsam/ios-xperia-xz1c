@@ -1,0 +1,93 @@
+{
+  "batches": {
+    "windows_support": {
+      "files": 45821,
+      "bytes": 40557619646
+    },
+    "windows_formal": {
+      "files": 31,
+      "bytes": 94032693
+    },
+    "windows_temp": {
+      "files": 45585,
+      "bytes": 34762893461
+    },
+    "mac": {
+      "files": 1596,
+      "bytes": 4253552628
+    },
+    "wsl": {
+      "files": 1176,
+      "bytes": 2066838900
+    }
+  },
+  "all_project_discarded_files_native_recycled": true,
+  "recycle_bins_not_emptied": true,
+  "known_recycle_entries": 475,
+  "windows_extra_obsolete_build_dirs": [
+    "xnu-builds",
+    "former-artifacts"
+  ],
+  "ubuntu_trash_was_empty": true,
+  "protected_flash_unlock_firmware_root_backups_retained": true,
+  "support_visible_pending_entries": 390,
+  "support_untracked_entries": 61,
+  "full_patch_other_projects_not_touched": true,
+  "source_reconstruction": {
+    "xnu": {
+      "base": "f625db25f47631424dc62ac1c3414b6e530f7e8a",
+      "changed_paths_exact": 404,
+      "fresh_patch_apply_passed": true,
+      "audited_live_source_hashes": 78
+    },
+    "mesa": {
+      "base": "769e51468b49b2a42f0a0eaf71cf9eed5ff4e5de",
+      "changed_paths_exact": 7,
+      "fresh_patch_apply_passed": true,
+      "audited_live_source_hashes": 0
+    }
+  },
+  "compiled_kernel_and_gles": {
+    "reconstruction_audited_sources": 78,
+    "audited_sources_match_live_v724": true,
+    "kernel_compilation_complete": true,
+    "gles_compilation_complete": true,
+    "kernel_sha256": "e0eb264ca755efb7fa3f6734acec577f683c3560febc525a372894c7d47c0879",
+    "kernel_bytes": 20647408,
+    "gles_sha256": "f22dc3d07421e337f07f96737ccb7d9934ded7564b59601457ca3bc2bdd73e72",
+    "gles_bytes": 14675424,
+    "kernel_build_log_sha256": "d665fbbc4c4b5da28b6fde2b8d2f6b3e5270aa6888c512ff5e97388978210b10",
+    "gles_build_log_sha256": "bfe2eaa0ba55afa39148be3b3af079895dae2648dace98a8b1b00c972c2ce9f6",
+    "new_binaries_device_tested": false,
+    "device_tested_kernel": "da6ddc44fc074eb393f135e1395798483fe2a52eb420dfecea883e0833136c9a",
+    "device_tested_gles": "9a59820c7e54b1626cacd49acb70a7d460be3c01c415a17429a2464bb5b11571",
+    "xcode": "Xcode 26.3\nBuild version 17C519",
+    "sdk": "26.2",
+    "bison": "bison (GNU Bison) 3.8.2",
+    "flex": "flex 2.6.4",
+    "build_outputs_not_for_automatic_flash": true
+  },
+  "shim_build": {
+    "source_files": {
+      "start.S": "1142c8cd1ea2d8bb2f02c9ae9c3bfe45adb4f95177b242a619b0efe192908dcc",
+      "shim.c": "0186fb949c25573ea2f801877cd337c12fabd9cd28a06e11db537c9e6e104717",
+      "console.c": "95f554a6d23d76537a6befe3ee8614ec589983681687bbcf0eac687dd60f7b4f",
+      "mmu.c": "cd44c937bf915e4075635ff5755f2d60c5c838886eaaec8aa63178ffdab9e78c",
+      "fdt.c": "e55440ee90882f2d319d5f378d84bb39384ffd8cf97de97484cb57298da36693",
+      "loader.c": "86d1cb44a700e7e80afb3d601422445eedd660cab103ac516f397eaefdbd07df",
+      "ufs.c": "f54067ef14bbf470cc279390e81420c07d3d0483da332f004200e25e71b63d80",
+      "wdt.c": "e2e3d3f1c6314b1c935c037ec1c6c0ae4b7f2118f413731a7c35cb6555fc1409",
+      "spmi.c": "c58e4b75209275e7c7be8e4c0bea49eb86dc510a5e22118738f3e866b131c86b",
+      "gpu.c": "f40125d9c6d0573fd1edf7d2d9fbc18eaa5ecf5d647f3196632acf439c2f2e18",
+      "shim.ld": "d3fee571598b57ff6bd5cf18e38e718dd30b16425077c87b4fce759e92561793"
+    },
+    "compiler": "aarch64-linux-gnu-gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+    "image_bytes": 475136,
+    "image_sha256": "77d425b0d25aee78370e978ff55cb17c8ea7128dce647399c1e54a806fff73bc",
+    "runtime_absolute_pointer_relocations": 0,
+    "linux_header_size_relocation": 1,
+    "no_device_operations": true,
+    "rebuilt_binary_not_device_tested": true
+  },
+  "homebrew_cache_exception": "Earlier Bison/Flex installation invoked Homebrew automatic cache cleanup; only Homebrew download/index caches affected. Subsequent operations disable automatic cleanup."
+}

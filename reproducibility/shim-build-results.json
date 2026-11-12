@@ -1,0 +1,22 @@
+{
+  "source_files": {
+    "start.S": "1142c8cd1ea2d8bb2f02c9ae9c3bfe45adb4f95177b242a619b0efe192908dcc",
+    "shim.c": "0186fb949c25573ea2f801877cd337c12fabd9cd28a06e11db537c9e6e104717",
+    "console.c": "95f554a6d23d76537a6befe3ee8614ec589983681687bbcf0eac687dd60f7b4f",
+    "mmu.c": "cd44c937bf915e4075635ff5755f2d60c5c838886eaaec8aa63178ffdab9e78c",
+    "fdt.c": "e55440ee90882f2d319d5f378d84bb39384ffd8cf97de97484cb57298da36693",
+    "loader.c": "86d1cb44a700e7e80afb3d601422445eedd660cab103ac516f397eaefdbd07df",
+    "ufs.c": "f54067ef14bbf470cc279390e81420c07d3d0483da332f004200e25e71b63d80",
+    "wdt.c": "e2e3d3f1c6314b1c935c037ec1c6c0ae4b7f2118f413731a7c35cb6555fc1409",
+    "spmi.c": "c58e4b75209275e7c7be8e4c0bea49eb86dc510a5e22118738f3e866b131c86b",
+    "gpu.c": "f40125d9c6d0573fd1edf7d2d9fbc18eaa5ecf5d647f3196632acf439c2f2e18",
+    "shim.ld": "d3fee571598b57ff6bd5cf18e38e718dd30b16425077c87b4fce759e92561793"
+  },
+  "compiler": "aarch64-linux-gnu-gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+  "image_bytes": 475136,
+  "image_sha256": "77d425b0d25aee78370e978ff55cb17c8ea7128dce647399c1e54a806fff73bc",
+  "runtime_absolute_pointer_relocations": 0,
+  "linux_header_size_relocation": 1,
+  "no_device_operations": true,
+  "rebuilt_binary_not_device_tested": true
+}

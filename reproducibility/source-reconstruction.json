@@ -1,0 +1,14 @@
+{
+  "xnu": {
+    "base": "f625db25f47631424dc62ac1c3414b6e530f7e8a",
+    "changed_paths_exact": 404,
+    "fresh_patch_apply_passed": true,
+    "audited_live_source_hashes": 78
+  },
+  "mesa": {
+    "base": "769e51468b49b2a42f0a0eaf71cf9eed5ff4e5de",
+    "changed_paths_exact": 7,
+    "fresh_patch_apply_passed": true,
+    "audited_live_source_hashes": 0
+  }
+}

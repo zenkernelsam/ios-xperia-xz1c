@@ -1,0 +1,53 @@
+diff --git a/build.sh b/build.sh
+index fb34415..e4f83c5 100755
+--- a/build.sh
++++ b/build.sh
+@@ -536,7 +536,7 @@ build_availabilityversions() {
+         OBJROOT="${BUILD_DIR}/"
+         SYMROOT="${BUILD_DIR}/"
+         cd "${SRCROOT}"
+-        make install -j8 OBJROOT="${OBJROOT}" SYMROOT="${SYMROOT}" DSTROOT="${DSTROOT}"
++        make install -j16 OBJROOT="${OBJROOT}" SYMROOT="${SYMROOT}" DSTROOT="${DSTROOT}"
+         cd "${WORK_DIR}"
+     fi
+ }
+@@ -617,7 +617,7 @@ build_libdispatch() {
+         sed -i '' 's|$(SDKROOT)/usr/local/include|$(FAKEROOT_DIR)/usr/local/include|g' "${SRCROOT}/xcodeconfig/libfirehose_kernel.xcconfig"
+         cd "${SRCROOT}"
+         env LD="$(xcrun -find clang)" LDPLUSPLUS="$(xcrun -find clang++)" \
+-            xcodebuild install -target libfirehose_kernel -sdk macosx ARCHS="x86_64 arm64e" VALID_ARCHS="x86_64 arm64e" OBJROOT="${OBJROOT}" SYMROOT="${SYMROOT}" DSTROOT="${DSTROOT}" FAKEROOT_DIR="${FAKEROOT_DIR}"
++            xcodebuild install -target libfirehose_kernel -sdk macosx ARCHS="x86_64 arm64e arm64" VALID_ARCHS="x86_64 arm64e arm64" OBJROOT="${OBJROOT}" SYMROOT="${SYMROOT}" DSTROOT="${DSTROOT}" FAKEROOT_DIR="${FAKEROOT_DIR}"
+         cd "${WORK_DIR}"
+         mv "${FAKEROOT_DIR}/usr/local/lib/kernel/liblibfirehose_kernel.a" "${FAKEROOT_DIR}/usr/local/lib/kernel/libfirehose_kernel.a"
+     fi
+@@ -729,7 +729,7 @@ build_xnu() {
+             cd "${SRCROOT}"
+             ctf_tool_overrides
+             kernel_version_env
+-            make install -j8 VERBOSE=YES "${CTF_TOOL_OVERRIDES[@]}" SDKROOT=macosx TARGET_CONFIGS="$KERNEL_CONFIG $ARCH_CONFIG $MACHINE_CONFIG" CONCISE=0 LOGCOLORS=y BUILD_WERROR=0 BUILD_LTO=0 SRCROOT="${SRCROOT}" OBJROOT="${OBJROOT}" SYMROOT="${SYMROOT}" DSTROOT="${DSTROOT}" FAKEROOT_DIR="${FAKEROOT_DIR}" KDKROOT="${KDKROOT}" TIGHTBEAMC=${TIGHTBEAMC} RC_DARWIN_KERNEL_VERSION=${RC_DARWIN_KERNEL_VERSION} MEMORY_SIZE="${MEMORY_SIZE_OVERRIDE}" SYSCTL_HW_PHYSICALCPU="${PHYS_CPU_OVERRIDE}" SYSCTL_HW_LOGICALCPU="${LOGICAL_CPU_OVERRIDE}" KERNEL_BUILDS_IN_PARALLEL="${KERNEL_PARALLELISM_OVERRIDE:-1}"
++            make install -j16 VERBOSE=YES "${CTF_TOOL_OVERRIDES[@]}" SDKROOT=macosx TARGET_CONFIGS="$KERNEL_CONFIG $ARCH_CONFIG $MACHINE_CONFIG" CONCISE=0 LOGCOLORS=y BUILD_WERROR=0 BUILD_LTO=0 SRCROOT="${SRCROOT}" OBJROOT="${OBJROOT}" SYMROOT="${SYMROOT}" DSTROOT="${DSTROOT}" FAKEROOT_DIR="${FAKEROOT_DIR}" KDKROOT="${KDKROOT}" TIGHTBEAMC=${TIGHTBEAMC} RC_DARWIN_KERNEL_VERSION=${RC_DARWIN_KERNEL_VERSION} MEMORY_SIZE="${MEMORY_SIZE_OVERRIDE}" SYSCTL_HW_PHYSICALCPU="${PHYS_CPU_OVERRIDE}" SYSCTL_HW_LOGICALCPU="${LOGICAL_CPU_OVERRIDE}" KERNEL_BUILDS_IN_PARALLEL="${KERNEL_PARALLELISM_OVERRIDE:-1}"
+             cd "${WORK_DIR}"
+         fi
+     else
+@@ -777,7 +777,7 @@ build_xnu_library() {
+         ctf_tool_overrides
+         kernel_version_env
+         env "${lib_env[@]}" \
+-            make install -j8 VERBOSE=YES "${CTF_TOOL_OVERRIDES[@]}" "${lib_make_args[@]}" SDKROOT=macosx TARGET_CONFIGS="$KERNEL_CONFIG $ARCH_CONFIG $MACHINE_CONFIG" CONCISE=0 LOGCOLORS=y BUILD_WERROR=0 BUILD_LTO=0 SRCROOT="${SRCROOT}" OBJROOT="${OBJROOT}" SYMROOT="${SYMROOT}" DSTROOT="${DSTROOT}" FAKEROOT_DIR="${FAKEROOT_DIR}" KDKROOT="${KDKROOT}" TIGHTBEAMC=${TIGHTBEAMC} RC_DARWIN_KERNEL_VERSION=${RC_DARWIN_KERNEL_VERSION} MEMORY_SIZE="${MEMORY_SIZE_OVERRIDE}" SYSCTL_HW_PHYSICALCPU="${PHYS_CPU_OVERRIDE}" SYSCTL_HW_LOGICALCPU="${LOGICAL_CPU_OVERRIDE}" KERNEL_BUILDS_IN_PARALLEL="${KERNEL_PARALLELISM_OVERRIDE:-1}"
++            make install -j16 VERBOSE=YES "${CTF_TOOL_OVERRIDES[@]}" "${lib_make_args[@]}" SDKROOT=macosx TARGET_CONFIGS="$KERNEL_CONFIG $ARCH_CONFIG $MACHINE_CONFIG" CONCISE=0 LOGCOLORS=y BUILD_WERROR=0 BUILD_LTO=0 SRCROOT="${SRCROOT}" OBJROOT="${OBJROOT}" SYMROOT="${SYMROOT}" DSTROOT="${DSTROOT}" FAKEROOT_DIR="${FAKEROOT_DIR}" KDKROOT="${KDKROOT}" TIGHTBEAMC=${TIGHTBEAMC} RC_DARWIN_KERNEL_VERSION=${RC_DARWIN_KERNEL_VERSION} MEMORY_SIZE="${MEMORY_SIZE_OVERRIDE}" SYSCTL_HW_PHYSICALCPU="${PHYS_CPU_OVERRIDE}" SYSCTL_HW_LOGICALCPU="${LOGICAL_CPU_OVERRIDE}" KERNEL_BUILDS_IN_PARALLEL="${KERNEL_PARALLELISM_OVERRIDE:-1}"
+         cd "${WORK_DIR}"
+         if [ -f "${lib_archive}" ]; then
+             info "📦 Created ${lib_archive}"
+@@ -854,6 +854,12 @@ main() {
+     install_deps
+     setup_xcode_toolchain
+     choose_xnu
++    if [ "${INCREMENTAL:-0}" = "1" ]; then
++        running "⚡ Incremental: skipping deps/patches/headers/libs"
++        build_xnu
++        echo "  🎉 XNU Incremental Build Done!"
++        return
++    fi
+     get_xnu
+     patches
+     venv

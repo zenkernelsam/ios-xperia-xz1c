@@ -507,6 +507,9 @@ void shim_main(uint64_t dtb)
 			 "before=", (uint32_t)before);
 		con_hex2("PON", "after_pmic=", (uint32_t)spmi_read(0x0008, 0, 0x8f),
 			 "after4=", (uint32_t)spmi_read(0x0008, 0, 0x8f));
+		/* Previous run's CP result code (spare 0x8e): bit2 = RPTR hit 9. */
+		con_hex2("PON8E", "code=", (uint32_t)spmi_read(0x0008, 0, 0x8e),
+			 "s2=", (uint32_t)spmi_read(0x0208, 0, 0x8e));
 	}
 #ifdef SHIM_BEACON
 	/* Durable channel: PMIC PON spare bytes. They live on the PMIC, which

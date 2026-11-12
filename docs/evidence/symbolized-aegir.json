@@ -1,0 +1,118 @@
+{
+  "input": {
+    "group": "AegirPoster",
+    "recorded_shared_cache_slide": "0x6818000",
+    "addresses": [
+      {
+        "runtime": "0x1868eaafc",
+        "unslid": "0x1800d2afc"
+      },
+      {
+        "runtime": "0x194352ccc",
+        "unslid": "0x18db3accc"
+      },
+      {
+        "runtime": "0x1943b0794",
+        "unslid": "0x18db98794"
+      },
+      {
+        "runtime": "0x1944744b8",
+        "unslid": "0x18dc5c4b8"
+      },
+      {
+        "runtime": "0x1a213804c",
+        "unslid": "0x19b92004c"
+      },
+      {
+        "runtime": "0x1a2138410",
+        "unslid": "0x19b920410"
+      },
+      {
+        "runtime": "0x1c8e2f198",
+        "unslid": "0x1c2617198"
+      },
+      {
+        "runtime": "0x1d82e7a4c",
+        "unslid": "0x1d1acfa4c"
+      },
+      {
+        "runtime": "0x1d82f63d4",
+        "unslid": "0x1d1ade3d4"
+      },
+      {
+        "runtime": "0x1d82f6424",
+        "unslid": "0x1d1ade424"
+      },
+      {
+        "runtime": "0x1d82f6f54",
+        "unslid": "0x1d1adef54"
+      },
+      {
+        "runtime": "0x1d83be5f8",
+        "unslid": "0x1d1ba65f8"
+      }
+    ]
+  },
+  "resolved": {
+    "0x1800d2afc": {
+      "output": "IMAGE\n-----\n > /usr/lib/libobjc.A.dylib (__TEXT.__text)\n\n0x1800d2afc: __ZL15_objc_terminatev + 124",
+      "error": "\u2022 Loading symbol cache file...",
+      "code": 0
+    },
+    "0x18db3accc": {
+      "output": "IMAGE\n-----\n > /usr/lib/system/libdispatch.dylib (__TEXT.__text)\n\n0x18db3accc: __dispatch_block_invoke_direct$VARIANT$mp + 220",
+      "error": "\u2022 Loading symbol cache file...",
+      "code": 0
+    },
+    "0x18db98794": {
+      "output": "IMAGE\n-----\n > /usr/lib/system/libdispatch.dylib (__TEXT.__text)\n\n0x18db98794: __dispatch_client_callout + 36",
+      "error": "\u2022 Loading symbol cache file...",
+      "code": 0
+    },
+    "0x18dc5c4b8": {
+      "output": "IMAGE\n-----\n > /usr/lib/system/libsystem_c.dylib (__TEXT.__text)\n\n0x18dc5c4b8: _abort + 124",
+      "error": "\u2022 Loading symbol cache file...",
+      "code": 0
+    },
+    "0x19b92004c": {
+      "output": "IMAGE\n-----\n > /System/Library/PrivateFrameworks/FrontBoardServices.framework/FrontBoardServices (__TEXT.__text)\n\n0x19b92004c: -[FBSSerialQueue _targetQueue_performNextIfPossible] + 176",
+      "error": "\u2022 Loading symbol cache file...",
+      "code": 0
+    },
+    "0x19b920410": {
+      "output": "IMAGE\n-----\n > /System/Library/PrivateFrameworks/FrontBoardServices.framework/FrontBoardServices (__TEXT.__text)\n\n0x19b920410: ___FBSSERIALQUEUE_IS_CALLING_OUT_TO_A_BLOCK__ + 44",
+      "error": "\u2022 Loading symbol cache file...",
+      "code": 0
+    },
+    "0x1c2617198": {
+      "output": "IMAGE\n-----\n > /usr/lib/system/libsystem_kernel.dylib (__TEXT.__text)\n\n0x1c2617198: ___pthread_kill + 8",
+      "error": "\u2022 Loading symbol cache file...",
+      "code": 0
+    },
+    "0x1d1acfa4c": {
+      "output": "IMAGE\n-----\n > /usr/lib/libc++abi.dylib (__TEXT.__text)\n\n0x1d1acfa4c: __ZL28demangling_terminate_handlerv + 300",
+      "error": "\u2022 Loading symbol cache file...",
+      "code": 0
+    },
+    "0x1d1ade3d4": {
+      "output": "IMAGE\n-----\n > /usr/lib/libc++abi.dylib (__TEXT.__text)\n\n0x1d1ade3d4: __ZSt9terminatev + 52",
+      "error": "\u2022 Loading symbol cache file...",
+      "code": 0
+    },
+    "0x1d1ade424": {
+      "output": "IMAGE\n-----\n > /usr/lib/libc++abi.dylib (__TEXT.__text)\n\n0x1d1ade424: __ZSt11__terminatePFvvE + 12",
+      "error": "\u2022 Loading symbol cache file...",
+      "code": 0
+    },
+    "0x1d1adef54": {
+      "output": "IMAGE\n-----\n > /usr/lib/libc++abi.dylib (__TEXT.__text)\n\n0x1d1adef54: __ZN10__cxxabiv130__aligned_malloc_with_fallbackEm",
+      "error": "\u2022 Loading symbol cache file...",
+      "code": 0
+    },
+    "0x1d1ba65f8": {
+      "output": "IMAGE\n-----\n > /usr/lib/system/libsystem_pthread.dylib (__TEXT.__text)\n\n0x1d1ba65f8: _pthread_kill + 208",
+      "error": "\u2022 Loading symbol cache file...",
+      "code": 0
+    }
+  }
+}

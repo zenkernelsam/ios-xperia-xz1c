@@ -1,0 +1,15 @@
+{
+  "raw_bytes": 33554432,
+  "raw_sha256": "7442c66752d3a465af14aafb3c9baddd64b4dd831ea73c2119f5053af6a74adc",
+  "blob_bytes": 3847272,
+  "blob_sha256": "c051f3b784d07e61fae0f917b1d79942de5e313cadd612b6df30b9a1acdbb880",
+  "raw_fnv64": "6ebe2e33be801957",
+  "library_sha256": "afced3d61d46d6626cd8ab2f2012de87c7a72546936f42a8b4407d88551cf835",
+  "library_bytes": 14675424,
+  "library_fnv64": "067dca2c6dd5b529",
+  "helper_sha256": "e65bdc7b70d098725918c637cc8cb1c25a8a544186d0f4468b399fda52024898",
+  "read_only_verified": true,
+  "aliases_m_g_verified": true,
+  "new_package_device_tested": false,
+  "no_device_operations": true
+}

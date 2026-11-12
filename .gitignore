@@ -20,3 +20,11 @@ dxb/
 
 # macOS Finder metadata
 .DS_Store
+
+# Local-only material after organization
+assets/
+/archive/
+organization/
+/build/
+/deps/
+gpu/sweetgl/out/

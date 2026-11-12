@@ -1,0 +1,23 @@
+{
+  "sources": {
+    "boot_once.py": "e862e430514f7aaceb5ac5b2037a19770ba91889cb0088438e925b920dcde83c",
+    "capture.py": "6bf670ec0fd55b50ee5f83997931dee98549461435f89474dfd3b757e3b39c70",
+    "controller.py": "bf806c1d8dae1a01da67a13e435035cb22aeb93348a4ed964307074526f58012",
+    "guarded_xperable.sh": "4555e0841894df5014ef0f60bd16ca7911bc8446d8a0545b6b3ce069b40dc33e",
+    "policy.py": "ba20644cbf746769ae3e85953863a6c35ee8510611004b4455ca2568f0621054",
+    "preflight_processes.ps1": "6586345710fe618415ce2ddd8b53d230c14c280c93f34c5fb1a190fcc7e1f91f",
+    "procguard.py": "7cc150c13ca8d6fce28ec9784af8886eaaa4cdd8fad9cb3ff6befa9fd67d116d",
+    "return_evidence.py": "5142d3a90e89f64f796f2ce70227b28703afbca5be582ef25b6d638b09ae7e8d",
+    "serial_worker.py": "85c441bff24e081fc4fa759748676b130becf2a070bbacbff6b23fba96ae3fd4",
+    "sony_usb_guard.py": "974841885a7ac9b507a319fbf9886f638a7e4a4a7a05678e5aee15ca19f59a43",
+    "startup_watch.py": "4954543752d0582fe97575746c2f712476022581f12719fb91a7a3f3da275ead",
+    "test_boot_once.py": "a8e72df6342bd734820f49bf4322f1f04e3d5737db5bf5c726e05120c64662df",
+    "test_current_transport.py": "7e10c9a11f1167e69b4e197f9c3e806c0c360b347f02d926643813a583a239f3"
+  },
+  "supervisor_based_on_actual_tested_one_shot": true,
+  "platform_tools_from_environment_or_PATH": true,
+  "external_xperable_expected_sha256": "f9fd2196f0bebd4c53077ddfb3db765eb1cf22409c311ca7c502b04b0c150a6d",
+  "no_phone_operations_during_migration": true,
+  "current_plan_requires_single_cycle_and_final_drain": true,
+  "fault_replay_tests_passed": 20
+}

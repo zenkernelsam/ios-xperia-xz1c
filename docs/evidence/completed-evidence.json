@@ -1,0 +1,17 @@
+{
+  "token": "a8eea7b6dfaffc5e",
+  "image_sha256": "ee284994e2ac7e280f0a3b727ce1ebb4796e3813bbd98b524fa16e6c3d5f9082",
+  "kernel_sha256": "da6ddc44fc074eb393f135e1395798483fe2a52eb420dfecea883e0833136c9a",
+  "log_sha256": "182d3e4b1e335565320c6e8fa78d6cad3d0d28b7cbd80e5de871a4d0d4224e1b",
+  "actual_observe_seconds": 182.822958,
+  "return_seconds_with_health": 38.54699999996228,
+  "files": 418,
+  "bytes": 248653297,
+  "visual_ui_complete": false,
+  "time_date_wallpaper_still_missing_after180": true,
+  "surface400_vm_error_count_before_close": 1129,
+  "aegir_crashes_before_close": 20,
+  "same_kernel_and_library": true,
+  "manual_cleanup_now_requested": true,
+  "next_investigation": "Surface caller acquisition/mapping VMError and AegirPoster uncaught ObjC exception, after organization"
+}
