@@ -2,22 +2,33 @@
   "sources": {
     "boot_once.py": "e862e430514f7aaceb5ac5b2037a19770ba91889cb0088438e925b920dcde83c",
     "capture.py": "6bf670ec0fd55b50ee5f83997931dee98549461435f89474dfd3b757e3b39c70",
-    "controller.py": "bf806c1d8dae1a01da67a13e435035cb22aeb93348a4ed964307074526f58012",
+    "clock_evidence.py": "0e7d7fcf93daf09af915b974c6b06a7165408bf1891ba553427330fcd089c42f",
+    "controller.py": "2286d1c09670fbe7c3ebbc5a4c66a981974f953ae9e64a3ba31f703a5c3c8558",
+    "gpu_pixels.py": "6a368d19a77179f59af15c6bb2ee20f76e17d23e9c0f4559d0e290d9d60d6fdc",
     "guarded_xperable.sh": "4555e0841894df5014ef0f60bd16ca7911bc8446d8a0545b6b3ce069b40dc33e",
+    "owner_metadata.py": "e0f4e4fa2d54381d63128a39fbcabfe6c3ab9468a99f44cd44c37d86af84d564",
+    "package_trial.py": "458e88d23fbc673975447cbefae953c69dff0525d21bdfc3541f8011c2dca3e1",
     "policy.py": "ba20644cbf746769ae3e85953863a6c35ee8510611004b4455ca2568f0621054",
     "preflight_processes.ps1": "6586345710fe618415ce2ddd8b53d230c14c280c93f34c5fb1a190fcc7e1f91f",
     "procguard.py": "7cc150c13ca8d6fce28ec9784af8886eaaa4cdd8fad9cb3ff6befa9fd67d116d",
     "return_evidence.py": "5142d3a90e89f64f796f2ce70227b28703afbca5be582ef25b6d638b09ae7e8d",
+    "run_trial.py": "b103212545f0cb38a5b1735b2137cecd8dfb549b1181ac533d5f20ddb654225d",
     "serial_worker.py": "85c441bff24e081fc4fa759748676b130becf2a070bbacbff6b23fba96ae3fd4",
-    "sony_usb_guard.py": "974841885a7ac9b507a319fbf9886f638a7e4a4a7a05678e5aee15ca19f59a43",
+    "sony_usb_guard.py": "e1f636a6327530f28ef407732d58f0e7310494c4660010f793f4dcbe2ebdc4c6",
     "startup_watch.py": "4954543752d0582fe97575746c2f712476022581f12719fb91a7a3f3da275ead",
     "test_boot_once.py": "a8e72df6342bd734820f49bf4322f1f04e3d5737db5bf5c726e05120c64662df",
-    "test_current_transport.py": "7e10c9a11f1167e69b4e197f9c3e806c0c360b347f02d926643813a583a239f3"
+    "test_current_transport.py": "7e10c9a11f1167e69b4e197f9c3e806c0c360b347f02d926643813a583a239f3",
+    "test_trial_gates.py": "33d73d440374a4a4145dd041c5c3ad40305d57a67002dce241deee1e81b5cd53",
+    "trial_evidence.py": "3694822a3be863a386e76790756f26d47971e1f6236776b4a1b2e22431d3500f"
   },
   "supervisor_based_on_actual_tested_one_shot": true,
   "platform_tools_from_environment_or_PATH": true,
   "external_xperable_expected_sha256": "f9fd2196f0bebd4c53077ddfb3db765eb1cf22409c311ca7c502b04b0c150a6d",
   "no_phone_operations_during_migration": true,
   "current_plan_requires_single_cycle_and_final_drain": true,
-  "fault_replay_tests_passed": 20
+  "fault_replay_tests_passed": 20,
+  "formal_v725_private_owner_ready_actual_return": true,
+  "diagnostic_fault_replay_tests_passed": 8,
+  "formal_v725_five_stages_actual_return": true,
+  "all_transport_and_diagnostic_tests_passed": 28
 }

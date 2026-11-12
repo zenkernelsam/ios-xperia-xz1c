@@ -1,0 +1,59 @@
+--- a/iokit/Kernel/arm/SweetSurface.cpp
++++ b/iokit/Kernel/arm/SweetSurface.cpp
+@@ -158,15 +158,30 @@
+     return kIOMapAnywhere | surface->mapCache |
+         (surface->callerBacking.state == SCA_PREPARED ? kIOMapUnique : 0);
+ }
++/* v725 bounded diagnostics: no extra allocation, pin, map, or release operations. */
++static void sweet_caller_diag(const char *phase, uint64_t address, uint64_t bytes, uint32_t status)
++{
++    static volatile SInt32 successes, failures;
++    SInt32 count = OSIncrementAtomic(status ? &failures : &successes) + 1;
++    if (count > (status ? 24 : 8)) return;
++    IOLog("SWEET SURF CALLER DIAG phase=%s pid=%d address=%#llx bytes=%llu status=%#x count=%d\n",
++        phase, proc_selfpid(), (unsigned long long)address, (unsigned long long)bytes, status, count);
++}
+ static void *sweet_caller_allocate(void *task, uint64_t start, uint64_t bytes)
+ {
+     IOMemoryDescriptor *descriptor = IOMemoryDescriptor::withAddressRange(start, bytes,
+         kIODirectionInOut | kIOMemoryMapperNone | kIOMemoryThreadSafe | kIOMemoryPersistent,
+         (task_t)task);
++    sweet_caller_diag("allocate", start, bytes, descriptor ? 0 : kIOReturnNoMemory);
+     return descriptor;
+ }
+ static int sweet_caller_prepare(void *, void *descriptor)
+-{ return (int)((IOMemoryDescriptor *)descriptor)->prepare(kIODirectionInOut); }
++{
++    auto *memory = (IOMemoryDescriptor *)descriptor;
++    IOReturn result = memory->prepare(kIODirectionInOut);
++    sweet_caller_diag("prepare", 0, memory->getLength(), result);
++    return (int)result;
++}
+ static int sweet_caller_complete(void *, void *descriptor)
+ { return (int)((IOMemoryDescriptor *)descriptor)->complete(kIODirectionInOut); }
+ static void sweet_caller_release(void *, void *descriptor)
+@@ -235,7 +250,11 @@
+ {
+ 	if (callerBacking.state != SCA_PREPARED) return kernelAddress();
+ 	IOLockLock(sweet_surface_lock);
+-	if (kernelMap == NULL && memory != NULL) kernelMap = memory->map(kIOMapDefaultCache);
++	if (kernelMap == NULL && memory != NULL) {
++		kernelMap = memory->map(kIOMapDefaultCache);
++		sweet_caller_diag("kernel_map", callerBacking.range.storage_start,
++		    callerBacking.range.storage_bytes, kernelMap ? 0 : kIOReturnVMError);
++	}
+ 	IOLockUnlock(sweet_surface_lock);
+ 	return kernelMap != NULL ? (uintptr_t)kernelMap->getVirtualAddress() : 0;
+ }
+@@ -565,9 +584,11 @@
+     if (charged) { sweet_caller_wired += range.storage_bytes; ++sweet_caller_active; }
+     IOLockUnlock(sweet_surface_lock);
+     if (!charged) return kIOReturnNoMemory;
++    sweet_caller_diag("request", range.source, range.storage_bytes, 0);
+     auto ops = sweet_caller_ops(task);
+     enum sca_status status = sca_acquire(&ops, &range, &surface->callerBacking);
+     if (status != SCA_OK) {
++        sweet_caller_diag("acquire", range.source, range.storage_bytes, (uint32_t)status);
+         IOLockLock(sweet_surface_lock); sweet_caller_wired -= range.storage_bytes; --sweet_caller_active;
+         IOLockUnlock(sweet_surface_lock); return kIOReturnVMError;
+     }

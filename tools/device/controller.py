@@ -138,6 +138,8 @@ class LiveOps:
         text = self.command([self.fastboot, "-s", SERIAL, "getvar", "version-bootloader"], 8, "health")
         if "version-bootloader:" not in text: raise Refuse("Fastboot endpoint unhealthy; physical replug may be required")
     def patch(self):
+        from sony_usb_guard import validate_inputs
+        validate_inputs(PATCH / "assets/device-tools")
         if active_tool_processes(): raise Refuse("Another fastboot/xperable process is running")
         text = self.command(["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", HERE / "preflight_processes.ps1"], 12, "host_process_preflight")
         if json.loads(text): raise Refuse("A legacy boot/capture loop is running; refusing to interleave")

@@ -1,0 +1,118 @@
+{
+  "mode": "owner",
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v725-owner-20261113",
+  "token": "86392abadd603f3c",
+  "kernel_sha256": "3a9a27b36139423fe8ef0ef1f03f8b47a22bf38e7d4557b3f537cf8099547dad",
+  "image_sha256": "2f7f511305edeff85e44b0bfe1d75423f0538c77bec3b22714ae176eb0cec4ed",
+  "log_sha256": "15b45d54444bb868da35b4a14a6b5f1c0862b8439730808d690c0a20316b0084",
+  "return_complete": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "86392abadd603f3c",
+    "checkpoint_bytes": 331420,
+    "log_bytes": 335022,
+    "log_sha256": "15b45d54444bb868da35b4a14a6b5f1c0862b8439730808d690c0a20316b0084",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      11,
+      67,
+      69
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 38.5,
+  "single_download_boot_verified": true,
+  "actual_stage_verified": true,
+  "complete_panel_and_peripheral_goal_not_achieved": true,
+  "snapshots": [
+    {
+      "snapshot": 1,
+      "root_pa": 2709532672,
+      "root_hash": "64ba183dab0947d9",
+      "root_words": [
+        0,
+        0,
+        2147485249,
+        3221227073,
+        4294968897,
+        5368710721,
+        6442452545,
+        7516194369
+      ],
+      "root_hash_independently_recomputed": true,
+      "streams": [
+        {
+          "slot": 0,
+          "smr": 2147483648,
+          "s2cr": 0
+        },
+        {
+          "slot": 1,
+          "smr": 0,
+          "s2cr": 0
+        },
+        {
+          "slot": 2,
+          "smr": 2147483650,
+          "s2cr": 131327
+        },
+        {
+          "slot": 3,
+          "smr": 2147483651,
+          "s2cr": 805306373
+        }
+      ],
+      "raw_tcr2": 229393,
+      "sequence": 1,
+      "completed": 1,
+      "observed_fsr": 1024,
+      "observer_root_updates": 0,
+      "alias_gpu_work": 0
+    },
+    {
+      "snapshot": 2,
+      "root_pa": 2709532672,
+      "root_hash": "64ba183dab0947d9",
+      "root_words": [
+        0,
+        0,
+        2147485249,
+        3221227073,
+        4294968897,
+        5368710721,
+        6442452545,
+        7516194369
+      ],
+      "root_hash_independently_recomputed": true,
+      "streams": [
+        {
+          "slot": 0,
+          "smr": 2147483648,
+          "s2cr": 0
+        },
+        {
+          "slot": 1,
+          "smr": 0,
+          "s2cr": 0
+        },
+        {
+          "slot": 2,
+          "smr": 2147483650,
+          "s2cr": 131327
+        },
+        {
+          "slot": 3,
+          "smr": 2147483651,
+          "s2cr": 805306373
+        }
+      ],
+      "raw_tcr2": 229393,
+      "sequence": 1,
+      "completed": 1,
+      "observed_fsr": 1024,
+      "observer_root_updates": 0,
+      "alias_gpu_work": 0
+    }
+  ]
+}

@@ -10,7 +10,7 @@
 - 串口仅 VID1209/PID0001 且 COM>=10；禁止 COM3 和其它设备。
 - PON 只用 0x06。单次 download/boot；失败不重发。ACK/DRAIN/RESET/FINAL_DRAIN、连续健康30秒、旧 worker 退出后才能下一轮。
 - 目前 gl5 已在设备；不得擅自 flash/erase userdata、SD、TA、XFL、救砖固件或备份。早期 LIVE 前 E1F4 仍可能没有自动返回通道。
-- 当前已验证 kernel v724/da6ddc44，GLES库9a59820c。GPU allocator/SCM/PON/RPC/VM 的既有约束保留；v679不部署，不根据主机模型宣称实机通过。
+- v724/da6ddc44仍为源码基线；v725/3a9a27b3诊断增量已通过private/owner/ready/RAM CPU/GPU和全部自动回程，GLES库仍9a59820c。GPU allocator/SCM/PON/RPC/VM 的既有约束保留；v679不部署，不根据主机模型宣称实机通过。
 
 ## 目录
 

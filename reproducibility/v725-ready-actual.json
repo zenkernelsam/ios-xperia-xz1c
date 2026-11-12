@@ -1,0 +1,28 @@
+{
+  "mode": "ready",
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v725-ready-20261113",
+  "token": "eb14b53fd82b2f7b",
+  "kernel_sha256": "3a9a27b36139423fe8ef0ef1f03f8b47a22bf38e7d4557b3f537cf8099547dad",
+  "image_sha256": "29324b05de40f35794cdebfd588325f8a53648d4ae400b6d2f55908328c18dab",
+  "log_sha256": "46e3459bce20b2967c7dc27b4417a3aeb5a437f85ab1651fecc66ff7808ca77d",
+  "return_complete": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "eb14b53fd82b2f7b",
+    "checkpoint_bytes": 262027,
+    "log_bytes": 264804,
+    "log_sha256": "46e3459bce20b2967c7dc27b4417a3aeb5a437f85ab1651fecc66ff7808ca77d",
+    "require_final_drain": true,
+    "marker_positions": [
+      4,
+      10,
+      56,
+      58
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 37.98499999998603,
+  "single_download_boot_verified": true,
+  "actual_stage_verified": true,
+  "complete_panel_and_peripheral_goal_not_achieved": true
+}

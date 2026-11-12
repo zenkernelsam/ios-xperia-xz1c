@@ -1,4 +1,14 @@
-# 当前状态 — 2026-11-12
+# 当前状态 — 2026-11-13
+
+v725诊断内核3a9a27b36139423fe8ef0ef1f03f8b47a22bf38e7d4557b3f537cf8099547dad已完成private、owner、ready、RAM CPU、GPU五阶段单发验收。仅增加Surface有界日志，既有分配/pin/map/release不变。全部正常PON06返回，无人工；目前Sony健康fastboot、无worker/in-flight。
+
+GPU仍为原已验证GLES9a59820c：750×1624三角形/纹理、Surface双向、caller原VM解除后持有、小纹理动态刷新、CA隔离、160次relink/320draw与名字复用全部独立哈希通过。最后194个scatter对象全部释放/撤销，caller active/outstanding/retained均0；GPU回程38.938秒含健康30秒。原始logSHAff863fac9e36d7dee6ea0ad9b1b84f26b528fd262204ea1e47ce93282787695e。
+
+本轮约180秒观察仍未见时间/日期/壁纸。相机MJPEG可用，取景右侧/底部截断，不能据此核验完整面板或底部导航条。出现69×69/alloc19044与67×67/alloc17956两个caller创建失败：均在withAddressRange阶段返回NULL，对应32KiB覆盖；日志0xe00002bd是包装层占位值，底层实际失败码尚未知。两次acquire=SCA_ALLOCATION_FAILED，没有到prepare/map。此次未复现旧400×400大量失败/AegirPoster退出，不能视为已解决。
+
+正式run_trial准入已补真实RPM三ACK、同内核private/owner/ready/CPU门槛、Mac78实际源及编译内核SHA。28项离线测试全部通过，包含原始RPM/owner/GPU日志故障回放；v725构建/打包/验收入口见SURFACE-DIAGNOSTICS.md。下一追查memoryReferenceCreate的底层错误/范围与权限，另核对真实CA文字/壁纸路径；不凭NULL猜改方向或扩大页面。
+
+以下为保留的v724基线记录：
 
 BH905ND69G健康fastboot，无device/COM/camera worker。内核v724 SHAda6ddc44fc074eb393f135e1395798483fe2a52eb420dfecea883e0833136c9a；GLES库SHA9a59820c7e54b1626cacd49acb70a7d460be3c01c415a17429a2464bb5b11571（14,675,424B）。
 

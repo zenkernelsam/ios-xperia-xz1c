@@ -6,6 +6,7 @@ from pathlib import Path
 SERIAL = 'BH905ND69G'
 VID, PID = 0x0fce, 0x0dde
 XPERABLE_SHA256 = 'f9fd2196f0bebd4c53077ddfb3db765eb1cf22409c311ca7c502b04b0c150a6d'
+LINUXLOADER_SHA256 = 'e8919094432714805980fd113806faaa65648dc9fabd7ae5912540579ef1e51b'
 
 def target_fastboot_lines(text):
     rows = [line.split() for line in text.splitlines() if line.strip()]
@@ -17,6 +18,12 @@ def target_fastboot_lines(text):
 def validate_binary(path):
     if hashlib.sha256(Path(path).read_bytes()).hexdigest() != XPERABLE_SHA256:
         raise RuntimeError('xperable binary differs from the audited Sony VID/PID selector')
+
+def validate_inputs(folder):
+    folder = Path(folder)
+    validate_binary(folder / 'xperable.exe')
+    if hashlib.sha256((folder / 'LinuxLoader-p114.pe').read_bytes()).hexdigest() != LINUXLOADER_SHA256:
+        raise RuntimeError('LinuxLoader-p114.pe differs from the validated Sony P114 input')
 
 def validate_sony_records(records):
     if len(records) != 1:
@@ -30,7 +37,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--binary', required=True)
     args = ap.parse_args()
-    validate_binary(args.binary)
+    validate_inputs(Path(args.binary).parent)
     import libusb_package
     import usb.core
     import usb.util

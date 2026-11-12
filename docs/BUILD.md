@@ -34,3 +34,5 @@ RAM库打包入口已完成主机校验：
 它直接使用 build/sweetgl 与 build/geocompat 的正式输出，生成新的 build/glram-日期目录，验证只读HFS、m/g硬链接、库SHA和压缩blob。render ADT可由 tools/build/make_render_adt.py 从本机 board ADT调整，仅四个显示属性，输出750×1624、375×812点、scale2。
 
 用户镜像基线配方见 ROOT-GL5.md。原root脚本和新的源码构建已进入正式仓库；全新gl5首次启动与新编译二进制尚未实机验收，边界见STATUS.md。
+
+当前v725诊断增量及单次投递复现入口见 SURFACE-DIAGNOSTICS.md。该增量保留在正式仓库并严格校验固定基线，编译与实机结果单独记录。

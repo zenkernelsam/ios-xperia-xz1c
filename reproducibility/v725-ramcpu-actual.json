@@ -1,0 +1,28 @@
+{
+  "mode": "ramcpu",
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v725-ramcpu-20261113",
+  "token": "39b85451e6d510c1",
+  "kernel_sha256": "3a9a27b36139423fe8ef0ef1f03f8b47a22bf38e7d4557b3f537cf8099547dad",
+  "image_sha256": "13ec1efbfb741c1fdebdeafe167a16746e5c74f66323835d9ad3af988d164296",
+  "log_sha256": "26f59650570f03af8642f416d69b054248f622d15a5d9542562e8c28d3aab50e",
+  "return_complete": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "39b85451e6d510c1",
+    "checkpoint_bytes": 317011,
+    "log_bytes": 320272,
+    "log_sha256": "26f59650570f03af8642f416d69b054248f622d15a5d9542562e8c28d3aab50e",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      5,
+      60,
+      62
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 37.65599999995902,
+  "single_download_boot_verified": true,
+  "actual_stage_verified": true,
+  "complete_panel_and_peripheral_goal_not_achieved": true
+}

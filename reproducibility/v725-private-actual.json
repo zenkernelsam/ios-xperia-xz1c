@@ -1,0 +1,28 @@
+{
+  "mode": "private",
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-live-7zbjhric",
+  "token": "8ed769ae2be3b0d8",
+  "kernel_sha256": "3a9a27b36139423fe8ef0ef1f03f8b47a22bf38e7d4557b3f537cf8099547dad",
+  "image_sha256": "ed7a9a24911f140a24c3d4d815286cb355afa05ea72a7ed940dd89ca373e2e3c",
+  "log_sha256": "19523e4170e96a3411dfa0baab90092223b528955bbb6a2bde4d42d724ddb2d8",
+  "return_complete": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "8ed769ae2be3b0d8",
+    "checkpoint_bytes": 343334,
+    "log_bytes": 346692,
+    "log_sha256": "19523e4170e96a3411dfa0baab90092223b528955bbb6a2bde4d42d724ddb2d8",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      5,
+      60,
+      62
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 37.40600000007544,
+  "single_download_boot_verified": true,
+  "actual_stage_verified": true,
+  "complete_panel_and_peripheral_goal_not_achieved": true
+}

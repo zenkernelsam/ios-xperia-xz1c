@@ -1,0 +1,11 @@
+{
+  "version": 725,
+  "source": "iokit/Kernel/arm/SweetSurface.cpp",
+  "before_sha256": "3f1d35641247954725ef9e5949e5ced1ef8dd5faf956be42f56509e745e4e975",
+  "after_sha256": "4cfc1c0a7dcd4251132b6fa8fd996ff3c7f6e64808f1f9275f233960580266c5",
+  "patch_sha256": "0fb6ad634a14f90348c3d80fec71aaf4fd81a87f69c0653c176e2cc49f86fa30",
+  "bounded_success_messages": 8,
+  "bounded_failure_messages": 24,
+  "original_io_operations_preserved": true,
+  "logs_do_not_read_memory_contents": true
+}
