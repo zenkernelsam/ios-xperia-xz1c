@@ -85,5 +85,8 @@
     "xnu/support/vermeer_log_ring.h": "90d341a54fc8819e156f70c603acfa883fc1bd560429545709879cff1c1e335f"
   },
   "v729_private_actual_return_passed": true,
-  "v729_private_owner_ready_actual_return_passed": true
+  "v729_private_owner_ready_actual_return_passed": true,
+  "v729_all_five_stages_actual_return_passed": true,
+  "v729_native_Metal_resource_lifetime_actual_passed": true,
+  "system_Metal_AIR_queue_rendering_incomplete": true
 }

@@ -1,6 +1,6 @@
 # iOS16 Metal 移植
 
-这里维护本机 Metal 前端。现有 GLES/Mesa 路径仍在gpu/sweetgl；现已编译自有_MTLDevice子类和真实Shared buffer接入，显式工厂的设备验收尚待完成，不发布MetalPluginName。实现与边界见docs/METAL-RESOURCES.md。
+这里维护本机Metal前端。现有GLES/Mesa路径仍在gpu/sweetgl；自有_MTLDevice子类和真实Shared buffer已完成12组实机生命周期核验，尚无system Metal/AIR/queue/render，不发布MetalPluginName。实现与边界见docs/METAL-RESOURCES.md。
 
 MetalDeviceLimits16.h 从 BSD-2-Clause 的 ios_sagit NativeMetal.h 改编，并对实际20H392 Metal `_MTLDevice._limits` 的全部64字段核对布局。两版大小都264B，iOS16没有 maxAccelerationStructureLevels；maxConstantBufferArguments 位于248，iOS18位于252，maxBufferLength均256。tools/build/check_metal16_projection.py 已用独立原始元数据生成每字段offsetof断言，原生和iOS arm64编译均通过。其余方法签名、基类初始化和资源/队列接口尚需本机验证。
 

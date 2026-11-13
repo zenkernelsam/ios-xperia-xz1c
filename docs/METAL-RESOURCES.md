@@ -1,5 +1,9 @@
 # 原生 Metal 前端与资源 — 2026-11-13
 
+最新v729/r5全阶段已实际完整通过。Metal资源层12组×3buffer均取得原kernel allocator的实际页和IOVA，logical432/16384/16385与span16384/16384/32768正确，33201B/组的独立字节哈希零差异。原device引用释放后buffer仍持有，最后currentAllocatedSize0；CPU37.875、资源GPU38.657秒完整返回。资源测试没有提交Metal GPU作业，不能把CPU字节检查称为Metal shader/queue/render通过。原GLES独立像素/共享/lifecycle和960000只读像素也通过，340资源全部released/unmapped、orphan/active/root0。报告v729-metal-resources-gpu-actual.json。
+
+当前Sony健康fastboot，无worker/in-flight。下一继续把command queue、AIR→Mesa和render/texture接到这套真实资源，保留r5 GLES。system MetalPluginName尚未发布，原Aegir的系统device仍nil；真实时间/日期/壁纸、FPS和其他外设继续active。原始失败不覆盖，以下保留阶段记录。
+
 MetalResource代码现位于gpu/metal，使用同一进程的Mesa/SweetScatter设备。MetalDeviceLimits16.h按原版20H392全部64字段编译核对；MetalResources.mm继承真实_MTLDevice，自有limits存储不写Apple私有ivars，显式SweetMTLCreateDevice工厂提供Shared buffer。还没有command queue、AIR shader、render/compute或系统MetalPluginName，不能据此称完整Metal驱动。
 
 实际r3 ABI观测取得12份完整、4份缺记录样本，保留缺项。设备初始化签名是@20@0:8I16，端口uint32；buffer contents为^v、length/gpuAddress为Q，queue commandBuffer返回对象，commit/wait为void，回调为block。原抽象_MTLDevice没有featureProfile实现，自有前端必须提供该SPI getter。原r3 controller汇总PASS保持，但独立GPU验证因22×27动态纹理结束行缺失而拒绝；正常38.500秒完整PON06回程。报告metal-abi-r3-actual.json区分ABI通过与完整绘制未通过。
