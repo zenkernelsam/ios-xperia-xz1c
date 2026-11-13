@@ -19,10 +19,11 @@ def verify(directory):
     text=re.sub(r'\r?\n(?!SWEET|CRASH|Process|\||exec|IOK|MESA)','',raw.decode('ascii','replace'))
     start=text.index('SWEET LOOP LIVE proto=1 token='+a['token']);end=text.index('SWEET LOOP ACK FASTBOOT token='+a['token'])
     scope=text[start:end];wrong=re.findall(r'sweetgl: (\w+(?: \w+)*) selftest -> WRONG phase=(\w+)',scope)
-    assert wrong,'Actual failure must be present in the current LIVE scope'
+    failures=re.findall(r'SWEET (?:AIR (?:COMPUTE|RENDER)|METAL (?:RESOURCE|QUEUE)) END result=([1-9]\d*)',scope)
+    assert wrong or failures,'Actual failure must be present in the current LIVE scope'
     return dict(source=str(root.resolve()),version=a['version'],token=a['token'],kernel_sha256=a['kernel_sha256'],
         image_sha256=a['sha256'],log_sha256=sha(raw),original_result=row['result'],original_reason=row['reason'],
-        actual_failures=wrong,payload_audit=payload,strict_return=returned,
+        actual_failures=wrong,native_GPU_failure_results=list(map(int,failures)),payload_audit=payload,strict_return=returned,
         return_seconds_with_health=row['reset_to_fastboot_seconds'],failed_stage_not_accepted=True)
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('directory');p.add_argument('--output',required=True);a=p.parse_args()

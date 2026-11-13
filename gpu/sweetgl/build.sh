@@ -37,7 +37,7 @@ print("\n".join(shlex.quote(a) for a in shlex.split(e["command"]) if a.startswit
 nm -g "$B/src/mapi/glapi/libglapi_bridge.a" > "$O/bridge.nm"
 python3 -I "$H/gen-dispatch.py" "$H/ios-dispatch.txt" "$M/include" "$O/bridge.nm" "$O/dispatch.c"
 $CC -O2 -Wall -fvisibility=hidden -c "$H/compat.c" -o "$O/compat.o"
-for f in sweetgl sweet_drm metal_compute eagl layerdump surface_probe surface_observe surface_region_observe surface_initial_copy caller_probe readonly_probe copy_refresh_probe copy_context_probe bridge_state_probe program_lifecycle_probe; do
+for f in sweetgl sweet_drm metal_compute metal_render eagl layerdump surface_probe surface_observe surface_region_observe surface_initial_copy caller_probe readonly_probe copy_refresh_probe copy_context_probe bridge_state_probe program_lifecycle_probe; do
 	$CC -O2 -Wall -fvisibility=hidden @"$O/mesa-defines.rsp" $INC -I"$H" -c "$H/$f.c" -o "$O/$f.o"
 done
 $CC -O2 -Wall -fvisibility=hidden @"$O/mesa-defines.rsp" $INC -I"$H" -c "$O/dispatch.c" -o "$O/dispatch.o"
@@ -45,10 +45,11 @@ printf '_sweetgl_init\n_sweetgl_create\n_sweetgl_make_current\n_sweetgl_destroy\
 printf '_sweetgl_metal_buffer_allocate\n_sweetgl_metal_buffer_release\n_sweetgl_metal_buffer_synchronize\n' >> "$O/exports.txt"
 printf '_sweetgl_metal_buffer_blit\n' >> "$O/exports.txt"
 printf '_sweetgl_metal_compute_create\n_sweetgl_metal_compute_dispatch\n_sweetgl_metal_program_destroy\n' >> "$O/exports.txt"
+printf '_sweetgl_metal_render_create\n_sweetgl_metal_render_draw\n_sweetgl_metal_render_clear\n' >> "$O/exports.txt"
 xcrun -sdk iphoneos clang++ -arch arm64 -miphoneos-version-min=16.0 \
 	-dynamiclib -dead_strip -Wl,-undefined,dynamic_lookup -Wl,-not_for_dyld_shared_cache \
 	-install_name /usr/lib/sweetgl.dylib -exported_symbols_list "$O/exports.txt" \
-	-o "$O/sweetgl.dylib" "$O/sweetgl.o" "$O/sweet_drm.o" "$O/metal_compute.o" "$O/eagl.o" "$O/layerdump.o" \
+	-o "$O/sweetgl.dylib" "$O/sweetgl.o" "$O/sweet_drm.o" "$O/metal_compute.o" "$O/metal_render.o" "$O/eagl.o" "$O/layerdump.o" \
 	"$O/dispatch.o" "$O/compat.o" "$O/surface_probe.o" "$O/surface_observe.o" "$O/surface_region_observe.o" "$O/surface_initial_copy.o" "$O/caller_probe.o" "$O/readonly_probe.o" "$O/copy_refresh_probe.o" "$O/copy_context_probe.o" "$O/bridge_state_probe.o" "$O/program_lifecycle_probe.o" \
 	$(for l in $LIBS; do echo "$B/$l"; done) \
 	"$O/libglapi.0.dylib" \

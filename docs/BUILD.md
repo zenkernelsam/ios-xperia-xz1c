@@ -45,3 +45,5 @@ v725/v726诊断增量及单次投递入口见 SURFACE-DIAGNOSTICS.md；当前v72
 输出目录必须不存在，旧输出保留。--ram-package将新RAM包提供给tools/device/package_trial.py --version 728；同一新库先RAM CPU完整回程，再GPU。完整payload复算和Mac实际源/Mesa归档校验保持。全新Mesa与root构建仍按前述入口分别验收。
 
 当前v729日志快照增量和r7/Metal队列的构建/准入见METAL-QUEUES.md；最新版package_trial支持--version729。在同版本全GLES库实机通过后，build_metal_library.py --ram-package指定该包构建原生库，build_exception_observer.py --metal-resources指定新原生库目录。package_glram.py --presigned --observer --metal-resources保持原GLES字节并添加两个库，先新包RAM CPU再GPU，run_trial的--gles-evidence还要求该精确GLES库的完整先验。命令/源/包/fence与原日志分别验证，禁止复用不同kernel或library的前序。
+
+原生AIR texture/render的最新实际入口与限制见METAL-RENDER.md。make_air_fixture.py --fixture render创建独立作者AIR，build_exception_observer.py --render-fixture添加标准render encoder探针；compute fixture和原引用保持。check_metal_compute.py同时覆盖真实计算/渲染对象，air_graphics_cli.cpp与test_air_gles.c把生成ESSL交给主机Mesa实际编译绘制。主机测试不代替手机像素/fence/共享页面/完整回程验收。

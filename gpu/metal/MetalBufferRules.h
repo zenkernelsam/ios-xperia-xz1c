@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: BSD-2-Clause
-// Resource option bounds adapted from ios_sagit QcomMTL.mm resourceOptions().+#pragma once
+// Resource option bounds adapted from ios_sagit QcomMTL.mm resourceOptions().
+#pragma once
 #include <stdint.h>
 #include <stdbool.h>
 static inline bool sweet_metal_shared_options(uint64_t options)

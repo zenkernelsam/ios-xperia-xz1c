@@ -46,6 +46,10 @@ def load(folder,expected=None):
                 sources.add('gpu/diagnostics/MetalComputeProbe.h')
                 assert observer['metal_resources']['AIR_compute_pipeline'] and observer['AIR_fixture']['authored_semantic_fixture']
                 assert re.fullmatch('[0-9a-f]{64}',observer['AIR_fixture']['library_sha256'])
+            if observer.get('AIR_render_probe'):
+                sources.add('gpu/diagnostics/MetalRenderProbe.h')
+                assert observer['metal_resources']['native_texture_render_pipeline'] and observer['AIR_render_fixture']['authored_semantic_fixture']
+                assert observer['AIR_render_fixture']['fixture']=='render' and re.fullmatch('[0-9a-f]{64}',observer['AIR_render_fixture']['library_sha256'])
             assert set(observer['source_files'])==sources
             assert observer['source_files'][observer['source']]==observer['source_sha256']
     if 'metal_resources' in m:

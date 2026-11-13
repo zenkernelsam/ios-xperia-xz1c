@@ -159,6 +159,8 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
                     common+=['SWEET METAL QUEUE END result=0 final_allocated=0 copy_chunks=2 fill_ops=1 copy_ops=2 native_queue=1']
                 if m['exception_observer'].get('AIR_compute_probe'):
                     common+=['SWEET AIR COMPUTE END result=0 phases=2 kernel_invocations=128 checked_words=160 guard_checks=32 final_allocated=0 standard_Metal=1']
+                if m['exception_observer'].get('AIR_render_probe'):
+                    common+=['SWEET AIR RENDER END result=0 phases=4 draw_ops=3 clear_ops=1 checked_target_bytes=15104 checked_sample_bytes=2048 guard_bytes=6560 final_allocated=0 standard_Metal=1']
     plan={'target_serial':'BH905ND69G','pon_route':6,'max_cycles':1,'budget_seconds':480,'camera_required':mode=='gpu',
           'steps':[{'artifact_id':m['id'],'observe_seconds':observe,'stable_seconds':30,'return_seconds':120,'goals':common,
                     'return_evidence':'final-drain','on_pass':'stop','on_failure':'stop'}]}

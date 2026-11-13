@@ -140,6 +140,7 @@ static bool native_base_available(void)
 #include "MetalCommandQueue.inc"
 #if !defined(SWEET_METAL_NO_COMPUTE)
 #include "MetalCompute.inc"
+#include "MetalRender.inc"
 #endif
 
 @implementation SweetMTLDevice (CommandQueues)
@@ -161,6 +162,34 @@ static bool native_base_available(void)
 {
     if(error)*error=nil;if(function.device!=self)return nil;auto pipeline=[[SweetMTLComputePipeline alloc] initWithFunction:(SweetMTLFunction *)function];
     if(!pipeline && error)*error=metal_queue_error(@"Compute kernel required");return pipeline;
+}
+@end
+#endif
+
+#if !defined(SWEET_METAL_NO_COMPUTE)
+@implementation SweetMTLBuffer (Textures)
+- (id<MTLTexture>)newTextureWithDescriptor:(MTLTextureDescriptor *)descriptor offset:(NSUInteger)offset bytesPerRow:(NSUInteger)pitch
+{return [[SweetMTLTexture alloc] initWithBuffer:self descriptor:descriptor offset:offset pitch:pitch];}
+@end
+@implementation SweetMTLDevice (Rendering)
+- (id<MTLTexture>)newTextureWithDescriptor:(MTLTextureDescriptor *)descriptor
+{
+    if(!descriptor || !descriptor.width || !descriptor.height)return nil;
+    uint32_t pixel=sweet_texture_pixel_bytes((uint32_t)descriptor.pixelFormat);
+    if(!pixel || descriptor.width>16384 || descriptor.height>16384)return nil;
+    uint64_t pitch=(descriptor.width*pixel+63)&~UINT64_C(63);
+    SweetTextureLayout layout;
+    if(!sweet_texture_layout(descriptor.width,descriptor.height,(uint32_t)descriptor.pixelFormat,0,pitch,UINT64_C(256)<<20,layout))return nil;
+    auto buffer=(SweetMTLBuffer *)[self newBufferWithLength:layout.bytes options:descriptor.resourceOptions];
+    auto texture=buffer?[[SweetMTLTexture alloc] initWithBuffer:buffer descriptor:descriptor offset:0 pitch:pitch]:nil;
+    [buffer release];return texture;
+}
+- (id<MTLSamplerState>)newSamplerStateWithDescriptor:(MTLSamplerDescriptor *)descriptor
+{return [[SweetMTLSampler alloc] initWithOwner:self descriptor:descriptor];}
+- (id<MTLRenderPipelineState>)newRenderPipelineStateWithDescriptor:(MTLRenderPipelineDescriptor *)descriptor error:(NSError **)error
+{
+    if(error)*error=nil;
+    return [[SweetMTLRenderPipeline alloc] initWithOwner:self descriptor:descriptor error:error];
 }
 @end
 #endif

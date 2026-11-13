@@ -7,6 +7,8 @@
 #if !defined(SWEET_METAL_NO_COMPUTE)
 static NSError *execute_metal_compute(NSDictionary *,id<MTLDevice>,uint32_t *);
 static id<MTLComputeCommandEncoder> create_compute_encoder(SweetMTLCommandBuffer *);
+static NSError *execute_metal_render(NSDictionary *,id<MTLDevice>,uint32_t *);
+static id<MTLRenderCommandEncoder> create_render_encoder(SweetMTLCommandBuffer *,MTLRenderPassDescriptor *);
 #endif
 @interface SweetMTLCommandQueue : NSObject <MTLCommandQueue> {
 @public SweetMTLDevice *_device;dispatch_queue_t _execution;NSString *_label;
@@ -82,7 +84,14 @@ static NSError *metal_queue_error(NSString *message,NSInteger code=MTLCommandBuf
 - (id<MTLComputeCommandEncoder>)computeCommandEncoder
 {
     [_condition lock];bool allowed=_state.beginEncoder();[_condition unlock];
-    return allowed?create_compute_encoder(self):nil;
+    if(!allowed)return nil;auto encoder=create_compute_encoder(self);
+    if(!encoder)[self finishEncoder];return encoder;
+}
+- (id<MTLRenderCommandEncoder>)renderCommandEncoderWithDescriptor:(MTLRenderPassDescriptor *)descriptor
+{
+    [_condition lock];bool allowed=_state.beginEncoder();[_condition unlock];
+    if(!allowed)return nil;auto encoder=create_render_encoder(self,descriptor);
+    if(!encoder)[self finishEncoder];return encoder;
 }
 #endif
 - (BOOL)appendOperation:(NSDictionary *)operation
@@ -120,6 +129,9 @@ static NSError *metal_queue_error(NSString *message,NSInteger code=MTLCommandBuf
 #if !defined(SWEET_METAL_NO_COMPUTE)
         if(operation[@"computePipeline"]){uint32_t sequence=0;failure=execute_metal_compute(operation,self.device,&sequence);
             if(failure)break;if(!sequence){failure=metal_queue_error(@"Compute completed without its owned GPU fence");break;}
+            [_condition lock];_sequence=sequence;++_GPUOperations;[_condition unlock];continue;}
+        if(operation[@"renderPipeline"] || operation[@"renderClear"]){uint32_t sequence=0;failure=execute_metal_render(operation,self.device,&sequence);
+            if(failure)break;if(!sequence){failure=metal_queue_error(@"Render completed without its owned GPU fence");break;}
             [_condition lock];_sequence=sequence;++_GPUOperations;[_condition unlock];continue;}
 #endif
         SweetMTLBuffer *dst=operation[@"destination"],*src=operation[@"source"];

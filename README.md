@@ -6,7 +6,7 @@ Sony Xperia XZ1 Compact（Snapdragon835 / Adreno540）的开源XNU、shim与Mesa
 
 v728内核与r4前端已恢复只读LayerKit Surface创建：只读CPU/GPU背板持有及非64B对齐纹理刷新上传，三个400×400偏移的960000像素实机零差异，原可写共享/生命周期仍通过。真实UI的400×400 VMError本靴已消失。
 
-最新v729/r8保持完整GLES通过，原生Metal的资源、GPU copy/fill队列及MTLB/AIR非空compute已实机核验。22组AIR结果与原buffer保护区零差异，892资源全撤销并38.343秒完整PON06回程。system Metal、一般AIR/graphics与texture/render仍未完成，边界见[AIR计算](docs/AIR-COMPUTE.md)、[队列](docs/METAL-QUEUES.md)和[资源](docs/METAL-RESOURCES.md)。
+最新v729/render-r4保持完整GLES通过，原生Metal资源、GPU队列、MTLB/AIR compute及顶点/片元绘制已实机核验。10组清屏/viewport/scissor/cull/动态纹理结果与原页面保护区零差异，830资源全撤销并38.594秒完整PON06回程。system Metal、一般AIR/IOSurface texture与完整UI仍未完成，边界见[原生渲染](docs/METAL-RENDER.md)、[AIR计算](docs/AIR-COMPUTE.md)、[队列](docs/METAL-QUEUES.md)和[资源](docs/METAL-RESOURCES.md)。
 
 当前仍未完成：真实锁屏时间/日期/壁纸、完整UI/FPS、睡眠唤醒、声音、Wi-Fi/蓝牙等。AegirPoster仍重复异常退出；180秒面板仍缺文字与壁纸。不能把离屏PASS当完整系统完成。
 

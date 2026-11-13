@@ -1,0 +1,41 @@
+{
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-render-r3-gpu-20261114",
+  "version": 729,
+  "token": "5198e1da58bf6b99",
+  "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+  "image_sha256": "434a6b812d9296f3a7f502367cbe84d713b7a65431e57d4ee94d0729f403c29d",
+  "log_sha256": "5809161dcffb6d6604e09335cb05b623424437ca52c61d5702f4f06e6f3b13a2",
+  "original_result": "REVISE",
+  "original_reason": "AIR_RENDER_PROBE_FAILED",
+  "actual_failures": [],
+  "native_GPU_failure_results": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "payload_audit": {
+    "image_sha256": "434a6b812d9296f3a7f502367cbe84d713b7a65431e57d4ee94d0729f403c29d",
+    "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+    "blob_count": 8,
+    "complete_payload_reconstructed_from_compiled_kernel": true
+  },
+  "strict_return": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "5198e1da58bf6b99",
+    "checkpoint_bytes": 385327,
+    "log_bytes": 390741,
+    "log_sha256": "5809161dcffb6d6604e09335cb05b623424437ca52c61d5702f4f06e6f3b13a2",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      9,
+      92,
+      94
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 38.82799999997951,
+  "failed_stage_not_accepted": true
+}

@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-14",
+  "windows": {
+    "native_recycle_items": 160,
+    "files": 160,
+    "bytes": 956681002,
+    "plan_sha256": "b2b9903348cb4f3fa92b7400fe5fb0a43ad3a0ac9be3b84f9441763e9a6b6939",
+    "journal_sha256": "6ecb4b0ff96599a6c5ba0effe3a7044b73df801dad1bddcf7f9b4e218fb43bd0"
+  },
+  "complete_serial_logs_retained": 17,
+  "Windows_Mac_bins_not_emptied": true,
+  "macOS": {
+    "native_trash_items": 207,
+    "files": 261,
+    "bytes": 826687085,
+    "plan_sha256": "e22fdd08426477ea7ffb047b1b91c326bea611030b0c1b6b721eff8e425e4328",
+    "journal_sha256": "aabef81d039df59ad5a65581a209a48c6c37c7c8f418758458372788872b2284",
+    "source_absent_and_native_trash_present_checked": true
+  },
+  "WSL": {
+    "Ubuntu_trash_entries": 0,
+    "Ubuntu_22_04_trash_entries": 0,
+    "new_native_generated_files": 0,
+    "new_outputs_under_mnt_d_recycled_by_Windows": true
+  },
+  "read_only_root_source_normally_detached": true
+}
