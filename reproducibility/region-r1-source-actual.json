@@ -1,0 +1,1331 @@
+{
+  "token": "50b4b022627a2dd0",
+  "kernel_sha256": "cda82b99792d4e6ae7c93ef57481f44e69e39f577b4369a3856a889380a484bf",
+  "image_sha256": "532ba10646290a29c394fd2450df70788cce5373aedada8ce25efe7c5c3e880d",
+  "log_sha256": "40f2a6cd340a80702bab79df732de2e38879cbff44b58a58290190a8c3714579",
+  "ram_library_binding": {
+    "library_sha256": "18a97e2ccbb3bb25a8565566d10d9912987a03c7ae1a29cbbe7c78d0b003a349",
+    "library_bytes": 14676064,
+    "library_fnv64": "b727f1494efa30c5",
+    "blob_sha256": "bf3e5a7701d74b3d0c31e72fb0dfecc370dcdc5af10384f25eba861a640a8b15",
+    "raw_sha256": "78999d26b556383eca4a322d0dd04f079bd94992071d517b6e4e5b61e9c92e1d",
+    "manifest_sha256": "c1e5fe85ad859f5f7c06c6b45e5c7d367d0d5a5175be70c0c57967f6e5a23ede"
+  },
+  "strict_return": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "50b4b022627a2dd0",
+    "checkpoint_bytes": 576804,
+    "log_bytes": 579337,
+    "log_sha256": "40f2a6cd340a80702bab79df732de2e38879cbff44b58a58290190a8c3714579",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      5,
+      49,
+      51
+    ],
+    "final_reset_marker_seen": true
+  },
+  "pre_init_regions_observed": true,
+  "poster_source_current_and_max_protection_are_read_only": true,
+  "poster_tag_is_VM_MEMORY_LAYERKIT": true,
+  "poster_creation_requires_read_write_and_fails": true,
+  "readwrite_shared_selftest_pixels_passed": true,
+  "source_samples": [
+    {
+      "group": 0,
+      "call": 1,
+      "width": 64,
+      "height": 64,
+      "source": "0x133f3c080",
+      "raw_bytes": 16384,
+      "coverage_bytes": 32768,
+      "regions": [
+        {
+          "address": "0x133f3c000",
+          "bytes": 32768,
+          "protection": 3,
+          "max_protection": 7,
+          "tag": 3,
+          "share": 2,
+          "depth": 0
+        }
+      ],
+      "properties": {
+        "IOSurfaceWidth": {
+          "kind": "number",
+          "number": 64
+        },
+        "IOSurfaceBytesPerElement": {
+          "kind": "number",
+          "number": 4
+        },
+        "IOSurfacePixelFormat": {
+          "kind": "number",
+          "number": 1111970369
+        },
+        "IOSurfaceBytesPerRow": {
+          "kind": "number",
+          "number": 256
+        },
+        "IOSurfaceHeight": {
+          "kind": "number",
+          "number": 64
+        },
+        "IOSurfaceAllocSize": {
+          "kind": "number",
+          "number": 16384
+        },
+        "IOSurfaceName": {
+          "kind": "string",
+          "number": 0
+        },
+        "IOSurfaceAddress": {
+          "kind": "number",
+          "number": 5166579840
+        }
+      }
+    },
+    {
+      "group": 0,
+      "call": 2,
+      "width": 750,
+      "height": 1624,
+      "source": "0x105634080",
+      "raw_bytes": 4988928,
+      "coverage_bytes": 4997120,
+      "regions": [
+        {
+          "address": "0x105634000",
+          "bytes": 4997120,
+          "protection": 3,
+          "max_protection": 7,
+          "tag": 0,
+          "share": 2,
+          "depth": 0
+        }
+      ],
+      "properties": {
+        "IOSurfaceWidth": {
+          "kind": "number",
+          "number": 750
+        },
+        "IOSurfaceBytesPerElement": {
+          "kind": "number",
+          "number": 4
+        },
+        "IOSurfacePixelFormat": {
+          "kind": "number",
+          "number": 1111970369
+        },
+        "IOSurfaceBytesPerRow": {
+          "kind": "number",
+          "number": 3072
+        },
+        "IOSurfaceHeight": {
+          "kind": "number",
+          "number": 1624
+        },
+        "IOSurfaceAllocSize": {
+          "kind": "number",
+          "number": 4988928
+        },
+        "IOSurfaceName": {
+          "kind": "string",
+          "number": 0
+        },
+        "IOSurfaceAddress": {
+          "kind": "number",
+          "number": 4385357952
+        }
+      }
+    },
+    {
+      "group": 0,
+      "call": 3,
+      "width": 256,
+      "height": 1,
+      "source": "0x101e9c000",
+      "raw_bytes": 512,
+      "coverage_bytes": 16384,
+      "regions": [
+        {
+          "address": "0x101e9c000",
+          "bytes": 16384,
+          "protection": 3,
+          "max_protection": 7,
+          "tag": 0,
+          "share": 2,
+          "depth": 0
+        }
+      ],
+      "properties": {
+        "IOSurfaceWidth": {
+          "kind": "number",
+          "number": 256
+        },
+        "IOSurfaceBytesPerElement": {
+          "kind": "number",
+          "number": 2
+        },
+        "IOSurfacePixelFormat": {
+          "kind": "number",
+          "number": 1279340600
+        },
+        "IOSurfaceBytesPerRow": {
+          "kind": "number",
+          "number": 672
+        },
+        "IOSurfaceHeight": {
+          "kind": "number",
+          "number": 1
+        },
+        "IOSurfaceAllocSize": {
+          "kind": "number",
+          "number": 512
+        },
+        "IOSurfaceName": {
+          "kind": "string",
+          "number": 0
+        },
+        "IOSurfaceAddress": {
+          "kind": "number",
+          "number": 4327063552
+        }
+      }
+    },
+    {
+      "group": 0,
+      "call": 4,
+      "width": 60,
+      "height": 60,
+      "source": "0x101e9c000",
+      "raw_bytes": 14400,
+      "coverage_bytes": 16384,
+      "regions": [
+        {
+          "address": "0x101e9c000",
+          "bytes": 16384,
+          "protection": 3,
+          "max_protection": 7,
+          "tag": 0,
+          "share": 2,
+          "depth": 0
+        }
+      ],
+      "properties": {
+        "IOSurfaceWidth": {
+          "kind": "number",
+          "number": 60
+        },
+        "IOSurfaceBytesPerElement": {
+          "kind": "number",
+          "number": 4
+        },
+        "IOSurfacePixelFormat": {
+          "kind": "number",
+          "number": 1380401729
+        },
+        "IOSurfaceBytesPerRow": {
+          "kind": "number",
+          "number": 240
+        },
+        "IOSurfaceHeight": {
+          "kind": "number",
+          "number": 60
+        },
+        "IOSurfaceAllocSize": {
+          "kind": "number",
+          "number": 14400
+        },
+        "IOSurfaceName": {
+          "kind": "string",
+          "number": 0
+        },
+        "IOSurfaceAddress": {
+          "kind": "number",
+          "number": 4327063552
+        }
+      }
+    },
+    {
+      "group": 0,
+      "call": 5,
+      "width": 22,
+      "height": 27,
+      "source": "0x101e9c000",
+      "raw_bytes": 2376,
+      "coverage_bytes": 16384,
+      "regions": [
+        {
+          "address": "0x101e9c000",
+          "bytes": 16384,
+          "protection": 3,
+          "max_protection": 7,
+          "tag": 0,
+          "share": 2,
+          "depth": 0
+        }
+      ],
+      "properties": {
+        "IOSurfaceWidth": {
+          "kind": "number",
+          "number": 22
+        },
+        "IOSurfaceBytesPerElement": {
+          "kind": "number",
+          "number": 4
+        },
+        "IOSurfacePixelFormat": {
+          "kind": "number",
+          "number": 1380401729
+        },
+        "IOSurfaceBytesPerRow": {
+          "kind": "number",
+          "number": 88
+        },
+        "IOSurfaceHeight": {
+          "kind": "number",
+          "number": 27
+        },
+        "IOSurfaceAllocSize": {
+          "kind": "number",
+          "number": 2376
+        },
+        "IOSurfaceName": {
+          "kind": "string",
+          "number": 0
+        },
+        "IOSurfaceAddress": {
+          "kind": "number",
+          "number": 4327063552
+        }
+      }
+    },
+    {
+      "group": 0,
+      "call": 6,
+      "width": 256,
+      "height": 1,
+      "source": "0x13968c000",
+      "raw_bytes": 512,
+      "coverage_bytes": 16384,
+      "regions": [
+        {
+          "address": "0x13968c000",
+          "bytes": 114688,
+          "protection": 3,
+          "max_protection": 7,
+          "tag": 3,
+          "share": 2,
+          "depth": 0
+        }
+      ],
+      "properties": {
+        "IOSurfaceWidth": {
+          "kind": "number",
+          "number": 256
+        },
+        "IOSurfaceBytesPerElement": {
+          "kind": "number",
+          "number": 2
+        },
+        "IOSurfacePixelFormat": {
+          "kind": "number",
+          "number": 0
+        },
+        "IOSurfaceBytesPerRow": {
+          "kind": "number",
+          "number": 672
+        },
+        "IOSurfaceHeight": {
+          "kind": "number",
+          "number": 1
+        },
+        "IOSurfaceAllocSize": {
+          "kind": "number",
+          "number": 512
+        },
+        "IOSurfaceName": {
+          "kind": "string",
+          "number": 0
+        },
+        "IOSurfaceAddress": {
+          "kind": "number",
+          "number": 5258133504
+        }
+      }
+    },
+    {
+      "group": 0,
+      "call": 7,
+      "width": 60,
+      "height": 60,
+      "source": "0x139690000",
+      "raw_bytes": 14400,
+      "coverage_bytes": 16384,
+      "regions": [
+        {
+          "address": "0x13968c000",
+          "bytes": 114688,
+          "protection": 3,
+          "max_protection": 7,
+          "tag": 3,
+          "share": 5,
+          "depth": 0
+        }
+      ],
+      "properties": {
+        "IOSurfaceWidth": {
+          "kind": "number",
+          "number": 60
+        },
+        "IOSurfaceBytesPerElement": {
+          "kind": "number",
+          "number": 4
+        },
+        "IOSurfacePixelFormat": {
+          "kind": "number",
+          "number": 0
+        },
+        "IOSurfaceBytesPerRow": {
+          "kind": "number",
+          "number": 240
+        },
+        "IOSurfaceHeight": {
+          "kind": "number",
+          "number": 60
+        },
+        "IOSurfaceAllocSize": {
+          "kind": "number",
+          "number": 14400
+        },
+        "IOSurfaceName": {
+          "kind": "string",
+          "number": 0
+        },
+        "IOSurfaceAddress": {
+          "kind": "number",
+          "number": 5258149888
+        }
+      }
+    },
+    {
+      "group": 0,
+      "call": 8,
+      "width": 22,
+      "height": 27,
+      "source": "0x1396ac000",
+      "raw_bytes": 2376,
+      "coverage_bytes": 16384,
+      "regions": [
+        {
+          "address": "0x1396a8000",
+          "bytes": 32768,
+          "protection": 3,
+          "max_protection": 7,
+          "tag": 3,
+          "share": 2,
+          "depth": 0
+        }
+      ],
+      "properties": {
+        "IOSurfaceWidth": {
+          "kind": "number",
+          "number": 22
+        },
+        "IOSurfaceBytesPerElement": {
+          "kind": "number",
+          "number": 4
+        },
+        "IOSurfacePixelFormat": {
+          "kind": "number",
+          "number": 0
+        },
+        "IOSurfaceBytesPerRow": {
+          "kind": "number",
+          "number": 88
+        },
+        "IOSurfaceHeight": {
+          "kind": "number",
+          "number": 27
+        },
+        "IOSurfaceAllocSize": {
+          "kind": "number",
+          "number": 2376
+        },
+        "IOSurfaceName": {
+          "kind": "string",
+          "number": 0
+        },
+        "IOSurfaceAddress": {
+          "kind": "number",
+          "number": 5258264576
+        }
+      }
+    },
+    {
+      "group": 0,
+      "call": 9,
+      "width": 22,
+      "height": 27,
+      "source": "0x13ab98000",
+      "raw_bytes": 2376,
+      "coverage_bytes": 16384,
+      "regions": [
+        {
+          "address": "0x13ab90000",
+          "bytes": 49152,
+          "protection": 3,
+          "max_protection": 7,
+          "tag": 3,
+          "share": 2,
+          "depth": 0
+        }
+      ],
+      "properties": {
+        "IOSurfaceWidth": {
+          "kind": "number",
+          "number": 22
+        },
+        "IOSurfaceBytesPerElement": {
+          "kind": "number",
+          "number": 4
+        },
+        "IOSurfacePixelFormat": {
+          "kind": "number",
+          "number": 0
+        },
+        "IOSurfaceBytesPerRow": {
+          "kind": "number",
+          "number": 88
+        },
+        "IOSurfaceHeight": {
+          "kind": "number",
+          "number": 27
+        },
+        "IOSurfaceAllocSize": {
+          "kind": "number",
+          "number": 2376
+        },
+        "IOSurfaceName": {
+          "kind": "string",
+          "number": 0
+        },
+        "IOSurfaceAddress": {
+          "kind": "number",
+          "number": 5280202752
+        }
+      }
+    },
+    {
+      "group": 0,
+      "call": 10,
+      "width": 22,
+      "height": 27,
+      "source": "0x13abb4000",
+      "raw_bytes": 2376,
+      "coverage_bytes": 16384,
+      "regions": [
+        {
+          "address": "0x13abb4000",
+          "bytes": 16384,
+          "protection": 3,
+          "max_protection": 7,
+          "tag": 3,
+          "share": 2,
+          "depth": 0
+        }
+      ],
+      "properties": {
+        "IOSurfaceWidth": {
+          "kind": "number",
+          "number": 22
+        },
+        "IOSurfaceBytesPerElement": {
+          "kind": "number",
+          "number": 4
+        },
+        "IOSurfacePixelFormat": {
+          "kind": "number",
+          "number": 0
+        },
+        "IOSurfaceBytesPerRow": {
+          "kind": "number",
+          "number": 88
+        },
+        "IOSurfaceHeight": {
+          "kind": "number",
+          "number": 27
+        },
+        "IOSurfaceAllocSize": {
+          "kind": "number",
+          "number": 2376
+        },
+        "IOSurfaceName": {
+          "kind": "string",
+          "number": 0
+        },
+        "IOSurfaceAddress": {
+          "kind": "number",
+          "number": 5280317440
+        }
+      }
+    },
+    {
+      "group": 0,
+      "call": 11,
+      "width": 65,
+      "height": 51,
+      "source": "0x13e0c8000",
+      "raw_bytes": 13260,
+      "coverage_bytes": 16384,
+      "regions": [
+        {
+          "address": "0x13e0c8000",
+          "bytes": 16384,
+          "protection": 3,
+          "max_protection": 7,
+          "tag": 3,
+          "share": 2,
+          "depth": 0
+        }
+      ],
+      "properties": {
+        "IOSurfaceWidth": {
+          "kind": "number",
+          "number": 65
+        },
+        "IOSurfaceBytesPerElement": {
+          "kind": "number",
+          "number": 4
+        },
+        "IOSurfacePixelFormat": {
+          "kind": "number",
+          "number": 0
+        },
+        "IOSurfaceBytesPerRow": {
+          "kind": "number",
+          "number": 260
+        },
+        "IOSurfaceHeight": {
+          "kind": "number",
+          "number": 51
+        },
+        "IOSurfaceAllocSize": {
+          "kind": "number",
+          "number": 13260
+        },
+        "IOSurfaceName": {
+          "kind": "string",
+          "number": 0
+        },
+        "IOSurfaceAddress": {
+          "kind": "number",
+          "number": 5335973888
+        }
+      }
+    },
+    {
+      "group": 0,
+      "call": 12,
+      "width": 69,
+      "height": 69,
+      "source": "0x1068e0000",
+      "raw_bytes": 19044,
+      "coverage_bytes": 32768,
+      "regions": [
+        {
+          "address": "0x1068e0000",
+          "bytes": 32768,
+          "protection": 1,
+          "max_protection": 1,
+          "tag": 51,
+          "share": 5,
+          "depth": 0
+        }
+      ],
+      "properties": {
+        "IOSurfaceWidth": {
+          "kind": "number",
+          "number": 69
+        },
+        "IOSurfaceBytesPerElement": {
+          "kind": "number",
+          "number": 4
+        },
+        "IOSurfacePixelFormat": {
+          "kind": "number",
+          "number": 0
+        },
+        "IOSurfaceBytesPerRow": {
+          "kind": "number",
+          "number": 276
+        },
+        "IOSurfaceHeight": {
+          "kind": "number",
+          "number": 69
+        },
+        "IOSurfaceAllocSize": {
+          "kind": "number",
+          "number": 19044
+        },
+        "IOSurfaceName": {
+          "kind": "string",
+          "number": 0
+        },
+        "IOSurfaceAddress": {
+          "kind": "number",
+          "number": 4404936704
+        }
+      }
+    },
+    {
+      "group": 1,
+      "call": 1,
+      "width": 400,
+      "height": 400,
+      "source": "0x106e64020",
+      "raw_bytes": 640000,
+      "coverage_bytes": 655360,
+      "regions": [
+        {
+          "address": "0x106e64000",
+          "bytes": 655360,
+          "protection": 1,
+          "max_protection": 1,
+          "tag": 51,
+          "share": 5,
+          "depth": 0
+        }
+      ],
+      "properties": {
+        "IOSurfaceWidth": {
+          "kind": "number",
+          "number": 400
+        },
+        "IOSurfaceBytesPerElement": {
+          "kind": "number",
+          "number": 4
+        },
+        "IOSurfacePixelFormat": {
+          "kind": "number",
+          "number": 0
+        },
+        "IOSurfaceBytesPerRow": {
+          "kind": "number",
+          "number": 1600
+        },
+        "IOSurfaceHeight": {
+          "kind": "number",
+          "number": 400
+        },
+        "IOSurfaceAllocSize": {
+          "kind": "number",
+          "number": 640000
+        },
+        "IOSurfaceName": {
+          "kind": "string",
+          "number": 0
+        },
+        "IOSurfaceAddress": {
+          "kind": "number",
+          "number": 4410720288
+        }
+      }
+    },
+    {
+      "group": 1,
+      "call": 2,
+      "width": 400,
+      "height": 400,
+      "source": "0x106f04020",
+      "raw_bytes": 640000,
+      "coverage_bytes": 655360,
+      "regions": [
+        {
+          "address": "0x106f04000",
+          "bytes": 655360,
+          "protection": 1,
+          "max_protection": 1,
+          "tag": 51,
+          "share": 5,
+          "depth": 0
+        }
+      ],
+      "properties": {
+        "IOSurfaceWidth": {
+          "kind": "number",
+          "number": 400
+        },
+        "IOSurfaceBytesPerElement": {
+          "kind": "number",
+          "number": 4
+        },
+        "IOSurfacePixelFormat": {
+          "kind": "number",
+          "number": 0
+        },
+        "IOSurfaceBytesPerRow": {
+          "kind": "number",
+          "number": 1600
+        },
+        "IOSurfaceHeight": {
+          "kind": "number",
+          "number": 400
+        },
+        "IOSurfaceAllocSize": {
+          "kind": "number",
+          "number": 640000
+        },
+        "IOSurfaceName": {
+          "kind": "string",
+          "number": 0
+        },
+        "IOSurfaceAddress": {
+          "kind": "number",
+          "number": 4411375648
+        }
+      }
+    },
+    {
+      "group": 1,
+      "call": 3,
+      "width": 400,
+      "height": 400,
+      "source": "0x106e64020",
+      "raw_bytes": 640000,
+      "coverage_bytes": 655360,
+      "regions": [
+        {
+          "address": "0x106e64000",
+          "bytes": 655360,
+          "protection": 1,
+          "max_protection": 1,
+          "tag": 51,
+          "share": 5,
+          "depth": 0
+        }
+      ],
+      "properties": {
+        "IOSurfaceWidth": {
+          "kind": "number",
+          "number": 400
+        },
+        "IOSurfaceBytesPerElement": {
+          "kind": "number",
+          "number": 4
+        },
+        "IOSurfacePixelFormat": {
+          "kind": "number",
+          "number": 0
+        },
+        "IOSurfaceBytesPerRow": {
+          "kind": "number",
+          "number": 1600
+        },
+        "IOSurfaceHeight": {
+          "kind": "number",
+          "number": 400
+        },
+        "IOSurfaceAllocSize": {
+          "kind": "number",
+          "number": 640000
+        },
+        "IOSurfaceName": {
+          "kind": "string",
+          "number": 0
+        },
+        "IOSurfaceAddress": {
+          "kind": "number",
+          "number": 4410720288
+        }
+      }
+    },
+    {
+      "group": 1,
+      "call": 4,
+      "width": 400,
+      "height": 400,
+      "source": "0x106f04020",
+      "raw_bytes": 640000,
+      "coverage_bytes": 655360,
+      "regions": [
+        {
+          "address": "0x106f04000",
+          "bytes": 655360,
+          "protection": 1,
+          "max_protection": 1,
+          "tag": 51,
+          "share": 5,
+          "depth": 0
+        }
+      ],
+      "properties": {
+        "IOSurfaceBytesPerElement": {
+          "kind": "number",
+          "number": 4
+        },
+        "IOSurfacePixelFormat": {
+          "kind": "number",
+          "number": 0
+        },
+        "IOSurfaceBytesPerRow": {
+          "kind": "number",
+          "number": 1600
+        },
+        "IOSurfaceHeight": {
+          "kind": "number",
+          "number": 400
+        },
+        "IOSurfaceAllocSize": {
+          "kind": "number",
+          "number": 640000
+        },
+        "IOSurfaceName": {
+          "kind": "string",
+          "number": 0
+        },
+        "IOSurfaceAddress": {
+          "kind": "number",
+          "number": 4411375648
+        }
+      }
+    },
+    {
+      "group": 1,
+      "call": 5,
+      "width": 400,
+      "height": 400,
+      "source": "0x106e64020",
+      "raw_bytes": 640000,
+      "coverage_bytes": 655360,
+      "regions": [
+        {
+          "address": "0x106e64000",
+          "bytes": 655360,
+          "protection": 1,
+          "max_protection": 1,
+          "tag": 51,
+          "share": 5,
+          "depth": 0
+        }
+      ],
+      "properties": {
+        "IOSurfaceWidth": {
+          "kind": "number",
+          "number": 400
+        },
+        "IOSurfaceBytesPerElement": {
+          "kind": "number",
+          "number": 4
+        },
+        "IOSurfacePixelFormat": {
+          "kind": "number",
+          "number": 0
+        },
+        "IOSurfaceBytesPerRow": {
+          "kind": "number",
+          "number": 1600
+        },
+        "IOSurfaceHeight": {
+          "kind": "number",
+          "number": 400
+        },
+        "IOSurfaceAllocSize": {
+          "kind": "number",
+          "number": 640000
+        },
+        "IOSurfaceName": {
+          "kind": "string",
+          "number": 0
+        },
+        "IOSurfaceAddress": {
+          "kind": "number",
+          "number": 4410720288
+        }
+      }
+    },
+    {
+      "group": 1,
+      "call": 6,
+      "width": 400,
+      "height": 400,
+      "source": "0x106fa4020",
+      "raw_bytes": 640000,
+      "coverage_bytes": 655360,
+      "regions": [
+        {
+          "address": "0x106fa4000",
+          "bytes": 655360,
+          "protection": 1,
+          "max_protection": 1,
+          "tag": 51,
+          "share": 5,
+          "depth": 0
+        }
+      ],
+      "properties": {
+        "IOSurfaceWidth": {
+          "kind": "number",
+          "number": 400
+        },
+        "IOSurfaceBytesPerElement": {
+          "kind": "number",
+          "number": 4
+        },
+        "IOSurfacePixelFormat": {
+          "kind": "number",
+          "number": 0
+        },
+        "IOSurfaceBytesPerRow": {
+          "kind": "number",
+          "number": 1600
+        },
+        "IOSurfaceHeight": {
+          "kind": "number",
+          "number": 400
+        },
+        "IOSurfaceAllocSize": {
+          "kind": "number",
+          "number": 640000
+        },
+        "IOSurfaceName": {
+          "kind": "string",
+          "number": 0
+        },
+        "IOSurfaceAddress": {
+          "kind": "number",
+          "number": 4412031008
+        }
+      }
+    },
+    {
+      "group": 1,
+      "call": 7,
+      "width": 400,
+      "height": 400,
+      "source": "0x107044020",
+      "raw_bytes": 640000,
+      "coverage_bytes": 655360,
+      "regions": [
+        {
+          "address": "0x107044000",
+          "bytes": 655360,
+          "protection": 1,
+          "max_protection": 1,
+          "tag": 51,
+          "share": 5,
+          "depth": 0
+        }
+      ],
+      "properties": {
+        "IOSurfaceWidth": {
+          "kind": "number",
+          "number": 400
+        },
+        "IOSurfaceBytesPerElement": {
+          "kind": "number",
+          "number": 4
+        },
+        "IOSurfacePixelFormat": {
+          "kind": "number",
+          "number": 0
+        },
+        "IOSurfaceBytesPerRow": {
+          "kind": "number",
+          "number": 1600
+        },
+        "IOSurfaceHeight": {
+          "kind": "number",
+          "number": 400
+        },
+        "IOSurfaceAllocSize": {
+          "kind": "number",
+          "number": 640000
+        },
+        "IOSurfaceName": {
+          "kind": "string",
+          "number": 0
+        },
+        "IOSurfaceAddress": {
+          "kind": "number",
+          "number": 4412686368
+        }
+      }
+    },
+    {
+      "group": 1,
+      "call": 8,
+      "width": 400,
+      "height": 400,
+      "source": "0x106fa4020",
+      "raw_bytes": 640000,
+      "coverage_bytes": 655360,
+      "regions": [
+        {
+          "address": "0x106fa4000",
+          "bytes": 655360,
+          "protection": 1,
+          "max_protection": 1,
+          "tag": 51,
+          "share": 5,
+          "depth": 0
+        }
+      ],
+      "properties": {
+        "IOSurfaceWidth": {
+          "kind": "number",
+          "number": 400
+        },
+        "IOSurfaceBytesPerElement": {
+          "kind": "number",
+          "number": 4
+        },
+        "IOSurfacePixelFormat": {
+          "kind": "number",
+          "number": 0
+        },
+        "IOSurfaceBytesPerRow": {
+          "kind": "number",
+          "number": 1600
+        },
+        "IOSurfaceHeight": {
+          "kind": "number",
+          "number": 400
+        },
+        "IOSurfaceAllocSize": {
+          "kind": "number",
+          "number": 640000
+        },
+        "IOSurfaceName": {
+          "kind": "string",
+          "number": 0
+        },
+        "IOSurfaceAddress": {
+          "kind": "number",
+          "number": 4412031008
+        }
+      }
+    },
+    {
+      "group": 1,
+      "call": 9,
+      "width": 400,
+      "height": 400,
+      "source": "0x107044020",
+      "raw_bytes": 640000,
+      "coverage_bytes": 655360,
+      "regions": [
+        {
+          "address": "0x107044000",
+          "bytes": 655360,
+          "protection": 1,
+          "max_protection": 1,
+          "tag": 51,
+          "share": 5,
+          "depth": 0
+        }
+      ],
+      "properties": {
+        "IOSurfaceWidth": {
+          "kind": "number",
+          "number": 400
+        },
+        "IOSurfaceBytesPerElement": {
+          "kind": "number",
+          "number": 4
+        },
+        "IOSurfacePixelFormat": {
+          "kind": "number",
+          "number": 0
+        },
+        "IOSurfaceBytesPerRow": {
+          "kind": "number",
+          "number": 1600
+        },
+        "IOSurfaceHeight": {
+          "kind": "number",
+          "number": 400
+        },
+        "IOSurfaceAllocSize": {
+          "kind": "number",
+          "number": 640000
+        },
+        "IOSurfaceName": {
+          "kind": "string",
+          "number": 0
+        },
+        "IOSurfaceAddress": {
+          "kind": "number",
+          "number": 4412686368
+        }
+      }
+    },
+    {
+      "group": 1,
+      "call": 10,
+      "width": 400,
+      "height": 400,
+      "source": "0x106fa4020",
+      "raw_bytes": 640000,
+      "coverage_bytes": 655360,
+      "regions": [
+        {
+          "address": "0x106fa4000",
+          "bytes": 655360,
+          "protection": 1,
+          "max_protection": 1,
+          "tag": 51,
+          "share": 5,
+          "depth": 0
+        }
+      ],
+      "properties": {
+        "IOSurfaceWidth": {
+          "kind": "number",
+          "number": 400
+        },
+        "IOSurfaceBytesPerElement": {
+          "kind": "number",
+          "number": 4
+        },
+        "IOSurfacePixelFormat": {
+          "kind": "number",
+          "number": 0
+        },
+        "IOSurfaceBytesPerRow": {
+          "kind": "number",
+          "number": 1600
+        },
+        "IOSurfaceHeight": {
+          "kind": "number",
+          "number": 400
+        },
+        "IOSurfaceAllocSize": {
+          "kind": "number",
+          "number": 640000
+        },
+        "IOSurfaceName": {
+          "kind": "string",
+          "number": 0
+        },
+        "IOSurfaceAddress": {
+          "kind": "number",
+          "number": 4412031008
+        }
+      }
+    },
+    {
+      "group": 1,
+      "call": 11,
+      "width": 400,
+      "height": 400,
+      "source": "0x106f04020",
+      "raw_bytes": 640000,
+      "coverage_bytes": 655360,
+      "regions": [
+        {
+          "address": "0x106f04000",
+          "bytes": 655360,
+          "protection": 1,
+          "max_protection": 1,
+          "tag": 51,
+          "share": 5,
+          "depth": 0
+        }
+      ],
+      "properties": {
+        "IOSurfaceWidth": {
+          "kind": "number",
+          "number": 400
+        },
+        "IOSurfaceBytesPerElement": {
+          "kind": "number",
+          "number": 4
+        },
+        "IOSurfacePixelFormat": {
+          "kind": "number",
+          "number": 0
+        },
+        "IOSurfaceBytesPerRow": {
+          "kind": "number",
+          "number": 1600
+        },
+        "IOSurfaceHeight": {
+          "kind": "number",
+          "number": 400
+        },
+        "IOSurfaceAllocSize": {
+          "kind": "number",
+          "number": 640000
+        },
+        "IOSurfaceName": {
+          "kind": "string",
+          "number": 0
+        },
+        "IOSurfaceAddress": {
+          "kind": "number",
+          "number": 4411375648
+        }
+      }
+    },
+    {
+      "group": 1,
+      "call": 12,
+      "width": 400,
+      "height": 400,
+      "source": "0x106e64020",
+      "raw_bytes": 640000,
+      "coverage_bytes": 655360,
+      "regions": [
+        {
+          "address": "0x106e64000",
+          "bytes": 655360,
+          "protection": 1,
+          "max_protection": 1,
+          "tag": 51,
+          "share": 5,
+          "depth": 0
+        }
+      ],
+      "properties": {
+        "IOSurfaceWidth": {
+          "kind": "number",
+          "number": 400
+        },
+        "IOSurfaceBytesPerElement": {
+          "kind": "number",
+          "number": 4
+        },
+        "IOSurfacePixelFormat": {
+          "kind": "number",
+          "number": 0
+        },
+        "IOSurfaceBytesPerRow": {
+          "kind": "number",
+          "number": 1600
+        },
+        "IOSurfaceHeight": {
+          "kind": "number",
+          "number": 400
+        },
+        "IOSurfaceAllocSize": {
+          "kind": "number",
+          "number": 640000
+        },
+        "IOSurfaceName": {
+          "kind": "string",
+          "number": 0
+        },
+        "IOSurfaceAddress": {
+          "kind": "number",
+          "number": 4410720288
+        }
+      }
+    }
+  ],
+  "caller_memory_mutation_or_permission_changes": 0,
+  "read_only_surface_implementation_not_yet_verified": true
+}

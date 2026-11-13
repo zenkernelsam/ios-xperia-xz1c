@@ -9,6 +9,8 @@ from startup_watch import StartupObservation
 from trial_evidence import verify
 from clock_evidence import verify as verify_clock
 from diagnostic_candidate import verify_record
+from ram_library import load as load_ram,require_same_library
+from owner_metadata import verify as verify_owner_metadata
 
 def prerequisites(record, args):
     mode=record['trial_mode'];kernel=record['kernel_sha256'];version=record.get('version');proof={}
@@ -25,6 +27,7 @@ def prerequisites(record, args):
         assert args.ready_evidence and args.cpu_evidence
         proof['ready']=verify(args.ready_evidence,'ready',kernel,version)
         proof['ramcpu']=verify(args.cpu_evidence,'ramcpu',kernel,version)
+        require_same_library(record,proof['ramcpu'])
     return proof
 
 class DiagnosticPolicy(LogPolicy):
@@ -54,6 +57,13 @@ class DiagnosticOps(StartupObservation,LiveOps):
             if policy.actual_watchdog is not None and policy.actual_watchdog!=artifact.watchdog:
                 return Decision('STOP','WATCHDOG_CONFIG_MISMATCH'),policy.live
             result=policy.decision(now)
+            if result.kind=='PASS' and artifact.data['trial_mode']=='owner':
+                raw=(self.directory/'serial.raw.log').read_bytes().decode('ascii','replace')
+                live_offset=raw.index('SWEET LOOP LIVE proto=1 token='+artifact.token)
+                normalized=re.sub(r'\r?\n(?!SWEET|CRASH|Process|\||exec|IOK|MESA)','',raw[live_offset:])
+                try:verify_owner_metadata(normalized)
+                except (AssertionError,ValueError,IndexError):
+                    return Decision('REVISE','OWNER_EVIDENCE_INCOMPLETE'),policy.live
             if result.kind!='WAIT':return result,policy.live
             if not policy.live:
                 startup=self.startup_decision(artifact,now)
@@ -84,6 +94,14 @@ def main():
     assert audit.returncode==0,audit.stdout+audit.stderr
     actual=json.loads(audit.stdout)
     assert actual['source_binding']==config['binding'] and actual['kernel_sha256']==kernel
+    if 'ram_library_binding' in record:
+        _,binding,ram=load_ram(record['ram_package'],record['ram_library_binding'])
+        wanted=ram['frontend_build_binding']
+        relative=Path(record['ram_package']).resolve().relative_to(ROOT).as_posix()+'/manifest.json'
+        remote="import sys,json,hashlib;from pathlib import Path;r=Path('Desktop/ios-xperia-xz1c');m=json.load(open(r/"+repr(relative)+"));b=m['frontend_build_binding'];s=b['source_files'];d=b['mesa_dependencies'];assert all(hashlib.sha256((r/'gpu/sweetgl'/p).read_bytes()).hexdigest()==h for p,h in s.items());assert all(hashlib.sha256((r/'build/mesa-ios'/p).read_bytes()).hexdigest()==h for p,h in d.items());print(json.dumps(b))"
+        check=subprocess.run(['ssh','-o','BatchMode=yes','-o','ConnectTimeout=8','ciscohe@192.168.68.54','python3 -c '+__import__('shlex').quote(remote)],capture_output=True,text=True,timeout=25)
+        assert check.returncode==0,check.stdout+check.stderr
+        assert json.loads(check.stdout)==wanted
     if not a.live:print('OFFLINE: stage gates, artifact and '+str(actual['audited_sources'])+' actual Mac sources/kernel verified');return 0
     directory=Path(a.directory).resolve()
     assert directory.is_relative_to(Path(os.environ['TEMP']).resolve()) and not directory.exists()

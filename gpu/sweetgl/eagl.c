@@ -29,12 +29,14 @@
 
 #include "eagl.h"
 #include "SurfaceCopyRefresh.h"
+#include "SurfaceTextureLayout.h"
 
 #include "pipe/p_screen.h"
 #include "pipe/p_state.h"
 #include "frontend/api.h"
 #include "frontend/winsys_handle.h"
 #include "util/u_inlines.h"
+#include "gallium/drivers/freedreno/freedreno_resource.h"
 #include "drm-uapi/drm_fourcc.h"
 
 #include "sweet_drm.h"
@@ -1900,7 +1902,7 @@ bind_surface_storage(IOSurfaceRef s, GLenum target, GLenum format, GLenum type, 
 		img.format = gl_format(format, type, &img.internalformat);
 	}
 	set_swizzle(target, argb);
-	if (!multi && pitch % 64 != 0) {
+	if (!multi && sweet_surface_texture_needs_copy((uintptr_t)IOSurfaceGetBaseAddressOfPlane(s, plane), pitch)) {
 		if (format == 0) {
 			upload_format(fourcc, IOSurfaceGetBytesPerElement(s), &format, &type);
 		}
@@ -2549,6 +2551,15 @@ int sweetgl_probe_import_texture(IOSurfaceRef surface, uint32_t *handle, uint64_
         .format = image.format, .modifier = DRM_FORMAT_MOD_LINEAR};
     image.res = screen->resource_from_handle(screen, &templ, &wh, PIPE_HANDLE_USAGE_FRAMEBUFFER_WRITE);
     if (!image.res) return -1;
+    static unsigned import_metadata;
+    if (import_metadata++ < 24) {
+        struct fd_resource *resource = fd_resource(image.res);
+        sweet_drm_log("sweetgl: probe Mesa import id=%u handle=%u bo_handle=%u bo_iova=%#llx stride=%u pitch=%u offset=%u layer=%u size=%llu refs=%d",
+            IOSurfaceGetID(surface), *handle, resource->bo->handle,
+            (unsigned long long)fd_bo_get_iova(resource->bo), wh.stride,
+            fd_resource_pitch(resource, 0), fd_resource_offset(resource, 0, 0),
+            resource->layout.layer_size, (unsigned long long)*bytes, resource->bo->refcnt);
+    }
     _mesa_EGLImageTargetTexture2DOES(GL_TEXTURE_2D, (GLeglImageOES)&image);
     GLenum error = glGetError();
     pipe_resource_reference(&image.res, NULL);
@@ -2593,6 +2604,37 @@ void sweetgl_copy_probe_counts(void *opaque, unsigned *images, unsigned *subimag
 {
     struct sweetgl_copy_probe *probe=opaque;
     if (probe) { *images=probe->cache.images;*subimages=probe->cache.subimages;*context=probe->cache.context_id; }
+}
+
+/* Exercise the production bind_surface path in the already-current probe GL
+ * context. Own its copy registry across the source VM removal and second bind. */
+struct sweetgl_sampler_probe { struct sgl_context state; IOSurfaceRef surface; };
+void *sweetgl_sampler_probe_create(IOSurfaceRef surface)
+{
+    if (!surface) return NULL;
+    struct sweetgl_sampler_probe *probe = calloc(1, sizeof(*probe));
+    if (!probe) return NULL;
+    probe->state.render = sgl_state_create();
+    if (!probe->state.render) { free(probe); return NULL; }
+    CFRetain(surface); probe->surface = surface; return probe;
+}
+int sweetgl_sampler_probe_bind(void *opaque)
+{
+    struct sweetgl_sampler_probe *probe = opaque;
+    if (!probe) return -1;
+    void *previous = sgl_current; sgl_current = &probe->state;
+    bool result = bind_surface(probe->surface, GL_TEXTURE_2D, GL_BGRA_EXT, GL_UNSIGNED_BYTE, 0, "readonly-probe");
+    sgl_current = previous;
+    uintptr_t base = (uintptr_t)IOSurfaceGetBaseAddress(probe->surface);
+    sweet_drm_log("sweetgl: production sampler id=%u path=%s offset=%u pitch=%zu result=%u",
+        IOSurfaceGetID(probe->surface), sweet_surface_texture_needs_copy(base, IOSurfaceGetBytesPerRow(probe->surface)) ? "copy" : "shared",
+        (unsigned)(base & 16383), IOSurfaceGetBytesPerRow(probe->surface), result);
+    return result ? 0 : -1;
+}
+void sweetgl_sampler_probe_destroy(void *opaque)
+{
+    struct sweetgl_sampler_probe *probe = opaque;
+    if (probe) { sgl_state_dispose(probe->state.render); CFRelease(probe->surface); free(probe); }
 }
 
 /* The acceptance probe uses the production state allocator and GLI wrappers. */

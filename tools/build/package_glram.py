@@ -2,10 +2,12 @@
 import argparse,hashlib,json,os,shutil,struct,subprocess,time,zlib
 from pathlib import Path
 root=Path(__file__).resolve().parents[2]
-p=argparse.ArgumentParser();p.add_argument('--output');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--output');p.add_argument('--frontend');a=p.parse_args()
 out=Path(a.output).absolute() if a.output else root/'build'/('glram-'+time.strftime('%Y%m%d-%H%M%S'))
 assert out.is_relative_to(root/'build') and not out.exists();out.mkdir(parents=True)
-inputs={'sweetgl.dylib':root/'build/sweetgl/sweetgl.dylib','libglapi.0.dylib':root/'build/sweetgl/libglapi.0.dylib',
+frontend=Path(a.frontend).absolute() if a.frontend else root/'build/sweetgl'
+assert frontend.is_relative_to(root/'build')
+inputs={'sweetgl.dylib':frontend/'sweetgl.dylib','libglapi.0.dylib':frontend/'libglapi.0.dylib',
         'georead.dylib':root/'build/geocompat/georead.dylib'}
 def run(args):subprocess.run(list(map(str,args)),check=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
@@ -41,5 +43,11 @@ manifest={'raw_bytes':len(raw),'raw_sha256':sha(out/'glram.raw'),'blob_bytes':le
           'raw_fnv64':f'{fnv(raw):016x}','library_sha256':sha(out/'sweetgl.dylib'),'library_bytes':(out/'sweetgl.dylib').stat().st_size,
           'library_fnv64':f'{fnv((out/"sweetgl.dylib").read_bytes()):016x}','helper_sha256':sha(out/'georead.dylib'),
           'read_only_verified':True,'aliases_m_g_verified':True,'new_package_device_tested':False,'no_device_operations':True}
+manifest['api_sha256']=sha(out/'libglapi.0.dylib')
+manifest['files']={name:{'bytes':(out/name).stat().st_size,'sha256':sha(out/name),'raw_offset':raw.find((out/name).read_bytes())} for name in inputs}
+assert all(row['raw_offset']>=0 for row in manifest['files'].values()), 'New HFS image must expose exact contiguous file bytes for independent audit'
+binding=frontend/'build-binding.json'
+if binding.is_file():
+    manifest['frontend_build_binding']=json.loads(binding.read_bytes())
 (out/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n',encoding='utf-8')
 print(json.dumps({'output':str(out),**manifest},indent=2))

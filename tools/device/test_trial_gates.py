@@ -12,6 +12,8 @@ from owner_metadata import verify as verify_owner
 from gpu_pixels import verify as verify_gpu
 from run_trial import DiagnosticPolicy, prerequisites
 from diagnostic_candidate import configuration, verify_record
+from ram_library import require_same_library,load as load_ram
+from readonly_pixels import verify as verify_readonly,expected_hash as readonly_hash
 
 
 class Gates(unittest.TestCase):
@@ -64,7 +66,7 @@ class Gates(unittest.TestCase):
         verify_record({'version':726,'diagnostic_binding':binding})
         changed=json.loads(json.dumps(binding));changed['manifest_sha256']='0'*64
         with self.assertRaises(AssertionError):verify_record({'version':726,'diagnostic_binding':changed})
-        with self.assertRaises(AssertionError):configuration(727)
+        with self.assertRaises(AssertionError):configuration(729)
 
     def test_audit_includes_upstream_memory_descriptor(self):
         first=configuration(725);next_=configuration(726)
@@ -72,9 +74,64 @@ class Gates(unittest.TestCase):
         self.assertEqual(len(next_['source_hashes']),79)
         path='iokit/Kernel/IOMemoryDescriptor.cpp'
         self.assertNotEqual(first['source_hashes'][path],next_['source_hashes'][path])
+        readonly=configuration(727)
+        self.assertEqual(len(readonly['source_hashes']),79)
+        self.assertEqual(readonly['source_hashes'][path],next_['source_hashes'][path])
+        self.assertNotEqual(readonly['source_hashes']['iokit/Kernel/arm/SweetSurface.cpp'],next_['source_hashes']['iokit/Kernel/arm/SweetSurface.cpp'])
+        region64=configuration(728)
+        self.assertNotEqual(region64['source_hashes']['iokit/Kernel/arm/SweetSurface.cpp'],readonly['source_hashes']['iokit/Kernel/arm/SweetSurface.cpp'])
+        self.assertEqual(region64['source_hashes']['iokit/Kernel/arm/SGSharedMapper.cpp'],readonly['source_hashes']['iokit/Kernel/arm/SGSharedMapper.cpp'])
+
+    def test_readonly_pixels_require_permissions_hashes_and_vm_lifetime(self):
+        token='0123456789abcdef';pattern=readonly_hash();bgra=readonly_hash(True)
+        text=('SWEET LOOP LIVE proto=1 token='+token+'\n'
+          'SWEET SURF READONLY id=9 width=400 height=400 bytes=640000 source=0x112000020 direction=out cpu_write=0 gpu_write=0\n'
+          'readonly view id=9 width=400 height=400 source=0x112000020 returned=0x113000020 region=0 prot=1 max=1 write_lock=e00002cf read_lock=0 checked=160000 mismatches=0 hash='+bgra+'\n'
+          'readonly sampler id=9 handle=2 phase=0 checked=160000 mismatches=0 fbo=8cd5 linked=1 err=0 hash='+pattern+' source_vm_released=0\n'
+          'readonly sampler id=9 handle=2 phase=1 checked=160000 mismatches=0 fbo=8cd5 linked=1 err=0 hash='+pattern+' source_vm_released=1\n'
+          'readonly selftest -> PASS phase=held_sampler\nSWEET LOOP ACK FASTBOOT token='+token)
+        self.assertEqual(verify_readonly(text,token)['pixels_per_gpu_check'],160000)
+        for mutation in (text.replace('prot=1 max=1','prot=3 max=3'),text.replace('write_lock=e00002cf','write_lock=0'),
+                         text.replace('source_vm_released=1','source_vm_released=0'),text.replace(pattern,'0'*16)):
+            with self.assertRaises(AssertionError):verify_readonly(mutation,token)
+
+    def test_new_library_requires_its_actual_cpu_evidence(self):
+        record={'ram_library_binding':{'library_sha256':'new','blob_sha256':'new-blob'}}
+        with self.assertRaisesRegex(AssertionError,'RAM CPU prerequisite library differs'):
+            require_same_library(record,{})
+        with self.assertRaises(AssertionError):
+            require_same_library(record,{'ram_library_binding':{'library_sha256':'old','blob_sha256':'old-blob'}})
+        require_same_library(record,{'ram_library_binding':record['ram_library_binding']})
+
+    def test_production_readonly_gate_checks_all_paths_offsets_and_lifetimes(self):
+        token='0123456789abcdef';rows=['SWEET LOOP LIVE proto=1 token='+token]
+        for index,offset in enumerate((32,64,128),9):
+            source=0x112000000+offset;returned=0x113000000+offset
+            rows+=['SWEET SURF READONLY id=0 width=400 height=400 bytes=640000 source='+hex(source)+' direction=out cpu_write=0 gpu_write=0',
+                'readonly view id='+str(index)+' width=400 height=400 source='+hex(source)+' returned='+hex(returned)+' region=0 prot=1 max=1 write_lock=e00002cf read_lock=0 checked=160000 mismatches=0 hash='+readonly_hash(True)]
+            bind='production sampler id='+str(index)+' path='+('copy' if offset==32 else 'shared')+' offset='+str(offset)+' pitch=1600 result=1'
+            rows.extend([bind,bind])
+            rows.append('readonly sampler id='+str(index)+' offset='+str(offset)+' phase=0 checked=160000 mismatches=0 fbo=8cd5 linked=1 err=0 hash='+readonly_hash()+' source_vm_released=0')
+            rows.append(bind)
+            rows.append('readonly sampler id='+str(index)+' offset='+str(offset)+' phase=1 checked=160000 mismatches=0 fbo=8cd5 linked=1 err=0 hash='+readonly_hash()+' source_vm_released=1')
+            rows.append('readonly case offset='+str(offset)+' -> PASS phase=held_sampler')
+        rows+=['readonly selftest -> PASS phase=held_sampler','SWEET LOOP ACK FASTBOOT token='+token]
+        text='\n'.join(rows)
+        self.assertEqual(verify_readonly(text,token)['total_gpu_pixels'],960000)
+        for changed in (text.replace('path=copy','path=shared'),text.replace('offset=64 phase=1','offset=64 phase=2'),
+                        text.replace('source_vm_released=1','source_vm_released=0'),text.replace('prot=1 max=1','prot=1 max=3')):
+            with self.assertRaises(AssertionError):verify_readonly(changed,token)
 
 
 class ActualFaultReplay(unittest.TestCase):
+    def test_new_ram_package_actual_bytes(self):
+        path=Path(__file__).resolve().parents[2]/'build/surface-region-r1/ramfs'
+        if not path.exists():self.skipTest('New RAM package not installed')
+        blob,binding,_=load_ram(path)
+        self.assertGreater(len(blob),0)
+        changed=dict(binding);changed['library_sha256']='0'*64
+        with self.assertRaisesRegex(AssertionError,'RAM library binding differs'):load_ram(path,changed)
+
     def test_embedded_kernel_and_blob_binding(self):
         path=Path(__file__).resolve().parents[2]/'build/surface-diag-v726/gpu/artifacts.json'
         if not path.is_file():self.skipTest('Packaged v726 input not installed')

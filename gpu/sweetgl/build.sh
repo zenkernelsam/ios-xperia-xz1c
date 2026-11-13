@@ -22,8 +22,8 @@ LIBS="src/mesa/libmesa.a src/gallium/auxiliary/libgallium.a
 	src/util/blake3/libblake3.a src/c11/impl/libmesa_util_c11.a"
 INC="-I$H/include -I$M/include -I$M/src -I$M/src/mesa -I$M/src/mapi
 	-I$M/src/gallium/include -I$M/src/gallium/auxiliary
-	-I$M/src/gallium/drivers -I$M/src/gallium/winsys -I$B/src -I$B/src/mesa
-	-I$B/src/mapi -I$M/include/drm-uapi"
+	-I$M/src/gallium/drivers -I$M/src/gallium/winsys -I$M/src/freedreno -I$M/src/freedreno/common -I$M/src/freedreno/drm -I$B/src -I$B/src/mesa
+	-I$B/src/mapi -I$B/src/freedreno/registers/adreno -I$M/src/gallium/drivers/freedreno -I$M/include/drm-uapi"
 O=${SWEETGL_OUTPUT:-$H/out}
 mkdir -p "$O"
 cp "$B/src/mapi/shared-glapi/libglapi.0.dylib" "$O/libglapi.0.dylib"
@@ -37,7 +37,7 @@ print("\n".join(shlex.quote(a) for a in shlex.split(e["command"]) if a.startswit
 nm -g "$B/src/mapi/glapi/libglapi_bridge.a" > "$O/bridge.nm"
 python3 -I "$H/gen-dispatch.py" "$H/ios-dispatch.txt" "$M/include" "$O/bridge.nm" "$O/dispatch.c"
 $CC -O2 -Wall -fvisibility=hidden -c "$H/compat.c" -o "$O/compat.o"
-for f in sweetgl sweet_drm eagl layerdump surface_probe surface_observe surface_initial_copy caller_probe copy_refresh_probe copy_context_probe bridge_state_probe program_lifecycle_probe; do
+for f in sweetgl sweet_drm eagl layerdump surface_probe surface_observe surface_region_observe surface_initial_copy caller_probe readonly_probe copy_refresh_probe copy_context_probe bridge_state_probe program_lifecycle_probe; do
 	$CC -O2 -Wall -fvisibility=hidden @"$O/mesa-defines.rsp" $INC -I"$H" -c "$H/$f.c" -o "$O/$f.o"
 done
 $CC -O2 -Wall -fvisibility=hidden @"$O/mesa-defines.rsp" $INC -I"$H" -c "$O/dispatch.c" -o "$O/dispatch.o"
@@ -46,7 +46,7 @@ xcrun -sdk iphoneos clang++ -arch arm64 -miphoneos-version-min=16.0 \
 	-dynamiclib -dead_strip -Wl,-undefined,dynamic_lookup -Wl,-not_for_dyld_shared_cache \
 	-install_name /usr/lib/sweetgl.dylib -exported_symbols_list "$O/exports.txt" \
 	-o "$O/sweetgl.dylib" "$O/sweetgl.o" "$O/sweet_drm.o" "$O/eagl.o" "$O/layerdump.o" \
-	"$O/dispatch.o" "$O/compat.o" "$O/surface_probe.o" "$O/surface_observe.o" "$O/surface_initial_copy.o" "$O/caller_probe.o" "$O/copy_refresh_probe.o" "$O/copy_context_probe.o" "$O/bridge_state_probe.o" "$O/program_lifecycle_probe.o" \
+	"$O/dispatch.o" "$O/compat.o" "$O/surface_probe.o" "$O/surface_observe.o" "$O/surface_region_observe.o" "$O/surface_initial_copy.o" "$O/caller_probe.o" "$O/readonly_probe.o" "$O/copy_refresh_probe.o" "$O/copy_context_probe.o" "$O/bridge_state_probe.o" "$O/program_lifecycle_probe.o" \
 	$(for l in $LIBS; do echo "$B/$l"; done) \
 	"$O/libglapi.0.dylib" \
 	-framework IOKit -framework CoreFoundation -framework IOSurface -framework OpenGLES \

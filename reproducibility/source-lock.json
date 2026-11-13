@@ -125,7 +125,7 @@
     "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/research/lilac-gles-program-name-reuse-20261111/sources",
     "files": {
       "gen-dispatch.py": "6734cc1e3602f2bcb62dd299afe64dcf3d15b391b43dac300e521073964f99ab",
-      "surface_observe.c": "9ab0717486c410c99bf5f80ccce80d20227f5e3f31d6ddabd5d5919ce4af3f68",
+      "surface_observe.c": "f767e53645af6e065a5a012171c8effbd6e090f7162b16be1a817842d59ad0e7",
       "layerdump.c": "dba99676328bacdaf2083460023da7499422ac8ccbac41e63bc749c12ce84a63",
       "compat.c": "c3e4238a49e491bdc189db646b7378f0fc6ab8cb05970ff48c05f74d6db64489",
       "ios-dispatch.txt": "2766fbc0f49cfdae10eee4b7c86622aab75cd24939c4584ff09a71500f4a26e9",
@@ -143,15 +143,23 @@
       "bridge_state_probe.c": "600b5d4d8e9bce9816f6061430bf0001cee8e426c4573915dbaeae04e6f4de66",
       "program_lifecycle_probe.c": "33dd9bedbfaf8d2811dece56655a07c0389319e47f4d3d5ef53a70bb7620233e",
       "CopyRefreshProbeUtils.h": "e9ec3e55e59b4e92e51818802dda982c05e33e86916809d0621a285151acff70",
-      "eagl.c": "c12343d62f8a70d47f11d5dc31f621331450712667f2683466a57923d58e2343",
+      "eagl.c": "244f6499d027aa10778d81414c87ea2b4816449964eb2d928854e90a2fec9d8e",
       "caller_probe.c": "b93ff7e6f36da719786b7c915f7699a2872b047ae52f9568ba26216f8d408e1a",
-      "sweetgl.c": "108f1782ea425b52ba02639564b7addc109a954dc5fda1ea142db3809cff9acf",
+      "sweetgl.c": "79593ac3fd8b623e247febe78f3baca6a4f41be9cca6ffc9cf1c864a2ff49990",
       "sweet_drm.c": "4d1eca003db9d47806bfcd3d4a27078f5064dd28db5d1c60c4daecf415057a6f",
       "surface_initial_copy.c": "6c0b23e39b2ff7ea4d11753edd6b06f46c38ff3bd59775be83b5027a2b1ebde0",
-      "include/xf86drm.h": "f02b5292a999ccfd05c3705d57a1a8e28a308cbf533f59aeb1b80a6d7e3c1caa"
+      "include/xf86drm.h": "f02b5292a999ccfd05c3705d57a1a8e28a308cbf533f59aeb1b80a6d7e3c1caa",
+      "surface_region_observe.c": "804d269a5cd453bddfc10514b439181b3bfe6af3462875a4b29d72c0d752bb1a",
+      "SurfaceRegionObserve.h": "f2ee2bd893f120233588c8e8b3a2cc08234af5b37aa6cacf4a776f87332ebc44",
+      "readonly_probe.c": "785759cb48d88e22c2e8946b4e4aeb462f32cc98b5af6fcdf02274925822f33f",
+      "SurfaceTextureLayout.h": "ad6fc312544f52aebdad998d6cd6a324c8d6bf8ed8a5346a8aeff9a56ec5f543"
     },
     "tested_library_sha256": "9a59820c7e54b1626cacd49acb70a7d460be3c01c415a17429a2464bb5b11571",
-    "build_script_updated_for_canonical_output": "ed24e2716b8bdea99fdc3f076f8df076f73686f5f2610ea014f763b6fa7b04e6"
+    "build_script_updated_for_canonical_output": "0a5510db1f48a206e65eb3b5c22ca69651a51432fb72f39f700550dd2bc1d44a",
+    "previous_tested_source_revision": "8d36439390cd95348ad5ff41ac5da35c79a4589a",
+    "current_tested_library_sha256": "b035a887832513f977d8857c4224419b409ee04b64cf90d69ad4a5adba4ce117",
+    "current_tested_library_report": "reproducibility/readonly-r4-gpu-actual.json",
+    "current_frontend_readonly_and_texture_layout_device_verified": true
   },
   "audited_xnu_files": {
     "iokit/Kernel/arm/SweetFramebuffer.cpp": "ff93954b154cad38e620f6e3d07cfa208171b7ceeea0c5f60b5b20ae049c2ebc",

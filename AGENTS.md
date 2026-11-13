@@ -11,7 +11,7 @@
 - PON 只用 0x06。单次 download/boot；失败不重发。ACK/DRAIN/RESET/FINAL_DRAIN、连续健康30秒、旧 worker 退出后才能下一轮。
 - 目前 gl5 已在设备；不得擅自 flash/erase userdata、SD、TA、XFL、救砖固件或备份。早期 LIVE 前 E1F4 仍可能没有自动返回通道。
 - v724/da6ddc44仍为源码基线；v725/3a9a27b3诊断增量已通过private/owner/ready/RAM CPU/GPU和全部自动回程，GLES库仍9a59820c。GPU allocator/SCM/PON/RPC/VM 的既有约束保留；v679不部署，不根据主机模型宣称实机通过。
-- 最新v726/cda82b99已通过同样五阶段及完整自动回程，Mac源为v726。24条真实错误2指向创建权限契约，源区域保护权限尚待观测；最新状态以STATUS.md为准。diagnostic_candidate.py审计79源，所有新投递强制完整payload复算及同版本/同内核前序实机证据。
+- 最新成功内核v728/33580458与前端r4/b035a887已通过private/owner/ready/RAM CPU/GPU及自动回程。只读LayerKit源按只读descriptor/CPU/GPU映射持有；纹理base/stride不满足64B对齐走seed刷新上传，三个只读offset共960000像素PASS。时间/日期/壁纸仍缺，AegirPoster仍退出；全目标active。diagnostic_candidate.py审计79源，新投递强制完整payload复算与同版本/同内核/同RAM库前序证据。
 
 ## 目录
 

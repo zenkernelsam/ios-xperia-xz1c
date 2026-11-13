@@ -1,0 +1,258 @@
+--- a/iokit/Kernel/arm/SweetSurface.cpp
++++ b/iokit/Kernel/arm/SweetSurface.cpp
+@@ -40,6 +40,8 @@
+ #include <libkern/c++/OSNumber.h>
+ #include <libkern/c++/OSUnserialize.h>
+ #include <sys/proc.h>
++#include <vm/vm_map.h>
++#include <kern/task.h>
+ 
+ enum {
+ 	kSweetSurfaceCreate             = 0,
+@@ -156,7 +158,8 @@
+ static IOOptionBits sweet_caller_mapping_options(const SweetSurface *surface)
+ {
+     return kIOMapAnywhere | surface->mapCache |
+-        (surface->callerBacking.state == SCA_PREPARED ? kIOMapUnique : 0);
++        (surface->callerBacking.state == SCA_PREPARED ? kIOMapUnique : 0) |
++        (surface->callerReadOnly ? kIOMapReadOnly : 0);
+ }
+ /* v725 bounded diagnostics: no extra allocation, pin, map, or release operations. */
+ static void sweet_caller_diag(const char *phase, uint64_t address, uint64_t bytes, uint32_t status)
+@@ -167,31 +170,60 @@
+     IOLog("SWEET SURF CALLER DIAG phase=%s pid=%d address=%#llx bytes=%llu status=%#x count=%d\n",
+         phase, proc_selfpid(), (unsigned long long)address, (unsigned long long)bytes, status, count);
+ }
+-static void *sweet_caller_allocate(void *task, uint64_t start, uint64_t bytes)
+-{
++struct sweet_caller_context { task_t task; IODirection direction; };
++static IOReturn sweet_caller_direction(task_t task, const sca_range *range, IODirection *direction)
++{
++    if (!task || !range || !direction) return kIOReturnBadArgument;
++    vm_map_t map = get_task_map(task);
++    if (!map) return kIOReturnBadArgument;
++    vm_map_offset_t cursor = range->storage_start, end = cursor + range->storage_bytes;
++    bool writable = true;
++    for (unsigned regions = 0; cursor < end && regions < 64; ++regions) {
++        vm_address_t address = cursor; vm_size_t bytes = 0; natural_t depth = 0;
++        vm_region_submap_info_data_64_t info = {}; kern_return_t kr = KERN_FAILURE;
++        bool metadata_valid = false;
++        for (unsigned attempt = 0; attempt < 16; ++attempt) {
++            mach_msg_type_number_t count = VM_REGION_SUBMAP_INFO_COUNT_64;
++            kr = vm_region_recurse_64(map, &address, &bytes, &depth, (vm_region_recurse_info_64_t)&info, &count);
++            metadata_valid = !kr && count >= VM_REGION_SUBMAP_INFO_COUNT_64;
++            if (kr || count < VM_REGION_SUBMAP_INFO_COUNT_64 || !info.is_submap) break;
++            ++depth;
++        }
++        if (!metadata_valid || info.is_submap || address > cursor || !bytes || bytes > UINT64_MAX-address ||
++            address+bytes <= cursor || !(info.protection & VM_PROT_READ)) return kIOReturnNotReadable;
++        writable = writable && (info.protection & VM_PROT_WRITE) && (info.max_protection & VM_PROT_WRITE);
++        cursor = address+bytes < end ? address+bytes : end;
++    }
++    if (cursor != end) return kIOReturnBadArgument;
++    *direction = writable ? kIODirectionInOut : kIODirectionOut;
++    return kIOReturnSuccess;
++}
++static void *sweet_caller_allocate(void *opaque, uint64_t start, uint64_t bytes)
++{
++    auto *context = (sweet_caller_context *)opaque;
+     IOMemoryDescriptor *descriptor = IOMemoryDescriptor::withAddressRange(start, bytes,
+-        kIODirectionInOut | kIOMemoryMapperNone | kIOMemoryThreadSafe | kIOMemoryPersistent,
+-        (task_t)task);
++        context->direction | kIOMemoryMapperNone | kIOMemoryThreadSafe | kIOMemoryPersistent,
++        context->task);
+     sweet_caller_diag("allocate", start, bytes, descriptor ? 0 : kIOReturnNoMemory);
+     return descriptor;
+ }
+ static int sweet_caller_prepare(void *, void *descriptor)
+ {
+     auto *memory = (IOMemoryDescriptor *)descriptor;
+-    IOReturn result = memory->prepare(kIODirectionInOut);
++    IOReturn result = memory->prepare(memory->getDirection());
+     sweet_caller_diag("prepare", 0, memory->getLength(), result);
+     return (int)result;
+ }
+ static int sweet_caller_complete(void *, void *descriptor)
+-{ return (int)((IOMemoryDescriptor *)descriptor)->complete(kIODirectionInOut); }
++{ return (int)((IOMemoryDescriptor *)descriptor)->complete(((IOMemoryDescriptor *)descriptor)->getDirection()); }
+ static void sweet_caller_release(void *, void *descriptor)
+ { ((IOMemoryDescriptor *)descriptor)->release(); }
+-static struct sca_ops sweet_caller_ops(task_t task)
+-{ return {(void *)task, sweet_caller_allocate, sweet_caller_prepare, sweet_caller_complete, sweet_caller_release}; }
++static struct sca_ops sweet_caller_ops(sweet_caller_context *context)
++{ return {(void *)context, sweet_caller_allocate, sweet_caller_prepare, sweet_caller_complete, sweet_caller_release}; }
+ static void sweet_caller_dispose(SweetSurface *surface)
+ {
+     if (surface->callerBacking.state != SCA_PREPARED) return;
+-    auto ops = sweet_caller_ops(TASK_NULL);
++    auto ops = sweet_caller_ops(nullptr);
+     uint64_t bytes = surface->callerBacking.range.storage_bytes;
+     enum sca_status status = sca_close(&ops, &surface->callerBacking);
+     surface->memory = NULL; /* close released it, or the retained registry owns it */
+@@ -251,7 +283,7 @@
+ 	if (callerBacking.state != SCA_PREPARED) return kernelAddress();
+ 	IOLockLock(sweet_surface_lock);
+ 	if (kernelMap == NULL && memory != NULL) {
+-		kernelMap = memory->map(kIOMapDefaultCache);
++		kernelMap = memory->map(kIOMapDefaultCache | (callerReadOnly ? kIOMapReadOnly : 0));
+ 		sweet_caller_diag("kernel_map", callerBacking.range.storage_start,
+ 		    callerBacking.range.storage_bytes, kernelMap ? 0 : kIOReturnVMError);
+ 	}
+@@ -578,6 +610,11 @@
+     uint64_t rawBytes = allocation ? allocation->unsigned64BitValue() : end;
+     struct sca_range range;
+     if (!sca_range_plan(address, rawBytes, end, page_size, &range)) return kIOReturnBadArgument;
++    sweet_caller_context context = { task, kIODirectionInOut };
++    IOReturn access = sweet_caller_direction(task, &range, &context.direction);
++    if (access) return access;
++    surface->callerReadOnly = context.direction == kIODirectionOut;
++
+     IOLockLock(sweet_surface_lock);
+     bool charged = range.storage_bytes <= SWEET_SURFACE_WIRED_MAX - sweet_caller_wired &&
+         sweet_caller_retained_count < SWEET_SURFACE_MAX_ID;
+@@ -585,7 +622,7 @@
+     IOLockUnlock(sweet_surface_lock);
+     if (!charged) return kIOReturnNoMemory;
+     sweet_caller_diag("request", range.source, range.storage_bytes, 0);
+-    auto ops = sweet_caller_ops(task);
++    auto ops = sweet_caller_ops(&context);
+     enum sca_status status = sca_acquire(&ops, &range, &surface->callerBacking);
+     if (status != SCA_OK) {
+         sweet_caller_diag("acquire", range.source, range.storage_bytes, (uint32_t)status);
+@@ -597,6 +634,8 @@
+     surface->allocSize = (uint32_t)rawBytes;
+     /* Capture the pinned memory-entry view while still in the creator's call. */
+     if (!surface->storageKernelAddress()) { sweet_caller_dispose(surface); return kIOReturnVMError; }
++    if (surface->callerReadOnly) IOLog("SWEET SURF READONLY id=%u width=%u height=%u bytes=%llu source=%#llx direction=out cpu_write=0 gpu_write=0\n",
++        surface->id, surface->width, surface->height, (unsigned long long)rawBytes, (unsigned long long)address);
+     return kIOReturnSuccess;
+ }
+ 
+@@ -1171,14 +1210,15 @@
+ }
+ 
+ IOReturn
+-IOSurfaceRootUserClient::trapLock(void *id, __unused void *options, void *seedOut,
++IOSurfaceRootUserClient::trapLock(void *id, void *options, void *seedOut,
+     void *, void *, void *)
+ {
+ 	SweetSurface *s = sweet_surface_held(fLock, fRefs, (uint32_t)(uintptr_t)id);
+ 	if (s == NULL) {
+ 		return kIOReturnNotFound;
+ 	}
+-	IOReturn ret = sweet_surface_seed_out(s, seedOut, false);
++	IOReturn ret = s->callerReadOnly && !((uintptr_t)options & kIOSurfaceLockReadOnly) ?
++	    kIOReturnNotWritable : sweet_surface_seed_out(s, seedOut, false);
+ 	s->release();
+ 	return ret;
+ }
+@@ -1191,7 +1231,8 @@
+ 	if (s == NULL) {
+ 		return kIOReturnNotFound;
+ 	}
+-	IOReturn ret = sweet_surface_seed_out(s, seedOut,
++	IOReturn ret = s->callerReadOnly && !((uintptr_t)options & kIOSurfaceLockReadOnly) ?
++	    kIOReturnNotWritable : sweet_surface_seed_out(s, seedOut,
+ 	    !((uintptr_t)options & kIOSurfaceLockReadOnly));
+ 	s->release();
+ 	return ret;
+--- a/iokit/Kernel/arm/SweetSurface.h
++++ b/iokit/Kernel/arm/SweetSurface.h
+@@ -44,7 +44,8 @@
+ 	int                       scanoutSlot;  /* pool slot, -1 when not from the pool */
+ 
+ 	struct sca_backing callerBacking;
+-	bool init() APPLE_KEXT_OVERRIDE { scanoutPhys = 0; scanoutSlot = -1; callerBacking = {}; return OSObject::init(); }
++	bool callerReadOnly;
++	bool init() APPLE_KEXT_OVERRIDE { scanoutPhys = 0; scanoutSlot = -1; callerBacking = {}; callerReadOnly = false; return OSObject::init(); }
+ 	uint64_t memoryOffset() const { return callerBacking.state == SCA_PREPARED ? callerBacking.range.view_offset : 0; }
+ 	uintptr_t storageKernelAddress();
+ 	void free() APPLE_KEXT_OVERRIDE;
+--- a/iokit/Kernel/arm/SGBufferLease.h
++++ b/iokit/Kernel/arm/SGBufferLease.h
+@@ -17,6 +17,7 @@
+     uintptr_t kernel_address;
+     uint32_t sequence;
+     unsigned pinned;
++    unsigned read_only; /* Immutable mapped permission for this lease lifetime. */
+ };
+ /* Descriptor callbacks own one retained reference. Pin succeeds iff a matched
+  * unpin is required. Map/unmap success includes real table/cache/TLB completion;
+--- a/iokit/Kernel/arm/SGSharedMapper.cpp
++++ b/iokit/Kernel/arm/SGSharedMapper.cpp
+@@ -1,6 +1,9 @@
+ #include "SGSharedMapper.h"
+ #include <string.h>
+ static const uint64_t attributes=(UINT64_C(3)<<53)|(1u<<11)|(1u<<10)|(2u<<8)|(1u<<6)|3u;
++static uint64_t mapping_attributes(const sg_shared_record *record) {
++    return attributes | (record->data->read_only ? (UINT64_C(1)<<7) : 0);
++}
+ static int valid_ops(const sg_shared_ops *o){
+     return o&&o->root.try_lock&&o->root.unlock&&o->root.observe&&o->root.store_root1&&o->root.cache_root&&
+         o->root.barrier&&o->root.invalidate_cb0&&o->root.sync_cb0&&o->tables.allocate&&o->tables.dispose&&o->tables.cache;
+@@ -96,7 +99,7 @@
+     sg_lease *data,const uint64_t *physical,size_t count,uint64_t *address,uint64_t *key){
+     if(!address||!key)return SG_NOT_PUBLISHED;*address=*key=0;
+     if(!valid_ops(o)||!m||m->state!=SG_SHARED_READY||!owner||!generation||!data||data->state!=SG_PINNED||
+-        !data->descriptor||!data->pinned||data->generation!=generation||!physical||!count||count>16384||data->map_bytes!=count*UINT64_C(16384))return SG_NOT_PUBLISHED;
++        !data->descriptor||!data->pinned||data->read_only>1||data->generation!=generation||!physical||!count||count>16384||data->map_bytes!=count*UINT64_C(16384))return SG_NOT_PUBLISHED;
+     for(size_t i=0;i<count;++i){
+         if((physical[i]&16383)||physical[i]<0x80000000ull||physical[i]>0x180000000ull-16384)return SG_NOT_PUBLISHED;
+         for(size_t j=0;j<i;++j)if(physical[i]==physical[j])return SG_NOT_PUBLISHED;
+@@ -145,7 +148,7 @@
+             const auto *other=&m->records[record];if(other->state!=SG_MAPPING_VISIBLE)continue;
+             for(size_t leaf=0;leaf<other->page_count*4;++leaf){
+                 uint64_t va=other->range.address+leaf*4096;
+-                uint64_t expected=(other->physical[leaf/4]+(leaf%4)*4096)|attributes;
++                uint64_t expected=(other->physical[leaf/4]+(leaf%4)*4096)|mapping_attributes(other);
+                 if(m->l3[(va>>21)&511].words[(va>>12)&511]!=expected){valid=false;break;}
+             }
+         }
+@@ -154,7 +157,7 @@
+     /* Existing shared L3 leaves are visible as soon as these stores occur. */
+     r->state=SG_MAPPING_QUARANTINED;*address=r->range.address;*key=r->range.key;
+     for(size_t leaf=0;leaf<count*4;++leaf){uint64_t va=r->range.address+leaf*4096;
+-        m->l3[(va>>21)&511].words[(va>>12)&511]=(physical[leaf/4]+(leaf%4)*4096)|attributes;}
++        m->l3[(va>>21)&511].words[(va>>12)&511]=(physical[leaf/4]+(leaf%4)*4096)|mapping_attributes(r);}
+     for(unsigned slot=first;slot<=last;++slot){m->l2.words[slot]=m->l3[slot].physical|3;o->tables.cache(o->tables.context,&m->l3[slot],4096);}
+     o->tables.cache(o->tables.context,&m->l2,4096);
+     bool done=o->root.barrier(o->root.context)==0;
+@@ -173,7 +176,7 @@
+         const auto *r=&m->records[record];if(r->state!=SG_MAPPING_VISIBLE)continue;
+         for(size_t leaf=0;leaf<r->page_count*4;++leaf){
+             uint64_t va=r->range.address+leaf*4096;
+-            uint64_t expected=(r->physical[leaf/4]+(leaf%4)*4096)|attributes;
++            uint64_t expected=(r->physical[leaf/4]+(leaf%4)*4096)|mapping_attributes(r);
+             if(!m->l3[(va>>21)&511].owner||m->l3[(va>>21)&511].words[(va>>12)&511]!=expected)return 0;
+         }
+     }
+@@ -185,7 +188,7 @@
+     if(!o->root.try_lock(o->root.context))return quarantine(m,r);
+     sg_root_observation before{};bool valid=o->root.observe(o->root.context,&before)==0&&sg_shared_withdraw_observation(m,&before)&&table_integrity(m)&&visible_leaves_intact(m);
+     for(size_t leaf=0;valid&&leaf<r->page_count*4;++leaf){uint64_t va=r->range.address+leaf*4096;
+-        uint64_t expected=(r->physical[leaf/4]+(leaf%4)*4096)|attributes;
++        uint64_t expected=(r->physical[leaf/4]+(leaf%4)*4096)|mapping_attributes(r);
+         if(m->l3[(va>>21)&511].words[(va>>12)&511]!=expected)valid=false;}
+     for(unsigned slot=0;slot<512&&valid;++slot){
+         uint64_t start=UINT64_C(0x40000000)+(uint64_t)slot*0x200000,end=start+0x200000;
+--- a/iokit/Kernel/arm/SweetGPUScatter.cpp
++++ b/iokit/Kernel/arm/SweetGPUScatter.cpp
+@@ -58,8 +58,8 @@
+ static void *memory_allocate(void *,uint64_t bytes){sg_ops native{};sg_kernel_descriptor_callbacks(&native);return native.allocate(nullptr,bytes);}
+ static void memory_retain(void *,void *d){static_cast<IOMemoryDescriptor *>(d)->retain();}
+ static void memory_release(void *,void *d){static_cast<IOMemoryDescriptor *>(d)->release();}
+-static int memory_pin(void *,void *d){return (int)static_cast<IOMemoryDescriptor *>(d)->prepare(kIODirectionInOut);}
+-static int memory_unpin(void *,void *d){return (int)static_cast<IOMemoryDescriptor *>(d)->complete(kIODirectionInOut);}
++static int memory_pin(void *,void *d){return (int)static_cast<IOMemoryDescriptor *>(d)->prepare(static_cast<IOMemoryDescriptor *>(d)->getDirection());}
++static int memory_unpin(void *,void *d){return (int)static_cast<IOMemoryDescriptor *>(d)->complete(static_cast<IOMemoryDescriptor *>(d)->getDirection());}
+ static uintptr_t memory_data(void *opaque,void *d,uint64_t *bytes){
+     auto *b=static_cast<scatter_bo *>(opaque);auto *md=static_cast<IOMemoryDescriptor *>(d);*bytes=md->getLength();
+     if(b->surface)return b->imported_kernel;
+@@ -177,6 +177,7 @@
+     ++manager.allocated;
+     if(!b->pages){destroy_bo(b);IOLockUnlock(manager.lock);return kIOReturnNoMemory;}
+     auto ops=buffer_ops(b);sg_lease_init(&b->lease,b->generation);sg_status result;
++    b->lease.read_only=surface && surface->callerReadOnly;
+     if(surface){
+         b->imported_kernel=surface->storageKernelAddress();
+         result=b->imported_kernel?sg_lease_adopt(&ops,&b->lease,surface->memory,offset,bytes,b->pages,b->page_capacity):SG_ARGUMENT;

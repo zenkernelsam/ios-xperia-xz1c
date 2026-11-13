@@ -6,7 +6,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 MEMORY_SOURCE = 'iokit/Kernel/IOMemoryDescriptor.cpp'
 MEMORY_BASE = '9963ef1a82cfe5e1bfca797c17c686c54eeea6e631ed349babfc80ac8c824379'
-PATCHES = {725: 'lilac-surface-diagnostics.patch', 726: 'lilac-surface-memref-diagnostics.patch'}
+PATCHES = {725: 'lilac-surface-diagnostics.patch', 726: 'lilac-surface-memref-diagnostics.patch',727:'lilac-surface-readonly.patch',728:'lilac-surface-region64.patch'}
 
 
 def sha(data):
@@ -33,12 +33,29 @@ def configuration(version):
     expected[first['source']] = first['after_sha256']
     expected[MEMORY_SOURCE] = MEMORY_BASE
     changed = [first['source']]
+    if version >= 726:
+        second=json.loads((ROOT/'reproducibility/surface-diag-v726.json').read_bytes())
+        manifest_726=second
+        assert manifest_726['source'] == MEMORY_SOURCE and manifest_726['before_sha256'] == MEMORY_BASE
+        expected.update(manifest_726['overrides']); changed.append(MEMORY_SOURCE)
     if version == 726:
         assert manifest['source'] == MEMORY_SOURCE and manifest['before_sha256'] == MEMORY_BASE
         assert manifest['overrides'][first['source']] == first['after_sha256']
         assert manifest['overrides'][MEMORY_SOURCE] == manifest['after_sha256']
         assert set(manifest['overrides']) == {first['source'], MEMORY_SOURCE}
-        expected.update(manifest['overrides']); changed.append(MEMORY_SOURCE)
+        expected.update(manifest['overrides'])
+    if version >= 727:
+        third=json.loads((ROOT/'reproducibility/surface-diag-v727.json').read_bytes())
+        assert third['base_version']==726
+        assert third['overrides'][MEMORY_SOURCE]==second['after_sha256']
+        assert set(third['changed_sources'])==set(third['overrides'])-{MEMORY_SOURCE}
+        expected.update(third['overrides'])
+        changed=sorted(set(changed+third['changed_sources']))
+    if version==728:
+        assert manifest['base_version']==727 and manifest['before_sha256']==third['overrides'][manifest['source']]
+        assert manifest['overrides'][manifest['source']]==manifest['after_sha256']
+        assert all(h==third['overrides'][p] for p,h in manifest['overrides'].items() if p!=manifest['source'])
+        expected.update(manifest['overrides'])
     binding = {'version': version, 'manifest_sha256': sha(raw), 'patches': patch_hashes}
     return {'manifest': manifest, 'binding': binding, 'source_hashes': expected,
             'changed_sources': changed, 'stage': ROOT / f'build/surface-diag-v{version}'}
@@ -65,8 +82,9 @@ def audit(version, kernel_sha=None):
         raw = kernel.read_bytes()
         assert sha(raw) == kernel_sha, 'Compiled kernel differs from trial'
         assert b'SWEET SURF CALLER DIAG phase=' in raw
-        if version == 726:
+        if version >= 726:
             assert b'SWEET SURF MEMREF ERROR address=' in raw and b'SWEET SURF MEMREF INIT length=' in raw
+        if version>=727:assert b'SWEET SURF READONLY id=' in raw
         result['kernel_sha256'] = sha(raw)
         result['diagnostic_markers_linked'] = True
     return result

@@ -1,0 +1,79 @@
+{
+  "actual_failure": {
+    "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r3-gpu-20261113",
+    "version": 728,
+    "token": "d7282200adcdb867",
+    "kernel_sha256": "335804584b9e593ffb1b9c153b6309cdd4b4602e8e0b980757aac82647faa3eb",
+    "image_sha256": "44c11e77ceee2e0b83b41373f26fae3eab86421eb7a850a9113a5f1ae2337752",
+    "log_sha256": "c01fe883258826e05c6d2b17b28ae2a076c6fba1059c258dbad5166835fb2f16",
+    "original_result": "REVISE",
+    "original_reason": "GPU_SELFTEST_FAILED",
+    "actual_failures": [
+      [
+        "readonly",
+        "held_sampler"
+      ]
+    ],
+    "payload_audit": {
+      "image_sha256": "44c11e77ceee2e0b83b41373f26fae3eab86421eb7a850a9113a5f1ae2337752",
+      "kernel_sha256": "335804584b9e593ffb1b9c153b6309cdd4b4602e8e0b980757aac82647faa3eb",
+      "blob_count": 8,
+      "complete_payload_reconstructed_from_compiled_kernel": true
+    },
+    "strict_return": {
+      "complete": true,
+      "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+      "current_token": "d7282200adcdb867",
+      "checkpoint_bytes": 192633,
+      "log_bytes": 210321,
+      "log_sha256": "c01fe883258826e05c6d2b17b28ae2a076c6fba1059c258dbad5166835fb2f16",
+      "require_final_drain": true,
+      "marker_positions": [
+        5,
+        24,
+        295,
+        297
+      ],
+      "final_reset_marker_seen": true
+    },
+    "return_seconds_with_health": 39.686999999918044,
+    "failed_stage_not_accepted": true
+  },
+  "offset_cases": [
+    {
+      "offset": 32,
+      "surface_id": 13,
+      "gem_handle": 16,
+      "bo_iova": "0x4004c020",
+      "cpu_hash": "ba036515759edb25",
+      "gpu_hash": "cb385e665dfd88dd",
+      "mismatches": 160000,
+      "after_source_vm_release_passed": false
+    },
+    {
+      "offset": 64,
+      "surface_id": 16,
+      "gem_handle": 41,
+      "bo_iova": "0x401e4040",
+      "cpu_hash": "ba036515759edb25",
+      "gpu_hash": "464ac79f7912f745",
+      "mismatches": 0,
+      "after_source_vm_release_passed": true
+    },
+    {
+      "offset": 128,
+      "surface_id": 17,
+      "gem_handle": 36,
+      "bo_iova": "0x401e4080",
+      "cpu_hash": "ba036515759edb25",
+      "gpu_hash": "464ac79f7912f745",
+      "mismatches": 0,
+      "after_source_vm_release_passed": true
+    }
+  ],
+  "offset32_gpu_equals_independent_page_origin_hash": true,
+  "independent_erroneous_hash": "cb385e665dfd88dd",
+  "mesa_bo_iova_keeps_offset": true,
+  "hardware_internal_truncation_stage_not_yet_observed": true,
+  "full_goal_not_complete": true
+}

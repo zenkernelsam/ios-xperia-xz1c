@@ -1,0 +1,35 @@
+{
+  "version": 728,
+  "mode": "private",
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v728-private-20261113",
+  "token": "9e7308c04ce1d7e1",
+  "kernel_sha256": "335804584b9e593ffb1b9c153b6309cdd4b4602e8e0b980757aac82647faa3eb",
+  "image_sha256": "79fb5437c56ab6e0dc7a288ba9b39e40f8657820180d9826b906bcacffa72d69",
+  "log_sha256": "363ef9cbce4dc3ca26297702d8b31f6f67f7d224c4098ce70a25f9f147fbb6ec",
+  "return_complete": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "9e7308c04ce1d7e1",
+    "checkpoint_bytes": 352214,
+    "log_bytes": 355441,
+    "log_sha256": "363ef9cbce4dc3ca26297702d8b31f6f67f7d224c4098ce70a25f9f147fbb6ec",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      9,
+      58,
+      60
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 37.28099999995902,
+  "single_download_boot_verified": true,
+  "actual_stage_verified": true,
+  "complete_panel_and_peripheral_goal_not_achieved": true,
+  "payload_audit": {
+    "image_sha256": "79fb5437c56ab6e0dc7a288ba9b39e40f8657820180d9826b906bcacffa72d69",
+    "kernel_sha256": "335804584b9e593ffb1b9c153b6309cdd4b4602e8e0b980757aac82647faa3eb",
+    "blob_count": 7,
+    "complete_payload_reconstructed_from_compiled_kernel": true
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "version": 727,
+  "audited_sources": 79,
+  "source_binding": {
+    "version": 727,
+    "manifest_sha256": "fad346f0b0ecade9e63d4103ccb6f99414350c1186ba7100f49cfac960d20abb",
+    "patches": {
+      "lilac-surface-diagnostics.patch": "0fb6ad634a14f90348c3d80fec71aaf4fd81a87f69c0653c176e2cc49f86fa30",
+      "lilac-surface-memref-diagnostics.patch": "4639e8b45625320c0bef6597b4a887788acb8f8f28c604fa3878869797942647",
+      "lilac-surface-readonly.patch": "10d850cdfe6f58240d565d0a056718b15fccfad38721efe7e065c8c44e8fbcfb"
+    }
+  },
+  "actual_sources_match": true,
+  "kernel_sha256": "4b17a8e56e6905384404789d7d55af7e1a06fb0ab6a105f857ac972f5153bd03",
+  "diagnostic_markers_linked": true,
+  "build_return_code": 0,
+  "changed_sources_recompiled": [
+    "iokit/Kernel/IOMemoryDescriptor.cpp",
+    "iokit/Kernel/arm/SGBufferLease.h",
+    "iokit/Kernel/arm/SGSharedMapper.cpp",
+    "iokit/Kernel/arm/SweetGPUScatter.cpp",
+    "iokit/Kernel/arm/SweetSurface.cpp",
+    "iokit/Kernel/arm/SweetSurface.h"
+  ],
+  "prior_outputs_preserved": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/surface-diag-v727/prior-build-20261113-042330",
+  "kernel_bytes": 20664448
+}

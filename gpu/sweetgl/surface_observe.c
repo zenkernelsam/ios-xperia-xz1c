@@ -15,6 +15,7 @@ extern uint32_t IOSurfaceClientGetID(void *client);
 extern void *IOSurfaceClientGetBaseAddress(void *client);
 extern const CFStringRef kIOSurfaceClientAddress;
 void sweetgl_surface_initial_copy(CFDictionaryRef, IOSurfaceRef);
+void sweetgl_surface_region_observe(CFDictionaryRef);
 static atomic_uint observed;
 static _Thread_local unsigned nesting;
 static id (*original_init)(id, SEL, id);
@@ -60,7 +61,9 @@ static void *observe_child(void *parent, CFDictionaryRef d)
 }
 static id observe_init(id self, SEL command, id d)
 {
-    unsigned previous = nesting++; id result = original_init(self, command, d); --nesting;
+    unsigned previous = nesting++;
+    if (!previous) sweetgl_surface_region_observe((CFDictionaryRef)d);
+    id result = original_init(self, command, d); --nesting;
     if (!previous) {
         sweetgl_surface_initial_copy((CFDictionaryRef)d, (IOSurfaceRef)result);
         record("init", (CFDictionaryRef)d, result ? IOSurfaceGetID((IOSurfaceRef)result) : 0,

@@ -1,0 +1,40 @@
+{
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v728-gpu-20261113",
+  "version": 728,
+  "token": "34b2fdcf9542f547",
+  "kernel_sha256": "335804584b9e593ffb1b9c153b6309cdd4b4602e8e0b980757aac82647faa3eb",
+  "image_sha256": "90e2c57952d2a45b6e7f53194c876fa1d0a448bfee1c9c49f229e6d19a2379e1",
+  "log_sha256": "2b21e62f7abf84c76099a334fbd88dd68eea099b296feca967a3c533f9c337ae",
+  "original_result": "REVISE",
+  "original_reason": "GPU_SELFTEST_FAILED",
+  "actual_failures": [
+    [
+      "readonly",
+      "sampler"
+    ]
+  ],
+  "payload_audit": {
+    "image_sha256": "90e2c57952d2a45b6e7f53194c876fa1d0a448bfee1c9c49f229e6d19a2379e1",
+    "kernel_sha256": "335804584b9e593ffb1b9c153b6309cdd4b4602e8e0b980757aac82647faa3eb",
+    "blob_count": 8,
+    "complete_payload_reconstructed_from_compiled_kernel": true
+  },
+  "strict_return": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "34b2fdcf9542f547",
+    "checkpoint_bytes": 180457,
+    "log_bytes": 189668,
+    "log_sha256": "2b21e62f7abf84c76099a334fbd88dd68eea099b296feca967a3c533f9c337ae",
+    "require_final_drain": true,
+    "marker_positions": [
+      6,
+      39,
+      167,
+      169
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 38.10999999998603,
+  "failed_stage_not_accepted": true
+}

@@ -1,0 +1,23 @@
+{
+  "version": 728,
+  "base_version": 727,
+  "source": "iokit/Kernel/arm/SweetSurface.cpp",
+  "before_sha256": "62c3bf2a06cbb1edc8f856812f2e1f31519c4fd1c2bdd17d057fc886d651230f",
+  "after_sha256": "ad5b7234448525b6568de4fee9ea72806da838a9766612593c21a1c032f83a4d",
+  "patch_sha256": "cabd07552283edf56a0bc43c84e210ae2dfddedd3e2346eb2406483238808382",
+  "overrides": {
+    "iokit/Kernel/arm/SweetSurface.cpp": "ad5b7234448525b6568de4fee9ea72806da838a9766612593c21a1c032f83a4d",
+    "iokit/Kernel/IOMemoryDescriptor.cpp": "7d377fb6e226583b5d0aff7c6439ad937dd95c5b77a085e93e0778cd8db5e3fb",
+    "iokit/Kernel/arm/SweetSurface.h": "6791bce861310ef4d1a13ca3a70111f884f74904c2eeb138fc847dd8b26d43f4",
+    "iokit/Kernel/arm/SGBufferLease.h": "fad507520d8fcb663761e8b8cd3e5ffc6766004dd44e5bbcf253934eb17442a9",
+    "iokit/Kernel/arm/SGSharedMapper.cpp": "7eb0cd013a03f39496a5094ac8137c153c994330c928210a661b2a73b87f544b",
+    "iokit/Kernel/arm/SweetGPUScatter.cpp": "6ea2fcf560e96aeb266500d0e2e6c246807f40727ee6d8946c761863d2634af6"
+  },
+  "changed_sources": [
+    "iokit/Kernel/arm/SweetSurface.cpp"
+  ],
+  "full_width_xnu_wrapper": "mach_vm_region_recurse",
+  "v727_original_failure_preserved": true,
+  "source_permissions_unchanged": true,
+  "host_device_validation_pending": true
+}

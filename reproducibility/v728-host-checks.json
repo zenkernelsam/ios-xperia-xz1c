@@ -1,0 +1,8 @@
+{
+  "patch_sha256": "cabd07552283edf56a0bc43c84e210ae2dfddedd3e2346eb2406483238808382",
+  "actual_xnu_wrapper_bodies_sha256": "429725a63b32d5e59a4c5c4574aa46bb5886d4eb54c676ccd535d34c2488450e",
+  "vm_user_source_sha256": "441a783aee9ee4c5b78ff3f42f1c9c850b3f7731e6f8625e08953910c5d5f684",
+  "actual_old_failure_reproduced": true,
+  "actual_new_direction_and_wrapper_asan_ubsan_passed": true,
+  "full_goal_not_complete": true
+}

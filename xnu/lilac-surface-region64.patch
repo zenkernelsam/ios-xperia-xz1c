@@ -1,0 +1,28 @@
+--- a/iokit/Kernel/arm/SweetSurface.cpp
++++ b/iokit/Kernel/arm/SweetSurface.cpp
+@@ -170,6 +170,10 @@
+     IOLog("SWEET SURF CALLER DIAG phase=%s pid=%d address=%#llx bytes=%llu status=%#x count=%d\n",
+         phase, proc_selfpid(), (unsigned long long)address, (unsigned long long)bytes, status, count);
+ }
++/* Exact XNU mach_vm_server.h signature: direct kernel map query, full 64-bit address. */
++extern "C" kern_return_t mach_vm_region_recurse(vm_map_t, mach_vm_address_t *, mach_vm_size_t *,
++    natural_t *, vm_region_recurse_info_t, mach_msg_type_number_t *);
++static_assert(sizeof(mach_vm_address_t) == 8 && sizeof(mach_vm_size_t) == 8, "Full-width VM query");
+ struct sweet_caller_context { task_t task; IODirection direction; };
+ static IOReturn sweet_caller_direction(task_t task, const sca_range *range, IODirection *direction)
+ {
+@@ -179,12 +183,12 @@
+     vm_map_offset_t cursor = range->storage_start, end = cursor + range->storage_bytes;
+     bool writable = true;
+     for (unsigned regions = 0; cursor < end && regions < 64; ++regions) {
+-        vm_address_t address = cursor; vm_size_t bytes = 0; natural_t depth = 0;
++        mach_vm_address_t address = cursor; mach_vm_size_t bytes = 0; natural_t depth = 0;
+         vm_region_submap_info_data_64_t info = {}; kern_return_t kr = KERN_FAILURE;
+         bool metadata_valid = false;
+         for (unsigned attempt = 0; attempt < 16; ++attempt) {
+             mach_msg_type_number_t count = VM_REGION_SUBMAP_INFO_COUNT_64;
+-            kr = vm_region_recurse_64(map, &address, &bytes, &depth, (vm_region_recurse_info_64_t)&info, &count);
++            kr = mach_vm_region_recurse(map, &address, &bytes, &depth, (vm_region_recurse_info_t)&info, &count);
+             metadata_valid = !kr && count >= VM_REGION_SUBMAP_INFO_COUNT_64;
+             if (kr || count < VM_REGION_SUBMAP_INFO_COUNT_64 || !info.is_submap) break;
+             ++depth;

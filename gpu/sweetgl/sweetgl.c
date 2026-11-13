@@ -350,6 +350,7 @@ bool sweetgl_copy_refresh_selftest(void);
 bool sweetgl_copy_context_selftest(void);
 bool sweetgl_bridge_state_selftest(void);
 bool sweetgl_program_lifecycle_selftest(void);
+bool sweetgl_readonly_selftest(void);
 
 static void *
 selftest_thread(void *arg)
@@ -360,7 +361,7 @@ selftest_thread(void *arg)
 		sweet_drm_log("sweetgl: selftest: no GPU after publication wait");
 		return NULL;
 	}
-	if (sweetgl_selftest() && sweetgl_surface_selftest() && sweetgl_caller_selftest() && sweetgl_copy_refresh_selftest()) { if (sweetgl_copy_context_selftest() && sweetgl_bridge_state_selftest()) sweetgl_program_lifecycle_selftest(); }
+	if (sweetgl_selftest() && sweetgl_surface_selftest() && sweetgl_caller_selftest() && sweetgl_copy_refresh_selftest()) { if (sweetgl_copy_context_selftest() && sweetgl_bridge_state_selftest() && sweetgl_program_lifecycle_selftest()) sweetgl_readonly_selftest(); }
 	return NULL;
 }
 

@@ -35,4 +35,11 @@ RAM库打包入口已完成主机校验：
 
 用户镜像基线配方见 ROOT-GL5.md。原root脚本和新的源码构建已进入正式仓库；全新gl5首次启动与新编译二进制尚未实机验收，边界见STATUS.md。
 
-当前v725诊断增量及单次投递复现入口见 SURFACE-DIAGNOSTICS.md。该增量保留在正式仓库并严格校验固定基线，编译与实机结果单独记录。
+v725/v726诊断增量及单次投递入口见 SURFACE-DIAGNOSTICS.md；当前v727/v728只读背板与64位VM修订见 SURFACE-READONLY.md。按固定基线应用各增量并构建，源码与实机结果分别校验。当前成功输入kernel33580458/r4库b035a887，不替换保存的旧基线。
+
+当前前端可在既有Mesa归档已校验的Mac上单独重编并打包：
+
+    python3 tools/build/build_frontend_trial.py --output build/my-frontend
+    python3 tools/build/package_glram.py --frontend build/my-frontend --output build/my-ramfs
+
+输出目录必须不存在，旧输出保留。--ram-package将新RAM包提供给tools/device/package_trial.py --version 728；同一新库先RAM CPU完整回程，再GPU。完整payload复算和Mac实际源/Mesa归档校验保持。全新Mesa与root构建仍按前述入口分别验收。

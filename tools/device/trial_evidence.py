@@ -7,6 +7,8 @@ from return_evidence import inspect_return
 from owner_metadata import verify as verify_owner
 from gpu_pixels import verify as verify_gpu_pixels
 from diagnostic_candidate import verify_record
+from ram_library import record_library
+from readonly_pixels import verify as verify_readonly
 
 def verify(directory,mode,kernel_sha=None,version=None):
     root=Path(directory)
@@ -45,7 +47,11 @@ def verify(directory,mode,kernel_sha=None,version=None):
             assert re.search(r'SWEET SMEM STATE END snap='+str(snap)+r' mode=2 attempted=9 .*writes=0 unowned_reads=0 complete=1',normalized)
         assert 'SWEET SCATTER READY BEGIN' not in text
         if mode=='ramcpu':
-            assert 'SWEET GLRAM: library read=0 bytes=14675424 fnv=bb763317000ee0d7 ro=1' in scope
+            library=record_library(a)
+            ready=text.index('SWEET LOOP READY proto=1 token='+a['token'])
+            assert ready<start<ack
+            library_line='SWEET GLRAM: library read=0 bytes='+str(library['library_bytes'])+' fnv='+library['library_fnv64']+' ro=1'
+            assert text[ready:ack].count(library_line)==1
     elif mode=='owner':
         snapshots=verify_owner(normalized)
         assert 'SWEET GPU: rpm gpu clocks -> 0' in scope
@@ -60,6 +66,8 @@ def verify(directory,mode,kernel_sha=None,version=None):
                 assert 'sweetgl: '+item+' -> PASS' in scope,item
             assert 'SWEET SURF CALLER DIAG phase=' in scope
             pixels=verify_gpu_pixels(re.sub(r'\r?\n(?!SWEET|CRASH|Process|\||exec|IOK|MESA)', '', text),a['token'])
+            if a['version']>=727:
+                readonly=verify_readonly(re.sub(r'\r?\n(?!SWEET|CRASH|Process|\||exec|IOK|MESA)', '', text),a['token'])
     boundary='serialized=1' if mode in ('ready','gpu') else 'serialized=0'
     assert re.search(r'SWEET LOOP MAP_BOUNDARY token='+a['token']+' '+boundary+r' claimed=1',scope)
     report={'version':a['version'],'mode':mode,'source':str(root.resolve()),'token':a['token'],'kernel_sha256':a['kernel_sha256'],
@@ -70,6 +78,9 @@ def verify(directory,mode,kernel_sha=None,version=None):
     report['payload_audit']=payload_proof
     if mode=='owner':report['snapshots']=snapshots
     if mode=='gpu':report['pixels_and_retirement']=pixels
+    if mode=='gpu' and a['version']>=727:report['readonly_pixels']=readonly
+    if mode in ('gpu','ramcpu'):report['ram_library_binding']=record_library(a)
+    if mode=='ramcpu':report['library_loaded_before_current_live']=text.index(library_line)<start
     return report
 
 if __name__=='__main__':

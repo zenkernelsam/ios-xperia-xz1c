@@ -1,5 +1,23 @@
 # 当前状态 — 2026-11-13
 
+Sony BH905ND69G当前健康fastboot，无device/COM/camera worker或in-flight。Mac当前源/成功内核为v728/335804584b9e593ffb1b9c153b6309cdd4b4602e8e0b980757aac82647faa3eb（20,664,448B），当前前端r4库b035a887832513f977d8857c4224419b409ee04b64cf90d69ad4a5adba4ce117（14,676,400B）。v728 private/延后owner/ready/RAM CPU(r4)/GPU(r4)均实际单发、四标记及完整自动PON06回程通过。
+
+r4生产bind_surface路径实机通过：只读400×400源offset32走seed-aware复制上传，offset64/128直接共享；每种160000像素两次（包括原VM解除后），总960000像素零差异，CPU视图prot1/max1且写锁返回NotWritable。原750×1624三角形/纹理/Surface双向/caller持有、动态纹理、CA隔离、160relink/320draw和名字复用的独立哈希仍通过。最后281个scatter对象全撤销，caller active/outstanding/retained均0，回程38.25秒含健康30秒。logSHAb2c6af88bf61f7d96e1993ffe2ef305bb9ab5fbdb023b75b440bdbea2c39f7ab。
+
+本靴真实UI有11次400×400成功创建、0个VMError、0条MEMREF ERROR；原权限冲突恢复。AegirPoster仍有6次sig6，面板仍缺时间/日期/壁纸；相机107帧MJPEG，完整底部可见，右侧边缘仍截断。不能把Surface数据PASS当完整视觉完成。下一定位AegirPoster异常名/原因和CA文字渲染路径；声音/无线/睡眠唤醒仍未完成。
+
+r3偏移对比原REVISE保持：Mesa BO IOVA保留完整offset，offset32的GPU哈希cb385e665dfd88dd独立重算等于从页首读取（漏32B），offset64/128两次直接采样与原VM解除后持有均PASS。r4只为base/stride非64B对齐接入既有seed刷新上传，不改原源权限/页面持有或硬件时钟。布局算法全部16384偏移ASan/UBSan通过；36项传输/绑定/独立验收故障回放通过。
+
+首次v728 owner原日志缺snap2/slot2，完整回程但独立验收拒绝；没有补猜/修改原结果。以相同内核另做90秒采样时机对照（watchdog420s）取得两次完整四STREAM/根表哈希一致并37.86秒完整回程。后续准入只用该完整证据，控制器已在PASS前检查完整owner元数据。private37.281、ready38.828、r4 RAM CPU37.125秒完整回程。关键报告见reproducibility/readonly-r4-*-actual.json，所有源码及输入绑定在正式仓库；大镜像/原日志仅本地build/archive。
+
+以下为原v727/v726记录：
+
+v727 private37.438/owner38.422/ready37.625/RAM CPU37.328秒均完整PON06回程。GPU实际REVISE：caller layout失败，旧vm_region_recurse_64包装对4GiB以上地址因VM_MAX_ADDRESS=0xF0000000拒绝；全尺寸绘制/普通Surface先通过，readonly未执行。原失败logSHAb7ec970b/镜像95397c91/单发与完整38.687秒回程记录保留。v728只修该接口，不把v727的四阶段通过当GPU完成。详细解释见SURFACE-READONLY.md。
+
+本轮先在v726上新region-r1库18a97e2c完成CPU/GPU真实单发并完整自动返回（37.735/38.672秒），实证12个400×400源prot1/max1/tag51，与kIODirectionInOut冲突；所有可写自检数据仍PASS，最后287对象撤销。记录见region-r1-*-actual.json。v727据此增加只读共享方向/CPU映射/GPU叶权限，主机真实方向/mapper/原5/12MiB回归ASan/UBSan通过。首编失败保存后修订公开VM包装接口编译成功；全目标仍active，详见SURFACE-READONLY.md。
+
+以下为上一轮结束时v726记录：
+
 Sony BH905ND69G 当前健康fastboot，无device/COM/camera worker或in-flight。Mac当前源和成功内核均v726，kernel cda82b99792d4e6ae7c93ef57481f44e69e39f577b4369a3856a889380a484bf（20,647,936B）。v726五阶段private/owner/ready/RAM CPU/GPU均实际单download/boot、retries0并完整PON06返回；回程含健康30秒分别37.297/37.766/38.125/37.688/38.375秒。
 
 v726明确捕获真实故障：24条memory-entry采样全部KERN_PROTECTION_FAILURE=2，prot0x100003要求读写、map page_mask0x3fff为16KiB，descriptor flags0x110913。关联400×400/640000B源，地址偏移32B，页覆盖655360B；本靴完整范围共1127次400×400创建失败、20次AegirPoster sig6。用户态observe_init原样转发属性，未额外注入地址。源区域的protection/max_protection和精确ObjC异常原因仍未观测，尚不能将错误2直接等同于某个已证明的只读映射契约。
