@@ -18,6 +18,7 @@ import time
 
 from policy import Decision, LogPolicy, Refuse, SERIAL, unique_fastboot, FastbootStability
 from procguard import OwnedProcess, LiveLock, active_tool_processes, run as run_process
+from sony_usb_guard import target_fastboot_lines
 
 HERE = Path(__file__).resolve().parent
 PATCH = HERE.parent.parent
@@ -235,7 +236,13 @@ class LiveOps:
                 last_probe = time.monotonic()
                 try:
                     text = self.command([self.fastboot, "devices"], 5, "return_inventory")
-                    if text.strip():
+                    # Another phone remaining in fastboot says nothing about
+                    # Sony returning. Validate target rows before health probing.
+                    try:
+                        present = bool(target_fastboot_lines(text))
+                    except RuntimeError as error:
+                        raise Refuse("Fastboot inventory must contain one valid Sony row: " + str(error)) from error
+                    if present:
                         unique_fastboot(text); self.assert_fastboot()
                         for line in self.lines():
                             if f"SWEET LOOP ACK FASTBOOT token={artifact.token}" in line: ack = True

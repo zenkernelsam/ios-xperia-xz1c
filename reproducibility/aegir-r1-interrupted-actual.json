@@ -1,0 +1,2409 @@
+{
+  "original_controller_result": "STOP_ERROR",
+  "original_controller_error": "Fastboot inventory must contain exactly BH905ND69G",
+  "original_results_sha256": "d1392958456d88406c2dbbf96d3183254b3ad24ecb3187e98b5683acf87992b6",
+  "original_run": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-aegir-r1-tee-20261113",
+  "token": "9b22a5a27265fbe1",
+  "image_sha256": "4f98f3068f16c5909941f4d5098efeb50ae587ad6b3de6c906cae8cc539df7e2",
+  "kernel_sha256": "335804584b9e593ffb1b9c153b6309cdd4b4602e8e0b980757aac82647faa3eb",
+  "payload_audit": {
+    "image_sha256": "4f98f3068f16c5909941f4d5098efeb50ae587ad6b3de6c906cae8cc539df7e2",
+    "kernel_sha256": "335804584b9e593ffb1b9c153b6309cdd4b4602e8e0b980757aac82647faa3eb",
+    "blob_count": 8,
+    "complete_payload_reconstructed_from_compiled_kernel": true
+  },
+  "single_download_boot_verified": true,
+  "return_complete": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "9b22a5a27265fbe1",
+    "checkpoint_bytes": 443287,
+    "log_bytes": 446273,
+    "log_sha256": "f07ecde88295d60371127e95e8f22bcd088566f1f97f620e8a97dcba3bd11046",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      5,
+      55,
+      57
+    ],
+    "final_reset_marker_seen": true
+  },
+  "independent_health": {
+    "serial": "BH905ND69G",
+    "usb_vid": "0fce",
+    "usb_pid": "0dde",
+    "download_commands": 0,
+    "boot_commands": 0,
+    "reset_commands": 0,
+    "independent_health_only": true,
+    "previous_trial_result_unchanged": true,
+    "result": "PASS",
+    "continuous_health_seconds": 31.421999999904074,
+    "samples": [
+      {
+        "elapsed_seconds": 0.7660000000614673,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 2.547000000020489,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 4.35999999998603,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 6.172000000020489,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 8.0,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 9.827999999979511,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 11.625,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 13.452999999979511,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 15.327999999979511,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 17.17200000002049,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 19.04700000002049,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 20.891000000061467,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 22.844000000040978,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 24.719000000040978,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 26.625,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 28.43799999996554,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 30.31299999996554,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 32.18799999996554,
+        "healthy": true
+      }
+    ]
+  },
+  "health_results_sha256": "8ad35e2d015824d97d060d3dd05c059a4808a3e8579543f019ae7488e49ac225",
+  "health_command_hashes": {
+    "command-000.log": "1c8d25273cbdcc7217907762686869898725897ef5bbc324d50bf911bc5c1098",
+    "command-001.log": "c3eeaebff48abea23353a8c1e239c724f69083f06b0700ef4f5188e98de37fbb",
+    "command-002.log": "01b47c0dbf46d93585d7549fe476362f779bd8e4e88bc44b15fb39820c807a23",
+    "command-003.log": "0711422de152894ef827e713e40ce68730d8223eb0b78d9fb8e6fe8e288655ec",
+    "command-004.log": "c3eeaebff48abea23353a8c1e239c724f69083f06b0700ef4f5188e98de37fbb",
+    "command-005.log": "01b47c0dbf46d93585d7549fe476362f779bd8e4e88bc44b15fb39820c807a23",
+    "command-006.log": "b815b4fa589e80b0421e1a5581f7eb25bdc284a28ef8954f0135cb87569f1f22",
+    "command-007.log": "c3eeaebff48abea23353a8c1e239c724f69083f06b0700ef4f5188e98de37fbb",
+    "command-008.log": "e45afb54bd53bf0c8e10b255aa44cde62d5c7304b1e5edf8ac96f9a94e369cf3",
+    "command-009.log": "0711422de152894ef827e713e40ce68730d8223eb0b78d9fb8e6fe8e288655ec",
+    "command-010.log": "c3eeaebff48abea23353a8c1e239c724f69083f06b0700ef4f5188e98de37fbb",
+    "command-011.log": "e45afb54bd53bf0c8e10b255aa44cde62d5c7304b1e5edf8ac96f9a94e369cf3",
+    "command-012.log": "0711422de152894ef827e713e40ce68730d8223eb0b78d9fb8e6fe8e288655ec",
+    "command-013.log": "c3eeaebff48abea23353a8c1e239c724f69083f06b0700ef4f5188e98de37fbb",
+    "command-014.log": "e45afb54bd53bf0c8e10b255aa44cde62d5c7304b1e5edf8ac96f9a94e369cf3",
+    "command-015.log": "0711422de152894ef827e713e40ce68730d8223eb0b78d9fb8e6fe8e288655ec",
+    "command-016.log": "c3eeaebff48abea23353a8c1e239c724f69083f06b0700ef4f5188e98de37fbb",
+    "command-017.log": "e45afb54bd53bf0c8e10b255aa44cde62d5c7304b1e5edf8ac96f9a94e369cf3",
+    "command-018.log": "b815b4fa589e80b0421e1a5581f7eb25bdc284a28ef8954f0135cb87569f1f22",
+    "command-019.log": "c3eeaebff48abea23353a8c1e239c724f69083f06b0700ef4f5188e98de37fbb",
+    "command-020.log": "e45afb54bd53bf0c8e10b255aa44cde62d5c7304b1e5edf8ac96f9a94e369cf3",
+    "command-021.log": "0711422de152894ef827e713e40ce68730d8223eb0b78d9fb8e6fe8e288655ec",
+    "command-022.log": "c3eeaebff48abea23353a8c1e239c724f69083f06b0700ef4f5188e98de37fbb",
+    "command-023.log": "e45afb54bd53bf0c8e10b255aa44cde62d5c7304b1e5edf8ac96f9a94e369cf3",
+    "command-024.log": "0711422de152894ef827e713e40ce68730d8223eb0b78d9fb8e6fe8e288655ec",
+    "command-025.log": "c3eeaebff48abea23353a8c1e239c724f69083f06b0700ef4f5188e98de37fbb",
+    "command-026.log": "e45afb54bd53bf0c8e10b255aa44cde62d5c7304b1e5edf8ac96f9a94e369cf3",
+    "command-027.log": "0711422de152894ef827e713e40ce68730d8223eb0b78d9fb8e6fe8e288655ec",
+    "command-028.log": "c3eeaebff48abea23353a8c1e239c724f69083f06b0700ef4f5188e98de37fbb",
+    "command-029.log": "e45afb54bd53bf0c8e10b255aa44cde62d5c7304b1e5edf8ac96f9a94e369cf3",
+    "command-030.log": "b815b4fa589e80b0421e1a5581f7eb25bdc284a28ef8954f0135cb87569f1f22",
+    "command-031.log": "c3eeaebff48abea23353a8c1e239c724f69083f06b0700ef4f5188e98de37fbb",
+    "command-032.log": "e45afb54bd53bf0c8e10b255aa44cde62d5c7304b1e5edf8ac96f9a94e369cf3",
+    "command-033.log": "0711422de152894ef827e713e40ce68730d8223eb0b78d9fb8e6fe8e288655ec",
+    "command-034.log": "c3eeaebff48abea23353a8c1e239c724f69083f06b0700ef4f5188e98de37fbb",
+    "command-035.log": "e45afb54bd53bf0c8e10b255aa44cde62d5c7304b1e5edf8ac96f9a94e369cf3",
+    "command-036.log": "b815b4fa589e80b0421e1a5581f7eb25bdc284a28ef8954f0135cb87569f1f22",
+    "command-037.log": "c3eeaebff48abea23353a8c1e239c724f69083f06b0700ef4f5188e98de37fbb",
+    "command-038.log": "01b47c0dbf46d93585d7549fe476362f779bd8e4e88bc44b15fb39820c807a23",
+    "command-039.log": "0711422de152894ef827e713e40ce68730d8223eb0b78d9fb8e6fe8e288655ec",
+    "command-040.log": "c3eeaebff48abea23353a8c1e239c724f69083f06b0700ef4f5188e98de37fbb",
+    "command-041.log": "01b47c0dbf46d93585d7549fe476362f779bd8e4e88bc44b15fb39820c807a23",
+    "command-042.log": "b815b4fa589e80b0421e1a5581f7eb25bdc284a28ef8954f0135cb87569f1f22",
+    "command-043.log": "c3eeaebff48abea23353a8c1e239c724f69083f06b0700ef4f5188e98de37fbb",
+    "command-044.log": "01b47c0dbf46d93585d7549fe476362f779bd8e4e88bc44b15fb39820c807a23",
+    "command-045.log": "0711422de152894ef827e713e40ce68730d8223eb0b78d9fb8e6fe8e288655ec",
+    "command-046.log": "c3eeaebff48abea23353a8c1e239c724f69083f06b0700ef4f5188e98de37fbb",
+    "command-047.log": "01b47c0dbf46d93585d7549fe476362f779bd8e4e88bc44b15fb39820c807a23",
+    "command-048.log": "0711422de152894ef827e713e40ce68730d8223eb0b78d9fb8e6fe8e288655ec",
+    "command-049.log": "c3eeaebff48abea23353a8c1e239c724f69083f06b0700ef4f5188e98de37fbb",
+    "command-050.log": "01b47c0dbf46d93585d7549fe476362f779bd8e4e88bc44b15fb39820c807a23",
+    "command-051.log": "0711422de152894ef827e713e40ce68730d8223eb0b78d9fb8e6fe8e288655ec",
+    "command-052.log": "c3eeaebff48abea23353a8c1e239c724f69083f06b0700ef4f5188e98de37fbb",
+    "command-053.log": "01b47c0dbf46d93585d7549fe476362f779bd8e4e88bc44b15fb39820c807a23",
+    "command-054.log": "b815b4fa589e80b0421e1a5581f7eb25bdc284a28ef8954f0135cb87569f1f22"
+  },
+  "original_result_not_promoted_to_PASS": true,
+  "exceptions": {
+    "observer_load_count": 20,
+    "records": [
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x10071c188",
+            "image_base": "0x100718000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x1c46fdc28",
+            "image_base": "0x1c46e8000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1cb5b03fc",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x1cb5acdf8",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1cb42b6e4",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x232f86b28",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x232f86b74",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x232f87f3c",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x232f888b0",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x232f7c7b4",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x205d661d4",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x205d65558",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x205d64a6c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x205d43ad0",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x205d6473c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x100681730",
+            "image_base": "0x100670000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x100b14188",
+            "image_base": "0x100b10000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x1c46fdc28",
+            "image_base": "0x1c46e8000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1cb5b03fc",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x1cb5acdf8",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1cb42b6e4",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x232f86b28",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x232f86b74",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x232f87f3c",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x232f888b0",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x232f7c7b4",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x205d661d4",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x205d65558",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x205d64a6c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x205d43ad0",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x205d6473c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x100a79730",
+            "image_base": "0x100a68000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x100a90188",
+            "image_base": "0x100a8c000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x1c46fdc28",
+            "image_base": "0x1c46e8000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1cb5b03fc",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x1cb5acdf8",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1cb42b6e4",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x232f86b28",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x232f86b74",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x232f87f3c",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x232f888b0",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x232f7c7b4",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x205d661d4",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x205d65558",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x205d64a6c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x205d43ad0",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x205d6473c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x1009f5730",
+            "image_base": "0x1009e4000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x1005d8188",
+            "image_base": "0x1005d4000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x1c46fdc28",
+            "image_base": "0x1c46e8000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1cb5b03fc",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x1cb5acdf8",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1cb42b6e4",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x232f86b28",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x232f86b74",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x232f87f3c",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x232f888b0",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x232f7c7b4",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x205d661d4",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x205d65558",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x205d64a6c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x205d43ad0",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x205d6473c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x10053d730",
+            "image_base": "0x10052c000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x100cf8188",
+            "image_base": "0x100cf4000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x1c46fdc28",
+            "image_base": "0x1c46e8000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1cb5b03fc",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x1cb5acdf8",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1cb42b6e4",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x232f86b28",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x232f86b74",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x232f87f3c",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x232f888b0",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x232f7c7b4",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x205d661d4",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x205d65558",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x205d64a6c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x205d43ad0",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x205d6473c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x100c5d730",
+            "image_base": "0x100c4c000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x100464188",
+            "image_base": "0x100460000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x1c46fdc28",
+            "image_base": "0x1c46e8000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1cb5b03fc",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x1cb5acdf8",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1cb42b6e4",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x232f86b28",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x232f86b74",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x232f87f3c",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x232f888b0",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x232f7c7b4",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x205d661d4",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x205d65558",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x205d64a6c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x205d43ad0",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x205d6473c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x1003c9730",
+            "image_base": "0x1003b8000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x1008ac188",
+            "image_base": "0x1008a8000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x1c46fdc28",
+            "image_base": "0x1c46e8000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1cb5b03fc",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x1cb5acdf8",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1cb42b6e4",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x232f86b28",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x232f86b74",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x232f87f3c",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x232f888b0",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x232f7c7b4",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x205d661d4",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x205d65558",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x205d64a6c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x205d43ad0",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x205d6473c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x100811730",
+            "image_base": "0x100800000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x100e20188",
+            "image_base": "0x100e1c000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x1c46fdc28",
+            "image_base": "0x1c46e8000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1cb5b03fc",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x1cb5acdf8",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1cb42b6e4",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x232f86b28",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x232f86b74",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x232f87f3c",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x232f888b0",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x232f7c7b4",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x205d661d4",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x205d65558",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x205d64a6c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x205d43ad0",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x205d6473c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x100d85730",
+            "image_base": "0x100d74000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x10015c188",
+            "image_base": "0x100158000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x1c46fdc28",
+            "image_base": "0x1c46e8000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1cb5b03fc",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x1cb5acdf8",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1cb42b6e4",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x232f86b28",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x232f86b74",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x232f87f3c",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x232f888b0",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x232f7c7b4",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x205d661d4",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x205d65558",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x205d64a6c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x205d43ad0",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x205d6473c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x1000c1730",
+            "image_base": "0x1000b0000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x100c4c188",
+            "image_base": "0x100c48000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x1c46fdc28",
+            "image_base": "0x1c46e8000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1cb5b03fc",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x1cb5acdf8",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1cb42b6e4",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x232f86b28",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x232f86b74",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x232f87f3c",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x232f888b0",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x232f7c7b4",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x205d661d4",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x205d65558",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x205d64a6c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x205d43ad0",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x205d6473c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x100bb1730",
+            "image_base": "0x100ba0000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x100f50188",
+            "image_base": "0x100f4c000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x1c46fdc28",
+            "image_base": "0x1c46e8000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1cb5b03fc",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x1cb5acdf8",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1cb42b6e4",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x232f86b28",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x232f86b74",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x232f87f3c",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x232f888b0",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x232f7c7b4",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x205d661d4",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x205d65558",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x205d64a6c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x205d43ad0",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x205d6473c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x100eb5730",
+            "image_base": "0x100ea4000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x10111c188",
+            "image_base": "0x101118000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x1c46fdc28",
+            "image_base": "0x1c46e8000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1cb5b03fc",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x1cb5acdf8",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1cb42b6e4",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x232f86b28",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x232f86b74",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x232f87f3c",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x232f888b0",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x232f7c7b4",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x205d661d4",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x205d65558",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x205d64a6c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x205d43ad0",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x205d6473c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x101081730",
+            "image_base": "0x101070000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x10054c188",
+            "image_base": "0x100548000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x1c46fdc28",
+            "image_base": "0x1c46e8000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1cb5b03fc",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x1cb5acdf8",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1cb42b6e4",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x232f86b28",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x232f86b74",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x232f87f3c",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x232f888b0",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x232f7c7b4",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x205d661d4",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x205d65558",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x205d64a6c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x205d43ad0",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x205d6473c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x1004b1730",
+            "image_base": "0x1004a0000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x100930188",
+            "image_base": "0x10092c000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x1c46fdc28",
+            "image_base": "0x1c46e8000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1cb5b03fc",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x1cb5acdf8",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1cb42b6e4",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x232f86b28",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x232f86b74",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x232f87f3c",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x232f888b0",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x232f7c7b4",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x205d661d4",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x205d65558",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x205d64a6c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x205d43ad0",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x205d6473c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x100895730",
+            "image_base": "0x100884000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x100ca8188",
+            "image_base": "0x100ca4000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x1c46fdc28",
+            "image_base": "0x1c46e8000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1cb5b03fc",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x1cb5acdf8",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1cb42b6e4",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x232f86b28",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x232f86b74",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x232f87f3c",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x232f888b0",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x232f7c7b4",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x205d661d4",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x205d65558",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x205d64a6c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x205d43ad0",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x205d6473c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x100c0d730",
+            "image_base": "0x100bfc000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x1002e8188",
+            "image_base": "0x1002e4000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x1c46fdc28",
+            "image_base": "0x1c46e8000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1cb5b03fc",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x1cb5acdf8",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1cb42b6e4",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x232f86b28",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x232f86b74",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x232f87f3c",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x232f888b0",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x232f7c7b4",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x205d661d4",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x205d65558",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x205d64a6c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x205d43ad0",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x205d6473c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x10024d730",
+            "image_base": "0x10023c000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x1006e4188",
+            "image_base": "0x1006e0000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x1c46fdc28",
+            "image_base": "0x1c46e8000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1cb5b03fc",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x1cb5acdf8",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1cb42b6e4",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x232f86b28",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x232f86b74",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x232f87f3c",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x232f888b0",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x232f7c7b4",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x205d661d4",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x205d65558",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x205d64a6c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x205d43ad0",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x205d6473c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x100649730",
+            "image_base": "0x100638000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x1010e8188",
+            "image_base": "0x1010e4000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x1c46fdc28",
+            "image_base": "0x1c46e8000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1cb5b03fc",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x1cb5acdf8",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1cb42b6e4",
+            "image_base": "0x1cb418000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x232f86b28",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x232f86b74",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x232f87f3c",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x232f888b0",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x232f7c7b4",
+            "image_base": "0x232f72000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x205d661d4",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x205d65558",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x205d64a6c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x205d43ad0",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x205d6473c",
+            "image_base": "0x205d3b000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x10104d730",
+            "image_base": "0x10103c000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      }
+    ],
+    "incomplete_records": [
+      {
+        "call": 1,
+        "reason": "frame_records_missing",
+        "declared_frames": 16,
+        "captured_frame_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ]
+      },
+      {
+        "call": 1,
+        "reason": "frame_records_missing",
+        "declared_frames": 16,
+        "captured_frame_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          14,
+          15
+        ]
+      }
+    ],
+    "observed_exception_metadata_only": true,
+    "exception_cause_not_yet_repaired": true
+  },
+  "full_UI_and_peripheral_goal_not_achieved": true
+}

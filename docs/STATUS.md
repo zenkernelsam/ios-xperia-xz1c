@@ -1,5 +1,9 @@
 # 当前状态 — 2026-11-13
 
+最新 Aegir 诊断已定位原生 Metal uniform buffer 的 nil 返回，详见 AEGIR-RENDERING.md。20次异常有18条完整栈、2条缺帧，缺帧不补猜；原生动态壁纸使用 CLKUIMetalQuadView/NanoUniverse。GLES/Surface通过不代表 Metal device 已提供，实际 `_device` 状态下一直接观测。时间/日期/壁纸仍未恢复，完整目标active。
+
+token9b22a5a27265fbe1 的原controller STOP_ERROR保留：另一台手机接入导致旧全局唯一库存规则中断回程计时。原始四标记完整，独立Sony USB/序列号/端点连续31.422秒健康通过，没有再download/boot/reset。多设备库存已改为严格选择Sony，缺失/重复/非法Sony仍拒绝；所有操作保持-s BH905ND69G。当前Sony健康fastboot，无controller/COM/camera/in-flight。
+
 Sony BH905ND69G当前健康fastboot，无device/COM/camera worker或in-flight。Mac当前源/成功内核为v728/335804584b9e593ffb1b9c153b6309cdd4b4602e8e0b980757aac82647faa3eb（20,664,448B），当前前端r4库b035a887832513f977d8857c4224419b409ee04b64cf90d69ad4a5adba4ce117（14,676,400B）。v728 private/延后owner/ready/RAM CPU(r4)/GPU(r4)均实际单发、四标记及完整自动PON06回程通过。
 
 r4生产bind_surface路径实机通过：只读400×400源offset32走seed-aware复制上传，offset64/128直接共享；每种160000像素两次（包括原VM解除后），总960000像素零差异，CPU视图prot1/max1且写锁返回NotWritable。原750×1624三角形/纹理/Surface双向/caller持有、动态纹理、CA隔离、160relink/320draw和名字复用的独立哈希仍通过。最后281个scatter对象全撤销，caller active/outstanding/retained均0，回程38.25秒含健康30秒。logSHAb2c6af88bf61f7d96e1993ffe2ef305bb9ab5fbdb023b75b440bdbea2c39f7ab。

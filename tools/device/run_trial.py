@@ -99,6 +99,9 @@ def main():
         wanted=ram['frontend_build_binding']
         relative=Path(record['ram_package']).resolve().relative_to(ROOT).as_posix()+'/manifest.json'
         remote="import sys,json,hashlib;from pathlib import Path;r=Path('Desktop/ios-xperia-xz1c');m=json.load(open(r/"+repr(relative)+"));b=m['frontend_build_binding'];s=b['source_files'];d=b['mesa_dependencies'];assert all(hashlib.sha256((r/'gpu/sweetgl'/p).read_bytes()).hexdigest()==h for p,h in s.items());assert all(hashlib.sha256((r/'build/mesa-ios'/p).read_bytes()).hexdigest()==h for p,h in d.items());print(json.dumps(b))"
+        if 'exception_observer' in ram:
+            observer=ram['exception_observer']
+            remote="import hashlib;from pathlib import Path;r=Path('Desktop/ios-xperia-xz1c');assert hashlib.sha256((r/"+repr(observer['source'])+").read_bytes()).hexdigest()=="+repr(observer['source_sha256'])+";"+remote
         check=subprocess.run(['ssh','-o','BatchMode=yes','-o','ConnectTimeout=8','ciscohe@192.168.68.54','python3 -c '+__import__('shlex').quote(remote)],capture_output=True,text=True,timeout=25)
         assert check.returncode==0,check.stdout+check.stderr
         assert json.loads(check.stdout)==wanted

@@ -3,28 +3,31 @@
     "boot_once.py": "e862e430514f7aaceb5ac5b2037a19770ba91889cb0088438e925b920dcde83c",
     "capture.py": "6bf670ec0fd55b50ee5f83997931dee98549461435f89474dfd3b757e3b39c70",
     "clock_evidence.py": "0e7d7fcf93daf09af915b974c6b06a7165408bf1891ba553427330fcd089c42f",
-    "controller.py": "2286d1c09670fbe7c3ebbc5a4c66a981974f953ae9e64a3ba31f703a5c3c8558",
+    "controller.py": "5ee209c62ab4f660f23c402c78b1cccfdca30dfbccd4f2c307f61c9bc2afb082",
+    "exception_evidence.py": "08d6e8951d2b8621b23944a6acc5170609490800a7738fe067188be74fd9de14",
+    "failed_trial_evidence.py": "e7b4167c40de9fab4cb70f619faf499c4a1cbd852fdcc3be79c03e5eea198bed",
     "gpu_pixels.py": "6a368d19a77179f59af15c6bb2ee20f76e17d23e9c0f4559d0e290d9d60d6fdc",
     "guarded_xperable.sh": "4555e0841894df5014ef0f60bd16ca7911bc8446d8a0545b6b3ce069b40dc33e",
+    "interrupted_trial_evidence.py": "134bf3d787c609f63abc337731ff3b5ea710a004388da4675a2962b4822cbedb",
+    "observe_fastboot.py": "7c82964e346fa9166bdbaee1b8d74905f8cf1b53d151b42ba68909dc2e82100b",
     "owner_metadata.py": "e0f4e4fa2d54381d63128a39fbcabfe6c3ab9468a99f44cd44c37d86af84d564",
-    "package_trial.py": "0a7025179b9f13c451e2361ab3e6fe4e37b7544d2b76f07bcd421c8670c0ab8c",
-    "policy.py": "ba20644cbf746769ae3e85953863a6c35ee8510611004b4455ca2568f0621054",
+    "package_trial.py": "e8bf8709f1bb12c2db1dff5389cfbbe1102548e86b0c2ff34dbb6fc58c3089dc",
+    "policy.py": "788151bcae524eb1dbb58e21743e957cf4ff2e819247dcf74db05e173cf00365",
     "preflight_processes.ps1": "6586345710fe618415ce2ddd8b53d230c14c280c93f34c5fb1a190fcc7e1f91f",
     "procguard.py": "7cc150c13ca8d6fce28ec9784af8886eaaa4cdd8fad9cb3ff6befa9fd67d116d",
+    "readonly_pixels.py": "bd1c86eddff0c7ca30d74b63cf2c5ac200a4691360f78f121e4cced5cd86fb5f",
     "return_evidence.py": "5142d3a90e89f64f796f2ce70227b28703afbca5be582ef25b6d638b09ae7e8d",
-    "run_trial.py": "a9f8203fe1fb6793b095651ca856746a5472b40c909ca31ac3b3cf1b1d3e4214",
+    "run_trial.py": "d0a10036b8f0d1802f93b72a8898684c1a5927bd231dc602f3529f6dc8dd7357",
     "serial_worker.py": "85c441bff24e081fc4fa759748676b130becf2a070bbacbff6b23fba96ae3fd4",
     "sony_usb_guard.py": "e1f636a6327530f28ef407732d58f0e7310494c4660010f793f4dcbe2ebdc4c6",
-    "startup_watch.py": "4954543752d0582fe97575746c2f712476022581f12719fb91a7a3f3da275ead",
-    "test_boot_once.py": "a8e72df6342bd734820f49bf4322f1f04e3d5737db5bf5c726e05120c64662df",
-    "test_current_transport.py": "7e10c9a11f1167e69b4e197f9c3e806c0c360b347f02d926643813a583a239f3",
-    "test_trial_gates.py": "0ec6a98bc6f9d4af96bdf4e79ee82d572c1f9e31b6bc2c6306232847bcce1437",
-    "trial_evidence.py": "36d7ff94e8f418d61c2d543a2b551b2554a21617c6ee9d7acd8b1dc99f918fdc",
-    "surface_permission_evidence.py": "ea8fe1ce68243087ed3304f1e978f9c3a72fc754e03d73ef44fcdd34d45c26e4",
     "source_region_evidence.py": "748edd1bd5e5783e12a925524876a36e7d2538ad18700ba1af55b6b940ac5b2f",
-    "readonly_pixels.py": "bd1c86eddff0c7ca30d74b63cf2c5ac200a4691360f78f121e4cced5cd86fb5f",
-    "failed_trial_evidence.py": "e7b4167c40de9fab4cb70f619faf499c4a1cbd852fdcc3be79c03e5eea198bed",
-    "texture_offset_evidence.py": "73e50f64af52491a94464d13268c44a8d917175926bdd92caf260eced329f230"
+    "startup_watch.py": "4954543752d0582fe97575746c2f712476022581f12719fb91a7a3f3da275ead",
+    "surface_permission_evidence.py": "ea8fe1ce68243087ed3304f1e978f9c3a72fc754e03d73ef44fcdd34d45c26e4",
+    "test_boot_once.py": "a8e72df6342bd734820f49bf4322f1f04e3d5737db5bf5c726e05120c64662df",
+    "test_current_transport.py": "aac740ce653b63e9b6c306f84f71c0d0b582b49ae9130a6401c64cbed36d5213",
+    "test_trial_gates.py": "57466394c75addeacd4968bf179479dff898a1e247959fa813dbfd84d5faf317",
+    "texture_offset_evidence.py": "73e50f64af52491a94464d13268c44a8d917175926bdd92caf260eced329f230",
+    "trial_evidence.py": "f7f38b147326505c3ae00c802a16720f5efde92268fed85dbd80a1fe5596c3b6"
   },
   "supervisor_based_on_actual_tested_one_shot": true,
   "platform_tools_from_environment_or_PATH": true,
@@ -35,12 +38,23 @@
   "formal_v725_private_owner_ready_actual_return": true,
   "diagnostic_fault_replay_tests_passed": 12,
   "formal_v725_five_stages_actual_return": true,
-  "all_transport_and_diagnostic_tests_passed": 36,
+  "all_transport_and_diagnostic_tests_passed": 38,
   "shared_sources": {
     "tools/diagnostic_candidate.py": "230e273264b2963cce528174948865234cff4504e54a2bd11768334c4a00fc75",
     "tools/mkpayload.py": "5c9a3dacbdf877ffded27971ad2e737e5ee4296fada247d14d5c6051ff1f47ff",
-    "tools/ram_library.py": "7823541f95e922d5293edb6351250bf75f69a7d8892fabf529bc894514fb25e0"
+    "tools/ram_library.py": "dcc594912ff1cbc2798138015f8d69c03b75d9d7bb5f6702624678e40b183f60"
   },
   "formal_v726_five_stages_actual_return": true,
-  "formal_v728_r4_all_stages_actual_return": true
+  "formal_v728_r4_all_stages_actual_return": true,
+  "build_sources": {
+    "tools/build/package_glram.py": "809023ab3cee67bced8c234b511178930ec384428d8fe19525ee331f36c31066",
+    "tools/build/build_exception_observer.py": "d9c079c799a11facb180128a99abb455c669d7d86367ad791f15f28f5b22e029",
+    "tools/build/symbolicate_aegir_exception.py": "a41c50e0e70a3015a458ed8fa93e831c924a201eafd447f1bd5a1213941502b0"
+  },
+  "gpu_sources": {
+    "gpu/diagnostics/exception_observe.m": "49a74baaff83838ca4f524fb50544d248e498442178e7049a2edb40ef5000194"
+  },
+  "tests_skipped_without_optional_old_evidence": 2,
+  "sony_specific_multi_device_return_fault_replay_passed": true,
+  "tests_run_total": 40
 }

@@ -14,9 +14,27 @@ from run_trial import DiagnosticPolicy, prerequisites
 from diagnostic_candidate import configuration, verify_record
 from ram_library import require_same_library,load as load_ram
 from readonly_pixels import verify as verify_readonly,expected_hash as readonly_hash
+from exception_evidence import inspect_scope
 
 
 class Gates(unittest.TestCase):
+    def test_exception_records_preserve_actual_metadata_and_complete_stack(self):
+        text=('SWEET EXCEPTION observer installed process=AegirPoster limit=16 original_chain=1\n'
+          'SWEET EXCEPTION begin call=1 class=NSException name="NSInvalidArgumentException" reason="missing method" observational=1\n'
+          'SWEET EXCEPTION frame call=1 index=0 pc=0x100010000 base=0x100000000 image=e symbol=observe_exception\n'
+          'SWEET EXCEPTION frame call=1 index=1 pc=0x180010000 base=0x180000000 image=Foundation symbol=raise\n'
+          'SWEET EXCEPTION end call=1 frames=2 original_chain=1\n')
+        proof=inspect_scope(text);self.assertEqual(proof['records'][0]['name'],'NSInvalidArgumentException')
+        for changed in (text.replace('frames=2','frames=3'),text.replace('original_chain=1','original_chain=0'),
+                        text.replace('index=1','index=3'),text.replace('call=1','call=17')):
+            with self.assertRaises(AssertionError):inspect_scope(changed)
+        wrapped=text.replace('missing method','missing me\nthod').replace('symbol=raise','symbol=ra\nise')
+        self.assertEqual(inspect_scope(wrapped)['records'],proof['records'])
+        missing=text.replace('SWEET EXCEPTION frame call=1 index=1 pc=0x180010000 base=0x180000000 image=Foundation symbol=raise\n','')
+        combined=inspect_scope(missing+text)
+        self.assertEqual(len(combined['records']),1)
+        self.assertEqual(combined['incomplete_records'][0]['captured_frame_indices'],[0])
+
     def args(self, **changes):
         values = dict(private_evidence='private', owner_evidence='owner', ready_evidence='ready',
                       cpu_evidence='cpu', rpm_evidence='clock')

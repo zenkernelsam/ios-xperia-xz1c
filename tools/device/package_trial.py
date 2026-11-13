@@ -90,6 +90,15 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
         blob,library_binding,package=load_ram(ram_package)
         if version>=727:assert 'readonly_probe.c' in package['frontend_build_binding']['source_files']
         files=[(n,blob if n=='GL-RAM-Z' else data) for n,data in files]
+        if mode=='gpu' and 'exception_observer' in package:
+            # The removed zero-valued scan options have default zero in the
+            # audited framebuffer source; TRACE is logging only. Keep cadence.
+            words=[w for w in words if w not in ('sweetfb_direct=0','sweetfb_kick=0')]
+            words=[w.replace(',SWEETGL_TRACE=1','')+';AegirPoster:DYLD_INSERT_LIBRARIES=/dev/sglram/e' if w.startswith('sweetenv=') else w for w in words]
+            # svmro7 owns/defer-starts GPU independently of sweetgpuasync.
+            # Keep runtime/display/touch settings; make room for explicit tee.
+            words=[w for w in words if w not in ('sweetgpuasync=1','-noprogress','keepsyms=1')]
+            words.append('sweetnull=backboardd,AegirPoster')
     cmd=' '.join(words);assert len(cmd.encode())<=607
     candidate,info=mkpayload.build(str(kernel),reference,cmd,blobs=files)
     assert b'SWEET SURF CALLER DIAG phase=' in candidate
@@ -108,6 +117,7 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
     Artifact(m).validate()
     if library_binding:
         m.update(ram_package=str(Path(ram_package).resolve()),ram_library_binding=library_binding)
+        if 'exception_observer' in package:m['exception_observer']=package['exception_observer']
     if owner_interval is not None:
         m['owner_observation_interval_seconds']=owner_interval
     (output/'artifacts.json').write_text(json.dumps({'target_serial':'BH905ND69G','pon_route':6,'artifacts':[m]},indent=2)+'\n')
@@ -132,6 +142,10 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
             if version>=727:
                 assert library_binding,'Read-only trial needs the tested-probe frontend'
                 common+=['sweetgl: readonly selftest -> PASS phase=held_sampler']
+            if 'exception_observer' in m:
+                common+=['SWEET EXCEPTION observer installed process=AegirPoster limit=16 original_chain=1',
+                         'SWEET EXCEPTION begin call=1 class=.*name=',
+                         'SWEET EXCEPTION end call=1 frames=[1-9].*original_chain=1']
     plan={'target_serial':'BH905ND69G','pon_route':6,'max_cycles':1,'budget_seconds':480,'camera_required':mode=='gpu',
           'steps':[{'artifact_id':m['id'],'observe_seconds':observe,'stable_seconds':30,'return_seconds':120,'goals':common,
                     'return_evidence':'final-drain','on_pass':'stop','on_failure':'stop'}]}

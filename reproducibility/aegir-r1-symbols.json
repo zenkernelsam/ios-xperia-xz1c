@@ -1,0 +1,153 @@
+{
+  "raw_sha256": "f07ecde88295d60371127e95e8f22bcd088566f1f97f620e8a97dcba3bd11046",
+  "token": "9b22a5a27265fbe1",
+  "pid": 289,
+  "observed_same_process_slide": "0x44630000",
+  "main_header": "0x100670000",
+  "frames": [
+    {
+      "index": 0,
+      "pc": "0x10071c188",
+      "image_base": "0x100718000",
+      "image": "e",
+      "symbol": "observe_exception"
+    },
+    {
+      "index": 1,
+      "pc": "0x1c46fdc28",
+      "image_base": "0x1c46e8000",
+      "image": "libobjc.A.dylib",
+      "symbol": "_objc_exception_throw + 56",
+      "unslid_pc": "0x1800cdc28",
+      "unslid_image_base": "0x1800b8000"
+    },
+    {
+      "index": 2,
+      "pc": "0x1cb5b03fc",
+      "image_base": "0x1cb418000",
+      "image": "CoreFoundation",
+      "symbol": "-[__NSCFString characterAtIndex:].cold.1",
+      "unslid_pc": "0x186f803fc",
+      "unslid_image_base": "0x186de8000"
+    },
+    {
+      "index": 3,
+      "pc": "0x1cb5acdf8",
+      "image_base": "0x1cb418000",
+      "image": "CoreFoundation",
+      "symbol": "-[__NSArrayM insertObject:atIndex:].cold.2",
+      "unslid_pc": "0x186f7cdf8",
+      "unslid_image_base": "0x186de8000"
+    },
+    {
+      "index": 4,
+      "pc": "0x1cb42b6e4",
+      "image_base": "0x1cb418000",
+      "image": "CoreFoundation",
+      "symbol": "-[__NSArrayM insertObject:atIndex:] + 888",
+      "unslid_pc": "0x186dfb6e4",
+      "unslid_image_base": "0x186de8000"
+    },
+    {
+      "index": 5,
+      "pc": "0x232f86b28",
+      "image_base": "0x232f72000",
+      "image": "NanoUniverse",
+      "symbol": "-[NUNIAegirRenderer getOrCreateUniformBufferforFrameBufferIndex:] + 148",
+      "unslid_pc": "0x1ee956b28",
+      "unslid_image_base": "0x1ee942000"
+    },
+    {
+      "index": 6,
+      "pc": "0x232f86b74",
+      "image_base": "0x232f72000",
+      "image": "NanoUniverse",
+      "symbol": "-[NUNIAegirRenderer _renderOffscreenBackgroundWithRenderEncoder:frameBufferIndex:] + 52",
+      "unslid_pc": "0x1ee956b74",
+      "unslid_image_base": "0x1ee942000"
+    },
+    {
+      "index": 7,
+      "pc": "0x232f87f3c",
+      "image_base": "0x232f72000",
+      "image": "NanoUniverse",
+      "symbol": "-[NUNIAegirRenderer _renderOffscreenSceneWithScene:viewport:commandBuffer:frameBufferIndex:drawableTexture:] + 1368",
+      "unslid_pc": "0x1ee957f3c",
+      "unslid_image_base": "0x1ee942000"
+    },
+    {
+      "index": 8,
+      "pc": "0x232f888b0",
+      "image_base": "0x232f72000",
+      "image": "NanoUniverse",
+      "symbol": "-[NUNIAegirRenderer renderWithScene:viewport:commandBuffer:passDescriptor:] + 196",
+      "unslid_pc": "0x1ee9588b0",
+      "unslid_image_base": "0x1ee942000"
+    },
+    {
+      "index": 9,
+      "pc": "0x232f7c7b4",
+      "image_base": "0x232f72000",
+      "image": "NanoUniverse",
+      "symbol": "-[NUNIQuad renderWithCommandBuffer:passDescriptor:] + 124",
+      "unslid_pc": "0x1ee94c7b4",
+      "unslid_image_base": "0x1ee942000"
+    },
+    {
+      "index": 10,
+      "pc": "0x205d661d4",
+      "image_base": "0x205d3b000",
+      "image": "ClockKitUI",
+      "symbol": "-[CLKUIMetalQuadView _renderQuads:toScreenWithCommandBuffer:passDescriptor:] + 332",
+      "unslid_pc": "0x1c17361d4",
+      "unslid_image_base": "0x1c170b000"
+    },
+    {
+      "index": 11,
+      "pc": "0x205d65558",
+      "image_base": "0x205d3b000",
+      "image": "ClockKitUI",
+      "symbol": "-[CLKUIMetalQuadView _snapshotTextureInRect:scale:time:withAdditionalPasses:] + 1772",
+      "unslid_pc": "0x1c1735558",
+      "unslid_image_base": "0x1c170b000"
+    },
+    {
+      "index": 12,
+      "pc": "0x205d64a6c",
+      "image_base": "0x205d3b000",
+      "image": "ClockKitUI",
+      "symbol": "___48-[CLKUIMetalQuadView snapshotInRect:scale:time:]_block_invoke + 556",
+      "unslid_pc": "0x1c1734a6c",
+      "unslid_image_base": "0x1c170b000"
+    },
+    {
+      "index": 13,
+      "pc": "0x205d43ad0",
+      "image_base": "0x205d3b000",
+      "image": "ClockKitUI",
+      "symbol": "-[CLKUIQuadView _runOnRenderQueueIfNeeded:] + 136",
+      "unslid_pc": "0x1c1713ad0",
+      "unslid_image_base": "0x1c170b000"
+    },
+    {
+      "index": 14,
+      "pc": "0x205d6473c",
+      "image_base": "0x205d3b000",
+      "image": "ClockKitUI",
+      "symbol": "-[CLKUIMetalQuadView snapshotInRect:scale:time:] + 268",
+      "unslid_pc": "0x1c173473c",
+      "unslid_image_base": "0x1c170b000"
+    },
+    {
+      "index": 15,
+      "pc": "0x100681730",
+      "image_base": "0x100670000",
+      "image": "AegirPoster",
+      "symbol": "main"
+    }
+  ],
+  "cache_header_sha256": "76874e8375252ee643011ff8063f0cce12355f05cf5f9897a34e5679667a65aa",
+  "cache_path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-symbolication-r1/root/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64",
+  "symbol_tool_sha256": "e1b3bf2725e788f85e38837f8fc87799a7b34cd96d1389ecabcb58c6cc372a1b",
+  "source_only_diagnostic": true
+}

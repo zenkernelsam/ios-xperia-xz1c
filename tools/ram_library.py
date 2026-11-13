@@ -25,7 +25,15 @@ def load(folder,expected=None):
     assert len(raw)==raw_bytes and decoder.eof and not decoder.unused_data and not decoder.unconsumed_tail
     assert raw[1024:1026]==b'H+' and sha(raw)==m['raw_sha256']
     assert f'{raw_fnv:016x}'==m['raw_fnv64'] and fnv(raw)==m['raw_fnv64']
-    assert set(m['files'])=={'sweetgl.dylib','libglapi.0.dylib','georead.dylib'}
+    names={'sweetgl.dylib','libglapi.0.dylib','georead.dylib'}
+    if 'exception_observer' in m:
+        observer=m['exception_observer'];names.add('exception_observe.dylib')
+        assert observer['target_process']=='AegirPoster' and observer['observations_max']==16
+        assert observer['native_original_chain_and_bound_test_passed'] and observer['host_asan_ubsan_passed']
+        assert m['observer_alias_e_verified']
+        assert observer['source']=='gpu/diagnostics/exception_observe.m'
+        assert m['files']['exception_observe.dylib']['sha256']==observer['library_sha256']
+    assert set(m['files'])==names
     for name,info in m['files'].items():
         offset=info['raw_offset'];size=info['bytes']
         assert type(offset) is int and type(size) is int and offset>=0 and size>0 and offset+size<=len(raw)

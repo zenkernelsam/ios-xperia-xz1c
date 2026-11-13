@@ -1,6 +1,7 @@
 """Deterministic log policy: expected startup activity never means reboot."""
 from dataclasses import dataclass
 import re
+from sony_usb_guard import target_fastboot_lines
 
 SERIAL = "BH905ND69G"
 VID, PID = 0x1209, 0x0001
@@ -18,9 +19,14 @@ class FastbootStability:
         return "STABLE" if now-self.since>=self.seconds else "WAIT"
 
 def unique_fastboot(text):
-    lines = [s.split() for s in text.splitlines() if s.strip()]
-    if len(lines) != 1 or len(lines[0]) < 2 or lines[0][0] != SERIAL or lines[0][1] != "fastboot":
-        raise Refuse("Fastboot inventory must contain exactly BH905ND69G")
+    # Unrelated serials may stay attached. All commands still target SERIAL;
+    # duplicate or malformed target rows must never become an absent-device wait.
+    try:
+        target = target_fastboot_lines(text)
+    except RuntimeError as error:
+        raise Refuse("Fastboot inventory must contain one valid Sony row: " + str(error)) from error
+    if not target:
+        raise Refuse("Sony BH905ND69G absent from fastboot inventory")
     return SERIAL
 
 def serial_candidates(ports):
