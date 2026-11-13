@@ -118,6 +118,7 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
     if library_binding:
         m.update(ram_package=str(Path(ram_package).resolve()),ram_library_binding=library_binding)
         if 'exception_observer' in package:m['exception_observer']=package['exception_observer']
+        if 'metal_resources' in package:m['metal_resources']=package['metal_resources']
     if owner_interval is not None:
         m['owner_observation_interval_seconds']=owner_interval
     (output/'artifacts.json').write_text(json.dumps({'target_serial':'BH905ND69G','pon_route':6,'artifacts':[m]},indent=2)+'\n')
@@ -149,6 +150,11 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
                 if 'renderer_observations_max' in m['exception_observer']:
                     common+=['SWEET METAL observer installed renderer=NUNIAegirRenderer limit=32 index_type=[Qq] device_object=1 original_forwarded=1',
                         'SWEET METAL uniform call=1 index=[0-2] device_nil=[01].*metadata_only=1 original_called=1']
+                if 'runtime_Metal_ABI_methods' in m['exception_observer']:
+                    common+=['SWEET METAL ABI begin class=_MTLDevice present=1 limits_bytes=264 limits_alignment=8 limits_bounded=1',
+                        'SWEET METAL ABI end methods=22 metadata_only=1 instances_created=0 gpu_operations=0']
+                if m['exception_observer'].get('metal_resource_probe'):
+                    common+=['SWEET METAL RESOURCE END result=0 buffers=3 bytes=33201 span=65536 final_allocated=0 gpu_submit=0']
     plan={'target_serial':'BH905ND69G','pon_route':6,'max_cycles':1,'budget_seconds':480,'camera_required':mode=='gpu',
           'steps':[{'artifact_id':m['id'],'observe_seconds':observe,'stable_seconds':30,'return_seconds':120,'goals':common,
                     'return_evidence':'final-drain','on_pass':'stop','on_failure':'stop'}]}
@@ -160,7 +166,7 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--mode',choices=['private','owner','ready','ramcpu','gpu'],required=True)
     p.add_argument('--kernel',required=True);p.add_argument('--baselines',default=str(ROOT/'assets/baselines'));p.add_argument('--output',required=True)
-    p.add_argument('--version',type=int,choices=[725,726,727,728],default=725)
+    p.add_argument('--version',type=int,choices=[725,726,727,728,729],default=725)
     p.add_argument('--ram-package')
     p.add_argument('--owner-interval',type=int,choices=[90])
     a=p.parse_args();out=Path(a.output).resolve();assert out.is_relative_to(ROOT/'build') and not out.exists();out.mkdir(parents=True)

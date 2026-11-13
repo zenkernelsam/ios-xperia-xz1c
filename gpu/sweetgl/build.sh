@@ -42,6 +42,7 @@ for f in sweetgl sweet_drm eagl layerdump surface_probe surface_observe surface_
 done
 $CC -O2 -Wall -fvisibility=hidden @"$O/mesa-defines.rsp" $INC -I"$H" -c "$O/dispatch.c" -o "$O/dispatch.o"
 printf '_sweetgl_init\n_sweetgl_create\n_sweetgl_make_current\n_sweetgl_destroy\n_sweetgl_selftest\n' > "$O/exports.txt"
+printf '_sweetgl_metal_buffer_allocate\n_sweetgl_metal_buffer_release\n_sweetgl_metal_buffer_synchronize\n' >> "$O/exports.txt"
 xcrun -sdk iphoneos clang++ -arch arm64 -miphoneos-version-min=16.0 \
 	-dynamiclib -dead_strip -Wl,-undefined,dynamic_lookup -Wl,-not_for_dyld_shared_cache \
 	-install_name /usr/lib/sweetgl.dylib -exported_symbols_list "$O/exports.txt" \

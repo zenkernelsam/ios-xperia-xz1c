@@ -2,10 +2,22 @@
 import argparse,hashlib,json,subprocess
 from pathlib import Path
 root=Path(__file__).resolve().parents[2]
-p=argparse.ArgumentParser();p.add_argument('--output',required=True);a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--metal-resources');a=p.parse_args()
 out=Path(a.output).absolute();assert out.is_relative_to(root/'build') and not out.exists();out.mkdir(parents=True)
 source=root/'gpu/diagnostics/exception_observe.m';before=source.read_bytes()
 (out/'source.m').write_bytes(before)
+headers=['gpu/diagnostics/MetalRuntimeObserve.h']
+resource_manifest=None
+if a.metal_resources:
+    resources=Path(a.metal_resources).resolve();assert resources.is_relative_to(root/'build')
+    resource_manifest=json.loads((resources/'manifest.json').read_bytes())
+    assert resource_manifest['only_explicit_resource_factory'] and resource_manifest['system_Metal_plugin_not_advertised']
+    assert hashlib.sha256((resources/'MetalResources.dylib').read_bytes()).hexdigest()==resource_manifest['library_sha256']
+    headers+=['gpu/diagnostics/MetalResourceProbe.h','gpu/metal/MetalResources.h']
+source_files={str(source.relative_to(root)):hashlib.sha256(before).hexdigest()}
+for name in headers:
+    data=(root/name).read_bytes();(out/Path(name).name).write_bytes(data)
+    source_files[name]=hashlib.sha256(data).hexdigest()
 def run(argv,name):
     result=subprocess.run(list(map(str,argv)),capture_output=True,text=True)
     (out/(name+'.log')).write_text(result.stdout+result.stderr)
@@ -19,10 +31,14 @@ assert 'reason="line1 line2"' in test
 assert test.count('SWEET METAL uniform call=')==32 and 'renderer ABI, nil/device metadata' in test
 assert 'device_nil=1 device_class=nil new_buffer_method=0' in test
 assert 'device_nil=0 device_class=NUNITestDevice new_buffer_method=1' in test
+assert 'class=MetalABIHostFixture present=1 limits_bytes=264 limits_alignment=8 limits_bounded=1' in test
+assert 'owner=device_base selector=initWithAcceleratorPort: present=1 types_hex=' in test
+assert 'SWEET METAL ABI end methods=22 metadata_only=1 instances_created=0 gpu_operations=0' in test
 library=out/'exception_observe.dylib'
+extra=['-DSWEET_METAL_RESOURCE_PROBE=1',resources/'MetalResources.dylib'] if resource_manifest else []
 run(['xcrun','--sdk','iphoneos','clang','-arch','arm64','-miphoneos-version-min=16.0',
     '-fobjc-exceptions','-O2','-dynamiclib',source,'-framework','Foundation',
-    '-Wl,-not_for_dyld_shared_cache','-install_name','/dev/sglram/e','-o',library],'ios-compile')
+    '-Wl,-not_for_dyld_shared_cache','-install_name','/dev/sglram/e','-o',library,*extra],'ios-compile')
 run(['codesign','-f','-s','-',library],'codesign');run(['codesign','--verify',library],'verify-signature')
 assert source.read_bytes()==before
 manifest=dict(source='gpu/diagnostics/exception_observe.m',source_sha256=hashlib.sha256(before).hexdigest(),
@@ -31,5 +47,9 @@ manifest=dict(source='gpu/diagnostics/exception_observe.m',source_sha256=hashlib
     original_exception_behavior_preserved=True,target_process='AegirPoster',observations_max=16,device_operations=0)
 manifest.update(renderer_abi_and_device_observer_test_passed=True,renderer_observations_max=32,
     metadata_only_no_buffer_allocation=True,original_renderer_return_and_exception_preserved=True)
+manifest.update(source_files=source_files,runtime_Metal_ABI_methods=22,metadata_observer_no_device_calls_test_passed=True)
+if resource_manifest:manifest.update(metal_resource_probe=True,metal_resources=resource_manifest,
+    metadata_and_resource_probe_distinct=True,resource_probe_does_not_submit_GPU_commands=True)
+assert all(hashlib.sha256((root/name).read_bytes()).hexdigest()==digest for name,digest in source_files.items())
 (out/'manifest.json').write_bytes((json.dumps(manifest,indent=2)+'\n').encode())
 print(json.dumps(manifest,indent=2))

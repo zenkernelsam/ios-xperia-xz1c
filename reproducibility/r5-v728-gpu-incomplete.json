@@ -1,0 +1,28 @@
+{
+  "token": "1047952e6a2511c8",
+  "kernel_sha256": "335804584b9e593ffb1b9c153b6309cdd4b4602e8e0b980757aac82647faa3eb",
+  "image_sha256": "ce2fcf9d8e216a02f3423dcece54f9ee426c08c7ba2f616391b2fe797d135d25",
+  "raw_sha256": "7abf87cc39b90ebde30c7363b13a55acdc399ff6b415a0a3090da9dcb7fdac7e",
+  "original_results_sha256": "33414ecd7d98a8a0b4bd9fa5cef55352bba81997afaea5e434da7a6179254e27",
+  "original_controller_result": "PASS",
+  "return_complete": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "1047952e6a2511c8",
+    "checkpoint_bytes": 519644,
+    "log_bytes": 522671,
+    "log_sha256": "7abf87cc39b90ebde30c7363b13a55acdc399ff6b415a0a3090da9dcb7fdac7e",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      5,
+      56,
+      58
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 38.76600000006147,
+  "full_GPU_verification_passed": false,
+  "verification_error": "SWEET SURF CALLER OPEN id=6 width=60 height=60 bpr=240 raw=14400 offset=0 cover=16384 required=14400 status=0",
+  "original_results_unchanged": true
+}

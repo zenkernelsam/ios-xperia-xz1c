@@ -35,6 +35,18 @@ def load(folder,expected=None):
         if 'renderer_observations_max' in observer:
             assert observer['renderer_observations_max']==32 and observer['renderer_abi_and_device_observer_test_passed']
             assert observer['metadata_only_no_buffer_allocation'] and observer['original_renderer_return_and_exception_preserved']
+        if 'runtime_Metal_ABI_methods' in observer:
+            assert observer['runtime_Metal_ABI_methods']==22 and observer['metadata_observer_no_device_calls_test_passed']
+            sources={'gpu/diagnostics/exception_observe.m','gpu/diagnostics/MetalRuntimeObserve.h'}
+            if observer.get('metal_resource_probe'):sources|={'gpu/diagnostics/MetalResourceProbe.h','gpu/metal/MetalResources.h'}
+            assert set(observer['source_files'])==sources
+            assert observer['source_files'][observer['source']]==observer['source_sha256']
+    if 'metal_resources' in m:
+        names.add('MetalResources.dylib');resources=m['metal_resources']
+        assert m['exception_observer']['metal_resource_probe'] and m['exception_observer']['metal_resources']==resources
+        assert resources['only_explicit_resource_factory'] and resources['system_Metal_plugin_not_advertised']
+        assert m['files']['MetalResources.dylib']['sha256']==resources['library_sha256']
+        assert m['library_sha256']==resources['gles_library_sha256']
         assert m['files']['exception_observe.dylib']['sha256']==observer['library_sha256']
     assert set(m['files'])==names
     for name,info in m['files'].items():

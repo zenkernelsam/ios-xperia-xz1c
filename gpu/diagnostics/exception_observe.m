@@ -10,8 +10,30 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
+#include "MetalRuntimeObserve.h"
+#if defined(SWEET_METAL_RESOURCE_PROBE)
+#include "MetalResourceProbe.h"
+#endif
 
 #if defined(LILAC_EXCEPTION_TEST)
+struct MetalABIHostLimits { uint32_t fields[63];uint64_t maxBufferLength; };
+@protocol MetalABIHostProtocol <NSObject>
+- (id)newBufferWithLength:(NSUInteger)length options:(NSUInteger)options;
+@end
+@interface MetalABIHostFixture : NSObject <MetalABIHostProtocol> { struct MetalABIHostLimits _limits; }
+- (id)initWithAcceleratorPort:(uint32_t)port;
+- (void)initLimits;
+- (void)initFeatureQueries;
+- (NSUInteger)featureProfile;
+@end
+@implementation MetalABIHostFixture
+- (id)initWithAcceleratorPort:(uint32_t)port{(void)port;assert(!"metadata must not initialize a device");return nil;}
+- (void)initLimits{assert(!"metadata must not query device limits");}
+- (void)initFeatureQueries{assert(!"metadata must not initialize device features");}
+- (NSUInteger)featureProfile{assert(!"metadata must not query a device");return 0;}
+- (id)newBufferWithLength:(NSUInteger)length options:(NSUInteger)options
+{(void)length;(void)options;assert(!"metadata must not allocate a buffer");return nil;}
+@end
 static unsigned uniform_original_calls;
 @interface NUNITestDevice : NSObject
 - (id)newBufferWithLength:(NSUInteger)length options:(NSUInteger)options;
@@ -125,6 +147,15 @@ static void install_observer(void)
     previous=objc_setExceptionPreprocessor(observe_exception);
     diagnostic("SWEET EXCEPTION observer installed process=AegirPoster limit=16 original_chain=1");
     install_uniform_observer();
+#if defined(LILAC_EXCEPTION_TEST)
+    metal_runtime_observe([MetalABIHostFixture class],@protocol(MetalABIHostProtocol),NULL,NULL,NULL,diagnostic);
+#else
+    metal_runtime_observe(objc_lookUpClass("_MTLDevice"),objc_getProtocol("MTLDeviceSPI"),objc_getProtocol("MTLBuffer"),
+        objc_getProtocol("MTLCommandQueue"),objc_getProtocol("MTLCommandBuffer"),diagnostic);
+#if defined(SWEET_METAL_RESOURCE_PROBE)
+    (void)metal_resource_probe(diagnostic);
+#endif
+#endif
 }
 #if !defined(LILAC_EXCEPTION_TEST)
 __attribute__((constructor)) static void exception_load(void){install_observer();}

@@ -128,7 +128,8 @@ def verify_refresh(text, scope, report):
             previous_seed=seed;previous_pos=unchanged.end()
         end=only(r"copy refresh case -> PASS width="+str(width)+r" height="+str(height)+r" bpe="+str(bpe)+r" pitch="+str(pitch)+r" phase=complete uploads=4",scope)
         assert previous_pos<end.start()
-        assert re.search(r"SWEET SURF CALLER OPEN id="+ident+r" width="+str(width)+r" height="+str(height)+r" bpr="+str(pitch)+r" raw="+str(raw)+r" offset=0 cover=16384 required="+str(raw)+r" status=0",scope)
+        created=r"SWEET SURF CALLER OPEN id="+ident+r" width="+str(width)+r" height="+str(height)+r" bpr="+str(pitch)+r" raw="+str(raw)+r" offset=0 cover=16384 required="+str(raw)+r" status=0"
+        assert re.search(created,scope),created
         cases.append({"id":int(ident),"width":width,"height":height,"bpe":bpe,"pitch":pitch,"raw_bytes":raw,"frames":frames,"source_vm_release_verified":True})
     assert "copy refresh selftest -> PASS" in scope and "copy refresh selftest -> WRONG" not in text
     report.update(actual_dynamic_small_surface_refresh_verified=True,actual_unchanged_seed_skips_upload=True,

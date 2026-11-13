@@ -3,7 +3,7 @@ import argparse,hashlib,json,os,shutil,struct,subprocess,time,zlib
 from pathlib import Path
 root=Path(__file__).resolve().parents[2]
 p=argparse.ArgumentParser();p.add_argument('--output');p.add_argument('--frontend')
-p.add_argument('--presigned',action='store_true');p.add_argument('--observer');a=p.parse_args()
+p.add_argument('--presigned',action='store_true');p.add_argument('--observer');p.add_argument('--metal-resources');a=p.parse_args()
 out=Path(a.output).absolute() if a.output else root/'build'/('glram-'+time.strftime('%Y%m%d-%H%M%S'))
 assert out.is_relative_to(root/'build') and not out.exists();out.mkdir(parents=True)
 frontend=Path(a.frontend).absolute() if a.frontend else root/'build/sweetgl'
@@ -11,6 +11,7 @@ assert frontend.is_relative_to(root/'build')
 inputs={'sweetgl.dylib':frontend/'sweetgl.dylib','libglapi.0.dylib':frontend/'libglapi.0.dylib',
         'georead.dylib':frontend/'georead.dylib' if a.presigned else root/'build/geocompat/georead.dylib'}
 observer_manifest=None
+resource_manifest=None
 if a.observer:
     assert a.presigned, 'Observer trial preserves the tested frontend bytes'
     observer=Path(a.observer).resolve();assert observer.is_relative_to(root/'build')
@@ -20,6 +21,14 @@ if a.observer:
     file=observer/'exception_observe.dylib'
     assert hashlib.sha256(file.read_bytes()).hexdigest()==observer_manifest['library_sha256']
     inputs['exception_observe.dylib']=file
+if a.metal_resources:
+    assert a.presigned and observer_manifest and observer_manifest.get('metal_resource_probe')
+    resources=Path(a.metal_resources).resolve();assert resources.is_relative_to(root/'build')
+    resource_manifest=json.loads((resources/'manifest.json').read_bytes())
+    assert resource_manifest==observer_manifest['metal_resources']
+    assert resource_manifest['gles_library_sha256']==hashlib.sha256(inputs['sweetgl.dylib'].read_bytes()).hexdigest()
+    inputs['MetalResources.dylib']=resources/'MetalResources.dylib'
+    assert hashlib.sha256(inputs['MetalResources.dylib'].read_bytes()).hexdigest()==resource_manifest['library_sha256']
 def run(args):subprocess.run(list(map(str,args)),check=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 for name,path in inputs.items():
@@ -70,5 +79,6 @@ elif a.presigned:
 if observer_manifest:
     manifest['exception_observer']=observer_manifest
     manifest['observer_alias_e_verified']=True
+if resource_manifest:manifest['metal_resources']=resource_manifest
 (out/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n',encoding='utf-8')
 print(json.dumps({'output':str(out),**manifest},indent=2))

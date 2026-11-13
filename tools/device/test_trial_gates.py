@@ -68,6 +68,14 @@ class Gates(unittest.TestCase):
             with self.assertRaises(AssertionError):
                 prerequisites({'trial_mode': 'owner', 'kernel_sha256': 'kernel'}, self.args())
 
+    def test_native_resources_require_complete_matching_GLES_evidence(self):
+        record={'version':728,'trial_mode':'gpu','kernel_sha256':'kernel','metal_resources':{'gles_library_sha256':'new'}}
+        with patch('run_trial.verify',return_value={}),patch('run_trial.verify_clock'),patch('run_trial.require_same_library'):
+            with self.assertRaisesRegex(AssertionError,'full GLES stage'):prerequisites(record,self.args())
+        def stage(path,mode,*args):return {'ram_library_binding':{'library_sha256':'old'}} if path=='gles' else {}
+        with patch('run_trial.verify',side_effect=stage),patch('run_trial.verify_clock'),patch('run_trial.require_same_library'):
+            with self.assertRaises(AssertionError):prerequisites(record,self.args(gles_evidence='gles'))
+
     def test_positive_and_negative_nonzero_failures_return_after_live(self):
         for line in ('SWEET SG OWN END snap=1 result=1', 'SWEET SG OWN END snap=2 result=-2',
                      'SWEET SCATTER READY END result=3', 'sweetgl: caller selftest -> WRONG phase=map'):
@@ -92,7 +100,7 @@ class Gates(unittest.TestCase):
         verify_record({'version':726,'diagnostic_binding':binding})
         changed=json.loads(json.dumps(binding));changed['manifest_sha256']='0'*64
         with self.assertRaises(AssertionError):verify_record({'version':726,'diagnostic_binding':changed})
-        with self.assertRaises(AssertionError):configuration(729)
+        with self.assertRaises(AssertionError):configuration(730)
 
     def test_audit_includes_upstream_memory_descriptor(self):
         first=configuration(725);next_=configuration(726)

@@ -6,6 +6,8 @@
 
 ## 硬件与恢复
 
+- 当前v729/774b5efd（日志reader不持writer锁）已编译81源审计；private36.750、延后owner37.610、ready38.656秒完整自动回程均通过。v729+r5 RAM CPU token2007a5cad0effcd2运行中，禁止第二boot/COM/camera。r5 GLES/325810新增Metal backing接口，v728上GPU缺一条OPEN记录未作完整通过；新Metal对象/Shared buffer源已主机ASan/UBSan及iOS编译，实际资源/系统Metal/队列/着色器/渲染未完成，完整目标active。先完整v729五阶段，后资源探针。
+
 - r2 Aegir真实20次_device=nil、原生index ABI=Q；CPU/GPU原GLES和960000只读像素通过，308资源全撤销，自动PON06回程37.188/37.641秒。Sony健康fastboot，无worker/in-flight，完整UI仍缺时间/日期/壁纸。gpu/metal开始iOS16原生前端移植，limits64字段/264B已核对编译；还没有Metal device或render。多设备库存只验证Sony目标行及USB身份，所有操作仍-s BH905ND69G。
 
 - 只操作 Sony BH905ND69G，fastboot 必须带 -s BH905ND69G。

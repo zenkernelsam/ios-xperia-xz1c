@@ -6,7 +6,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 MEMORY_SOURCE = 'iokit/Kernel/IOMemoryDescriptor.cpp'
 MEMORY_BASE = '9963ef1a82cfe5e1bfca797c17c686c54eeea6e631ed349babfc80ac8c824379'
-PATCHES = {725: 'lilac-surface-diagnostics.patch', 726: 'lilac-surface-memref-diagnostics.patch',727:'lilac-surface-readonly.patch',728:'lilac-surface-region64.patch'}
+PATCHES = {725: 'lilac-surface-diagnostics.patch', 726: 'lilac-surface-memref-diagnostics.patch',727:'lilac-surface-readonly.patch',728:'lilac-surface-region64.patch',729:'lilac-console-snapshot.patch'}
 
 
 def sha(data):
@@ -51,11 +51,17 @@ def configuration(version):
         assert set(third['changed_sources'])==set(third['overrides'])-{MEMORY_SOURCE}
         expected.update(third['overrides'])
         changed=sorted(set(changed+third['changed_sources']))
-    if version==728:
-        assert manifest['base_version']==727 and manifest['before_sha256']==third['overrides'][manifest['source']]
-        assert manifest['overrides'][manifest['source']]==manifest['after_sha256']
-        assert all(h==third['overrides'][p] for p,h in manifest['overrides'].items() if p!=manifest['source'])
-        expected.update(manifest['overrides'])
+    if version>=728:
+        fourth=json.loads((ROOT/'reproducibility/surface-diag-v728.json').read_bytes())
+        assert fourth['base_version']==727 and fourth['before_sha256']==third['overrides'][fourth['source']]
+        assert fourth['overrides'][fourth['source']]==fourth['after_sha256']
+        assert all(h==third['overrides'][p] for p,h in fourth['overrides'].items() if p!=fourth['source'])
+        expected.update(fourth['overrides'])
+    if version==729:
+        assert manifest['base_version']==728 and manifest['logging_only'] and manifest['GPU_allocator_SCM_PON_RPC_VM_code_unchanged']
+        assert set(manifest['base_sources'])==set(manifest['changed_sources'])=={'bsd/dev/vermeer_debug.c','bsd/dev/vermeer_log_ring.h'}
+        assert all(manifest['overrides'][p]==h for p,h in fourth['overrides'].items())
+        expected.update(manifest['overrides']);changed=manifest['changed_sources']
     binding = {'version': version, 'manifest_sha256': sha(raw), 'patches': patch_hashes}
     return {'manifest': manifest, 'binding': binding, 'source_hashes': expected,
             'changed_sources': changed, 'stage': ROOT / f'build/surface-diag-v{version}'}

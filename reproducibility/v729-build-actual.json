@@ -1,0 +1,27 @@
+{
+  "version": 729,
+  "audited_sources": 81,
+  "source_binding": {
+    "version": 729,
+    "manifest_sha256": "6ea03617b94d53e01e593cdacb95c9a96332a7a507161d1bcf073fe0baf0a835",
+    "patches": {
+      "lilac-surface-diagnostics.patch": "0fb6ad634a14f90348c3d80fec71aaf4fd81a87f69c0653c176e2cc49f86fa30",
+      "lilac-surface-memref-diagnostics.patch": "4639e8b45625320c0bef6597b4a887788acb8f8f28c604fa3878869797942647",
+      "lilac-surface-readonly.patch": "10d850cdfe6f58240d565d0a056718b15fccfad38721efe7e065c8c44e8fbcfb",
+      "lilac-surface-region64.patch": "cabd07552283edf56a0bc43c84e210ae2dfddedd3e2346eb2406483238808382",
+      "lilac-console-snapshot.patch": "b3cbc1b91e1ea883c3a2883ff4aed64e5121e33102f17842fb2eea284ff7eb7b"
+    }
+  },
+  "actual_sources_match": true,
+  "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+  "diagnostic_markers_linked": true,
+  "build_return_code": 0,
+  "changed_sources_recompiled": [
+    "bsd/dev/vermeer_debug.c"
+  ],
+  "changed_headers": [
+    "bsd/dev/vermeer_log_ring.h"
+  ],
+  "prior_outputs_preserved": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/surface-diag-v729/prior-build-20261113-182145",
+  "kernel_bytes": 20648064
+}

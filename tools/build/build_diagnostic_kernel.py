@@ -13,7 +13,7 @@ from diagnostic_candidate import ROOT, audit, configuration, sha
 
 
 def main():
-    p = argparse.ArgumentParser(); p.add_argument('--version', type=int, choices=(725, 726,727,728), default=725)
+    p = argparse.ArgumentParser(); p.add_argument('--version', type=int, choices=(725, 726,727,728,729), default=725)
     args = p.parse_args(); config = configuration(args.version)
     proof = audit(args.version)
     paths = [str(p) for p in (Path('/usr/local/bin'), Path('/opt/homebrew/bin')) if p.is_dir()]
@@ -39,11 +39,12 @@ def main():
 
     for name in ('build.log', 'build.rc', f'kernel.v{args.version}.macho', 'build-proof.json'):
         preserve(stage / name)
-    folder = build / 'xnu.obj/DEVELOPMENT_ARM64_SWEET/iokit/DEVELOPMENT'
+    object_root=build/'xnu.obj/DEVELOPMENT_ARM64_SWEET'
     for path in config['changed_sources']:
         if Path(path).suffix not in ('.cpp','.c'):continue
         stem = Path(path).stem
-        for suffix in ('.cpo', '.cpd'): preserve(folder / (stem + suffix))
+        for suffix in ('.cpo', '.cpd'):
+            for file in object_root.rglob(stem+suffix):preserve(file,file.relative_to(object_root).as_posix().replace('/','--'))
     symbol = build / 'xnu.sym/kernel.development.sweet'
     assert symbol.is_file()
     shutil.copy2(symbol, saved / 'kernel.previous.macho')

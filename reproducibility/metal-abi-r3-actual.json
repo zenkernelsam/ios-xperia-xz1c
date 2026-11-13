@@ -1,0 +1,183 @@
+{
+  "token": "ad52dfe9f66e60a3",
+  "kernel_sha256": "335804584b9e593ffb1b9c153b6309cdd4b4602e8e0b980757aac82647faa3eb",
+  "image_sha256": "177ec3dc0ee3b4e837ba9d760cc78428d3b72f9268397797f391be237da72add",
+  "payload_audit": {
+    "image_sha256": "177ec3dc0ee3b4e837ba9d760cc78428d3b72f9268397797f391be237da72add",
+    "kernel_sha256": "335804584b9e593ffb1b9c153b6309cdd4b4602e8e0b980757aac82647faa3eb",
+    "blob_count": 8,
+    "complete_payload_reconstructed_from_compiled_kernel": true
+  },
+  "raw_sha256": "c5be750c9c86b5c47b53b5456752171473b5caee21206ccffcd90f876752dc0e",
+  "original_results_sha256": "f6fd7a6165788818685409f5384ccb93954e7978d391779de45aaf954b342fb9",
+  "original_controller_result": "PASS",
+  "runtime_Metal_ABI": {
+    "actual_Metal_base_and_protocols_verified": true,
+    "limits_bytes": 264,
+    "limits_alignment": 8,
+    "initializer_uses_uint32_accelerator_port": true,
+    "methods": [
+      {
+        "index": 0,
+        "owner": "device_base",
+        "selector": "init",
+        "types": "@16@0:8"
+      },
+      {
+        "index": 1,
+        "owner": "device_base",
+        "selector": "initWithAcceleratorPort:",
+        "types": "@20@0:8I16"
+      },
+      {
+        "index": 2,
+        "owner": "device_base",
+        "selector": "initLimits",
+        "types": "v16@0:8"
+      },
+      {
+        "index": 3,
+        "owner": "device_base",
+        "selector": "initFeatureQueries",
+        "types": "v16@0:8"
+      },
+      {
+        "index": 4,
+        "owner": "device_base",
+        "selector": "featureProfile",
+        "types": null
+      },
+      {
+        "index": 5,
+        "owner": "device",
+        "selector": "newBufferWithLength:options:",
+        "types": "@32@0:8Q16Q24"
+      },
+      {
+        "index": 6,
+        "owner": "device",
+        "selector": "newBufferWithBytes:length:options:",
+        "types": "@40@0:8r^v16Q24Q32"
+      },
+      {
+        "index": 7,
+        "owner": "device",
+        "selector": "newCommandQueue",
+        "types": "@16@0:8"
+      },
+      {
+        "index": 8,
+        "owner": "device",
+        "selector": "newLibraryWithData:error:",
+        "types": "@32@0:8@16^@24"
+      },
+      {
+        "index": 9,
+        "owner": "device",
+        "selector": "newTextureWithDescriptor:",
+        "types": "@24@0:8@16"
+      },
+      {
+        "index": 10,
+        "owner": "device",
+        "selector": "newRenderPipelineStateWithDescriptor:error:",
+        "types": "@32@0:8@16^@24"
+      },
+      {
+        "index": 11,
+        "owner": "device",
+        "selector": "newComputePipelineStateWithFunction:error:",
+        "types": "@32@0:8@16^@24"
+      },
+      {
+        "index": 12,
+        "owner": "buffer",
+        "selector": "contents",
+        "types": "^v16@0:8"
+      },
+      {
+        "index": 13,
+        "owner": "buffer",
+        "selector": "length",
+        "types": "Q16@0:8"
+      },
+      {
+        "index": 14,
+        "owner": "buffer",
+        "selector": "gpuAddress",
+        "types": "Q16@0:8"
+      },
+      {
+        "index": 15,
+        "owner": "queue",
+        "selector": "commandBuffer",
+        "types": "@16@0:8"
+      },
+      {
+        "index": 16,
+        "owner": "queue",
+        "selector": "commandBufferWithUnretainedReferences",
+        "types": "@16@0:8"
+      },
+      {
+        "index": 17,
+        "owner": "commands",
+        "selector": "commit",
+        "types": "v16@0:8"
+      },
+      {
+        "index": 18,
+        "owner": "commands",
+        "selector": "waitUntilCompleted",
+        "types": "v16@0:8"
+      },
+      {
+        "index": 19,
+        "owner": "commands",
+        "selector": "addCompletedHandler:",
+        "types": "v24@0:8@?16"
+      },
+      {
+        "index": 20,
+        "owner": "commands",
+        "selector": "status",
+        "types": "Q16@0:8"
+      },
+      {
+        "index": 21,
+        "owner": "commands",
+        "selector": "error",
+        "types": "@16@0:8"
+      }
+    ],
+    "complete_samples": 12,
+    "incomplete_samples": 4,
+    "base_featureProfile_implementation_missing": true,
+    "metadata_only": true,
+    "Metal_instances_created": 0,
+    "GPU_operations": 0,
+    "device_driver_and_rendering_not_yet_provided": true
+  },
+  "return_complete": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "ad52dfe9f66e60a3",
+    "checkpoint_bytes": 486888,
+    "log_bytes": 489899,
+    "log_sha256": "c5be750c9c86b5c47b53b5456752171473b5caee21206ccffcd90f876752dc0e",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      5,
+      56,
+      58
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 38.5,
+  "full_GPU_pixel_verification_passed": false,
+  "GPU_verification_error": "copy refresh case -> PASS width=22 height=27 bpe=4 pitch=88 phase=complete uploads=4",
+  "GPU_pixels": null,
+  "original_result_unchanged": true,
+  "Metal_device_and_rendering_not_yet_provided": true
+}

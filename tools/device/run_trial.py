@@ -28,6 +28,10 @@ def prerequisites(record, args):
         proof['ready']=verify(args.ready_evidence,'ready',kernel,version)
         proof['ramcpu']=verify(args.cpu_evidence,'ramcpu',kernel,version)
         require_same_library(record,proof['ramcpu'])
+        if 'metal_resources' in record:
+            assert getattr(args,'gles_evidence',None),'Native resource probe needs actual full GLES stage first'
+            proof['gles']=verify(args.gles_evidence,'gpu',kernel,version)
+            assert proof['gles']['ram_library_binding']['library_sha256']==record['metal_resources']['gles_library_sha256']
     return proof
 
 class DiagnosticPolicy(LogPolicy):
@@ -41,6 +45,7 @@ class DiagnosticPolicy(LogPolicy):
                 match=re.search(pattern,line)
                 if match and int(match[1])!=0:self.recoverable=label
             if 'SWEET GPU: scatter timeout ' in line:self.recoverable='GPU_SCATTER_SUBMIT_TIMEOUT'
+            if re.search(r'SWEET METAL RESOURCE END result=[1-9]',line):self.recoverable='METAL_RESOURCE_PROBE_FAILED'
     def decision(self,now):
         result=super().decision(now)
         if result.kind=='PASS' and getattr(self,'minimum',0)>now:return Decision('WAIT','DIAGNOSTIC_WINDOW')
@@ -81,6 +86,7 @@ def main():
     p=argparse.ArgumentParser();p.add_argument('--bundle',required=True);p.add_argument('--directory',required=True)
     p.add_argument('--private-evidence');p.add_argument('--owner-evidence');p.add_argument('--ready-evidence')
     p.add_argument('--cpu-evidence');p.add_argument('--rpm-evidence');p.add_argument('--live',action='store_true')
+    p.add_argument('--gles-evidence')
     a=p.parse_args();bundle=Path(a.bundle)
     record=json.loads((bundle/'artifacts.json').read_text())['artifacts'][0]
     Artifact(record).validate();mode=record['trial_mode'];kernel=record['kernel_sha256']
@@ -101,7 +107,9 @@ def main():
         remote="import sys,json,hashlib;from pathlib import Path;r=Path('Desktop/ios-xperia-xz1c');m=json.load(open(r/"+repr(relative)+"));b=m['frontend_build_binding'];s=b['source_files'];d=b['mesa_dependencies'];assert all(hashlib.sha256((r/'gpu/sweetgl'/p).read_bytes()).hexdigest()==h for p,h in s.items());assert all(hashlib.sha256((r/'build/mesa-ios'/p).read_bytes()).hexdigest()==h for p,h in d.items());print(json.dumps(b))"
         if 'exception_observer' in ram:
             observer=ram['exception_observer']
-            remote="import hashlib;from pathlib import Path;r=Path('Desktop/ios-xperia-xz1c');assert hashlib.sha256((r/"+repr(observer['source'])+").read_bytes()).hexdigest()=="+repr(observer['source_sha256'])+";"+remote
+            sources=observer.get('source_files',{observer['source']:observer['source_sha256']})
+            if 'metal_resources' in ram:sources={**sources,**ram['metal_resources']['source_files']}
+            remote="import hashlib;from pathlib import Path;r=Path('Desktop/ios-xperia-xz1c');s="+repr(sources)+";assert all(hashlib.sha256((r/p).read_bytes()).hexdigest()==h for p,h in s.items());"+remote
         check=subprocess.run(['ssh','-o','BatchMode=yes','-o','ConnectTimeout=8','ciscohe@192.168.68.54','python3 -c '+__import__('shlex').quote(remote)],capture_output=True,text=True,timeout=25)
         assert check.returncode==0,check.stdout+check.stderr
         assert json.loads(check.stdout)==wanted

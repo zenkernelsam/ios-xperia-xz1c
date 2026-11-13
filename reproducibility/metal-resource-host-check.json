@@ -1,0 +1,18 @@
+{
+  "source_files": {
+    "gpu/sweetgl/sweet_drm.c": "04f496de80e4a1b0d6e8d0dc4cf13c512c1873bc2b75cbfd66f3d15cd838371f",
+    "gpu/sweetgl/MetalBackingAPI.h": "738b917541359398b13f2218fabee9cd79bf8f06d0361e3985137c340ea6702b",
+    "gpu/sweetgl/MetalBackingRules.h": "49ee776d9d743c29cbff6af01621f53dbf888983d3a35c44c375275be3ea01f3",
+    "gpu/metal/MetalResources.h": "92053c557d4b78c9d07bf8ce51055cde14c5f3d600cd515a481ee54eef29b628",
+    "gpu/metal/MetalResources.mm": "ab3280cef40278afa60a4b70bd3f1b98b72676af1c36f9823c91d7c378ec45dd",
+    "gpu/metal/MetalBufferRules.h": "61bdc38d86fc30093088d24dc0ba8b2688c1fef483f88ef27ca2308e4f0ebd49",
+    "gpu/metal/MetalDeviceLimits16.h": "9cd19db55a9a3cd3e287cdff68b5acae300d8007512295f95f0e26e582c4f068",
+    "tools/build/test_metal_backing.c": "58e1224357eb16d5e0cda386609848edea9e351092c27c5aa1f69e0f29c879aa",
+    "tools/build/test_metal_resources.mm": "492ef21cb4a6d015926ed244940f570cf4e49813888ab1d5743c0a01d9ae560a"
+  },
+  "actual_bridge_bodies_host_asan_ubsan_passed": true,
+  "actual_Metal_object_bodies_host_asan_ubsan_passed": true,
+  "ios_arm64_compilation_passed": true,
+  "real_device_resource_and_rendering_acceptance_pending": true,
+  "device_operations": 0
+}

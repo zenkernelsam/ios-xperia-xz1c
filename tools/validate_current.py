@@ -6,7 +6,7 @@ lock=json.loads((root/'reproducibility/source-lock.json').read_text(encoding='ut
 assert hashlib.sha256((root/'xnu/lilac-current.patch').read_bytes()).hexdigest()==lock['xnu']['patch_sha256']
 assert hashlib.sha256((root/'gpu/mesa-lilac.patch').read_bytes()).hexdigest()==lock['mesa']['patch_sha256']
 assert hashlib.sha256((root/'tools/build/dxb-local.patch').read_bytes()).hexdigest()==lock['builder']['patch_sha256']
-for version,name in ((725,'lilac-surface-diagnostics.patch'),(726,'lilac-surface-memref-diagnostics.patch'),(727,'lilac-surface-readonly.patch'),(728,'lilac-surface-region64.patch')):
+for version,name in ((725,'lilac-surface-diagnostics.patch'),(726,'lilac-surface-memref-diagnostics.patch'),(727,'lilac-surface-readonly.patch'),(728,'lilac-surface-region64.patch'),(729,'lilac-console-snapshot.patch')):
     candidate=json.loads((root/f'reproducibility/surface-diag-v{version}.json').read_text())
     assert candidate['version']==version
     assert hashlib.sha256((root/'xnu'/name).read_bytes()).hexdigest()==candidate['patch_sha256']
@@ -22,7 +22,7 @@ for path,digest in devices['sources'].items():
 for path,digest in devices.get('shared_sources',{}).items():
     assert path in ('tools/diagnostic_candidate.py','tools/mkpayload.py','tools/ram_library.py')
     assert hashlib.sha256((root/path).read_bytes()).hexdigest()==digest,path
-for category in ('build_sources','gpu_sources'):
+for category in ('build_sources','gpu_sources','support_sources'):
     for path,digest in devices.get(category,{}).items():
         assert hashlib.sha256((root/path).read_bytes()).hexdigest()==digest,path
 py_files=[]
