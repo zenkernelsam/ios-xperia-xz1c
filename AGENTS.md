@@ -6,6 +6,8 @@
 
 ## 硬件与恢复
 
+- 最新v729/774b5efd+r7/db47937b和Metal/a2b11a46已完成原生队列r3实机验收：20完整/0缺项、80次chunk提交/等待、660480B全区域字节/保护、FIFO和回调一致，38.454秒完整自动PON06返回；原GLES/960000只读像素及503资源全撤销仍通过。Sony健康fastboot，无worker/in-flight。原队列r2被32次kernel日志上限影响，独立fence未过保留。system Metal/AIR/texture/render及完整UI/其他外设仍未完成，目标active。
+
 - v729/774b5efd+r5/325810已完成private/owner/ready/r5 RAM CPU/GPU及新Metal资源RAM CPU/GPU实际单发和完整自动PON06返回。Metal资源12组×3实际buffer（432/16384/16385B）的CPU字节/原device释放后持有/最终归零通过；资源GPU38.657秒，原GLES/960000只读像素/340资源全撤销仍通过。Sony健康fastboot，无worker/in-flight。原v728缺记录失败保持；system Metal/队列/AIR/渲染及完整UI/声音/无线等仍未完成，目标active。
 
 - r2 Aegir真实20次_device=nil、原生index ABI=Q；CPU/GPU原GLES和960000只读像素通过，308资源全撤销，自动PON06回程37.188/37.641秒。Sony健康fastboot，无worker/in-flight，完整UI仍缺时间/日期/壁纸。gpu/metal开始iOS16原生前端移植，limits64字段/264B已核对编译；还没有Metal device或render。多设备库存只验证Sony目标行及USB身份，所有操作仍-s BH905ND69G。

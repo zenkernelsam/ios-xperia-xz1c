@@ -13,6 +13,7 @@ extern "C" int sweetgl_metal_buffer_allocate(uint64_t bytes,SweetMetalBacking *o
 static void *resource_pointer;
 extern "C" int sweetgl_metal_buffer_release(uint32_t handle){assert(handle && resource_pointer);free(resource_pointer);resource_pointer=NULL;++released;return 0;}
 extern "C" int sweetgl_metal_buffer_synchronize(uint32_t handle){assert(handle);++syncs;return fail_sync?-EIO:0;}
+extern "C" int sweetgl_metal_buffer_blit(uint32_t,uint32_t,uint64_t,uint64_t,uint64_t,uint32_t,uint32_t *){assert(!"resource test must not submit");return -EINVAL;}
 int main(void){@autoreleasepool{
     NSError *error=nil;id<MTLDevice> device=SweetMTLCreateDevice(&error);assert(device && !error && device.currentAllocatedSize==0);
     const uint64_t invalid[]={0x20,0x10,0x400,2,UINT64_MAX};

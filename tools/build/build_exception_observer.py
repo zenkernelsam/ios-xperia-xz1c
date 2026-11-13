@@ -14,6 +14,7 @@ if a.metal_resources:
     assert resource_manifest['only_explicit_resource_factory'] and resource_manifest['system_Metal_plugin_not_advertised']
     assert hashlib.sha256((resources/'MetalResources.dylib').read_bytes()).hexdigest()==resource_manifest['library_sha256']
     headers+=['gpu/diagnostics/MetalResourceProbe.h','gpu/metal/MetalResources.h']
+    if resource_manifest.get('native_blit_command_queue'):headers+=['gpu/diagnostics/MetalQueueProbe.h']
 source_files={str(source.relative_to(root)):hashlib.sha256(before).hexdigest()}
 for name in headers:
     data=(root/name).read_bytes();(out/Path(name).name).write_bytes(data)
@@ -36,6 +37,7 @@ assert 'owner=device_base selector=initWithAcceleratorPort: present=1 types_hex=
 assert 'SWEET METAL ABI end methods=22 metadata_only=1 instances_created=0 gpu_operations=0' in test
 library=out/'exception_observe.dylib'
 extra=['-DSWEET_METAL_RESOURCE_PROBE=1',resources/'MetalResources.dylib'] if resource_manifest else []
+if resource_manifest and resource_manifest.get('native_blit_command_queue'):extra+=['-DSWEET_METAL_QUEUE_PROBE=1']
 run(['xcrun','--sdk','iphoneos','clang','-arch','arm64','-miphoneos-version-min=16.0',
     '-fobjc-exceptions','-O2','-dynamiclib',source,'-framework','Foundation',
     '-Wl,-not_for_dyld_shared_cache','-install_name','/dev/sglram/e','-o',library,*extra],'ios-compile')
@@ -50,6 +52,8 @@ manifest.update(renderer_abi_and_device_observer_test_passed=True,renderer_obser
 manifest.update(source_files=source_files,runtime_Metal_ABI_methods=22,metadata_observer_no_device_calls_test_passed=True)
 if resource_manifest:manifest.update(metal_resource_probe=True,metal_resources=resource_manifest,
     metadata_and_resource_probe_distinct=True,resource_probe_does_not_submit_GPU_commands=True)
+if resource_manifest and resource_manifest.get('native_blit_command_queue'):
+    manifest.update(metal_queue_probe=True,queue_probe_submits_actual_GPU_commands=True)
 assert all(hashlib.sha256((root/name).read_bytes()).hexdigest()==digest for name,digest in source_files.items())
 (out/'manifest.json').write_bytes((json.dumps(manifest,indent=2)+'\n').encode())
 print(json.dumps(manifest,indent=2))

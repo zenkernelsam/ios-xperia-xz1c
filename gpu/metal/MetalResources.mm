@@ -4,6 +4,7 @@
 #include "MetalDeviceLimits16.h"
 #include "MetalBufferRules.h"
 #include "../sweetgl/MetalBackingRules.h"
+#include "../sweetgl/MetalBlitPlan.h"
 #include <objc/runtime.h>
 #include <string.h>
 #include <errno.h>
@@ -26,9 +27,14 @@ extern "C" bool sweetgl_init(void);
 - (instancetype)initBackend;
 @end
 @interface SweetMTLBuffer : NSObject <MTLBuffer> {
-    SweetMTLDevice *_owner;SweetMetalBacking _backing;MTLResourceOptions _options;NSString *_label;
+@public SweetMTLDevice *_owner;SweetMetalBacking _backing;MTLResourceOptions _options;NSString *_label;
 }
 - (instancetype)initWithOwner:(SweetMTLDevice *)owner length:(NSUInteger)length options:(MTLResourceOptions)options;
+@end
+@class SweetMTLCommandQueue;
+@interface SweetMTLDevice (CommandQueues)
+- (id<MTLCommandQueue>)newCommandQueue;
+- (id<MTLCommandQueue>)newCommandQueueWithMaxCommandBufferCount:(NSUInteger)count;
 @end
 
 static bool native_base_available(void)
@@ -131,6 +137,14 @@ static bool native_base_available(void)
 - (void)setLabel:(NSString *)label{NSString *next=[label copy];[_label release];_label=next;}
 @end
 
+#include "MetalCommandQueue.inc"
+
+@implementation SweetMTLDevice (CommandQueues)
+- (id<MTLCommandQueue>)newCommandQueue{return [[SweetMTLCommandQueue alloc] initWithDevice:self];}
+- (id<MTLCommandQueue>)newCommandQueueWithMaxCommandBufferCount:(NSUInteger)count
+{return [[SweetMTLCommandQueue alloc] initWithDevice:self maximumBuffers:count];}
+@end
+
 id<MTLDevice> SweetMTLCreateDevice(NSError **error)
 {
     if(error)*error=nil;
@@ -138,4 +152,14 @@ id<MTLDevice> SweetMTLCreateDevice(NSError **error)
     if(!device && error)*error=[NSError errorWithDomain:MTLCommandBufferErrorDomain code:MTLCommandBufferErrorInvalidResource
         userInfo:@{NSLocalizedDescriptionKey:@"Native iOS16 Metal ABI or SweetScatter backend unavailable"}];
     return device;
+}
+
+BOOL SweetMTLCommandResult(id<MTLCommandBuffer> commands,uint32_t *sequence,uint32_t *operations)
+{
+    if(sequence)*sequence=0;if(operations)*operations=0;
+    if(!sequence || !operations || ![commands isKindOfClass:[SweetMTLCommandBuffer class]] ||
+        commands.status!=MTLCommandBufferStatusCompleted || commands.error)return NO;
+    auto buffer=(SweetMTLCommandBuffer *)commands;
+    *sequence=[buffer sweetCompletedSequence];*operations=(uint32_t)[buffer sweetGPUOperations];
+    return *sequence && *operations;
 }

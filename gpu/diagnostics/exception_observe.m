@@ -14,6 +14,9 @@
 #if defined(SWEET_METAL_RESOURCE_PROBE)
 #include "MetalResourceProbe.h"
 #endif
+#if defined(SWEET_METAL_QUEUE_PROBE)
+#include "MetalQueueProbe.h"
+#endif
 
 #if defined(LILAC_EXCEPTION_TEST)
 struct MetalABIHostLimits { uint32_t fields[63];uint64_t maxBufferLength; };
@@ -154,6 +157,9 @@ static void install_observer(void)
         objc_getProtocol("MTLCommandQueue"),objc_getProtocol("MTLCommandBuffer"),diagnostic);
 #if defined(SWEET_METAL_RESOURCE_PROBE)
     (void)metal_resource_probe(diagnostic);
+#endif
+#if defined(SWEET_METAL_QUEUE_PROBE)
+    (void)metal_queue_probe(diagnostic);
 #endif
 #endif
 }

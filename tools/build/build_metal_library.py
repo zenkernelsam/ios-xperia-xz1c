@@ -8,7 +8,8 @@ package=Path(args.ram_package).resolve();manifest=json.loads((package/'manifest.
 sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
 assert sha(gles)==manifest['library_sha256']
 files=['gpu/metal/MetalResources.mm','gpu/metal/MetalResources.h','gpu/metal/MetalBufferRules.h',
-       'gpu/metal/MetalDeviceLimits16.h','gpu/sweetgl/MetalBackingAPI.h','gpu/sweetgl/MetalBackingRules.h']
+       'gpu/metal/MetalDeviceLimits16.h','gpu/sweetgl/MetalBackingAPI.h','gpu/sweetgl/MetalBackingRules.h',
+       'gpu/sweetgl/MetalBlitPlan.h','gpu/metal/MetalCommandQueue.inc','gpu/metal/MetalQueueState.h']
 sources={p:sha(root/p) for p in files}
 def run(command,name):
     result=subprocess.run(list(map(str,command)),capture_output=True,text=True)
@@ -23,4 +24,6 @@ assert all(sha(root/p)==digest for p,digest in sources.items()) and sha(gles)==m
 report=dict(source_files=sources,library_file='MetalResources.dylib',library_sha256=sha(library),library_bytes=library.stat().st_size,
     gles_library_sha256=sha(gles),only_explicit_resource_factory=True,system_Metal_plugin_not_advertised=True,
     resource_device_acceptance_pending=True,device_operations=0)
+report.update(native_blit_command_queue=True,hardware_queue_blit_acceptance_pending=True,
+    system_Metal_shader_rendering_still_pending=True,blit_transport_evidence_revision=1)
 (out/'manifest.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print(json.dumps(report))

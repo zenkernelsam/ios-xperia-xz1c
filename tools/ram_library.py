@@ -39,6 +39,9 @@ def load(folder,expected=None):
             assert observer['runtime_Metal_ABI_methods']==22 and observer['metadata_observer_no_device_calls_test_passed']
             sources={'gpu/diagnostics/exception_observe.m','gpu/diagnostics/MetalRuntimeObserve.h'}
             if observer.get('metal_resource_probe'):sources|={'gpu/diagnostics/MetalResourceProbe.h','gpu/metal/MetalResources.h'}
+            if observer.get('metal_queue_probe'):
+                sources.add('gpu/diagnostics/MetalQueueProbe.h')
+                assert observer['queue_probe_submits_actual_GPU_commands'] and observer['metal_resources']['native_blit_command_queue']
             assert set(observer['source_files'])==sources
             assert observer['source_files'][observer['source']]==observer['source_sha256']
     if 'metal_resources' in m:

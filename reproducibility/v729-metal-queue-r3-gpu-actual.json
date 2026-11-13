@@ -1,0 +1,4925 @@
+{
+  "version": 729,
+  "mode": "gpu",
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-metal-queue-r3-gpu-20261113",
+  "token": "23538081cbe0c6c2",
+  "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+  "image_sha256": "6d726bc384ae8872ec68783c351758c4f9ec81c2e81d01bb440d0d1954cd9733",
+  "log_sha256": "45a8dc484b7b95b376ab2cd824e3db6e85570f3b985b83a36b45cbbaadf57800",
+  "return_complete": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "23538081cbe0c6c2",
+    "checkpoint_bytes": 612684,
+    "log_bytes": 615937,
+    "log_sha256": "45a8dc484b7b95b376ab2cd824e3db6e85570f3b985b83a36b45cbbaadf57800",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      5,
+      58,
+      60
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 38.45400000002701,
+  "single_download_boot_verified": true,
+  "actual_stage_verified": true,
+  "complete_panel_and_peripheral_goal_not_achieved": true,
+  "payload_audit": {
+    "image_sha256": "6d726bc384ae8872ec68783c351758c4f9ec81c2e81d01bb440d0d1954cd9733",
+    "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+    "blob_count": 8,
+    "complete_payload_reconstructed_from_compiled_kernel": true
+  },
+  "pixels_and_retirement": {
+    "canvas": [
+      750,
+      1624
+    ],
+    "triangle_checked": 1215626,
+    "texture_checked": 1218000,
+    "surface_id": 3,
+    "gem_handle": 33,
+    "surface_pixels_each_direction": 1218000,
+    "sampler_hash": "ed689397267e7cf5",
+    "writer_bgra_hash": "93a9cad43faf6b45",
+    "mismatches": 0,
+    "final_close": {
+      "owner": 1,
+      "live": 0,
+      "allocated": 503,
+      "released": 503,
+      "unmapped": 503,
+      "orphaned": 0,
+      "active": 0,
+      "root_visible": 0,
+      "mapper": 1
+    },
+    "caller_surface_id": 4,
+    "final_caller_close": {
+      "id": 143,
+      "bytes": 32768,
+      "status": 0,
+      "released": 1,
+      "active": 0,
+      "outstanding": 0,
+      "retained": 0
+    },
+    "caller_pixels_each_check": 1218000,
+    "actual_dynamic_small_surface_refresh_verified": true,
+    "actual_unchanged_seed_skips_upload": true,
+    "actual_copy_after_original_vm_release_verified": true,
+    "refresh_cases": [
+      {
+        "id": 5,
+        "width": 256,
+        "height": 1,
+        "bpe": 2,
+        "pitch": 672,
+        "raw_bytes": 512,
+        "frames": [
+          {
+            "phase": 0,
+            "seed": 1,
+            "uploads": 1,
+            "pixels": 256,
+            "mismatches": 0,
+            "hash": "f8ad2bc4aefbfd25",
+            "unchanged_skip_verified": true
+          },
+          {
+            "phase": 1,
+            "seed": 2,
+            "uploads": 2,
+            "pixels": 256,
+            "mismatches": 0,
+            "hash": "3942456d1be8bf25",
+            "unchanged_skip_verified": true
+          },
+          {
+            "phase": 2,
+            "seed": 3,
+            "uploads": 3,
+            "pixels": 256,
+            "mismatches": 0,
+            "hash": "3811be48f0582b25",
+            "unchanged_skip_verified": true
+          },
+          {
+            "phase": 3,
+            "seed": 4,
+            "uploads": 4,
+            "pixels": 256,
+            "mismatches": 0,
+            "hash": "b23336306436d125",
+            "unchanged_skip_verified": true
+          }
+        ],
+        "source_vm_release_verified": true
+      },
+      {
+        "id": 6,
+        "width": 60,
+        "height": 60,
+        "bpe": 4,
+        "pitch": 240,
+        "raw_bytes": 14400,
+        "frames": [
+          {
+            "phase": 0,
+            "seed": 1,
+            "uploads": 1,
+            "pixels": 3600,
+            "mismatches": 0,
+            "hash": "86e736f80eeb7a55",
+            "unchanged_skip_verified": true
+          },
+          {
+            "phase": 1,
+            "seed": 2,
+            "uploads": 2,
+            "pixels": 3600,
+            "mismatches": 0,
+            "hash": "40948c66da6f12b5",
+            "unchanged_skip_verified": true
+          },
+          {
+            "phase": 2,
+            "seed": 3,
+            "uploads": 3,
+            "pixels": 3600,
+            "mismatches": 0,
+            "hash": "491772a7d5a1ccd5",
+            "unchanged_skip_verified": true
+          },
+          {
+            "phase": 3,
+            "seed": 4,
+            "uploads": 4,
+            "pixels": 3600,
+            "mismatches": 0,
+            "hash": "dc97e3fa82d44375",
+            "unchanged_skip_verified": true
+          }
+        ],
+        "source_vm_release_verified": true
+      },
+      {
+        "id": 7,
+        "width": 22,
+        "height": 27,
+        "bpe": 4,
+        "pitch": 88,
+        "raw_bytes": 2376,
+        "frames": [
+          {
+            "phase": 0,
+            "seed": 1,
+            "uploads": 1,
+            "pixels": 594,
+            "mismatches": 0,
+            "hash": "3e327c3aaeb85dd7",
+            "unchanged_skip_verified": true
+          },
+          {
+            "phase": 1,
+            "seed": 2,
+            "uploads": 2,
+            "pixels": 594,
+            "mismatches": 0,
+            "hash": "87a6f48bd98fc37b",
+            "unchanged_skip_verified": true
+          },
+          {
+            "phase": 2,
+            "seed": 3,
+            "uploads": 3,
+            "pixels": 594,
+            "mismatches": 0,
+            "hash": "212add72905681fb",
+            "unchanged_skip_verified": true
+          },
+          {
+            "phase": 3,
+            "seed": 4,
+            "uploads": 4,
+            "pixels": 594,
+            "mismatches": 0,
+            "hash": "5dfcd6891feaa65f",
+            "unchanged_skip_verified": true
+          }
+        ],
+        "source_vm_release_verified": true
+      }
+    ],
+    "shared_production_snapshot_and_gl_transfer_core": true,
+    "panel_ui_colour_fps_not_verified": true,
+    "actual_owned_texture_storage_reuse_verified": true,
+    "actual_different_context_same_texture_name_verified": true,
+    "dynamic_storage_counts": [
+      {
+        "surface_id": 5,
+        "context": 5,
+        "images": 1,
+        "subimages": 3
+      },
+      {
+        "surface_id": 6,
+        "context": 5,
+        "images": 1,
+        "subimages": 3
+      },
+      {
+        "surface_id": 7,
+        "context": 5,
+        "images": 1,
+        "subimages": 3
+      }
+    ],
+    "texture_image_definitions": 3,
+    "texture_subimage_updates": 9,
+    "context_switch_steps": [
+      {
+        "step": 0,
+        "context": 6,
+        "texture": 1,
+        "images": 1,
+        "subimages": 0,
+        "checked": 64,
+        "mismatches": 0,
+        "hash": "0b706aed25dc7045"
+      },
+      {
+        "step": 1,
+        "context": 7,
+        "texture": 1,
+        "images": 1,
+        "subimages": 0,
+        "checked": 64,
+        "mismatches": 0,
+        "hash": "0b706aed25dc7045"
+      },
+      {
+        "step": 2,
+        "context": 6,
+        "texture": 1,
+        "images": 1,
+        "subimages": 0,
+        "checked": 64,
+        "mismatches": 0,
+        "hash": "0b706aed25dc7045"
+      },
+      {
+        "step": 3,
+        "context": 6,
+        "texture": 1,
+        "images": 1,
+        "subimages": 1,
+        "checked": 64,
+        "mismatches": 0,
+        "hash": "91cda4632b8803e5"
+      }
+    ],
+    "physical_allocation_reduction_or_ui_fps_not_inferred": true,
+    "ca_all_context_and_thread_state_not_verified": true,
+    "actual_production_gli_context_state_pixels_verified": true,
+    "bridge_state_steps": [
+      {
+        "step": 0,
+        "context": 8,
+        "texture": 1,
+        "program": 3,
+        "width": 7,
+        "height": 5,
+        "definitions": 1,
+        "updates": 0,
+        "pixels": 64,
+        "mismatches": 0,
+        "hash": "002733f297703395"
+      },
+      {
+        "step": 1,
+        "context": 9,
+        "texture": 1,
+        "program": 3,
+        "width": 9,
+        "height": 3,
+        "definitions": 1,
+        "updates": 0,
+        "pixels": 64,
+        "mismatches": 0,
+        "hash": "00aa247ecc35b495"
+      },
+      {
+        "step": 2,
+        "context": 8,
+        "texture": 1,
+        "program": 3,
+        "width": 7,
+        "height": 5,
+        "definitions": 1,
+        "updates": 0,
+        "pixels": 64,
+        "mismatches": 0,
+        "hash": "002733f297703395"
+      },
+      {
+        "step": 3,
+        "context": 9,
+        "texture": 1,
+        "program": 3,
+        "width": 9,
+        "height": 3,
+        "definitions": 1,
+        "updates": 0,
+        "pixels": 64,
+        "mismatches": 0,
+        "hash": "00aa247ecc35b495"
+      },
+      {
+        "step": 4,
+        "context": 8,
+        "texture": 1,
+        "program": 3,
+        "width": 7,
+        "height": 5,
+        "definitions": 1,
+        "updates": 1,
+        "pixels": 64,
+        "mismatches": 0,
+        "hash": "7fc98facff2ed4e5"
+      },
+      {
+        "step": 5,
+        "context": 9,
+        "texture": 1,
+        "program": 3,
+        "width": 9,
+        "height": 3,
+        "definitions": 1,
+        "updates": 1,
+        "pixels": 64,
+        "mismatches": 0,
+        "hash": "ee4fe7c9e2ec23b5"
+      }
+    ],
+    "actual_rectangle_program_and_argb_swizzle_isolated": true,
+    "actual_distinct_surface_copy_registry_isolated": true,
+    "bridge_pixels_checked": 384,
+    "live_simultaneous_thread_rendering_not_verified": true,
+    "shared_eagl_contexts_and_shader_name_reuse_not_verified": true,
+    "actual_program_lifecycle_and_relinks_verified": true,
+    "actual_same_shader_and_program_160_relinks": true,
+    "actual_sampler_scalar_and_vector_mask_refresh_verified": true,
+    "actual_staged_source_keeps_compiled_shader_verified": true,
+    "actual_deferred_shader_and_program_delete_draws_verified": true,
+    "actual_recycled_shader_and_program_names_verified": true,
+    "actual_failed_link_bridge_cache_retention_verified": true,
+    "failed_link_gpu_rendering_not_verified": true,
+    "actual_fresh_private_mesa_name_reuse_enabled": true,
+    "actual_native_retirement_before_reuse_verified": true,
+    "lifecycle_draws": 320,
+    "lifecycle_pixels": 20480,
+    "lifecycle_extra_draw_pixels": 256,
+    "lifecycle_hash": "193671f95edc4725",
+    "lifecycle_checkpoints": [
+      {
+        "cycle": 0,
+        "context": 10,
+        "shader": 2,
+        "program": 3,
+        "draws": 2,
+        "pixels": 128,
+        "hash": "4c2fa040a9c7193d"
+      },
+      {
+        "cycle": 16,
+        "context": 10,
+        "shader": 2,
+        "program": 3,
+        "draws": 34,
+        "pixels": 2176,
+        "hash": "f427926f4076833d"
+      },
+      {
+        "cycle": 32,
+        "context": 10,
+        "shader": 2,
+        "program": 3,
+        "draws": 66,
+        "pixels": 4224,
+        "hash": "12259d7ecc25ed3d"
+      },
+      {
+        "cycle": 48,
+        "context": 10,
+        "shader": 2,
+        "program": 3,
+        "draws": 98,
+        "pixels": 6272,
+        "hash": "2606dbef4cd5573d"
+      },
+      {
+        "cycle": 64,
+        "context": 10,
+        "shader": 2,
+        "program": 3,
+        "draws": 130,
+        "pixels": 8320,
+        "hash": "8ce86840c284c13d"
+      },
+      {
+        "cycle": 80,
+        "context": 10,
+        "shader": 2,
+        "program": 3,
+        "draws": 162,
+        "pixels": 10368,
+        "hash": "81275cf32d342b3d"
+      },
+      {
+        "cycle": 96,
+        "context": 10,
+        "shader": 2,
+        "program": 3,
+        "draws": 194,
+        "pixels": 12416,
+        "hash": "1a60d4868ce3953d"
+      },
+      {
+        "cycle": 112,
+        "context": 10,
+        "shader": 2,
+        "program": 3,
+        "draws": 226,
+        "pixels": 14464,
+        "hash": "4d71e97ae192ff3d"
+      },
+      {
+        "cycle": 128,
+        "context": 10,
+        "shader": 2,
+        "program": 3,
+        "draws": 258,
+        "pixels": 16512,
+        "hash": "ec77b6502b42693d"
+      },
+      {
+        "cycle": 144,
+        "context": 10,
+        "shader": 2,
+        "program": 3,
+        "draws": 290,
+        "pixels": 18560,
+        "hash": "a6cf558669f1d33d"
+      },
+      {
+        "cycle": 159,
+        "context": 10,
+        "shader": 2,
+        "program": 3,
+        "draws": 320,
+        "pixels": 20480,
+        "hash": "193671f95edc4725"
+      }
+    ],
+    "shader_and_program_table_peaks": 1,
+    "all_object_limits_and_sampler_arrays_not_verified": true,
+    "hardware_frame_rate_not_inferred": true,
+    "audio_wireless_not_verified": true
+  },
+  "readonly_pixels": {
+    "production_bind_surface_verified": true,
+    "cases": [
+      {
+        "surface_id": 15,
+        "offset": 32,
+        "path": "copy",
+        "pixels_per_gpu_check": 160000,
+        "cpu_view_readonly": true,
+        "write_lock_refused": true,
+        "source_vm_removed_with_surface_held": true,
+        "cpu_bgra_hash": "ba036515759edb25",
+        "gpu_rgba_hash": "464ac79f7912f745",
+        "mismatches": 0
+      },
+      {
+        "surface_id": 16,
+        "offset": 64,
+        "path": "shared",
+        "pixels_per_gpu_check": 160000,
+        "cpu_view_readonly": true,
+        "write_lock_refused": true,
+        "source_vm_removed_with_surface_held": true,
+        "cpu_bgra_hash": "ba036515759edb25",
+        "gpu_rgba_hash": "464ac79f7912f745",
+        "mismatches": 0
+      },
+      {
+        "surface_id": 17,
+        "offset": 128,
+        "path": "shared",
+        "pixels_per_gpu_check": 160000,
+        "cpu_view_readonly": true,
+        "write_lock_refused": true,
+        "source_vm_removed_with_surface_held": true,
+        "cpu_bgra_hash": "ba036515759edb25",
+        "gpu_rgba_hash": "464ac79f7912f745",
+        "mismatches": 0
+      }
+    ],
+    "total_gpu_pixels": 960000,
+    "unaligned_source_uses_seed_refresh_upload": true,
+    "aligned_source_uses_direct_shared_pages": true,
+    "writes_into_original_readonly_pages_not_attempted": true,
+    "full_panel_and_peripheral_goal_not_complete": true
+  },
+  "exceptions": {
+    "observer_load_count": 20,
+    "records": [
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x101165210",
+            "image_base": "0x101160000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x18a9a5c28",
+            "image_base": "0x18a990000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1918583fc",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x191854df8",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1916d36e4",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x1f922eb28",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x1f922eb74",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x1f922ff3c",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x1f92308b0",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x1f92247b4",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x1cc00e1d4",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x1cc00d558",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x1cc00ca6c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x1cbfebad0",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x1cc00c73c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x1010c9730",
+            "image_base": "0x1010b8000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x100761210",
+            "image_base": "0x10075c000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x18a9a5c28",
+            "image_base": "0x18a990000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1918583fc",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x191854df8",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1916d36e4",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x1f922eb28",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x1f922eb74",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x1f922ff3c",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x1f92308b0",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x1f92247b4",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x1cc00e1d4",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x1cc00d558",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x1cc00ca6c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x1cbfebad0",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x1cc00c73c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x1006c5730",
+            "image_base": "0x1006b4000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x1004d9210",
+            "image_base": "0x1004d4000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x18a9a5c28",
+            "image_base": "0x18a990000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1918583fc",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x191854df8",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1916d36e4",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x1f922eb28",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x1f922eb74",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x1f922ff3c",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x1f92308b0",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x1f92247b4",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x1cc00e1d4",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x1cc00d558",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x1cc00ca6c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x1cbfebad0",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x1cc00c73c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x10043d730",
+            "image_base": "0x10042c000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x100df1210",
+            "image_base": "0x100dec000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x18a9a5c28",
+            "image_base": "0x18a990000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1918583fc",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x191854df8",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1916d36e4",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x1f922eb28",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x1f922eb74",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x1f922ff3c",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x1f92308b0",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x1f92247b4",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x1cc00e1d4",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x1cc00d558",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x1cc00ca6c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x1cbfebad0",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x1cc00c73c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x100d55730",
+            "image_base": "0x100d44000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x101371210",
+            "image_base": "0x10136c000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x18a9a5c28",
+            "image_base": "0x18a990000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1918583fc",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x191854df8",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1916d36e4",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x1f922eb28",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x1f922eb74",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x1f922ff3c",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x1f92308b0",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x1f92247b4",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x1cc00e1d4",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x1cc00d558",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x1cc00ca6c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x1cbfebad0",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x1cc00c73c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x1012d5730",
+            "image_base": "0x1012c4000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x100d71210",
+            "image_base": "0x100d6c000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x18a9a5c28",
+            "image_base": "0x18a990000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1918583fc",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x191854df8",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1916d36e4",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x1f922eb28",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x1f922eb74",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x1f922ff3c",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x1f92308b0",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x1f92247b4",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x1cc00e1d4",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x1cc00d558",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x1cc00ca6c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x1cbfebad0",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x1cc00c73c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x100cd5730",
+            "image_base": "0x100cc4000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x100dc1210",
+            "image_base": "0x100dbc000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x18a9a5c28",
+            "image_base": "0x18a990000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1918583fc",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x191854df8",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1916d36e4",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x1f922eb28",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x1f922eb74",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x1f922ff3c",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x1f92308b0",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x1f92247b4",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x1cc00e1d4",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x1cc00d558",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x1cc00ca6c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x1cbfebad0",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x1cc00c73c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x100d25730",
+            "image_base": "0x100d14000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x100d81210",
+            "image_base": "0x100d7c000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x18a9a5c28",
+            "image_base": "0x18a990000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1918583fc",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x191854df8",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1916d36e4",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x1f922eb28",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x1f922eb74",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x1f922ff3c",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x1f92308b0",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x1f92247b4",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x1cc00e1d4",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x1cc00d558",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x1cc00ca6c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x1cbfebad0",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x1cc00c73c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x100ce5730",
+            "image_base": "0x100cd4000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x100911210",
+            "image_base": "0x10090c000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x18a9a5c28",
+            "image_base": "0x18a990000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1918583fc",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x191854df8",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1916d36e4",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x1f922eb28",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x1f922eb74",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x1f922ff3c",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x1f92308b0",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x1f92247b4",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x1cc00e1d4",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x1cc00d558",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x1cc00ca6c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x1cbfebad0",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x1cc00c73c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x100875730",
+            "image_base": "0x100864000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x10109d210",
+            "image_base": "0x101098000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x18a9a5c28",
+            "image_base": "0x18a990000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1918583fc",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x191854df8",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1916d36e4",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x1f922eb28",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x1f922eb74",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x1f922ff3c",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x1f92308b0",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x1f92247b4",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x1cc00e1d4",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x1cc00d558",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x1cc00ca6c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x1cbfebad0",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x1cc00c73c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x101001730",
+            "image_base": "0x100ff0000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x100c15210",
+            "image_base": "0x100c10000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x18a9a5c28",
+            "image_base": "0x18a990000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1918583fc",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x191854df8",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1916d36e4",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x1f922eb28",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x1f922eb74",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x1f922ff3c",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x1f92308b0",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x1f92247b4",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x1cc00e1d4",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x1cc00d558",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x1cc00ca6c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x1cbfebad0",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x1cc00c73c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x100b79730",
+            "image_base": "0x100b68000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x100349210",
+            "image_base": "0x100344000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x18a9a5c28",
+            "image_base": "0x18a990000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1918583fc",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x191854df8",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1916d36e4",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x1f922eb28",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x1f922eb74",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x1f922ff3c",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x1f92308b0",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x1f92247b4",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x1cc00e1d4",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x1cc00d558",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x1cc00ca6c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x1cbfebad0",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x1cc00c73c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x1002ad730",
+            "image_base": "0x10029c000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x100115210",
+            "image_base": "0x100110000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x18a9a5c28",
+            "image_base": "0x18a990000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1918583fc",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x191854df8",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1916d36e4",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x1f922eb28",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x1f922eb74",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x1f922ff3c",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x1f92308b0",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x1f92247b4",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x1cc00e1d4",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x1cc00d558",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x1cc00ca6c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x1cbfebad0",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x1cc00c73c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x100079730",
+            "image_base": "0x100068000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x100e59210",
+            "image_base": "0x100e54000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x18a9a5c28",
+            "image_base": "0x18a990000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1918583fc",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x191854df8",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1916d36e4",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x1f922eb28",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x1f922eb74",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x1f922ff3c",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x1f92308b0",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x1f92247b4",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x1cc00e1d4",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x1cc00d558",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x1cc00ca6c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x1cbfebad0",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x1cc00c73c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x100dbd730",
+            "image_base": "0x100dac000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x10099d210",
+            "image_base": "0x100998000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x18a9a5c28",
+            "image_base": "0x18a990000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1918583fc",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x191854df8",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1916d36e4",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x1f922eb28",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x1f922eb74",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x1f922ff3c",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x1f92308b0",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x1f92247b4",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x1cc00e1d4",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x1cc00d558",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x1cc00ca6c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x1cbfebad0",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x1cc00c73c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x100901730",
+            "image_base": "0x1008f0000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x100b89210",
+            "image_base": "0x100b84000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x18a9a5c28",
+            "image_base": "0x18a990000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1918583fc",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x191854df8",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1916d36e4",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x1f922eb28",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x1f922eb74",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x1f922ff3c",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x1f92308b0",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x1f92247b4",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x1cc00e1d4",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x1cc00d558",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x1cc00ca6c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x1cbfebad0",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x1cc00c73c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x100aed730",
+            "image_base": "0x100adc000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x100691210",
+            "image_base": "0x10068c000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x18a9a5c28",
+            "image_base": "0x18a990000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1918583fc",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x191854df8",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1916d36e4",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x1f922eb28",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x1f922eb74",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x1f922ff3c",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x1f92308b0",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x1f92247b4",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x1cc00e1d4",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x1cc00d558",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x1cc00ca6c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x1cbfebad0",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x1cc00c73c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x1005f5730",
+            "image_base": "0x1005e4000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x1011c5210",
+            "image_base": "0x1011c0000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x18a9a5c28",
+            "image_base": "0x18a990000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1918583fc",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x191854df8",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1916d36e4",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x1f922eb28",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x1f922eb74",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x1f922ff3c",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x1f92308b0",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x1f92247b4",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x1cc00e1d4",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x1cc00d558",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x1cc00ca6c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x1cbfebad0",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x1cc00c73c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x101129730",
+            "image_base": "0x101118000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x100f89210",
+            "image_base": "0x100f84000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x18a9a5c28",
+            "image_base": "0x18a990000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1918583fc",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x191854df8",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1916d36e4",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x1f922eb28",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x1f922eb74",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x1f922ff3c",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x1f92308b0",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x1f92247b4",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x1cc00e1d4",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x1cc00d558",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x1cc00ca6c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x1cbfebad0",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x1cc00c73c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x100eed730",
+            "image_base": "0x100edc000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      },
+      {
+        "call": 1,
+        "exception_class": "NSException",
+        "name": "NSInvalidArgumentException",
+        "reason": "*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil",
+        "frames": [
+          {
+            "index": 0,
+            "pc": "0x100131210",
+            "image_base": "0x10012c000",
+            "image": "e",
+            "symbol": "observe_exception"
+          },
+          {
+            "index": 1,
+            "pc": "0x18a9a5c28",
+            "image_base": "0x18a990000",
+            "image": "libobjc.A.dylib",
+            "symbol": "objc_exception_throw"
+          },
+          {
+            "index": 2,
+            "pc": "0x1918583fc",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 3,
+            "pc": "0x191854df8",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 4,
+            "pc": "0x1916d36e4",
+            "image_base": "0x1916c0000",
+            "image": "CoreFoundation",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 5,
+            "pc": "0x1f922eb28",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 6,
+            "pc": "0x1f922eb74",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 7,
+            "pc": "0x1f922ff3c",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 8,
+            "pc": "0x1f92308b0",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 9,
+            "pc": "0x1f92247b4",
+            "image_base": "0x1f921a000",
+            "image": "NanoUniverse",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 10,
+            "pc": "0x1cc00e1d4",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 11,
+            "pc": "0x1cc00d558",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 12,
+            "pc": "0x1cc00ca6c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 13,
+            "pc": "0x1cbfebad0",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 14,
+            "pc": "0x1cc00c73c",
+            "image_base": "0x1cbfe3000",
+            "image": "ClockKitUI",
+            "symbol": "<redacted>"
+          },
+          {
+            "index": 15,
+            "pc": "0x100095730",
+            "image_base": "0x100084000",
+            "image": "AegirPoster",
+            "symbol": "main"
+          }
+        ],
+        "original_exception_chain_continued": true
+      }
+    ],
+    "incomplete_records": [],
+    "observed_exception_metadata_only": true,
+    "exception_cause_not_yet_repaired": true,
+    "renderer": {
+      "actual_renderer_ABI_verified": true,
+      "device_observations": [
+        {
+          "call": 1,
+          "frame_buffer_index": 0,
+          "device_nil": true,
+          "device_class": "nil",
+          "new_buffer_method": false
+        },
+        {
+          "call": 1,
+          "frame_buffer_index": 0,
+          "device_nil": true,
+          "device_class": "nil",
+          "new_buffer_method": false
+        },
+        {
+          "call": 1,
+          "frame_buffer_index": 0,
+          "device_nil": true,
+          "device_class": "nil",
+          "new_buffer_method": false
+        },
+        {
+          "call": 1,
+          "frame_buffer_index": 0,
+          "device_nil": true,
+          "device_class": "nil",
+          "new_buffer_method": false
+        },
+        {
+          "call": 1,
+          "frame_buffer_index": 0,
+          "device_nil": true,
+          "device_class": "nil",
+          "new_buffer_method": false
+        },
+        {
+          "call": 1,
+          "frame_buffer_index": 0,
+          "device_nil": true,
+          "device_class": "nil",
+          "new_buffer_method": false
+        },
+        {
+          "call": 1,
+          "frame_buffer_index": 0,
+          "device_nil": true,
+          "device_class": "nil",
+          "new_buffer_method": false
+        },
+        {
+          "call": 1,
+          "frame_buffer_index": 0,
+          "device_nil": true,
+          "device_class": "nil",
+          "new_buffer_method": false
+        },
+        {
+          "call": 1,
+          "frame_buffer_index": 0,
+          "device_nil": true,
+          "device_class": "nil",
+          "new_buffer_method": false
+        },
+        {
+          "call": 1,
+          "frame_buffer_index": 0,
+          "device_nil": true,
+          "device_class": "nil",
+          "new_buffer_method": false
+        },
+        {
+          "call": 1,
+          "frame_buffer_index": 0,
+          "device_nil": true,
+          "device_class": "nil",
+          "new_buffer_method": false
+        },
+        {
+          "call": 1,
+          "frame_buffer_index": 0,
+          "device_nil": true,
+          "device_class": "nil",
+          "new_buffer_method": false
+        },
+        {
+          "call": 1,
+          "frame_buffer_index": 0,
+          "device_nil": true,
+          "device_class": "nil",
+          "new_buffer_method": false
+        },
+        {
+          "call": 1,
+          "frame_buffer_index": 0,
+          "device_nil": true,
+          "device_class": "nil",
+          "new_buffer_method": false
+        },
+        {
+          "call": 1,
+          "frame_buffer_index": 0,
+          "device_nil": true,
+          "device_class": "nil",
+          "new_buffer_method": false
+        },
+        {
+          "call": 1,
+          "frame_buffer_index": 0,
+          "device_nil": true,
+          "device_class": "nil",
+          "new_buffer_method": false
+        },
+        {
+          "call": 1,
+          "frame_buffer_index": 0,
+          "device_nil": true,
+          "device_class": "nil",
+          "new_buffer_method": false
+        },
+        {
+          "call": 1,
+          "frame_buffer_index": 0,
+          "device_nil": true,
+          "device_class": "nil",
+          "new_buffer_method": false
+        },
+        {
+          "call": 1,
+          "frame_buffer_index": 0,
+          "device_nil": true,
+          "device_class": "nil",
+          "new_buffer_method": false
+        },
+        {
+          "call": 1,
+          "frame_buffer_index": 0,
+          "device_nil": true,
+          "device_class": "nil",
+          "new_buffer_method": false
+        }
+      ],
+      "all_observed_devices_nil": true,
+      "metadata_only": true,
+      "original_renderer_forwarded": true,
+      "no_Metal_buffer_or_rendering_claim": true
+    },
+    "runtime_Metal_ABI": {
+      "actual_Metal_base_and_protocols_verified": true,
+      "limits_bytes": 264,
+      "limits_alignment": 8,
+      "initializer_uses_uint32_accelerator_port": true,
+      "methods": [
+        {
+          "index": 0,
+          "owner": "device_base",
+          "selector": "init",
+          "types": "@16@0:8"
+        },
+        {
+          "index": 1,
+          "owner": "device_base",
+          "selector": "initWithAcceleratorPort:",
+          "types": "@20@0:8I16"
+        },
+        {
+          "index": 2,
+          "owner": "device_base",
+          "selector": "initLimits",
+          "types": "v16@0:8"
+        },
+        {
+          "index": 3,
+          "owner": "device_base",
+          "selector": "initFeatureQueries",
+          "types": "v16@0:8"
+        },
+        {
+          "index": 4,
+          "owner": "device_base",
+          "selector": "featureProfile",
+          "types": null
+        },
+        {
+          "index": 5,
+          "owner": "device",
+          "selector": "newBufferWithLength:options:",
+          "types": "@32@0:8Q16Q24"
+        },
+        {
+          "index": 6,
+          "owner": "device",
+          "selector": "newBufferWithBytes:length:options:",
+          "types": "@40@0:8r^v16Q24Q32"
+        },
+        {
+          "index": 7,
+          "owner": "device",
+          "selector": "newCommandQueue",
+          "types": "@16@0:8"
+        },
+        {
+          "index": 8,
+          "owner": "device",
+          "selector": "newLibraryWithData:error:",
+          "types": "@32@0:8@16^@24"
+        },
+        {
+          "index": 9,
+          "owner": "device",
+          "selector": "newTextureWithDescriptor:",
+          "types": "@24@0:8@16"
+        },
+        {
+          "index": 10,
+          "owner": "device",
+          "selector": "newRenderPipelineStateWithDescriptor:error:",
+          "types": "@32@0:8@16^@24"
+        },
+        {
+          "index": 11,
+          "owner": "device",
+          "selector": "newComputePipelineStateWithFunction:error:",
+          "types": "@32@0:8@16^@24"
+        },
+        {
+          "index": 12,
+          "owner": "buffer",
+          "selector": "contents",
+          "types": "^v16@0:8"
+        },
+        {
+          "index": 13,
+          "owner": "buffer",
+          "selector": "length",
+          "types": "Q16@0:8"
+        },
+        {
+          "index": 14,
+          "owner": "buffer",
+          "selector": "gpuAddress",
+          "types": "Q16@0:8"
+        },
+        {
+          "index": 15,
+          "owner": "queue",
+          "selector": "commandBuffer",
+          "types": "@16@0:8"
+        },
+        {
+          "index": 16,
+          "owner": "queue",
+          "selector": "commandBufferWithUnretainedReferences",
+          "types": "@16@0:8"
+        },
+        {
+          "index": 17,
+          "owner": "commands",
+          "selector": "commit",
+          "types": "v16@0:8"
+        },
+        {
+          "index": 18,
+          "owner": "commands",
+          "selector": "waitUntilCompleted",
+          "types": "v16@0:8"
+        },
+        {
+          "index": 19,
+          "owner": "commands",
+          "selector": "addCompletedHandler:",
+          "types": "v24@0:8@?16"
+        },
+        {
+          "index": 20,
+          "owner": "commands",
+          "selector": "status",
+          "types": "Q16@0:8"
+        },
+        {
+          "index": 21,
+          "owner": "commands",
+          "selector": "error",
+          "types": "@16@0:8"
+        }
+      ],
+      "complete_samples": 20,
+      "incomplete_samples": 0,
+      "base_featureProfile_implementation_missing": true,
+      "metadata_only": true,
+      "Metal_instances_created": 0,
+      "GPU_operations": 0,
+      "device_driver_and_rendering_not_yet_provided": true
+    },
+    "Metal_resources": {
+      "actual_Metal_objects_and_GPU_backing_verified": true,
+      "complete_samples": 20,
+      "incomplete_samples": 0,
+      "buffers_per_sample": 3,
+      "logical_bytes": [
+        432,
+        16384,
+        16385
+      ],
+      "backing_bytes": [
+        16384,
+        16384,
+        32768
+      ],
+      "samples": [
+        [
+          {
+            "length": 432,
+            "allocated": 16384,
+            "gpu": "0x40520000",
+            "cpu": "0x101214000",
+            "hash": "9b999e3e8d80b4f5"
+          },
+          {
+            "length": 16384,
+            "allocated": 16384,
+            "gpu": "0x40524000",
+            "cpu": "0x1012b0000",
+            "hash": "4d15fc468b232325"
+          },
+          {
+            "length": 16385,
+            "allocated": 32768,
+            "gpu": "0x40528000",
+            "cpu": "0x1012b4000",
+            "hash": "482915717c8c2adc"
+          }
+        ],
+        [
+          {
+            "length": 432,
+            "allocated": 16384,
+            "gpu": "0x40544000",
+            "cpu": "0x100810000",
+            "hash": "9b999e3e8d80b4f5"
+          },
+          {
+            "length": 16384,
+            "allocated": 16384,
+            "gpu": "0x40678000",
+            "cpu": "0x1008ac000",
+            "hash": "4d15fc468b232325"
+          },
+          {
+            "length": 16385,
+            "allocated": 32768,
+            "gpu": "0x449a8000",
+            "cpu": "0x1008b0000",
+            "hash": "482915717c8c2adc"
+          }
+        ],
+        [
+          {
+            "length": 432,
+            "allocated": 16384,
+            "gpu": "0x40544000",
+            "cpu": "0x100588000",
+            "hash": "9b999e3e8d80b4f5"
+          },
+          {
+            "length": 16384,
+            "allocated": 16384,
+            "gpu": "0x4064c000",
+            "cpu": "0x1005e4000",
+            "hash": "4d15fc468b232325"
+          },
+          {
+            "length": 16385,
+            "allocated": 32768,
+            "gpu": "0x40650000",
+            "cpu": "0x1005e8000",
+            "hash": "482915717c8c2adc"
+          }
+        ],
+        [
+          {
+            "length": 432,
+            "allocated": 16384,
+            "gpu": "0x4064c000",
+            "cpu": "0x100ea0000",
+            "hash": "9b999e3e8d80b4f5"
+          },
+          {
+            "length": 16384,
+            "allocated": 16384,
+            "gpu": "0x40650000",
+            "cpu": "0x100efc000",
+            "hash": "4d15fc468b232325"
+          },
+          {
+            "length": 16385,
+            "allocated": 32768,
+            "gpu": "0x40654000",
+            "cpu": "0x101a40000",
+            "hash": "482915717c8c2adc"
+          }
+        ],
+        [
+          {
+            "length": 432,
+            "allocated": 16384,
+            "gpu": "0x40558000",
+            "cpu": "0x101420000",
+            "hash": "9b999e3e8d80b4f5"
+          },
+          {
+            "length": 16384,
+            "allocated": 16384,
+            "gpu": "0x4055c000",
+            "cpu": "0x1014bc000",
+            "hash": "4d15fc468b232325"
+          },
+          {
+            "length": 16385,
+            "allocated": 32768,
+            "gpu": "0x40560000",
+            "cpu": "0x1014c0000",
+            "hash": "482915717c8c2adc"
+          }
+        ],
+        [
+          {
+            "length": 432,
+            "allocated": 16384,
+            "gpu": "0x40558000",
+            "cpu": "0x100e20000",
+            "hash": "9b999e3e8d80b4f5"
+          },
+          {
+            "length": 16384,
+            "allocated": 16384,
+            "gpu": "0x4055c000",
+            "cpu": "0x100ebc000",
+            "hash": "4d15fc468b232325"
+          },
+          {
+            "length": 16385,
+            "allocated": 32768,
+            "gpu": "0x40560000",
+            "cpu": "0x100ec0000",
+            "hash": "482915717c8c2adc"
+          }
+        ],
+        [
+          {
+            "length": 432,
+            "allocated": 16384,
+            "gpu": "0x40558000",
+            "cpu": "0x100e70000",
+            "hash": "9b999e3e8d80b4f5"
+          },
+          {
+            "length": 16384,
+            "allocated": 16384,
+            "gpu": "0x4055c000",
+            "cpu": "0x100ecc000",
+            "hash": "4d15fc468b232325"
+          },
+          {
+            "length": 16385,
+            "allocated": 32768,
+            "gpu": "0x40560000",
+            "cpu": "0x100ed0000",
+            "hash": "482915717c8c2adc"
+          }
+        ],
+        [
+          {
+            "length": 432,
+            "allocated": 16384,
+            "gpu": "0x40558000",
+            "cpu": "0x100e30000",
+            "hash": "9b999e3e8d80b4f5"
+          },
+          {
+            "length": 16384,
+            "allocated": 16384,
+            "gpu": "0x4055c000",
+            "cpu": "0x100ecc000",
+            "hash": "4d15fc468b232325"
+          },
+          {
+            "length": 16385,
+            "allocated": 32768,
+            "gpu": "0x40560000",
+            "cpu": "0x100ed0000",
+            "hash": "482915717c8c2adc"
+          }
+        ],
+        [
+          {
+            "length": 432,
+            "allocated": 16384,
+            "gpu": "0x405f0000",
+            "cpu": "0x1009c0000",
+            "hash": "9b999e3e8d80b4f5"
+          },
+          {
+            "length": 16384,
+            "allocated": 16384,
+            "gpu": "0x405f4000",
+            "cpu": "0x100a5c000",
+            "hash": "4d15fc468b232325"
+          },
+          {
+            "length": 16385,
+            "allocated": 32768,
+            "gpu": "0x405f8000",
+            "cpu": "0x100a60000",
+            "hash": "482915717c8c2adc"
+          }
+        ],
+        [
+          {
+            "length": 432,
+            "allocated": 16384,
+            "gpu": "0x405f0000",
+            "cpu": "0x10114c000",
+            "hash": "9b999e3e8d80b4f5"
+          },
+          {
+            "length": 16384,
+            "allocated": 16384,
+            "gpu": "0x405f4000",
+            "cpu": "0x1011e8000",
+            "hash": "4d15fc468b232325"
+          },
+          {
+            "length": 16385,
+            "allocated": 32768,
+            "gpu": "0x405f8000",
+            "cpu": "0x1011ec000",
+            "hash": "482915717c8c2adc"
+          }
+        ],
+        [
+          {
+            "length": 432,
+            "allocated": 16384,
+            "gpu": "0x405f0000",
+            "cpu": "0x100cc4000",
+            "hash": "9b999e3e8d80b4f5"
+          },
+          {
+            "length": 16384,
+            "allocated": 16384,
+            "gpu": "0x405f4000",
+            "cpu": "0x100d60000",
+            "hash": "4d15fc468b232325"
+          },
+          {
+            "length": 16385,
+            "allocated": 32768,
+            "gpu": "0x405f8000",
+            "cpu": "0x100d64000",
+            "hash": "482915717c8c2adc"
+          }
+        ],
+        [
+          {
+            "length": 432,
+            "allocated": 16384,
+            "gpu": "0x405f0000",
+            "cpu": "0x1003f8000",
+            "hash": "9b999e3e8d80b4f5"
+          },
+          {
+            "length": 16384,
+            "allocated": 16384,
+            "gpu": "0x405f4000",
+            "cpu": "0x100494000",
+            "hash": "4d15fc468b232325"
+          },
+          {
+            "length": 16385,
+            "allocated": 32768,
+            "gpu": "0x405f8000",
+            "cpu": "0x100498000",
+            "hash": "482915717c8c2adc"
+          }
+        ],
+        [
+          {
+            "length": 432,
+            "allocated": 16384,
+            "gpu": "0x405f0000",
+            "cpu": "0x100224000",
+            "hash": "9b999e3e8d80b4f5"
+          },
+          {
+            "length": 16384,
+            "allocated": 16384,
+            "gpu": "0x405f4000",
+            "cpu": "0x100228000",
+            "hash": "4d15fc468b232325"
+          },
+          {
+            "length": 16385,
+            "allocated": 32768,
+            "gpu": "0x405f8000",
+            "cpu": "0x10022c000",
+            "hash": "482915717c8c2adc"
+          }
+        ],
+        [
+          {
+            "length": 432,
+            "allocated": 16384,
+            "gpu": "0x405f0000",
+            "cpu": "0x100f08000",
+            "hash": "9b999e3e8d80b4f5"
+          },
+          {
+            "length": 16384,
+            "allocated": 16384,
+            "gpu": "0x405f4000",
+            "cpu": "0x100fa4000",
+            "hash": "4d15fc468b232325"
+          },
+          {
+            "length": 16385,
+            "allocated": 32768,
+            "gpu": "0x405f8000",
+            "cpu": "0x100fa8000",
+            "hash": "482915717c8c2adc"
+          }
+        ],
+        [
+          {
+            "length": 432,
+            "allocated": 16384,
+            "gpu": "0x405f0000",
+            "cpu": "0x100a4c000",
+            "hash": "9b999e3e8d80b4f5"
+          },
+          {
+            "length": 16384,
+            "allocated": 16384,
+            "gpu": "0x405f4000",
+            "cpu": "0x100ae8000",
+            "hash": "4d15fc468b232325"
+          },
+          {
+            "length": 16385,
+            "allocated": 32768,
+            "gpu": "0x405f8000",
+            "cpu": "0x100aec000",
+            "hash": "482915717c8c2adc"
+          }
+        ],
+        [
+          {
+            "length": 432,
+            "allocated": 16384,
+            "gpu": "0x405f0000",
+            "cpu": "0x100c98000",
+            "hash": "9b999e3e8d80b4f5"
+          },
+          {
+            "length": 16384,
+            "allocated": 16384,
+            "gpu": "0x405f4000",
+            "cpu": "0x100c9c000",
+            "hash": "4d15fc468b232325"
+          },
+          {
+            "length": 16385,
+            "allocated": 32768,
+            "gpu": "0x405f8000",
+            "cpu": "0x100ca0000",
+            "hash": "482915717c8c2adc"
+          }
+        ],
+        [
+          {
+            "length": 432,
+            "allocated": 16384,
+            "gpu": "0x405f0000",
+            "cpu": "0x100740000",
+            "hash": "9b999e3e8d80b4f5"
+          },
+          {
+            "length": 16384,
+            "allocated": 16384,
+            "gpu": "0x405f4000",
+            "cpu": "0x1007dc000",
+            "hash": "4d15fc468b232325"
+          },
+          {
+            "length": 16385,
+            "allocated": 32768,
+            "gpu": "0x405f8000",
+            "cpu": "0x1007e0000",
+            "hash": "482915717c8c2adc"
+          }
+        ],
+        [
+          {
+            "length": 432,
+            "allocated": 16384,
+            "gpu": "0x405f0000",
+            "cpu": "0x101274000",
+            "hash": "9b999e3e8d80b4f5"
+          },
+          {
+            "length": 16384,
+            "allocated": 16384,
+            "gpu": "0x405f4000",
+            "cpu": "0x1012d0000",
+            "hash": "4d15fc468b232325"
+          },
+          {
+            "length": 16385,
+            "allocated": 32768,
+            "gpu": "0x405f8000",
+            "cpu": "0x1012d4000",
+            "hash": "482915717c8c2adc"
+          }
+        ],
+        [
+          {
+            "length": 432,
+            "allocated": 16384,
+            "gpu": "0x405f0000",
+            "cpu": "0x101098000",
+            "hash": "9b999e3e8d80b4f5"
+          },
+          {
+            "length": 16384,
+            "allocated": 16384,
+            "gpu": "0x405f4000",
+            "cpu": "0x10109c000",
+            "hash": "4d15fc468b232325"
+          },
+          {
+            "length": 16385,
+            "allocated": 32768,
+            "gpu": "0x405f8000",
+            "cpu": "0x1010a0000",
+            "hash": "482915717c8c2adc"
+          }
+        ],
+        [
+          {
+            "length": 432,
+            "allocated": 16384,
+            "gpu": "0x405f0000",
+            "cpu": "0x1001e0000",
+            "hash": "9b999e3e8d80b4f5"
+          },
+          {
+            "length": 16384,
+            "allocated": 16384,
+            "gpu": "0x405f4000",
+            "cpu": "0x10027c000",
+            "hash": "4d15fc468b232325"
+          },
+          {
+            "length": 16385,
+            "allocated": 32768,
+            "gpu": "0x405f8000",
+            "cpu": "0x100280000",
+            "hash": "482915717c8c2adc"
+          }
+        ]
+      ],
+      "retained_after_original_device_release": true,
+      "final_allocated_bytes": 0,
+      "CPU_pattern_bytes_per_sample": 33201,
+      "requested_WriteCombined_reports_actual_DefaultCache": true,
+      "GPU_submissions_from_probe": 0,
+      "Metal_shader_queue_rendering_and_system_device_not_yet_provided": true
+    },
+    "Metal_queue": {
+      "actual_native_Metal_queue_and_GPU_blits_verified": true,
+      "records": [
+        {
+          "owner": null,
+          "first_completed_sequence": 466,
+          "second_completed_sequence": 468,
+          "native_submissions": 4,
+          "commands": 2,
+          "scheduled_callbacks": 2,
+          "completed_callbacks": 2,
+          "checked_bytes": 33024,
+          "destination_hash": "704d3d2c161d15e9",
+          "submission_sequences": [
+            465,
+            466,
+            467,
+            468
+          ],
+          "transport": [
+            {
+              "call": 1,
+              "source_handle": 0,
+              "destination_handle": 3,
+              "source_gpu": "0x0",
+              "destination_gpu": "0x4052c000",
+              "sequences": [
+                465
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 2,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x40520000",
+              "destination_gpu": "0x4052c000",
+              "sequences": [
+                466
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 3,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x40520000",
+              "destination_gpu": "0x4052c000",
+              "sequences": [
+                467,
+                468
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            }
+          ],
+          "outside_regions_preserved": true,
+          "final_allocated_bytes": 0
+        },
+        {
+          "owner": null,
+          "first_completed_sequence": 503,
+          "second_completed_sequence": 507,
+          "native_submissions": 4,
+          "commands": 2,
+          "scheduled_callbacks": 2,
+          "completed_callbacks": 2,
+          "checked_bytes": 33024,
+          "destination_hash": "704d3d2c161d15e9",
+          "submission_sequences": [
+            502,
+            503,
+            505,
+            507
+          ],
+          "transport": [
+            {
+              "call": 1,
+              "source_handle": 0,
+              "destination_handle": 3,
+              "source_gpu": "0x0",
+              "destination_gpu": "0x449b4000",
+              "sequences": [
+                502
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 2,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x449a8000",
+              "destination_gpu": "0x449b4000",
+              "sequences": [
+                503
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 3,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x449a8000",
+              "destination_gpu": "0x449b4000",
+              "sequences": [
+                505,
+                507
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            }
+          ],
+          "outside_regions_preserved": true,
+          "final_allocated_bytes": 0
+        },
+        {
+          "owner": null,
+          "first_completed_sequence": 684,
+          "second_completed_sequence": 686,
+          "native_submissions": 4,
+          "commands": 2,
+          "scheduled_callbacks": 2,
+          "completed_callbacks": 2,
+          "checked_bytes": 33024,
+          "destination_hash": "704d3d2c161d15e9",
+          "submission_sequences": [
+            683,
+            684,
+            685,
+            686
+          ],
+          "transport": [
+            {
+              "call": 1,
+              "source_handle": 0,
+              "destination_handle": 3,
+              "source_gpu": "0x0",
+              "destination_gpu": "0x40658000",
+              "sequences": [
+                683
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 2,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x4064c000",
+              "destination_gpu": "0x40658000",
+              "sequences": [
+                684
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 3,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x4064c000",
+              "destination_gpu": "0x40658000",
+              "sequences": [
+                685,
+                686
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            }
+          ],
+          "outside_regions_preserved": true,
+          "final_allocated_bytes": 0
+        },
+        {
+          "owner": null,
+          "first_completed_sequence": 722,
+          "second_completed_sequence": 724,
+          "native_submissions": 4,
+          "commands": 2,
+          "scheduled_callbacks": 2,
+          "completed_callbacks": 2,
+          "checked_bytes": 33024,
+          "destination_hash": "704d3d2c161d15e9",
+          "submission_sequences": [
+            721,
+            722,
+            723,
+            724
+          ],
+          "transport": [
+            {
+              "call": 1,
+              "source_handle": 0,
+              "destination_handle": 3,
+              "source_gpu": "0x0",
+              "destination_gpu": "0x40658000",
+              "sequences": [
+                721
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 2,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x4064c000",
+              "destination_gpu": "0x40658000",
+              "sequences": [
+                722
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 3,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x4064c000",
+              "destination_gpu": "0x40658000",
+              "sequences": [
+                723,
+                724
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            }
+          ],
+          "outside_regions_preserved": true,
+          "final_allocated_bytes": 0
+        },
+        {
+          "owner": null,
+          "first_completed_sequence": 785,
+          "second_completed_sequence": 787,
+          "native_submissions": 4,
+          "commands": 2,
+          "scheduled_callbacks": 2,
+          "completed_callbacks": 2,
+          "checked_bytes": 33024,
+          "destination_hash": "704d3d2c161d15e9",
+          "submission_sequences": [
+            784,
+            785,
+            786,
+            787
+          ],
+          "transport": [
+            {
+              "call": 1,
+              "source_handle": 0,
+              "destination_handle": 3,
+              "source_gpu": "0x0",
+              "destination_gpu": "0x4057c000",
+              "sequences": [
+                784
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 2,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x40558000",
+              "destination_gpu": "0x4057c000",
+              "sequences": [
+                785
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 3,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x40558000",
+              "destination_gpu": "0x4057c000",
+              "sequences": [
+                786,
+                787
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            }
+          ],
+          "outside_regions_preserved": true,
+          "final_allocated_bytes": 0
+        },
+        {
+          "owner": null,
+          "first_completed_sequence": 789,
+          "second_completed_sequence": 791,
+          "native_submissions": 4,
+          "commands": 2,
+          "scheduled_callbacks": 2,
+          "completed_callbacks": 2,
+          "checked_bytes": 33024,
+          "destination_hash": "704d3d2c161d15e9",
+          "submission_sequences": [
+            788,
+            789,
+            790,
+            791
+          ],
+          "transport": [
+            {
+              "call": 1,
+              "source_handle": 0,
+              "destination_handle": 3,
+              "source_gpu": "0x0",
+              "destination_gpu": "0x4057c000",
+              "sequences": [
+                788
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 2,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x40558000",
+              "destination_gpu": "0x4057c000",
+              "sequences": [
+                789
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 3,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x40558000",
+              "destination_gpu": "0x4057c000",
+              "sequences": [
+                790,
+                791
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            }
+          ],
+          "outside_regions_preserved": true,
+          "final_allocated_bytes": 0
+        },
+        {
+          "owner": null,
+          "first_completed_sequence": 793,
+          "second_completed_sequence": 795,
+          "native_submissions": 4,
+          "commands": 2,
+          "scheduled_callbacks": 2,
+          "completed_callbacks": 2,
+          "checked_bytes": 33024,
+          "destination_hash": "704d3d2c161d15e9",
+          "submission_sequences": [
+            792,
+            793,
+            794,
+            795
+          ],
+          "transport": [
+            {
+              "call": 1,
+              "source_handle": 0,
+              "destination_handle": 3,
+              "source_gpu": "0x0",
+              "destination_gpu": "0x4057c000",
+              "sequences": [
+                792
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 2,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x40558000",
+              "destination_gpu": "0x4057c000",
+              "sequences": [
+                793
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 3,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x40558000",
+              "destination_gpu": "0x4057c000",
+              "sequences": [
+                794,
+                795
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            }
+          ],
+          "outside_regions_preserved": true,
+          "final_allocated_bytes": 0
+        },
+        {
+          "owner": null,
+          "first_completed_sequence": 797,
+          "second_completed_sequence": 799,
+          "native_submissions": 4,
+          "commands": 2,
+          "scheduled_callbacks": 2,
+          "completed_callbacks": 2,
+          "checked_bytes": 33024,
+          "destination_hash": "704d3d2c161d15e9",
+          "submission_sequences": [
+            796,
+            797,
+            798,
+            799
+          ],
+          "transport": [
+            {
+              "call": 1,
+              "source_handle": 0,
+              "destination_handle": 3,
+              "source_gpu": "0x0",
+              "destination_gpu": "0x4057c000",
+              "sequences": [
+                796
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 2,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x40558000",
+              "destination_gpu": "0x4057c000",
+              "sequences": [
+                797
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 3,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x40558000",
+              "destination_gpu": "0x4057c000",
+              "sequences": [
+                798,
+                799
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            }
+          ],
+          "outside_regions_preserved": true,
+          "final_allocated_bytes": 0
+        },
+        {
+          "owner": null,
+          "first_completed_sequence": 821,
+          "second_completed_sequence": 823,
+          "native_submissions": 4,
+          "commands": 2,
+          "scheduled_callbacks": 2,
+          "completed_callbacks": 2,
+          "checked_bytes": 33024,
+          "destination_hash": "704d3d2c161d15e9",
+          "submission_sequences": [
+            820,
+            821,
+            822,
+            823
+          ],
+          "transport": [
+            {
+              "call": 1,
+              "source_handle": 0,
+              "destination_handle": 3,
+              "source_gpu": "0x0",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                820
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 2,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x405f0000",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                821
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 3,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x405f0000",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                822,
+                823
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            }
+          ],
+          "outside_regions_preserved": true,
+          "final_allocated_bytes": 0
+        },
+        {
+          "owner": null,
+          "first_completed_sequence": 825,
+          "second_completed_sequence": 827,
+          "native_submissions": 4,
+          "commands": 2,
+          "scheduled_callbacks": 2,
+          "completed_callbacks": 2,
+          "checked_bytes": 33024,
+          "destination_hash": "704d3d2c161d15e9",
+          "submission_sequences": [
+            824,
+            825,
+            826,
+            827
+          ],
+          "transport": [
+            {
+              "call": 1,
+              "source_handle": 0,
+              "destination_handle": 3,
+              "source_gpu": "0x0",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                824
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 2,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x405f0000",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                825
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 3,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x405f0000",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                826,
+                827
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            }
+          ],
+          "outside_regions_preserved": true,
+          "final_allocated_bytes": 0
+        },
+        {
+          "owner": null,
+          "first_completed_sequence": 829,
+          "second_completed_sequence": 831,
+          "native_submissions": 4,
+          "commands": 2,
+          "scheduled_callbacks": 2,
+          "completed_callbacks": 2,
+          "checked_bytes": 33024,
+          "destination_hash": "704d3d2c161d15e9",
+          "submission_sequences": [
+            828,
+            829,
+            830,
+            831
+          ],
+          "transport": [
+            {
+              "call": 1,
+              "source_handle": 0,
+              "destination_handle": 3,
+              "source_gpu": "0x0",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                828
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 2,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x405f0000",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                829
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 3,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x405f0000",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                830,
+                831
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            }
+          ],
+          "outside_regions_preserved": true,
+          "final_allocated_bytes": 0
+        },
+        {
+          "owner": null,
+          "first_completed_sequence": 833,
+          "second_completed_sequence": 835,
+          "native_submissions": 4,
+          "commands": 2,
+          "scheduled_callbacks": 2,
+          "completed_callbacks": 2,
+          "checked_bytes": 33024,
+          "destination_hash": "704d3d2c161d15e9",
+          "submission_sequences": [
+            832,
+            833,
+            834,
+            835
+          ],
+          "transport": [
+            {
+              "call": 1,
+              "source_handle": 0,
+              "destination_handle": 3,
+              "source_gpu": "0x0",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                832
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 2,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x405f0000",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                833
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 3,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x405f0000",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                834,
+                835
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            }
+          ],
+          "outside_regions_preserved": true,
+          "final_allocated_bytes": 0
+        },
+        {
+          "owner": null,
+          "first_completed_sequence": 837,
+          "second_completed_sequence": 839,
+          "native_submissions": 4,
+          "commands": 2,
+          "scheduled_callbacks": 2,
+          "completed_callbacks": 2,
+          "checked_bytes": 33024,
+          "destination_hash": "704d3d2c161d15e9",
+          "submission_sequences": [
+            836,
+            837,
+            838,
+            839
+          ],
+          "transport": [
+            {
+              "call": 1,
+              "source_handle": 0,
+              "destination_handle": 3,
+              "source_gpu": "0x0",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                836
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 2,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x405f0000",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                837
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 3,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x405f0000",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                838,
+                839
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            }
+          ],
+          "outside_regions_preserved": true,
+          "final_allocated_bytes": 0
+        },
+        {
+          "owner": null,
+          "first_completed_sequence": 841,
+          "second_completed_sequence": 843,
+          "native_submissions": 4,
+          "commands": 2,
+          "scheduled_callbacks": 2,
+          "completed_callbacks": 2,
+          "checked_bytes": 33024,
+          "destination_hash": "704d3d2c161d15e9",
+          "submission_sequences": [
+            840,
+            841,
+            842,
+            843
+          ],
+          "transport": [
+            {
+              "call": 1,
+              "source_handle": 0,
+              "destination_handle": 3,
+              "source_gpu": "0x0",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                840
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 2,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x405f0000",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                841
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 3,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x405f0000",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                842,
+                843
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            }
+          ],
+          "outside_regions_preserved": true,
+          "final_allocated_bytes": 0
+        },
+        {
+          "owner": null,
+          "first_completed_sequence": 845,
+          "second_completed_sequence": 847,
+          "native_submissions": 4,
+          "commands": 2,
+          "scheduled_callbacks": 2,
+          "completed_callbacks": 2,
+          "checked_bytes": 33024,
+          "destination_hash": "704d3d2c161d15e9",
+          "submission_sequences": [
+            844,
+            845,
+            846,
+            847
+          ],
+          "transport": [
+            {
+              "call": 1,
+              "source_handle": 0,
+              "destination_handle": 3,
+              "source_gpu": "0x0",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                844
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 2,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x405f0000",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                845
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 3,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x405f0000",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                846,
+                847
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            }
+          ],
+          "outside_regions_preserved": true,
+          "final_allocated_bytes": 0
+        },
+        {
+          "owner": null,
+          "first_completed_sequence": 849,
+          "second_completed_sequence": 851,
+          "native_submissions": 4,
+          "commands": 2,
+          "scheduled_callbacks": 2,
+          "completed_callbacks": 2,
+          "checked_bytes": 33024,
+          "destination_hash": "704d3d2c161d15e9",
+          "submission_sequences": [
+            848,
+            849,
+            850,
+            851
+          ],
+          "transport": [
+            {
+              "call": 1,
+              "source_handle": 0,
+              "destination_handle": 3,
+              "source_gpu": "0x0",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                848
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 2,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x405f0000",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                849
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 3,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x405f0000",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                850,
+                851
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            }
+          ],
+          "outside_regions_preserved": true,
+          "final_allocated_bytes": 0
+        },
+        {
+          "owner": null,
+          "first_completed_sequence": 853,
+          "second_completed_sequence": 855,
+          "native_submissions": 4,
+          "commands": 2,
+          "scheduled_callbacks": 2,
+          "completed_callbacks": 2,
+          "checked_bytes": 33024,
+          "destination_hash": "704d3d2c161d15e9",
+          "submission_sequences": [
+            852,
+            853,
+            854,
+            855
+          ],
+          "transport": [
+            {
+              "call": 1,
+              "source_handle": 0,
+              "destination_handle": 3,
+              "source_gpu": "0x0",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                852
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 2,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x405f0000",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                853
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 3,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x405f0000",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                854,
+                855
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            }
+          ],
+          "outside_regions_preserved": true,
+          "final_allocated_bytes": 0
+        },
+        {
+          "owner": null,
+          "first_completed_sequence": 857,
+          "second_completed_sequence": 859,
+          "native_submissions": 4,
+          "commands": 2,
+          "scheduled_callbacks": 2,
+          "completed_callbacks": 2,
+          "checked_bytes": 33024,
+          "destination_hash": "704d3d2c161d15e9",
+          "submission_sequences": [
+            856,
+            857,
+            858,
+            859
+          ],
+          "transport": [
+            {
+              "call": 1,
+              "source_handle": 0,
+              "destination_handle": 3,
+              "source_gpu": "0x0",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                856
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 2,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x405f0000",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                857
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 3,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x405f0000",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                858,
+                859
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            }
+          ],
+          "outside_regions_preserved": true,
+          "final_allocated_bytes": 0
+        },
+        {
+          "owner": null,
+          "first_completed_sequence": 861,
+          "second_completed_sequence": 863,
+          "native_submissions": 4,
+          "commands": 2,
+          "scheduled_callbacks": 2,
+          "completed_callbacks": 2,
+          "checked_bytes": 33024,
+          "destination_hash": "704d3d2c161d15e9",
+          "submission_sequences": [
+            860,
+            861,
+            862,
+            863
+          ],
+          "transport": [
+            {
+              "call": 1,
+              "source_handle": 0,
+              "destination_handle": 3,
+              "source_gpu": "0x0",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                860
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 2,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x405f0000",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                861
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 3,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x405f0000",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                862,
+                863
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            }
+          ],
+          "outside_regions_preserved": true,
+          "final_allocated_bytes": 0
+        },
+        {
+          "owner": null,
+          "first_completed_sequence": 865,
+          "second_completed_sequence": 867,
+          "native_submissions": 4,
+          "commands": 2,
+          "scheduled_callbacks": 2,
+          "completed_callbacks": 2,
+          "checked_bytes": 33024,
+          "destination_hash": "704d3d2c161d15e9",
+          "submission_sequences": [
+            864,
+            865,
+            866,
+            867
+          ],
+          "transport": [
+            {
+              "call": 1,
+              "source_handle": 0,
+              "destination_handle": 3,
+              "source_gpu": "0x0",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                864
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 2,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x405f0000",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                865
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            },
+            {
+              "call": 3,
+              "source_handle": 2,
+              "destination_handle": 3,
+              "source_gpu": "0x405f0000",
+              "destination_gpu": "0x405fc000",
+              "sequences": [
+                866,
+                867
+              ],
+              "all_packet_bytes_independently_hashed": true,
+              "actual_submission_wait_and_retirement": true
+            }
+          ],
+          "outside_regions_preserved": true,
+          "final_allocated_bytes": 0
+        }
+      ],
+      "complete_samples": 20,
+      "incomplete_samples": 0,
+      "actual_A5xx_submission_matches_current_queue": true,
+      "enqueue_FIFO_order_verified": true,
+      "full_byte_guard_check_verified": true,
+      "shader_render_and_system_Metal_still_incomplete": true
+    }
+  },
+  "ram_library_binding": {
+    "library_sha256": "db47937b3bb21ba21cf68de1d775ca95ab473ed375854dcd26a4f83565ea7c0d",
+    "library_bytes": 14693360,
+    "library_fnv64": "ef8cb191fcc2fd14",
+    "blob_sha256": "33936aa401bb1af475560626b43472b32ae6b320291782213a06427871d7dad6",
+    "raw_sha256": "a8c2c1ff8dfc707d1ee6061ec645b382cc49884b69ce0037cfbb20f2e5b9acb7",
+    "manifest_sha256": "bb80c64eed8944d2b29e91573967662ddc44c67ac825a503a016a316939b974d"
+  }
+}

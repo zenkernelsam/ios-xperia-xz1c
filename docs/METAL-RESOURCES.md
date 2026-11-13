@@ -1,5 +1,7 @@
 # 原生 Metal 前端与资源 — 2026-11-13
 
+更新：v729/r7已完成原生Metal copy/fill command queue实机全链，20组FIFO/80次chunk提交等待/完整字节/回调与38.454秒回程通过，详见METAL-QUEUES.md。以下保留资源阶段结论；AIR、system Metal和texture/render尚未接入。
+
 最新v729/r5全阶段已实际完整通过。Metal资源层12组×3buffer均取得原kernel allocator的实际页和IOVA，logical432/16384/16385与span16384/16384/32768正确，33201B/组的独立字节哈希零差异。原device引用释放后buffer仍持有，最后currentAllocatedSize0；CPU37.875、资源GPU38.657秒完整返回。资源测试没有提交Metal GPU作业，不能把CPU字节检查称为Metal shader/queue/render通过。原GLES独立像素/共享/lifecycle和960000只读像素也通过，340资源全部released/unmapped、orphan/active/root0。报告v729-metal-resources-gpu-actual.json。
 
 当前Sony健康fastboot，无worker/in-flight。下一继续把command queue、AIR→Mesa和render/texture接到这套真实资源，保留r5 GLES。system MetalPluginName尚未发布，原Aegir的系统device仍nil；真实时间/日期/壁纸、FPS和其他外设继续active。原始失败不覆盖，以下保留阶段记录。

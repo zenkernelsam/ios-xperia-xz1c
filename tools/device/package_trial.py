@@ -155,6 +155,8 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
                         'SWEET METAL ABI end methods=22 metadata_only=1 instances_created=0 gpu_operations=0']
                 if m['exception_observer'].get('metal_resource_probe'):
                     common+=['SWEET METAL RESOURCE END result=0 buffers=3 bytes=33201 span=65536 final_allocated=0 gpu_submit=0']
+                if m['exception_observer'].get('metal_queue_probe'):
+                    common+=['SWEET METAL QUEUE END result=0 final_allocated=0 copy_chunks=2 fill_ops=1 copy_ops=2 native_queue=1']
     plan={'target_serial':'BH905ND69G','pon_route':6,'max_cycles':1,'budget_seconds':480,'camera_required':mode=='gpu',
           'steps':[{'artifact_id':m['id'],'observe_seconds':observe,'stable_seconds':30,'return_seconds':120,'goals':common,
                     'return_evidence':'final-drain','on_pass':'stop','on_failure':'stop'}]}

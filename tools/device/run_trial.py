@@ -46,6 +46,7 @@ class DiagnosticPolicy(LogPolicy):
                 if match and int(match[1])!=0:self.recoverable=label
             if 'SWEET GPU: scatter timeout ' in line:self.recoverable='GPU_SCATTER_SUBMIT_TIMEOUT'
             if re.search(r'SWEET METAL RESOURCE END result=[1-9]',line):self.recoverable='METAL_RESOURCE_PROBE_FAILED'
+            if re.search(r'SWEET METAL QUEUE END result=[1-9]',line):self.recoverable='METAL_QUEUE_PROBE_FAILED'
     def decision(self,now):
         result=super().decision(now)
         if result.kind=='PASS' and getattr(self,'minimum',0)>now:return Decision('WAIT','DIAGNOSTIC_WINDOW')

@@ -35,6 +35,7 @@
 #include "drm-uapi/msm_drm.h"
 #include "sweet_drm.h"
 #include "MetalBackingRules.h"
+#include "MetalBlitPlan.h"
 
 #define SWEET_DRM_HANDLES 4096u
 #define SWEET_DRM_BO_MAX (UINT64_C(256) << 20)
@@ -55,6 +56,7 @@ static uint32_t nbos;
 static uint32_t chip_id, gmem_size;
 static uint64_t gmem_base, max_freq;
 static uint32_t queues;
+static uint64_t metal_blit_calls;
 
 /* Lock held. The GPU comes up a while after boot: callers may retry. */
 static void
@@ -441,6 +443,72 @@ gem_submit(struct drm_msm_gem_submit *r)
     pthread_mutex_unlock(&lock);
     free(buf);
     return ret;
+}
+
+int
+sweetgl_metal_buffer_blit(uint32_t source,uint32_t destination,uint64_t source_offset,
+    uint64_t destination_offset,uint64_t bytes,uint32_t fill_byte,uint32_t *completed_sequence)
+{
+    if(completed_sequence)*completed_sequence=0;
+    if(!completed_sequence || fill_byte>255)return -EINVAL;
+    pthread_mutex_lock(&lock);struct sbo *src=source?sbo(source):NULL,*dst=sbo(destination);
+    bool valid=dst && dst->metal_bytes && dst->metal_bytes!=UINT64_MAX &&
+        smb_range(dst->metal_bytes,destination_offset,bytes) &&
+        (!source || (src && src->metal_bytes && src->metal_bytes!=UINT64_MAX && smb_range(src->metal_bytes,source_offset,bytes)));
+    uint64_t source_address=src?src->iova+source_offset:0,destination_address=dst?dst->iova+destination_offset:0;
+    if(source==destination && source && valid){
+        uint64_t distance=source_offset>destination_offset?source_offset-destination_offset:destination_offset-source_offset;
+        if(distance<bytes)valid=false;
+    }
+    uint64_t call=valid?++metal_blit_calls:0;
+    pthread_mutex_unlock(&lock);if(!valid)return -EINVAL;
+    bool logging=call && call<=64;
+    if(logging)sweet_drm_log("SWEET METAL BLIT BEGIN call=%llu source=%u destination=%u source_gpu=%#llx destination_gpu=%#llx source_offset=%llu destination_offset=%llu bytes=%llu fill=%u",
+        (unsigned long long)call,source,destination,(unsigned long long)(source?source_address-source_offset:0),
+        (unsigned long long)(destination_address-destination_offset),(unsigned long long)source_offset,
+        (unsigned long long)destination_offset,(unsigned long long)bytes,fill_byte);
+    uint64_t chunk=bytes<SWEET_METAL_BLIT_CHUNK?bytes:SWEET_METAL_BLIT_CHUNK;
+    struct drm_msm_gem_new commands={.size=smb_words(source_address,chunk)*4};
+    int status=gem_new(&commands);if(status)return status;
+    pthread_mutex_lock(&lock);struct sbo *command_bo=sbo(commands.handle);
+    uint32_t *memory=command_bo?(uint32_t *)(uintptr_t)command_bo->map:NULL;
+    size_t capacity=command_bo?command_bo->size/4:0;pthread_mutex_unlock(&lock);
+    if(!memory){(void)gem_close(commands.handle);return -EIO;}
+    unsigned chunk_count=0;
+    for(uint64_t position=0;position<bytes && !status;position+=chunk){
+        chunk=bytes-position<SWEET_METAL_BLIT_CHUNK?bytes-position:SWEET_METAL_BLIT_CHUNK;
+        size_t words=0;
+        if(!smb_emit(memory,capacity,source?source_address+position:0,destination_address+position,chunk,fill_byte,&words)){
+            status=-EINVAL;break;
+        }
+        struct drm_msm_gem_submit_bo bos_[3]={
+            {.flags=MSM_SUBMIT_BO_READ,.handle=commands.handle},
+            {.flags=MSM_SUBMIT_BO_WRITE,.handle=destination},
+            {.flags=MSM_SUBMIT_BO_READ,.handle=source}};
+        struct drm_msm_gem_submit_cmd cmd={.type=MSM_SUBMIT_CMD_BUF,.submit_idx=0,.size=words*4};
+        struct drm_msm_gem_submit submission={.flags=MSM_PIPE_3D0,.nr_bos=source && source!=destination?3:2,
+            .nr_cmds=1,.bos=(uintptr_t)bos_,.cmds=(uintptr_t)&cmd};
+        status=gem_submit(&submission);
+        if(logging){uint64_t hash=UINT64_C(14695981039346656037);const unsigned char *encoded=(const unsigned char *)memory;
+            for(size_t i=0;i<words*4;++i)hash=(hash^encoded[i])*UINT64_C(1099511628211);
+            sweet_drm_log("SWEET METAL BLIT submit call=%llu chunk=%u offset=%llu bytes=%llu words=%lu hash=%016llx sequence=%u result=%d",
+                (unsigned long long)call,chunk_count,(unsigned long long)position,(unsigned long long)chunk,
+                (unsigned long)words,(unsigned long long)hash,submission.fence,status);}
+        ++chunk_count;
+        // A published failure is not replayed. Its sequence remains attached
+        // to all listed BOs by the same Mesa retirement path.
+        if(status)break;
+        if(!submission.fence){status=-EIO;break;}
+        status=fence_wait(submission.fence,5000);
+        if(logging)sweet_drm_log("SWEET METAL BLIT wait call=%llu sequence=%u result=%d",
+            (unsigned long long)call,submission.fence,status);
+        if(!status)*completed_sequence=submission.fence;
+    }
+    int released=gem_close(commands.handle);if(!status && released)status=released;
+    int synchronized=-1;if(!status){synchronized=sweetgl_metal_buffer_synchronize(destination);status=synchronized;}
+    if(logging)sweet_drm_log("SWEET METAL BLIT END call=%llu result=%d sequence=%u chunks=%u released=%d synchronized=%d native_return=1",
+        (unsigned long long)call,status,*completed_sequence,chunk_count,released,synchronized);
+    return status;
 }
 
 static int
