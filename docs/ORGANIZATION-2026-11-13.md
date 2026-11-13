@@ -11,3 +11,5 @@ Mac已正常卸载本轮只读root，原始镜像未写入。两份可重新生�
 后续Metal／v729迭代的11靴关键结果、原始串口、wire报告、来源审计和每靴关键照片保存到archive/evidence/metal-20261113，215文件/5788125B逐SHA核对。Windows原生回收站新增73项/220956859B，包括重复视频／帧、checkpoint副本和已被v729取代或未投递的v728一次性镜像；原路径与实际回收位置在windows-recycle.jsonl。当前v729全部准入镜像、两版基线内核／库、gl5和备份保留。
 
 Mac新增6份临时HFS镜像通过NSWorkspace送入Trash并核对，macos-trash.json记录位置。最新RAM压缩blob、manifest、实际测试库和构建源保留；未清空任何Windows／Mac回收站。这轮没有新增WSL文件。原未通过的v728结果不改写，恢复旧一次性镜像可查原生回收记录。
+
+原生Metal队列迭代的8靴关键原日志、wire报告、source/stage审计、原始结果与单张关键照片已保存archive/evidence/metal-queue-20261113，159文件/4730449B逐SHA核对。Windows新增139项/204526072B进入原生回收站，包含重复MJPEG/帧、checkpoint副本和被r7/r3替代的旧一次性镜像，windows-recycle.jsonl记录实际回收位置。Mac新增8份临时glram.raw/dmg通过NSWorkspace进入Trash，macos-trash.json记录并核对目标存在。最新r7与队列r3压缩blob、manifest、库、当前核与所有原失败结果保留；Windows/Mac回收站没有清空，也没有新增WSL文件。
