@@ -180,6 +180,25 @@ sweetgl_create(int api, struct sweetgl_ctx *share)
 	sweet_drm_log("sweetgl: shader names context=%llu fresh=%u reuse=%u",(unsigned long long)c->identity,share==NULL,reuse);
 	return c;
 }
+/* Dedicated robust context for Metal-translated kernels; existing EAGL
+ * contexts keep their tested creation flags and current-object state. */
+struct sweetgl_ctx *sweetgl_create_metal(void)
+{
+    if(!sweetgl_init())return NULL;
+    struct st_context_attribs attribs={.profile=API_OPENGLES2,.major=3,.minor=1,
+        .context_flags=PIPE_CONTEXT_ROBUST_BUFFER_ACCESS};
+    enum st_context_error error=ST_CONTEXT_SUCCESS;
+    struct st_context *st=st_api_create_context(fscreen,&attribs,&error,NULL);if(!st)return NULL;
+    (void)sweetgl_prepare_shader_names(st,true);struct sweetgl_ctx *context=calloc(1,sizeof(*context));
+    if(!context){st_destroy_context(st);return NULL;}
+    pthread_mutex_lock(&init_lock);if(next_context_identity)context->identity=next_context_identity++;pthread_mutex_unlock(&init_lock);
+    context->st=st;context->api=3;st->frontend_context=context;return context;
+}
+struct st_context *sweetgl_internal_context(struct sweetgl_ctx *context){return context?context->st:NULL;}
+void sweetgl_internal_restore(struct st_context *previous)
+{
+    if(st_api_make_current(previous,NULL,NULL))current_context=previous?(struct sweetgl_ctx *)previous->frontend_context:NULL;
+}
 
 bool
 sweetgl_make_current(struct sweetgl_ctx *c)

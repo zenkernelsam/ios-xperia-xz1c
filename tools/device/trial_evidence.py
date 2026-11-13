@@ -13,6 +13,7 @@ from exception_evidence import verify as verify_exception
 from metal_abi_evidence import verify as verify_metal_abi
 from metal_resource_evidence import verify as verify_metal_resources
 from metal_queue_evidence import verify as verify_metal_queue
+from air_compute_evidence import verify as verify_air_compute
 
 def verify(directory,mode,kernel_sha=None,version=None):
     root=Path(directory)
@@ -77,6 +78,7 @@ def verify(directory,mode,kernel_sha=None,version=None):
                 if 'runtime_Metal_ABI_methods' in a['exception_observer']:exceptions['runtime_Metal_ABI']=verify_metal_abi(text,a['token'])
                 if a['exception_observer'].get('metal_resource_probe'):exceptions['Metal_resources']=verify_metal_resources(text,a['token'])
                 if a['exception_observer'].get('metal_queue_probe'):exceptions['Metal_queue']=verify_metal_queue(text,a['token'],a.get('metal_resources',{}).get('blit_transport_evidence_revision'))
+                if a['exception_observer'].get('AIR_compute_probe'):exceptions['AIR_compute']=verify_air_compute(text,a['token'],a['exception_observer']['AIR_fixture'])
     boundary='serialized=1' if mode in ('ready','gpu') else 'serialized=0'
     assert re.search(r'SWEET LOOP MAP_BOUNDARY token='+a['token']+' '+boundary+r' claimed=1',scope)
     report={'version':a['version'],'mode':mode,'source':str(root.resolve()),'token':a['token'],'kernel_sha256':a['kernel_sha256'],

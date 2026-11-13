@@ -50,6 +50,15 @@ int main(void)
     struct drm_msm_gem_new mesa={.size=432};assert(!gem_new(&mesa));
     assert(sweetgl_metal_buffer_release(mesa.handle)==-EINVAL && sweetgl_metal_buffer_synchronize(mesa.handle)==-EINVAL);
     assert(!gem_close(mesa.handle));
+    assert(!sweetgl_metal_buffer_allocate(432,&backing));SweetMetalBacking view;
+    assert(!sweet_drm_metal_buffer_view(backing.handle,&view) && view.contents==backing.contents);
+    assert(!sweet_drm_metal_buffer_view_keep(backing.handle));unsigned prior=released;
+    assert(!sweetgl_metal_buffer_release(backing.handle) && released==prior && sbo(backing.handle)->metal_bytes==UINT64_MAX);
+    assert(!gem_close(backing.handle) && released==prior+1 && !sbo(backing.handle));
+    assert(!sweetgl_metal_buffer_allocate(432,&backing));
+    assert(!sweet_drm_metal_buffer_view(backing.handle,&view) && !sweet_drm_metal_buffer_view_keep(backing.handle));
+    prior=released;assert(!gem_close(backing.handle) && released==prior && !sbo(backing.handle)->metal_mesa_view);
+    assert(!sweetgl_metal_buffer_release(backing.handle) && released==prior+1);
     assert(allocated==released);for(unsigned i=0;i<4097;++i)assert(!host_pages[i]);
     free(bos);bos=NULL;puts("actual bridge: sizes, mapping bounds, ownership, retirement and cache path PASS");return 0;
 }

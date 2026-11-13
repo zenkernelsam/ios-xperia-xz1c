@@ -18,6 +18,10 @@ SWEET_METAL_BACKING_API int sweetgl_metal_buffer_synchronize(uint32_t handle);
 SWEET_METAL_BACKING_API int sweetgl_metal_buffer_blit(uint32_t source,uint32_t destination,
     uint64_t source_offset,uint64_t destination_offset,uint64_t bytes,uint32_t fill_byte,
     uint32_t *completed_sequence);
+/* Internal buffer views borrow the Mesa BO while Metal retains its owner. */
+int sweet_drm_metal_buffer_view(uint32_t handle,SweetMetalBacking *backing);
+int sweet_drm_metal_buffer_view_keep(uint32_t handle);
+int sweet_drm_metal_buffer_sequence(uint32_t handle,uint32_t *sequence);
 #ifdef __cplusplus
 }
 #endif

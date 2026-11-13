@@ -1,0 +1,57 @@
+{
+  "repository": "https://github.com/MC-XiaoXiao/ios_sagit",
+  "revision": "898998cf1b74ea103e0c16d6dc0016822d8d644b",
+  "sources": {
+    "tools/gpu-compiler/AIRRuntime.cpp": {
+      "destination": "gpu/metal/air/reference/AIRRuntime.cpp",
+      "sha256": "fafd94dfff9961b4fc6313e44cbf7c42827282267b6eed5274f1f3884478112d"
+    },
+    "tools/gpu-compiler/Semantic.h": {
+      "destination": "gpu/metal/air/reference/Semantic.h",
+      "sha256": "abdf67a1088c61a3bb5e99d86a05974a149e49285f929727a2e448a210c0a216"
+    },
+    "tools/gpu-compiler/AIRControlFlow.h": {
+      "destination": "gpu/metal/air/reference/AIRControlFlow.h",
+      "sha256": "f034bc1d2e0c6b1b6cfa9f5d1659dbe6af320aa92d58b6c97d2448f80c9f7ab8"
+    },
+    "tools/gpu-compiler/AIRSpecialization.h": {
+      "destination": "gpu/metal/air/reference/AIRSpecialization.h",
+      "sha256": "72354a4d35fc6d824d8feb7d4942515b924ad313b99a8f1b47d728a39c3b6699"
+    },
+    "tools/gpu-compiler/FunctionConstants.h": {
+      "destination": "gpu/metal/air/reference/FunctionConstants.h",
+      "sha256": "086220f53bfa1ca611182342964b2f1351a8c2dd64b38be19856fef99a216b97"
+    },
+    "tools/gpu-compiler/Compiler.h": {
+      "destination": "gpu/metal/air/reference/Compiler.h",
+      "sha256": "a9a41964b192b18bb29ea4a46b351ca4f21c7991546dbfd513f0037c57516848"
+    },
+    "tools/gpu-compiler/LibraryArchive.h": {
+      "destination": "gpu/metal/air/reference/LibraryArchive.h",
+      "sha256": "0958f5c5fb0fbc9aef17045d5e49aae405cb4db7daca144de0f97db45fb26b1c"
+    },
+    "tools/gpu-compiler/NOTICE.txt": {
+      "destination": "gpu/metal/air/reference/NOTICE.txt",
+      "sha256": "b042d07d533ceaeafdee25b6c808dc69ae51fb8315a2e91ad45c757d955ae234"
+    },
+    "drivers/include/GPUShaderInterface.h": {
+      "destination": "gpu/metal/air/reference/GPUShaderInterface.h",
+      "sha256": "3f542bcfffb27099c09c9cef28f311a48298ef79230339ba5701d250b19e4998"
+    },
+    "drivers/include/GPUShaderProtocol.h": {
+      "destination": "gpu/metal/air/reference/GPUShaderProtocol.h",
+      "sha256": "7d7f2096a4adee19f02c561a988f7a1ad9bc3b077f6cadb40573a28464d5629e"
+    },
+    "drivers/include/GPUUserProtocol.h": {
+      "destination": "gpu/metal/air/reference/GPUUserProtocol.h",
+      "sha256": "9ea3cd722394a504fa3f5346f402c67bd593c304e58f13d4bd79b66584b4c510"
+    },
+    "drivers/include/GPUJITProtocol.h": {
+      "destination": "gpu/metal/air/reference/GPUJITProtocol.h",
+      "sha256": "2e56fcafb5c80375c915e3a8d8e582df32ce9857f94856f947db388e12202c1d"
+    }
+  },
+  "reference_checkout_unmodified": true,
+  "licenses": "BSD-2-Clause and MIT where indicated; original notices retained",
+  "device_operations": 0
+}

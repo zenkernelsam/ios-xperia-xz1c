@@ -1,17 +1,13 @@
-# 当前状态 — 2026-11-13
+# 当前状态 — 2026-11-14
 
-Sony BH905ND69G当前健康fastboot，无controller/COM/camera或in-flight。v729/774b5efd+r7/db47937b与自有Metal库a2b11a46的队列r3实机通过：20份完整/0缺项的FIFO、80次chunk提交/等待、660480B全区域字节/保护与scheduled/completed回调一致；38.454秒四标记/健康30秒完整PON06自动返回。原GLES全链/960000只读像素与503资源全部撤销仍通过，system Metal/AIR/texture/render和完整UI未完成。详见[原生队列](METAL-QUEUES.md)。
+Sony BH905ND69G健康fastboot，无controller/COM/camera或in-flight。v729/774b5efd+r8/c84403c1与Metal/575e0764已实际完成MTLB bitcode→system LLVM C→开源AIR lowering→ESSL/Mesa→FD540→原Metal buffer共享页面的非空compute。22完整/0缺项样本，2phase×64invocation，每phase80word全检含16保护word，两哈希独立重算一致。892资源全部released/unmapped、orphan/active/root0；单download/boot/retries0、四标记/健康30秒与38.343秒完整PON06自动回程通过。详见[AIR compute](AIR-COMPUTE.md)。
 
-v729内核774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec（20648064B）已编译、81源审计通过，private两次VM/SMEM与36.750秒完整自动返回通过。日志快照改为reader不持writer锁；并发/回绕ASan/UBSan/TSan与arm64通过。仍有少量producer丢弃，不能宣称日志完全无损；GPU完整记录可靠性下一核对。GPUallocator/SCM/PON/RPC/VM原源码保持。
+内核仍v729 SHA774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec（20648064B），81源审计保持。r8 GLES库c84403c11f8a1141e5072e9e2ae8805f61ee175aea25e568a4ee83613bb9a680（14694112B），原GLES CPU37.454/GPU38.609和新AIR包CPU37.625秒完整回程均通过。GLES全尺寸/Surface/caller/动态纹理/CA/lifecycle与960000只读像素仍PASS。
 
-正式Metal前端在gpu/metal，Shared buffer沿用既有Mesa/SweetScatter分配/释放/cache同步，自有limits不改Apple私有ivars。显式工厂、真实buffer生命周期和原生command queue的GPU copy/fill已实机通过。尚无system Metal device、AIR shader或texture/render/compute，不发布MetalPluginName。资源边界见[METAL-RESOURCES.md](METAL-RESOURCES.md)。
+原生MTLDevice子类、Shared buffer持有、command queue FIFO/GPU copy/fill、MTLLibrary/Function/ComputePipeline/ComputeEncoder非空计算已通过对应实机门槛。未发布system MetalPluginName，原Aegir的system device仍nil；原生texture/render/IOSurface、function constants及一般graphics shader未完成。面板仍缺时间/日期/壁纸、完整FPS，睡眠唤醒、声音和无线等目标继续active。
 
-实际Metal ABI r3取得12份完整、4份缺项样本：初始化端口uint32，原抽象_MTLDevice未实现featureProfile，前端须自行提供。原Aegir20次_device=nil已明确导致原生Metal壁纸失败；时间/日期是否另有CA文字问题仍待查。
+开源AIR源固定ios_sagit898998cf，12文件原字节/许可证/SHA保留。168最终LLVM C导入在原20H392 cache逐项找到；host强制旧API/ASan/UBSan、MTLB hash/stage与真实方法体测试通过。不是Apple私有C++ ABI或Vulkan方案，host与硬件证据分开。
 
-GLES r5签名库325810eabb913247e33707e7e83a69e34052bbb3cbf3de75e3152e32c08f82f4（14676688B）新增三个Metal backing C接口；v728上CPU37.391秒完整通过。GPU原controller汇总PASS、38.766秒回程保持，但独立验收缺60×60初始kernel OPEN；拒绝作完整GPU门槛，未重发同靴。r3同样缺22×27测试结束行，其ABI与回程可以独立验证，绘制不宣称完整通过。
+后续沿既有资源/队列/compute接native Metal texture/render和system device discovery，分别验收原壁纸、时间/日期、主页与其它外设。所有fastboot操作-s BH905ND69G，COM>=10且VID1209PID0001，单download/boot且失败不重发，PON只06，完整回程/健康30秒/旧worker退出后下一轮；gl5/SD/TA/XFL/备份不重刷。
 
-最新完整GLES基线为v729/774b5efd与r7/db47937b：750×1624、Surface/caller共享、动态纹理、CA、shader生命周期及960000只读像素通过并完整PON06回程，281资源全部释放/撤销；同库队列r3包含503资源全撤销。原队列r2因kernel日志32次上限没有完整fence证据，原记录不改。时间/日期/壁纸、完整UI/FPS、睡眠唤醒、声音、无线等目标仍active。
-
-下一继续AIR→Mesa和Metal texture/render、系统device发现接入；copy/fill队列通过不代表原生shader或完整UI通过。所有fastboot操作-s BH905ND69G、COM>=10/VID1209PID0001、单download/boot/retries0、PON仅06；gl5/SD/TA/XFL/备份保留。
-
-旧记录全文在[归档状态](archive/20261113/STATUS-before-metal-resources.md)，早期失败与证据不改。
+旧记录全文在[前状态](archive/20261114/STATUS-before-AIR-compute.md)，原队列r2缺kernel日志及其它失败不改写。

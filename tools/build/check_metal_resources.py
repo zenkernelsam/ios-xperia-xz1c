@@ -24,15 +24,15 @@ run(['clang','-g','-O1','-fsanitize=address,undefined','-I',root/'gpu/sweetgl/in
 blit=run([out/'test_blit_bridge'],'blit-bridge-test');assert 'PASS' in blit
 assert blit.count('SWEET METAL BLIT submit call=')==5 and blit.count('native_return=1')==4
 assert 'result='+str(-errno.ETIMEDOUT) in blit and 'result='+str(-errno.ENODEV) in blit
-run(['clang++','-std=c++17','-DSWEET_METAL_HOST_TEST=1','-g','-O1','-fsanitize=address,undefined','-fno-objc-arc',
+run(['clang++','-std=c++17','-DSWEET_METAL_HOST_TEST=1','-DSWEET_METAL_NO_COMPUTE=1','-g','-O1','-fsanitize=address,undefined','-fno-objc-arc',
     root/'tools/build/test_metal_resources.mm','-framework','Foundation','-framework','Metal','-o',out/'test_resources'],'objects-compile')
 assert 'PASS' in run([out/'test_resources'],'objects-test')
 run(['clang','-g','-O1','-fsanitize=address,undefined',root/'tools/build/test_metal_blit_plan.c','-o',out/'test_plan'],'plan-compile')
 assert 'PASS' in run([out/'test_plan'],'plan-test')
-run(['clang++','-std=c++17','-DSWEET_METAL_HOST_TEST=1','-g','-O1','-fsanitize=address,undefined','-fno-objc-arc',
+run(['clang++','-std=c++17','-DSWEET_METAL_HOST_TEST=1','-DSWEET_METAL_NO_COMPUTE=1','-g','-O1','-fsanitize=address,undefined','-fno-objc-arc',
     root/'tools/build/test_metal_queue.mm','-framework','Foundation','-framework','Metal','-o',out/'test_queue'],'queue-compile')
 assert 'PASS' in run([out/'test_queue'],'queue-test')
-run(['xcrun','--sdk','iphoneos','clang++','-arch','arm64','-miphoneos-version-min=16.0','-std=c++17','-fno-objc-arc',
+run(['xcrun','--sdk','iphoneos','clang++','-arch','arm64','-miphoneos-version-min=16.0','-std=c++17','-DSWEET_METAL_NO_COMPUTE=1','-fno-objc-arc',
     '-c',root/'gpu/metal/MetalResources.mm','-o',out/'MetalResources.o'],'ios-compile')
 assert all(hashlib.sha256((root/p).read_bytes()).hexdigest()==h for p,h in source_files.items())
 report=dict(source_files=source_files,actual_bridge_bodies_host_asan_ubsan_passed=True,actual_Metal_object_bodies_host_asan_ubsan_passed=True,

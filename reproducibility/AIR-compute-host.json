@@ -1,0 +1,16 @@
+{
+  "source_files": {
+    "gpu/metal/MetalCompute.inc": "8327c19a276a6382dcad757222c01decb33cbc993a1cf96ed8a93a285a22016b",
+    "gpu/metal/MetalCommandQueue.inc": "aad01df5ddd8a9ca8b6775f8cc2c8d41f6d402e46cb694e8f16100bd87f1f4b6",
+    "gpu/metal/MetalResources.mm": "b46bf7c4870ff661a649ff392c84948f9043d3afcfacc4fff9e2e4ceab222ab2",
+    "gpu/metal/air/ESSLTarget.h": "853f23acf333609c58b664a2aaba95c91d24f02eb6a5e39ea10bdac03be40fdb",
+    "gpu/metal/air/LLVM16Compat.h": "7827793f6653d2526206612308fbf2e38e3f6f00c42de271805317b2137a8966",
+    "tools/build/test_metal_compute.mm": "9bbb73569005a73d24d230424ae740fc71ea4301729bb394460ccc8ad718a910",
+    "tools/build/test_llvm16_compat.cpp": "5dba3563721dcaf1ef02137f3396fa9cd640dba2b4b2bd39389281c54caf9545"
+  },
+  "real_legacy_LLVM_adapter_ASan_UBSan_passed": true,
+  "real_Metal_compute_objects_ASan_UBSan_passed": true,
+  "real_AIR_to_ESSL_translation_passed": true,
+  "host_GPU_stub_not_hardware_proof": true,
+  "device_operations": 0
+}

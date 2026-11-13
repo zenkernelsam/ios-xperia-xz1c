@@ -46,6 +46,7 @@ struct sbo {
 	uint32_t seq;           /* last submit listing it */
 	int used;
     uint64_t metal_bytes;   /* 0: Mesa; logical bytes: Metal; UINT64_MAX: retiring */
+    bool metal_mesa_view;
 };
 
 static pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
@@ -271,6 +272,10 @@ gem_close(uint32_t handle)
     struct sbo *b = sbo(handle);
     int ret = -EINVAL;
     if (b) {
+        // A fd_bo import owns its Mesa reference, while the original Metal
+        // object owns the kernel lease. Closing the view must not free it.
+        if(b->metal_bytes && b->metal_bytes!=UINT64_MAX){b->metal_mesa_view=false;
+            pthread_mutex_unlock(&lock);return 0;}
         uint64_t in = handle;
         kern_return_t kr = IOConnectCallScalarMethod(conn, 11, &in, 1, NULL, NULL);
         if (kr == KERN_SUCCESS) {
@@ -337,12 +342,35 @@ sweetgl_metal_buffer_release(uint32_t handle)
     pthread_mutex_lock(&lock);struct sbo *b=sbo(handle);
     uint64_t logical=b?b->metal_bytes:0;
     if(!logical || logical==UINT64_MAX){pthread_mutex_unlock(&lock);return -EINVAL;}
-    b->metal_bytes=UINT64_MAX;pthread_mutex_unlock(&lock);
+    b->metal_bytes=UINT64_MAX;
+    if(b->metal_mesa_view){pthread_mutex_unlock(&lock);return 0;}
+    pthread_mutex_unlock(&lock);
     int status=gem_close(handle);
     if(status){pthread_mutex_lock(&lock);b=sbo(handle);
         if(b && b->metal_bytes==UINT64_MAX)b->metal_bytes=logical;
         pthread_mutex_unlock(&lock);}
     return status;
+}
+
+int sweet_drm_metal_buffer_view(uint32_t handle,SweetMetalBacking *out)
+{
+    if(!out)return -EINVAL;memset(out,0,sizeof(*out));
+    pthread_mutex_lock(&lock);struct sbo *b=sbo(handle);
+    bool valid=b && b->metal_bytes && b->metal_bytes!=UINT64_MAX;
+    if(valid){*out=(SweetMetalBacking){b->metal_bytes,b->size,b->iova,(void *)(uintptr_t)b->map,handle,0};
+        valid=sweet_metal_backing_valid(out);}
+    pthread_mutex_unlock(&lock);return valid?0:-EINVAL;
+}
+int sweet_drm_metal_buffer_view_keep(uint32_t handle)
+{
+    pthread_mutex_lock(&lock);struct sbo *b=sbo(handle);bool valid=b && b->metal_bytes && b->metal_bytes!=UINT64_MAX;
+    if(valid)b->metal_mesa_view=true;pthread_mutex_unlock(&lock);return valid?0:-EINVAL;
+}
+int sweet_drm_metal_buffer_sequence(uint32_t handle,uint32_t *sequence)
+{
+    if(!sequence)return -EINVAL;*sequence=0;pthread_mutex_lock(&lock);struct sbo *b=sbo(handle);
+    bool valid=b && b->metal_bytes && b->metal_bytes!=UINT64_MAX && b->used && b->seq;
+    if(valid)*sequence=b->seq;pthread_mutex_unlock(&lock);return valid?0:-EIO;
 }
 
 static int

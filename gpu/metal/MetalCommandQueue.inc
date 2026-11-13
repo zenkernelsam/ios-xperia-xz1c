@@ -3,6 +3,11 @@
 #include "MetalQueueState.h"
 #include <dispatch/dispatch.h>
 @class SweetMTLCommandBuffer;
+@class SweetMTLComputeEncoder;
+#if !defined(SWEET_METAL_NO_COMPUTE)
+static NSError *execute_metal_compute(NSDictionary *,id<MTLDevice>,uint32_t *);
+static id<MTLComputeCommandEncoder> create_compute_encoder(SweetMTLCommandBuffer *);
+#endif
 @interface SweetMTLCommandQueue : NSObject <MTLCommandQueue> {
 @public SweetMTLDevice *_device;dispatch_queue_t _execution;NSString *_label;
     NSCondition *_capacity;NSLock *_reservation;NSUInteger _maximumBuffers,_activeBuffers;
@@ -73,6 +78,13 @@ static NSError *metal_queue_error(NSString *message,NSInteger code=MTLCommandBuf
     [_condition lock];bool allowed=_state.beginEncoder();[_condition unlock];
     return allowed?[[[SweetMTLBlitEncoder alloc] initWithCommands:self] autorelease]:nil;
 }
+#if !defined(SWEET_METAL_NO_COMPUTE)
+- (id<MTLComputeCommandEncoder>)computeCommandEncoder
+{
+    [_condition lock];bool allowed=_state.beginEncoder();[_condition unlock];
+    return allowed?create_compute_encoder(self):nil;
+}
+#endif
 - (BOOL)appendOperation:(NSDictionary *)operation
 {
     [_condition lock];bool allowed=_state.status==SweetMetal::QueueStatus::Created && _state.encoderOpen && !_state.invalid;
@@ -105,6 +117,11 @@ static NSError *metal_queue_error(NSString *message,NSInteger code=MTLCommandBuf
     for(id handler in handlers)((MTLCommandBufferHandler)handler)(self);[handlers release];
     NSError *failure=nil;
     for(NSDictionary *operation in _operations) {
+#if !defined(SWEET_METAL_NO_COMPUTE)
+        if(operation[@"computePipeline"]){uint32_t sequence=0;failure=execute_metal_compute(operation,self.device,&sequence);
+            if(failure)break;if(!sequence){failure=metal_queue_error(@"Compute completed without its owned GPU fence");break;}
+            [_condition lock];_sequence=sequence;++_GPUOperations;[_condition unlock];continue;}
+#endif
         SweetMTLBuffer *dst=operation[@"destination"],*src=operation[@"source"];
         NSUInteger bytes=[operation[@"bytes"] unsignedLongLongValue],destination=[operation[@"destinationOffset"] unsignedLongLongValue];
         NSUInteger source=[operation[@"sourceOffset"] unsignedLongLongValue],fill=[operation[@"fill"] unsignedIntValue];

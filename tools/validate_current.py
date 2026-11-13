@@ -25,6 +25,10 @@ for path,digest in devices.get('shared_sources',{}).items():
 for category in ('build_sources','gpu_sources','support_sources'):
     for path,digest in devices.get(category,{}).items():
         assert hashlib.sha256((root/path).read_bytes()).hexdigest()==digest,path
+if (root/'reproducibility/air-reference.json').is_file():
+    air=json.loads((root/'reproducibility/air-reference.json').read_bytes())
+    for row in air['sources'].values():
+        assert hashlib.sha256((root/row['destination']).read_bytes()).hexdigest()==row['sha256'],row['destination']
 py_files=[]
 for base in ('tools','gpu'):
     for file in (root/base).rglob('*.py'):

@@ -138,12 +138,32 @@ static bool native_base_available(void)
 @end
 
 #include "MetalCommandQueue.inc"
+#if !defined(SWEET_METAL_NO_COMPUTE)
+#include "MetalCompute.inc"
+#endif
 
 @implementation SweetMTLDevice (CommandQueues)
 - (id<MTLCommandQueue>)newCommandQueue{return [[SweetMTLCommandQueue alloc] initWithDevice:self];}
 - (id<MTLCommandQueue>)newCommandQueueWithMaxCommandBufferCount:(NSUInteger)count
 {return [[SweetMTLCommandQueue alloc] initWithDevice:self maximumBuffers:count];}
 @end
+#if !defined(SWEET_METAL_NO_COMPUTE)
+@implementation SweetMTLDevice (ComputePipelines)
+- (id<MTLLibrary>)newLibraryWithData:(dispatch_data_t)data error:(NSError **)error
+{
+    if(error)*error=nil;if(!data)return nil;const void *bytes=NULL;size_t length=0;
+    dispatch_data_t mapped=dispatch_data_create_map(data,&bytes,&length);if(!mapped)return nil;
+    if(!length || length>16u*1024*1024){dispatch_release(mapped);return nil;}
+    NSData *source=[NSData dataWithBytes:bytes length:length];auto library=[[SweetMTLLibrary alloc] initWithOwner:self bytes:source error:error];
+    dispatch_release(mapped);return library;
+}
+- (id<MTLComputePipelineState>)newComputePipelineStateWithFunction:(id<MTLFunction>)function error:(NSError **)error
+{
+    if(error)*error=nil;if(function.device!=self)return nil;auto pipeline=[[SweetMTLComputePipeline alloc] initWithFunction:(SweetMTLFunction *)function];
+    if(!pipeline && error)*error=metal_queue_error(@"Compute kernel required");return pipeline;
+}
+@end
+#endif
 
 id<MTLDevice> SweetMTLCreateDevice(NSError **error)
 {

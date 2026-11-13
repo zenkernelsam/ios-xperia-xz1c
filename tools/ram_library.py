@@ -42,6 +42,10 @@ def load(folder,expected=None):
             if observer.get('metal_queue_probe'):
                 sources.add('gpu/diagnostics/MetalQueueProbe.h')
                 assert observer['queue_probe_submits_actual_GPU_commands'] and observer['metal_resources']['native_blit_command_queue']
+            if observer.get('AIR_compute_probe'):
+                sources.add('gpu/diagnostics/MetalComputeProbe.h')
+                assert observer['metal_resources']['AIR_compute_pipeline'] and observer['AIR_fixture']['authored_semantic_fixture']
+                assert re.fullmatch('[0-9a-f]{64}',observer['AIR_fixture']['library_sha256'])
             assert set(observer['source_files'])==sources
             assert observer['source_files'][observer['source']]==observer['source_sha256']
     if 'metal_resources' in m:
@@ -50,6 +54,9 @@ def load(folder,expected=None):
         assert resources['only_explicit_resource_factory'] and resources['system_Metal_plugin_not_advertised']
         assert m['files']['MetalResources.dylib']['sha256']==resources['library_sha256']
         assert m['library_sha256']==resources['gles_library_sha256']
+        if resources.get('AIR_compute_pipeline'):
+            air=resources['AIR_frontend'];assert air['actual_AIR_stage_translation_verified'] and air['forced_legacy_interface_host_test_passed']
+            assert not air['llvm_import_audit']['missing_target_imports']
         assert m['files']['exception_observe.dylib']['sha256']==observer['library_sha256']
     assert set(m['files'])==names
     for name,info in m['files'].items():

@@ -2,12 +2,13 @@
 import argparse,hashlib,json,subprocess
 from pathlib import Path
 root=Path(__file__).resolve().parents[2]
-p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--metal-resources');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--metal-resources');p.add_argument('--air-fixture');a=p.parse_args()
 out=Path(a.output).absolute();assert out.is_relative_to(root/'build') and not out.exists();out.mkdir(parents=True)
 source=root/'gpu/diagnostics/exception_observe.m';before=source.read_bytes()
 (out/'source.m').write_bytes(before)
 headers=['gpu/diagnostics/MetalRuntimeObserve.h']
 resource_manifest=None
+fixture_manifest=None
 if a.metal_resources:
     resources=Path(a.metal_resources).resolve();assert resources.is_relative_to(root/'build')
     resource_manifest=json.loads((resources/'manifest.json').read_bytes())
@@ -15,6 +16,15 @@ if a.metal_resources:
     assert hashlib.sha256((resources/'MetalResources.dylib').read_bytes()).hexdigest()==resource_manifest['library_sha256']
     headers+=['gpu/diagnostics/MetalResourceProbe.h','gpu/metal/MetalResources.h']
     if resource_manifest.get('native_blit_command_queue'):headers+=['gpu/diagnostics/MetalQueueProbe.h']
+if a.air_fixture:
+    assert resource_manifest and resource_manifest.get('AIR_compute_pipeline')
+    fixture=Path(a.air_fixture).resolve();assert fixture.is_relative_to(root/'build')
+    fixture_manifest=json.loads((fixture/'manifest.json').read_bytes())
+    assert fixture_manifest['authored_semantic_fixture']
+    assert hashlib.sha256((fixture/'AIRFixture.h').read_bytes()).hexdigest()==fixture_manifest['header_sha256']
+    assert hashlib.sha256((fixture/'basic.metallib').read_bytes()).hexdigest()==fixture_manifest['library_sha256']
+    (out/'AIRFixture.h').write_bytes((fixture/'AIRFixture.h').read_bytes())
+    headers+=['gpu/diagnostics/MetalComputeProbe.h']
 source_files={str(source.relative_to(root)):hashlib.sha256(before).hexdigest()}
 for name in headers:
     data=(root/name).read_bytes();(out/Path(name).name).write_bytes(data)
@@ -38,6 +48,7 @@ assert 'SWEET METAL ABI end methods=22 metadata_only=1 instances_created=0 gpu_o
 library=out/'exception_observe.dylib'
 extra=['-DSWEET_METAL_RESOURCE_PROBE=1',resources/'MetalResources.dylib'] if resource_manifest else []
 if resource_manifest and resource_manifest.get('native_blit_command_queue'):extra+=['-DSWEET_METAL_QUEUE_PROBE=1']
+if fixture_manifest:extra+=['-DSWEET_AIR_COMPUTE_PROBE=1','-I',out]
 run(['xcrun','--sdk','iphoneos','clang','-arch','arm64','-miphoneos-version-min=16.0',
     '-fobjc-exceptions','-O2','-dynamiclib',source,'-framework','Foundation',
     '-Wl,-not_for_dyld_shared_cache','-install_name','/dev/sglram/e','-o',library,*extra],'ios-compile')
@@ -54,6 +65,7 @@ if resource_manifest:manifest.update(metal_resource_probe=True,metal_resources=r
     metadata_and_resource_probe_distinct=True,resource_probe_does_not_submit_GPU_commands=True)
 if resource_manifest and resource_manifest.get('native_blit_command_queue'):
     manifest.update(metal_queue_probe=True,queue_probe_submits_actual_GPU_commands=True)
+if fixture_manifest:manifest.update(AIR_compute_probe=True,AIR_fixture=fixture_manifest)
 assert all(hashlib.sha256((root/name).read_bytes()).hexdigest()==digest for name,digest in source_files.items())
 (out/'manifest.json').write_bytes((json.dumps(manifest,indent=2)+'\n').encode())
 print(json.dumps(manifest,indent=2))
