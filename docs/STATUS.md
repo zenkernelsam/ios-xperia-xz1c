@@ -1,5 +1,9 @@
 # 当前状态 — 2026-11-13
 
+最新r2实际CPU/GPU诊断均PASS并完整自动PON06返回37.188/37.641秒，Sony健康fastboot，无controller/COM/camera/in-flight。Aegir原始Metal `_device` 20次真实入口观测全nil，真实index ABI=Q，17完整栈/3缺帧保留；原GLES、全尺寸/共享/lifecycle与960000只读像素仍通过，最后308资源全释放/撤销。面板80帧MJPEG仍缺时间/日期/壁纸，完整目标active。
+
+已开始gpu/metal正式源码移植：iOS16 limits264B的64字段布局与独立元数据逐项原生/arm64编译通过；修正参考iOS18多出maxAccelerationStructureLevels导致maxConstantBufferArguments偏移252/实际248的问题。尚无Metal device/command/render，不能把header或GLES自检通过当完整UI。r2两靴均单download/boot/retries0，回程允许另一台fastboot设备同时连接，所有实际端点命令仍Sony-s限定。
+
 最新 Aegir 诊断已定位原生 Metal uniform buffer 的 nil 返回，详见 AEGIR-RENDERING.md。20次异常有18条完整栈、2条缺帧，缺帧不补猜；原生动态壁纸使用 CLKUIMetalQuadView/NanoUniverse。GLES/Surface通过不代表 Metal device 已提供，实际 `_device` 状态下一直接观测。时间/日期/壁纸仍未恢复，完整目标active。
 
 token9b22a5a27265fbe1 的原controller STOP_ERROR保留：另一台手机接入导致旧全局唯一库存规则中断回程计时。原始四标记完整，独立Sony USB/序列号/端点连续31.422秒健康通过，没有再download/boot/reset。多设备库存已改为严格选择Sony，缺失/重复/非法Sony仍拒绝；所有操作保持-s BH905ND69G。当前Sony健康fastboot，无controller/COM/camera/in-flight。

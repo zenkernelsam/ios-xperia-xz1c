@@ -4,14 +4,14 @@
     "capture.py": "6bf670ec0fd55b50ee5f83997931dee98549461435f89474dfd3b757e3b39c70",
     "clock_evidence.py": "0e7d7fcf93daf09af915b974c6b06a7165408bf1891ba553427330fcd089c42f",
     "controller.py": "5ee209c62ab4f660f23c402c78b1cccfdca30dfbccd4f2c307f61c9bc2afb082",
-    "exception_evidence.py": "08d6e8951d2b8621b23944a6acc5170609490800a7738fe067188be74fd9de14",
+    "exception_evidence.py": "29bc60cdf4d27591efc4134742dad1ff46262d84218023c4a78906eeddecd1af",
     "failed_trial_evidence.py": "e7b4167c40de9fab4cb70f619faf499c4a1cbd852fdcc3be79c03e5eea198bed",
     "gpu_pixels.py": "6a368d19a77179f59af15c6bb2ee20f76e17d23e9c0f4559d0e290d9d60d6fdc",
     "guarded_xperable.sh": "4555e0841894df5014ef0f60bd16ca7911bc8446d8a0545b6b3ce069b40dc33e",
     "interrupted_trial_evidence.py": "134bf3d787c609f63abc337731ff3b5ea710a004388da4675a2962b4822cbedb",
     "observe_fastboot.py": "7c82964e346fa9166bdbaee1b8d74905f8cf1b53d151b42ba68909dc2e82100b",
     "owner_metadata.py": "e0f4e4fa2d54381d63128a39fbcabfe6c3ab9468a99f44cd44c37d86af84d564",
-    "package_trial.py": "e8bf8709f1bb12c2db1dff5389cfbbe1102548e86b0c2ff34dbb6fc58c3089dc",
+    "package_trial.py": "0105e3632b265fdf98a0d87f03fb8bbab08c96e1f3885aad95f91632d2d1efa7",
     "policy.py": "788151bcae524eb1dbb58e21743e957cf4ff2e819247dcf74db05e173cf00365",
     "preflight_processes.ps1": "6586345710fe618415ce2ddd8b53d230c14c280c93f34c5fb1a190fcc7e1f91f",
     "procguard.py": "7cc150c13ca8d6fce28ec9784af8886eaaa4cdd8fad9cb3ff6befa9fd67d116d",
@@ -25,9 +25,9 @@
     "surface_permission_evidence.py": "ea8fe1ce68243087ed3304f1e978f9c3a72fc754e03d73ef44fcdd34d45c26e4",
     "test_boot_once.py": "a8e72df6342bd734820f49bf4322f1f04e3d5737db5bf5c726e05120c64662df",
     "test_current_transport.py": "aac740ce653b63e9b6c306f84f71c0d0b582b49ae9130a6401c64cbed36d5213",
-    "test_trial_gates.py": "57466394c75addeacd4968bf179479dff898a1e247959fa813dbfd84d5faf317",
+    "test_trial_gates.py": "d640851d5b0e34c10a0b9dbcb3f077451e33675c4586bca6da9b7b62a27fc628",
     "texture_offset_evidence.py": "73e50f64af52491a94464d13268c44a8d917175926bdd92caf260eced329f230",
-    "trial_evidence.py": "f7f38b147326505c3ae00c802a16720f5efde92268fed85dbd80a1fe5596c3b6"
+    "trial_evidence.py": "69d9d3e720f5f5bfee6e75b12b5c420765fb8e3b4af612f41ee854c715b59d9d"
   },
   "supervisor_based_on_actual_tested_one_shot": true,
   "platform_tools_from_environment_or_PATH": true,
@@ -38,23 +38,27 @@
   "formal_v725_private_owner_ready_actual_return": true,
   "diagnostic_fault_replay_tests_passed": 12,
   "formal_v725_five_stages_actual_return": true,
-  "all_transport_and_diagnostic_tests_passed": 38,
+  "all_transport_and_diagnostic_tests_passed": 39,
   "shared_sources": {
     "tools/diagnostic_candidate.py": "230e273264b2963cce528174948865234cff4504e54a2bd11768334c4a00fc75",
     "tools/mkpayload.py": "5c9a3dacbdf877ffded27971ad2e737e5ee4296fada247d14d5c6051ff1f47ff",
-    "tools/ram_library.py": "dcc594912ff1cbc2798138015f8d69c03b75d9d7bb5f6702624678e40b183f60"
+    "tools/ram_library.py": "fd8c0397f31d81227a8095388dac97b39f9feb547d8e73f50370540e7be4a336"
   },
   "formal_v726_five_stages_actual_return": true,
   "formal_v728_r4_all_stages_actual_return": true,
   "build_sources": {
     "tools/build/package_glram.py": "809023ab3cee67bced8c234b511178930ec384428d8fe19525ee331f36c31066",
-    "tools/build/build_exception_observer.py": "d9c079c799a11facb180128a99abb455c669d7d86367ad791f15f28f5b22e029",
-    "tools/build/symbolicate_aegir_exception.py": "a41c50e0e70a3015a458ed8fa93e831c924a201eafd447f1bd5a1213941502b0"
+    "tools/build/build_exception_observer.py": "f0eeee9b2bd2e13ef9d0dd1a07309c680ce66fea7608ec3fa3381d89cd5fdacc",
+    "tools/build/symbolicate_aegir_exception.py": "a41c50e0e70a3015a458ed8fa93e831c924a201eafd447f1bd5a1213941502b0",
+    "tools/build/inspect_metal_contract.py": "b49c1f3fded2e2919d8a7e427f5ffd860f3282d80e82cc20731b660a8480e765",
+    "tools/build/check_metal16_projection.py": "9ab528a51bd5bb6fc58ad243410c488304261622baccfa054d101935f8d27e82"
   },
   "gpu_sources": {
-    "gpu/diagnostics/exception_observe.m": "49a74baaff83838ca4f524fb50544d248e498442178e7049a2edb40ef5000194"
+    "gpu/diagnostics/exception_observe.m": "2ffc1621570c18e6b7a4b1ddf7a40b2d8a2e7c9c48d52273056bc5056bfa6056",
+    "gpu/metal/MetalDeviceLimits16.h": "9cd19db55a9a3cd3e287cdff68b5acae300d8007512295f95f0e26e582c4f068"
   },
   "tests_skipped_without_optional_old_evidence": 2,
   "sony_specific_multi_device_return_fault_replay_passed": true,
-  "tests_run_total": 40
+  "tests_run_total": 41,
+  "r2_actual_CPU_GPU_and_multi_device_return_passed": true
 }

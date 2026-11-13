@@ -6,6 +6,8 @@
 
 ## 硬件与恢复
 
+- r2 Aegir真实20次_device=nil、原生index ABI=Q；CPU/GPU原GLES和960000只读像素通过，308资源全撤销，自动PON06回程37.188/37.641秒。Sony健康fastboot，无worker/in-flight，完整UI仍缺时间/日期/壁纸。gpu/metal开始iOS16原生前端移植，limits64字段/264B已核对编译；还没有Metal device或render。多设备库存只验证Sony目标行及USB身份，所有操作仍-s BH905ND69G。
+
 - 只操作 Sony BH905ND69G，fastboot 必须带 -s BH905ND69G。
 - 串口仅 VID1209/PID0001 且 COM>=10；禁止 COM3 和其它设备。
 - PON 只用 0x06。单次 download/boot；失败不重发。ACK/DRAIN/RESET/FINAL_DRAIN、连续健康30秒、旧 worker 退出后才能下一轮。

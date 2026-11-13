@@ -1,0 +1,405 @@
+{
+  "fields": [
+    {
+      "name": "maxFramebufferStorageBits",
+      "type": "I",
+      "offset": 0,
+      "bytes": 4
+    },
+    {
+      "name": "linearTextureArrayAlignmentBytes",
+      "type": "I",
+      "offset": 4,
+      "bytes": 4
+    },
+    {
+      "name": "linearTextureArrayAlignmentSlice",
+      "type": "I",
+      "offset": 8,
+      "bytes": 4
+    },
+    {
+      "name": "maxTileBuffers",
+      "type": "I",
+      "offset": 12,
+      "bytes": 4
+    },
+    {
+      "name": "maxTileTextures",
+      "type": "I",
+      "offset": 16,
+      "bytes": 4
+    },
+    {
+      "name": "maxTileSamplers",
+      "type": "I",
+      "offset": 20,
+      "bytes": 4
+    },
+    {
+      "name": "maxTileInlineDataSize",
+      "type": "I",
+      "offset": 24,
+      "bytes": 4
+    },
+    {
+      "name": "minTilePixels",
+      "type": "I",
+      "offset": 28,
+      "bytes": 4
+    },
+    {
+      "name": "maxColorAttachments",
+      "type": "I",
+      "offset": 32,
+      "bytes": 4
+    },
+    {
+      "name": "maxVertexAttributes",
+      "type": "I",
+      "offset": 36,
+      "bytes": 4
+    },
+    {
+      "name": "maxVertexBuffers",
+      "type": "I",
+      "offset": 40,
+      "bytes": 4
+    },
+    {
+      "name": "maxVertexTextures",
+      "type": "I",
+      "offset": 44,
+      "bytes": 4
+    },
+    {
+      "name": "maxVertexSamplers",
+      "type": "I",
+      "offset": 48,
+      "bytes": 4
+    },
+    {
+      "name": "maxVertexInlineDataSize",
+      "type": "I",
+      "offset": 52,
+      "bytes": 4
+    },
+    {
+      "name": "maxInterpolants",
+      "type": "I",
+      "offset": 56,
+      "bytes": 4
+    },
+    {
+      "name": "maxFragmentBuffers",
+      "type": "I",
+      "offset": 60,
+      "bytes": 4
+    },
+    {
+      "name": "maxFragmentTextures",
+      "type": "I",
+      "offset": 64,
+      "bytes": 4
+    },
+    {
+      "name": "maxFragmentSamplers",
+      "type": "I",
+      "offset": 68,
+      "bytes": 4
+    },
+    {
+      "name": "maxFragmentInlineDataSize",
+      "type": "I",
+      "offset": 72,
+      "bytes": 4
+    },
+    {
+      "name": "maxComputeBuffers",
+      "type": "I",
+      "offset": 76,
+      "bytes": 4
+    },
+    {
+      "name": "maxComputeTextures",
+      "type": "I",
+      "offset": 80,
+      "bytes": 4
+    },
+    {
+      "name": "maxComputeSamplers",
+      "type": "I",
+      "offset": 84,
+      "bytes": 4
+    },
+    {
+      "name": "maxComputeInlineDataSize",
+      "type": "I",
+      "offset": 88,
+      "bytes": 4
+    },
+    {
+      "name": "maxComputeLocalMemorySizes",
+      "type": "I",
+      "offset": 92,
+      "bytes": 4
+    },
+    {
+      "name": "maxTotalComputeThreadsPerThreadgroup",
+      "type": "I",
+      "offset": 96,
+      "bytes": 4
+    },
+    {
+      "name": "maxComputeThreadgroupMemory",
+      "type": "I",
+      "offset": 100,
+      "bytes": 4
+    },
+    {
+      "name": "maxLineWidth",
+      "type": "f",
+      "offset": 104,
+      "bytes": 4
+    },
+    {
+      "name": "maxPointSize",
+      "type": "f",
+      "offset": 108,
+      "bytes": 4
+    },
+    {
+      "name": "maxVisibilityQueryOffset",
+      "type": "I",
+      "offset": 112,
+      "bytes": 4
+    },
+    {
+      "name": "padmaxBufferLength",
+      "type": "I",
+      "offset": 116,
+      "bytes": 4
+    },
+    {
+      "name": "minConstantBufferAlignmentBytes",
+      "type": "I",
+      "offset": 120,
+      "bytes": 4
+    },
+    {
+      "name": "minBufferNoCopyAlignmentBytes",
+      "type": "I",
+      "offset": 124,
+      "bytes": 4
+    },
+    {
+      "name": "maxTextureWidth1D",
+      "type": "I",
+      "offset": 128,
+      "bytes": 4
+    },
+    {
+      "name": "maxTextureWidth2D",
+      "type": "I",
+      "offset": 132,
+      "bytes": 4
+    },
+    {
+      "name": "maxTextureHeight2D",
+      "type": "I",
+      "offset": 136,
+      "bytes": 4
+    },
+    {
+      "name": "maxTextureWidth3D",
+      "type": "I",
+      "offset": 140,
+      "bytes": 4
+    },
+    {
+      "name": "maxTextureHeight3D",
+      "type": "I",
+      "offset": 144,
+      "bytes": 4
+    },
+    {
+      "name": "maxTextureDepth3D",
+      "type": "I",
+      "offset": 148,
+      "bytes": 4
+    },
+    {
+      "name": "maxTextureDimensionCube",
+      "type": "I",
+      "offset": 152,
+      "bytes": 4
+    },
+    {
+      "name": "maxTextureLayers",
+      "type": "I",
+      "offset": 156,
+      "bytes": 4
+    },
+    {
+      "name": "linearTextureAlignmentBytes",
+      "type": "I",
+      "offset": 160,
+      "bytes": 4
+    },
+    {
+      "name": "iosurfaceTextureAlignmentBytes",
+      "type": "I",
+      "offset": 164,
+      "bytes": 4
+    },
+    {
+      "name": "iosurfaceReadOnlyTextureAlignmentBytes",
+      "type": "I",
+      "offset": 168,
+      "bytes": 4
+    },
+    {
+      "name": "deviceLinearTextureAlignmentBytes",
+      "type": "I",
+      "offset": 172,
+      "bytes": 4
+    },
+    {
+      "name": "deviceLinearReadOnlyTextureAlignmentBytes",
+      "type": "I",
+      "offset": 176,
+      "bytes": 4
+    },
+    {
+      "name": "maxFunctionConstantIndices",
+      "type": "I",
+      "offset": 180,
+      "bytes": 4
+    },
+    {
+      "name": "maxComputeThreadgroupMemoryAlignmentBytes",
+      "type": "I",
+      "offset": 184,
+      "bytes": 4
+    },
+    {
+      "name": "maxInterpolatedComponents",
+      "type": "I",
+      "offset": 188,
+      "bytes": 4
+    },
+    {
+      "name": "maxTessellationFactor",
+      "type": "I",
+      "offset": 192,
+      "bytes": 4
+    },
+    {
+      "name": "maxIndirectBuffers",
+      "type": "I",
+      "offset": 196,
+      "bytes": 4
+    },
+    {
+      "name": "maxIndirectTextures",
+      "type": "I",
+      "offset": 200,
+      "bytes": 4
+    },
+    {
+      "name": "maxIndirectSamplers",
+      "type": "I",
+      "offset": 204,
+      "bytes": 4
+    },
+    {
+      "name": "maxIndirectSamplersPerDevice",
+      "type": "I",
+      "offset": 208,
+      "bytes": 4
+    },
+    {
+      "name": "maxFenceInstances",
+      "type": "I",
+      "offset": 212,
+      "bytes": 4
+    },
+    {
+      "name": "maxViewportCount",
+      "type": "I",
+      "offset": 216,
+      "bytes": 4
+    },
+    {
+      "name": "maxCustomSamplePositions",
+      "type": "I",
+      "offset": 220,
+      "bytes": 4
+    },
+    {
+      "name": "maxVertexAmplificationFactor",
+      "type": "I",
+      "offset": 224,
+      "bytes": 4
+    },
+    {
+      "name": "maxVertexAmplificationCount",
+      "type": "I",
+      "offset": 228,
+      "bytes": 4
+    },
+    {
+      "name": "maxTextureBufferWidth",
+      "type": "I",
+      "offset": 232,
+      "bytes": 4
+    },
+    {
+      "name": "maxComputeAttributes",
+      "type": "I",
+      "offset": 236,
+      "bytes": 4
+    },
+    {
+      "name": "maxIOCommandsInFlight",
+      "type": "I",
+      "offset": 240,
+      "bytes": 4
+    },
+    {
+      "name": "maxPredicatedNestingDepth",
+      "type": "I",
+      "offset": 244,
+      "bytes": 4
+    },
+    {
+      "name": "maxConstantBufferArguments",
+      "type": "I",
+      "offset": 248,
+      "bytes": 4
+    },
+    {
+      "name": "maxBufferLength",
+      "type": "Q",
+      "offset": 256,
+      "bytes": 8
+    }
+  ],
+  "limits_bytes": 264,
+  "limits_alignment": 8,
+  "referenced_projection_field_order_and_types_match": true,
+  "reference_limits_bytes": 264,
+  "reference_limits_alignment": 8,
+  "common_field_offset_differences": [],
+  "reference_fields_absent_from_target": [],
+  "target_base_class_present": true,
+  "target_initializer_name_present": true,
+  "target_SPI_protocol_present": true,
+  "runtime_method_type_encodings_not_yet_verified": true,
+  "Metal_device_driver_and_rendering_not_yet_provided": true,
+  "device_operations": 0,
+  "header_sha256": "9cd19db55a9a3cd3e287cdff68b5acae300d8007512295f95f0e26e582c4f068",
+  "metadata_sha256": "9a9207478247a52570eb83757a8d18065631772ebd5a9383cbed088981f849fc",
+  "all_target_field_offsets_compiled": true,
+  "host_and_ios_arm64_compilation_passed": true
+}

@@ -54,9 +54,26 @@ def inspect_scope(scope):
     return dict(observer_load_count=len(installed),records=records,incomplete_records=incomplete,
         observed_exception_metadata_only=True,exception_cause_not_yet_repaired=True)
 
-def verify(text,token):
+def verify_renderer(scope):
+    installed=re.findall(r'SWEET METAL observer installed renderer=NUNIAegirRenderer limit=32 index_type=([Qq]) device_object=1 original_forwarded=1',scope)
+    assert installed,'Actual renderer ABI hook absent'
+    matches=re.findall(r'SWEET METAL uniform call=(\d+) index=(\d+) device_nil=([01]) device_class=(\S+) new_buffer_method=([01]) metadata_only=1 original_called=1',scope)
+    assert matches,'No actual renderer device observation'
+    rows=[]
+    for call,index,absent,type_,supports in matches:
+        call=int(call);index=int(index);absent=int(absent);supports=int(supports)
+        assert 1<=call<=32 and 0<=index<3
+        assert (not absent and type_!='nil') or (absent and type_=='nil' and not supports)
+        rows.append(dict(call=call,frame_buffer_index=index,device_nil=bool(absent),device_class=type_,new_buffer_method=bool(supports)))
+    return dict(actual_renderer_ABI_verified=True,device_observations=rows,
+        all_observed_devices_nil=all(r['device_nil'] for r in rows),metadata_only=True,
+        original_renderer_forwarded=True,no_Metal_buffer_or_rendering_claim=True)
+
+def verify(text,token,require_renderer=False):
     start=text.index('SWEET LOOP LIVE proto=1 token='+token)
     end=text.index('SWEET LOOP ACK FASTBOOT token='+token)
     scope=text[start:end]
     assert 'SWEET ENV: AegirPoster += DYLD_INSERT_LIBRARIES=/dev/sglram/e' in scope
-    return inspect_scope(scope)
+    report=inspect_scope(scope)
+    if require_renderer:report['renderer']=verify_renderer(scope)
+    return report

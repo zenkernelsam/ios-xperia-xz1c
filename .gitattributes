@@ -13,6 +13,7 @@ xnu/patches/** text eol=lf
 *.S     text eol=lf
 *.ld    text eol=lf
 *.mm    text eol=lf
+*.m     text eol=lf
 *.json  text eol=lf
 *.yml   text eol=lf
 *.txt   text eol=lf

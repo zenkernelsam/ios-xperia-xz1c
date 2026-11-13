@@ -1,6 +1,7 @@
 /* AegirPoster-only metadata observer. Continue the original exception chain. */
 #import <Foundation/Foundation.h>
 #include <objc/objc-exception.h>
+#include <objc/runtime.h>
 #include <stdatomic.h>
 #include <execinfo.h>
 #include <dlfcn.h>
@@ -10,10 +11,31 @@
 #include <stdio.h>
 #include <string.h>
 
+#if defined(LILAC_EXCEPTION_TEST)
+static unsigned uniform_original_calls;
+@interface NUNITestDevice : NSObject
+- (id)newBufferWithLength:(NSUInteger)length options:(NSUInteger)options;
+@end
+@implementation NUNITestDevice
+- (id)newBufferWithLength:(NSUInteger)length options:(NSUInteger)options
+{ (void)length;(void)options;assert(!"observer must not allocate a Metal buffer");return nil; }
+@end
+@interface NUNIAegirRenderer : NSObject { @public id _device; }
+- (id)getOrCreateUniformBufferforFrameBufferIndex:(NSUInteger)index;
+@end
+@implementation NUNIAegirRenderer
+- (id)getOrCreateUniformBufferforFrameBufferIndex:(NSUInteger)index
+{ assert(index<3);++uniform_original_calls;return _device; }
+@end
+#endif
+
 static objc_exception_preprocessor previous;
 static atomic_uint observations;
 static _Thread_local bool logging_exception;
 static int log_fd = -1;
+static id (*uniform_original)(id,SEL,NSUInteger);
+static Ivar renderer_device;
+static atomic_uint uniform_observations;
 static void diagnostic(const char *format, ...)
 {
     char line[512]; va_list args; va_start(args, format);
@@ -31,6 +53,37 @@ static void copy_string(NSString *value, char out[192])
     if(bytes) memcpy(out,[data bytes],bytes);
     out[bytes]=0;
     for(NSUInteger i=0;i<bytes;++i) if((unsigned char)out[i]<32 || out[i]=='"') out[i]=' ';
+}
+static id observe_uniform(id object,SEL selector,NSUInteger index)
+{
+    unsigned call=atomic_fetch_add_explicit(&uniform_observations,1,memory_order_relaxed)+1;
+    if(call<=32) {
+        id device=object_getIvar(object,renderer_device);
+        Class type=device?object_getClass(device):Nil;
+        bool supports=type && class_getInstanceMethod(type,sel_registerName("newBufferWithLength:options:"));
+        diagnostic("SWEET METAL uniform call=%u index=%lu device_nil=%u device_class=%s new_buffer_method=%u metadata_only=1 original_called=1",
+            call,(unsigned long)index,device==nil,type?class_getName(type):"nil",supports);
+    }
+    // Forward every call, including those beyond the diagnostic limit. Do not
+    // manufacture a buffer or catch the original renderer's exception.
+    return uniform_original(object,selector,index);
+}
+static void install_uniform_observer(void)
+{
+    Class renderer=objc_lookUpClass("NUNIAegirRenderer");
+    SEL selector=sel_registerName("getOrCreateUniformBufferforFrameBufferIndex:");
+    Method method=renderer?class_getInstanceMethod(renderer,selector):NULL;
+    Ivar device=renderer?class_getInstanceVariable(renderer,"_device"):NULL;
+    char result[16]={0},index[16]={0};
+    if(method){method_getReturnType(method,result,sizeof(result));method_getArgumentType(method,2,index,sizeof(index));}
+    bool valid=method && device && method_getNumberOfArguments(method)==3 && result[0]=='@' &&
+        (index[0]=='Q' || index[0]=='q') && ivar_getTypeEncoding(device)[0]=='@' &&
+        ivar_getOffset(device)>=0 && (size_t)ivar_getOffset(device)+sizeof(id)<=class_getInstanceSize(renderer);
+    if(!valid){diagnostic("SWEET METAL observer refused renderer_abi metadata_only=1");return;}
+    renderer_device=device;uniform_original=(id(*)(id,SEL,NSUInteger))method_getImplementation(method);
+    if(!uniform_original){diagnostic("SWEET METAL observer refused original_missing metadata_only=1");return;}
+    method_setImplementation(method,(IMP)observe_uniform);
+    diagnostic("SWEET METAL observer installed renderer=NUNIAegirRenderer limit=32 index_type=%c device_object=1 original_forwarded=1",index[0]);
 }
 static id observe_exception(id exception)
 {
@@ -71,6 +124,7 @@ static void install_observer(void)
 #endif
     previous=objc_setExceptionPreprocessor(observe_exception);
     diagnostic("SWEET EXCEPTION observer installed process=AegirPoster limit=16 original_chain=1");
+    install_uniform_observer();
 }
 #if !defined(LILAC_EXCEPTION_TEST)
 __attribute__((constructor)) static void exception_load(void){install_observer();}
@@ -82,6 +136,12 @@ int main(void){@autoreleasepool{
     original=[NSException exceptionWithName:@"LilacObserverTest" reason:@"line1\nline2" userInfo:nil];
     for(unsigned i=0;i<20;++i){@try{@throw original;}@catch(id caught){assert(caught==original);}}
     assert(chain_calls==20 && atomic_load(&observations)==20);
+    NUNIAegirRenderer *renderer=[NUNIAegirRenderer new];id device=[NUNITestDevice new];
+    for(unsigned i=0;i<40;++i){renderer->_device=i%2?device:nil;
+        assert([renderer getOrCreateUniformBufferforFrameBufferIndex:i%3]==renderer->_device);}
+    assert(uniform_original_calls==40 && atomic_load(&uniform_observations)==40);
+    puts("renderer ABI, nil/device metadata, exact original return and 32-record bound PASS");
+    [renderer release];[device release];
     puts("original exception identity/chain, caught behavior and bounded observation PASS");
 }return 0;}
 #endif

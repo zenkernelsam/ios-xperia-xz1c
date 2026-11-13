@@ -32,6 +32,9 @@ def load(folder,expected=None):
         assert observer['native_original_chain_and_bound_test_passed'] and observer['host_asan_ubsan_passed']
         assert m['observer_alias_e_verified']
         assert observer['source']=='gpu/diagnostics/exception_observe.m'
+        if 'renderer_observations_max' in observer:
+            assert observer['renderer_observations_max']==32 and observer['renderer_abi_and_device_observer_test_passed']
+            assert observer['metadata_only_no_buffer_allocation'] and observer['original_renderer_return_and_exception_preserved']
         assert m['files']['exception_observe.dylib']['sha256']==observer['library_sha256']
     assert set(m['files'])==names
     for name,info in m['files'].items():

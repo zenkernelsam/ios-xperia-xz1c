@@ -70,7 +70,7 @@ def verify(directory,mode,kernel_sha=None,version=None):
             if a['version']>=727:
                 readonly=verify_readonly(re.sub(r'\r?\n(?!SWEET|CRASH|Process|\||exec|IOK|MESA)', '', text),a['token'])
             if 'exception_observer' in a:
-                exceptions=verify_exception(text,a['token'])
+                exceptions=verify_exception(text,a['token'],require_renderer='renderer_observations_max' in a['exception_observer'])
     boundary='serialized=1' if mode in ('ready','gpu') else 'serialized=0'
     assert re.search(r'SWEET LOOP MAP_BOUNDARY token='+a['token']+' '+boundary+r' claimed=1',scope)
     report={'version':a['version'],'mode':mode,'source':str(root.resolve()),'token':a['token'],'kernel_sha256':a['kernel_sha256'],

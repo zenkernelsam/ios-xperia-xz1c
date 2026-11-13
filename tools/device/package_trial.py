@@ -146,6 +146,9 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
                 common+=['SWEET EXCEPTION observer installed process=AegirPoster limit=16 original_chain=1',
                          'SWEET EXCEPTION begin call=1 class=.*name=',
                          'SWEET EXCEPTION end call=1 frames=[1-9].*original_chain=1']
+                if 'renderer_observations_max' in m['exception_observer']:
+                    common+=['SWEET METAL observer installed renderer=NUNIAegirRenderer limit=32 index_type=[Qq] device_object=1 original_forwarded=1',
+                        'SWEET METAL uniform call=1 index=[0-2] device_nil=[01].*metadata_only=1 original_called=1']
     plan={'target_serial':'BH905ND69G','pon_route':6,'max_cycles':1,'budget_seconds':480,'camera_required':mode=='gpu',
           'steps':[{'artifact_id':m['id'],'observe_seconds':observe,'stable_seconds':30,'return_seconds':120,'goals':common,
                     'return_evidence':'final-drain','on_pass':'stop','on_failure':'stop'}]}

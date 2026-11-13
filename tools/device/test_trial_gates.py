@@ -14,10 +14,18 @@ from run_trial import DiagnosticPolicy, prerequisites
 from diagnostic_candidate import configuration, verify_record
 from ram_library import require_same_library,load as load_ram
 from readonly_pixels import verify as verify_readonly,expected_hash as readonly_hash
-from exception_evidence import inspect_scope
+from exception_evidence import inspect_scope,verify_renderer
 
 
 class Gates(unittest.TestCase):
+    def test_actual_renderer_metadata_requires_valid_abi_and_nil_identity(self):
+        text=('SWEET METAL observer installed renderer=NUNIAegirRenderer limit=32 index_type=Q device_object=1 original_forwarded=1\n'
+              'SWEET METAL uniform call=1 index=0 device_nil=1 device_class=nil new_buffer_method=0 metadata_only=1 original_called=1\n')
+        self.assertTrue(verify_renderer(text)['all_observed_devices_nil'])
+        for changed in (text.replace('index_type=Q','index_type=i'),text.replace('device_class=nil','device_class=MTLDevice'),
+                        text.replace('new_buffer_method=0','new_buffer_method=1'),text.replace('index=0','index=3'),
+                        text.replace('original_called=1','original_called=0'),text.replace('call=1','call=33')):
+            with self.assertRaises(AssertionError):verify_renderer(changed)
     def test_exception_records_preserve_actual_metadata_and_complete_stack(self):
         text=('SWEET EXCEPTION observer installed process=AegirPoster limit=16 original_chain=1\n'
           'SWEET EXCEPTION begin call=1 class=NSException name="NSInvalidArgumentException" reason="missing method" observational=1\n'
