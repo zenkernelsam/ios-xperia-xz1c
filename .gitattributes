@@ -22,3 +22,4 @@ xnu/patches/** text eol=lf
 *.txt   text eol=lf
 *.swift text eol=lf
 *.ps1   text eol=lf
+gpu/metal/xr/reference/** -text
