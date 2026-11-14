@@ -17,3 +17,5 @@ GPU在像素中心执行线性下采样，原sRGB/XR先解码成线性颜色再�
 目前仍须完成四格式、奇数尺寸/其它mip数量、Surface mip硬件验收和原壁纸实际请求，再推进完整UI/FPS、睡眠/声音/无线。原时间/日期/壁纸尚未验证成功，完整目标active。
 
 r2已完成GLES470c5643的CPU/GPU及新包CPU实机门槛，但原Aegir在XR阶段仍extension check-in timeout；3条当前LIVE范围的超时原因记录、原REVISE、38.969秒完整返回均保留。631519B日志SHA541f3b50696dc85bd09fbcc9d76edbc1b7ef26045856d6407e331acf2eb88699，token673c15c98ea11c4e。没有完整MIPS END，不能提升为整组通过。下一把完整同组探针移到已拥有GPU的backboardd诊断阶段，避免占用Aegir的check-in路径；不是禁用或替换原check-in，也不缩减格式/重生成/LOD/保护区要求。
+
+上述完整四格式门槛已由backboard-r1实机补齐，原失败保持历史。相同原生mipmap实现/全部检查移到后台线程，并严格等待原GLES八项成功；917504B原字节/保护区和全部生成/LOD fence通过，MIPS2360ms。当前已通过的范围及剩余奇数尺寸/Surface mip/真实原壁纸边界见METAL-BACKBOARD.md。

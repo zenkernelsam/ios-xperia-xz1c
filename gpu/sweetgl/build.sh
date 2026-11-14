@@ -42,6 +42,7 @@ for f in sweetgl sweet_drm metal_compute metal_render eagl layerdump surface_pro
 done
 $CC -O2 -Wall -fvisibility=hidden @"$O/mesa-defines.rsp" $INC -I"$H" -c "$O/dispatch.c" -o "$O/dispatch.o"
 printf '_sweetgl_init\n_sweetgl_create\n_sweetgl_make_current\n_sweetgl_destroy\n_sweetgl_selftest\n' > "$O/exports.txt"
+printf '_sweetgl_selftest_state\n' >> "$O/exports.txt"
 printf '_sweetgl_metal_buffer_allocate\n_sweetgl_metal_buffer_release\n_sweetgl_metal_buffer_synchronize\n' >> "$O/exports.txt"
 printf '_sweetgl_metal_surface_import\n' >> "$O/exports.txt"
 printf '_sweetgl_metal_buffer_blit\n' >> "$O/exports.txt"

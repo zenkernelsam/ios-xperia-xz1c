@@ -1,0 +1,60 @@
+{
+  "date": "2026-11-14",
+  "scope": "Background native Metal generated outputs",
+  "Windows": {
+    "items": 59,
+    "files": 59,
+    "bytes": 166918681,
+    "native_Recycle_Bin_verified": true
+  },
+  "macOS": {
+    "items": 10,
+    "files": 18,
+    "bytes": 134682638,
+    "native_Trash_verified": true
+  },
+  "original_completed_runs_retained": [
+    {
+      "run": "lilac-v729-backboard-r1-gles-gpu-20261114",
+      "result": "PASS",
+      "token": "71af5afda41c11d4",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-backboard-r1-gles-gpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "2c8ef1e4e3a76164c9c79648d58be31094c407c4fcd8e792bf43cae9f286ab29",
+      "retained_camera_files": [
+        "frame-0015.jpg"
+      ]
+    },
+    {
+      "run": "lilac-v729-backboard-r1-gles-ramcpu-20261114",
+      "result": "PASS",
+      "token": "93ff6943d3ebf3bc",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-backboard-r1-gles-ramcpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "cf889be973077aaa4061f43a308b71d683ecd8baf6ae910a6feaf6a4ef889116",
+      "retained_camera_files": []
+    },
+    {
+      "run": "lilac-v729-backboard-r1-gpu-20261114",
+      "result": "PASS",
+      "token": "42634887bc169c5f",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-backboard-r1-gpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "5759b7f2f8b37bc35f7571fa0abcc603c2fa4b2947bf5b495437ffb4bbe4f98c",
+      "retained_camera_files": [
+        "frame-0145.jpg"
+      ]
+    },
+    {
+      "run": "lilac-v729-backboard-r1-ramcpu-20261114",
+      "result": "PASS",
+      "token": "fa64d7ffcd7ee7ec",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-backboard-r1-ramcpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "4f3fa21c42d8e37218126f398003e3f799cbeadabe0a26b4dc24365c0922abac",
+      "retained_camera_files": []
+    }
+  ],
+  "raw_hashes_rechecked": true,
+  "best_original_photos_retained": true,
+  "failed_images_compressed_RAM_blobs_and_all_libraries_retained": true,
+  "Windows_macOS_bins_not_emptied": true,
+  "no_permanent_deletion": true,
+  "plans_and_journals": "organization/20261114-backboard"
+}

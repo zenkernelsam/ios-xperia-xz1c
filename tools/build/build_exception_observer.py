@@ -2,11 +2,14 @@
 import argparse,hashlib,json,subprocess
 from pathlib import Path
 root=Path(__file__).resolve().parents[2]
-p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--metal-resources');p.add_argument('--air-fixture');p.add_argument('--render-fixture');p.add_argument('--constants-fixture');p.add_argument('--register-device',action='store_true');p.add_argument('--xr-probe',action='store_true');p.add_argument('--surface-probe',action='store_true');p.add_argument('--mip-probe',action='store_true');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--metal-resources');p.add_argument('--air-fixture');p.add_argument('--render-fixture');p.add_argument('--constants-fixture');p.add_argument('--register-device',action='store_true');p.add_argument('--xr-probe',action='store_true');p.add_argument('--surface-probe',action='store_true');p.add_argument('--mip-probe',action='store_true');p.add_argument('--target-process',choices=['AegirPoster','backboardd'],default='AegirPoster');p.add_argument('--gles-ram-package');a=p.parse_args()
+if a.target_process=='backboardd':
+    assert a.metal_resources and a.air_fixture and a.render_fixture and a.constants_fixture and a.xr_probe and a.surface_probe and a.mip_probe and a.gles_ram_package and not a.register_device,'Background target requires the complete native suite and its exact GLES package, and cannot register Aegir'
 out=Path(a.output).absolute();assert out.is_relative_to(root/'build') and not out.exists();out.mkdir(parents=True)
 source=root/'gpu/diagnostics/exception_observe.m';before=source.read_bytes()
 (out/'source.m').write_bytes(before)
-headers=['gpu/diagnostics/MetalRuntimeObserve.h']
+headers=['gpu/diagnostics/MetalRuntimeObserve.h','gpu/diagnostics/MetalProbeStartup.h']
+if a.target_process=='backboardd':headers+=['gpu/sweetgl/sweetgl.h']
 resource_manifest=None
 fixture_manifest=None
 render_fixture_manifest=None
@@ -78,6 +81,8 @@ assert 'device_nil=0 device_class=NUNITestDevice new_buffer_method=1' in test
 assert 'class=MetalABIHostFixture present=1 limits_bytes=264 limits_alignment=8 limits_bounded=1' in test
 assert 'owner=device_base selector=initWithAcceleratorPort: present=1 types_hex=' in test
 assert 'SWEET METAL ABI end methods=22 metadata_only=1 instances_created=0 gpu_operations=0' in test
+run(['clang','-O1','-g','-fsanitize=address,undefined',root/'tools/build/test_metal_startup.c','-lpthread','-o',out/'test_startup'],'startup-host-compile')
+assert 'PASS' in run([out/'test_startup'],'startup-host-test')
 library=out/'exception_observe.dylib'
 extra=['-DSWEET_METAL_RESOURCE_PROBE=1',resources/'MetalResources.dylib'] if resource_manifest else []
 if resource_manifest and resource_manifest.get('native_blit_command_queue'):extra+=['-DSWEET_METAL_QUEUE_PROBE=1']
@@ -88,6 +93,11 @@ if a.register_device:extra+=['-DSWEET_METAL_DISCOVERY_PROBE=1']
 if a.xr_probe:extra+=['-DSWEET_AIR_XR_PROBE=1']
 if a.surface_probe:extra+=['-DSWEET_METAL_SURFACE_PROBE=1','-framework','IOSurface']
 if a.mip_probe:extra+=['-DSWEET_METAL_MIP_PROBE=1']
+if a.target_process=='backboardd':
+    gles=Path(a.gles_ram_package).resolve();assert gles.is_relative_to(root/'build')
+    gm=json.loads((gles/'manifest.json').read_bytes())
+    assert gm['library_sha256']==resource_manifest['gles_library_sha256']==hashlib.sha256((gles/'sweetgl.dylib').read_bytes()).hexdigest()
+    extra+=['-DSWEET_METAL_BACKGROUND_PROBE=1',gles/'sweetgl.dylib']
 run(['xcrun','--sdk','iphoneos','clang','-arch','arm64','-miphoneos-version-min=16.0',
     '-fobjc-exceptions','-O2','-dynamiclib',source,'-framework','Foundation',
     '-Wl,-not_for_dyld_shared_cache','-install_name','/dev/sglram/e','-o',library,*extra],'ios-compile')
@@ -96,10 +106,12 @@ assert source.read_bytes()==before
 manifest=dict(source='gpu/diagnostics/exception_observe.m',source_sha256=hashlib.sha256(before).hexdigest(),
     library_sha256=hashlib.sha256(library.read_bytes()).hexdigest(),library_bytes=library.stat().st_size,
     native_original_chain_and_bound_test_passed=True,host_asan_ubsan_passed=True,
-    original_exception_behavior_preserved=True,target_process='AegirPoster',observations_max=16,device_operations=0)
-manifest.update(renderer_abi_and_device_observer_test_passed=True,renderer_observations_max=32,
+    original_exception_behavior_preserved=True,target_process=a.target_process,observations_max=16,device_operations=0)
+if a.target_process=='AegirPoster':manifest.update(renderer_abi_and_device_observer_test_passed=True,renderer_observations_max=32,
     metadata_only_no_buffer_allocation=True,original_renderer_return_and_exception_preserved=True)
 manifest.update(source_files=source_files,runtime_Metal_ABI_methods=22,metadata_observer_no_device_calls_test_passed=True)
+manifest.update(probe_startup_revision=1,actual_startup_readiness_host_asan_ubsan_passed=True,startup_host_source_sha256=hashlib.sha256((root/'tools/build/test_metal_startup.c').read_bytes()).hexdigest())
+if a.target_process=='backboardd':manifest.update(background_full_suite=True,waits_for_same_process_GLES_suite=True,original_Aegir_not_modified_or_registered=True)
 if resource_manifest:manifest.update(metal_resource_probe=True,metal_resources=resource_manifest,
     metadata_and_resource_probe_distinct=True,resource_probe_does_not_submit_GPU_commands=True)
 if resource_manifest and resource_manifest.get('native_blit_command_queue'):

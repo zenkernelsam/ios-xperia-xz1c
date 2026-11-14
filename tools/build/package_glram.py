@@ -16,7 +16,7 @@ if a.observer:
     assert a.presigned, 'Observer trial preserves the tested frontend bytes'
     observer=Path(a.observer).resolve();assert observer.is_relative_to(root/'build')
     observer_manifest=json.loads((observer/'manifest.json').read_bytes())
-    assert observer_manifest['target_process']=='AegirPoster' and observer_manifest['host_asan_ubsan_passed']
+    assert observer_manifest['target_process'] in ('AegirPoster','backboardd') and observer_manifest['host_asan_ubsan_passed']
     assert observer_manifest['native_original_chain_and_bound_test_passed']
     file=observer/'exception_observe.dylib'
     assert hashlib.sha256(file.read_bytes()).hexdigest()==observer_manifest['library_sha256']

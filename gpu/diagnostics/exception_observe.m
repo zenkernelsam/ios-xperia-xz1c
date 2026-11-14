@@ -10,6 +10,11 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
+#include <pthread.h>
+#include "MetalProbeStartup.h"
+#if defined(SWEET_METAL_BACKGROUND_PROBE)
+#include "../sweetgl/sweetgl.h"
+#endif
 #include "MetalRuntimeObserve.h"
 #if defined(SWEET_METAL_RESOURCE_PROBE)
 #include "MetalResourceProbe.h"
@@ -164,20 +169,9 @@ static id observe_exception(id exception)
     }
     return previous ? previous(exception) : exception;
 }
-static void install_observer(void)
+#if !defined(LILAC_EXCEPTION_TEST)
+static bool run_native_probes(void)
 {
-#if defined(LILAC_EXCEPTION_TEST)
-    log_fd=STDOUT_FILENO;
-#else
-    if(strcmp(getprogname(),"AegirPoster")!=0) return;
-    log_fd=open("/dev/null",O_WRONLY|O_CLOEXEC);
-#endif
-    previous=objc_setExceptionPreprocessor(observe_exception);
-    diagnostic("SWEET EXCEPTION observer installed process=AegirPoster limit=16 original_chain=1");
-    install_uniform_observer();
-#if defined(LILAC_EXCEPTION_TEST)
-    metal_runtime_observe([MetalABIHostFixture class],@protocol(MetalABIHostProtocol),NULL,NULL,NULL,diagnostic);
-#else
     metal_runtime_observe(objc_lookUpClass("_MTLDevice"),objc_getProtocol("MTLDeviceSPI"),objc_getProtocol("MTLBuffer"),
         objc_getProtocol("MTLCommandQueue"),objc_getProtocol("MTLCommandBuffer"),diagnostic);
     bool native_probes_valid=true;
@@ -208,6 +202,50 @@ static void install_observer(void)
 #if defined(SWEET_METAL_DISCOVERY_PROBE)
     if(native_probes_valid)(void)metal_discovery_probe(diagnostic);
     else diagnostic("SWEET METAL DISCOVERY END result=1 same_original_default=0 original_API=1 GPU_work_preverified=0");
+#endif
+    return native_probes_valid;
+}
+#if defined(SWEET_METAL_BACKGROUND_PROBE)
+static _Atomic bool background_scheduled;
+static void probe_pause(void){usleep(10000);}
+static void *background_probes(void *unused)
+{
+    (void)unused;@autoreleasepool{
+        while(!atomic_load_explicit(&background_scheduled,memory_order_acquire))probe_pause();
+        int ready=sweet_probe_wait_for_gles(sweetgl_selftest_state,probe_pause,18000);
+        if(ready){diagnostic("SWEET METAL PROBES END process=backboardd result=1 prerequisite=%d full_suite=1 background=1",ready);return NULL;}
+        diagnostic("SWEET METAL PROBES begin process=backboardd GLES_state=2 full_suite=1 background=1");
+        bool valid=run_native_probes();
+        diagnostic("SWEET METAL PROBES END process=backboardd result=%u prerequisite=0 full_suite=1 background=1",valid?0:1);
+    }return NULL;
+}
+#endif
+#endif
+static void install_observer(void)
+{
+#if defined(LILAC_EXCEPTION_TEST)
+    log_fd=STDOUT_FILENO;
+#else
+#if defined(SWEET_METAL_BACKGROUND_PROBE)
+    if(strcmp(getprogname(),"backboardd")!=0) return;
+#else
+    if(strcmp(getprogname(),"AegirPoster")!=0) return;
+#endif
+    log_fd=open("/dev/null",O_WRONLY|O_CLOEXEC);
+#endif
+    previous=objc_setExceptionPreprocessor(observe_exception);
+#if defined(SWEET_METAL_BACKGROUND_PROBE)
+    diagnostic("SWEET EXCEPTION observer installed process=backboardd limit=16 original_chain=1");
+    pthread_t thread;int status=pthread_create(&thread,NULL,background_probes,NULL);
+    if(status)diagnostic("SWEET METAL PROBES END process=backboardd result=1 thread_error=%d full_suite=1 background=1",status);
+    else{pthread_detach(thread);diagnostic("SWEET METAL PROBES scheduled process=backboardd constructor_waited=0 background=1");atomic_store_explicit(&background_scheduled,true,memory_order_release);}
+#else
+    diagnostic("SWEET EXCEPTION observer installed process=AegirPoster limit=16 original_chain=1");
+    install_uniform_observer();
+#if defined(LILAC_EXCEPTION_TEST)
+    metal_runtime_observe([MetalABIHostFixture class],@protocol(MetalABIHostProtocol),NULL,NULL,NULL,diagnostic);
+#else
+    (void)run_native_probes();
 #endif
 #endif
 }

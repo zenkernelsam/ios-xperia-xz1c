@@ -20,6 +20,7 @@ from metal_discovery_evidence import verify as verify_metal_discovery
 from air_xr_evidence import verify as verify_air_xr
 from metal_surface_evidence import verify as verify_metal_surface
 from metal_mip_evidence import verify as verify_metal_mips
+from backboard_probe_evidence import verify as verify_backboard_probe
 
 def verify(directory,mode,kernel_sha=None,version=None):
     root=Path(directory)
@@ -80,7 +81,8 @@ def verify(directory,mode,kernel_sha=None,version=None):
             if a['version']>=727:
                 readonly=verify_readonly(re.sub(r'\r?\n(?!SWEET|CRASH|Process|\||exec|IOK|MESA)', '', text),a['token'])
             if 'exception_observer' in a:
-                exceptions=verify_exception(text,a['token'],require_renderer='renderer_observations_max' in a['exception_observer'] and not a['exception_observer'].get('original_Metal_registry_probe'))
+                if a['exception_observer']['target_process']=='backboardd':exceptions={'background_probe':verify_backboard_probe(text,a['token'])}
+                else:exceptions=verify_exception(text,a['token'],require_renderer='renderer_observations_max' in a['exception_observer'] and not a['exception_observer'].get('original_Metal_registry_probe'))
                 if 'runtime_Metal_ABI_methods' in a['exception_observer']:exceptions['runtime_Metal_ABI']=verify_metal_abi(text,a['token'])
                 if a['exception_observer'].get('metal_resource_probe'):exceptions['Metal_resources']=verify_metal_resources(text,a['token'])
                 if a['exception_observer'].get('metal_queue_probe'):exceptions['Metal_queue']=verify_metal_queue(text,a['token'],a.get('metal_resources',{}).get('blit_transport_evidence_revision'))

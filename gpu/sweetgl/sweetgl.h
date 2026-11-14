@@ -1,4 +1,4 @@
-/* sweetgl: Mesa GLES on the Adreno 530 (sweetgl.c). */
+/* sweetgl: Mesa GLES on the Adreno540 (sweetgl.c). */
 #ifndef SWEETGL_H
 #define SWEETGL_H
 
@@ -22,6 +22,9 @@ SWEETGL_API void sweetgl_destroy(struct sweetgl_ctx *c);
 
 /* Offscreen triangle, read back and checked; result in the kernel log. */
 SWEETGL_API bool sweetgl_selftest(void);
+/* Whole authored GLES suite:0 not requested,1 running,2 all passed,3 failed.
+ * A publication signal for same-process diagnostic consumers, not UI status. */
+SWEETGL_API uint32_t sweetgl_selftest_state(void);
 
 /* internal (eagl.c) */
 uint64_t sweetgl_current_identity(void);

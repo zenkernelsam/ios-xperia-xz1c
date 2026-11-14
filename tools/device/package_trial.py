@@ -7,6 +7,13 @@ from diagnostic_candidate import configuration
 from ram_library import load as load_ram
 from controller import Artifact,SHIM_SHA
 def sha(data):return hashlib.sha256(data).hexdigest()
+def observer_environment(word,target):
+    assert word.startswith('sweetenv=') and target in ('AegirPoster','backboardd')
+    word=word.replace(',SWEETGL_TRACE=1','')
+    if target=='AegirPoster':return word+';AegirPoster:DYLD_INSERT_LIBRARIES=/dev/sglram/e'
+    original='backboardd:DYLD_INSERT_LIBRARIES=/dev/sglram/m'
+    assert word.count(original)==1 and 'AegirPoster:' not in word
+    return word.replace(original,original+':/dev/sglram/e')
 BASE_HASHES={'private':'b958bd29a457cae61be27a53e1237ccdc4c1247d4cbcff238afbe34d88615162',
              'ready':'2eb112563f920669e2e932799c56b6af03e79e09a1c8e73833855a4ac1f93af1',
              'gpu':'ee284994e2ac7e280f0a3b727ce1ebb4796e3813bbd98b524fa16e6c3d5f9082'}
@@ -94,7 +101,7 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
             # The removed zero-valued scan options have default zero in the
             # audited framebuffer source; TRACE is logging only. Keep cadence.
             words=[w for w in words if w not in ('sweetfb_direct=0','sweetfb_kick=0')]
-            words=[w.replace(',SWEETGL_TRACE=1','')+';AegirPoster:DYLD_INSERT_LIBRARIES=/dev/sglram/e' if w.startswith('sweetenv=') else w for w in words]
+            words=[observer_environment(w,package['exception_observer']['target_process']) if w.startswith('sweetenv=') else w for w in words]
             # svmro7 owns/defer-starts GPU independently of sweetgpuasync.
             # Keep runtime/display/touch settings; make room for explicit tee.
             words=[w for w in words if w not in ('sweetgpuasync=1','-noprogress','keepsyms=1')]
@@ -144,7 +151,12 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
                 assert library_binding,'Read-only trial needs the tested-probe frontend'
                 common+=['sweetgl: readonly selftest -> PASS phase=held_sampler']
             if 'exception_observer' in m:
-                common+=['SWEET EXCEPTION observer installed process=AegirPoster limit=16 original_chain=1',
+                if m['exception_observer']['target_process']=='backboardd':
+                    common+=['SWEET EXCEPTION observer installed process=backboardd limit=16 original_chain=1',
+                        'SWEET GLES SUITE END result=0 tests=8 state=2 original_tests=1',
+                        'SWEET METAL PROBES begin process=backboardd GLES_state=2 full_suite=1 background=1',
+                        'SWEET METAL PROBES END process=backboardd result=0 prerequisite=0 full_suite=1 background=1']
+                else:common+=['SWEET EXCEPTION observer installed process=AegirPoster limit=16 original_chain=1',
                          'SWEET EXCEPTION begin call=1 class=.*name=',
                          'SWEET EXCEPTION end call=1 frames=[1-9].*original_chain=1']
                 if 'renderer_observations_max' in m['exception_observer']:

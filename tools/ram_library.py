@@ -28,7 +28,7 @@ def load(folder,expected=None):
     names={'sweetgl.dylib','libglapi.0.dylib','georead.dylib'}
     if 'exception_observer' in m:
         observer=m['exception_observer'];names.add('exception_observe.dylib')
-        assert observer['target_process']=='AegirPoster' and observer['observations_max']==16
+        assert observer['target_process'] in ('AegirPoster','backboardd') and observer['observations_max']==16
         assert observer['native_original_chain_and_bound_test_passed'] and observer['host_asan_ubsan_passed']
         assert m['observer_alias_e_verified']
         assert observer['source']=='gpu/diagnostics/exception_observe.m'
@@ -38,6 +38,14 @@ def load(folder,expected=None):
         if 'runtime_Metal_ABI_methods' in observer:
             assert observer['runtime_Metal_ABI_methods']==22 and observer['metadata_observer_no_device_calls_test_passed']
             sources={'gpu/diagnostics/exception_observe.m','gpu/diagnostics/MetalRuntimeObserve.h'}
+            if observer.get('probe_startup_revision'):
+                assert observer['probe_startup_revision']==1 and observer['actual_startup_readiness_host_asan_ubsan_passed']
+                sources.add('gpu/diagnostics/MetalProbeStartup.h')
+            if observer['target_process']=='backboardd':
+                sources.add('gpu/sweetgl/sweetgl.h')
+                assert observer.get('background_full_suite') and observer['waits_for_same_process_GLES_suite'] and observer['original_Aegir_not_modified_or_registered']
+                assert observer.get('probe_startup_revision')==1 and not observer.get('original_Metal_registry_probe') and 'renderer_observations_max' not in observer
+                assert all(observer.get(key) for key in ('metal_resource_probe','metal_queue_probe','AIR_compute_probe','AIR_render_probe','AIR_constants_probe','AIR_XR_probe','Metal_IOSurface_probe','Metal_mipmap_probe'))
             if observer.get('metal_resource_probe'):sources|={'gpu/diagnostics/MetalResourceProbe.h','gpu/metal/MetalResources.h'}
             if observer.get('metal_queue_probe'):
                 sources.add('gpu/diagnostics/MetalQueueProbe.h')

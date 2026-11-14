@@ -17,6 +17,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <stdatomic.h>
 #include <mach/mach_time.h>
 
 #include "pipe/p_screen.h"
@@ -370,6 +371,8 @@ bool sweetgl_copy_context_selftest(void);
 bool sweetgl_bridge_state_selftest(void);
 bool sweetgl_program_lifecycle_selftest(void);
 bool sweetgl_readonly_selftest(void);
+static _Atomic uint32_t selftest_status;
+uint32_t sweetgl_selftest_state(void){return atomic_load_explicit(&selftest_status,memory_order_acquire);}
 
 static void *
 selftest_thread(void *arg)
@@ -378,9 +381,13 @@ selftest_thread(void *arg)
 	/* sweetgl_init performs one bounded publication wait for this process. */
 	if (!sweetgl_init()) {
 		sweet_drm_log("sweetgl: selftest: no GPU after publication wait");
+		atomic_store_explicit(&selftest_status,3,memory_order_release);
 		return NULL;
 	}
-	if (sweetgl_selftest() && sweetgl_surface_selftest() && sweetgl_caller_selftest() && sweetgl_copy_refresh_selftest()) { if (sweetgl_copy_context_selftest() && sweetgl_bridge_state_selftest() && sweetgl_program_lifecycle_selftest()) sweetgl_readonly_selftest(); }
+	bool passed=sweetgl_selftest() && sweetgl_surface_selftest() && sweetgl_caller_selftest() && sweetgl_copy_refresh_selftest() &&
+		sweetgl_copy_context_selftest() && sweetgl_bridge_state_selftest() && sweetgl_program_lifecycle_selftest() && sweetgl_readonly_selftest();
+	sweet_drm_log("SWEET GLES SUITE END result=%u tests=8 state=%u original_tests=1",passed?0:1,passed?2:3);
+	atomic_store_explicit(&selftest_status,passed?2:3,memory_order_release);
 	return NULL;
 }
 
@@ -402,8 +409,9 @@ sweetgl_load(void)
 	const char *t = getenv("SWEETGL_TEST");
 	if (t && t[0] == '1') {
 		pthread_t th;
-		pthread_create(&th, NULL, selftest_thread, NULL);
-		pthread_detach(th);
+		atomic_store_explicit(&selftest_status,1,memory_order_release);
+		int status=pthread_create(&th, NULL, selftest_thread, NULL);
+		if(!status)pthread_detach(th);else{atomic_store_explicit(&selftest_status,3,memory_order_release);sweet_drm_log("SWEET GLES SUITE END result=1 tests=0 state=3 thread_error=%d",status);}
 	}
 }
 
