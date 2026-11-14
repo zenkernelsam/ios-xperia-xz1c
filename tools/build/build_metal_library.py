@@ -22,7 +22,7 @@ if args.air_package:
     assert sha(air/'AIRFrontend.ios.o')==air_manifest['compiled_AIR_object_sha256']
     assert all(sha(root/path)==digest for path,digest in air_manifest['source_files'].items())
     files+=['gpu/metal/MetalCompute.inc','gpu/metal/MetalFunctionConstants.inc','gpu/metal/MetalRender.inc','gpu/metal/MetalTextureRules.h',
-        'gpu/metal/air/ESSLTarget.h','gpu/metal/air/Compiler.h','gpu/sweetgl/MetalShaderAPI.h','gpu/sweetgl/XRColourShader.h']
+        'gpu/metal/air/ESSLTarget.h','gpu/metal/air/HalfESSL.h','gpu/metal/air/Compiler.h','gpu/sweetgl/MetalShaderAPI.h','gpu/sweetgl/XRColourShader.h']
     sources={p:sha(root/p) for p in files}
     sources.update(air_manifest['source_files'])
     extra=['-I',root/'gpu/metal/air/reference',air/'AIRFrontend.ios.o',

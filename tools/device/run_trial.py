@@ -11,6 +11,7 @@ from clock_evidence import verify as verify_clock
 from diagnostic_candidate import verify_record
 from ram_library import load as load_ram,require_same_library
 from owner_metadata import verify as verify_owner_metadata
+from native_prerequisite import verify as verify_native_prerequisite
 
 def prerequisites(record, args):
     mode=record['trial_mode'];kernel=record['kernel_sha256'];version=record.get('version');proof={}
@@ -32,6 +33,10 @@ def prerequisites(record, args):
             assert getattr(args,'gles_evidence',None),'Native resource probe needs actual full GLES stage first'
             proof['gles']=verify(args.gles_evidence,'gpu',kernel,version)
             assert proof['gles']['ram_library_binding']['library_sha256']==record['metal_resources']['gles_library_sha256']
+        if record.get('exception_observer',{}).get('registration_only'):
+            assert getattr(args,'native_evidence',None),'Short registration needs exact complete native hardware evidence'
+            proof['native']=verify_native_prerequisite(args.native_evidence,record['metal_resources'],kernel,version)
+            assert proof['native']==record['exception_observer']['prior_native_hardware_proof'],'Embedded native proof differs from original actual stage'
     return proof
 
 class DiagnosticPolicy(LogPolicy):
@@ -57,6 +62,8 @@ class DiagnosticPolicy(LogPolicy):
             if re.search(r'SWEET AIR XR END result=[1-9]',line):self.recoverable='AIR_XR_PROBE_FAILED'
             if re.search(r'SWEET METAL SURFACE END result=[1-9]',line):self.recoverable='METAL_IOSURFACE_PROBE_FAILED'
             if re.search(r'SWEET METAL MIPS END result=[1-9]',line):self.recoverable='METAL_MIPMAP_PROBE_FAILED'
+            if re.search(r'SWEET AIR NARROW END result=[1-9]',line):self.recoverable='AIR_NARROW_PROBE_FAILED'
+            if re.search(r'SWEET AIR HALF END result=[1-9]',line):self.recoverable='AIR_HALF_PROBE_FAILED'
             if re.search(r'SWEET METAL PROBES END process=backboardd result=[1-9]',line):self.recoverable='BACKGROUND_METAL_SUITE_FAILED'
             if re.search(r'SWEET GLES SUITE END result=[1-9]',line):self.recoverable='GPU_SELFTEST_FAILED'
             if 'CRASH AegirPoster reason ns 7 code 0x3: extension check-in timeout' in line:self.recoverable='EXTENSION_CHECKIN_TIMEOUT'
@@ -101,6 +108,7 @@ def main():
     p.add_argument('--private-evidence');p.add_argument('--owner-evidence');p.add_argument('--ready-evidence')
     p.add_argument('--cpu-evidence');p.add_argument('--rpm-evidence');p.add_argument('--live',action='store_true')
     p.add_argument('--gles-evidence')
+    p.add_argument('--native-evidence')
     a=p.parse_args();bundle=Path(a.bundle)
     record=json.loads((bundle/'artifacts.json').read_text())['artifacts'][0]
     Artifact(record).validate();mode=record['trial_mode'];kernel=record['kernel_sha256']

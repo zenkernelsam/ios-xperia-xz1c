@@ -23,4 +23,5 @@ xnu/patches/** text eol=lf
 *.swift text eol=lf
 *.ps1   text eol=lf
 gpu/metal/xr/reference/** -text
+gpu/metal/air/half/reference/** -text
 .gitattributes text eol=lf

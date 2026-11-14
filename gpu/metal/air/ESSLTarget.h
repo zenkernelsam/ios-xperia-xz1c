@@ -6,6 +6,7 @@
 #include <cstdint>
 #include <cctype>
 #include <cstdio>
+#include "HalfESSL.h"
 namespace SweetAIR {
 inline void replaceToken(std::string &text,const std::string &from,const std::string &to)
 {
@@ -49,6 +50,7 @@ template<class Reflection> inline bool graphicsESSL(const std::string &input,uns
     auto body=input.substr(13);size_t prefix=0;
     while(body.compare(prefix,11,"#extension ")==0){auto end=body.find('\n',prefix);if(end==std::string::npos){error="Malformed AIR extension";return false;}prefix=end+1;}
     output="#version 310 es\n"+body.substr(0,prefix)+precision+body.substr(prefix);
+    if(!halfESSL(output,error)){output.clear();return false;}
     for(unsigned i=0;i<reflection.varyingCount;++i){auto &varying=reflection.varyings[i];char identity[80];
         if(varying.mode!=0 && varying.mode!=2 && varying.mode!=3){output.clear();error="AIR interpolation requires unsupported ESSL extension";return false;}
         snprintf(identity,sizeof(identity),"_smtl_vary_%08x%08x%08x%08x",varying.semantic[0],varying.semantic[1],varying.semantic[2],varying.semantic[3]);
@@ -83,6 +85,7 @@ inline bool computeESSL(const std::string &input,const std::array<unsigned,3> &l
     output.replace(position,variable.size(),"layout(local_size_x="+std::to_string(local[0])+",local_size_y="+std::to_string(local[1])+",local_size_z="+std::to_string(local[2])+") in;\n");
     const std::string old="gl_LocalGroupSizeARB",replacement="gl_WorkGroupSize";
     for(position=0;(position=output.find(old,position))!=std::string::npos;position+=replacement.size())output.replace(position,old.size(),replacement);
+    if(!halfESSL(output,error)){output.clear();return false;}
     return true;
 }
 }

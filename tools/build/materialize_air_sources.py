@@ -1,5 +1,5 @@
 """Materialize an isolated frontend build without editing retained OSS files."""
-import argparse,hashlib,json,shutil
+import argparse,hashlib,json,shutil,subprocess
 from pathlib import Path
 root=Path(__file__).resolve().parents[2]
 def materialize(output):
@@ -23,8 +23,14 @@ def materialize(output):
 #include "AIRRuntime.cpp"
 ''')
     shutil.copy2(root/'gpu/metal/air/LLVM16Compat.h',output/'LLVM16Compat.h')
+    directory='--directory='+output.relative_to(root).as_posix()
+    adaptations=[root/'gpu/metal/air'/name for name in ('lilac-air-conversion.patch','lilac-air-half-storage.patch')]
+    for adaptation in adaptations:
+        subprocess.run(['git','apply','--check',directory,str(adaptation)],cwd=root,check=True)
+        subprocess.run(['git','apply',directory,str(adaptation)],cwd=root,check=True)
     report=dict(reference_revision=binding['revision'],sources={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in output.iterdir() if p.is_file()},
         upstream_source_preserved=True,no_private_kernel_JIT_protocol_used=True,device_operations=0)
+    report['local_adaptation_patches']={path.name:hashlib.sha256(path.read_bytes()).hexdigest() for path in adaptations}
     (output/'source-binding.json').write_bytes((json.dumps(report,indent=2)+'\n').encode())
     return report
 if __name__=='__main__':

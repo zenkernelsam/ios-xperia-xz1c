@@ -1,6 +1,7 @@
 """Byte-bound read-only RAM frontend packages, independent of the boot transport."""
 import hashlib,json,struct,zlib,re
 from pathlib import Path
+from native_proof import validate as validate_native,header as native_header
 ROOT=Path(__file__).resolve().parents[1]
 API='a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3'
 HELPER='e65bdc7b70d098725918c637cc8cb1c25a8a544186d0f4468b399fda52024898'
@@ -41,6 +42,9 @@ def load(folder,expected=None):
             if observer.get('probe_startup_revision'):
                 assert observer['probe_startup_revision']==1 and observer['actual_startup_readiness_host_asan_ubsan_passed']
                 sources.add('gpu/diagnostics/MetalProbeStartup.h')
+            if observer.get('original_pipeline_observer'):
+                sources.add('gpu/diagnostics/MetalPipelineObserve.h')
+                assert observer.get('registration_only') and observer['actual_factory_return_error_pointer_exception_forwarding_host_passed']
             if observer['target_process']=='backboardd':
                 sources.add('gpu/sweetgl/sweetgl.h')
                 assert observer.get('background_full_suite') and observer['waits_for_same_process_GLES_suite'] and observer['original_Aegir_not_modified_or_registered']
@@ -65,7 +69,13 @@ def load(folder,expected=None):
             if observer.get('original_Metal_registry_probe'):
                 sources.add('gpu/diagnostics/MetalDiscoveryProbe.h')
                 assert observer['registry_probe_process']=='AegirPoster' and observer['registry_functions_not_replaced']
-                assert observer.get('AIR_constants_probe') and observer.get('AIR_render_probe')
+                if observer.get('registration_only'):
+                    validate_native(observer['prior_native_hardware_proof'],observer['metal_resources'])
+                    assert observer['target_process']=='AegirPoster' and observer['long_native_probes_not_in_constructor']
+                    assert not any(observer.get(k) for k in ('background_full_suite','metal_resource_probe','metal_queue_probe','AIR_compute_probe','AIR_render_probe','AIR_constants_probe','AIR_XR_probe','Metal_IOSurface_probe','Metal_mipmap_probe'))
+                    assert observer['native_proof_header_sha256']==sha(native_header(observer['prior_native_hardware_proof']))
+                    sources.add('gpu/metal/MetalResources.h')
+                else:assert observer.get('AIR_constants_probe') and observer.get('AIR_render_probe')
             if observer.get('AIR_XR_probe'):
                 sources|={'gpu/diagnostics/MetalXRProbe.h','gpu/sweetgl/XRColourTables.h'}
                 assert observer.get('AIR_render_probe')
@@ -75,11 +85,19 @@ def load(folder,expected=None):
             if observer.get('Metal_mipmap_probe'):
                 sources|={'gpu/diagnostics/MetalMipProbe.h','gpu/sweetgl/MetalShaderAPI.h','gpu/sweetgl/XRColourTables.h'}
                 assert observer.get('AIR_render_probe') and observer['metal_resources']['native_mipmaps']
+            if observer.get('AIR_narrow_probe'):
+                sources|={'gpu/diagnostics/MetalNarrowProbe.h','gpu/diagnostics/NarrowProbeValues.h'}
+                assert observer['AIR_narrow_fixture']['fixture']=='narrow' and observer['AIR_narrow_fixture']['authored_semantic_fixture']
+                assert observer['metal_resources']['AIR_frontend'].get('local_narrow_conversion_adaptation')
+            if observer.get('AIR_half_probe'):
+                sources|={'gpu/diagnostics/MetalHalfProbe.h','gpu/diagnostics/HalfProbeValues.h'}
+                assert observer.get('AIR_narrow_probe') and observer['AIR_half_fixture']['fixture']=='half' and observer['AIR_half_fixture']['authored_semantic_fixture']
+                assert observer['metal_resources']['AIR_frontend'].get('local_half_storage_and_rounding_adaptation')
             assert set(observer['source_files'])==sources
             assert observer['source_files'][observer['source']]==observer['source_sha256']
     if 'metal_resources' in m:
         names.add('MetalResources.dylib');resources=m['metal_resources']
-        assert m['exception_observer']['metal_resource_probe'] and m['exception_observer']['metal_resources']==resources
+        assert (m['exception_observer'].get('metal_resource_probe') or m['exception_observer'].get('registration_only')) and m['exception_observer']['metal_resources']==resources
         assert resources['only_explicit_resource_factory'] and resources['system_Metal_plugin_not_advertised']
         assert m['files']['MetalResources.dylib']['sha256']==resources['library_sha256']
         assert m['library_sha256']==resources['gles_library_sha256']

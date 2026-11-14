@@ -1,0 +1,49 @@
+diff --git a/AIRRuntime.cpp b/AIRRuntime.cpp
+--- a/AIRRuntime.cpp
++++ b/AIRRuntime.cpp
+@@ -233,6 +233,7 @@
+         auto t=LLVMTypeOf(i);auto text=expression;
+         if(LLVMGetTypeKind(scalar(t))==LLVMIntegerTypeKind && !integer(scalar(t),1))
+             text=airIntegerMask(text,LLVMGetIntTypeWidth(scalar(t)),lanes(t));
++        if(half(t))text="_smtl_half_round("+text+")";
+         body+=(controlFlow?"":type(t)+" ")+v.text+" = "+text+";\n";values[i]=v;
+     }
+     std::string component(const Value &v,LLVMTypeRef t,unsigned n) {
+@@ -301,8 +302,6 @@
+         if(half(access)) {
+             if(b.sharedWords || dynamic)fail("half threadgroup memory is not implemented");
+-            auto array="_qhalfbuffer"+std::to_string(b.slot)+".data";
+-            if(halfBuffers.insert(b.slot).second)header+="layout(std430,binding="+std::to_string(b.slot)+") "+
+-                (b.readonly?"readonly ":"")+"buffer QHalfBuffer"+std::to_string(b.slot)+" { float16_t data[]; } _qhalfbuffer"+std::to_string(b.slot)+";\n";
++            auto array="_qbuffer"+std::to_string(b.slot)+".data";
+             return {write?p.text:halfBufferLoad(array,p.text,n),access};
+         }
+         auto raw=LLVMInt32TypeInContext(LLVMGetTypeContext(access));if (n>1) raw=LLVMVectorType(raw,n);
+@@ -592,5 +592,5 @@
+                 else if(p.kind==Value::PrivateArray)body+=privateArrayStore(privateArrays.at(p.root),ref.first,bitcast(expr(arg(0)),access,ref.second),lanes(access));
+                 else { const auto &b=bindings.at(p.root);
+-                    if(half(access))body+=halfBufferStore("_qhalfbuffer"+std::to_string(b.slot)+".data",ref.first,expr(arg(0)),lanes(access));
++                    if(half(access))body+=halfBufferStore("_qbuffer"+std::to_string(b.slot)+".data",ref.first,expr(arg(0)),lanes(access));
+                     else body+=wordStore(b.dynamicSlot!=UINT32_MAX?"_qdynamic":b.sharedWords?"_qshared"+std::to_string(b.slot):"_qbuffer"+std::to_string(b.slot)+".data",ref.first,bitcast(expr(arg(0)),access,ref.second),lanes(access),b.sharedWords!=0,b.dynamicSlot); } }return;
+         }
+diff --git a/Semantic.h b/Semantic.h
+--- a/Semantic.h
++++ b/Semantic.h
+@@ -615,5 +615,6 @@
+ }
+ inline std::string halfBufferLoad(const std::string &array,const std::string &offset,unsigned lanes) {
+-    auto component=[&](unsigned n){return array+"[_q_half_word("+offset+","+std::to_string(n)+"u)]";};
++    auto component=[&](unsigned n){auto half="_q_half_word("+offset+","+std::to_string(n)+"u)";
++        return "_smtl_half_unpack(("+array+"[("+half+")>>1u] >> ((("+half+")&1u)*16u))&65535u)";};
+     if(lanes==1)return component(0);
+     std::string out=airFloatType(true,lanes)+"(";
+@@ -624,6 +626,7 @@
+ inline std::string halfBufferStore(const std::string &array,const std::string &offset,const std::string &value,unsigned lanes) {
+     std::string out;
+-    for(unsigned i=0;i<lanes;++i)out+=array+"[_q_half_word("+offset+","+std::to_string(i)+"u)] = "+
+-        (lanes==1?value:"("+value+")["+std::to_string(i)+"]")+";\n";
++    for(unsigned i=0;i<lanes;++i){auto address="_q_half_word("+offset+","+std::to_string(i)+"u)",component=lanes==1?value:"("+value+")["+std::to_string(i)+"]";
++        out+="{uint packedIndex="+address+",word=packedIndex>>1u,shift=(packedIndex&1u)*16u,mask=65535u<<shift,bits=_smtl_half_pack("+component+")<<shift;"
++            "uint old=atomicAdd("+array+"[word],0u);for(;;){uint seen=atomicCompSwap("+array+"[word],old,(old&~mask)|(bits&mask));if(seen==old)break;old=seen;}}\n";}
+     return out;
+ }

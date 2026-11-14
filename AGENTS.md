@@ -4,13 +4,11 @@
 
 ## 当前基线
 
-最新backboard-r1整组native资源/queue/compute/render/constants/XR/Surface/mipmap已实机1完整/0缺项。完整四格式六级/8生成/24LOD/917504B原字节和保护区通过，MIPS2360ms，431全released/unmapped、active/orphan/root0、37.797秒完整PON06返回。后台明确等原GLES八项全成功后运行，Aegir本轮未注入或登记；当前健康fastboot无worker/in-flight。下一分离原Aegir登记和长诊断，严格以完整当前native/GLES/Metal字节证据准入，再验真实壁纸；奇数尺寸/Surface mip及完整UI/外设仍active。见METAL-BACKBOARD.md、STATUS。以下WIP/超时是历史。
+2026-11-15：v729/774b5efd保持81源审计，GLES499bc6e9、Metal3b4a4082已完整backend实机通过原生资源/queue/compute/render/constants/XR/Surface/mipmap及dynamic8/16窄整数和half存储/逐结果舍入/顶点片元。AIR_half1完整/0缺项、131072B原字节/NaN位置与实际payload/全部保护区通过，303全released/unmapped、active/orphan/root0，38.282秒完整PON06回程。主机half全部65536码+65536float32边界和原Aegir顶点也通过，但各自证据区分。
 
-本轮mipmap WIP：原生多级/Private/逐级区域/GPU生成和LOD/trilinear已实现且主机通过，r2精确GLES470c5643的CPU/GPU与新Metal包CPU实机通过。Aegir ctor完整四格式探针仍被原extension check-in timeout打断；r1 STOP、r2 REVISE保留，r2 38.969秒完整回程。Sony健康fastboot无worker/in-flight，不能称完整mipmap/UI通过。下一将完整诊断组移出Aegir启动关键路径，所有原字节/fence/重生成/LOD/保护区检查保留，再验原壁纸；详见METAL-MIPMAPS.md与STATUS。
+原Aegir短登记已与长probe分离，--native-evidence必须重新完整验证原raw log并与嵌入kernel/GLES/Metal/source-map/token/image/log SHA一致；新库narrow/half缺任何独立GPU证据不准入。registry-short-r4已让原threshold管线实机编译成功，请求375×812/3mip R8 Private纹理；原starfield输出2附件，现backend只有1附件，XR star/earth/post还有blend需求。原应用随后check-in timeout，原REVISE不提升UI通过，37.453秒完整回程；364allocated/released、363unmapped、active/orphan/root0。下一多附件/XR浮点混色/原constant sampler、原壁纸和完整UI/FPS/睡眠/声音/无线继续active。Sony健康fastboot无worker/COM/camera/in-flight。详见AIR-HALF.md、AIR-NARROW.md、METAL-REGISTRY-SHORT.md和STATUS。
 
-2026-11-14：内核v729/774b5efd保持81源审计；GLES4241a020、Metal f8d78396已实机完成原生AIR compute/render/constants/XR及IOSurface。surface-r1的13完整/1未完成样本核对194688B零差异，包含原64/128offset、创建者VM/CF释放后GPU绘制/采样和padding，45.859秒完整PON06回程、1652全释放/unmapped、active/orphan/root0。
-
-surface-discovery-r1另有10完整原system Metal登记/IOSurface样本；原Aegir已到SweetMTLBlitEncoder generateMipmapsForTexture:缺方法。原controller PASS只对应原生探针目标，原应用仍异常退出，不能称完整UI通过。1442allocated/released、1441unmapped、active/orphan/root0，38.282秒完整回程。Sony健康fastboot，无controller/COM/camera或in-flight。完整GPU/显示/外设目标active；下一实现真正mipmap。历史全文已归档docs/archive/20261114/AGENTS-before-XR-and-IOSurface.md，以STATUS为准。
+历史AGENTS/STATUS全文归档docs/archive/20261115，不继续叠加过时in-flight。原失败和日志不得改写。
 
 ## 硬件与返回
 

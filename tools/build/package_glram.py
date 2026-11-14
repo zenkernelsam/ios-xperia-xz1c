@@ -22,7 +22,7 @@ if a.observer:
     assert hashlib.sha256(file.read_bytes()).hexdigest()==observer_manifest['library_sha256']
     inputs['exception_observe.dylib']=file
 if a.metal_resources:
-    assert a.presigned and observer_manifest and observer_manifest.get('metal_resource_probe')
+    assert a.presigned and observer_manifest and (observer_manifest.get('metal_resource_probe') or observer_manifest.get('registration_only'))
     resources=Path(a.metal_resources).resolve();assert resources.is_relative_to(root/'build')
     resource_manifest=json.loads((resources/'manifest.json').read_bytes())
     assert resource_manifest==observer_manifest['metal_resources']

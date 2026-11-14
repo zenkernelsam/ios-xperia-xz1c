@@ -1,0 +1,27 @@
+{
+  "source_files": {
+    "gpu/metal/air/HalfESSL.h": "229f580015f3b82f3bc34b0434836d86170020c221415ff00642a2b8f2c1c8ad",
+    "gpu/metal/air/lilac-air-half-storage.patch": "db01b10a413d085ac039d2bf5988029e65bd4731f6019fdf6cbf7a11b8c12ee8",
+    "gpu/metal/air/fixtures/half.air.ll": "7412ebf48fb866a015540e5dff8a736e484d5b7dd2ae54ddc69a164204255ff2",
+    "gpu/diagnostics/HalfProbeValues.h": "8cb2c8eaaa837981fc5fc565ede9e18cd026c87258d9f1c734776f288421e131",
+    "tools/build/test_half_target.cpp": "ac93a875a2ac5a95de9765688408031ec3b70a00a95441b41210369840ff07a9",
+    "tools/build/test_half_gles.c": "fe6c11a7ef1815c18225a39f8fdf2740812c3655a3473bb62b1579dca2658437",
+    "tools/build/test_air_half_gles.c": "a12187f17fe2b0829e5914acab96612207dba74ada4511fa1c886477ad6668ae",
+    "tools/build/check_air_half.py": "18d0049d1b13f4b4ba2c05570702103a7a6e448292782c5d702205efd6693132"
+  },
+  "generated_ESSL": {
+    "half_arithmetic.comp": "64c90f370640f9c5c6e60149feae5e52219f0475ed229164090559764e38fe0b",
+    "half_position.vert": "5f5178bd1c7159d67770792db13a250d9531826325237e35df6f63d5c712da17",
+    "half_colour.frag": "dc74f5df729ed8bc5608dbc83ce93dc89dd12dbfb5ded75bc7c684575c01e7bb"
+  },
+  "actual_half_adapter_nested_constructors_passed": true,
+  "actual_GLES_pack_unpack_half_patterns": 65536,
+  "actual_GLES_float32_rounding_cases": 65536,
+  "actual_AIR_arithmetic_original_bytes_checked": 98304,
+  "actual_AIR_half_vertex_fragment_pixels": 153,
+  "finite_exact_NaN_class_verified": true,
+  "ASan_UBSan_passed": true,
+  "host_Mesa_leak_detection_disabled": true,
+  "phone_evidence_required": true,
+  "device_operations": 0
+}

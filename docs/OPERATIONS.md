@@ -15,3 +15,5 @@ gl5已在设备，不因整理重刷。禁止擅自flash/erase userdata、SD、T
 v727 GPU及v728+r2/r3的原REVISE保留。首次v728 owner缺snap2 slot2，独立验收拒绝；另做90秒采样时机对照取得完整证据后才下一步。控制器owner PASS前检查真实全部元数据，缺项记REVISE并正常回程；不能用总结、另一靴或推测补缺。
 
 最新Surface/登记轮均完整PON06返回。原native探针PASS与原应用missing-selector必须分别报告；run_trial会识别原SweetMTL类的exception detail中unrecognized selector并提前回程。回程ACK后的提交拒绝/未完成样本单独保留，不当作完整样本；ACK前probe失败即使已有成功样本也须拒绝。具体边界见METAL-IOSURFACE.md。
+
+原Aegir短登记可与长probe分离，但必须以同kernel/GLES/Metal/source-map的完整backboard实机raw准入；新half/narrow需自身GPU证明。registry-short-r4原threshold编译成功，原app check-in timeout的REVISE保留，不能当UI成功。后续每次singleboot都保留四回程marker/健康/旧worker退出门槛。

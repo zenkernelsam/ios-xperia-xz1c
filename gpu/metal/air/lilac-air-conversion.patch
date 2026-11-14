@@ -1,0 +1,28 @@
+diff --git a/AIRRuntime.cpp b/AIRRuntime.cpp
+--- a/AIRRuntime.cpp
++++ b/AIRRuntime.cpp
+@@ -500,16 +500,19 @@
+                 lanes(LLVMTypeOf(i))>4 || (bits[2]!="f" && bits[2]!="s" && bits[2]!="u") ||
+                 (bits[4]!="f" && bits[4]!="s" && bits[4]!="u"))fail("unsupported AIR conversion");
+             auto input=LLVMGetOperand(i,0);auto target=LLVMTypeOf(i);
+-            bool narrow=LLVMIsAConstantInt(input) && (integer(LLVMTypeOf(input),8) || integer(LLVMTypeOf(input),16));
+-            auto spelling=[&](LLVMTypeRef t,bool isFloat,bool allowNarrow) {
+-                if(isFloat?!floating(t):!(integer(scalar(t),32) || integer(scalar(t),1) || allowNarrow))fail("AIR conversion type disagrees with its intrinsic name");
++            auto spelling=[&](LLVMTypeRef t,bool isFloat) {
++                if(isFloat?!floating(t):!(integer(scalar(t),32) || integer(scalar(t),16) || integer(scalar(t),8) || integer(scalar(t),1)))fail("AIR conversion type disagrees with its intrinsic name");
+                 return isFloat?airFloatSuffix(half(t),lanes(t)):(lanes(t)==1?std::string():"v"+std::to_string(lanes(t)))+"i"+std::to_string(LLVMGetIntTypeWidth(scalar(t)));
+             };
+-            if(bits[3]!=spelling(target,bits[2]=="f",false) || bits[5]!=spelling(LLVMTypeOf(input),bits[4]=="f",narrow))fail("AIR conversion mangling disagrees with its types");
++            if(bits[3]!=spelling(target,bits[2]=="f") || bits[5]!=spelling(LLVMTypeOf(input),bits[4]=="f"))fail("AIR conversion mangling disagrees with its types");
+             std::string value=expr(input);
+-            if(bits[4]=="s")value=narrow?std::to_string(LLVMConstIntGetSExtValue(input)):type(LLVMTypeOf(input),true)+"("+value+")";
++            // Packed i8/i16 values live in uint/uint-vector carriers. Their
++            // intrinsic spelling determines sign extension before conversion.
++            if(bits[4]=="s")value=airSignedInteger(value,LLVMGetIntTypeWidth(scalar(LLVMTypeOf(input))),lanes(LLVMTypeOf(input)));
++            else if(bits[4]=="u")value=airIntegerMask(value,LLVMGetIntTypeWidth(scalar(LLVMTypeOf(input))),lanes(LLVMTypeOf(input)));
+             value=type(target,bits[2]=="s")+"("+value+")";
+             if(bits[2]=="s")value=type(target)+"("+value+")";
++            if(bits[2]!="f")value=airIntegerMask(value,LLVMGetIntTypeWidth(scalar(target)),lanes(target));
+             assign(i,value);return;
+         }
+         if(n=="air.fast_sincos.f32" || n=="air.sincos.f32") {

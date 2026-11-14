@@ -1,0 +1,19 @@
+# Binary16 AIR storage and arithmetic — 2026-11-15
+
+air-half-r1已实机完成原16位buffer读取/写回、逐half结果舍入、float32→half边界、scalar/vector计算和half顶点/片元绘制，1完整/0缺项。131072B全部原输入/输出/级间与尾部保护区验证；finite bits严格匹配，NaN类别、出现位置和实际raw payload分别记录再复算全hash。前序全部native/GLES/960000只读像素保持通过，303allocated/released/unmapped、active/orphan/root0，38.282秒完整PON06返回。
+
+内核仍v729 SHA774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec，81源审计保持；GLES499bc6e9ddcf8143a0cc5578a3b8dd9c6ce3396f660917b7ac5655aaedf25cf3，Metal3b4a4082b5d5b2cc4ff93197451b1ad4d7dba07a42405cea00c2900ef54cd9e8。token4da8a0c9068a1b8f，镜像a24f94654e7bed20fe4b80413d51a01931f957a3b234247afe614f3ce9a46e15，411797B日志SHAaee71e2e3f44e5db61a11ad81ddc2c918ca9fd719f8655b96a9b85d3840bad29。只改AIR前端/ESSL，allocator/SCM/PON/RPC/VM保持。
+
+开源参考是固定Mesa769e51468的MIT half_float.c/h，原作者和许可保留gpu/metal/air/half/reference与HalfESSL.h；reproducibility/half-reference.json记录固定原文件hash。适配使用GLES integer位运算精确构造binary16最近偶数舍入和float32位型，保留subnormal/signed zero/infinity和NaN类别；不依赖FD540不支持的GL_AMD_gpu_shader_half_float。运算使用float32 carrier，但每个half SSA结果、转换、采样和stage输入显式舍入。
+
+独立lilac-air-half-storage.patch应用于构建副本。原half buffer以相同GEM的uint words保存，通过half index读原两个byte；写时atomic CAS保留同word另一个half，支持相邻线程更新不同half，不扩大存储布局或覆盖padding。HalfESSL只适配目标语言和half构造，逻辑AIR元数据、类型/宽度检查及原半精度varying身份保留。一般half threadgroup/private aggregate、更多math及完整shader仍待扩大验收。
+
+主机实际GLES检查131072个pack/unpack/round输入，包含全部65536half码和另一65536float32 half-tie/相邻边界/subnormal/overflow/random；有限值逐bit、NaN类别通过。作者half.air.ll又在实际生成ESSL上检查98304B计算、153像素half顶点/片元，包含明确NaN原输入，ASan/UBSan通过。错误constructor及原对象生命周期测试保留。check_air_half.py、test_air_half.py和air_half_evidence.py分别核对生产shader/host/native raw证据。
+
+原壁纸registry-short-r4采用当前完整half/narrow/native proof后，原threshold管线实际编译成功并请求375×812的三层Private R8 mipmap，GL_AMD扩展错误已越过。其它原XR管线仍返回nil，随后出现extension check-in timeout，原REVISE保留；此轮不是完整UI通过。starfield原AIR有两个颜色输出，而当前Metal backend只接一个附件；原star/earth/post请求混色，XR浮点shadow混色也待实现。原库仅本地保留，报告记录哈希/范围和实现输入。
+
+registry-short-r4 token58ea25e5de40fb92、镜像d54783e2d5c22b59a5dd3802213b76ee9369e3e9c48855f05d173d7318002c23，439514B原日志SHAfcba01a6f35cdaf1ad6b8b9078c0ba8f1bbbf98b8297d8eb9fb74d869e16de9c，37.453秒完整回程；364allocated/released、363unmapped、active/orphan/root0，不称364全map/unmap。失败和阶段通过各自保留。
+
+复现：make_air_fixture.py --fixture half使用固定LLVM14；materialize_air_sources.py按顺序应用narrow/half两独立patch；build_air_frontend.py的168个导入经原20H392LLVM导出复核。新Metal包继续相同GLES先验、新包CPU/完整backboard GPU，--half-fixture同时要求--narrow-fixture，短登记必须--native-evidence完整重核且包含AIR_half。源、host和actual manifest在reproducibility/air-half-*与v729-air-half-r1-*。
+
+下一多颜色附件/XR混色、原constant sampler、更多shader/Surface需求及实际壁纸/时间/日期/完整UI/FPS/睡眠/声音/无线继续active，不把离屏结果代替整机验收。

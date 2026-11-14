@@ -20,7 +20,7 @@ def verify(directory):
     text=re.sub(r'\r?\n(?!SWEET|CRASH|Process|\||exec|IOK|MESA)','',raw.decode('ascii','replace'))
     start=text.index('SWEET LOOP LIVE proto=1 token='+a['token']);end=text.index('SWEET LOOP ACK FASTBOOT token='+a['token'])
     scope=text[start:end];wrong=re.findall(r'sweetgl: (\w+(?: \w+)*) selftest -> WRONG phase=(\w+)',scope)
-    failures=re.findall(r'SWEET (?:AIR (?:COMPUTE|RENDER|CONSTANTS|XR)|METAL (?:RESOURCE|QUEUE|DISCOVERY|SURFACE|MIPS)) END result=([1-9]\d*)',scope)
+    failures=re.findall(r'SWEET (?:AIR (?:COMPUTE|RENDER|CONSTANTS|XR|NARROW|HALF)|METAL (?:RESOURCE|QUEUE|DISCOVERY|SURFACE|MIPS)) END result=([1-9]\d*)',scope)
     registry_assertions=re.findall(r'failed assertion ([^\r\n]+) at line (\d+) in MTLAddDevice',scope)
     missing_API=re.findall(r'SWEET METAL missing class=(\S+) selector=(\S+) original_exception=1',scope)
     # Some older native classes did not yet emit the supplemental sentinel.

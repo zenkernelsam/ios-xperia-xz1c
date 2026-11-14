@@ -20,7 +20,7 @@ devices=json.loads((root/'reproducibility/current-device-tools.json').read_text(
 for path,digest in devices['sources'].items():
     assert hashlib.sha256((root/'tools/device'/path).read_bytes()).hexdigest()==digest,path
 for path,digest in devices.get('shared_sources',{}).items():
-    assert path in ('tools/diagnostic_candidate.py','tools/mkpayload.py','tools/ram_library.py')
+    assert path in ('tools/diagnostic_candidate.py','tools/mkpayload.py','tools/ram_library.py','tools/native_proof.py')
     assert hashlib.sha256((root/path).read_bytes()).hexdigest()==digest,path
 for category in ('build_sources','gpu_sources','support_sources'):
     for path,digest in devices.get(category,{}).items():
@@ -33,6 +33,9 @@ if (root/'reproducibility/xr-reference.json').is_file():
     xr=json.loads((root/'reproducibility/xr-reference.json').read_bytes())
     for row in xr['sources'].values():assert hashlib.sha256((root/row['destination']).read_bytes()).hexdigest()==row['sha256']
     assert hashlib.sha256((root/xr['generated_header']).read_bytes()).hexdigest()==xr['generated_sha256']
+if (root/'reproducibility/half-reference.json').is_file():
+    half=json.loads((root/'reproducibility/half-reference.json').read_bytes())
+    for row in half['sources'].values():assert hashlib.sha256((root/row['destination']).read_bytes()).hexdigest()==row['sha256']
 py_files=[]
 for base in ('tools','gpu'):
     for file in (root/base).rglob('*.py'):

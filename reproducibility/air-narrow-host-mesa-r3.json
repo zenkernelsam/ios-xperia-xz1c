@@ -1,0 +1,31 @@
+{
+  "source_files": {
+    "gpu/metal/air/lilac-air-conversion.patch": "e3981d4666f852530b7b933e677bcb74f6ae0e8f288d7e717609dbc8761ea796",
+    "gpu/metal/air/fixtures/narrow.air.ll": "584c37e80ea235bdfc26718e05639c1edb76f6fc93ff5b84cd3b2eaaf6a974d3",
+    "gpu/diagnostics/NarrowProbeValues.h": "132c0fdb0fbea03d3a99761375f8c7d6cc485be69babb18ae7e390276dc63dc9",
+    "tools/build/test_air_narrow_gles.c": "afa5b350ba7dc28275df90a9216cd2da150d8bcea78b48ca70f5682b8ab9cac6",
+    "tools/build/check_air_narrow.py": "82aa2a660646b696a401bb47530b637429a41f9bdd36f127ee05dce9746a40df",
+    "tools/build/materialize_air_sources.py": "c14d2aba74d5382f3fbc610d2887cc69bdd2a1ee6f692862378db281b5ba9f80"
+  },
+  "generated_ESSL": {
+    "aegir_pass_vsh.vert": "c66af66274ecdc762e0d76700f6449b8fb48902204bb3c0d283373e6d554d3fc",
+    "narrow_convert.comp": "8e8e28a807cd97d45d78b38ffaf2f907611dac8b2c7ad42dabe005354ce670b1"
+  },
+  "original_Aegir_AIR_sha256": "22b2b082c18cdf49a02bdbd4aa19702ae3e07b4cb4da5c7f8b9d795102ce796e",
+  "actual_Mac_shader_regeneration_byte_matched": true,
+  "actual_generated_compute_signed_unsigned8_16_scalar_vector_passed": true,
+  "actual_original_Aegir_vertex_transform_feedback_guarded_passed": true,
+  "checked_compute_bytes": 98304,
+  "original_vertex_components": 48,
+  "vertex_guard_components": 8,
+  "original_vertex_max_error": 1e-06,
+  "wrong_intrinsic_sign_mangling_shape_rejected": [
+    "narrow_convert: AIR JIT: AIR conversion mangling disagrees with its types",
+    "narrow_convert: AIR JIT: AIR conversion mangling disagrees with its types",
+    "narrow_convert: AIR JIT: unsupported AIR conversion"
+  ],
+  "host_ASan_UBSan": true,
+  "host_Mesa_leak_check_disabled": true,
+  "phone_acceptance_pending": true,
+  "device_operations": 0
+}

@@ -21,6 +21,10 @@ from air_xr_evidence import verify as verify_air_xr
 from metal_surface_evidence import verify as verify_metal_surface
 from metal_mip_evidence import verify as verify_metal_mips
 from backboard_probe_evidence import verify as verify_backboard_probe
+from registry_proof_evidence import verify as verify_registry_proof
+from pipeline_observer_evidence import verify as verify_pipeline_observer
+from air_narrow_evidence import verify as verify_air_narrow
+from air_half_evidence import verify as verify_air_half
 
 def verify(directory,mode,kernel_sha=None,version=None):
     root=Path(directory)
@@ -90,9 +94,13 @@ def verify(directory,mode,kernel_sha=None,version=None):
                 if a['exception_observer'].get('AIR_render_probe'):exceptions['AIR_render']=verify_air_render(text,a['token'],a['exception_observer']['AIR_render_fixture'])
                 if a['exception_observer'].get('AIR_constants_probe'):exceptions['AIR_constants']=verify_air_constants(text,a['token'],a['exception_observer']['AIR_constants_fixture'])
                 if a['exception_observer'].get('original_Metal_registry_probe'):exceptions['Metal_discovery']=verify_metal_discovery(text,a['token'])
+                if a['exception_observer'].get('registration_only'):exceptions['native_prior_binding']=verify_registry_proof(text,a['token'],a['exception_observer']['prior_native_hardware_proof'])
+                if a['exception_observer'].get('original_pipeline_observer'):exceptions['pipeline_factory']=verify_pipeline_observer(text,a['token'])
                 if a['exception_observer'].get('AIR_XR_probe'):exceptions['AIR_XR']=verify_air_xr(text,a['token'])
                 if a['exception_observer'].get('Metal_IOSurface_probe'):exceptions['Metal_IOSurface']=verify_metal_surface(text,a['token'])
                 if a['exception_observer'].get('Metal_mipmap_probe'):exceptions['Metal_mipmaps']=verify_metal_mips(text,a['token'])
+                if a['exception_observer'].get('AIR_narrow_probe'):exceptions['AIR_narrow']=verify_air_narrow(text,a['token'],a['exception_observer']['AIR_narrow_fixture'])
+                if a['exception_observer'].get('AIR_half_probe'):exceptions['AIR_half']=verify_air_half(text,a['token'],a['exception_observer']['AIR_half_fixture'])
     boundary='serialized=1' if mode in ('ready','gpu') else 'serialized=0'
     assert re.search(r'SWEET LOOP MAP_BOUNDARY token='+a['token']+' '+boundary+r' claimed=1',scope)
     report={'version':a['version'],'mode':mode,'source':str(root.resolve()),'token':a['token'],'kernel_sha256':a['kernel_sha256'],

@@ -28,11 +28,14 @@ forced=json.loads(run([out/'air-cli-forced',fixture],'forced-basic-test'));asser
 assert [(e['name'],e['stage']) for e in actual]==[('add_seven',0),('position',1),('color',2)]
 assert actual[0]['write_mask']==actual[0]['buffer_mask']==1
 assert actual[1]['buffer_mask']==1 and actual[1]['write_mask']==0
-paths=[cli,root/'gpu/metal/air/Compiler.h',root/'gpu/metal/air/LLVM16Compat.h',root/'gpu/metal/air/AIRFrontend.cpp',fixture]
+paths=[cli,root/'gpu/metal/air/Compiler.h',root/'gpu/metal/air/LLVM16Compat.h',root/'gpu/metal/air/AIRFrontend.cpp',
+    root/'gpu/metal/air/lilac-air-conversion.patch',root/'gpu/metal/air/lilac-air-half-storage.patch',root/'tools/build/materialize_air_sources.py',fixture]
 paths += [root/row['destination'] for row in json.loads((root/'reproducibility/air-reference.json').read_bytes())['sources'].values()]
 report=dict(source_files={str(p.relative_to(root)):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths},
     host_asan_ubsan_fixture_passed=True,ios_arm64_compilation_passed=True,llvm_import_audit=audit,
     forced_legacy_interface_host_test_passed=True,forced_and_available_C_entry_translation_equal=True,
     compiled_AIR_object_sha256=hashlib.sha256((out/'AIRFrontend.ios.o').read_bytes()).hexdigest(),
     actual_AIR_stage_translation_verified=True,GPU_execution_and_runtime_target_still_pending=True,device_operations=0)
+report['local_narrow_conversion_adaptation']=True
+report['local_half_storage_and_rounding_adaptation']=True
 (out/'manifest.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print(json.dumps({k:v for k,v in report.items() if k!='llvm_import_audit'}))

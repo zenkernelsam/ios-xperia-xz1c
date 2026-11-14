@@ -1,4 +1,4 @@
-/* AegirPoster-only metadata observer. Continue the original exception chain. */
+/* Native diagnostics and scoped original registration. Preserve exception chains. */
 #import <Foundation/Foundation.h>
 #include <objc/objc-exception.h>
 #include <objc/runtime.h>
@@ -14,6 +14,13 @@
 #include "MetalProbeStartup.h"
 #if defined(SWEET_METAL_BACKGROUND_PROBE)
 #include "../sweetgl/sweetgl.h"
+#endif
+#if defined(SWEET_METAL_REGISTRY_ONLY)
+#include "../metal/MetalResources.h"
+#include "NativeProof.h"
+#endif
+#if defined(SWEET_METAL_PIPELINE_OBSERVE)
+#include "MetalPipelineObserve.h"
 #endif
 #include "MetalRuntimeObserve.h"
 #if defined(SWEET_METAL_RESOURCE_PROBE)
@@ -46,6 +53,14 @@
 #endif
 #if defined(SWEET_METAL_MIP_PROBE)
 #include "MetalMipProbe.h"
+#endif
+#if defined(SWEET_AIR_NARROW_PROBE)
+#include "AIRNarrowFixture.h"
+#include "MetalNarrowProbe.h"
+#endif
+#if defined(SWEET_AIR_HALF_PROBE)
+#include "AIRHalfFixture.h"
+#include "MetalHalfProbe.h"
 #endif
 
 #if defined(LILAC_EXCEPTION_TEST)
@@ -175,6 +190,12 @@ static bool run_native_probes(void)
     metal_runtime_observe(objc_lookUpClass("_MTLDevice"),objc_getProtocol("MTLDeviceSPI"),objc_getProtocol("MTLBuffer"),
         objc_getProtocol("MTLCommandQueue"),objc_getProtocol("MTLCommandBuffer"),diagnostic);
     bool native_probes_valid=true;
+#if defined(SWEET_METAL_REGISTRY_ONLY)
+    diagnostic("SWEET METAL REGISTRY proof token=%s log_sha=%s external_hardware_stage=1",SWEET_NATIVE_RUN_TOKEN,SWEET_NATIVE_LOG_SHA);
+    diagnostic("SWEET METAL REGISTRY kernel_sha=%s",SWEET_NATIVE_KERNEL_SHA);
+    diagnostic("SWEET METAL REGISTRY gles_sha=%s metal_sha=%s",SWEET_NATIVE_GLES_SHA,SWEET_NATIVE_METAL_SHA);
+    diagnostic("SWEET METAL REGISTRY proof_sha=%s long_probes_in_constructor=0",SWEET_NATIVE_PROOF_SHA);
+#endif
 #if defined(SWEET_METAL_RESOURCE_PROBE)
     native_probes_valid=metal_resource_probe(diagnostic) && native_probes_valid;
 #endif
@@ -198,6 +219,12 @@ static bool run_native_probes(void)
 #endif
 #if defined(SWEET_METAL_MIP_PROBE)
     native_probes_valid=metal_mip_probe(diagnostic) && native_probes_valid;
+#endif
+#if defined(SWEET_AIR_NARROW_PROBE)
+    native_probes_valid=metal_narrow_probe(diagnostic) && native_probes_valid;
+#endif
+#if defined(SWEET_AIR_HALF_PROBE)
+    native_probes_valid=metal_half_probe(diagnostic) && native_probes_valid;
 #endif
 #if defined(SWEET_METAL_DISCOVERY_PROBE)
     if(native_probes_valid)(void)metal_discovery_probe(diagnostic);
@@ -242,6 +269,9 @@ static void install_observer(void)
 #else
     diagnostic("SWEET EXCEPTION observer installed process=AegirPoster limit=16 original_chain=1");
     install_uniform_observer();
+#if defined(SWEET_METAL_PIPELINE_OBSERVE)
+    (void)metal_pipeline_observe(objc_lookUpClass("SweetMTLDevice"),diagnostic);
+#endif
 #if defined(LILAC_EXCEPTION_TEST)
     metal_runtime_observe([MetalABIHostFixture class],@protocol(MetalABIHostProtocol),NULL,NULL,NULL,diagnostic);
 #else

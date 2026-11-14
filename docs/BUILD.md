@@ -57,3 +57,5 @@ XR格式的固定参考、LGPL源与原GPU字节见METAL-XR.md。单plane原IOSu
 mipmap最新实现见METAL-MIPMAPS.md，取代上段单mip限制：源码已支持界定的多级线性2D、Private、逐级region和GPU生成/LOD，硬件整组验收仍未完成。build_exception_observer.py --mip-probe使用固定render fixture，check_mip_gles.py从生产源码提取XR shader并在WSL Mesa验六级/层间采样。r1/r2同步Aegir ctor测试被原扩展check-in timeout打断；保持失败记录和同库准入，下一调整诊断执行位置后继续完整覆盖。
 
 最新后台整组实机已通过，见METAL-BACKBOARD.md。build_exception_observer.py --target-process backboardd必须给--gles-ram-package精确GLES、--metal-resources及完整compute/render/constants/XR/Surface/MIP fixture；此模式禁止Aegir登记。背景线程只在原GLES八项成功后执行，不改变check-in。新库CPU/GPU及新包CPU/GPU/完整回程均须验收，目标路由和字节在package_trial/ram_library中强制。
+
+当前dynamic narrow与half适配/验收见AIR-NARROW.md、AIR-HALF.md。固定OSS源保留，materialize只对build副本顺序应用独立patch；half MIT源/notices在air/half/reference。make_air_fixture.py --fixture narrow|half，build_exception_observer.py --narrow-fixture/--half-fixture加入完整backboard验证，新包CPU/GPU实际通过后才registry-only。短登记必须--native-proof及run_trial --native-evidence从原raw重新完整核验，库/源码/内核/日志token全匹配。

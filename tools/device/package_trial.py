@@ -5,6 +5,7 @@ ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT/'tools'));import adt,mkpayload
 from diagnostic_candidate import configuration
 from ram_library import load as load_ram
+from native_proof import validate as validate_native,digest as native_digest
 from controller import Artifact,SHIM_SHA
 def sha(data):return hashlib.sha256(data).hexdigest()
 def observer_environment(word,target):
@@ -178,12 +179,23 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
                     common+=['SWEET AIR CONSTANTS END result=0 phases=3 invocations=192 checked_words=240 guard_checks=48 final_allocated=0 standard_Metal=1']
                 if m['exception_observer'].get('original_Metal_registry_probe'):
                     common+=['SWEET METAL DISCOVERY END result=0 same_original_default=1 original_API=1 GPU_work_preverified=1']
+                if m['exception_observer'].get('registration_only'):
+                    prior=validate_native(m['exception_observer']['prior_native_hardware_proof'],m['metal_resources'])
+                    assert prior['version']==version and prior['kernel_sha256']==m['kernel_sha256']
+                    common+=['SWEET METAL REGISTRY proof_sha='+native_digest(prior)+' long_probes_in_constructor=0']
+                if m['exception_observer'].get('original_pipeline_observer'):
+                    common+=['SWEET METAL PIPELINE observer installed=1 methods=3 metadata_only=1 original_returns_errors=1',
+                        'SWEET METAL PIPELINE END call=1 returned_nil=[01] error_pointer=[01] error_code=-?[0-9]+ original_return=1']
                 if m['exception_observer'].get('AIR_XR_probe'):
                     common+=['SWEET AIR XR END result=0 formats=4 phases=12 checked_raw_output_bytes=34944 final_allocated=0 GPU_only=1']
                 if m['exception_observer'].get('Metal_IOSurface_probe'):
                     common+=['SWEET METAL SURFACE END result=0 cases=2 phases=6 checked_bytes=14976 row_padding=6480 final_allocated=0 original_surface_GPU=1']
                 if m['exception_observer'].get('Metal_mipmap_probe'):
                     common+=['SWEET METAL MIPS END result=0 formats=4 levels=6 generations=8 samples=24 checked_bytes=917504 final_allocated=0 GPU_only=1']
+                if m['exception_observer'].get('AIR_narrow_probe'):
+                    common+=['SWEET AIR NARROW END result=0 phases=2 checked_bytes=98304 final_allocated=0 GPU_only=1']
+                if m['exception_observer'].get('AIR_half_probe'):
+                    common+=['SWEET AIR HALF END result=0 checked_bytes=131072 phases=2 graphics=1 final_allocated=0 GPU_only=1']
     plan={'target_serial':'BH905ND69G','pon_route':6,'max_cycles':1,'budget_seconds':480,'camera_required':mode=='gpu',
           'steps':[{'artifact_id':m['id'],'observe_seconds':observe,'stable_seconds':30,'return_seconds':120,'goals':common,
                     'return_evidence':'final-drain','on_pass':'stop','on_failure':'stop'}]}

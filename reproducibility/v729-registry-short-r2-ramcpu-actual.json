@@ -1,0 +1,44 @@
+{
+  "version": 729,
+  "mode": "ramcpu",
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-registry-short-r2-ramcpu-20261115",
+  "token": "caf21a33b7eda43f",
+  "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+  "image_sha256": "9280e971fc63e5a0dadfd83ca6497a41a053f5cbda14a4e64a6a2a561e1e1319",
+  "log_sha256": "5d50e5d6aed37ed228e4ea538452ed0c712338380d7a6e081984ff4e261d2ffe",
+  "return_complete": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "caf21a33b7eda43f",
+    "checkpoint_bytes": 339929,
+    "log_bytes": 343663,
+    "log_sha256": "5d50e5d6aed37ed228e4ea538452ed0c712338380d7a6e081984ff4e261d2ffe",
+    "require_final_drain": true,
+    "marker_positions": [
+      6,
+      11,
+      65,
+      67
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 37.82900000002701,
+  "single_download_boot_verified": true,
+  "actual_stage_verified": true,
+  "complete_panel_and_peripheral_goal_not_achieved": true,
+  "payload_audit": {
+    "image_sha256": "9280e971fc63e5a0dadfd83ca6497a41a053f5cbda14a4e64a6a2a561e1e1319",
+    "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+    "blob_count": 8,
+    "complete_payload_reconstructed_from_compiled_kernel": true
+  },
+  "ram_library_binding": {
+    "library_sha256": "499bc6e9ddcf8143a0cc5578a3b8dd9c6ce3396f660917b7ac5655aaedf25cf3",
+    "library_bytes": 14711888,
+    "library_fnv64": "5b8368013b5ecae2",
+    "blob_sha256": "0d03930b2bca890b6b2c76dfd028b4abbc744a5de31acb2103facbfdf8ae915e",
+    "raw_sha256": "4351440a76f4bb959087877909aee934c35df162c4f6fa551de683cd204dcc13",
+    "manifest_sha256": "cdfe6ec5007fce83a4fed3e44d781bcc1a59a5aa8e306dbb6af2a1fa8208a98e"
+  },
+  "library_loaded_before_current_live": false
+}

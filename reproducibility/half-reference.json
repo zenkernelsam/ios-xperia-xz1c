@@ -1,0 +1,20 @@
+{
+  "repository": "https://gitlab.freedesktop.org/mesa/mesa",
+  "revision": "769e51468b49b2a42f0a0eaf71cf9eed5ff4e5de",
+  "sources": {
+    "src/util/half_float.c": {
+      "destination": "gpu/metal/air/half/reference/half_float.c",
+      "sha256": "274407bb71cd4e2ff0bd164492d6f5797ca5749f748ec00dde27052ad53ecc81",
+      "bytes": 6092
+    },
+    "src/util/half_float.h": {
+      "destination": "gpu/metal/air/half/reference/half_float.h",
+      "sha256": "42004d7add79b5b88b8f3ba0a3593e888ccf1532b344ddb56e547b8c636b9bfa",
+      "bytes": 3907
+    }
+  },
+  "license": "MIT notices retained in original files and HalfESSL.h",
+  "adaptation": "gpu/metal/air/HalfESSL.h",
+  "GPU_conversion_uses_integer_bit_rounding": true,
+  "device_operations": 0
+}

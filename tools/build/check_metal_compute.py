@@ -37,7 +37,8 @@ paths=['gpu/metal/MetalCompute.inc','gpu/metal/MetalCommandQueue.inc','gpu/metal
     'gpu/metal/MetalRender.inc','gpu/metal/MetalFunctionConstants.inc','gpu/metal/MetalTextureRules.h','gpu/metal/air/ESSLTarget.h','gpu/metal/air/LLVM16Compat.h',
     'gpu/metal/air/fixtures/render.air.ll','gpu/metal/air/fixtures/constants.air.ll','tools/build/test_metal_constants.mm',
     'tools/build/test_metal_render.mm','tools/build/test_metal_compute.mm','tools/build/test_llvm16_compat.cpp',
-    'gpu/sweetgl/MetalShaderAPI.h','gpu/sweetgl/MetalBackingAPI.h','gpu/sweetgl/MetalBackingRules.h','gpu/metal/MetalBufferRules.h']
+    'gpu/sweetgl/MetalShaderAPI.h','gpu/sweetgl/MetalBackingAPI.h','gpu/sweetgl/MetalBackingRules.h','gpu/metal/MetalBufferRules.h',
+    'gpu/metal/air/lilac-air-conversion.patch','gpu/metal/air/lilac-air-half-storage.patch','gpu/metal/air/HalfESSL.h','tools/build/materialize_air_sources.py']
 report=dict(source_files={p:hashlib.sha256((root/p).read_bytes()).hexdigest() for p in paths},
     real_legacy_LLVM_adapter_ASan_UBSan_passed=True,real_Metal_compute_objects_ASan_UBSan_passed=True,
     real_AIR_to_ESSL_translation_passed=True,host_GPU_stub_not_hardware_proof=True,device_operations=0)
