@@ -29,6 +29,10 @@ if (root/'reproducibility/air-reference.json').is_file():
     air=json.loads((root/'reproducibility/air-reference.json').read_bytes())
     for row in air['sources'].values():
         assert hashlib.sha256((root/row['destination']).read_bytes()).hexdigest()==row['sha256'],row['destination']
+if (root/'reproducibility/xr-reference.json').is_file():
+    xr=json.loads((root/'reproducibility/xr-reference.json').read_bytes())
+    for row in xr['sources'].values():assert hashlib.sha256((root/row['destination']).read_bytes()).hexdigest()==row['sha256']
+    assert hashlib.sha256((root/xr['generated_header']).read_bytes()).hexdigest()==xr['generated_sha256']
 py_files=[]
 for base in ('tools','gpu'):
     for file in (root/base).rglob('*.py'):

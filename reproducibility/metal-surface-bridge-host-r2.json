@@ -1,0 +1,27 @@
+{
+  "source_files": {
+    "gpu/sweetgl/sweet_drm.c": "424d4246319dda2d80cd7607fb714580f5be583c3ff357fc9015b823b5c7280e",
+    "gpu/sweetgl/MetalBackingAPI.h": "19f5fd76979783dab3e1aff76d33d8eb90d614c73ea108fd39bba013d194bf74",
+    "gpu/sweetgl/MetalBackingRules.h": "fb0b4c5426debc434ddd4270ddc8a515ab82cec8a97fa598420fd02e2a4203ad",
+    "gpu/metal/MetalResources.h": "1314a904284f1e8319b3c3407786f1a1c5251f298d923a682553b2f55a3c5855",
+    "gpu/metal/MetalResources.mm": "a9e4d8f72ba78bbbfd52e33e55d57031149113a6fbfeb8422a5aca7120314cf1",
+    "gpu/metal/MetalBufferRules.h": "ae78052ff954ba1376cef29e4aa75ef28592ce029e9ac7e2ca795369cf3b0b4c",
+    "gpu/metal/MetalDeviceLimits16.h": "bbf67110466a21bb8b9bb034c94f96e94fa7b61e3be024f06eba80fe817bf373",
+    "gpu/sweetgl/MetalBlitPlan.h": "af847a72bcdba91fea1f24c61147365fd7bc105c7d175eef79c8c00c966927d7",
+    "gpu/metal/MetalCommandQueue.inc": "c227e53d1c64272a4e77d56561de8e38df11960345199c3ae868cc22d815e9a6",
+    "gpu/metal/MetalQueueState.h": "3f1711b713f5e06f3657456be5262bbfaa4803663ca8a9b25aa245f6e328b66b",
+    "tools/build/test_metal_backing.c": "f89449ff119a4617f5e2fa22dd7ded0103763a2fdbd2380e846370ef5f762062",
+    "tools/build/test_metal_resources.mm": "ede7bf20312cb383cde4e81edba1e5dcb2076e7541002001530d6b8fbc0878e0",
+    "tools/build/test_metal_queue.mm": "7a76e1eb31c51ea76b5f73b3b1520525902e633bd33458423d52ec8f7127ad6d",
+    "tools/build/test_metal_blit_plan.c": "8a40a16c527fe7da8c4927825502ab6f5a8c47cf04668b41300c471539903579",
+    "tools/build/test_metal_blit_bridge.c": "c09b0a58c30d614aeb0a24a78cb89b2f7a20a80f7e3c87f7b75951d2fd0d2418"
+  },
+  "actual_bridge_bodies_host_asan_ubsan_passed": true,
+  "actual_Metal_object_bodies_host_asan_ubsan_passed": true,
+  "ios_arm64_compilation_passed": true,
+  "real_device_resource_and_rendering_acceptance_pending": true,
+  "device_operations": 0,
+  "actual_queue_objects_host_asan_ubsan_passed": true,
+  "actual_A5xx_packet_builder_host_asan_ubsan_passed": true,
+  "actual_blit_transport_host_asan_ubsan_passed": true
+}

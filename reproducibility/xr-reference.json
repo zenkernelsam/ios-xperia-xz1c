@@ -1,0 +1,31 @@
+{
+  "upstream": "https://github.com/steelbrain/metal2vulkan",
+  "revision": "219f01365dc4c8eb346816c405b5b17403793764",
+  "sources": {
+    "crates/metal2vulkan/src/metal/format/extended_srgb.rs": {
+      "destination": "gpu/metal/xr/reference/extended_srgb.rs",
+      "sha256": "21820f793c14f26eb5bce82974f062ee2b499da6ab88e2f3eb60fa729fda8c7d",
+      "bytes": 27332
+    },
+    "crates/metal2vulkan/src/metal/format/mod.rs": {
+      "destination": "gpu/metal/xr/reference/format.rs",
+      "sha256": "2f4f9511215e158a119b0af82fc771207a2f4e3d771623e902d61f308868ca9e",
+      "bytes": 158142
+    },
+    "LICENSE": {
+      "destination": "gpu/metal/xr/reference/LICENSE",
+      "sha256": "672ded943eeab6d5fdb81c68fd3cf4e2a10fc324dc52c23feb8dded444b9207b",
+      "bytes": 1114
+    },
+    "LICENSE-LGPL-3.0": {
+      "destination": "gpu/metal/xr/reference/LICENSE-LGPL-3.0",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
+      "bytes": 7652
+    }
+  },
+  "adapted_table_license": "LGPL-3.0-or-later",
+  "generated_header": "gpu/sweetgl/XRColourTables.h",
+  "generated_sha256": "7564148cfcdb509061e1cebc76cd8afb59a292f4dea18086f2d7fa753bb723fa",
+  "Vulkan_runtime_or_driver_imported": false,
+  "device_operations": 0
+}

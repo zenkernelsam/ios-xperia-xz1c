@@ -1,0 +1,229 @@
+{
+  "date": "2026-11-14",
+  "scope": "constants, native registration, XR and IOSurface generated outputs",
+  "Windows": {
+    "items": 347,
+    "files": 347,
+    "bytes": 927257084,
+    "native_recycle_entries_verified": true
+  },
+  "macOS": {
+    "items": 61,
+    "files": 109,
+    "bytes": 748328863,
+    "native_Trash_entries_verified": true
+  },
+  "original_completed_runs_retained": [
+    {
+      "run": "lilac-v729-constants-r1-gpu-20261114",
+      "result": "PASS",
+      "token": "068ab8c95cc7facb",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-constants-r1-gpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "8d09e92c6584d8f87e370744fdbff16e910b5aa6df7d0a9767b2cf940329f3c4",
+      "retained_camera_files": [
+        "frame-0040.jpg"
+      ]
+    },
+    {
+      "run": "lilac-v729-constants-r1-ramcpu-20261114",
+      "result": "PASS",
+      "token": "7d96c0ceaee168fd",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-constants-r1-ramcpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "21c179a5c70ea2e1de3f989579caffc2fbac78c0348b79bde4b0a830c4f5084f",
+      "retained_camera_files": []
+    },
+    {
+      "run": "lilac-v729-discovery-r1-gpu-20261114",
+      "result": "STOP",
+      "token": "8a7f72bccb714b98",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-discovery-r1-gpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "73aa92771efa9c2f3e2f4ff06875de4604ec26246b1f671882068b7dac33dc74",
+      "retained_camera_files": [
+        "frame-0040.jpg"
+      ]
+    },
+    {
+      "run": "lilac-v729-discovery-r1-ramcpu-20261114",
+      "result": "PASS",
+      "token": "8852685f1f2ca241",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-discovery-r1-ramcpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "1cd0a5a6e169aa4f5d4815c54b1741b59c186acdcc7fa18114db749705c53280",
+      "retained_camera_files": []
+    },
+    {
+      "run": "lilac-v729-discovery-r2-gpu-20261114",
+      "result": "STOP",
+      "token": "544aeb74cc1b39e5",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-discovery-r2-gpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "01aa7e444ed457b16198110d302db9608c7b9155305939f776460be02fcf6b00",
+      "retained_camera_files": [
+        "frame-0035.jpg"
+      ]
+    },
+    {
+      "run": "lilac-v729-discovery-r2-ramcpu-20261114",
+      "result": "PASS",
+      "token": "f7d1848a24c9b74a",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-discovery-r2-ramcpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "67f0f0fffbcd0066d635d7cbcdac23e9a6c43042ed308086a4f9c7a7d84795a1",
+      "retained_camera_files": []
+    },
+    {
+      "run": "lilac-v729-discovery-r3-gpu-20261114",
+      "result": "STOP",
+      "token": "fdd4d0d55f50cff9",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-discovery-r3-gpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "5a76b165637f6fd813ead242b6314772f8d7b197d62269b8540f1c40ab16d60d",
+      "retained_camera_files": [
+        "frame-0030.jpg"
+      ]
+    },
+    {
+      "run": "lilac-v729-discovery-r3-ramcpu-20261114",
+      "result": "PASS",
+      "token": "0b39aa3b7d517d71",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-discovery-r3-ramcpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "2a7488f5d02c6f7ec5453b7dd9274526aa282e3a9d518e8d37543ea46b3b636a",
+      "retained_camera_files": []
+    },
+    {
+      "run": "lilac-v729-surface-discovery-r1-gpu-20261114",
+      "result": "PASS",
+      "token": "e8dd3de1c808e1d8",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-surface-discovery-r1-gpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "407fc9319ed8a6b10da7d95531c7ab4e205d41ad4eda04c82c9f17b9e3a31ce4",
+      "retained_camera_files": [
+        "frame-0030.jpg"
+      ]
+    },
+    {
+      "run": "lilac-v729-surface-discovery-r1-ramcpu-20261114",
+      "result": "PASS",
+      "token": "60aa5b985f87f4ed",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-surface-discovery-r1-ramcpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "52cff651d3e31764c24b9e7df012bdbea71e779ca4f2d4c3d92d623173bd16bf",
+      "retained_camera_files": []
+    },
+    {
+      "run": "lilac-v729-surface-r1-gles-gpu-20261114",
+      "result": "PASS",
+      "token": "7cb0392b80e37040",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-surface-r1-gles-gpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "44221488ad54bea804c7a151c62391a2831b6db954972016b35c772a89af1ed4",
+      "retained_camera_files": [
+        "frame-0080.jpg"
+      ]
+    },
+    {
+      "run": "lilac-v729-surface-r1-gles-ramcpu-20261114",
+      "result": "PASS",
+      "token": "f3d3b66f066c6042",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-surface-r1-gles-ramcpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "6f8bfc8aed424b6a3c97d81766bb24cca551a235528aa74e54e996965146885f",
+      "retained_camera_files": []
+    },
+    {
+      "run": "lilac-v729-surface-r1-gpu-20261114",
+      "result": "PASS",
+      "token": "d502a8e29c42bfc0",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-surface-r1-gpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "bc761459f8d812b686b1a9043c50d418900879bedb065ec844f6de6cdc7149d6",
+      "retained_camera_files": [
+        "frame-0025.jpg"
+      ]
+    },
+    {
+      "run": "lilac-v729-surface-r1-ramcpu-20261114",
+      "result": "PASS",
+      "token": "cc909c8c0b61d4a1",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-surface-r1-ramcpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "529c34dc93bf27f9a4f6f579af6c92af6ddb2c0c6e8fbf92a5a6b027797e8405",
+      "retained_camera_files": []
+    },
+    {
+      "run": "lilac-v729-xr-discovery-r1-gpu-20261114",
+      "result": "PASS",
+      "token": "bfa432a0319f5360",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-xr-discovery-r1-gpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "f732ecba81236bad3391ac9391ecafd0f9c468e8f9f8c8dff00ddbf49667cd8d",
+      "retained_camera_files": [
+        "frame-0115.jpg"
+      ]
+    },
+    {
+      "run": "lilac-v729-xr-discovery-r1-ramcpu-20261114",
+      "result": "PASS",
+      "token": "988fa7594f12ebb1",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-xr-discovery-r1-ramcpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "df4fa906fa02615bee2e99f0bc533996e1f4021759575abfee2b2e090381324b",
+      "retained_camera_files": []
+    },
+    {
+      "run": "lilac-v729-xr-discovery-r2-gpu-20261114",
+      "result": "REVISE",
+      "token": "bfc4216a5cbb9221",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-xr-discovery-r2-gpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "753b167112660ef4d4e8f105945f7b45f165277a7fcd73c7d245b9be6c7b187b",
+      "retained_camera_files": [
+        "frame-0025.jpg"
+      ]
+    },
+    {
+      "run": "lilac-v729-xr-discovery-r2-ramcpu-20261114",
+      "result": "PASS",
+      "token": "a8f6d5cdaffcb8a4",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-xr-discovery-r2-ramcpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "73b1c26adc15545451648f6dfc76e378b50c0496df628c4b082ec903121b39b2",
+      "retained_camera_files": []
+    },
+    {
+      "run": "lilac-v729-xr-r1-gles-gpu-20261114",
+      "result": "PASS",
+      "token": "06da442b1df7b192",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-xr-r1-gles-gpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "9a81e57be3c1df8f3afaa42524625dbb4ebae3e7fa0b8513bc943da0bb8bb1d4",
+      "retained_camera_files": [
+        "frame-0020.jpg"
+      ]
+    },
+    {
+      "run": "lilac-v729-xr-r1-gles-ramcpu-20261114",
+      "result": "PASS",
+      "token": "1e891362e01a96c6",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-xr-r1-gles-ramcpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "e360c72a1f90f9d0930479003051873e2e3cdb38268f5d2c1b1ad9665ad49c87",
+      "retained_camera_files": []
+    },
+    {
+      "run": "lilac-v729-xr-r1-gpu-20261114",
+      "result": "PASS",
+      "token": "0cdcc1bb49369421",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-xr-r1-gpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "216d9069774884816342358854ec0ace2b4955cbda0908ace3770a7062fab14f",
+      "retained_camera_files": [
+        "frame-0135.jpg"
+      ]
+    },
+    {
+      "run": "lilac-v729-xr-r1-ramcpu-20261114",
+      "result": "PASS",
+      "token": "ef3dcf2ed934353a",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-xr-r1-ramcpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "d5e1d4ffc133c3e4a7eac134d41c3925e149965213b83de2fa19816b93a54e0f",
+      "retained_camera_files": []
+    }
+  ],
+  "original_serial_hashes_rechecked": true,
+  "best_original_photos_retained": true,
+  "failed_trial_images_baselines_compressed_RAM_blobs_libraries_and_sources_retained": true,
+  "Ubuntu_Trash": {
+    "Ubuntu_home_cisco": "absent",
+    "Ubuntu_root_checked_as_root": "absent",
+    "Ubuntu_22_04_home_cisco": "absent",
+    "Ubuntu_22_04_root": "absent"
+  },
+  "native_WSL_build_outputs_created_this_round": false,
+  "Windows_and_macOS_bins_not_emptied": true,
+  "no_permanent_deletion": true,
+  "local_recycle_plans_and_journals": "organization/20261114-xr-surface"
+}

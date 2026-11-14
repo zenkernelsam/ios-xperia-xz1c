@@ -1,0 +1,51 @@
+{
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-xr-discovery-r2-gpu-20261114",
+  "version": 729,
+  "token": "bfc4216a5cbb9221",
+  "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+  "image_sha256": "8519f8ef290393beb4fca8a32b3801c6d7bafa349197798c4d7b3d6516bd215f",
+  "log_sha256": "753b167112660ef4d4e8f105945f7b45f165277a7fcd73c7d245b9be6c7b187b",
+  "original_result": "REVISE",
+  "original_reason": "METAL_API_UNIMPLEMENTED",
+  "actual_failures": [],
+  "native_GPU_failure_results": [],
+  "registry_assertions": [],
+  "missing_device_API": [
+    [
+      "device",
+      "newTextureWithDescriptor:iosurface:plane:"
+    ],
+    [
+      "device",
+      "newTextureWithDescriptor:iosurface:plane:"
+    ],
+    [
+      "device",
+      "newTextureWithDescriptor:iosurface:plane:"
+    ]
+  ],
+  "payload_audit": {
+    "image_sha256": "8519f8ef290393beb4fca8a32b3801c6d7bafa349197798c4d7b3d6516bd215f",
+    "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+    "blob_count": 8,
+    "complete_payload_reconstructed_from_compiled_kernel": true
+  },
+  "strict_return": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "bfc4216a5cbb9221",
+    "checkpoint_bytes": 460518,
+    "log_bytes": 464548,
+    "log_sha256": "753b167112660ef4d4e8f105945f7b45f165277a7fcd73c7d245b9be6c7b187b",
+    "require_final_drain": true,
+    "marker_positions": [
+      4,
+      18,
+      69,
+      71
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 38.813000000081956,
+  "failed_stage_not_accepted": true
+}

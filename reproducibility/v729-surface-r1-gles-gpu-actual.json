@@ -1,0 +1,546 @@
+{
+  "version": 729,
+  "mode": "gpu",
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-surface-r1-gles-gpu-20261114",
+  "token": "7cb0392b80e37040",
+  "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+  "image_sha256": "87f8c0791a06ec3451c34d5ca20346a602922c0f64a36fdb7ebcb57cf88281f6",
+  "log_sha256": "44221488ad54bea804c7a151c62391a2831b6db954972016b35c772a89af1ed4",
+  "return_complete": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "7cb0392b80e37040",
+    "checkpoint_bytes": 493375,
+    "log_bytes": 496740,
+    "log_sha256": "44221488ad54bea804c7a151c62391a2831b6db954972016b35c772a89af1ed4",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      12,
+      63,
+      65
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 38.18700000003446,
+  "single_download_boot_verified": true,
+  "actual_stage_verified": true,
+  "complete_panel_and_peripheral_goal_not_achieved": true,
+  "payload_audit": {
+    "image_sha256": "87f8c0791a06ec3451c34d5ca20346a602922c0f64a36fdb7ebcb57cf88281f6",
+    "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+    "blob_count": 8,
+    "complete_payload_reconstructed_from_compiled_kernel": true
+  },
+  "pixels_and_retirement": {
+    "canvas": [
+      750,
+      1624
+    ],
+    "triangle_checked": 1215626,
+    "texture_checked": 1218000,
+    "surface_id": 3,
+    "gem_handle": 33,
+    "surface_pixels_each_direction": 1218000,
+    "sampler_hash": "ed689397267e7cf5",
+    "writer_bgra_hash": "93a9cad43faf6b45",
+    "mismatches": 0,
+    "final_close": {
+      "owner": 1,
+      "live": 0,
+      "allocated": 291,
+      "released": 291,
+      "unmapped": 291,
+      "orphaned": 0,
+      "active": 0,
+      "root_visible": 0,
+      "mapper": 1
+    },
+    "caller_surface_id": 4,
+    "final_caller_close": {
+      "id": 27,
+      "bytes": 16384,
+      "status": 0,
+      "released": 1,
+      "active": 0,
+      "outstanding": 0,
+      "retained": 0
+    },
+    "caller_pixels_each_check": 1218000,
+    "actual_dynamic_small_surface_refresh_verified": true,
+    "actual_unchanged_seed_skips_upload": true,
+    "actual_copy_after_original_vm_release_verified": true,
+    "refresh_cases": [
+      {
+        "id": 5,
+        "width": 256,
+        "height": 1,
+        "bpe": 2,
+        "pitch": 672,
+        "raw_bytes": 512,
+        "frames": [
+          {
+            "phase": 0,
+            "seed": 1,
+            "uploads": 1,
+            "pixels": 256,
+            "mismatches": 0,
+            "hash": "f8ad2bc4aefbfd25",
+            "unchanged_skip_verified": true
+          },
+          {
+            "phase": 1,
+            "seed": 2,
+            "uploads": 2,
+            "pixels": 256,
+            "mismatches": 0,
+            "hash": "3942456d1be8bf25",
+            "unchanged_skip_verified": true
+          },
+          {
+            "phase": 2,
+            "seed": 3,
+            "uploads": 3,
+            "pixels": 256,
+            "mismatches": 0,
+            "hash": "3811be48f0582b25",
+            "unchanged_skip_verified": true
+          },
+          {
+            "phase": 3,
+            "seed": 4,
+            "uploads": 4,
+            "pixels": 256,
+            "mismatches": 0,
+            "hash": "b23336306436d125",
+            "unchanged_skip_verified": true
+          }
+        ],
+        "source_vm_release_verified": true
+      },
+      {
+        "id": 6,
+        "width": 60,
+        "height": 60,
+        "bpe": 4,
+        "pitch": 240,
+        "raw_bytes": 14400,
+        "frames": [
+          {
+            "phase": 0,
+            "seed": 1,
+            "uploads": 1,
+            "pixels": 3600,
+            "mismatches": 0,
+            "hash": "86e736f80eeb7a55",
+            "unchanged_skip_verified": true
+          },
+          {
+            "phase": 1,
+            "seed": 2,
+            "uploads": 2,
+            "pixels": 3600,
+            "mismatches": 0,
+            "hash": "40948c66da6f12b5",
+            "unchanged_skip_verified": true
+          },
+          {
+            "phase": 2,
+            "seed": 3,
+            "uploads": 3,
+            "pixels": 3600,
+            "mismatches": 0,
+            "hash": "491772a7d5a1ccd5",
+            "unchanged_skip_verified": true
+          },
+          {
+            "phase": 3,
+            "seed": 4,
+            "uploads": 4,
+            "pixels": 3600,
+            "mismatches": 0,
+            "hash": "dc97e3fa82d44375",
+            "unchanged_skip_verified": true
+          }
+        ],
+        "source_vm_release_verified": true
+      },
+      {
+        "id": 7,
+        "width": 22,
+        "height": 27,
+        "bpe": 4,
+        "pitch": 88,
+        "raw_bytes": 2376,
+        "frames": [
+          {
+            "phase": 0,
+            "seed": 1,
+            "uploads": 1,
+            "pixels": 594,
+            "mismatches": 0,
+            "hash": "3e327c3aaeb85dd7",
+            "unchanged_skip_verified": true
+          },
+          {
+            "phase": 1,
+            "seed": 2,
+            "uploads": 2,
+            "pixels": 594,
+            "mismatches": 0,
+            "hash": "87a6f48bd98fc37b",
+            "unchanged_skip_verified": true
+          },
+          {
+            "phase": 2,
+            "seed": 3,
+            "uploads": 3,
+            "pixels": 594,
+            "mismatches": 0,
+            "hash": "212add72905681fb",
+            "unchanged_skip_verified": true
+          },
+          {
+            "phase": 3,
+            "seed": 4,
+            "uploads": 4,
+            "pixels": 594,
+            "mismatches": 0,
+            "hash": "5dfcd6891feaa65f",
+            "unchanged_skip_verified": true
+          }
+        ],
+        "source_vm_release_verified": true
+      }
+    ],
+    "shared_production_snapshot_and_gl_transfer_core": true,
+    "panel_ui_colour_fps_not_verified": true,
+    "actual_owned_texture_storage_reuse_verified": true,
+    "actual_different_context_same_texture_name_verified": true,
+    "dynamic_storage_counts": [
+      {
+        "surface_id": 5,
+        "context": 5,
+        "images": 1,
+        "subimages": 3
+      },
+      {
+        "surface_id": 6,
+        "context": 5,
+        "images": 1,
+        "subimages": 3
+      },
+      {
+        "surface_id": 7,
+        "context": 5,
+        "images": 1,
+        "subimages": 3
+      }
+    ],
+    "texture_image_definitions": 3,
+    "texture_subimage_updates": 9,
+    "context_switch_steps": [
+      {
+        "step": 0,
+        "context": 6,
+        "texture": 1,
+        "images": 1,
+        "subimages": 0,
+        "checked": 64,
+        "mismatches": 0,
+        "hash": "0b706aed25dc7045"
+      },
+      {
+        "step": 1,
+        "context": 7,
+        "texture": 1,
+        "images": 1,
+        "subimages": 0,
+        "checked": 64,
+        "mismatches": 0,
+        "hash": "0b706aed25dc7045"
+      },
+      {
+        "step": 2,
+        "context": 6,
+        "texture": 1,
+        "images": 1,
+        "subimages": 0,
+        "checked": 64,
+        "mismatches": 0,
+        "hash": "0b706aed25dc7045"
+      },
+      {
+        "step": 3,
+        "context": 6,
+        "texture": 1,
+        "images": 1,
+        "subimages": 1,
+        "checked": 64,
+        "mismatches": 0,
+        "hash": "91cda4632b8803e5"
+      }
+    ],
+    "physical_allocation_reduction_or_ui_fps_not_inferred": true,
+    "ca_all_context_and_thread_state_not_verified": true,
+    "actual_production_gli_context_state_pixels_verified": true,
+    "bridge_state_steps": [
+      {
+        "step": 0,
+        "context": 8,
+        "texture": 1,
+        "program": 3,
+        "width": 7,
+        "height": 5,
+        "definitions": 1,
+        "updates": 0,
+        "pixels": 64,
+        "mismatches": 0,
+        "hash": "002733f297703395"
+      },
+      {
+        "step": 1,
+        "context": 9,
+        "texture": 1,
+        "program": 3,
+        "width": 9,
+        "height": 3,
+        "definitions": 1,
+        "updates": 0,
+        "pixels": 64,
+        "mismatches": 0,
+        "hash": "00aa247ecc35b495"
+      },
+      {
+        "step": 2,
+        "context": 8,
+        "texture": 1,
+        "program": 3,
+        "width": 7,
+        "height": 5,
+        "definitions": 1,
+        "updates": 0,
+        "pixels": 64,
+        "mismatches": 0,
+        "hash": "002733f297703395"
+      },
+      {
+        "step": 3,
+        "context": 9,
+        "texture": 1,
+        "program": 3,
+        "width": 9,
+        "height": 3,
+        "definitions": 1,
+        "updates": 0,
+        "pixels": 64,
+        "mismatches": 0,
+        "hash": "00aa247ecc35b495"
+      },
+      {
+        "step": 4,
+        "context": 8,
+        "texture": 1,
+        "program": 3,
+        "width": 7,
+        "height": 5,
+        "definitions": 1,
+        "updates": 1,
+        "pixels": 64,
+        "mismatches": 0,
+        "hash": "7fc98facff2ed4e5"
+      },
+      {
+        "step": 5,
+        "context": 9,
+        "texture": 1,
+        "program": 3,
+        "width": 9,
+        "height": 3,
+        "definitions": 1,
+        "updates": 1,
+        "pixels": 64,
+        "mismatches": 0,
+        "hash": "ee4fe7c9e2ec23b5"
+      }
+    ],
+    "actual_rectangle_program_and_argb_swizzle_isolated": true,
+    "actual_distinct_surface_copy_registry_isolated": true,
+    "bridge_pixels_checked": 384,
+    "live_simultaneous_thread_rendering_not_verified": true,
+    "shared_eagl_contexts_and_shader_name_reuse_not_verified": true,
+    "actual_program_lifecycle_and_relinks_verified": true,
+    "actual_same_shader_and_program_160_relinks": true,
+    "actual_sampler_scalar_and_vector_mask_refresh_verified": true,
+    "actual_staged_source_keeps_compiled_shader_verified": true,
+    "actual_deferred_shader_and_program_delete_draws_verified": true,
+    "actual_recycled_shader_and_program_names_verified": true,
+    "actual_failed_link_bridge_cache_retention_verified": true,
+    "failed_link_gpu_rendering_not_verified": true,
+    "actual_fresh_private_mesa_name_reuse_enabled": true,
+    "actual_native_retirement_before_reuse_verified": true,
+    "lifecycle_draws": 320,
+    "lifecycle_pixels": 20480,
+    "lifecycle_extra_draw_pixels": 256,
+    "lifecycle_hash": "193671f95edc4725",
+    "lifecycle_checkpoints": [
+      {
+        "cycle": 0,
+        "context": 10,
+        "shader": 2,
+        "program": 3,
+        "draws": 2,
+        "pixels": 128,
+        "hash": "4c2fa040a9c7193d"
+      },
+      {
+        "cycle": 16,
+        "context": 10,
+        "shader": 2,
+        "program": 3,
+        "draws": 34,
+        "pixels": 2176,
+        "hash": "f427926f4076833d"
+      },
+      {
+        "cycle": 32,
+        "context": 10,
+        "shader": 2,
+        "program": 3,
+        "draws": 66,
+        "pixels": 4224,
+        "hash": "12259d7ecc25ed3d"
+      },
+      {
+        "cycle": 48,
+        "context": 10,
+        "shader": 2,
+        "program": 3,
+        "draws": 98,
+        "pixels": 6272,
+        "hash": "2606dbef4cd5573d"
+      },
+      {
+        "cycle": 64,
+        "context": 10,
+        "shader": 2,
+        "program": 3,
+        "draws": 130,
+        "pixels": 8320,
+        "hash": "8ce86840c284c13d"
+      },
+      {
+        "cycle": 80,
+        "context": 10,
+        "shader": 2,
+        "program": 3,
+        "draws": 162,
+        "pixels": 10368,
+        "hash": "81275cf32d342b3d"
+      },
+      {
+        "cycle": 96,
+        "context": 10,
+        "shader": 2,
+        "program": 3,
+        "draws": 194,
+        "pixels": 12416,
+        "hash": "1a60d4868ce3953d"
+      },
+      {
+        "cycle": 112,
+        "context": 10,
+        "shader": 2,
+        "program": 3,
+        "draws": 226,
+        "pixels": 14464,
+        "hash": "4d71e97ae192ff3d"
+      },
+      {
+        "cycle": 128,
+        "context": 10,
+        "shader": 2,
+        "program": 3,
+        "draws": 258,
+        "pixels": 16512,
+        "hash": "ec77b6502b42693d"
+      },
+      {
+        "cycle": 144,
+        "context": 10,
+        "shader": 2,
+        "program": 3,
+        "draws": 290,
+        "pixels": 18560,
+        "hash": "a6cf558669f1d33d"
+      },
+      {
+        "cycle": 159,
+        "context": 10,
+        "shader": 2,
+        "program": 3,
+        "draws": 320,
+        "pixels": 20480,
+        "hash": "193671f95edc4725"
+      }
+    ],
+    "shader_and_program_table_peaks": 1,
+    "all_object_limits_and_sampler_arrays_not_verified": true,
+    "hardware_frame_rate_not_inferred": true,
+    "audio_wireless_not_verified": true
+  },
+  "readonly_pixels": {
+    "production_bind_surface_verified": true,
+    "cases": [
+      {
+        "surface_id": 15,
+        "offset": 32,
+        "path": "copy",
+        "pixels_per_gpu_check": 160000,
+        "cpu_view_readonly": true,
+        "write_lock_refused": true,
+        "source_vm_removed_with_surface_held": true,
+        "cpu_bgra_hash": "ba036515759edb25",
+        "gpu_rgba_hash": "464ac79f7912f745",
+        "mismatches": 0
+      },
+      {
+        "surface_id": 16,
+        "offset": 64,
+        "path": "shared",
+        "pixels_per_gpu_check": 160000,
+        "cpu_view_readonly": true,
+        "write_lock_refused": true,
+        "source_vm_removed_with_surface_held": true,
+        "cpu_bgra_hash": "ba036515759edb25",
+        "gpu_rgba_hash": "464ac79f7912f745",
+        "mismatches": 0
+      },
+      {
+        "surface_id": 17,
+        "offset": 128,
+        "path": "shared",
+        "pixels_per_gpu_check": 160000,
+        "cpu_view_readonly": true,
+        "write_lock_refused": true,
+        "source_vm_removed_with_surface_held": true,
+        "cpu_bgra_hash": "ba036515759edb25",
+        "gpu_rgba_hash": "464ac79f7912f745",
+        "mismatches": 0
+      }
+    ],
+    "total_gpu_pixels": 960000,
+    "unaligned_source_uses_seed_refresh_upload": true,
+    "aligned_source_uses_direct_shared_pages": true,
+    "writes_into_original_readonly_pages_not_attempted": true,
+    "full_panel_and_peripheral_goal_not_complete": true
+  },
+  "ram_library_binding": {
+    "library_sha256": "4241a0200f974dffe3513c9ff225fdd2f4c8833530d94167d2884d61e1d429d1",
+    "library_bytes": 14711552,
+    "library_fnv64": "052bd8aba0c2ad56",
+    "blob_sha256": "57d806c4ccff2a6491e7c38e56b66ec634a18db91de9bf0840dc223e9f748d7f",
+    "raw_sha256": "b662fedc670866e0f4e2d344b96a613bb40f9ee4f6a1d605d80a65ed8883d883",
+    "manifest_sha256": "a8cff30bce04a263707d9a2356e657cb5bfee8e4068df1b5dd06572a91bb2688"
+  }
+}

@@ -18,6 +18,15 @@ from exception_evidence import inspect_scope,verify_renderer
 
 
 class Gates(unittest.TestCase):
+    def test_original_native_missing_selector_routes_return(self):
+        policy=DiagnosticPolicy('0123456789abcdef',[],0)
+        policy.feed('SWEET LOOP LIVE proto=1 token=0123456789abcdef',0)
+        policy.feed('SWEET EXCEPTION detail call=1 reason="-[SweetMTLBlitEncoder generateMipmapsForTexture:]: unrecognized selector sent to instance 0x1" observational=1',1)
+        self.assertEqual(policy.recoverable,'METAL_API_UNIMPLEMENTED')
+        other=DiagnosticPolicy('0123456789abcdef',[],0)
+        other.feed('SWEET LOOP LIVE proto=1 token=0123456789abcdef',0)
+        other.feed('SWEET EXCEPTION detail call=1 reason="an unrelated application error" observational=1',1)
+        self.assertNotEqual(other.recoverable,'METAL_API_UNIMPLEMENTED')
     def test_actual_renderer_metadata_requires_valid_abi_and_nil_identity(self):
         text=('SWEET METAL observer installed renderer=NUNIAegirRenderer limit=32 index_type=Q device_object=1 original_forwarded=1\n'
               'SWEET METAL uniform call=1 index=0 device_nil=1 device_class=nil new_buffer_method=0 metadata_only=1 original_called=1\n')
@@ -38,6 +47,11 @@ class Gates(unittest.TestCase):
             with self.assertRaises(AssertionError):inspect_scope(changed)
         wrapped=text.replace('missing method','missing me\nthod').replace('symbol=raise','symbol=ra\nise')
         self.assertEqual(inspect_scope(wrapped)['records'],proof['records'])
+        separate=text.replace(' name="NSInvalidArgumentException" reason="missing method" observational=1',
+            ' name="NSInvalidArgumentException" observational=1\nSWEET EXCEPTION detail call=1 reason="missing method" observational=1')
+        self.assertEqual(inspect_scope(separate)['records'],proof['records'])
+        truncated=separate.replace('SWEET EXCEPTION detail call=1 reason="missing method" observational=1\n','')
+        with self.assertRaises(AssertionError):inspect_scope(truncated)
         missing=text.replace('SWEET EXCEPTION frame call=1 index=1 pc=0x180010000 base=0x180000000 image=Foundation symbol=raise\n','')
         combined=inspect_scope(missing+text)
         self.assertEqual(len(combined['records']),1)

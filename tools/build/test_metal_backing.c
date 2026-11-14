@@ -5,6 +5,7 @@
 #include <assert.h>
 static void *host_pages[4097];
 static unsigned next_handle=1,allocated,released,invalidated,alloc_fail,release_fail,bad_map,bad_va;
+static unsigned surface_offset=64,surface_size=1152,bad_count;
 void sweet_drm_log(const char *format,...){(void)format;}
 kern_return_t metal_test_scalar(io_connect_t connection,uint32_t selector,const uint64_t *input,uint32_t inputs,uint64_t *output,uint32_t *outputs)
 {
@@ -22,6 +23,13 @@ kern_return_t metal_test_scalar(io_connect_t connection,uint32_t selector,const 
         assert(inputs==1 && input[0]<=4096 && host_pages[input[0]]);
         if(release_fail)return kIOReturnTimeout;
         free(host_pages[input[0]]);host_pages[input[0]]=NULL;++released;return 0;
+    }
+    if(selector==12){
+        assert(inputs==1 && input[0]==123 && output && *outputs==3);
+        unsigned handle=next_handle++;assert(handle<=4096);
+        assert(!posix_memalign(&host_pages[handle],16384,16384));++allocated;
+        output[0]=handle;output[1]=UINT64_C(0x40000000)+handle*32768+surface_offset;output[2]=surface_size;
+        if(bad_count)*outputs=2;return 0;
     }
     if(selector==14){assert(inputs==2);return 0;}
     if(selector==16){assert(inputs==1 && host_pages[input[0]]);++invalidated;return 0;}
@@ -59,6 +67,22 @@ int main(void)
     assert(!sweet_drm_metal_buffer_view(backing.handle,&view) && !sweet_drm_metal_buffer_view_keep(backing.handle));
     prior=released;assert(!gem_close(backing.handle) && released==prior && !sbo(backing.handle)->metal_mesa_view);
     assert(!sweetgl_metal_buffer_release(backing.handle) && released==prior+1);
+    // Selector12 returns logical origin/size, not allocation-page origin.
+    void *caller=NULL;assert(!posix_memalign(&caller,16384,16384));
+    for(unsigned offset=64;offset<=128;offset+=64){surface_offset=offset;
+        assert(!sweetgl_metal_surface_import(123,(uintptr_t)caller+offset,1152,&backing));
+        assert(sweet_metal_surface_backing_valid(&backing) && !sweet_metal_backing_valid(&backing));
+        assert(backing.contents==(char *)caller+offset && backing.logical_bytes==1152 && backing.allocated_bytes==1152 && (backing.gpu_address&16383)==offset);
+        assert(!sweet_drm_metal_buffer_view(backing.handle,&view) && !memcmp(&backing,&view,sizeof(view)));
+        assert(!sweet_drm_metal_buffer_view_keep(backing.handle));prior=released;
+        assert(!gem_close(backing.handle) && released==prior);
+        assert(!sweetgl_metal_buffer_release(backing.handle) && released==prior+1);
+    }
+    prior=released;assert(sweetgl_metal_surface_import(123,(uintptr_t)caller,1153,&backing)==-EIO && !backing.handle && released==prior+1);
+    bad_count=1;prior=released;assert(sweetgl_metal_surface_import(123,(uintptr_t)caller,1152,&backing)==-EIO && released==prior+1);bad_count=0;
+    surface_offset=1;prior=released;assert(sweetgl_metal_surface_import(123,(uintptr_t)caller,1152,&backing)==-EIO && released==prior+1);
+    prior=allocated;assert(sweetgl_metal_surface_import(123,(uintptr_t)caller+1,1152,&backing)==-EINVAL && allocated==prior);
+    free(caller);
     assert(allocated==released);for(unsigned i=0;i<4097;++i)assert(!host_pages[i]);
-    free(bos);bos=NULL;puts("actual bridge: sizes, mapping bounds, ownership, retirement and cache path PASS");return 0;
+    free(bos);bos=NULL;puts("actual bridge: sizes, mapping bounds, logical IOSurface origins, rollback, ownership, retirement and cache path PASS");return 0;
 }

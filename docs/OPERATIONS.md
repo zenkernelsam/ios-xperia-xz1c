@@ -13,3 +13,5 @@ gl5已在设备，不因整理重刷。禁止擅自flash/erase userdata、SD、T
 当前计划强制 max_cycles=1、on_pass/on_failure=stop、return_evidence=final-drain。v725/v726及v728+r4各阶段均实际单发和完整自动回程。36项主机故障回放覆盖传输/版本/RAM绑定/像素生命周期/只读生产路径。投递前复算完整payload、实际Mac源码/内核SHA及对应新前端/Mesa输入；gpu必须使用完全相同RAM库的CPU实际证据。
 
 v727 GPU及v728+r2/r3的原REVISE保留。首次v728 owner缺snap2 slot2，独立验收拒绝；另做90秒采样时机对照取得完整证据后才下一步。控制器owner PASS前检查真实全部元数据，缺项记REVISE并正常回程；不能用总结、另一靴或推测补缺。
+
+最新Surface/登记轮均完整PON06返回。原native探针PASS与原应用missing-selector必须分别报告；run_trial会识别原SweetMTL类的exception detail中unrecognized selector并提前回程。回程ACK后的提交拒绝/未完成样本单独保留，不当作完整样本；ACK前probe失败即使已有成功样本也须拒绝。具体边界见METAL-IOSURFACE.md。

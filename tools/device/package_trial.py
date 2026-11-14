@@ -166,6 +166,10 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
                     common+=['SWEET AIR CONSTANTS END result=0 phases=3 invocations=192 checked_words=240 guard_checks=48 final_allocated=0 standard_Metal=1']
                 if m['exception_observer'].get('original_Metal_registry_probe'):
                     common+=['SWEET METAL DISCOVERY END result=0 same_original_default=1 original_API=1 GPU_work_preverified=1']
+                if m['exception_observer'].get('AIR_XR_probe'):
+                    common+=['SWEET AIR XR END result=0 formats=4 phases=12 checked_raw_output_bytes=34944 final_allocated=0 GPU_only=1']
+                if m['exception_observer'].get('Metal_IOSurface_probe'):
+                    common+=['SWEET METAL SURFACE END result=0 cases=2 phases=6 checked_bytes=14976 row_padding=6480 final_allocated=0 original_surface_GPU=1']
     plan={'target_serial':'BH905ND69G','pon_route':6,'max_cycles':1,'budget_seconds':480,'camera_required':mode=='gpu',
           'steps':[{'artifact_id':m['id'],'observe_seconds':observe,'stable_seconds':30,'return_seconds':120,'goals':common,
                     'return_evidence':'final-drain','on_pass':'stop','on_failure':'stop'}]}

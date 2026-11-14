@@ -32,6 +32,13 @@
 #if defined(SWEET_METAL_DISCOVERY_PROBE)
 #include "MetalDiscoveryProbe.h"
 #endif
+#if defined(SWEET_AIR_XR_PROBE)
+#include <math.h>
+#include "MetalXRProbe.h"
+#endif
+#if defined(SWEET_METAL_SURFACE_PROBE)
+#include "MetalSurfaceProbe.h"
+#endif
 
 #if defined(LILAC_EXCEPTION_TEST)
 struct MetalABIHostLimits { uint32_t fields[63];uint64_t maxBufferLength; };
@@ -135,8 +142,8 @@ static id observe_exception(id exception)
                 char name[192]={0},reason[192]={0};
                 if([exception respondsToSelector:@selector(name)]) copy_string([exception name],name);
                 if([exception respondsToSelector:@selector(reason)]) copy_string([exception reason],reason);
-                diagnostic("SWEET EXCEPTION begin call=%u class=%s name=\"%s\" reason=\"%s\" observational=1",
-                    call,object_getClassName(exception),name,reason);
+                diagnostic("SWEET EXCEPTION begin call=%u class=%s name=\"%s\" observational=1",call,object_getClassName(exception),name);
+                diagnostic("SWEET EXCEPTION detail call=%u reason=\"%s\" observational=1",call,reason);
                 void *stack[16];int count=backtrace(stack,16);
                 for(int i=0;i<count;++i) {
                     Dl_info info={0};dladdr(stack[i],&info);
@@ -185,6 +192,12 @@ static void install_observer(void)
 #endif
 #if defined(SWEET_AIR_CONSTANTS_PROBE)
     native_probes_valid=metal_constants_probe(diagnostic) && native_probes_valid;
+#endif
+#if defined(SWEET_AIR_XR_PROBE)
+    native_probes_valid=metal_xr_probe(diagnostic) && native_probes_valid;
+#endif
+#if defined(SWEET_METAL_SURFACE_PROBE)
+    native_probes_valid=metal_surface_probe(diagnostic) && native_probes_valid;
 #endif
 #if defined(SWEET_METAL_DISCOVERY_PROBE)
     if(native_probes_valid)(void)metal_discovery_probe(diagnostic);

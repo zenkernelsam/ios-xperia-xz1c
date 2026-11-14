@@ -16,6 +16,7 @@ extern "C" int sweetgl_metal_buffer_allocate(uint64_t bytes,SweetMetalBacking *r
 }
 extern "C" int sweetgl_metal_buffer_release(uint32_t handle){assert(backing.count(handle));free(backing[handle].contents);backing.erase(handle);++released;return 0;}
 extern "C" int sweetgl_metal_buffer_synchronize(uint32_t handle){return backing.count(handle)?0:-EINVAL;}
+extern "C" int sweetgl_metal_surface_import(uint32_t,uint64_t,uint64_t,SweetMetalBacking *){return -ENOTSUP;}
 extern "C" int sweetgl_metal_buffer_blit(uint32_t,uint32_t,uint64_t,uint64_t,uint64_t,uint32_t,uint32_t *){assert(!"compute host test does not blit");return -EINVAL;}
 extern "C" SweetMetalProgram *sweetgl_metal_compute_create(const char *source,uint32_t mask,uint32_t writes,char *error,size_t errorBytes)
 {

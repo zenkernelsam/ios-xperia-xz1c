@@ -1,0 +1,26 @@
+{
+  "source_files": {
+    "gpu/metal/MetalCompute.inc": "f35ff3a6c69ab8b23ba1c76216db0ea0fdb62f67d3e4258fba36d5bf1c1e0a6e",
+    "gpu/metal/MetalCommandQueue.inc": "c227e53d1c64272a4e77d56561de8e38df11960345199c3ae868cc22d815e9a6",
+    "gpu/metal/MetalResources.mm": "a9e4d8f72ba78bbbfd52e33e55d57031149113a6fbfeb8422a5aca7120314cf1",
+    "gpu/metal/MetalRender.inc": "5d05b9578d8a3506548c11b8880e1e3286543d8d3f32b573f477c82fb6df355e",
+    "gpu/metal/MetalFunctionConstants.inc": "c50086a36fc7eec22c06d122751b0cb765569a1fefd25b0f656227b8bf86b730",
+    "gpu/metal/MetalTextureRules.h": "73a08c87248fe7145186ff8dbbe3a0784e468e4f743360166c1aade07240e7bd",
+    "gpu/metal/air/ESSLTarget.h": "4c758f8280eab2bf217b0d5df67dfe5e114af8a15ae1a4f7e68c721d1635acf8",
+    "gpu/metal/air/LLVM16Compat.h": "7827793f6653d2526206612308fbf2e38e3f6f00c42de271805317b2137a8966",
+    "gpu/metal/air/fixtures/render.air.ll": "a87e43dba485a69e16df6f80c7c38deee0434968d9a0d4b281928fc0036df606",
+    "gpu/metal/air/fixtures/constants.air.ll": "35cbe0bbe6108c3450ebc9529c80fecc5a46e6bcefcc7e7dc50b3f7bf9019b85",
+    "tools/build/test_metal_constants.mm": "0033fa961055cef963b997cc0ceff650ddc8a0c896d087b0a12836169a3f6c58",
+    "tools/build/test_metal_render.mm": "ca7912fb1fd16acc071ddd4bb4d380471e1421ccd4bd493c1d0f2b1947bc6127",
+    "tools/build/test_metal_compute.mm": "81b604da9f1e85a814fc9f949bd56364439772f11b2e597b1a8a6a000f9bc5fe",
+    "tools/build/test_llvm16_compat.cpp": "5dba3563721dcaf1ef02137f3396fa9cd640dba2b4b2bd39389281c54caf9545"
+  },
+  "real_legacy_LLVM_adapter_ASan_UBSan_passed": true,
+  "real_Metal_compute_objects_ASan_UBSan_passed": true,
+  "real_AIR_to_ESSL_translation_passed": true,
+  "host_GPU_stub_not_hardware_proof": true,
+  "device_operations": 0,
+  "real_Metal_texture_render_objects_ASan_UBSan_passed": true,
+  "real_AIR_graphics_translation_passed": true,
+  "real_native_Metal_function_constants_ASan_UBSan_passed": true
+}

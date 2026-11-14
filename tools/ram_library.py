@@ -58,6 +58,12 @@ def load(folder,expected=None):
                 sources.add('gpu/diagnostics/MetalDiscoveryProbe.h')
                 assert observer['registry_probe_process']=='AegirPoster' and observer['registry_functions_not_replaced']
                 assert observer.get('AIR_constants_probe') and observer.get('AIR_render_probe')
+            if observer.get('AIR_XR_probe'):
+                sources|={'gpu/diagnostics/MetalXRProbe.h','gpu/sweetgl/XRColourTables.h'}
+                assert observer.get('AIR_render_probe')
+            if observer.get('Metal_IOSurface_probe'):
+                sources|={'gpu/diagnostics/MetalSurfaceProbe.h','gpu/sweetgl/MetalBackingAPI.h'}
+                assert observer.get('AIR_render_probe') and observer['metal_resources']['native_IOSurface_texture_import']
             assert set(observer['source_files'])==sources
             assert observer['source_files'][observer['source']]==observer['source_sha256']
     if 'metal_resources' in m:

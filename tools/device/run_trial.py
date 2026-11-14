@@ -52,7 +52,10 @@ class DiagnosticPolicy(LogPolicy):
             if re.search(r'SWEET AIR CONSTANTS END result=[1-9]',line):self.recoverable='AIR_CONSTANTS_PROBE_FAILED'
             if re.search(r'SWEET METAL DISCOVERY END result=[1-9]',line):self.recoverable='METAL_DISCOVERY_PROBE_FAILED'
             if 'failed assertion ' in line and 'MTLAddDevice' in line:self.recoverable='METAL_REGISTRY_ASSERTION'
-            if 'SWEET METAL missing class=device selector=' in line:self.recoverable='METAL_DEVICE_API_UNIMPLEMENTED'
+            if 'SWEET METAL missing class=' in line and ' selector=' in line:self.recoverable='METAL_API_UNIMPLEMENTED'
+            if re.search(r'SWEET EXCEPTION detail call=\d+ reason="-\[SweetMTL\w+ [^ ]+\]: unrecognized selector',line):self.recoverable='METAL_API_UNIMPLEMENTED'
+            if re.search(r'SWEET AIR XR END result=[1-9]',line):self.recoverable='AIR_XR_PROBE_FAILED'
+            if re.search(r'SWEET METAL SURFACE END result=[1-9]',line):self.recoverable='METAL_IOSURFACE_PROBE_FAILED'
     def decision(self,now):
         result=super().decision(now)
         if result.kind=='PASS' and getattr(self,'minimum',0)>now:return Decision('WAIT','DIAGNOSTIC_WINDOW')

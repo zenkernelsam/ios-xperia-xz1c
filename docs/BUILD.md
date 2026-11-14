@@ -51,3 +51,5 @@ v725/v726诊断增量及单次投递入口见 SURFACE-DIAGNOSTICS.md；当前v72
 Native function constants的实际门槛见METAL-CONSTANTS.md：make_air_fixture.py --fixture constants、build_exception_observer.py --constants-fixture和check_metal_compute.py的原生常量测试。新Metal包继续绑定完全相同的已测GLES、先RAM CPU后GPU；host ABI/ASan/UBSan与目标GPU实际字节分别核对。
 
 原native系统登记探针使用build_exception_observer.py --register-device，仅Aegir且同进程先验GPU都通过。构建/独立STOP证据和真实格式卡点见METAL-DISCOVERY.md；回程四标记/健康/旧worker退出仍为强制条件，不能用原设备登记通过代替shader/完整面板验收。
+
+XR格式的固定参考、LGPL源与原GPU字节见METAL-XR.md。单plane原IOSurface的构建/验收见METAL-IOSURFACE.md；build_exception_observer.py --surface-probe需--render-fixture，可同时添加--xr-probe。新GLES库先CPU/GPU，添加新Metal/observer包后再CPU/GPU，精确--gles-evidence仍强制。当前只支持已界定的单mip线性2D，并未实现generateMipmapsForTexture:。

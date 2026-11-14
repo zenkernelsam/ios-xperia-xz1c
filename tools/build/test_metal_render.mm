@@ -6,6 +6,8 @@
 #include <string>
 #include <atomic>
 static std::map<uint32_t,SweetMetalBacking> backing;
+static std::map<uint32_t,IOSurfaceRef> imported;
+static bool surfaceImportFail;
 static uint32_t nextHandle=1,sequence;static unsigned programs,destroyed,draws,clears;
 struct SweetMetalProgram {std::string vertex,fragment;SweetRenderPipelineConfig config;};
 extern "C" bool sweetgl_init(void){return true;}
@@ -14,8 +16,15 @@ extern "C" int sweetgl_metal_buffer_allocate(uint64_t bytes,SweetMetalBacking *r
     auto span=sweet_metal_backing_span(bytes);void *memory=nullptr;if(!span || posix_memalign(&memory,16384,span))return -ENOMEM;
     *result={bytes,span,UINT64_C(0x40000000)+uint64_t(nextHandle)*65536,memory,nextHandle++,0};backing[result->handle]=*result;return 0;
 }
-extern "C" int sweetgl_metal_buffer_release(uint32_t handle){assert(backing.count(handle));free(backing[handle].contents);backing.erase(handle);return 0;}
+extern "C" int sweetgl_metal_buffer_release(uint32_t handle){assert(backing.count(handle));if(imported.count(handle))imported.erase(handle);else free(backing[handle].contents);backing.erase(handle);return 0;}
 extern "C" int sweetgl_metal_buffer_synchronize(uint32_t handle){return backing.count(handle)?0:-EINVAL;}
+extern "C" int sweetgl_metal_surface_import(uint32_t identity,uint64_t cpu,uint64_t required,SweetMetalBacking *result){
+    memset(result,0,sizeof(*result));if(surfaceImportFail)return -EIO;
+    IOSurfaceRef surface=IOSurfaceLookup(identity);assert(surface && IOSurfaceGetBaseAddress(surface)==(void *)(uintptr_t)cpu);
+    uint64_t size=IOSurfaceGetBytesPerRow(surface)*IOSurfaceGetHeight(surface);assert(required<=size);
+    *result={size,size,UINT64_C(0x40000040)+uint64_t(nextHandle)*65536,(void *)(uintptr_t)cpu,nextHandle++,0};
+    backing[result->handle]=*result;imported[result->handle]=surface;CFRelease(surface);return 0;
+}
 extern "C" int sweetgl_metal_buffer_blit(uint32_t,uint32_t,uint64_t,uint64_t,uint64_t,uint32_t,uint32_t *){assert(!"render test does not blit");return -EINVAL;}
 extern "C" SweetMetalProgram *sweetgl_metal_compute_create(const char *,uint32_t,uint32_t,char *,size_t){assert(!"render test does not compute");return nullptr;}
 extern "C" int sweetgl_metal_compute_dispatch(SweetMetalProgram *,const SweetShaderBufferBinding *,uint32_t,const uint32_t[3],const uint32_t[3],const uint32_t[3],uint32_t *){return -EINVAL;}
@@ -64,8 +73,8 @@ static void textureRegions(id<MTLDevice> device)
         assert(![buffer newTextureWithDescriptor:desc offset:63 bytesPerRow:128] && ![buffer newTextureWithDescriptor:desc offset:64 bytesPerRow:64]);
         assert(![buffer newTextureWithDescriptor:desc offset:192 bytesPerRow:128]);
         unsigned char source[96],output[160];for(unsigned i=0;i<96;++i)source[i]=(unsigned char)(i*37);memset(output,0xe7,sizeof(output));
-        MTLRegion region=MTLRegionMake2D(1,2,5,3);[texture replaceRegion:region mipmapLevel:0 withBytes:source bytesPerRow:32];
-        [texture getBytes:output+8 bytesPerRow:48 fromRegion:region mipmapLevel:0];
+        MTLRegion region=MTLRegionMake2D(1,2,5,3);[texture replaceRegion:region mipmapLevel:0 slice:0 withBytes:source bytesPerRow:32 bytesPerImage:84];
+        [texture getBytes:output+8 bytesPerRow:48 bytesPerImage:116 fromRegion:region mipmapLevel:0 slice:0];
         for(unsigned i=0;i<1280;++i){bool copied=false;for(unsigned y=0;y<3;++y){unsigned start=64+(y+2)*128+4;
                 if(i>=start && i<start+20){assert(original[i]==source[y*32+i-start]);copied=true;}}
             if(!copied)assert(original[i]==0xa5);}
@@ -75,14 +84,47 @@ static void textureRegions(id<MTLDevice> device)
         exception(^{[texture replaceRegion:region mipmapLevel:0 withBytes:sourcePointer bytesPerRow:19];});
         exception(^{[texture getBytes:outputPointer bytesPerRow:48 fromRegion:MTLRegionMake2D(16,8,2,1) mipmapLevel:0];});
         exception(^{[texture replaceRegion:region mipmapLevel:1 withBytes:sourcePointer bytesPerRow:32];});
+        exception(^{[texture replaceRegion:region mipmapLevel:0 slice:1 withBytes:sourcePointer bytesPerRow:32 bytesPerImage:84];});
+        exception(^{[texture getBytes:outputPointer bytesPerRow:48 bytesPerImage:115 fromRegion:region mipmapLevel:0 slice:0];});
         [buffer release];assert(texture.device==device && texture.buffer.contents==original);
         [texture release];desc.storageMode=MTLStorageModePrivate;assert(![device newTextureWithDescriptor:desc]);
         desc.storageMode=MTLStorageModeShared;desc.width=0;assert(![device newTextureWithDescriptor:desc]);[desc release];
     }
     assert(device.currentAllocatedSize==0 && backing.empty());
 }
+static void surfaceRegions(id<MTLDevice> device)
+{
+    @autoreleasepool{
+        NSDictionary *properties=@{(id)kIOSurfaceWidth:@17,(id)kIOSurfaceHeight:@9,(id)kIOSurfaceBytesPerElement:@4,
+            (id)kIOSurfaceBytesPerRow:@128,(id)kIOSurfaceAllocSize:@1152,(id)kIOSurfacePixelFormat:@0x42475241};
+        IOSurfaceRef surface=IOSurfaceCreate((CFDictionaryRef)properties);assert(surface && IOSurfaceGetWidth(surface)==17);
+        auto desc=descriptor(17,9);auto original=(unsigned char *)IOSurfaceGetBaseAddress(surface);assert(original && !((uintptr_t)original&63));
+        assert(IOSurfaceLock(surface,0,nullptr)==KERN_SUCCESS);memset(original,0xa5,1152);assert(IOSurfaceUnlock(surface,0,nullptr)==KERN_SUCCESS);
+        surfaceImportFail=true;assert(![device newTextureWithDescriptor:desc iosurface:surface plane:0] && backing.empty());surfaceImportFail=false;
+        assert(![device newTextureWithDescriptor:desc iosurface:surface plane:1]);desc.width=18;assert(![device newTextureWithDescriptor:desc iosurface:surface plane:0]);desc.width=17;
+        desc.pixelFormat=MTLPixelFormatRGBA16Float;assert(![device newTextureWithDescriptor:desc iosurface:surface plane:0]);desc.pixelFormat=MTLPixelFormatBGRA8Unorm;
+        desc.hazardTrackingMode=(MTLHazardTrackingMode)3;assert(![device newTextureWithDescriptor:desc iosurface:surface plane:0]);desc.hazardTrackingMode=MTLHazardTrackingModeDefault;
+        id<MTLTexture> texture=[device newTextureWithDescriptor:desc iosurface:surface plane:0];assert(texture && !texture.buffer && texture.iosurface==surface && texture.device==device);
+        assert(texture.allocatedSize==1152 && device.currentAllocatedSize==1152 && texture.bufferOffset==0 && texture.bufferBytesPerRow==128);
+        CFRelease(surface);surface=nullptr;assert(IOSurfaceGetBaseAddress(texture.iosurface)==original);
+        unsigned char source[96],output[160];for(unsigned i=0;i<96;++i)source[i]=(unsigned char)(i*37);memset(output,0xe7,sizeof(output));
+        auto region=MTLRegionMake2D(1,2,5,3);[texture replaceRegion:region mipmapLevel:0 withBytes:source bytesPerRow:32];
+        [texture getBytes:output+8 bytesPerRow:48 fromRegion:region mipmapLevel:0];
+        for(unsigned i=0;i<1152;++i){unsigned row=i/128,column=i%128;unsigned char expected=0xa5;
+            if(row>=2 && row<5 && column>=4 && column<24)expected=source[(row-2)*32+column-4];assert(original[i]==expected);}
+        for(unsigned i=0;i<160;++i){unsigned char expected=0xe7;if(i>=8){unsigned row=(i-8)/48,column=(i-8)%48;
+            if(row<3 && column<20)expected=source[row*32+column];}assert(output[i]==expected);}
+        desc.storageMode=MTLStorageModePrivate;id<MTLTexture> privateTexture=[device newTextureWithDescriptor:desc iosurface:texture.iosurface plane:0];assert(privateTexture && privateTexture.storageMode==MTLStorageModePrivate);
+        const unsigned char *input=source;unsigned char *out=output;
+        exception(^{[privateTexture replaceRegion:region mipmapLevel:0 withBytes:input bytesPerRow:32];});
+        exception(^{[privateTexture getBytes:out bytesPerRow:48 fromRegion:region mipmapLevel:0];});
+        [texture release];assert(IOSurfaceGetBaseAddress(privateTexture.iosurface)==original);[privateTexture release];[desc release];
+    }
+    assert(device.currentAllocatedSize==0 && backing.empty() && imported.empty());
+    puts("actual host IOSurface texture: native pages, regions/padding, caller release, private CPU rejection, import rollback and final lifetime PASS; GPU transport stub only");
+}
 int main(int argc,char **argv){assert(argc==2);@autoreleasepool{
-    NSError *error=nil;id<MTLDevice> device=SweetMTLCreateDevice(&error);assert(device && !error);textureRegions(device);
+    NSError *error=nil;id<MTLDevice> device=SweetMTLCreateDevice(&error);assert(device && !error);textureRegions(device);surfaceRegions(device);
     NSData *bytes=[NSData dataWithContentsOfFile:[NSString stringWithUTF8String:argv[1]]];assert(bytes);
     dispatch_data_t data=dispatch_data_create(bytes.bytes,bytes.length,NULL,DISPATCH_DATA_DESTRUCTOR_DEFAULT);
     id<MTLLibrary> library=[device newLibraryWithData:data error:&error];dispatch_release(data);assert(library && !error && library.functionNames.count==4);

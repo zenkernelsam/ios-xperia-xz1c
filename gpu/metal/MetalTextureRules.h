@@ -6,7 +6,8 @@
 struct SweetTextureLayout {uint32_t width=0,height=0,pitch=0,bytes_per_pixel=0;uint64_t offset=0,bytes=0;};
 inline uint32_t sweet_texture_pixel_bytes(uint32_t format)
 {
-    switch(format){case 10:return 1;case 30:return 2;case 70:case 71:case 80:case 81:return 4;case 115:return 8;default:return 0;}
+    switch(format){case 10:return 1;case 30:return 2;case 70:case 71:case 80:case 81:case 554:case 555:return 4;
+        case 115:case 552:case 553:return 8;default:return 0;}
 }
 inline bool sweet_texture_layout(uint64_t width,uint64_t height,uint32_t format,uint64_t offset,uint64_t pitch,
     uint64_t capacity,SweetTextureLayout &result)

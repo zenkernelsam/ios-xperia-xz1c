@@ -21,17 +21,17 @@ run(['clang++',*common,'-g','-O1','-fsanitize=address,undefined','-c',out/'sourc
 run(['clang++',*object_common,'-g','-O1','-fsanitize=address,undefined','-fno-objc-arc','-c',
     root/'tools/build/test_metal_compute.mm','-o',out/'compute-test.o'],'compute-compile')
 run(['clang++','-fsanitize=address,undefined',out/'frontend-test.o',out/'compute-test.o',*link,
-    '-framework','Metal','-framework','Foundation','-o',out/'compute-test'],'compute-link')
+    '-framework','Metal','-framework','Foundation','-framework','IOSurface','-o',out/'compute-test'],'compute-link')
 assert 'PASS' in run([out/'compute-test',root/'gpu/metal/air/fixtures/basic.air.ll'],'compute-test')
 run(['clang++',*object_common,'-g','-O1','-fsanitize=address,undefined','-fno-objc-arc','-c',
     root/'tools/build/test_metal_render.mm','-o',out/'render-test.o'],'render-compile')
 run(['clang++','-fsanitize=address,undefined',out/'frontend-test.o',out/'render-test.o',*link,
-    '-framework','Metal','-framework','Foundation','-o',out/'render-test'],'render-link')
+    '-framework','Metal','-framework','Foundation','-framework','IOSurface','-o',out/'render-test'],'render-link')
 assert 'PASS' in run([out/'render-test',root/'gpu/metal/air/fixtures/render.air.ll'],'render-test')
 run(['clang++',*object_common,'-g','-O1','-fsanitize=address,undefined','-fno-objc-arc','-c',
     root/'tools/build/test_metal_constants.mm','-o',out/'constants-test.o'],'constants-compile')
 run(['clang++','-fsanitize=address,undefined',out/'frontend-test.o',out/'constants-test.o',*link,
-    '-framework','Metal','-framework','Foundation','-o',out/'constants-test'],'constants-link')
+    '-framework','Metal','-framework','Foundation','-framework','IOSurface','-o',out/'constants-test'],'constants-link')
 assert 'PASS' in run([out/'constants-test',root/'gpu/metal/air/fixtures/constants.air.ll'],'constants-test')
 paths=['gpu/metal/MetalCompute.inc','gpu/metal/MetalCommandQueue.inc','gpu/metal/MetalResources.mm',
     'gpu/metal/MetalRender.inc','gpu/metal/MetalFunctionConstants.inc','gpu/metal/MetalTextureRules.h','gpu/metal/air/ESSLTarget.h','gpu/metal/air/LLVM16Compat.h',
@@ -42,4 +42,5 @@ report=dict(source_files={p:hashlib.sha256((root/p).read_bytes()).hexdigest() fo
     real_AIR_to_ESSL_translation_passed=True,host_GPU_stub_not_hardware_proof=True,device_operations=0)
 report.update(real_Metal_texture_render_objects_ASan_UBSan_passed=True,real_AIR_graphics_translation_passed=True)
 report['real_native_Metal_function_constants_ASan_UBSan_passed']=True
+report['real_host_IOSurface_texture_pages_lifetime_regions_ASan_UBSan_passed']=True
 (out/'manifest.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print(json.dumps(report))

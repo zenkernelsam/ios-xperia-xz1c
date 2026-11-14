@@ -26,7 +26,7 @@ def inspect_scope(scope):
     scope=observer_records(scope)
     installed=re.findall(r'SWEET EXCEPTION observer installed process=AegirPoster limit=16 original_chain=1',scope)
     assert installed,'AegirPoster observer did not actually load'
-    begins=list(re.finditer(r'SWEET EXCEPTION begin call=(\d+) class=(\S+) name="([^"]*)" reason="([^"]*)" observational=1',scope))
+    begins=list(re.finditer(r'SWEET EXCEPTION begin call=(\d+) class=(\S+) name="([^"]*)"(?: reason="([^"]*)")? observational=1',scope))
     assert begins,'No actual exception metadata captured'
     records=[];incomplete=[]
     # Each new helper process restarts its observation counter. Preserve that
@@ -35,6 +35,11 @@ def inspect_scope(scope):
         call=int(begin[1]);assert 1<=call<=16
         finish_limit=begins[index+1].start() if index+1<len(begins) else len(scope)
         text=scope[begin.end():finish_limit]
+        reason=begin[4]
+        if reason is None:
+            detail=re.search(r'SWEET EXCEPTION detail call='+str(call)+r' reason="([^"]*)" observational=1',text)
+            if not detail:incomplete.append(dict(call=call,reason='detail_record_missing'));continue
+            reason=detail[1]
         ends=list(re.finditer(r'SWEET EXCEPTION end call='+str(call)+r' frames=(\d+) original_chain=1',text))
         if not ends:
             incomplete.append(dict(call=call,reason='end_record_missing'));continue
@@ -48,7 +53,7 @@ def inspect_scope(scope):
             incomplete.append(dict(call=call,reason='frame_records_missing',declared_frames=declared,
                 captured_frame_indices=indices));continue
         assert [f['index'] for f in frames]==list(range(len(frames)))
-        records.append(dict(call=call,exception_class=begin[2],name=begin[3],reason=begin[4],frames=frames,
+        records.append(dict(call=call,exception_class=begin[2],name=begin[3],reason=reason,frames=frames,
             original_exception_chain_continued=True))
     assert records,'No complete actual exception record'
     return dict(observer_load_count=len(installed),records=records,incomplete_records=incomplete,

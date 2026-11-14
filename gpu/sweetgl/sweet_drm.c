@@ -47,6 +47,7 @@ struct sbo {
 	int used;
     uint64_t metal_bytes;   /* 0: Mesa; logical bytes: Metal; UINT64_MAX: retiring */
     bool metal_mesa_view;
+    bool metal_surface;
 };
 
 static pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
@@ -358,7 +359,7 @@ int sweet_drm_metal_buffer_view(uint32_t handle,SweetMetalBacking *out)
     pthread_mutex_lock(&lock);struct sbo *b=sbo(handle);
     bool valid=b && b->metal_bytes && b->metal_bytes!=UINT64_MAX;
     if(valid){*out=(SweetMetalBacking){b->metal_bytes,b->size,b->iova,(void *)(uintptr_t)b->map,handle,0};
-        valid=sweet_metal_backing_valid(out);}
+        valid=b->metal_surface?sweet_metal_surface_backing_valid(out):sweet_metal_backing_valid(out);}
     pthread_mutex_unlock(&lock);return valid?0:-EINVAL;
 }
 int sweet_drm_metal_buffer_view_keep(uint32_t handle)
@@ -371,6 +372,25 @@ int sweet_drm_metal_buffer_sequence(uint32_t handle,uint32_t *sequence)
     if(!sequence)return -EINVAL;*sequence=0;pthread_mutex_lock(&lock);struct sbo *b=sbo(handle);
     bool valid=b && b->metal_bytes && b->metal_bytes!=UINT64_MAX && b->used && b->seq;
     if(valid)*sequence=b->seq;pthread_mutex_unlock(&lock);return valid?0:-EIO;
+}
+int sweetgl_metal_surface_import(uint32_t surface_id,uint64_t cpu_address,uint64_t required_bytes,SweetMetalBacking *out)
+{
+    if(!out)return -EINVAL;memset(out,0,sizeof(*out));
+    if(!surface_id || !cpu_address || (cpu_address&63) || !required_bytes || required_bytes>(UINT64_C(256)<<20))return -EINVAL;
+    pthread_mutex_lock(&lock);if(!conn || !bos){pthread_mutex_unlock(&lock);return -ENODEV;}
+    uint64_t input=surface_id,result[3]={0};uint32_t count=3;int status=-EIO;
+    kern_return_t kr=IOConnectCallScalarMethod(conn,12,&input,1,result,&count);
+    if(kr==KERN_SUCCESS && count==3 && result[2]>=required_bytes){
+        SweetMetalBacking view={result[2],result[2],result[1],(void *)(uintptr_t)cpu_address,(uint32_t)result[0],0};
+        if(result[0]<=SWEET_DRM_HANDLES && sweet_metal_surface_backing_valid(&view)){
+            status=sbo_add(view.handle,view.gpu_address,cpu_address,view.logical_bytes);
+            if(!status){struct sbo *b=sbo(view.handle);b->metal_bytes=view.logical_bytes;b->metal_surface=true;*out=view;}}
+    }
+    if(status && kr==KERN_SUCCESS && result[0] && result[0]<=SWEET_DRM_HANDLES)(void)IOConnectCallScalarMethod(conn,11,result,1,NULL,NULL);
+    sweet_drm_log("SWEET METAL IOSURFACE import id=%u required=%llu handle=%llu gpu=%#llx cpu=%#llx bytes=%llu result=%d original_pages=1",
+        surface_id,(unsigned long long)required_bytes,(unsigned long long)result[0],(unsigned long long)result[1],
+        (unsigned long long)cpu_address,(unsigned long long)result[2],status);
+    pthread_mutex_unlock(&lock);return status;
 }
 
 static int

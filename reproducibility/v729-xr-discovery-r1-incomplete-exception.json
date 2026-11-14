@@ -1,0 +1,939 @@
+{
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-xr-discovery-r1-gpu-20261114",
+  "original_controller_result": "PASS",
+  "original_result_not_promoted": true,
+  "independent_full_acceptance": false,
+  "exception_full_metadata_lost": true,
+  "raw_sha256": "f732ecba81236bad3391ac9391ecafd0f9c468e8f9f8c8dff00ddbf49667cd8d",
+  "token": "bfa432a0319f5360",
+  "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+  "image_sha256": "a046226c167a6ca5507411c961167d5b42330803f29054954b4a8114734a80a0",
+  "return_seconds_with_health": 37.82799999997951,
+  "strict_return": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "bfa432a0319f5360",
+    "checkpoint_bytes": 794689,
+    "log_bytes": 800448,
+    "log_sha256": "f732ecba81236bad3391ac9391ecafd0f9c468e8f9f8c8dff00ddbf49667cd8d",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      38,
+      92,
+      94
+    ],
+    "final_reset_marker_seen": true
+  },
+  "payload": {
+    "image_sha256": "a046226c167a6ca5507411c961167d5b42330803f29054954b4a8114734a80a0",
+    "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+    "blob_count": 8,
+    "complete_payload_reconstructed_from_compiled_kernel": true
+  },
+  "registration": {
+    "original_Metal_default_device_registration_verified": true,
+    "complete_samples": 15,
+    "incomplete_samples": 0,
+    "process": "AegirPoster",
+    "framework_API_and_registry_properties_not_replaced": true,
+    "records": [
+      {
+        "kernel_registry_id": "0000000100000184",
+        "original_default_same_device": true,
+        "conforms_native_device_SPI": true
+      },
+      {
+        "kernel_registry_id": "0000000100000184",
+        "original_default_same_device": true,
+        "conforms_native_device_SPI": true
+      },
+      {
+        "kernel_registry_id": "0000000100000184",
+        "original_default_same_device": true,
+        "conforms_native_device_SPI": true
+      },
+      {
+        "kernel_registry_id": "0000000100000184",
+        "original_default_same_device": true,
+        "conforms_native_device_SPI": true
+      },
+      {
+        "kernel_registry_id": "0000000100000184",
+        "original_default_same_device": true,
+        "conforms_native_device_SPI": true
+      },
+      {
+        "kernel_registry_id": "0000000100000184",
+        "original_default_same_device": true,
+        "conforms_native_device_SPI": true
+      },
+      {
+        "kernel_registry_id": "0000000100000184",
+        "original_default_same_device": true,
+        "conforms_native_device_SPI": true
+      },
+      {
+        "kernel_registry_id": "0000000100000184",
+        "original_default_same_device": true,
+        "conforms_native_device_SPI": true
+      },
+      {
+        "kernel_registry_id": "0000000100000184",
+        "original_default_same_device": true,
+        "conforms_native_device_SPI": true
+      },
+      {
+        "kernel_registry_id": "0000000100000184",
+        "original_default_same_device": true,
+        "conforms_native_device_SPI": true
+      },
+      {
+        "kernel_registry_id": "0000000100000184",
+        "original_default_same_device": true,
+        "conforms_native_device_SPI": true
+      },
+      {
+        "kernel_registry_id": "0000000100000184",
+        "original_default_same_device": true,
+        "conforms_native_device_SPI": true
+      },
+      {
+        "kernel_registry_id": "0000000100000184",
+        "original_default_same_device": true,
+        "conforms_native_device_SPI": true
+      },
+      {
+        "kernel_registry_id": "0000000100000184",
+        "original_default_same_device": true,
+        "conforms_native_device_SPI": true
+      },
+      {
+        "kernel_registry_id": "0000000100000184",
+        "original_default_same_device": true,
+        "conforms_native_device_SPI": true
+      }
+    ],
+    "full_UI_and_shader_coverage_pending": true
+  },
+  "XR": {
+    "actual_XR_4_formats_raw_GPU_render_decode_verified": true,
+    "complete_samples": 15,
+    "incomplete_samples": 0,
+    "records": [
+      {
+        "sequences": [
+          553,
+          555,
+          558,
+          583,
+          585,
+          588,
+          589,
+          591,
+          594,
+          613,
+          615,
+          619
+        ],
+        "formats": [
+          552,
+          553,
+          554,
+          555
+        ],
+        "raw_hashes": [
+          "da2c57214300aa15",
+          "5630ce7e5a724218",
+          "5630ce7e5a724218",
+          "da2c57214300aa15",
+          "4d8c515cad941fbb",
+          "4d8c515cad941fbb",
+          "666a197af70c2d8d",
+          "2a8c20de41a62ba8",
+          "2a8c20de41a62ba8",
+          "666a197af70c2d8d",
+          "4cedcacd0e5479d1",
+          "4cedcacd0e5479d1"
+        ],
+        "output_hashes": [
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "319b2bcc2fdc4b47",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "ed8e3f94ce6103b6",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "319b2bcc2fdc4b47",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "ed8e3f94ce6103b6"
+        ],
+        "checked_raw_output_bytes": 34944,
+        "pixels_per_pass": 153,
+        "all_padding_prefix_suffix_checked": true,
+        "final_allocated": 0
+      },
+      {
+        "sequences": [
+          683,
+          685,
+          688,
+          705,
+          707,
+          712,
+          713,
+          715,
+          718,
+          725,
+          733,
+          736
+        ],
+        "formats": [
+          552,
+          553,
+          554,
+          555
+        ],
+        "raw_hashes": [
+          "da2c57214300aa15",
+          "5630ce7e5a724218",
+          "5630ce7e5a724218",
+          "da2c57214300aa15",
+          "4d8c515cad941fbb",
+          "4d8c515cad941fbb",
+          "666a197af70c2d8d",
+          "2a8c20de41a62ba8",
+          "2a8c20de41a62ba8",
+          "666a197af70c2d8d",
+          "4cedcacd0e5479d1",
+          "4cedcacd0e5479d1"
+        ],
+        "output_hashes": [
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "319b2bcc2fdc4b47",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "ed8e3f94ce6103b6",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "319b2bcc2fdc4b47",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "ed8e3f94ce6103b6"
+        ],
+        "checked_raw_output_bytes": 34944,
+        "pixels_per_pass": 153,
+        "all_padding_prefix_suffix_checked": true,
+        "final_allocated": 0
+      },
+      {
+        "sequences": [
+          791,
+          793,
+          796,
+          810,
+          812,
+          815,
+          816,
+          818,
+          821,
+          822,
+          824,
+          827
+        ],
+        "formats": [
+          552,
+          553,
+          554,
+          555
+        ],
+        "raw_hashes": [
+          "da2c57214300aa15",
+          "5630ce7e5a724218",
+          "5630ce7e5a724218",
+          "da2c57214300aa15",
+          "4d8c515cad941fbb",
+          "4d8c515cad941fbb",
+          "666a197af70c2d8d",
+          "2a8c20de41a62ba8",
+          "2a8c20de41a62ba8",
+          "666a197af70c2d8d",
+          "4cedcacd0e5479d1",
+          "4cedcacd0e5479d1"
+        ],
+        "output_hashes": [
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "319b2bcc2fdc4b47",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "ed8e3f94ce6103b6",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "319b2bcc2fdc4b47",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "ed8e3f94ce6103b6"
+        ],
+        "checked_raw_output_bytes": 34944,
+        "pixels_per_pass": 153,
+        "all_padding_prefix_suffix_checked": true,
+        "final_allocated": 0
+      },
+      {
+        "sequences": [
+          849,
+          851,
+          854,
+          855,
+          857,
+          860,
+          861,
+          863,
+          866,
+          867,
+          869,
+          872
+        ],
+        "formats": [
+          552,
+          553,
+          554,
+          555
+        ],
+        "raw_hashes": [
+          "da2c57214300aa15",
+          "5630ce7e5a724218",
+          "5630ce7e5a724218",
+          "da2c57214300aa15",
+          "4d8c515cad941fbb",
+          "4d8c515cad941fbb",
+          "666a197af70c2d8d",
+          "2a8c20de41a62ba8",
+          "2a8c20de41a62ba8",
+          "666a197af70c2d8d",
+          "4cedcacd0e5479d1",
+          "4cedcacd0e5479d1"
+        ],
+        "output_hashes": [
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "319b2bcc2fdc4b47",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "ed8e3f94ce6103b6",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "319b2bcc2fdc4b47",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "ed8e3f94ce6103b6"
+        ],
+        "checked_raw_output_bytes": 34944,
+        "pixels_per_pass": 153,
+        "all_padding_prefix_suffix_checked": true,
+        "final_allocated": 0
+      },
+      {
+        "sequences": [
+          894,
+          896,
+          899,
+          900,
+          902,
+          905,
+          906,
+          908,
+          911,
+          912,
+          914,
+          917
+        ],
+        "formats": [
+          552,
+          553,
+          554,
+          555
+        ],
+        "raw_hashes": [
+          "da2c57214300aa15",
+          "5630ce7e5a724218",
+          "5630ce7e5a724218",
+          "da2c57214300aa15",
+          "4d8c515cad941fbb",
+          "4d8c515cad941fbb",
+          "666a197af70c2d8d",
+          "2a8c20de41a62ba8",
+          "2a8c20de41a62ba8",
+          "666a197af70c2d8d",
+          "4cedcacd0e5479d1",
+          "4cedcacd0e5479d1"
+        ],
+        "output_hashes": [
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "319b2bcc2fdc4b47",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "ed8e3f94ce6103b6",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "319b2bcc2fdc4b47",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "ed8e3f94ce6103b6"
+        ],
+        "checked_raw_output_bytes": 34944,
+        "pixels_per_pass": 153,
+        "all_padding_prefix_suffix_checked": true,
+        "final_allocated": 0
+      },
+      {
+        "sequences": [
+          939,
+          941,
+          944,
+          945,
+          947,
+          950,
+          951,
+          953,
+          956,
+          957,
+          959,
+          962
+        ],
+        "formats": [
+          552,
+          553,
+          554,
+          555
+        ],
+        "raw_hashes": [
+          "da2c57214300aa15",
+          "5630ce7e5a724218",
+          "5630ce7e5a724218",
+          "da2c57214300aa15",
+          "4d8c515cad941fbb",
+          "4d8c515cad941fbb",
+          "666a197af70c2d8d",
+          "2a8c20de41a62ba8",
+          "2a8c20de41a62ba8",
+          "666a197af70c2d8d",
+          "4cedcacd0e5479d1",
+          "4cedcacd0e5479d1"
+        ],
+        "output_hashes": [
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "319b2bcc2fdc4b47",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "ed8e3f94ce6103b6",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "319b2bcc2fdc4b47",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "ed8e3f94ce6103b6"
+        ],
+        "checked_raw_output_bytes": 34944,
+        "pixels_per_pass": 153,
+        "all_padding_prefix_suffix_checked": true,
+        "final_allocated": 0
+      },
+      {
+        "sequences": [
+          984,
+          986,
+          989,
+          990,
+          992,
+          995,
+          996,
+          998,
+          1001,
+          1002,
+          1004,
+          1007
+        ],
+        "formats": [
+          552,
+          553,
+          554,
+          555
+        ],
+        "raw_hashes": [
+          "da2c57214300aa15",
+          "5630ce7e5a724218",
+          "5630ce7e5a724218",
+          "da2c57214300aa15",
+          "4d8c515cad941fbb",
+          "4d8c515cad941fbb",
+          "666a197af70c2d8d",
+          "2a8c20de41a62ba8",
+          "2a8c20de41a62ba8",
+          "666a197af70c2d8d",
+          "4cedcacd0e5479d1",
+          "4cedcacd0e5479d1"
+        ],
+        "output_hashes": [
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "319b2bcc2fdc4b47",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "ed8e3f94ce6103b6",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "319b2bcc2fdc4b47",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "ed8e3f94ce6103b6"
+        ],
+        "checked_raw_output_bytes": 34944,
+        "pixels_per_pass": 153,
+        "all_padding_prefix_suffix_checked": true,
+        "final_allocated": 0
+      },
+      {
+        "sequences": [
+          1029,
+          1031,
+          1034,
+          1035,
+          1037,
+          1040,
+          1041,
+          1043,
+          1046,
+          1047,
+          1049,
+          1052
+        ],
+        "formats": [
+          552,
+          553,
+          554,
+          555
+        ],
+        "raw_hashes": [
+          "da2c57214300aa15",
+          "5630ce7e5a724218",
+          "5630ce7e5a724218",
+          "da2c57214300aa15",
+          "4d8c515cad941fbb",
+          "4d8c515cad941fbb",
+          "666a197af70c2d8d",
+          "2a8c20de41a62ba8",
+          "2a8c20de41a62ba8",
+          "666a197af70c2d8d",
+          "4cedcacd0e5479d1",
+          "4cedcacd0e5479d1"
+        ],
+        "output_hashes": [
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "319b2bcc2fdc4b47",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "ed8e3f94ce6103b6",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "319b2bcc2fdc4b47",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "ed8e3f94ce6103b6"
+        ],
+        "checked_raw_output_bytes": 34944,
+        "pixels_per_pass": 153,
+        "all_padding_prefix_suffix_checked": true,
+        "final_allocated": 0
+      },
+      {
+        "sequences": [
+          1081,
+          1083,
+          1086,
+          1087,
+          1089,
+          1092,
+          1093,
+          1095,
+          1098,
+          1099,
+          1101,
+          1104
+        ],
+        "formats": [
+          552,
+          553,
+          554,
+          555
+        ],
+        "raw_hashes": [
+          "da2c57214300aa15",
+          "5630ce7e5a724218",
+          "5630ce7e5a724218",
+          "da2c57214300aa15",
+          "4d8c515cad941fbb",
+          "4d8c515cad941fbb",
+          "666a197af70c2d8d",
+          "2a8c20de41a62ba8",
+          "2a8c20de41a62ba8",
+          "666a197af70c2d8d",
+          "4cedcacd0e5479d1",
+          "4cedcacd0e5479d1"
+        ],
+        "output_hashes": [
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "319b2bcc2fdc4b47",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "ed8e3f94ce6103b6",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "319b2bcc2fdc4b47",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "ed8e3f94ce6103b6"
+        ],
+        "checked_raw_output_bytes": 34944,
+        "pixels_per_pass": 153,
+        "all_padding_prefix_suffix_checked": true,
+        "final_allocated": 0
+      },
+      {
+        "sequences": [
+          1126,
+          1128,
+          1131,
+          1132,
+          1134,
+          1137,
+          1138,
+          1140,
+          1143,
+          1144,
+          1146,
+          1149
+        ],
+        "formats": [
+          552,
+          553,
+          554,
+          555
+        ],
+        "raw_hashes": [
+          "da2c57214300aa15",
+          "5630ce7e5a724218",
+          "5630ce7e5a724218",
+          "da2c57214300aa15",
+          "4d8c515cad941fbb",
+          "4d8c515cad941fbb",
+          "666a197af70c2d8d",
+          "2a8c20de41a62ba8",
+          "2a8c20de41a62ba8",
+          "666a197af70c2d8d",
+          "4cedcacd0e5479d1",
+          "4cedcacd0e5479d1"
+        ],
+        "output_hashes": [
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "319b2bcc2fdc4b47",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "ed8e3f94ce6103b6",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "319b2bcc2fdc4b47",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "ed8e3f94ce6103b6"
+        ],
+        "checked_raw_output_bytes": 34944,
+        "pixels_per_pass": 153,
+        "all_padding_prefix_suffix_checked": true,
+        "final_allocated": 0
+      },
+      {
+        "sequences": [
+          1171,
+          1173,
+          1176,
+          1177,
+          1179,
+          1182,
+          1183,
+          1185,
+          1188,
+          1189,
+          1191,
+          1194
+        ],
+        "formats": [
+          552,
+          553,
+          554,
+          555
+        ],
+        "raw_hashes": [
+          "da2c57214300aa15",
+          "5630ce7e5a724218",
+          "5630ce7e5a724218",
+          "da2c57214300aa15",
+          "4d8c515cad941fbb",
+          "4d8c515cad941fbb",
+          "666a197af70c2d8d",
+          "2a8c20de41a62ba8",
+          "2a8c20de41a62ba8",
+          "666a197af70c2d8d",
+          "4cedcacd0e5479d1",
+          "4cedcacd0e5479d1"
+        ],
+        "output_hashes": [
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "319b2bcc2fdc4b47",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "ed8e3f94ce6103b6",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "319b2bcc2fdc4b47",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "ed8e3f94ce6103b6"
+        ],
+        "checked_raw_output_bytes": 34944,
+        "pixels_per_pass": 153,
+        "all_padding_prefix_suffix_checked": true,
+        "final_allocated": 0
+      },
+      {
+        "sequences": [
+          1216,
+          1218,
+          1221,
+          1222,
+          1224,
+          1227,
+          1228,
+          1230,
+          1233,
+          1234,
+          1236,
+          1239
+        ],
+        "formats": [
+          552,
+          553,
+          554,
+          555
+        ],
+        "raw_hashes": [
+          "da2c57214300aa15",
+          "5630ce7e5a724218",
+          "5630ce7e5a724218",
+          "da2c57214300aa15",
+          "4d8c515cad941fbb",
+          "4d8c515cad941fbb",
+          "666a197af70c2d8d",
+          "2a8c20de41a62ba8",
+          "2a8c20de41a62ba8",
+          "666a197af70c2d8d",
+          "4cedcacd0e5479d1",
+          "4cedcacd0e5479d1"
+        ],
+        "output_hashes": [
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "319b2bcc2fdc4b47",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "ed8e3f94ce6103b6",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "319b2bcc2fdc4b47",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "ed8e3f94ce6103b6"
+        ],
+        "checked_raw_output_bytes": 34944,
+        "pixels_per_pass": 153,
+        "all_padding_prefix_suffix_checked": true,
+        "final_allocated": 0
+      },
+      {
+        "sequences": [
+          1261,
+          1263,
+          1266,
+          1267,
+          1269,
+          1272,
+          1273,
+          1275,
+          1278,
+          1279,
+          1281,
+          1284
+        ],
+        "formats": [
+          552,
+          553,
+          554,
+          555
+        ],
+        "raw_hashes": [
+          "da2c57214300aa15",
+          "5630ce7e5a724218",
+          "5630ce7e5a724218",
+          "da2c57214300aa15",
+          "4d8c515cad941fbb",
+          "4d8c515cad941fbb",
+          "666a197af70c2d8d",
+          "2a8c20de41a62ba8",
+          "2a8c20de41a62ba8",
+          "666a197af70c2d8d",
+          "4cedcacd0e5479d1",
+          "4cedcacd0e5479d1"
+        ],
+        "output_hashes": [
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "319b2bcc2fdc4b47",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "ed8e3f94ce6103b6",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "319b2bcc2fdc4b47",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "ed8e3f94ce6103b6"
+        ],
+        "checked_raw_output_bytes": 34944,
+        "pixels_per_pass": 153,
+        "all_padding_prefix_suffix_checked": true,
+        "final_allocated": 0
+      },
+      {
+        "sequences": [
+          1306,
+          1308,
+          1311,
+          1312,
+          1314,
+          1317,
+          1318,
+          1320,
+          1323,
+          1324,
+          1326,
+          1329
+        ],
+        "formats": [
+          552,
+          553,
+          554,
+          555
+        ],
+        "raw_hashes": [
+          "da2c57214300aa15",
+          "5630ce7e5a724218",
+          "5630ce7e5a724218",
+          "da2c57214300aa15",
+          "4d8c515cad941fbb",
+          "4d8c515cad941fbb",
+          "666a197af70c2d8d",
+          "2a8c20de41a62ba8",
+          "2a8c20de41a62ba8",
+          "666a197af70c2d8d",
+          "4cedcacd0e5479d1",
+          "4cedcacd0e5479d1"
+        ],
+        "output_hashes": [
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "319b2bcc2fdc4b47",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "ed8e3f94ce6103b6",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "319b2bcc2fdc4b47",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "ed8e3f94ce6103b6"
+        ],
+        "checked_raw_output_bytes": 34944,
+        "pixels_per_pass": 153,
+        "all_padding_prefix_suffix_checked": true,
+        "final_allocated": 0
+      },
+      {
+        "sequences": [
+          1351,
+          1353,
+          1356,
+          1357,
+          1359,
+          1362,
+          1363,
+          1365,
+          1368,
+          1369,
+          1371,
+          1374
+        ],
+        "formats": [
+          552,
+          553,
+          554,
+          555
+        ],
+        "raw_hashes": [
+          "da2c57214300aa15",
+          "5630ce7e5a724218",
+          "5630ce7e5a724218",
+          "da2c57214300aa15",
+          "4d8c515cad941fbb",
+          "4d8c515cad941fbb",
+          "666a197af70c2d8d",
+          "2a8c20de41a62ba8",
+          "2a8c20de41a62ba8",
+          "666a197af70c2d8d",
+          "4cedcacd0e5479d1",
+          "4cedcacd0e5479d1"
+        ],
+        "output_hashes": [
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "319b2bcc2fdc4b47",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "ed8e3f94ce6103b6",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "319b2bcc2fdc4b47",
+          "f343b3bbbfa55ce5",
+          "f343b3bbbfa55ce5",
+          "ed8e3f94ce6103b6"
+        ],
+        "checked_raw_output_bytes": 34944,
+        "pixels_per_pass": 153,
+        "all_padding_prefix_suffix_checked": true,
+        "final_allocated": 0
+      }
+    ],
+    "extended_linear_sRGB_original_bytes_and_GPU_float_shadow_verified": true,
+    "original_UI_and_unimplemented_XR_blend_still_pending": true
+  },
+  "original_missing_method_fragment": "SweetMTLTexture replaceRegion:mipmapLevel:slice:withBytes:bytesPerRow:bytesPerImage:"
+}

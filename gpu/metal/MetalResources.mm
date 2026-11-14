@@ -106,6 +106,7 @@ static bool native_base_available(void)
 - (BOOL)supportsFamily:(MTLGPUFamily)family{(void)family;return NO;}
 - (BOOL)supportsFeatureSet:(MTLFeatureSet)set{(void)set;return NO;}
 - (BOOL)supportsVertexAmplificationCount:(NSUInteger)count{return count==1;}
+- (BOOL)supportsExtendedXR10Formats{return YES;}
 - (NSUInteger)maxBufferLength{return _sweetLimits.maxBufferLength;}
 - (NSUInteger)currentAllocatedSize{[_resourceLock lock];NSUInteger n=_allocatedBytes;[_resourceLock unlock];return n;}
 - (id<MTLBuffer>)newBufferWithLength:(NSUInteger)length options:(MTLResourceOptions)options
@@ -221,6 +222,8 @@ static bool native_base_available(void)
     auto texture=buffer?[[SweetMTLTexture alloc] initWithBuffer:buffer descriptor:descriptor offset:0 pitch:pitch]:nil;
     [buffer release];return texture;
 }
+- (id<MTLTexture>)newTextureWithDescriptor:(MTLTextureDescriptor *)descriptor iosurface:(IOSurfaceRef)surface plane:(NSUInteger)plane
+{return [[SweetMTLTexture alloc] initWithOwner:self descriptor:descriptor surface:surface plane:plane];}
 - (id<MTLSamplerState>)newSamplerStateWithDescriptor:(MTLSamplerDescriptor *)descriptor
 {return [[SweetMTLSampler alloc] initWithOwner:self descriptor:descriptor];}
 - (id<MTLRenderPipelineState>)newRenderPipelineStateWithDescriptor:(MTLRenderPipelineDescriptor *)descriptor error:(NSError **)error

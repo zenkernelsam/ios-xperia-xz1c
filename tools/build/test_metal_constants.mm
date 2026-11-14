@@ -11,6 +11,7 @@ extern "C" int sweetgl_metal_buffer_allocate(uint64_t bytes,SweetMetalBacking *r
     *result={bytes,span,UINT64_C(0x40000000)+uint64_t(nextHandle)*65536,memory,nextHandle++,0};backing[result->handle]=*result;return 0;}
 extern "C" int sweetgl_metal_buffer_release(uint32_t handle){assert(backing.count(handle));free(backing[handle].contents);backing.erase(handle);return 0;}
 extern "C" int sweetgl_metal_buffer_synchronize(uint32_t handle){return backing.count(handle)?0:-EINVAL;}
+extern "C" int sweetgl_metal_surface_import(uint32_t,uint64_t,uint64_t,SweetMetalBacking *){return -ENOTSUP;}
 extern "C" int sweetgl_metal_buffer_blit(uint32_t,uint32_t,uint64_t,uint64_t,uint64_t,uint32_t,uint32_t *){return -EINVAL;}
 extern "C" SweetMetalProgram *sweetgl_metal_compute_create(const char *source,uint32_t buffers,uint32_t writes,char *error,size_t bytes)
 {if(error && bytes)error[0]=0;assert(buffers==1 && writes==1 && strstr(source,"+13u") && !strstr(source,"+99u"));return new SweetMetalProgram{source};}

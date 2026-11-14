@@ -16,3 +16,10 @@ static inline bool sweet_metal_backing_valid(const SweetMetalBacking *b)
         b->gpu_address<UINT64_C(0x80000000) && !(b->gpu_address&16383) &&
         span<=UINT64_C(0x80000000)-b->gpu_address;
 }
+static inline bool sweet_metal_surface_backing_valid(const SweetMetalBacking *b)
+{
+    return b && b->logical_bytes && b->logical_bytes<=(UINT64_C(256)<<20) && b->allocated_bytes==b->logical_bytes &&
+        b->handle && b->handle<=4096 && !b->reserved && b->contents && !((uintptr_t)b->contents&63) &&
+        b->gpu_address>=UINT64_C(0x40000000) && b->gpu_address<UINT64_C(0x80000000) && !(b->gpu_address&63) &&
+        b->logical_bytes<=UINT64_C(0x80000000)-b->gpu_address;
+}

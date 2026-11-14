@@ -1,6 +1,8 @@
 /* AIR vertex/fragment programs render on original linear Metal backing pages. */
 #include "MetalShaderInternals.h"
 #include "MetalBackingRules.h"
+#include "XRColourTables.h"
+#include "XRColourShader.h"
 #include "sweetgl.h"
 #include "sweet_drm.h"
 #include "pipe/p_screen.h"
@@ -21,14 +23,27 @@ static enum pipe_format texture_format(uint32_t format)
     switch(format){case 10:return PIPE_FORMAT_R8_UNORM;case 30:return PIPE_FORMAT_R8G8_UNORM;
     case 70:return PIPE_FORMAT_R8G8B8A8_UNORM;case 71:return PIPE_FORMAT_R8G8B8A8_SRGB;
     case 80:return PIPE_FORMAT_B8G8R8A8_UNORM;case 81:return PIPE_FORMAT_B8G8R8A8_SRGB;
-    case 115:return PIPE_FORMAT_R16G16B16A16_FLOAT;default:return PIPE_FORMAT_NONE;}
+    case 115:return PIPE_FORMAT_R16G16B16A16_FLOAT;
+    case 552:case 553:return PIPE_FORMAT_R16G16B16A16_UINT;case 554:case 555:return PIPE_FORMAT_R32_UINT;default:return PIPE_FORMAT_NONE;}
+}
+static bool xr_format(uint32_t format){return format>=552 && format<=555;}
+static unsigned pixel_bytes(uint32_t format){return format==10?1:format==30?2:(format==115 || format==552 || format==553)?8:4;}
+static int bind_xr_lut(GLuint program,GLuint *name)
+{
+    GLint at=glGetUniformLocation(program,"_smtl_xr_lut");if(at<0)return 0;
+    GLint oldUnit=0;glGetIntegerv(GL_ACTIVE_TEXTURE,&oldUnit);
+    uint16_t data[1280];for(unsigned i=0;i<640;++i){data[i*2]=sweet_xr_srgb_decode_steps[i];data[i*2+1]=sweet_xr_srgb_encode_first[i];}
+    glActiveTexture(GL_TEXTURE16);glGenTextures(1,name);glBindTexture(GL_TEXTURE_2D,*name);
+    glTexImage2D(GL_TEXTURE_2D,0,GL_RG16UI,640,1,0,GL_RG_INTEGER,GL_UNSIGNED_SHORT,data);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+    glUniform1i(at,16);glActiveTexture((GLenum)oldUnit);return glGetError()==GL_NO_ERROR?0:-EIO;
 }
 static bool texture_layout(const SweetShaderTextureBinding *texture,SweetMetalBacking *backing)
 {
     enum pipe_format format=texture_format(texture?texture->format:0);
     if(!texture || format==PIPE_FORMAT_NONE || !texture->width || !texture->height || texture->width>16384 || texture->height>16384 ||
         (texture->offset&63) || (texture->pitch&63) || sweet_drm_metal_buffer_view(texture->handle,backing))return false;
-    unsigned bytes=texture->format==10?1:texture->format==30?2:texture->format==115?8:4;
+    unsigned bytes=pixel_bytes(texture->format);
     return texture->pitch>=texture->width*bytes && texture->offset<=backing->logical_bytes &&
         (uint64_t)texture->pitch*texture->height<=backing->logical_bytes-texture->offset;
 }
@@ -76,6 +91,41 @@ static int bind_vertex_words(struct st_context *context,const SweetShaderBufferB
     sweet_drm_log("SWEET AIR RENDER vertex_words index=%u handle=%u gpu=%#llx offset=%llu bytes=%llu logical=%llu integer_texture=1 guarded=1 original_pages=1",
         binding->index,binding->handle,(unsigned long long)backing.gpu_address,(unsigned long long)binding->offset,(unsigned long long)binding->bytes,(unsigned long long)backing.logical_bytes);
     return accepted && glGetError()==GL_NO_ERROR?0:-EIO;
+}
+static int decode_xr_texture(struct st_context *context,const SweetShaderTextureBinding *binding,GLuint *texture)
+{
+    // Filtering reads the values represented by XR codes. A GPU-only float
+    // image retains that linear colour for the ordinary AIR sampled shader.
+    // Original XR bytes remain on the original backing; no CPU conversion.
+    static const char *vertex="#version 310 es\nvoid main(){vec2 p=gl_VertexID==0?vec2(-1,-1):gl_VertexID==1?vec2(3,-1):vec2(-1,3);gl_Position=vec4(p,0,1);}";
+    size_t bytes=strlen(sweet_xr_shader)+512;char *fragment=malloc(bytes);if(!fragment)return -ENOMEM;
+    snprintf(fragment,bytes,"#version 310 es\nprecision highp float;precision highp int;\n%s\nuniform highp usampler2D raw_image;layout(location=0) out vec4 colour;void main(){colour=_smtl_xr_unpack(texelFetch(raw_image,ivec2(gl_FragCoord.xy),0),%uu);}",sweet_xr_shader,binding->format);
+    GLint previousFBO=0,previousProgram=0,previousUnit=0,previousTexture=0;glGetIntegerv(GL_FRAMEBUFFER_BINDING,&previousFBO);
+    glGetIntegerv(GL_CURRENT_PROGRAM,&previousProgram);glGetIntegerv(GL_ACTIVE_TEXTURE,&previousUnit);glActiveTexture(GL_TEXTURE0);glGetIntegerv(GL_TEXTURE_BINDING_2D,&previousTexture);
+    GLuint raw=0,lut=0,fbo=0,vao=0,program=0,shaders[2]={0};int result=bind_texture(context,binding,&raw);GLint ok=0;
+    if(result)goto done;
+    const GLenum kinds[2]={GL_VERTEX_SHADER,GL_FRAGMENT_SHADER};const char *sources[2]={vertex,fragment};
+    for(unsigned i=0;i<2;++i){shaders[i]=glCreateShader(kinds[i]);glShaderSource(shaders[i],1,&sources[i],NULL);glCompileShader(shaders[i]);
+        glGetShaderiv(shaders[i],GL_COMPILE_STATUS,&ok);if(!ok){result=-ENOTSUP;goto done;}}
+    program=glCreateProgram();for(unsigned i=0;i<2;++i)glAttachShader(program,shaders[i]);glLinkProgram(program);glGetProgramiv(program,GL_LINK_STATUS,&ok);
+    if(!ok){result=-ENOTSUP;goto done;}
+    glUseProgram(program);result=bind_xr_lut(program,&lut);if(result)goto done;glUniform1i(glGetUniformLocation(program,"raw_image"),0);
+    glGenTextures(1,texture);glBindTexture(GL_TEXTURE_2D,*texture);glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA32F,binding->width,binding->height,0,GL_RGBA,GL_FLOAT,NULL);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_BASE_LEVEL,0);glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAX_LEVEL,0);
+    glGenFramebuffers(1,&fbo);glBindFramebuffer(GL_FRAMEBUFFER,fbo);glFramebufferTexture2D(GL_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D,*texture,0);
+    if(glCheckFramebufferStatus(GL_FRAMEBUFFER)!=GL_FRAMEBUFFER_COMPLETE){result=-ENOTSUP;goto done;}
+    glBindTexture(GL_TEXTURE_2D,raw);glDisable(GL_BLEND);glDisable(GL_CULL_FACE);glDisable(GL_DEPTH_TEST);glDisable(GL_STENCIL_TEST);glDisable(GL_DITHER);
+    glColorMask(GL_TRUE,GL_TRUE,GL_TRUE,GL_TRUE);glViewport(0,0,binding->width,binding->height);glEnable(GL_SCISSOR_TEST);glScissor(0,0,binding->width,binding->height);
+    glGenVertexArrays(1,&vao);glBindVertexArray(vao);glDrawArrays(GL_TRIANGLES,0,3);glFinish();result=glGetError()==GL_NO_ERROR?0:-EIO;
+done:
+    if(vao)glDeleteVertexArrays(1,&vao);glBindFramebuffer(GL_FRAMEBUFFER,(GLuint)previousFBO);glUseProgram((GLuint)previousProgram);
+    if(fbo)glDeleteFramebuffers(1,&fbo);if(raw)glDeleteTextures(1,&raw);if(lut)glDeleteTextures(1,&lut);
+    for(unsigned i=0;i<2;++i)if(shaders[i])glDeleteShader(shaders[i]);if(program)glDeleteProgram(program);free(fragment);
+    glActiveTexture(GL_TEXTURE0);glBindTexture(GL_TEXTURE_2D,(GLuint)previousTexture);glActiveTexture((GLenum)previousUnit);
+    if(result && *texture){glDeleteTextures(1,texture);*texture=0;}
+    sweet_drm_log("SWEET AIR XR sample_decode format=%u handle=%u width=%u height=%u result=%d GPU_only=1 original_source_pages=1 float_shadow=1",binding->format,binding->handle,binding->width,binding->height,result);
+    return result;
 }
 static uint64_t source_hash(const char *source)
 {uint64_t hash=UINT64_C(14695981039346656037);for(const unsigned char *p=(const unsigned char *)source;*p;++p)hash=(hash^*p)*UINT64_C(1099511628211);return hash;}
@@ -136,6 +186,7 @@ static int bind_samples(SweetMetalProgram *program,const SweetShaderTextureBindi
     for(GLint i=0;i<active;++i){char name[512]={0};GLsizei bytes=0;GLint elements=0;GLenum type=0;
         glGetActiveUniform(program->program,(GLuint)i,sizeof(name),&bytes,&elements,&type,name);
         if(type!=GL_SAMPLER_2D){
+            if(!strcmp(name,"_smtl_xr_lut"))continue;
             if(!strncmp(name,"_smtl_vertex_buffer",19))continue;
             if(!strncmp(name,"_qtexture2d_info",16) || !strncmp(name,"_qvertex_texture2d_info",23) ||
                 !strncmp(name,"_qsampler_info",14) || !strncmp(name,"_qvertex_sampler_info",21))continue;
@@ -151,7 +202,10 @@ static int bind_samples(SweetMetalProgram *program,const SweetShaderTextureBindi
         for(unsigned j=0;j<count;++j)if(textures[j].index==logical && textures[j].stage==stage){if(texture)return -EINVAL;texture=&textures[j];}
         for(unsigned j=0;j<sampler_count;++j)if(samplers[j].index==sampler && samplers[j].stage==stage){if(state)return -EINVAL;state=&samplers[j];}
         if(!texture || !state || !state->normalized || state->min_filter>1 || state->mag_filter>1 || state->mip_filter!=0 || !address_mode(state->address_s) || !address_mode(state->address_t))return -ENOTSUP;
-        glActiveTexture(GL_TEXTURE0+assigned);int result=bind_texture(sweetgl_internal_context(program->context),texture,&names[assigned]);if(result)return result;
+        glActiveTexture(GL_TEXTURE0+assigned);int result=xr_format(texture->format)?
+            decode_xr_texture(sweetgl_internal_context(program->context),texture,&names[assigned]):
+            bind_texture(sweetgl_internal_context(program->context),texture,&names[assigned]);if(result)return result;
+        glBindTexture(GL_TEXTURE_2D,names[assigned]);
         glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,state->min_filter?GL_LINEAR:GL_NEAREST);glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,state->mag_filter?GL_LINEAR:GL_NEAREST);
         glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,address_mode(state->address_s));glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,address_mode(state->address_t));
         glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MIN_LOD,state->minimum_lod);glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MAX_LOD,state->maximum_lod);
@@ -166,18 +220,22 @@ static int bounded_clear(const SweetRenderPass *pass)
     // the driver's system-memory rendering path over these imported pages.
     static const char *vertex="#version 310 es\nvoid main(){vec2 p=gl_VertexID==0?vec2(-1,-1):gl_VertexID==1?vec2(3,-1):vec2(-1,3);gl_Position=vec4(p,0,1);}";
     static const char *fragment="#version 310 es\nprecision highp float;\nuniform vec4 colour;layout(location=0) out vec4 out_colour;void main(){out_colour=colour;}";
-    GLuint shaders[2]={0},program=0,vao=0;GLint ok=0;int result=-EIO;
+    GLuint shaders[2]={0},program=0,vao=0,lut=0;GLint ok=0;int result=-EIO;char *xr_source=NULL;
     const GLenum types[2]={GL_VERTEX_SHADER,GL_FRAGMENT_SHADER};const char *sources[2]={vertex,fragment};
+    if(xr_format(pass->target.format)){size_t bytes=strlen(sweet_xr_shader)+512;xr_source=malloc(bytes);if(!xr_source)return -ENOMEM;
+        snprintf(xr_source,bytes,"#version 310 es\nprecision highp float;precision highp int;\n%s\nuniform vec4 colour;layout(location=0) out highp uvec4 out_colour;void main(){out_colour=_smtl_xr_pack(colour,%uu);}",sweet_xr_shader,pass->target.format);sources[1]=xr_source;}
     for(unsigned i=0;i<2;++i){shaders[i]=glCreateShader(types[i]);glShaderSource(shaders[i],1,&sources[i],NULL);glCompileShader(shaders[i]);
         glGetShaderiv(shaders[i],GL_COMPILE_STATUS,&ok);if(!ok)goto done;}
     program=glCreateProgram();for(unsigned i=0;i<2;++i)glAttachShader(program,shaders[i]);glLinkProgram(program);
     glGetProgramiv(program,GL_LINK_STATUS,&ok);if(!ok)goto done;glUseProgram(program);
+    if(bind_xr_lut(program,&lut))goto done;
     glUniform4f(glGetUniformLocation(program,"colour"),pass->clear[0],pass->clear[1],pass->clear[2],pass->clear[3]);
     glViewport(0,0,pass->target.width,pass->target.height);glEnable(GL_SCISSOR_TEST);glScissor(0,0,pass->target.width,pass->target.height);
     glDisable(GL_BLEND);glDisable(GL_CULL_FACE);glGenVertexArrays(1,&vao);glBindVertexArray(vao);glDrawArrays(GL_TRIANGLES,0,3);
     result=glGetError()==GL_NO_ERROR?0:-EIO;
 done:
     if(vao)glDeleteVertexArrays(1,&vao);glUseProgram(0);if(program)glDeleteProgram(program);for(unsigned i=0;i<2;++i)if(shaders[i])glDeleteShader(shaders[i]);
+    if(lut)glDeleteTextures(1,&lut);free(xr_source);
     sweet_drm_log("SWEET AIR RENDER bounded_clear width=%u height=%u shader_draw=1 result=%d",pass->target.width,pass->target.height,result);return result;
 }
 static int prepare_pass(struct st_context *st,const SweetRenderPass *pass,GLuint *texture,GLuint *framebuffer)
@@ -212,13 +270,14 @@ int sweetgl_metal_render_draw(SweetMetalProgram *program,const SweetRenderPass *
     for(unsigned i=0;i<texture_count;++i){if(!(textures[i].usage&1) || textures[i].stage<1 || textures[i].stage>2 || textures[i].index>=16 ||
         textures[i].handle==pass->target.handle)return -EINVAL;
         for(unsigned j=0;j<i;++j)if(textures[j].stage==textures[i].stage && textures[j].index==textures[i].index)return -EINVAL;}
-    pthread_mutex_lock(&sweet_metal_shader_gate);struct st_context *previous=st_api_get_current();GLuint buffer_names[16]={0},samples[32]={0},target=0,framebuffer=0,vao=0;int result=0;
+    pthread_mutex_lock(&sweet_metal_shader_gate);struct st_context *previous=st_api_get_current();GLuint buffer_names[16]={0},samples[32]={0},target=0,framebuffer=0,vao=0,lut=0;int result=0;
     if(!sweetgl_make_current(program->context)){result=-EIO;goto done;}
     result=prepare_pass(sweetgl_internal_context(program->context),pass,&target,&framebuffer);if(result)goto done;
     glUseProgram(program->program);for(unsigned i=0;i<count && !result;++i)result=buffers[i].index<8?
         bind_vertex_words(sweetgl_internal_context(program->context),&buffers[i],program->program,&buffer_names[i]):
         sweet_metal_bind_buffer(sweetgl_internal_context(program->context),&buffers[i],&buffer_names[i]);
     if(!result)result=bind_samples(program,textures,texture_count,samplers,sampler_count,samples);if(result)goto done;
+    result=bind_xr_lut(program->program,&lut);if(result)goto done;
     glViewport(draw->x,draw->y,draw->width,draw->height);glDepthRangef(draw->znear,draw->zfar);
     glEnable(GL_SCISSOR_TEST);glScissor(draw->scissor_x,draw->scissor_y,draw->scissor_width,draw->scissor_height);
     if(draw->cull){if(draw->cull>2){result=-EINVAL;goto done;}glEnable(GL_CULL_FACE);glCullFace(draw->cull==1?GL_FRONT:GL_BACK);}else glDisable(GL_CULL_FACE);
@@ -235,6 +294,7 @@ int sweetgl_metal_render_draw(SweetMetalProgram *program,const SweetRenderPass *
         result=sweetgl_metal_buffer_synchronize(buffers[i].handle);
 done:
     if(vao)glDeleteVertexArrays(1,&vao);if(framebuffer)glDeleteFramebuffers(1,&framebuffer);if(target)glDeleteTextures(1,&target);
+    if(lut)glDeleteTextures(1,&lut);
     for(unsigned i=0;i<32;++i)if(samples[i])glDeleteTextures(1,&samples[i]);for(unsigned i=0;i<count;++i)if(buffer_names[i]){
         if(buffers[i].index<8)glDeleteTextures(1,&buffer_names[i]);else glDeleteBuffers(1,&buffer_names[i]);}
     sweet_drm_log("SWEET AIR RENDER draw width=%u height=%u primitive=%u first=%u count=%u instances=%u target_handle=%u result=%d sequence=%u original_pages=1",

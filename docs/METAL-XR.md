@@ -1,0 +1,17 @@
+# Metal XR colour formats — 2026-11-14
+
+v729/xr-r1已经实机完成552/553/554/555四种XR10格式的原页面GPU清屏、scissor AIR绘制和GPU解码采样。16完整/1缺项样本，12phase共34944B/完整样本，559104B实际核对零差异，包含prefix/suffix和行尾padding。缺日志的样本保留，不用其它样本补齐。主机Mesa4096实际像素也通过，主机结果与手机证据分别记录。
+
+固定开源参考是[steelbrain/metal2vulkan](https://github.com/steelbrain/metal2vulkan)，revision219f01365dc4c8eb346816c405b5b17403793764。只引入XR颜色表示和原sRGB表，未引入Vulkan运行库或实现835 Vulkan驱动。原源码、作者声明及LGPL文本在gpu/metal/xr/reference；生成表和适配shader遵循LGPL-3.0-or-later，输入SHA见reproducibility/xr-reference.json。tools/build/import_xr_reference.py可重新获取固定源并核对。
+
+BGRA10_XR以四个16位B/G/R/A分量保存10位码，高10位有效、低6位0；BGR10_XR按B0..9、G10..19、R20..29打包，高2位1、采样alpha1。线性分量是(code-384)/510，alpha限制0..1；sRGB使用原640项解码和encode-first表。编码shader对原float表示的乘510执行最近偶数取整，避免浮点乘法先舍入造成半值错误。
+
+GPU直接写原integer texture页；采样时GPU将XR码解成RGBA32F shadow，再由普通AIR滤波。CPU未做颜色转换。硬件四格式通过后才提供supportsExtendedXR10Formats=YES。XR混色和部分通道写入目前明确拒绝，需要浮点shadow实现后验收。
+
+实机固定内核774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec，GLES3b505fa382e25e9caa0fb40356ffa32ef17544503f3665d02c771b66ffc859b5，Metal46a999547efab8882c7ff7b20cc0f85928c72f03609b7294db6b9e290a4050e7。本靴token0cdcc1bb49369421，镜像8c610aba37f2b91d07621046243f434cb0c0ec08f78903e84d78628c6e001c28；864339B原串口SHA216d9069774884816342358854ec0ace2b4955cbda0908ace3770a7062fab14f。1744allocated/released、1742unmapped，active/orphan/root0；不能称1744全部map/unmap。38.203秒完整PON06回程，健康30秒和旧worker退出后下一轮。
+
+原Aegir在XR-discovery-r1越过extended-range拒绝而缺标准2D slice/image-stride上传方法；添加真实边界验证的上传/读回重载后，r2继续到newTextureWithDescriptor:iosurface:plane:。r1长exception记录被console截断，独立验证失败报告保留；r2把begin/detail拆成短记录并完整捕获原missing-selector原因和栈，原REVISE/METAL_API_UNIMPLEMENTED保持。此进度不代表原壁纸或完整UI绘制成功。
+
+复现入口make_air_fixture.py --fixture render、build_exception_observer.py --xr-probe；完整打包命令沿METAL-RENDER.md并使用新库的精确CPU/GLES证据。air_xr_evidence.py独立复算原码/解码/字节hash及递增fence，test_air_xr.py拒绝错码、保护区、采样来源、fence和资源归零错误。实际报告为reproducibility/v729-xr-r1-*-actual.json与v729-xr-discovery-r1/r2报告，大文件和完整日志本地保留。
+
+下一实现IOSurface纹理，再继续原CAMetalLayer drawable和实际AIR接口。全系统MetalPluginName、一般shader/attributes/half、XR混色、时间/日期/壁纸、FPS、睡眠唤醒及其它外设仍待验收。

@@ -1,0 +1,21 @@
+# Native Metal IOSurface textures — 2026-11-14
+
+v729/surface-r1已实机通过标准newTextureWithDescriptor:iosurface:plane:接入原IOSurface页面：13完整/1未完成样本，两个64/128字节逻辑偏移各三phase，194688B实际核对零差异，包含84240B行尾padding。先GPU清屏，再释放创建者VM映射和CF引用后scissor AIR绘制，最后GPU采样该Surface到另一个原buffer。像素和逻辑origin、真实handle、递增fence及纹理持有关系独立核对。未完成样本没有计为通过。
+
+内核仍v729 SHA774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec，81源审计不变；GLES4241a0200f974dffe3513c9ff225fdd2f4c8833530d94167d2884d61e1d429d1，Metal f8d7839652c898938f04b8a1dcb0d80414fd3847b5dbfaabf79bbb5529b77365。本靴token d502a8e29c42bfc0，镜像db78666744a01094c3f84020da5fcd4328a5b61ee9ed8cfc48a752baf58b667d，878454B原串口SHA bc761459f8d812b686b1a9043c50d418900879bedb065ec844f6de6cdc7149d6。完整PON06返回45.859秒，含健康30秒和旧worker结束。1652allocated/released/unmapped，最终active/orphan/root0。
+
+本轮相同GLES独立CPU/GPU基线先通过，Metal包再CPU/GPU单发。原GLES全尺寸、960000只读像素、CA生命周期及AIR compute/render/constants/XR继续通过；XR14完整/1缺项。正式证据见reproducibility/v729-surface-r1-*-actual.json，原日志和最佳相机帧保留TEMP。面板相机仍只有电池/相机按钮/底部白条，缺时间、日期和壁纸，此阶段不是完整UI。
+
+导入沿原SweetScatter selector12，其输出已经是逻辑GPU origin和pitch×height；纹理offset必须0，不再叠加caller offset。新Metal surface背板采用独立64B逻辑校验，不能误用新buffer的16KiB页对齐条件。CFRetain在导入前完成；纹理和queue持有原Surface及device，Mesa借用相同GEM，最终沿原lease/cache/fence回收。没有改allocator/SCM/PON/RPC/VM内核路径。
+
+当前支持单plane的2D、单sample/mip、64B base/pitch、匹配尺寸和每像素字节数，Shared/Private。RenderTarget先要求原Surface可写lock，不能把只读Surface当写目标；Private拒绝CPU读写。CPU上传/读回使用原Surface lock并遵守region/stride边界。非64B origin、多plane/YUV、其它texture类型仍拒绝，不宣称支持。XR共享纹理入口可按同一背板契约创建，但本轮Surface像素probe只验BGRA8，XR格式本身另有四格式GPU证据。
+
+主机使用真实macOS IOSurface内存执行实际native对象，验证region/padding、创建者CF释放、Private CPU拒绝、错误plane/尺寸/BPE/hazard拒绝和失败回滚；GPU transport在主机是stub，不冒充硬件。底层桥接ASan/UBSan覆盖selector12原64/128offset、逻辑size、malformed response和release/Mesa view顺序。原报告保留为metal-surface-host-r2.json、metal-surface-bridge-host-r2.json。
+
+回程ACK后的最后一组尚在提交，服务按MAP_BOUNDARY拒绝，产生seq0/clear failed；完整样本统计截止当前token的ACK，这条退出期失败及未完成组均保留。最终资源全归零。独立验证器额外拒绝任何ACK前SURFACE END失败，即使之前已有成功样本；故障测试分别验证ACK前拒绝与ACK后排除。
+
+复现沿METAL-RENDER.md的固定AIR及新GLES准入；build_exception_observer.py --surface-probe添加MetalSurfaceProbe.h，须同时给--render-fixture。实际使用--xr-probe和所有前序compute/render/constants；surface-r1不登记系统device，下一包单独加--register-device观察原Aegir更后的API。metal_surface_evidence.py复算原BGRA和输出/保护字节hash，不能用总结或另一靴补记录。
+
+原CAMetalLayer drawable、一般AIR和SPI接口、完整UI/FPS、睡眠唤醒和声音/无线目标继续推进。
+
+随后surface-discovery-r1的原登记/IOSurface各10完整样本再次通过，原Aegir越过Surface入口到SweetMTLBlitEncoder generateMipmapsForTexture:缺方法。原16帧异常栈完整，技术probe目标PASS保持，原UI未通过。token e8dd3de1c808e1d8、镜像e636346ee513b600c7c0ea106513545d6a0f7b289b1faa13cff4c81254dbc8ea、794055B原日志SHA407fc9319ed8a6b10da7d95531c7ab4e205d41ad4eda04c82c9f17b9e3a31ce4，38.282秒完整返回；1442allocated/released、1441unmapped、active/orphan/root0。下一真正实现和验收mipmap；原生方法缺失不能用空实现绕过。
