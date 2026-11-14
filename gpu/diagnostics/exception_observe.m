@@ -25,6 +25,10 @@
 #include "AIRRenderFixture.h"
 #include "MetalRenderProbe.h"
 #endif
+#if defined(SWEET_AIR_CONSTANTS_PROBE)
+#include "AIRConstantsFixture.h"
+#include "MetalConstantsProbe.h"
+#endif
 
 #if defined(LILAC_EXCEPTION_TEST)
 struct MetalABIHostLimits { uint32_t fields[63];uint64_t maxBufferLength; };
@@ -174,6 +178,9 @@ static void install_observer(void)
 #endif
 #if defined(SWEET_AIR_RENDER_PROBE)
     (void)metal_render_probe(diagnostic);
+#endif
+#if defined(SWEET_AIR_CONSTANTS_PROBE)
+    (void)metal_constants_probe(diagnostic);
 #endif
 #endif
 }

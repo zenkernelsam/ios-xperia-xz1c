@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: BSD-2-Clause
 // Adapted from ios_sagit drivers/gpu/QcomMTL/NativeMetal.h (898998cf).
-// Layout verified against the retained iOS16.7.16/20H392 Metal _limits encoding.+#pragma once
+// Layout verified against the retained iOS16.7.16/20H392 Metal _limits encoding.
+#pragma once
 #include <stddef.h>
 #include <stdint.h>
 

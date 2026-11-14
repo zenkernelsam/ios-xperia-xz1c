@@ -150,6 +150,23 @@ static bool native_base_available(void)
 @end
 #if !defined(SWEET_METAL_NO_COMPUTE)
 @implementation SweetMTLDevice (ComputePipelines)
+- (id<MTLLibrary>)newLibraryWithURL:(NSURL *)url error:(NSError **)error
+{
+    if(error)*error=nil;NSNumber *size=nil;NSError *readError=nil;
+    if(!url.isFileURL || ![url getResourceValue:&size forKey:NSURLFileSizeKey error:&readError] ||
+        !size || size.unsignedLongLongValue==0 || size.unsignedLongLongValue>16u*1024*1024){
+        if(error)*error=readError?:metal_compile_error("A local AIR/MTLB library of at most16MiB is required");return nil;}
+    NSData *bytes=[NSData dataWithContentsOfURL:url options:0 error:&readError];
+    if(!bytes || bytes.length!=size.unsignedLongLongValue){if(error)*error=readError?:metal_compile_error("AIR file size changed while reading");return nil;}
+    return [[SweetMTLLibrary alloc] initWithOwner:self bytes:bytes error:error];
+}
+- (id<MTLLibrary>)newDefaultLibrary{return [self newDefaultLibraryWithBundle:[NSBundle mainBundle] error:nullptr];}
+- (id<MTLLibrary>)newDefaultLibraryWithBundle:(NSBundle *)bundle error:(NSError **)error
+{
+    if(error)*error=nil;NSString *path=[bundle pathForResource:@"default" ofType:@"metallib"];
+    if(!path){if(error)*error=metal_compile_error("Default metallib absent in bundle");return nil;}
+    return [self newLibraryWithURL:[NSURL fileURLWithPath:path] error:error];
+}
 - (id<MTLLibrary>)newLibraryWithData:(dispatch_data_t)data error:(NSError **)error
 {
     if(error)*error=nil;if(!data)return nil;const void *bytes=NULL;size_t length=0;

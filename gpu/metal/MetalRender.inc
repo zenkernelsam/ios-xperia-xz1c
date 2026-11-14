@@ -106,7 +106,7 @@ static bool render_entry(SweetMTLFunction *function,unsigned stage,GPU::Compiler
 {
     if(![function isKindOfClass:[SweetMTLFunction class]] || function->_stage!=stage){error="Wrong AIR graphics stage";return false;}
     NSData *source=function->_library->_entries[function->_name];std::vector<GPU::Compiler::Entry> entries;
-    if(!source || !GPU::Compiler::lowerAIR(source.bytes,source.length,entries,error,function->_name.UTF8String) || entries.size()!=1)return false;
+    if(!source || !GPU::Compiler::lowerAIR(source.bytes,source.length,entries,error,function->_name.UTF8String,function->_constants) || entries.size()!=1)return false;
     entry=std::move(entries[0]);return true;
 }
 @implementation SweetMTLRenderPipeline

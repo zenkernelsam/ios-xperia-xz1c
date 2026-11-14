@@ -6,6 +6,8 @@
 
 ## 硬件与恢复
 
+- 最新v729/774b5efd+GLES7944112d/Metal79eb8207已完成native function constants的14完整/0缺项实机样本：name/index/range/reset、required/type拒绝、创建后改99保持13/29/37三phase实际GPU结果/原buffer/保护区零差异；38.750秒完整PON06返回。原compute/render/queue各14完整。allocated=released1110/unmapped1105，active/orphan/root0，不能称1110全map/unmap；资源probe14完整/1缺项保留。Sony健康fastboot无worker，system Metal/一般shader/IOSurface texture/完整UI和外设active，见docs/METAL-CONSTANTS.md。
+
 - 最新v729/774b5efd+GLES render-r4/7944112d与Metal1b8d1f5d已完成原生AIR顶点/片元与原texture pages实机验收：10完整/0缺项、4phase清屏/viewport/scissor/cull/纹理slot13和sampler3/宽高query/动态上传，171520B全范围包含65600B保护区零差异，830资源全撤销，38.594秒PON06完整返回。CPU/GLES门槛及原compute/queue保持。Sony健康fastboot，无worker/in-flight。system Metal、一般shader/IOSurface texture/完整时间日期壁纸UI及外设仍未完成，目标active；边界见docs/METAL-RENDER.md。r1/r2/r3失败不覆盖。
 
 - 最新v729/774b5efd+r8/c84403c1和Metal/575e0764已完成非空MTLB/AIR→system LLVM C→ESSL/Mesa→FD540→原buffer compute实机验收，22完整/0缺项、2phase×64invocation、完整结果/保护区零差异；原GLES/960000只读像素及892资源全撤销仍通过，38.343秒完整PON06返回。Sony健康fastboot，无worker/in-flight。168导入逐项原20H392 audit/host forced legacy/ASan/UBSan通过。system Metal/texture/render/function constants/完整UI及其他外设仍未完成，目标active。

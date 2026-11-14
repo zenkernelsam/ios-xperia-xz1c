@@ -1,0 +1,17 @@
+# Native Metal function constants — 2026-11-14
+
+v729/774b5efd、原GLES render-r4/7944112d与新Metal79eb8207已实际完成原生MTLFunctionConstantValues→不可变快照→AIR specialization→ESSL/Mesa→FD540→原buffer计算。14完整/0缺项样本，每份3phase×64invocation，240word全部结果与48保护word零差异。按名称step=13、索引7=29、range7..9首值37创建函数；每次创建后reset并设step=99，真正GPU仍分别计算累计13/42/79。所有phase使用同一原CPU地址/IOVA，独立重算hash174f4dc1714c892a/493ed3b863ba5caf/213b3193a6d2e556全部一致。
+
+本靴token068ab8c95cc7facb，镜像SHAce1ce8dcb623aa01810e28586c2917a06220554684807ce2ac7c9beb9a508628；642928B原日志SHA8d09e92c6584d8f87e370744fdbff16e910b5aa6df7d0a9767b2cf940329f3c4。新包CPU37.734秒、GPU38.750秒完整PON06回程，四标记/连续健康30秒和旧worker退出通过，手机健康fastboot。source锁和完整payload复算保持，原GLES SHA没有改变。
+
+原Metallib的必需constant、空值和错误float类型均实际拒绝；reflection为原MTLFunctionConstantInternal，index7/typeUInt/requiredYES。通过9个具体runtime方法type encoding检查读取原MTLFunctionConstantValuesInternal的newIndexedConstantArray/newNamedConstantArray，以copy保持标准name/index/range/reset语义；没有读取私有ivar或替换原值对象。snapshot最长4096项、每值最大32B、名称与索引有界，resolver只保留当前函数实际所需常量。参数不变后管线使用真正AIR body，没有按函数名代替GPU运算。
+
+host ASan/UBSan运行实际Metal对象，name/index/range/reset、紧密字节布局、required/type失败、原reflection与冻结常量均通过。x86_64 macOS的BOOL编码c、iOS arm64的B分别按平台实测核对，不能宽泛放松其它签名。增加newLibraryWithURL、新bundle的newDefaultLibrary标准入口；文件必须local且≤16MiB，查找bundle的原default.metallib，不生成占位库。URL和缺默认库的失败在host已验证，原system library仍需单独应用验收。
+
+同靴原compute/render/queue各14完整/0缺项，buffer资源14完整/1条缺项（原串口并发记录缺失保持）。最后allocated=released1110、unmapped1105、orphan/active/root0、caller active/outstanding/retained0。unmapped是成功map撤销的数量，allocated包含早期失败对象；这靴差5的具体分配路径未逐项记录，不能称1110份全部曾map/unmap。实际root为空且资源全部released，不把计数差5单独推断为映射泄漏。
+
+作者fixture gpu/metal/air/fixtures/constants.air.ll经LLVM14编成1984B bitcode/69428b6f、2200B MTLB/e16ca7a0；标准MTLB函数type2和真实AIR major2相符。Mac新库79eb8207b62fc04bb54f7368ed7ae49942a04d91da77078f29c19b4db8362924（744912B），observer72ee469b51593fad8c38f767ccff5895949b2429c049e70eb4cc586353d7bfa3。原AIR object168 C导入audit保持。
+
+复现沿METAL-RENDER.md，make_air_fixture.py --fixture constants用llvm-as-14；build_metal_library.py编新库，build_exception_observer.py --constants-fixture build/constants-r1/fixture，package_glram.py --presigned保留精确已测GLES，并先RAM CPU后GPU。run_trial.py --gles-evidence仍要求同kernel和同GLES的完整实机记录；air_constants_evidence.py独立校验真实current-token结果、三hash、source/CPU/IOVA/fence、reflection/失败语义和终态。主机结果与硬件证据分别保留。
+
+尚无system Metal device discovery、IOSurface texture、一般AIR/half/attributes/MSAA等接口覆盖。相机仍缺时间/日期/壁纸，完整UI/FPS、睡眠唤醒、声音和无线目标继续active。下一将已验资源/queue/compute/render/constants交给原system设备登记，并逐项验收原应用，不以离屏成功代替面板。

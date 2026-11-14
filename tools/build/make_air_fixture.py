@@ -3,14 +3,14 @@ import argparse,hashlib,json,struct,subprocess
 from pathlib import Path
 root=Path(__file__).resolve().parents[2]
 parser=argparse.ArgumentParser();parser.add_argument('--llvm-as',required=True);parser.add_argument('--output',required=True)
-parser.add_argument('--fixture',choices=('basic','render'),default='basic')
+parser.add_argument('--fixture',choices=('basic','render','constants'),default='basic')
 args=parser.parse_args();out=Path(args.output).resolve();assert out.is_relative_to(root/'build') and not out.exists();out.mkdir(parents=True)
 source=root/('gpu/metal/air/fixtures/'+args.fixture+'.air.ll');bitcode=out/(args.fixture+'.air.bc')
 result=subprocess.run([args.llvm_as,str(source),'-o',str(bitcode)],capture_output=True,text=True)
 (out/'assemble.log').write_text(result.stdout+result.stderr);assert result.returncode==0,result.stdout+result.stderr
 air=bitcode.read_bytes();assert air[:4] in (b'BC\xc0\xde',b'\xde\xc0\x17\x0b');air_hash=hashlib.sha256(air).digest()
 def tag(name,data):return name.encode()+struct.pack('<H',len(data))+data
-names=[('add_seven',2),('position',0),('color',1)] if args.fixture=='basic' else [('position',0),('texture_position',0),('color',1),('textured',1)];groups=[]
+names={'basic':[('add_seven',2),('position',0),('color',1)],'render':[('position',0),('texture_position',0),('color',1),('textured',1)],'constants':[('add_constant',2)]}[args.fixture];groups=[]
 for name,type_ in names:
     body=tag('NAME',name.encode()+b'\0')+tag('TYPE',bytes([type_]))+tag('OFFT',struct.pack('<QQQ',0,0,0))+tag('HASH',air_hash)+tag('MDSZ',struct.pack('<Q',len(air)))+b'ENDT'
     groups.append(struct.pack('<I',len(body)+4)+body)
@@ -20,8 +20,8 @@ header=bytearray(88);header[:4]=b'MTLB';struct.pack_into('<H',header,6,2)
 struct.pack_into('<Q',header,16,positions[3]+len(air))
 for i,(position,size) in enumerate(zip(positions,sizes)):struct.pack_into('<QQ',header,24+i*16,position,size)
 library=bytes(header)+list_+pub+private+air;(out/(args.fixture+'.metallib')).write_bytes(library)
-variable='sweet_air_fixture' if args.fixture=='basic' else 'sweet_air_render_fixture'
-header_name='AIRFixture.h' if args.fixture=='basic' else 'AIRRenderFixture.h'
+variable={'basic':'sweet_air_fixture','render':'sweet_air_render_fixture','constants':'sweet_air_constants_fixture'}[args.fixture]
+header_name={'basic':'AIRFixture.h','render':'AIRRenderFixture.h','constants':'AIRConstantsFixture.h'}[args.fixture]
 definition='/* Generated authored AIR fixture; source/blob checks in manifest.json. */\nstatic const unsigned char '+variable+'[] = {\n'
 definition+='\n'.join('    '+','.join('0x%02x'%b for b in library[i:i+20])+',' for i in range(0,len(library),20))
 definition+='\n};\n';(out/header_name).write_bytes(definition.encode())

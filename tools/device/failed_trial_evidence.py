@@ -19,7 +19,7 @@ def verify(directory):
     text=re.sub(r'\r?\n(?!SWEET|CRASH|Process|\||exec|IOK|MESA)','',raw.decode('ascii','replace'))
     start=text.index('SWEET LOOP LIVE proto=1 token='+a['token']);end=text.index('SWEET LOOP ACK FASTBOOT token='+a['token'])
     scope=text[start:end];wrong=re.findall(r'sweetgl: (\w+(?: \w+)*) selftest -> WRONG phase=(\w+)',scope)
-    failures=re.findall(r'SWEET (?:AIR (?:COMPUTE|RENDER)|METAL (?:RESOURCE|QUEUE)) END result=([1-9]\d*)',scope)
+    failures=re.findall(r'SWEET (?:AIR (?:COMPUTE|RENDER|CONSTANTS)|METAL (?:RESOURCE|QUEUE)) END result=([1-9]\d*)',scope)
     assert wrong or failures,'Actual failure must be present in the current LIVE scope'
     return dict(source=str(root.resolve()),version=a['version'],token=a['token'],kernel_sha256=a['kernel_sha256'],
         image_sha256=a['sha256'],log_sha256=sha(raw),original_result=row['result'],original_reason=row['reason'],

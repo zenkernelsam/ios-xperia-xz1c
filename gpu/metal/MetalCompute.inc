@@ -7,12 +7,17 @@
 #include <CommonCrypto/CommonDigest.h>
 #include <vector>
 #include <map>
+#include "MetalFunctionConstants.inc"
 @class SweetMTLFunction,SweetMTLComputePipeline,SweetMTLComputeEncoder;
 @interface SweetMTLLibrary : NSObject <MTLLibrary> { @public SweetMTLDevice *_owner;NSData *_bytes;NSArray *_names;NSDictionary *_entries;NSString *_label; }
 - (instancetype)initWithOwner:(SweetMTLDevice *)owner bytes:(NSData *)bytes error:(NSError **)error;
 @end
-@interface SweetMTLFunction : NSObject <MTLFunction> { @public SweetMTLLibrary *_library;NSString *_name;NSUInteger _stage; }
+@interface SweetMTLFunction : NSObject <MTLFunction> {
+@public SweetMTLLibrary *_library;NSString *_name;NSUInteger _stage;NSDictionary *_constantInfo;
+    std::vector<GPU::Compiler::FunctionConstantValue> _constants;
+}
 - (instancetype)initWithLibrary:(SweetMTLLibrary *)library name:(NSString *)name;
+- (instancetype)initWithLibrary:(SweetMTLLibrary *)library name:(NSString *)name constantValues:(MTLFunctionConstantValues *)values error:(NSError **)error;
 @end
 @interface SweetMTLComputePipeline : NSObject <MTLComputePipelineState> {
 @public SweetMTLFunction *_function;NSLock *_programLock;std::map<std::array<unsigned,3>,SweetMetalProgram *> _programs;
@@ -67,21 +72,35 @@ static NSError *metal_compile_error(const std::string &error)
 - (void)setLabel:(NSString *)label{NSString *next=[label copy];[_label release];_label=next;}
 - (id<MTLFunction>)newFunctionWithName:(NSString *)name
 {return name && [_names containsObject:name]?[[SweetMTLFunction alloc] initWithLibrary:self name:name]:nil;}
+- (id<MTLFunction>)newFunctionWithName:(NSString *)name constantValues:(MTLFunctionConstantValues *)values error:(NSError **)error
+{
+    if(error)*error=nil;if(!name || ![_names containsObject:name]){if(error)*error=metal_compile_error("Named AIR function absent");return nil;}
+    return [[SweetMTLFunction alloc] initWithLibrary:self name:name constantValues:values error:error];
+}
 @end
 @implementation SweetMTLFunction
 - (instancetype)initWithLibrary:(SweetMTLLibrary *)library name:(NSString *)name
+{return [self initWithLibrary:library name:name constantValues:nil error:nullptr];}
+- (instancetype)initWithLibrary:(SweetMTLLibrary *)library name:(NSString *)name constantValues:(MTLFunctionConstantValues *)values error:(NSError **)reported
 {
     if(!(self=[super init]))return nil;
     std::vector<GPU::Compiler::FunctionConstant> constants;unsigned stage=UINT32_MAX;std::string error;
-    NSData *source=library->_entries[name];
-    if(!source || !GPU::Compiler::inspectAIRConstants(source.bytes,source.length,name.UTF8String,constants,stage,error) || !constants.empty()){
-        [self release];return nil;}
-    _library=[library retain];_name=[name copy];_stage=stage;return self;
+    NSData *source=library->_entries[name];std::vector<GPU::Compiler::FunctionConstantValue> input;
+    bool valid=source && GPU::Compiler::inspectAIRConstants(source.bytes,source.length,name.UTF8String,constants,stage,error) &&
+        snapshot_constants(values,input,error) && GPU::Compiler::resolveFunctionConstants(constants,input,_constants,error);
+    NSDictionary *reflection=valid?constant_reflection(constants,error):nil;
+    if(!valid || !reflection){if(reported)*reported=metal_compile_error(error);[self release];return nil;}
+    _library=[library retain];_name=[name copy];_stage=stage;_constantInfo=[reflection copy];return self;
 }
-- (void)dealloc{[_library release];[_name release];[super dealloc];}
+- (void)dealloc{[_library release];[_name release];[_constantInfo release];[super dealloc];}
 - (id<MTLDevice>)device{return _library.device;}
 - (NSString *)name{return _name;}
 - (MTLFunctionType)functionType{return _stage==0?MTLFunctionTypeKernel:_stage==1?MTLFunctionTypeVertex:MTLFunctionTypeFragment;}
+- (NSDictionary *)functionConstantsDictionary{return _constantInfo;}
+- (NSArray *)vertexAttributes{return @[];}
+- (NSArray *)stageInputAttributes{return @[];}
+- (MTLPatchType)patchType{return MTLPatchTypeNone;}
+- (NSInteger)patchControlPointCount{return 0;}
 @end
 @implementation SweetMTLComputePipeline
 - (instancetype)initWithFunction:(SweetMTLFunction *)function
@@ -100,7 +119,7 @@ static NSError *metal_compile_error(const std::string &error)
     if(_programs.size()>=16){if(error)*error=metal_queue_error(@"Compute local-size variant limit reached");[_programLock unlock];return nullptr;}
     std::vector<GPU::Compiler::Entry> entries;std::string diagnostic,essl;
     NSData *source=_function->_library->_entries[_function->_name];
-    bool valid=source && GPU::Compiler::lowerAIR(source.bytes,source.length,entries,diagnostic,_function->_name.UTF8String) && entries.size()==1;
+    bool valid=source && GPU::Compiler::lowerAIR(source.bytes,source.length,entries,diagnostic,_function->_name.UTF8String,_function->_constants) && entries.size()==1;
     if(valid)valid=entries[0].reflection.stage==0 && SweetAIR::computeESSL(entries[0].glsl,key,essl,diagnostic);
     char message[2048]={0};SweetMetalProgram *program=valid?sweetgl_metal_compute_create(essl.c_str(),entries[0].reflection.bufferMask,entries[0].reflection.writeMask,message,sizeof(message)):nullptr;
     if(!program){if(diagnostic.empty())diagnostic=message;if(error)*error=metal_compile_error(diagnostic);}

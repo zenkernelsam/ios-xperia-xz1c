@@ -8,6 +8,8 @@ v728内核与r4前端已恢复只读LayerKit Surface创建：只读CPU/GPU背板
 
 最新v729/render-r4保持完整GLES通过，原生Metal资源、GPU队列、MTLB/AIR compute及顶点/片元绘制已实机核验。10组清屏/viewport/scissor/cull/动态纹理结果与原页面保护区零差异，830资源全撤销并38.594秒完整PON06回程。system Metal、一般AIR/IOSurface texture与完整UI仍未完成，边界见[原生渲染](docs/METAL-RENDER.md)、[AIR计算](docs/AIR-COMPUTE.md)、[队列](docs/METAL-QUEUES.md)和[资源](docs/METAL-RESOURCES.md)。
 
+最新[native function constants](docs/METAL-CONSTANTS.md)也已实机通过14完整样本：name/index/range/reset和冻结AIR实际GPU运算，所有结果/保护区零差异，38.750秒完整回程。system Metal设备发现与原生UI继续推进。
+
 当前仍未完成：真实锁屏时间/日期/壁纸、完整UI/FPS、睡眠唤醒、声音、Wi-Fi/蓝牙等。AegirPoster仍重复异常退出；180秒面板仍缺文字与壁纸。不能把离屏PASS当完整系统完成。
 
 [当前状态](docs/STATUS.md) · [固定源码与构建](docs/BUILD.md) · [操作规则](docs/OPERATIONS.md) · [目录与恢复](docs/LAYOUT.md)

@@ -21,7 +21,7 @@ if args.air_package:
     assert air_manifest['forced_legacy_interface_host_test_passed']
     assert sha(air/'AIRFrontend.ios.o')==air_manifest['compiled_AIR_object_sha256']
     assert all(sha(root/path)==digest for path,digest in air_manifest['source_files'].items())
-    files+=['gpu/metal/MetalCompute.inc','gpu/metal/MetalRender.inc','gpu/metal/MetalTextureRules.h',
+    files+=['gpu/metal/MetalCompute.inc','gpu/metal/MetalFunctionConstants.inc','gpu/metal/MetalRender.inc','gpu/metal/MetalTextureRules.h',
         'gpu/metal/air/ESSLTarget.h','gpu/metal/air/Compiler.h','gpu/sweetgl/MetalShaderAPI.h']
     sources={p:sha(root/p) for p in files}
     sources.update(air_manifest['source_files'])
@@ -44,4 +44,5 @@ report.update(native_blit_command_queue=True,hardware_queue_blit_acceptance_pend
     system_Metal_shader_rendering_still_pending=True,blit_transport_evidence_revision=1)
 if air_manifest:report.update(AIR_compute_pipeline=True,AIR_frontend=air_manifest,actual_AIR_compute_GPU_acceptance_pending=True,
     native_texture_render_pipeline=True,actual_AIR_render_GPU_acceptance_pending=True)
+if air_manifest:report.update(native_function_constants=True,actual_specialized_GPU_acceptance_pending=True)
 (out/'manifest.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print(json.dumps(report))
