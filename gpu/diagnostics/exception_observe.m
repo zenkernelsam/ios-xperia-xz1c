@@ -29,6 +29,9 @@
 #include "AIRConstantsFixture.h"
 #include "MetalConstantsProbe.h"
 #endif
+#if defined(SWEET_METAL_DISCOVERY_PROBE)
+#include "MetalDiscoveryProbe.h"
+#endif
 
 #if defined(LILAC_EXCEPTION_TEST)
 struct MetalABIHostLimits { uint32_t fields[63];uint64_t maxBufferLength; };
@@ -167,20 +170,25 @@ static void install_observer(void)
 #else
     metal_runtime_observe(objc_lookUpClass("_MTLDevice"),objc_getProtocol("MTLDeviceSPI"),objc_getProtocol("MTLBuffer"),
         objc_getProtocol("MTLCommandQueue"),objc_getProtocol("MTLCommandBuffer"),diagnostic);
+    bool native_probes_valid=true;
 #if defined(SWEET_METAL_RESOURCE_PROBE)
-    (void)metal_resource_probe(diagnostic);
+    native_probes_valid=metal_resource_probe(diagnostic) && native_probes_valid;
 #endif
 #if defined(SWEET_METAL_QUEUE_PROBE)
-    (void)metal_queue_probe(diagnostic);
+    native_probes_valid=metal_queue_probe(diagnostic) && native_probes_valid;
 #endif
 #if defined(SWEET_AIR_COMPUTE_PROBE)
-    (void)metal_compute_probe(diagnostic);
+    native_probes_valid=metal_compute_probe(diagnostic) && native_probes_valid;
 #endif
 #if defined(SWEET_AIR_RENDER_PROBE)
-    (void)metal_render_probe(diagnostic);
+    native_probes_valid=metal_render_probe(diagnostic) && native_probes_valid;
 #endif
 #if defined(SWEET_AIR_CONSTANTS_PROBE)
-    (void)metal_constants_probe(diagnostic);
+    native_probes_valid=metal_constants_probe(diagnostic) && native_probes_valid;
+#endif
+#if defined(SWEET_METAL_DISCOVERY_PROBE)
+    if(native_probes_valid)(void)metal_discovery_probe(diagnostic);
+    else diagnostic("SWEET METAL DISCOVERY END result=1 same_original_default=0 original_API=1 GPU_work_preverified=0");
 #endif
 #endif
 }

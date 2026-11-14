@@ -148,8 +148,9 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
                          'SWEET EXCEPTION begin call=1 class=.*name=',
                          'SWEET EXCEPTION end call=1 frames=[1-9].*original_chain=1']
                 if 'renderer_observations_max' in m['exception_observer']:
-                    common+=['SWEET METAL observer installed renderer=NUNIAegirRenderer limit=32 index_type=[Qq] device_object=1 original_forwarded=1',
-                        'SWEET METAL uniform call=1 index=[0-2] device_nil=[01].*metadata_only=1 original_called=1']
+                    common+=['SWEET METAL observer installed renderer=NUNIAegirRenderer limit=32 index_type=[Qq] device_object=1 original_forwarded=1']
+                    if not m['exception_observer'].get('original_Metal_registry_probe'):
+                        common+=['SWEET METAL uniform call=1 index=[0-2] device_nil=[01].*metadata_only=1 original_called=1']
                 if 'runtime_Metal_ABI_methods' in m['exception_observer']:
                     common+=['SWEET METAL ABI begin class=_MTLDevice present=1 limits_bytes=264 limits_alignment=8 limits_bounded=1',
                         'SWEET METAL ABI end methods=22 metadata_only=1 instances_created=0 gpu_operations=0']
@@ -163,6 +164,8 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
                     common+=['SWEET AIR RENDER END result=0 phases=4 draw_ops=3 clear_ops=1 checked_target_bytes=15104 checked_sample_bytes=2048 guard_bytes=6560 final_allocated=0 standard_Metal=1']
                 if m['exception_observer'].get('AIR_constants_probe'):
                     common+=['SWEET AIR CONSTANTS END result=0 phases=3 invocations=192 checked_words=240 guard_checks=48 final_allocated=0 standard_Metal=1']
+                if m['exception_observer'].get('original_Metal_registry_probe'):
+                    common+=['SWEET METAL DISCOVERY END result=0 same_original_default=1 original_API=1 GPU_work_preverified=1']
     plan={'target_serial':'BH905ND69G','pon_route':6,'max_cycles':1,'budget_seconds':480,'camera_required':mode=='gpu',
           'steps':[{'artifact_id':m['id'],'observe_seconds':observe,'stable_seconds':30,'return_seconds':120,'goals':common,
                     'return_evidence':'final-drain','on_pass':'stop','on_failure':'stop'}]}

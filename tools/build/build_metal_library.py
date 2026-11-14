@@ -34,7 +34,7 @@ library=out/'MetalResources.dylib'
 run(['xcrun','--sdk','iphoneos','clang++','-arch','arm64','-miphoneos-version-min=16.0','-std=c++17','-fno-objc-arc',
     '-O2','-dynamiclib','-Wl,-undefined,dynamic_lookup','-Wl,-not_for_dyld_shared_cache',
     '-install_name','/dev/sglram/MetalResources.dylib',root/'gpu/metal/MetalResources.mm',gles,
-    '-framework','Foundation','-framework','Metal','-o',library,*extra],'ios-link')
+    '-framework','Foundation','-framework','Metal','-framework','IOKit','-o',library,*extra],'ios-link')
 run(['codesign','-f','-s','-',library],'codesign');run(['codesign','--verify',library],'verify-signature')
 assert all(sha(root/p)==digest for p,digest in sources.items()) and sha(gles)==manifest['library_sha256']
 report=dict(source_files=sources,library_file='MetalResources.dylib',library_sha256=sha(library),library_bytes=library.stat().st_size,

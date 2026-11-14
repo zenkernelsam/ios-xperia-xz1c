@@ -10,6 +10,8 @@ v728内核与r4前端已恢复只读LayerKit Surface创建：只读CPU/GPU背板
 
 最新[native function constants](docs/METAL-CONSTANTS.md)也已实机通过14完整样本：name/index/range/reset和冻结AIR实际GPU运算，所有结果/保护区零差异，38.750秒完整回程。system Metal设备发现与原生UI继续推进。
 
+最新[原生设备登记](docs/METAL-DISCOVERY.md)在Aegir进程内实机通过28完整样本；原system默认device现在返回真实A540设备，原壁纸推进到XR10 extended-range格式要求。全系统自动plugin、XR10格式与完整UI仍未完成。
+
 当前仍未完成：真实锁屏时间/日期/壁纸、完整UI/FPS、睡眠唤醒、声音、Wi-Fi/蓝牙等。AegirPoster仍重复异常退出；180秒面板仍缺文字与壁纸。不能把离屏PASS当完整系统完成。
 
 [当前状态](docs/STATUS.md) · [固定源码与构建](docs/BUILD.md) · [操作规则](docs/OPERATIONS.md) · [目录与恢复](docs/LAYOUT.md)

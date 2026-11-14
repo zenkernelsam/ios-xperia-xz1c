@@ -9,6 +9,10 @@
 #include <string.h>
 #include <errno.h>
 #include <stdio.h>
+#include <dlfcn.h>
+#if !defined(SWEET_METAL_HOST_TEST)
+#include <IOKit/IOKitLib.h>
+#endif
 extern "C" bool sweetgl_init(void);
 
 #if defined(SWEET_METAL_HOST_TEST)
@@ -22,7 +26,7 @@ extern "C" bool sweetgl_init(void);
 #endif
 @class SweetMTLBuffer;
 @interface SweetMTLDevice : SWEET_MTL_BASE <MTLDevice> {
-@public NSLock *_resourceLock;NSUInteger _allocatedBytes;SweetMTLDeviceLimits16 _sweetLimits;
+@public NSLock *_resourceLock;NSUInteger _allocatedBytes;SweetMTLDeviceLimits16 _sweetLimits;uint64_t _registryID;
 }
 - (instancetype)initBackend;
 @end
@@ -62,6 +66,14 @@ static bool native_base_available(void)
 {
     if(!(self=[super init]))return nil;
     if(!native_base_available() || !sweetgl_init()){[self release];return nil;}
+#if !defined(SWEET_METAL_HOST_TEST)
+    io_iterator_t devices=0;io_service_t service=0,other=0;
+    auto match=IOServiceMatching("SweetGPUScatter");
+    if(match && !IOServiceGetMatchingServices(kIOMainPortDefault,match,&devices)){service=IOIteratorNext(devices);other=IOIteratorNext(devices);IOObjectRelease(devices);}
+    kern_return_t identity=service && !other?IORegistryEntryGetRegistryEntryID(service,&_registryID):kIOReturnNotFound;
+    if(service)IOObjectRelease(service);if(other)IOObjectRelease(other);
+    if(identity || !_registryID){[self release];return nil;}
+#endif
     _resourceLock=[NSLock new];[self initLimits];
 #if !defined(SWEET_METAL_HOST_TEST)
     [super initFeatureQueries];
@@ -80,12 +92,20 @@ static bool native_base_available(void)
 - (const SweetMTLDeviceLimits16 *)limits{return &_sweetLimits;}
 - (NSUInteger)featureProfile{return NSUIntegerMax;}
 - (NSString *)name{return @"Adreno 540 (SweetScatter)";}
+- (uint64_t)registryID{return _registryID;}
+- (NSString *)vendorName{return @"Qualcomm";}
+- (NSString *)productName{return self.name;}
+- (uint64_t)dedicatedMemorySize{return 0;}
+- (uint64_t)sharedMemorySize{return NSProcessInfo.processInfo.physicalMemory;}
+- (void)doesNotRecognizeSelector:(SEL)selector
+{fprintf(stderr,"SWEET METAL missing class=device selector=%s original_exception=1\n",sel_getName(selector));[super doesNotRecognizeSelector:selector];}
 - (BOOL)hasUnifiedMemory{return YES;}
 - (BOOL)isLowPower{return NO;}
 - (BOOL)isHeadless{return NO;}
 - (BOOL)isRemovable{return NO;}
 - (BOOL)supportsFamily:(MTLGPUFamily)family{(void)family;return NO;}
 - (BOOL)supportsFeatureSet:(MTLFeatureSet)set{(void)set;return NO;}
+- (BOOL)supportsVertexAmplificationCount:(NSUInteger)count{return count==1;}
 - (NSUInteger)maxBufferLength{return _sweetLimits.maxBufferLength;}
 - (NSUInteger)currentAllocatedSize{[_resourceLock lock];NSUInteger n=_allocatedBytes;[_resourceLock unlock];return n;}
 - (id<MTLBuffer>)newBufferWithLength:(NSUInteger)length options:(MTLResourceOptions)options
@@ -228,4 +248,34 @@ BOOL SweetMTLCommandResult(id<MTLCommandBuffer> commands,uint32_t *sequence,uint
     auto buffer=(SweetMTLCommandBuffer *)commands;
     *sequence=[buffer sweetCompletedSequence];*operations=(uint32_t)[buffer sweetGPUOperations];
     return *sequence && *operations;
+}
+
+id<MTLDevice> SweetMTLCreateRegisteredDevice(NSError **error)
+{
+    if(error)*error=nil;
+#if defined(SWEET_METAL_HOST_TEST)
+    if(error)*error=metal_queue_error(@"Host resource fixture cannot register as a native Metal device");return nil;
+#else
+    if(strcmp(getprogname(),"AegirPoster")){if(error)*error=metal_queue_error(@"Original registry probe is scoped to AegirPoster");return nil;}
+    using AddDevice=void (*)(id<MTLDevice>);
+    void *framework=dlopen("/System/Library/Frameworks/Metal.framework/Metal",RTLD_NOW|RTLD_NOLOAD);
+    auto add=framework?reinterpret_cast<AddDevice>(dlsym(framework,"MTLAddDevice")):nullptr;
+    if(framework)dlclose(framework);
+    if(!add){if(error)*error=metal_queue_error(@"Original iOS16 MTLAddDevice unavailable");return nil;}
+    static id<MTLDevice> registered=nil;static NSError *registrationError=nil;static dispatch_once_t once;
+    dispatch_once(&once,^{
+        // Initialize the original framework's registry through its public
+        // discovery entry before MTLAddDevice requires _deviceArray to exist.
+        id<MTLDevice> existing=MTLCreateSystemDefaultDevice();
+        if(existing){registrationError=[metal_queue_error(@"Another original Metal device is already present") retain];[existing release];return;}
+        NSError *failure=nil;registered=SweetMTLCreateDevice(&failure);
+        if(!registered){registrationError=[failure retain];return;}
+        if(![(id)registered conformsToProtocol:objc_getProtocol("MTLDeviceSPI")]){registrationError=[metal_queue_error(@"Native device SPI absent") retain];[registered release];registered=nil;return;}
+        add(registered);
+    });
+    if(!registered){if(error)*error=[[registrationError retain] autorelease];return nil;}
+    id<MTLDevice> result=MTLCreateSystemDefaultDevice();
+    if(result!=registered){[result release];if(error)*error=metal_queue_error(@"Original system default device differs from registered backend");return nil;}
+    return result;
+#endif
 }

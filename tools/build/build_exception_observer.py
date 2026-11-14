@@ -2,7 +2,7 @@
 import argparse,hashlib,json,subprocess
 from pathlib import Path
 root=Path(__file__).resolve().parents[2]
-p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--metal-resources');p.add_argument('--air-fixture');p.add_argument('--render-fixture');p.add_argument('--constants-fixture');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--metal-resources');p.add_argument('--air-fixture');p.add_argument('--render-fixture');p.add_argument('--constants-fixture');p.add_argument('--register-device',action='store_true');a=p.parse_args()
 out=Path(a.output).absolute();assert out.is_relative_to(root/'build') and not out.exists();out.mkdir(parents=True)
 source=root/'gpu/diagnostics/exception_observe.m';before=source.read_bytes()
 (out/'source.m').write_bytes(before)
@@ -45,6 +45,9 @@ if a.constants_fixture:
     assert hashlib.sha256((fixture/'constants.metallib').read_bytes()).hexdigest()==constants_fixture_manifest['library_sha256']
     (out/'AIRConstantsFixture.h').write_bytes((fixture/'AIRConstantsFixture.h').read_bytes())
     headers+=['gpu/diagnostics/MetalConstantsProbe.h']
+if a.register_device:
+    assert resource_manifest and render_fixture_manifest and constants_fixture_manifest
+    headers+=['gpu/diagnostics/MetalDiscoveryProbe.h']
 source_files={str(source.relative_to(root)):hashlib.sha256(before).hexdigest()}
 for name in headers:
     data=(root/name).read_bytes();(out/Path(name).name).write_bytes(data)
@@ -71,6 +74,7 @@ if resource_manifest and resource_manifest.get('native_blit_command_queue'):extr
 if fixture_manifest:extra+=['-DSWEET_AIR_COMPUTE_PROBE=1','-I',out]
 if render_fixture_manifest:extra+=['-DSWEET_AIR_RENDER_PROBE=1','-I',out,'-framework','Metal']
 if constants_fixture_manifest:extra+=['-DSWEET_AIR_CONSTANTS_PROBE=1','-I',out,'-framework','Metal']
+if a.register_device:extra+=['-DSWEET_METAL_DISCOVERY_PROBE=1']
 run(['xcrun','--sdk','iphoneos','clang','-arch','arm64','-miphoneos-version-min=16.0',
     '-fobjc-exceptions','-O2','-dynamiclib',source,'-framework','Foundation',
     '-Wl,-not_for_dyld_shared_cache','-install_name','/dev/sglram/e','-o',library,*extra],'ios-compile')
@@ -90,6 +94,7 @@ if resource_manifest and resource_manifest.get('native_blit_command_queue'):
 if fixture_manifest:manifest.update(AIR_compute_probe=True,AIR_fixture=fixture_manifest)
 if render_fixture_manifest:manifest.update(AIR_render_probe=True,AIR_render_fixture=render_fixture_manifest)
 if constants_fixture_manifest:manifest.update(AIR_constants_probe=True,AIR_constants_fixture=constants_fixture_manifest)
+if a.register_device:manifest.update(original_Metal_registry_probe=True,registry_probe_process='AegirPoster',registry_functions_not_replaced=True)
 assert all(hashlib.sha256((root/name).read_bytes()).hexdigest()==digest for name,digest in source_files.items())
 (out/'manifest.json').write_bytes((json.dumps(manifest,indent=2)+'\n').encode())
 print(json.dumps(manifest,indent=2))

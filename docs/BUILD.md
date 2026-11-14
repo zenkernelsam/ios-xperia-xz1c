@@ -49,3 +49,5 @@ v725/v726诊断增量及单次投递入口见 SURFACE-DIAGNOSTICS.md；当前v72
 原生AIR texture/render的最新实际入口与限制见METAL-RENDER.md。make_air_fixture.py --fixture render创建独立作者AIR，build_exception_observer.py --render-fixture添加标准render encoder探针；compute fixture和原引用保持。check_metal_compute.py同时覆盖真实计算/渲染对象，air_graphics_cli.cpp与test_air_gles.c把生成ESSL交给主机Mesa实际编译绘制。主机测试不代替手机像素/fence/共享页面/完整回程验收。
 
 Native function constants的实际门槛见METAL-CONSTANTS.md：make_air_fixture.py --fixture constants、build_exception_observer.py --constants-fixture和check_metal_compute.py的原生常量测试。新Metal包继续绑定完全相同的已测GLES、先RAM CPU后GPU；host ABI/ASan/UBSan与目标GPU实际字节分别核对。
+
+原native系统登记探针使用build_exception_observer.py --register-device，仅Aegir且同进程先验GPU都通过。构建/独立STOP证据和真实格式卡点见METAL-DISCOVERY.md；回程四标记/健康/旧worker退出仍为强制条件，不能用原设备登记通过代替shader/完整面板验收。

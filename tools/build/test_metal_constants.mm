@@ -23,6 +23,8 @@ extern "C" int sweetgl_metal_render_draw(SweetMetalProgram *,const SweetRenderPa
 extern "C" int sweetgl_metal_render_clear(const SweetRenderPass *,uint32_t *){return -EINVAL;}
 int main(int argc,char **argv){assert(argc==2);@autoreleasepool{
     assert(native_constant_abi());NSError *error=nil;id<MTLDevice> device=SweetMTLCreateDevice(&error);assert(device && !error);
+    assert(!SweetMTLCreateRegisteredDevice(&error) && error);error=nil;
+    assert([device supportsVertexAmplificationCount:1] && ![device supportsVertexAmplificationCount:0] && ![device supportsVertexAmplificationCount:2]);
     NSData *bytes=[NSData dataWithContentsOfFile:[NSString stringWithUTF8String:argv[1]]];assert(bytes);
     id<MTLLibrary> fileLibrary=[device newLibraryWithURL:[NSURL fileURLWithPath:[NSString stringWithUTF8String:argv[1]]] error:&error];assert(fileLibrary && !error);[fileLibrary release];
     assert(![device newLibraryWithURL:[NSURL URLWithString:@"https://invalid.local/input.metallib"] error:&error] && error);error=nil;

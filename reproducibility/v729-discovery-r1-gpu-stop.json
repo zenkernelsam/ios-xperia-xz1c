@@ -1,0 +1,158 @@
+{
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-discovery-r1-gpu-20261114",
+  "version": 729,
+  "token": "8a7f72bccb714b98",
+  "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+  "image_sha256": "2ecc6ff8361cfd9c0fcbdaf0dcbc2a50e7a1e9d5f3ee280ed863ab5f9d6e2fd2",
+  "log_sha256": "73aa92771efa9c2f3e2f4ff06875de4604ec26246b1f671882068b7dac33dc74",
+  "original_result": "STOP",
+  "original_reason": "OBSERVATION_INCOMPLETE",
+  "actual_failures": [],
+  "native_GPU_failure_results": [],
+  "registry_assertions": [
+    [
+      "_deviceArray != NULL",
+      "833"
+    ],
+    [
+      "_deviceArray != NULL",
+      "833"
+    ],
+    [
+      "_deviceArray != NULL",
+      "833"
+    ],
+    [
+      "_deviceArray != NULL",
+      "833"
+    ],
+    [
+      "_deviceArray != NULL",
+      "833"
+    ],
+    [
+      "_deviceArray != NULL",
+      "833"
+    ],
+    [
+      "_deviceArray != NULL",
+      "833"
+    ],
+    [
+      "_deviceArray != NULL",
+      "833"
+    ],
+    [
+      "_deviceArray != NULL",
+      "833"
+    ],
+    [
+      "_deviceArray != NULL",
+      "833"
+    ],
+    [
+      "_deviceArray != NULL",
+      "833"
+    ],
+    [
+      "_deviceArray != NULL",
+      "833"
+    ],
+    [
+      "_deviceArray != NULL",
+      "833"
+    ],
+    [
+      "_deviceArray != NULL",
+      "833"
+    ],
+    [
+      "_deviceArray != NULL",
+      "833"
+    ],
+    [
+      "_deviceArray != NULL",
+      "833"
+    ],
+    [
+      "_deviceArray != NULL",
+      "833"
+    ],
+    [
+      "_deviceArray != NULL",
+      "833"
+    ],
+    [
+      "_deviceArray != NULL",
+      "833"
+    ],
+    [
+      "_deviceArray != NULL",
+      "833"
+    ],
+    [
+      "_deviceArray != NULL",
+      "833"
+    ],
+    [
+      "_deviceArray != NULL",
+      "833"
+    ],
+    [
+      "_deviceArray != NULL",
+      "833"
+    ],
+    [
+      "_deviceArray != NULL",
+      "833"
+    ],
+    [
+      "_deviceArray != NULL",
+      "833"
+    ],
+    [
+      "_deviceArray != NULL",
+      "833"
+    ],
+    [
+      "_deviceArray != NULL",
+      "833"
+    ],
+    [
+      "_deviceArray != NULL",
+      "833"
+    ],
+    [
+      "_deviceArray != NULL",
+      "833"
+    ],
+    [
+      "_deviceArray != NULL",
+      "833"
+    ]
+  ],
+  "payload_audit": {
+    "image_sha256": "2ecc6ff8361cfd9c0fcbdaf0dcbc2a50e7a1e9d5f3ee280ed863ab5f9d6e2fd2",
+    "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+    "blob_count": 8,
+    "complete_payload_reconstructed_from_compiled_kernel": true
+  },
+  "strict_return": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "8a7f72bccb714b98",
+    "checkpoint_bytes": 860122,
+    "log_bytes": 862512,
+    "log_sha256": "73aa92771efa9c2f3e2f4ff06875de4604ec26246b1f671882068b7dac33dc74",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      5,
+      47,
+      49
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 38.60899999993853,
+  "failed_stage_not_accepted": true
+}

@@ -6,6 +6,8 @@
 
 ## 硬件与恢复
 
+- 最新discovery-r3在Aegir进程内原MTLAddDevice→MTLCreateSystemDefaultDevice已28完整/0缺项实机证实SweetMTLDevice/SPI/真实kernelRegistryID，同靴原AIR/GPU通过，1925资源全released/unmapped、active/orphan/root0、38.375秒PON06回程。controller原STOP不改，原Aegir已到CAMetalLayer的unsupported extended range format；不是全系统自动plugin，也不是完整UI，下一真实实现XR10，不只伪造支持查询。Sony健康fastboot无worker/in-flight，完整目标active，见docs/METAL-DISCOVERY.md。
+
 - 最新v729/774b5efd+GLES7944112d/Metal79eb8207已完成native function constants的14完整/0缺项实机样本：name/index/range/reset、required/type拒绝、创建后改99保持13/29/37三phase实际GPU结果/原buffer/保护区零差异；38.750秒完整PON06返回。原compute/render/queue各14完整。allocated=released1110/unmapped1105，active/orphan/root0，不能称1110全map/unmap；资源probe14完整/1缺项保留。Sony健康fastboot无worker，system Metal/一般shader/IOSurface texture/完整UI和外设active，见docs/METAL-CONSTANTS.md。
 
 - 最新v729/774b5efd+GLES render-r4/7944112d与Metal1b8d1f5d已完成原生AIR顶点/片元与原texture pages实机验收：10完整/0缺项、4phase清屏/viewport/scissor/cull/纹理slot13和sampler3/宽高query/动态上传，171520B全范围包含65600B保护区零差异，830资源全撤销，38.594秒PON06完整返回。CPU/GLES门槛及原compute/queue保持。Sony健康fastboot，无worker/in-flight。system Metal、一般shader/IOSurface texture/完整时间日期壁纸UI及外设仍未完成，目标active；边界见docs/METAL-RENDER.md。r1/r2/r3失败不覆盖。
