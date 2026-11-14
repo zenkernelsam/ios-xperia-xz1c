@@ -19,6 +19,7 @@ from air_constants_evidence import verify as verify_air_constants
 from metal_discovery_evidence import verify as verify_metal_discovery
 from air_xr_evidence import verify as verify_air_xr
 from metal_surface_evidence import verify as verify_metal_surface
+from metal_mip_evidence import verify as verify_metal_mips
 
 def verify(directory,mode,kernel_sha=None,version=None):
     root=Path(directory)
@@ -89,6 +90,7 @@ def verify(directory,mode,kernel_sha=None,version=None):
                 if a['exception_observer'].get('original_Metal_registry_probe'):exceptions['Metal_discovery']=verify_metal_discovery(text,a['token'])
                 if a['exception_observer'].get('AIR_XR_probe'):exceptions['AIR_XR']=verify_air_xr(text,a['token'])
                 if a['exception_observer'].get('Metal_IOSurface_probe'):exceptions['Metal_IOSurface']=verify_metal_surface(text,a['token'])
+                if a['exception_observer'].get('Metal_mipmap_probe'):exceptions['Metal_mipmaps']=verify_metal_mips(text,a['token'])
     boundary='serialized=1' if mode in ('ready','gpu') else 'serialized=0'
     assert re.search(r'SWEET LOOP MAP_BOUNDARY token='+a['token']+' '+boundary+r' claimed=1',scope)
     report={'version':a['version'],'mode':mode,'source':str(root.resolve()),'token':a['token'],'kernel_sha256':a['kernel_sha256'],

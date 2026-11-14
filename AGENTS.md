@@ -4,6 +4,8 @@
 
 ## 当前基线
 
+本轮mipmap WIP：原生多级/Private/逐级区域/GPU生成和LOD/trilinear已实现且主机通过，r2精确GLES470c5643的CPU/GPU与新Metal包CPU实机通过。Aegir ctor完整四格式探针仍被原extension check-in timeout打断；r1 STOP、r2 REVISE保留，r2 38.969秒完整回程。Sony健康fastboot无worker/in-flight，不能称完整mipmap/UI通过。下一将完整诊断组移出Aegir启动关键路径，所有原字节/fence/重生成/LOD/保护区检查保留，再验原壁纸；详见METAL-MIPMAPS.md与STATUS。
+
 2026-11-14：内核v729/774b5efd保持81源审计；GLES4241a020、Metal f8d78396已实机完成原生AIR compute/render/constants/XR及IOSurface。surface-r1的13完整/1未完成样本核对194688B零差异，包含原64/128offset、创建者VM/CF释放后GPU绘制/采样和padding，45.859秒完整PON06回程、1652全释放/unmapped、active/orphan/root0。
 
 surface-discovery-r1另有10完整原system Metal登记/IOSurface样本；原Aegir已到SweetMTLBlitEncoder generateMipmapsForTexture:缺方法。原controller PASS只对应原生探针目标，原应用仍异常退出，不能称完整UI通过。1442allocated/released、1441unmapped、active/orphan/root0，38.282秒完整回程。Sony健康fastboot，无controller/COM/camera或in-flight。完整GPU/显示/外设目标active；下一实现真正mipmap。历史全文已归档docs/archive/20261114/AGENTS-before-XR-and-IOSurface.md，以STATUS为准。

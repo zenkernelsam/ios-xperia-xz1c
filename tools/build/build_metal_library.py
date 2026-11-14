@@ -47,4 +47,5 @@ if air_manifest:report.update(AIR_compute_pipeline=True,AIR_frontend=air_manifes
 if air_manifest:report.update(native_function_constants=True,actual_specialized_GPU_acceptance_pending=True)
 if air_manifest:report.update(native_XR_code_formats=True,XR_shader_colour_conversion=True,actual_XR_format_acceptance_pending=True)
 if air_manifest:report.update(native_IOSurface_texture_import=True,actual_IOSurface_GPU_acceptance_pending=True)
+if air_manifest:report.update(native_mipmaps=True,native_mip_level_CPU_regions_and_sampler_filters=True,actual_mipmap_GPU_acceptance_pending=True)
 (out/'manifest.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print(json.dumps(report))

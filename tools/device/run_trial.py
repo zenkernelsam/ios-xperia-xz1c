@@ -56,6 +56,8 @@ class DiagnosticPolicy(LogPolicy):
             if re.search(r'SWEET EXCEPTION detail call=\d+ reason="-\[SweetMTL\w+ [^ ]+\]: unrecognized selector',line):self.recoverable='METAL_API_UNIMPLEMENTED'
             if re.search(r'SWEET AIR XR END result=[1-9]',line):self.recoverable='AIR_XR_PROBE_FAILED'
             if re.search(r'SWEET METAL SURFACE END result=[1-9]',line):self.recoverable='METAL_IOSURFACE_PROBE_FAILED'
+            if re.search(r'SWEET METAL MIPS END result=[1-9]',line):self.recoverable='METAL_MIPMAP_PROBE_FAILED'
+            if 'CRASH AegirPoster reason ns 7 code 0x3: extension check-in timeout' in line:self.recoverable='EXTENSION_CHECKIN_TIMEOUT'
     def decision(self,now):
         result=super().decision(now)
         if result.kind=='PASS' and getattr(self,'minimum',0)>now:return Decision('WAIT','DIAGNOSTIC_WINDOW')

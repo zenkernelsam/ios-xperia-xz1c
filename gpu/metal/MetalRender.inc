@@ -7,11 +7,14 @@
 @interface SweetMTLTexture : NSObject <MTLTexture> {
 @public SweetMTLBuffer *_buffer;SweetTextureLayout _layout;MTLPixelFormat _format;MTLTextureUsage _usage;NSString *_label;
     IOSurfaceRef _surface;SweetMTLDevice *_surfaceOwner;SweetMetalBacking _surfaceBacking;MTLResourceOptions _surfaceOptions;
+    SweetMTLBuffer *_mipBuffer;SweetTextureLayout _levels[15];uint32_t _levelCount;
 }
 - (instancetype)initWithBuffer:(SweetMTLBuffer *)buffer descriptor:(MTLTextureDescriptor *)descriptor offset:(NSUInteger)offset pitch:(NSUInteger)pitch;
 - (instancetype)initWithOwner:(SweetMTLDevice *)owner descriptor:(MTLTextureDescriptor *)descriptor surface:(IOSurfaceRef)surface plane:(NSUInteger)plane;
 - (SweetMetalBacking)sweetBacking;
 - (void *)synchronizedContents;
+- (SweetTextureLayout)layoutForLevel:(NSUInteger)level;
+- (void *)synchronizedContentsForLevel:(NSUInteger)level;
 - (SweetShaderTextureBinding)bindingForIndex:(unsigned)index stage:(unsigned)stage;
 @end
 @interface SweetMTLSampler : NSObject <MTLSamplerState> {
@@ -37,30 +40,35 @@
 - (instancetype)initWithBuffer:(SweetMTLBuffer *)buffer descriptor:(MTLTextureDescriptor *)d offset:(NSUInteger)offset pitch:(NSUInteger)pitch
 {
     if(!(self=[super init]))return nil;
-    if(![buffer isKindOfClass:[SweetMTLBuffer class]] || !d || d.textureType!=MTLTextureType2D || d.depth!=1 || d.arrayLength!=1 || d.mipmapLevelCount!=1 ||
-        d.sampleCount!=1 || !sweet_metal_shared_options(d.resourceOptions) || d.storageMode!=MTLStorageModeShared ||
+    uint64_t total=0;
+    if(![buffer isKindOfClass:[SweetMTLBuffer class]] || !d || d.textureType!=MTLTextureType2D || d.depth!=1 || d.arrayLength!=1 || d.mipmapLevelCount>15 ||
+        d.sampleCount!=1 || !sweet_metal_shared_options(d.resourceOptions&~MTLResourceStorageModeMask) ||
+        (d.storageMode!=MTLStorageModeShared && d.storageMode!=MTLStorageModePrivate) ||
         (d.usage&~(MTLTextureUsageShaderRead|MTLTextureUsageRenderTarget)) ||
-        !sweet_texture_layout(d.width,d.height,(uint32_t)d.pixelFormat,offset,pitch,buffer.length,_layout)){
+        !sweet_texture_chain(d.width,d.height,(uint32_t)d.pixelFormat,offset,pitch,d.mipmapLevelCount,buffer.length,_levels,total)){
         [self release];return nil;}
-    _buffer=[buffer retain];_format=d.pixelFormat;_usage=d.usage;return self;
+    _layout=_levels[0];_levelCount=(uint32_t)d.mipmapLevelCount;_buffer=[buffer retain];_format=d.pixelFormat;_usage=d.usage;_surfaceOptions=d.resourceOptions&~MTLResourceCPUCacheModeMask;return self;
 }
 - (instancetype)initWithOwner:(SweetMTLDevice *)owner descriptor:(MTLTextureDescriptor *)d surface:(IOSurfaceRef)surface plane:(NSUInteger)plane
 {
     if(!(self=[super init]))return nil;
     if(surface)_surface=(IOSurfaceRef)CFRetain(surface);
     unsigned pixel=d?sweet_texture_pixel_bytes((uint32_t)d.pixelFormat):0;bool valid=owner && d && surface && !plane && !IOSurfaceGetPlaneCount(surface) &&
-        d.textureType==MTLTextureType2D && d.depth==1 && d.arrayLength==1 && d.mipmapLevelCount==1 && d.sampleCount==1 &&
+        d.textureType==MTLTextureType2D && d.depth==1 && d.arrayLength==1 && d.sampleCount==1 && d.mipmapLevelCount<=15 &&
         (d.storageMode==MTLStorageModeShared || d.storageMode==MTLStorageModePrivate) &&
         sweet_metal_shared_options(d.resourceOptions&~MTLResourceStorageModeMask) &&
         !(d.usage&~(MTLTextureUsageShaderRead|MTLTextureUsageRenderTarget)) && pixel && d.width==IOSurfaceGetWidth(surface) && d.height==IOSurfaceGetHeight(surface) &&
         IOSurfaceGetBytesPerElement(surface)==pixel && d.width && d.height && IOSurfaceGetBaseAddress(surface) &&
         !((uintptr_t)IOSurfaceGetBaseAddress(surface)&63) && !(IOSurfaceGetBytesPerRow(surface)&63);
-    if(valid){uint64_t pitch=IOSurfaceGetBytesPerRow(surface),capacity=IOSurfaceGetAllocSize(surface);
-        valid=sweet_texture_layout(d.width,d.height,(uint32_t)d.pixelFormat,0,pitch,capacity,_layout);
+    if(valid){uint64_t pitch=IOSurfaceGetBytesPerRow(surface),capacity=IOSurfaceGetAllocSize(surface),total=0;
+        valid=sweet_texture_chain(d.width,d.height,(uint32_t)d.pixelFormat,0,pitch,d.mipmapLevelCount,UINT64_C(256)<<20,_levels,total) && _levels[0].bytes<=capacity;
+        if(valid){_layout=_levels[0];_levelCount=(uint32_t)d.mipmapLevelCount;}
         if(valid && (d.usage&MTLTextureUsageRenderTarget)){auto lock=IOSurfaceLock(surface,0,nullptr);valid=lock==KERN_SUCCESS;
             if(valid)valid=IOSurfaceUnlock(surface,0,nullptr)==KERN_SUCCESS;}
         if(valid)valid=sweetgl_metal_surface_import(IOSurfaceGetID(surface),(uintptr_t)IOSurfaceGetBaseAddress(surface),_layout.bytes,&_surfaceBacking)==0 &&
-            sweet_metal_surface_backing_valid(&_surfaceBacking);}
+            sweet_metal_surface_backing_valid(&_surfaceBacking);
+        if(valid && _levelCount>1){_mipBuffer=(SweetMTLBuffer *)[owner newBufferWithLength:total-_layout.bytes options:d.resourceOptions&~MTLResourceStorageModeMask];valid=_mipBuffer!=nil;
+            if(valid)for(unsigned level=1;level<_levelCount;++level)_levels[level].offset-=_layout.bytes;}}
     if(!valid){if(_surfaceBacking.handle)(void)sweetgl_metal_buffer_release(_surfaceBacking.handle);memset(&_surfaceBacking,0,sizeof(_surfaceBacking));
         fprintf(stderr,"SWEET METAL IOSURFACE rejected id=%u plane=%lu format=%lu width=%lu height=%lu\n",surface?IOSurfaceGetID(surface):0,(unsigned long)plane,(unsigned long)(d?d.pixelFormat:0),(unsigned long)(d?d.width:0),(unsigned long)(d?d.height:0));[self release];return nil;}
     _surfaceOwner=[owner retain];_format=d.pixelFormat;_usage=d.usage;_surfaceOptions=d.resourceOptions&~MTLResourceCPUCacheModeMask;
@@ -70,11 +78,15 @@
 - (void)dealloc{if(_surfaceBacking.handle){int status=sweetgl_metal_buffer_release(_surfaceBacking.handle);
         if(!status){[_surfaceOwner->_resourceLock lock];_surfaceOwner->_allocatedBytes-=_surfaceBacking.allocated_bytes;[_surfaceOwner->_resourceLock unlock];}
         else fprintf(stderr,"SWEET METAL IOSURFACE release failed handle=%u status=%d\n",_surfaceBacking.handle,status);}
-    if(_surface)CFRelease(_surface);[_surfaceOwner release];[_buffer release];[_label release];[super dealloc];}
+    if(_surface)CFRelease(_surface);[_surfaceOwner release];[_mipBuffer release];[_buffer release];[_label release];[super dealloc];}
 - (SweetMetalBacking)sweetBacking{return _surface?_surfaceBacking:_buffer->_backing;}
 - (void *)synchronizedContents{return _surface?(sweetgl_metal_buffer_synchronize(_surfaceBacking.handle)?nullptr:_surfaceBacking.contents):_buffer.contents;}
+- (SweetTextureLayout)layoutForLevel:(NSUInteger)level
+{if(level>=_levelCount)[NSException raise:NSInvalidArgumentException format:@"Metal mipmap level outside texture"];return _levels[level];}
+- (void *)synchronizedContentsForLevel:(NSUInteger)level
+{(void)[self layoutForLevel:level];return _surface && level?_mipBuffer.contents:[self synchronizedContents];}
 - (id<MTLDevice>)device{return _surface?_surfaceOwner:_buffer.device;}
-- (id<MTLBuffer>)buffer{return _buffer;}
+- (id<MTLBuffer>)buffer{return self.storageMode==MTLStorageModePrivate?nil:_buffer;}
 - (IOSurfaceRef)iosurface{return _surface;}
 - (NSUInteger)iosurfacePlane{return 0;}
 - (NSUInteger)bufferOffset{return _layout.offset;}
@@ -83,67 +95,68 @@
 - (NSUInteger)height{return _layout.height;}
 - (NSUInteger)depth{return 1;}
 - (NSUInteger)arrayLength{return 1;}
-- (NSUInteger)mipmapLevelCount{return 1;}
+- (NSUInteger)mipmapLevelCount{return _levelCount;}
 - (NSUInteger)sampleCount{return 1;}
 - (MTLTextureType)textureType{return MTLTextureType2D;}
 - (MTLPixelFormat)pixelFormat{return _format;}
 - (MTLTextureUsage)usage{return _usage;}
-- (MTLStorageMode)storageMode{return _surface?(MTLStorageMode)((_surfaceOptions&MTLResourceStorageModeMask)>>MTLResourceStorageModeShift):MTLStorageModeShared;}
+- (MTLStorageMode)storageMode{return (MTLStorageMode)((_surfaceOptions&MTLResourceStorageModeMask)>>MTLResourceStorageModeShift);}
 - (MTLCPUCacheMode)cpuCacheMode{return MTLCPUCacheModeDefaultCache;}
 - (MTLHazardTrackingMode)hazardTrackingMode{return _surface?MTLHazardTrackingModeTracked:_buffer.hazardTrackingMode;}
-- (MTLResourceOptions)resourceOptions{return _surface?_surfaceOptions:_buffer.resourceOptions;}
+- (MTLResourceOptions)resourceOptions{return _surfaceOptions;}
 - (id<MTLHeap>)heap{return nil;}
 - (NSUInteger)heapOffset{return 0;}
 - (id<MTLTexture>)parentTexture{return nil;}
 - (BOOL)isAliasable{return NO;}
 - (BOOL)allowGPUOptimizedContents{return NO;}
-- (NSUInteger)allocatedSize{return _surface?_surfaceBacking.allocated_bytes:_buffer.allocatedSize;}
+- (NSUInteger)allocatedSize{return _surface?_surfaceBacking.allocated_bytes+_mipBuffer.allocatedSize:_buffer.allocatedSize;}
 - (BOOL)framebufferOnly{return NO;}
 - (NSString *)label{return _label;}
 - (void)setLabel:(NSString *)label{NSString *next=[label copy];[_label release];_label=next;}
 - (void)replaceRegion:(MTLRegion)region mipmapLevel:(NSUInteger)level withBytes:(const void *)bytes bytesPerRow:(NSUInteger)pitch
 {
-    uint64_t offset=0,span=0;
-    if(self.storageMode!=MTLStorageModeShared || level || region.origin.z || region.size.depth!=1 || !sweet_texture_region(_layout,region.origin.x,region.origin.y,region.size.width,region.size.height,pitch,offset,span) ||
+    uint64_t offset=0,span=0;SweetTextureLayout layout=[self layoutForLevel:level];
+    if(self.storageMode!=MTLStorageModeShared || region.origin.z || region.size.depth!=1 || !sweet_texture_region(layout,region.origin.x,region.origin.y,region.size.width,region.size.height,pitch,offset,span) ||
         (span && (!bytes || span>UINTPTR_MAX-(uintptr_t)bytes)))[NSException raise:NSInvalidArgumentException format:@"Invalid Metal texture upload region/stride"];
-    if(!span)return;unsigned char *target=(unsigned char *)[self synchronizedContents];if(!target)[NSException raise:NSInternalInconsistencyException format:@"Texture backing synchronization failed"];
-    if(_surface && IOSurfaceLock(_surface,0,nullptr)!=KERN_SUCCESS)[NSException raise:NSInternalInconsistencyException format:@"Original IOSurface write lock failed"];
-    for(NSUInteger row=0;row<region.size.height;++row)memcpy(target+offset+row*_layout.pitch,(const unsigned char *)bytes+row*pitch,region.size.width*_layout.bytes_per_pixel);
-    if(_surface && IOSurfaceUnlock(_surface,0,nullptr)!=KERN_SUCCESS)[NSException raise:NSInternalInconsistencyException format:@"Original IOSurface write unlock failed"];
+    if(!span)return;unsigned char *target=(unsigned char *)[self synchronizedContentsForLevel:level];if(!target)[NSException raise:NSInternalInconsistencyException format:@"Texture backing synchronization failed"];
+    if(_surface && !level && IOSurfaceLock(_surface,0,nullptr)!=KERN_SUCCESS)[NSException raise:NSInternalInconsistencyException format:@"Original IOSurface write lock failed"];
+    for(NSUInteger row=0;row<region.size.height;++row)memcpy(target+offset+row*layout.pitch,(const unsigned char *)bytes+row*pitch,region.size.width*layout.bytes_per_pixel);
+    if(_surface && !level && IOSurfaceUnlock(_surface,0,nullptr)!=KERN_SUCCESS)[NSException raise:NSInternalInconsistencyException format:@"Original IOSurface write unlock failed"];
 }
 - (void)getBytes:(void *)bytes bytesPerRow:(NSUInteger)pitch fromRegion:(MTLRegion)region mipmapLevel:(NSUInteger)level
 {
-    uint64_t offset=0,span=0;
-    if(self.storageMode!=MTLStorageModeShared || level || region.origin.z || region.size.depth!=1 || !sweet_texture_region(_layout,region.origin.x,region.origin.y,region.size.width,region.size.height,pitch,offset,span) ||
+    uint64_t offset=0,span=0;SweetTextureLayout layout=[self layoutForLevel:level];
+    if(self.storageMode!=MTLStorageModeShared || region.origin.z || region.size.depth!=1 || !sweet_texture_region(layout,region.origin.x,region.origin.y,region.size.width,region.size.height,pitch,offset,span) ||
         (span && (!bytes || span>UINTPTR_MAX-(uintptr_t)bytes)))[NSException raise:NSInvalidArgumentException format:@"Invalid Metal texture read region/stride"];
-    if(!span)return;const unsigned char *source=(const unsigned char *)[self synchronizedContents];if(!source)[NSException raise:NSInternalInconsistencyException format:@"Texture backing synchronization failed"];
-    if(_surface && IOSurfaceLock(_surface,kIOSurfaceLockReadOnly,nullptr)!=KERN_SUCCESS)[NSException raise:NSInternalInconsistencyException format:@"Original IOSurface read lock failed"];
-    for(NSUInteger row=0;row<region.size.height;++row)memcpy((unsigned char *)bytes+row*pitch,source+offset+row*_layout.pitch,region.size.width*_layout.bytes_per_pixel);
-    if(_surface && IOSurfaceUnlock(_surface,kIOSurfaceLockReadOnly,nullptr)!=KERN_SUCCESS)[NSException raise:NSInternalInconsistencyException format:@"Original IOSurface read unlock failed"];
+    if(!span)return;const unsigned char *source=(const unsigned char *)[self synchronizedContentsForLevel:level];if(!source)[NSException raise:NSInternalInconsistencyException format:@"Texture backing synchronization failed"];
+    if(_surface && !level && IOSurfaceLock(_surface,kIOSurfaceLockReadOnly,nullptr)!=KERN_SUCCESS)[NSException raise:NSInternalInconsistencyException format:@"Original IOSurface read lock failed"];
+    for(NSUInteger row=0;row<region.size.height;++row)memcpy((unsigned char *)bytes+row*pitch,source+offset+row*layout.pitch,region.size.width*layout.bytes_per_pixel);
+    if(_surface && !level && IOSurfaceUnlock(_surface,kIOSurfaceLockReadOnly,nullptr)!=KERN_SUCCESS)[NSException raise:NSInternalInconsistencyException format:@"Original IOSurface read unlock failed"];
 }
 - (void)replaceRegion:(MTLRegion)region mipmapLevel:(NSUInteger)level slice:(NSUInteger)slice withBytes:(const void *)bytes bytesPerRow:(NSUInteger)pitch bytesPerImage:(NSUInteger)imagePitch
 {
-    uint64_t offset=0,span=0;if(slice || !sweet_texture_region(_layout,region.origin.x,region.origin.y,region.size.width,region.size.height,pitch,offset,span) ||
+    uint64_t offset=0,span=0;if(slice || !sweet_texture_region([self layoutForLevel:level],region.origin.x,region.origin.y,region.size.width,region.size.height,pitch,offset,span) ||
         (imagePitch && imagePitch<span))[NSException raise:NSInvalidArgumentException format:@"Invalid 2D texture slice/image stride"];
     [self replaceRegion:region mipmapLevel:level withBytes:bytes bytesPerRow:pitch];
 }
 - (void)getBytes:(void *)bytes bytesPerRow:(NSUInteger)pitch bytesPerImage:(NSUInteger)imagePitch fromRegion:(MTLRegion)region mipmapLevel:(NSUInteger)level slice:(NSUInteger)slice
 {
-    uint64_t offset=0,span=0;if(slice || !sweet_texture_region(_layout,region.origin.x,region.origin.y,region.size.width,region.size.height,pitch,offset,span) ||
+    uint64_t offset=0,span=0;if(slice || !sweet_texture_region([self layoutForLevel:level],region.origin.x,region.origin.y,region.size.width,region.size.height,pitch,offset,span) ||
         (imagePitch && imagePitch<span))[NSException raise:NSInvalidArgumentException format:@"Invalid 2D texture slice/image stride"];
     [self getBytes:bytes bytesPerRow:pitch fromRegion:region mipmapLevel:level];
 }
 - (void)doesNotRecognizeSelector:(SEL)selector
 {fprintf(stderr,"SWEET METAL missing class=texture selector=%s original_exception=1\n",sel_getName(selector));[super doesNotRecognizeSelector:selector];}
 - (SweetShaderTextureBinding)bindingForIndex:(unsigned)index stage:(unsigned)stage
-{return {[self sweetBacking].handle,index,stage,_layout.width,_layout.height,_layout.pitch,(uint32_t)_format,(uint32_t)_usage,_layout.offset};}
+{SweetShaderTextureBinding binding={[self sweetBacking].handle,index,stage,_layout.width,_layout.height,_layout.pitch,(uint32_t)_format,(uint32_t)_usage,_layout.offset};
+    binding.mip_count=_levelCount;for(unsigned level=1;level<_levelCount;++level){auto layout=_levels[level];binding.mips[level-1]={_surface?_mipBuffer->_backing.handle:_buffer->_backing.handle,layout.width,layout.height,layout.pitch,layout.offset};}return binding;}
 @end
 
 @implementation SweetMTLSampler
 - (instancetype)initWithOwner:(SweetMTLDevice *)owner descriptor:(MTLSamplerDescriptor *)d
 {
     if(!(self=[super init]))return nil;
-    if(!owner || !d || d.minFilter>MTLSamplerMinMagFilterLinear || d.magFilter>MTLSamplerMinMagFilterLinear || d.mipFilter!=MTLSamplerMipFilterNotMipmapped ||
+    if(!owner || !d || d.minFilter>MTLSamplerMinMagFilterLinear || d.magFilter>MTLSamplerMinMagFilterLinear || d.mipFilter>MTLSamplerMipFilterLinear ||
         (d.sAddressMode!=MTLSamplerAddressModeClampToEdge && d.sAddressMode!=MTLSamplerAddressModeRepeat && d.sAddressMode!=MTLSamplerAddressModeMirrorRepeat) ||
         (d.tAddressMode!=MTLSamplerAddressModeClampToEdge && d.tAddressMode!=MTLSamplerAddressModeRepeat && d.tAddressMode!=MTLSamplerAddressModeMirrorRepeat) ||
         !d.normalizedCoordinates || d.compareFunction!=MTLCompareFunctionNever || d.maxAnisotropy!=1 || !std::isfinite(d.lodMinClamp) ||
@@ -208,7 +221,7 @@ static bool render_entry(SweetMTLFunction *function,unsigned stage,GPU::Compiler
 - (instancetype)initWithCommands:(SweetMTLCommandBuffer *)commands descriptor:(MTLRenderPassDescriptor *)d
 {
     if(!(self=[super init]))return nil;auto target=(SweetMTLTexture *)d.colorAttachments[0].texture;
-    bool valid=d && [target isKindOfClass:[SweetMTLTexture class]] && target.device==commands.device && (target.usage&MTLTextureUsageRenderTarget) &&
+    bool valid=d && [target isKindOfClass:[SweetMTLTexture class]] && target.device==commands.device && (!target.usage || (target.usage&MTLTextureUsageRenderTarget)) &&
         !d.depthAttachment.texture && !d.stencilAttachment.texture && !d.colorAttachments[0].resolveTexture && d.colorAttachments[0].level==0 &&
         d.colorAttachments[0].slice==0 && d.colorAttachments[0].depthPlane==0 && d.colorAttachments[0].loadAction<=MTLLoadActionClear &&
         d.colorAttachments[0].storeAction<=MTLStoreActionStore;
@@ -309,4 +322,22 @@ static NSError *execute_metal_render(NSDictionary *operation,id<MTLDevice> devic
             samplers[s]=sampler->_binding;samplers[s].index=key.unsignedIntValue;samplers[s].stage=stage;++s;}}
     int result=sweetgl_metal_render_draw(pipeline->_program,&pass,&draw,buffers,n,textures,t,samplers,s,sequence);
     return result?metal_queue_error([NSString stringWithFormat:@"AIR render failed result=%d",result]):nil;
+}
+static BOOL record_metal_mipmaps(SweetMTLCommandBuffer *commands,id<MTLTexture> input)
+{
+    auto texture=(SweetMTLTexture *)input;bool valid=[texture isKindOfClass:[SweetMTLTexture class]] && texture.device==commands.device;
+    fprintf(stderr,"SWEET METAL MIPMAP request class=%s width=%lu height=%lu levels=%lu format=%lu storage=%lu valid=%u\n",input?object_getClassName(input):"nil",
+        (unsigned long)(valid?texture.width:0),(unsigned long)(valid?texture.height:0),(unsigned long)(valid?texture.mipmapLevelCount:0),
+        (unsigned long)(valid?texture.pixelFormat:0),(unsigned long)(valid?texture.storageMode:0),valid);
+    if(!valid)return NO;SweetShaderTextureBinding binding=[texture bindingForIndex:0 stage:0];
+    @autoreleasepool{return [commands appendOperation:@{@"mipmapTexture":texture,@"binding":[NSData dataWithBytes:&binding length:sizeof(binding)]}];}
+}
+static NSError *execute_metal_mipmaps(NSDictionary *operation,id<MTLDevice> device,uint32_t *sequence,uint32_t *operations)
+{
+    *sequence=*operations=0;auto texture=(SweetMTLTexture *)operation[@"mipmapTexture"];NSData *snapshot=operation[@"binding"];
+    if(![texture isKindOfClass:[SweetMTLTexture class]] || texture.device!=device || snapshot.length!=sizeof(SweetShaderTextureBinding))return metal_queue_error(@"Mipmap texture owner or ABI invalid");
+    SweetShaderTextureBinding saved;memcpy(&saved,snapshot.bytes,sizeof(saved));auto actual=[texture bindingForIndex:0 stage:0];
+    if(memcmp(&saved,&actual,sizeof(actual)))return metal_queue_error(@"Mipmap backing differs from retained snapshot");
+    int result=sweetgl_metal_texture_mipmaps(&actual,sequence);if(result)return metal_queue_error([NSString stringWithFormat:@"GPU mipmaps failed result=%d",result]);
+    *operations=actual.mip_count-1;return nil;
 }

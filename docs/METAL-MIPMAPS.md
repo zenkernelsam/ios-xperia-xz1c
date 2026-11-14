@@ -1,0 +1,19 @@
+# Native Metal mipmaps — 2026-11-14
+
+原generateMipmapsForTexture:现已有实际多级存储、GPU下采样和nearest/trilinear采样实现，源码与主机检查已完成；实机四格式完整验收尚未通过。mips-r1被原Aegir的extension check-in timeout打断31次，原STOP/OBSERVATION_INCOMPLETE保留，不能将已通过的RGBA/BGRA部分样本当四格式完成。r2改为按GL context复用copy/decode shader和XR LUT，继续同库CPU/GPU门槛。
+
+纹理支持界定的单plane线性2D、多级数量1..15及实际尺寸上限。各级宽高floor减半、最小1，每级pitch和offset保持64B对齐；buffer纹理使用同一原GEM的不同区域，IOSurface第0级继续持有原Surface lease，后续级用纹理持有的原Metal buffer。Shared允许各级标准region/stride CPU读写，Private隐藏CPU入口。单级生成确实没有后续level，但独立GPU探针必须验证六级、重新上传后再生成及LOD采样，不能以单级空操作宣称实现mipmap。
+
+GPU在像素中心执行线性下采样，原sRGB/XR先解码成线性颜色再过滤。每级目标是原页面，普通shader draw保留行尾和级间保护区，沿原fence/cache同步。采样在GPU上将所有原level组装成float mip chain，支持nearest level、linear level和LOD clamp；CPU不生成或转换颜色。格式和算法沿固定Mesa/GLES及METAL-XR.md的开源参考，未引入Vulkan运行库。shader和新增对象代码保持相应BSD/LGPL声明。
+
+主机原native对象ASan/UBSan覆盖五级17×9布局/读写保护、创建者释放后queue持有、Private CPU拒绝、Surface和mip sidecar持有、GPU失败退休及最终归零。首次测试发现临时NSDictionary拖延释放，修正为操作记录内的局部autorelease pool后通过。主机GPU是transport stub；另由真实Mesa执行提取自生产代码的shader，六级线性/sRGB/XR生成和level1.5层间采样通过。UNorm/XR逐分量精确，sRGB量化单独限制1LSB，原失败日志保留。
+
+实机mips-r1使用v729/774b5efd、GLES efc7e6e7ca129c28defa83f564e5958db0390c009e4681b8db733192dd2ab170和Metal a0b58e86b8f65a4541a56bf901c9606def3f72a34730c98ed3a4256d4275588f。镜像0f6435c655e69bb840a3fcad3d0d0a7555f0d2423ee0d2e23d339ddc77dc8d38，token782f1b663c05183b，1886123B原串口SHA28f6c073e29648e27ca89f92f04d0da59bca7cc8413c0d9d2e87990ca0e1c7f4。RGBA/BGRA已有真实生成/LOD/保护区零差异，但没有完成整组。38.391秒完整PON06返回，3510allocated/released、3509unmapped、active/orphan/root0；没有称3510全map/unmap。
+
+原startup timeout保持不变。减少重复shader编译可同时改善实际渲染路径；缓存绑定各GL context，格式分槽，context销毁时回收program/LUT。控制器新增原Aegir check-in timeout提前回程判读，保留单发/失败不重发/完整四标记/健康30秒/旧worker退出规则。
+
+复现主机检查：check_metal_compute.py --llvm-headers deps/llvm-c-14；Windows通过check_mip_gles.py --output build/my-mip-host使用WSL Mesa。手机probe使用build_exception_observer.py --mip-probe并给固定render fixture，沿METAL-RENDER.md完整新GLES CPU/GPU及新Metal包CPU/GPU。metal_mip_evidence.py独立复算每级原字节、917504B/完整组的输入输出/全部保护区、40个逐级fence和24个LOD结果；sRGB报告有界实测码，其他格式严格匹配。缺项或ACK前失败拒绝，不补记录。
+
+目前仍须完成四格式、奇数尺寸/其它mip数量、Surface mip硬件验收和原壁纸实际请求，再推进完整UI/FPS、睡眠/声音/无线。原时间/日期/壁纸尚未验证成功，完整目标active。
+
+r2已完成GLES470c5643的CPU/GPU及新包CPU实机门槛，但原Aegir在XR阶段仍extension check-in timeout；3条当前LIVE范围的超时原因记录、原REVISE、38.969秒完整返回均保留。631519B日志SHA541f3b50696dc85bd09fbcc9d76edbc1b7ef26045856d6407e331acf2eb88699，token673c15c98ea11c4e。没有完整MIPS END，不能提升为整组通过。下一把完整同组探针移到已拥有GPU的backboardd诊断阶段，避免占用Aegir的check-in路径；不是禁用或替换原check-in，也不缩减格式/重生成/LOD/保护区要求。

@@ -1,0 +1,96 @@
+{
+  "date": "2026-11-14",
+  "scope": "Mipmap generated outputs",
+  "Windows": {
+    "items": 138,
+    "files": 138,
+    "bytes": 366764991,
+    "native_Recycle_Bin_verified": true
+  },
+  "macOS": {
+    "items": 21,
+    "files": 33,
+    "bytes": 337734935,
+    "native_Trash_verified": true
+  },
+  "original_completed_runs_retained": [
+    {
+      "run": "lilac-v729-mips-r1-gles-gpu-20261114",
+      "result": "PASS",
+      "token": "8d3be386cbde13d4",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mips-r1-gles-gpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "b8bc34b5ad3146e4f3616adf92ce21f462d26ab27f578a0b4eb90c20f742c654",
+      "retained_camera_files": [
+        "frame-0015.jpg"
+      ]
+    },
+    {
+      "run": "lilac-v729-mips-r1-gles-ramcpu-20261114",
+      "result": "PASS",
+      "token": "b28cb1ea1866fe55",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mips-r1-gles-ramcpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "efb50c04b6e3824027c1629e2ec8071eac4199e7a79468aa1a29a25d4864bf5b",
+      "retained_camera_files": []
+    },
+    {
+      "run": "lilac-v729-mips-r1-gpu-20261114",
+      "result": "STOP",
+      "token": "782f1b663c05183b",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mips-r1-gpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "28f6c073e29648e27ca89f92f04d0da59bca7cc8413c0d9d2e87990ca0e1c7f4",
+      "retained_camera_files": [
+        "frame-0010.jpg"
+      ]
+    },
+    {
+      "run": "lilac-v729-mips-r1-ramcpu-20261114",
+      "result": "PASS",
+      "token": "f4b2336f171afc91",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mips-r1-ramcpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "42274bf652190d7649071630e537997e8f54175a2c90df3fa9a595291c5e58b9",
+      "retained_camera_files": []
+    },
+    {
+      "run": "lilac-v729-mips-r2-gles-gpu-20261114",
+      "result": "PASS",
+      "token": "1419d122661c2335",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mips-r2-gles-gpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "371c8f39fd22a9c48951887568145e02500dbc08bb3f6bb43fb7ecb8de116198",
+      "retained_camera_files": [
+        "frame-0010.jpg"
+      ]
+    },
+    {
+      "run": "lilac-v729-mips-r2-gles-ramcpu-20261114",
+      "result": "PASS",
+      "token": "52337775589869db",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mips-r2-gles-ramcpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "60e15594ecbe4e4ee8d6c2fd99cecc8626fac9eda494403fb86ebd3f1e6d1966",
+      "retained_camera_files": []
+    },
+    {
+      "run": "lilac-v729-mips-r2-gpu-20261114",
+      "result": "REVISE",
+      "token": "673c15c98ea11c4e",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mips-r2-gpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "541f3b50696dc85bd09fbcc9d76edbc1b7ef26045856d6407e331acf2eb88699",
+      "retained_camera_files": [
+        "frame-0060.jpg"
+      ]
+    },
+    {
+      "run": "lilac-v729-mips-r2-ramcpu-20261114",
+      "result": "PASS",
+      "token": "8cd46ccc290a6eac",
+      "raw_log": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mips-r2-ramcpu-20261114\\cycle-01\\serial.raw.log",
+      "raw_sha256": "c677b17d65d9425ba006c6d06b2d83293415d59df27d072791cbac768f0d59b2",
+      "retained_camera_files": []
+    }
+  ],
+  "raw_hashes_rechecked": true,
+  "best_original_photos_retained": true,
+  "failed_images_compressed_RAM_blobs_and_all_libraries_retained": true,
+  "Windows_macOS_bins_not_emptied": true,
+  "no_permanent_deletion": true,
+  "plans_and_journals": "organization/20261114-mips"
+}

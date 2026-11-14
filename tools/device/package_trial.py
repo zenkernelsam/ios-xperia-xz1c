@@ -170,6 +170,8 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
                     common+=['SWEET AIR XR END result=0 formats=4 phases=12 checked_raw_output_bytes=34944 final_allocated=0 GPU_only=1']
                 if m['exception_observer'].get('Metal_IOSurface_probe'):
                     common+=['SWEET METAL SURFACE END result=0 cases=2 phases=6 checked_bytes=14976 row_padding=6480 final_allocated=0 original_surface_GPU=1']
+                if m['exception_observer'].get('Metal_mipmap_probe'):
+                    common+=['SWEET METAL MIPS END result=0 formats=4 levels=6 generations=8 samples=24 checked_bytes=917504 final_allocated=0 GPU_only=1']
     plan={'target_serial':'BH905ND69G','pon_route':6,'max_cycles':1,'budget_seconds':480,'camera_required':mode=='gpu',
           'steps':[{'artifact_id':m['id'],'observe_seconds':observe,'stable_seconds':30,'return_seconds':120,'goals':common,
                     'return_evidence':'final-drain','on_pass':'stop','on_failure':'stop'}]}

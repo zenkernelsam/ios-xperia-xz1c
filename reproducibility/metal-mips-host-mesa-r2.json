@@ -1,0 +1,19 @@
+{
+  "source_files": {
+    "gpu/sweetgl/metal_render.c": "9496cabd85414ca549ae4e16007b677d6bff828d06483fbc511ebe43c38f9293",
+    "gpu/sweetgl/MipColourShader.h": "15d9f983a7fd0d71604193262a19b7b6cad8f6900c6366f7e12b155db47c8ed1",
+    "gpu/sweetgl/XRColourShader.h": "9a4e6514d9f203dac4fa95def0ec418777c8422125bfacfdbb0d1a7ea1c6d973",
+    "gpu/sweetgl/XRColourTables.h": "7564148cfcdb509061e1cebc76cd8afb59a292f4dea18086f2d7fa753bb723fa",
+    "tools/build/test_mip_gles.c": "9ddde74cfad0823397a44e1083dcf18fe82d0a45691ecf57317b838f6c46dc64",
+    "tools/build/check_mip_gles.py": "4e1c492ed2debeb112a753b19963c23737de3287ca7f04141fd665fcdd3f13dd"
+  },
+  "actual_production_XR_shader_template_extracted": true,
+  "actual_Mesa_linear_sRGB_XR_mipmaps_and_trilinear_passed": true,
+  "host_asan_ubsan": true,
+  "host_leak_detection_disabled_for_Mesa_runtime": true,
+  "FD540_original_importer_not_exercised": true,
+  "device_operations": 0,
+  "UNorm_and_XR_exact": true,
+  "sRGB_colour_tolerance_LSB": 1,
+  "padding_and_FD540_fences_require_device_probe": true
+}

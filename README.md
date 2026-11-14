@@ -14,6 +14,8 @@ v728内核与r4前端已恢复只读LayerKit Surface创建：只读CPU/GPU背板
 
 当前仍未完成：真实锁屏时间/日期/壁纸、完整UI/FPS、睡眠唤醒、声音、Wi-Fi/蓝牙等。AegirPoster仍重复异常退出；180秒面板仍缺文字与壁纸。不能把离屏PASS当完整系统完成。
 
+最新[mipmap实现与验收](docs/METAL-MIPMAPS.md)补齐原生多级存储、GPU生成、LOD/trilinear和Private权限；源码/主机检查及r2新GLES CPU/GPU、新包CPU已通过。完整四格式GPU组仍被Aegir启动检查超时打断，r1/r2失败和回程保留；下一将完整诊断组移出扩展启动关键路径后继续验收。
+
 [当前状态](docs/STATUS.md) · [固定源码与构建](docs/BUILD.md) · [操作规则](docs/OPERATIONS.md) · [目录与恢复](docs/LAYOUT.md)
 
 整理与回收记录：[2026-11-12](docs/ORGANIZATION-2026-11-12.md)。正式源码、构建入口和旧文档归档均在本仓库；大文件仅本地保存。

@@ -1,0 +1,40 @@
+{
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mips-r2-gpu-20261114",
+  "version": 729,
+  "token": "673c15c98ea11c4e",
+  "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+  "image_sha256": "98fb4a499094a1dc631b89ca5da4b724808f673f3335ae7bf9aa47504ea15d1f",
+  "log_sha256": "541f3b50696dc85bd09fbcc9d76edbc1b7ef26045856d6407e331acf2eb88699",
+  "original_result": "REVISE",
+  "original_reason": "EXTENSION_CHECKIN_TIMEOUT",
+  "actual_failures": [],
+  "native_GPU_failure_results": [],
+  "registry_assertions": [],
+  "missing_device_API": [],
+  "original_exception_missing_API": [],
+  "original_extension_checkin_timeout_count": 3,
+  "payload_audit": {
+    "image_sha256": "98fb4a499094a1dc631b89ca5da4b724808f673f3335ae7bf9aa47504ea15d1f",
+    "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+    "blob_count": 8,
+    "complete_payload_reconstructed_from_compiled_kernel": true
+  },
+  "strict_return": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "673c15c98ea11c4e",
+    "checkpoint_bytes": 617098,
+    "log_bytes": 631519,
+    "log_sha256": "541f3b50696dc85bd09fbcc9d76edbc1b7ef26045856d6407e331acf2eb88699",
+    "require_final_drain": true,
+    "marker_positions": [
+      4,
+      136,
+      185,
+      187
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 38.96900000004098,
+  "failed_stage_not_accepted": true
+}

@@ -18,6 +18,11 @@ from exception_evidence import inspect_scope,verify_renderer
 
 
 class Gates(unittest.TestCase):
+    def test_extension_checkin_and_mip_failure_route_return(self):
+        for line,reason in [('CRASH AegirPoster reason ns 7 code 0x3: extension check-in timeout','EXTENSION_CHECKIN_TIMEOUT'),
+            ('SWEET METAL MIPS END result=1 formats=0','METAL_MIPMAP_PROBE_FAILED')]:
+            policy=DiagnosticPolicy('0123456789abcdef',[],0);policy.feed('SWEET LOOP LIVE proto=1 token=0123456789abcdef',0);policy.feed(line,1)
+            self.assertEqual(policy.recoverable,reason)
     def test_original_native_missing_selector_routes_return(self):
         policy=DiagnosticPolicy('0123456789abcdef',[],0)
         policy.feed('SWEET LOOP LIVE proto=1 token=0123456789abcdef',0)

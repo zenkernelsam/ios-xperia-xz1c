@@ -47,6 +47,7 @@ printf '_sweetgl_metal_surface_import\n' >> "$O/exports.txt"
 printf '_sweetgl_metal_buffer_blit\n' >> "$O/exports.txt"
 printf '_sweetgl_metal_compute_create\n_sweetgl_metal_compute_dispatch\n_sweetgl_metal_program_destroy\n' >> "$O/exports.txt"
 printf '_sweetgl_metal_render_create\n_sweetgl_metal_render_draw\n_sweetgl_metal_render_clear\n' >> "$O/exports.txt"
+printf '_sweetgl_metal_texture_mipmaps\n' >> "$O/exports.txt"
 xcrun -sdk iphoneos clang++ -arch arm64 -miphoneos-version-min=16.0 \
 	-dynamiclib -dead_strip -Wl,-undefined,dynamic_lookup -Wl,-not_for_dyld_shared_cache \
 	-install_name /usr/lib/sweetgl.dylib -exported_symbols_list "$O/exports.txt" \

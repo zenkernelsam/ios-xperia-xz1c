@@ -9,6 +9,8 @@ static NSError *execute_metal_compute(NSDictionary *,id<MTLDevice>,uint32_t *);
 static id<MTLComputeCommandEncoder> create_compute_encoder(SweetMTLCommandBuffer *);
 static NSError *execute_metal_render(NSDictionary *,id<MTLDevice>,uint32_t *);
 static id<MTLRenderCommandEncoder> create_render_encoder(SweetMTLCommandBuffer *,MTLRenderPassDescriptor *);
+static BOOL record_metal_mipmaps(SweetMTLCommandBuffer *,id<MTLTexture>);
+static NSError *execute_metal_mipmaps(NSDictionary *,id<MTLDevice>,uint32_t *,uint32_t *);
 #endif
 @interface SweetMTLCommandQueue : NSObject <MTLCommandQueue> {
 @public SweetMTLDevice *_device;dispatch_queue_t _execution;NSString *_label;
@@ -133,6 +135,9 @@ static NSError *metal_queue_error(NSString *message,NSInteger code=MTLCommandBuf
         if(operation[@"renderPipeline"] || operation[@"renderClear"]){uint32_t sequence=0;failure=execute_metal_render(operation,self.device,&sequence);
             if(failure)break;if(!sequence){failure=metal_queue_error(@"Render completed without its owned GPU fence");break;}
             [_condition lock];_sequence=sequence;++_GPUOperations;[_condition unlock];continue;}
+        if(operation[@"mipmapTexture"]){uint32_t sequence=0,operations=0;failure=execute_metal_mipmaps(operation,self.device,&sequence,&operations);
+            if(failure)break;if(operations && !sequence){failure=metal_queue_error(@"Mipmap completed without its owned GPU fence");break;}
+            [_condition lock];if(sequence)_sequence=sequence;_GPUOperations+=operations;[_condition unlock];continue;}
 #endif
         SweetMTLBuffer *dst=operation[@"destination"],*src=operation[@"source"];
         NSUInteger bytes=[operation[@"bytes"] unsignedLongLongValue],destination=[operation[@"destinationOffset"] unsignedLongLongValue];
@@ -205,4 +210,11 @@ static NSError *metal_queue_error(NSString *message,NSInteger code=MTLCommandBuf
             [NSException raise:NSInvalidArgumentException format:@"Invalid Metal fill range/owner/alignment"];
     }
 }
+#if !defined(SWEET_METAL_NO_COMPUTE)
+- (void)generateMipmapsForTexture:(id<MTLTexture>)texture
+{if(_ended || !record_metal_mipmaps(_commands,texture))[NSException raise:NSInvalidArgumentException format:@"Invalid Metal mipmap texture/state/owner"];
+}
+#endif
+- (void)doesNotRecognizeSelector:(SEL)selector
+{fprintf(stderr,"SWEET METAL missing class=blit selector=%s original_exception=1\n",sel_getName(selector));[super doesNotRecognizeSelector:selector];}
 @end

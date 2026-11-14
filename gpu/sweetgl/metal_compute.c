@@ -108,6 +108,6 @@ done:
 void sweetgl_metal_program_destroy(SweetMetalProgram *program)
 {
     if(!program)return;pthread_mutex_lock(&sweet_metal_shader_gate);struct st_context *previous=st_api_get_current();
-    sweetgl_make_current(program->context);glDeleteProgram(program->program);sweetgl_make_current(NULL);sweetgl_destroy(program->context);
+    sweetgl_make_current(program->context);glDeleteProgram(program->program);sweet_metal_shader_cache_dispose(&program->cache);sweetgl_make_current(NULL);sweetgl_destroy(program->context);
     sweetgl_internal_restore(previous);free(program);pthread_mutex_unlock(&sweet_metal_shader_gate);
 }

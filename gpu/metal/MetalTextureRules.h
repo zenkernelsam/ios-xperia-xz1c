@@ -27,3 +27,15 @@ inline bool sweet_texture_region(const SweetTextureLayout &layout,uint64_t x,uin
     uint64_t bytes=width*layout.bytes_per_pixel;if(row_bytes<bytes || (height-1 && row_bytes>(UINT64_MAX-bytes)/(height-1)))return false;
     offset=layout.offset+y*layout.pitch+x*layout.bytes_per_pixel;source_bytes=(height-1)*row_bytes+bytes;return true;
 }
+// Each original linear level has its own64B pitch; no driver may write its padding.
+inline bool sweet_texture_chain(uint64_t width,uint64_t height,uint32_t format,uint64_t offset,uint64_t pitch,
+    uint32_t count,uint64_t capacity,SweetTextureLayout levels[15],uint64_t &bytes)
+{
+    bytes=0;if(!count || count>15)return false;unsigned maximum=1;uint64_t extent=width>height?width:height;
+    while(extent>1){extent>>=1;++maximum;}if(count>maximum)return false;
+    uint64_t origin=offset;for(unsigned level=0;level<count;++level){
+        if(!sweet_texture_layout(width,height,format,offset,pitch,capacity,levels[level]))return false;
+        offset+=levels[level].bytes;width=width>1?width/2:1;height=height>1?height/2:1;
+        pitch=(width*sweet_texture_pixel_bytes(format)+63)&~UINT64_C(63);
+    }bytes=offset-origin;return true;
+}

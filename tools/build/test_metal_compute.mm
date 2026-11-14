@@ -37,6 +37,7 @@ extern "C" SweetMetalProgram *sweetgl_metal_render_create(const char *,const cha
 extern "C" int sweetgl_metal_render_draw(SweetMetalProgram *,const SweetRenderPass *,const SweetRenderDraw *,const SweetShaderBufferBinding *,uint32_t,
     const SweetShaderTextureBinding *,uint32_t,const SweetShaderSamplerBinding *,uint32_t,uint32_t *){assert(!"compute test does not render");return -EINVAL;}
 extern "C" int sweetgl_metal_render_clear(const SweetRenderPass *,uint32_t *){assert(!"compute test does not clear");return -EINVAL;}
+extern "C" int sweetgl_metal_texture_mipmaps(const SweetShaderTextureBinding *,uint32_t *){assert(!"compute test does not generate mips");return -EINVAL;}
 static void exception(void(^action)(void)){bool raised=false;@try{action();}@catch(NSException *e){(void)e;raised=true;}assert(raised);}
 int main(int argc,char **argv){assert(argc==2);@autoreleasepool{
     NSData *bytes=[NSData dataWithContentsOfFile:[NSString stringWithUTF8String:argv[1]]];assert(bytes);

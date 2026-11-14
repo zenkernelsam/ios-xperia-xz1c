@@ -7,9 +7,12 @@ extern "C" {
 #endif
 typedef struct SweetMetalProgram SweetMetalProgram;
 typedef struct SweetShaderBufferBinding {uint32_t handle,index;uint64_t offset,bytes;} SweetShaderBufferBinding;
+typedef struct SweetShaderTextureMip {uint32_t handle,width,height,pitch;uint64_t offset;} SweetShaderTextureMip;
 typedef struct SweetShaderTextureBinding {
     uint32_t handle,index,stage,width,height,pitch,format,usage;
     uint64_t offset;
+    uint32_t mip_count,reserved;
+    SweetShaderTextureMip mips[14];
 } SweetShaderTextureBinding;
 typedef struct SweetShaderSamplerBinding {
     uint32_t index,stage,min_filter,mag_filter,mip_filter,address_s,address_t,normalized;
@@ -43,6 +46,7 @@ SWEET_METAL_SHADER_API int sweetgl_metal_render_draw(SweetMetalProgram *program,
     const SweetShaderTextureBinding *textures,uint32_t texture_count,const SweetShaderSamplerBinding *samplers,
     uint32_t sampler_count,uint32_t *sequence);
 SWEET_METAL_SHADER_API int sweetgl_metal_render_clear(const SweetRenderPass *pass,uint32_t *sequence);
+SWEET_METAL_SHADER_API int sweetgl_metal_texture_mipmaps(const SweetShaderTextureBinding *texture,uint32_t *sequence);
 #ifdef __cplusplus
 }
 #endif

@@ -39,6 +39,9 @@
 #if defined(SWEET_METAL_SURFACE_PROBE)
 #include "MetalSurfaceProbe.h"
 #endif
+#if defined(SWEET_METAL_MIP_PROBE)
+#include "MetalMipProbe.h"
+#endif
 
 #if defined(LILAC_EXCEPTION_TEST)
 struct MetalABIHostLimits { uint32_t fields[63];uint64_t maxBufferLength; };
@@ -198,6 +201,9 @@ static void install_observer(void)
 #endif
 #if defined(SWEET_METAL_SURFACE_PROBE)
     native_probes_valid=metal_surface_probe(diagnostic) && native_probes_valid;
+#endif
+#if defined(SWEET_METAL_MIP_PROBE)
+    native_probes_valid=metal_mip_probe(diagnostic) && native_probes_valid;
 #endif
 #if defined(SWEET_METAL_DISCOVERY_PROBE)
     if(native_probes_valid)(void)metal_discovery_probe(diagnostic);

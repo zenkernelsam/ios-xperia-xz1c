@@ -22,6 +22,7 @@ extern "C" void sweetgl_metal_program_destroy(SweetMetalProgram *program){delete
 extern "C" SweetMetalProgram *sweetgl_metal_render_create(const char *,const char *,const SweetRenderPipelineConfig *,char *,size_t){return nullptr;}
 extern "C" int sweetgl_metal_render_draw(SweetMetalProgram *,const SweetRenderPass *,const SweetRenderDraw *,const SweetShaderBufferBinding *,uint32_t,const SweetShaderTextureBinding *,uint32_t,const SweetShaderSamplerBinding *,uint32_t,uint32_t *){return -EINVAL;}
 extern "C" int sweetgl_metal_render_clear(const SweetRenderPass *,uint32_t *){return -EINVAL;}
+extern "C" int sweetgl_metal_texture_mipmaps(const SweetShaderTextureBinding *,uint32_t *){return -EINVAL;}
 int main(int argc,char **argv){assert(argc==2);@autoreleasepool{
     assert(native_constant_abi());NSError *error=nil;id<MTLDevice> device=SweetMTLCreateDevice(&error);assert(device && !error);
     assert(!SweetMTLCreateRegisteredDevice(&error) && error);error=nil;

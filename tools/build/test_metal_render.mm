@@ -59,6 +59,15 @@ extern "C" int sweetgl_metal_render_draw(SweetMetalProgram *program,const SweetR
     ++draws;*fence=++sequence;return 0;
 }
 extern "C" int sweetgl_metal_render_clear(const SweetRenderPass *pass,uint32_t *fence){assert(pass->load_action==2 && backing.count(pass->target.handle));++clears;*fence=++sequence;return 0;}
+static unsigned mipCalls;static bool mipFail;
+extern "C" int sweetgl_metal_texture_mipmaps(const SweetShaderTextureBinding *texture,uint32_t *fence)
+{
+    assert(texture && texture->mip_count==5 && !texture->reserved && texture->width==17 && texture->height==9);
+    assert(backing.count(texture->handle));unsigned width=8,height=4;uint64_t offset=texture->mips[0].offset;
+    for(unsigned level=0;level<4;++level){auto &mip=texture->mips[level];assert(backing.count(mip.handle) && mip.width==width && mip.height==height && mip.pitch==64 && mip.offset==offset);
+        offset+=height*64;width=width>1?width/2:1;height=height>1?height/2:1;}
+    ++mipCalls;*fence=mipFail?0:1234;return mipFail?-EIO:0;
+}
 static void exception(void(^action)(void)){bool raised=false;@try{action();}@catch(NSException *e){(void)e;raised=true;}assert(raised);}
 static MTLTextureDescriptor *descriptor(unsigned width,unsigned height)
 {
@@ -87,7 +96,8 @@ static void textureRegions(id<MTLDevice> device)
         exception(^{[texture replaceRegion:region mipmapLevel:0 slice:1 withBytes:sourcePointer bytesPerRow:32 bytesPerImage:84];});
         exception(^{[texture getBytes:outputPointer bytesPerRow:48 bytesPerImage:115 fromRegion:region mipmapLevel:0 slice:0];});
         [buffer release];assert(texture.device==device && texture.buffer.contents==original);
-        [texture release];desc.storageMode=MTLStorageModePrivate;assert(![device newTextureWithDescriptor:desc]);
+        [texture release];desc.storageMode=MTLStorageModePrivate;id<MTLTexture> privateTexture=[device newTextureWithDescriptor:desc];assert(privateTexture && !privateTexture.buffer);
+        exception(^{[privateTexture getBytes:outputPointer bytesPerRow:48 fromRegion:region mipmapLevel:0];});[privateTexture release];
         desc.storageMode=MTLStorageModeShared;desc.width=0;assert(![device newTextureWithDescriptor:desc]);[desc release];
     }
     assert(device.currentAllocatedSize==0 && backing.empty());
@@ -114,17 +124,46 @@ static void surfaceRegions(id<MTLDevice> device)
             if(row>=2 && row<5 && column>=4 && column<24)expected=source[(row-2)*32+column-4];assert(original[i]==expected);}
         for(unsigned i=0;i<160;++i){unsigned char expected=0xe7;if(i>=8){unsigned row=(i-8)/48,column=(i-8)%48;
             if(row<3 && column<20)expected=source[row*32+column];}assert(output[i]==expected);}
-        desc.storageMode=MTLStorageModePrivate;id<MTLTexture> privateTexture=[device newTextureWithDescriptor:desc iosurface:texture.iosurface plane:0];assert(privateTexture && privateTexture.storageMode==MTLStorageModePrivate);
+        desc.storageMode=MTLStorageModePrivate;desc.mipmapLevelCount=5;id<MTLTexture> privateTexture=[device newTextureWithDescriptor:desc iosurface:texture.iosurface plane:0];assert(privateTexture && privateTexture.storageMode==MTLStorageModePrivate && privateTexture.mipmapLevelCount==5);
         const unsigned char *input=source;unsigned char *out=output;
         exception(^{[privateTexture replaceRegion:region mipmapLevel:0 withBytes:input bytesPerRow:32];});
         exception(^{[privateTexture getBytes:out bytesPerRow:48 fromRegion:region mipmapLevel:0];});
-        [texture release];assert(IOSurfaceGetBaseAddress(privateTexture.iosurface)==original);[privateTexture release];[desc release];
+        [texture release];assert(IOSurfaceGetBaseAddress(privateTexture.iosurface)==original);
+        id<MTLCommandQueue> queue=[device newCommandQueue];id<MTLCommandBuffer> commands=[[queue commandBuffer] retain];auto encoder=[commands blitCommandEncoder];
+        [encoder generateMipmapsForTexture:privateTexture];[encoder endEncoding];[privateTexture release];[commands commit];[commands waitUntilCompleted];
+        uint32_t fence=0,operations=0;assert(SweetMTLCommandResult(commands,&fence,&operations) && fence==1234 && operations==4);[commands release];[queue release];[desc release];
     }
     assert(device.currentAllocatedSize==0 && backing.empty() && imported.empty());
     puts("actual host IOSurface texture: native pages, regions/padding, caller release, private CPU rejection, import rollback and final lifetime PASS; GPU transport stub only");
 }
+static void mipmapObjects(id<MTLDevice> device)
+{
+    unsigned before=mipCalls;
+    @autoreleasepool{
+        auto d=descriptor(17,9);d.mipmapLevelCount=5;id<MTLBuffer> raw=[device newBufferWithLength:1728 options:0];memset(raw.contents,0xa5,1728);
+        id<MTLTexture> texture=[raw newTextureWithDescriptor:d offset:64 bytesPerRow:128];assert(texture && texture.mipmapLevelCount==5);
+        d.mipmapLevelCount=6;assert(![device newTextureWithDescriptor:d]);d.mipmapLevelCount=5;
+        unsigned char upload[32],output[64];for(unsigned i=0;i<32;++i)upload[i]=(unsigned char)(i*7);memset(output,0xe7,64);
+        [texture replaceRegion:MTLRegionMake2D(0,0,4,2) mipmapLevel:2 withBytes:upload bytesPerRow:16];
+        [texture getBytes:output bytesPerRow:32 fromRegion:MTLRegionMake2D(0,0,4,2) mipmapLevel:2];
+        auto bytes=(unsigned char *)raw.contents;for(unsigned i=0;i<1728;++i){unsigned char expected=0xa5;
+            if(i>=1472 && i<1600){unsigned row=(i-1472)/64,column=(i-1472)%64;if(column<16)expected=upload[row*16+column];}assert(bytes[i]==expected);}
+        for(unsigned i=0;i<64;++i)assert(output[i]==(i%32<16?upload[i/32*16+i%32]:0xe7));
+        const unsigned char *input=upload;exception(^{[texture replaceRegion:MTLRegionMake2D(0,0,1,1) mipmapLevel:5 withBytes:input bytesPerRow:4];});
+        auto filter=[MTLSamplerDescriptor new];filter.mipFilter=MTLSamplerMipFilterLinear;id<MTLSamplerState> sampler=[device newSamplerStateWithDescriptor:filter];assert(sampler);[sampler release];[filter release];
+        id<MTLCommandQueue> queue=[device newCommandQueue];id<MTLCommandBuffer> commands=[[queue commandBuffer] retain];auto encoder=[commands blitCommandEncoder];
+        [encoder generateMipmapsForTexture:texture];[encoder endEncoding];exception(^{[encoder generateMipmapsForTexture:texture];});
+        [texture release];[raw release];assert(device.currentAllocatedSize==16384);[commands commit];[commands waitUntilCompleted];
+        uint32_t fence=0,operations=0;assert(SweetMTLCommandResult(commands,&fence,&operations) && fence==1234 && operations==4 && mipCalls==before+1);
+        [commands release];assert(backing.empty() && device.currentAllocatedSize==0);
+        d.storageMode=MTLStorageModePrivate;texture=[device newTextureWithDescriptor:d];assert(texture && !texture.buffer && texture.storageMode==MTLStorageModePrivate);
+        commands=[[queue commandBuffer] retain];encoder=[commands blitCommandEncoder];[encoder generateMipmapsForTexture:texture];[encoder endEncoding];[texture release];
+        mipFail=true;[commands commit];[commands waitUntilCompleted];mipFail=false;assert(commands.status==MTLCommandBufferStatusError && commands.error && !SweetMTLCommandResult(commands,&fence,&operations));
+        [commands release];[queue release];[d release];
+    }assert(backing.empty() && device.currentAllocatedSize==0);puts("actual native mip objects: chain bounds/regions, retained queue snapshot, private texture CPU denial and GPU failure retirement PASS; transport stub only");
+}
 int main(int argc,char **argv){assert(argc==2);@autoreleasepool{
-    NSError *error=nil;id<MTLDevice> device=SweetMTLCreateDevice(&error);assert(device && !error);textureRegions(device);surfaceRegions(device);
+    NSError *error=nil;id<MTLDevice> device=SweetMTLCreateDevice(&error);assert(device && !error);textureRegions(device);surfaceRegions(device);mipmapObjects(device);
     NSData *bytes=[NSData dataWithContentsOfFile:[NSString stringWithUTF8String:argv[1]]];assert(bytes);
     dispatch_data_t data=dispatch_data_create(bytes.bytes,bytes.length,NULL,DISPATCH_DATA_DESTRUCTOR_DEFAULT);
     id<MTLLibrary> library=[device newLibraryWithData:data error:&error];dispatch_release(data);assert(library && !error && library.functionNames.count==4);

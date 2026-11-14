@@ -207,7 +207,7 @@ static bool native_base_available(void)
 #if !defined(SWEET_METAL_NO_COMPUTE)
 @implementation SweetMTLBuffer (Textures)
 - (id<MTLTexture>)newTextureWithDescriptor:(MTLTextureDescriptor *)descriptor offset:(NSUInteger)offset bytesPerRow:(NSUInteger)pitch
-{return [[SweetMTLTexture alloc] initWithBuffer:self descriptor:descriptor offset:offset pitch:pitch];}
+{return descriptor.storageMode==MTLStorageModeShared?[[SweetMTLTexture alloc] initWithBuffer:self descriptor:descriptor offset:offset pitch:pitch]:nil;}
 @end
 @implementation SweetMTLDevice (Rendering)
 - (id<MTLTexture>)newTextureWithDescriptor:(MTLTextureDescriptor *)descriptor
@@ -216,9 +216,9 @@ static bool native_base_available(void)
     uint32_t pixel=sweet_texture_pixel_bytes((uint32_t)descriptor.pixelFormat);
     if(!pixel || descriptor.width>16384 || descriptor.height>16384)return nil;
     uint64_t pitch=(descriptor.width*pixel+63)&~UINT64_C(63);
-    SweetTextureLayout layout;
-    if(!sweet_texture_layout(descriptor.width,descriptor.height,(uint32_t)descriptor.pixelFormat,0,pitch,UINT64_C(256)<<20,layout))return nil;
-    auto buffer=(SweetMTLBuffer *)[self newBufferWithLength:layout.bytes options:descriptor.resourceOptions];
+    SweetTextureLayout levels[15];uint64_t bytes=0;
+    if(!sweet_texture_chain(descriptor.width,descriptor.height,(uint32_t)descriptor.pixelFormat,0,pitch,descriptor.mipmapLevelCount,UINT64_C(256)<<20,levels,bytes))return nil;
+    auto buffer=(SweetMTLBuffer *)[self newBufferWithLength:bytes options:descriptor.resourceOptions&~MTLResourceStorageModeMask];
     auto texture=buffer?[[SweetMTLTexture alloc] initWithBuffer:buffer descriptor:descriptor offset:0 pitch:pitch]:nil;
     [buffer release];return texture;
 }

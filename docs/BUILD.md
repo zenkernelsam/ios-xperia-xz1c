@@ -53,3 +53,5 @@ Native function constants的实际门槛见METAL-CONSTANTS.md：make_air_fixture
 原native系统登记探针使用build_exception_observer.py --register-device，仅Aegir且同进程先验GPU都通过。构建/独立STOP证据和真实格式卡点见METAL-DISCOVERY.md；回程四标记/健康/旧worker退出仍为强制条件，不能用原设备登记通过代替shader/完整面板验收。
 
 XR格式的固定参考、LGPL源与原GPU字节见METAL-XR.md。单plane原IOSurface的构建/验收见METAL-IOSURFACE.md；build_exception_observer.py --surface-probe需--render-fixture，可同时添加--xr-probe。新GLES库先CPU/GPU，添加新Metal/observer包后再CPU/GPU，精确--gles-evidence仍强制。当前只支持已界定的单mip线性2D，并未实现generateMipmapsForTexture:。
+
+mipmap最新实现见METAL-MIPMAPS.md，取代上段单mip限制：源码已支持界定的多级线性2D、Private、逐级region和GPU生成/LOD，硬件整组验收仍未完成。build_exception_observer.py --mip-probe使用固定render fixture，check_mip_gles.py从生产源码提取XR shader并在WSL Mesa验六级/层间采样。r1/r2同步Aegir ctor测试被原扩展check-in timeout打断；保持失败记录和同库准入，下一调整诊断执行位置后继续完整覆盖。
