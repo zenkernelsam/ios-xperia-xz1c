@@ -1,0 +1,28 @@
+{
+  "revision": 1,
+  "version": 729,
+  "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+  "gles_library_sha256": "0a2c7e698ae59a1afe8608c884f59e87a344a3952e9b4d52899923b9e295b3db",
+  "metal_library_sha256": "be56ad130f5a94bb0a1ec4bfabefab52b492a58d1b566222efe7384cac1ae749",
+  "metal_source_files_sha256": "def4a715663c985b846328c081e10c5884b81911522d2d04341124981ca7a00d",
+  "native_run_token": "58294c8e0de3c139",
+  "native_run_image_sha256": "e71cbdc768b2bffd2a4c081d8c9781231f880a81ef3f82c0ab4a49c12647a24e",
+  "native_run_log_sha256": "07fb2c39f2cef68a6be6dd0ec5054b0780d7a2e1fa51b2ef386315b92003164a",
+  "native_run_process": "backboardd",
+  "native_tests": [
+    "Metal_resources",
+    "Metal_queue",
+    "AIR_compute",
+    "AIR_render",
+    "AIR_constants",
+    "AIR_XR",
+    "Metal_IOSurface",
+    "Metal_mipmaps",
+    "AIR_narrow",
+    "AIR_half",
+    "Metal_MRT",
+    "AIR_sampler",
+    "Program_cache",
+    "AIR_static_half"
+  ]
+}

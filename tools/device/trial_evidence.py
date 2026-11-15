@@ -29,6 +29,7 @@ from metal_mrt_evidence import verify as verify_metal_mrt
 from ramcpu_prefix_evidence import verify as verify_ramcpu_prefix
 from air_sampler_evidence import verify as verify_air_sampler
 from program_cache_evidence import verify as verify_program_cache
+from static_half_evidence import verify as verify_static_half
 
 def verify(directory,mode,kernel_sha=None,version=None):
     root=Path(directory)
@@ -112,6 +113,7 @@ def verify(directory,mode,kernel_sha=None,version=None):
                 if a['exception_observer'].get('AIR_MRT_probe'):exceptions['Metal_MRT']=verify_metal_mrt(text,a['token'],a['exception_observer']['AIR_MRT_fixture'])
                 if a['exception_observer'].get('AIR_sampler_probe'):exceptions['AIR_sampler']=verify_air_sampler(text,a['token'],a['exception_observer']['AIR_sampler_fixture'])
                 if a['exception_observer'].get('program_cache_probe'):exceptions['Program_cache']=verify_program_cache(text,a['token'],a['exception_observer']['AIR_sampler_fixture'])
+                if a['exception_observer'].get('AIR_static_half_probe'):exceptions['AIR_static_half']=verify_static_half(text,a['token'],a['exception_observer']['AIR_static_half_fixture'])
     boundary='serialized=1' if mode in ('ready','gpu') else 'serialized=0'
     assert re.search(r'SWEET LOOP MAP_BOUNDARY token='+a['token']+' '+boundary+r' claimed=1',scope)
     report={'version':a['version'],'mode':mode,'source':str(root.resolve()),'token':a['token'],'kernel_sha256':a['kernel_sha256'],

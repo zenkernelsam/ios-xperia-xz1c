@@ -23,8 +23,9 @@ def materialize(output):
 #include "AIRRuntime.cpp"
 ''')
     shutil.copy2(root/'gpu/metal/air/LLVM16Compat.h',output/'LLVM16Compat.h')
+    shutil.copy2(root/'gpu/metal/air/StaticHalfBits.h',output/'StaticHalfBits.h')
     directory='--directory='+output.relative_to(root).as_posix()
-    adaptations=[root/'gpu/metal/air'/name for name in ('lilac-air-conversion.patch','lilac-air-half-storage.patch')]
+    adaptations=[root/'gpu/metal/air'/name for name in ('lilac-air-conversion.patch','lilac-air-half-storage.patch','lilac-air-static-half-bits.patch')]
     for adaptation in adaptations:
         subprocess.run(['git','apply','--check',directory,str(adaptation)],cwd=root,check=True)
         subprocess.run(['git','apply',directory,str(adaptation)],cwd=root,check=True)

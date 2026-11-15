@@ -62,4 +62,6 @@ if air_manifest:
         assert manifest['frontend_build_binding'].get('program_cache_build_identity')
         report.update(native_program_binary_cache=True,actual_fresh_context_program_binary_GPU_acceptance_pending=True,
                       immutable_program_cache_identity=manifest['frontend_build_binding']['program_cache_build_identity']['build_identity'])
+if air_manifest and air_manifest.get('local_static_half_storage_reinterpretation'):
+    report.update(native_static_half_bits=True,actual_static_half_GPU_acceptance_pending=True)
 (out/'manifest.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print(json.dumps(report))

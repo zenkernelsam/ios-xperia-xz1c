@@ -67,6 +67,7 @@ class DiagnosticPolicy(LogPolicy):
             if re.search(r'SWEET METAL MRT END result=[1-9]',line):self.recoverable='METAL_MRT_PROBE_FAILED'
             if re.search(r'SWEET AIR SAMPLER END result=[1-9]',line):self.recoverable='AIR_SAMPLER_PROBE_FAILED'
             if re.search(r'SWEET PROGRAM CACHE (?:roundtrip [^\r\n]*valid=0|PRIME END result=[1-9]|PRIME caller result=-)',line):self.recoverable='PROGRAM_CACHE_PROBE_FAILED'
+            if re.search(r'SWEET AIR STATIC HALF END result=[1-9]',line):self.recoverable='AIR_STATIC_HALF_PROBE_FAILED'
             if re.search(r'SWEET METAL PROBES END process=backboardd result=[1-9]',line):self.recoverable='BACKGROUND_METAL_SUITE_FAILED'
             if re.search(r'SWEET GLES SUITE END result=[1-9]',line):self.recoverable='GPU_SELFTEST_FAILED'
             if 'CRASH AegirPoster reason ns 7 code 0x3: extension check-in timeout' in line:self.recoverable='EXTENSION_CHECKIN_TIMEOUT'

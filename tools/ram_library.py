@@ -105,11 +105,16 @@ def load(folder,expected=None):
                 assert observer.get('AIR_sampler_probe') and observer['metal_resources'].get('native_program_binary_cache')
             if observer.get('program_cache_prime'):
                 assert observer.get('program_cache_probe') and observer.get('target_process')=='backboardd'
+            if observer.get('AIR_static_half_probe'):
+                sources.add('gpu/diagnostics/MetalStaticHalfProbe.h')
+                assert observer.get('AIR_sampler_probe') and observer['AIR_static_half_fixture']['fixture']=='static-half'
+                assert observer['AIR_static_half_fixture']['authored_semantic_fixture'] and observer['metal_resources'].get('native_static_half_bits')
             assert set(observer['source_files'])==sources
             assert observer['source_files'][observer['source']]==observer['source_sha256']
     if 'metal_resources' in m:
         names.add('MetalResources.dylib');resources=m['metal_resources']
         assert (m['exception_observer'].get('metal_resource_probe') or m['exception_observer'].get('registration_only')) and m['exception_observer']['metal_resources']==resources
+        if resources.get('native_static_half_bits'):assert observer.get('registration_only') or observer.get('AIR_static_half_probe'),'New static-half RAM package lacks its own probe'
         assert resources['only_explicit_resource_factory'] and resources['system_Metal_plugin_not_advertised']
         assert m['files']['MetalResources.dylib']['sha256']==resources['library_sha256']
         assert m['library_sha256']==resources['gles_library_sha256']

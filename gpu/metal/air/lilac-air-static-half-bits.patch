@@ -1,0 +1,19 @@
+diff --git a/AIRSpecialization.h b/AIRSpecialization.h
+--- a/AIRSpecialization.h
++++ b/AIRSpecialization.h
+@@ -1,6 +1,7 @@
+ // SPDX-License-Identifier: BSD-2-Clause
+ #pragma once
+ #include "FunctionConstants.h"
++#include "StaticHalfBits.h"
+ #include <llvm-c/Core.h>
+ #include <llvm-c/Error.h>
+ #include <llvm-c/Target.h>
+@@ -184,6 +185,7 @@
+         auto source=LLVMTypeOf(initial);uint64_t size=LLVMABISizeOfType(layout.value,source),bytes=LLVMABISizeOfType(layout.value,type);
+         if(offset>size || bytes>size-offset)fail("static initializer memory access out of bounds");
+         if(!offset && source==type)return replacement?replacement:initial;
++        if(auto bits=SweetAIR::staticHalfBits(initial,offset,size,bytes,type,replacement))return bits;
+         auto kind=LLVMGetTypeKind(source);unsigned count=kind==LLVMStructTypeKind?LLVMCountStructElementTypes(source):
+             kind==LLVMArrayTypeKind?LLVMGetArrayLength(source):kind==LLVMVectorTypeKind?LLVMGetVectorSize(source):0;
+         if(!count || count>4096)fail("static initializer memory type mismatch");

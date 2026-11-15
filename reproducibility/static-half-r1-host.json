@@ -1,0 +1,30 @@
+{
+  "source_files": {
+    "gpu/metal/air/StaticHalfBits.h": "f78d78cc0e41b67ffdd1ba32359dd2a45d9e0036b96d50fbdd27b50cc4121bf4",
+    "gpu/metal/air/lilac-air-static-half-bits.patch": "ede245d9c575e3789e10182de7ecf8454beb8aeaf983b9abcd282806831067bf",
+    "tools/build/test_static_half_bits.cpp": "02321e6d44d1946304381c5146c9de16b7123f9d38d0e80ff975ad87bb663443",
+    "tools/build/air_specialize_cli.cpp": "89a86cae635e8b3de52f39fa7067e56f54225ea1574a5fa2e728ecf09bdd65e1"
+  },
+  "actual_LLVM_ASan_UBSan_half_bits": 65536,
+  "read_write_paths": 4,
+  "actual_bit_checks": 262144,
+  "signed_zero_subnormal_infinity_all_NaN_payloads_preserved": true,
+  "offset_size_wrong_type_vector_rejections_passed": true,
+  "original_required_and_all_representative_constants_specialization_passed": {
+    "aegir_earth_fsh": {
+      "original_AIR_sha256": "d9c789de09f3dabc46b36ae9d6b11f7895be11038f23d7c2fb5ae39143ef7972",
+      "representative_ESSL_sha256": "f546f3c35f1186042e999a03e9d97fd09d94227ddad3b9c683716b7c4d1749ba",
+      "representative_ESSL_bytes": 87870
+    },
+    "aegir_post_fsh": {
+      "original_AIR_sha256": "b9a5451e796b0634fe8564a166649bc69215422f43d0a9fe4d83bc648d67cdae",
+      "representative_ESSL_sha256": "13a81439dd2bfa8f5986e80381c63116dea57ecd80c7a1daff79df79e6da8041",
+      "representative_ESSL_bytes": 10601
+    }
+  },
+  "authored_static_half_fixture_actual_specialization_and_ESSL_passed": true,
+  "representative_constants_not_runtime_values": true,
+  "phone_hardware_acceptance_pending": false,
+  "device_operations_for_host_checks": 0,
+  "phone_hardware_proof": "reproducibility/v729-static-half-r1-native-proof.json"
+}

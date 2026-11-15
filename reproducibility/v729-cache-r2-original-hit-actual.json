@@ -1,0 +1,22 @@
+{
+  "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+  "token": "3e81fb7337e3132f",
+  "raw_sha256": "64c33fe5b78f680c3d7b4f423f0b9aa090dbbc9b69813ab6fe7d643426cc4814",
+  "original_starfield_successful_binary_restores": 4,
+  "first_pipeline_original_nonnull_no_error": true,
+  "matching_original_source_hashes": {
+    "vertex": "7b9dad5e6e1c3da0",
+    "fragment": "ec99e82c9e2dd6a3"
+  },
+  "actual_binary_hits_by_bytes": {
+    "89821": 4,
+    "84333": 2,
+    "18929": 2
+  },
+  "cold_GL_compile_link_not_repeated_for_starfield": true,
+  "original_result_preserved": "REVISE",
+  "original_extension_timeout_count": 1,
+  "new_earth_post_static_memory_error_preserved": true,
+  "complete_return_seconds_with_health": 39.51600000006147,
+  "full_UI_not_achieved": true
+}

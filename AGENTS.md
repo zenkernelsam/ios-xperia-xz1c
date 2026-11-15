@@ -4,15 +4,15 @@
 
 ## 当前基线
 
-2026-11-16 cache-r2：kernel v729/774b5efd保持81源，GLES0a2c7e69、Metal87b91b14完整后台13组实机通过。原资源/queue/compute/render/constants/XR/Surface/mipmap/narrow/half/MRT/sampler全部保持，新增标准glProgramBinary在3个fresh pipeline中实际restore。sampler147456B的原source/target/vertex/全部padding、1881pixels零差异，序列919/925/929递增、最终分配0；half131072B与MRT1245184B仍逐原byte/NaN类别/payload/fence核验。38.984秒完整PON06回程、健康30秒、原worker退出。精确完整proof见reproducibility/v729-cache-r2-native-proof.json；旧12组proof不能准入缓存库。
+2026-11-16 static-half-r1：kernel v729/774b5efd保持81源、GLES0a2c7e69保持，Metalbe56ad13完整后台14组实机通过。新增完整2B half/i16常量内存双向按位读写，12case共196608B原输出/前尾guard/NaN位型/fence/创建pipeline后reset的snapshot零差异，序列850..872递增、最终allocated0。原half131072B、MRT1245184B、sampler147456B及3次fresh program binary restore等原13组全部保持。38.860秒完整PON06回程、健康30秒、原worker退出，proof见reproducibility/v729-static-half-r1-native-proof.json；旧13组proof不能准入新静态half库。
 
-Mesa禁用disk-cache时原程序二进制格式数为0，且driver SHA输出空stub未初始化；新平台hook使用实际frontend源/Mesa归档/defines与context/API/FD540身份，仅本FD540开放标准binary。原source/config/key/payload均校验；缺失request在实际冷链接前保存，已有文件不覆盖不删除。完整backboard primer最多8项，只处理本identity真实缺bin请求，不替换原绘制或延长原check-in。原cache-r1失败/raw及源hash保留；详情见docs/PROGRAM-CACHE.md。
+StaticHalfBits.h和独立patch仅处理完整binary16标量的half/i16等宽访问，LLVMConstBitCast保留原位型；非零offset/不同size/类型/vector等拒绝，原bounds/跨member/padding检查保持。固定BSD-2-Clause ios_sagit引用源码不改。实际LLVM/ASan/UBSan全65536位型×4路径262144检查通过；原earth/post代表常量AIR/ESSL和作者fixture已主机通过，不能推断运行时原常量/面板。详见docs/AIR-STATIC-HALF.md。
 
-本包CPU的独立后处理原失败保留：两个READY中第二段只重放3081B完全相同的启动前缀，库只在当前LIVE后实际读取一次。新validator要求原byte相等、完整行/明确marker边界、唯一banner/current token/精确长度FNV只读状态与单次读；10项故障/正常回放测试通过，原raw/results/stdout不改、不重发。独立记录见reproducibility/ramcpu-partial-replay-r1.json。
+cache-r2已在原Aegir实际恢复星空89,821B并返回nonnull，云层84,333B与threshold18,929B也成功创建/恢复。原r2 REVISE/raw保持，完整UI仍因earth/post static initializer memory type mismatch而未完成。该错已精确复现为half→i16、offset0、size2，现经14组硬件验证；下一新原Aegir包CPU/单发GPU，嵌入新14组raw proof。真实cache/prime流程见PROGRAM-CACHE；仅实际runtime request、同build/source/config/payload身份，旧文件不覆盖不删，不延长check-in。
 
-原Aegir仍需独立验收。r7原vertex/fragment compile成功后在GLSL/NIR prelink/gl_nir_opts超出check-in，尚未见IR3；原REVISE不改，符号化见original-link-nir-stack-r1.json。下一先本包CPU/原Aegir单发GPU，用同kernel/GLES/Metal/source-map的13组raw证明准入。必要时以真实runtime request后台预热，再验原cache hit/pipeline/draw/present与面板。完整壁纸/时间日期/UI/FPS/睡眠/声音/无线等继续active，不能用离屏或缓存shader通过替代系统完成。实际token/in-flight以STATUS为准。
+CPU前缀回放校验继续核验原bytes/唯一banner/current token/明确marker/单次库读与完整回程。原postprocessing失败、3,081B partial replay证据和原raw/results/stdout保留，不重发旧包；见ramcpu-partial-replay-r1.json。实际token/in-flight以STATUS为准。
 
-历史AGENTS/STATUS全文归档docs/archive/20261116及更早日期，不改原失败和日志。sampler-r1旧基线和原proof保持，sampler语义来源固定BSD-2-Clause ios_sagit；half RTE和原constexpr语义继续以原字节验证。
+完整壁纸/时间日期/UI/FPS/睡眠/声音/无线及广义texture/depth/stencil/MSAA继续active。主机/离屏/缓存/控制器PASS不能替代原系统绘制与真实面板。历史AGENTS/STATUS在docs/archive/20261116及更早目录，原失败/基线保持。
 
 ## 硬件与返回
 

@@ -184,10 +184,11 @@
     "metal_blit_queue_hardware_acceptance_pending": false,
     "AIR_compute_adapter_hardware_acceptance_pending": false,
     "sampler_reuse_candidate_device_acceptance_pending": false,
-    "constant_sampler_actual_native_proof": "reproducibility/v729-cache-r2-native-proof.json",
+    "constant_sampler_actual_native_proof": "reproducibility/v729-static-half-r1-native-proof.json",
     "program_cache_candidate_device_acceptance_pending": false,
     "legacy_input_source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/research/lilac-gles-program-name-reuse-20261111/sources",
-    "program_cache_actual_native_proof": "reproducibility/v729-cache-r2-native-proof.json"
+    "program_cache_actual_native_proof": "reproducibility/v729-static-half-r1-native-proof.json",
+    "static_half_actual_native_proof": "reproducibility/v729-static-half-r1-native-proof.json"
   },
   "audited_xnu_files": {
     "iokit/Kernel/arm/SweetFramebuffer.cpp": "ff93954b154cad38e620f6e3d07cfa208171b7ceeea0c5f60b5b20ae049c2ebc",

@@ -1,0 +1,58 @@
+{
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-cache-r2-registry-r2-gpu-20261116",
+  "version": 729,
+  "token": "3e81fb7337e3132f",
+  "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+  "image_sha256": "46ca4738e4d3921dfe388177de00d98d65bde399459f25f261ac820c1b99c869",
+  "log_sha256": "64c33fe5b78f680c3d7b4f423f0b9aa090dbbc9b69813ab6fe7d643426cc4814",
+  "original_result": "REVISE",
+  "original_reason": "EXTENSION_CHECKIN_TIMEOUT",
+  "actual_failures": [],
+  "native_GPU_failure_results": [],
+  "actual_program_cache_failures": [],
+  "registry_assertions": [],
+  "actual_AIR_render_failure_results": [],
+  "actual_MRT_context_capability_records": [
+    {
+      "targets": 8,
+      "fp32_rt": 1,
+      "fp32_blend": 0,
+      "fp32_image": 1,
+      "independent_enable": 1,
+      "independent_func": 1,
+      "float_blend": 0,
+      "fbfetch": 0,
+      "no_attachment": 1,
+      "fragment_images": 24,
+      "image_units": 192
+    }
+  ],
+  "actual_MRT_GL_errors": [],
+  "missing_device_API": [],
+  "original_exception_missing_API": [],
+  "original_extension_checkin_timeout_count": 1,
+  "payload_audit": {
+    "image_sha256": "46ca4738e4d3921dfe388177de00d98d65bde399459f25f261ac820c1b99c869",
+    "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+    "blob_count": 8,
+    "complete_payload_reconstructed_from_compiled_kernel": true
+  },
+  "strict_return": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "3e81fb7337e3132f",
+    "checkpoint_bytes": 401657,
+    "log_bytes": 406212,
+    "log_sha256": "64c33fe5b78f680c3d7b4f423f0b9aa090dbbc9b69813ab6fe7d643426cc4814",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      10,
+      81,
+      83
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 39.51600000006147,
+  "failed_stage_not_accepted": true
+}

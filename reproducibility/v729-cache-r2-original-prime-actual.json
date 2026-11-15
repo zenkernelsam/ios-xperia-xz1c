@@ -1,0 +1,28 @@
+{
+  "original_run_token": "0ce1588f579e33f9",
+  "original_raw_sha256": "d5538a56e65483f773551954069d791205aca6885ab797c2e9136945276ae714",
+  "prime_run_token": "ed7b9da985bcb181",
+  "prime_raw_sha256": "81fc53ad33d1b0151c4ead79655602cd89ede98ebb0071fdfb77f0c08bbd7bad",
+  "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+  "GLES_sha256": "0a2c7e698ae59a1afe8608c884f59e87a344a3952e9b4d52899923b9e295b3db",
+  "Metal_sha256": "87b91b14e557395d8b482c4bb8e0eaf10ad7624f58a8f01d5c881324d5831fac",
+  "native_source_map_sha256": "19a13ec6512b321e32982437f4a46da618f2a6790def2316c32fd1a636fd6a2f",
+  "actual_original_sources": {
+    "vertex": {
+      "bytes": 4840,
+      "fnv64": "7b9dad5e6e1c3da0"
+    },
+    "fragment": {
+      "bytes": 13074,
+      "fnv64": "ec99e82c9e2dd6a3"
+    }
+  },
+  "cold_link_wall_us": 9659070,
+  "cold_link_cpu_us": 5399684,
+  "stored_binary_bytes": 89821,
+  "stored_binary_format": "0x875f",
+  "complete_native_groups": 13,
+  "return_seconds_with_health": 37.82799999997951,
+  "original_failure_unchanged": true,
+  "full_UI_or_original_cache_hit_not_inferred": true
+}
