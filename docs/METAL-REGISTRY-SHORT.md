@@ -13,3 +13,5 @@ r2真正管线错误为aegir_pass_vsh的AIR JIT: AIR conversion type disagrees w
 构建新短observer：build_exception_observer.py --registration-only --register-device --metal-resources指定已验库 --native-proof指定复验输出，可加--pipeline-observe。先本包CPU，后GPU并同时给精确--gles-evidence与--native-evidence；所有0x06/单发/健康/原worker退出规则保留。registry_proof_evidence.py与pipeline_observer_evidence.py只证明原技术登记/错误 metadata，完整原壁纸/UI/FPS和外设仍需实机验收。
 
 r3的新narrow库原Aegir越过short2错误，转到half扩展不支持；r4在half完整实机proof准入后，原threshold实际返回nonnullpipeline。其它XR管线与原app check-in timeout仍未解决，具体边界见AIR-HALF.md；原REVISE保持。
+
+r5绑定新的完整MRT/FP32 image硬件proof（原raw重验），记录每个真实颜色附件/因素/遮罩。原starfield描述符为555与R8，后者writeMask0；新后端不再立即因单附件拒绝，但进入Mesa create能力日志后一直未返回，随后原check-in timeout。tokend766c9ef26cfb30b的399240B原raw SHA77e87e68966b91464b3cb754cb7ed74de8ba68584e805e3b7aa131509d7be920，38.687秒完整PON06回程/健康30秒/原worker退出。完整MRT原证据仍有效；原shader编译时耗与constant sampler及真实UI继续分析，不用离屏结果补原应用成功。

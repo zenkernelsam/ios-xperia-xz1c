@@ -1,0 +1,29 @@
+{
+  "original_starfield_AIR_Mac_translation_wall_seconds": 0.344,
+  "actual_generated_ESSL_bytes": 11907,
+  "actual_generated_ESSL_sha256": "c096dc8f747c184514890c6dc87b671ae6bd38a7ba5d31a904cfc14afa79c74c",
+  "host_GLES_version": "Mesa 23.2.1 / llvmpipe LLVM15",
+  "host_compile_rows": [
+    {
+      "file": "build/registry-short-r5/original-essl/aegir_pass_vsh.vert",
+      "seconds": 0.00637,
+      "valid": 1
+    },
+    {
+      "file": "build/registry-short-r5/original-essl/aegir_starfield_fsh.frag",
+      "seconds": 0.002951,
+      "valid": 1
+    }
+  ],
+  "host_link_seconds": 4.15877,
+  "host_log_sha256": "ae1aed6b03df8b7da4c6d6e6f177d138da75cad0b3aab93e9e8b72e20f019950",
+  "phone_pinned_Mesa_version": "24.3.4 / FD540",
+  "phone_original_pipeline_factory_return_not_seen_before_checkin_timeout": true,
+  "AIR_conversion_and_host_compile_are_not_phone_timing_proof": true,
+  "original_shader_bytes_remain_local": true,
+  "tools_source_files": {
+    "tools/build/profile_gles_shader.c": "5beb33e2545ba387cb9c2c17cb0e2fad190b15c3a6bfe620db31e0ce84313e51"
+  },
+  "next_work": "Profile original Mesa compile/link and half helper expansion; preserve exact half semantics and constant sampler states",
+  "device_operations": 0
+}
