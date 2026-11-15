@@ -1,0 +1,68 @@
+{
+  "source_run": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-sampler-r1-registry-gpu-20261115",
+  "raw_log_sha256": "662ccb2ca942e834036b940deb4453c8c44d9c7d6d57d7e0d1de54ac473f2441",
+  "token": "5a74bb175409f927",
+  "compile_stage_records": [
+    {
+      "stage": "vertex",
+      "wall_us": 49736,
+      "cpu_us": 49228,
+      "cpu_clock": 1,
+      "status": 1
+    },
+    {
+      "stage": "fragment",
+      "wall_us": 46415,
+      "cpu_us": 46425,
+      "cpu_clock": 1,
+      "status": 1
+    },
+    {
+      "stage": "vertex",
+      "wall_us": 54521,
+      "cpu_us": 53912,
+      "cpu_clock": 1,
+      "status": 1
+    },
+    {
+      "stage": "fragment",
+      "wall_us": 93414,
+      "cpu_us": 93415,
+      "cpu_clock": 1,
+      "status": 1
+    },
+    {
+      "stage": "vertex",
+      "wall_us": 78751,
+      "cpu_us": 75493,
+      "cpu_clock": 1,
+      "status": 1
+    },
+    {
+      "stage": "fragment",
+      "wall_us": 93848,
+      "cpu_us": 93853,
+      "cpu_clock": 1,
+      "status": 1
+    },
+    {
+      "stage": "vertex",
+      "wall_us": 96218,
+      "cpu_us": 96017,
+      "cpu_clock": 1,
+      "status": 1
+    },
+    {
+      "stage": "fragment",
+      "wall_us": 44847,
+      "cpu_us": 44824,
+      "cpu_clock": 1,
+      "status": 1
+    }
+  ],
+  "link_begin_count": 4,
+  "link_end_count": 0,
+  "pipeline_factory_return_seen": false,
+  "actual_next_blocker": "Original starfield glLinkProgram never returns before extension check-in timeout; vertex/fragment glCompileShader succeed.",
+  "full_UI_not_achieved": true
+}

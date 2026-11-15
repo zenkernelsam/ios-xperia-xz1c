@@ -1,29 +1,21 @@
 # 当前状态 — 2026-11-15
 
-当前half-link-r1优化包完整native GPU已通过，token236ebb8e9a66435b，479968B raw SHA3322990b0cc465701fc9be75b4341663bb3b50d97952aa5cdd5b45d8a3538db8；37.281秒完整PON06回程/健康30秒/原worker退出，Sony健康fastboot无in-flight。GLESa4632b32保持，新Metal28e6a132。原全部native组、half131072B含NaN/保护区与MRT1245184B通过，404allocated/released/unmapped、active/orphan/root0。新half解包findMSB及直接位型舍入主机131072用例与实际AIR验证通过；原星空主体不变，无缓存host链接5.267→1.991秒。正在构建绑定新完整proof的registry-short-r6；r5原check-in超时保留，原UI/FPS/睡眠/声音/无线继续active。
+Sony BH905ND69G 已完成 sampler-r1 registry-r7，健康fastboot，无in-flight。r7 token5a74bb175409f927、raw662ccb2ca942e834036b940deb4453c8c44d9c7d6d57d7e0d1de54ac473f2441，38.484秒完整回程。原vertex/fragment compile约45–96ms成功，glLinkProgram未在原check-in期限前返回，REVISE保留；精准卡点是link。r7 CPU tokenfb388608de24d74f完整38.188秒回程。
 
-同一新GLESa4632b32的CPU/GPU及Metal包CPU分别37.828/38.531/37.531秒完整回程。共享RenderUniformRules在生产区分真实sampler与内部uniform/image，类型/位置检查及实际主机枚举/错误image绑定拒绝通过；此次完整GPU补上了r2遗漏的生产绑定器验收。
+历史registry-short-r6：token b41991ebc88e302b，358260B raw SHA a0eb1b78d888649ca6e339ed3fdde4ada6b9093fb75a192d5d0719056e3316c4；原 starfield 首个 pipeline 未返回，Aegir check-in timeout，原 REVISE 保留。38.579 秒完整 ACK/DRAIN/RESET/FINAL_DRAIN＋连续健康30秒，单 download/boot，原 worker 已退出。相机 MJPEG 成功采到本轮画面，尚未把它作为完整 UI 通过。
 
-mrt-r2完整Metal GPU原REVISE并39.891秒完整回程保留，token402f3ed8ec46f88a。真实caps为8目标、FP32 render/image=1、blend/EXT_float_blend/fbfetch=0、无附件FBO=1、fragment images=24/image units=192。XR552清屏65536B通过，首次混色返回Darwin -45/ENOTSUP，未派发draw；原bind_samples拒绝新增内部image/uniform，r3已修订。全部原native组先前通过，r2不提升完整MRT/UI通过。详见METAL-MRT.md。
+r6 CPU token 9b34249a82fa2d1f，358745B raw SHA 7b746ce0ec6e501513203027743c47c38916109a3764a25008a56128cf49a6dd；37.25 秒完整回程。串口主动 replay 形成两个完全相同的2938B READY→库读片段；新独立验收要求原raw、明确replay标记、唯一kernel banner和相同片段，并保留两条原读记录，已重核通过。首次 WSL bash 路径错误、GPU预检遇另一fastboot设备均在任何download/boot前停止，原记录保留。
 
-同轮新GLES43ed6ab8的CPU/GPU及Metal2afbde84+新observer包CPU单发分别通过，token6d0d914413af4b4d/402b719e0aa9cc52/fedd266853ff5966，37.000/37.390/37.968秒完整回程；GLES八项、960000只读像素与203全部released/unmapped保持。主机四XR/八附件/遮罩/原低位及四重叠图元、两个实例、非零顶点起点、负色/大于1色值、原生对象ASan/UBSan通过；主机测试未覆盖真机生产绑定器的这一拒绝。
+正在直接适配开源 sampler 语义及冷编译路径。RenderSamplerRules/生产绑定器已支持AIR constexpr逻辑8..23、普通sampler、LOD/寻址/边界颜色、同一literal状态一致性及避开内部8..16纹理单元；host实际GLES/ASan/UBSan 25检查、11精确像素通过。新GLES 1c904beb及新Metal已编译；新GLES CPU token48fcf66d763eec3d完整37.532秒回程。GLES GPU token2499ad4d57eca2b7完整37.891秒回程；新原生包CPU tokenc49f90b6a9836e67完整37.000秒回程。新Metal后台GPU token2df735bb72466378已完整通过，所有原native组、sampler147456B/1881pixels、half131072B及MRT1245184B复核通过，38.719秒完整回程，旧worker已退出。原Aegir r7 CPU/GPU均已完成，原GPU REVISE/链接卡点保留；无in-flight。普通mirror-clamp元数据同步，精确half舍入使用4095＋保留低位的整数偏置，host全部131072输入通过，原starfield冷链接1.991→1.122秒。normal-half native packing实验冷链接14.212秒已撤回，未发手机。下一完善原AIR sampler后台硬件探针并重建同源包，按精确新GLES CPU/GPU、新Metal包CPU/完整native GPU→原Aegir顺序验收。
 
-mrt-r1的tokencaf703b6a68559d4、原REVISE/BACKGROUND_METAL_SUITE_FAILED保留。XR552双附件清屏65536B通过，第一混色phase返回-EIO且未记原GL错误码；40.032秒完整PON06回程。固定A5xx screen未暴露PIPE_BIND_BLENDABLE/EXT_float_blend，且无framebuffer fetch；r2增加实际能力和逐阶段GL错误日志，不提升r1为通过。新AIR dynamic8/16转换和half存储/运算/顶点片元已完整后台GPU验收；原Aegir越过两处编译错误，threshold管线实机编译成功。完整时间/日期/壁纸/UI/FPS及睡眠/声音/Wi-Fi/蓝牙仍未完成，完整目标active。
+控制器现在选原生Git Bash；针对已授权Sony选择，ABL guard要求可读BH905ND69G USB身份及固定二进制SHA，允许其它设备保持连接。没有放宽单次boot或0x06回程门禁。
 
-固定内核v729 SHA774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec（20648064B）及81源实际审计保持；当前GLESa4632b328945416bc0db01e4f6fa0f18cf12adc25d40d4918a6338dcebe009ed（14729008B）、Metal2afbde84976310911b2274577d0dbbceef5455143f3630d48f407af6402247a9。原allocator/SCM/PON/RPC/VM不改；旧half基线与原失败输入仍保留。
+当前已验基线：kernel v729 774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec，20648064B及81源；GLES 1c904bebb1a307d3b5ba55e3406208ec2b8dba854dd736f8a6dca78259e3fd1c（旧a463基线保留）；Metal b0b8045bc8b3a8f46e4c67643d3f113d36b8a66b04e0ae4e62dab758e4615636（新完整12组已通过，旧28e6基线保留）。此前half-link-r1完整后台native GPU、131072B half含NaN/保护区、1245184B MRT/XR及其它全部组保持，404全released/unmapped、active/orphan/root0，37.281秒完整回程。新源码候选不替换该已验基线。
 
-[half验收](AIR-HALF.md)：air-half-r1的1完整/0缺项、两phase compute与half vertex/fragment，131072B全部原byte/input/padding、有限half bits精确，NaN位置/类别/raw payload分别复算。303allocated/released/unmapped、active/orphan/root0，38.282秒完整PON06回程。主机全部65536half patterns及65536float32half-ties/边界/random，以及实际AIR half buffer/graphics分别通过；主机不冒充手机。
+完整锁屏时间/日期/壁纸、系统UI/FPS、睡眠唤醒、声音、Wi-Fi/蓝牙、更多Metal纹理/depth/stencil/MSAA仍未完成，完整目标active。离屏、主机与真实面板证据分别验，不把shader编译或控制器PASS当整机完成。
 
-[窄整数验收](AIR-NARROW.md)：air-narrow-r1 dynamic signed/unsigned8/16 scalar/vector64invocation×2phase，98304B全部原结果/input/保护区零差异；423全released/unmapped、active/orphan/root0，38.469秒完整回程。原aegir_pass_vsh曾因动态short2转换被拒绝，原shader在主机transform feedback的位置/UV/uniform偏移通过。独立适配patch仅应用构建副本，固定开源参考和MIT/BSD声明完整。
+操作继续只BH905ND69G、fastboot -s、COM>=10/VID1209/PID0001、PON只06、单download/boot/失败不重发，完整四回程标记/健康30秒/旧worker退出。gl5/userdata/SD/TA/XFL/救砖输入受保护。相机override→AF→2秒→MJPEG每5帧抽1→rotate90，一个controller。
 
-[短登记](METAL-REGISTRY-SHORT.md)：不在Aegir ctor重跑长GPU组；派发前native_prerequisite重新验实际backboard完整raw而非manifest摘要，嵌入kernel/GLES/Metal/source-map/token/image/logSHA严格全匹配。新窄整数/half库要求额外自身GPU验证。registry-short-r1/r2/r3原登记成功及原错误保持，r2动态short2错误、r3half扩展错误各有完整原栈和pipeline metadata。
+GPU专题及原结果见 METAL-BACKBOARD/METAL-REGISTRY-SHORT/AIR-HALF/AIR-NARROW/METAL-MRT；本次同行来源见MSM8998-PEER-SURVEY-2026-11-15.md。旧STATUS原文在docs/archive/20261115/STATUS-before-sampler-reuse.md与更早archive，原失败/raw不改写。
 
-registry-short-r4原threshold的aegir_pass_vsh+aegir_threshold_fsh实机pipeline返回nonnull，linked=1 robust=1，使用原half/shader成功。原Aegir请求375×812/3mip Private R8。其它XR管线在当时单附件/无XR混色后端返回nil；当前r3多附件与混色已通过须再验证原应用，不补写r4成功。原REVISE/EXTENSION_CHECKIN_TIMEOUT保留：token58ea25e5de40fb92，镜像d54783e2d5c22b59a5dd3802213b76ee9369e3e9c48855f05d173d7318002c23，439514B日志SHAfcba01a6f35cdaf1ad6b8b9078c0ba8f1bbbf98b8297d8eb9fb74d869e16de9c；37.453秒完整回程，364allocated/released、363unmapped、active/orphan/root0，不称364全部map/unmap。这不是完整UI通过。
-
-全部原GLES/CA lifecycle/960000只读像素及Metal compute/render/constants/queue/XR4format/Surface/mip/narrow/half/MRT完整backend门槛保持。原native system登记只在Aegir，开机全系统plugin尚未发布。广义half/math、奇数尺寸/其它mip级数/Surface mip、更多blend因素与constant sampler、其它图元/array/cube/YUV/depth/stencil/MSAA和实际壁纸/完整UI/外设继续推进。
-
-下一以当前完整native proof准入原Aegir短登记，记录真实各颜色附件/函数/原错误，再验原壁纸/时间日期/完整UI。保持只BH905ND69G、fastboot -s、COM>=10且VID1209/PID0001、PON只06、单download/boot、失败不重发、ACK/DRAIN/RESET/FINAL_DRAIN、连续健康30秒和旧worker结束；gl5/userdata/SD/TA/XFL/备份不重刷。
-
-相机override→AF→2秒→MJPEG→每5帧抽1→rotate90；已转照片不再转，grab_cam.py禁用，一个controller。原源码/复现工具/实际证据在正式仓库，大库/镜像/完整raw本地，原系统shader只保留本地并提供提取hash配方。
-
-历史状态在docs/archive/20261115与更早archive；本轮重复HFS/媒体/传输按原生回收站回收，原raw和最佳照片、失败镜像/当前压缩包保留，不清空Windows/Mac回收站。
+下一离线对照固定Mesa GLSL/NIR链接与IR3路径，定位具体耗时或锁等待；保持已验sampler/half/MRT字节与内核冻结，修改用户态/Mesa后沿完整准入继续。

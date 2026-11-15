@@ -50,4 +50,11 @@ if air_manifest:report.update(native_IOSurface_texture_import=True,actual_IOSurf
 if air_manifest:report.update(native_mipmaps=True,native_mip_level_CPU_regions_and_sampler_filters=True,actual_mipmap_GPU_acceptance_pending=True)
 if air_manifest:report.update(native_MRT_and_XR_blend=True,independent_color_attachments_max=8,original_XR_codes_preserved_with_GPU_writeback=True,
     native_XR_ordered_FP32_image_blend=True,actual_MRT_GPU_acceptance_pending=True)
+if air_manifest:
+    bindings=manifest['frontend_build_binding']['source_files']
+    assert bindings.get('RenderSamplerRules.h')==sha(root/'gpu/sweetgl/RenderSamplerRules.h')
+    assert bindings.get('metal_render.c')==sha(root/'gpu/sweetgl/metal_render.c')
+    report.update(native_AIR_constant_samplers=True,actual_constant_sampler_GPU_acceptance_pending=True,
+                  constant_sampler_scope='normalized 2D, actual border/anisotropy capabilities',
+                  per_function_immutable_graphics_translation_cache=True)
 (out/'manifest.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print(json.dumps(report))

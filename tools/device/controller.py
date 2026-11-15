@@ -109,12 +109,39 @@ class Journal:
                     boot_transfer_result=wire.get("result", ""))
                 writer.writerow(record)
 
+def resolve_bash():
+    """Use a native Git Bash for Windows paths, rather than the WSL launcher."""
+    override = os.environ.get("LILAC_BASH")
+    if override:
+        return Path(override)
+    if os.name == "nt":
+        candidates = []
+        git = shutil.which("git")
+        if git:
+            candidates.append(Path(git).parent.parent / "bin" / "bash.exe")
+        for variable, suffix in (("ProgramFiles", "Git/bin/bash.exe"),
+                                 ("ProgramFiles(x86)", "Git/bin/bash.exe"),
+                                 ("LOCALAPPDATA", "Programs/Git/bin/bash.exe")):
+            base = os.environ.get(variable)
+            if base:
+                candidates.append(Path(base) / suffix)
+        for candidate in candidates:
+            if candidate.is_file():
+                return candidate
+    found = shutil.which("bash")
+    if not found:
+        raise Refuse("Bash unavailable; install Git Bash or set LILAC_BASH")
+    selected = Path(found)
+    if os.name == "nt" and selected.parent.name.lower() in ("system32", "sysnative"):
+        raise Refuse("WSL bash cannot receive native Windows script paths; set LILAC_BASH to Git Bash")
+    return selected
+
 class LiveOps:
     simulated = False
     def __init__(self, journal):
         self.journal = journal; self.capture_process = None; self.worker_err = None
         self.fastboot = Path(os.environ.get("LILAC_FASTBOOT", shutil.which("fastboot") or ""))
-        self.bash = Path(os.environ.get("LILAC_BASH", shutil.which("bash") or ""))
+        self.bash = resolve_bash()
         self.env = dict(os.environ, MSYS_NO_PATHCONV="1", PYTHONUNBUFFERED="1", PYTHONDONTWRITEBYTECODE="1")
         self.directory = None; self.offset = 0; self.pending = ""; self.transmitted = 0
         self.deadline = None
@@ -144,7 +171,10 @@ class LiveOps:
         if active_tool_processes(): raise Refuse("Another fastboot/xperable process is running")
         text = self.command(["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", HERE / "preflight_processes.ps1"], 12, "host_process_preflight")
         if json.loads(text): raise Refuse("A legacy boot/capture loop is running; refusing to interleave")
-        text = self.command([self.bash, HERE / "guarded_xperable.sh", "-B", "-U", "-s", "0xf49880", "-x", "-4", "-6"], 45, "patch")
+        # The task authorizes a targeted Sony operation while other phones may
+        # remain attached. This mode still requires exactly one Sony USB device,
+        # its readable BH905ND69G identity, and the audited selector binary.
+        text = self.command([self.bash, HERE / "guarded_xperable.sh", "--verified-sony-only", "-B", "-U", "-s", "0xf49880", "-x", "-4", "-6"], 45, "patch")
         if text.count("patched successfully") != 2: raise Refuse("ABL patch was not exactly 2/2")
     def boot(self, artifact, directory):
         from serial.tools import list_ports

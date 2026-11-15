@@ -1,0 +1,24 @@
+{
+  "repository": "https://github.com/MC-XiaoXiao/ios_sagit",
+  "revision": "673f85070fe9f7872793015eb230a5c3987d4a8c",
+  "source_files": [
+    {
+      "path": "tools/gpu-compiler/Interface.h",
+      "sha256": "91b36f8e637c6c94259316e4af109dd6236091f4883fce4831708b2f72d2d923",
+      "license": "BSD-2-Clause"
+    },
+    {
+      "path": "tools/gpu-compiler/Semantic.h",
+      "sha256": "047d0d8f55d7f04c89a50c483fa4a7dcaffd0e7d83c3b5e2c570d11d028a1ff2",
+      "license": "BSD-2-Clause"
+    },
+    {
+      "path": "drivers/include/GPUShaderProtocol.h",
+      "sha256": "3cbcdcfbc32a562c10bfe824741924caf3b027930f1b7bf7f7037eccc65a9680",
+      "license": "BSD-2-Clause"
+    }
+  ],
+  "adaptation": "Constant sampler name/state parsing to the existing normalized GLES 2D backend; original logical slots are never physical unit IDs.",
+  "local_source": "gpu/sweetgl/RenderSamplerRules.h",
+  "hardware_acceptance_pending": true
+}

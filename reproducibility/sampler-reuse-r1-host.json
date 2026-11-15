@@ -1,0 +1,25 @@
+{
+  "source_files": {
+    "gpu/sweetgl/RenderSamplerRules.h": "67e823afd13bddeeae98aa1f4141f284a2e22e80f455b89179a2a32f42b8fbf3",
+    "tools/build/test_sampler_gles.c": "a8e17b2cba12780940c20e70f6a0e07785ccd82a6ccee9c012e88234c2eef780",
+    "gpu/metal/air/HalfESSL.h": "03b93a7f50161748605b7f863e149e8284e3c43bdfc14efe82919fc3c11e32d3"
+  },
+  "actual_host_GLES_sampler_exact_pixels": 11,
+  "actual_host_GLES_sampler_checks": 25,
+  "host_ASan_UBSan": true,
+  "actual_half_conversion_values": 131072,
+  "finite_exact_and_NaN_class": true,
+  "original_starfield_no_cache_host_link_seconds": 1.121759,
+  "prior_host_link_seconds": 1.990658,
+  "native_half_experiment_rejected_before_device": {
+    "host_link_seconds": 14.211859,
+    "log_sha256": "9d337873b5d7921cdbd410f55cd1e5c2a22e6996a63b42fa2b69ab380e81f959"
+  },
+  "logs": {
+    "sampler": "682aa6b56e2a5ec242fc832596b12f62311c9efbd5432f6bc985953b1a9cadc1",
+    "half": "583ad36ff49f39326ba6dd46d9c32b68bf244d331afed7d7f71044be55c4332e",
+    "profile": "be213dd7a0e3eaad2bf1ea31df0bbaf5e38ccb8c4d1473659d6a1ed4388a983c"
+  },
+  "phone_evidence_required": true,
+  "device_operations": 0
+}

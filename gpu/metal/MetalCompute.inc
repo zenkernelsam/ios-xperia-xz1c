@@ -7,6 +7,8 @@
 #include <CommonCrypto/CommonDigest.h>
 #include <vector>
 #include <map>
+#include <memory>
+#include <mutex>
 #include "MetalFunctionConstants.inc"
 @class SweetMTLFunction,SweetMTLComputePipeline,SweetMTLComputeEncoder;
 @interface SweetMTLLibrary : NSObject <MTLLibrary> { @public SweetMTLDevice *_owner;NSData *_bytes;NSArray *_names;NSDictionary *_entries;NSString *_label; }
@@ -15,6 +17,8 @@
 @interface SweetMTLFunction : NSObject <MTLFunction> {
 @public SweetMTLLibrary *_library;NSString *_name;NSUInteger _stage;NSDictionary *_constantInfo;
     std::vector<GPU::Compiler::FunctionConstantValue> _constants;
+    std::mutex _graphicsMutex;
+    std::unique_ptr<const GPU::Compiler::Entry> _graphicsEntry;
 }
 - (instancetype)initWithLibrary:(SweetMTLLibrary *)library name:(NSString *)name;
 - (instancetype)initWithLibrary:(SweetMTLLibrary *)library name:(NSString *)name constantValues:(MTLFunctionConstantValues *)values error:(NSError **)error;
@@ -39,6 +43,7 @@ static NSError *metal_compile_error(const std::string &error)
 {
     if(!(self=[super init]))return nil;
     std::vector<std::string> names;std::string diagnostic;NSMutableDictionary *entries=[NSMutableDictionary new];bool valid=owner && bytes && bytes.length && bytes.length<=16u*1024*1024;
+    if(valid){_bytes=[bytes copy];bytes=_bytes;} // Library inputs stay immutable even for raw NSMutableData AIR.
     if(valid && GPU::Compiler::LibraryArchive::container(bytes.bytes,bytes.length)){
         std::vector<GPU::Compiler::LibraryArchive::Function> records;
         valid=GPU::Compiler::LibraryArchive::parse(bytes.bytes,bytes.length,records,diagnostic);
@@ -61,7 +66,7 @@ static NSError *metal_compile_error(const std::string &error)
     }
     if(!valid){[entries release];
         if(error)*error=metal_compile_error(diagnostic);[self release];return nil;}
-    _owner=[owner retain];_bytes=[bytes copy];NSMutableArray *array=[NSMutableArray new];
+    _owner=[owner retain];NSMutableArray *array=[NSMutableArray new];
     for(const auto &name:names){NSString *string=[NSString stringWithUTF8String:name.c_str()];if(!string){[entries release];[array release];[self release];return nil;}[array addObject:string];}
     _names=[array copy];_entries=[entries copy];[entries release];[array release];return self;
 }

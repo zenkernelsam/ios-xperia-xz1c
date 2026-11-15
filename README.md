@@ -10,6 +10,7 @@ Sony Xperia XZ1 Compact（Snapdragon835 / Adreno540）的开源XNU、shim与Mesa
 | [只读Surface](docs/SURFACE-READONLY.md) | 原只读页面及非64B对齐刷新；三个400×400偏移共960000像素零差异 |
 | [原生Metal后台](docs/METAL-BACKBOARD.md) | 资源/queue、MTLB/AIR compute、vertex/fragment、function constants、四XR格式、单plane IOSurface、六级mipmap及LOD/trilinear |
 | [窄整数](docs/AIR-NARROW.md)/[half](docs/AIR-HALF.md) | 动态signed/unsigned8/16和binary16存储/逐结果舍入/顶点片元；原字节、NaN类别/payload及保护区分别复核 |
+| [常量 sampler](docs/METAL-SAMPLERS.md) | 原constexpr字、一字/两字global、两种独立状态、显式LOD；147456B输入/结果/顶点/全部padding实机零差异 |
 | [原Aegir短登记](docs/METAL-REGISTRY-SHORT.md) | 原默认device返回真实A540，threshold管线编译成功；必须有同kernel/GLES/Metal/source-map的完整实机先验 |
 
 [多颜色附件与XR混色](docs/METAL-MRT.md)现已完整实机通过：8附件输出、四XR与BGRA独立blend/writeMask、FP32 image按图元有序混色；1245184B原页面/低位/保护区零差异，523全撤销并38.562秒完整自动回程。下一使用精确native proof验原Aegir壁纸。未完成真实锁屏时间/日期/壁纸、完整UI/FPS、睡眠唤醒、声音、Wi-Fi/蓝牙及广义texture/depth/stencil/MSAA。离屏GPU通过不代表完整系统完成。

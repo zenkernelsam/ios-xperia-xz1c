@@ -157,8 +157,8 @@
 {
     if(!(self=[super init]))return nil;
     if(!owner || !d || d.minFilter>MTLSamplerMinMagFilterLinear || d.magFilter>MTLSamplerMinMagFilterLinear || d.mipFilter>MTLSamplerMipFilterLinear ||
-        (d.sAddressMode!=MTLSamplerAddressModeClampToEdge && d.sAddressMode!=MTLSamplerAddressModeRepeat && d.sAddressMode!=MTLSamplerAddressModeMirrorRepeat) ||
-        (d.tAddressMode!=MTLSamplerAddressModeClampToEdge && d.tAddressMode!=MTLSamplerAddressModeRepeat && d.tAddressMode!=MTLSamplerAddressModeMirrorRepeat) ||
+        (d.sAddressMode!=MTLSamplerAddressModeClampToEdge && d.sAddressMode!=MTLSamplerAddressModeMirrorClampToEdge && d.sAddressMode!=MTLSamplerAddressModeRepeat && d.sAddressMode!=MTLSamplerAddressModeMirrorRepeat) ||
+        (d.tAddressMode!=MTLSamplerAddressModeClampToEdge && d.tAddressMode!=MTLSamplerAddressModeMirrorClampToEdge && d.tAddressMode!=MTLSamplerAddressModeRepeat && d.tAddressMode!=MTLSamplerAddressModeMirrorRepeat) ||
         !d.normalizedCoordinates || d.compareFunction!=MTLCompareFunctionNever || d.maxAnisotropy!=1 || !std::isfinite(d.lodMinClamp) ||
         !std::isfinite(d.lodMaxClamp) || d.lodMinClamp>d.lodMaxClamp){[self release];return nil;}
     _owner=[owner retain];_binding={0,0,(uint32_t)d.minFilter,(uint32_t)d.magFilter,(uint32_t)d.mipFilter,(uint32_t)d.sAddressMode,(uint32_t)d.tAddressMode,1,d.lodMinClamp,d.lodMaxClamp};
@@ -172,9 +172,16 @@
 static bool render_entry(SweetMTLFunction *function,unsigned stage,GPU::Compiler::Entry &entry,std::string &error)
 {
     if(![function isKindOfClass:[SweetMTLFunction class]] || function->_stage!=stage){error="Wrong AIR graphics stage";return false;}
+    // This native function owns an immutable library slice and constant-value
+    // snapshot. Cache only successful translations, with a per-function lock;
+    // different specializations never share an entry or a transient failure.
+    std::lock_guard<std::mutex> lock(function->_graphicsMutex);
+    if(function->_graphicsEntry){entry=*function->_graphicsEntry;
+        fprintf(stderr,"SWEET AIR GRAPHICS cache=hit stage=%u name=%s bytes=%lu\n",stage,function->_name.UTF8String,(unsigned long)entry.glsl.size());return true;}
     NSData *source=function->_library->_entries[function->_name];std::vector<GPU::Compiler::Entry> entries;
     if(!source || !GPU::Compiler::lowerAIR(source.bytes,source.length,entries,error,function->_name.UTF8String,function->_constants) || entries.size()!=1)return false;
-    entry=std::move(entries[0]);return true;
+    function->_graphicsEntry=std::make_unique<GPU::Compiler::Entry>(std::move(entries[0]));entry=*function->_graphicsEntry;
+    fprintf(stderr,"SWEET AIR GRAPHICS cache=miss stage=%u name=%s bytes=%lu\n",stage,function->_name.UTF8String,(unsigned long)entry.glsl.size());return true;
 }
 @implementation SweetMTLRenderPipeline
 - (instancetype)initWithOwner:(SweetMTLDevice *)owner descriptor:(MTLRenderPipelineDescriptor *)d error:(NSError **)error

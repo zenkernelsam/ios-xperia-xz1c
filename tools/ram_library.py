@@ -97,6 +97,10 @@ def load(folder,expected=None):
                 sources|={'gpu/diagnostics/MetalMRTProbe.h','gpu/diagnostics/MRTProbeValues.h','gpu/sweetgl/XRColourTables.h'}
                 assert observer.get('AIR_half_probe') and observer['AIR_MRT_fixture']['fixture']=='mrt' and observer['AIR_MRT_fixture']['authored_semantic_fixture']
                 assert observer['metal_resources'].get('native_MRT_and_XR_blend')
+            if observer.get('AIR_sampler_probe'):
+                sources.add('gpu/diagnostics/MetalSamplerProbe.h')
+                assert observer.get('AIR_MRT_probe') and observer['AIR_sampler_fixture']['fixture']=='sampler'
+                assert observer['AIR_sampler_fixture']['authored_semantic_fixture'] and observer['metal_resources'].get('native_AIR_constant_samplers')
             assert set(observer['source_files'])==sources
             assert observer['source_files'][observer['source']]==observer['source_sha256']
     if 'metal_resources' in m:

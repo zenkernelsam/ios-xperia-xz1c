@@ -1,0 +1,9 @@
+{
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-registry-short-r6-ramcpu-20261115-190724",
+  "result": "STOP_ERROR",
+  "boot_dispatches": 0,
+  "download_attempts": 0,
+  "raw_result_sha256": "837ea1608c19407a422dc92789c6136e30b380b684080ae9591c7232eec5da57",
+  "preboot_refusal_preserved": true,
+  "device_image_not_sent": true
+}

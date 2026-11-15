@@ -65,3 +65,5 @@ mipmap最新实现见METAL-MIPMAPS.md，取代上段单mip限制：源码已支�
     python3 tools/build/build_graphics_cli.py --air-package build/air-half-r1/frontend --llvm-headers deps/llvm-c-14 --output build/my-graphics-cli
 
 该工具验证固定AIR包原source-map，以当前ESSLTarget/HalfESSL重新编译graphics-cli，记录完整源/工具SHA。check_air_half.py验当前helper的全部half位型/float32边界及实际AIR compute/vertex/fragment；profile_gles_shader.c可独立测原shader的host compile/link，不绘制、不作为手机时耗或UI证据。half-link优化保持GLES字节，重新构建Metal/observer/RAM包，沿同GLES先验→新包CPU→完整backboard GPU→新native-proof→原Aegir短登记流程。
+
+当前sampler输入及自身硬件准入见METAL-SAMPLERS.md；build_exception_observer.py --sampler-fixture只用于完整backboard suite并要求MRT/half原先验配置，native-proof增加AIR_sampler。新GLES1c904beb与Metalb0b8045b的完整CPU/GPU/回程已验证，原Aegir仍需独立验收。

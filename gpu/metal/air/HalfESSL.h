@@ -32,10 +32,10 @@ uint _smtl_half_pack(float value){
     if(exponent==255u)return sign|31744u|(mantissa==0u?0u:max(mantissa>>13u,1u));
     if(exponent<102u)return sign;
     if(exponent>142u)return sign|31744u;
-    if(exponent<113u){uint shift=126u-exponent,full=mantissa|8388608u,whole=full>>shift,tail=full&((1u<<shift)-1u),middle=1u<<(shift-1u);
-        return sign|(whole+uint(tail>middle || (tail==middle && (whole&1u)!=0u)));}
-    uint whole=mantissa>>13u,tail=mantissa&8191u;
-    return sign|((exponent-112u)*1024u+whole+uint(tail>4096u || (tail==4096u && (whole&1u)!=0u)));
+    if(exponent<113u){uint shift=126u-exponent,full=mantissa|8388608u;
+        return sign|((full+((1u<<(shift-1u))-1u)+((full>>shift)&1u))>>shift);}
+    uint rounded=(bits&2147483647u)+4095u+((bits>>13u)&1u);
+    return sign|((rounded-0x38000000u)>>13u);
 }
 float _smtl_half_unpack(uint value){
     uint sign=(value&32768u)<<16u,exponent=(value>>10u)&31u,mantissa=value&1023u;
@@ -54,12 +54,13 @@ float _smtl_half_round(float value){
     if(exponent==255u)return uintBitsToFloat(sign|2139095040u|(mantissa==0u?0u:max(mantissa>>13u,1u)<<13u));
     if(exponent<102u)return uintBitsToFloat(sign);
     if(exponent>142u)return uintBitsToFloat(sign|2139095040u);
-    if(exponent<113u){uint shift=126u-exponent,full=mantissa|8388608u,whole=full>>shift,tail=full&((1u<<shift)-1u),middle=1u<<(shift-1u);
-        uint units=whole+uint(tail>middle || (tail==middle && (whole&1u)!=0u));
+    if(exponent<113u){uint shift=126u-exponent,full=mantissa|8388608u;
+        uint units=(full+((1u<<(shift-1u))-1u)+((full>>shift)&1u))>>shift;
         // units <= 1024; conversion and multiplication by 2^-24 are exact.
         return uintBitsToFloat(sign|floatBitsToUint(float(units)*0.000000059604644775390625));}
-    uint whole=bits&2147475456u,tail=bits&8191u;
-    whole+=uint(tail>4096u || (tail==4096u && ((bits>>13u)&1u)!=0u))*8192u;
+    // Add half an ULP minus one plus the retained low bit: exact ties-to-even
+    // without comparison branches at every inlined half SSA value.
+    uint whole=((bits&2147483647u)+4095u+((bits>>13u)&1u))&2147475456u;
     return uintBitsToFloat(sign|(whole>=1199570944u?2139095040u:whole));
 }
 vec2 _smtl_half_round(vec2 v){return vec2(_smtl_half_round(v.x),_smtl_half_round(v.y));}

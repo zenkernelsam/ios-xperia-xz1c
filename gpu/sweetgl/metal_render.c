@@ -7,6 +7,7 @@
 #include "MultiTargetShader.h"
 #include "XRBlendShader.h"
 #include "RenderUniformRules.h"
+#include "RenderSamplerRules.h"
 #include "sweetgl.h"
 #include "sweet_drm.h"
 #include "pipe/p_screen.h"
@@ -23,6 +24,15 @@
 #include <string.h>
 #include <stdio.h>
 #include <math.h>
+#include <time.h>
+static uint64_t render_clock_ns(clockid_t clock)
+{struct timespec value;if(clock_gettime(clock,&value))return 0;return (uint64_t)value.tv_sec*UINT64_C(1000000000)+(uint64_t)value.tv_nsec;}
+static void render_compile_time(const char *stage,uint64_t wall,uint64_t cpu,GLint ok)
+{
+    uint64_t end=render_clock_ns(CLOCK_MONOTONIC),thread=render_clock_ns(CLOCK_THREAD_CPUTIME_ID);
+    sweet_drm_log("SWEET AIR RENDER compile_end stage=%s wall_us=%llu cpu_us=%llu cpu_clock=%u status=%d",stage,
+        (unsigned long long)(end>=wall?(end-wall)/1000:0),(unsigned long long)(cpu && thread>=cpu?(thread-cpu)/1000:0),cpu && thread,ok);
+}
 /* These are the same pinned Mesa entry bodies used by EXT_draw_buffers_indexed.
  * The iOS dispatch table does not expose their spellings, so call the linked
  * internal entry bodies on this private Mesa context. */
@@ -268,10 +278,16 @@ SweetMetalProgram *sweetgl_metal_render_create(const char *vertex,const char *fr
         ordered_vertex=sweet_xr_ordered_vertex(vertex);ordered_fragment=sweet_xr_ordered_fragment(fragment,config,program->ordered_xr_mask);
         if(!ordered_vertex || !ordered_fragment){if(error && error_bytes)snprintf(error,error_bytes,"Actual AIR XR output interface cannot be blended in order");goto failure;}}
     const GLenum kinds[2]={GL_VERTEX_SHADER,GL_FRAGMENT_SHADER};const char *sources[2]={ordered_vertex?ordered_vertex:vertex,ordered_fragment?ordered_fragment:fragment};
-    for(unsigned i=0;i<2;++i){shaders[i]=glCreateShader(kinds[i]);glShaderSource(shaders[i],1,&sources[i],NULL);glCompileShader(shaders[i]);
-        glGetShaderiv(shaders[i],GL_COMPILE_STATUS,&ok);if(!ok){if(error && error_bytes)glGetShaderInfoLog(shaders[i],(GLsizei)error_bytes,NULL,error);goto failure;}}
-    program->program=glCreateProgram();for(unsigned i=0;i<2;++i)glAttachShader(program->program,shaders[i]);glLinkProgram(program->program);
-    glGetProgramiv(program->program,GL_LINK_STATUS,&ok);if(!ok){if(error && error_bytes)glGetProgramInfoLog(program->program,(GLsizei)error_bytes,NULL,error);goto failure;}
+    for(unsigned i=0;i<2;++i){const char *stage=i?"fragment":"vertex";shaders[i]=glCreateShader(kinds[i]);glShaderSource(shaders[i],1,&sources[i],NULL);
+        sweet_drm_log("SWEET AIR RENDER compile_begin stage=%s bytes=%lu hash=%016llx",stage,(unsigned long)strlen(sources[i]),(unsigned long long)source_hash(sources[i]));
+        uint64_t wall=render_clock_ns(CLOCK_MONOTONIC),cpu=render_clock_ns(CLOCK_THREAD_CPUTIME_ID);glCompileShader(shaders[i]);
+        glGetShaderiv(shaders[i],GL_COMPILE_STATUS,&ok);render_compile_time(stage,wall,cpu,ok);
+        if(!ok){if(error && error_bytes)glGetShaderInfoLog(shaders[i],(GLsizei)error_bytes,NULL,error);goto failure;}}
+    program->program=glCreateProgram();for(unsigned i=0;i<2;++i)glAttachShader(program->program,shaders[i]);
+    sweet_drm_log("SWEET AIR RENDER compile_begin stage=link vertex_bytes=%lu fragment_bytes=%lu",(unsigned long)strlen(sources[0]),(unsigned long)strlen(sources[1]));
+    uint64_t link_wall=render_clock_ns(CLOCK_MONOTONIC),link_cpu=render_clock_ns(CLOCK_THREAD_CPUTIME_ID);glLinkProgram(program->program);
+    glGetProgramiv(program->program,GL_LINK_STATUS,&ok);render_compile_time("link",link_wall,link_cpu,ok);
+    if(!ok){if(error && error_bytes)glGetProgramInfoLog(program->program,(GLsizei)error_bytes,NULL,error);goto failure;}
     GLint attributes=0;glGetProgramiv(program->program,GL_ACTIVE_ATTRIBUTES,&attributes);
     for(GLint i=0;i<attributes;++i){char name[256]={0};GLint size=0;GLenum type=0;glGetActiveAttrib(program->program,(GLuint)i,sizeof(name),NULL,&size,&type,name);
         if((strcmp(name,"gl_VertexID") && strcmp(name,"gl_InstanceID")) || glGetAttribLocation(program->program,name)>=0){
@@ -293,11 +309,10 @@ static GLenum blend_factor(uint32_t factor)
     return factor<sizeof(values)/sizeof(values[0])?values[factor]:0;}
 static GLenum blend_operation(uint32_t operation)
 {static const GLenum values[]={GL_FUNC_ADD,GL_FUNC_SUBTRACT,GL_FUNC_REVERSE_SUBTRACT,GL_MIN,GL_MAX};return operation<5?values[operation]:0;}
-static GLenum address_mode(uint32_t mode)
-{return mode==0?GL_CLAMP_TO_EDGE:mode==2?GL_REPEAT:mode==3?GL_MIRRORED_REPEAT:0;}
 static unsigned metadata_format(uint32_t format)
 {switch(format){case 10:return 7;case 30:return 8;case 70:return 1;case 71:return 5;case 80:return 2;case 81:return 6;case 115:return 10;default:return 0;}}
-static int bind_texture_metadata(SweetMetalProgram *program,const SweetShaderTextureBinding *textures,uint32_t count)
+static int bind_texture_metadata(SweetMetalProgram *program,const SweetShaderTextureBinding *textures,uint32_t count,
+    const SweetShaderSamplerBinding *samplers,uint32_t sampler_count)
 {
     for(unsigned stage=1;stage<=2;++stage){GLuint info[32]={0};
         uint32_t mapping=stage==1?program->render.vertex_texture_slots:program->render.fragment_texture_slots;
@@ -306,7 +321,9 @@ static int bind_texture_metadata(SweetMetalProgram *program,const SweetShaderTex
                 info[slot*4]=textures[i].width;info[slot*4+1]=textures[i].height;info[slot*4+2]=mip_count(&textures[i]);
                 info[slot*4+3]=metadata_format(textures[i].format)|(1u<<8);}}
         GLint at=glGetUniformLocation(program->program,stage==1?"_qvertex_texture2d_info":"_qtexture2d_info");if(at>=0)glUniform4uiv(at,8,info);
-        GLuint flags[8]={0};at=glGetUniformLocation(program->program,stage==1?"_qvertex_sampler_info":"_qsampler_info");if(at>=0)glUniform1uiv(at,8,flags);
+        GLuint flags[8]={0};for(unsigned i=0;i<sampler_count;++i)if(samplers[i].stage==stage && samplers[i].index<8)
+            flags[samplers[i].index]=(samplers[i].address_s==1u?1u:0u)|(samplers[i].address_t==1u?2u:0u);
+        at=glGetUniformLocation(program->program,stage==1?"_qvertex_sampler_info":"_qsampler_info");if(at>=0)glUniform1uiv(at,8,flags);
     }
     return glGetError()==GL_NO_ERROR?0:-EIO;
 }
@@ -314,7 +331,15 @@ static int bind_samples(SweetMetalProgram *program,const SweetShaderTextureBindi
     const SweetShaderSamplerBinding *samplers,uint32_t sampler_count,GLuint names[32])
 {
     GLint active=0,max_length=0;glGetProgramiv(program->program,GL_ACTIVE_UNIFORMS,&active);glGetProgramiv(program->program,GL_ACTIVE_UNIFORM_MAX_LENGTH,&max_length);
-    if(max_length>512)return -EINVAL;unsigned assigned=0;
+    if(max_length>512)return -EINVAL;unsigned assigned=0;GLint available=0;
+    glGetIntegerv(GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS,&available);if(available<1)return -ENOTSUP;
+    uint32_t literal_mask[2]={0};SweetRenderConstantSampler literal_states[2][16]={0};
+    bool border_clamp=false,anisotropic=false;GLfloat maximum_anisotropy=1;
+    GLint extensions=0;glGetIntegerv(GL_NUM_EXTENSIONS,&extensions);
+    for(GLint e=0;e<extensions;++e){const char *extension=(const char *)glGetStringi(GL_EXTENSIONS,(GLuint)e);if(!extension)continue;
+        if(!strcmp(extension,"GL_EXT_texture_border_clamp") || !strcmp(extension,"GL_OES_texture_border_clamp"))border_clamp=true;
+        if(!strcmp(extension,"GL_EXT_texture_filter_anisotropic"))anisotropic=true;}
+    if(anisotropic)glGetFloatv(GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT,&maximum_anisotropy);
     for(GLint i=0;i<active;++i){char name[512]={0};GLsizei bytes=0;GLint elements=0;GLenum type=0;
         glGetActiveUniform(program->program,(GLuint)i,sizeof(name),&bytes,&elements,&type,name);
         unsigned image_binding=~0u;SweetRenderUniformRole role=sweet_render_uniform_role(name,type,elements,&program->render,program->ordered_xr_mask,&image_binding);
@@ -323,29 +348,29 @@ static int bind_samples(SweetMetalProgram *program,const SweetShaderTextureBindi
             if(binding!=(GLint)image_binding){sweet_drm_log("SWEET METAL MRT uniform reject name=%s type=%#x elements=%d binding=%d expected=%u",name,type,elements,binding,image_binding);return -EINVAL;}
             sweet_drm_log("SWEET METAL MRT uniform image name=%s type=%#x elements=%d binding=%d owned=1",name,type,elements,binding);continue;}
         if(role!=SWEET_UNIFORM_AIR_SAMPLER){sweet_drm_log("SWEET AIR RENDER uniform reject name=%s type=%#x elements=%d ordered_mask=%u",name,type,elements,program->ordered_xr_mask);return -ENOTSUP;}
-        unsigned stage=2,slot=0,sampler=0;int used=0;
-        if(sscanf(name,"_qsample%u_%u%n",&slot,&sampler,&used)!=2){stage=1;used=0;if(sscanf(name,"_qvertex_sample%u_%u%n",&slot,&sampler,&used)!=2)return -ENOTSUP;}
-        if(name[used] && strcmp(name+used,"_level"))return -ENOTSUP;
-        if(elements!=1 || assigned>=8 || sampler>=8 || slot>=8)return -EINVAL;
-        const SweetShaderTextureBinding *texture=NULL;const SweetShaderSamplerBinding *state=NULL;
+        SweetRenderSamplerUse use={0};if(!sweet_render_sampler_parse(name,&use))return -ENOTSUP;
+        unsigned stage=use.stage,slot=use.texture,unit=0;
+        if(elements!=1 || !sweet_render_sampler_unit(assigned,(unsigned)available,&unit))return -EINVAL;
+        if(use.literal){unsigned index=use.sampler-8,bank=stage-1;uint32_t bit=1u<<index;
+            if((literal_mask[bank]&bit) && memcmp(&literal_states[bank][index],&use.constant,sizeof(use.constant)))return -EINVAL;
+            literal_mask[bank]|=bit;literal_states[bank][index]=use.constant;}
+        SweetRenderSamplerState state={0};int resolved=sweet_render_sampler_resolve(&use,samplers,sampler_count,&state);if(resolved)return resolved;
+        const SweetShaderTextureBinding *texture=NULL;
         uint32_t mapping=stage==1?program->render.vertex_texture_slots:program->render.fragment_texture_slots;
         unsigned logical=mapping?(mapping>>(slot*4))&15:slot;
         for(unsigned j=0;j<count;++j)if(textures[j].index==logical && textures[j].stage==stage){if(texture)return -EINVAL;texture=&textures[j];}
-        for(unsigned j=0;j<sampler_count;++j)if(samplers[j].index==sampler && samplers[j].stage==stage){if(state)return -EINVAL;state=&samplers[j];}
-        if(!texture || !state || !state->normalized || state->min_filter>1 || state->mag_filter>1 || state->mip_filter>2 || !address_mode(state->address_s) || !address_mode(state->address_t))return -ENOTSUP;
-        glActiveTexture(GL_TEXTURE0+assigned);int result=mip_count(texture)>1?bind_mip_chain(sweetgl_internal_context(program->context),texture,&names[assigned],&program->cache):xr_format(texture->format)?
+        if(!texture)return -EINVAL;
+        glActiveTexture(GL_TEXTURE0+unit);int result=mip_count(texture)>1?bind_mip_chain(sweetgl_internal_context(program->context),texture,&names[assigned],&program->cache):xr_format(texture->format)?
             decode_xr_texture(sweetgl_internal_context(program->context),texture,&names[assigned],&program->cache):
             bind_texture(sweetgl_internal_context(program->context),texture,&names[assigned]);if(result)return result;
         glBindTexture(GL_TEXTURE_2D,names[assigned]);
-        GLenum min=state->min_filter?GL_LINEAR:GL_NEAREST;
-        if(state->mip_filter==1)min=state->min_filter?GL_LINEAR_MIPMAP_NEAREST:GL_NEAREST_MIPMAP_NEAREST;
-        if(state->mip_filter==2)min=state->min_filter?GL_LINEAR_MIPMAP_LINEAR:GL_NEAREST_MIPMAP_LINEAR;
-        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,min);glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,state->mag_filter?GL_LINEAR:GL_NEAREST);
-        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,address_mode(state->address_s));glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,address_mode(state->address_t));
-        glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MIN_LOD,state->minimum_lod);glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MAX_LOD,state->maximum_lod);
-        glUniform1i(glGetUniformLocation(program->program,name),(GLint)assigned++);
+        result=sweet_render_sampler_parameters(&state,border_clamp,anisotropic,maximum_anisotropy);if(result)return result;
+        glUniform1i(glGetUniformLocation(program->program,name),(GLint)unit);++assigned;
+        sweet_drm_log("SWEET AIR RENDER sampler stage=%u texture=%u logical=%u unit=%u literal=%u explicit_level=%u min=%u mag=%u mip=%u lod_min=%.6f lod_max=%.6f address_s=%u address_t=%u anisotropy=%u border=%u normalized=%u",
+            stage,slot,use.sampler,unit,use.literal,use.explicit_level,state.binding.min_filter,state.binding.mag_filter,state.binding.mip_filter,
+            state.binding.minimum_lod,state.binding.maximum_lod,state.binding.address_s,state.binding.address_t,state.max_anisotropy,state.border_colour,state.binding.normalized);
     }
-    int result=render_gl_error("sampler-uniforms",-1);return result?result:bind_texture_metadata(program,textures,count);
+    int result=render_gl_error("sampler-uniforms",-1);return result?result:bind_texture_metadata(program,textures,count,samplers,sampler_count);
 }
 static int bounded_clear(const SweetRenderPass *pass)
 {

@@ -157,9 +157,13 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
                         'SWEET GLES SUITE END result=0 tests=8 state=2 original_tests=1',
                         'SWEET METAL PROBES begin process=backboardd GLES_state=2 full_suite=1 background=1',
                         'SWEET METAL PROBES END process=backboardd result=0 prerequisite=0 full_suite=1 background=1']
-                else:common+=['SWEET EXCEPTION observer installed process=AegirPoster limit=16 original_chain=1',
-                         'SWEET EXCEPTION begin call=1 class=.*name=',
-                         'SWEET EXCEPTION end call=1 frames=[1-9].*original_chain=1']
+                    if m['exception_observer'].get('AIR_sampler_probe'):
+                        common+=['SWEET AIR SAMPLER END result=0 checked_bytes=147456 phases=3 final_allocated=0 GPU_only=1']
+                else:
+                    common+=['SWEET EXCEPTION observer installed process=AegirPoster limit=16 original_chain=1']
+                    if not m['exception_observer'].get('registration_only'):
+                        common+=['SWEET EXCEPTION begin call=1 class=.*name=',
+                                 'SWEET EXCEPTION end call=1 frames=[1-9].*original_chain=1']
                 if 'renderer_observations_max' in m['exception_observer']:
                     common+=['SWEET METAL observer installed renderer=NUNIAegirRenderer limit=32 index_type=[Qq] device_object=1 original_forwarded=1']
                     if not m['exception_observer'].get('original_Metal_registry_probe'):

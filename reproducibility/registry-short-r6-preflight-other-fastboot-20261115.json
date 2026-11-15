@@ -1,0 +1,9 @@
+{
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-registry-short-r6-gpu-20261115-192746",
+  "result": "STOP_ERROR",
+  "boot_dispatches": 0,
+  "download_attempts": 0,
+  "raw_result_sha256": "24bb47887f3090b92b968b2ef4b31954806672671bcd2078c88a9d3604d04de1",
+  "preboot_refusal_preserved": true,
+  "device_image_not_sent": true
+}

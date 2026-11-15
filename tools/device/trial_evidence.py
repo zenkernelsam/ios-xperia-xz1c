@@ -26,6 +26,8 @@ from pipeline_observer_evidence import verify as verify_pipeline_observer
 from air_narrow_evidence import verify as verify_air_narrow
 from air_half_evidence import verify as verify_air_half
 from metal_mrt_evidence import verify as verify_metal_mrt
+from ramcpu_prefix_evidence import verify as verify_ramcpu_prefix
+from air_sampler_evidence import verify as verify_air_sampler
 
 def verify(directory,mode,kernel_sha=None,version=None):
     root=Path(directory)
@@ -65,10 +67,8 @@ def verify(directory,mode,kernel_sha=None,version=None):
         assert 'SWEET SCATTER READY BEGIN' not in text
         if mode=='ramcpu':
             library=record_library(a)
-            ready=text.index('SWEET LOOP READY proto=1 token='+a['token'])
-            assert ready<start<ack
             library_line='SWEET GLRAM: library read=0 bytes='+str(library['library_bytes'])+' fnv='+library['library_fnv64']+' ro=1'
-            assert text[ready:ack].count(library_line)==1
+            ramcpu_prefix=verify_ramcpu_prefix(raw,a['token'],library_line)
     elif mode=='owner':
         snapshots=verify_owner(normalized)
         assert 'SWEET GPU: rpm gpu clocks -> 0' in scope
@@ -87,6 +87,12 @@ def verify(directory,mode,kernel_sha=None,version=None):
                 readonly=verify_readonly(re.sub(r'\r?\n(?!SWEET|CRASH|Process|\||exec|IOK|MESA)', '', text),a['token'])
             if 'exception_observer' in a:
                 if a['exception_observer']['target_process']=='backboardd':exceptions={'background_probe':verify_backboard_probe(text,a['token'])}
+                elif a['exception_observer'].get('registration_only') and 'SWEET EXCEPTION begin call=' not in scope:
+                    assert 'SWEET EXCEPTION observer installed process=AegirPoster limit=16 original_chain=1' in scope
+                    # An original application succeeding need not throw. Native
+                    # discovery, exact prior GPU proof and actual factory return
+                    # remain independently required below for this scoped mode.
+                    exceptions={'original_exception_events':0,'original_chain_installed':True}
                 else:exceptions=verify_exception(text,a['token'],require_renderer='renderer_observations_max' in a['exception_observer'] and not a['exception_observer'].get('original_Metal_registry_probe'))
                 if 'runtime_Metal_ABI_methods' in a['exception_observer']:exceptions['runtime_Metal_ABI']=verify_metal_abi(text,a['token'])
                 if a['exception_observer'].get('metal_resource_probe'):exceptions['Metal_resources']=verify_metal_resources(text,a['token'])
@@ -103,6 +109,7 @@ def verify(directory,mode,kernel_sha=None,version=None):
                 if a['exception_observer'].get('AIR_narrow_probe'):exceptions['AIR_narrow']=verify_air_narrow(text,a['token'],a['exception_observer']['AIR_narrow_fixture'])
                 if a['exception_observer'].get('AIR_half_probe'):exceptions['AIR_half']=verify_air_half(text,a['token'],a['exception_observer']['AIR_half_fixture'])
                 if a['exception_observer'].get('AIR_MRT_probe'):exceptions['Metal_MRT']=verify_metal_mrt(text,a['token'],a['exception_observer']['AIR_MRT_fixture'])
+                if a['exception_observer'].get('AIR_sampler_probe'):exceptions['AIR_sampler']=verify_air_sampler(text,a['token'],a['exception_observer']['AIR_sampler_fixture'])
     boundary='serialized=1' if mode in ('ready','gpu') else 'serialized=0'
     assert re.search(r'SWEET LOOP MAP_BOUNDARY token='+a['token']+' '+boundary+r' claimed=1',scope)
     report={'version':a['version'],'mode':mode,'source':str(root.resolve()),'token':a['token'],'kernel_sha256':a['kernel_sha256'],
@@ -116,7 +123,9 @@ def verify(directory,mode,kernel_sha=None,version=None):
     if mode=='gpu' and a['version']>=727:report['readonly_pixels']=readonly
     if mode=='gpu' and 'exception_observer' in a:report['exceptions']=exceptions
     if mode in ('gpu','ramcpu'):report['ram_library_binding']=record_library(a)
-    if mode=='ramcpu':report['library_loaded_before_current_live']=text.index(library_line)<start
+    if mode=='ramcpu':
+        report['library_loaded_before_current_live']=text.index(library_line)<start
+        report['ram_library_prefix']=ramcpu_prefix
     return report
 
 if __name__=='__main__':

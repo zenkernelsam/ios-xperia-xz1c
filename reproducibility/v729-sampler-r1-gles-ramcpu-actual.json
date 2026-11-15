@@ -1,0 +1,57 @@
+{
+  "version": 729,
+  "mode": "ramcpu",
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-sampler-r1-gles-ramcpu-20261115",
+  "token": "48fcf66d763eec3d",
+  "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+  "image_sha256": "2f7148fed9effa4616c71e606512ea5a0966a763f80ac325d658b9501c416d4b",
+  "log_sha256": "8a27eceaf6de8abefe9b5307e2d777da6cc86bc6c48a4ec251f2f44b77b8d5e7",
+  "return_complete": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "48fcf66d763eec3d",
+    "checkpoint_bytes": 343980,
+    "log_bytes": 347395,
+    "log_sha256": "8a27eceaf6de8abefe9b5307e2d777da6cc86bc6c48a4ec251f2f44b77b8d5e7",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      5,
+      63,
+      65
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 37.53200000000652,
+  "single_download_boot_verified": true,
+  "actual_stage_verified": true,
+  "complete_panel_and_peripheral_goal_not_achieved": true,
+  "payload_audit": {
+    "image_sha256": "2f7148fed9effa4616c71e606512ea5a0966a763f80ac325d658b9501c416d4b",
+    "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+    "blob_count": 8,
+    "complete_payload_reconstructed_from_compiled_kernel": true
+  },
+  "ram_library_binding": {
+    "library_sha256": "1c904bebb1a307d3b5ba55e3406208ec2b8dba854dd736f8a6dca78259e3fd1c",
+    "library_bytes": 14745680,
+    "library_fnv64": "b2c7308be3aa50c9",
+    "blob_sha256": "6b8d7b3028c30acea3edb0c811fe6fc1bfac31cc8344e7a7f5ddf48b72d78fd8",
+    "raw_sha256": "aa68704837292fa2213ea8570922f722e85209c76259ec7cac951527c3bcbb3a",
+    "manifest_sha256": "6d88c20e9b91ec7fe60cba40c83e1371e9726866b735659c935b680c56879a9b"
+  },
+  "library_loaded_before_current_live": false,
+  "ram_library_prefix": {
+    "logical_library_reads": 1,
+    "raw_library_reads": 1,
+    "ready_positions": [
+      8981
+    ],
+    "read_positions": [
+      12514
+    ],
+    "startup_block_sha256": "1058854f34fc26035933340c5125940c038cf8e724190b128e20bcc0f5887c9e",
+    "explicit_exact_prefix_replay": false,
+    "raw_log_unchanged": true
+  }
+}
