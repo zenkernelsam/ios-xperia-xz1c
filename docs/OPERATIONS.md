@@ -23,6 +23,7 @@ Mac源码同步不是旧 `tools/mac-autobuild.sh` 常驻进程已经完成的保
 核对Mac的完整Git提交和实际输入SHA，不把单独复制源码当作Git同步，也不为整理启动设备。
 原根镜像gl5、gl4回退、最新raw、原始IPSW、当前GPU构建与失败证据保留；过时镜像移入
 原生Trash的原路径/返回路径/完整SHA在配套工作台Y700-Elden的
-`maintenance/cleanup-20261115-macos`记录。Trash未清空，所占空间需用户自行回收。
+`maintenance/cleanup-20261115-macos`记录。代理只做原生回收；用户随后确认自行检查并
+清空第一批Trash，该批的旧文件现不可从Trash恢复。当前镜像和源码仍保留。
 
 原Aegir短登记可与长probe分离，但必须以同kernel/GLES/Metal/source-map的完整backboard实机raw准入；新half/narrow需自身GPU证明。registry-short-r4原threshold编译成功，原app check-in timeout的REVISE保留，不能当UI成功。后续每次singleboot都保留四回程marker/健康/旧worker退出门槛。
