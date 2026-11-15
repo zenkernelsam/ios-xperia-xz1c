@@ -1,0 +1,534 @@
+{
+  "schema_version": 1,
+  "observed_at_utc": "2026-11-15T10:53:38.667852+00:00",
+  "scope": "Read-only public device/repository survey; no phone operation, build, or goal resume. Git fetch and three reference clones only.",
+  "official_inventory": {
+    "url": "https://unixnu.com/devices/",
+    "repository": "https://github.com/UniXNU/UniXNU",
+    "revision": "3aee8d0a2b1daa7e2ac2cb029804db7c663fe245",
+    "model_count": 5,
+    "community_record_count": 9,
+    "officially_maintained_msm8998_devices": 0,
+    "models": [
+      {
+        "codename": "cheeseburger",
+        "soc": "MSM8998",
+        "records": 3,
+        "page": "https://unixnu.com/devices/models/cheeseburger"
+      },
+      {
+        "codename": "chiron",
+        "soc": "MSM8998",
+        "records": 2,
+        "page": "https://unixnu.com/devices/models/chiron"
+      },
+      {
+        "codename": "dumpling",
+        "soc": "MSM8998",
+        "records": 1,
+        "page": "https://unixnu.com/devices/models/dumpling"
+      },
+      {
+        "codename": "nash",
+        "soc": "MSM8998",
+        "records": 1,
+        "page": "https://unixnu.com/devices/models/nash"
+      },
+      {
+        "codename": "sagit",
+        "soc": "MSM8998",
+        "records": 2,
+        "page": "https://unixnu.com/devices/models/sagit"
+      }
+    ],
+    "page_html_sha256": "6bfe192279999ddadc55f6d057e7fb2b7038831f9e4df8cedfe30c066a813db5"
+  },
+  "repositories": [
+    {
+      "local_reference": "UniXNU",
+      "remote": "https://github.com/UniXNU/UniXNU",
+      "inspected_ref": "origin/main",
+      "inspected_commit": "3aee8d0a2b1daa7e2ac2cb029804db7c663fe245",
+      "commit_date": "2026-11-15T18:30:09+08:00",
+      "preserved_checkout_head": "8f21e32eeef93813ae25ee7871973318bc684afa",
+      "checkout_status": "",
+      "reviewed_files": [
+        {
+          "path": "docs/devices/index.md",
+          "bytes": 15167,
+          "sha256": "ff0b36acafca7229ae985075acf7405d299f3230f7ecabfaa971241bcf622c61"
+        },
+        {
+          "path": "docs/devices/models/cheeseburger.md",
+          "bytes": 677,
+          "sha256": "74aa72fdf9c147b9f058bbf2d6d83e91208ee159618d149fa08524ab36ad4d12"
+        },
+        {
+          "path": "docs/devices/models/chiron.md",
+          "bytes": 481,
+          "sha256": "4ad5da37a0423d5497503015309872cb600ed09190962842fd3b6146f2d9f040"
+        },
+        {
+          "path": "docs/devices/models/dumpling.md",
+          "bytes": 318,
+          "sha256": "33d65e7b908b84e4727adac118e6a10127c2b6c99bbb70b854a9710c16099c33"
+        },
+        {
+          "path": "docs/devices/models/nash.md",
+          "bytes": 300,
+          "sha256": "5e04742b1b925aa90ac7aa3cf78421176bb3a4b6d5d85d8136b3f87ec58bfe95"
+        },
+        {
+          "path": "docs/devices/models/sagit.md",
+          "bytes": 510,
+          "sha256": "764619dabba2b27709c3e4cb21e6bdc7dc6f4071e919db203647164d751fbcff"
+        }
+      ]
+    },
+    {
+      "local_reference": "UniXNU-cheeseburger",
+      "remote": "https://github.com/lss717/UniXNU-cheeseburger",
+      "inspected_ref": "origin/main",
+      "inspected_commit": "4f533e88a6a0e0b4499416c13f0dd729b203073a",
+      "commit_date": "2026-11-15T18:00:17+08:00",
+      "preserved_checkout_head": "feb89b42e1519fc7423954a6f12fcd3452b22c35",
+      "checkout_status": "",
+      "reviewed_files": [
+        {
+          "path": "README.md",
+          "bytes": 4801,
+          "sha256": "d06479586ce77e9a6bd46b30a52f12fa2603240440083791451c9b020460f93d"
+        },
+        {
+          "path": "porting.toml",
+          "bytes": 13276,
+          "sha256": "9fd203615954a7b7f38fc2e64c27cd6ab56903d2e176ddad710e0694d3d88f55"
+        }
+      ]
+    },
+    {
+      "local_reference": "unixnu-cheeseburger-dinner",
+      "remote": "https://github.com/DinnerABC/UniXNU-cheeseburger.git",
+      "inspected_ref": "origin/main",
+      "inspected_commit": "199a50c23e5bcd7832c6080bfc498927ed76a254",
+      "commit_date": "2026-11-13T17:31:34+08:00",
+      "preserved_checkout_head": "7c89ad440d3bed660fe5a0ecbbc275a06c9f7065",
+      "checkout_status": "",
+      "reviewed_files": [
+        {
+          "path": "README.md",
+          "bytes": 2980,
+          "sha256": "c53fcaf7db2b6f882b1a20f92cd958db1f47c57386f17744d7c9133e944a3ab1"
+        },
+        {
+          "path": "porting.toml",
+          "bytes": 16546,
+          "sha256": "e59054458ff8f40b2c961500047dfc559d94683e79a84e18bd5f57b6cff8c96e"
+        },
+        {
+          "path": "HANDOFF.md",
+          "bytes": 549627,
+          "sha256": "1e0ad664012de08dff56078016607fb3502328b82429f6c91ba98973a01239bf"
+        },
+        {
+          "path": "package/BoardRuntime/CheeseburgerGpuService.cpp",
+          "bytes": 67556,
+          "sha256": "4cb17a0244be61546bf508c10f1ae169ea59ddbf0ec50c014076f62d2be69f48"
+        },
+        {
+          "path": "docs/P21_METAL_CONTINUOUS_20261106.md",
+          "bytes": 2704,
+          "sha256": "3368a92ead661353775dee65a90dfcbe6fcc1e54a3a8e909e7b78c3caed6ddd8"
+        }
+      ]
+    },
+    {
+      "local_reference": "unixnu-cheeseburger-maozedon",
+      "remote": "https://github.com/maozedongae/UniXNU-cheeseburger",
+      "inspected_ref": "origin/main",
+      "inspected_commit": "4b43cc631d16f8077295ea387dcb9e4226918b37",
+      "commit_date": "2026-10-25T14:29:38+07:00",
+      "preserved_checkout_head": "4b43cc631d16f8077295ea387dcb9e4226918b37",
+      "checkout_status": "",
+      "reviewed_files": [
+        {
+          "path": "board.toml",
+          "bytes": 2517,
+          "sha256": "5fa9f53349a11cc3afdc5019323a80f196b30289187db4c1398bce7c27b9046f"
+        }
+      ]
+    },
+    {
+      "local_reference": "ios-party-sbccc188",
+      "remote": "https://github.com/sbccc1888/ios-party",
+      "inspected_ref": "origin/codex/hackios-chiron",
+      "inspected_commit": "977861ad3789def13bd7315036d6d6f9a7cff496",
+      "commit_date": "2026-11-08T06:53:16Z",
+      "preserved_checkout_head": "424e0f9ed3dff4a58bcbb35a97d2ffa3ef3cd54d",
+      "checkout_status": "",
+      "reviewed_files": [
+        {
+          "path": "README.md",
+          "bytes": 15091,
+          "sha256": "f7311179835fbbe381b1e006e149b1654e676ea6635f15a18ea0dd96ce086ae1"
+        },
+        {
+          "path": "RUNTIME_STATUS.md",
+          "bytes": 31744,
+          "sha256": "a776517f2c05b3345e17b9f2d0d250a22ea8cd1e42aa90f6bc9c188a887e1fb9"
+        },
+        {
+          "path": "research/CHIRON_GPU_STATUS_2026-11-08.zh-CN.md",
+          "bytes": 3648,
+          "sha256": "d8a620d7073e846fa0a86bb250657cfd888a99efdf2d56cd1fb06ef430571a1f"
+        }
+      ]
+    },
+    {
+      "local_reference": "ios-party-to-mid",
+      "remote": "https://github.com/to-mid/ios-party",
+      "inspected_ref": "origin/codex/hackios-chiron",
+      "inspected_commit": "6147e4c379e96182f6b67fa9e8e116ccc9aa3780",
+      "commit_date": "2026-10-29T09:05:44+08:00",
+      "preserved_checkout_head": "6b82178425a13bbf6a772620cc6d57646f8a98f0",
+      "checkout_status": "",
+      "reviewed_files": [
+        {
+          "path": "README.md",
+          "bytes": 15091,
+          "sha256": "f7311179835fbbe381b1e006e149b1654e676ea6635f15a18ea0dd96ce086ae1"
+        },
+        {
+          "path": "RUNTIME_STATUS.md",
+          "bytes": 31744,
+          "sha256": "a776517f2c05b3345e17b9f2d0d250a22ea8cd1e42aa90f6bc9c188a887e1fb9"
+        }
+      ]
+    },
+    {
+      "local_reference": "UniXNU-dumpling",
+      "remote": "https://github.com/The-Sunder-islands/UniXNU-dumpling.git",
+      "inspected_ref": "origin/main",
+      "inspected_commit": "23832188e593a7b7360433034a447f3371aa5b3c",
+      "commit_date": "2026-11-10T17:33:44+08:00",
+      "preserved_checkout_head": "23832188e593a7b7360433034a447f3371aa5b3c",
+      "checkout_status": "",
+      "reviewed_files": [
+        {
+          "path": "README.md",
+          "bytes": 6286,
+          "sha256": "7d45287ead1fdba9b71fb5e08f74cba0958f87843e6cc271fec9791ebd63d902"
+        }
+      ]
+    },
+    {
+      "local_reference": "UniXNU-nash",
+      "remote": "https://github.com/fcxuhaq3/UniXNU-nash",
+      "inspected_ref": "origin/main",
+      "inspected_commit": "e06dcbc8f50b24e3b2f53b7f9e400589741a073d",
+      "commit_date": "2026-10-30T17:35:43+08:00",
+      "preserved_checkout_head": "df2147ca9806d64467ce1199b10fc21f4bc2d6f1",
+      "checkout_status": "",
+      "reviewed_files": [
+        {
+          "path": "README.md",
+          "bytes": 4936,
+          "sha256": "68b9b84cdd1cc23928d5199e3e1bc4a0efcc2764662802a34291d5eda5da700d"
+        },
+        {
+          "path": "board.toml",
+          "bytes": 4181,
+          "sha256": "49773ee1abbe227fe76ae818258231c7ce8f17ea7675cbe6cb09201b426e0b0d"
+        }
+      ]
+    },
+    {
+      "local_reference": "unixnu-sagit-ilertnost",
+      "remote": "https://github.com/ilertnost/unixnu-sagit.git",
+      "inspected_ref": "origin/main",
+      "inspected_commit": "e219b06b9abc7263996046f1b071f5b0c8500560",
+      "commit_date": "2026-11-11T01:43:27+03:00",
+      "preserved_checkout_head": "e219b06b9abc7263996046f1b071f5b0c8500560",
+      "checkout_status": "",
+      "reviewed_files": [
+        {
+          "path": "README.md",
+          "bytes": 5220,
+          "sha256": "afb5643bf8661bd2fca056e72db92f0e78a9115a087085869f89514128b0804c"
+        },
+        {
+          "path": "porting.toml",
+          "bytes": 13975,
+          "sha256": "79fb8029e3d32747d6fe4231f8591b7570d02b9abd5fe29cb09859c39764f132"
+        }
+      ]
+    },
+    {
+      "local_reference": "ios_sagit",
+      "remote": "https://github.com/MC-XiaoXiao/ios_sagit",
+      "inspected_ref": "origin/main",
+      "inspected_commit": "673f85070fe9f7872793015eb230a5c3987d4a8c",
+      "commit_date": "2026-11-03T15:54:19-08:00",
+      "preserved_checkout_head": "898998cf1b74ea103e0c16d6dc0016822d8d644b",
+      "checkout_status": "",
+      "reviewed_files": [
+        {
+          "path": "README.md",
+          "bytes": 17598,
+          "sha256": "da63b53b6d0a9db3c91bfc4ee53b6a7463c402db23d29241eb4e608bbdb8b358"
+        },
+        {
+          "path": "tools/gpu-compiler/Compiler.cpp",
+          "bytes": 9662,
+          "sha256": "1ab2c3d872cd4fa7d0b2481adb0703332df1cb260ea65ae83e8f008ae62fb83f"
+        },
+        {
+          "path": "tools/gpu-compiler/AIRNIR.cpp",
+          "bytes": 2477,
+          "sha256": "1f77ffadc8c695b055baf53678a38f357afc89babc4a629fa035da0b74959d78"
+        },
+        {
+          "path": "tools/gpu-compiler/AIRNIRLowering.h",
+          "bytes": 150449,
+          "sha256": "9c306c37ad5be7b284580f7c73ab52bb914fd16ea3290e2f764d44f67d92d83a"
+        },
+        {
+          "path": "tools/gpu-compiler/AIRFailureCache.h",
+          "bytes": 1541,
+          "sha256": "6763659e395a55ae0a68e95d55442fc1eb535b9eed2c612e489d6ba2df058c18"
+        },
+        {
+          "path": "tools/gpu-compiler/Interface.h",
+          "bytes": 56871,
+          "sha256": "91b36f8e637c6c94259316e4af109dd6236091f4883fce4831708b2f72d2d923"
+        },
+        {
+          "path": "tools/gpu-compiler/Semantic.h",
+          "bytes": 58693,
+          "sha256": "047d0d8f55d7f04c89a50c483fa4a7dcaffd0e7d83c3b5e2c570d11d028a1ff2"
+        },
+        {
+          "path": "tools/gpu-compiler/Source.json",
+          "bytes": 66010,
+          "sha256": "f10f199c96090f1356b220e299544657ba6bd89f2690dc478c1cbf348ed55750"
+        },
+        {
+          "path": "drivers/gpu/QcomMTL/QcomMTL.mm",
+          "bytes": 429867,
+          "sha256": "ada212bdfc12b4f6736b40dd44f76a613555679f81df5b4b59def1f7add3e4e2"
+        },
+        {
+          "path": "drivers/gpu/QcomGPU/QcomGPUHardware.cpp",
+          "bytes": 99535,
+          "sha256": "268819049f74f2a093d165b69ac30eacdfa9d5102c12a60a2d4f574bf66ab116"
+        },
+        {
+          "path": "drivers/gpu/QcomGPU/AdrenoPipeline.h",
+          "bytes": 105930,
+          "sha256": "9b94f369d236b39db22eb4c9fe173daa08dddb2c4292b27f28e6f61e6615b326"
+        },
+        {
+          "path": "drivers/display/QcomDisplay/DisplayWakeGate.h",
+          "bytes": 988,
+          "sha256": "46c49e0d0f30acd302832266e75ceecdff71fbd4d9b87e120b07683f5ac98b07"
+        },
+        {
+          "path": "drivers/display/QcomDisplay/QcomDisplay.cpp",
+          "bytes": 91369,
+          "sha256": "2365913bfb94287dc880bd40c00145543082d2954208f075757223ca5061aa5f"
+        }
+      ]
+    },
+    {
+      "local_reference": "ios-sweet-sagit",
+      "remote": "https://github.com/nftuoa/ios-sweet-sagit.git",
+      "inspected_ref": "origin/main",
+      "inspected_commit": "c00c0a817f9fe3d4123fe0cb0b287befbe7f181d",
+      "commit_date": "2026-10-29T21:01:48+08:00",
+      "preserved_checkout_head": "51a64f23230f47f24b5eed8b89f2ec09ebf558a0",
+      "checkout_status": "",
+      "reviewed_files": [
+        {
+          "path": "README.md",
+          "bytes": 13002,
+          "sha256": "d1c412c7422293f4358e9d5b20ceff78578dcdb4f6ed634ec5590cb1124a2dca"
+        },
+        {
+          "path": "xnu/patches/0143-sagit-gpu-smmu.patch",
+          "bytes": 56807,
+          "sha256": "d0d4d2ea8256f4c06cd2da5fa0c702629042438bf49ce9f71f7fddfb73583eb7"
+        }
+      ]
+    },
+    {
+      "local_reference": "ios-poplar",
+      "remote": "https://github.com/wakanameko/ios-poplar",
+      "inspected_ref": "origin/main",
+      "inspected_commit": "b056ffb3f506d190f00b1f30a7235b99816cf608",
+      "commit_date": "2026-10-26T15:39:29Z",
+      "preserved_checkout_head": "469cd6a07d6d5dab54659eda49607010dc14ec68",
+      "checkout_status": "",
+      "reviewed_files": [
+        {
+          "path": "README.md",
+          "bytes": 13002,
+          "sha256": "d1c412c7422293f4358e9d5b20ceff78578dcdb4f6ed634ec5590cb1124a2dca"
+        },
+        {
+          "path": "xnu/README.md",
+          "bytes": 667,
+          "sha256": "7013a4471c4de7273400fb2b6364b4cac66bcac4d88ae179f201c4faa9fc42bd"
+        }
+      ]
+    },
+    {
+      "local_reference": "xzp-ios",
+      "remote": "https://github.com/baozi977/xzp-ios",
+      "inspected_ref": "origin/main",
+      "inspected_commit": "f5aa4a306f0dfc5f164b4a1fc2a981ef80ba5bc6",
+      "commit_date": "2026-10-28T19:54:45+08:00",
+      "preserved_checkout_head": "f5aa4a306f0dfc5f164b4a1fc2a981ef80ba5bc6",
+      "checkout_status": "",
+      "reviewed_files": [
+        {
+          "path": "README.md",
+          "bytes": 1816,
+          "sha256": "b4a08b471e1aab78f5f26fcb5827621637a5225472a032e7e8728a575fca9784"
+        }
+      ]
+    },
+    {
+      "local_reference": "Adrenoline",
+      "remote": "https://github.com/ilertnost/Adrenoline.git",
+      "inspected_ref": "origin/main",
+      "inspected_commit": "e9da6e76bfecf17b16efb7602ca95a2bdcc1645e",
+      "commit_date": "2026-11-08T21:41:55+03:00",
+      "preserved_checkout_head": "e9da6e76bfecf17b16efb7602ca95a2bdcc1645e",
+      "checkout_status": "",
+      "reviewed_files": [
+        {
+          "path": "README.md",
+          "bytes": 3687,
+          "sha256": "2c305e332b8a9fbb8f6d6dd16c35d08ab48e3b10879593dbec72c469c53fc781"
+        },
+        {
+          "path": "docs/ROADMAP.md",
+          "bytes": 2579,
+          "sha256": "ad12b3bab9e1205419b7ddf58589e09152304d383df18a6ea2ee5f8e03f71c74"
+        },
+        {
+          "path": "backends/stub/stub_backend.c",
+          "bytes": 2887,
+          "sha256": "bec6b89179c7f7b79f4606a82401c1c2596b5a0c269327b103faebc63476c8f1"
+        },
+        {
+          "path": "docs/CA-SHADER-INVENTORY.md",
+          "bytes": 8738,
+          "sha256": "248d6d6b0a5c9ac0d5aac552f08ca3a4011aeb08c55f48ea8a749034d5abaded"
+        }
+      ]
+    },
+    {
+      "local_reference": "AdrenoMetal",
+      "remote": "https://github.com/UniXNU/AdrenoMetal",
+      "inspected_ref": "origin/main",
+      "inspected_commit": "19bb66cb25f9a25b983bd7be15ea697ac7ed5203",
+      "commit_date": "2026-11-15T16:52:51+08:00",
+      "preserved_checkout_head": "ce5e19e33e05e1873d38d818e23cabfe0ac708c3",
+      "checkout_status": "",
+      "reviewed_files": [
+        {
+          "path": "README.md",
+          "bytes": 15731,
+          "sha256": "6881d0ac86fe91ee8569344c5a48f5e86a66975c1eb0da228ceaad9f49e84e61"
+        },
+        {
+          "path": "PrimeShaders.h",
+          "bytes": 25578,
+          "sha256": "d1d1cb456e7d87214179de77d4f86e573a553ebeb091761e7ec5590695c6e089"
+        },
+        {
+          "path": "SharedShaderCache.h",
+          "bytes": 4612,
+          "sha256": "51bc143ef4b420fba4fc5efa4965fb6eed508c0a4ebceb10436b4ecfbd7ce1e6"
+        }
+      ]
+    },
+    {
+      "local_reference": "NativeMetal",
+      "remote": "https://github.com/UniXNU/NativeMetal.git",
+      "inspected_ref": "origin/main",
+      "inspected_commit": "19bb66cb25f9a25b983bd7be15ea697ac7ed5203",
+      "commit_date": "2026-11-15T16:52:51+08:00",
+      "preserved_checkout_head": "243d63cf43305a85c8119b66b49cb7df4b30b019",
+      "checkout_status": "",
+      "reviewed_files": [
+        {
+          "path": "README.md",
+          "bytes": 15731,
+          "sha256": "6881d0ac86fe91ee8569344c5a48f5e86a66975c1eb0da228ceaad9f49e84e61"
+        }
+      ]
+    },
+    {
+      "local_reference": "AirNir",
+      "remote": "https://github.com/UniXNU/AirNir",
+      "inspected_ref": "origin/main",
+      "inspected_commit": "b356371a74cd158c2902f4886f373ebb0f833a36",
+      "commit_date": "2026-10-25T02:03:54+08:00",
+      "preserved_checkout_head": "b356371a74cd158c2902f4886f373ebb0f833a36",
+      "checkout_status": "",
+      "reviewed_files": [
+        {
+          "path": "README.md",
+          "bytes": 306,
+          "sha256": "0adbf39c16b17811c465fb2f7c1aced21354c9ae59dfc8d640b256035ab8031d"
+        }
+      ]
+    }
+  ],
+  "unavailable_sources": [
+    {
+      "url": "https://github.com/dmnakzkahziamnk-a11y/UniXNU-sagit",
+      "api_http_status": 404,
+      "revision": null,
+      "interpretation": "Publicly inaccessible; cause unknown."
+    }
+  ],
+  "ios_sagit_comparison": {
+    "our_retained_air_reference": "898998cf1b74ea103e0c16d6dc0016822d8d644b",
+    "survey_revision": "673f85070fe9f7872793015eb230a5c3987d4a8c",
+    "new_commit_count": 42,
+    "public_docs_tree_file_count": 0,
+    "github_releases_returned": 0,
+    "upstream_device_job_claim": 2096,
+    "job_count_evidence_kind": "maintainer commit narrative, not raw device log independently checked here"
+  },
+  "mesa_turnip_reference": {
+    "url": "https://docs.mesa3d.org/drivers/freedreno.html#turnip",
+    "quote": "There are no plans to port to a5xx or earlier GPUs.",
+    "page_text_sha256": "00322e1d330d920b51cda12369bcb7993b62374195c52346de867e02d01b288d"
+  },
+  "organization": {
+    "reference_git_directories": 89,
+    "new_git_reference_directories": [
+      "UniXNU-dumpling",
+      "unixnu-sagit-ilertnost",
+      "Adrenoline"
+    ],
+    "non_git_directories": [],
+    "temporary_web_inputs_location": "Windows TEMP"
+  },
+  "current_code_findings": [
+    {
+      "path": "gpu/sweetgl/metal_render.c",
+      "function": "bind_samples",
+      "lines": [
+        328,
+        329
+      ],
+      "finding": "Only ordinary sampler name suffix or _level is accepted; sampler>=8 is rejected, while the retained AIR frontend emits literal _c_ sampler state at logical slots>=8."
+    }
+  ],
+  "validation_kind": "Source/metadata/hash verification only; no new hardware validation."
+}

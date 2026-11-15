@@ -1,8 +1,10 @@
 # 参考仓库索引
 
-这些是外部参考仓库，不是本项目的正式修补主线。实际代码在本仓库 gpu/sweetgl 与 xnu/lilac-current.patch。
+这些是外部参考仓库，不是本项目的正式修补主线。实际代码在本仓库 gpu/sweetgl、gpu/metal 与 xnu/lilac-current.patch。
 
-| 本地目录 | 上游 | 当前HEAD |
+2026-11-15 核对官方 Device List 全部 MSM8998 条目及相关 GPU 源码，见[同行调查](MSM8998-PEER-SURVEY-2026-11-15.md)与[远端提交／逐文件哈希](../reproducibility/unixnu-msm8998-survey-20261115.json)。research 当前只有 89 个参考 Git 仓库；本轮新加一加 5T、ilertnost 的 Mi6 启动仓库和 Adrenoline。既有仓库只 fetch 远端，保留原固定检出；下表 HEAD 是本地检出版本，不代表最新上游进度。
+
+| 本地目录 | 上游 | 本地检出HEAD |
 | --- | --- | --- |
 | Adreno740 | https://github.com/UniXNU/Adreno740 | 5c8c1453c67d6ef6b10ec43ab1f8fc570a2f33e1 |
 | AdrenoFirmware | https://github.com/UniXNU/AdrenoFirmware | 20ad3d7aca14bd46aecab6335c780f5413fa054b |
@@ -90,3 +92,13 @@
 | xnu_kext_mi6 | https://github.com/MC-XiaoXiao/xnu_kext_mi6.git | unknown |
 | XnuPrelink | https://github.com/UniXNU/XnuPrelink | f876e3ee62e18fc06653dd75ed7dafcfb3950ac0 |
 | xzp-ios | https://github.com/baozi977/xzp-ios | f5aa4a306f0dfc5f164b4a1fc2a981ef80ba5bc6 |
+
+本轮新增参考：
+
+| 本地目录 | 上游 | 本地检出HEAD |
+| --- | --- | --- |
+| Adrenoline | https://github.com/ilertnost/Adrenoline | e9da6e76bfecf17b16efb7602ca95a2bdcc1645e |
+| UniXNU-dumpling | https://github.com/The-Sunder-islands/UniXNU-dumpling | 23832188e593a7b7360433034a447f3371aa5b3c |
+| unixnu-sagit-ilertnost | https://github.com/ilertnost/unixnu-sagit | e219b06b9abc7263996046f1b071f5b0c8500560 |
+
+NativeMetal 的上游地址现重定向到 AdrenoMetal；两个旧检出目录保留。新进度从固定调查提交读取，不变更现有 AIR/Mesa 实机基线。
