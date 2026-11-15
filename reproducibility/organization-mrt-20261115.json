@@ -1,0 +1,646 @@
+{
+  "date": "2026-11-15",
+  "windows": {
+    "items": 90,
+    "files": 93,
+    "bytes": 142687976,
+    "verified_native_recycle": true,
+    "current_trash_paths_present": true,
+    "receipts": [
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gles-gpu-20261115\\cycle-01\\camera\\frame-0005.jpg",
+        "time": "2026-11-15T08:53:38.3337894+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RX378E2.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gles-gpu-20261115\\cycle-01\\camera\\frame-0010.jpg",
+        "time": "2026-11-15T08:53:39.1794117+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RR5RKXY.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gles-gpu-20261115\\cycle-01\\camera\\frame-0015.jpg",
+        "time": "2026-11-15T08:53:39.3796827+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RMOGNUF.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gles-gpu-20261115\\cycle-01\\camera\\frame-0020.jpg",
+        "time": "2026-11-15T08:53:39.5961860+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R4LZV9O.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gles-gpu-20261115\\cycle-01\\camera\\frame-0030.jpg",
+        "time": "2026-11-15T08:53:39.7939486+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RJKX9BI.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gles-gpu-20261115\\cycle-01\\camera\\frame-0035.jpg",
+        "time": "2026-11-15T08:53:39.9983736+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RP8345C.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gles-gpu-20261115\\cycle-01\\camera\\frame-0040.jpg",
+        "time": "2026-11-15T08:53:40.1849450+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R7XA2UZ.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gles-gpu-20261115\\cycle-01\\camera\\frame-0045.jpg",
+        "time": "2026-11-15T08:53:40.3964000+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$REUO14R.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gles-gpu-20261115\\cycle-01\\camera\\frame-0050.jpg",
+        "time": "2026-11-15T08:53:40.6113595+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$ROAPYWM.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gles-gpu-20261115\\cycle-01\\camera\\frame-0055.jpg",
+        "time": "2026-11-15T08:53:40.8130193+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RLCH0PF.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gles-gpu-20261115\\cycle-01\\camera\\frame-0060.jpg",
+        "time": "2026-11-15T08:53:40.9954510+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RHK5JYW.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gles-gpu-20261115\\cycle-01\\camera\\frame-0065.jpg",
+        "time": "2026-11-15T08:53:41.1858415+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RS8NWNK.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gles-gpu-20261115\\cycle-01\\camera\\frame-0070.jpg",
+        "time": "2026-11-15T08:53:41.3614748+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RI3A65V.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gles-gpu-20261115\\cycle-01\\camera\\frame-0075.jpg",
+        "time": "2026-11-15T08:53:41.5587993+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R1PF2D5.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gles-gpu-20261115\\cycle-01\\camera\\frame-0080.jpg",
+        "time": "2026-11-15T08:53:41.7400581+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R83PUPC.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gles-gpu-20261115\\cycle-01\\camera\\frame-0085.jpg",
+        "time": "2026-11-15T08:53:41.9270665+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$REQAG5C.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gles-gpu-20261115\\cycle-01\\camera\\frame-0090.jpg",
+        "time": "2026-11-15T08:53:42.1235177+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RA1CJ9D.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gles-gpu-20261115\\cycle-01\\camera\\frame-0095.jpg",
+        "time": "2026-11-15T08:53:42.3179954+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RSK6EH5.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gpu-20261115\\cycle-01\\camera\\frame-0005.jpg",
+        "time": "2026-11-15T08:53:42.5410756+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R1ZCIXN.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gpu-20261115\\cycle-01\\camera\\frame-0010.jpg",
+        "time": "2026-11-15T08:53:42.7257997+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R0ATA9Y.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gpu-20261115\\cycle-01\\camera\\frame-0015.jpg",
+        "time": "2026-11-15T08:53:42.9112328+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RST9UV0.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gpu-20261115\\cycle-01\\camera\\frame-0020.jpg",
+        "time": "2026-11-15T08:53:43.1003995+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RQ5XXIH.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gpu-20261115\\cycle-01\\camera\\frame-0030.jpg",
+        "time": "2026-11-15T08:53:43.2946516+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RJ8M61H.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gpu-20261115\\cycle-01\\camera\\frame-0035.jpg",
+        "time": "2026-11-15T08:53:43.5121034+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R35DR9F.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gpu-20261115\\cycle-01\\camera\\frame-0040.jpg",
+        "time": "2026-11-15T08:53:43.7150681+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R8N0B49.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gpu-20261115\\cycle-01\\camera\\frame-0045.jpg",
+        "time": "2026-11-15T08:53:43.9128787+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RA76KNA.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gpu-20261115\\cycle-01\\camera\\frame-0050.jpg",
+        "time": "2026-11-15T08:53:44.1055633+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R6LCNGL.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gpu-20261115\\cycle-01\\camera\\frame-0055.jpg",
+        "time": "2026-11-15T08:53:44.2914549+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RLO47WL.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gpu-20261115\\cycle-01\\camera\\frame-0060.jpg",
+        "time": "2026-11-15T08:53:44.5025731+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RRPPR2S.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gpu-20261115\\cycle-01\\camera\\frame-0065.jpg",
+        "time": "2026-11-15T08:53:44.6928102+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R0ZFY0Q.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gpu-20261115\\cycle-01\\camera\\frame-0070.jpg",
+        "time": "2026-11-15T08:53:44.8877686+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R14VJPC.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gpu-20261115\\cycle-01\\camera\\frame-0075.jpg",
+        "time": "2026-11-15T08:53:45.0947083+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RMSS3KZ.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gpu-20261115\\cycle-01\\camera\\frame-0080.jpg",
+        "time": "2026-11-15T08:53:45.3090970+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R6E3ICC.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gpu-20261115\\cycle-01\\camera\\frame-0085.jpg",
+        "time": "2026-11-15T08:53:45.5191003+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RBGMVMK.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gpu-20261115\\cycle-01\\camera\\frame-0090.jpg",
+        "time": "2026-11-15T08:53:45.7153596+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RK10GOU.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gpu-20261115\\cycle-01\\camera\\frame-0095.jpg",
+        "time": "2026-11-15T08:53:45.9034336+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$REIFNDS.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gpu-20261115\\cycle-01\\camera\\frame-0100.jpg",
+        "time": "2026-11-15T08:53:46.1021045+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RE8GIRV.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gles-gpu-20261115\\cycle-01\\camera\\frame-0005.jpg",
+        "time": "2026-11-15T08:53:46.3147629+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RN05DDQ.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gles-gpu-20261115\\cycle-01\\camera\\frame-0010.jpg",
+        "time": "2026-11-15T08:53:46.5041153+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RZ74Z0L.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gles-gpu-20261115\\cycle-01\\camera\\frame-0020.jpg",
+        "time": "2026-11-15T08:53:46.6923971+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R5HRDK1.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gles-gpu-20261115\\cycle-01\\camera\\frame-0025.jpg",
+        "time": "2026-11-15T08:53:46.8949674+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RA0VYE6.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gles-gpu-20261115\\cycle-01\\camera\\frame-0030.jpg",
+        "time": "2026-11-15T08:53:47.0982091+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$ROZNTCS.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gles-gpu-20261115\\cycle-01\\camera\\frame-0035.jpg",
+        "time": "2026-11-15T08:53:47.3360150+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RQW0PX3.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gles-gpu-20261115\\cycle-01\\camera\\frame-0040.jpg",
+        "time": "2026-11-15T08:53:47.5271238+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RW6U9CR.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gles-gpu-20261115\\cycle-01\\camera\\frame-0045.jpg",
+        "time": "2026-11-15T08:53:47.7258871+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RJNT2PR.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gles-gpu-20261115\\cycle-01\\camera\\frame-0050.jpg",
+        "time": "2026-11-15T08:53:47.9223344+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RI0JUX4.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gles-gpu-20261115\\cycle-01\\camera\\frame-0055.jpg",
+        "time": "2026-11-15T08:53:48.1080370+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RH0N61Y.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gles-gpu-20261115\\cycle-01\\camera\\frame-0060.jpg",
+        "time": "2026-11-15T08:53:48.3177596+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R5UNP18.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gles-gpu-20261115\\cycle-01\\camera\\frame-0065.jpg",
+        "time": "2026-11-15T08:53:48.5172062+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RZOUOIT.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gles-gpu-20261115\\cycle-01\\camera\\frame-0070.jpg",
+        "time": "2026-11-15T08:53:48.7349524+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RMBZGBG.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gles-gpu-20261115\\cycle-01\\camera\\frame-0075.jpg",
+        "time": "2026-11-15T08:53:48.9365772+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RIUVPIH.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gles-gpu-20261115\\cycle-01\\camera\\frame-0080.jpg",
+        "time": "2026-11-15T08:53:49.1320778+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R2Y14NG.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gles-gpu-20261115\\cycle-01\\camera\\frame-0085.jpg",
+        "time": "2026-11-15T08:53:49.3529561+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R99DV4I.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gles-gpu-20261115\\cycle-01\\camera\\frame-0090.jpg",
+        "time": "2026-11-15T08:53:49.5528408+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RVWY8D3.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gles-gpu-20261115\\cycle-01\\camera\\frame-0095.jpg",
+        "time": "2026-11-15T08:53:49.7521259+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R7QE2YC.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gles-gpu-20261115\\cycle-01\\camera\\frame-0100.jpg",
+        "time": "2026-11-15T08:53:49.9436527+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RJNC5AZ.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gpu-20261115\\cycle-01\\camera\\frame-0005.jpg",
+        "time": "2026-11-15T08:53:50.1534985+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R7FNRGJ.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gpu-20261115\\cycle-01\\camera\\frame-0015.jpg",
+        "time": "2026-11-15T08:53:50.3756193+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RLPTE8M.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gpu-20261115\\cycle-01\\camera\\frame-0020.jpg",
+        "time": "2026-11-15T08:53:50.5764802+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R5I5CYN.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gpu-20261115\\cycle-01\\camera\\frame-0025.jpg",
+        "time": "2026-11-15T08:53:50.7753352+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RPA22YG.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gpu-20261115\\cycle-01\\camera\\frame-0030.jpg",
+        "time": "2026-11-15T08:53:50.9686558+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RP3N7BQ.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gpu-20261115\\cycle-01\\camera\\frame-0035.jpg",
+        "time": "2026-11-15T08:53:51.1822348+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RVBL44H.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gpu-20261115\\cycle-01\\camera\\frame-0040.jpg",
+        "time": "2026-11-15T08:53:51.3771451+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RDCNR29.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gpu-20261115\\cycle-01\\camera\\frame-0045.jpg",
+        "time": "2026-11-15T08:53:51.5723138+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RQAOMRP.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gpu-20261115\\cycle-01\\camera\\frame-0050.jpg",
+        "time": "2026-11-15T08:53:51.7744844+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RQUCF7N.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gpu-20261115\\cycle-01\\camera\\frame-0055.jpg",
+        "time": "2026-11-15T08:53:51.9763403+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RJFQE4Y.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gpu-20261115\\cycle-01\\camera\\frame-0060.jpg",
+        "time": "2026-11-15T08:53:52.2081510+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RA5JRTO.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gpu-20261115\\cycle-01\\camera\\frame-0065.jpg",
+        "time": "2026-11-15T08:53:52.4078395+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RW0V694.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gpu-20261115\\cycle-01\\camera\\frame-0070.jpg",
+        "time": "2026-11-15T08:53:52.6037083+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RMVV3K2.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gpu-20261115\\cycle-01\\camera\\frame-0075.jpg",
+        "time": "2026-11-15T08:53:52.7971658+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R3XNV74.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gpu-20261115\\cycle-01\\camera\\frame-0080.jpg",
+        "time": "2026-11-15T08:53:52.9854617+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RMJMLDM.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gpu-20261115\\cycle-01\\camera\\frame-0085.jpg",
+        "time": "2026-11-15T08:53:53.2024860+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RPNO9QG.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gpu-20261115\\cycle-01\\camera\\frame-0090.jpg",
+        "time": "2026-11-15T08:53:53.4054882+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RUHP7SE.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gpu-20261115\\cycle-01\\camera\\frame-0095.jpg",
+        "time": "2026-11-15T08:53:53.6238775+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RSSDORC.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gpu-20261115\\cycle-01\\camera\\frame-0100.jpg",
+        "time": "2026-11-15T08:53:53.8336783+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RBP4PSI.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gpu-20261115\\cycle-01\\camera\\frame-0105.jpg",
+        "time": "2026-11-15T08:53:54.0559558+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R53N3Y9.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gpu-20261115\\cycle-01\\camera\\frame-0110.jpg",
+        "time": "2026-11-15T08:53:54.2598239+08:00",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RCF13VS.jpg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\metal-mrt-r1\\fixture",
+        "time": "2026-11-15T08:53:54.4668721+08:00",
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RRIP039"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\metal-mrt-r1\\gles-ramfs\\glram.dmg",
+        "time": "2026-11-15T08:53:54.9471342+08:00",
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RG21BSL.dmg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\metal-mrt-r1\\ramfs-final\\glram.dmg",
+        "time": "2026-11-15T08:53:55.1820808+08:00",
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R7IX71L.dmg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\metal-mrt-r2\\fixture",
+        "time": "2026-11-15T08:53:55.5233441+08:00",
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R83I0J9"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\metal-mrt-r2\\gles-ramfs\\glram.dmg",
+        "time": "2026-11-15T08:53:55.9930459+08:00",
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RQHFWLR.dmg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\metal-mrt-r2\\ramfs\\glram.dmg",
+        "time": "2026-11-15T08:53:56.1915553+08:00",
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RVUBX74.dmg"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\metal-mrt-r2\\test-mrt-gles",
+        "time": "2026-11-15T08:53:56.4024129+08:00",
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RC6AQJQ"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\metal-mrt-r2\\test-mrt-gles-final",
+        "time": "2026-11-15T08:53:56.6193242+08:00",
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RGZQGA2"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\metal-mrt-r2\\test-mrt-gles-final-ordered",
+        "time": "2026-11-15T08:53:56.8454019+08:00",
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RHXVK4S"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\metal-mrt-r2\\test-mrt-gles-image",
+        "time": "2026-11-15T08:53:57.2085326+08:00",
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RZB796P"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\metal-mrt-r2\\test-mrt-gles-immutable",
+        "time": "2026-11-15T08:53:57.4009491+08:00",
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RR90M3U"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\metal-mrt-r2\\test-mrt-gles-ordered",
+        "time": "2026-11-15T08:53:57.5912685+08:00",
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R9BWM10"
+      },
+      {
+        "verified_native_recycle": true,
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\metal-mrt-r3-host.log",
+        "time": "2026-11-15T08:53:57.8083096+08:00",
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RYK4CU0.log"
+      }
+    ]
+  },
+  "macos": {
+    "items": 13,
+    "files": 129,
+    "bytes": 300480732,
+    "verified_native_trash": true,
+    "receipts": [
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/metal-mrt-r1/frontend",
+        "trash_path": "/Users/ciscohe/.Trash/frontend"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/metal-mrt-r1/frontend-r2",
+        "trash_path": "/Users/ciscohe/.Trash/frontend-r2"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/metal-mrt-r1/ramfs",
+        "trash_path": "/Users/ciscohe/.Trash/ramfs"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/metal-mrt-r1/fixture",
+        "trash_path": "/Users/ciscohe/.Trash/fixture"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/metal-mrt-r2/frontend",
+        "trash_path": "/Users/ciscohe/.Trash/frontend 08-59-09-634"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/metal-mrt-r2/frontend-final",
+        "trash_path": "/Users/ciscohe/.Trash/frontend-final"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/metal-mrt-r1/gles-ramfs/glram.dmg",
+        "trash_path": "/Users/ciscohe/.Trash/glram.dmg 08-59-09-753.dmg"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/metal-mrt-r1/ramfs-final/glram.dmg",
+        "trash_path": "/Users/ciscohe/.Trash/glram.dmg 08-59-09-851.dmg"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/metal-mrt-r2/gles-ramfs/glram.dmg",
+        "trash_path": "/Users/ciscohe/.Trash/glram.dmg 08-59-09-906.dmg"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/metal-mrt-r2/ramfs/glram.dmg",
+        "trash_path": "/Users/ciscohe/.Trash/glram.dmg 08-59-09-967.dmg"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/tmp/lilac-mrt-r2-final-source.tar",
+        "trash_path": "/Users/ciscohe/.Trash/lilac-mrt-r2-final-source.tar"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/tmp/lilac-mrt-r2-tools-source.tar",
+        "trash_path": "/Users/ciscohe/.Trash/lilac-mrt-r2-tools-source.tar"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/tmp/lilac-mrt-bce747a-canonical.tar",
+        "trash_path": "/Users/ciscohe/.Trash/lilac-mrt-bce747a-canonical.tar"
+      }
+    ]
+  },
+  "retained_camera_frames": [
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gles-gpu-20261115\\cycle-01\\camera\\frame-0025.jpg",
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gles-gpu-20261115\\cycle-01\\camera\\frame-0100.jpg",
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gpu-20261115\\cycle-01\\camera\\frame-0105.jpg",
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gpu-20261115\\cycle-01\\camera\\frame-0025.jpg",
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gles-gpu-20261115\\cycle-01\\camera\\frame-0015.jpg",
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gles-gpu-20261115\\cycle-01\\camera\\frame-0105.jpg",
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gpu-20261115\\cycle-01\\camera\\frame-0115.jpg",
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r2-gpu-20261115\\cycle-01\\camera\\frame-0010.jpg"
+  ],
+  "original_raw_results_return_and_command_evidence_retained": true,
+  "signed_current_and_failed_packages_blobs_raw_and_R1_source_inputs_retained": true,
+  "Windows_and_Mac_trash_not_emptied": true,
+  "Ubuntu_and_Ubuntu_2204_user_trash_files": 0,
+  "patch_Xperia_git_pending": 0,
+  "reference_Git_repositories": 86,
+  "patch_artifact_files": 103,
+  "patch_artifact_images": 0,
+  "protected_recovery_reference_inputs_assets_and_device_gl5_not_changed": true,
+  "source_progress_commit": "bce747a401f0969db74fa8a7456369eb70022d51",
+  "GPU_full_UI_and_peripheral_goal_still_active": true
+}

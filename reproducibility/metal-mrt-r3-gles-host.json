@@ -1,0 +1,83 @@
+{
+  "source_files": {
+    "tools/build/test_mrt_gles.c": "f245a7855f9abf59b072cba17b036cf04cc3e7a58933a183207c42f31612eb69",
+    "tools/build/air_graphics_cli.cpp": "1e7b6f117fb86619eaa155206d22750462c445e4cf464b406141726b00bf660c",
+    "tools/build/check_mrt_gles.py": "91967c01d24d3f89a37ba4c2fd811097348bb99c918bde5379c91665738e842c",
+    "gpu/sweetgl/MetalShaderAPI.h": "8cd9d626742f408fc739c1bbc7beca87e8c673bf0c137d8f15e8dc1d6375fe8d",
+    "gpu/sweetgl/XRBlendShader.h": "069ff16f3a099d5faa812de1c9af628534c847cfe2bc34b86b1e1401ea1ce6aa",
+    "gpu/sweetgl/MultiTargetShader.h": "d92afddb9197734b7dfe78a1bfc658012dae7b3143235eab600540e1a609a286",
+    "gpu/sweetgl/RenderUniformRules.h": "b137fdcf1ac176cd7b96e111e2d742f72eddfc994c885f232327d2e07e0cdabd",
+    "gpu/sweetgl/XRColourShader.h": "9a4e6514d9f203dac4fa95def0ec418777c8422125bfacfdbb0d1a7ea1c6d973",
+    "gpu/sweetgl/XRColourTables.h": "7564148cfcdb509061e1cebc76cd8afb59a292f4dea18086f2d7fa753bb723fa",
+    "gpu/sweetgl/MipColourShader.h": "15d9f983a7fd0d71604193262a19b7b6cad8f6900c6366f7e12b155db47c8ed1",
+    "gpu/diagnostics/MRTProbeValues.h": "63a26a373f682e599451b6fc5f0e684ecac3b7cddbe9a9f1badc1986f93b4661",
+    "gpu/metal/air/fixtures/mrt.air.ll": "b4decd0b37ed10a3440d209f3a7e04e84741ce4ab8f4cbff617752b28d45c022"
+  },
+  "fixture": {
+    "source": "gpu/metal/air/fixtures/mrt.air.ll",
+    "source_sha256": "b4decd0b37ed10a3440d209f3a7e04e84741ce4ab8f4cbff617752b28d45c022",
+    "bitcode_sha256": "c0acca850f96978be6043d5b4199e1363a013d9ab8c4e0bd2d40c30e480f099e",
+    "bitcode_bytes": 3552,
+    "library_sha256": "bb034c408a107dbb9f3ec2c613e0ba05dd3ee256c2313c282fc04dafbfc3c876",
+    "library_bytes": 4466,
+    "header_sha256": "7ef6fb5424edb024bec6c9468b477fff1d48d9fcc0dde1ebadb2890e8700df62",
+    "functions": [
+      {
+        "name": "mrt_position",
+        "MTLB_type": 0
+      },
+      {
+        "name": "mrt_colour",
+        "MTLB_type": 1
+      },
+      {
+        "name": "mrt_changed",
+        "MTLB_type": 1
+      },
+      {
+        "name": "mrt_eight",
+        "MTLB_type": 1
+      },
+      {
+        "name": "mrt_sample",
+        "MTLB_type": 1
+      },
+      {
+        "name": "mrt_order_position",
+        "MTLB_type": 0
+      },
+      {
+        "name": "mrt_order_colour",
+        "MTLB_type": 1
+      }
+    ],
+    "compiler_path": "/usr/lib/llvm-14/bin/llvm-as",
+    "compiler_sha256": "f9315b427542ad01a0b0432df3c768c101ba334623109874b84e911a34514855",
+    "fixture": "mrt",
+    "header_file": "AIRMRTFixture.h",
+    "library_file": "mrt.metallib",
+    "authored_semantic_fixture": true,
+    "device_operations": 0
+  },
+  "actual_Mac_AIR_regeneration": true,
+  "graphics_CLI_sha256": "9acc07cbf457e3135e1a8121c33ca1bca8688cc3a13f4cece99a01257467fc17",
+  "ESSL_shaders": {
+    "mrt_position.vert": "f0ae48c0e26d6829e384e91d71f8924cb82e2e324a867519e3f4cc684efd404f",
+    "mrt_colour.frag": "83120b4db42a299408591365535fb8963d1bad0fad470e6ebcd63d6352059d9e",
+    "mrt_changed.frag": "73dcb44cfcfd92eedc2f353e75bf369760b75377f8d0950279a68440dd5afa0d",
+    "mrt_eight.frag": "6601f59efcb71550cd8d4e9cf1e8e05cec7d4c2548080bb4d1177f05b41a6dfa",
+    "mrt_sample.frag": "9d62e736c251f1bba06b53535243e4fa87cd12cd30591db87543e2c772b823c4",
+    "mrt_order_position.vert": "00e6c57d444ae98c33aa2c4e1c5d40064ffb35bf0270965f7d0229c453d943d1",
+    "mrt_order_colour.frag": "be6543750c28f4b69ead5d3c9507bf3e771c7c8da32ebb1431c5df304af7b8c6"
+  },
+  "host_GLES_log_sha256": "8cecc8cde15ac9d569e2d675a14c7ede2291309eb75e793fbf0936a8c8c12a29",
+  "actual_host_GPU_MRT_eight_targets_and_four_XR_formats_verified": true,
+  "actual_host_GPU_independent_blends_masks_original_code_lowbits_verified": true,
+  "actual_host_GPU_ordered_overlapping_primitives_instance_ID_nonzero_start_negative_above_one_verified": true,
+  "float32_images_readonly_and_writeonly_separate_bindings": true,
+  "per_primitive_XR_rounding": true,
+  "host_ASan_UBSan": true,
+  "production_uniform_rules_applied_to_actual_GLES_uniforms_and_wrong_image_binding_rejected": true,
+  "actual_FD540_original_pages_and_fences_still_required": true,
+  "device_operations": 0
+}

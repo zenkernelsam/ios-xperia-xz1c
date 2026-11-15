@@ -8,7 +8,7 @@ static id answer;
 static NSError *originalError;
 static NSError **expectedPointer;
 static unsigned originalCalls;
-static bool throws;
+static bool throws;static unsigned color0Logs,color1Logs;
 static NSException *originalException;
 @interface SweetPipelineHostFixture : NSObject
 - (id)newRenderPipelineStateWithDescriptor:(id)d error:(NSError **)error;
@@ -24,14 +24,18 @@ static NSException *originalException;
 {(void)bundle;assert(error==expectedPointer);++originalCalls;if(throws)@throw originalException;if(error)*error=originalError;return answer;}
 @end
 static void emit(const char *format,...)
-{char line[512];va_list args;va_start(args,format);int n=vsnprintf(line,sizeof(line),format,args);va_end(args);assert(n>0 && n<250);puts(line);}
+{char line[512];va_list args;va_start(args,format);int n=vsnprintf(line,sizeof(line),format,args);va_end(args);assert(n>0 && n<250);
+    if(strstr(line,"SWEET METAL PIPELINE color call=")){if(strstr(line,"index=0 format=80 blend=0 mask=15"))++color0Logs;if(strstr(line,"index=1 format=555 blend=1 mask=10"))++color1Logs;}puts(line);}
 int main(void){@autoreleasepool{
     assert(metal_pipeline_observe([SweetPipelineHostFixture class],emit));SweetPipelineHostFixture *device=[SweetPipelineHostFixture new];
     id descriptor=[MTLRenderPipelineDescriptor new];((MTLRenderPipelineDescriptor *)descriptor).colorAttachments[0].pixelFormat=MTLPixelFormatBGRA8Unorm;
+    ((MTLRenderPipelineDescriptor *)descriptor).colorAttachments[1].pixelFormat=MTLPixelFormatBGR10_XR_sRGB;
+    ((MTLRenderPipelineDescriptor *)descriptor).colorAttachments[1].blendingEnabled=YES;
+    ((MTLRenderPipelineDescriptor *)descriptor).colorAttachments[1].writeMask=MTLColorWriteMaskRed|MTLColorWriteMaskBlue;
     originalError=[NSError errorWithDomain:@"host-original" code:77 userInfo:@{NSLocalizedDescriptionKey:@"Original compiler rejection"}];answer=[NSObject new];
     NSError *error=nil;expectedPointer=&error;
     for(unsigned i=0;i<36;++i){assert([device newRenderPipelineStateWithDescriptor:descriptor error:&error]==answer && error==originalError);}
-    assert(originalCalls==36 && atomic_load(&pipeline_calls)==36);[answer release];answer=nil;error=nil;
+    assert(originalCalls==36 && atomic_load(&pipeline_calls)==36 && color0Logs==32 && color1Logs==32);[answer release];answer=nil;error=nil;
     assert(![device newRenderPipelineStateWithDescriptor:descriptor error:&error] && error==originalError);expectedPointer=NULL;
     assert(![device newRenderPipelineStateWithDescriptor:descriptor error:NULL]);
     expectedPointer=&error;answer=[NSObject new];

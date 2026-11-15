@@ -23,6 +23,10 @@ static id observe_pipeline_factory(id object,SEL selector,MTLRenderPipelineDescr
         pipeline_emit("SWEET METAL PIPELINE states call=%u vertex_class=%s fragment_class=%s blend=%u mask=%lu alphaCoverage=%u alphaOne=%u",call,
             d.vertexFunction?object_getClassName(d.vertexFunction):"nil",d.fragmentFunction?object_getClassName(d.fragmentFunction):"nil",
             d.colorAttachments[0].blendingEnabled,(unsigned long)d.colorAttachments[0].writeMask,d.alphaToCoverageEnabled,d.alphaToOneEnabled);
+        for(unsigned i=0;i<8;++i){MTLRenderPipelineColorAttachmentDescriptor *color=d.colorAttachments[i];if(!color.pixelFormat)continue;
+            pipeline_emit("SWEET METAL PIPELINE color call=%u index=%u format=%lu blend=%u mask=%lu srcRGB=%lu dstRGB=%lu opRGB=%lu srcAlpha=%lu dstAlpha=%lu opAlpha=%lu",call,i,
+                (unsigned long)color.pixelFormat,color.blendingEnabled,(unsigned long)color.writeMask,(unsigned long)color.sourceRGBBlendFactor,(unsigned long)color.destinationRGBBlendFactor,
+                (unsigned long)color.rgbBlendOperation,(unsigned long)color.sourceAlphaBlendFactor,(unsigned long)color.destinationAlphaBlendFactor,(unsigned long)color.alphaBlendOperation);}
         for(unsigned i=0;i<31;++i){MTLVertexBufferLayoutDescriptor *layout=d.vertexDescriptor.layouts[i];
             if(layout.stride)pipeline_emit("SWEET METAL PIPELINE layout call=%u index=%u stride=%lu step=%lu rate=%lu",call,i,(unsigned long)layout.stride,(unsigned long)layout.stepFunction,(unsigned long)layout.stepRate);
             MTLVertexAttributeDescriptor *attribute=d.vertexDescriptor.attributes[i];

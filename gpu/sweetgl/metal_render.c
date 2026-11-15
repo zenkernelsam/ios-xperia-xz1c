@@ -6,6 +6,7 @@
 #include "MipColourShader.h"
 #include "MultiTargetShader.h"
 #include "XRBlendShader.h"
+#include "RenderUniformRules.h"
 #include "sweetgl.h"
 #include "sweet_drm.h"
 #include "pipe/p_screen.h"
@@ -316,13 +317,12 @@ static int bind_samples(SweetMetalProgram *program,const SweetShaderTextureBindi
     if(max_length>512)return -EINVAL;unsigned assigned=0;
     for(GLint i=0;i<active;++i){char name[512]={0};GLsizei bytes=0;GLint elements=0;GLenum type=0;
         glGetActiveUniform(program->program,(GLuint)i,sizeof(name),&bytes,&elements,&type,name);
-        if(type!=GL_SAMPLER_2D){
-            if(!strcmp(name,"_smtl_xr_lut"))continue;
-            if(!strncmp(name,"_smtl_vertex_buffer",19))continue;
-            if(!strncmp(name,"_qtexture2d_info",16) || !strncmp(name,"_qvertex_texture2d_info",23) ||
-                !strncmp(name,"_qsampler_info",14) || !strncmp(name,"_qvertex_sampler_info",21))continue;
-            return -ENOTSUP;
-        }
+        unsigned image_binding=~0u;SweetRenderUniformRole role=sweet_render_uniform_role(name,type,elements,&program->render,program->ordered_xr_mask,&image_binding);
+        if(role==SWEET_UNIFORM_OWNED)continue;
+        if(role==SWEET_UNIFORM_XR_IMAGE){GLint binding=-1,location=glGetUniformLocation(program->program,name);glGetUniformiv(program->program,location,&binding);
+            if(binding!=(GLint)image_binding){sweet_drm_log("SWEET METAL MRT uniform reject name=%s type=%#x elements=%d binding=%d expected=%u",name,type,elements,binding,image_binding);return -EINVAL;}
+            sweet_drm_log("SWEET METAL MRT uniform image name=%s type=%#x elements=%d binding=%d owned=1",name,type,elements,binding);continue;}
+        if(role!=SWEET_UNIFORM_AIR_SAMPLER){sweet_drm_log("SWEET AIR RENDER uniform reject name=%s type=%#x elements=%d ordered_mask=%u",name,type,elements,program->ordered_xr_mask);return -ENOTSUP;}
         unsigned stage=2,slot=0,sampler=0;int used=0;
         if(sscanf(name,"_qsample%u_%u%n",&slot,&sampler,&used)!=2){stage=1;used=0;if(sscanf(name,"_qvertex_sample%u_%u%n",&slot,&sampler,&used)!=2)return -ENOTSUP;}
         if(name[used] && strcmp(name+used,"_level"))return -ENOTSUP;
@@ -345,7 +345,7 @@ static int bind_samples(SweetMetalProgram *program,const SweetShaderTextureBindi
         glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MIN_LOD,state->minimum_lod);glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MAX_LOD,state->maximum_lod);
         glUniform1i(glGetUniformLocation(program->program,name),(GLint)assigned++);
     }
-    return bind_texture_metadata(program,textures,count);
+    int result=render_gl_error("sampler-uniforms",-1);return result?result:bind_texture_metadata(program,textures,count);
 }
 static int bounded_clear(const SweetRenderPass *pass)
 {

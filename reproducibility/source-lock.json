@@ -159,12 +159,13 @@
       "MetalShaderAPI.h": "8cd9d626742f408fc739c1bbc7beca87e8c673bf0c137d8f15e8dc1d6375fe8d",
       "metal_compute.c": "c2780b5202cdc4ae4161b2359d6c694f4bd35e4af7c3d3d50286fed5d12b8376",
       "MetalShaderInternals.h": "1067cc518a649d93c3e60567847fe152aa0fb70c422a7b20bc62cc07a42aea21",
-      "metal_render.c": "b970c31c70e3b69f856c71b5d2a66b53026f83907483792cb7a5d794a90d6fb6",
+      "metal_render.c": "3e30055e04cd36d5f3346929b1d1024fe31493384065bf443167c1f38306afc1",
       "XRColourTables.h": "7564148cfcdb509061e1cebc76cd8afb59a292f4dea18086f2d7fa753bb723fa",
       "XRColourShader.h": "9a4e6514d9f203dac4fa95def0ec418777c8422125bfacfdbb0d1a7ea1c6d973",
       "MipColourShader.h": "15d9f983a7fd0d71604193262a19b7b6cad8f6900c6366f7e12b155db47c8ed1",
       "MultiTargetShader.h": "d92afddb9197734b7dfe78a1bfc658012dae7b3143235eab600540e1a609a286",
-      "XRBlendShader.h": "069ff16f3a099d5faa812de1c9af628534c847cfe2bc34b86b1e1401ea1ce6aa"
+      "XRBlendShader.h": "069ff16f3a099d5faa812de1c9af628534c847cfe2bc34b86b1e1401ea1ce6aa",
+      "RenderUniformRules.h": "b137fdcf1ac176cd7b96e111e2d742f72eddfc994c885f232327d2e07e0cdabd"
     },
     "tested_library_sha256": "9a59820c7e54b1626cacd49acb70a7d460be3c01c415a17429a2464bb5b11571",
     "build_script_updated_for_canonical_output": "295a38823e17a9254a60fb50716d0c4cc674d08d127b9acecb81f508408d44ec",

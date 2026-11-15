@@ -15,9 +15,15 @@ def verify(text,token):
         if not vertex or not fragment or not states:incomplete+=1;continue
         error=re.search(r'SWEET METAL PIPELINE error call='+str(call)+r' reason="([^"]*)"',block[end.end():])
         if int(end[3]) and not error:incomplete+=1;continue
+        colors=[dict(index=int(i),format=int(f),blend_enabled=bool(int(b)),write_mask=int(w),source_rgb=int(sr),destination_rgb=int(dr),operation_rgb=int(opr),source_alpha=int(sa),destination_alpha=int(da),operation_alpha=int(opa))
+            for i,f,b,w,sr,dr,opr,sa,da,opa in re.findall(r'SWEET METAL PIPELINE color call='+str(call)+r' index=(\d+) format=(\d+) blend=([01]) mask=(\d+) srcRGB=(\d+) dstRGB=(\d+) opRGB=(\d+) srcAlpha=(\d+) dstAlpha=(\d+) opAlpha=(\d+)',block[:end.start()])]
+        if colors:
+            assert [p['index'] for p in colors]==sorted(set(p['index'] for p in colors)) and all(p['index']<8 for p in colors)
+            assert colors[0]['index']==0 and colors[0]['format']==int(start[2]) and colors[0]['blend_enabled']==bool(int(states[3])) and colors[0]['write_mask']==int(states[4])
         records.append(dict(call=call,format=int(start[2]),sample_count=int(start[3]),depth_format=int(start[4]),stencil_format=int(start[5]),raster_enabled=bool(int(start[6])),
             vertex_function=vertex[1],fragment_function=fragment[1],vertex_class=states[1],fragment_class=states[2],blend_enabled=bool(int(states[3])),write_mask=int(states[4]),
             returned_nil=bool(int(end[1])),error_pointer=bool(int(end[2])),error_code=int(end[3]),original_error=error[1] if error else None,
+            actual_color_attachments=colors,
             vertex_layouts=[dict(index=int(i),stride=int(s),step=int(t),rate=int(r)) for i,s,t,r in re.findall(r'SWEET METAL PIPELINE layout call='+str(call)+r' index=(\d+) stride=(\d+) step=(\d+) rate=(\d+)',block[:end.start()])],
             vertex_attributes=[dict(index=int(i),format=int(f),offset=int(o),buffer=int(b)) for i,f,o,b in re.findall(r'SWEET METAL PIPELINE attribute call='+str(call)+r' index=(\d+) format=(\d+) offset=(\d+) buffer=(\d+)',block[:end.start()])]))
     assert records,'No complete original pipeline factory return/error record'

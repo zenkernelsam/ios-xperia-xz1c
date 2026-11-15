@@ -10,6 +10,7 @@
 #include "../../gpu/diagnostics/MRTProbeValues.h"
 #include "../../gpu/sweetgl/MultiTargetShader.h"
 #include "../../gpu/sweetgl/XRBlendShader.h"
+#include "../../gpu/sweetgl/RenderUniformRules.h"
 #include "../../gpu/sweetgl/MipColourShader.h"
 #define mrt_vertex_source sweet_mip_vertex
 typedef void (*IndexedEnable)(GLenum,GLuint);
@@ -24,6 +25,17 @@ static GLuint shader(GLenum kind,const char *source)
 static GLuint program(const char *vertex,const char *fragment)
 {GLuint p=glCreateProgram(),v=shader(GL_VERTEX_SHADER,vertex),f=shader(GL_FRAGMENT_SHADER,fragment);glAttachShader(p,v);glAttachShader(p,f);glLinkProgram(p);GLint valid=0;glGetProgramiv(p,GL_LINK_STATUS,&valid);
     if(!valid){char error[8192];glGetProgramInfoLog(p,sizeof(error),NULL,error);fprintf(stderr,"MRT link error %s\n",error);}assert(valid);glDeleteShader(v);glDeleteShader(f);return p;}
+static bool uniform_contract(GLuint p,const SweetRenderPipelineConfig *config,uint32_t ordered_mask)
+{
+    GLint count=0;glGetProgramiv(p,GL_ACTIVE_UNIFORMS,&count);unsigned images=0;
+    for(GLint i=0;i<count;++i){char name[512];GLint elements=0;GLenum type=0;glGetActiveUniform(p,i,sizeof(name),NULL,&elements,&type,name);
+        unsigned expected=~0u;SweetRenderUniformRole role=sweet_render_uniform_role(name,type,elements,config,ordered_mask,&expected);
+        if(role==SWEET_UNIFORM_REJECT)return false;
+        if(role==SWEET_UNIFORM_XR_IMAGE){GLint actual=-1;glGetUniformiv(p,glGetUniformLocation(p,name),&actual);if(actual!=(GLint)expected)return false;++images;}
+    }
+    if(images!=2u*(unsigned)__builtin_popcount(ordered_mask))return false;
+    assert(glGetError()==GL_NO_ERROR);fprintf(stderr,"actual production uniform scan XR_targets=%u owned_images=%u verified=1\n",(unsigned)__builtin_popcount(ordered_mask),images);return true;
+}
 static GLuint image(unsigned format,const void *data)
 {GLuint n;glGenTextures(1,&n);glBindTexture(GL_TEXTURE_2D,n);GLenum internal=format>=552?(format<554?GL_RGBA16UI:GL_R32UI):format==115?GL_RGBA32F:GL_RGBA8;
     GLenum channels=format>=552?(format<554?GL_RGBA_INTEGER:GL_RED_INTEGER):GL_RGBA,type=format>=552?(format<554?GL_UNSIGNED_SHORT:GL_UNSIGNED_INT):format==115?GL_FLOAT:GL_UNSIGNED_BYTE;
@@ -69,10 +81,13 @@ int main(int argc,char **argv)
     char *vertex=read_file(argv[1],"mrt_position.vert"),*color=read_file(argv[1],"mrt_colour.frag"),*changed=read_file(argv[1],"mrt_changed.frag");
     const char *clear="#version 310 es\nprecision highp float;uniform vec4 c;layout(location=0) out vec4 colour;void main(){colour=c;}";GLuint clearProgram=program(mrt_vertex_source,clear);
     for(unsigned format=552;format<=555;++format){unsigned pixel=format<554?8:4;unsigned char pixels[17*9*8];memset(pixels,0xa5,sizeof(pixels));GLuint raw=image(format,pixels),target=image(80,NULL);
-        SweetRenderPipelineConfig config={0};config.color_mask=3;config.format=format;config.blend_enabled=1;config.source_rgb=4;config.destination_rgb=5;config.source_alpha=0;config.destination_alpha=1;config.write_mask=15;
+        SweetRenderPipelineConfig config={0};config.vertex_buffers=1;config.color_mask=3;config.format=format;config.blend_enabled=1;config.source_rgb=4;config.destination_rgb=5;config.source_alpha=0;config.destination_alpha=1;config.write_mask=15;
         char *ordered_vertex=sweet_xr_ordered_vertex(vertex),*ordered_alpha=sweet_xr_ordered_fragment(color,&config,1);assert(ordered_vertex && ordered_alpha);
-        GLuint alpha=program(ordered_vertex,ordered_alpha);free(ordered_alpha);config.destination_rgb=1;config.write_mask=10;
-        char *ordered_masked=sweet_xr_ordered_fragment(changed,&config,1);assert(ordered_masked);GLuint masked=program(ordered_vertex,ordered_masked);free(ordered_masked);free(ordered_vertex);vertex_buffer(alpha);vertex_buffer(masked);
+        GLuint alpha=program(ordered_vertex,ordered_alpha);assert(uniform_contract(alpha,&config,1));
+        if(format==552){char *bad=strstr(ordered_alpha,"binding=8)");assert(bad);bad[8]='7';GLuint wrong=program(ordered_vertex,ordered_alpha);assert(!uniform_contract(wrong,&config,1));glDeleteProgram(wrong);bad[8]='8';
+            fprintf(stderr,"actual production uniform scan incorrect image binding rejected=1\n");}
+        free(ordered_alpha);config.destination_rgb=1;config.write_mask=10;
+        char *ordered_masked=sweet_xr_ordered_fragment(changed,&config,1);assert(ordered_masked);GLuint masked=program(ordered_vertex,ordered_masked);assert(uniform_contract(masked,&config,1));free(ordered_masked);free(ordered_vertex);vertex_buffer(alpha);vertex_buffer(masked);
         glUseProgram(alpha);glUniform1i(glGetUniformLocation(alpha,"_smtl_xr_lut"),16);glUseProgram(masked);glUniform1i(glGetUniformLocation(masked,"_smtl_xr_lut"),16);
         for(unsigned phase=0;phase<3;++phase){if(phase==1){unsigned char seeded[16384];memset(seeded,0xa5,sizeof(seeded));mrt_seed_old_codes(seeded,format);
                 for(unsigned y=0;y<9;++y)memcpy(pixels+y*17*pixel,seeded+64+y*(format<554?192:128),17*pixel);glBindTexture(GL_TEXTURE_2D,raw);glTexSubImage2D(GL_TEXTURE_2D,0,0,0,17,9,format<554?GL_RGBA_INTEGER:GL_RED_INTEGER,format<554?GL_UNSIGNED_SHORT:GL_UNSIGNED_INT,pixels);}
@@ -101,8 +116,8 @@ int main(int argc,char **argv)
         GLuint raw=image(format,pixels),old=image(format,pixels),linear=decode(raw,format,fbo),empty;glGenFramebuffers(1,&empty);glBindFramebuffer(GL_FRAMEBUFFER,empty);
         glFramebufferParameteri(GL_FRAMEBUFFER,GL_FRAMEBUFFER_DEFAULT_WIDTH,17);glFramebufferParameteri(GL_FRAMEBUFFER,GL_FRAMEBUFFER_DEFAULT_HEIGHT,9);glFramebufferParameteri(GL_FRAMEBUFFER,GL_FRAMEBUFFER_DEFAULT_SAMPLES,0);
         GLenum none=GL_NONE;glDrawBuffers(1,&none);glReadBuffer(GL_NONE);assert(glCheckFramebufferStatus(GL_FRAMEBUFFER)==GL_FRAMEBUFFER_COMPLETE);
-        SweetRenderPipelineConfig config={0};config.format=format;config.blend_enabled=1;config.source_rgb=4;config.destination_rgb=5;config.source_alpha=0;config.destination_alpha=1;config.write_mask=14;
-        char *vs=sweet_xr_ordered_vertex(orderVertex),*fs=sweet_xr_ordered_fragment(orderColor,&config,1);assert(vs && fs);GLuint p=program(vs,fs);free(vs);free(fs);vertex_words(p,coords,sizeof(coords));glUseProgram(p);glUniform1i(glGetUniformLocation(p,"_smtl_xr_lut"),16);
+        SweetRenderPipelineConfig config={0};config.vertex_buffers=1;config.format=format;config.blend_enabled=1;config.source_rgb=4;config.destination_rgb=5;config.source_alpha=0;config.destination_alpha=1;config.write_mask=14;
+        char *vs=sweet_xr_ordered_vertex(orderVertex),*fs=sweet_xr_ordered_fragment(orderColor,&config,1);assert(vs && fs);GLuint p=program(vs,fs);assert(uniform_contract(p,&config,1));free(vs);free(fs);vertex_words(p,coords,sizeof(coords));glUseProgram(p);glUniform1i(glGetUniformLocation(p,"_smtl_xr_lut"),16);
         no_blend();glBindImageTexture(0,linear,0,GL_FALSE,0,GL_READ_ONLY,GL_RGBA32F);glBindImageTexture(8,linear,0,GL_FALSE,0,GL_WRITE_ONLY,GL_RGBA32F);glMemoryBarrier(GL_ALL_BARRIER_BITS);
         glViewport(0,0,17,9);glEnable(GL_SCISSOR_TEST);glScissor(3,2,11,5);
         for(unsigned instance=0;instance<2;++instance){glUniform1i(glGetUniformLocation(p,"_smtl_instance_base"),instance);

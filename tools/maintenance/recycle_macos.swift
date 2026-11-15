@@ -5,15 +5,22 @@ guard CommandLine.arguments.count == 3 else { fatalError("usage: recycle_macos p
 let planURL = URL(fileURLWithPath: CommandLine.arguments[1])
 let journalURL = URL(fileURLWithPath: CommandLine.arguments[2])
 let plan = try JSONSerialization.jsonObject(with: Data(contentsOf: planURL)) as! [String: Any]
-let roots = plan["allowed_roots"] as! [String]
-let items = plan["items"] as! [[String: String]]
-var results = [[String: String]]()
-for item in items {
-    let source = URL(fileURLWithPath: item["path"]!).standardizedFileURL
+let roots = (plan["allowed_roots"] as! [String]).map {
+    URL(fileURLWithPath: $0).standardizedFileURL.resolvingSymlinksInPath().path
+}
+let items = plan["items"] as! [[String: Any]]
+// Validate the full request before the first native Trash operation.
+let sources = items.map { item -> URL in
+    guard let sourcePath = item["path"] as? String else { fatalError("Recycle item requires a string path") }
+    let source = URL(fileURLWithPath: sourcePath).standardizedFileURL.resolvingSymlinksInPath()
     guard roots.contains(where: { source.path.hasPrefix($0 + "/") }),
           FileManager.default.fileExists(atPath: source.path),
           ![".git", "dxb", "research", "flash", "unlock", "backups"].contains(source.lastPathComponent)
     else { fatalError("Source outside approved workspace or protected: \(source.path)") }
+    return source
+}
+var results = [[String: String]]()
+for source in sources {
     var finished = false
     var failure: Error?
     var destination: URL?

@@ -12,7 +12,9 @@ XRBlendShader保留高精度AIR输出，在fragment内从readonly RGBA32F image�
 
 作者AIR fixture包含7个函数。四XR各4phase验证清屏、alpha混色、R/B累计遮罩及实际采样到BGRA/RGBA，另验8个同时输出。追加四XR的两图元×两实例重叠绘制，vertexStart=3、负色和大于1色值及原保护区；完整组检查1245184B。C与Python独立复算原缓冲hash、码值、低位、附件fence和finalAllocated。任何ACK前失败或缺项均拒绝，不用主机stub、另一靴或既有成功补记录。
 
-当前主机实际AIR→ESSL→Mesa绘制、ASan/UBSan原生对象/队列快照/同BO非重叠附件/拒绝重叠/释放均通过。新GLES43ed6ab8自身CPU/GPU和完整Metal包CPU通过，但r2完整GPU的第一混色被生产bind_samples拒绝新增内部image/uniform，原返回Darwin -45/ENOTSUP，未派发draw；主机此前没有覆盖该生产绑定器检查。token402f3ed8ec46f88a已39.891秒完整回程，原失败不提升通过。真实screen日志确认8目标、FP32 render/image支持、FP32 blend/EXT_float_blend/fbfetch=0、无附件FBO=1、24 fragment images/192 image units。正在补齐严格的内部uniform类型/位置检查与实际主机uniform枚举测试。完整UI/时间/日期/壁纸/FPS、其它图元的GPU验收、一般blend因素/constant sampler、depth/stencil/MSAA及外设仍待推进。
+完整r3现在已实机通过全部原native组和新增MRT：四XR各4phase、8个同时输出、四XR的两重叠图元×两实例/vertexStart3/负色与大于1色值，1245184B全部原byte/低位/保护区零差异。GLESa4632b32、Metal2afbde84、token8cb8d1e96216ee1f；523allocated/released/unmapped、active/orphan/root0，38.562秒完整PON06回程。547262B原raw SHAe8b754efb565d29486c9323bb800d4a59af34d3255229c43cac934549cefa6aa，独立重核的报告及native-proof在reproducibility/v729-mrt-r3-*。
+
+共享RenderUniformRules补齐生产bind_samples对内部uniform/image的类型及显式绑定位置检查；同一规则也在主机实际GLES uniform枚举中执行，并拒绝错误image binding。r2原-45/ENOTSUP和39.891秒回程保留，未派发draw，不提升原失败为通过。真实screen为8目标、FP32 render/image支持、FP32 blend/EXT_float_blend/fbfetch=0、无附件FBO=1、24 fragment images/192 image units。主机ASan/UBSan原生对象/队列快照/同BO非重叠附件/释放保持。完整UI/时间/日期/壁纸/FPS、其它图元的GPU验收、一般blend因素/constant sampler、depth/stencil/MSAA及外设仍待推进。
 
 主机复现入口：
 
