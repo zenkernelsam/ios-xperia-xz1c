@@ -42,10 +42,26 @@ float _smtl_half_unpack(uint value){
     if(exponent==31u)return uintBitsToFloat(sign|2139095040u|(mantissa<<13u));
     if(exponent!=0u)return uintBitsToFloat(sign|((exponent+112u)<<23u)|(mantissa<<13u));
     if(mantissa==0u)return uintBitsToFloat(sign);
-    uint actual=113u;while((mantissa&1024u)==0u){mantissa<<=1u;--actual;}
-    return uintBitsToFloat(sign|(actual<<23u)|((mantissa&1023u)<<13u));
+    // A binary16 subnormal has only ten significand bits. Construct its
+    // float32 exponent/significand directly instead of an inlined loop.
+    uint high=uint(findMSB(mantissa));
+    return uintBitsToFloat(sign|((103u+high)<<23u)|((mantissa-(1u<<high))<<(23u-high)));
 }
-float _smtl_half_round(float value){return _smtl_half_unpack(_smtl_half_pack(value));}
+float _smtl_half_round(float value){
+    // Preserve the exact pack->unpack result without duplicating that call
+    // graph at every half SSA value during Mesa link-time function inlining.
+    uint bits=floatBitsToUint(value),sign=bits&2147483648u,exponent=(bits>>23u)&255u,mantissa=bits&8388607u;
+    if(exponent==255u)return uintBitsToFloat(sign|2139095040u|(mantissa==0u?0u:max(mantissa>>13u,1u)<<13u));
+    if(exponent<102u)return uintBitsToFloat(sign);
+    if(exponent>142u)return uintBitsToFloat(sign|2139095040u);
+    if(exponent<113u){uint shift=126u-exponent,full=mantissa|8388608u,whole=full>>shift,tail=full&((1u<<shift)-1u),middle=1u<<(shift-1u);
+        uint units=whole+uint(tail>middle || (tail==middle && (whole&1u)!=0u));
+        // units <= 1024; conversion and multiplication by 2^-24 are exact.
+        return uintBitsToFloat(sign|floatBitsToUint(float(units)*0.000000059604644775390625));}
+    uint whole=bits&2147475456u,tail=bits&8191u;
+    whole+=uint(tail>4096u || (tail==4096u && ((bits>>13u)&1u)!=0u))*8192u;
+    return uintBitsToFloat(sign|(whole>=1199570944u?2139095040u:whole));
+}
 vec2 _smtl_half_round(vec2 v){return vec2(_smtl_half_round(v.x),_smtl_half_round(v.y));}
 vec3 _smtl_half_round(vec3 v){return vec3(_smtl_half_round(v.x),_smtl_half_round(v.y),_smtl_half_round(v.z));}
 vec4 _smtl_half_round(vec4 v){return vec4(_smtl_half_round(v.x),_smtl_half_round(v.y),_smtl_half_round(v.z),_smtl_half_round(v.w));}

@@ -1,6 +1,6 @@
 # 当前状态 — 2026-11-15
 
-当前registry-short-r5原REVISE/EXTENSION_CHECKIN_TIMEOUT已38.687秒完整自动回程，tokend766c9ef26cfb30b；Sony健康fastboot，原worker退出，无COM/camera/in-flight。原Aegir得到真实device，首个aegir_starfield_fsh管线记录555+R8/mask0两附件，进入Mesa create能力日志后未得到factory END，随后启动check-in超时。正在离线定位原shader编译成本，未提升原壁纸/UI成功。mrt-r3完整GPU已通过，token8cb8d1e96216ee1f；四XR/8同时输出/重叠实例/HDR全部1245184B原页面零差异，523全撤销并38.562秒完整回程。源码/证据/回收记录已推送430e324。原UI/FPS/睡眠/声音/无线仍未完成。
+当前half-link-r1优化包完整native GPU已通过，token236ebb8e9a66435b，479968B raw SHA3322990b0cc465701fc9be75b4341663bb3b50d97952aa5cdd5b45d8a3538db8；37.281秒完整PON06回程/健康30秒/原worker退出，Sony健康fastboot无in-flight。GLESa4632b32保持，新Metal28e6a132。原全部native组、half131072B含NaN/保护区与MRT1245184B通过，404allocated/released/unmapped、active/orphan/root0。新half解包findMSB及直接位型舍入主机131072用例与实际AIR验证通过；原星空主体不变，无缓存host链接5.267→1.991秒。正在构建绑定新完整proof的registry-short-r6；r5原check-in超时保留，原UI/FPS/睡眠/声音/无线继续active。
 
 同一新GLESa4632b32的CPU/GPU及Metal包CPU分别37.828/38.531/37.531秒完整回程。共享RenderUniformRules在生产区分真实sampler与内部uniform/image，类型/位置检查及实际主机枚举/错误image绑定拒绝通过；此次完整GPU补上了r2遗漏的生产绑定器验收。
 

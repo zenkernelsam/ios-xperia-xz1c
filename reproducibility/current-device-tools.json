@@ -130,7 +130,9 @@
     "tools/build/import_half_reference.py": "1f0f71345833dc0e1d8aa22903e35f9a4d315481c8ba43e8ea2806eecc4cafb4",
     "tools/build/test_metal_mrt.mm": "bcdd87b4a0bd161e7b5632052d25dbbf5ab936116fbe1d4483bc967f8861719c",
     "tools/build/test_mrt_gles.c": "f245a7855f9abf59b072cba17b036cf04cc3e7a58933a183207c42f31612eb69",
-    "tools/build/check_mrt_gles.py": "91967c01d24d3f89a37ba4c2fd811097348bb99c918bde5379c91665738e842c"
+    "tools/build/check_mrt_gles.py": "91967c01d24d3f89a37ba4c2fd811097348bb99c918bde5379c91665738e842c",
+    "tools/build/build_graphics_cli.py": "d40a2fef3328a06c30c509406acc8e4ee8d01fce59fc79c091dfb32c8ea69ad1",
+    "tools/build/profile_gles_shader.c": "5beb33e2545ba387cb9c2c17cb0e2fad190b15c3a6bfe620db31e0ce84313e51"
   },
   "gpu_sources": {
     "gpu/diagnostics/exception_observe.m": "334db58f981879fe8ce68943cae745b80f646ce93656eedcbca1879fe03554d9",
@@ -178,7 +180,7 @@
     "gpu/diagnostics/MetalNarrowProbe.h": "ebf16763de55d4081125b87495c2e92036f01a261634997598039c55eb754880",
     "gpu/metal/air/lilac-air-conversion.patch": "e3981d4666f852530b7b933e677bcb74f6ae0e8f288d7e717609dbc8761ea796",
     "gpu/metal/air/fixtures/narrow.air.ll": "584c37e80ea235bdfc26718e05639c1edb76f6fc93ff5b84cd3b2eaaf6a974d3",
-    "gpu/metal/air/HalfESSL.h": "229f580015f3b82f3bc34b0434836d86170020c221415ff00642a2b8f2c1c8ad",
+    "gpu/metal/air/HalfESSL.h": "9bb13ebaf13425eba7ce61268687c4b099ec9723d18668263db40f48079892a7",
     "gpu/metal/air/lilac-air-half-storage.patch": "db01b10a413d085ac039d2bf5988029e65bd4731f6019fdf6cbf7a11b8c12ee8",
     "gpu/diagnostics/HalfProbeValues.h": "8cb2c8eaaa837981fc5fc565ede9e18cd026c87258d9f1c734776f288421e131",
     "gpu/diagnostics/MetalHalfProbe.h": "0dc0e1423ec289b7339d48c7d45a1e429318f6085d1974472c55d18e37180df4",

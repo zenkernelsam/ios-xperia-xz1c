@@ -16,4 +16,6 @@ registry-short-r4 token58ea25e5de40fb92、镜像d54783e2d5c22b59a5dd3802213b76ee
 
 复现：make_air_fixture.py --fixture half使用固定LLVM14；materialize_air_sources.py按顺序应用narrow/half两独立patch；build_air_frontend.py的168个导入经原20H392LLVM导出复核。新Metal包继续相同GLES先验、新包CPU/完整backboard GPU，--half-fixture同时要求--narrow-fixture，短登记必须--native-evidence完整重核且包含AIR_half。源、host和actual manifest在reproducibility/air-half-*与v729-air-half-r1-*。
 
+half-link-r1已完整实机准入：消除half解包的归一化循环，使用findMSB构造精确float32位型；每个half SSA舍入直接构造与pack→unpack一致的值，保持最近偶数、subnormal、signed zero、overflow及NaN类别/payload规则。主机实际GLES复核全部65536half位型和65536float32边界/random、原AIR compute/vertex/fragment。原星空AIR主体不变，新CLI与仅替换helper实验逐字节一致；无缓存host链接5.267→1.991秒，不能当作手机时耗。新Metal28e6a132的CPU及完整native GPU均通过：half131072B含原NaN/保护区、MRT1245184B及其它原组保持，404全released/unmapped、active/orphan/root0，37.281秒完整自动回程。精确native-proof已重核，原壁纸需再短登记，完整UI尚未通过。
+
 下一多颜色附件/XR混色、原constant sampler、更多shader/Surface需求及实际壁纸/时间/日期/完整UI/FPS/睡眠/声音/无线继续active，不把离屏结果代替整机验收。

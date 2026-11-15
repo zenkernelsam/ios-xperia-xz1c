@@ -1,0 +1,45 @@
+{
+  "host_Mesa": "23.2.1 / llvmpipe LLVM15",
+  "shader_cache_disabled": true,
+  "old_link": {
+    "seconds": 5.267348,
+    "log_sha256": "bceba870c5cd0da6464fc849142d2a15b9039fa5f77e3dd07dba483a48ea1ee2"
+  },
+  "new_link": {
+    "seconds": 1.990658,
+    "log_sha256": "336ef4751f43916f00d2a6c3aa47966677ab46c5136e6d65b86fb6d84f4fa43b"
+  },
+  "host_link_speedup": 2.646033623053282,
+  "actual_current_Mac_CLI_shader_matches_only_helper_replacement": true,
+  "actual_shader_sha256": "b2c0ca04e0e48c2d04b06f453304891b306bcc55506ba68dd48e43cc0c0ee51d",
+  "current_HalfESSL_sha256": "9bb13ebaf13425eba7ce61268687c4b099ec9723d18668263db40f48079892a7",
+  "host_exhaustive_and_actual_AIR_validation": {
+    "source_files": {
+      "gpu/metal/air/HalfESSL.h": "9bb13ebaf13425eba7ce61268687c4b099ec9723d18668263db40f48079892a7",
+      "gpu/metal/air/lilac-air-half-storage.patch": "db01b10a413d085ac039d2bf5988029e65bd4731f6019fdf6cbf7a11b8c12ee8",
+      "gpu/metal/air/fixtures/half.air.ll": "7412ebf48fb866a015540e5dff8a736e484d5b7dd2ae54ddc69a164204255ff2",
+      "gpu/diagnostics/HalfProbeValues.h": "8cb2c8eaaa837981fc5fc565ede9e18cd026c87258d9f1c734776f288421e131",
+      "tools/build/test_half_target.cpp": "ac93a875a2ac5a95de9765688408031ec3b70a00a95441b41210369840ff07a9",
+      "tools/build/test_half_gles.c": "fe6c11a7ef1815c18225a39f8fdf2740812c3655a3473bb62b1579dca2658437",
+      "tools/build/test_air_half_gles.c": "a12187f17fe2b0829e5914acab96612207dba74ada4511fa1c886477ad6668ae",
+      "tools/build/check_air_half.py": "18d0049d1b13f4b4ba2c05570702103a7a6e448292782c5d702205efd6693132"
+    },
+    "generated_ESSL": {
+      "half_arithmetic.comp": "28a6f4dd723af379c37d158a10ffa61dae7d73536f1e179cf362ecb93d2c725c",
+      "half_position.vert": "16006f248b05ac6b48ef1bc4fc921cf24196617c1991ddeb1e46123b500068ce",
+      "half_colour.frag": "577d2941e76caf85d801558cc8385ef095192c279a5e6db2b5191b1aef634044"
+    },
+    "actual_half_adapter_nested_constructors_passed": true,
+    "actual_GLES_pack_unpack_half_patterns": 65536,
+    "actual_GLES_float32_rounding_cases": 65536,
+    "actual_AIR_arithmetic_original_bytes_checked": 98304,
+    "actual_AIR_half_vertex_fragment_pixels": 153,
+    "finite_exact_NaN_class_verified": true,
+    "ASan_UBSan_passed": true,
+    "host_Mesa_leak_detection_disabled": true,
+    "phone_evidence_required": true,
+    "device_operations": 0
+  },
+  "device_compile_latency_and_UI_still_require_actual_validation": true,
+  "private_original_shaders_not_included": true
+}

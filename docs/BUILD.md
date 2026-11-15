@@ -59,3 +59,9 @@ mipmap最新实现见METAL-MIPMAPS.md，取代上段单mip限制：源码已支�
 最新后台整组实机已通过，见METAL-BACKBOARD.md。build_exception_observer.py --target-process backboardd必须给--gles-ram-package精确GLES、--metal-resources及完整compute/render/constants/XR/Surface/MIP fixture；此模式禁止Aegir登记。背景线程只在原GLES八项成功后执行，不改变check-in。新库CPU/GPU及新包CPU/GPU/完整回程均须验收，目标路由和字节在package_trial/ram_library中强制。
 
 当前dynamic narrow与half适配/验收见AIR-NARROW.md、AIR-HALF.md。固定OSS源保留，materialize只对build副本顺序应用独立patch；half MIT源/notices在air/half/reference。make_air_fixture.py --fixture narrow|half，build_exception_observer.py --narrow-fixture/--half-fixture加入完整backboard验证，新包CPU/GPU实际通过后才registry-only。短登记必须--native-proof及run_trial --native-evidence从原raw重新完整核验，库/源码/内核/日志token全匹配。
+
+当前target helper变更可独立重编实际host AIR→ESSL工具，不重用包含旧HalfESSL的CLI：
+
+    python3 tools/build/build_graphics_cli.py --air-package build/air-half-r1/frontend --llvm-headers deps/llvm-c-14 --output build/my-graphics-cli
+
+该工具验证固定AIR包原source-map，以当前ESSLTarget/HalfESSL重新编译graphics-cli，记录完整源/工具SHA。check_air_half.py验当前helper的全部half位型/float32边界及实际AIR compute/vertex/fragment；profile_gles_shader.c可独立测原shader的host compile/link，不绘制、不作为手机时耗或UI证据。half-link优化保持GLES字节，重新构建Metal/observer/RAM包，沿同GLES先验→新包CPU→完整backboard GPU→新native-proof→原Aegir短登记流程。
