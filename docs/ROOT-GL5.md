@@ -2,7 +2,24 @@
 
 设备当前 gl5 不需要重刷。这里记录复现当前用户镜像的必要变更；镜像本身不进入 Git。
 
-输入为 iPhone X iOS16.7.16/20H392 的 OS、SystemOS、AppOS；使用者从 Apple 提供的 IPSW 中按 BuildManifest 获取。旧 gl4/5 本地基线的 sparse 镜像分别约12.2GB，原 gl5 MD5 e9bf1547b6a7e9a33b51c2749c643bc2。具体原文件保留在 assets/root-build/，勿用其它机型镜像替代。
+输入为 iPhone X iOS16.7.16/20H392 的 OS、SystemOS、AppOS；使用者从 Apple 提供的 IPSW 中按 BuildManifest 获取。旧 gl4/5 本地基线的 sparse 镜像分别约12.2GB，完整gl5 SHA256见下文。具体原文件保留在 assets/root-build/，勿用其它机型镜像替代。
+
+2026-11-15磁盘复核：保留的gl5原文件SHA256为
+`e9bf1547b6a7e9a33b51c2749c643bc2eff0134c31cc3a63f9435e4cea1f9b29`。
+按Android sparse规则解码（DONT_CARE在这个已核文件中恢复为零），得到17179869184字节，
+SHA256 `4c90d65aa82c72aec8930feb2d9914b07750d879e6003dcae88884e74f63e631`，
+与原Mac ios16-root-lilac.img全SHA一致。因此该raw副本可原生回收，仍保留gl5和gl4原文件。
+需要raw时，从仓库根目录用以下工具恢复到新路径；它核对原sparse、所有chunk、decoded
+指纹，以及实际输出的完整读回，不挂载或发送设备，也不覆盖已有文件：
+
+```sh
+python3.12 tools/maintenance/restore_gl5_raw.py --sparse /path/to/ios16-root-lilac-gl5.simg --verify-only
+python3.12 tools/maintenance/restore_gl5_raw.py --sparse /path/to/ios16-root-lilac-gl5.simg --output /path/to/new/ios16-root-lilac.img
+```
+
+IPSW解包缓存的83件原始成员也已与留存IPSW逐件SHA一致；需要时可从IPSW重解。
+原unzip.log独立保留。这里证明已存gl5的逐字解码，不扩大为从Apple原镜像重建新gl5
+已完成实机验证。详细回收记录在工作台maintenance/cleanup-20261115-lilac-followup。
 
 基础 HFS+ 构建脚本 tools/mkiosroot.sh、tools/mkiosroot-mac.sh 和 tools/sweet-root-tweaks.py 保留原源码。历史脚本含旧临时清理动作，当前直接运行前必须按回收站约束检查，不自动发送设备。它们合并 cryptexes、保留所有者/权限/链接、创建 keybag/log 存储与容器。
 
