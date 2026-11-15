@@ -16,4 +16,13 @@ v727 GPU及v728+r2/r3的原REVISE保留。首次v728 owner缺snap2 slot2，独�
 
 最新Surface/登记轮均完整PON06返回。原native探针PASS与原应用missing-selector必须分别报告；run_trial会识别原SweetMTL类的exception detail中unrecognized selector并提前回程。回程ACK后的提交拒绝/未完成样本单独保留，不当作完整样本；ACK前probe失败即使已有成功样本也须拒绝。具体边界见METAL-IOSURFACE.md。
 
+Mac源码同步不是旧 `tools/mac-autobuild.sh` 常驻进程已经完成的保证。2026-11-15核对发现
+`~/xnu-autobuild.pause` 从11月3日起保留；旧脚本被该门挡住，且仍调用早期编号patch复制链。
+本轮已保留本地差异后将Mac主仓快进到已发布7eb4756。该旧暂停文件保持原样，避免它
+突然抢用当前构建树；现行编译入口和完整lilac-current.patch以BUILD.md为准。每轮编译
+核对Mac的完整Git提交和实际输入SHA，不把单独复制源码当作Git同步，也不为整理启动设备。
+原根镜像gl5、gl4回退、最新raw、原始IPSW、当前GPU构建与失败证据保留；过时镜像移入
+原生Trash的原路径/返回路径/完整SHA在配套工作台Y700-Elden的
+`maintenance/cleanup-20261115-macos`记录。Trash未清空，所占空间需用户自行回收。
+
 原Aegir短登记可与长probe分离，但必须以同kernel/GLES/Metal/source-map的完整backboard实机raw准入；新half/narrow需自身GPU证明。registry-short-r4原threshold编译成功，原app check-in timeout的REVISE保留，不能当UI成功。后续每次singleboot都保留四回程marker/健康/旧worker退出门槛。
