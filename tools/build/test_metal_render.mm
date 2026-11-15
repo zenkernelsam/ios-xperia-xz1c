@@ -28,6 +28,8 @@ extern "C" int sweetgl_metal_surface_import(uint32_t identity,uint64_t cpu,uint6
 extern "C" int sweetgl_metal_buffer_blit(uint32_t,uint32_t,uint64_t,uint64_t,uint64_t,uint32_t,uint32_t *){assert(!"render test does not blit");return -EINVAL;}
 extern "C" SweetMetalProgram *sweetgl_metal_compute_create(const char *,uint32_t,uint32_t,char *,size_t){assert(!"render test does not compute");return nullptr;}
 extern "C" int sweetgl_metal_compute_dispatch(SweetMetalProgram *,const SweetShaderBufferBinding *,uint32_t,const uint32_t[3],const uint32_t[3],const uint32_t[3],uint32_t *){return -EINVAL;}
+// Host backend has no target binary-cache proof.
+extern "C" int sweetgl_metal_program_cache_state(const SweetMetalProgram *){return 0;}
 extern "C" void sweetgl_metal_program_destroy(SweetMetalProgram *program){if(program){delete program;++destroyed;}}
 extern "C" SweetMetalProgram *sweetgl_metal_render_create(const char *vs,const char *fs,const SweetRenderPipelineConfig *config,char *error,size_t errorBytes)
 {

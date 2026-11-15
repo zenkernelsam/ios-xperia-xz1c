@@ -25,7 +25,9 @@ def verify(directory):
     capability_pattern=r'SWEET METAL MRT caps '+r' '.join(key+r'=(\d+)' for key in capability_keys)
     capabilities=[dict(zip(capability_keys,map(int,record))) for record in dict.fromkeys(re.findall(capability_pattern,scope))]
     gl_errors=[dict(stage=stage,target=int(target),error=error) for stage,target,error in re.findall(r'SWEET METAL MRT GL_error stage=(\S+) target=(-?\d+) error=(0x[0-9a-f]+)',scope)]
-    failures=re.findall(r'SWEET (?:AIR (?:COMPUTE|RENDER|CONSTANTS|XR|NARROW|HALF)|METAL (?:RESOURCE|QUEUE|DISCOVERY|SURFACE|MIPS|MRT)) END result=([1-9]\d*)',scope)
+    failures=re.findall(r'SWEET (?:AIR (?:COMPUTE|RENDER|CONSTANTS|XR|NARROW|HALF|SAMPLER)|METAL (?:RESOURCE|QUEUE|DISCOVERY|SURFACE|MIPS|MRT)) END result=([1-9]\d*)',scope)
+    cache_failures=[dict(phase=int(phase),first_state=int(first),restored_state=int(restored)) for phase,first,restored in
+        re.findall(r'SWEET PROGRAM CACHE roundtrip phase=(\d+) first_state=(-?\d+) restored_state=(-?\d+) fresh_pipeline=1 valid=0',scope)]
     registry_assertions=re.findall(r'failed assertion ([^\r\n]+) at line (\d+) in MTLAddDevice',scope)
     missing_API=re.findall(r'SWEET METAL missing class=(\S+) selector=(\S+) original_exception=1',scope)
     # Some older native classes did not yet emit the supplemental sentinel.
@@ -34,10 +36,10 @@ def verify(directory):
     missing_API+=original_missing_API
     extension_timeout=re.findall(r'CRASH AegirPoster reason ns 7 code 0x3: extension check-in timeout',scope)
     if row['result']=='STOP':assert row['reason']=='OBSERVATION_INCOMPLETE' and (registry_assertions or missing_API or extension_timeout) and 'CRASH AegirPoster' in scope
-    assert wrong or failures or registry_assertions or missing_API or extension_timeout,'Actual failure must be present in the current LIVE scope'
+    assert wrong or failures or cache_failures or registry_assertions or missing_API or extension_timeout,'Actual failure must be present in the current LIVE scope'
     return dict(source=str(root.resolve()),version=a['version'],token=a['token'],kernel_sha256=a['kernel_sha256'],
         image_sha256=a['sha256'],log_sha256=sha(raw),original_result=row['result'],original_reason=row['reason'],
-        actual_failures=wrong,native_GPU_failure_results=list(map(int,failures)),registry_assertions=registry_assertions,
+        actual_failures=wrong,native_GPU_failure_results=list(map(int,failures)),actual_program_cache_failures=cache_failures,registry_assertions=registry_assertions,
         actual_AIR_render_failure_results=render_errors,actual_MRT_context_capability_records=capabilities,actual_MRT_GL_errors=gl_errors,
         missing_device_API=missing_API,original_exception_missing_API=original_missing_API,original_extension_checkin_timeout_count=len(extension_timeout),payload_audit=payload,strict_return=returned,
         return_seconds_with_health=row['reset_to_fastboot_seconds'],failed_stage_not_accepted=True)

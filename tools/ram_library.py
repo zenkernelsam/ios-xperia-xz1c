@@ -101,6 +101,10 @@ def load(folder,expected=None):
                 sources.add('gpu/diagnostics/MetalSamplerProbe.h')
                 assert observer.get('AIR_MRT_probe') and observer['AIR_sampler_fixture']['fixture']=='sampler'
                 assert observer['AIR_sampler_fixture']['authored_semantic_fixture'] and observer['metal_resources'].get('native_AIR_constant_samplers')
+            if observer.get('program_cache_probe'):
+                assert observer.get('AIR_sampler_probe') and observer['metal_resources'].get('native_program_binary_cache')
+            if observer.get('program_cache_prime'):
+                assert observer.get('program_cache_probe') and observer.get('target_process')=='backboardd'
             assert set(observer['source_files'])==sources
             assert observer['source_files'][observer['source']]==observer['source_sha256']
     if 'metal_resources' in m:

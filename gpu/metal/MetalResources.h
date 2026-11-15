@@ -10,6 +10,7 @@ __attribute__((visibility("default"))) id<MTLDevice> SweetMTLCreateDevice(NSErro
 /* Read the completed custom queue's actual fence/operation metadata. */
 __attribute__((visibility("default"))) BOOL SweetMTLCommandResult(id<MTLCommandBuffer> commands,
     uint32_t *sequence,uint32_t *operations);
+__attribute__((visibility("default"))) int SweetMTLRenderPipelineCacheState(id<MTLRenderPipelineState> pipeline);
 /* Diagnostic registration through original Metal.framework entry points.
  * No registry properties or framework functions are replaced. */
 __attribute__((visibility("default"))) id<MTLDevice> SweetMTLCreateRegisteredDevice(NSError **error) NS_RETURNS_RETAINED;

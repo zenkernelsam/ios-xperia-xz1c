@@ -240,6 +240,11 @@ static bool run_native_probes(void)
 #if defined(SWEET_AIR_SAMPLER_PROBE)
     native_probes_valid=metal_sampler_probe(diagnostic) && native_probes_valid;
 #endif
+#if defined(SWEET_PROGRAM_CACHE_PRIME)
+    if(native_probes_valid){uint32_t completed=0,failed=0;int result=sweetgl_metal_program_cache_prime(&completed,&failed);
+        diagnostic("SWEET PROGRAM CACHE PRIME caller result=%d compiled=%u failed=%u full_native_preverified=1",result,completed,failed);
+        native_probes_valid=(result==0) && native_probes_valid;}
+#endif
 #if defined(SWEET_METAL_DISCOVERY_PROBE)
     if(native_probes_valid)(void)metal_discovery_probe(diagnostic);
     else diagnostic("SWEET METAL DISCOVERY END result=1 same_original_default=0 original_API=1 GPU_work_preverified=0");

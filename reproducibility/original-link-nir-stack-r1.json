@@ -1,0 +1,152 @@
+{
+  "library_sha256": "1c904bebb1a307d3b5ba55e3406208ec2b8dba854dd736f8a6dca78259e3fd1c",
+  "raw_log_sha256": "662ccb2ca942e834036b940deb4453c8c44d9c7d6d57d7e0d1de54ac473f2441",
+  "glLinkProgram_return_offset": "0x9e78",
+  "crashes": [
+    {
+      "pid": 295,
+      "frames": [
+        {
+          "relative_pc": "0x5f0e60",
+          "symbol": "_nir_opt_access",
+          "offset": "0x2c8"
+        },
+        {
+          "relative_pc": "0x5f0e50",
+          "symbol": "_nir_opt_access",
+          "offset": "0x2b8"
+        },
+        {
+          "relative_pc": "0x50f478",
+          "symbol": "_prelink_lowering",
+          "offset": "0x680"
+        },
+        {
+          "relative_pc": "0x5116b8",
+          "symbol": "_gl_nir_link_glsl",
+          "offset": "0x1da8"
+        },
+        {
+          "relative_pc": "0x23b3dc",
+          "symbol": "_st_link_shader",
+          "offset": "0x1b0"
+        },
+        {
+          "relative_pc": "0x18b0e8",
+          "symbol": "_link_program_error",
+          "offset": "0x144"
+        },
+        {
+          "relative_pc": "0x9e78",
+          "symbol": "_sweetgl_metal_render_create",
+          "offset": "0x6fc"
+        }
+      ],
+      "current_library_base_inferred_from_unique_16K_aligned_return": true
+    },
+    {
+      "pid": 297,
+      "frames": [
+        {
+          "relative_pc": "0x62af10",
+          "symbol": "_match_expression",
+          "offset": "0x4ac"
+        },
+        {
+          "relative_pc": "0x62a3e4",
+          "symbol": "_nir_algebraic_impl",
+          "offset": "0x6bc"
+        },
+        {
+          "relative_pc": "0x62a3e4",
+          "symbol": "_nir_algebraic_impl",
+          "offset": "0x6bc"
+        },
+        {
+          "relative_pc": "0x54eb70",
+          "symbol": "_nir_opt_algebraic",
+          "offset": "0x984"
+        },
+        {
+          "relative_pc": "0x50d01c",
+          "symbol": "_gl_nir_opts",
+          "offset": "0x168"
+        },
+        {
+          "relative_pc": "0x508358",
+          "symbol": "_gl_nir_link_varyings",
+          "offset": "0xd74"
+        },
+        {
+          "relative_pc": "0x5116dc",
+          "symbol": "_gl_nir_link_glsl",
+          "offset": "0x1dcc"
+        },
+        {
+          "relative_pc": "0x23b3dc",
+          "symbol": "_st_link_shader",
+          "offset": "0x1b0"
+        },
+        {
+          "relative_pc": "0x18b0e8",
+          "symbol": "_link_program_error",
+          "offset": "0x144"
+        },
+        {
+          "relative_pc": "0x9e78",
+          "symbol": "_sweetgl_metal_render_create",
+          "offset": "0x6fc"
+        }
+      ],
+      "current_library_base_inferred_from_unique_16K_aligned_return": true
+    },
+    {
+      "pid": 300,
+      "frames": [
+        {
+          "relative_pc": "0x5f9b80",
+          "symbol": "_nir_opt_find_array_copies",
+          "offset": "0x134"
+        },
+        {
+          "relative_pc": "0x5f9b50",
+          "symbol": "_nir_opt_find_array_copies",
+          "offset": "0x104"
+        },
+        {
+          "relative_pc": "0x50cf10",
+          "symbol": "_gl_nir_opts",
+          "offset": "0x5c"
+        },
+        {
+          "relative_pc": "0x508358",
+          "symbol": "_gl_nir_link_varyings",
+          "offset": "0xd74"
+        },
+        {
+          "relative_pc": "0x5116dc",
+          "symbol": "_gl_nir_link_glsl",
+          "offset": "0x1dcc"
+        },
+        {
+          "relative_pc": "0x23b3dc",
+          "symbol": "_st_link_shader",
+          "offset": "0x1b0"
+        },
+        {
+          "relative_pc": "0x18b0e8",
+          "symbol": "_link_program_error",
+          "offset": "0x144"
+        },
+        {
+          "relative_pc": "0x9e78",
+          "symbol": "_sweetgl_metal_render_create",
+          "offset": "0x6fc"
+        }
+      ],
+      "current_library_base_inferred_from_unique_16K_aligned_return": true
+    }
+  ],
+  "actual_IR3_execution_not_seen_in_these_stacks": true,
+  "original_absolute_process_addresses_not_published": true
+}

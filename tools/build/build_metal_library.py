@@ -57,4 +57,9 @@ if air_manifest:
     report.update(native_AIR_constant_samplers=True,actual_constant_sampler_GPU_acceptance_pending=True,
                   constant_sampler_scope='normalized 2D, actual border/anisotropy capabilities',
                   per_function_immutable_graphics_translation_cache=True)
+    if 'program_cache.c' in bindings:
+        assert bindings['program_cache.c']==sha(root/'gpu/sweetgl/program_cache.c')
+        assert manifest['frontend_build_binding'].get('program_cache_build_identity')
+        report.update(native_program_binary_cache=True,actual_fresh_context_program_binary_GPU_acceptance_pending=True,
+                      immutable_program_cache_identity=manifest['frontend_build_binding']['program_cache_build_identity']['build_identity'])
 (out/'manifest.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print(json.dumps(report))

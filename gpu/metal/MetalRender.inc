@@ -373,3 +373,8 @@ static NSError *execute_metal_mipmaps(NSDictionary *operation,id<MTLDevice> devi
     int result=sweetgl_metal_texture_mipmaps(&actual,sequence);if(result)return metal_queue_error([NSString stringWithFormat:@"GPU mipmaps failed result=%d",result]);
     *operations=actual.mip_count-1;return nil;
 }
+int SweetMTLRenderPipelineCacheState(id<MTLRenderPipelineState> pipeline)
+{
+    if(![pipeline isKindOfClass:[SweetMTLRenderPipeline class]])return -EINVAL;
+    return sweetgl_metal_program_cache_state(((SweetMTLRenderPipeline *)pipeline)->_program);
+}

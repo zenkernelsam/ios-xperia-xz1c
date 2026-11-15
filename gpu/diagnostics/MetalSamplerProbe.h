@@ -30,7 +30,14 @@ static bool metal_sampler_probe(MetalABIEmit emit)
     NSArray *names=@[@"sampler_original",@"sampler_pair",@"sampler_lod"];bool valid=device && library && vertex;
     for(unsigned i=0;i<3 && valid;++i){functions[i]=[library newFunctionWithName:names[i]];
         MTLRenderPipelineDescriptor *d=[MTLRenderPipelineDescriptor new];d.vertexFunction=vertex;d.fragmentFunction=functions[i];d.colorAttachments[0].pixelFormat=MTLPixelFormatBGRA8Unorm;
-        pipelines[i]=[device newRenderPipelineStateWithDescriptor:d error:&error];[d release];valid=functions[i] && pipelines[i];}
+        pipelines[i]=[device newRenderPipelineStateWithDescriptor:d error:&error];valid=functions[i] && pipelines[i];
+#if defined(SWEET_PROGRAM_CACHE_PROBE)
+        int first=SweetMTLRenderPipelineCacheState(pipelines[i]);[pipelines[i] release];
+        pipelines[i]=[device newRenderPipelineStateWithDescriptor:d error:&error];int restored=SweetMTLRenderPipelineCacheState(pipelines[i]);
+        valid=valid && pipelines[i] && (first==1 || first==2) && restored==1;
+        emit("SWEET PROGRAM CACHE roundtrip phase=%u first_state=%d restored_state=%d fresh_pipeline=1 valid=%u",i,first,restored,valid);
+#endif
+        [d release];}
     id<MTLBuffer> output=[device newBufferWithLength:16384 options:0],sample=[device newBufferWithLength:16384 options:0],positions=[device newBufferWithLength:16384 options:0];
     MTLTextureDescriptor *td=[MTLTextureDescriptor new];td.textureType=MTLTextureType2D;td.width=33;td.height=19;td.pixelFormat=MTLPixelFormatBGRA8Unorm;
     td.storageMode=MTLStorageModeShared;td.usage=MTLTextureUsageRenderTarget;

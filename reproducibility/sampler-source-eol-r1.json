@@ -1,0 +1,8 @@
+{
+  "old_actual_source_sha256": "072c376d2cc4954c596ae5051c7c2f428ee4527b2de08bc1288ddbbd10343b1d",
+  "canonical_Git_LF_source_sha256": "7b849ba218ffb3525e598637ef39003937b8dd5bc2df396291d65302b0ae8eca",
+  "only_line_endings_changed": true,
+  "fixed_LLVM14_bitcode_library_and_header_identical": true,
+  "bitcode_sha256": "94a9b9ff354715001cf00b5c2c4e39ec54760e8f762df4a8c802e1b08ae7a584",
+  "original_source_backup_retained": true
+}

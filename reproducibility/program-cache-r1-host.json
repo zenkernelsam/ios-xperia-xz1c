@@ -1,0 +1,9 @@
+{
+  "actual_host_GLES_program_binary_roundtrip": true,
+  "fresh_context_pixels_checked": 128,
+  "guarded_bytes_checked": 576,
+  "actual_build_source_key_corruption_truncation_rejected": true,
+  "original_log_sha256": "fc27f17609c4e39b5fc04d6be5579e8ab011d17b95396afb90002e118446738b",
+  "native_FD540_cache_proof_required": true,
+  "device_operations": 0
+}

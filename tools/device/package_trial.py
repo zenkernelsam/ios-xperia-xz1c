@@ -159,6 +159,10 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
                         'SWEET METAL PROBES END process=backboardd result=0 prerequisite=0 full_suite=1 background=1']
                     if m['exception_observer'].get('AIR_sampler_probe'):
                         common+=['SWEET AIR SAMPLER END result=0 checked_bytes=147456 phases=3 final_allocated=0 GPU_only=1']
+                    if m['exception_observer'].get('program_cache_probe'):
+                        common+=['SWEET PROGRAM CACHE roundtrip phase=2 first_state=[12] restored_state=1 fresh_pipeline=1 valid=1']
+                    if m['exception_observer'].get('program_cache_prime'):
+                        common+=['SWEET PROGRAM CACHE PRIME END result=0 compiled=[0-9]+ failed=0 max_entries=8 original_requests=1']
                 else:
                     common+=['SWEET EXCEPTION observer installed process=AegirPoster limit=16 original_chain=1']
                     if not m['exception_observer'].get('registration_only'):

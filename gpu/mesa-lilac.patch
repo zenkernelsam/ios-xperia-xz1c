@@ -120,3 +120,56 @@ index 2ff596e0..2bba561d 100644
  
  #include <stdint.h>
  
+diff --git a/src/mesa/state_tracker/st_shader_cache.c b/src/mesa/state_tracker/st_shader_cache.c
+--- a/src/mesa/state_tracker/st_shader_cache.c
++++ b/src/mesa/state_tracker/st_shader_cache.c
+@@ -34,9 +34,22 @@
+ #include "util/u_memory.h"
+ #include "util/perf/cpu_trace.h"
+ 
++#ifdef __APPLE__
++#define SWEET_PROGRAM_ID_OPTIONAL __attribute__((weak_import))
++#else
++#define SWEET_PROGRAM_ID_OPTIONAL __attribute__((weak))
++#endif
++extern void sweetgl_program_binary_identity(struct gl_context *, uint8_t[20]) SWEET_PROGRAM_ID_OPTIONAL;
++
+ void
+ st_get_program_binary_driver_sha1(struct gl_context *ctx, uint8_t *sha1)
+ {
++   if (!ctx->Cache && sweetgl_program_binary_identity) {
++      sweetgl_program_binary_identity(ctx, sha1);
++      return;
++   }
++   /* A disabled cache's inline key function otherwise leaves stack bytes. */
++   memset(sha1, 0, 20);
+    disk_cache_compute_key(ctx->Cache, NULL, 0, sha1);
+ }
+ 
+diff --git a/src/mesa/state_tracker/st_extensions.c b/src/mesa/state_tracker/st_extensions.c
+--- a/src/mesa/state_tracker/st_extensions.c
++++ b/src/mesa/state_tracker/st_extensions.c
+@@ -47,6 +47,13 @@
+ #include "st_extensions.h"
+ #include "st_format.h"
+ 
++#ifdef __APPLE__
++#define SWEET_PROGRAM_CAP_OPTIONAL __attribute__((weak_import))
++#else
++#define SWEET_PROGRAM_CAP_OPTIONAL __attribute__((weak))
++#endif
++extern bool sweetgl_program_binary_supported(struct pipe_screen *) SWEET_PROGRAM_CAP_OPTIONAL;
++
+ 
+ /*
+  * Note: we use these function rather than the MIN2, MAX2, CLAMP macros to
+@@ -498,7 +505,8 @@
+       screen->get_param(screen, PIPE_CAP_FS_FACE_IS_INTEGER_SYSVAL);
+ 
+    /* GL_ARB_get_program_binary */
+-   if (screen->get_disk_shader_cache && screen->get_disk_shader_cache(screen))
++   if ((screen->get_disk_shader_cache && screen->get_disk_shader_cache(screen)) ||
++       (sweetgl_program_binary_supported && sweetgl_program_binary_supported(screen)))
+       c->NumProgramBinaryFormats = 1;
+    /* GL_ARB_gl_spirv */
+    if (screen->get_param(screen, PIPE_CAP_GL_SPIRV) &&

@@ -1,0 +1,34 @@
+{
+  "token": "4a59efdd7303accc",
+  "original_controller_result": "PASS",
+  "original_postprocessing_error": "RAM library read missing or repeated inside one prefix",
+  "original_run_trial_exit_code": 1,
+  "original_results_sha256": "ddd34d4b643a8af044ce3e7d4402b19de8c8611d94308e5350825567d1ff33c0",
+  "original_stdout_sha256": "7b355482e2eaf549bcd3ee54f0ac8ec861e50457d41c5d4f8a2c4c183caf2e64",
+  "original_raw_sha256": "9d3bd2ad2ea728312afd504a1ffb9f4b07fde950eb2f957cf79cb3fbad7e4ab9",
+  "original_results_stdout_and_raw_unchanged": true,
+  "new_complete_raw_verification_passed": true,
+  "logical_reads": 1,
+  "partial_prefix": {
+    "logical_library_reads": 1,
+    "raw_library_reads": 1,
+    "ready_positions": [
+      740,
+      12749
+    ],
+    "read_positions": [
+      16279
+    ],
+    "startup_block_sha256": "06674513e7d45869fa93ec6466a662590da03f186ce4f49bddac8ab749121798",
+    "explicit_exact_prefix_replay": false,
+    "raw_log_unchanged": true,
+    "explicit_exact_partial_prefix_replay": true,
+    "partial_replay_bytes": 3081,
+    "partial_replay_sha256": "38b9e57c3e6616dc3183753afb125418f54ae9ad038aab4343ef8d1a8a2d5c9c",
+    "active_read_not_counted_as_replay": true
+  },
+  "return_seconds_with_health": 37.21799999999348,
+  "verifier_sha256": "8526769c27199ae8ea3dc632396b60acedfd989cff23af73361732b73c98e4c4",
+  "unit_tests_passed": 10,
+  "no_device_replay": true
+}

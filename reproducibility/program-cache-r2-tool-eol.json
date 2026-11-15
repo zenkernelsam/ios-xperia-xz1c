@@ -1,0 +1,48 @@
+{
+  "canonical_LF_tool_inputs": [
+    {
+      "path": "tools/device/ramcpu_prefix_evidence.py",
+      "previous_sha256": "145ed4589b3ac9bf59c195c3bc1852478aa1ce935cbd1a697f051f343cca7679",
+      "canonical_sha256": "74492091fb13f21b2c3727f33767bf6670659369c5536fb7b81011a1019dd1c3",
+      "CRLF_only": true
+    },
+    {
+      "path": "tools/build/make_air_fixture.py",
+      "previous_sha256": "cb41b5f9321e6a7e138d4efecef3a5279340190237f9d7c1c5773ea4b6a335da",
+      "canonical_sha256": "799fa5d331144f9bed4df3a93743f2acc978303b8711fc4e9f75e7d6be156d60",
+      "CRLF_only": true
+    },
+    {
+      "path": "tools/build/build_exception_observer.py",
+      "previous_sha256": "2e845876ab8eee90d10cd414498871b9f0ac1ba0320e32b89581a839a067ae52",
+      "canonical_sha256": "29a6ad15219241b8b37fcdb66c70c3500854f4bc61dda5d5fb25e949db60d305",
+      "CRLF_only": true
+    },
+    {
+      "path": "tools/build/test_metal_compute.mm",
+      "previous_sha256": "fdf409347ec97a851f8c7f149cda36af9a653f01d84887adb4a4e88fc4b427db",
+      "canonical_sha256": "0bb3a8ffe3d69e6bff2b8bc6bc01d45e42b513aeae464cd5c559253e57a1a7d3",
+      "CRLF_only": true
+    },
+    {
+      "path": "tools/build/test_metal_constants.mm",
+      "previous_sha256": "ec18d7c7fb29811809cc08e5255c4717a89295d8aca57c3830440e3661ff6928",
+      "canonical_sha256": "0f44ccac8eca89269098b99643c407820ba75a9c457b08be1dafb10d0345faf3",
+      "CRLF_only": true
+    },
+    {
+      "path": "tools/build/test_metal_mrt.mm",
+      "previous_sha256": "2d079a18677fbb8b3a392adacb52348fed3db3dc2cecbf9f185ca81c51dc5e63",
+      "canonical_sha256": "27dc64cb4ec4ff830b90bbe3dfc73e65a59c23e0befa271d096b7be7542cc5e5",
+      "CRLF_only": true
+    },
+    {
+      "path": "tools/build/test_metal_render.mm",
+      "previous_sha256": "d300cdc3157b0c36bff567003a5ede2f4072c8d0f0ffacafe7a65a2091839e22",
+      "canonical_sha256": "69d58e29ce6eef1de11c811ef66824f00edf8418c12bc50ff2af9eb801a83957",
+      "CRLF_only": true
+    }
+  ],
+  "semantic_source_changes": false,
+  "actual_Mac_Git_checkout_verified": true
+}

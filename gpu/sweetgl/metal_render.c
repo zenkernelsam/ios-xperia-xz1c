@@ -278,16 +278,22 @@ SweetMetalProgram *sweetgl_metal_render_create(const char *vertex,const char *fr
         ordered_vertex=sweet_xr_ordered_vertex(vertex);ordered_fragment=sweet_xr_ordered_fragment(fragment,config,program->ordered_xr_mask);
         if(!ordered_vertex || !ordered_fragment){if(error && error_bytes)snprintf(error,error_bytes,"Actual AIR XR output interface cannot be blended in order");goto failure;}}
     const GLenum kinds[2]={GL_VERTEX_SHADER,GL_FRAGMENT_SHADER};const char *sources[2]={ordered_vertex?ordered_vertex:vertex,ordered_fragment?ordered_fragment:fragment};
+    sweet_metal_program_key(program,vertex,fragment,config);
+    bool restored=sweet_metal_program_restore(program);
+    if(!restored){
+    sweet_metal_program_request(program,vertex,fragment,config);
     for(unsigned i=0;i<2;++i){const char *stage=i?"fragment":"vertex";shaders[i]=glCreateShader(kinds[i]);glShaderSource(shaders[i],1,&sources[i],NULL);
         sweet_drm_log("SWEET AIR RENDER compile_begin stage=%s bytes=%lu hash=%016llx",stage,(unsigned long)strlen(sources[i]),(unsigned long long)source_hash(sources[i]));
         uint64_t wall=render_clock_ns(CLOCK_MONOTONIC),cpu=render_clock_ns(CLOCK_THREAD_CPUTIME_ID);glCompileShader(shaders[i]);
         glGetShaderiv(shaders[i],GL_COMPILE_STATUS,&ok);render_compile_time(stage,wall,cpu,ok);
         if(!ok){if(error && error_bytes)glGetShaderInfoLog(shaders[i],(GLsizei)error_bytes,NULL,error);goto failure;}}
-    program->program=glCreateProgram();for(unsigned i=0;i<2;++i)glAttachShader(program->program,shaders[i]);
+    program->program=glCreateProgram();glProgramParameteri(program->program,GL_PROGRAM_BINARY_RETRIEVABLE_HINT,GL_TRUE);
+    for(unsigned i=0;i<2;++i)glAttachShader(program->program,shaders[i]);
     sweet_drm_log("SWEET AIR RENDER compile_begin stage=link vertex_bytes=%lu fragment_bytes=%lu",(unsigned long)strlen(sources[0]),(unsigned long)strlen(sources[1]));
     uint64_t link_wall=render_clock_ns(CLOCK_MONOTONIC),link_cpu=render_clock_ns(CLOCK_THREAD_CPUTIME_ID);glLinkProgram(program->program);
     glGetProgramiv(program->program,GL_LINK_STATUS,&ok);render_compile_time("link",link_wall,link_cpu,ok);
     if(!ok){if(error && error_bytes)glGetProgramInfoLog(program->program,(GLsizei)error_bytes,NULL,error);goto failure;}
+    }
     GLint attributes=0;glGetProgramiv(program->program,GL_ACTIVE_ATTRIBUTES,&attributes);
     for(GLint i=0;i<attributes;++i){char name[256]={0};GLint size=0;GLenum type=0;glGetActiveAttrib(program->program,(GLuint)i,sizeof(name),NULL,&size,&type,name);
         if((strcmp(name,"gl_VertexID") && strcmp(name,"gl_InstanceID")) || glGetAttribLocation(program->program,name)>=0){
@@ -295,6 +301,7 @@ SweetMetalProgram *sweetgl_metal_render_create(const char *vertex,const char *fr
     for(unsigned i=0;i<2;++i){glDeleteShader(shaders[i]);shaders[i]=0;}program->render=*config;
     program->instance_base=glGetUniformLocation(program->program,"_smtl_instance_base");program->blend_constant=glGetUniformLocation(program->program,"_smtl_blend_constant");
     if(render_gl_error("create-link",-1))goto failure;
+    if(!restored)sweet_metal_program_store(program,vertex,fragment);
     sweet_drm_log("SWEET AIR RENDER compiled program=%u vertex_mask=%u fragment_mask=%u format=%u vertex_hash=%016llx fragment_hash=%016llx linked=1 robust=1",
         program->program,config->vertex_buffers,config->fragment_buffers,config->format,(unsigned long long)source_hash(vertex),(unsigned long long)source_hash(fragment));
     sweet_drm_log("SWEET METAL MRT pipeline ordered_xr_mask=%u primitive_barrier=1 fp32_image_blend=%u",program->ordered_xr_mask,program->ordered_xr_mask!=0);

@@ -32,6 +32,8 @@ extern "C" int sweetgl_metal_compute_dispatch(SweetMetalProgram *program,const S
     assert(groups[0]==1 && groups[1]==1 && groups[2]==1 && local[0]==64 && local[1]==1 && local[2]==1 && grid[0]==64);
     assert(bindings[0].offset==0 && bindings[0].bytes==256);++dispatched;*sequence=dispatched;return 0;
 }
+// Host backend has no target binary-cache proof.
+extern "C" int sweetgl_metal_program_cache_state(const SweetMetalProgram *){return 0;}
 extern "C" void sweetgl_metal_program_destroy(SweetMetalProgram *program){delete program;++destroyed;}
 extern "C" SweetMetalProgram *sweetgl_metal_render_create(const char *,const char *,const SweetRenderPipelineConfig *,char *,size_t){assert(!"compute test does not render");return nullptr;}
 extern "C" int sweetgl_metal_render_draw(SweetMetalProgram *,const SweetRenderPass *,const SweetRenderDraw *,const SweetShaderBufferBinding *,uint32_t,

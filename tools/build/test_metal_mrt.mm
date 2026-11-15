@@ -16,6 +16,8 @@ extern "C" int sweetgl_metal_buffer_blit(uint32_t,uint32_t,uint64_t,uint64_t,uin
 extern "C" SweetMetalProgram *sweetgl_metal_compute_create(const char *,uint32_t,uint32_t,char *,size_t){return nullptr;}
 extern "C" int sweetgl_metal_compute_dispatch(SweetMetalProgram *,const SweetShaderBufferBinding *,uint32_t,const uint32_t[3],const uint32_t[3],const uint32_t[3],uint32_t *){return -ENOTSUP;}
 extern "C" int sweetgl_metal_texture_mipmaps(const SweetShaderTextureBinding *,uint32_t *){return -ENOTSUP;}
+// Host backend has no target binary-cache proof.
+extern "C" int sweetgl_metal_program_cache_state(const SweetMetalProgram *){return 0;}
 extern "C" void sweetgl_metal_program_destroy(SweetMetalProgram *p){if(p){delete p;++retired;}}
 extern "C" SweetMetalProgram *sweetgl_metal_render_create(const char *v,const char *f,const SweetRenderPipelineConfig *c,char *error,size_t n)
 {if(error && n)error[0]=0;assert(v && f && c && c->color_mask==3 && c->vertex_buffers==1 && !c->fragment_buffers && !c->reserved);

@@ -67,3 +67,5 @@ mipmap最新实现见METAL-MIPMAPS.md，取代上段单mip限制：源码已支�
 该工具验证固定AIR包原source-map，以当前ESSLTarget/HalfESSL重新编译graphics-cli，记录完整源/工具SHA。check_air_half.py验当前helper的全部half位型/float32边界及实际AIR compute/vertex/fragment；profile_gles_shader.c可独立测原shader的host compile/link，不绘制、不作为手机时耗或UI证据。half-link优化保持GLES字节，重新构建Metal/observer/RAM包，沿同GLES先验→新包CPU→完整backboard GPU→新native-proof→原Aegir短登记流程。
 
 当前sampler输入及自身硬件准入见METAL-SAMPLERS.md；build_exception_observer.py --sampler-fixture只用于完整backboard suite并要求MRT/half原先验配置，native-proof增加AIR_sampler。新GLES1c904beb与Metalb0b8045b的完整CPU/GPU/回程已验证，原Aegir仍需独立验收。
+
+程序二进制与后台预热的最新实现/证据见 [PROGRAM-CACHE](PROGRAM-CACHE.md)。build_gles.py --mesa-build/--frontend-output在新目录重建完整Mesa，build_frontend_trial.py --mesa-build记录实际归档；RAM绑定及run_trial审计使用该安全相对目录。缓存库增加Program_cache自身实机证明，完整native-proof共13组；只保存实际runtime request，在完成原GPU回程后才单独 --program-cache-prime，不能以host或旧12组证明准入原Aegir。

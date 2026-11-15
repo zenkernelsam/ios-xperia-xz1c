@@ -1,0 +1,66 @@
+{
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-cache-r1-native-gpu-20261115",
+  "version": 729,
+  "token": "57f8b2559214d870",
+  "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+  "image_sha256": "4cad42236cead053bb3b0a41421c1c54c18cd0d0ec53018ef4fceae7f206c732",
+  "log_sha256": "c2ded7ab2ab2a6a9d8b05298e2a20070d6947e9bbb1f943425cc11a2953cd16c",
+  "original_result": "REVISE",
+  "original_reason": "BACKGROUND_METAL_SUITE_FAILED",
+  "actual_failures": [],
+  "native_GPU_failure_results": [
+    1
+  ],
+  "actual_program_cache_failures": [
+    {
+      "phase": 0,
+      "first_state": 0,
+      "restored_state": 0
+    }
+  ],
+  "registry_assertions": [],
+  "actual_AIR_render_failure_results": [],
+  "actual_MRT_context_capability_records": [
+    {
+      "targets": 8,
+      "fp32_rt": 1,
+      "fp32_blend": 0,
+      "fp32_image": 1,
+      "independent_enable": 1,
+      "independent_func": 1,
+      "float_blend": 0,
+      "fbfetch": 0,
+      "no_attachment": 1,
+      "fragment_images": 24,
+      "image_units": 192
+    }
+  ],
+  "actual_MRT_GL_errors": [],
+  "missing_device_API": [],
+  "original_exception_missing_API": [],
+  "original_extension_checkin_timeout_count": 0,
+  "payload_audit": {
+    "image_sha256": "4cad42236cead053bb3b0a41421c1c54c18cd0d0ec53018ef4fceae7f206c732",
+    "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+    "blob_count": 8,
+    "complete_payload_reconstructed_from_compiled_kernel": true
+  },
+  "strict_return": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "57f8b2559214d870",
+    "checkpoint_bytes": 447372,
+    "log_bytes": 452060,
+    "log_sha256": "c2ded7ab2ab2a6a9d8b05298e2a20070d6947e9bbb1f943425cc11a2953cd16c",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      9,
+      84,
+      86
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 39.15599999995902,
+  "failed_stage_not_accepted": true
+}

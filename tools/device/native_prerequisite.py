@@ -14,6 +14,7 @@ def verify(directory,resources=None,kernel_sha=None,version=None):
     if artifact['metal_resources'].get('AIR_frontend',{}).get('local_half_storage_and_rounding_adaptation'):native_tests.append('AIR_half')
     if artifact['metal_resources'].get('native_MRT_and_XR_blend'):native_tests.append('Metal_MRT')
     if artifact['metal_resources'].get('native_AIR_constant_samplers'):native_tests.append('AIR_sampler')
+    if artifact['metal_resources'].get('native_program_binary_cache'):native_tests.append('Program_cache')
     for name in native_tests:
         assert suite[name]['complete_samples']>=1 and suite[name]['incomplete_samples']==0,'Prior native probe incomplete: '+name
     native=artifact['metal_resources']

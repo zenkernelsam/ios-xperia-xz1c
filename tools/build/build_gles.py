@@ -1,7 +1,13 @@
 """Build Mesa and the canonical GLES frontend without destructive clean commands."""
-import os,re,subprocess
+import argparse,os,re,subprocess
 from pathlib import Path
 root=Path(__file__).resolve().parents[2]
+p=argparse.ArgumentParser();p.add_argument('--mesa-build');p.add_argument('--frontend-output');a=p.parse_args()
+mesa_output=Path(a.mesa_build).absolute() if a.mesa_build else root/'build/mesa-ios'
+frontend_output=Path(a.frontend_output).absolute() if a.frontend_output else root/'build/sweetgl'
+assert mesa_output.is_relative_to(root/'build') and frontend_output.is_relative_to(root/'build')
+if a.mesa_build:assert not mesa_output.exists(),'A variant must preserve existing Mesa outputs'
+if a.frontend_output:assert not frontend_output.exists()
 venv=root/'build/python'
 if not (venv/'bin/python3').exists():
     subprocess.run(['python3','-m','venv',str(venv)],check=True)
@@ -10,9 +16,9 @@ env=os.environ.copy();env['PATH']=str(venv/'bin')+os.pathsep+env.get('PATH','');
 tool_dirs=[Path(p) for p in ('/opt/homebrew/opt/bison/bin','/usr/local/opt/bison/bin','/opt/homebrew/opt/flex/bin','/usr/local/opt/flex/bin')]
 env['PATH']=os.pathsep.join(str(p) for p in tool_dirs if p.exists())+os.pathsep+env['PATH']
 subprocess.run(['python3',str(root/'tools/build/prepare_sources.py'),'mesa'],check=True)
-source=root/'deps/mesa';build=root/'build/mesa-ios';build.parent.mkdir(exist_ok=True)
+source=root/'deps/mesa';build=mesa_output;build.parent.mkdir(exist_ok=True)
 def sdk(*args):return subprocess.check_output(['xcrun','--sdk','iphoneos',*args],text=True).strip()
-cross=root/'build/ios-cross.ini'
+cross=root/'build'/(build.name+'-cross.ini' if a.mesa_build else 'ios-cross.ini')
 cc=[sdk('--find','clang'),'-arch','arm64','-isysroot',sdk('--show-sdk-path'),'-miphoneos-version-min=16.0'];cxx=[sdk('--find','clang++'),*cc[1:]]
 cross.write_text("[binaries]\nc = "+repr(cc)+"\ncpp = "+repr(cxx)+"\nobjc = "+repr(cc)+"\nar = "+repr(sdk('--find','ar'))+"\nstrip = "+repr(sdk('--find','strip'))+"\npkg-config = 'false'\n\n[host_machine]\nsystem = 'darwin'\nsubsystem = 'ios'\ncpu_family = 'aarch64'\ncpu = 'arm64'\nendian = 'little'\n")
 opts=['--buildtype=release','-Db_ndebug=true','-Ddefault_library=static','-Dplatforms=','-Degl=disabled','-Dglx=disabled','-Dgbm=disabled',
@@ -30,6 +36,6 @@ libraries=re.search(r'LIBS="([^"]+)"',frontend).group(1).split()
 targets=libraries+['src/mapi/shared-glapi/libglapi.0.dylib']
 subprocess.run([str(venv/'bin/ninja'),'-C',str(build),'-j8',*targets],env=env,check=True)
 env['SWEETGL_MESA_SOURCE']=str(source);env['SWEETGL_MESA_BUILD']=str(build)
-env['SWEETGL_OUTPUT']=str(root/'build/sweetgl')
+env['SWEETGL_OUTPUT']=str(frontend_output)
 subprocess.run(['bash',str(root/'gpu/sweetgl/build.sh')],env=env,check=True)
 print('CANONICAL_GLES_BUILD_COMPLETE')

@@ -18,6 +18,8 @@ extern "C" SweetMetalProgram *sweetgl_metal_compute_create(const char *source,ui
 extern "C" int sweetgl_metal_compute_dispatch(SweetMetalProgram *program,const SweetShaderBufferBinding *bindings,uint32_t count,
     const uint32_t groups[3],const uint32_t local[3],const uint32_t grid[3],uint32_t *sequence)
 {assert(program && bindings && count==1 && groups[0]==1 && local[0]==64 && grid[0]==64 && backing.count(bindings[0].handle));*sequence=++dispatched;return 0;}
+// Host backend has no target binary-cache proof.
+extern "C" int sweetgl_metal_program_cache_state(const SweetMetalProgram *){return 0;}
 extern "C" void sweetgl_metal_program_destroy(SweetMetalProgram *program){delete program;}
 extern "C" SweetMetalProgram *sweetgl_metal_render_create(const char *,const char *,const SweetRenderPipelineConfig *,char *,size_t){return nullptr;}
 extern "C" int sweetgl_metal_render_draw(SweetMetalProgram *,const SweetRenderPass *,const SweetRenderDraw *,const SweetShaderBufferBinding *,uint32_t,const SweetShaderTextureBinding *,uint32_t,const SweetShaderSamplerBinding *,uint32_t,uint32_t *){return -EINVAL;}

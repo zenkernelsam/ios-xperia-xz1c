@@ -3,8 +3,9 @@ import argparse,hashlib,json,subprocess,sys
 from pathlib import Path
 root=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(root/'tools'));from native_proof import validate as validate_native,header as native_header
-p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--metal-resources');p.add_argument('--air-fixture');p.add_argument('--render-fixture');p.add_argument('--constants-fixture');p.add_argument('--register-device',action='store_true');p.add_argument('--xr-probe',action='store_true');p.add_argument('--surface-probe',action='store_true');p.add_argument('--mip-probe',action='store_true');p.add_argument('--target-process',choices=['AegirPoster','backboardd'],default='AegirPoster');p.add_argument('--gles-ram-package');p.add_argument('--registration-only',action='store_true');p.add_argument('--native-proof');p.add_argument('--pipeline-observe',action='store_true');p.add_argument('--narrow-fixture');p.add_argument('--half-fixture');p.add_argument('--mrt-fixture');p.add_argument('--sampler-fixture');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--metal-resources');p.add_argument('--air-fixture');p.add_argument('--render-fixture');p.add_argument('--constants-fixture');p.add_argument('--register-device',action='store_true');p.add_argument('--xr-probe',action='store_true');p.add_argument('--surface-probe',action='store_true');p.add_argument('--mip-probe',action='store_true');p.add_argument('--target-process',choices=['AegirPoster','backboardd'],default='AegirPoster');p.add_argument('--gles-ram-package');p.add_argument('--registration-only',action='store_true');p.add_argument('--native-proof');p.add_argument('--pipeline-observe',action='store_true');p.add_argument('--narrow-fixture');p.add_argument('--half-fixture');p.add_argument('--mrt-fixture');p.add_argument('--sampler-fixture');p.add_argument('--program-cache-prime',action='store_true');a=p.parse_args()
 if a.pipeline_observe:assert a.registration_only and a.target_process=='AegirPoster'
+if a.program_cache_prime:assert a.target_process=='backboardd' and a.sampler_fixture and not a.registration_only
 if a.registration_only:
     assert a.target_process=='AegirPoster' and a.metal_resources and a.register_device and a.native_proof
     assert not any((a.air_fixture,a.render_fixture,a.constants_fixture,a.xr_probe,a.surface_probe,a.mip_probe,a.narrow_fixture,a.half_fixture,a.mrt_fixture,a.sampler_fixture)),'Short registration must not rerun long probes'
@@ -161,6 +162,8 @@ if narrow_fixture_manifest:extra+=['-DSWEET_AIR_NARROW_PROBE=1','-I',out]
 if half_fixture_manifest:extra+=['-DSWEET_AIR_HALF_PROBE=1','-I',out]
 if mrt_fixture_manifest:extra+=['-DSWEET_AIR_MRT_PROBE=1','-I',out]
 if sampler_fixture_manifest:extra+=['-DSWEET_AIR_SAMPLER_PROBE=1','-I',out]
+if sampler_fixture_manifest and resource_manifest.get('native_program_binary_cache'):extra+=['-DSWEET_PROGRAM_CACHE_PROBE=1']
+if a.program_cache_prime:extra+=['-DSWEET_PROGRAM_CACHE_PRIME=1']
 if a.target_process=='backboardd':
     gles=Path(a.gles_ram_package).resolve();assert gles.is_relative_to(root/'build')
     gm=json.loads((gles/'manifest.json').read_bytes())
@@ -196,6 +199,8 @@ if narrow_fixture_manifest:manifest.update(AIR_narrow_probe=True,AIR_narrow_fixt
 if half_fixture_manifest:manifest.update(AIR_half_probe=True,AIR_half_fixture=half_fixture_manifest)
 if mrt_fixture_manifest:manifest.update(AIR_MRT_probe=True,AIR_MRT_fixture=mrt_fixture_manifest)
 if sampler_fixture_manifest:manifest.update(AIR_sampler_probe=True,AIR_sampler_fixture=sampler_fixture_manifest)
+if sampler_fixture_manifest and resource_manifest.get('native_program_binary_cache'):manifest['program_cache_probe']=True
+if a.program_cache_prime:manifest['program_cache_prime']=True
 if a.registration_only:manifest.update(registration_only=True,prior_native_hardware_proof=native_proof,long_native_probes_not_in_constructor=True,
     native_proof_header_sha256=hashlib.sha256((out/'NativeProof.h').read_bytes()).hexdigest())
 if a.pipeline_observe:manifest.update(original_pipeline_observer=True,actual_factory_return_error_pointer_exception_forwarding_host_passed=True)

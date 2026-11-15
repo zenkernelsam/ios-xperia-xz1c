@@ -21,9 +21,15 @@ struct SweetMetalProgram {
     GLint instance_base,blend_constant;
     SweetRenderPipelineConfig render;
     SweetMetalShaderCache cache;
+    unsigned char cache_identity[32],cache_key[32];
+    int program_cache_state;
 };
 extern pthread_mutex_t sweet_metal_shader_gate;
 struct sweetgl_ctx *sweetgl_create_metal(void);
 struct st_context *sweetgl_internal_context(struct sweetgl_ctx *);
 void sweetgl_internal_restore(struct st_context *);
 int sweet_metal_bind_buffer(struct st_context *,const SweetShaderBufferBinding *,GLuint *);
+void sweet_metal_program_key(SweetMetalProgram *,const char *,const char *,const SweetRenderPipelineConfig *);
+int sweet_metal_program_restore(SweetMetalProgram *);
+void sweet_metal_program_request(SweetMetalProgram *,const char *,const char *,const SweetRenderPipelineConfig *);
+void sweet_metal_program_store(SweetMetalProgram *,const char *,const char *);
