@@ -12,6 +12,7 @@ def verify(directory,resources=None,kernel_sha=None,version=None):
     suite=evidence['exceptions'];assert suite['background_probe']['probe_suites']==1
     native_tests=list(NATIVE_TESTS)+(['AIR_narrow'] if artifact['metal_resources'].get('AIR_frontend',{}).get('local_narrow_conversion_adaptation') else [])
     if artifact['metal_resources'].get('AIR_frontend',{}).get('local_half_storage_and_rounding_adaptation'):native_tests.append('AIR_half')
+    if artifact['metal_resources'].get('native_MRT_and_XR_blend'):native_tests.append('Metal_MRT')
     for name in native_tests:
         assert suite[name]['complete_samples']>=1 and suite[name]['incomplete_samples']==0,'Prior native probe incomplete: '+name
     native=artifact['metal_resources']

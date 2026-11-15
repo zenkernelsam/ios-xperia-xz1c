@@ -3,11 +3,11 @@ import argparse,hashlib,json,subprocess,sys
 from pathlib import Path
 root=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(root/'tools'));from native_proof import validate as validate_native,header as native_header
-p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--metal-resources');p.add_argument('--air-fixture');p.add_argument('--render-fixture');p.add_argument('--constants-fixture');p.add_argument('--register-device',action='store_true');p.add_argument('--xr-probe',action='store_true');p.add_argument('--surface-probe',action='store_true');p.add_argument('--mip-probe',action='store_true');p.add_argument('--target-process',choices=['AegirPoster','backboardd'],default='AegirPoster');p.add_argument('--gles-ram-package');p.add_argument('--registration-only',action='store_true');p.add_argument('--native-proof');p.add_argument('--pipeline-observe',action='store_true');p.add_argument('--narrow-fixture');p.add_argument('--half-fixture');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--metal-resources');p.add_argument('--air-fixture');p.add_argument('--render-fixture');p.add_argument('--constants-fixture');p.add_argument('--register-device',action='store_true');p.add_argument('--xr-probe',action='store_true');p.add_argument('--surface-probe',action='store_true');p.add_argument('--mip-probe',action='store_true');p.add_argument('--target-process',choices=['AegirPoster','backboardd'],default='AegirPoster');p.add_argument('--gles-ram-package');p.add_argument('--registration-only',action='store_true');p.add_argument('--native-proof');p.add_argument('--pipeline-observe',action='store_true');p.add_argument('--narrow-fixture');p.add_argument('--half-fixture');p.add_argument('--mrt-fixture');a=p.parse_args()
 if a.pipeline_observe:assert a.registration_only and a.target_process=='AegirPoster'
 if a.registration_only:
     assert a.target_process=='AegirPoster' and a.metal_resources and a.register_device and a.native_proof
-    assert not any((a.air_fixture,a.render_fixture,a.constants_fixture,a.xr_probe,a.surface_probe,a.mip_probe,a.narrow_fixture,a.half_fixture)),'Short registration must not rerun long probes'
+    assert not any((a.air_fixture,a.render_fixture,a.constants_fixture,a.xr_probe,a.surface_probe,a.mip_probe,a.narrow_fixture,a.half_fixture,a.mrt_fixture)),'Short registration must not rerun long probes'
 else:assert not a.native_proof,'Native proof is only for short registration'
 if a.target_process=='backboardd':
     assert a.metal_resources and a.air_fixture and a.render_fixture and a.constants_fixture and a.xr_probe and a.surface_probe and a.mip_probe and a.gles_ram_package and not a.register_device,'Background target requires the complete native suite and its exact GLES package, and cannot register Aegir'
@@ -23,6 +23,7 @@ render_fixture_manifest=None
 constants_fixture_manifest=None
 narrow_fixture_manifest=None
 half_fixture_manifest=None
+mrt_fixture_manifest=None
 native_proof=None
 if a.metal_resources:
     resources=Path(a.metal_resources).resolve();assert resources.is_relative_to(root/'build')
@@ -94,6 +95,17 @@ if a.half_fixture:
     assert hashlib.sha256((fixture/'half.metallib').read_bytes()).hexdigest()==half_fixture_manifest['library_sha256']
     (out/'AIRHalfFixture.h').write_bytes((fixture/'AIRHalfFixture.h').read_bytes())
     headers+=['gpu/diagnostics/MetalHalfProbe.h','gpu/diagnostics/HalfProbeValues.h']
+if a.mrt_fixture:
+    assert resource_manifest and resource_manifest.get('native_MRT_and_XR_blend') and a.half_fixture
+    fixture=Path(a.mrt_fixture).resolve();assert fixture.is_relative_to(root/'build')
+    mrt_fixture_manifest=json.loads((fixture/'manifest.json').read_bytes())
+    assert mrt_fixture_manifest['authored_semantic_fixture'] and mrt_fixture_manifest['fixture']=='mrt'
+    assert hashlib.sha256((root/mrt_fixture_manifest['source']).read_bytes()).hexdigest()==mrt_fixture_manifest['source_sha256'],'Current MRT fixture source differs from its assembled AIR'
+    assert [row['name'] for row in mrt_fixture_manifest['functions']]==['mrt_position','mrt_colour','mrt_changed','mrt_eight','mrt_sample','mrt_order_position','mrt_order_colour']
+    assert hashlib.sha256((fixture/'AIRMRTFixture.h').read_bytes()).hexdigest()==mrt_fixture_manifest['header_sha256']
+    assert hashlib.sha256((fixture/'mrt.metallib').read_bytes()).hexdigest()==mrt_fixture_manifest['library_sha256']
+    (out/'AIRMRTFixture.h').write_bytes((fixture/'AIRMRTFixture.h').read_bytes())
+    headers+=['gpu/diagnostics/MetalMRTProbe.h','gpu/diagnostics/MRTProbeValues.h','gpu/sweetgl/XRColourTables.h']
 headers=list(dict.fromkeys(headers))
 source_files={str(source.relative_to(root)):hashlib.sha256(before).hexdigest()}
 for name in headers:
@@ -135,6 +147,7 @@ if a.surface_probe:extra+=['-DSWEET_METAL_SURFACE_PROBE=1','-framework','IOSurfa
 if a.mip_probe:extra+=['-DSWEET_METAL_MIP_PROBE=1']
 if narrow_fixture_manifest:extra+=['-DSWEET_AIR_NARROW_PROBE=1','-I',out]
 if half_fixture_manifest:extra+=['-DSWEET_AIR_HALF_PROBE=1','-I',out]
+if mrt_fixture_manifest:extra+=['-DSWEET_AIR_MRT_PROBE=1','-I',out]
 if a.target_process=='backboardd':
     gles=Path(a.gles_ram_package).resolve();assert gles.is_relative_to(root/'build')
     gm=json.loads((gles/'manifest.json').read_bytes())
@@ -168,6 +181,7 @@ if a.surface_probe:manifest['Metal_IOSurface_probe']=True
 if a.mip_probe:manifest['Metal_mipmap_probe']=True
 if narrow_fixture_manifest:manifest.update(AIR_narrow_probe=True,AIR_narrow_fixture=narrow_fixture_manifest)
 if half_fixture_manifest:manifest.update(AIR_half_probe=True,AIR_half_fixture=half_fixture_manifest)
+if mrt_fixture_manifest:manifest.update(AIR_MRT_probe=True,AIR_MRT_fixture=mrt_fixture_manifest)
 if a.registration_only:manifest.update(registration_only=True,prior_native_hardware_proof=native_proof,long_native_probes_not_in_constructor=True,
     native_proof_header_sha256=hashlib.sha256((out/'NativeProof.h').read_bytes()).hexdigest())
 if a.pipeline_observe:manifest.update(original_pipeline_observer=True,actual_factory_return_error_pointer_exception_forwarding_host_passed=True)

@@ -1,6 +1,10 @@
 # 当前状态 — 2026-11-15
 
-Sony BH905ND69G健康fastboot，无controller/COM/camera/in-flight。新AIR dynamic8/16转换和half存储/运算/顶点片元已完整后台GPU验收；原Aegir越过两处编译错误，threshold管线实机编译成功，星空/地球/post仍需多颜色附件和XR混色，随后原extension check-in timeout。完整时间/日期/壁纸/UI/FPS及睡眠/声音/Wi-Fi/蓝牙仍未完成，完整目标active。
+当前mrt-r2完整Metal GPU已REVISE并39.891秒完整PON06回程，token402f3ed8ec46f88a；健康30秒和原worker退出，Sony健康fastboot无in-flight。真实caps为8目标、FP32 render/image=1、blend/EXT_float_blend/fbfetch=0、无附件FBO=1、fragment images=24/image units=192。XR552清屏65536B通过，首次混色返回Darwin -45/ENOTSUP，未派发draw；现有bind_samples拒绝新增内部image/uniform，正在修订。全部原native组先前通过，r2不提升完整MRT/UI通过。详见METAL-MRT.md。
+
+同轮新GLES43ed6ab8的CPU/GPU及Metal2afbde84+新observer包CPU单发分别通过，token6d0d914413af4b4d/402b719e0aa9cc52/fedd266853ff5966，37.000/37.390/37.968秒完整回程；GLES八项、960000只读像素与203全部released/unmapped保持。主机四XR/八附件/遮罩/原低位及四重叠图元、两个实例、非零顶点起点、负色/大于1色值、原生对象ASan/UBSan通过；主机测试未覆盖真机生产绑定器的这一拒绝。
+
+mrt-r1的tokencaf703b6a68559d4、原REVISE/BACKGROUND_METAL_SUITE_FAILED保留。XR552双附件清屏65536B通过，第一混色phase返回-EIO且未记原GL错误码；40.032秒完整PON06回程。固定A5xx screen未暴露PIPE_BIND_BLENDABLE/EXT_float_blend，且无framebuffer fetch；r2增加实际能力和逐阶段GL错误日志，不提升r1为通过。新AIR dynamic8/16转换和half存储/运算/顶点片元已完整后台GPU验收；原Aegir越过两处编译错误，threshold管线实机编译成功。完整时间/日期/壁纸/UI/FPS及睡眠/声音/Wi-Fi/蓝牙仍未完成，完整目标active。
 
 固定内核v729 SHA774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec（20648064B）及81源实际审计保持；GLES499bc6e9ddcf8143a0cc5578a3b8dd9c6ce3396f660917b7ac5655aaedf25cf3（14711888B），当前Metal3b4a4082b5d5b2cc4ff93197451b1ad4d7dba07a42405cea00c2900ef54cd9e8。原allocator/SCM/PON/RPC/VM不改。
 

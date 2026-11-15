@@ -6,7 +6,7 @@
 
 2026-11-15：v729/774b5efd保持81源审计，GLES499bc6e9、Metal3b4a4082已完整backend实机通过原生资源/queue/compute/render/constants/XR/Surface/mipmap及dynamic8/16窄整数和half存储/逐结果舍入/顶点片元。AIR_half1完整/0缺项、131072B原字节/NaN位置与实际payload/全部保护区通过，303全released/unmapped、active/orphan/root0，38.282秒完整PON06回程。主机half全部65536码+65536float32边界和原Aegir顶点也通过，但各自证据区分。
 
-原Aegir短登记已与长probe分离，--native-evidence必须重新完整验证原raw log并与嵌入kernel/GLES/Metal/source-map/token/image/log SHA一致；新库narrow/half缺任何独立GPU证据不准入。registry-short-r4已让原threshold管线实机编译成功，请求375×812/3mip R8 Private纹理；原starfield输出2附件，现backend只有1附件，XR star/earth/post还有blend需求。原应用随后check-in timeout，原REVISE不提升UI通过，37.453秒完整回程；364allocated/released、363unmapped、active/orphan/root0。下一多附件/XR浮点混色/原constant sampler、原壁纸和完整UI/FPS/睡眠/声音/无线继续active。Sony健康fastboot无worker/COM/camera/in-flight。详见AIR-HALF.md、AIR-NARROW.md、METAL-REGISTRY-SHORT.md和STATUS。
+原Aegir短登记已与长probe分离，--native-evidence必须重新完整验证原raw log并与嵌入kernel/GLES/Metal/source-map/token/image/log SHA一致；新库narrow/half/MRT缺任何独立GPU证据不准入。registry-short-r4已让原threshold管线实机编译成功，请求375×812/3mip R8 Private纹理；原starfield输出2附件，XR star/earth/post还有blend需求。原应用随后check-in timeout，原REVISE不提升UI通过，37.453秒完整回程；364allocated/released、363unmapped、active/orphan/root0。多附件/FP32 image混色正在准入，原constant sampler、原壁纸和完整UI/FPS/睡眠/声音/无线继续active。设备实时状态、当前token与in-flight以STATUS为准。详见AIR-HALF.md、AIR-NARROW.md、METAL-REGISTRY-SHORT.md和STATUS。
 
 历史AGENTS/STATUS全文归档docs/archive/20261115，不继续叠加过时in-flight。原失败和日志不得改写。
 

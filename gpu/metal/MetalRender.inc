@@ -29,7 +29,7 @@
 - (instancetype)initWithOwner:(SweetMTLDevice *)owner descriptor:(MTLRenderPipelineDescriptor *)descriptor error:(NSError **)error;
 @end
 @interface SweetMTLRenderEncoder : NSObject <MTLRenderCommandEncoder> {
-    SweetMTLCommandBuffer *_commands;SweetMTLTexture *_target;SweetMTLRenderPipeline *_pipeline;
+    SweetMTLCommandBuffer *_commands;SweetMTLTexture *_target;NSArray *_targets;SweetMTLRenderPipeline *_pipeline;
     NSMutableDictionary *_vertexBuffers,*_fragmentBuffers,*_vertexTextures,*_fragmentTextures,*_vertexSamplers,*_fragmentSamplers;
     SweetRenderPass _pass;SweetRenderDraw _draw;BOOL _ended,_drew;NSString *_label;
 }
@@ -182,11 +182,18 @@ static bool render_entry(SweetMTLFunction *function,unsigned stage,GPU::Compiler
     if(!(self=[super init]))return nil;std::string diagnostic;
     if(!owner || !d){if(error)*error=metal_compile_error("Render descriptor and device required");[self release];return nil;}
     auto vertex=(SweetMTLFunction *)d.vertexFunction,fragment=(SweetMTLFunction *)d.fragmentFunction;
-    auto color=d.colorAttachments[0];bool valid=owner && d && vertex.device==owner && fragment.device==owner && d.rasterSampleCount==1 &&
+    auto color=d.colorAttachments[0];bool valid=owner && d && [vertex isKindOfClass:[SweetMTLFunction class]] && [fragment isKindOfClass:[SweetMTLFunction class]] && vertex.device==owner && fragment.device==owner && d.rasterSampleCount==1 &&
         d.depthAttachmentPixelFormat==MTLPixelFormatInvalid && d.stencilAttachmentPixelFormat==MTLPixelFormatInvalid &&
         !d.alphaToCoverageEnabled && !d.alphaToOneEnabled && d.rasterizationEnabled && !d.vertexDescriptor.layouts[0].stride &&
         sweet_texture_pixel_bytes((uint32_t)color.pixelFormat);
-    for(unsigned i=1;i<8 && valid;++i)valid=d.colorAttachments[i].pixelFormat==MTLPixelFormatInvalid;
+    SweetRenderPipelineConfig config={};
+    if(valid)for(unsigned i=0;i<8;++i){auto c=d.colorAttachments[i];if(c.pixelFormat==MTLPixelFormatInvalid)continue;
+        if(!sweet_texture_pixel_bytes((uint32_t)c.pixelFormat)){valid=false;break;}config.color_mask|=1u<<i;
+        SweetRenderColorConfig state={(uint32_t)c.pixelFormat,(uint32_t)c.blendingEnabled,(uint32_t)c.sourceRGBBlendFactor,(uint32_t)c.destinationRGBBlendFactor,(uint32_t)c.rgbBlendOperation,
+            (uint32_t)c.sourceAlphaBlendFactor,(uint32_t)c.destinationAlphaBlendFactor,(uint32_t)c.alphaBlendOperation,(uint32_t)c.writeMask};
+        if(state.source_rgb>14 || state.destination_rgb>14 || state.source_alpha>14 || state.destination_alpha>14 || state.operation_rgb>4 || state.operation_alpha>4 || state.write_mask>15){valid=false;diagnostic="Unsupported color attachment blend/mask";break;}
+        if(i)config.colors[i-1]=state;
+    }
     GPU::Compiler::Entry vs,fs;std::string vertex_source,fragment_source;
     if(valid)valid=render_entry(vertex,1,vs,diagnostic) && render_entry(fragment,2,fs,diagnostic);
     if(valid)valid=!(vs.reflection.attributeMask || fs.reflection.framebufferMask || vs.reflection.writeMask) &&
@@ -194,20 +201,17 @@ static bool render_entry(SweetMTLFunction *function,unsigned stage,GPU::Compiler
     if(valid)for(unsigned i=0;i<fs.reflection.varyingCount;++i){bool found=false;auto &input=fs.reflection.varyings[i];
         for(unsigned j=0;j<vs.reflection.varyingCount;++j){auto &output=vs.reflection.varyings[j];if(!memcmp(input.semantic,output.semantic,sizeof(input.semantic)) && input.components==output.components && input.mode==output.mode){found=true;break;}}
         if(!found){valid=false;diagnostic="AIR vertex/fragment varyings disagree";break;}}
-    SweetRenderPipelineConfig config={};config.format=(uint32_t)color.pixelFormat;config.vertex_buffers=vs.reflection.bufferMask;
+    config.format=(uint32_t)color.pixelFormat;config.vertex_buffers=vs.reflection.bufferMask;
     config.fragment_buffers=fs.reflection.bufferMask;config.fragment_writes=fs.reflection.writeMask;config.vertex_texture_slots=vs.reflection.textureBindings;config.fragment_texture_slots=fs.reflection.textureBindings;
     config.blend_enabled=color.blendingEnabled;config.source_rgb=(uint32_t)color.sourceRGBBlendFactor;config.destination_rgb=(uint32_t)color.destinationRGBBlendFactor;config.operation_rgb=(uint32_t)color.rgbBlendOperation;
     config.source_alpha=(uint32_t)color.sourceAlphaBlendFactor;config.destination_alpha=(uint32_t)color.destinationAlphaBlendFactor;config.operation_alpha=(uint32_t)color.alphaBlendOperation;config.write_mask=(uint32_t)color.writeMask;
     if(config.source_rgb>14 || config.destination_rgb>14 || config.source_alpha>14 || config.destination_alpha>14 || config.operation_rgb>4 || config.operation_alpha>4 || config.write_mask>15)valid=false;
-    if(valid && config.format>=552 && config.format<=555){
-        if(config.blend_enabled || config.write_mask!=15){valid=false;diagnostic="XR render blending/partial-channel writes require a floating-point shadow";}
-        const std::string output="layout(location=0) out vec4 _qcolor;";auto at=fragment_source.find(output);
-        if(at==std::string::npos){valid=false;diagnostic="XR render requires a single actual AIR vec4 color output";}
-        if(valid){fragment_source.replace(at,output.size(),"vec4 _qcolor;\nlayout(location=0) out highp uvec4 _smtl_xr_output;");
-            auto main=fragment_source.find("void main() {");fragment_source.insert(main,sweet_xr_shader);
-            fragment_source.insert(fragment_source.rfind('}'),"_smtl_xr_output = _smtl_xr_pack(_qcolor,"+std::to_string(config.format)+"u);\n");}}
+    if(valid){uint32_t outputs=0;for(unsigned i=0;i<8;++i){std::string name=i?"_qcolor"+std::to_string(i):"_qcolor";
+            if(fragment_source.find("layout(location="+std::to_string(i)+") out vec4 "+name+";")!=std::string::npos)outputs|=1u<<i;}
+        if(!outputs || (outputs&~config.color_mask)){valid=false;diagnostic="Actual AIR color outputs require matching attachment formats";}}
     char message[4096]={0};if(valid)_program=sweetgl_metal_render_create(vertex_source.c_str(),fragment_source.c_str(),&config,message,sizeof(message));
-    if(!_program){if(diagnostic.empty())diagnostic=message;if(error)*error=metal_compile_error(diagnostic);[self release];return nil;}
+    if(!_program){if(diagnostic.empty())diagnostic=message;if(diagnostic.empty())diagnostic="Render descriptor or actual AIR interface is unsupported";
+        if(error)*error=metal_compile_error(diagnostic);[self release];return nil;}
     _owner=[owner retain];_vertex=[vertex retain];_fragment=[fragment retain];_descriptor=[d copy];return self;
 }
 - (void)dealloc{sweetgl_metal_program_destroy(_program);[_owner release];[_vertex release];[_fragment release];[_descriptor release];[super dealloc];}
@@ -225,14 +229,26 @@ static bool render_entry(SweetMTLFunction *function,unsigned stage,GPU::Compiler
         !d.depthAttachment.texture && !d.stencilAttachment.texture && !d.colorAttachments[0].resolveTexture && d.colorAttachments[0].level==0 &&
         d.colorAttachments[0].slice==0 && d.colorAttachments[0].depthPlane==0 && d.colorAttachments[0].loadAction<=MTLLoadActionClear &&
         d.colorAttachments[0].storeAction<=MTLStoreActionStore;
-    for(unsigned i=1;i<8 && valid;++i)valid=d.colorAttachments[i].texture==nil;
-    if(!valid){[self release];return nil;}_commands=[commands retain];_target=[target retain];
+    NSMutableArray *targets=[NSMutableArray new];
+    if(valid)for(unsigned i=0;i<8;++i){auto a=d.colorAttachments[i];auto texture=(SweetMTLTexture *)a.texture;
+        [targets addObject:texture?texture:(id)[NSNull null]];if(!texture)continue;
+        valid=[texture isKindOfClass:[SweetMTLTexture class]] && texture.device==commands.device && (!texture.usage || (texture.usage&MTLTextureUsageRenderTarget)) &&
+            texture.width==target.width && texture.height==target.height && !a.resolveTexture && !a.level && !a.slice && !a.depthPlane && a.loadAction<=MTLLoadActionClear && a.storeAction<=MTLStoreActionStore;
+        if(!valid)break;
+        for(unsigned j=0;j<i && valid;++j){id previous=targets[j];if(previous==[NSNull null])continue;auto other=(SweetMTLTexture *)previous;
+            if(texture==other || (texture->_surface && texture->_surface==other->_surface))valid=false;
+            else if([texture sweetBacking].handle==[other sweetBacking].handle){uint64_t a0=texture->_layout.offset,a1=a0+texture->_layout.bytes,b0=other->_layout.offset,b1=b0+other->_layout.bytes;
+                if(a0<b1 && b0<a1)valid=false;}}
+        if(!valid)break;_pass.color_mask|=1u<<i;
+        if(i){auto binding=[texture bindingForIndex:i stage:0];_pass.colors[i-1]={binding,(uint32_t)a.loadAction,(uint32_t)a.storeAction,{a.clearColor.red,a.clearColor.green,a.clearColor.blue,a.clearColor.alpha}};}
+    }
+    if(!valid){[targets release];[self release];return nil;}_targets=[targets copy];[targets release];_commands=[commands retain];_target=[target retain];
     auto attachment=d.colorAttachments[0];_pass.target=[target bindingForIndex:0 stage:0];_pass.load_action=(uint32_t)attachment.loadAction;_pass.store_action=(uint32_t)attachment.storeAction;
     _pass.clear[0]=attachment.clearColor.red;_pass.clear[1]=attachment.clearColor.green;_pass.clear[2]=attachment.clearColor.blue;_pass.clear[3]=attachment.clearColor.alpha;
     _draw={(uint32_t)MTLPrimitiveTypeTriangle,0,0,1,(uint32_t)MTLCullModeNone,(uint32_t)MTLWindingClockwise,0,0,(double)target.width,(double)target.height,0,1,0,0,(uint32_t)target.width,(uint32_t)target.height};
     _vertexBuffers=[NSMutableDictionary new];_fragmentBuffers=[NSMutableDictionary new];_vertexTextures=[NSMutableDictionary new];_fragmentTextures=[NSMutableDictionary new];_vertexSamplers=[NSMutableDictionary new];_fragmentSamplers=[NSMutableDictionary new];return self;
 }
-- (void)dealloc{[_commands release];[_target release];[_pipeline release];[_vertexBuffers release];[_fragmentBuffers release];[_vertexTextures release];[_fragmentTextures release];[_vertexSamplers release];[_fragmentSamplers release];[_label release];[super dealloc];}
+- (void)dealloc{[_commands release];[_target release];[_targets release];[_pipeline release];[_vertexBuffers release];[_fragmentBuffers release];[_vertexTextures release];[_fragmentTextures release];[_vertexSamplers release];[_fragmentSamplers release];[_label release];[super dealloc];}
 - (id<MTLDevice>)device{return _commands.device;}
 - (void)doesNotRecognizeSelector:(SEL)selector
 {fprintf(stderr,"SWEET METAL missing class=render_encoder selector=%s original_exception=1\n",sel_getName(selector));[super doesNotRecognizeSelector:selector];}
@@ -241,6 +257,9 @@ static bool render_entry(SweetMTLFunction *function,unsigned stage,GPU::Compiler
 - (void)setRenderPipelineState:(id<MTLRenderPipelineState>)pipeline
 {if(_ended || ![pipeline isKindOfClass:[SweetMTLRenderPipeline class]] || pipeline.device!=self.device)[NSException raise:NSInvalidArgumentException format:@"Invalid Metal render pipeline owner"];
     [pipeline retain];[_pipeline release];_pipeline=(SweetMTLRenderPipeline *)pipeline;}
+- (void)setBlendColorRed:(float)red green:(float)green blue:(float)blue alpha:(float)alpha
+{if(_ended || !std::isfinite(red) || !std::isfinite(green) || !std::isfinite(blue) || !std::isfinite(alpha))[NSException raise:NSInvalidArgumentException format:@"Invalid blend constant"];
+    _draw.blend_color[0]=red;_draw.blend_color[1]=green;_draw.blend_color[2]=blue;_draw.blend_color[3]=alpha;}
 - (void)setBuffer:(id<MTLBuffer>)buffer offset:(NSUInteger)offset index:(NSUInteger)index dictionary:(NSMutableDictionary *)dictionary
 {
     if(_ended || index>=8 || (buffer && (![buffer isKindOfClass:[SweetMTLBuffer class]] || buffer.device!=self.device || offset>=buffer.length || (offset&3))))
@@ -250,7 +269,7 @@ static bool render_entry(SweetMTLFunction *function,unsigned stage,GPU::Compiler
 - (void)setVertexBuffer:(id<MTLBuffer>)buffer offset:(NSUInteger)offset atIndex:(NSUInteger)index{[self setBuffer:buffer offset:offset index:index dictionary:_vertexBuffers];}
 - (void)setFragmentBuffer:(id<MTLBuffer>)buffer offset:(NSUInteger)offset atIndex:(NSUInteger)index{[self setBuffer:buffer offset:offset index:index dictionary:_fragmentBuffers];}
 - (void)setTexture:(id<MTLTexture>)texture index:(NSUInteger)index dictionary:(NSMutableDictionary *)dictionary
-{if(_ended || index>=16 || (texture && (![texture isKindOfClass:[SweetMTLTexture class]] || texture.device!=self.device || !(texture.usage&MTLTextureUsageShaderRead))))
+{if(_ended || index>=16 || (texture && (![texture isKindOfClass:[SweetMTLTexture class]] || texture.device!=self.device || (texture.usage && !(texture.usage&MTLTextureUsageShaderRead)))))
     [NSException raise:NSInvalidArgumentException format:@"Invalid Metal render texture owner/usage"];
     if(texture)dictionary[@(index)]=texture;else [dictionary removeObjectForKey:@(index)];}
 - (void)setVertexTexture:(id<MTLTexture>)texture atIndex:(NSUInteger)index{[self setTexture:texture index:index dictionary:_vertexTextures];}
@@ -280,21 +299,22 @@ static bool render_entry(SweetMTLFunction *function,unsigned stage,GPU::Compiler
         [NSException raise:NSInvalidArgumentException format:@"Invalid Metal draw range/state"];
     _draw.primitive=(uint32_t)primitive;_draw.first=(uint32_t)start;_draw.count=(uint32_t)count;_draw.instances=(uint32_t)instances;
     @autoreleasepool{NSData *pass=[NSData dataWithBytes:&_pass length:sizeof(_pass)],*draw=[NSData dataWithBytes:&_draw length:sizeof(_draw)];
-        if(![_commands appendOperation:@{@"renderPipeline":_pipeline,@"target":_target,@"pass":pass,@"draw":draw,
+        if(![_commands appendOperation:@{@"renderPipeline":_pipeline,@"target":_target,@"targets":_targets,@"pass":pass,@"draw":draw,
             @"vertexBuffers":[NSDictionary dictionaryWithDictionary:_vertexBuffers],@"fragmentBuffers":[NSDictionary dictionaryWithDictionary:_fragmentBuffers],
             @"vertexTextures":[NSDictionary dictionaryWithDictionary:_vertexTextures],@"fragmentTextures":[NSDictionary dictionaryWithDictionary:_fragmentTextures],
             @"vertexSamplers":[NSDictionary dictionaryWithDictionary:_vertexSamplers],@"fragmentSamplers":[NSDictionary dictionaryWithDictionary:_fragmentSamplers]}])
             [NSException raise:NSInternalInconsistencyException format:@"Render command buffer no longer writable"];}
-    _drew=YES;_pass.load_action=MTLLoadActionLoad;
+    _drew=YES;_pass.load_action=MTLLoadActionLoad;for(unsigned i=1;i<8;++i)_pass.colors[i-1].load_action=MTLLoadActionLoad;
 }
 - (void)drawPrimitives:(MTLPrimitiveType)p vertexStart:(NSUInteger)start vertexCount:(NSUInteger)count{[self drawPrimitives:p vertexStart:start vertexCount:count instanceCount:1];}
 - (void)endEncoding
 {
     if(_ended)[NSException raise:NSInternalInconsistencyException format:@"Metal render encoder already ended"];
-    if(!_drew && _pass.load_action==MTLLoadActionClear){@autoreleasepool{
-        if(![_commands appendOperation:@{@"renderClear":@YES,@"target":_target,@"pass":[NSData dataWithBytes:&_pass length:sizeof(_pass)]}])
+    bool clear=false;for(unsigned i=0;i<8;++i)if(_pass.color_mask&(1u<<i))clear|=sweet_render_attachment(&_pass,i).load_action==MTLLoadActionClear;
+    if(!_drew && clear){@autoreleasepool{
+        if(![_commands appendOperation:@{@"renderClear":@YES,@"target":_target,@"targets":_targets,@"pass":[NSData dataWithBytes:&_pass length:sizeof(_pass)]}])
             [NSException raise:NSInternalInconsistencyException format:@"Render clear command buffer not writable"];}}
-    _ended=YES;[_vertexBuffers removeAllObjects];[_fragmentBuffers removeAllObjects];[_vertexTextures removeAllObjects];[_fragmentTextures removeAllObjects];[_vertexSamplers removeAllObjects];[_fragmentSamplers removeAllObjects];[_pipeline release];_pipeline=nil;[_target release];_target=nil;[_commands finishEncoder];
+    _ended=YES;[_vertexBuffers removeAllObjects];[_fragmentBuffers removeAllObjects];[_vertexTextures removeAllObjects];[_fragmentTextures removeAllObjects];[_vertexSamplers removeAllObjects];[_fragmentSamplers removeAllObjects];[_pipeline release];_pipeline=nil;[_target release];_target=nil;[_targets release];_targets=nil;[_commands finishEncoder];
 }
 @end
 static id<MTLRenderCommandEncoder> create_render_encoder(SweetMTLCommandBuffer *commands,MTLRenderPassDescriptor *descriptor)
@@ -304,18 +324,23 @@ static NSError *execute_metal_render(NSDictionary *operation,id<MTLDevice> devic
     auto target=(SweetMTLTexture *)operation[@"target"];NSData *passData=operation[@"pass"],*drawData=operation[@"draw"];
     if(![target isKindOfClass:[SweetMTLTexture class]] || target.device!=device || passData.length!=sizeof(SweetRenderPass))return metal_queue_error(@"Render target/pass owner or ABI invalid");
     SweetRenderPass pass;memcpy(&pass,passData.bytes,sizeof(pass));
-    auto actual=[target bindingForIndex:0 stage:0];if(memcmp(&actual,&pass.target,sizeof(actual)))return metal_queue_error(@"Render target snapshot differs from retained backing");
+    NSArray *targets=operation[@"targets"];if(targets.count!=8 || pass.reserved || !pass.color_mask || (pass.color_mask&~255u))return metal_queue_error(@"Render attachment snapshot count/mask invalid");
+    for(unsigned i=0;i<8;++i){id object=targets[i];bool absent=object==[NSNull null];if(absent!=( !(pass.color_mask&(1u<<i))))return metal_queue_error(@"Render attachment mask differs from retained targets");if(absent)continue;
+        auto texture=(SweetMTLTexture *)object;if(![texture isKindOfClass:[SweetMTLTexture class]] || texture.device!=device)return metal_queue_error(@"Render attachment owner invalid");
+        auto actual=[texture bindingForIndex:i stage:0];auto saved=sweet_render_attachment(&pass,i);if(memcmp(&actual,&saved.target,sizeof(actual)))return metal_queue_error(@"Render target snapshot differs from retained backing");}
     if(operation[@"renderClear"]){int error=sweetgl_metal_render_clear(&pass,sequence);return error?metal_queue_error(@"GPU render clear failed"):nil;}
     auto pipeline=(SweetMTLRenderPipeline *)operation[@"renderPipeline"];if(![pipeline isKindOfClass:[SweetMTLRenderPipeline class]] || pipeline.device!=device || drawData.length!=sizeof(SweetRenderDraw))return metal_queue_error(@"Render pipeline/draw ABI invalid");
     SweetRenderDraw draw;memcpy(&draw,drawData.bytes,sizeof(draw));SweetShaderBufferBinding buffers[16]={};SweetShaderTextureBinding textures[32]={};SweetShaderSamplerBinding samplers[16]={};unsigned n=0,t=0,s=0;
     for(unsigned stage=1;stage<=2;++stage){NSDictionary *bindings=operation[stage==1?@"vertexBuffers":@"fragmentBuffers"];
         for(NSNumber *key in bindings){NSDictionary *binding=bindings[key];auto buffer=(SweetMTLBuffer *)binding[@"buffer"];uint64_t offset=[binding[@"offset"] unsignedLongLongValue];
             if(n>=16 || key.unsignedLongLongValue>=8 || ![buffer isKindOfClass:[SweetMTLBuffer class]] || buffer.device!=device ||
-                offset>=buffer.length || buffer->_backing.handle==[target sweetBacking].handle)return metal_queue_error(@"Render buffer owner/range/target alias invalid");
+                offset>=buffer.length)return metal_queue_error(@"Render buffer owner/range invalid");
+            for(id object in targets)if(object!=[NSNull null] && buffer->_backing.handle==[(SweetMTLTexture *)object sweetBacking].handle)return metal_queue_error(@"Render buffer aliases a color target");
             buffers[n++]={buffer->_backing.handle,key.unsignedIntValue+(stage==2?8:0),offset,buffer.length-offset};}
         bindings=operation[stage==1?@"vertexTextures":@"fragmentTextures"];for(NSNumber *key in bindings){auto texture=(SweetMTLTexture *)bindings[key];
-            if(t>=32 || ![texture isKindOfClass:[SweetMTLTexture class]] || texture.device!=device || [texture sweetBacking].handle==[target sweetBacking].handle ||
-                (texture->_surface && texture->_surface==target->_surface))return metal_queue_error(@"Render texture alias/owner invalid");
+            if(t>=32 || ![texture isKindOfClass:[SweetMTLTexture class]] || texture.device!=device)return metal_queue_error(@"Render texture owner invalid");
+            for(id object in targets)if(object!=[NSNull null]){auto other=(SweetMTLTexture *)object;
+                if([texture sweetBacking].handle==[other sweetBacking].handle || (texture->_surface && texture->_surface==other->_surface))return metal_queue_error(@"Render texture aliases a color target");}
             textures[t++]=[texture bindingForIndex:key.unsignedIntValue stage:stage];}
         bindings=operation[stage==1?@"vertexSamplers":@"fragmentSamplers"];for(NSNumber *key in bindings){auto sampler=(SweetMTLSampler *)bindings[key];
             if(s>=16 || ![sampler isKindOfClass:[SweetMTLSampler class]] || sampler.device!=device)return metal_queue_error(@"Render sampler owner invalid");

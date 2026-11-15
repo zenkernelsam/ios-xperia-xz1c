@@ -5,7 +5,7 @@ def verify(text,token):
     assert 'SWEET ENV: backboardd += DYLD_INSERT_LIBRARIES=/dev/sglram/m:/dev/sglram/e' in scope
     assert 'SWEET ENV: AegirPoster += DYLD_INSERT_LIBRARIES=/dev/sglram/e' not in scope
     assert not re.search(r'SWEET (?:GLES SUITE|METAL PROBES) END(?: process=backboardd)? result=[1-9]',scope)
-    assert not re.search(r'SWEET (?:AIR (?:COMPUTE|RENDER|CONSTANTS|XR|NARROW|HALF)|METAL (?:RESOURCE|QUEUE|SURFACE|MIPS)) END result=[1-9]',scope)
+    assert not re.search(r'SWEET (?:AIR (?:COMPUTE|RENDER|CONSTANTS|XR|NARROW|HALF)|METAL (?:RESOURCE|QUEUE|SURFACE|MIPS|MRT)) END result=[1-9]',scope)
     installed=list(re.finditer(r'SWEET EXCEPTION observer installed process=backboardd limit=16 original_chain=1',scope))
     scheduled=list(re.finditer(r'SWEET METAL PROBES scheduled process=backboardd constructor_waited=0 background=1',scope))
     ready=list(re.finditer(r'SWEET GLES SUITE END result=0 tests=8 state=2 original_tests=1',scope))

@@ -62,6 +62,10 @@
 #include "AIRHalfFixture.h"
 #include "MetalHalfProbe.h"
 #endif
+#if defined(SWEET_AIR_MRT_PROBE)
+#include "AIRMRTFixture.h"
+#include "MetalMRTProbe.h"
+#endif
 
 #if defined(LILAC_EXCEPTION_TEST)
 struct MetalABIHostLimits { uint32_t fields[63];uint64_t maxBufferLength; };
@@ -225,6 +229,9 @@ static bool run_native_probes(void)
 #endif
 #if defined(SWEET_AIR_HALF_PROBE)
     native_probes_valid=metal_half_probe(diagnostic) && native_probes_valid;
+#endif
+#if defined(SWEET_AIR_MRT_PROBE)
+    native_probes_valid=metal_mrt_probe(diagnostic) && native_probes_valid;
 #endif
 #if defined(SWEET_METAL_DISCOVERY_PROBE)
     if(native_probes_valid)(void)metal_discovery_probe(diagnostic);

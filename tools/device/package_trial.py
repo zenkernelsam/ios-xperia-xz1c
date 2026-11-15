@@ -196,6 +196,8 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
                     common+=['SWEET AIR NARROW END result=0 phases=2 checked_bytes=98304 final_allocated=0 GPU_only=1']
                 if m['exception_observer'].get('AIR_half_probe'):
                     common+=['SWEET AIR HALF END result=0 checked_bytes=131072 phases=2 graphics=1 final_allocated=0 GPU_only=1']
+                if m['exception_observer'].get('AIR_MRT_probe'):
+                    common+=['SWEET METAL MRT END result=0 XR_formats=4 phases=16 eight_targets=8 ordered_formats=4 checked_bytes=1245184 final_allocated=0 GPU_only=1']
     plan={'target_serial':'BH905ND69G','pon_route':6,'max_cycles':1,'budget_seconds':480,'camera_required':mode=='gpu',
           'steps':[{'artifact_id':m['id'],'observe_seconds':observe,'stable_seconds':30,'return_seconds':120,'goals':common,
                     'return_evidence':'final-drain','on_pass':'stop','on_failure':'stop'}]}

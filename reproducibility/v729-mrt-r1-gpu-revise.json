@@ -1,0 +1,42 @@
+{
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-mrt-r1-gpu-20261115",
+  "version": 729,
+  "token": "caf703b6a68559d4",
+  "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+  "image_sha256": "670c93a7a5964ebb1ce7be1d76504a01814326669b133fb632fac36094656453",
+  "log_sha256": "7667a64cec00f7e134ad97970d728f61144ffcae77749df658f5bf985fa644dc",
+  "original_result": "REVISE",
+  "original_reason": "BACKGROUND_METAL_SUITE_FAILED",
+  "actual_failures": [],
+  "native_GPU_failure_results": [
+    1
+  ],
+  "registry_assertions": [],
+  "missing_device_API": [],
+  "original_exception_missing_API": [],
+  "original_extension_checkin_timeout_count": 0,
+  "payload_audit": {
+    "image_sha256": "670c93a7a5964ebb1ce7be1d76504a01814326669b133fb632fac36094656453",
+    "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+    "blob_count": 8,
+    "complete_payload_reconstructed_from_compiled_kernel": true
+  },
+  "strict_return": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "caf703b6a68559d4",
+    "checkpoint_bytes": 353507,
+    "log_bytes": 359085,
+    "log_sha256": "7667a64cec00f7e134ad97970d728f61144ffcae77749df658f5bf985fa644dc",
+    "require_final_drain": true,
+    "marker_positions": [
+      5,
+      26,
+      100,
+      102
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 40.03200000000652,
+  "failed_stage_not_accepted": true
+}

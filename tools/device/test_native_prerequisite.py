@@ -22,6 +22,9 @@ class NativePrerequisite(unittest.TestCase):
         half=copy.deepcopy(self.resources);half['AIR_frontend']={'local_narrow_conversion_adaptation':True,'local_half_storage_and_rounding_adaptation':True}
         with self.assertRaises(AssertionError):validate(self.proof,half)
         complete=copy.deepcopy(self.proof);complete['native_tests']+=['AIR_narrow','AIR_half'];validate(complete,half)
+        half['native_MRT_and_XR_blend']=True
+        with self.assertRaises(AssertionError):validate(complete,half)
+        complete['native_tests'].append('Metal_MRT');validate(complete,half)
     def test_short_registration_requires_replay(self):
         record=dict(version=729,trial_mode='gpu',kernel_sha256='1'*64,metal_resources=self.resources,
             exception_observer={'registration_only':True,'prior_native_hardware_proof':self.proof})
