@@ -25,6 +25,22 @@ class MRTEvidence(unittest.TestCase):
                 f'SWEET METAL MRT order format={f} first=3 count=6 instances=2 primitives=4 sequence={sequence} operations=1 checked_bytes=16384 mismatches=0 valid=1 hash={order_expected(f)} original_pages=1 HDR_negative=1 HDR_above_one=1']
         rows+=['SWEET METAL MRT END result=0 XR_formats=4 phases=16 eight_targets=8 ordered_formats=4 checked_bytes=1245184 final_allocated=0 GPU_only=1','SWEET LOOP ACK FASTBOOT token='+self.token];return '\n'.join(rows)
     def test_complete_hardware_contract(self):self.assertEqual(verify(self.sample(),self.token,self.fixture)['complete_samples'],1)
+    def test_clear_optimization_requires_current_clear_and_load_records(self):
+        text=self.sample()
+        with self.assertRaises(AssertionError):verify(text,self.token,self.fixture,require_xr_clear_elision=True)
+        for f in range(552,556):
+            key=f'SWEET METAL MRT writeback format={f} handle=1 mask=15'
+            clear=f'SWEET METAL MRT clear_target index=0 format={f} handle=1 width=17 height=9 result=0 decode_skipped=1 original_code_snapshot=1 original_clear=1\n'
+            text=text.replace(key,clear+key,1)
+            for phase in (1,2):
+                key=f'SWEET METAL MRT phase format={f} phase={phase} '
+                load=f'SWEET METAL MRT decode format={f} handle=1 width=17 height=9 result=0 GPU_only=1 original_target_pages=1\n'
+                text=text.replace(key,load+key,1)
+        result=verify(text,self.token,self.fixture,require_xr_clear_elision=True)
+        self.assertTrue(result['records'][0]['XR_clear_decode_elision_verified'])
+        for bad in (text.replace('decode_skipped=1','decode_skipped=0'),text.replace('original_clear=1','original_clear=0'),
+                    text.replace('SWEET METAL MRT decode format=553','SWEET METAL MRT decode format=552',1)):
+            with self.assertRaises(AssertionError):verify(bad,self.token,self.fixture,require_xr_clear_elision=True)
     def test_raw_code_blend_mask_retirement_fence_guard_rejected(self):
         text=self.sample()
         for bad in (text.replace(expected(553,2)[0],'0'*16),text.replace(expected(552,3)[2],'0'*16),text.replace(eight_expected(7),'0'*16),

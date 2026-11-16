@@ -1,6 +1,6 @@
 # 固定源码与构建
 
-当前实机入口为v729、GLES0a2c7e69和Metal half-selection-r1/5e94ab57，完整14组raw proof见STATUS与HALF-SELECTION。下方各版本的构建/失败记录保留其原适用范围；不能以旧版本proof准入当前新库。仅observer诊断变更的最新构建、同库CPU准入和原PNG时耗观察见[POSTDRAW-OBSERVATION](POSTDRAW-OBSERVATION.md)，不重编或改动已验kernel/GLES/Metal。
+当前实机入口为v729、XR Clear优化GLES72d39da5和Metal half-selection-r1/5e94ab57，完整14组raw proof见STATUS与XR-CLEAR。下方各版本的构建/失败记录保留其原适用范围；不能以旧版本proof准入当前新库。仅observer诊断变更的最新构建、同库CPU准入和原PNG时耗观察见[POSTDRAW-OBSERVATION](POSTDRAW-OBSERVATION.md)，不重编或改动已验kernel/GLES/Metal。
 
 reproducibility/source-lock.json锁定Apple XNU xnu-8796.141.3/f625db25f47631424dc62ac1c3414b6e530f7e8a、darwin-xnu-build基础663906528d1cd5ea8fde7de6f16de73db9511549、Mesa769e51468b49b2a42f0a0eaf71cf9eed5ff4e5de/24.3.4及全部修补。source-reconstruction.json记录逐源重建核验。
 
@@ -73,3 +73,5 @@ mipmap最新实现见METAL-MIPMAPS.md，取代上段单mip限制：源码已支�
 程序二进制与后台预热的最新实现/证据见 [PROGRAM-CACHE](PROGRAM-CACHE.md)。build_gles.py --mesa-build/--frontend-output在新目录重建完整Mesa，build_frontend_trial.py --mesa-build记录实际归档；RAM绑定及run_trial审计使用该安全相对目录。缓存库增加Program_cache自身实机证明，完整native-proof共13组；只保存实际runtime request，在完成原GPU回程后才单独 --program-cache-prime，不能以host或旧12组证明准入原Aegir。
 
 静态half常量内存适配/全位型及14组原raw验收见 [AIR-STATIC-HALF](AIR-STATIC-HALF.md)。materializer在原引用副本顺序应用lilac-air-static-half-bits.patch并复制StaticHalfBits.h；build_air_frontend.py记录新输入/真实iOS LLVM导入。make_air_fixture.py --fixture static-half、build_exception_observer.py --static-half-fixture添加自身GPU组，新库旧13组proof拒绝。
+
+XR Clear优化的最新GLES构建/原位型门槛与真实性能证据见[XR-CLEAR](XR-CLEAR.md)。build_frontend_trial以实际源码锁和同一Mesa归档生成新库，再依次新GLES CPU/GPU→完整native包CPU/14组GPU→新native proof→原包CPU/GPU。CPU与全GPU库身份须完全相同，旧0a2c7e69不能准入72d39da5。

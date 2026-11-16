@@ -147,6 +147,8 @@ def load(folder,expected=None):
         assert (m['exception_observer'].get('metal_resource_probe') or m['exception_observer'].get('registration_only')) and m['exception_observer']['metal_resources']==resources
         if resources.get('native_static_half_bits'):assert observer.get('registration_only') or observer.get('AIR_static_half_probe'),'New static-half RAM package lacks its own probe'
         assert resources['only_explicit_resource_factory'] and resources['system_Metal_plugin_not_advertised']
+        if m['frontend_build_binding'].get('XR_clear_decode_elision'):
+            assert resources.get('native_XR_clear_decode_elision') and resources['original_XR_raw_snapshot_and_Clear_writeback_preserved']
         assert m['files']['MetalResources.dylib']['sha256']==resources['library_sha256']
         assert m['library_sha256']==resources['gles_library_sha256']
         if resources.get('AIR_compute_pipeline'):

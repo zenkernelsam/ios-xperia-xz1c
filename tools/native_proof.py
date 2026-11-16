@@ -14,6 +14,7 @@ def validate(proof,resources=None):
         if resources.get('AIR_frontend',{}).get('local_narrow_conversion_adaptation'):assert 'AIR_narrow' in proof['native_tests'],'New AIR conversion needs its own complete hardware proof'
         if resources.get('AIR_frontend',{}).get('local_half_storage_and_rounding_adaptation'):assert 'AIR_half' in proof['native_tests'],'New half adaptation needs its own complete hardware proof'
         if resources.get('native_MRT_and_XR_blend'):assert 'Metal_MRT' in proof['native_tests'],'New MRT/XR blend needs complete original-page hardware proof'
+        if resources.get('native_XR_clear_decode_elision'):assert 'Metal_MRT' in proof['native_tests'],'XR Clear optimization needs original-page/mask/guard hardware proof'
         if resources.get('native_AIR_constant_samplers'):assert 'AIR_sampler' in proof['native_tests'],'New literal sampler needs its own original-page GPU proof'
         if resources.get('native_program_binary_cache'):assert 'Program_cache' in proof['native_tests'],'Program binary restore needs its own fresh-context GPU proof'
         if resources.get('native_static_half_bits'):assert 'AIR_static_half' in proof['native_tests'],'Static half memory aliases need their own complete hardware proof'

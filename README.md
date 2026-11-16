@@ -14,6 +14,7 @@ Sony Xperia XZ1 Compact（Snapdragon835 / Adreno540）的开源XNU、shim与Mesa
 | [程序二进制缓存](docs/PROGRAM-CACHE.md) | 标准Mesa binary在3个fresh pipeline恢复；sampler147456B/1881pixels、half131072B与MRT1245184B同轮保持，完整13组原生GPU通过 |
 | [静态half位型](docs/AIR-STATIC-HALF.md) | 常量内存half/i16四种原位型读写、12case/196608B输出与guard、创建后reset的snapshot完整实机通过 |
 | [half链接优化](docs/HALF-SELECTION.md) | 全float32/binary16等位型验证；新Metal完整14组实机通过，原真实request标准binary已预热 |
+| [XR Clear优化](docs/XR-CLEAR.md) | 保留原Clear/位型写回与Load，省去覆盖旧色的解码；新GLES完整14组通过，真实750×1624 Clear/draw已出现 |
 | [原Aegir短登记](docs/METAL-REGISTRY-SHORT.md) | 原默认device返回真实A540，threshold管线编译成功；必须有同kernel/GLES/Metal/source-map的完整实机先验 |
 
 [多颜色附件与XR混色](docs/METAL-MRT.md)现已完整实机通过：8附件输出、四XR与BGRA独立blend/writeMask、FP32 image按图元有序混色；1245184B原页面/低位/保护区零差异，523全撤销并38.562秒完整自动回程。当前half-selection-r1已完整14组/39.062秒回程验证；原Aegir现已恢复五条真实管线并出现两次750×1624 GPU draw，check-in超时和不完整面板仍保留。新的[原快照耗时观察](docs/POSTDRAW-OBSERVATION.md)已取得一次32179B真实PNG返回；快照约3.31秒（含队列等待2.81秒）、PNG/ICC约3.91秒，原check-in失败及不完整UI仍保留。未完成真实锁屏时间/日期/壁纸、完整UI/FPS、睡眠唤醒、声音、Wi-Fi/蓝牙及广义texture/depth/stencil/MSAA。离屏GPU通过不代表完整系统完成。
@@ -23,3 +24,5 @@ Sony Xperia XZ1 Compact（Snapdragon835 / Adreno540）的开源XNU、shim与Mesa
 实机仅BH905ND69G、fastboot -s、合格COM>=10、PON只0x06。单download/boot、失败不重发；每轮完整ACK/DRAIN/RESET/FINAL_DRAIN、连续健康30秒及旧worker退出后继续。相机只用override→AF→2秒→MJPEG每5帧抽1→rotate90。完整规则在[OPERATIONS](docs/OPERATIONS.md)。
 
 iPhoneX iOS16.7.16/20H392镜像、Sony原厂固件、设备备份由使用者提供，不进入Git。gl5/userdata/SD/TA/XFL与救砖资料保持受保护。目录/归档/原生回收规则见[LAYOUT](docs/LAYOUT.md)及整理记录[2026-11-12](docs/ORGANIZATION-2026-11-12.md)、[2026-11-15](docs/ORGANIZATION-2026-11-15.md)。
+
+2026-11-17当前GLES为72d39da5，Metal5e94ab57和内核v729保持；新库完整14组及真实请求预热通过。单个原界面样本的队列wait由约2.807秒降至1.067秒，但CPU管线开销和完整UI仍未解决，总快照改善不作推断。原数据与限制见STATUS/XR-CLEAR。

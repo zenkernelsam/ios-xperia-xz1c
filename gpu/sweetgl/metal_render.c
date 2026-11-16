@@ -437,6 +437,20 @@ static bool color_pass_valid(const SweetRenderPass *pass)
                 if(a.target.offset<bEnd && b.target.offset<end)return false;}}
     }return temporary<=(UINT64_C(256)<<20);
 }
+static int allocate_xr_clear_texture(const SweetShaderTextureBinding *binding,GLuint *texture)
+{
+    // Clear overwrites every linear colour component. Keep the separate raw
+    // snapshot for writeback's unused bits, but do not decode discarded colour.
+    GLint previous=0;glGetIntegerv(GL_TEXTURE_BINDING_2D,&previous);
+    glGenTextures(1,texture);glBindTexture(GL_TEXTURE_2D,*texture);
+    glTexStorage2D(GL_TEXTURE_2D,1,GL_RGBA32F,binding->width,binding->height);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_BASE_LEVEL,0);glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAX_LEVEL,0);
+    GLenum error=glGetError();int result=*texture && error==GL_NO_ERROR?0:-EIO;
+    glBindTexture(GL_TEXTURE_2D,(GLuint)previous);
+    if(result && *texture){glDeleteTextures(1,texture);*texture=0;}
+    return result;
+}
 static int prepare_targets(struct st_context *context,const SweetRenderPass *pass,struct sweet_render_targets *targets,SweetMetalShaderCache *cache,uint32_t ordered_xr_mask)
 {
     if(!color_pass_valid(pass))return -EINVAL;targets->mask=sweet_render_pass_mask(pass);
@@ -444,12 +458,15 @@ static int prepare_targets(struct st_context *context,const SweetRenderPass *pas
     for(unsigned i=0;i<8;++i)if(targets->mask&(1u<<i)){SweetRenderColorAttachment attachment=sweet_render_attachment(pass,i);
         glActiveTexture(GL_TEXTURE0);int result=bind_texture(context,&attachment.target,&targets->raw[i]);if(result)return result;
         if(xr_format(attachment.target.format)){result=snapshot_raw_image(targets->raw[i],&attachment.target,&targets->old[i]);if(result)return result;
-            result=decode_xr_texture_mode(context,&attachment.target,&targets->linear[i],cache,true);if(result)return result;}
+            result=attachment.load_action==2?allocate_xr_clear_texture(&attachment.target,&targets->linear[i]):
+                decode_xr_texture_mode(context,&attachment.target,&targets->linear[i],cache,true);if(result)return result;}
         if(attachment.load_action==2){GLuint fbo=0;glGenFramebuffers(1,&fbo);glBindFramebuffer(GL_FRAMEBUFFER,fbo);
             glFramebufferTexture2D(GL_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D,targets->linear[i]?targets->linear[i]:targets->raw[i],0);
             SweetRenderPass clear={0};clear.target=attachment.target;clear.load_action=2;clear.store_action=1;memcpy(clear.clear,attachment.clear,sizeof(clear.clear));
             if(targets->linear[i])clear.target.format=115;
-            result=glCheckFramebufferStatus(GL_FRAMEBUFFER)==GL_FRAMEBUFFER_COMPLETE?bounded_clear(&clear):-EIO;glDeleteFramebuffers(1,&fbo);if(result)return result;}
+            result=glCheckFramebufferStatus(GL_FRAMEBUFFER)==GL_FRAMEBUFFER_COMPLETE?bounded_clear(&clear):-EIO;glDeleteFramebuffers(1,&fbo);if(result)return result;
+            if(targets->linear[i])sweet_drm_log("SWEET METAL MRT clear_target index=%u format=%u handle=%u width=%u height=%u result=0 decode_skipped=1 original_code_snapshot=1 original_clear=1",
+                i,attachment.target.format,attachment.target.handle,attachment.target.width,attachment.target.height);}
     }
     glGenFramebuffers(1,&targets->framebuffer);glBindFramebuffer(GL_FRAMEBUFFER,targets->framebuffer);GLenum buffers[8];unsigned count=0;
     for(unsigned i=0;i<8;++i){buffers[i]=targets->mask&(1u<<i)?GL_COLOR_ATTACHMENT0+i:GL_NONE;

@@ -1,8 +1,12 @@
-# 当前状态 — 2026-11-16
+# 当前状态 — 2026-11-17
 
-Sony BH905ND69G当前健康停在fastboot，snapshot-r1唯一controller和serial worker已退出。GPU token426db2f158da1757、raw4a65f20197c291a628f3b2c04c3aa1bbc3fea4d686d62c1fa3fa78e9208a276f，38.625秒四回程marker/健康30秒/controller exit1，原REVISE/extension check-in timeout保持。实际28个完整/6个未完成时耗样本；一个原PNG首次返回32179B，面板仍缺完整壁纸/时间日期。同RAM CPU de5cda38702d8c5e已38.797秒完整回程通过，无in-flight或待轮询handle。
+Sony BH905ND69G当前健康停在fastboot，无controller/串口worker。XR Clear优化GLES72d39da5已独立GLES/完整14组通过；真实请求预热后新原GPUe4eb78cb0e32deba仍REVISE/check-in超时，rawfc94bcce288398f9d4ecf9e6a9574332ed49bb59e54dd3ee80d3d2ac15e9f5b0，40.172秒四回程marker/健康30秒/controller退出。实际750×1624 Clear decode_skipped=1、draw result0/sequence652/original_pages1；单样本wait1.067秒，旧sample2.807秒，约少62%。总snapshot3.719秒/CPU2.570秒仍受管线准备影响，不能宣称总快照或完整UI已改善；面板仍缺壁纸/时间日期。下一步核对新增真实管线请求并预热/剖析CPU，不改冻结内核域。
 
-## 已验当前库
+## 当前新GLES验证
+
+GLES72d39da52e5673755b9419b2038b5db5b876e073fe96b52cae20f4c5944c72b4，Metal5e94ab57及其source-map3e79503f保持。独立GLES八项及完整14组native4bcd571c9e12b34d通过；实际四种XR Clear跳过旧色解码，原Clear/位型/padding/mask/fence/lifecycle及两个Load解码保持。实际原界面单样本数据和不完整UI见顶段与XR-CLEAR，不能以旧GLES proof替代。
+
+## 原比较基线（0a2c7e69）
 
 - kernel v729：774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec，20648064B、81源；allocator/SCM/PON/RPC/VM冻结。
 - GLES：0a2c7e698ae59a1afe8608c884f59e87a344a3952e9b4d52899923b9e295b3db；固定Mesa24.3.4/FD540，build identity51e6ba632cbac469f3210833ea01f201305b5ca76f7c37bef04504a1c6c9b22d。

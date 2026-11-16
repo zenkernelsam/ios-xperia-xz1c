@@ -114,7 +114,7 @@ def verify(directory,mode,kernel_sha=None,version=None):
                 if a['exception_observer'].get('Metal_mipmap_probe'):exceptions['Metal_mipmaps']=verify_metal_mips(text,a['token'])
                 if a['exception_observer'].get('AIR_narrow_probe'):exceptions['AIR_narrow']=verify_air_narrow(text,a['token'],a['exception_observer']['AIR_narrow_fixture'])
                 if a['exception_observer'].get('AIR_half_probe'):exceptions['AIR_half']=verify_air_half(text,a['token'],a['exception_observer']['AIR_half_fixture'])
-                if a['exception_observer'].get('AIR_MRT_probe'):exceptions['Metal_MRT']=verify_metal_mrt(text,a['token'],a['exception_observer']['AIR_MRT_fixture'])
+                if a['exception_observer'].get('AIR_MRT_probe'):exceptions['Metal_MRT']=verify_metal_mrt(text,a['token'],a['exception_observer']['AIR_MRT_fixture'],require_xr_clear_elision=a.get('metal_resources',{}).get('native_XR_clear_decode_elision',False))
                 if a['exception_observer'].get('AIR_sampler_probe'):exceptions['AIR_sampler']=verify_air_sampler(text,a['token'],a['exception_observer']['AIR_sampler_fixture'])
                 if a['exception_observer'].get('program_cache_probe'):exceptions['Program_cache']=verify_program_cache(text,a['token'],a['exception_observer']['AIR_sampler_fixture'])
                 if a['exception_observer'].get('AIR_static_half_probe'):exceptions['AIR_static_half']=verify_static_half(text,a['token'],a['exception_observer']['AIR_static_half_fixture'])

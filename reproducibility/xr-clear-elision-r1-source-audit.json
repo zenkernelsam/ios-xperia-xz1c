@@ -1,0 +1,39 @@
+{
+  "base_commit": "bf0e51eecc53b5c227164a8468c3e674f40b59b0",
+  "metal_render_before_sha256": "627eb73b7f758a199c976b60453da9332afc3cbf46bd81b262a355db9fb87cb8",
+  "metal_render_after_sha256": "7ddadbe295d8f5d621e5b9fa2366da34763a10ae66572fe31e8292063159552e",
+  "device_tool_source_updates": [
+    {
+      "path": "tools/device/trial_evidence.py",
+      "before_sha256": "5be39ae79ae958f5c9849c7eb28d91f842e71a5f17d22087521e5cece256ef26",
+      "after_sha256": "8e87903dbb7dc96af1221615b5fb4b31b70d893aae1d9b5d7dfbe3145f847206"
+    },
+    {
+      "path": "tools/device/metal_mrt_evidence.py",
+      "before_sha256": "9523b20c54a1e325c8c0a003447126c24bf0165c733a169b00d5c357d5331ad7",
+      "after_sha256": "6c0f503157e5571efda352396e19b81bdd221d3b08e94dadb84c660227b032a8"
+    },
+    {
+      "path": "tools/device/test_metal_mrt.py",
+      "before_sha256": "8da83b3dfb53c746985203603c2f5b64b2b82861a49c47df69a81631ba33b1b1",
+      "after_sha256": "c4c60286ee41ab09fa35a78fc8b0b857c41fbc32ffb21bb493a5c963d8fe684e"
+    },
+    {
+      "path": "tools/ram_library.py",
+      "before_sha256": "8ce425f02960ea247860c8710b11b372042432477ec820bfae95d5334b526d94",
+      "after_sha256": "a71f6c2fadbff731d961b1a4a128980d75c978d48ad4708951064e9d828cd73b"
+    },
+    {
+      "path": "tools/native_proof.py",
+      "before_sha256": "ac8f759ad76afea6166738064b55146901939dd662c0568af414df85f20688d2",
+      "after_sha256": "c3354a79a65d3c466d344ad369fb704445e4e1c2430e179570f89fef28024ad1"
+    },
+    {
+      "path": "tools/build/build_metal_library.py",
+      "before_sha256": "e386f6ed622c4159dedc6daa2be4f2d3c9807759632e6a09bac9d09effe14ebd",
+      "after_sha256": "60d378fde13cdb96213f381f1b3bc0a1a685d91f4193268ca747ba735d2db514"
+    }
+  ],
+  "kernel_SCM_PON_RPC_VM_allocator_unchanged": true,
+  "actual_new_GLES_and_native_GPU_acceptance_pending": true
+}

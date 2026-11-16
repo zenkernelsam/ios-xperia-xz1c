@@ -58,7 +58,7 @@ def order_expected(format):
             else:stored=struct.pack('<I',(rr<<20)|(gg<<10)|bb|(0xc0000000 if active else 0))
             at=64+y*pitch+x*pixel;raw[at:at+pixel]=stored
     return fnv(raw)
-def verify(text,token,fixture):
+def verify(text,token,fixture,require_xr_clear_elision=False):
     scope=text[text.index('SWEET LOOP LIVE proto=1 token='+token):text.index('SWEET LOOP ACK FASTBOOT token='+token)]
     assert not re.search(r'SWEET METAL MRT END result=[1-9]',scope),'MRT probe failure before ACK'
     starts=list(re.finditer(r'SWEET METAL MRT begin XR_formats=552,553,554,555 dual_targets=2 phases=4 eight_targets=8 original_pages=1',scope));assert starts
@@ -96,10 +96,24 @@ def verify(text,token,fixture):
         writebacks=re.findall(r'SWEET METAL MRT writeback format=(55[2-5]) handle=(\d+) mask=(10|15) result=0 GPU_only=1 original_code_snapshot=1',block)
         assert [int(p[0]) for p in writebacks]==[f for f in range(552,556) for _ in range(3)] and [int(p[2]) for p in writebacks]==[15,15,10]*4
         assert [int(f) for f in re.findall(r'SWEET METAL MRT writeback format=(55[2-5]) handle=\d+ mask=14 result=0 GPU_only=1 original_code_snapshot=1',block)]==list(range(552,556))
+        if require_xr_clear_elision:
+            clears=list(re.finditer(r'SWEET METAL MRT clear_target index=0 format=(55[2-5]) handle=(\d+) width=17 height=9 result=0 decode_skipped=1 original_code_snapshot=1 original_clear=1',block))
+            assert [int(p[1]) for p in clears]==list(range(552,556)),'Missing current XR Clear optimization evidence'
+            previous_end=0
+            for n,clear in enumerate(clears):
+                phase0=phases[n*4]
+                assert previous_end<clear.start()<phase0.start() and 0<int(clear[2])<=4096
+                prefix=block[previous_end:phase0.start()]
+                assert 'SWEET METAL MRT decode format='+clear[1]+' ' not in prefix,'Clear still decoded discarded old colour'
+                for load_phase in (1,2):
+                    load_region=block[phases[n*4+load_phase-1].end():phases[n*4+load_phase].start()]
+                    assert 'SWEET METAL MRT decode format='+clear[1]+' ' in load_region,'Original Load decoding is absent'
+                previous_end=phases[n*4+3].end()
         records.append(dict(sequences=seq,XR_formats=[552,553,554,555],dual_passes=16,eight_targets=8,ordered_formats=4,checked_bytes=1245184,
             overlapping_primitives_and_instance_ID_and_nonzero_vertex_start_and_HDR_verified=True,
             all_four_original_buffers_and_padding_checked=True,unchanged_XR_lowbits_and_masked_channels_preserved=True,
-            per_attachment_retirement_verified=True,final_allocated=0))
+            per_attachment_retirement_verified=True,XR_clear_decode_elision_verified=require_xr_clear_elision,
+            original_Load_decode_preserved=require_xr_clear_elision,final_allocated=0))
     assert records,'No complete real simultaneous MRT/XR blend/guards sample'
     return dict(actual_native_MRT_XR_blend_channel_masks_and_eight_targets_verified=True,complete_samples=len(records),incomplete_samples=incomplete,records=records,
         full_original_UI_and_general_blend_factors_still_pending=True)

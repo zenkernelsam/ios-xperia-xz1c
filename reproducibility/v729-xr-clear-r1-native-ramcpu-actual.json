@@ -1,0 +1,57 @@
+{
+  "version": 729,
+  "mode": "ramcpu",
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-xr-clear-r1-native-ramcpu-r2-20261117",
+  "token": "a0907d080535a535",
+  "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+  "image_sha256": "3e8fea21f96a6a3e3face7fe5aebd957da6c9b04f8df2f0d066460f6048da671",
+  "log_sha256": "5b12358f8dcb47ab4a95c7c7c1202d408ffaf920bea07672295100af92709f4e",
+  "return_complete": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "a0907d080535a535",
+    "checkpoint_bytes": 346270,
+    "log_bytes": 349778,
+    "log_sha256": "5b12358f8dcb47ab4a95c7c7c1202d408ffaf920bea07672295100af92709f4e",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      9,
+      64,
+      66
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 37.46799999999348,
+  "single_download_boot_verified": true,
+  "actual_stage_verified": true,
+  "complete_panel_and_peripheral_goal_not_achieved": true,
+  "payload_audit": {
+    "image_sha256": "3e8fea21f96a6a3e3face7fe5aebd957da6c9b04f8df2f0d066460f6048da671",
+    "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+    "blob_count": 8,
+    "complete_payload_reconstructed_from_compiled_kernel": true
+  },
+  "ram_library_binding": {
+    "library_sha256": "72d39da52e5673755b9419b2038b5db5b876e073fe96b52cae20f4c5944c72b4",
+    "library_bytes": 14747088,
+    "library_fnv64": "249cdf763c754552",
+    "blob_sha256": "0f6de285002a9c76ffab7676bbcb8c5d02964a1360a418f05c2bae35cfd59eb8",
+    "raw_sha256": "0a7f183d5dbd3b1d34f7e70bd9ca791892cdae6ee089e8259168a634f3aea16a",
+    "manifest_sha256": "b5148601b48b3c256e07950e15c1a5ff0a5ea4486136e0b467feb44309ffb198"
+  },
+  "library_loaded_before_current_live": true,
+  "ram_library_prefix": {
+    "logical_library_reads": 1,
+    "raw_library_reads": 1,
+    "ready_positions": [
+      13479
+    ],
+    "read_positions": [
+      16346
+    ],
+    "startup_block_sha256": "4def3863d1b8becca44e06915bfa6f592af4f707a24bb460daf89f0e0d40f102",
+    "explicit_exact_prefix_replay": false,
+    "raw_log_unchanged": true
+  }
+}

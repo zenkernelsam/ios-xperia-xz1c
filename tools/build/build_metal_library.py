@@ -54,6 +54,9 @@ if air_manifest:
     bindings=manifest['frontend_build_binding']['source_files']
     assert bindings.get('RenderSamplerRules.h')==sha(root/'gpu/sweetgl/RenderSamplerRules.h')
     assert bindings.get('metal_render.c')==sha(root/'gpu/sweetgl/metal_render.c')
+    if manifest['frontend_build_binding'].get('XR_clear_decode_elision'):
+        report.update(native_XR_clear_decode_elision=True,original_XR_raw_snapshot_and_Clear_writeback_preserved=True,
+                      actual_XR_Clear_Load_GPU_acceptance_pending=True)
     report.update(native_AIR_constant_samplers=True,actual_constant_sampler_GPU_acceptance_pending=True,
                   constant_sampler_scope='normalized 2D, actual border/anisotropy capabilities',
                   per_function_immutable_graphics_translation_cache=True)

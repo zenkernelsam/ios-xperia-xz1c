@@ -161,7 +161,7 @@
       "MetalShaderAPI.h": "8ac0bc9d8130040ef6715663477be0b8ec65a7c09af6df717014b9926242a750",
       "metal_compute.c": "c2780b5202cdc4ae4161b2359d6c694f4bd35e4af7c3d3d50286fed5d12b8376",
       "MetalShaderInternals.h": "a71cb58b3067432ae95e82ac29d534c4aac139d19556e7cfda2b8fe630b34bae",
-      "metal_render.c": "627eb73b7f758a199c976b60453da9332afc3cbf46bd81b262a355db9fb87cb8",
+      "metal_render.c": "7ddadbe295d8f5d621e5b9fa2366da34763a10ae66572fe31e8292063159552e",
       "XRColourTables.h": "7564148cfcdb509061e1cebc76cd8afb59a292f4dea18086f2d7fa753bb723fa",
       "XRColourShader.h": "9a4e6514d9f203dac4fa95def0ec418777c8422125bfacfdbb0d1a7ea1c6d973",
       "MipColourShader.h": "15d9f983a7fd0d71604193262a19b7b6cad8f6900c6366f7e12b155db47c8ed1",

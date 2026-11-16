@@ -1,0 +1,37 @@
+{
+  "token": "33ae280cfd0b496e",
+  "raw_sha256": "fee235a66cb66d8c24864b7cab1ad137b4c490762f8e71b477a18b6ab3972ccf",
+  "image_sha256": "c8a7bf5bef004cc4fe7763c15b4498d99ecf3b696acbf878a2f6ac323e361e56",
+  "original_result": "REVISE",
+  "original_reason": "EXTENSION_CHECKIN_TIMEOUT",
+  "original_checkin_timeout_count": 1,
+  "actual_original_draws": [],
+  "actual_750_by_1624_clear_paths": [],
+  "actual_missing_requests": [
+    "SWEET PROGRAM CACHE request result=0 vertex_bytes=4840 fragment_bytes=12006 immutable=1",
+    "SWEET PROGRAM CACHE request result=0 vertex_bytes=15521 fragment_bytes=5005 immutable=1",
+    "SWEET PROGRAM CACHE request result=0 vertex_bytes=4840 fragment_bytes=73444 immutable=1"
+  ],
+  "timing_file": "reproducibility/v729-xr-clear-r1-original-cold-observation.json",
+  "strict_return": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "33ae280cfd0b496e",
+    "checkpoint_bytes": 387535,
+    "log_bytes": 392050,
+    "log_sha256": "fee235a66cb66d8c24864b7cab1ad137b4c490762f8e71b477a18b6ab3972ccf",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      6,
+      74,
+      76
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 40.40600000007544,
+  "UI_not_completed": true,
+  "cold_link_failure_not_accepted_as_performance_evidence": true,
+  "new_GLES_sha256": "72d39da52e5673755b9419b2038b5db5b876e073fe96b52cae20f4c5944c72b4",
+  "embedded_native_proof_token": "4bcd571c9e12b34d"
+}
