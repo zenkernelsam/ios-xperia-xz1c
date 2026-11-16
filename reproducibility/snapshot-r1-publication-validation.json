@@ -1,0 +1,27 @@
+{
+  "base_commit": "5be5577336876f93b96692e090ea5a2a88ba2310",
+  "source_validation_passed": true,
+  "python_scripts_syntax_checked": 154,
+  "source_lock_xnu_entries": 78,
+  "actual_kernel_build_sources": 81,
+  "fault_gate_tests_run": 21,
+  "fault_gate_tests_passed": 19,
+  "fault_gate_tests_skipped": 2,
+  "fault_gate_skip_reasons": [
+    "LILAC_GPU_TEST_LOG not set",
+    "Preserved v724 owner raw not installed"
+  ],
+  "V1_and_snapshot_timing_evidence_tests_passed": true,
+  "host_real_method_ABI_forwarding_and_read_guards_ASan_UBSan_proof": "reproducibility/snapshot-r1-host-proof.json",
+  "new_RAM_CPU_actual_proof": "reproducibility/v729-snapshot-r1-ramcpu-actual.json",
+  "original_GPU_result": "REVISE",
+  "original_GPU_proof": "reproducibility/v729-snapshot-r1-gpu-revise.json",
+  "actual_target_method_coverage": {
+    "287": 8,
+    "290": 8
+  },
+  "first_original_PNG_return_bytes": 32179,
+  "complete_UI_not_achieved": true,
+  "no_inflight_controller_or_serial_worker": true,
+  "frozen_kernel_GLES_Metal_and_allocator_SCM_PON_RPC_VM_unchanged": true
+}

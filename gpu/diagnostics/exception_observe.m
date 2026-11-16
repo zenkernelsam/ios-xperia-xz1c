@@ -33,6 +33,9 @@
 #if defined(SWEET_POSTDRAW_OBSERVE)
 #include "PostDrawObserve.h"
 #endif
+#if defined(SWEET_SNAPSHOT_METHOD_OBSERVE)
+#include "SnapshotMethodObserve.h"
+#endif
 #include "MetalRuntimeObserve.h"
 #if defined(SWEET_METAL_RESOURCE_PROBE)
 #include "MetalResourceProbe.h"
@@ -328,6 +331,10 @@ static void install_observer(void)
     install_uniform_observer();
 #if defined(SWEET_METAL_PIPELINE_OBSERVE)
     (void)metal_pipeline_observe(objc_lookUpClass("SweetMTLDevice"),diagnostic);
+#endif
+#if defined(SWEET_SNAPSHOT_METHOD_OBSERVE)
+    (void)snapshot_methods_observe(objc_lookUpClass("SweetMTLDevice"),objc_lookUpClass("CLKUIMetalQuadView"),
+        objc_lookUpClass("SweetMTLCommandBuffer"),objc_lookUpClass("SweetMTLTexture"));
 #endif
 #if defined(LILAC_EXCEPTION_TEST)
     metal_runtime_observe([MetalABIHostFixture class],@protocol(MetalABIHostProtocol),NULL,NULL,NULL,diagnostic);

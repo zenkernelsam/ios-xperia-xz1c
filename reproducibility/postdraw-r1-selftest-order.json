@@ -1,0 +1,14 @@
+{
+  "token": "d25c7eeaf4d33074",
+  "raw_sha256": "6f803dbefb6d030ab1ad4a653267e731e4bad462d9c458598a5a46c691f1e8ba",
+  "GLES_suite_end_line": 2893,
+  "original_Aegir_exec_lines": [
+    3964,
+    4514,
+    4889,
+    5144
+  ],
+  "actual_GLES_suite_completed_before_original_Aegir_start": true,
+  "ordering_does_not_measure_other_background_CPU_load": true,
+  "GLES_selftests_not_disabled_or_changed": true
+}

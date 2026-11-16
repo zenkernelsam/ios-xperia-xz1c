@@ -16,7 +16,7 @@ Sony Xperia XZ1 Compact（Snapdragon835 / Adreno540）的开源XNU、shim与Mesa
 | [half链接优化](docs/HALF-SELECTION.md) | 全float32/binary16等位型验证；新Metal完整14组实机通过，原真实request标准binary已预热 |
 | [原Aegir短登记](docs/METAL-REGISTRY-SHORT.md) | 原默认device返回真实A540，threshold管线编译成功；必须有同kernel/GLES/Metal/source-map的完整实机先验 |
 
-[多颜色附件与XR混色](docs/METAL-MRT.md)现已完整实机通过：8附件输出、四XR与BGRA独立blend/writeMask、FP32 image按图元有序混色；1245184B原页面/低位/保护区零差异，523全撤销并38.562秒完整自动回程。当前half-selection-r1已完整14组/39.062秒回程验证；原Aegir现已恢复五条真实管线并出现两次750×1624 GPU draw，check-in超时和不完整面板仍保留。新的[原快照耗时观察](docs/POSTDRAW-OBSERVATION.md)继续区分PNG、ICC转换与绘制开销。未完成真实锁屏时间/日期/壁纸、完整UI/FPS、睡眠唤醒、声音、Wi-Fi/蓝牙及广义texture/depth/stencil/MSAA。离屏GPU通过不代表完整系统完成。
+[多颜色附件与XR混色](docs/METAL-MRT.md)现已完整实机通过：8附件输出、四XR与BGRA独立blend/writeMask、FP32 image按图元有序混色；1245184B原页面/低位/保护区零差异，523全撤销并38.562秒完整自动回程。当前half-selection-r1已完整14组/39.062秒回程验证；原Aegir现已恢复五条真实管线并出现两次750×1624 GPU draw，check-in超时和不完整面板仍保留。新的[原快照耗时观察](docs/POSTDRAW-OBSERVATION.md)已取得一次32179B真实PNG返回；快照约3.31秒（含队列等待2.81秒）、PNG/ICC约3.91秒，原check-in失败及不完整UI仍保留。未完成真实锁屏时间/日期/壁纸、完整UI/FPS、睡眠唤醒、声音、Wi-Fi/蓝牙及广义texture/depth/stencil/MSAA。离屏GPU通过不代表完整系统完成。
 
 内核修补为xnu/lilac-current.patch及版本诊断增量，用户态源码在gpu/sweetgl与gpu/metal，Mesa修补在gpu/mesa-lilac.patch。固定源码锁、逐源重建和实际输入/结果在reproducibility；当前v729保持81源实际审计，allocator/SCM/PON/RPC/VM冻结。构建/验收入口见[BUILD](docs/BUILD.md)，root配方见[ROOT-GL5](docs/ROOT-GL5.md)。SDK/构建时间可改变产物UUID/SHA，源码重建与新二进制实机准入分别验证。
 

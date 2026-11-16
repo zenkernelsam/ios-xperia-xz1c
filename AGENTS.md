@@ -12,6 +12,8 @@
 
 完整壁纸/时间日期/UI/FPS/睡眠/声音/无线及广义texture/depth/stencil/MSAA继续active。主机/离屏/缓存/控制器PASS不能替代原系统绘制与真实面板。原AGENTS/STATUS/README已逐字归档docs/archive/20261116，历史source/proof及失败边界保持。
 
+snapshot-r1已完成同RAM CPU与原GPU单次回程：CPU de5cda38/38.797秒，GPU426db2f1/38.625秒。八类原方法两个进程均实际安装8/8，28完整/6未完成时耗；pid290原snapshot3.307秒（含wait2.807秒）、read21.222ms，原PNG/ICC3.911秒并返回32179B。原首次进程check-in超时与不完整面板保持，不把重叠wait/execute相加，不把等待全部归为GPU硬件时间，不凭栈修改冻结VM。详见POSTDRAW-OBSERVATION与STATUS。
+
 ## 硬件与返回
 
 - 只操作Sony BH905ND69G，所有fastboot操作带-s BH905ND69G。

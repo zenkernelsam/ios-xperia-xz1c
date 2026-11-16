@@ -1,6 +1,6 @@
 # 当前状态 — 2026-11-16
 
-Sony BH905ND69G当前健康停在fastboot，postdraw-r1唯一controller已退出。GPU tokend25c7eeaf4d33074、raw6f803dbefb6d030ab1ad4a653267e731e4bad462d9c458598a5a46c691f1e8ba，39.985秒完整四回程marker/健康30秒/controller exit1，原extension check-in timeout三次/REVISE保持。此前同RAM CPU token872bd5d6eed10204已38.328秒完整回程并通过。相机MJPEG取得68帧并按每5帧抽1/rotate90；面板仍缺完整壁纸/时间日期。没有in-flight或待轮询handle，旧失败包不重发。
+Sony BH905ND69G当前健康停在fastboot，snapshot-r1唯一controller和serial worker已退出。GPU token426db2f158da1757、raw4a65f20197c291a628f3b2c04c3aa1bbc3fea4d686d62c1fa3fa78e9208a276f，38.625秒四回程marker/健康30秒/controller exit1，原REVISE/extension check-in timeout保持。实际28个完整/6个未完成时耗样本；一个原PNG首次返回32179B，面板仍缺完整壁纸/时间日期。同RAM CPU de5cda38702d8c5e已38.797秒完整回程通过，无in-flight或待轮询handle。
 
 ## 已验当前库
 
@@ -10,6 +10,8 @@ Sony BH905ND69G当前健康停在fastboot，postdraw-r1唯一controller已退出
 - 完整14组native token45a839fc4c105e01，rawf9b13434f7207510434b8d0b73d2522883ae07f8b38336788da234d3964da7c6，39.062秒完整回程/健康30秒/worker退出。half131072B、MRT1245184B、sampler147456B、static-half196608B及全部guard/fence/lifecycle保持，三次fresh binary恢复。见[完整proof](../reproducibility/v729-half-selection-r1-native-proof.json)。
 
 ## 原GPU和新卡点
+
+snapshot-r1 pid290的完整原snapshot为3.307421094秒，其中wait2.806619062秒、execute2.808915156秒/线程CPU0.604673906秒、read0.021221823秒；随后原PNG为3.910680521秒/线程CPU3.895532344秒并返回32179B。管线创建约31..417毫秒。wait/execute重叠，snapshot包含其子路径，不可相加当独立工作；PNG包含ICC及编码。八类方法的实际覆盖和早期失败完整保留，下一步聚焦队列/渲染与PNG/ICC，不据此推定冻结VM故障。见[本轮结果](../reproducibility/v729-snapshot-r1-gpu-revise.json)。
 
 postdraw-r1又出现两次750×1624原GPU draw result0、sequence612/663、original_pages1。两个可见ColorSyncTransformCreate调用分别437604ns/405625ns，原PNG外层各未返回；addImage/finalize内部调用没有经过该标准绑定。新的实际slide0x26fa4000栈显示：第一进程在CLKUIMetalQuadView快照等待，另两进程仍在ImageIO内部CMM profile/转换序列初始化。不能拿可见0.4ms调用排除未被观察的内部ICC开销，也不能直接把PNG过滤器当成已验证修复。下一步覆盖原pipeline/快照/readback/wait及进入PNG前的预算。见[本轮原结果](../reproducibility/v729-postdraw-r1-gpu-revise.json)、[时耗](../reproducibility/v729-postdraw-r1-gpu-observation.json)及[当前靴栈](../reproducibility/v729-postdraw-r1-cache-crashes.json)。
 

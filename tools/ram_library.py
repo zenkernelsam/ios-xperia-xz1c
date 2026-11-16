@@ -55,6 +55,14 @@ def load(folder,expected=None):
                 assert observer['postdraw_return_nil_throw_errno_nesting_host_passed'] and observer['postdraw_real_PNG_bytes_pixels_ICC_input_host_passed']
                 assert observer['postdraw_original_pixel_and_profile_options_preserved'] and observer['postdraw_durations_inclusive_not_additive']
                 assert re.fullmatch('[0-9a-f]{64}',observer['postdraw_host_test_source_sha256'])
+            if observer.get('snapshot_method_observer'):
+                sources.add('gpu/diagnostics/SnapshotMethodObserve.h')
+                assert observer.get('original_postdraw_observer') and observer['snapshot_method_observer_revision']==1
+                assert observer['snapshot_method_count_max']==8 and observer['snapshot_method_apis']==['pipeline','library_url','library_bundle','snapshot','wait','execute','read','read_full']
+                assert observer['snapshot_method_exact_ABI_arguments_returns_errors_errno_throws_host_passed']
+                assert observer['snapshot_method_read_bytes_guards_and_ABI_owner_repeat_rejection_host_passed']
+                assert observer['snapshot_method_target_coverage_requires_actual_metadata']
+                assert re.fullmatch('[0-9a-f]{64}',observer['snapshot_method_host_test_source_sha256'])
             if observer['target_process']=='backboardd':
                 sources.add('gpu/sweetgl/sweetgl.h')
                 assert observer.get('background_full_suite') and observer['waits_for_same_process_GLES_suite'] and observer['original_Aegir_not_modified_or_registered']

@@ -17,7 +17,7 @@
     "metal_resource_evidence.py": "e3737afff830f8d7466fddf67f4980d33dc9cf54fe89079828aa603fa9ddd35c",
     "observe_fastboot.py": "7c82964e346fa9166bdbaee1b8d74905f8cf1b53d151b42ba68909dc2e82100b",
     "owner_metadata.py": "e0f4e4fa2d54381d63128a39fbcabfe6c3ab9468a99f44cd44c37d86af84d564",
-    "package_trial.py": "4cdfe242d980ff224c2a3e1387479961b1ce9128baf83cf0ac1ddde62163d0f9",
+    "package_trial.py": "28e06ee11e3e01cf0526ed31c49bf02552d1f6846751775556b144267bb8d5ee",
     "policy.py": "788151bcae524eb1dbb58e21743e957cf4ff2e819247dcf74db05e173cf00365",
     "preflight_processes.ps1": "6586345710fe618415ce2ddd8b53d230c14c280c93f34c5fb1a190fcc7e1f91f",
     "procguard.py": "7cc150c13ca8d6fce28ec9784af8886eaaa4cdd8fad9cb3ff6befa9fd67d116d",
@@ -37,7 +37,7 @@
     "test_metal_resources.py": "703326750212def783aa6aa95dc55f78028eb4f7149171aecb34797e15815f99",
     "test_trial_gates.py": "55130975f428244e0b57ba432b3a126f1961e36b57ee11615e6a1167da2c37fe",
     "texture_offset_evidence.py": "73e50f64af52491a94464d13268c44a8d917175926bdd92caf260eced329f230",
-    "trial_evidence.py": "dfbe3b3324081b084d83f5eb584e030ec6ec06f2745b70a23c92e5fb0ced84ce",
+    "trial_evidence.py": "5be39ae79ae958f5c9849c7eb28d91f842e71a5f17d22087521e5cece256ef26",
     "air_render_evidence.py": "75f984119f1d9b1b76c52aec3729b9e2255748941d51d2e1c03cb994f1779e2c",
     "test_air_render.py": "ec4b80934ace27763ae2ee48cce8e7b7bbf8ff45f3928df745b3ebcd0d3e9913",
     "air_constants_evidence.py": "dccd155a957d1e8c8290c6e140ed42b33da21ba8f4017dbcf6bebbba5335e5e2",
@@ -71,8 +71,8 @@
     "original_prime_evidence.py": "9b936877d76610e85d1cf3e7a2b12d95df30067697f2e0856f14ab05b43e99e5",
     "static_half_evidence.py": "4353278fdc0dab27eed10cb4bf85d9c17e8366b84ef4274cee93901a068c9031",
     "test_static_half_evidence.py": "8870645f0aae82b41f159d8ed93e20544a4d6423c07f928287390d6e52932df7",
-    "postdraw_observer_evidence.py": "8da653c18f749fda269c7b0463483d20d7324e2542f39b95c216d38a4e89fcdd",
-    "test_postdraw_observer_evidence.py": "53b64a30615d3a628410d9ffc317a1d0c2e85da0ca29d2bf09a98965c9d24f20"
+    "postdraw_observer_evidence.py": "8d7d3e846a3a3d3e9f2fb5a3a7990b4818da64198deb4d0f07b187c6eea59dae",
+    "test_postdraw_observer_evidence.py": "ebf503bcf7f44c3bcad8a70cae9fd2b177f0cc8674c7d14aaa348f99543d8ad3"
   },
   "supervisor_based_on_actual_tested_one_shot": true,
   "platform_tools_from_environment_or_PATH": true,
@@ -87,7 +87,7 @@
   "shared_sources": {
     "tools/diagnostic_candidate.py": "b6d27e2e3df5838e63a92dabeddd3bdc68ea23bc49d3db6d7ed0295de8e82f55",
     "tools/mkpayload.py": "5c9a3dacbdf877ffded27971ad2e737e5ee4296fada247d14d5c6051ff1f47ff",
-    "tools/ram_library.py": "e59e015af67ddd6b216c9b435f01acc81971344a9fdf2570e9ff7da9ade84655",
+    "tools/ram_library.py": "8ce425f02960ea247860c8710b11b372042432477ec820bfae95d5334b526d94",
     "tools/native_proof.py": "ac8f759ad76afea6166738064b55146901939dd662c0568af414df85f20688d2"
   },
   "formal_v726_five_stages_actual_return": true,
@@ -98,7 +98,7 @@
     "tools/build/build_air_frontend.py": "a21f6e3f977e13549eb3fe5371d3a9402e271d84c6df189c05bd5f569e30f00b",
     "tools/build/build_diagnostic_kernel.py": "4d6cb41c7cb5ecd1382e5de7124b90e5a18a046a7002f6a955c9ba26857665da",
     "tools/build/build_diagnostics.sh": "ec361280b6f23ea3f114b762df5f22def9b94d7d1105d39bcd5684bd43214118",
-    "tools/build/build_exception_observer.py": "6f7b74f2b377e3058e5c47611a473d35a04aaf648dd184c19c4b0a5f316386e7",
+    "tools/build/build_exception_observer.py": "a7ba5f015e09ed821d7a8ed0124c3d90d99bd4f2c2cff4442e37bff386525652",
     "tools/build/build_metal_library.py": "e386f6ed622c4159dedc6daa2be4f2d3c9807759632e6a09bac9d09effe14ebd",
     "tools/build/check_console_snapshot.py": "fa9bf2299cf0beec9894df9bc47ec2902262dfaab2396776f0bc422c7fe5f9b2",
     "tools/build/check_metal16_projection.py": "9ab528a51bd5bb6fc58ad243410c488304261622baccfa054d101935f8d27e82",
@@ -153,10 +153,11 @@
     "tools/build/a2s_lookup.py": "feff33a6dcacf280664d1dbe32e8cc93d9c065003057d06f9d986d1117f31874",
     "tools/build/symbolicate_cache_crashes.py": "8fc222574e3aa64025d60f7af0827f48d48a9431da83fc934dadad86e393b638",
     "tools/build/test_postdraw_observe.m": "144605ebf1d6baf35c69f3a332e0b5fb036a7fe12d0636a9da84330c40e1b4f1",
-    "tools/program_cache_scope.py": "9fcd14133fa3e0531f5cc0a01fb6d8b84d62432df41f3d0e688df7e151c097e9"
+    "tools/program_cache_scope.py": "9fcd14133fa3e0531f5cc0a01fb6d8b84d62432df41f3d0e688df7e151c097e9",
+    "tools/build/test_snapshot_method_observe.m": "76c919a8884d0dea06d8ec66f831ec029c060f0b4cb157cf15263b38116a917f"
   },
   "gpu_sources": {
-    "gpu/diagnostics/exception_observe.m": "ae2090dd92c96d25b0e8bfce01a9bd372deaa0f352eb7a984db40edf692eafc5",
+    "gpu/diagnostics/exception_observe.m": "9dab3f656d4859b418c0495af28a71b963f070fd50a5bf891780338d063fe0cc",
     "gpu/diagnostics/MetalComputeProbe.h": "836c4cdc513c5d2827f4b5cab3d10d944d3487d1d5245e45e964f70dee5299d7",
     "gpu/diagnostics/MetalQueueProbe.h": "1866ff8605bf68f40ae0b83e58c7b95e07fdda1f18c0efc0357d194ef0068d54",
     "gpu/diagnostics/MetalResourceProbe.h": "5f57f18df728f3027cc3c5ae3b316b1b5a23be8ac161d2c390597f735d8d7b17",
@@ -221,7 +222,8 @@
     "gpu/diagnostics/MetalStaticHalfProbe.h": "fc160b7a3e47df5472b55e52908eabbda4cd818dd6849cce05534a7db2bdca35",
     "gpu/metal/air/fixtures/static-half.air.ll": "fec22d1fccf64aa68b65a865917bc90952a743294e2505ec10e17ff7249a1a8b",
     "gpu/diagnostics/PostDrawObserve.h": "06b34bbb6674fec1d60ae1f9ce57abf034775b4f9a1034ab7a194126349367f3",
-    "gpu/diagnostics/ProgramCacheScope.h": "bb6546f8c148f71e54c058bcf2877e7de903942ae1934a9d933c76636513fc6a"
+    "gpu/diagnostics/ProgramCacheScope.h": "bb6546f8c148f71e54c058bcf2877e7de903942ae1934a9d933c76636513fc6a",
+    "gpu/diagnostics/SnapshotMethodObserve.h": "10dded48c0cf90d28999f03624e9f1b9c84c46cc1ba4b69567867ee42e9d04a8"
   },
   "tests_skipped_without_optional_old_evidence": 2,
   "sony_specific_multi_device_return_fault_replay_passed": true,

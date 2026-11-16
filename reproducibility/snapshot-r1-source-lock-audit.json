@@ -1,0 +1,53 @@
+{
+  "base_commit": "5be5577336876f93b96692e090ea5a2a88ba2310",
+  "before_lock_sha256": "fc592c9537d059ccfdd9165cc3471fd6aaab0e051515291b21d64c2291738372",
+  "after_lock_sha256": "6c4d110fcc646b5ee4e2d85bdedf18f776bc1d3455f3c44b431868ef8ea00ecd",
+  "updated_sources": [
+    {
+      "path": "tools/device/package_trial.py",
+      "before_sha256": "4cdfe242d980ff224c2a3e1387479961b1ce9128baf83cf0ac1ddde62163d0f9",
+      "after_sha256": "28e06ee11e3e01cf0526ed31c49bf02552d1f6846751775556b144267bb8d5ee"
+    },
+    {
+      "path": "tools/device/trial_evidence.py",
+      "before_sha256": "dfbe3b3324081b084d83f5eb584e030ec6ec06f2745b70a23c92e5fb0ced84ce",
+      "after_sha256": "5be39ae79ae958f5c9849c7eb28d91f842e71a5f17d22087521e5cece256ef26"
+    },
+    {
+      "path": "tools/device/postdraw_observer_evidence.py",
+      "before_sha256": "8da653c18f749fda269c7b0463483d20d7324e2542f39b95c216d38a4e89fcdd",
+      "after_sha256": "8d7d3e846a3a3d3e9f2fb5a3a7990b4818da64198deb4d0f07b187c6eea59dae"
+    },
+    {
+      "path": "tools/device/test_postdraw_observer_evidence.py",
+      "before_sha256": "53b64a30615d3a628410d9ffc317a1d0c2e85da0ca29d2bf09a98965c9d24f20",
+      "after_sha256": "ebf503bcf7f44c3bcad8a70cae9fd2b177f0cc8674c7d14aaa348f99543d8ad3"
+    },
+    {
+      "path": "tools/ram_library.py",
+      "before_sha256": "e59e015af67ddd6b216c9b435f01acc81971344a9fdf2570e9ff7da9ade84655",
+      "after_sha256": "8ce425f02960ea247860c8710b11b372042432477ec820bfae95d5334b526d94"
+    },
+    {
+      "path": "tools/build/build_exception_observer.py",
+      "before_sha256": "6f7b74f2b377e3058e5c47611a473d35a04aaf648dd184c19c4b0a5f316386e7",
+      "after_sha256": "a7ba5f015e09ed821d7a8ed0124c3d90d99bd4f2c2cff4442e37bff386525652"
+    },
+    {
+      "path": "gpu/diagnostics/exception_observe.m",
+      "before_sha256": "ae2090dd92c96d25b0e8bfce01a9bd372deaa0f352eb7a984db40edf692eafc5",
+      "after_sha256": "9dab3f656d4859b418c0495af28a71b963f070fd50a5bf891780338d063fe0cc"
+    }
+  ],
+  "new_sources": [
+    {
+      "path": "gpu/diagnostics/SnapshotMethodObserve.h",
+      "sha256": "10dded48c0cf90d28999f03624e9f1b9c84c46cc1ba4b69567867ee42e9d04a8"
+    },
+    {
+      "path": "tools/build/test_snapshot_method_observe.m",
+      "sha256": "76c919a8884d0dea06d8ec66f831ec029c060f0b4cb157cf15263b38116a917f"
+    }
+  ],
+  "kernel_GLES_Metal_unchanged": true
+}

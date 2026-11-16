@@ -108,7 +108,7 @@ def verify(directory,mode,kernel_sha=None,version=None):
                 if a['exception_observer'].get('original_Metal_registry_probe'):exceptions['Metal_discovery']=verify_metal_discovery(text,a['token'])
                 if a['exception_observer'].get('registration_only'):exceptions['native_prior_binding']=verify_registry_proof(text,a['token'],a['exception_observer']['prior_native_hardware_proof'])
                 if a['exception_observer'].get('original_pipeline_observer'):exceptions['pipeline_factory']=verify_pipeline_observer(text,a['token'])
-                if a['exception_observer'].get('original_postdraw_observer'):exceptions['postdraw_snapshot']=inspect_postdraw(text,a['token'])
+                if a['exception_observer'].get('original_postdraw_observer'):exceptions['postdraw_snapshot']=inspect_postdraw(text,a['token'],method_observer=a['exception_observer'].get('snapshot_method_observer',False))
                 if a['exception_observer'].get('AIR_XR_probe'):exceptions['AIR_XR']=verify_air_xr(text,a['token'])
                 if a['exception_observer'].get('Metal_IOSurface_probe'):exceptions['Metal_IOSurface']=verify_metal_surface(text,a['token'])
                 if a['exception_observer'].get('Metal_mipmap_probe'):exceptions['Metal_mipmaps']=verify_metal_mips(text,a['token'])

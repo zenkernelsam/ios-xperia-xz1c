@@ -18,3 +18,9 @@ postdraw-r1仅在原Aegir的短登记observer中添加四个标准API的入口/�
 原A2S v2符号表来源另补完整SHA5bf04681…、765432322B、10898361个排序记录；reader用12B header和12B address/offset，原shared-cache slide按当前靴记录核对。私有symbol map和原镜像保持在assets，不进入Git。原分析见reproducibility/original-aegir-r2-postdraw-analysis.json。
 
 本包CPU872bd5d6已38.328秒完整回程通过；原GPUd25c7eea完整39.985秒回程/健康/退出，原REVISE保持。可见两次transform create约0.4ms，外层PNG均未返回。当前靴栈仍有ImageIO内部ColorSync初始化和原Metal快照等待，说明内部调用可能绕过标准绑定；这些读数只限定两个已见调用，不排除其它ICC工作，也不证明PNG过滤选项可解决UI。真实面板仍缺壁纸/时间日期，原结果与该限制保留。
+
+snapshot-r1另增加八类原方法的精确ABI计时：真实pipeline/library factory、CLKUIMetalQuadView snapshot、command wait/execute、两个texture getBytes。只在类自身拥有且返回/参数编码匹配时安装，拒绝不匹配、继承和重复安装；CGRect32B/CGFloat8B/MTLRegion48B/NSUInteger8B目标ABI检查及host原参数/返回/异常/errno/read字节/guard通过。实际目标覆盖由逐进程metadata决定，host不能替代。对象标签关联wait/execute与读回，不读取原像素。计时从observer初始化起，不能当完整extension启动预算。
+
+原postdraw-r1的GLES八项结束标记在2893行，首次Aegir exec在3964行；没有直接自检/应用启动重叠，未关闭或修改自检。该排序不能排除其它后台CPU工作，继续测原快照自身。
+
+snapshot-r1实际CPU de5cda38已38.797秒回程通过；原GPU426db2f1已38.625秒完整回程/健康/退出，原REVISE保持。28个完整/6个未完成时耗：pid290原快照3.307秒，包含wait2.807秒、execute2.809秒（线程CPU0.605秒）及read21.222ms；随后原PNG3.911秒（线程CPU3.896秒），返回32179B。这些是原API真实返回，仍不能代替完整UI。wait与execute重叠，PNG含ICC/编码，不相加混算，不归咎冻结VM。原面板仍只有暗背景/电池/camera/homebar，继续优化两段真实耗时。

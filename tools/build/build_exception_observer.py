@@ -6,9 +6,10 @@ sys.path.insert(0,str(root/'tools'));from native_proof import validate as valida
 from program_request import specification as request_specification,header as request_header
 from program_cache_scope import specification as cache_scope_specification,header as cache_scope_header
 p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--metal-resources');p.add_argument('--air-fixture');p.add_argument('--render-fixture');p.add_argument('--constants-fixture');p.add_argument('--register-device',action='store_true');p.add_argument('--xr-probe',action='store_true');p.add_argument('--surface-probe',action='store_true');p.add_argument('--mip-probe',action='store_true');p.add_argument('--target-process',choices=['AegirPoster','backboardd'],default='AegirPoster');p.add_argument('--gles-ram-package');p.add_argument('--registration-only',action='store_true');p.add_argument('--native-proof');p.add_argument('--pipeline-observe',action='store_true');p.add_argument('--narrow-fixture');p.add_argument('--half-fixture');p.add_argument('--mrt-fixture');p.add_argument('--sampler-fixture');p.add_argument('--program-cache-prime',action='store_true');p.add_argument('--static-half-fixture');p.add_argument('--program-cache-export',action='store_true')
-p.add_argument('--postdraw-observe',action='store_true');a=p.parse_args()
+p.add_argument('--postdraw-observe',action='store_true');p.add_argument('--snapshot-observe',action='store_true');a=p.parse_args()
 if a.pipeline_observe:assert a.registration_only and a.target_process=='AegirPoster'
 if a.postdraw_observe:assert a.registration_only and a.pipeline_observe and a.target_process=='AegirPoster'
+if a.snapshot_observe:assert a.postdraw_observe
 if a.program_cache_prime:assert a.target_process=='backboardd' and a.sampler_fixture and not a.registration_only
 if a.program_cache_export:assert a.target_process=='backboardd' and a.static_half_fixture and not a.registration_only and not a.program_cache_prime
 if a.registration_only:
@@ -24,6 +25,7 @@ headers=['gpu/diagnostics/MetalRuntimeObserve.h','gpu/diagnostics/MetalProbeStar
 if a.target_process=='backboardd':headers+=['gpu/sweetgl/sweetgl.h']
 if a.pipeline_observe:headers+=['gpu/diagnostics/MetalPipelineObserve.h']
 if a.postdraw_observe:headers+=['gpu/diagnostics/PostDrawObserve.h']
+if a.snapshot_observe:headers+=['gpu/diagnostics/SnapshotMethodObserve.h']
 if a.program_cache_export:headers+=['gpu/diagnostics/ProgramRequestExport.h','gpu/sweetgl/ProgramCacheCodec.h','gpu/sweetgl/MetalShaderAPI.h','tools/program_request.py']
 resource_manifest=None
 cache_scope=None
@@ -193,6 +195,13 @@ if a.postdraw_observe:
     postdraw_test=run([out/'test_postdraw_observer'],'postdraw-host-test')
     assert 'postdraw observer PASS:' in postdraw_test
     assert postdraw_test.count('SWEET POSTDRAW BEGIN ')==64 and postdraw_test.count('SWEET POSTDRAW END ')==64
+if a.snapshot_observe:
+    run(['clang','-fobjc-exceptions','-O1','-g','-fsanitize=address,undefined',root/'tools/build/test_snapshot_method_observe.m',
+        '-framework','Foundation','-framework','Metal','-framework','CoreGraphics','-framework','ImageIO','-framework','ColorSync',
+        '-o',out/'test_snapshot_method_observer'],'snapshot-method-host-compile')
+    snapshot_test=run([out/'test_snapshot_method_observer'],'snapshot-method-host-test')
+    assert 'snapshot method observer PASS:' in snapshot_test
+    assert snapshot_test.count('SWEET POSTDRAW BEGIN ')==64 and snapshot_test.count('SWEET POSTDRAW END ')==64
 library=out/'exception_observe.dylib'
 extra=[resources/'MetalResources.dylib'] if resource_manifest else []
 if resource_manifest and not a.registration_only:extra+=['-DSWEET_METAL_RESOURCE_PROBE=1']
@@ -204,6 +213,7 @@ if constants_fixture_manifest:extra+=['-DSWEET_AIR_CONSTANTS_PROBE=1','-I',out,'
 if a.register_device:extra+=['-DSWEET_METAL_DISCOVERY_PROBE=1']
 if a.pipeline_observe:extra+=['-DSWEET_METAL_PIPELINE_OBSERVE=1','-framework','Metal']
 if a.postdraw_observe:extra+=['-DSWEET_POSTDRAW_OBSERVE=1','-framework','UIKit','-framework','CoreGraphics','-framework','ImageIO','-framework','ColorSync']
+if a.snapshot_observe:extra+=['-DSWEET_SNAPSHOT_METHOD_OBSERVE=1']
 if a.xr_probe:extra+=['-DSWEET_AIR_XR_PROBE=1']
 if a.surface_probe:extra+=['-DSWEET_METAL_SURFACE_PROBE=1','-framework','IOSurface']
 if a.mip_probe:extra+=['-DSWEET_METAL_MIP_PROBE=1']
@@ -263,6 +273,12 @@ if a.postdraw_observe:manifest.update(original_postdraw_observer=True,postdraw_o
     postdraw_apis=['png','add_image','finalize','colorsync'],postdraw_return_nil_throw_errno_nesting_host_passed=True,
     postdraw_real_PNG_bytes_pixels_ICC_input_host_passed=True,postdraw_host_test_source_sha256=hashlib.sha256((root/'tools/build/test_postdraw_observe.m').read_bytes()).hexdigest(),
     postdraw_original_pixel_and_profile_options_preserved=True,postdraw_durations_inclusive_not_additive=True)
+if a.snapshot_observe:manifest.update(snapshot_method_observer=True,snapshot_method_observer_revision=1,snapshot_method_count_max=8,
+    snapshot_method_apis=['pipeline','library_url','library_bundle','snapshot','wait','execute','read','read_full'],
+    snapshot_method_exact_ABI_arguments_returns_errors_errno_throws_host_passed=True,
+    snapshot_method_read_bytes_guards_and_ABI_owner_repeat_rejection_host_passed=True,
+    snapshot_method_target_coverage_requires_actual_metadata=True,
+    snapshot_method_host_test_source_sha256=hashlib.sha256((root/'tools/build/test_snapshot_method_observe.m').read_bytes()).hexdigest())
 assert all(hashlib.sha256((root/name).read_bytes()).hexdigest()==digest for name,digest in source_files.items())
 (out/'manifest.json').write_bytes((json.dumps(manifest,indent=2)+'\n').encode())
 print(json.dumps(manifest,indent=2))
