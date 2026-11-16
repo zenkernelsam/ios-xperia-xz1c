@@ -1,0 +1,28 @@
+{
+  "source_validation": {
+    "canonical_sources_match_current_lock": true,
+    "python_scripts_syntax_checked": 154,
+    "source_lock_audited_xnu_sources": 78,
+    "actual_kernel_build_sources": 81,
+    "device_operations": 0
+  },
+  "fault_gate_tests": {
+    "command": "python tools/device/test_trial_gates.py",
+    "tests_run": 21,
+    "passed": 19,
+    "skipped": 2,
+    "skipped_reasons": [
+      "GPU pixel fault replay requires LILAC_GPU_TEST_LOG",
+      "Preserved v724 owner evidence not installed"
+    ],
+    "no_device_access": true
+  },
+  "postdraw_evidence_tests_passed": true,
+  "Mac_host_ASan_UBSan_real_PNG_and_target_ABI_proof": "reproducibility/postdraw-r1-host-proof.json",
+  "new_RAM_CPU_actual_proof": "reproducibility/v729-postdraw-r1-ramcpu-actual.json",
+  "original_GPU_result": "REVISE",
+  "original_GPU_evidence": "reproducibility/v729-postdraw-r1-gpu-revise.json",
+  "strict_return_complete_and_no_inflight": true,
+  "kernel_GLES_Metal_source_or_compiled_bytes_not_changed_in_this_iteration": true,
+  "full_UI_not_achieved": true
+}

@@ -1,0 +1,45 @@
+{
+  "source_files": {
+    "gpu/diagnostics/exception_observe.m": "ae2090dd92c96d25b0e8bfce01a9bd372deaa0f352eb7a984db40edf692eafc5",
+    "gpu/diagnostics/MetalRuntimeObserve.h": "1b7a8de73a2aec267a53bcb5a50acc1d55796f62d992da6d70e2402812a9386e",
+    "gpu/diagnostics/MetalProbeStartup.h": "7a99f308d807f01b6b1e02fdfa9655a83eaecdae29b0ccea785feb446a3936fb",
+    "gpu/diagnostics/MetalPipelineObserve.h": "bbb1025ab5dabb340f508eccaaa6a5741149d9ea8e4a36562ed3eb45659224a9",
+    "gpu/diagnostics/PostDrawObserve.h": "06b34bbb6674fec1d60ae1f9ce57abf034775b4f9a1034ab7a194126349367f3",
+    "gpu/diagnostics/ProgramCacheScope.h": "bb6546f8c148f71e54c058bcf2877e7de903942ae1934a9d933c76636513fc6a",
+    "tools/program_cache_scope.py": "9fcd14133fa3e0531f5cc0a01fb6d8b84d62432df41f3d0e688df7e151c097e9",
+    "gpu/metal/MetalResources.h": "3b6d9e01a1368e94a9a5ffb723c92a14987e25706559b588937c2b55ee9a3f7b",
+    "gpu/diagnostics/MetalDiscoveryProbe.h": "d497fbe096e7261ac177e302308712968824207d60dd84a4610015b297e6020c"
+  },
+  "observer_sha256": "b88aec05a5aefec2bca6cafb381773f8b90f3392e07b2a8fae85d8ce6e1884cc",
+  "observer_bytes": 109504,
+  "host_test_source_sha256": "144605ebf1d6baf35c69f3a332e0b5fb036a7fe12d0636a9da84330c40e1b4f1",
+  "host_ASan_UBSan_passed": true,
+  "exact_return_nil_throw_errno_nesting_and_log_bound_host_passed": true,
+  "real_ImageIO_PNG_bytes_decoded_pixels_ICC_metadata_and_input_host_preserved": true,
+  "host_iOS_only_API_fixture_is_not_device_acceptance": true,
+  "typed_target_ABI_compile_passed": true,
+  "target_interpose_sections": [
+    {
+      "segment": "__DATA",
+      "section": "__interpose",
+      "bytes": 64
+    }
+  ],
+  "target_original_imports": [
+    "UIImagePNGRepresentation",
+    "CGImageDestinationAddImage",
+    "CGImageDestinationFinalize",
+    "ColorSyncTransformCreate"
+  ],
+  "log_sha256": {
+    "postdraw-host-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "postdraw-host-test.log": "9505cff013f2691f14304c00ee99a22c703c1c21129b43ed30e21910f20495f7",
+    "ios-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+  "gles_sha256": "0a2c7e698ae59a1afe8608c884f59e87a344a3952e9b4d52899923b9e295b3db",
+  "metal_sha256": "5e94ab57401479b42f506884a172a7a839378a82310661a1f66164e99c21f988",
+  "native_proof_token": "45a839fc4c105e01",
+  "source_only_observer_change": true,
+  "device_API_timing_acceptance_separate": true
+}

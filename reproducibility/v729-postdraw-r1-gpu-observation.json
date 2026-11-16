@@ -1,0 +1,247 @@
+{
+  "original_snapshot_observer_configured": true,
+  "source_references": {
+    "277": {
+      "png": {
+        "image": "UIKitCore",
+        "offset": "0x3f57d8",
+        "resolved": true
+      },
+      "add_image": {
+        "image": "ImageIO",
+        "offset": "0x48150",
+        "resolved": true
+      },
+      "finalize": {
+        "image": "ImageIO",
+        "offset": "0x98e0",
+        "resolved": true
+      },
+      "colorsync": {
+        "image": "ColorSync",
+        "offset": "0x89a4",
+        "resolved": true
+      }
+    },
+    "279": {
+      "png": {
+        "image": "UIKitCore",
+        "offset": "0x3f57d8",
+        "resolved": true
+      },
+      "add_image": {
+        "image": "ImageIO",
+        "offset": "0x48150",
+        "resolved": true
+      },
+      "finalize": {
+        "image": "ImageIO",
+        "offset": "0x98e0",
+        "resolved": true
+      },
+      "colorsync": {
+        "image": "ColorSync",
+        "offset": "0x89a4",
+        "resolved": true
+      }
+    },
+    "284": {
+      "png": {
+        "image": "UIKitCore",
+        "offset": "0x3f57d8",
+        "resolved": true
+      },
+      "add_image": {
+        "image": "ImageIO",
+        "offset": "0x48150",
+        "resolved": true
+      },
+      "finalize": {
+        "image": "ImageIO",
+        "offset": "0x98e0",
+        "resolved": true
+      },
+      "colorsync": {
+        "image": "ColorSync",
+        "offset": "0x89a4",
+        "resolved": true
+      }
+    },
+    "288": {
+      "png": {
+        "image": "UIKitCore",
+        "offset": "0x3f57d8",
+        "resolved": true
+      },
+      "add_image": {
+        "image": "ImageIO",
+        "offset": "0x48150",
+        "resolved": true
+      },
+      "finalize": {
+        "image": "ImageIO",
+        "offset": "0x98e0",
+        "resolved": true
+      },
+      "colorsync": {
+        "image": "ColorSync",
+        "offset": "0x89a4",
+        "resolved": true
+      }
+    }
+  },
+  "observed_apis": [
+    "colorsync",
+    "png"
+  ],
+  "complete_samples": 2,
+  "incomplete_samples": 2,
+  "records": [
+    {
+      "pid": 279,
+      "tid": 3403,
+      "call": 1,
+      "root": 1,
+      "depth": 1,
+      "api": "png",
+      "begin_ns": 602658291406,
+      "original_forwarded": true,
+      "complete": false
+    },
+    {
+      "pid": 279,
+      "tid": 3403,
+      "call": 2,
+      "root": 1,
+      "depth": 2,
+      "api": "colorsync",
+      "begin_ns": 602666535468,
+      "original_forwarded": true,
+      "complete": true,
+      "wall_ns": 437604,
+      "thread_cpu_ns": 445990,
+      "cpu_valid": true,
+      "outcome": "return",
+      "output_bytes": 0,
+      "returned_nil": false,
+      "original_behavior_preserved": true
+    },
+    {
+      "pid": 284,
+      "tid": 3469,
+      "call": 1,
+      "root": 1,
+      "depth": 1,
+      "api": "png",
+      "begin_ns": 607015783385,
+      "original_forwarded": true,
+      "complete": false
+    },
+    {
+      "pid": 284,
+      "tid": 3469,
+      "call": 2,
+      "root": 1,
+      "depth": 2,
+      "api": "colorsync",
+      "begin_ns": 607023874218,
+      "original_forwarded": true,
+      "complete": true,
+      "wall_ns": 405625,
+      "thread_cpu_ns": 413282,
+      "cpu_valid": true,
+      "outcome": "return",
+      "output_bytes": 0,
+      "returned_nil": false,
+      "original_behavior_preserved": true
+    }
+  ],
+  "pending_calls": [
+    {
+      "pid": 279,
+      "tid": 3403,
+      "call": 1,
+      "root": 1,
+      "depth": 1,
+      "api": "png",
+      "begin_ns": 602658291406,
+      "original_forwarded": true,
+      "complete": false
+    },
+    {
+      "pid": 284,
+      "tid": 3469,
+      "call": 1,
+      "root": 1,
+      "depth": 1,
+      "api": "png",
+      "begin_ns": 607015783385,
+      "original_forwarded": true,
+      "complete": false
+    }
+  ],
+  "longest_completed_inclusive_calls": [
+    {
+      "pid": 279,
+      "tid": 3403,
+      "call": 2,
+      "root": 1,
+      "depth": 2,
+      "api": "colorsync",
+      "begin_ns": 602666535468,
+      "original_forwarded": true,
+      "complete": true,
+      "wall_ns": 437604,
+      "thread_cpu_ns": 445990,
+      "cpu_valid": true,
+      "outcome": "return",
+      "output_bytes": 0,
+      "returned_nil": false,
+      "original_behavior_preserved": true
+    },
+    {
+      "pid": 284,
+      "tid": 3469,
+      "call": 2,
+      "root": 1,
+      "depth": 2,
+      "api": "colorsync",
+      "begin_ns": 607023874218,
+      "original_forwarded": true,
+      "complete": true,
+      "wall_ns": 405625,
+      "thread_cpu_ns": 413282,
+      "cpu_valid": true,
+      "outcome": "return",
+      "output_bytes": 0,
+      "returned_nil": false,
+      "original_behavior_preserved": true
+    }
+  ],
+  "nested_durations_inclusive_not_additive": true,
+  "absent_API_calls_do_not_prove_absent_work": true,
+  "full_UI_or_root_cause_not_inferred": true,
+  "post_ACK_exit_period_excluded": true,
+  "token": "d25c7eeaf4d33074",
+  "raw_sha256": "6f803dbefb6d030ab1ad4a653267e731e4bad462d9c458598a5a46c691f1e8ba",
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-postdraw-r1-gpu-20261116",
+  "original_result": "REVISE",
+  "original_reason": "EXTENSION_CHECKIN_TIMEOUT",
+  "strict_return": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "d25c7eeaf4d33074",
+    "checkpoint_bytes": 384416,
+    "log_bytes": 391909,
+    "log_sha256": "6f803dbefb6d030ab1ad4a653267e731e4bad462d9c458598a5a46c691f1e8ba",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      23,
+      131,
+      133
+    ],
+    "final_reset_marker_seen": true
+  },
+  "original_failed_stage_not_accepted": true
+}

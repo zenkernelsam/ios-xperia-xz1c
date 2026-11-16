@@ -1,0 +1,98 @@
+{
+  "previous_lock_sha256": "cac4b9604e2836f4cbfbdb74c8b13164ed9692d6c9456698fef050fa6c4af4bb",
+  "current_lock_sha256": "fc592c9537d059ccfdd9165cc3471fd6aaab0e051515291b21d64c2291738372",
+  "updated_sources": [
+    {
+      "path": "tools/device/failed_trial_evidence.py",
+      "previous_sha256": "c487c786d19195c4c553e7cc65663472916ac807f85bbf12dd5a0a1d28a3937d",
+      "current_sha256": "d6c712a90fedb4aeaf8e5b6b07f45ff211fbb3509989fb72f7518109598935a3",
+      "already_committed_source": true
+    },
+    {
+      "path": "tools/device/package_trial.py",
+      "previous_sha256": "68e7aa2b276b4ca0f4510d9e2e3c05820302395ffc894d3323b1ec716325a88d",
+      "current_sha256": "4cdfe242d980ff224c2a3e1387479961b1ce9128baf83cf0ac1ddde62163d0f9",
+      "already_committed_source": false
+    },
+    {
+      "path": "tools/device/trial_evidence.py",
+      "previous_sha256": "523d3009eb226cb699dca5214546d1fadb16d287fa729bda05b7946eef90c468",
+      "current_sha256": "dfbe3b3324081b084d83f5eb584e030ec6ec06f2745b70a23c92e5fb0ced84ce",
+      "already_committed_source": false
+    },
+    {
+      "path": "tools/ram_library.py",
+      "previous_sha256": "6e077d2670437a084de673d793508e0f97b8aac84771d9b44f18a48a11baa92d",
+      "current_sha256": "e59e015af67ddd6b216c9b435f01acc81971344a9fdf2570e9ff7da9ade84655",
+      "already_committed_source": false
+    },
+    {
+      "path": "tools/build/build_exception_observer.py",
+      "previous_sha256": "112501477c53e91bfd2dff044d2bd2cb53deeb7bebccd2d6f8bb4deb698a6e91",
+      "current_sha256": "6f7b74f2b377e3058e5c47611a473d35a04aaf648dd184c19c4b0a5f316386e7",
+      "already_committed_source": false
+    },
+    {
+      "path": "tools/build/build_metal_library.py",
+      "previous_sha256": "3c2698be6620305ccd519b62ee61c41f398409769c32d64dec064c137dc12f58",
+      "current_sha256": "e386f6ed622c4159dedc6daa2be4f2d3c9807759632e6a09bac9d09effe14ebd",
+      "already_committed_source": true
+    },
+    {
+      "path": "tools/build/test_half_target.cpp",
+      "previous_sha256": "ac93a875a2ac5a95de9765688408031ec3b70a00a95441b41210369840ff07a9",
+      "current_sha256": "266fa6d49d5177a63cb3cfb7581da2660a7a9a62ddd609aa76dee7babeff3603",
+      "already_committed_source": true
+    },
+    {
+      "path": "gpu/diagnostics/exception_observe.m",
+      "previous_sha256": "273d34726704402a039df87008fccdf3a56babb1cfd1661eb595ad355c3806ac",
+      "current_sha256": "ae2090dd92c96d25b0e8bfce01a9bd372deaa0f352eb7a984db40edf692eafc5",
+      "already_committed_source": false
+    },
+    {
+      "path": "gpu/metal/air/HalfESSL.h",
+      "previous_sha256": "03b93a7f50161748605b7f863e149e8284e3c43bdfc14efe82919fc3c11e32d3",
+      "current_sha256": "6c10c9bc5e0f7051cc6275adb4e85ff21e7226b62910537fc4acfa7f3a69dbb4",
+      "already_committed_source": true
+    }
+  ],
+  "new_sources": [
+    {
+      "path": "tools/device/postdraw_observer_evidence.py",
+      "sha256": "8da653c18f749fda269c7b0463483d20d7324e2542f39b95c216d38a4e89fcdd"
+    },
+    {
+      "path": "tools/device/test_postdraw_observer_evidence.py",
+      "sha256": "53b64a30615d3a628410d9ffc317a1d0c2e85da0ca29d2bf09a98965c9d24f20"
+    },
+    {
+      "path": "tools/build/a2s_lookup.py",
+      "sha256": "feff33a6dcacf280664d1dbe32e8cc93d9c065003057d06f9d986d1117f31874"
+    },
+    {
+      "path": "tools/build/symbolicate_cache_crashes.py",
+      "sha256": "8fc222574e3aa64025d60f7af0827f48d48a9431da83fc934dadad86e393b638"
+    },
+    {
+      "path": "tools/build/test_postdraw_observe.m",
+      "sha256": "144605ebf1d6baf35c69f3a332e0b5fb036a7fe12d0636a9da84330c40e1b4f1"
+    },
+    {
+      "path": "tools/program_cache_scope.py",
+      "sha256": "9fcd14133fa3e0531f5cc0a01fb6d8b84d62432df41f3d0e688df7e151c097e9"
+    },
+    {
+      "path": "gpu/diagnostics/PostDrawObserve.h",
+      "sha256": "06b34bbb6674fec1d60ae1f9ce57abf034775b4f9a1034ab7a194126349367f3"
+    },
+    {
+      "path": "gpu/diagnostics/ProgramCacheScope.h",
+      "sha256": "bb6546f8c148f71e54c058bcf2877e7de903942ae1934a9d933c76636513fc6a"
+    }
+  ],
+  "committed_base": "320d2abaf216bd3ae008b507b7db4aa5609b1aab",
+  "no_compiled_kernel_GLES_Metal_bytes_changed": true,
+  "own_observer_CPU_proof": "872bd5d6eed10204",
+  "actual_original_GPU_result": "REVISE"
+}

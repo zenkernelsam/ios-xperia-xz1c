@@ -1,39 +1,36 @@
 # 当前状态 — 2026-11-16
 
-Sony BH905ND69G 当前健康停在fastboot，原Aegir r2唯一controller已完整退出。token `6d17bdf97a8fc7c8`、raw `98bcc37136ebaf6fce95b5a0529152c695bf94d20bf2f174bb806ccc59443e4a`，39.578秒四回程marker/健康30秒/worker exit1。原REVISE/extension check-in timeout三次保留。新缓存已实际恢复星空/云层/地球等五个nonnull管线；750×1624原GPU draw两次result0、sequence619/678、original_pages1已出现。真实面板仍为暗背景/原camera与homebar，壁纸/时间日期/完整UI未完成。
+Sony BH905ND69G当前健康停在fastboot，postdraw-r1唯一controller已退出。GPU tokend25c7eeaf4d33074、raw6f803dbefb6d030ab1ad4a653267e731e4bad462d9c458598a5a46c691f1e8ba，39.985秒完整四回程marker/健康30秒/controller exit1，原extension check-in timeout三次/REVISE保持。此前同RAM CPU token872bd5d6eed10204已38.328秒完整回程并通过。相机MJPEG取得68帧并按每5帧抽1/rotate90；面板仍缺完整壁纸/时间日期。没有in-flight或待轮询handle，旧失败包不重发。
 
-后续三个当前靴sig9栈以实际shared-cache slide和只读A2S v2 map解析：pid285在malloc free_large→mach_vm_deallocate；pid288在ColorSync/CMM profile transform→ImageIO PNG writer；pid291在PNG deflate/filter→CGImageDestinationFinalize→UIImagePNGRepresentation。不是原glLinkProgram卡点的同一栈；不因这些采样推定VM或颜色已故障，不修改冻结VM/allocator。证据见original-aegir-r2-postdraw-stack.json。ACK后的退出期sig11另列，不当作原样本。
+## 已验当前库
 
-后台primer8abc57d8已完整14组、三个真实request、38.532秒完整回程通过，FS26549/38924/73444链接13.039/16.140/39.007秒，保存227981/375861/747773B标准binary；原wrapper长度/FNV配对验证通过。使用的是相同registry-ram-r1及CPU3bb829a2、嵌入native45a完整14组proof。原cold失败、真实新绘制、当前PNG/ColorSync开销分别记录。
+- kernel v729：774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec，20648064B、81源；allocator/SCM/PON/RPC/VM冻结。
+- GLES：0a2c7e698ae59a1afe8608c884f59e87a344a3952e9b4d52899923b9e295b3db；固定Mesa24.3.4/FD540，build identity51e6ba632cbac469f3210833ea01f201305b5ca76f7c37bef04504a1c6c9b22d。
+- Metal half-selection-r1：5e94ab57401479b42f506884a172a7a839378a82310661a1f66164e99c21f988；source-map3e79503f6f2856fca12eb3a2095a9d4631098e9c0be4f92eda876abe20f1457b。
+- 完整14组native token45a839fc4c105e01，rawf9b13434f7207510434b8d0b73d2522883ae07f8b38336788da234d3964da7c6，39.062秒完整回程/健康30秒/worker退出。half131072B、MRT1245184B、sampler147456B、static-half196608B及全部guard/fence/lifecycle保持，三次fresh binary恢复。见[完整proof](../reproducibility/v729-half-selection-r1-native-proof.json)。
 
-原Aegir GPU token `478fb7bafbe5df03`已39.047秒完整PON06回程/健康/worker exit1；raw `00038799d09f56cdd39a4597a4d61c5d041217330fb99dc2e7f7e8d6302fddca`。星空实机冷链接1.565914秒/CPU1.534485秒，保存64421B并返回nonnull；云层1.888484秒/CPU1.883732秒，保存64317B并返回nonnull。原REVISE/extension check-in timeout三次保持，UI未完成。该靴真实request包括VS4840B/FS38924B、73444B、26549B；新后台primer只读取同scope本机实际缺bin请求，不选旧版目录、不延长check-in。
+## 原GPU和新卡点
 
-完整14组native token45a839fc4c105e01、rawf9b13434…、39.062秒完整回程已通过，新proof/原byte/guard/fence/lifecycle保持。原新RAM CPU3bb829a2已37.547秒完整回程通过。源码/14组实机proof已发布d6b6b6c，Windows/Mac HEAD对齐。本轮原失败/primer的独立证据正在提交；任何主机/离屏/链接或缓存成功都不代表完整UI。
+postdraw-r1又出现两次750×1624原GPU draw result0、sequence612/663、original_pages1。两个可见ColorSyncTransformCreate调用分别437604ns/405625ns，原PNG外层各未返回；addImage/finalize内部调用没有经过该标准绑定。新的实际slide0x26fa4000栈显示：第一进程在CLKUIMetalQuadView快照等待，另两进程仍在ImageIO内部CMM profile/转换序列初始化。不能拿可见0.4ms调用排除未被观察的内部ICC开销，也不能直接把PNG过滤器当成已验证修复。下一步覆盖原pipeline/快照/readback/wait及进入PNG前的预算。见[本轮原结果](../reproducibility/v729-postdraw-r1-gpu-revise.json)、[时耗](../reproducibility/v729-postdraw-r1-gpu-observation.json)及[当前靴栈](../reproducibility/v729-postdraw-r1-cache-crashes.json)。
 
-候选[HALF-SELECTION](HALF-SELECTION.md)已做全4294967296种float32、12884901888比较（pack/round等价和round幂等）与65536种unpack，零差异/UBSan；Mac同SHA target ASan/UBSan/65536 literal位型通过，主机GLES131072样本通过。WSL ASan启动失败原日志已原生回收并保留SHA/样本/回收位置，不冒充其通过。新source scope334819af仅创建新shared sticky缓存目录，旧目录/文件保持。GPU完整14组现已实机通过；原Aegir新包仍需CPU/单发GPU，不能用旧be56proof准入新库。
+原Aegir r2 token6d17bdf97a8fc7c8、raw98bcc37136ebaf6fce95b5a0529152c695bf94d20bf2f174bb806ccc59443e4a，39.578秒四回程marker/健康30秒/worker exit1。五条真实nonnull管线与星空/云层/地球等cache hit保持，750×1624原GPU draw两次result0、sequence619/678、original_pages1。面板仍只有暗背景、camera、homebar和电池，完整壁纸/时间日期/UI未完成；原extension check-in timeout三次与REVISE保留。
 
-request-export-r2 token `3fa3a81100888cb9`已完整14组GPU、4454段/142493B真实request、四回程marker、健康30秒及worker exit0通过。raw `4f48814e5e8ca4b53898838a6217acaa99a7218e532fb00133a17d4a50534e2b`。生产XR包装长度/FNV精确匹配原靴；实际原Earth主机旧版两个60秒timeout，新候选6.934/2.096秒。原Apple源码/request只在TEMP；这些不代表手机链接或完整UI成功。r1原长行截断/后处理拒绝及原raw/results/stdout保持。
+该靴三个ACK前sig9栈用实际shared-cache slide0x3c5bc000解析：pid285在malloc free_large→mach_vm_deallocate；pid288在ColorSync/CMM profile transform→ImageIO PNG writer；pid291在PNG deflate/filter→CGImageDestinationFinalize→UIImagePNGRepresentation。只是退出时的位置采样，不据此认定VM、CMM或PNG故障，不改变冻结组件。原ACK后退出期sig11另列。见[原栈](../reproducibility/original-aegir-r2-postdraw-stack.json)和[完整symbol map来源分析](../reproducibility/original-aegir-r2-postdraw-analysis.json)。
 
-## 已验基线
+[postdraw-r1](POSTDRAW-OBSERVATION.md)新observer b88aec05a5aefec2bca6cafb381773f8b90f3392e07b2a8fae85d8ce6e1884cc只观察原PNG/addImage/finalize/ColorSync入口与返回。Mac ASan/UBSan验证原参数/返回/nil/throw/errno、嵌套和64条日志界；实际sRGB、DisplayP3及750×1624 ImageIO编码字节、解码像素、ICC/metadata和原输入保持。目标arm64 ABI检查与64B/four-pair interpose section已通过。这些仍是host/编译结果，本包CPU及原手机时耗须独立记录，不改原失败或check-in期限。
 
-- kernel v729 `774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec`，20648064B、81源，allocator/SCM/PON/RPC/VM冻结。
-- GLES `0a2c7e698ae59a1afe8608c884f59e87a344a3952e9b4d52899923b9e295b3db`，固定Mesa24.3.4/FD540、实际build identity `51e6ba632cbac469f3210833ea01f201305b5ca76f7c37bef04504a1c6c9b22d`。
-- Metal static-half-r1 `be56ad130f5a94bb0a1ec4bfabefab52b492a58d1b566222efe7384cac1ae749`；[完整14组proof](../reproducibility/v729-static-half-r1-native-proof.json)，token `58294c8e0de3c139`、raw `07fb2c39f2cef68a6be6dd0ec5054b0780d7a2e1fa51b2ef386315b92003164a`、38.860秒完整回程及worker退出。
-- static-half12case/196608B全部原字节、NaN位型、前尾guard/fence及创建后reset的snapshot零差异；原half131072B、MRT1245184B、sampler147456B和其它原组保持。新静态half库旧13组proof拒绝。
-- 原Aegir已真正恢复星空89821B、云层84333B和threshold18929B缓存并返回nonnull；见 [PROGRAM-CACHE](PROGRAM-CACHE.md)。缓存成功仍不代表原draw/present或完整UI。
+## 链接优化和实际预热
 
-## 原界面卡点
+half-selection-r1的全部4294967296种float32/12884901888比较与65536 unpack零差异/UBSan；Mac同SHA target ASan/UBSan及131072个host GLES样本通过。WSL ASan启动失败单独保留SHA/样本/原生回收位置，不冒充通过。原Earth两份真实shader主机旧版各60秒timeout，新候选6.934/2.096秒，不能推成手机时耗或UI成功。见[HALF-SELECTION](HALF-SELECTION.md)。
 
-static-half-r1原Aegir CPU token `07450e3a3feff574` 已通过。原GPU token `ea6e7319b920504a`、raw `14ab7641f2b09ed6dbbc647f7ad644350780bf5a87b2a8c5c8eb4c1f8bdb2df0`，40.343秒完整回程，原REVISE保留。half/i16静态常量类型错误已越过，实际地球VS/FS编译成功，XR wrapper后为4879B、89561B/49198B；冷链接跨过原check-in期限。
+原Aegir r1 token478fb7bafbe5df03仍REVISE：星空实际cold link1.565914秒/64421B，云层1.888484秒/64317B，返回nonnull；原check-in timeout三次，39.047秒完整回程。后续primer8abc57d8已完整14组和三个真实request匹配：FS26549/38924/73444分别链接13.039/16.140/39.007秒，保存227981/375861/747773B标准binary，38.532秒完整回程。按新scope334819af只读本机实际缺bin请求，旧cache保持。
 
-完整后台primer token `6046e6c880760e21` 随后处理真实VS4840B/FS86136B请求：VS29.994ms、FS651.202ms编译成功，但240秒观察期内链接未返回。40.203秒完整自动回程，原STOP/OBSERVATION_INCOMPLETE保持，[原失败](../reproducibility/v729-static-half-r1-prime-gpu-failed.json)，raw `774d3d67d29da52af22bafbcb919a6fdcbc338d7ff7aac469093b9d3a308471b`。不能把这个CPU链接耗时问题记成RPM硬件死锁。
+request-export-r2 token3fa3a81100888cb9已完整接回两个actual request共142493B/4454段，record/payload/key/identity及生产XR wrapper长度/FNV匹配原靴，完整14组与回程通过。原r1长行截断及后处理拒绝保留。原Apple shader/request只在TEMP，Git保留工具和摘要。[PROGRAM-CACHE](PROGRAM-CACHE.md)及对应reproducibility记录说明各边界。
 
-主机代表shader约1300次half舍入调用，正在比较等位型的无分支整数选择候选。全部4294967296种float32输入的pack/round共8589934592比较，加65536种half unpack均零差异；无sanitizer主机GLES的131072样本通过。WSL的ASan/Mesa进程另有启动崩溃，原失败保留；这些仅为离线候选结果，当前生产HalfESSL和Metal基线尚未更换，仍需真实request耗时和新库14组硬件证明。
+## 未完成与操作
 
-完整锁屏时间/日期/壁纸、系统UI/FPS、睡眠唤醒、声音、Wi-Fi/蓝牙及广义texture/depth/stencil/MSAA仍未完成，goal保持active。离屏、主机、缓存或控制器PASS不能替代真实系统与面板。
+完整锁屏时间/日期/壁纸、系统UI/FPS、睡眠唤醒、声音、Wi-Fi/蓝牙及广义texture/depth/stencil/MSAA仍未完成，goal保持active。离屏、主机、缓存、draw或控制器PASS不能替代真实系统与面板。
 
-## 操作与交接
+只BH905ND69G；fastboot带-s；COM≥10且VID1209/PID0001；PON只0x06；单download/boot、失败不重发；四回程marker、健康30秒、旧worker退出后下一轮。一个controller持COM/camera，相机override→AF→2秒→MJPEG每5帧抽1→rotate90。gl5/userdata/SD/TA/XFL与救砖输入受保护；Mac旧自动构建器pause保持。新修补只在正式仓库，git log和reproducibility记录发布/实际输入。
 
-只BH905ND69G；fastboot带-s；COM≥10且VID1209/PID0001；PON只0x06；单download/boot、失败不重发；四回程marker、健康30秒、旧worker退出后下一轮。一个controller持COM/camera，相机override→AF→2秒→MJPEG每5帧抽1→rotate90。gl5/userdata/SD/TA/XFL与救砖输入受保护。Mac旧自动构建器pause保持。
-
-唯一正式源码在ios-xperia-xz1c。Windows/Mac已发布HEAD为`6a4d10f03136278455eb891ec63970f63d91711f`；本轮诊断源码/失败与新的实际结果正在正式仓库维护，完成该轮后提交发布。原完整状态保存在 [归档](archive/20261116/STATUS-before-earth-request-export.md)，更早版本与原失败仍保留。
+旧static-half/be56、旧cold link 240秒失败、旧partial CPU和当时状态完整保存在[本轮原文归档](archive/20261116/STATUS-before-postdraw-r1.md)及各原失败记录。文档整合没有覆盖原日志/结果，也没有永久删除文件。

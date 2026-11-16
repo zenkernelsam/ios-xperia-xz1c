@@ -47,6 +47,14 @@ def load(folder,expected=None):
             if observer.get('original_pipeline_observer'):
                 sources.add('gpu/diagnostics/MetalPipelineObserve.h')
                 assert observer.get('registration_only') and observer['actual_factory_return_error_pointer_exception_forwarding_host_passed']
+            if observer.get('original_postdraw_observer'):
+                sources.add('gpu/diagnostics/PostDrawObserve.h')
+                assert observer.get('registration_only') and observer.get('original_pipeline_observer') and observer['target_process']=='AegirPoster'
+                assert observer['postdraw_observer_revision']==1 and observer['postdraw_observations_max']==64
+                assert observer['postdraw_apis']==['png','add_image','finalize','colorsync']
+                assert observer['postdraw_return_nil_throw_errno_nesting_host_passed'] and observer['postdraw_real_PNG_bytes_pixels_ICC_input_host_passed']
+                assert observer['postdraw_original_pixel_and_profile_options_preserved'] and observer['postdraw_durations_inclusive_not_additive']
+                assert re.fullmatch('[0-9a-f]{64}',observer['postdraw_host_test_source_sha256'])
             if observer['target_process']=='backboardd':
                 sources.add('gpu/sweetgl/sweetgl.h')
                 assert observer.get('background_full_suite') and observer['waits_for_same_process_GLES_suite'] and observer['original_Aegir_not_modified_or_registered']

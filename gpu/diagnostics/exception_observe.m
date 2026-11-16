@@ -30,6 +30,9 @@
 #if defined(SWEET_METAL_PIPELINE_OBSERVE)
 #include "MetalPipelineObserve.h"
 #endif
+#if defined(SWEET_POSTDRAW_OBSERVE)
+#include "PostDrawObserve.h"
+#endif
 #include "MetalRuntimeObserve.h"
 #if defined(SWEET_METAL_RESOURCE_PROBE)
 #include "MetalResourceProbe.h"
@@ -319,6 +322,9 @@ static void install_observer(void)
     else{pthread_detach(thread);diagnostic("SWEET METAL PROBES scheduled process=backboardd constructor_waited=0 background=1");atomic_store_explicit(&background_scheduled,true,memory_order_release);}
 #else
     diagnostic("SWEET EXCEPTION observer installed process=AegirPoster limit=16 original_chain=1");
+#if defined(SWEET_POSTDRAW_OBSERVE)
+    (void)postdraw_observe(diagnostic);
+#endif
     install_uniform_observer();
 #if defined(SWEET_METAL_PIPELINE_OBSERVE)
     (void)metal_pipeline_observe(objc_lookUpClass("SweetMTLDevice"),diagnostic);

@@ -172,6 +172,8 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
                     common+=['SWEET METAL observer installed renderer=NUNIAegirRenderer limit=32 index_type=[Qq] device_object=1 original_forwarded=1']
                     if not m['exception_observer'].get('original_Metal_registry_probe'):
                         common+=['SWEET METAL uniform call=1 index=[0-2] device_nil=[01].*metadata_only=1 original_called=1']
+                if m['exception_observer'].get('original_postdraw_observer'):
+                    common+=['SWEET POSTDRAW observer installed=1 interpose_pairs=4 limit=64 metadata_only=1 original_arguments_results=1']
                 if 'runtime_Metal_ABI_methods' in m['exception_observer']:
                     common+=['SWEET METAL ABI begin class=_MTLDevice present=1 limits_bytes=264 limits_alignment=8 limits_bounded=1',
                         'SWEET METAL ABI end methods=22 metadata_only=1 instances_created=0 gpu_operations=0']

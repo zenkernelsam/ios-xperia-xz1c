@@ -1,0 +1,384 @@
+{
+  "token": "d25c7eeaf4d33074",
+  "raw_sha256": "6f803dbefb6d030ab1ad4a653267e731e4bad462d9c458598a5a46c691f1e8ba",
+  "crashes": [
+    {
+      "pid": 277,
+      "signal": 9,
+      "code": "0x0",
+      "subcode": "0x0",
+      "actual_shared_cache_slide": "0x26fa4000",
+      "actual_main_header": "0x1004f0000",
+      "reason": "ns 7 code 0x3: extension check-in timeout",
+      "frames": [
+        {
+          "index": 0,
+          "actual_pc": "0x1e95b587c",
+          "instruction_sample": true,
+          "symbol_address": "0x1c2611874",
+          "symbol_offset": "0x8",
+          "symbol": "___psynch_cvwait",
+          "unslid_pc": "0x1c261187c",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 1,
+          "actual_pc": "0x10067aed4",
+          "instruction_sample": false,
+          "not_resolved_against_shared_cache": true
+        },
+        {
+          "index": 2,
+          "actual_pc": "0x1e86d95a4",
+          "instruction_sample": false,
+          "symbol_address": "0x1c1734e6c",
+          "symbol_offset": "0x738",
+          "symbol": "-[CLKUIMetalQuadView _snapshotTextureInRect:scale:time:withAdditionalPasses:]",
+          "unslid_pc": "0x1c17355a4",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 3,
+          "actual_pc": "0x1e86d8a6c",
+          "instruction_sample": false,
+          "symbol_address": "0x1c1734840",
+          "symbol_offset": "0x22c",
+          "symbol": "___48-[CLKUIMetalQuadView snapshotInRect:scale:time:]_block_invoke",
+          "unslid_pc": "0x1c1734a6c",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 4,
+          "actual_pc": "0x1e86b7ad0",
+          "instruction_sample": false,
+          "symbol_address": "0x1c1713a48",
+          "symbol_offset": "0x88",
+          "symbol": "-[CLKUIQuadView _runOnRenderQueueIfNeeded:]",
+          "unslid_pc": "0x1c1713ad0",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 5,
+          "actual_pc": "0x1e86d873c",
+          "instruction_sample": false,
+          "symbol_address": "0x1c1734630",
+          "symbol_offset": "0x10c",
+          "symbol": "-[CLKUIMetalQuadView snapshotInRect:scale:time:]",
+          "unslid_pc": "0x1c173473c",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 6,
+          "actual_pc": "0x100501730",
+          "instruction_sample": false,
+          "not_resolved_against_shared_cache": true
+        },
+        {
+          "index": 7,
+          "actual_pc": "0x1004ff760",
+          "instruction_sample": false,
+          "not_resolved_against_shared_cache": true
+        },
+        {
+          "index": 8,
+          "actual_pc": "0x1004ff148",
+          "instruction_sample": false,
+          "not_resolved_against_shared_cache": true
+        },
+        {
+          "index": 9,
+          "actual_pc": "0x1005029f0",
+          "instruction_sample": false,
+          "not_resolved_against_shared_cache": true
+        },
+        {
+          "index": 10,
+          "actual_pc": "0x100514d00",
+          "instruction_sample": false,
+          "not_resolved_against_shared_cache": true
+        }
+      ],
+      "current_boot_slide_observed": true
+    },
+    {
+      "pid": 279,
+      "signal": 9,
+      "code": "0x0",
+      "subcode": "0x0",
+      "actual_shared_cache_slide": "0x26fa4000",
+      "actual_main_header": "0x10112c000",
+      "reason": "ns 7 code 0x3: extension check-in timeout",
+      "frames": [
+        {
+          "index": 0,
+          "actual_pc": "0x1bb50766c",
+          "instruction_sample": true,
+          "symbol_address": "0x19456366c",
+          "symbol_offset": "0x0",
+          "symbol": "_nanov2_size$VARIANT$mp",
+          "unslid_pc": "0x19456366c",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 1,
+          "actual_pc": "0x1add9f478",
+          "instruction_sample": false,
+          "symbol_address": "0x186dfb36c",
+          "symbol_offset": "0x10c",
+          "symbol": "-[__NSArrayM insertObject:atIndex:]",
+          "unslid_pc": "0x186dfb478",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 2,
+          "actual_pc": "0x1add9ec90",
+          "instruction_sample": false,
+          "symbol_address": "0x186dfac14",
+          "symbol_offset": "0x7c",
+          "symbol": "-[__NSDictionaryM __apply:context:]",
+          "unslid_pc": "0x186dfac90",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 3,
+          "actual_pc": "0x1b5c3280c",
+          "instruction_sample": false,
+          "symbol_address": "0x18ec8e784",
+          "symbol_offset": "0x88",
+          "symbol": "_ColorSyncProfileCopyTagSignatures",
+          "unslid_pc": "0x18ec8e80c",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 4,
+          "actual_pc": "0x1b5c61144",
+          "instruction_sample": false,
+          "symbol_address": "0x18ecbd114",
+          "symbol_offset": "0x30",
+          "symbol": "__ZN10CMMProfile15GetRelevantTagsERm",
+          "unslid_pc": "0x18ecbd144",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 5,
+          "actual_pc": "0x1b5c61014",
+          "instruction_sample": false,
+          "symbol_address": "0x18ecbcf9c",
+          "symbol_offset": "0x78",
+          "symbol": "__ZN23CMMProfileInfoContainer17ProfilesIdenticalEP10CMMProfileS1_R9CMMMemMgr",
+          "unslid_pc": "0x18ecbd014",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 6,
+          "actual_pc": "0x1b5c565c8",
+          "instruction_sample": false,
+          "symbol_address": "0x18ecb2464",
+          "symbol_offset": "0x164",
+          "symbol": "__ZN17ConversionManager22MakeColorMatchSequenceEP23CMMProfileInfoContainerP22CMMColorConversionInfoPK14__CFDictionary",
+          "unslid_pc": "0x18ecb25c8",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 7,
+          "actual_pc": "0x1b5c656d0",
+          "instruction_sample": false,
+          "symbol_address": "0x18ecc116c",
+          "symbol_offset": "0x564",
+          "symbol": "_AppleCMMInitializeTransform",
+          "unslid_pc": "0x18ecc16d0",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 8,
+          "actual_pc": "0x1b5c30ca4",
+          "instruction_sample": false,
+          "symbol_address": "0x18ec8c9a4",
+          "symbol_offset": "0x300",
+          "symbol": "_ColorSyncTransformCreate",
+          "unslid_pc": "0x18ec8cca4",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 9,
+          "actual_pc": "0x1b2aa22a0",
+          "instruction_sample": false,
+          "symbol_address": "0x18bafe18c",
+          "symbol_offset": "0x114",
+          "symbol": "__ZN17IIOColorConverter27createConverterWithProfilesEP20vImage_CGImageFormatS1_PK16ColorSyncProfileS4_",
+          "unslid_pc": "0x18bafe2a0",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 10,
+          "actual_pc": "0x1b2a9d700",
+          "instruction_sample": false,
+          "symbol_address": "0x18baf96e0",
+          "symbol_offset": "0x20",
+          "symbol": "__ZN17IIOColorConverterC1EP20vImage_CGImageFormatS1_PK16ColorSyncProfileS4_",
+          "unslid_pc": "0x18baf9700",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        }
+      ],
+      "current_boot_slide_observed": true
+    },
+    {
+      "pid": 284,
+      "signal": 9,
+      "code": "0x0",
+      "subcode": "0x0",
+      "actual_shared_cache_slide": "0x26fa4000",
+      "actual_main_header": "0x100bfc000",
+      "reason": "ns 7 code 0x3: extension check-in timeout",
+      "frames": [
+        {
+          "index": 0,
+          "actual_pc": "0x1bb4fb3c0",
+          "instruction_sample": true,
+          "symbol_address": "0x1945573b8",
+          "symbol_offset": "0x8",
+          "symbol": "_tiny_malloc_from_free_list",
+          "unslid_pc": "0x1945573c0",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 1,
+          "actual_pc": "0x1bb4ff3e4",
+          "instruction_sample": false,
+          "symbol_address": "0x19455b398",
+          "symbol_offset": "0x4c",
+          "symbol": "_szone_malloc_should_clear",
+          "unslid_pc": "0x19455b3e4",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 2,
+          "actual_pc": "0x1b5c3a98c",
+          "instruction_sample": false,
+          "symbol_address": "0x18ec96964",
+          "symbol_offset": "0x28",
+          "symbol": "__ZN7CMMBase11NewInternalEmR9CMMMemMgrPKc",
+          "unslid_pc": "0x18ec9698c",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 3,
+          "actual_pc": "0x1b5c61b74",
+          "instruction_sample": false,
+          "symbol_address": "0x18ecbd6c0",
+          "symbol_offset": "0x4b4",
+          "symbol": "__ZN15CMMProfileMaker11MakeProfileEPK16ColorSyncProfileR9CMMMemMgr",
+          "unslid_pc": "0x18ecbdb74",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 4,
+          "actual_pc": "0x1b5c55af8",
+          "instruction_sample": false,
+          "symbol_address": "0x18ecb18f4",
+          "symbol_offset": "0x204",
+          "symbol": "__ZN23CMMProfileInfoContainerC2EPK9__CFArrayPK14__CFDictionaryR9CMMMemMgr",
+          "unslid_pc": "0x18ecb1af8",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 5,
+          "actual_pc": "0x1b5c654b0",
+          "instruction_sample": false,
+          "symbol_address": "0x18ecc116c",
+          "symbol_offset": "0x344",
+          "symbol": "_AppleCMMInitializeTransform",
+          "unslid_pc": "0x18ecc14b0",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 6,
+          "actual_pc": "0x1b5c30ca4",
+          "instruction_sample": false,
+          "symbol_address": "0x18ec8c9a4",
+          "symbol_offset": "0x300",
+          "symbol": "_ColorSyncTransformCreate",
+          "unslid_pc": "0x18ec8cca4",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 7,
+          "actual_pc": "0x1b2aa22a0",
+          "instruction_sample": false,
+          "symbol_address": "0x18bafe18c",
+          "symbol_offset": "0x114",
+          "symbol": "__ZN17IIOColorConverter27createConverterWithProfilesEP20vImage_CGImageFormatS1_PK16ColorSyncProfileS4_",
+          "unslid_pc": "0x18bafe2a0",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 8,
+          "actual_pc": "0x1b2a9d700",
+          "instruction_sample": false,
+          "symbol_address": "0x18baf96e0",
+          "symbol_offset": "0x20",
+          "symbol": "__ZN17IIOColorConverterC1EP20vImage_CGImageFormatS1_PK16ColorSyncProfileS4_",
+          "unslid_pc": "0x18baf9700",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 9,
+          "actual_pc": "0x1b2c59f50",
+          "instruction_sample": false,
+          "symbol_address": "0x18bcb5e20",
+          "symbol_offset": "0x130",
+          "symbol": "__ZN25IIOImagePixelDataProvider25getBytesDataProviderCIF10EPvm",
+          "unslid_pc": "0x18bcb5f50",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 10,
+          "actual_pc": "0x1b2a68740",
+          "instruction_sample": false,
+          "symbol_address": "0x18bac42f4",
+          "symbol_offset": "0x44c",
+          "symbol": "__ZN14PNGWritePlugin8writePNGEP25IIOImagePixelDataProviderP13IIODictionary",
+          "unslid_pc": "0x18bac4740",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        }
+      ],
+      "current_boot_slide_observed": true
+    }
+  ],
+  "symbol_map_sha256": "5bf04681af1819e2379319942a97be635100d6ca3844c5a22e372ce78a83b83d",
+  "symbol_map_bytes": 765432322,
+  "symbol_map_format": "A2S v2; 12-byte header and 12-byte sorted address/offset record",
+  "symbol_map_count": 10898361,
+  "symbol_reader_source_sha256": "feff33a6dcacf280664d1dbe32e8cc93d9c065003057d06f9d986d1117f31874",
+  "diagnostic_tool_source_sha256": "8fc222574e3aa64025d60f7af0827f48d48a9431da83fc934dadad86e393b638",
+  "post_ACK_exit_period_excluded": true,
+  "sample_locations_do_not_prove_root_cause": true,
+  "no_kernel_or_allocator_changes": true
+}

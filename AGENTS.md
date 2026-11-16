@@ -2,20 +2,15 @@
 
 唯一正式源码仓库是ios-xperia-xz1c。所有修补、工具、源码锁、证据与复现步骤在这里维护并提交；Patch/Xperia只作参考/历史入口。开始先读README.md、docs/STATUS.md、docs/BUILD.md、docs/OPERATIONS.md。
 
-## 当前基线
+## 当前基线与真实边界
 
-2026-11-16 static-half-r1：kernel v729/774b5efd保持81源、GLES0a2c7e69保持，Metalbe56ad13完整后台14组实机通过。新增完整2B half/i16常量内存双向按位读写，12case共196608B原输出/前尾guard/NaN位型/fence/创建pipeline后reset的snapshot零差异，序列850..872递增、最终allocated0。原half131072B、MRT1245184B、sampler147456B及3次fresh program binary restore等原13组全部保持。38.860秒完整PON06回程、健康30秒、原worker退出，proof见reproducibility/v729-static-half-r1-native-proof.json；旧13组proof不能准入新静态half库。
+2026-11-16 half-selection-r1：kernel v729/774b5efd、20648064B、81源保持；固定Mesa24.3.4/FD540 GLES0a2c7e69保持；Metal5e94ab57的完整后台14组实际GPU/原bytes/guard/fence/lifecycle已通过，token45a839fc4c105e01、39.062秒完整回程，proof见reproducibility/v729-half-selection-r1-native-proof.json。旧Metalbe56或旧13组proof不能准入新库。half整数选择仅折叠已证等价路径，全部4294967296种float32/12884901888检查及65536 unpack、Mac target ASan/UBSan、131072个host GLES样本通过；WSL ASan基础设施失败单独保留，不能声称其通过。
 
-StaticHalfBits.h和独立patch仅处理完整binary16标量的half/i16等宽访问，LLVMConstBitCast保留原位型；非零offset/不同size/类型/vector等拒绝，原bounds/跨member/padding检查保持。固定BSD-2-Clause ios_sagit引用源码不改。实际LLVM/ASan/UBSan全65536位型×4路径262144检查通过；原earth/post代表常量AIR/ESSL和作者fixture已主机通过，不能推断运行时原常量/面板。详见docs/AIR-STATIC-HALF.md。
+原Aegir r2 token6d17bdf97a8fc7c8已恢复五条nonnull管线并实际出现两次750×1624 GPU draw result0；原extension check-in timeout三次/REVISE与不完整面板保持。新的PNG/ColorSync/释放采样不是旧glLink卡点的同一栈，不凭采样推定VM或颜色故障。postdraw-r1只增加原快照API耗时观察，保持原参数、返回、nil、异常、errno、颜色配置及像素；host真实PNG字节/解码/ICC保持不代替原手机验收。当前唯一controller/token、实际回程和本包CPU门槛以STATUS为准。
 
-cache-r2原星空/云层/threshold实际恢复保持。static-half-r1原Earth类型错误已越过，但冷链接未在check-in/后台240秒内返回。request-export-r2已完整接回两个实际request共142493B，4454段与record/payload/key/identity零差异；原r1长行截断和原失败保持。见PROGRAM-CACHE和STATUS。
+程序cache按实际Metal source-map与GLES派生scope，目录1777 sticky；旧文件/旧scope不改不删。新primer必须只读本scope的实际缺bin请求。完整14组primer8abc57d8已实际编译三个原request；真实request byte/key/identity按原raw匹配，不能用host或不同token替代。原失败、长行截断、partial CPU prefix及后处理拒绝保持，见各reproducibility记录和专题文档。
 
-2026-11-16 half-selection-r1候选：HalfESSL无分支整数选择及仅限恒等/完整literal/精确0/1的折叠，全部4294967296种float32/12884901888比较和65536种unpack零差异/UBSan，Mac同SHA target ASan/UBSan及131072个主机GLES样本通过。实际原Earth主机cold link旧版均>60秒，候选6.934/2.096秒；不能推成手机时耗/UI。新Metal5e94ab57已编译，同kernel774b5efd/GLES0a2c7e69。必须新包CPU→完整14组GPU→新proof→原Aegir；旧be56证明不能准入新库。源码scope按实际Metal source-map/GLES派生，旧cache文件保持，新primer不选旧版本缺bin的request。详见docs/HALF-SELECTION.md。
-
-
-CPU前缀回放校验继续核验原bytes/唯一banner/current token/明确marker/单次库读与完整回程。原postprocessing失败、3,081B partial replay证据和原raw/results/stdout保留，不重发旧包；见ramcpu-partial-replay-r1.json。实际token/in-flight以STATUS为准。
-
-完整壁纸/时间日期/UI/FPS/睡眠/声音/无线及广义texture/depth/stencil/MSAA继续active。主机/离屏/缓存/控制器PASS不能替代原系统绘制与真实面板。历史AGENTS/STATUS在docs/archive/20261116及更早目录，原失败/基线保持。
+完整壁纸/时间日期/UI/FPS/睡眠/声音/无线及广义texture/depth/stencil/MSAA继续active。主机/离屏/缓存/控制器PASS不能替代原系统绘制与真实面板。原AGENTS/STATUS/README已逐字归档docs/archive/20261116，历史source/proof及失败边界保持。
 
 ## 硬件与返回
 
@@ -27,7 +22,7 @@ CPU前缀回放校验继续核验原bytes/唯一banner/current token/明确marke
 
 ## 目录与回收
 
-gpu/sweetgl和gpu/metal是用户态，xnu/lilac-current.patch是完整内核修补；tools/build/device/maintenance和reproducibility在正式仓库维护。deps固定上游源码，build仅构建输出。research只放参考Git仓库，archive/assets/organization只放本地资料；不得提交镜像、备份或私有设备数据。一次性Windows文件放%TEMP%，禁止C:/Users/Cisco He/Desktop。Mac工作路径~/Desktop/ios-xperia-xz1c。
+gpu/sweetgl和gpu/metal是用户态，xnu/lilac-current.patch是完整内核修补；tools/build/device/maintenance和reproducibility在正式仓库维护。deps固定上游源码，build仅构建输出。research只放参考Git仓库，archive/assets/organization只放本地资料；不得提交镜像、备份或私有设备数据。一次性Windows文件放%TEMP%，禁止C:/Users/Cisco He/Desktop。Mac工作路径~/Desktop/ios-xperia-xz1c，~/xnu-autobuild.pause保持，不启动旧常驻构建器。
 
 禁止永久删除。Windows用原生Recycle Bin，WSL废弃文件转Windows回收站，Mac用NSWorkspace/Finder Trash。不得清空Windows/Mac回收站；Ubuntu垃圾桶非空时先转Windows回收站再恢复空目录。flash/fw、unlock救砖/XFL资料、基线和当前卡点证据受保护。保留原结果和失败记录，不覆盖旧试验输出。
 
@@ -35,4 +30,4 @@ gpu/sweetgl和gpu/metal是用户态，xnu/lilac-current.patch是完整内核修�
 
 相机只能override→AF(/cam/1/af)→2秒→MJPEG→每5帧抽1→rotate90；已旋转照片不得再转，grab_cam.py禁用，frame.jpg仅视频失败后单次兜底。一个controller持有COM/camera。
 
-新包必须同kernel/private/owner/ready、对应新包CPU及精确GLES先验，完整payload和Mac源输入复算。主机stub不是硬件验收；原页面、fence、生命周期和真实面板分别验证。ACK前任一native probe失败必须拒绝，回程后的退出期记录另列。不得把离屏PASS当时间/日期/壁纸、FPS、睡眠、声音或无线完成。遵循无人值守授权，不派子代理。
+新包必须同kernel/private/owner/ready、对应新包CPU及精确GLES先验，完整payload和Mac源输入复算。短登记需完全相同kernel/GLES/Metal/source-map的完整native raw proof；新Metal/GLES需自身完整GPU准入，新observer RAM须自身CPU准入。ACK前任一native probe失败必须拒绝，回程后的退出期记录另列。不得把离屏PASS当时间/日期/壁纸、FPS、睡眠、声音或无线完成。遵循无人值守授权，不派子代理。

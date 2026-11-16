@@ -13,9 +13,10 @@ Sony Xperia XZ1 Compact（Snapdragon835 / Adreno540）的开源XNU、shim与Mesa
 | [常量 sampler](docs/METAL-SAMPLERS.md) | 原constexpr字、一字/两字global、两种独立状态、显式LOD；147456B输入/结果/顶点/全部padding实机零差异 |
 | [程序二进制缓存](docs/PROGRAM-CACHE.md) | 标准Mesa binary在3个fresh pipeline恢复；sampler147456B/1881pixels、half131072B与MRT1245184B同轮保持，完整13组原生GPU通过 |
 | [静态half位型](docs/AIR-STATIC-HALF.md) | 常量内存half/i16四种原位型读写、12case/196608B输出与guard、创建后reset的snapshot完整实机通过 |
+| [half链接优化](docs/HALF-SELECTION.md) | 全float32/binary16等位型验证；新Metal完整14组实机通过，原真实request标准binary已预热 |
 | [原Aegir短登记](docs/METAL-REGISTRY-SHORT.md) | 原默认device返回真实A540，threshold管线编译成功；必须有同kernel/GLES/Metal/source-map的完整实机先验 |
 
-[多颜色附件与XR混色](docs/METAL-MRT.md)现已完整实机通过：8附件输出、四XR与BGRA独立blend/writeMask、FP32 image按图元有序混色；1245184B原页面/低位/保护区零差异，523全撤销并38.562秒完整自动回程。static-half-r1现已完整14组/38.860秒回程验证，使用精确新native proof继续验原Aegir壁纸；原缓存已在应用恢复星空/云层/threshold管线。未完成真实锁屏时间/日期/壁纸、完整UI/FPS、睡眠唤醒、声音、Wi-Fi/蓝牙及广义texture/depth/stencil/MSAA。离屏GPU通过不代表完整系统完成。
+[多颜色附件与XR混色](docs/METAL-MRT.md)现已完整实机通过：8附件输出、四XR与BGRA独立blend/writeMask、FP32 image按图元有序混色；1245184B原页面/低位/保护区零差异，523全撤销并38.562秒完整自动回程。当前half-selection-r1已完整14组/39.062秒回程验证；原Aegir现已恢复五条真实管线并出现两次750×1624 GPU draw，check-in超时和不完整面板仍保留。新的[原快照耗时观察](docs/POSTDRAW-OBSERVATION.md)继续区分PNG、ICC转换与绘制开销。未完成真实锁屏时间/日期/壁纸、完整UI/FPS、睡眠唤醒、声音、Wi-Fi/蓝牙及广义texture/depth/stencil/MSAA。离屏GPU通过不代表完整系统完成。
 
 内核修补为xnu/lilac-current.patch及版本诊断增量，用户态源码在gpu/sweetgl与gpu/metal，Mesa修补在gpu/mesa-lilac.patch。固定源码锁、逐源重建和实际输入/结果在reproducibility；当前v729保持81源实际审计，allocator/SCM/PON/RPC/VM冻结。构建/验收入口见[BUILD](docs/BUILD.md)，root配方见[ROOT-GL5](docs/ROOT-GL5.md)。SDK/构建时间可改变产物UUID/SHA，源码重建与新二进制实机准入分别验证。
 
