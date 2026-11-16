@@ -1,0 +1,10 @@
+{
+  "source_files": {
+    "gpu/metal/air/HalfESSL.h": "6c10c9bc5e0f7051cc6275adb4e85ff21e7226b62910537fc4acfa7f3a69dbb4",
+    "tools/build/test_half_target.cpp": "266fa6d49d5177a63cb3cfb7581da2660a7a9a62ddd609aa76dee7babeff3603"
+  },
+  "target_ASan_UBSan": true,
+  "literal_patterns": 65536,
+  "device_operations": 0,
+  "test_binary_sha256": "55b17351781c55ea21a46f429b9bb2af0043626609bc40b23f1b6f2c1e5d3ec9"
+}

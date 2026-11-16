@@ -1,0 +1,57 @@
+{
+  "version": 729,
+  "mode": "ramcpu",
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-static-half-r1-prime-ramcpu-20261116",
+  "token": "f579ecda3dbc2789",
+  "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+  "image_sha256": "98e875fb5e06f2f0c1244f63a7ff2e350587a00283c8ca137fe8ed63b012c78f",
+  "log_sha256": "b0f6d0b00f33816fcafe8c30ea7e4e0fe32287317c582c26ebc79b5637c8cd82",
+  "return_complete": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "f579ecda3dbc2789",
+    "checkpoint_bytes": 343619,
+    "log_bytes": 348842,
+    "log_sha256": "b0f6d0b00f33816fcafe8c30ea7e4e0fe32287317c582c26ebc79b5637c8cd82",
+    "require_final_drain": true,
+    "marker_positions": [
+      4,
+      32,
+      90,
+      92
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 37.875,
+  "single_download_boot_verified": true,
+  "actual_stage_verified": true,
+  "complete_panel_and_peripheral_goal_not_achieved": true,
+  "payload_audit": {
+    "image_sha256": "98e875fb5e06f2f0c1244f63a7ff2e350587a00283c8ca137fe8ed63b012c78f",
+    "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+    "blob_count": 8,
+    "complete_payload_reconstructed_from_compiled_kernel": true
+  },
+  "ram_library_binding": {
+    "library_sha256": "0a2c7e698ae59a1afe8608c884f59e87a344a3952e9b4d52899923b9e295b3db",
+    "library_bytes": 14747088,
+    "library_fnv64": "a716939c63641fb3",
+    "blob_sha256": "61a6bbe3d56fef93a89546535406d53c7f8bd89cc6be0c5a85edc066cc654637",
+    "raw_sha256": "e2d6caa7a3d4efc42dc14cc214c764b7a7e152bf7310da67b09f997df2a1270c",
+    "manifest_sha256": "9595630186c6bdb84e40dcee4617ed67cfab7395b51c4bdda5ba111878b1eaed"
+  },
+  "library_loaded_before_current_live": false,
+  "ram_library_prefix": {
+    "logical_library_reads": 1,
+    "raw_library_reads": 1,
+    "ready_positions": [
+      8968
+    ],
+    "read_positions": [
+      12501
+    ],
+    "startup_block_sha256": "964f8f6981430c1b0f2c910d5f9602133cb3a86c19b12f21f5bb8a65292bd7db",
+    "explicit_exact_prefix_replay": false,
+    "raw_log_unchanged": true
+  }
+}

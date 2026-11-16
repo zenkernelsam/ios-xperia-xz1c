@@ -8,7 +8,10 @@
 
 StaticHalfBits.h和独立patch仅处理完整binary16标量的half/i16等宽访问，LLVMConstBitCast保留原位型；非零offset/不同size/类型/vector等拒绝，原bounds/跨member/padding检查保持。固定BSD-2-Clause ios_sagit引用源码不改。实际LLVM/ASan/UBSan全65536位型×4路径262144检查通过；原earth/post代表常量AIR/ESSL和作者fixture已主机通过，不能推断运行时原常量/面板。详见docs/AIR-STATIC-HALF.md。
 
-cache-r2已在原Aegir实际恢复星空89,821B并返回nonnull，云层84,333B与threshold18,929B也成功创建/恢复。原r2 REVISE/raw保持，完整UI仍因earth/post static initializer memory type mismatch而未完成。该错已精确复现为half→i16、offset0、size2，现经14组硬件验证；下一新原Aegir包CPU/单发GPU，嵌入新14组raw proof。真实cache/prime流程见PROGRAM-CACHE；仅实际runtime request、同build/source/config/payload身份，旧文件不覆盖不删，不延长check-in。
+cache-r2原星空/云层/threshold实际恢复保持。static-half-r1原Earth类型错误已越过，但冷链接未在check-in/后台240秒内返回。request-export-r2已完整接回两个实际request共142493B，4454段与record/payload/key/identity零差异；原r1长行截断和原失败保持。见PROGRAM-CACHE和STATUS。
+
+2026-11-16 half-selection-r1候选：HalfESSL无分支整数选择及仅限恒等/完整literal/精确0/1的折叠，全部4294967296种float32/12884901888比较和65536种unpack零差异/UBSan，Mac同SHA target ASan/UBSan及131072个主机GLES样本通过。实际原Earth主机cold link旧版均>60秒，候选6.934/2.096秒；不能推成手机时耗/UI。新Metal5e94ab57已编译，同kernel774b5efd/GLES0a2c7e69。必须新包CPU→完整14组GPU→新proof→原Aegir；旧be56证明不能准入新库。源码scope按实际Metal source-map/GLES派生，旧cache文件保持，新primer不选旧版本缺bin的request。详见docs/HALF-SELECTION.md。
+
 
 CPU前缀回放校验继续核验原bytes/唯一banner/current token/明确marker/单次库读与完整回程。原postprocessing失败、3,081B partial replay证据和原raw/results/stdout保留，不重发旧包；见ramcpu-partial-replay-r1.json。实际token/in-flight以STATUS为准。
 

@@ -60,7 +60,7 @@ if air_manifest:
     if 'program_cache.c' in bindings:
         assert bindings['program_cache.c']==sha(root/'gpu/sweetgl/program_cache.c')
         assert manifest['frontend_build_binding'].get('program_cache_build_identity')
-        report.update(native_program_binary_cache=True,actual_fresh_context_program_binary_GPU_acceptance_pending=True,
+        report.update(native_program_binary_cache=True,requires_source_scoped_cache=True,actual_fresh_context_program_binary_GPU_acceptance_pending=True,
                       immutable_program_cache_identity=manifest['frontend_build_binding']['program_cache_build_identity']['build_identity'])
 if air_manifest and air_manifest.get('local_static_half_storage_reinterpretation'):
     report.update(native_static_half_bits=True,actual_static_half_GPU_acceptance_pending=True)

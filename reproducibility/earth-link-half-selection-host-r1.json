@@ -1,0 +1,60 @@
+{
+  "source": "actual_runtime_requests",
+  "old_half_source_sha256": "d4af9a9c3af74c3f2345746406986a9b3a40b6ad81de145c858ed419638c60dc",
+  "candidate_half_source_sha256": "e82c6f22d4fe295f510381f559cf83f7a6486b74cbd870802311d5c92a0e825c",
+  "variants": [
+    {
+      "request_vertex_bytes": 4840,
+      "request_fragment_bytes": 86136,
+      "vertex_fnv64": "7b9dad5e6e1c3da0",
+      "fragment_fnv64": "4d770203f10da858",
+      "ordered_xr_mask": 1,
+      "wrapped_vertex_bytes": 4879,
+      "wrapped_fragment_bytes": 89561,
+      "wrapped_vertex_fnv64": "f2eef44db6a198a7",
+      "wrapped_fragment_fnv64": "76c6c0ffd354b6eb",
+      "device_operations": 0,
+      "host_profiles": [
+        {
+          "candidate": false,
+          "exit_code": 124,
+          "log_sha256": "12f19b1ced6c57168038da9261c770ee60bb665371a9e7e899c3e7c611256e4c",
+          "log_tail": "h=/mnt/c/Users/Cisco He/AppData/Local/Temp/lilac-earth-actual-requests-r2-20261116/86136.wrapped.vert type=8b31\ncompile end path=/mnt/c/Users/Cisco He/AppData/Local/Temp/lilac-earth-actual-requests-r2-20261116/86136.wrapped.vert seconds=0.005935 valid=1 error=\ncompile begin path=/mnt/c/Users/Cisco He/AppData/Local/Temp/lilac-earth-actual-requests-r2-20261116/86136.wrapped.frag type=8b30\ncompile end path=/mnt/c/Users/Cisco He/AppData/Local/Temp/lilac-earth-actual-requests-r2-20261116/86136.wrapped.frag seconds=0.019635 valid=1 error=\nlink begin\n"
+        },
+        {
+          "candidate": true,
+          "exit_code": 0,
+          "log_sha256": "5e8473497ad5cfc1ca254a1c02df1589a48ff69300252f39e8c99f6a0bd67c8e",
+          "log_tail": "2-20261116/86136.candidate.vert type=8b31\ncompile end path=/mnt/c/Users/Cisco He/AppData/Local/Temp/lilac-earth-actual-requests-r2-20261116/86136.candidate.vert seconds=0.004442 valid=1 error=\ncompile begin path=/mnt/c/Users/Cisco He/AppData/Local/Temp/lilac-earth-actual-requests-r2-20261116/86136.candidate.frag type=8b30\ncompile end path=/mnt/c/Users/Cisco He/AppData/Local/Temp/lilac-earth-actual-requests-r2-20261116/86136.candidate.frag seconds=0.016963 valid=1 error=\nlink begin\nlink end seconds=17.072361 valid=1 error= no_draw=1 host_only=1\n"
+        }
+      ]
+    },
+    {
+      "request_vertex_bytes": 4840,
+      "request_fragment_bytes": 45773,
+      "vertex_fnv64": "7b9dad5e6e1c3da0",
+      "fragment_fnv64": "826e5a7ebaaf752f",
+      "ordered_xr_mask": 1,
+      "wrapped_vertex_bytes": 4879,
+      "wrapped_fragment_bytes": 49198,
+      "wrapped_vertex_fnv64": "f2eef44db6a198a7",
+      "wrapped_fragment_fnv64": "60ee287119eea370",
+      "device_operations": 0,
+      "host_profiles": [
+        {
+          "candidate": false,
+          "exit_code": 124,
+          "log_sha256": "e4ef2f1ddc078cfb1bfe8caa0af9905921ef0583b575ee911efa428549224f67",
+          "log_tail": "h=/mnt/c/Users/Cisco He/AppData/Local/Temp/lilac-earth-actual-requests-r2-20261116/45773.wrapped.vert type=8b31\ncompile end path=/mnt/c/Users/Cisco He/AppData/Local/Temp/lilac-earth-actual-requests-r2-20261116/45773.wrapped.vert seconds=0.004505 valid=1 error=\ncompile begin path=/mnt/c/Users/Cisco He/AppData/Local/Temp/lilac-earth-actual-requests-r2-20261116/45773.wrapped.frag type=8b30\ncompile end path=/mnt/c/Users/Cisco He/AppData/Local/Temp/lilac-earth-actual-requests-r2-20261116/45773.wrapped.frag seconds=0.009572 valid=1 error=\nlink begin\n"
+        },
+        {
+          "candidate": true,
+          "exit_code": 0,
+          "log_sha256": "7adb64a8aa4b4565d07dcf67c1cdc24ce5ac4d49d0a03d6d0ad71346c705b8a9",
+          "log_tail": "r2-20261116/45773.candidate.vert type=8b31\ncompile end path=/mnt/c/Users/Cisco He/AppData/Local/Temp/lilac-earth-actual-requests-r2-20261116/45773.candidate.vert seconds=0.003968 valid=1 error=\ncompile begin path=/mnt/c/Users/Cisco He/AppData/Local/Temp/lilac-earth-actual-requests-r2-20261116/45773.candidate.frag type=8b30\ncompile end path=/mnt/c/Users/Cisco He/AppData/Local/Temp/lilac-earth-actual-requests-r2-20261116/45773.candidate.frag seconds=0.008966 valid=1 error=\nlink begin\nlink end seconds=5.041033 valid=1 error= no_draw=1 host_only=1\n"
+        }
+      ]
+    }
+  ],
+  "phone_performance_or_UI_not_inferred": true
+}

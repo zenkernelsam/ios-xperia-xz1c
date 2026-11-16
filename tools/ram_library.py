@@ -2,6 +2,8 @@
 import hashlib,json,struct,zlib,re
 from pathlib import Path
 from native_proof import validate as validate_native,header as native_header
+from program_request import specification as request_specification,header as request_header
+from program_cache_scope import specification as cache_scope_specification,header as cache_scope_header
 ROOT=Path(__file__).resolve().parents[1]
 API='a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3'
 HELPER='e65bdc7b70d098725918c637cc8cb1c25a8a544186d0f4468b399fda52024898'
@@ -105,6 +107,19 @@ def load(folder,expected=None):
                 assert observer.get('AIR_sampler_probe') and observer['metal_resources'].get('native_program_binary_cache')
             if observer.get('program_cache_prime'):
                 assert observer.get('program_cache_probe') and observer.get('target_process')=='backboardd'
+            if observer.get('program_cache_scope'):
+                sources|={'gpu/diagnostics/ProgramCacheScope.h','tools/program_cache_scope.py'}
+                assert observer['metal_resources'].get('requires_source_scoped_cache') and observer['metal_resources'].get('native_program_binary_cache')
+                spec=cache_scope_specification(observer['metal_resources'])
+                spec['identity_header_sha256']=sha(cache_scope_header(spec))
+                assert observer['program_cache_scope']==spec
+            if observer.get('program_request_export'):
+                sources|={'gpu/diagnostics/ProgramRequestExport.h','gpu/sweetgl/ProgramCacheCodec.h','gpu/sweetgl/MetalShaderAPI.h','tools/program_request.py'}
+                assert observer.get('program_cache_probe') and observer.get('AIR_static_half_probe') and not observer.get('program_cache_prime')
+                assert observer['target_process']=='backboardd'
+                spec=request_specification(m,observer['program_request_export'].get('framing_revision',1))
+                spec['identity_header_sha256']=sha(request_header(spec))
+                assert observer['program_request_export']==spec
             if observer.get('AIR_static_half_probe'):
                 sources.add('gpu/diagnostics/MetalStaticHalfProbe.h')
                 assert observer.get('AIR_sampler_probe') and observer['AIR_static_half_fixture']['fixture']=='static-half'
@@ -122,6 +137,7 @@ def load(folder,expected=None):
             air=resources['AIR_frontend'];assert air['actual_AIR_stage_translation_verified'] and air['forced_legacy_interface_host_test_passed']
             assert not air['llvm_import_audit']['missing_target_imports']
         assert m['files']['exception_observe.dylib']['sha256']==observer['library_sha256']
+        if resources.get('requires_source_scoped_cache'):assert observer.get('program_cache_scope'),'Source-scoped resource package lacks its matching root'
     assert set(m['files'])==names
     for name,info in m['files'].items():
         offset=info['raw_offset'];size=info['bytes']

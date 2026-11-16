@@ -1,0 +1,17 @@
+{
+  "original_path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-earth-profile-original-r1-20261116\\half-branchless-host-r1.log",
+  "bytes": 1143616712,
+  "sha256": "39d3ede7e00799cdf9b4f1c3ec3316c2e99ac8ffbf10d2a173bf9f50aeb6ac01",
+  "sample_path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-earth-profile-original-r1-20261116\\half-branchless-host-r1.first64k.sample",
+  "sample_sha256": "80f7249afbaedacefba660868b0cd3e50d54ee32e5318a82be1a4eb4d2859eca",
+  "scalar_proof_line": "EXHAUSTIVE float32_inputs=4294967296 pack_round_checks=8589934592 half_unpacks=65536 mismatches=0 seconds=8.535 threads=8",
+  "failure": "WSL_ASAN_STARTUP_SIGNAL_LOOP",
+  "phone_operations": 0,
+  "native_recycle_required": true,
+  "recycle": {
+    "time": "2026-11-16T10:04:29.4920430+08:00",
+    "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-earth-profile-original-r1-20261116\\half-branchless-host-r1.log",
+    "verified_native_recycle": true,
+    "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RACZ43W.log"
+  }
+}

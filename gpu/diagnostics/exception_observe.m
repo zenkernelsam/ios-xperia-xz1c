@@ -12,6 +12,14 @@
 #include <string.h>
 #include <pthread.h>
 #include "MetalProbeStartup.h"
+#if defined(SWEET_PROGRAM_CACHE_SCOPE)
+#include "ProgramCacheScope.h"
+#include "ProgramCacheScopeIdentity.h"
+#endif
+#if defined(SWEET_PROGRAM_CACHE_EXPORT)
+#include "ProgramRequestExport.h"
+#include "ProgramRequestIdentity.h"
+#endif
 #if defined(SWEET_METAL_BACKGROUND_PROBE)
 #include "../sweetgl/sweetgl.h"
 #endif
@@ -252,6 +260,10 @@ static bool run_native_probes(void)
         diagnostic("SWEET PROGRAM CACHE PRIME caller result=%d compiled=%u failed=%u full_native_preverified=1",result,completed,failed);
         native_probes_valid=(result==0) && native_probes_valid;}
 #endif
+#if defined(SWEET_PROGRAM_CACHE_EXPORT)
+    if(native_probes_valid){const char *root=getenv("SWEETGL_PROGRAM_CACHE_DIR");
+        native_probes_valid=sweet_request_export_at(root && *root?root:"/private/var/tmp",sweet_request_identity,diagnostic)==0;}
+#endif
 #if defined(SWEET_METAL_DISCOVERY_PROBE)
     if(native_probes_valid)(void)metal_discovery_probe(diagnostic);
     else diagnostic("SWEET METAL DISCOVERY END result=1 same_original_default=0 original_API=1 GPU_work_preverified=0");
@@ -287,6 +299,19 @@ static void install_observer(void)
     log_fd=open("/dev/null",O_WRONLY|O_CLOEXEC);
 #endif
     previous=objc_setExceptionPreprocessor(observe_exception);
+#if defined(SWEET_PROGRAM_CACHE_SCOPE)
+    int inherited=0,scope_status=sweet_program_cache_scope_at(sweet_cache_scope_directory,&inherited);
+    diagnostic("SWEET PROGRAM CACHE SCOPE identity=%s",sweet_cache_scope_id);
+    diagnostic("SWEET PROGRAM CACHE SCOPE result=%d inherited=%d directory=%s mode=1777 old_files_preserved=1",scope_status,inherited,sweet_cache_scope_directory);
+    if(scope_status){
+#if defined(SWEET_METAL_BACKGROUND_PROBE)
+        diagnostic("SWEET METAL PROBES END process=backboardd result=1 cache_scope_error=%d full_suite=1 background=1",scope_status);
+#else
+        diagnostic("SWEET METAL DISCOVERY END result=1 cache_scope_error=%d original_API=1 GPU_work_preverified=0",scope_status);
+#endif
+        return;
+    }
+#endif
 #if defined(SWEET_METAL_BACKGROUND_PROBE)
     diagnostic("SWEET EXCEPTION observer installed process=backboardd limit=16 original_chain=1");
     pthread_t thread;int status=pthread_create(&thread,NULL,background_probes,NULL);

@@ -3,9 +3,12 @@ import argparse,hashlib,json,subprocess,sys
 from pathlib import Path
 root=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(root/'tools'));from native_proof import validate as validate_native,header as native_header
-p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--metal-resources');p.add_argument('--air-fixture');p.add_argument('--render-fixture');p.add_argument('--constants-fixture');p.add_argument('--register-device',action='store_true');p.add_argument('--xr-probe',action='store_true');p.add_argument('--surface-probe',action='store_true');p.add_argument('--mip-probe',action='store_true');p.add_argument('--target-process',choices=['AegirPoster','backboardd'],default='AegirPoster');p.add_argument('--gles-ram-package');p.add_argument('--registration-only',action='store_true');p.add_argument('--native-proof');p.add_argument('--pipeline-observe',action='store_true');p.add_argument('--narrow-fixture');p.add_argument('--half-fixture');p.add_argument('--mrt-fixture');p.add_argument('--sampler-fixture');p.add_argument('--program-cache-prime',action='store_true');p.add_argument('--static-half-fixture');a=p.parse_args()
+from program_request import specification as request_specification,header as request_header
+from program_cache_scope import specification as cache_scope_specification,header as cache_scope_header
+p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--metal-resources');p.add_argument('--air-fixture');p.add_argument('--render-fixture');p.add_argument('--constants-fixture');p.add_argument('--register-device',action='store_true');p.add_argument('--xr-probe',action='store_true');p.add_argument('--surface-probe',action='store_true');p.add_argument('--mip-probe',action='store_true');p.add_argument('--target-process',choices=['AegirPoster','backboardd'],default='AegirPoster');p.add_argument('--gles-ram-package');p.add_argument('--registration-only',action='store_true');p.add_argument('--native-proof');p.add_argument('--pipeline-observe',action='store_true');p.add_argument('--narrow-fixture');p.add_argument('--half-fixture');p.add_argument('--mrt-fixture');p.add_argument('--sampler-fixture');p.add_argument('--program-cache-prime',action='store_true');p.add_argument('--static-half-fixture');p.add_argument('--program-cache-export',action='store_true');a=p.parse_args()
 if a.pipeline_observe:assert a.registration_only and a.target_process=='AegirPoster'
 if a.program_cache_prime:assert a.target_process=='backboardd' and a.sampler_fixture and not a.registration_only
+if a.program_cache_export:assert a.target_process=='backboardd' and a.static_half_fixture and not a.registration_only and not a.program_cache_prime
 if a.registration_only:
     assert a.target_process=='AegirPoster' and a.metal_resources and a.register_device and a.native_proof
     assert not any((a.air_fixture,a.render_fixture,a.constants_fixture,a.xr_probe,a.surface_probe,a.mip_probe,a.narrow_fixture,a.half_fixture,a.mrt_fixture,a.sampler_fixture,a.static_half_fixture)),'Short registration must not rerun long probes'
@@ -18,7 +21,9 @@ source=root/'gpu/diagnostics/exception_observe.m';before=source.read_bytes()
 headers=['gpu/diagnostics/MetalRuntimeObserve.h','gpu/diagnostics/MetalProbeStartup.h']
 if a.target_process=='backboardd':headers+=['gpu/sweetgl/sweetgl.h']
 if a.pipeline_observe:headers+=['gpu/diagnostics/MetalPipelineObserve.h']
+if a.program_cache_export:headers+=['gpu/diagnostics/ProgramRequestExport.h','gpu/sweetgl/ProgramCacheCodec.h','gpu/sweetgl/MetalShaderAPI.h','tools/program_request.py']
 resource_manifest=None
+cache_scope=None
 fixture_manifest=None
 render_fixture_manifest=None
 constants_fixture_manifest=None
@@ -33,6 +38,12 @@ if a.metal_resources:
     resource_manifest=json.loads((resources/'manifest.json').read_bytes())
     assert resource_manifest['only_explicit_resource_factory'] and resource_manifest['system_Metal_plugin_not_advertised']
     assert hashlib.sha256((resources/'MetalResources.dylib').read_bytes()).hexdigest()==resource_manifest['library_sha256']
+    if resource_manifest.get('requires_source_scoped_cache'):
+        cache_scope=cache_scope_specification(resource_manifest)
+        scope_header=cache_scope_header(cache_scope)
+        (out/'ProgramCacheScopeIdentity.h').write_bytes(scope_header)
+        cache_scope['identity_header_sha256']=hashlib.sha256(scope_header).hexdigest()
+        headers+=['gpu/diagnostics/ProgramCacheScope.h','tools/program_cache_scope.py']
     headers+=['gpu/metal/MetalResources.h']
     if not a.registration_only:
         headers+=['gpu/diagnostics/MetalResourceProbe.h']
@@ -134,6 +145,13 @@ if a.static_half_fixture:
 if resource_manifest and resource_manifest.get('native_static_half_bits') and not a.registration_only:
     assert static_half_fixture_manifest,'New static-half library needs its own complete hardware probe'
 headers=list(dict.fromkeys(headers))
+request_export=None
+if a.program_cache_export:
+    export_ram=json.loads((Path(a.gles_ram_package)/'manifest.json').read_bytes())
+    request_export=request_specification(export_ram,framing_revision=2)
+    request_identity=request_header(request_export)
+    (out/'ProgramRequestIdentity.h').write_bytes(request_identity)
+    request_export['identity_header_sha256']=hashlib.sha256(request_identity).hexdigest()
 source_files={str(source.relative_to(root)):hashlib.sha256(before).hexdigest()}
 for name in headers:
     data=(root/name).read_bytes();(out/Path(name).name).write_bytes(data)
@@ -156,6 +174,12 @@ assert 'owner=device_base selector=initWithAcceleratorPort: present=1 types_hex=
 assert 'SWEET METAL ABI end methods=22 metadata_only=1 instances_created=0 gpu_operations=0' in test
 run(['clang','-O1','-g','-fsanitize=address,undefined',root/'tools/build/test_metal_startup.c','-lpthread','-o',out/'test_startup'],'startup-host-compile')
 assert 'PASS' in run([out/'test_startup'],'startup-host-test')
+if cache_scope:
+    run(['clang','-O1','-g','-fsanitize=address,undefined',root/'tools/build/test_program_cache_scope.c','-o',out/'test_cache_scope'],'cache-scope-host-compile')
+    assert 'PASS' in run([out/'test_cache_scope'],'cache-scope-host-test')
+if a.program_cache_export:
+    run(['clang','-O1','-g','-fsanitize=address,undefined',root/'tools/build/test_program_request_export.c','-o',out/'test_request_export'],'request-export-host-compile')
+    assert 'PASS' in run([out/'test_request_export'],'request-export-host-test')
 if a.pipeline_observe:
     run(['clang','-O1','-g','-fsanitize=address,undefined',root/'tools/build/test_metal_pipeline_observe.m','-framework','Foundation','-framework','Metal','-o',out/'test_pipeline_observer'],'pipeline-host-compile')
     assert 'PASS' in run([out/'test_pipeline_observer'],'pipeline-host-test')
@@ -179,6 +203,8 @@ if sampler_fixture_manifest:extra+=['-DSWEET_AIR_SAMPLER_PROBE=1','-I',out]
 if sampler_fixture_manifest and resource_manifest.get('native_program_binary_cache'):extra+=['-DSWEET_PROGRAM_CACHE_PROBE=1']
 if static_half_fixture_manifest:extra+=['-DSWEET_AIR_STATIC_HALF_PROBE=1','-I',out]
 if a.program_cache_prime:extra+=['-DSWEET_PROGRAM_CACHE_PRIME=1']
+if a.program_cache_export:extra+=['-DSWEET_PROGRAM_CACHE_EXPORT=1','-I',out]
+if cache_scope:extra+=['-DSWEET_PROGRAM_CACHE_SCOPE=1','-I',out]
 if a.target_process=='backboardd':
     gles=Path(a.gles_ram_package).resolve();assert gles.is_relative_to(root/'build')
     gm=json.loads((gles/'manifest.json').read_bytes())
@@ -217,6 +243,8 @@ if sampler_fixture_manifest:manifest.update(AIR_sampler_probe=True,AIR_sampler_f
 if sampler_fixture_manifest and resource_manifest.get('native_program_binary_cache'):manifest['program_cache_probe']=True
 if static_half_fixture_manifest:manifest.update(AIR_static_half_probe=True,AIR_static_half_fixture=static_half_fixture_manifest)
 if a.program_cache_prime:manifest['program_cache_prime']=True
+if request_export:manifest['program_request_export']=request_export
+if cache_scope:manifest['program_cache_scope']=cache_scope
 if a.registration_only:manifest.update(registration_only=True,prior_native_hardware_proof=native_proof,long_native_probes_not_in_constructor=True,
     native_proof_header_sha256=hashlib.sha256((out/'NativeProof.h').read_bytes()).hexdigest())
 if a.pipeline_observe:manifest.update(original_pipeline_observer=True,actual_factory_return_error_pointer_exception_forwarding_host_passed=True)

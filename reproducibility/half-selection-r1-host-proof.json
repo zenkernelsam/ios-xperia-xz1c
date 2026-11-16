@@ -1,0 +1,32 @@
+{
+  "source_files": {
+    "gpu\\metal\\air\\HalfESSL.h": "6c10c9bc5e0f7051cc6275adb4e85ff21e7226b62910537fc4acfa7f3a69dbb4",
+    "gpu\\metal\\air\\half\\reference\\lilac_half_shader_before_selection.glsl": "a20989d3c6f7e932b7cd73bb84ecd8fc9ebfd65fc5ccdfed0347a0681018d514",
+    "tools\\build\\check_half_selection.py": "759f3ee17387017a2d22e3de48e0d43b5b24ef8867dc1cdcf54c0adeb2e4f41d",
+    "tools\\build\\test_half_target.cpp": "266fa6d49d5177a63cb3cfb7581da2660a7a9a62ddd609aa76dee7babeff3603",
+    "tools\\build\\test_half_gles.c": "fe6c11a7ef1815c18225a39f8fdf2740812c3655a3473bb62b1579dca2658437"
+  },
+  "helper_GLSL_sha256": "e82c6f22d4fe295f510381f559cf83f7a6486b74cbd870802311d5c92a0e825c",
+  "scalar_input_patterns": 4294967296,
+  "scalar_comparisons": 12884901888,
+  "half_unpack_patterns": 65536,
+  "exact_literal_patterns": 65536,
+  "host_GLES_values": 131072,
+  "scalar_UBSan": true,
+  "target_UBSan": true,
+  "target_ASan_UBSan": false,
+  "Mac_target_ASan_UBSan_required": true,
+  "host_GLES_UBSan": true,
+  "host_Mesa_ASan": false,
+  "Mesa_ASan_failure_preserved_separately": true,
+  "phone_GPU_evidence_required": true,
+  "logs": {
+    "gles-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "gles-test.log": "3305bf518765e2bbdd2a6107387c794d74cc368ecbf834423670392d1819ba9a",
+    "scalar-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "scalar-test.log": "1ea4e7f4142c99981258ac143eb638d7b8c7f698726632cee05f30f2388c3110",
+    "target-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target-test.log": "bd1d0e096b36ada443eda98d7b0b7d3227f79f3c1e81481c265c5cbb96fb3293"
+  },
+  "device_operations": 0
+}

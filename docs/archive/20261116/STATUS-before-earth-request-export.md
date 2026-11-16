@@ -1,0 +1,23 @@
+# 当前状态 — 2026-11-16
+
+Sony BH905ND69G 当前唯一static-half-r1地球primer GPU轮 in-flight，token6046e6c880760e21、image72243542fff51de1c08684384a524683b6ce65176380439cd87aafe55e6a7384。须等同一worker完整回程后下一轮。primer包CPU tokenf579ecda3dbc2789已通过，37.875秒完整回程/健康/worker退出，rawb0f6d0b00f33816fcafe8c30ea7e4e0fe32287317c582c26ebc79b5637c8cd82。已完成static-half-r1原Aegir GPU。tokenea6e7319b920504a，raw14ab7641f2b09ed6dbbc647f7ad644350780bf5a87b2a8c5c8eb4c1f8bdb2df0，40.343秒完整四marker/健康/worker退出，原REVISE不改。新half/i16类型问题已越过：地球VS/FS编译成功，两份实际request为VS4840B、FS86136B/45773B；实际XR wrapper后编译VS4879B、FS89561B/49198B。当前为地球冷链接check-in timeout，等待新14组backboard primer预热这两份真实请求。原星空/云层缓存仍命中成功；完整UI未完成。原包CPU38.344秒完整回程通过。
+
+已完成static-half-r1完整14组native GPU。token58294c8e0de3c139、raw07fb2c39f2cef68a6be6dd0ec5054b0780d7a2e1fa51b2ef386315b92003164a，38.860秒完整回程/健康/worker退出。新Metal be56ad13/GLES0a2c7e69，static-half12case196608B全部原byte/NaN位型/前尾guard/fence/创建后reset的snapshot均零差异、最终allocated0；原half131072B、MRT1245184B、sampler147456B和缓存等所有原13组保持。新14组proof在v729-static-half-r1-native-proof.json；下一新原Aegir包CPU/单发GPU，不用旧13组证明。已完成cache-r2原Aegir/r2 GPU。token3e81fb7337e3132f，raw64c33fe5b78f680c3d7b4f423f0b9aa090dbbc9b69813ab6fe7d643426cc4814，39.516秒完整回程/健康/worker退出，原REVISE保留。原星空89,821B缓存命中/nonnull；云层84,333B和threshold18,929B也成功创建/缓存恢复。完整UI未完成：aegir_earth_fsh/post_fsh的static initializer memory type mismatch导致nil pipeline，原exception保留。主机用真实AIR已复现为half→i16、offset0、storage/access均2B。当前仅离线修补：限定完整binary16标量按位访问，既有边界/跨成员/填充区检查保留，等待全位型/原shader与新包准入。
+
+原Aegir cache-r2/r1 GPU token0ce1588f579e33f9仍为冷链接check-in timeout，raw421244B/d5538a56e65483f773551954069d791205aca6885ab797c2e9136945276ae714，38.297秒完整回程/健康/worker退出，原REVISE保留。真实request写入result0，VS4840B/FNV7b9dad5e6e1c3da0、FS13074B/FNVec99e82c9e2dd6a3，compile51/72ms成功后link未返回。后续primer只读取本机实际request，该包CPU已完整通过，后台13组/原request预热已完整通过，当前新Aegir/r2须等同一worker完整回程后下一轮。已完成 cache-r2 native GPU。token6dfc08178ea3da43，raw71901fab8f0f1e2b0365af3c49650ead9ed7ea24ee0f4b12fb280a68e813e238，38.984秒完整四marker/健康30秒/原worker退出。13组原生GPU全部通过；3个fresh pipeline导出state2并恢复state1，sampler147456B/1881pixels原字节与保护区零差异，sequences919/925/929；half131072B和MRT1245184B及其它原组保持。新精确完整proof见reproducibility/v729-cache-r2-native-proof.json。新GLES CPU/GPU完整通过；native CPU独立后处理原失败/10项回放测试和原日志保持，已严格原byte复验、未重发，见ramcpu-partial-replay-r1.json。
+
+cache-r1 原生 GPU 轮已结束，token 57f8b2559214d870，452060B raw SHA c2ded7ab2ab2a6a9d8b05298e2a20070d6947e9bbb1f943425cc11a2953cd16c，39.156 秒完整 ACK/DRAIN/RESET/FINAL_DRAIN、健康30秒、原worker退出。原生 sampler 的程序缓存 first_state=0/restored_state=0，原 REVISE 保留，未准入原壁纸。此前这包 CPU token9e87cbca22c75411已通过，37.172秒完整回程。
+
+cache-r1 精确 GLES e30e7a933497c63f2938f04fa866cc963132c0601bf4fcf9a17e747ecce67a7c 的 CPU/GPU 已通过；原生资源、queue、compute/render/constants、XR、Surface、mipmap、narrow、half131072B和MRT1245184B仍通过，但新增缓存验收失败，不能当完整13组成功。失败证据见 reproducibility/v729-cache-r1-native-gpu-failed.json，CPU证据见同目录 v729-cache-r1-native-ramcpu-actual.json。
+
+已定位 Mesa 24.3.4 st_init_limits：禁用 shader-cache 后 get_disk_shader_cache 返回空，NumProgramBinaryFormats 为0，所以没有导出程序二进制。cache-r2候选仅对真实FD540且提供不可变driver identity的后端启用标准程序二进制；冷链接前设置 retrievable hint，补齐格式/长度拒绝日志。实际构建身份、原source/config和payload摘要均参与校验；旧文件不覆盖不删除。Mac独立新Mesa/前端及native包已构建，新GLES0a2c7e698ae59a1afe8608c884f59e87a344a3952e9b4d52899923b9e295b3db、build identity51e6ba632cbac469f3210833ea01f201305b5ca76f7c37bef04504a1c6c9b22d。精确新GLES CPU/GPU、本包CPU和完整13组native GPU均已通过，下一新proof→原Aegir本包CPU/单发GPU，不能跳过硬件准入。
+
+原 Aegir r7 token5a74bb175409f927仍为链接卡点：原vertex/fragment编译约45–96ms成功，glLinkProgram未在原check-in期限前返回。三条同SHA库的符号化栈均在prelink/gl_nir_opts（nir_opt_access/algebraic/find_array_copies），尚未见IR3。固定基址/返回点验证见 reproducibility/original-link-nir-stack-r1.json；原shader仅本地保留。后台预热必须使用实际设备写出的request，不能用长度/摘要不同的host shader替代。
+
+已验 sampler-r1 基线保持：kernel v729 774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec（20648064B、81源）；GLES 1c904bebb1a307d3b5ba55e3406208ec2b8dba854dd736f8a6dca78259e3fd1c；Metal b0b8045bc8b3a8f46e4c67643d3f113d36b8a66b04e0ae4e62dab758e4615636。完整12组后台原始字节、sampler147456B/1881pixels、half131072B及MRT1245184B实机通过，38.719秒完整回程；proof见 reproducibility/v729-sampler-r1-native-proof.json。该旧基线及原证据保持；新cache-r2完整13组已独立通过。
+
+完整锁屏时间/日期/壁纸、系统UI/FPS、睡眠唤醒、声音、Wi-Fi/蓝牙及广义纹理/depth/stencil/MSAA仍未完成，完整目标active。主机/离屏/控制器通过不能推断真实面板或完整系统成功。
+
+操作只BH905ND69G、fastboot -s、COM>=10且VID1209/PID0001、PON只0x06、单download/boot、失败不重发。四回程marker、连续健康30秒及原worker退出后才能下一轮。一个controller持COM/camera；相机override→AF→2秒→MJPEG每5帧抽1→rotate90。gl5/userdata/SD/TA/XFL及救砖输入受保护；allocator/SCM/PON/RPC/VM冻结。Mac旧自动构建器pause保留。
+
+完整历史状态见 docs/archive/20261116/STATUS-before-program-cache.md；既有专题和原失败保留。源码以正式仓库为准，Windows/Mac工具的LF字节和源锁已核对；本轮新修补及证据正提交发布。

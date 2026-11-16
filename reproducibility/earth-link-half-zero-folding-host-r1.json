@@ -1,0 +1,18 @@
+[
+  {
+    "fragment_request_bytes": 86136,
+    "exact_zero_one_rounds_removed": 124,
+    "remaining_round_calls": 726,
+    "candidate_sha256": "2b22815b2606a521eb6d6fc1a24b2cdc2b1a9cdfdb406d62322b8912812a2bf7",
+    "log_sha256": "ed993274caf1093beaa00ce70834de5edcc5c778e5f79b702921a28ce554fb93",
+    "profile_tail": "0261116/86136.candidate.vert type=8b31\ncompile end path=/mnt/c/Users/Cisco He/AppData/Local/Temp/lilac-earth-actual-requests-r2-20261116/86136.candidate.vert seconds=0.007861 valid=1 error=\ncompile begin path=/mnt/c/Users/Cisco He/AppData/Local/Temp/lilac-earth-actual-requests-r2-20261116/86136.zero-folded.frag type=8b30\ncompile end path=/mnt/c/Users/Cisco He/AppData/Local/Temp/lilac-earth-actual-requests-r2-20261116/86136.zero-folded.frag seconds=0.021789 valid=1 error=\nlink begin\nlink end seconds=6.934028 valid=1 error= no_draw=1 host_only=1\n"
+  },
+  {
+    "fragment_request_bytes": 45773,
+    "exact_zero_one_rounds_removed": 62,
+    "remaining_round_calls": 390,
+    "candidate_sha256": "c74c120aea9546dcbb18c47614857e4b374a9ef92f0684ce89fae1ef80a9c0e5",
+    "log_sha256": "d0896b2314659a2970936533a1c0a8b95f3ff3bffcf4743194975b7c87135e1f",
+    "profile_tail": "0261116/45773.candidate.vert type=8b31\ncompile end path=/mnt/c/Users/Cisco He/AppData/Local/Temp/lilac-earth-actual-requests-r2-20261116/45773.candidate.vert seconds=0.003682 valid=1 error=\ncompile begin path=/mnt/c/Users/Cisco He/AppData/Local/Temp/lilac-earth-actual-requests-r2-20261116/45773.zero-folded.frag type=8b30\ncompile end path=/mnt/c/Users/Cisco He/AppData/Local/Temp/lilac-earth-actual-requests-r2-20261116/45773.zero-folded.frag seconds=0.007190 valid=1 error=\nlink begin\nlink end seconds=2.095917 valid=1 error= no_draw=1 host_only=1\n"
+  }
+]

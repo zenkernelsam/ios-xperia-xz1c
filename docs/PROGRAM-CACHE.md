@@ -41,3 +41,5 @@ package_trial.py --version729分别打包ramcpu/gpu；run_trial.py继续强制pr
 本包CPU还验证了真实部分CDC回放：第二个READY只重复第一段3081B的完整行，随后明确replay marker→LIVE，库只在LIVE后读一次。旧后处理错误和原controller PASS/完整回程分别保留；新ramcpu_prefix_evidence.py核验原字节相等、唯一banner/current token、marker边界、精确库长度/FNV/只读状态及唯一读，10项测试含损坏/重复/无marker/多banner拒绝。reproducibility/ramcpu-partial-replay-r1.json记录独立复验，没有改原raw/results/stdout，也没有再次投递该靴。
 
 cache-r2实际原Aegir/r1仍冷链接超时，原REVISE/raw保持；VS4840B/FNV7b9dad5e6e1c3da0、FS13074B/FNVec99e82c9e2dd6a3的真实request已持久化。随后完整backboard primer实际链接9.659070秒（CPU5.399684秒），保存89,821B/0x875f/state2；13组所有原字节保持，37.828秒完整回程。original_prime_evidence.py把原失败、两个源码长度/FNV、同kernel/GLES/Metal/source-map、真正link/stored/13组和完整回程配对验证；不同库的旧r7拒绝。证据见reproducibility/v729-cache-r2-original-prime-actual.json，原Aegir缓存命中及真正UI仍单独验收。
+
+2026-11-16：request-export-r2完整接回两个真实Earth request，32B段/每行≤180B解决固定console tee的长行截断。原r1控制器PASS/后处理失败保留；相同production XR包装复算长度/FNV后才比较主机链接。新HalfESSL与按实际Metal源码/GLES分离的cache scope见[HALF-SELECTION](HALF-SELECTION.md)，仍须新CPU/14组GPU与原系统分别验收。旧超时request/文件保持，不延长check-in。

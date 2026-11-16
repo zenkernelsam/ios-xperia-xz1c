@@ -1,0 +1,42 @@
+{
+  "token": "3abaa85ee54d5414",
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-request-export-r1-a1-gpu-20261116",
+  "image_sha256": "ab46c9dd14adecd37ea22f5b055385beafc70b1ad86f3aa1a3996f3159eb9a4a",
+  "raw_sha256": "7a8dd17c25f32cdb1695765e31e4da72b12b2395bd0e60ed3132c8644ffdce5b",
+  "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+  "GLES_sha256": "0a2c7e698ae59a1afe8608c884f59e87a344a3952e9b4d52899923b9e295b3db",
+  "Metal_sha256": "be56ad130f5a94bb0a1ec4bfabefab52b492a58d1b566222efe7384cac1ae749",
+  "original_controller_result": "PASS",
+  "worker_exit_code": 1,
+  "stage_accepted": false,
+  "reason": "REQUEST_LOG_LINES_TRUNCATED_BEFORE_BYTE_VALIDATION",
+  "request_records_emitted": 2,
+  "request_bytes_expected": 142493,
+  "chunk_count": 1114,
+  "bad_chunk_count": 1113,
+  "received_full_request_not_inferred": true,
+  "payload_audit": {
+    "image_sha256": "ab46c9dd14adecd37ea22f5b055385beafc70b1ad86f3aa1a3996f3159eb9a4a",
+    "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+    "blob_count": 8,
+    "complete_payload_reconstructed_from_compiled_kernel": true
+  },
+  "strict_return": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "3abaa85ee54d5414",
+    "checkpoint_bytes": 974936,
+    "log_bytes": 977884,
+    "log_sha256": "7a8dd17c25f32cdb1695765e31e4da72b12b2395bd0e60ed3132c8644ffdce5b",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      12,
+      57,
+      59
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 38.98399999993853,
+  "original_raw_results_stdout_preserved": true
+}

@@ -4,6 +4,21 @@ from pathlib import Path
 from controller import Artifact
 from package_trial import prove_payload,sha
 from return_evidence import inspect_return
+
+def unfinished_prime(scope,observer):
+    if not observer.get('program_cache_prime'):return []
+    begins=list(re.finditer(r'SWEET PROGRAM CACHE prime_begin vertex_bytes=(\d+) fragment_bytes=(\d+) source_verified=1',scope))
+    if len(begins)!=1:return []
+    block=scope[begins[0].end():]
+    if any(marker in block for marker in ('SWEET PROGRAM CACHE prime_entry','SWEET PROGRAM CACHE PRIME END','SWEET METAL PROBES END')):return []
+    compiled=re.findall(r'SWEET AIR RENDER compile_end stage=(vertex|fragment) wall_us=(\d+) cpu_us=(\d+) cpu_clock=1 status=1',block)
+    link=re.findall(r'SWEET AIR RENDER compile_begin stage=link vertex_bytes=(\d+) fragment_bytes=(\d+)',block)
+    if len(compiled)!=2 or [row[0] for row in compiled]!=['vertex','fragment'] or len(link)!=1 or 'SWEET AIR RENDER compile_end stage=link' in block:return []
+    if 'SWEET AIR STATIC HALF END result=0' not in scope[:begins[0].start()]:return []
+    return [dict(request_vertex_bytes=int(begins[0].group(1)),request_fragment_bytes=int(begins[0].group(2)),
+                 wrapped_vertex_bytes=int(link[0][0]),wrapped_fragment_bytes=int(link[0][1]),
+                 compile_times=[dict(stage=s,wall_us=int(w),cpu_us=int(c)) for s,w,c in compiled],
+                 link_return_not_observed=True,reason='BACKGROUND_ORIGINAL_REQUEST_LINK_INCOMPLETE')]
 def verify(directory):
     root=Path(directory);row=json.loads((root/'results.json').read_bytes())[-1];a=row['artifact']
     assert row['simulated'] is False
@@ -35,13 +50,15 @@ def verify(directory):
     original_missing_API=re.findall(r'SWEET EXCEPTION detail call=\d+ reason="-\[(SweetMTL\w+) ([^ ]+)\]: unrecognized selector',scope)
     missing_API+=original_missing_API
     extension_timeout=re.findall(r'CRASH AegirPoster reason ns 7 code 0x3: extension check-in timeout',scope)
-    if row['result']=='STOP':assert row['reason']=='OBSERVATION_INCOMPLETE' and (registry_assertions or missing_API or extension_timeout) and 'CRASH AegirPoster' in scope
-    assert wrong or failures or cache_failures or registry_assertions or missing_API or extension_timeout,'Actual failure must be present in the current LIVE scope'
+    prime_incomplete=unfinished_prime(scope,a.get('exception_observer',{}))
+    scope_errors=[int(code) for code in re.findall(r'SWEET PROGRAM CACHE SCOPE result=(-?\d+)',scope) if int(code)]
+    if row['result']=='STOP':assert row['reason']=='OBSERVATION_INCOMPLETE' and (scope_errors or prime_incomplete or ((registry_assertions or missing_API or extension_timeout) and 'CRASH AegirPoster' in scope))
+    assert wrong or failures or cache_failures or registry_assertions or missing_API or extension_timeout or prime_incomplete or scope_errors,'Actual failure must be present in the current LIVE scope'
     return dict(source=str(root.resolve()),version=a['version'],token=a['token'],kernel_sha256=a['kernel_sha256'],
         image_sha256=a['sha256'],log_sha256=sha(raw),original_result=row['result'],original_reason=row['reason'],
         actual_failures=wrong,native_GPU_failure_results=list(map(int,failures)),actual_program_cache_failures=cache_failures,registry_assertions=registry_assertions,
         actual_AIR_render_failure_results=render_errors,actual_MRT_context_capability_records=capabilities,actual_MRT_GL_errors=gl_errors,
-        missing_device_API=missing_API,original_exception_missing_API=original_missing_API,original_extension_checkin_timeout_count=len(extension_timeout),payload_audit=payload,strict_return=returned,
+        missing_device_API=missing_API,original_exception_missing_API=original_missing_API,original_extension_checkin_timeout_count=len(extension_timeout),actual_program_prime_incomplete=prime_incomplete,actual_program_cache_scope_errors=scope_errors,payload_audit=payload,strict_return=returned,
         return_seconds_with_health=row['reset_to_fastboot_seconds'],failed_stage_not_accepted=True)
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('directory');p.add_argument('--output',required=True);a=p.parse_args()
