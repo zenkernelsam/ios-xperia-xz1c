@@ -1,0 +1,231 @@
+{
+  "token": "6d17bdf97a8fc7c8",
+  "raw_sha256": "98bcc37136ebaf6fce95b5a0529152c695bf94d20bf2f174bb806ccc59443e4a",
+  "crashes": [
+    {
+      "pid": 285,
+      "current_boot_slide_observed": true,
+      "frames": [
+        {
+          "index": 0,
+          "symbol_address": "0x1c2610e9c",
+          "symbol_offset": "0x8",
+          "symbol": "__kernelrpc_mach_vm_deallocate_trap",
+          "unslid_pc": "0x1c2610ea4"
+        },
+        {
+          "index": 1,
+          "symbol_address": "0x1c2611ea4",
+          "symbol_offset": "0x54",
+          "symbol": "_mach_vm_deallocate",
+          "unslid_pc": "0x1c2611ef8"
+        },
+        {
+          "index": 2,
+          "symbol_address": "0x19455a074",
+          "symbol_offset": "0x8c",
+          "symbol": "_mvm_deallocate_pages",
+          "unslid_pc": "0x19455a100"
+        },
+        {
+          "index": 3,
+          "symbol_address": "0x19455a778",
+          "symbol_offset": "0xc4",
+          "symbol": "_free_large",
+          "unslid_pc": "0x19455a83c"
+        },
+        {
+          "index": 4,
+          "symbol_address": "0x1945687e8",
+          "symbol_offset": "0x1f8",
+          "symbol": "__szone_free",
+          "unslid_pc": "0x1945689e0"
+        }
+      ]
+    },
+    {
+      "pid": 288,
+      "current_boot_slide_observed": true,
+      "frames": [
+        {
+          "index": 0,
+          "symbol_address": "0x18ec96964",
+          "symbol_offset": "0x0",
+          "symbol": "__ZN7CMMBase11NewInternalEmR9CMMMemMgrPKc",
+          "unslid_pc": "0x18ec96964"
+        },
+        {
+          "index": 1,
+          "symbol_address": "0x18eca2d40",
+          "symbol_offset": "0x6d0",
+          "symbol": "__ZN10CMMProfile6GetTagE14icTagSignature",
+          "unslid_pc": "0x18eca3410"
+        },
+        {
+          "index": 2,
+          "symbol_address": "0x18ecace4c",
+          "symbol_offset": "0x114",
+          "symbol": "__ZN10CMMProfile18InnerGetMatrixTagsERA3_P9CMMXYZTagRA3_P11CMMCurveTag",
+          "unslid_pc": "0x18ecacf60"
+        },
+        {
+          "index": 3,
+          "symbol_address": "0x18ecad1e8",
+          "symbol_offset": "0x34",
+          "symbol": "__ZN23CMMMatrixDisplayProfile13GetMatrixTagsERA3_P9CMMXYZTagR12CMMRGBCurves",
+          "unslid_pc": "0x18ecad21c"
+        },
+        {
+          "index": 4,
+          "symbol_address": "0x18ecb5038",
+          "symbol_offset": "0x116c",
+          "symbol": "__ZN17ConversionManager22MakeConversionSequenceEP23CMMProfileInfoContainerP22CMMColorConversionInfoPK14__CFDictionary",
+          "unslid_pc": "0x18ecb61a4"
+        },
+        {
+          "index": 5,
+          "symbol_address": "0x18ecc116c",
+          "symbol_offset": "0x564",
+          "symbol": "_AppleCMMInitializeTransform",
+          "unslid_pc": "0x18ecc16d0"
+        },
+        {
+          "index": 6,
+          "symbol_address": "0x18ec8c9a4",
+          "symbol_offset": "0x300",
+          "symbol": "_ColorSyncTransformCreate",
+          "unslid_pc": "0x18ec8cca4"
+        },
+        {
+          "index": 7,
+          "symbol_address": "0x18bafe18c",
+          "symbol_offset": "0x114",
+          "symbol": "__ZN17IIOColorConverter27createConverterWithProfilesEP20vImage_CGImageFormatS1_PK16ColorSyncProfileS4_",
+          "unslid_pc": "0x18bafe2a0"
+        },
+        {
+          "index": 8,
+          "symbol_address": "0x18baf96e0",
+          "symbol_offset": "0x20",
+          "symbol": "__ZN17IIOColorConverterC1EP20vImage_CGImageFormatS1_PK16ColorSyncProfileS4_",
+          "unslid_pc": "0x18baf9700"
+        },
+        {
+          "index": 9,
+          "symbol_address": "0x18bcb5e20",
+          "symbol_offset": "0x130",
+          "symbol": "__ZN25IIOImagePixelDataProvider25getBytesDataProviderCIF10EPvm",
+          "unslid_pc": "0x18bcb5f50"
+        },
+        {
+          "index": 10,
+          "symbol_address": "0x18bac42f4",
+          "symbol_offset": "0x44c",
+          "symbol": "__ZN14PNGWritePlugin8writePNGEP25IIOImagePixelDataProviderP13IIODictionary",
+          "unslid_pc": "0x18bac4740"
+        },
+        {
+          "index": 11,
+          "symbol_address": "0x18babbe18",
+          "symbol_offset": "0x398",
+          "symbol": "__ZN14PNGWritePlugin8writeAllEv",
+          "unslid_pc": "0x18babc1b0"
+        }
+      ]
+    },
+    {
+      "pid": 291,
+      "current_boot_slide_observed": true,
+      "frames": [
+        {
+          "index": 0,
+          "symbol_address": "0x2066866fc",
+          "symbol_offset": "0x180",
+          "symbol": "_inflateInit2_",
+          "unslid_pc": "0x20668687c"
+        },
+        {
+          "index": 1,
+          "symbol_address": "0x206686e30",
+          "symbol_offset": "0xd0",
+          "symbol": "_inflateInit_",
+          "unslid_pc": "0x206686f00"
+        },
+        {
+          "index": 2,
+          "symbol_address": "0x206684010",
+          "symbol_offset": "0x958",
+          "symbol": "_deflate",
+          "unslid_pc": "0x206684968"
+        },
+        {
+          "index": 3,
+          "symbol_address": "0x18bac8180",
+          "symbol_offset": "0xe8",
+          "symbol": "_png_compress_IDAT",
+          "unslid_pc": "0x18bac8268"
+        },
+        {
+          "index": 4,
+          "symbol_address": "0x18bacaff0",
+          "symbol_offset": "0x180",
+          "symbol": "_png_write_find_filter",
+          "unslid_pc": "0x18bacb170"
+        },
+        {
+          "index": 5,
+          "symbol_address": "0x18bc1fd84",
+          "symbol_offset": "0x308",
+          "symbol": "__cg_png_write_row_sized",
+          "unslid_pc": "0x18bc2008c"
+        },
+        {
+          "index": 6,
+          "symbol_address": "0x18bac42f4",
+          "symbol_offset": "0x464",
+          "symbol": "__ZN14PNGWritePlugin8writePNGEP25IIOImagePixelDataProviderP13IIODictionary",
+          "unslid_pc": "0x18bac4758"
+        },
+        {
+          "index": 7,
+          "symbol_address": "0x18babbe18",
+          "symbol_offset": "0x398",
+          "symbol": "__ZN14PNGWritePlugin8writeAllEv",
+          "unslid_pc": "0x18babc1b0"
+        },
+        {
+          "index": 8,
+          "symbol_address": "0x18bafb7cc",
+          "symbol_offset": "0x68",
+          "symbol": "__ZN14PNGWritePlugin9WriteProcEPvS0_S0_S0_",
+          "unslid_pc": "0x18bafb834"
+        },
+        {
+          "index": 9,
+          "symbol_address": "0x18bae1b74",
+          "symbol_offset": "0x268",
+          "symbol": "__ZN19IIOImageDestination19finalizeDestinationEv",
+          "unslid_pc": "0x18bae1ddc"
+        },
+        {
+          "index": 10,
+          "symbol_address": "0x18bab98e0",
+          "symbol_offset": "0x80",
+          "symbol": "_CGImageDestinationFinalize",
+          "unslid_pc": "0x18bab9960"
+        },
+        {
+          "index": 11,
+          "symbol_address": "0x1891787d8",
+          "symbol_offset": "0x190",
+          "symbol": "_UIImagePNGRepresentation",
+          "unslid_pc": "0x189178968"
+        }
+      ]
+    }
+  ],
+  "source_only_diagnostic": true,
+  "actual_GPU_draws_before_timeout": true,
+  "full_UI_not_inferred": true,
+  "post_ACK_exit_period_excluded": true
+}
