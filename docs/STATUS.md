@@ -1,6 +1,6 @@
 # 当前状态 — 2026-11-17
 
-Sony BH905ND69G当前健康停在fastboot，无controller/串口worker。XR Clear优化GLES72d39da5已独立GLES/完整14组通过；真实请求预热后新原GPUe4eb78cb0e32deba仍REVISE/check-in超时，rawfc94bcce288398f9d4ecf9e6a9574332ed49bb59e54dd3ee80d3d2ac15e9f5b0，40.172秒四回程marker/健康30秒/controller退出。实际750×1624 Clear decode_skipped=1、draw result0/sequence652/original_pages1；单样本wait1.067秒，旧sample2.807秒，约少62%。总snapshot3.719秒/CPU2.570秒仍受管线准备影响，不能宣称总快照或完整UI已改善；面板仍缺壁纸/时间日期。下一步核对新增真实管线请求并预热/剖析CPU，不改冻结内核域。
+Sony BH905ND69G当前健康停在fastboot，无controller/串口worker。Luna实际请求26549B已由新primerbd9e9150与原wrapper哈希配对，完整14组/37.719秒回程通过。随后新原GPUc32999dff23480c9仍REVISE/check-in超时，raw326c86ddb00222e03472bb77c0dbdd90dece096cde414c51eb1fe76104055e25，40.203秒完整回程/健康30秒/controller退出。两次原750×1624 Clear/draw result0/sequence642,689，完整snapshot3.013/2.169秒；PNG均未在原期限内返回，面板仍无壁纸/时间日期。当前GLES72d39da5/Metal5e94ab57/native14保持；下一步只读确认PNG输入契约和内部CPU开销，不凭采样修改冻结VM。
 
 ## 当前新GLES验证
 

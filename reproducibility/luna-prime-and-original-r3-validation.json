@@ -1,0 +1,23 @@
+{
+  "base_commit": "0fc7e9cef20b93d74e782c7285207079f786c25c",
+  "GLES_sha256": "72d39da52e5673755b9419b2038b5db5b876e073fe96b52cae20f4c5944c72b4",
+  "Metal_sha256": "5e94ab57401479b42f506884a172a7a839378a82310661a1f66164e99c21f988",
+  "primer_token": "bd9e9150eeb90197",
+  "complete_native_groups": 14,
+  "actual_source_wrapper_pairing_verified": true,
+  "actual_Luna_fragment_bytes": 26549,
+  "primer_return_seconds_with_health": 37.719,
+  "original_GPU_token": "c32999dff23480c9",
+  "original_result": "REVISE",
+  "original_complete_snapshots_seconds": [
+    3.013161198,
+    2.168719271
+  ],
+  "original_GPU_return_seconds_with_health": 40.203,
+  "original_PNG_calls_remain_incomplete": true,
+  "full_UI_not_achieved": true,
+  "new_source_or_compiled_GPU_kernel_changes": false,
+  "single_download_boot_and_complete_current_token_return_verified": true,
+  "no_inflight_controller_or_serial_worker": true,
+  "next_required_work": "Read-only original PNG input metadata and current-boot symbol samples before choosing lossless image optimization; preserve original pixels/profile/return semantics."
+}

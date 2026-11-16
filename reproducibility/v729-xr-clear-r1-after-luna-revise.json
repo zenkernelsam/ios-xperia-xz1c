@@ -1,0 +1,87 @@
+{
+  "token": "c32999dff23480c9",
+  "raw_sha256": "326c86ddb00222e03472bb77c0dbdd90dece096cde414c51eb1fe76104055e25",
+  "image_sha256": "35cab60c8711a2b398f103d9861f0ca9fad0c2442b3c7863cff0430cb3b2e5c6",
+  "original_result": "REVISE",
+  "original_reason": "EXTENSION_CHECKIN_TIMEOUT",
+  "original_failure_preserved": true,
+  "complete_original_snapshots": [
+    {
+      "pid": 299,
+      "tid": 3863,
+      "call": 3,
+      "root": 3,
+      "depth": 1,
+      "api": "snapshot",
+      "begin_ns": 2713718686145,
+      "original_forwarded": true,
+      "complete": true,
+      "since_snapshot_observer_init_ns": 950508958,
+      "object_tag": "0x10671a600",
+      "wall_ns": 3013161198,
+      "thread_cpu_ns": 609477552,
+      "cpu_valid": true,
+      "outcome": "return",
+      "output_bytes": 0,
+      "returned_nil": false,
+      "original_behavior_preserved": true
+    },
+    {
+      "pid": 302,
+      "tid": 3922,
+      "call": 3,
+      "root": 3,
+      "depth": 1,
+      "api": "snapshot",
+      "begin_ns": 2719234236979,
+      "original_forwarded": true,
+      "complete": true,
+      "since_snapshot_observer_init_ns": 875282657,
+      "object_tag": "0x135a0a9a0",
+      "wall_ns": 2168719271,
+      "thread_cpu_ns": 422758750,
+      "cpu_valid": true,
+      "outcome": "return",
+      "output_bytes": 0,
+      "returned_nil": false,
+      "original_behavior_preserved": true
+    }
+  ],
+  "no_complete_original_PNG": true,
+  "actual_original_GPU_draws": [
+    "SWEET AIR RENDER draw width=750 height=1624 primitive=4 first=0 count=4 instances=1 target_handle=5 result=0 sequence=642 original_pages=1",
+    "SWEET AIR RENDER draw width=750 height=1624 primitive=4 first=0 count=4 instances=1 target_handle=5 result=0 sequence=689 original_pages=1"
+  ],
+  "actual_XR_Clear_elisions": [
+    "SWEET METAL MRT clear_target index=0 format=555 handle=5 width=750 height=1624 result=0 decode_skipped=1 original_code_snapshot=1 original_clear=1",
+    "SWEET METAL MRT clear_target index=0 format=555 handle=5 width=750 height=1624 result=0 decode_skipped=1 original_code_snapshot=1 original_clear=1",
+    "SWEET METAL MRT clear_target index=0 format=555 handle=5 width=750 height=1624 result=0 decode_skipped=1 original_code_snapshot=1 original_clear=1"
+  ],
+  "new_missing_requests": [],
+  "timing_file": "reproducibility/v729-xr-clear-r1-after-luna-observation.json",
+  "camera_frame_sha256": "e1ce56bf6f75bfba19efd85e1fc286e9b3b4bddff6f92b0d8df40ebeaa93a8ac",
+  "camera_already_rotated": 90,
+  "panel_visually_inspected": true,
+  "full_UI_not_achieved": true,
+  "panel_observation": "dark blue/gray background, battery/camera/homebar; wallpaper/time/date absent",
+  "strict_return": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "c32999dff23480c9",
+    "checkpoint_bytes": 428465,
+    "log_bytes": 436413,
+    "log_sha256": "326c86ddb00222e03472bb77c0dbdd90dece096cde414c51eb1fe76104055e25",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      17,
+      114,
+      116
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 40.20299999997951,
+  "no_inflight_controller_or_serial_worker": true,
+  "snapshot_wait_includes_driver_work_and_GPU_time": true,
+  "PNG_pending_sample_does_not_identify_exact_internal_bottleneck": true
+}
