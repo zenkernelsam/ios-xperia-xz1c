@@ -17,3 +17,5 @@
 程序binary身份仍绑定实际GLES/Mesa/context，key仍绑定全部真实source/config/payload；源码目录隔离不替代这些校验。build_metal_library、build_exception_observer、ram_library和实际日志分别强制相同scope。Scope失败正常回程，不延长check-in或修改冻结PON/RPC/VM/SCM/allocator。
 
 当前新Metal5e94ab57已编译，kernel v729/774b5efd与GLES0a2c7e69保持。先本包CPU，再完整14组原字节/fence/生命周期/回程证明，随后新proof准入原Aegir。旧be56ad13证明不准入新库。真实draw/present、完整锁屏/壁纸/UI、FPS和睡眠继续独立验收，以STATUS为准。
+
+完整14组新库实机已通过：token45a839fc4c105e01、rawf9b13434…、39.062秒完整回程/健康/worker退出，见v729-half-selection-r1-native-proof.json及actual.json。全部原页面/低位/保护区与fence、sampler和三次fresh binary恢复保持。原系统/UI继续单独验收。

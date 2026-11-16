@@ -1,8 +1,10 @@
 # 当前状态 — 2026-11-16
 
-Sony BH905ND69G 当前唯一half-selection-r1新包CPU controller in-flight。token `f00d2dbec95bd5bf`、image `0de979b174246125a4f26c49e9c5745ec50a78af977b3b2698104d3b8ad2b2d0`，目录Windows TEMP/lilac-v729-half-selection-r1-native-ramcpu-20261116。须恢复同一worker，完整回程/健康/退出后才发对应新GPU包。新Metal `5e94ab57401479b42f506884a172a7a839378a82310661a1f66164e99c21f988`、observer607bbb63、source-map3e79503f，kernel774b5efd/GLES0a2c7e69保持。
+Sony BH905ND69G 当前健康停在fastboot，half-selection-r1完整14组native GPU已通过并退出唯一worker。token `45a839fc4c105e01`、raw `f9b13434f7207510434b8d0b73d2522883ae07f8b38336788da234d3964da7c6`，39.062秒完整四回程marker/健康30秒/worker exit0；新Metal5e94ab57/GLES0a2c7e69/source-map3e79503f。half131072B、MRT1245184B、sampler147456B、static-half196608B全部原字节/guard/fence/生命周期保持，三个fresh program binary导出state2/恢复state1。新完整proof见v729-half-selection-r1-native-proof.json。
 
-候选[HALF-SELECTION](HALF-SELECTION.md)已做全4294967296种float32、12884901888比较（pack/round等价和round幂等）与65536种unpack，零差异/UBSan；Mac同SHA target ASan/UBSan/65536 literal位型通过，主机GLES131072样本通过。WSL ASan启动失败原日志已原生回收并保留SHA/样本/回收位置，不冒充其通过。新source scope334819af仅创建新shared sticky缓存目录，旧目录/文件保持。GPU完整14组尚待本包CPU后验收，旧be56proof不准入新库。
+本包CPU tokenf00d2dbe已通过、37.922秒回程，raw7ee8f1a0。仅原Aegir短登记新包已编译，observer26d1d1a9，嵌入新14组proof和相同source scope334819af。当前该新包CPU token3bb829a2f938b374 in-flight，须等同一worker完整回程后再单发原GPU。原壁纸/时间日期/UI仍未验收完成。源码已发布ee606ec，Windows/Mac HEAD对齐；原失败和旧be56基线保持。
+
+候选[HALF-SELECTION](HALF-SELECTION.md)已做全4294967296种float32、12884901888比较（pack/round等价和round幂等）与65536种unpack，零差异/UBSan；Mac同SHA target ASan/UBSan/65536 literal位型通过，主机GLES131072样本通过。WSL ASan启动失败原日志已原生回收并保留SHA/样本/回收位置，不冒充其通过。新source scope334819af仅创建新shared sticky缓存目录，旧目录/文件保持。GPU完整14组现已实机通过；原Aegir新包仍需CPU/单发GPU，不能用旧be56proof准入新库。
 
 request-export-r2 token `3fa3a81100888cb9`已完整14组GPU、4454段/142493B真实request、四回程marker、健康30秒及worker exit0通过。raw `4f48814e5e8ca4b53898838a6217acaa99a7218e532fb00133a17d4a50534e2b`。生产XR包装长度/FNV精确匹配原靴；实际原Earth主机旧版两个60秒timeout，新候选6.934/2.096秒。原Apple源码/request只在TEMP；这些不代表手机链接或完整UI成功。r1原长行截断/后处理拒绝及原raw/results/stdout保持。
 
