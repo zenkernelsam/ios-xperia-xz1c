@@ -1,0 +1,57 @@
+{
+  "base_commit": "a70796b6c84837a1f643d883fc4605475c4991ed",
+  "before_lock_sha256": "8fd8fdfb8343a542e3fd878c129ca1b1bac84a6d51ca32a332fef051da028da6",
+  "after_lock_sha256": "a8175b5360276eb626abba03c1544478a9923c86fd5807d6753b9d29a33602a1",
+  "updated_sources": [
+    {
+      "path": "tools/device/package_trial.py",
+      "before_sha256": "8c1f233f83af0b961b7d36bb25cb50d0276f5576900b5cac0b041a3f5c293c9a",
+      "after_sha256": "0ab174a494fb889266102dcb69df1394e4fc25e6269478e3976b351e8710b8ee"
+    },
+    {
+      "path": "tools/device/cif10_reference_evidence.py",
+      "before_sha256": "0aa6283cc0b4e3a0fa2d721534c37631157cb32226bfd36679159764fdd87799",
+      "after_sha256": "4516dd71cb48567d10137eb586f16da169c063ce1d6bf4c01abb3ecefe227ca1"
+    },
+    {
+      "path": "tools/device/test_cif10_reference_evidence.py",
+      "before_sha256": "97e44c5e95ce9777b9f70827f9bd86e53c8bf1fed7dd14eb1dfd190441752aea",
+      "after_sha256": "71fd958e3eac522c0469fff90e1e36ba2a9a7c39882da333484b48def61b8dbe"
+    },
+    {
+      "path": "tools/ram_library.py",
+      "before_sha256": "928f350455a3d01f6de0a08c53ed55e466c9ec6e3a48ab043762fce1ec3906ff",
+      "after_sha256": "26283ab7757bbbc1565cfb529b2ac4764300726ff7dddea0bb767c290d77b051"
+    },
+    {
+      "path": "tools/build/build_exception_observer.py",
+      "before_sha256": "0a2edc4e71c4de860997839e45797f69977e330bc82835ede86f22968174018f",
+      "after_sha256": "0366648819d6bc325e1a02057a48ca292cfd926bbeb5c0c16b27008d4489ca70"
+    },
+    {
+      "path": "tools/build/test_cif10_png_reference.m",
+      "before_sha256": "7125c058a3a4c8f5196ca58edc71c8150b6acd7f1ed51332d0ed3de2676a6d10",
+      "after_sha256": "8b814b5d031a5418eb4117934f21121212959a7179645ef6b519b28eed2a0871"
+    },
+    {
+      "path": "gpu/diagnostics/CIF10PNGReferenceProbe.h",
+      "before_sha256": "29ec6ed03e9fb3d1dd8fa4f0533f19744f823f54027c9a2387a9844fb32a8f76",
+      "after_sha256": "3ad34a8ba3833d687f1bea1820df2703100889473525f0c96e715c0fefde0d45"
+    },
+    {
+      "path": "gpu/diagnostics/CIF10VImageCompare.h",
+      "before_sha256": "eee3b40c5fcb54e356262eae702ec15911e21fd8612e98f40765625cdfd36b9f",
+      "after_sha256": "60387397043d88ab01dadadfbadd21054b1476182c19e412f3bd30e384840079"
+    }
+  ],
+  "new_sources": [
+    {
+      "path": "gpu/diagnostics/CIF10PNGFilterCompare.h",
+      "sha256": "f197d401f6d06d503f431ad14ff781c77d814e592ed91351bc30d1c114ca69fa"
+    }
+  ],
+  "kernel_GLES_Metal_unchanged": true,
+  "reference_revision": 3,
+  "prospective_difference_telemetry_renamed_without_weakening_GPU_guard": true,
+  "no_optimizer_installed": true
+}

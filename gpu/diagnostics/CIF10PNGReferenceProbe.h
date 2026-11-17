@@ -44,16 +44,17 @@ static void cif10_reference_export(CIF10ReferenceEmit emit,unsigned index,const 
         emit("SWEET CIF10 DATA case=%u kind=%s offset=%zu bytes=%zu hex=%s",index,kind,at,count,hex);
     }
 }
+#include "CIF10PNGFilterCompare.h"
 static bool cif10_png_reference_probe(CIF10ReferenceEmit emit)
 {
     mach_timebase_info_data_t timebase={0};
     int result=(!emit || mach_timebase_info(&timebase) || !timebase.numer || !timebase.denom)?1:0;
     if(!emit)return false;
-    emit("SWEET CIF10 CONFIG revision=2 PNG_exports=1 vImage_modes=2 original_options=1 converter_installed=0");
-    emit("SWEET CIF10 REFERENCE BEGIN cases=5 original_API=1 author_generated=1 original_UI_pixels_read=0 converter_installed=0");
+    emit("SWEET CIF10 CONFIG revision=3 PNG_exports=1 vImage_modes=2 filter_policies=3 original_options=1 converter_installed=0");
+    emit("SWEET CIF10 REFERENCE BEGIN cases=6 original_API=1 author_generated=1 original_UI_pixels_read=0 converter_installed=0");
     unsigned completed=0;
-    for(unsigned index=1;index<=5 && !result;++index) { @autoreleasepool {
-        size_t width=index==5?750:1024,height=index==5?1624:1;
+    for(unsigned index=1;index<=6 && !result;++index) { @autoreleasepool {
+        size_t width=index>=5?750:1024,height=index>=5?1624:1;
         size_t length=width*height*4;NSMutableData *input=[NSMutableData dataWithLength:length];
         uint8_t *raw=input.mutableBytes;
         uint32_t top=index==2?0:0xc0000000;
@@ -62,7 +63,8 @@ static bool cif10_png_reference_probe(CIF10ReferenceEmit emit)
             if(index<=2)r=g=b=i&1023;
             else if(index==3){r=i&1023;g=b=384;}
             else if(index==4){r=i&1023;g=(i*17)&1023;b=(i*73)&1023;}
-            else {r=(unsigned)(x*17+y*3)&1023;g=(unsigned)(x*7+y*29)&1023;b=(unsigned)(x*31+y*11)&1023;}
+            else if(index==5){r=(unsigned)(x*17+y*3)&1023;g=(unsigned)(x*7+y*29)&1023;b=(unsigned)(x*31+y*11)&1023;}
+            else {r=384+(unsigned)(x*511/(width-1));g=384+(unsigned)(y*511/(height-1));b=384+(unsigned)((x+y)*511/(width+height-2));}
             uint32_t word=top|(r<<20)|(g<<10)|b;memcpy(raw+4*(y*width+x),&word,4);
         }
         uint64_t input_hash=cif10_reference_fnv(raw,length);
@@ -102,6 +104,7 @@ static bool cif10_png_reference_probe(CIF10ReferenceEmit emit)
                 index,(int)CGColorSpaceGetModel(CGImageGetColorSpace(decoded)),color_name,icc?(long)CFDataGetLength(icc):0,
                 (unsigned long long)(icc?cif10_reference_fnv(CFDataGetBytePtr(icc),(size_t)CFDataGetLength(icc)):0));
             if(!cif10_vimage_record(emit,index,image,decoded,pixels,timebase)){result=13;break;}
+            if(!cif10_png_filter_record(emit,index,image,png,decoded,pixels,icc,timebase)){result=14;break;}
             if(index<=4) {
                 if(CFDataGetLength(pixels)>32768 || png.length>32768){result=10;break;}
                 cif10_reference_export(emit,index,"pixels",pixels);
@@ -118,5 +121,5 @@ static bool cif10_png_reference_probe(CIF10ReferenceEmit emit)
         }
     }}
     emit("SWEET CIF10 REFERENCE END result=%d cases=%u original_API=1 author_generated=1 original_UI_pixels_read=0 converter_installed=0",result,completed);
-    return !result && completed==5;
+    return !result && completed==6;
 }

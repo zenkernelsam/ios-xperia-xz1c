@@ -10,11 +10,14 @@ INPUT=re.compile(r'SWEET CIF10 INPUT case=(\d+) width=(\d+) height=(\d+) bpc=10 
 PNG=re.compile(r'SWEET CIF10 PNG case=(\d+) bytes=(\d+) fnv=([0-9a-f]{16}) wall_ns=(\d+) cpu_ns=(\d+) cpu_valid=([01]) returned_nil=0 original_API=1')
 DECODE=re.compile(r'SWEET CIF10 DECODE case=(\d+) width=(\d+) height=(\d+) bpc=(\d+) bpp=(\d+) pitch=(\d+) bitmap=(0x[0-9a-f]+) alpha=(\d+) bytes=(\d+) fnv=([0-9a-f]{16})')
 COLOR=re.compile(r'SWEET CIF10 COLOR case=(\d+) model=(-?\d+) name=(\S+) icc_bytes=(\d+) icc_fnv=([0-9a-f]{16})')
-DATA=re.compile(r'SWEET CIF10 DATA case=(\d+) kind=(pixels|icc|png) offset=(\d+) bytes=(\d+) hex=([0-9a-f]+)')
+DATA=re.compile(r'SWEET CIF10 DATA case=(\d+) kind=(pixels|icc|png|baseline_png|none_png|up_png) offset=(\d+) bytes=(\d+) hex=([0-9a-f]+)')
 CASE_END=re.compile(r'SWEET CIF10 CASE END case=(\d+) result=0 input_unchanged=1 API_forwarded=1 prediction_used=0')
 CONFIG='SWEET CIF10 CONFIG revision=2 PNG_exports=1 vImage_modes=2 original_options=1 converter_installed=0'
-VIMAGE=re.compile(r'SWEET CIF10 VIMAGE case=(\d+) mode=(default|direct) status=(-?\d+) bytes=(\d+) fnv=([0-9a-f]{16}) mismatches=(\d+) guard=([01]) buffer=([01])')
+CONFIG3='SWEET CIF10 CONFIG revision=3 PNG_exports=1 vImage_modes=2 filter_policies=3 original_options=1 converter_installed=0'
+VIMAGE=re.compile(r'SWEET CIF10 VIMAGE case=(\d+) mode=(default|direct) status=(-?\d+) bytes=(\d+) fnv=([0-9a-f]{16}) (?:mismatches|differences)=(\d+) guard=([01]) buffer=([01])')
 VIMAGE_TIME=re.compile(r'SWEET CIF10 VIMAGE TIME case=(\d+) mode=(default|direct) wall_ns=(\d+) cpu_ns=(\d+) cpu_valid=([01])')
+FILTER=re.compile(r'SWEET CIF10 FILTER case=(\d+) policy=(baseline|none|up) result=(\d+) bytes=(\d+) fnv=([0-9a-f]{16}) pixels_equal=([01]) ICC_equal=([01]) metadata_equal=([01]) PNG_equal=([01])')
+FILTER_TIME=re.compile(r'SWEET CIF10 FILTER TIME case=(\d+) policy=(baseline|none|up) wall_ns=(\d+) cpu_ns=(\d+) cpu_valid=([01])')
 
 
 def fnv(data):
@@ -24,7 +27,7 @@ def fnv(data):
 
 
 def authored_input(index):
-    width,height=(750,1624) if index==5 else (1024,1)
+    width,height=(750,1624) if index>=5 else (1024,1)
     data=bytearray(width*height*4)
     top=0 if index==2 else 0xc0000000
     for y in range(height):
@@ -33,7 +36,8 @@ def authored_input(index):
             if index<=2:r=g=b=i&1023
             elif index==3:r,g,b=i&1023,384,384
             elif index==4:r,g,b=i&1023,(i*17)&1023,(i*73)&1023
-            else:r,g,b=(x*17+y*3)&1023,(x*7+y*29)&1023,(x*31+y*11)&1023
+            elif index==5:r,g,b=(x*17+y*3)&1023,(x*7+y*29)&1023,(x*31+y*11)&1023
+            else:r,g,b=384+x*511//(width-1),384+y*511//(height-1),384+(x+y)*511//(width+height-2)
             struct.pack_into('<I',data,i*4,top|(r<<20)|(g<<10)|b)
     return data
 
@@ -70,8 +74,8 @@ def png_container(data,reference,row):
         decoded.extend(current);previous=current
     for i in range(0,len(decoded),2):decoded[i],decoded[i+1]=decoded[i+1],decoded[i]
     assert row['decoded']['bits_per_component']==16 and row['decoded']['bits_per_pixel']==48 and row['decoded']['bitmap_info']=='0x1000'
-    assert all(decoded[y*pitch:(y+1)*pitch]==reference[y*row['decoded']['pitch']:y*row['decoded']['pitch']+pitch] for y in range(height))
-    return dict(chunks=chunks,metadata_sha256=hashlib.sha256(metadata).hexdigest(),IDAT_defiltered_pixels_match_original_CG_decode=True)
+    if reference is not None:assert all(decoded[y*pitch:(y+1)*pitch]==reference[y*row['decoded']['pitch']:y*row['decoded']['pitch']+pitch] for y in range(height))
+    return dict(chunks=chunks,metadata_sha256=hashlib.sha256(metadata).hexdigest(),IDAT_defiltered_pixels_match_original_CG_decode=reference is not None)
 
 
 def parse(text,token,revision=1):
@@ -79,19 +83,20 @@ def parse(text,token,revision=1):
     assert text.count(live)==text.count(ack)==1
     start,finish=text.index(live),text.index(ack);assert start<finish
     scope=text[start:finish]
-    assert revision in (1,2) and scope.count(CONFIG)==(1 if revision==2 else 0)
-    assert scope.count(BEGIN)==scope.count(END)==1
-    begin,end=scope.index(BEGIN),scope.index(END);assert begin<end
+    assert revision in (1,2,3) and scope.count(CONFIG)==(1 if revision==2 else 0) and scope.count(CONFIG3)==(1 if revision==3 else 0)
+    case_count=6 if revision==3 else 5;start_marker=BEGIN.replace('cases=5',f'cases={case_count}');end_marker=END.replace('cases=5',f'cases={case_count}')
+    assert scope.count(start_marker)==scope.count(end_marker)==1
+    begin,end=scope.index(start_marker),scope.index(end_marker);assert begin<end
     assert 'SWEET AIR STATIC HALF END result=0' in scope[:begin]
     assert 'SWEET METAL PROBES END process=backboardd result=0' in scope[end:]
     rows={};payloads={};current=None
-    events=sorted((m.start(),kind,m) for kind,pattern in (('input',INPUT),('png',PNG),('decode',DECODE),('color',COLOR),('vimage',VIMAGE),('vimage_time',VIMAGE_TIME),('data',DATA),('end',CASE_END)) for m in pattern.finditer(scope))
+    events=sorted((m.start(),kind,m) for kind,pattern in (('input',INPUT),('png',PNG),('decode',DECODE),('color',COLOR),('vimage',VIMAGE),('vimage_time',VIMAGE_TIME),('filter',FILTER),('filter_time',FILTER_TIME),('data',DATA),('end',CASE_END)) for m in pattern.finditer(scope))
     for _,kind,m in events:
-        index=int(m[1]);assert 1<=index<=5
+        index=int(m[1]);assert 1<=index<=case_count
         if kind=='input':
             assert current is None and index==len(rows)+1
             width,height,pitch=map(int,m.groups()[1:4]);bitmap,top,digest=m.groups()[4:]
-            assert (width,height)==((750,1624) if index==5 else (1024,1)) and pitch==width*4
+            assert (width,height)==((750,1624) if index>=5 else (1024,1)) and pitch==width*4
             assert bitmap=='0x42000' and int(top,16)==(0 if index==2 else 0xc0000000)
             assert fnv(authored_input(index))==digest
             rows[index]=dict(case=index,width=width,height=height,input_fnv=digest,input_bitmap=bitmap,top_bits=top,
@@ -115,7 +120,8 @@ def parse(text,token,revision=1):
                 if int(m[4])==0:assert m[5]=='0000000000000000'
                 row['color']=dict(model=int(m[2]),name=m[3],icc_bytes=int(m[4]),icc_fnv=m[5])
             elif kind=='vimage':
-                assert revision==2 and 'color' in row;mode=m[2];values=row.setdefault('vImage',{});assert mode not in values
+                assert revision>=2 and 'color' in row;mode=m[2];values=row.setdefault('vImage',{});assert mode not in values
+                assert (' differences=' if revision==3 else ' mismatches=') in m[0]
                 status,size,diffs=int(m[3]),int(m[4]),int(m[6]);assert size==row['decoded']['bytes'] and 0<=diffs<=size and m[7]=='1'
                 if status:assert m[5]=='0000000000000000' and diffs==0
                 else:
@@ -123,16 +129,24 @@ def parse(text,token,revision=1):
                     if not diffs:assert m[5]==row['decoded']['fnv']
                 values[mode]=dict(status=status,bytes=size,fnv=m[5],byte_mismatches=diffs,guard_valid=True,buffer_identity=m[8]=='1',pixels_match=not status and not diffs)
             elif kind=='vimage_time':
-                assert revision==2;value=row['vImage'][m[2]];assert 'wall_ns' not in value
+                assert revision>=2;value=row['vImage'][m[2]];assert 'wall_ns' not in value
                 assert m[5]=='1' or int(m[4])==0
+                value.update(wall_ns=int(m[3]),thread_cpu_ns=int(m[4]),cpu_valid=m[5]=='1')
+            elif kind=='filter':
+                assert revision==3 and 'color' in row;policy=m[2];values=row.setdefault('filters',{});assert policy not in values
+                status,size=int(m[3]),int(m[4]);assert 0<=size<=16<<20
+                values[policy]=dict(result=status,bytes=size,fnv=m[5],pixels_equal=m[6]=='1',ICC_equal=m[7]=='1',metadata_equal=m[8]=='1',PNG_equal=m[9]=='1')
+                if status:assert m[6]==m[7]==m[8]==m[9]=='0'
+            elif kind=='filter_time':
+                assert revision==3;value=row['filters'][m[2]];assert 'wall_ns' not in value and (m[5]=='1' or int(m[4])==0)
                 value.update(wall_ns=int(m[3]),thread_cpu_ns=int(m[4]),cpu_valid=m[5]=='1')
             elif kind=='data':
                 assert 'color' in row
                 label,offset,count,encoded=m.groups()[1:];offset,count=int(offset),int(count)
                 assert 0<count<=48 and len(encoded)==count*2
                 key=(index,label);data=payloads.setdefault(key,bytearray());assert offset==len(data)
-                maximum=row['decoded']['bytes'] if label=='pixels' else row['PNG']['bytes'] if label=='png' else row['color']['icc_bytes']
-                assert (label=='pixels' and index<=4 and maximum<=32768) or (label=='icc' and index==1) or (label=='png' and revision==2 and index<=4 and maximum<=32768)
+                maximum=row['decoded']['bytes'] if label=='pixels' else row['PNG']['bytes'] if label=='png' else row['filters'][label[:-4]]['bytes'] if label.endswith('_png') else row['color']['icc_bytes']
+                assert (label=='pixels' and index<=4 and maximum<=32768) or (label=='icc' and index==1) or (label=='png' and revision>=2 and index<=4 and maximum<=32768) or (label.endswith('_png') and revision==3 and index==1 and maximum<=32768)
                 data.extend(bytes.fromhex(encoded));assert len(data)<=maximum
             else:
                 assert 'color' in row and not row['complete']
@@ -141,20 +155,28 @@ def parse(text,token,revision=1):
                         data=payloads[(index,label)];assert len(data)==size and fnv(data)==digest
                         row[label+'_sha256']=hashlib.sha256(data).hexdigest()
                 row['complete']=True;current=None
-                if revision==2:
+                if revision>=2:
                     assert set(row['vImage'])=={'default','direct'} and all('wall_ns' in v for v in row['vImage'].values())
                     if index<=4:
                         data=payloads[(index,'png')];assert len(data)==row['PNG']['bytes'] and fnv(data)==row['PNG']['fnv']
                         row['PNG']['sha256']=hashlib.sha256(data).hexdigest();row['PNG_container']=png_container(data,payloads[(index,'pixels')],row)
-    assert list(rows)==[1,2,3,4,5] and current is None and all(row['complete'] for row in rows.values())
-    for label,pattern in (('INPUT',INPUT),('PNG',PNG),('DECODE',DECODE),('COLOR',COLOR),('DATA',DATA),('CASE END',CASE_END),('VIMAGE case=',VIMAGE),('VIMAGE TIME',VIMAGE_TIME)):
-        prefix='SWEET CIF10 '+label+('' if label=='VIMAGE case=' else ' ')
+                if revision==3:
+                    assert set(row['filters'])=={'baseline','none','up'} and all('wall_ns' in v for v in row['filters'].values())
+                    if index==1:
+                        for policy,value in row['filters'].items():
+                            if not value['result'] and value['bytes']<=32768:
+                                data=payloads[(index,policy+'_png')];assert len(data)==value['bytes'] and fnv(data)==value['fnv']
+                                value['sha256']=hashlib.sha256(data).hexdigest();value['container']=png_container(data,payloads[(index,'pixels')] if value['pixels_equal'] else None,row)
+    assert list(rows)==list(range(1,case_count+1)) and current is None and all(row['complete'] for row in rows.values())
+    for label,pattern in (('INPUT',INPUT),('PNG',PNG),('DECODE',DECODE),('COLOR',COLOR),('DATA',DATA),('CASE END',CASE_END),('VIMAGE case=',VIMAGE),('VIMAGE TIME',VIMAGE_TIME),('FILTER case=',FILTER),('FILTER TIME',FILTER_TIME)):
+        prefix='SWEET CIF10 '+label+('' if label in ('VIMAGE case=','FILTER case=') else ' ')
         assert scope.count(prefix)==len(list(pattern.finditer(scope)))
     for index in range(1,5):
         row=rows[index];data=payloads[(index,'pixels')];pixel=row['decoded']['bits_per_pixel']//8
         row['decoded_samples']=[dict(column=x,raw_hex=data[x*pixel:(x+1)*pixel].hex()) for x in (0,1,383,384,385,509,510,511,893,894,895,1023)]
     return dict(token=token,reference_revision=revision,cases=list(rows.values()),original_UIImage_API_referenced=True,author_generated_inputs_only=True,
-                vImage_all_pixel_stages_match=revision==2 and all(v['pixels_match'] for row in rows.values() for v in row['vImage'].values()),
+                vImage_all_pixel_stages_match=revision>=2 and all(v['pixels_match'] for row in rows.values() for v in row['vImage'].values()),
+                filter_policies_match_original=({p:all(not r['filters'][p]['result'] and r['filters'][p]['pixels_equal'] and r['filters'][p]['ICC_equal'] and r['filters'][p]['metadata_equal'] for r in rows.values()) for p in ('baseline','none','up')} if revision==3 else {}),
                 installed_converter=False,does_not_admit_lossless_optimization=True,does_not_complete_original_UI=True,
                 post_ACK_exit_period_excluded=True),payloads
 

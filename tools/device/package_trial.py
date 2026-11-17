@@ -217,9 +217,12 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
     if mode=='gpu' and m.get('exception_observer',{}).get('program_request_export'):
         common+=['SWEET PROGRAM REQUEST EXPORT END result=0 records=2 bytes=[0-9]+ limit=262144 read_only=1 no_compile=1']
     if mode=='gpu' and m.get('exception_observer',{}).get('cif10_PNG_reference'):
-        common+=['SWEET CIF10 REFERENCE END result=0 cases=5 original_API=1 author_generated=1 original_UI_pixels_read=0 converter_installed=0']
+        ref=m['exception_observer'];cases=ref['cif10_reference_cases']
+        common+=['SWEET CIF10 REFERENCE END result=0 cases='+str(cases)+' original_API=1 author_generated=1 original_UI_pixels_read=0 converter_installed=0']
         if m['exception_observer']['cif10_reference_revision']==2:
             common+=['SWEET CIF10 CONFIG revision=2 PNG_exports=1 vImage_modes=2 original_options=1 converter_installed=0']
+        if ref['cif10_reference_revision']==3:
+            common+=['SWEET CIF10 CONFIG revision=3 PNG_exports=1 vImage_modes=2 filter_policies=3 original_options=1 converter_installed=0']
     if mode=='gpu' and m.get('exception_observer',{}).get('program_cache_scope'):
         scope=m['exception_observer']['program_cache_scope']
         common+=['SWEET PROGRAM CACHE SCOPE identity='+scope['identity'],

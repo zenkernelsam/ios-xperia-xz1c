@@ -27,7 +27,7 @@ if a.target_process=='backboardd':headers+=['gpu/sweetgl/sweetgl.h']
 if a.pipeline_observe:headers+=['gpu/diagnostics/MetalPipelineObserve.h']
 if a.postdraw_observe:headers+=['gpu/diagnostics/PostDrawObserve.h']
 if a.snapshot_observe:headers+=['gpu/diagnostics/SnapshotMethodObserve.h']
-if a.cif10_png_reference:headers+=['gpu/diagnostics/CIF10PNGReferenceProbe.h','gpu/diagnostics/CIF10VImageCompare.h']
+if a.cif10_png_reference:headers+=['gpu/diagnostics/CIF10PNGReferenceProbe.h','gpu/diagnostics/CIF10VImageCompare.h','gpu/diagnostics/CIF10PNGFilterCompare.h']
 if a.program_cache_export:headers+=['gpu/diagnostics/ProgramRequestExport.h','gpu/sweetgl/ProgramCacheCodec.h','gpu/sweetgl/MetalShaderAPI.h','tools/program_request.py']
 resource_manifest=None
 cache_scope=None
@@ -256,10 +256,11 @@ if a.target_process=='AegirPoster':manifest.update(renderer_abi_and_device_obser
 manifest.update(source_files=source_files,runtime_Metal_ABI_methods=22,metadata_observer_no_device_calls_test_passed=True)
 manifest.update(probe_startup_revision=1,actual_startup_readiness_host_asan_ubsan_passed=True,startup_host_source_sha256=hashlib.sha256((root/'tools/build/test_metal_startup.c').read_bytes()).hexdigest())
 if a.target_process=='backboardd':manifest.update(background_full_suite=True,waits_for_same_process_GLES_suite=True,original_Aegir_not_modified_or_registered=True)
-if a.cif10_png_reference:manifest.update(cif10_PNG_reference=True,cif10_reference_revision=2,cif10_reference_cases=5,
+if a.cif10_png_reference:manifest.update(cif10_PNG_reference=True,cif10_reference_revision=3,cif10_reference_cases=6,
     cif10_reference_author_pixels_only=True,cif10_reference_original_UIImage_API=True,cif10_reference_converter_not_installed=True,
     cif10_reference_host_fixture_bounds_nil_throw_input_passed=True,cif10_reference_PNG_exports=True,
     cif10_reference_vImage_modes=2,cif10_reference_vImage_guard_buffer_host_passed=True,
+    cif10_reference_filter_policies=3,cif10_reference_lossless_filter_compare=True,cif10_reference_candidate_differences_telemetry=True,
     cif10_reference_host_test_source_sha256=hashlib.sha256((root/'tools/build/test_cif10_png_reference.m').read_bytes()).hexdigest())
 if resource_manifest:manifest.update(metal_resources=resource_manifest)
 if resource_manifest and not a.registration_only:manifest.update(metal_resource_probe=True,

@@ -18,18 +18,19 @@ NSData *cif10_reference_png(id wrapper)
     if(fail_nil)return nil;
     CIF10HostImage *value=wrapper;NSMutableData *data=[NSMutableData data];
     CGImageDestinationRef destination=CGImageDestinationCreateWithData((CFMutableDataRef)data,CFSTR("public.png"),1,NULL);assert(destination);
-    CGImageDestinationAddImage(destination,value->image,NULL);assert(CGImageDestinationFinalize(destination));CFRelease(destination);return data;
+    NSDictionary *properties=@{(id)kCGImagePropertyDPIWidth:@144,(id)kCGImagePropertyDPIHeight:@144};
+    CGImageDestinationAddImage(destination,value->image,(CFDictionaryRef)properties);assert(CGImageDestinationFinalize(destination));CFRelease(destination);return data;
 }
 static void emit(const char *format,...)
 {
     char line[512];va_list args;va_start(args,format);int size=vsnprintf(line,sizeof(line),format,args);va_end(args);
-    assert(size>0 && size<250);++records;if(strstr(line,"SWEET CIF10 CASE END "))++complete;
+    assert(size>0 && size<250 && !strstr(line,"mismatches="));++records;if(strstr(line,"SWEET CIF10 CASE END "))++complete;
     if(strstr(line,"SWEET CIF10 VIMAGE case="))++comparisons;
-    if(strstr(line,"SWEET CIF10 VIMAGE ") || strstr(line,"SWEET CIF10 REFERENCE END "))fprintf(stderr,"%s\n",line);
+    if(strstr(line,"SWEET CIF10 VIMAGE ") || strstr(line,"SWEET CIF10 FILTER ") || strstr(line,"SWEET CIF10 REFERENCE END "))fprintf(stderr,"%s\n",line);
 }
 int main(void) { @autoreleasepool {
-    assert(cif10_png_reference_probe(emit));assert(originals==5 && complete==5 && records>500 && comparisons==10);
-    fail_nil=true;assert(!cif10_png_reference_probe(emit));assert(originals==6 && complete==5);fail_nil=false;
-    fail_throw=true;assert(!cif10_png_reference_probe(emit));assert(originals==7 && complete==5);
+    assert(cif10_png_reference_probe(emit));assert(originals==6 && complete==6 && records>500 && comparisons==12);
+    fail_nil=true;assert(!cif10_png_reference_probe(emit));assert(originals==7 && complete==6);fail_nil=false;
+    fail_throw=true;assert(!cif10_png_reference_probe(emit));assert(originals==8 && complete==6);
     puts("CIF10 PNG reference PASS: bounded author buffers/exports, unchanged input, real ImageIO forward/decode, nil/throw failures kept; UIKit is a Mac fixture");
 } return 0; }

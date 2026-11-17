@@ -67,7 +67,7 @@ static bool cif10_vimage_record(CIF10ReferenceEmit emit,unsigned index,CGImageRe
     bool safe=true;
     for(unsigned direct=0;direct<2;++direct) {
         CIF10VImageResult result=cif10_vimage_compare(input,expected,pixels,direct!=0,timebase);
-        emit("SWEET CIF10 VIMAGE case=%u mode=%s status=%ld bytes=%zu fnv=%016llx mismatches=%zu guard=%u buffer=%u",
+        emit("SWEET CIF10 VIMAGE case=%u mode=%s status=%ld bytes=%zu fnv=%016llx differences=%zu guard=%u buffer=%u",
             index,direct?"direct":"default",result.status,result.bytes,(unsigned long long)result.fnv,result.mismatches,result.guard,result.buffer);
         emit("SWEET CIF10 VIMAGE TIME case=%u mode=%s wall_ns=%llu cpu_ns=%llu cpu_valid=%u",
             index,direct?"direct":"default",(unsigned long long)result.wall_ns,(unsigned long long)result.cpu_ns,result.cpu_valid);

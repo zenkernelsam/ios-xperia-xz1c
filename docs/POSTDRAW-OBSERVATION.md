@@ -69,3 +69,9 @@ reference revision2仍使用五组原UIImage PNG；另外以vImageBuffer_InitWit
 小图还导出原PNG完整字节，PNG/像素/ICC均有界且只在Windows TEMP落地。cif10_reference_evidence.py的revision2检查全部PNG chunk CRC、IHDR、bounded zlib解压、五种filter和16位网络序→CG原端序像素一致；旧revision1兼容保留。原PNG参数、返回和check-in期限保持。
 
 主机修正前的kvImageDoNotTile误用于InitWithCGImage被真实API以-21775拒绝，未投递设备；正确地把该flag用于直接converter路径后，host ASan/UBSan与输入/guard/nil/异常检查通过。AMD/x86上两条路径均与原ImageIO像素不等，保持拒绝；后续须本包CPU→835 GPU/参考取得真实值，不能以host速度替代本机色彩语义。
+
+revision2 CPU047696d9已38.234秒完整回程；GPU57b6e1ce的controller记GOALS_STABLE/PASS并40.672秒完整回程，但独立gpu_pixels验收把候选VIMAGE的mismatches字段匹配为GPU像素失败，进程exit1。这轮保留独立REJECTED，不能准入新包或改称GPU PASS。独立作者PNG参考/CRC/解码数据有效，单列reference-only；两条公开vImage在835上仍与原像素不同，候选不安装。原错误、raw和完整回程见cif10-reference-r2-postprocessor-rejection。
+
+revision3将候选差异记为differences，保留原GPU全局错误guard；新包仍须自身CPU→GPU单发复验。增加ImageIO baseline、PNG_FILTER_NONE和PNG_FILTER_UP三种作者图像对照：三者都使用原CGImage/原ImageIO颜色转换，DPI144与原scale2一致，逐组核验原UIImagePNG的像素、ICC和完整metadata。仅压缩过滤策略变化，不安装替代编码器。另增加750×1624作者平滑渐变，与原混色样本区分；六组原PNG及filter结果不能当完整原UI验收。
+
+AMD/x86 host ASan/UBSan与六组原输入/guard/nil/异常检查通过；三种ImageIO策略在host像素/ICC/metadata相同，NONE/UP的压缩字节不同。当前尚无本包实机filter准入，目标侧是否保持原UIImage metadata与真实提速须独立验证。旧revision1/2证据兼容，PNG小图CRC/IDAT/filter/端序验证和altered-export拒绝保持。

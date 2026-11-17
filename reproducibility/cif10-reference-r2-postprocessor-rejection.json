@@ -1,0 +1,31 @@
+{
+  "token": "57b6e1ce28132551",
+  "controller_result": "PASS",
+  "controller_reason": "GOALS_STABLE",
+  "independent_stage_result": "REJECTED",
+  "independent_stage_error": "gpu_pixels.verify broad mismatches guard matched prospective CIF10 VIMAGE candidate telemetry",
+  "controller_exit_code": 1,
+  "raw_sha256": "90ed8527a2d7e4c9589f00713c06805aaad92e9cc4a6bc63f521779be660211b",
+  "strict_return": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "57b6e1ce28132551",
+    "checkpoint_bytes": 762356,
+    "log_bytes": 765475,
+    "log_sha256": "90ed8527a2d7e4c9589f00713c06805aaad92e9cc4a6bc63f521779be660211b",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      5,
+      57,
+      59
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 40.67200000002049,
+  "original_logs_and_rejection_preserved": true,
+  "actual_GPU_native_probes_not_relabelled_as_PASS": true,
+  "reference_only_report": "reproducibility/v729-cif10-reference-r2-reference-only.json",
+  "candidate_not_installed": true,
+  "next_action": "New observer telemetry uses differences instead of mismatches; fresh RAM CPU then GPU, no replay of this bundle."
+}

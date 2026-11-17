@@ -1,6 +1,6 @@
 """Reject cross-token, reordered, truncated and changed author reference bytes."""
 from cif10_reference_evidence import inspect,authored_input,fnv,BEGIN,END,png_container
-import struct,zlib
+import struct,zlib,re
 
 TOKEN='123456789abcdef0'
 lines=[f'SWEET LOOP LIVE proto=1 token={TOKEN}','SWEET AIR STATIC HALF END result=0',BEGIN]
@@ -72,3 +72,44 @@ filters_png=b'\x89PNG\r\n\x1a\n'+chunk(b'IHDR',struct.pack('>IIBBBBB',2,5,16,2,0
 expected=bytes(n^1 for n in range(60))
 assert png_container(filters_png,expected,dict(width=2,height=5,decoded=dict(bits_per_component=16,bits_per_pixel=48,bitmap_info='0x1000',pitch=12)))['IDAT_defiltered_pixels_match_original_CG_decode']
 print('PNG RGB16 filter vectors PASS: all five filters, exact network/host endian bytes')
+
+records3=[]
+for line in new:
+    if line.startswith('SWEET CIF10 CONFIG '):line='SWEET CIF10 CONFIG revision=3 PNG_exports=1 vImage_modes=2 filter_policies=3 original_options=1 converter_installed=0'
+    if line==BEGIN:line=BEGIN.replace('cases=5','cases=6')
+    if line==END:
+        # A sixth, author-owned smooth fullscreen reference with diagnostic
+        # fields only. It deliberately is not a PNG optimizer admission.
+        data=bytes((n*13)&255 for n in range(750*1624*6))
+        records3.extend((f'SWEET CIF10 INPUT case=6 width=750 height=1624 bpc=10 bpp=32 pitch=3000 bitmap=0x42000 top=0xc0000000 input_fnv={fnv(authored_input(6))} scale=2 orientation=0',
+                         'SWEET CIF10 PNG case=6 bytes=100 fnv=0000000000000001 wall_ns=200 cpu_ns=100 cpu_valid=1 returned_nil=0 original_API=1',
+                         f'SWEET CIF10 DECODE case=6 width=750 height=1624 bpc=16 bpp=48 pitch=4500 bitmap=0x1000 alpha=0 bytes={len(data)} fnv={fnv(data)}',
+                         'SWEET CIF10 COLOR case=6 model=1 name=kCGColorSpaceSRGB icc_bytes=0 icc_fnv=0000000000000000',
+                         f'SWEET CIF10 VIMAGE case=6 mode=default status=0 bytes={len(data)} fnv={fnv(data)} differences=0 guard=1 buffer=1',
+                         'SWEET CIF10 VIMAGE TIME case=6 mode=default wall_ns=50 cpu_ns=40 cpu_valid=1',
+                         f'SWEET CIF10 VIMAGE case=6 mode=direct status=0 bytes={len(data)} fnv=0000000000000001 differences=1 guard=1 buffer=1',
+                         'SWEET CIF10 VIMAGE TIME case=6 mode=direct wall_ns=50 cpu_ns=40 cpu_valid=1'))
+        for policy in ('baseline','none','up'):
+            records3.extend((f'SWEET CIF10 FILTER case=6 policy={policy} result=0 bytes=100 fnv=0000000000000001 pixels_equal=1 ICC_equal=1 metadata_equal=1 PNG_equal=1',
+                             f'SWEET CIF10 FILTER TIME case=6 policy={policy} wall_ns=50 cpu_ns=40 cpu_valid=1'))
+        records3.append('SWEET CIF10 CASE END case=6 result=0 input_unchanged=1 API_forwarded=1 prediction_used=0')
+        line=END.replace('cases=5','cases=6')
+    records3.append(line.replace(' mismatches=',' differences='))
+    if line.startswith('SWEET CIF10 COLOR '):
+        i=int(line.split('case=')[1].split()[0]);small=i<=4
+        for policy in ('baseline','none','up'):
+            size=len(png) if small else 100;digest=fnv(png) if small else '0000000000000001'
+            records3.extend((f'SWEET CIF10 FILTER case={i} policy={policy} result=0 bytes={size} fnv={digest} pixels_equal=1 ICC_equal=1 metadata_equal=1 PNG_equal=1',
+                             f'SWEET CIF10 FILTER TIME case={i} policy={policy} wall_ns=50 cpu_ns=40 cpu_valid=1'))
+            if i==1:
+                for at in range(0,len(png),48):
+                    part=png[at:at+48];records3.append(f'SWEET CIF10 DATA case=1 kind={policy}_png offset={at} bytes={len(part)} hex={part.hex()}')
+text3='\n'.join(records3)+'\n';assert not re.search(r'mismatches=[1-9]',text3)
+report=inspect(text3,TOKEN,3);assert len(report['cases'])==6 and all(report['filter_policies_match_original'].values())
+assert not report['vImage_all_pixel_stages_match'] and report['does_not_admit_lossless_optimization']
+for bad in (text3.replace(' differences=1 ',' mismatches=1 ',1),text3.replace('policy=none result=0','policy=none result=1',1),
+            text3.replace('kind=none_png offset=48','kind=none_png offset=49',1)):
+    try:inspect(bad,TOKEN,3)
+    except (AssertionError,KeyError,ValueError):continue
+    raise AssertionError('Malformed filter candidate or ambiguous telemetry accepted')
+print('CIF10 v3 evidence PASS: six references/filter pixel/profile/metadata scope, ambiguous telemetry and altered exports rejected')
