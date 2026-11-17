@@ -37,6 +37,9 @@
 #include "SnapshotMethodObserve.h"
 #endif
 #include "MetalRuntimeObserve.h"
+#if defined(SWEET_CIF10_PNG_REFERENCE)
+#include "CIF10PNGReferenceProbe.h"
+#endif
 #if defined(SWEET_METAL_RESOURCE_PROBE)
 #include "MetalResourceProbe.h"
 #endif
@@ -269,6 +272,9 @@ static bool run_native_probes(void)
 #if defined(SWEET_PROGRAM_CACHE_EXPORT)
     if(native_probes_valid){const char *root=getenv("SWEETGL_PROGRAM_CACHE_DIR");
         native_probes_valid=sweet_request_export_at(root && *root?root:"/private/var/tmp",sweet_request_identity,diagnostic)==0;}
+#endif
+#if defined(SWEET_CIF10_PNG_REFERENCE)
+    if(native_probes_valid)native_probes_valid=cif10_png_reference_probe(diagnostic);
 #endif
 #if defined(SWEET_METAL_DISCOVERY_PROBE)
     if(native_probes_valid)(void)metal_discovery_probe(diagnostic);

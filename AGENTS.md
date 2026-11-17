@@ -35,3 +35,5 @@ gpu/sweetgl和gpu/metal是用户态，xnu/lilac-current.patch是完整内核修�
 新包必须同kernel/private/owner/ready、对应新包CPU及精确GLES先验，完整payload和Mac源输入复算。短登记需完全相同kernel/GLES/Metal/source-map的完整native raw proof；新Metal/GLES需自身完整GPU准入，新observer RAM须自身CPU准入。ACK前任一native probe失败必须拒绝，回程后的退出期记录另列。不得把离屏PASS当时间/日期/壁纸、FPS、睡眠、声音或无线完成。遵循无人值守授权，不派子代理。
 
 XR-CLEAR仅在Clear省掉即将覆盖的旧XR颜色解码，原整数位型快照、原Clear/写回、Load/DontCare/采样及half数值保持。真实请求primerd4b6b70f再次完整14组并配对73444B实际Earth请求成功。新原GPUe4eb78cb实际750×1624 Clear/draw通过，单样本wait1.067秒相对旧2.807秒少约62%；总snapshot3.719秒/CPU2.570秒未改善，不能据此宣称完整UI/FPS完成。原check-in超时/不完整面板保留；当前无in-flight，以STATUS为准。
+
+2026-11-17原PNG输入c45fec49已确认RGBCIF10/ExtendedSRGB（10bpc/32bpp/stride3000/bitmap0x42000/scale2），两次原draw通过但PNG仍未返回，39.578秒完整回程。Mac是AMD/x86，不能拿其CIF10色值当835/iOS参考；8/16位简化候选均拒绝。新增后台CIF10参考只创建作者图像、调用原UIImagePNGRepresentation，不读取原UI像素或安装编码器；先自身RAM CPU后GPU，原GLES/native14、启动期限、四回程和全部红线保持，当前投递状态以STATUS为准。

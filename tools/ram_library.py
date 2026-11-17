@@ -68,6 +68,12 @@ def load(folder,expected=None):
                 assert observer['snapshot_method_read_bytes_guards_and_ABI_owner_repeat_rejection_host_passed']
                 assert observer['snapshot_method_target_coverage_requires_actual_metadata']
                 assert re.fullmatch('[0-9a-f]{64}',observer['snapshot_method_host_test_source_sha256'])
+            if observer.get('cif10_PNG_reference'):
+                sources.add('gpu/diagnostics/CIF10PNGReferenceProbe.h')
+                assert observer['target_process']=='backboardd' and observer['cif10_reference_revision']==1 and observer['cif10_reference_cases']==5
+                assert observer['cif10_reference_author_pixels_only'] and observer['cif10_reference_original_UIImage_API']
+                assert observer['cif10_reference_converter_not_installed'] and observer['cif10_reference_host_fixture_bounds_nil_throw_input_passed']
+                assert re.fullmatch('[0-9a-f]{64}',observer['cif10_reference_host_test_source_sha256'])
             if observer['target_process']=='backboardd':
                 sources.add('gpu/sweetgl/sweetgl.h')
                 assert observer.get('background_full_suite') and observer['waits_for_same_process_GLES_suite'] and observer['original_Aegir_not_modified_or_registered']

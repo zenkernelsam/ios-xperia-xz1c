@@ -6,10 +6,11 @@ sys.path.insert(0,str(root/'tools'));from native_proof import validate as valida
 from program_request import specification as request_specification,header as request_header
 from program_cache_scope import specification as cache_scope_specification,header as cache_scope_header
 p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--metal-resources');p.add_argument('--air-fixture');p.add_argument('--render-fixture');p.add_argument('--constants-fixture');p.add_argument('--register-device',action='store_true');p.add_argument('--xr-probe',action='store_true');p.add_argument('--surface-probe',action='store_true');p.add_argument('--mip-probe',action='store_true');p.add_argument('--target-process',choices=['AegirPoster','backboardd'],default='AegirPoster');p.add_argument('--gles-ram-package');p.add_argument('--registration-only',action='store_true');p.add_argument('--native-proof');p.add_argument('--pipeline-observe',action='store_true');p.add_argument('--narrow-fixture');p.add_argument('--half-fixture');p.add_argument('--mrt-fixture');p.add_argument('--sampler-fixture');p.add_argument('--program-cache-prime',action='store_true');p.add_argument('--static-half-fixture');p.add_argument('--program-cache-export',action='store_true')
-p.add_argument('--postdraw-observe',action='store_true');p.add_argument('--snapshot-observe',action='store_true');a=p.parse_args()
+p.add_argument('--postdraw-observe',action='store_true');p.add_argument('--snapshot-observe',action='store_true');p.add_argument('--cif10-png-reference',action='store_true');a=p.parse_args()
 if a.pipeline_observe:assert a.registration_only and a.target_process=='AegirPoster'
 if a.postdraw_observe:assert a.registration_only and a.pipeline_observe and a.target_process=='AegirPoster'
 if a.snapshot_observe:assert a.postdraw_observe
+if a.cif10_png_reference:assert a.target_process=='backboardd' and a.static_half_fixture and not a.registration_only and not a.program_cache_prime and not a.program_cache_export
 if a.program_cache_prime:assert a.target_process=='backboardd' and a.sampler_fixture and not a.registration_only
 if a.program_cache_export:assert a.target_process=='backboardd' and a.static_half_fixture and not a.registration_only and not a.program_cache_prime
 if a.registration_only:
@@ -26,6 +27,7 @@ if a.target_process=='backboardd':headers+=['gpu/sweetgl/sweetgl.h']
 if a.pipeline_observe:headers+=['gpu/diagnostics/MetalPipelineObserve.h']
 if a.postdraw_observe:headers+=['gpu/diagnostics/PostDrawObserve.h']
 if a.snapshot_observe:headers+=['gpu/diagnostics/SnapshotMethodObserve.h']
+if a.cif10_png_reference:headers+=['gpu/diagnostics/CIF10PNGReferenceProbe.h']
 if a.program_cache_export:headers+=['gpu/diagnostics/ProgramRequestExport.h','gpu/sweetgl/ProgramCacheCodec.h','gpu/sweetgl/MetalShaderAPI.h','tools/program_request.py']
 resource_manifest=None
 cache_scope=None
@@ -188,6 +190,10 @@ if a.program_cache_export:
 if a.pipeline_observe:
     run(['clang','-O1','-g','-fsanitize=address,undefined',root/'tools/build/test_metal_pipeline_observe.m','-framework','Foundation','-framework','Metal','-o',out/'test_pipeline_observer'],'pipeline-host-compile')
     assert 'PASS' in run([out/'test_pipeline_observer'],'pipeline-host-test')
+if a.cif10_png_reference:
+    run(['clang','-fobjc-exceptions','-O1','-g','-fsanitize=address,undefined',root/'tools/build/test_cif10_png_reference.m',
+        '-framework','Foundation','-framework','CoreGraphics','-framework','ImageIO','-o',out/'test_cif10_png_reference'],'cif10-reference-host-compile')
+    assert 'CIF10 PNG reference PASS:' in run([out/'test_cif10_png_reference'],'cif10-reference-host-test')
 if a.postdraw_observe:
     run(['clang','-fobjc-exceptions','-O1','-g','-fsanitize=address,undefined',root/'tools/build/test_postdraw_observe.m',
         '-framework','Foundation','-framework','CoreGraphics','-framework','ImageIO','-framework','ColorSync',
@@ -218,6 +224,7 @@ if a.register_device:extra+=['-DSWEET_METAL_DISCOVERY_PROBE=1']
 if a.pipeline_observe:extra+=['-DSWEET_METAL_PIPELINE_OBSERVE=1','-framework','Metal']
 if a.postdraw_observe:extra+=['-DSWEET_POSTDRAW_OBSERVE=1','-framework','UIKit','-framework','CoreGraphics','-framework','ImageIO','-framework','ColorSync']
 if a.snapshot_observe:extra+=['-DSWEET_SNAPSHOT_METHOD_OBSERVE=1']
+if a.cif10_png_reference:extra+=['-DSWEET_CIF10_PNG_REFERENCE=1','-framework','UIKit','-framework','CoreGraphics','-framework','ImageIO']
 if a.xr_probe:extra+=['-DSWEET_AIR_XR_PROBE=1']
 if a.surface_probe:extra+=['-DSWEET_METAL_SURFACE_PROBE=1','-framework','IOSurface']
 if a.mip_probe:extra+=['-DSWEET_METAL_MIP_PROBE=1']
@@ -249,6 +256,10 @@ if a.target_process=='AegirPoster':manifest.update(renderer_abi_and_device_obser
 manifest.update(source_files=source_files,runtime_Metal_ABI_methods=22,metadata_observer_no_device_calls_test_passed=True)
 manifest.update(probe_startup_revision=1,actual_startup_readiness_host_asan_ubsan_passed=True,startup_host_source_sha256=hashlib.sha256((root/'tools/build/test_metal_startup.c').read_bytes()).hexdigest())
 if a.target_process=='backboardd':manifest.update(background_full_suite=True,waits_for_same_process_GLES_suite=True,original_Aegir_not_modified_or_registered=True)
+if a.cif10_png_reference:manifest.update(cif10_PNG_reference=True,cif10_reference_revision=1,cif10_reference_cases=5,
+    cif10_reference_author_pixels_only=True,cif10_reference_original_UIImage_API=True,cif10_reference_converter_not_installed=True,
+    cif10_reference_host_fixture_bounds_nil_throw_input_passed=True,
+    cif10_reference_host_test_source_sha256=hashlib.sha256((root/'tools/build/test_cif10_png_reference.m').read_bytes()).hexdigest())
 if resource_manifest:manifest.update(metal_resources=resource_manifest)
 if resource_manifest and not a.registration_only:manifest.update(metal_resource_probe=True,
     metadata_and_resource_probe_distinct=True,resource_probe_does_not_submit_GPU_commands=True)

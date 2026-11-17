@@ -26,3 +26,5 @@ Sony Xperia XZ1 Compact（Snapdragon835 / Adreno540）的开源XNU、shim与Mesa
 iPhoneX iOS16.7.16/20H392镜像、Sony原厂固件、设备备份由使用者提供，不进入Git。gl5/userdata/SD/TA/XFL与救砖资料保持受保护。目录/归档/原生回收规则见[LAYOUT](docs/LAYOUT.md)及整理记录[2026-11-12](docs/ORGANIZATION-2026-11-12.md)、[2026-11-15](docs/ORGANIZATION-2026-11-15.md)。
 
 2026-11-17当前GLES为72d39da5，Metal5e94ab57和内核v729保持；新库完整14组及真实请求预热通过。单个原界面样本的队列wait由约2.807秒降至1.067秒，但CPU管线开销和完整UI仍未解决，总快照改善不作推断。原数据与限制见STATUS/XR-CLEAR。
+
+最新原UIImage输入已确认为RGBCIF10/ExtendedSRGB，PNG仍未在原期限内返回；AMD/x86主机的8/16位简化候选不等，未作为设备修复。作者图像的iOS后台原PNG参考与准入边界见POSTDRAW-OBSERVATION及STATUS，完整UI和其它外设继续推进。

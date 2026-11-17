@@ -1,0 +1,146 @@
+{
+  "token": "c45fec49e9327a92",
+  "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v729-png-input-r1-original-gpu-20261117",
+  "original_result": "REVISE",
+  "original_reason": "EXTENSION_CHECKIN_TIMEOUT",
+  "image_sha256": "83663fef0995eba840b92647682011d2ff9385e7a6a5c9aca45a12d0c38f16ed",
+  "raw_sha256": "146b33417e12006dcca4f3f729fc941a0fa209abbd0ec6301f17711797b74997",
+  "raw_bytes": 416162,
+  "checkpoint_bytes": 409532,
+  "checkpoint_sha256": "fddf2a4693b65d454c7d80149007c2c46f3d5af0deb26cb2842f338f724bc6b8",
+  "kernel_sha256": "774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec",
+  "GLES_sha256": "72d39da52e5673755b9419b2038b5db5b876e073fe96b52cae20f4c5944c72b4",
+  "Metal_sha256": "5e94ab57401479b42f506884a172a7a839378a82310661a1f66164e99c21f988",
+  "observer_sha256": "35c00af7c541a52d3bc1ae2b8a04cf1bfe17216567a2e5085bf935c8d73e5ca2",
+  "same_RAM_CPU_token": "ce96235eada480a7",
+  "embedded_native_token": "4bcd571c9e12b34d",
+  "original_clear_draws": [
+    {
+      "sequence": 628,
+      "original_pages": 1
+    },
+    {
+      "sequence": 663,
+      "original_pages": 1
+    }
+  ],
+  "PNG_inputs": [
+    {
+      "image_nil": false,
+      "getters_available": true,
+      "getter_error": false,
+      "image_class": "UIImage",
+      "pixels_read": false,
+      "profile_bytes_read": false,
+      "ui": {
+        "width_points": "375",
+        "height_points": "812",
+        "scale": "2",
+        "orientation": 0,
+        "metadata_getter_wall_ns": 2408021,
+        "finite_numbers": true
+      },
+      "cgimage": {
+        "nil": false,
+        "width": 750,
+        "height": 1624,
+        "bits_per_component": 10,
+        "bits_per_pixel": 32,
+        "pitch": 3000,
+        "bitmap_info": "0x42000",
+        "alpha_info": 0,
+        "rendering_intent": 0
+      },
+      "color": {
+        "nil": false,
+        "model": 1,
+        "components": 3,
+        "wide_gamut": true,
+        "extended_range": true,
+        "name_available": true,
+        "name_sanitized": false,
+        "name": "kCGColorSpaceExtendedSRGB"
+      }
+    },
+    {
+      "image_nil": false,
+      "getters_available": true,
+      "getter_error": false,
+      "image_class": "UIImage",
+      "pixels_read": false,
+      "profile_bytes_read": false,
+      "ui": {
+        "width_points": "375",
+        "height_points": "812",
+        "scale": "2",
+        "orientation": 0,
+        "metadata_getter_wall_ns": 40677,
+        "finite_numbers": true
+      },
+      "cgimage": {
+        "nil": false,
+        "width": 750,
+        "height": 1624,
+        "bits_per_component": 10,
+        "bits_per_pixel": 32,
+        "pitch": 3000,
+        "bitmap_info": "0x42000",
+        "alpha_info": 0,
+        "rendering_intent": 0
+      },
+      "color": {
+        "nil": false,
+        "model": 1,
+        "components": 3,
+        "wide_gamut": true,
+        "extended_range": true,
+        "name_available": true,
+        "name_sanitized": false,
+        "name": "kCGColorSpaceExtendedSRGB"
+      }
+    }
+  ],
+  "complete_snapshots": [
+    {
+      "pid": 278,
+      "wall_ns": 3368817916,
+      "thread_cpu_ns": 470958333
+    },
+    {
+      "pid": 283,
+      "wall_ns": 2145831302,
+      "thread_cpu_ns": 381171458
+    }
+  ],
+  "PNG_calls_complete": 0,
+  "strict_return": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "c45fec49e9327a92",
+    "checkpoint_bytes": 409532,
+    "log_bytes": 416162,
+    "log_sha256": "146b33417e12006dcca4f3f729fc941a0fa209abbd0ec6301f17711797b74997",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      18,
+      114,
+      116
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 39.57799999997951,
+  "controller_and_serial_worker_exited": true,
+  "camera_protocol": "override-af-mjpeg",
+  "camera_already_rotated": 90,
+  "camera_best": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-png-input-r1-original-gpu-20261117\\cycle-01\\camera\\frame-0020.jpg",
+  "camera_best_sha256": "5e928661b3512711c401b1e2045c8e2baa2e5d701adb2dfe60b3c413da5eaab4",
+  "panel_visually_inspected": true,
+  "panel_observation": "dark coloured background and strong reflections, battery/camera/homebar; wallpaper/time/date absent",
+  "camera_white_balance_and_reflection_do_not_establish_colour_calibration": true,
+  "full_UI_not_achieved": true,
+  "only_observer_RAM_changed": true,
+  "GPU_kernel_libraries_unchanged": true,
+  "PNG_input_metadata_is_not_internal_encoding_timing_or_root_cause": true,
+  "next_work": "Profile author-generated RGBCIF10/ExtendedSRGB inputs with unchanged ImageIO options; require exact decoded pixels/profile/metadata before considering a lossless candidate."
+}

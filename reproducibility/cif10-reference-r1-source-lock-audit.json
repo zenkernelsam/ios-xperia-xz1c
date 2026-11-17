@@ -1,0 +1,61 @@
+{
+  "base_commit": "d3efed8c35429dfb85546f020c5d284af0f13590",
+  "before_lock_sha256": "8813798a6f0e3a089e8f5ac60d737cc57fd8272caae16baacc77f5b9ec4e4951",
+  "after_lock_sha256": "a7a3a088a51c046c36f0b4b3a714b55239e2882c21debac8b0bcfa390956f05e",
+  "updated_sources": [
+    {
+      "path": "tools/device/package_trial.py",
+      "before_sha256": "2202bfef139b5cb52c3176a0117c6910be1cdc4f291a4e3ee10ddae2c3a2c70c",
+      "after_sha256": "d92b89819b3a7c3990f4e5052e58fecea606c4867795549045321358305e2b75"
+    },
+    {
+      "path": "tools/device/run_trial.py",
+      "before_sha256": "acab4ccf83342ee8ecfabbf3f3b0b1761beb7ffdc22d8ef9eeb8f7b4e07950ee",
+      "after_sha256": "fc5bbb70fe72b9f932dbc1cba7a0f1c0b59ef13d7fcbf3b289c68833fad4b5a4"
+    },
+    {
+      "path": "tools/device/trial_evidence.py",
+      "before_sha256": "88e33a4858481e0621e4c7958d9647ea7b5f8417eff8f2270f3bb3a92b900e1f",
+      "after_sha256": "173a8ae84b6f9634394a345494e72dc5d2c9a9f6443d144e81419af186a701d5"
+    },
+    {
+      "path": "tools/ram_library.py",
+      "before_sha256": "98bc52ee4b0cdca5b7b5f00cec5d7e171e372487f408ff0fd0423ede3727ec55",
+      "after_sha256": "2798ee9bddaad0f6759e9e7adb1a13dae28244c25a6096405b6ed927c101449f"
+    },
+    {
+      "path": "tools/build/build_exception_observer.py",
+      "before_sha256": "7a72765429d3a7e2e28b9317ee26eccb83b0929b26654b3409fba717fded57c0",
+      "after_sha256": "ec298a3706c3576c8fde7c8f8bcb42ec96b3f289c3c3e4733c8bc62a91c75876"
+    },
+    {
+      "path": "gpu/diagnostics/exception_observe.m",
+      "before_sha256": "9dab3f656d4859b418c0495af28a71b963f070fd50a5bf891780338d063fe0cc",
+      "after_sha256": "5f90e58ee0092546d440395a5ac23a52a29e174ab810de19f9e8bf9017e6cb92"
+    }
+  ],
+  "new_sources": [
+    {
+      "path": "gpu/diagnostics/CIF10PNGReferenceProbe.h",
+      "sha256": "b36344da5f2cba9ee8f6c9bea6c43be539fc219e57679181a8f75f14a6f1b86b"
+    },
+    {
+      "path": "tools/build/test_cif10_png_reference.m",
+      "sha256": "83de8a02b86bd52d4bb7989d4d18af9b247dc23f39621a11eea344b83752a19e"
+    },
+    {
+      "path": "tools/build/profile_cif10_png.m",
+      "sha256": "c8daee07eafe5dc7c524041d1efe194c821318bb68481cea934e16862f42ab7e"
+    },
+    {
+      "path": "tools/device/cif10_reference_evidence.py",
+      "sha256": "cf944f62665876fe241d2a6e0b2fc83f4acddff96f2b58d42a0daef4f10dabb3"
+    },
+    {
+      "path": "tools/device/test_cif10_reference_evidence.py",
+      "sha256": "5f83ce852385460c7994e7f7b42eee84fd547c4986afcfaf618a0358a9bf57e7"
+    }
+  ],
+  "kernel_GLES_Metal_unchanged": true,
+  "author_reference_not_a_PNG_replacement": true
+}

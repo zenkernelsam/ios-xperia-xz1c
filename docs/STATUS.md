@@ -1,6 +1,6 @@
 # 当前状态 — 2026-11-17
 
-Sony BH905ND69G当前健康停在fastboot，无controller/串口worker。Luna实际请求26549B已由新primerbd9e9150与原wrapper哈希配对，完整14组/37.719秒回程通过。随后新原GPUc32999dff23480c9仍REVISE/check-in超时，raw326c86ddb00222e03472bb77c0dbdd90dece096cde414c51eb1fe76104055e25，40.203秒完整回程/健康30秒/controller退出。两次原750×1624 Clear/draw result0/sequence642,689，完整snapshot3.013/2.169秒；PNG均未在原期限内返回，面板仍无壁纸/时间日期。当前GLES72d39da5/Metal5e94ab57/native14保持；下一步只读确认PNG输入契约和内部CPU开销，不凭采样修改冻结VM。
+Sony BH905ND69G当前健康停在fastboot，无controller/串口worker。新PNG输入observer RAM CPU ce96235e已38.594秒完整回程通过；原GPU c45fec49e9327a92仍REVISE/check-in超时，raw146b33417e12006dcca4f3f729fc941a0fa209abbd0ec6301f17711797b74997，39.578秒完整回程/健康/退出。两次原750×1624 Clear/draw result0/sequence628,663，snapshot3.369/2.146秒；两个PNG未返回。真实UIImage输入10bpc/32bpp、stride3000、bitmap0x42000/RGBCIF10/32Little、ExtendedSRGB、scale2/orientation0，未读取原像素。Mac AMD/x86主机的8/16位PNG简化候选均像素/metadata不等，保留拒绝且未安装。接下来仅新observer后台作者CIF10参考，须自身CPU→GPU；当前新参考尚未投递。kernel774b5efd/GLES72d39da5/Metal5e94ab57及native14保持，完整UI/颜色/FPS和其它外设仍未完成。
 
 ## 当前新GLES验证
 

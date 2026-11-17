@@ -41,3 +41,15 @@ tools/build/test_png_input_observe.m使用明确标注的Mac UIKit转发fixture�
     python3 tools/build/package_glram.py --presigned --frontend build/xr-clear-elision-r1/original-ram --observer build/png-input-r1/observer --metal-resources build/xr-clear-elision-r1/metal-resources --output build/png-input-r1/ram
 
 该新RAM必须自身CPU完整回程后，再以同RAM和native4bcd原目录准入原GPU。手机实测结果仍以STATUS与独立reproducibility记录为准；不能把输入观察或主机PNG通过当成完整壁纸/时间日期/UI/FPS完成。
+
+新RAM CPU ce96235e已38.594秒完整回程通过，原GPU c45fec49e9327a92已39.578秒完整回程/健康/退出，原REVISE/check-in超时保持。两个原750×1624 Clear/draw成功；snapshot3.369/2.146秒，两个PNG均未返回。首次取得真实UIImage输入：750×1624、10bpc/32bpp、stride3000、bitmap0x42000、alphaNone、ExtendedSRGB、scale2/orientation0；getter耗时2.408ms/40.677µs。0x42000对应RGBCIF10与32Little；公共CGImage头声明其最高两位应为1，但本轮没有读取原像素，不能据此推定真实最高两位或改GPU位型。
+
+Mac为AMD Ryzen7 5825U/x86_64、macOS15.8.1。独立profile_cif10_png.m对自建CIF10色阶/混色/750×1624图像调用默认ImageIO，输出为16bpc RGB PNG。8位及16位简化算术转换均有像素/metadata差异，未准入或安装；ASan/UBSan通过只证明该主机工具的边界，不能把AMD/x86颜色结果当成835/iOS的数值参考。全量失败对照与初次编译错误保留reproducibility/cif10-png-host-r1-rejected-predictions.json，未修改原PNG参数或数据。
+
+## iOS后台CIF10参考
+
+新增--cif10-png-reference只允许完整backboardd suite。它在原GLES及全部14组native成功后，创建五组作者自建的CIF10图像，使用原UIImagePNGRepresentation，再用原ImageIO解码。四组1024×1色阶/混色/最高位对照仅导出少量自建像素和第一组ICC；750×1624整屏只记录长度/位深/位型/FNV/耗时。最高位为0的一组明确是文档范围之外的对照。原Aegir及其启动期限不改，不读取原UI像素、不安装替代编码器。
+
+CIF10PNGReferenceProbe.h与test_cif10_png_reference.m分别记录目标API与明确的Mac UIKit转发fixture。host对有界数据/导出、原输入不变、真实ImageIO/nil/异常检查通过；这些不能代替iOS参考。cif10_reference_evidence.py按当前token验证全部原输入、连续导出/长度/FNV、五组原API返回及完整回程，拒绝截断/混case/失败，解码数据只能输出到Windows TEMP。参考PASS不能准入尚未实现的优化器，也不能当原系统UI/FPS成功。
+
+新reference RAM依旧只变observer，须自身CPU准入，再同GLES72d39da5/Metal5e94ab57单发GPU，完整四回程/健康30秒/旧worker退出后继续。任何新颜色/PNG优化先取本机参考并核对像素、profile、metadata及返回行为；主机更快而输出不同的候选保持拒绝。
