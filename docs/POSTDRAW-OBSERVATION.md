@@ -75,3 +75,7 @@ revision2 CPU047696d9已38.234秒完整回程；GPU57b6e1ce的controller记GOALS
 revision3将候选差异记为differences，保留原GPU全局错误guard；新包仍须自身CPU→GPU单发复验。增加ImageIO baseline、PNG_FILTER_NONE和PNG_FILTER_UP三种作者图像对照：三者都使用原CGImage/原ImageIO颜色转换，DPI144与原scale2一致，逐组核验原UIImagePNG的像素、ICC和完整metadata。仅压缩过滤策略变化，不安装替代编码器。另增加750×1624作者平滑渐变，与原混色样本区分；六组原PNG及filter结果不能当完整原UI验收。
 
 AMD/x86 host ASan/UBSan与六组原输入/guard/nil/异常检查通过；三种ImageIO策略在host像素/ICC/metadata相同，NONE/UP的压缩字节不同。当前尚无本包实机filter准入，目标侧是否保持原UIImage metadata与真实提速须独立验证。旧revision1/2证据兼容，PNG小图CRC/IDAT/filter/端序验证和altered-export拒绝保持。
+
+reference3已完整实机验收：CPU21e8cfa3/47.156秒回程，GPU5221b885/原14组+六组原PNG/过滤对照、38.172秒四回程/健康/controller退出。三种ImageIO策略在全部六组原16位像素、ICC与metadata相同；UP作者混色2.104秒/原8.531秒，作者渐变0.965秒/原4.563秒。这些是作者参考，不能当原界面FPS或check-in成功。公开vImage仍数值不等，拒绝；r2的独立拒绝记录没有改写。原GPU错误guard未修改，新候选字段differences避开歧义。结果见v729-cif10-reference-r3-gpu-actual、native14-actual与cif10-reference-r3-filter-analysis。
+
+下一实现应把相同的ImageIO/UP编码部分抽到正式源码的受约束兼容层，保留原色彩转换、scale2/DPI144、16位/profile/metadata，未支持UIImage输入走原API。仅在原真实GPU snapshot之后编码完整PNG，不能用nil/stub、主机或后台参考PASS替代原Aegir与面板验收；本次尚未把新编码器装到原UI。

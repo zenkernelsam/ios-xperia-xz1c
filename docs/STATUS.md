@@ -1,6 +1,6 @@
 # 当前状态 — 2026-11-17
 
-Sony BH905ND69G当前健康停在fastboot，无controller/串口worker。CIF10后台参考包CPU 2ad33c28已38.015秒完整回程通过；GPU ff064390d4ccf9d3已完整14组及五组作者CIF10/原UIImagePNGRepresentation通过，raw425bf792c8a6e22673c17ef9358b0e76ee0639c11d2c43587f199df4b258b6b5，37.813秒四回程/健康30秒/worker退出。原UIImage输入c45fec49仍10bpc/32bpp/stride3000/RGBCIF10/ExtendedSRGB，原check-in超时与不完整UI保持。参考输出均16bpc sRGB PNG；750×1624作者混色图8.467秒/CPU6.069秒，不能当原UI时耗。真实混色仅98/1024符合灰阶逐通道查表，保留原跨通道转换，未安装简化编码器。kernel774b5efd/GLES72d39da5/Metal5e94ab57保持。下一步聚焦原转换/过滤/byte-swap的位型保持优化；完整UI/颜色/FPS/睡眠/声音/无线继续active。
+Sony BH905ND69G当前健康停在fastboot，无controller/串口worker。新reference3 CPU21e8cfa3/47.156秒与GPU5221b88531d39af4完整14组+六组作者PNG/filter均独立验收通过，raw86adccc29a8f4386f262a1874392ef4e8c6758e7e51d7dfae5c5acdbe2bb82dd，38.172秒完整回程/健康/worker退出。公开vImage路径与原像素不等，保持拒绝。原ImageIO编码的baseline/NONE/UP在六组保持16位像素/ICC/metadata；UP作者混色2.104秒（原UIImage8.531秒），渐变0.965秒（原4.563秒），仅作者参考时耗，未安装原UI兼容编码器。reference2 controller PASS后的独立mismatches字段冲突REJECTED原样保留，reference3只改候选字段为differences，没有弱化GPU错误guard。kernel774b5efd/GLES72d39da5/Metal5e94ab57保持。下一步抽出相同ImageIO/UP实现并绑定源/像素/profile/metadata先验，先新RAM CPU再原Aegir GPU/相机；原check-in超时及完整UI/颜色/FPS/睡眠/声音/无线仍未完成。
 
 ## 当前新GLES验证
 

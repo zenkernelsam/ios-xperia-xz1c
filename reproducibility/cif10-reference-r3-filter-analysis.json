@@ -1,0 +1,406 @@
+{
+  "token": "5221b88531d39af4",
+  "raw_sha256": "86adccc29a8f4386f262a1874392ef4e8c6758e7e51d7dfae5c5acdbe2bb82dd",
+  "six_author_owned_inputs": true,
+  "original_UI_pixels_not_read": true,
+  "all_ImageIO_policies_pixel_ICC_metadata_equal": {
+    "baseline": true,
+    "none": true,
+    "up": true
+  },
+  "public_vImage_candidates_rejected": true,
+  "compression_bytes_not_required_equal": true,
+  "performances": [
+    {
+      "case": 1,
+      "width": 1024,
+      "height": 1,
+      "original_PNG_wall_ns": 55195469,
+      "original_PNG_thread_cpu_ns": 43980209,
+      "original_PNG_bytes": 1522,
+      "filters": {
+        "baseline": {
+          "result": 0,
+          "bytes": 376,
+          "fnv": "501e2fff2a55af24",
+          "pixels_equal": true,
+          "ICC_equal": true,
+          "metadata_equal": true,
+          "PNG_equal": false,
+          "wall_ns": 4849635,
+          "thread_cpu_ns": 4626875,
+          "cpu_valid": true,
+          "sha256": "48a22c3485c9b55da8d1aef5a6b98d657c652a6b2c40ae51170c13feb0929b75",
+          "container": {
+            "chunks": [
+              {
+                "type": "IHDR",
+                "bytes": 13,
+                "payload_sha256": "b41220ec4417f0381bdf12c55844ec540dd4cf1771c163bc5784a14d392e46ef"
+              },
+              {
+                "type": "sRGB",
+                "bytes": 1,
+                "payload_sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+              },
+              {
+                "type": "eXIf",
+                "bytes": 108,
+                "payload_sha256": "adf5008c3d86ff62d8512946e4561b1f2f77c288954f6fc50a1304d882f27a6b"
+              },
+              {
+                "type": "pHYs",
+                "bytes": 9,
+                "payload_sha256": "2fb8fb780e4f77872628d88bb0ab3395f423c19aadc903c0352d6de0945f8d04"
+              },
+              {
+                "type": "IDAT",
+                "bytes": 165,
+                "payload_sha256": "4da56643f3d4899ab3115f4c0fd53d2b43c591b545bb824c7f632c2e9cbd876c"
+              },
+              {
+                "type": "IEND",
+                "bytes": 0,
+                "payload_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            ],
+            "metadata_sha256": "258d8bca720c77fe171c52ccc3ede822b6f706c482dd2d2a9fca8b54c0c6c923",
+            "IDAT_defiltered_pixels_match_original_CG_decode": true
+          }
+        },
+        "none": {
+          "result": 0,
+          "bytes": 1522,
+          "fnv": "9dc54de6c8003d69",
+          "pixels_equal": true,
+          "ICC_equal": true,
+          "metadata_equal": true,
+          "PNG_equal": true,
+          "wall_ns": 10196459,
+          "thread_cpu_ns": 9406303,
+          "cpu_valid": true,
+          "sha256": "759fea952ade2f43274dc54728c6ffb52a5193f78c41d9facd0f2656158253a4",
+          "container": {
+            "chunks": [
+              {
+                "type": "IHDR",
+                "bytes": 13,
+                "payload_sha256": "b41220ec4417f0381bdf12c55844ec540dd4cf1771c163bc5784a14d392e46ef"
+              },
+              {
+                "type": "sRGB",
+                "bytes": 1,
+                "payload_sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+              },
+              {
+                "type": "eXIf",
+                "bytes": 108,
+                "payload_sha256": "adf5008c3d86ff62d8512946e4561b1f2f77c288954f6fc50a1304d882f27a6b"
+              },
+              {
+                "type": "pHYs",
+                "bytes": 9,
+                "payload_sha256": "2fb8fb780e4f77872628d88bb0ab3395f423c19aadc903c0352d6de0945f8d04"
+              },
+              {
+                "type": "IDAT",
+                "bytes": 1311,
+                "payload_sha256": "177875df73c86045f763d2fcd300dd1c4c7724bbee76144921a16e7ab730dfc2"
+              },
+              {
+                "type": "IEND",
+                "bytes": 0,
+                "payload_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            ],
+            "metadata_sha256": "258d8bca720c77fe171c52ccc3ede822b6f706c482dd2d2a9fca8b54c0c6c923",
+            "IDAT_defiltered_pixels_match_original_CG_decode": true
+          }
+        },
+        "up": {
+          "result": 0,
+          "bytes": 1522,
+          "fnv": "9dc54de6c8003d69",
+          "pixels_equal": true,
+          "ICC_equal": true,
+          "metadata_equal": true,
+          "PNG_equal": true,
+          "wall_ns": 5474375,
+          "thread_cpu_ns": 4406823,
+          "cpu_valid": true,
+          "sha256": "759fea952ade2f43274dc54728c6ffb52a5193f78c41d9facd0f2656158253a4",
+          "container": {
+            "chunks": [
+              {
+                "type": "IHDR",
+                "bytes": 13,
+                "payload_sha256": "b41220ec4417f0381bdf12c55844ec540dd4cf1771c163bc5784a14d392e46ef"
+              },
+              {
+                "type": "sRGB",
+                "bytes": 1,
+                "payload_sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+              },
+              {
+                "type": "eXIf",
+                "bytes": 108,
+                "payload_sha256": "adf5008c3d86ff62d8512946e4561b1f2f77c288954f6fc50a1304d882f27a6b"
+              },
+              {
+                "type": "pHYs",
+                "bytes": 9,
+                "payload_sha256": "2fb8fb780e4f77872628d88bb0ab3395f423c19aadc903c0352d6de0945f8d04"
+              },
+              {
+                "type": "IDAT",
+                "bytes": 1311,
+                "payload_sha256": "177875df73c86045f763d2fcd300dd1c4c7724bbee76144921a16e7ab730dfc2"
+              },
+              {
+                "type": "IEND",
+                "bytes": 0,
+                "payload_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            ],
+            "metadata_sha256": "258d8bca720c77fe171c52ccc3ede822b6f706c482dd2d2a9fca8b54c0c6c923",
+            "IDAT_defiltered_pixels_match_original_CG_decode": true
+          }
+        }
+      }
+    },
+    {
+      "case": 2,
+      "width": 1024,
+      "height": 1,
+      "original_PNG_wall_ns": 7994323,
+      "original_PNG_thread_cpu_ns": 6379270,
+      "original_PNG_bytes": 1522,
+      "filters": {
+        "baseline": {
+          "result": 0,
+          "bytes": 376,
+          "fnv": "501e2fff2a55af24",
+          "pixels_equal": true,
+          "ICC_equal": true,
+          "metadata_equal": true,
+          "PNG_equal": false,
+          "wall_ns": 4055625,
+          "thread_cpu_ns": 3407083,
+          "cpu_valid": true
+        },
+        "none": {
+          "result": 0,
+          "bytes": 1522,
+          "fnv": "9dc54de6c8003d69",
+          "pixels_equal": true,
+          "ICC_equal": true,
+          "metadata_equal": true,
+          "PNG_equal": true,
+          "wall_ns": 4732917,
+          "thread_cpu_ns": 4206094,
+          "cpu_valid": true
+        },
+        "up": {
+          "result": 0,
+          "bytes": 1522,
+          "fnv": "9dc54de6c8003d69",
+          "pixels_equal": true,
+          "ICC_equal": true,
+          "metadata_equal": true,
+          "PNG_equal": true,
+          "wall_ns": 4903802,
+          "thread_cpu_ns": 4448489,
+          "cpu_valid": true
+        }
+      }
+    },
+    {
+      "case": 3,
+      "width": 1024,
+      "height": 1,
+      "original_PNG_wall_ns": 9747656,
+      "original_PNG_thread_cpu_ns": 6383802,
+      "original_PNG_bytes": 3762,
+      "filters": {
+        "baseline": {
+          "result": 0,
+          "bytes": 1319,
+          "fnv": "5787312438c3ac9d",
+          "pixels_equal": true,
+          "ICC_equal": true,
+          "metadata_equal": true,
+          "PNG_equal": false,
+          "wall_ns": 9864531,
+          "thread_cpu_ns": 6718854,
+          "cpu_valid": true
+        },
+        "none": {
+          "result": 0,
+          "bytes": 3762,
+          "fnv": "52d96bd4e8028e10",
+          "pixels_equal": true,
+          "ICC_equal": true,
+          "metadata_equal": true,
+          "PNG_equal": true,
+          "wall_ns": 8415990,
+          "thread_cpu_ns": 7953542,
+          "cpu_valid": true
+        },
+        "up": {
+          "result": 0,
+          "bytes": 3762,
+          "fnv": "52d96bd4e8028e10",
+          "pixels_equal": true,
+          "ICC_equal": true,
+          "metadata_equal": true,
+          "PNG_equal": true,
+          "wall_ns": 4483593,
+          "thread_cpu_ns": 4395834,
+          "cpu_valid": true
+        }
+      }
+    },
+    {
+      "case": 4,
+      "width": 1024,
+      "height": 1,
+      "original_PNG_wall_ns": 5303489,
+      "original_PNG_thread_cpu_ns": 4997708,
+      "original_PNG_bytes": 4355,
+      "filters": {
+        "baseline": {
+          "result": 0,
+          "bytes": 3606,
+          "fnv": "a999edc10dc1d90c",
+          "pixels_equal": true,
+          "ICC_equal": true,
+          "metadata_equal": true,
+          "PNG_equal": false,
+          "wall_ns": 6919375,
+          "thread_cpu_ns": 6135885,
+          "cpu_valid": true
+        },
+        "none": {
+          "result": 0,
+          "bytes": 4355,
+          "fnv": "b040f3fea32731ab",
+          "pixels_equal": true,
+          "ICC_equal": true,
+          "metadata_equal": true,
+          "PNG_equal": true,
+          "wall_ns": 5256875,
+          "thread_cpu_ns": 4758854,
+          "cpu_valid": true
+        },
+        "up": {
+          "result": 0,
+          "bytes": 4355,
+          "fnv": "b040f3fea32731ab",
+          "pixels_equal": true,
+          "ICC_equal": true,
+          "metadata_equal": true,
+          "PNG_equal": true,
+          "wall_ns": 7489271,
+          "thread_cpu_ns": 6277500,
+          "cpu_valid": true
+        }
+      }
+    },
+    {
+      "case": 5,
+      "width": 750,
+      "height": 1624,
+      "original_PNG_wall_ns": 8530838281,
+      "original_PNG_thread_cpu_ns": 5991638125,
+      "original_PNG_bytes": 4805449,
+      "filters": {
+        "baseline": {
+          "result": 0,
+          "bytes": 3546520,
+          "fnv": "aa4c6cba083dd603",
+          "pixels_equal": true,
+          "ICC_equal": true,
+          "metadata_equal": true,
+          "PNG_equal": false,
+          "wall_ns": 2360435208,
+          "thread_cpu_ns": 2333146875,
+          "cpu_valid": true
+        },
+        "none": {
+          "result": 0,
+          "bytes": 4805252,
+          "fnv": "d1ff010f2d5413b8",
+          "pixels_equal": true,
+          "ICC_equal": true,
+          "metadata_equal": true,
+          "PNG_equal": false,
+          "wall_ns": 2265357500,
+          "thread_cpu_ns": 2234507135,
+          "cpu_valid": true
+        },
+        "up": {
+          "result": 0,
+          "bytes": 3572583,
+          "fnv": "19bd7c94107eb234",
+          "pixels_equal": true,
+          "ICC_equal": true,
+          "metadata_equal": true,
+          "PNG_equal": false,
+          "wall_ns": 2104195052,
+          "thread_cpu_ns": 2086057187,
+          "cpu_valid": true
+        }
+      }
+    },
+    {
+      "case": 6,
+      "width": 750,
+      "height": 1624,
+      "original_PNG_wall_ns": 4562836302,
+      "original_PNG_thread_cpu_ns": 4520181406,
+      "original_PNG_bytes": 2238834,
+      "filters": {
+        "baseline": {
+          "result": 0,
+          "bytes": 952050,
+          "fnv": "646f26e8cd092728",
+          "pixels_equal": true,
+          "ICC_equal": true,
+          "metadata_equal": true,
+          "PNG_equal": false,
+          "wall_ns": 1174222865,
+          "thread_cpu_ns": 1164201563,
+          "cpu_valid": true
+        },
+        "none": {
+          "result": 0,
+          "bytes": 2237993,
+          "fnv": "5d8dc74728f59c3e",
+          "pixels_equal": true,
+          "ICC_equal": true,
+          "metadata_equal": true,
+          "PNG_equal": false,
+          "wall_ns": 1057212031,
+          "thread_cpu_ns": 1051727083,
+          "cpu_valid": true
+        },
+        "up": {
+          "result": 0,
+          "bytes": 962748,
+          "fnv": "d308d3c42ce46f01",
+          "pixels_equal": true,
+          "ICC_equal": true,
+          "metadata_equal": true,
+          "PNG_equal": false,
+          "wall_ns": 964920625,
+          "thread_cpu_ns": 963032500,
+          "cpu_valid": true
+        }
+      }
+    }
+  ],
+  "measured_speedups_are_authored_examples_not_original_UI": true,
+  "encoder_not_yet_installed": true,
+  "full_UI_FPS_peripherals_incomplete": true,
+  "next_required_work": "Factor the exact proved ImageIO/UP writer into a bounded compatibility encoder, keep unsupported UIImage cases on the original API, bind its source proof, then same-RAM CPU and original Aegir GPU/camera admission; no fake snapshot or altered pixel/profile/metadata."
+}
