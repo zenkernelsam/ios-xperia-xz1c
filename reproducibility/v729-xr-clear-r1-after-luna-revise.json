@@ -63,7 +63,7 @@
   "camera_already_rotated": 90,
   "panel_visually_inspected": true,
   "full_UI_not_achieved": true,
-  "panel_observation": "dark blue/gray background, battery/camera/homebar; wallpaper/time/date absent",
+  "panel_observation": "dark coloured background and reflections, battery/camera/homebar; wallpaper/time/date absent",
   "strict_return": {
     "complete": true,
     "reason": "COMPLETE_CURRENT_BOOT_RETURN",
@@ -83,5 +83,6 @@
   "return_seconds_with_health": 40.20299999997951,
   "no_inflight_controller_or_serial_worker": true,
   "snapshot_wait_includes_driver_work_and_GPU_time": true,
-  "PNG_pending_sample_does_not_identify_exact_internal_bottleneck": true
+  "PNG_pending_sample_does_not_identify_exact_internal_bottleneck": true,
+  "camera_white_balance_and_reflection_do_not_establish_colour_calibration": true
 }

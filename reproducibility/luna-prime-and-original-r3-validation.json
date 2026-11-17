@@ -19,5 +19,6 @@
   "new_source_or_compiled_GPU_kernel_changes": false,
   "single_download_boot_and_complete_current_token_return_verified": true,
   "no_inflight_controller_or_serial_worker": true,
-  "next_required_work": "Read-only original PNG input metadata and current-boot symbol samples before choosing lossless image optimization; preserve original pixels/profile/return semantics."
+  "next_required_work": "Read-only original PNG input metadata and current-boot symbol samples before choosing lossless image optimization; preserve original pixels/profile/return semantics.",
+  "goal_scope_still_includes_full_UI_FPS_sleep_audio_and_wireless": true
 }
