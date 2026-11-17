@@ -50,6 +50,9 @@ static bool cif10_png_reference_probe(CIF10ReferenceEmit emit)
     mach_timebase_info_data_t timebase={0};
     int result=(!emit || mach_timebase_info(&timebase) || !timebase.numer || !timebase.denom)?1:0;
     if(!emit)return false;
+#if defined(SWEET_PNG_IMAGEIO_SOURCE_SHA)
+    emit("SWEET PNG ENCODER REFERENCE source_sha=%s backend=ImageIO_UP installed=0",SWEET_PNG_IMAGEIO_SOURCE_SHA);
+#endif
     emit("SWEET CIF10 CONFIG revision=3 PNG_exports=1 vImage_modes=2 filter_policies=3 original_options=1 converter_installed=0");
     emit("SWEET CIF10 REFERENCE BEGIN cases=6 original_API=1 author_generated=1 original_UI_pixels_read=0 converter_installed=0");
     unsigned completed=0;

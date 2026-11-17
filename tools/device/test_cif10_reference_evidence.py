@@ -113,3 +113,12 @@ for bad in (text3.replace(' differences=1 ',' mismatches=1 ',1),text3.replace('p
     except (AssertionError,KeyError,ValueError):continue
     raise AssertionError('Malformed filter candidate or ambiguous telemetry accepted')
 print('CIF10 v3 evidence PASS: six references/filter pixel/profile/metadata scope, ambiguous telemetry and altered exports rejected')
+
+source='a'*64
+bound=text3.replace(BEGIN.replace('cases=5','cases=6'),f'SWEET PNG ENCODER REFERENCE source_sha={source} backend=ImageIO_UP installed=0\n'+BEGIN.replace('cases=5','cases=6'))
+assert inspect(bound,TOKEN,3,source)['encoder_source_sha256']==source
+for expected in (None,'b'*64):
+    try:inspect(bound,TOKEN,3,expected)
+    except AssertionError:continue
+    raise AssertionError('Unbound shared encoder reference accepted')
+print('Shared PNG encoder reference PASS: exact native source identity required')

@@ -5,11 +5,14 @@ import math
 APIS = ('png', 'add_image', 'finalize', 'colorsync')
 METHOD_APIS = ('pipeline', 'library_url', 'library_bundle', 'snapshot', 'wait', 'execute', 'read', 'read_full')
 METHOD_ARGUMENTS = dict(pipeline=4, library_url=4, library_bundle=4, snapshot=5, wait=2, execute=2, read=6, read_full=8)
-BEGIN = re.compile(r'SWEET POSTDRAW BEGIN pid=(\d+) tid=(\d+) call=(\d+) root=(\d+) depth=(\d+) api=(\w+) at_ns=(\d+) original_forwarded=1')
-END = re.compile(r'SWEET POSTDRAW END pid=(\d+) tid=(\d+) call=(\d+) api=(\w+) wall_ns=(\d+) cpu_ns=(\d+) cpu_valid=([01]) outcome=(\w+) bytes=(\d+) returned_nil=([01]) original_behavior=1')
+BEGIN = re.compile(r'SWEET POSTDRAW BEGIN pid=(\d+) tid=(\d+) call=(\d+) root=(\d+) depth=(\d+) api=(\w+) at_ns=(\d+) original_forwarded=([01])')
+END = re.compile(r'SWEET POSTDRAW END pid=(\d+) tid=(\d+) call=(\d+) api=(\w+) wall_ns=(\d+) cpu_ns=(\d+) cpu_valid=([01]) outcome=(\w+) bytes=(\d+) returned_nil=([01]) original_behavior=([01])')
 IMAGE = re.compile(r'SWEET POSTDRAW IMAGE pid=(\d+) call=(\d+) width=(\d+) height=(\d+) bpp=(\d+) pitch=(\d+) color_model=(-?\d+) properties_nil=([01]) pixels_read=0')
 ORIGINAL = re.compile(r'SWEET POSTDRAW ORIGINAL pid=(\d+) api=(\w+) image=(\S+) offset=(0x[0-9a-f]+) resolved=([01])')
 INSTALLED = 'SWEET POSTDRAW observer installed=1 interpose_pairs=4 limit=64 metadata_only=1 original_arguments_results=1'
+INSTALLED_ENCODER='SWEET POSTDRAW observer installed=1 interpose_pairs=4 limit=64 metadata_only=0 original_arguments_results=0'
+ENCODER=re.compile(r'SWEET PNG ENCODER installed pid=(\d+) backend=ImageIO_UP filter=32 source_sha=([0-9a-f]{64}) proof_token=([0-9a-f]{16}) fallbacks_original=1')
+PNG_ROUTE=re.compile(r'SWEET POSTDRAW PNG_ROUTE pid=(\d+) call=(\d+) route=(ImageIO_UP|UIImage_original|UIImage_fallback|UIImage_throw_fallback) qualified=([01]) original_forwarded=([01]) filter=32 source_sha=([0-9a-f]{64})')
 METHOD_INIT = re.compile(r'SWEET SNAPSHOT INIT pid=(\d+) at_ns=(\d+) expected=8 metadata_only=1')
 METHOD = re.compile(r'SWEET SNAPSHOT METHOD pid=(\d+) api=(\w+) present=([01]) owned=([01]) installed=([01]) arguments=(\d+) original_forwarded=1')
 METHOD_CONFIG = re.compile(r'SWEET SNAPSHOT observer pid=(\d+) installed=(\d+) expected=8 limit=64 metadata_only=1 original_arguments_results=1')
@@ -22,14 +25,15 @@ PNG_CG = re.compile(r'SWEET POSTDRAW PNG_CG pid=(\d+) call=(\d+) cg_nil=([01]) w
 PNG_COLOR = re.compile(r'SWEET POSTDRAW PNG_COLOR pid=(\d+) call=(\d+) color_nil=([01]) model=(-?\d+) components=(\d+) wide=([01]) extended=([01]) named=([01]) sanitized=([01]) name=(\S+)')
 
 
-def inspect(text, token, method_observer=False, png_input_observer=False):
+def inspect(text, token, method_observer=False, png_input_observer=False, png_encoder=None):
     live = 'SWEET LOOP LIVE proto=1 token='+token
     ack = 'SWEET LOOP ACK FASTBOOT token='+token
     assert text.count(live) == 1 and text.count(ack) == 1
     begin, finish = text.index(live), text.index(ack)
     assert begin < finish
     scope = text[begin:finish]
-    assert INSTALLED in scope and 'SWEET POSTDRAW observer installed=0' not in scope
+    installed_marker=INSTALLED_ENCODER if png_encoder else INSTALLED
+    assert installed_marker in scope and 'SWEET POSTDRAW observer installed=0' not in scope
     originals = {}
     for match in ORIGINAL.finditer(scope):
         pid, api, image, offset, resolved = match.groups()
@@ -39,6 +43,12 @@ def inspect(text, token, method_observer=False, png_input_observer=False):
         assert api not in entries
         entries[api] = dict(image=image, offset=offset, resolved=True)
     assert originals and all(set(entries) == set(APIS) for entries in originals.values())
+    encoders={}
+    for m in ENCODER.finditer(scope):
+        pid=int(m[1]);assert png_encoder and pid in originals and pid not in encoders
+        assert m[2]==png_encoder['encoder_source_sha256'] and m[3]==png_encoder['reference_token']
+        encoders[pid]=dict(source_sha256=m[2],reference_token=m[3])
+    assert set(encoders)==(set(originals) if png_encoder else set())
 
     png_config = [int(match[1]) for match in PNG_CONFIG.finditer(scope)]
     if png_input_observer:
@@ -77,14 +87,17 @@ def inspect(text, token, method_observer=False, png_input_observer=False):
                     [(match.start(), 'png_input', match) for match in PNG_INPUT.finditer(scope)] +
                     [(match.start(), 'png_ui', match) for match in PNG_UI.finditer(scope)] +
                     [(match.start(), 'png_cg', match) for match in PNG_CG.finditer(scope)] +
-                    [(match.start(), 'png_color', match) for match in PNG_COLOR.finditer(scope)])
+                    [(match.start(), 'png_color', match) for match in PNG_COLOR.finditer(scope)] +
+                    [(match.start(), 'png_route', match) for match in PNG_ROUTE.finditer(scope)])
     records, stacks = {}, {}
     for _, kind, match in events:
         if kind == 'begin':
             pid, tid, call, root, depth = map(int, match.groups()[:5])
             api, at = match[6], int(match[7])
+            forwarded=match[8]=='1'
             key = (pid, call)
             assert pid in originals and tid > 0 and 1 <= root <= call <= 64 and api in APIS+METHOD_APIS
+            assert forwarded or (png_encoder and api=='png')
             if api in METHOD_APIS:
                 assert method_observer and methods[pid][api]['installed'] and at >= method_initialization[pid]
             assert key not in records
@@ -94,7 +107,7 @@ def inspect(text, token, method_observer=False, png_input_observer=False):
             if stack:
                 assert at >= records[stack[-1]]['begin_ns']
             records[key] = dict(pid=pid, tid=tid, call=call, root=root, depth=depth,
-                                api=api, begin_ns=at, original_forwarded=True, complete=False)
+                                api=api, begin_ns=at, original_forwarded=forwarded, complete=False)
             if method_observer:
                 records[key]['since_snapshot_observer_init_ns'] = at-method_initialization[pid]
             stack.append(key)
@@ -115,6 +128,15 @@ def inspect(text, token, method_observer=False, png_input_observer=False):
             assert method_observer and record['api'] in ('read', 'read_full') and not record['complete'] and 'read_region' not in record
             record['read_region'] = dict(width=width, height=height, depth=depth, row=row, image=image,
                                          mipmap_level=level, slice=slice, pixels_read_by_observer=False)
+        elif kind=='png_route':
+            pid,call=int(match[1]),int(match[2]);record=records[(pid,call)]
+            assert png_encoder and record['api']=='png' and not record['complete'] and 'png_route' not in record
+            route,qualified,forwarded,source=match.groups()[2:];assert source==png_encoder['encoder_source_sha256']
+            assert (route=='ImageIO_UP' and qualified=='1' and forwarded=='0') or (route!='ImageIO_UP' and forwarded=='1')
+            assert (route=='UIImage_original' and qualified=='0') or (route!='UIImage_original' and qualified=='1')
+            assert record['original_forwarded']==(qualified=='0')
+            record['png_route']=dict(route=route,qualified=qualified=='1',original_forwarded=forwarded=='1',source_sha256=source,
+                                     pixels_profile_metadata_native_prerequisite=True)
         elif kind.startswith('png_'):
             pid, call = map(int, match.groups()[:2])
             record = records[(pid, call)]
@@ -148,7 +170,7 @@ def inspect(text, token, method_observer=False, png_input_observer=False):
                 if image['cgimage']['nil']:assert nil
         else:
             pid, tid, call = map(int, match.groups()[:3])
-            api, wall, cpu, valid, outcome, size, nil = match.groups()[3:]
+            api, wall, cpu, valid, outcome, size, nil, behavior = match.groups()[3:]
             wall, cpu, size = map(int, (wall, cpu, size))
             record = records[(pid, call)]
             stack = stacks[(pid, tid)]
@@ -159,14 +181,18 @@ def inspect(text, token, method_observer=False, png_input_observer=False):
             assert api == 'png' or size == 0
             assert outcome == 'return' or size == 0
             assert api in ('png', 'colorsync', 'pipeline', 'library_url', 'library_bundle', 'snapshot') or nil == '0'
+            if api=='png' and png_encoder:
+                assert 'png_route' in record and record['png_route']['original_forwarded']==(behavior=='1')
+                if behavior=='0':assert outcome=='return' and nil=='0' and size>0 and record['png_route']['route']=='ImageIO_UP'
+            else:assert behavior=='1'
             record.update(complete=True, wall_ns=wall, thread_cpu_ns=cpu, cpu_valid=valid == '1',
-                          outcome=outcome, output_bytes=size, returned_nil=nil == '1', original_behavior_preserved=True)
+                          outcome=outcome, output_bytes=size, returned_nil=nil == '1', original_behavior_preserved=behavior=='1')
             stack.pop()
     # Do not quietly accept a tee-truncated line as an absent observation.
     for label, pattern in (('BEGIN', BEGIN), ('END', END), ('IMAGE', IMAGE), ('ORIGINAL', ORIGINAL),
-                           ('PNG_CONFIG',PNG_CONFIG),('PNG_INPUT',PNG_INPUT),('PNG_UI',PNG_UI),('PNG_CG',PNG_CG),('PNG_COLOR',PNG_COLOR)):
+                           ('PNG_CONFIG',PNG_CONFIG),('PNG_INPUT',PNG_INPUT),('PNG_UI',PNG_UI),('PNG_CG',PNG_CG),('PNG_COLOR',PNG_COLOR),('PNG_ROUTE',PNG_ROUTE)):
         assert scope.count('SWEET POSTDRAW '+label+' ') == len(list(pattern.finditer(scope)))
-    assert scope.count(INSTALLED) == len(originals)
+    assert scope.count(installed_marker) == len(originals) and scope.count('SWEET PNG ENCODER installed ')==len(list(ENCODER.finditer(scope)))
     for record in records.values():
         if record['api'] in METHOD_APIS:
             assert 'object_tag' in record
@@ -179,6 +205,8 @@ def inspect(text, token, method_observer=False, png_input_observer=False):
     return dict(original_snapshot_observer_configured=True, source_references=originals,
                 png_input_observer_requested=png_input_observer,png_input_metadata_configured_pids=png_config,
                 png_input_samples=sum('png_input' in record for record in records.values()),
+                png_encoder_requested=png_encoder is not None,png_encoder_installations=encoders,
+                optimized_PNG_returns=sum(record['api']=='png' and record['complete'] and record.get('png_route',{}).get('route')=='ImageIO_UP' for record in records.values()),
                 snapshot_method_observer_requested=method_observer, snapshot_method_metadata=methods,
                 snapshot_method_coverage=method_coverage, snapshot_observer_init_ns=method_initialization,
                 elapsed_since_observer_init_is_not_full_extension_budget=True,
@@ -214,7 +242,8 @@ if __name__ == '__main__':
     assert returned['complete'] and row['fastboot_returned'] and row['reset_to_fastboot_seconds'] >= 30
     report = inspect(raw.decode('ascii', errors='replace'), artifact['token'],
                      method_observer=artifact['exception_observer'].get('snapshot_method_observer', False),
-                     png_input_observer=artifact['exception_observer'].get('postdraw_png_input_metadata', False))
+                     png_input_observer=artifact['exception_observer'].get('postdraw_png_input_metadata', False),
+                     png_encoder=artifact['exception_observer'].get('png_encoder_prior_proof'))
     report.update(token=artifact['token'], raw_sha256=digest, source=str(folder.resolve()),
                   original_result=row['result'], original_reason=row['reason'], strict_return=returned,
                   original_failed_stage_not_accepted=row['result'] != 'PASS')

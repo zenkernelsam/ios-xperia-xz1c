@@ -109,7 +109,7 @@ def verify(directory,mode,kernel_sha=None,version=None):
                 if a['exception_observer'].get('original_Metal_registry_probe'):exceptions['Metal_discovery']=verify_metal_discovery(text,a['token'])
                 if a['exception_observer'].get('registration_only'):exceptions['native_prior_binding']=verify_registry_proof(text,a['token'],a['exception_observer']['prior_native_hardware_proof'])
                 if a['exception_observer'].get('original_pipeline_observer'):exceptions['pipeline_factory']=verify_pipeline_observer(text,a['token'])
-                if a['exception_observer'].get('original_postdraw_observer'):exceptions['postdraw_snapshot']=inspect_postdraw(text,a['token'],method_observer=a['exception_observer'].get('snapshot_method_observer',False),png_input_observer=a['exception_observer'].get('postdraw_png_input_metadata',False))
+                if a['exception_observer'].get('original_postdraw_observer'):exceptions['postdraw_snapshot']=inspect_postdraw(text,a['token'],method_observer=a['exception_observer'].get('snapshot_method_observer',False),png_input_observer=a['exception_observer'].get('postdraw_png_input_metadata',False),png_encoder=a['exception_observer'].get('png_encoder_prior_proof'))
                 if a['exception_observer'].get('AIR_XR_probe'):exceptions['AIR_XR']=verify_air_xr(text,a['token'])
                 if a['exception_observer'].get('Metal_IOSurface_probe'):exceptions['Metal_IOSurface']=verify_metal_surface(text,a['token'])
                 if a['exception_observer'].get('Metal_mipmap_probe'):exceptions['Metal_mipmaps']=verify_metal_mips(text,a['token'])
@@ -121,7 +121,7 @@ def verify(directory,mode,kernel_sha=None,version=None):
                 if a['exception_observer'].get('AIR_static_half_probe'):exceptions['AIR_static_half']=verify_static_half(text,a['token'],a['exception_observer']['AIR_static_half_fixture'])
                 if a['exception_observer'].get('program_request_export'):exceptions['Program_request_export']=verify_program_request(text,a['token'],a['exception_observer']['program_request_export'])
                 if a['exception_observer'].get('program_cache_scope'):exceptions['Program_cache_scope']=verify_cache_scope(text,a['token'],a['exception_observer']['program_cache_scope'])
-                if a['exception_observer'].get('cif10_PNG_reference'):exceptions['CIF10_PNG_reference']=inspect_cif10_reference(text,a['token'],a['exception_observer']['cif10_reference_revision'])
+                if a['exception_observer'].get('cif10_PNG_reference'):exceptions['CIF10_PNG_reference']=inspect_cif10_reference(text,a['token'],a['exception_observer']['cif10_reference_revision'],a['exception_observer'].get('png_imageio_encoder_source_sha256'))
     boundary='serialized=1' if mode in ('ready','gpu') else 'serialized=0'
     assert re.search(r'SWEET LOOP MAP_BOUNDARY token='+a['token']+' '+boundary+r' claimed=1',scope)
     report={'version':a['version'],'mode':mode,'source':str(root.resolve()),'token':a['token'],'kernel_sha256':a['kernel_sha256'],

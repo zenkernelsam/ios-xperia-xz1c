@@ -79,3 +79,11 @@ AMD/x86 host ASan/UBSan与六组原输入/guard/nil/异常检查通过；三种I
 reference3已完整实机验收：CPU21e8cfa3/47.156秒回程，GPU5221b885/原14组+六组原PNG/过滤对照、38.172秒四回程/健康/controller退出。三种ImageIO策略在全部六组原16位像素、ICC与metadata相同；UP作者混色2.104秒/原8.531秒，作者渐变0.965秒/原4.563秒。这些是作者参考，不能当原界面FPS或check-in成功。公开vImage仍数值不等，拒绝；r2的独立拒绝记录没有改写。原GPU错误guard未修改，新候选字段differences避开歧义。结果见v729-cif10-reference-r3-gpu-actual、native14-actual与cif10-reference-r3-filter-analysis。
 
 下一实现应把相同的ImageIO/UP编码部分抽到正式源码的受约束兼容层，保留原色彩转换、scale2/DPI144、16位/profile/metadata，未支持UIImage输入走原API。仅在原真实GPU snapshot之后编码完整PNG，不能用nil/stub、主机或后台参考PASS替代原Aegir与面板验收；本次尚未把新编码器装到原UI。
+
+## 共享编码实现与原界面准入
+
+PNGImageIOEncoder.h将同一ImageIO编码部分供作者参考与原界面使用，原CGImage不复制、不降位深、不改颜色空间，仍由ImageIO执行色彩转换；UP只改变压缩过滤，scale2对应DPI144。PNGImageDispatch.h只接受精确UIImage类、原CIF10/ExtendedSRGB/alphaNone/bitmap0x42000、scale2/orientation0、raw CGImage、非动画及有界几何。其它输入直接走原UIImagePNGRepresentation；编码失败或异常也用原对象回退，原nil/异常/errno保持。主机真实ImageIO/RGB16像素/ICC/metadata、原输入不变、类型/方向/scale/动画拒绝和原调用身份的ASan/UBSan检查已通过，不能替代原手机验收。
+
+新--png-filter-encoder只允许Aegir短登记及postdraw观察，必须给--png-proof。该proof从新共享函数的后台原UIImage PNG/raw重新核验，绑定kernel/GLES/Metal、共享编码源码SHA、六组UP原像素/ICC/metadata、当前token及完整回程。旧reference3虽通过，但没有新共享源码绑定，不能直接准入新实现。之后仍须新原界面RAM自身CPU，再同库native/PNG先验单发原GPU。
+
+快路径BEGIN明确original_forwarded=0，PNG_ROUTE标明ImageIO_UP；原路径/失败回退仍original_forwarded=1，END对应原行为标记。相机和原Aegir check-in期限保持，不能把兼容编码当成原API实际转发，不能仅凭后台PASS改写原UI失败。最终完整UI/FPS/睡眠/声音/无线目标保持。

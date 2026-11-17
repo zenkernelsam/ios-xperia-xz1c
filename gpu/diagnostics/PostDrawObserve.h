@@ -15,6 +15,10 @@
 #include <dlfcn.h>
 #include <string.h>
 #include <objc/runtime.h>
+#if defined(SWEET_PNG_FILTER_ENCODER)
+#include "../compat/PNGImageDispatch.h"
+#include "PNGEncoderProof.h"
+#endif
 
 #if TARGET_OS_IOS
 #import <UIKit/UIKit.h>
@@ -29,7 +33,7 @@ typedef void (*SweetPostDrawEmit)(const char *, ...);
 typedef struct {
     uint64_t call, root, thread, wall, cpu;
     unsigned depth;
-    bool recorded, cpu_valid;
+    bool recorded, cpu_valid, original_forwarded;
 } SweetPostDrawCall;
 static SweetPostDrawEmit postdraw_emit;
 static mach_timebase_info_data_t postdraw_timebase;
@@ -152,9 +156,10 @@ static void postdraw_png_input(SweetPostDrawCall call, SweetPostDrawImage image)
         postdraw_pid, (unsigned long long)call.call, input.color_nil, input.color_model, input.components,
         input.wide, input.extended, input.named, input.name_sanitized, input.color_name);
 }
-static SweetPostDrawCall postdraw_begin(const char *api)
+static SweetPostDrawCall postdraw_begin_route(const char *api,bool original_forwarded)
 {
     SweetPostDrawCall call = {0};
+    call.original_forwarded=original_forwarded;
     call.call = atomic_fetch_add_explicit(&postdraw_calls, 1, memory_order_relaxed) + 1;
     call.depth = ++postdraw_depth;
     if (call.depth == 1) postdraw_root = call.call;
@@ -163,12 +168,13 @@ static SweetPostDrawCall postdraw_begin(const char *api)
     if (call.recorded) {
         (void)pthread_threadid_np(NULL, &call.thread);
         uint64_t begin = postdraw_wall_ns();
-        postdraw_emit("SWEET POSTDRAW BEGIN pid=%d tid=%llu call=%llu root=%llu depth=%u api=%s at_ns=%llu original_forwarded=1",
+        postdraw_emit("SWEET POSTDRAW BEGIN pid=%d tid=%llu call=%llu root=%llu depth=%u api=%s at_ns=%llu original_forwarded=%u",
             postdraw_pid, (unsigned long long)call.thread, (unsigned long long)call.call,
-            (unsigned long long)call.root, call.depth, api, (unsigned long long)begin);
+            (unsigned long long)call.root, call.depth, api, (unsigned long long)begin,call.original_forwarded);
     }
     return call;
 }
+static SweetPostDrawCall postdraw_begin(const char *api){return postdraw_begin_route(api,true);}
 static void postdraw_start(SweetPostDrawCall *call)
 {
     // Exclude this observer's entry/metadata records. Nested durations remain
@@ -186,31 +192,49 @@ static void postdraw_end(SweetPostDrawCall call, const char *api, const char *ou
         bool cpu_valid = false;
         uint64_t cpu = postdraw_cpu_ns(&cpu_valid);
         cpu_valid = call.cpu_valid && cpu_valid && cpu >= call.cpu;
-        postdraw_emit("SWEET POSTDRAW END pid=%d tid=%llu call=%llu api=%s wall_ns=%llu cpu_ns=%llu cpu_valid=%u outcome=%s bytes=%llu returned_nil=%u original_behavior=1",
+        postdraw_emit("SWEET POSTDRAW END pid=%d tid=%llu call=%llu api=%s wall_ns=%llu cpu_ns=%llu cpu_valid=%u outcome=%s bytes=%llu returned_nil=%u original_behavior=%u",
             postdraw_pid, (unsigned long long)call.thread, (unsigned long long)call.call, api,
             (unsigned long long)(wall >= call.wall ? wall - call.wall : 0),
             (unsigned long long)(cpu_valid ? cpu - call.cpu : 0), cpu_valid, outcome,
-            (unsigned long long)bytes, returned_nil);
+            (unsigned long long)bytes, returned_nil,call.original_forwarded);
     }
     --postdraw_depth;
     if (!postdraw_depth) postdraw_root = 0;
 }
+#if defined(SWEET_PNG_FILTER_ENCODER)
+static NSData *postdraw_original_png(id image){return UIImagePNGRepresentation((SweetPostDrawImage)image);}
+#endif
 static NSData *postdraw_png(SweetPostDrawImage image)
 {
     if (!postdraw_emit) return UIImagePNGRepresentation(image);
     int incoming_errno = errno;
-    SweetPostDrawCall call = postdraw_begin("png");
+    bool eligible=false;
+#if defined(SWEET_PNG_FILTER_ENCODER)
+    CGImageRef cg=NULL;CGFloat scale=0;int route=SWEET_PNG_ORIGINAL;
+    eligible=sweet_png_image_eligible(image,objc_lookUpClass("UIImage"),&cg,&scale);
+#endif
+    SweetPostDrawCall call = postdraw_begin_route("png",!eligible);
     NSData *result = nil;
     bool returned = false;
     @try {
         postdraw_png_input(call, image);
         postdraw_start(&call);
         errno = incoming_errno;
+#if defined(SWEET_PNG_FILTER_ENCODER)
+        result=sweet_png_dispatch(image,postdraw_original_png,sweet_png_imageio_encode,eligible,cg,scale,&route);
+#else
         result = UIImagePNGRepresentation(image);
+#endif
         returned = true;
         return result;
     } @finally {
         int outgoing_errno = errno;
+#if defined(SWEET_PNG_FILTER_ENCODER)
+        call.original_forwarded=route!=SWEET_PNG_UP;
+        if(call.recorded)postdraw_emit("SWEET POSTDRAW PNG_ROUTE pid=%d call=%llu route=%s qualified=%u original_forwarded=%u filter=32 source_sha=%s",
+            postdraw_pid,(unsigned long long)call.call,route==SWEET_PNG_UP?"ImageIO_UP":route==SWEET_PNG_ORIGINAL?"UIImage_original":route==SWEET_PNG_FAILED_FALLBACK?"UIImage_fallback":"UIImage_throw_fallback",
+            eligible,call.original_forwarded,SWEET_PNG_IMAGEIO_SOURCE_SHA);
+#endif
         // NSData length is metadata only. No PNG data or pixel pages are read.
         uint64_t bytes = returned && result ? (uint64_t)result.length : 0;
         postdraw_end(call, "png", returned ? "return" : "throw", bytes, result == nil);
@@ -301,13 +325,20 @@ static bool postdraw_observe(SweetPostDrawEmit emit)
     postdraw_pid = getpid();
     if (valid) postdraw_emit = emit;
     if (emit) {
+#if defined(SWEET_PNG_FILTER_ENCODER)
+        emit("SWEET POSTDRAW observer installed=%u interpose_pairs=4 limit=64 metadata_only=0 original_arguments_results=0", valid);
+#else
         emit("SWEET POSTDRAW observer installed=%u interpose_pairs=4 limit=64 metadata_only=1 original_arguments_results=1", valid);
+#endif
         if (valid) {
             postdraw_original(emit, "png", (const void *)(uintptr_t)&UIImagePNGRepresentation);
             postdraw_original(emit, "add_image", (const void *)(uintptr_t)&CGImageDestinationAddImage);
             postdraw_original(emit, "finalize", (const void *)(uintptr_t)&CGImageDestinationFinalize);
             postdraw_original(emit, "colorsync", (const void *)(uintptr_t)&ColorSyncTransformCreate);
             emit("SWEET POSTDRAW PNG_CONFIG pid=%d revision=1 getters_only=1 pixels_read=0 profile_read=0", postdraw_pid);
+#if defined(SWEET_PNG_FILTER_ENCODER)
+            emit("SWEET PNG ENCODER installed pid=%d backend=ImageIO_UP filter=32 source_sha=%s proof_token=%s fallbacks_original=1",postdraw_pid,SWEET_PNG_IMAGEIO_SOURCE_SHA,SWEET_PNG_REFERENCE_TOKEN);
+#endif
         }
     }
     errno = saved_errno;

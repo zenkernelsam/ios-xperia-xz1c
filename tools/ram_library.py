@@ -4,6 +4,7 @@ from pathlib import Path
 from native_proof import validate as validate_native,header as native_header
 from program_request import specification as request_specification,header as request_header
 from program_cache_scope import specification as cache_scope_specification,header as cache_scope_header
+from png_encoder_proof import validate as validate_png,header as png_header
 ROOT=Path(__file__).resolve().parents[1]
 API='a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3'
 HELPER='e65bdc7b70d098725918c637cc8cb1c25a8a544186d0f4468b399fda52024898'
@@ -50,16 +51,23 @@ def load(folder,expected=None):
             if observer.get('original_postdraw_observer'):
                 sources.add('gpu/diagnostics/PostDrawObserve.h')
                 assert observer.get('registration_only') and observer.get('original_pipeline_observer') and observer['target_process']=='AegirPoster'
-                assert observer['postdraw_observer_revision'] in (1,2) and observer['postdraw_observations_max']==64
+                assert observer['postdraw_observer_revision'] in (1,2,3) and observer['postdraw_observations_max']==64
                 assert observer['postdraw_apis']==['png','add_image','finalize','colorsync']
                 assert observer['postdraw_return_nil_throw_errno_nesting_host_passed'] and observer['postdraw_real_PNG_bytes_pixels_ICC_input_host_passed']
                 assert observer['postdraw_original_pixel_and_profile_options_preserved'] and observer['postdraw_durations_inclusive_not_additive']
                 assert re.fullmatch('[0-9a-f]{64}',observer['postdraw_host_test_source_sha256'])
-                if observer['postdraw_observer_revision']==2:
+                if observer['postdraw_observer_revision']>=2:
                     assert observer['postdraw_png_input_metadata'] and observer['png_input_getters_exceptions_errno_host_passed']
                     assert observer['png_input_no_pixel_or_profile_reads_host_passed']
                     assert re.fullmatch('[0-9a-f]{64}',observer['png_input_host_test_source_sha256'])
                 else:assert not observer.get('postdraw_png_input_metadata')
+                if observer['postdraw_observer_revision']==3:
+                    sources|={'gpu/compat/PNGImageIOEncoder.h','gpu/compat/PNGImageDispatch.h','tools/png_encoder_proof.py'}
+                    assert observer['png_filter_encoder'] and observer['png_encoder_fallback_nil_throw_errno_input_metadata_host_passed']
+                    assert observer['png_encoder_preserves_pixels_profile_metadata'] and observer['png_encoder_changes_only_encoding_path_and_compression']
+                    assert observer['png_imageio_encoder_source_sha256']==observer['source_files']['gpu/compat/PNGImageIOEncoder.h']
+                    p=validate_png(observer['png_encoder_prior_proof'],observer['png_imageio_encoder_source_sha256'],observer['metal_resources']['gles_library_sha256'],observer['metal_resources']['library_sha256'])
+                    assert observer['png_encoder_proof_header_sha256']==sha(png_header(p)) and re.fullmatch('[0-9a-f]{64}',observer['png_encoder_host_test_source_sha256'])
             if observer.get('snapshot_method_observer'):
                 sources.add('gpu/diagnostics/SnapshotMethodObserve.h')
                 assert observer.get('original_postdraw_observer') and observer['snapshot_method_observer_revision']==1
@@ -81,6 +89,9 @@ def load(folder,expected=None):
                 if observer['cif10_reference_revision']==3:
                     sources.add('gpu/diagnostics/CIF10PNGFilterCompare.h')
                     assert observer['cif10_reference_filter_policies']==3 and observer['cif10_reference_lossless_filter_compare'] and observer['cif10_reference_candidate_differences_telemetry']
+                    if observer.get('cif10_reference_shared_encoder'):
+                        sources.add('gpu/compat/PNGImageIOEncoder.h')
+                        assert observer['png_imageio_encoder_source_sha256']==observer['source_files']['gpu/compat/PNGImageIOEncoder.h']
             if observer['target_process']=='backboardd':
                 sources.add('gpu/sweetgl/sweetgl.h')
                 assert observer.get('background_full_suite') and observer['waits_for_same_process_GLES_suite'] and observer['original_Aegir_not_modified_or_registered']

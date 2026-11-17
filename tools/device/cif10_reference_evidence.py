@@ -18,6 +18,7 @@ VIMAGE=re.compile(r'SWEET CIF10 VIMAGE case=(\d+) mode=(default|direct) status=(
 VIMAGE_TIME=re.compile(r'SWEET CIF10 VIMAGE TIME case=(\d+) mode=(default|direct) wall_ns=(\d+) cpu_ns=(\d+) cpu_valid=([01])')
 FILTER=re.compile(r'SWEET CIF10 FILTER case=(\d+) policy=(baseline|none|up) result=(\d+) bytes=(\d+) fnv=([0-9a-f]{16}) pixels_equal=([01]) ICC_equal=([01]) metadata_equal=([01]) PNG_equal=([01])')
 FILTER_TIME=re.compile(r'SWEET CIF10 FILTER TIME case=(\d+) policy=(baseline|none|up) wall_ns=(\d+) cpu_ns=(\d+) cpu_valid=([01])')
+ENCODER_SOURCE=re.compile(r'SWEET PNG ENCODER REFERENCE source_sha=([0-9a-f]{64}) backend=ImageIO_UP installed=0')
 
 
 def fnv(data):
@@ -78,11 +79,14 @@ def png_container(data,reference,row):
     return dict(chunks=chunks,metadata_sha256=hashlib.sha256(metadata).hexdigest(),IDAT_defiltered_pixels_match_original_CG_decode=reference is not None)
 
 
-def parse(text,token,revision=1):
+def parse(text,token,revision=1,encoder_source_sha256=None):
     live='SWEET LOOP LIVE proto=1 token='+token;ack='SWEET LOOP ACK FASTBOOT token='+token
     assert text.count(live)==text.count(ack)==1
     start,finish=text.index(live),text.index(ack);assert start<finish
     scope=text[start:finish]
+    encoders=list(ENCODER_SOURCE.finditer(scope));assert scope.count('SWEET PNG ENCODER REFERENCE ')==len(encoders)
+    if encoder_source_sha256:assert len(encoders)==1 and encoders[0][1]==encoder_source_sha256
+    else:assert not encoders
     assert revision in (1,2,3) and scope.count(CONFIG)==(1 if revision==2 else 0) and scope.count(CONFIG3)==(1 if revision==3 else 0)
     case_count=6 if revision==3 else 5;start_marker=BEGIN.replace('cases=5',f'cases={case_count}');end_marker=END.replace('cases=5',f'cases={case_count}')
     assert scope.count(start_marker)==scope.count(end_marker)==1
@@ -175,14 +179,15 @@ def parse(text,token,revision=1):
         row=rows[index];data=payloads[(index,'pixels')];pixel=row['decoded']['bits_per_pixel']//8
         row['decoded_samples']=[dict(column=x,raw_hex=data[x*pixel:(x+1)*pixel].hex()) for x in (0,1,383,384,385,509,510,511,893,894,895,1023)]
     return dict(token=token,reference_revision=revision,cases=list(rows.values()),original_UIImage_API_referenced=True,author_generated_inputs_only=True,
+                encoder_source_sha256=encoder_source_sha256,
                 vImage_all_pixel_stages_match=revision>=2 and all(v['pixels_match'] for row in rows.values() for v in row['vImage'].values()),
                 filter_policies_match_original=({p:all(not r['filters'][p]['result'] and r['filters'][p]['pixels_equal'] and r['filters'][p]['ICC_equal'] and r['filters'][p]['metadata_equal'] for r in rows.values()) for p in ('baseline','none','up')} if revision==3 else {}),
                 installed_converter=False,does_not_admit_lossless_optimization=True,does_not_complete_original_UI=True,
                 post_ACK_exit_period_excluded=True),payloads
 
 
-def inspect(text,token,revision=1):
-    return parse(text,token,revision)[0]
+def inspect(text,token,revision=1,encoder_source_sha256=None):
+    return parse(text,token,revision,encoder_source_sha256)[0]
 
 
 if __name__=='__main__':
@@ -195,7 +200,7 @@ if __name__=='__main__':
     raw=(folder/'cycle-01/serial.raw.log').read_bytes();assert hashlib.sha256(raw).hexdigest()==row['log_sha256']
     returned=inspect_return(raw,artifact['token'],row['checkpoint_log_bytes'],require_drain=True)
     assert returned['complete'] and row['fastboot_returned'] and row['reset_to_fastboot_seconds']>=30
-    report,payloads=parse(raw.decode('ascii','replace'),artifact['token'],artifact['exception_observer']['cif10_reference_revision'])
+    report,payloads=parse(raw.decode('ascii','replace'),artifact['token'],artifact['exception_observer']['cif10_reference_revision'],artifact['exception_observer'].get('png_imageio_encoder_source_sha256'))
     report.update(raw_sha256=row['log_sha256'],source=str(folder.resolve()),original_result=row['result'],strict_return=returned)
     if a.decoded_directory:
         target=Path(a.decoded_directory).resolve();assert target.is_relative_to(Path(os.environ['TEMP']).resolve()) and not target.exists();target.mkdir()

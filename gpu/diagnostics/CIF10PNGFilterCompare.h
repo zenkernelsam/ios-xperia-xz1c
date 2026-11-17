@@ -1,5 +1,6 @@
 /* Lossless ImageIO filter experiment on author-owned images only. */
 #pragma once
+#include "../compat/PNGImageIOEncoder.h"
 static bool cif10_png_filter_record(CIF10ReferenceEmit emit,unsigned index,CGImageRef input,
                                     NSData *original_png,CGImageRef original_decoded,CFDataRef original_pixels,
                                     CFDataRef original_icc,mach_timebase_info_data_t timebase)
@@ -10,20 +11,13 @@ static bool cif10_png_filter_record(CIF10ReferenceEmit emit,unsigned index,CGIma
     if(!original_metadata){CFRelease(original_source);return false;}
     bool safe=true;
     for(unsigned policy=0;policy<3;++policy) { @autoreleasepool {
-        NSMutableData *output=[NSMutableData data];CGImageDestinationRef destination=NULL;
+        NSData *output=nil;
         CGImageSourceRef source=NULL;CGImageRef decoded=NULL;CFDataRef pixels=NULL,icc=NULL;CFDictionaryRef metadata=NULL;
         int result=0;uint64_t elapsed=0,cpu_ns=0;bool cpu_valid=false,end_cpu_valid=false;
         bool pixels_equal=false,icc_equal=false,metadata_equal=false,png_equal=false;
         @try {
-            NSMutableDictionary *properties=[NSMutableDictionary dictionaryWithDictionary:@{(id)kCGImagePropertyDPIWidth:@144,(id)kCGImagePropertyDPIHeight:@144}];
-            if(policy)properties[(id)kCGImagePropertyPNGDictionary]=@{(id)kCGImagePropertyPNGCompressionFilter:@(policy==1?IMAGEIO_PNG_FILTER_NONE:IMAGEIO_PNG_FILTER_UP)};
             uint64_t cpu=cif10_reference_cpu(&cpu_valid),begin=cif10_reference_wall(timebase);
-            destination=CGImageDestinationCreateWithData((CFMutableDataRef)output,CFSTR("public.png"),1,NULL);
-            if(!destination)result=1;
-            else {
-                CGImageDestinationAddImage(destination,input,(CFDictionaryRef)properties);
-                if(!CGImageDestinationFinalize(destination))result=2;
-            }
+            output=sweet_png_imageio_encode(input,2,policy==0?0:policy==1?IMAGEIO_PNG_FILTER_NONE:IMAGEIO_PNG_FILTER_UP,&result);
             elapsed=cif10_reference_wall(timebase)-begin;uint64_t cpu_end=cif10_reference_cpu(&end_cpu_valid);
             cpu_valid=cpu_valid && end_cpu_valid && cpu_end>=cpu;cpu_ns=cpu_valid?cpu_end-cpu:0;
             if(!result && (!output.length || output.length>(16u<<20)))result=3;
@@ -52,7 +46,7 @@ static bool cif10_png_filter_record(CIF10ReferenceEmit emit,unsigned index,CGIma
             cif10_reference_export(emit,index,kind,(CFDataRef)output);
         }
         if(icc)CFRelease(icc);if(pixels)CFRelease(pixels);if(decoded)CGImageRelease(decoded);if(metadata)CFRelease(metadata);
-        if(source)CFRelease(source);if(destination)CFRelease(destination);
+        if(source)CFRelease(source);
         // Failures or unequal pixels remain rejected candidates, never an
         // installed encoder. The original reference is still mandatory.
     }}

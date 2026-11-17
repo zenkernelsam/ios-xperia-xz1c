@@ -5,12 +5,15 @@ root=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(root/'tools'));from native_proof import validate as validate_native,header as native_header
 from program_request import specification as request_specification,header as request_header
 from program_cache_scope import specification as cache_scope_specification,header as cache_scope_header
+from png_encoder_proof import validate as validate_png,header as png_header
 p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--metal-resources');p.add_argument('--air-fixture');p.add_argument('--render-fixture');p.add_argument('--constants-fixture');p.add_argument('--register-device',action='store_true');p.add_argument('--xr-probe',action='store_true');p.add_argument('--surface-probe',action='store_true');p.add_argument('--mip-probe',action='store_true');p.add_argument('--target-process',choices=['AegirPoster','backboardd'],default='AegirPoster');p.add_argument('--gles-ram-package');p.add_argument('--registration-only',action='store_true');p.add_argument('--native-proof');p.add_argument('--pipeline-observe',action='store_true');p.add_argument('--narrow-fixture');p.add_argument('--half-fixture');p.add_argument('--mrt-fixture');p.add_argument('--sampler-fixture');p.add_argument('--program-cache-prime',action='store_true');p.add_argument('--static-half-fixture');p.add_argument('--program-cache-export',action='store_true')
-p.add_argument('--postdraw-observe',action='store_true');p.add_argument('--snapshot-observe',action='store_true');p.add_argument('--cif10-png-reference',action='store_true');a=p.parse_args()
+p.add_argument('--postdraw-observe',action='store_true');p.add_argument('--snapshot-observe',action='store_true');p.add_argument('--cif10-png-reference',action='store_true');p.add_argument('--png-filter-encoder',action='store_true');p.add_argument('--png-proof');a=p.parse_args()
 if a.pipeline_observe:assert a.registration_only and a.target_process=='AegirPoster'
 if a.postdraw_observe:assert a.registration_only and a.pipeline_observe and a.target_process=='AegirPoster'
 if a.snapshot_observe:assert a.postdraw_observe
 if a.cif10_png_reference:assert a.target_process=='backboardd' and a.static_half_fixture and not a.registration_only and not a.program_cache_prime and not a.program_cache_export
+if a.png_filter_encoder:assert a.registration_only and a.postdraw_observe and a.png_proof and not a.cif10_png_reference
+else:assert not a.png_proof
 if a.program_cache_prime:assert a.target_process=='backboardd' and a.sampler_fixture and not a.registration_only
 if a.program_cache_export:assert a.target_process=='backboardd' and a.static_half_fixture and not a.registration_only and not a.program_cache_prime
 if a.registration_only:
@@ -27,7 +30,10 @@ if a.target_process=='backboardd':headers+=['gpu/sweetgl/sweetgl.h']
 if a.pipeline_observe:headers+=['gpu/diagnostics/MetalPipelineObserve.h']
 if a.postdraw_observe:headers+=['gpu/diagnostics/PostDrawObserve.h']
 if a.snapshot_observe:headers+=['gpu/diagnostics/SnapshotMethodObserve.h']
-if a.cif10_png_reference:headers+=['gpu/diagnostics/CIF10PNGReferenceProbe.h','gpu/diagnostics/CIF10VImageCompare.h','gpu/diagnostics/CIF10PNGFilterCompare.h']
+if a.png_filter_encoder:headers+=['gpu/compat/PNGImageIOEncoder.h','gpu/compat/PNGImageDispatch.h','tools/png_encoder_proof.py']
+if a.cif10_png_reference:
+    headers+=['gpu/diagnostics/CIF10PNGReferenceProbe.h','gpu/diagnostics/CIF10VImageCompare.h','gpu/diagnostics/CIF10PNGFilterCompare.h','gpu/compat/PNGImageIOEncoder.h']
+    png_source_sha=hashlib.sha256((root/'gpu/compat/PNGImageIOEncoder.h').read_bytes()).hexdigest()
 if a.program_cache_export:headers+=['gpu/diagnostics/ProgramRequestExport.h','gpu/sweetgl/ProgramCacheCodec.h','gpu/sweetgl/MetalShaderAPI.h','tools/program_request.py']
 resource_manifest=None
 cache_scope=None
@@ -59,6 +65,11 @@ if a.registration_only:
     proof_file=Path(a.native_proof).resolve();assert proof_file.is_relative_to(root/'build')
     native_proof=validate_native(json.loads(proof_file.read_bytes()),resource_manifest)
     (out/'NativeProof.h').write_bytes(native_header(native_proof))
+    if a.png_filter_encoder:
+        png_file=Path(a.png_proof).resolve();assert png_file.is_relative_to(root/'build')
+        png_source_sha=hashlib.sha256((root/'gpu/compat/PNGImageIOEncoder.h').read_bytes()).hexdigest()
+        png_proof=validate_png(json.loads(png_file.read_bytes()),png_source_sha,resource_manifest['gles_library_sha256'],resource_manifest['library_sha256'],native_proof['kernel_sha256'])
+        (out/'PNGEncoderProof.h').write_bytes(png_header(png_proof))
 if a.air_fixture:
     assert resource_manifest and resource_manifest.get('AIR_compute_pipeline')
     fixture=Path(a.air_fixture).resolve();assert fixture.is_relative_to(root/'build')
@@ -194,6 +205,10 @@ if a.cif10_png_reference:
     run(['clang','-fobjc-exceptions','-O1','-g','-fsanitize=address,undefined',root/'tools/build/test_cif10_png_reference.m',
         '-framework','Foundation','-framework','CoreGraphics','-framework','ImageIO','-framework','Accelerate','-o',out/'test_cif10_png_reference'],'cif10-reference-host-compile')
     assert 'CIF10 PNG reference PASS:' in run([out/'test_cif10_png_reference'],'cif10-reference-host-test')
+if a.png_filter_encoder:
+    run(['clang','-fobjc-exceptions','-O1','-g','-fsanitize=address,undefined',root/'tools/build/test_png_image_dispatch.m',
+        '-framework','Foundation','-framework','CoreGraphics','-framework','ImageIO','-o',out/'test_png_image_dispatch'],'png-dispatch-host-compile')
+    assert 'PNG image dispatch PASS:' in run([out/'test_png_image_dispatch'],'png-dispatch-host-test')
 if a.postdraw_observe:
     run(['clang','-fobjc-exceptions','-O1','-g','-fsanitize=address,undefined',root/'tools/build/test_postdraw_observe.m',
         '-framework','Foundation','-framework','CoreGraphics','-framework','ImageIO','-framework','ColorSync',
@@ -224,7 +239,8 @@ if a.register_device:extra+=['-DSWEET_METAL_DISCOVERY_PROBE=1']
 if a.pipeline_observe:extra+=['-DSWEET_METAL_PIPELINE_OBSERVE=1','-framework','Metal']
 if a.postdraw_observe:extra+=['-DSWEET_POSTDRAW_OBSERVE=1','-framework','UIKit','-framework','CoreGraphics','-framework','ImageIO','-framework','ColorSync']
 if a.snapshot_observe:extra+=['-DSWEET_SNAPSHOT_METHOD_OBSERVE=1']
-if a.cif10_png_reference:extra+=['-DSWEET_CIF10_PNG_REFERENCE=1','-framework','UIKit','-framework','CoreGraphics','-framework','ImageIO','-framework','Accelerate']
+if a.png_filter_encoder:extra+=['-DSWEET_PNG_FILTER_ENCODER=1','-I',out]
+if a.cif10_png_reference:extra+=['-DSWEET_CIF10_PNG_REFERENCE=1','-DSWEET_PNG_IMAGEIO_SOURCE_SHA="'+png_source_sha+'"','-framework','UIKit','-framework','CoreGraphics','-framework','ImageIO','-framework','Accelerate']
 if a.xr_probe:extra+=['-DSWEET_AIR_XR_PROBE=1']
 if a.surface_probe:extra+=['-DSWEET_METAL_SURFACE_PROBE=1','-framework','IOSurface']
 if a.mip_probe:extra+=['-DSWEET_METAL_MIP_PROBE=1']
@@ -261,6 +277,7 @@ if a.cif10_png_reference:manifest.update(cif10_PNG_reference=True,cif10_referenc
     cif10_reference_host_fixture_bounds_nil_throw_input_passed=True,cif10_reference_PNG_exports=True,
     cif10_reference_vImage_modes=2,cif10_reference_vImage_guard_buffer_host_passed=True,
     cif10_reference_filter_policies=3,cif10_reference_lossless_filter_compare=True,cif10_reference_candidate_differences_telemetry=True,
+    png_imageio_encoder_source_sha256=png_source_sha,cif10_reference_shared_encoder=True,
     cif10_reference_host_test_source_sha256=hashlib.sha256((root/'tools/build/test_cif10_png_reference.m').read_bytes()).hexdigest())
 if resource_manifest:manifest.update(metal_resources=resource_manifest)
 if resource_manifest and not a.registration_only:manifest.update(metal_resource_probe=True,
@@ -286,13 +303,18 @@ if cache_scope:manifest['program_cache_scope']=cache_scope
 if a.registration_only:manifest.update(registration_only=True,prior_native_hardware_proof=native_proof,long_native_probes_not_in_constructor=True,
     native_proof_header_sha256=hashlib.sha256((out/'NativeProof.h').read_bytes()).hexdigest())
 if a.pipeline_observe:manifest.update(original_pipeline_observer=True,actual_factory_return_error_pointer_exception_forwarding_host_passed=True)
-if a.postdraw_observe:manifest.update(original_postdraw_observer=True,postdraw_observer_revision=2,postdraw_observations_max=64,
+if a.postdraw_observe:manifest.update(original_postdraw_observer=True,postdraw_observer_revision=3 if a.png_filter_encoder else 2,postdraw_observations_max=64,
     postdraw_apis=['png','add_image','finalize','colorsync'],postdraw_return_nil_throw_errno_nesting_host_passed=True,
     postdraw_real_PNG_bytes_pixels_ICC_input_host_passed=True,postdraw_host_test_source_sha256=hashlib.sha256((root/'tools/build/test_postdraw_observe.m').read_bytes()).hexdigest(),
     postdraw_original_pixel_and_profile_options_preserved=True,postdraw_durations_inclusive_not_additive=True,
     postdraw_png_input_metadata=True,png_input_getters_exceptions_errno_host_passed=True,
     png_input_no_pixel_or_profile_reads_host_passed=True,
     png_input_host_test_source_sha256=hashlib.sha256((root/'tools/build/test_png_input_observe.m').read_bytes()).hexdigest())
+if a.png_filter_encoder:manifest.update(png_filter_encoder=True,png_imageio_encoder_source_sha256=png_source_sha,
+    png_encoder_prior_proof=png_proof,png_encoder_proof_header_sha256=hashlib.sha256(png_header(png_proof)).hexdigest(),
+    png_encoder_fallback_nil_throw_errno_input_metadata_host_passed=True,png_encoder_preserves_pixels_profile_metadata=True,
+    png_encoder_changes_only_encoding_path_and_compression=True,
+    png_encoder_host_test_source_sha256=hashlib.sha256((root/'tools/build/test_png_image_dispatch.m').read_bytes()).hexdigest())
 if a.snapshot_observe:manifest.update(snapshot_method_observer=True,snapshot_method_observer_revision=1,snapshot_method_count_max=8,
     snapshot_method_apis=['pipeline','library_url','library_bundle','snapshot','wait','execute','read','read_full'],
     snapshot_method_exact_ABI_arguments_returns_errors_errno_throws_host_passed=True,

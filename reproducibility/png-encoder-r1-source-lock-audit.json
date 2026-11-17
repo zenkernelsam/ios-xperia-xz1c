@@ -1,0 +1,96 @@
+{
+  "base_commit": "f232b1bdc7804f33933565e6877e8abbee15af82",
+  "before_lock_sha256": "a8175b5360276eb626abba03c1544478a9923c86fd5807d6753b9d29a33602a1",
+  "after_lock_sha256": "62920f0d79288f60d08c488a7aac722437b5acf764f5b1b0562afea003502943",
+  "updated_sources": [
+    {
+      "path": "tools/device/package_trial.py",
+      "before_sha256": "0ab174a494fb889266102dcb69df1394e4fc25e6269478e3976b351e8710b8ee",
+      "after_sha256": "972a03bf36719f7015cd397a6bf3b329398d0e1576bb28f313c46b0322127a91"
+    },
+    {
+      "path": "tools/device/run_trial.py",
+      "before_sha256": "fc5bbb70fe72b9f932dbc1cba7a0f1c0b59ef13d7fcbf3b289c68833fad4b5a4",
+      "after_sha256": "6dd300c233f038f7709fb380c45d1583d9b6c049944d3e46effbb4c297086af9"
+    },
+    {
+      "path": "tools/device/trial_evidence.py",
+      "before_sha256": "afde7a90e6760a579c041913a39d16b86d747952041f001ef183dd61bcb0c565",
+      "after_sha256": "cbc4e3c93a15d751bfcef1b7e7f6a250a181bb424cb8cf80edaa35de8224d47f"
+    },
+    {
+      "path": "tools/device/postdraw_observer_evidence.py",
+      "before_sha256": "99e8f3582958b0c25a77188bc896b3f00af6d69d07a4d1a3f52a3b6ab8280c5a",
+      "after_sha256": "e501b18c21f82fc6dc83eacd8bb31e05c7d11f10537470a128eb20fcf729761f"
+    },
+    {
+      "path": "tools/device/test_postdraw_observer_evidence.py",
+      "before_sha256": "73fe34b10010d3fb188c8104f4c395eed003a656c0d295ff5019fa3a94e45559",
+      "after_sha256": "b198b1c28f962745a70eb9fac37afc6cfc320922797c990ab2a0b0965b584681"
+    },
+    {
+      "path": "tools/device/cif10_reference_evidence.py",
+      "before_sha256": "4516dd71cb48567d10137eb586f16da169c063ce1d6bf4c01abb3ecefe227ca1",
+      "after_sha256": "1edb2f45ccf08986f0557fdfb983258ce9e5040b62ef1bf2990146002d7070a5"
+    },
+    {
+      "path": "tools/device/test_cif10_reference_evidence.py",
+      "before_sha256": "71fd958e3eac522c0469fff90e1e36ba2a9a7c39882da333484b48def61b8dbe",
+      "after_sha256": "f1775013fd2db13fa0be2bb7d810b6e957382eef1f84606c4a96e1922a93f538"
+    },
+    {
+      "path": "tools/ram_library.py",
+      "before_sha256": "26283ab7757bbbc1565cfb529b2ac4764300726ff7dddea0bb767c290d77b051",
+      "after_sha256": "87af17f1a1248bab428c03380a709ebd4cf4c12470c04b1f812f1d8d1e0aa39f"
+    },
+    {
+      "path": "tools/build/build_exception_observer.py",
+      "before_sha256": "0366648819d6bc325e1a02057a48ca292cfd926bbeb5c0c16b27008d4489ca70",
+      "after_sha256": "9669fec77bb66a3398d5ba8cc20e3fc292ec5b0f85a67642b8cd347514f77fb8"
+    },
+    {
+      "path": "gpu/diagnostics/PostDrawObserve.h",
+      "before_sha256": "21a1ea64786c0f3c0898b7cccf17612667c6d5f85474d739cb86e8d763188e4c",
+      "after_sha256": "e293e701736657e5ad28850d6970b7a2ed5cd299b5f4d04ea4bfb926e6c7f963"
+    },
+    {
+      "path": "gpu/diagnostics/CIF10PNGReferenceProbe.h",
+      "before_sha256": "3ad34a8ba3833d687f1bea1820df2703100889473525f0c96e715c0fefde0d45",
+      "after_sha256": "0b3d2c6e8caacc4456c0d9e9fd797539d571eab4303fe9e30172787d2475e564"
+    },
+    {
+      "path": "gpu/diagnostics/CIF10PNGFilterCompare.h",
+      "before_sha256": "f197d401f6d06d503f431ad14ff781c77d814e592ed91351bc30d1c114ca69fa",
+      "after_sha256": "8728f1a2de6daf58b2de87408b6483ebbf9831ca5cfda5cea47ba9b5dacf8028"
+    }
+  ],
+  "new_sources": [
+    {
+      "path": "gpu/compat/PNGImageIOEncoder.h",
+      "sha256": "61031999d4ff1d9a2c9c6a564cf229a82c3b9c49998d752ae0bd4d6fd18e1e92"
+    },
+    {
+      "path": "gpu/compat/PNGImageDispatch.h",
+      "sha256": "a0c30d97527b731571437a70e717e4dbe4b2dafe3f29e881bced604fe8bae5a7"
+    },
+    {
+      "path": "tools/build/test_png_image_dispatch.m",
+      "sha256": "4dc2ac64f04fd34eaf5978fdfb24995d42f79cc0db60d7d355e2aa50da95faf5"
+    },
+    {
+      "path": "tools/device/png_encoder_prerequisite.py",
+      "sha256": "516f3967d4d02ab59144d2963cb5fbd3914a504065607c3f02cc57311d2a3a6f"
+    },
+    {
+      "path": "tools/device/test_png_encoder_proof.py",
+      "sha256": "4b6043effd463d8592acdd479cfed771509ff42492ef5965f8a0c663fc2a78d8"
+    },
+    {
+      "path": "tools/png_encoder_proof.py",
+      "sha256": "5ac2776ae74977ef2bc43bc92b65fc4f53bb6abafb23cf6402a9c8c8250b37f1"
+    }
+  ],
+  "kernel_GLES_Metal_unchanged": true,
+  "encoder_requires_shared_source_native_reference": true,
+  "original_forwarding_and_fast_route_distinguished": true
+}

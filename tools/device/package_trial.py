@@ -173,7 +173,10 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
                     if not m['exception_observer'].get('original_Metal_registry_probe'):
                         common+=['SWEET METAL uniform call=1 index=[0-2] device_nil=[01].*metadata_only=1 original_called=1']
                 if m['exception_observer'].get('original_postdraw_observer'):
-                    common+=['SWEET POSTDRAW observer installed=1 interpose_pairs=4 limit=64 metadata_only=1 original_arguments_results=1']
+                    common+=['SWEET POSTDRAW observer installed=1 interpose_pairs=4 limit=64 metadata_only='+('0 original_arguments_results=0' if m['exception_observer'].get('png_filter_encoder') else '1 original_arguments_results=1')]
+                if m['exception_observer'].get('png_filter_encoder'):
+                    p=m['exception_observer']['png_encoder_prior_proof']
+                    common+=['SWEET PNG ENCODER installed pid=[0-9]+ backend=ImageIO_UP filter=32 source_sha='+p['encoder_source_sha256']+' proof_token='+p['reference_token']+' fallbacks_original=1']
                 if m['exception_observer'].get('postdraw_png_input_metadata'):
                     common+=['SWEET POSTDRAW PNG_CONFIG pid=[0-9]+ revision=1 getters_only=1 pixels_read=0 profile_read=0']
                 if m['exception_observer'].get('snapshot_method_observer'):

@@ -12,6 +12,7 @@ from diagnostic_candidate import verify_record
 from ram_library import load as load_ram,require_same_library
 from owner_metadata import verify as verify_owner_metadata
 from native_prerequisite import verify as verify_native_prerequisite
+from png_encoder_prerequisite import inspect as verify_png_prerequisite
 
 def prerequisites(record, args):
     mode=record['trial_mode'];kernel=record['kernel_sha256'];version=record.get('version');proof={}
@@ -37,6 +38,10 @@ def prerequisites(record, args):
             assert getattr(args,'native_evidence',None),'Short registration needs exact complete native hardware evidence'
             proof['native']=verify_native_prerequisite(args.native_evidence,record['metal_resources'],kernel,version)
             assert proof['native']==record['exception_observer']['prior_native_hardware_proof'],'Embedded native proof differs from original actual stage'
+        if record.get('exception_observer',{}).get('png_filter_encoder'):
+            assert getattr(args,'png_evidence',None),'PNG encoder requires exact shared-source native pixel/profile/metadata reference'
+            proof['png_encoder']=verify_png_prerequisite(args.png_evidence,record['metal_resources'],kernel,record['exception_observer']['png_imageio_encoder_source_sha256'])
+            assert proof['png_encoder']==record['exception_observer']['png_encoder_prior_proof']
     return proof
 
 class DiagnosticPolicy(LogPolicy):
@@ -114,6 +119,7 @@ def main():
     p.add_argument('--cpu-evidence');p.add_argument('--rpm-evidence');p.add_argument('--live',action='store_true')
     p.add_argument('--gles-evidence')
     p.add_argument('--native-evidence')
+    p.add_argument('--png-evidence')
     a=p.parse_args();bundle=Path(a.bundle)
     record=json.loads((bundle/'artifacts.json').read_text())['artifacts'][0]
     Artifact(record).validate();mode=record['trial_mode'];kernel=record['kernel_sha256']

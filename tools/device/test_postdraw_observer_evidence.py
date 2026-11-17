@@ -1,5 +1,5 @@
 """Reject mixed, truncated or unbalanced timing; keep original pending calls."""
-from postdraw_observer_evidence import inspect, INSTALLED, APIS, METHOD_APIS, METHOD_ARGUMENTS
+from postdraw_observer_evidence import inspect, INSTALLED, INSTALLED_ENCODER, APIS, METHOD_APIS, METHOD_ARGUMENTS
 
 TOKEN = '123456789abcdef0'
 
@@ -85,3 +85,21 @@ for broken in (png.replace(config,''),png.replace('bpc=16 bpp=64','bpc=16 bpp=')
 result=inspect(png.replace('getters=1 error=0','getters=1 error=1'),TOKEN,png_input_observer=True)
 assert result['records'][0]['png_input']['getter_error']
 print('PNG input evidence PASS: current-call contract binding, getters/errors, complete metadata and truncated/mixed rejection')
+
+encoder={'encoder_source_sha256':'a'*64,'reference_token':'b'*16}
+fast=png.replace(INSTALLED,INSTALLED_ENCODER).replace(config,config+f'SWEET PNG ENCODER installed pid=285 backend=ImageIO_UP filter=32 source_sha={encoder["encoder_source_sha256"]} proof_token={encoder["reference_token"]} fallbacks_original=1\n')
+fast=fast.replace('api=png at_ns=100 original_forwarded=1','api=png at_ns=100 original_forwarded=0')
+route=f'SWEET POSTDRAW PNG_ROUTE pid=285 call=1 route=ImageIO_UP qualified=1 original_forwarded=0 filter=32 source_sha={encoder["encoder_source_sha256"]}\n'
+fast=fast.replace('SWEET POSTDRAW END pid=285 tid=33 call=1',route+'SWEET POSTDRAW END pid=285 tid=33 call=1')
+fast=fast.replace('bytes=200 returned_nil=0 original_behavior=1','bytes=200 returned_nil=0 original_behavior=0')
+result=inspect(fast,TOKEN,png_input_observer=True,png_encoder=encoder)
+assert result['optimized_PNG_returns']==1 and not result['records'][0]['original_behavior_preserved']
+assert result['records'][0]['png_route']['pixels_profile_metadata_native_prerequisite']
+fallback=fast.replace('route=ImageIO_UP qualified=1 original_forwarded=0','route=UIImage_fallback qualified=1 original_forwarded=1').replace('bytes=200 returned_nil=0 original_behavior=0','bytes=200 returned_nil=0 original_behavior=1')
+assert inspect(fallback,TOKEN,png_input_observer=True,png_encoder=encoder)['records'][0]['original_behavior_preserved']
+for broken in (fast.replace('route=ImageIO_UP','route=UIImage_original'),fast.replace('source_sha='+encoder['encoder_source_sha256'],'source_sha='+'c'*64,1),
+               fast.replace(route,''),fast.replace('bytes=200 returned_nil=0 original_behavior=0','bytes=0 returned_nil=1 original_behavior=0')):
+    try:inspect(broken,TOKEN,png_input_observer=True,png_encoder=encoder)
+    except (AssertionError,KeyError,ValueError):continue
+    raise AssertionError('False optimized PNG or unbound source accepted')
+print('PNG encoder evidence PASS: truthful forwarding/routes, native source prerequisite, fallback and nil/identity rejection')
