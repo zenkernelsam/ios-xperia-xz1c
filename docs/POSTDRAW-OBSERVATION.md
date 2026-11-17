@@ -24,3 +24,20 @@ snapshot-r1另增加八类原方法的精确ABI计时：真实pipeline/library f
 原postdraw-r1的GLES八项结束标记在2893行，首次Aegir exec在3964行；没有直接自检/应用启动重叠，未关闭或修改自检。该排序不能排除其它后台CPU工作，继续测原快照自身。
 
 snapshot-r1实际CPU de5cda38已38.797秒回程通过；原GPU426db2f1已38.625秒完整回程/健康/退出，原REVISE保持。28个完整/6个未完成时耗：pid290原快照3.307秒，包含wait2.807秒、execute2.809秒（线程CPU0.605秒）及read21.222ms；随后原PNG3.911秒（线程CPU3.896秒），返回32179B。这些是原API真实返回，仍不能代替完整UI。wait与execute重叠，PNG含ICC/编码，不相加混算，不归咎冻结VM。原面板仍只有暗背景/电池/camera/homebar，继续优化两段真实耗时。
+
+## PNG输入契约观察 — 2026-11-17
+
+XR Clear和实际Luna请求预热后，原GPU c32999dff23480c9仍未完成扩展check-in。按该靴实际slide 0x4ed00000解析的三个ACK前sig9分别处于快照队列等待、ColorSync内部CMM转换序列初始化，以及PNGWritePlugin写出/memmove。它们是退出时采样，不证明这些组件有故障；完整记录见reproducibility/v729-xr-clear-r1-after-luna-cache-crashes.json。两次PNG入口仍未返回，原四个API绑定也未观察到内部addImage/finalize，所以旧IMAGE记录不能证明PNG输入格式。
+
+postdraw observer revision2在原UIImagePNGRepresentation入口读取UIImage/CGImage metadata：点尺寸、scale、orientation、实际像素尺寸、bpc/bpp/stride、原bitmapInfo/alpha/renderingIntent、颜色模型/分量、是否广色域或扩展范围，以及有界色彩空间名称。只调用返回编码匹配的原getter；nil、缺getter或getter异常明确记录，再继续原PNG API。读取不创建图像、不读取像素/provider页或ICC内容、不调整压缩/色彩配置；原参数、返回、异常和errno保持。getter耗时单独记录，在原PNG计时之前；父快照的含义和原check-in期限保持。
+
+仍为每进程64调用、四个interpose配对；新增PNG_CONFIG、PNG_INPUT、PNG_UI、PNG_CG、PNG_COLOR记录按当前token/pid/call绑定。revision1原证据兼容保留；revision2拒绝缺失、截断、混call或未声明的metadata。实际nil/error不会被改写为成功图像。
+
+tools/build/test_png_input_observe.m使用明确标注的Mac UIKit转发fixture，同时用真实CoreGraphics/ImageIO检查8/16/32位sRGB/P3/扩展线性图像。provider读计数验证getter不读像素，原PNG字节、解码像素、ICC/metadata和输入保持；nil、getter ABI不匹配、getter异常、原异常和errno分别检查。这些主机结果不替代原手机输入或UI验收。
+
+新包保持kernel774b5efd/GLES72d39da5/Metal5e94ab57及native4bcd完整14组先验，只重新构建observer与RAM。示例：
+
+    python3 tools/build/build_exception_observer.py --output build/png-input-r1/observer --metal-resources build/xr-clear-elision-r1/metal-resources --registration-only --register-device --native-proof build/xr-clear-elision-r1/native-proof.json --pipeline-observe --postdraw-observe --snapshot-observe
+    python3 tools/build/package_glram.py --presigned --frontend build/xr-clear-elision-r1/original-ram --observer build/png-input-r1/observer --metal-resources build/xr-clear-elision-r1/metal-resources --output build/png-input-r1/ram
+
+该新RAM必须自身CPU完整回程后，再以同RAM和native4bcd原目录准入原GPU。手机实测结果仍以STATUS与独立reproducibility记录为准；不能把输入观察或主机PNG通过当成完整壁纸/时间日期/UI/FPS完成。

@@ -14,6 +14,7 @@
 #include <unistd.h>
 #include <dlfcn.h>
 #include <string.h>
+#include <objc/runtime.h>
 
 #if TARGET_OS_IOS
 #import <UIKit/UIKit.h>
@@ -38,6 +39,36 @@ static _Thread_local uint64_t postdraw_root;
 static pid_t postdraw_pid;
 enum { SWEET_POSTDRAW_LIMIT = 64 };
 
+// This protocol describes UIKit's getters. The Mac test supplies a forwarding
+// fixture because UIImagePNGRepresentation is an iOS-only API.
+@protocol SweetPNGInputGetters
+- (CGImageRef)CGImage;
+- (CGSize)size;
+- (CGFloat)scale;
+- (NSInteger)imageOrientation;
+@end
+typedef struct {
+    bool image_nil, getters_available, getter_error, cgimage_nil, color_nil;
+    const char *image_class;
+    CGSize points;
+    CGFloat scale;
+    NSInteger orientation;
+    size_t width, height, bpc, bpp, pitch, components;
+    uint32_t bitmap;
+    int alpha, intent, color_model;
+    bool wide, extended, named, name_sanitized;
+    char color_name[64];
+    uint64_t getter_ns;
+} SweetPNGInput;
+
+static bool postdraw_input_getter(Class type, SEL selector, const char *encoding)
+{
+    Method method = type ? class_getInstanceMethod(type, selector) : NULL;
+    char actual[96] = {0};
+    if (method) method_getReturnType(method, actual, sizeof(actual));
+    return method && method_getNumberOfArguments(method) == 2 && !strcmp(actual, encoding);
+}
+
 static uint64_t postdraw_wall_ns(void)
 {
     uint64_t ticks = mach_absolute_time();
@@ -48,6 +79,78 @@ static uint64_t postdraw_cpu_ns(bool *valid)
     struct timespec value = {0};
     *valid = clock_gettime(CLOCK_THREAD_CPUTIME_ID, &value) == 0;
     return *valid ? (uint64_t)value.tv_sec * UINT64_C(1000000000) + (uint64_t)value.tv_nsec : 0;
+}
+static SweetPNGInput postdraw_read_png_input(SweetPostDrawImage image)
+{
+    int saved_errno = errno;
+    uint64_t begin = postdraw_wall_ns();
+    SweetPNGInput input = {.image_nil = image == nil, .cgimage_nil = true,
+        .color_nil = true, .color_model = -1, .image_class = "nil", .color_name = "none"};
+    Class type = image ? object_getClass(image) : Nil;
+    if (type) input.image_class = class_getName(type);
+    input.getters_available = type &&
+        postdraw_input_getter(type, @selector(CGImage), @encode(CGImageRef)) &&
+        postdraw_input_getter(type, @selector(size), @encode(CGSize)) &&
+        postdraw_input_getter(type, @selector(scale), @encode(CGFloat)) &&
+        postdraw_input_getter(type, @selector(imageOrientation), @encode(NSInteger));
+    CFStringRef name = NULL;
+    @try {
+        if (input.getters_available) {
+            id<SweetPNGInputGetters> original = (id<SweetPNGInputGetters>)image;
+            CGImageRef cg = [original CGImage];
+            input.points = [original size];
+            input.scale = [original scale];
+            input.orientation = [original imageOrientation];
+            input.cgimage_nil = cg == NULL;
+            if (cg) {
+                input.width = CGImageGetWidth(cg); input.height = CGImageGetHeight(cg);
+                input.bpc = CGImageGetBitsPerComponent(cg); input.bpp = CGImageGetBitsPerPixel(cg);
+                input.pitch = CGImageGetBytesPerRow(cg); input.bitmap = CGImageGetBitmapInfo(cg);
+                input.alpha = CGImageGetAlphaInfo(cg); input.intent = CGImageGetRenderingIntent(cg);
+                CGColorSpaceRef color = CGImageGetColorSpace(cg);
+                input.color_nil = color == NULL;
+                if (color) {
+                    input.color_model = CGColorSpaceGetModel(color);
+                    input.components = CGColorSpaceGetNumberOfComponents(color);
+                    input.wide = CGColorSpaceIsWideGamutRGB(color);
+                    input.extended = CGColorSpaceUsesExtendedRange(color);
+                    name = CGColorSpaceCopyName(color);
+                    input.named = name && CFStringGetCString(name, input.color_name, sizeof(input.color_name), kCFStringEncodingUTF8);
+                    if (!input.named) strcpy(input.color_name, "unknown");
+                    for (char *at = input.color_name; *at; ++at) {
+                        bool plain = (*at >= 'a' && *at <= 'z') || (*at >= 'A' && *at <= 'Z') ||
+                            (*at >= '0' && *at <= '9') || *at == '_' || *at == '-' || *at == '.';
+                        if (!plain) { *at = '_'; input.name_sanitized = true; }
+                    }
+                }
+            }
+        }
+    } @catch (NSException *exception) {
+        // A diagnostic getter must not replace the original API's exception.
+        // Partial metadata remains labelled as an error; the PNG call follows.
+        (void)exception; input.getter_error = true;
+    }
+    if (name) CFRelease(name);
+    uint64_t finish = postdraw_wall_ns();
+    input.getter_ns = finish >= begin ? finish - begin : 0;
+    errno = saved_errno;
+    return input;
+}
+static void postdraw_png_input(SweetPostDrawCall call, SweetPostDrawImage image)
+{
+    if (!call.recorded) return;
+    SweetPNGInput input = postdraw_read_png_input(image);
+    postdraw_emit("SWEET POSTDRAW PNG_INPUT pid=%d call=%llu image_nil=%u getters=%u error=%u class=%.48s getters_only=1 pixels_read=0",
+        postdraw_pid, (unsigned long long)call.call, input.image_nil, input.getters_available, input.getter_error, input.image_class);
+    postdraw_emit("SWEET POSTDRAW PNG_UI pid=%d call=%llu width_pt=%.9g height_pt=%.9g scale=%.9g orientation=%lld getter_ns=%llu",
+        postdraw_pid, (unsigned long long)call.call, (double)input.points.width, (double)input.points.height,
+        (double)input.scale, (long long)input.orientation, (unsigned long long)input.getter_ns);
+    postdraw_emit("SWEET POSTDRAW PNG_CG pid=%d call=%llu cg_nil=%u width=%zu height=%zu bpc=%zu bpp=%zu pitch=%zu bitmap=0x%x alpha=%d intent=%d",
+        postdraw_pid, (unsigned long long)call.call, input.cgimage_nil, input.width, input.height, input.bpc, input.bpp, input.pitch,
+        input.bitmap, input.alpha, input.intent);
+    postdraw_emit("SWEET POSTDRAW PNG_COLOR pid=%d call=%llu color_nil=%u model=%d components=%zu wide=%u extended=%u named=%u sanitized=%u name=%.63s",
+        postdraw_pid, (unsigned long long)call.call, input.color_nil, input.color_model, input.components,
+        input.wide, input.extended, input.named, input.name_sanitized, input.color_name);
 }
 static SweetPostDrawCall postdraw_begin(const char *api)
 {
@@ -100,6 +203,7 @@ static NSData *postdraw_png(SweetPostDrawImage image)
     NSData *result = nil;
     bool returned = false;
     @try {
+        postdraw_png_input(call, image);
         postdraw_start(&call);
         errno = incoming_errno;
         result = UIImagePNGRepresentation(image);
@@ -203,6 +307,7 @@ static bool postdraw_observe(SweetPostDrawEmit emit)
             postdraw_original(emit, "add_image", (const void *)(uintptr_t)&CGImageDestinationAddImage);
             postdraw_original(emit, "finalize", (const void *)(uintptr_t)&CGImageDestinationFinalize);
             postdraw_original(emit, "colorsync", (const void *)(uintptr_t)&ColorSyncTransformCreate);
+            emit("SWEET POSTDRAW PNG_CONFIG pid=%d revision=1 getters_only=1 pixels_read=0 profile_read=0", postdraw_pid);
         }
     }
     errno = saved_errno;

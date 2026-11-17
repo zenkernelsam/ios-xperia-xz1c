@@ -1,0 +1,364 @@
+{
+  "token": "c32999dff23480c9",
+  "raw_sha256": "326c86ddb00222e03472bb77c0dbdd90dece096cde414c51eb1fe76104055e25",
+  "crashes": [
+    {
+      "pid": 296,
+      "signal": 9,
+      "code": "0x0",
+      "subcode": "0x0",
+      "actual_shared_cache_slide": "0x4ed00000",
+      "actual_main_header": "0x100614000",
+      "reason": "ns 7 code 0x3: extension check-in timeout",
+      "frames": [
+        {
+          "index": 0,
+          "actual_pc": "0x21131187c",
+          "instruction_sample": true,
+          "symbol_address": "0x1c2611874",
+          "symbol_offset": "0x8",
+          "symbol": "___psynch_cvwait",
+          "unslid_pc": "0x1c261187c",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 1,
+          "actual_pc": "0x10079eed4",
+          "instruction_sample": false,
+          "not_resolved_against_shared_cache": true
+        },
+        {
+          "index": 2,
+          "actual_pc": "0x1006c764c",
+          "instruction_sample": false,
+          "not_resolved_against_shared_cache": true
+        },
+        {
+          "index": 3,
+          "actual_pc": "0x2104355a4",
+          "instruction_sample": false,
+          "symbol_address": "0x1c1734e6c",
+          "symbol_offset": "0x738",
+          "symbol": "-[CLKUIMetalQuadView _snapshotTextureInRect:scale:time:withAdditionalPasses:]",
+          "unslid_pc": "0x1c17355a4",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 4,
+          "actual_pc": "0x210434a6c",
+          "instruction_sample": false,
+          "symbol_address": "0x1c1734840",
+          "symbol_offset": "0x22c",
+          "symbol": "___48-[CLKUIMetalQuadView snapshotInRect:scale:time:]_block_invoke",
+          "unslid_pc": "0x1c1734a6c",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 5,
+          "actual_pc": "0x210413ad0",
+          "instruction_sample": false,
+          "symbol_address": "0x1c1713a48",
+          "symbol_offset": "0x88",
+          "symbol": "-[CLKUIQuadView _runOnRenderQueueIfNeeded:]",
+          "unslid_pc": "0x1c1713ad0",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 6,
+          "actual_pc": "0x21043473c",
+          "instruction_sample": false,
+          "symbol_address": "0x1c1734630",
+          "symbol_offset": "0x10c",
+          "symbol": "-[CLKUIMetalQuadView snapshotInRect:scale:time:]",
+          "unslid_pc": "0x1c173473c",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 7,
+          "actual_pc": "0x1006c6db8",
+          "instruction_sample": false,
+          "not_resolved_against_shared_cache": true
+        },
+        {
+          "index": 8,
+          "actual_pc": "0x100625730",
+          "instruction_sample": false,
+          "not_resolved_against_shared_cache": true
+        },
+        {
+          "index": 9,
+          "actual_pc": "0x100623760",
+          "instruction_sample": false,
+          "not_resolved_against_shared_cache": true
+        },
+        {
+          "index": 10,
+          "actual_pc": "0x100623148",
+          "instruction_sample": false,
+          "not_resolved_against_shared_cache": true
+        }
+      ],
+      "current_boot_slide_observed": true
+    },
+    {
+      "pid": 299,
+      "signal": 9,
+      "code": "0x0",
+      "subcode": "0x0",
+      "actual_shared_cache_slide": "0x4ed00000",
+      "actual_main_header": "0x1002b0000",
+      "reason": "ns 7 code 0x3: extension check-in timeout",
+      "frames": [
+        {
+          "index": 0,
+          "actual_pc": "0x2207e09bc",
+          "instruction_sample": true,
+          "symbol_address": "0x1d1ae0978",
+          "symbol_offset": "0x44",
+          "symbol": "__ZNKSt9type_infoeqB6v15006ERKS_",
+          "unslid_pc": "0x1d1ae09bc",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 1,
+          "actual_pc": "0x2207e044c",
+          "instruction_sample": false,
+          "symbol_address": "0x1d1ae03a0",
+          "symbol_offset": "0xac",
+          "symbol": "__ZNK10__cxxabiv120__si_class_type_info16search_below_dstEPNS_19__dynamic_cast_infoEPKvib",
+          "unslid_pc": "0x1d1ae044c",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 2,
+          "actual_pc": "0x2207e0268",
+          "instruction_sample": false,
+          "symbol_address": "0x1d1adffac",
+          "symbol_offset": "0x2bc",
+          "symbol": "__ZNK10__cxxabiv121__vmi_class_type_info16search_below_dstEPNS_19__dynamic_cast_infoEPKvib",
+          "unslid_pc": "0x1d1ae0268",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 3,
+          "actual_pc": "0x2207dfddc",
+          "instruction_sample": false,
+          "symbol_address": "0x1d1adfc88",
+          "symbol_offset": "0x154",
+          "symbol": "___dynamic_cast",
+          "unslid_pc": "0x1d1adfddc",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 4,
+          "actual_pc": "0x1dd99ad20",
+          "instruction_sample": false,
+          "symbol_address": "0x18ec9ac50",
+          "symbol_offset": "0xd0",
+          "symbol": "__ZN21CMMConvRGBToRGBMatrix8CollapseER9CMMMemMgrRP11CMMConvNode",
+          "unslid_pc": "0x18ec9ad20",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 5,
+          "actual_pc": "0x1dd9b7584",
+          "instruction_sample": false,
+          "symbol_address": "0x18ecb5038",
+          "symbol_offset": "0x254c",
+          "symbol": "__ZN17ConversionManager22MakeConversionSequenceEP23CMMProfileInfoContainerP22CMMColorConversionInfoPK14__CFDictionary",
+          "unslid_pc": "0x18ecb7584",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 6,
+          "actual_pc": "0x1dd9c16d0",
+          "instruction_sample": false,
+          "symbol_address": "0x18ecc116c",
+          "symbol_offset": "0x564",
+          "symbol": "_AppleCMMInitializeTransform",
+          "unslid_pc": "0x18ecc16d0",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 7,
+          "actual_pc": "0x1dd98cca4",
+          "instruction_sample": false,
+          "symbol_address": "0x18ec8c9a4",
+          "symbol_offset": "0x300",
+          "symbol": "_ColorSyncTransformCreate",
+          "unslid_pc": "0x18ec8cca4",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 8,
+          "actual_pc": "0x1da7fe2a0",
+          "instruction_sample": false,
+          "symbol_address": "0x18bafe18c",
+          "symbol_offset": "0x114",
+          "symbol": "__ZN17IIOColorConverter27createConverterWithProfilesEP20vImage_CGImageFormatS1_PK16ColorSyncProfileS4_",
+          "unslid_pc": "0x18bafe2a0",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 9,
+          "actual_pc": "0x1da7f9700",
+          "instruction_sample": false,
+          "symbol_address": "0x18baf96e0",
+          "symbol_offset": "0x20",
+          "symbol": "__ZN17IIOColorConverterC1EP20vImage_CGImageFormatS1_PK16ColorSyncProfileS4_",
+          "unslid_pc": "0x18baf9700",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 10,
+          "actual_pc": "0x1da9b5f50",
+          "instruction_sample": false,
+          "symbol_address": "0x18bcb5e20",
+          "symbol_offset": "0x130",
+          "symbol": "__ZN25IIOImagePixelDataProvider25getBytesDataProviderCIF10EPvm",
+          "unslid_pc": "0x18bcb5f50",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        }
+      ],
+      "current_boot_slide_observed": true
+    },
+    {
+      "pid": 302,
+      "signal": 9,
+      "code": "0x0",
+      "subcode": "0x0",
+      "actual_shared_cache_slide": "0x4ed00000",
+      "actual_main_header": "0x100a80000",
+      "reason": "ns 7 code 0x3: extension check-in timeout",
+      "frames": [
+        {
+          "index": 0,
+          "actual_pc": "0x220801ec0",
+          "instruction_sample": true,
+          "symbol_address": "0x1d1b01dc0",
+          "symbol_offset": "0x100",
+          "symbol": "__platform_memmove",
+          "unslid_pc": "0x1d1b01ec0",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 1,
+          "actual_pc": "0x1da7c4758",
+          "instruction_sample": false,
+          "symbol_address": "0x18bac42f4",
+          "symbol_offset": "0x464",
+          "symbol": "__ZN14PNGWritePlugin8writePNGEP25IIOImagePixelDataProviderP13IIODictionary",
+          "unslid_pc": "0x18bac4758",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 2,
+          "actual_pc": "0x1da7bc1b0",
+          "instruction_sample": false,
+          "symbol_address": "0x18babbe18",
+          "symbol_offset": "0x398",
+          "symbol": "__ZN14PNGWritePlugin8writeAllEv",
+          "unslid_pc": "0x18babc1b0",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 3,
+          "actual_pc": "0x1da7fb834",
+          "instruction_sample": false,
+          "symbol_address": "0x18bafb7cc",
+          "symbol_offset": "0x68",
+          "symbol": "__ZN14PNGWritePlugin9WriteProcEPvS0_S0_S0_",
+          "unslid_pc": "0x18bafb834",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 4,
+          "actual_pc": "0x1da7e1ddc",
+          "instruction_sample": false,
+          "symbol_address": "0x18bae1b74",
+          "symbol_offset": "0x268",
+          "symbol": "__ZN19IIOImageDestination19finalizeDestinationEv",
+          "unslid_pc": "0x18bae1ddc",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 5,
+          "actual_pc": "0x1da7b9960",
+          "instruction_sample": false,
+          "symbol_address": "0x18bab98e0",
+          "symbol_offset": "0x80",
+          "symbol": "_CGImageDestinationFinalize",
+          "unslid_pc": "0x18bab9960",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 6,
+          "actual_pc": "0x1d7e78968",
+          "instruction_sample": false,
+          "symbol_address": "0x1891787d8",
+          "symbol_offset": "0x190",
+          "symbol": "_UIImagePNGRepresentation",
+          "unslid_pc": "0x189178968",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 7,
+          "actual_pc": "0x100b300b4",
+          "instruction_sample": false,
+          "not_resolved_against_shared_cache": true
+        },
+        {
+          "index": 8,
+          "actual_pc": "0x100a87150",
+          "instruction_sample": false,
+          "not_resolved_against_shared_cache": true
+        },
+        {
+          "index": 9,
+          "actual_pc": "0x100a8f7c8",
+          "instruction_sample": false,
+          "not_resolved_against_shared_cache": true
+        },
+        {
+          "index": 10,
+          "actual_pc": "0x100a8f148",
+          "instruction_sample": false,
+          "not_resolved_against_shared_cache": true
+        }
+      ],
+      "current_boot_slide_observed": true
+    }
+  ],
+  "symbol_map_sha256": "5bf04681af1819e2379319942a97be635100d6ca3844c5a22e372ce78a83b83d",
+  "symbol_map_bytes": 765432322,
+  "symbol_map_format": "A2S v2; 12-byte header and 12-byte sorted address/offset record",
+  "symbol_map_count": 10898361,
+  "symbol_reader_source_sha256": "feff33a6dcacf280664d1dbe32e8cc93d9c065003057d06f9d986d1117f31874",
+  "diagnostic_tool_source_sha256": "8fc222574e3aa64025d60f7af0827f48d48a9431da83fc934dadad86e393b638",
+  "post_ACK_exit_period_excluded": true,
+  "sample_locations_do_not_prove_root_cause": true,
+  "no_kernel_or_allocator_changes": true
+}

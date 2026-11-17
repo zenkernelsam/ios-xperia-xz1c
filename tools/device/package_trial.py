@@ -174,6 +174,8 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
                         common+=['SWEET METAL uniform call=1 index=[0-2] device_nil=[01].*metadata_only=1 original_called=1']
                 if m['exception_observer'].get('original_postdraw_observer'):
                     common+=['SWEET POSTDRAW observer installed=1 interpose_pairs=4 limit=64 metadata_only=1 original_arguments_results=1']
+                if m['exception_observer'].get('postdraw_png_input_metadata'):
+                    common+=['SWEET POSTDRAW PNG_CONFIG pid=[0-9]+ revision=1 getters_only=1 pixels_read=0 profile_read=0']
                 if m['exception_observer'].get('snapshot_method_observer'):
                     common+=['SWEET SNAPSHOT observer pid=[0-9]+ installed=[1-8] expected=8 limit=64 metadata_only=1 original_arguments_results=1']
                 if 'runtime_Metal_ABI_methods' in m['exception_observer']:

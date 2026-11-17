@@ -195,6 +195,10 @@ if a.postdraw_observe:
     postdraw_test=run([out/'test_postdraw_observer'],'postdraw-host-test')
     assert 'postdraw observer PASS:' in postdraw_test
     assert postdraw_test.count('SWEET POSTDRAW BEGIN ')==64 and postdraw_test.count('SWEET POSTDRAW END ')==64
+    run(['clang','-fobjc-exceptions','-O1','-g','-fsanitize=address,undefined',root/'tools/build/test_png_input_observe.m',
+        '-framework','Foundation','-framework','CoreGraphics','-framework','ImageIO','-framework','ColorSync',
+        '-o',out/'test_png_input_observer'],'png-input-host-compile')
+    assert 'PNG input observer PASS:' in run([out/'test_png_input_observer'],'png-input-host-test')
 if a.snapshot_observe:
     run(['clang','-fobjc-exceptions','-O1','-g','-fsanitize=address,undefined',root/'tools/build/test_snapshot_method_observe.m',
         '-framework','Foundation','-framework','Metal','-framework','CoreGraphics','-framework','ImageIO','-framework','ColorSync',
@@ -269,10 +273,13 @@ if cache_scope:manifest['program_cache_scope']=cache_scope
 if a.registration_only:manifest.update(registration_only=True,prior_native_hardware_proof=native_proof,long_native_probes_not_in_constructor=True,
     native_proof_header_sha256=hashlib.sha256((out/'NativeProof.h').read_bytes()).hexdigest())
 if a.pipeline_observe:manifest.update(original_pipeline_observer=True,actual_factory_return_error_pointer_exception_forwarding_host_passed=True)
-if a.postdraw_observe:manifest.update(original_postdraw_observer=True,postdraw_observer_revision=1,postdraw_observations_max=64,
+if a.postdraw_observe:manifest.update(original_postdraw_observer=True,postdraw_observer_revision=2,postdraw_observations_max=64,
     postdraw_apis=['png','add_image','finalize','colorsync'],postdraw_return_nil_throw_errno_nesting_host_passed=True,
     postdraw_real_PNG_bytes_pixels_ICC_input_host_passed=True,postdraw_host_test_source_sha256=hashlib.sha256((root/'tools/build/test_postdraw_observe.m').read_bytes()).hexdigest(),
-    postdraw_original_pixel_and_profile_options_preserved=True,postdraw_durations_inclusive_not_additive=True)
+    postdraw_original_pixel_and_profile_options_preserved=True,postdraw_durations_inclusive_not_additive=True,
+    postdraw_png_input_metadata=True,png_input_getters_exceptions_errno_host_passed=True,
+    png_input_no_pixel_or_profile_reads_host_passed=True,
+    png_input_host_test_source_sha256=hashlib.sha256((root/'tools/build/test_png_input_observe.m').read_bytes()).hexdigest())
 if a.snapshot_observe:manifest.update(snapshot_method_observer=True,snapshot_method_observer_revision=1,snapshot_method_count_max=8,
     snapshot_method_apis=['pipeline','library_url','library_bundle','snapshot','wait','execute','read','read_full'],
     snapshot_method_exact_ABI_arguments_returns_errors_errno_throws_host_passed=True,

@@ -61,3 +61,27 @@ for broken in (timed.replace('api=snapshot present=1 owned=1 installed=1 argumen
         continue
     raise AssertionError('Malformed method timing evidence was accepted')
 print('snapshot method evidence PASS: actual coverage/ABI/object/init binding and partial/mixed rejection')
+
+config='SWEET POSTDRAW PNG_CONFIG pid=285 revision=1 getters_only=1 pixels_read=0 profile_read=0\n'
+png_metadata=('SWEET POSTDRAW PNG_INPUT pid=285 call=1 image_nil=0 getters=1 error=0 class=UIImage getters_only=1 pixels_read=0\n'
+              'SWEET POSTDRAW PNG_UI pid=285 call=1 width_pt=375 height_pt=812 scale=2 orientation=0 getter_ns=3000\n'
+              'SWEET POSTDRAW PNG_CG pid=285 call=1 cg_nil=0 width=750 height=1624 bpc=16 bpp=64 pitch=6000 bitmap=0x1101 alpha=1 intent=0\n'
+              'SWEET POSTDRAW PNG_COLOR pid=285 call=1 color_nil=0 model=1 components=3 wide=1 extended=1 named=1 sanitized=0 name=kCGColorSpaceExtendedLinearDisplayP3\n')
+png=text.replace(INSTALLED+'\n',INSTALLED+'\n'+config).replace(
+    'api=png at_ns=100 original_forwarded=1\n','api=png at_ns=100 original_forwarded=1\n'+png_metadata)
+result=inspect(png,TOKEN,png_input_observer=True)
+record=result['records'][0]['png_input']
+assert result['png_input_samples']==1 and record['ui']['scale']=='2' and record['cgimage']['bits_per_component']==16
+assert record['color']['extended_range'] and not record['pixels_read'] and not record['profile_bytes_read']
+rejects(png)
+for broken in (png.replace(config,''),png.replace('bpc=16 bpp=64','bpc=16 bpp='),
+               png.replace('PNG_CG pid=285 call=1','PNG_CG pid=285 call=2'),
+               png.replace('PNG_COLOR pid=285 call=1','PNG_COLOR pid=285 call=1\n'),
+               png.replace('width_pt=375','width_pt=abc'),png.replace('getters=1 error=0','getters=0 error=1'),
+               png.replace('cg_nil=0 width=750','cg_nil=1 width=750')):
+    try:inspect(broken,TOKEN,png_input_observer=True)
+    except (AssertionError,KeyError,ValueError):continue
+    raise AssertionError('Malformed PNG input metadata was accepted')
+result=inspect(png.replace('getters=1 error=0','getters=1 error=1'),TOKEN,png_input_observer=True)
+assert result['records'][0]['png_input']['getter_error']
+print('PNG input evidence PASS: current-call contract binding, getters/errors, complete metadata and truncated/mixed rejection')

@@ -1,0 +1,49 @@
+{
+  "base_commit": "a6d4b4b433635b204f9709e3eb94e9b95441f272",
+  "before_lock_sha256": "808612d57004544b41dd8778d891d95ed3485e85427fa45d5a0b857462f91a0a",
+  "after_lock_sha256": "8813798a6f0e3a089e8f5ac60d737cc57fd8272caae16baacc77f5b9ec4e4951",
+  "updated_sources": [
+    {
+      "path": "tools/device/package_trial.py",
+      "before_sha256": "28e06ee11e3e01cf0526ed31c49bf02552d1f6846751775556b144267bb8d5ee",
+      "after_sha256": "2202bfef139b5cb52c3176a0117c6910be1cdc4f291a4e3ee10ddae2c3a2c70c"
+    },
+    {
+      "path": "tools/device/trial_evidence.py",
+      "before_sha256": "8e87903dbb7dc96af1221615b5fb4b31b70d893aae1d9b5d7dfbe3145f847206",
+      "after_sha256": "88e33a4858481e0621e4c7958d9647ea7b5f8417eff8f2270f3bb3a92b900e1f"
+    },
+    {
+      "path": "tools/device/postdraw_observer_evidence.py",
+      "before_sha256": "8d7d3e846a3a3d3e9f2fb5a3a7990b4818da64198deb4d0f07b187c6eea59dae",
+      "after_sha256": "99e8f3582958b0c25a77188bc896b3f00af6d69d07a4d1a3f52a3b6ab8280c5a"
+    },
+    {
+      "path": "tools/device/test_postdraw_observer_evidence.py",
+      "before_sha256": "ebf503bcf7f44c3bcad8a70cae9fd2b177f0cc8674c7d14aaa348f99543d8ad3",
+      "after_sha256": "73fe34b10010d3fb188c8104f4c395eed003a656c0d295ff5019fa3a94e45559"
+    },
+    {
+      "path": "tools/ram_library.py",
+      "before_sha256": "a71f6c2fadbff731d961b1a4a128980d75c978d48ad4708951064e9d828cd73b",
+      "after_sha256": "98bc52ee4b0cdca5b7b5f00cec5d7e171e372487f408ff0fd0423ede3727ec55"
+    },
+    {
+      "path": "tools/build/build_exception_observer.py",
+      "before_sha256": "a7ba5f015e09ed821d7a8ed0124c3d90d99bd4f2c2cff4442e37bff386525652",
+      "after_sha256": "7a72765429d3a7e2e28b9317ee26eccb83b0929b26654b3409fba717fded57c0"
+    },
+    {
+      "path": "gpu/diagnostics/PostDrawObserve.h",
+      "before_sha256": "06b34bbb6674fec1d60ae1f9ce57abf034775b4f9a1034ab7a194126349367f3",
+      "after_sha256": "21a1ea64786c0f3c0898b7cccf17612667c6d5f85474d739cb86e8d763188e4c"
+    }
+  ],
+  "new_sources": [
+    {
+      "path": "tools/build/test_png_input_observe.m",
+      "sha256": "71ec1a803770e24e342c275ee8fa17e86adc60655675d4c700665ca37047c171"
+    }
+  ],
+  "kernel_GLES_Metal_unchanged": true
+}

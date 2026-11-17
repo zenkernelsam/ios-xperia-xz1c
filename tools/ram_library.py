@@ -50,11 +50,16 @@ def load(folder,expected=None):
             if observer.get('original_postdraw_observer'):
                 sources.add('gpu/diagnostics/PostDrawObserve.h')
                 assert observer.get('registration_only') and observer.get('original_pipeline_observer') and observer['target_process']=='AegirPoster'
-                assert observer['postdraw_observer_revision']==1 and observer['postdraw_observations_max']==64
+                assert observer['postdraw_observer_revision'] in (1,2) and observer['postdraw_observations_max']==64
                 assert observer['postdraw_apis']==['png','add_image','finalize','colorsync']
                 assert observer['postdraw_return_nil_throw_errno_nesting_host_passed'] and observer['postdraw_real_PNG_bytes_pixels_ICC_input_host_passed']
                 assert observer['postdraw_original_pixel_and_profile_options_preserved'] and observer['postdraw_durations_inclusive_not_additive']
                 assert re.fullmatch('[0-9a-f]{64}',observer['postdraw_host_test_source_sha256'])
+                if observer['postdraw_observer_revision']==2:
+                    assert observer['postdraw_png_input_metadata'] and observer['png_input_getters_exceptions_errno_host_passed']
+                    assert observer['png_input_no_pixel_or_profile_reads_host_passed']
+                    assert re.fullmatch('[0-9a-f]{64}',observer['png_input_host_test_source_sha256'])
+                else:assert not observer.get('postdraw_png_input_metadata')
             if observer.get('snapshot_method_observer'):
                 sources.add('gpu/diagnostics/SnapshotMethodObserve.h')
                 assert observer.get('original_postdraw_observer') and observer['snapshot_method_observer_revision']==1
