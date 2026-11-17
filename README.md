@@ -28,3 +28,5 @@ iPhoneX iOS16.7.16/20H392镜像、Sony原厂固件、设备备份由使用者提
 2026-11-17当前GLES为72d39da5，Metal5e94ab57和内核v729保持；新库完整14组及真实请求预热通过。单个原界面样本的队列wait由约2.807秒降至1.067秒，但CPU管线开销和完整UI仍未解决，总快照改善不作推断。原数据与限制见STATUS/XR-CLEAR。
 
 最新原UIImage输入已确认为RGBCIF10/ExtendedSRGB，PNG仍未在原期限内返回；AMD/x86主机的8/16位简化候选不等，未作为设备修复。作者图像的iOS后台原PNG参考与准入边界见POSTDRAW-OBSERVATION及STATUS，完整UI和其它外设继续推进。
+
+作者CIF10图像的iOS后台原PNG参考已实机完成：新RAM CPU及完整14组GPU/五组PNG均自动回程通过。真实输出16位sRGB且有跨通道转换；原界面的PNG期限、完整UI/FPS和其它外设仍继续。详细边界与复现入口集中在STATUS/POSTDRAW-OBSERVATION。

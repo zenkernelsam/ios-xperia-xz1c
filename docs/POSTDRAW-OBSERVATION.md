@@ -53,3 +53,11 @@ Mac为AMD Ryzen7 5825U/x86_64、macOS15.8.1。独立profile_cif10_png.m对自建
 CIF10PNGReferenceProbe.h与test_cif10_png_reference.m分别记录目标API与明确的Mac UIKit转发fixture。host对有界数据/导出、原输入不变、真实ImageIO/nil/异常检查通过；这些不能代替iOS参考。cif10_reference_evidence.py按当前token验证全部原输入、连续导出/长度/FNV、五组原API返回及完整回程，拒绝截断/混case/失败，解码数据只能输出到Windows TEMP。参考PASS不能准入尚未实现的优化器，也不能当原系统UI/FPS成功。
 
 新reference RAM依旧只变observer，须自身CPU准入，再同GLES72d39da5/Metal5e94ab57单发GPU，完整四回程/健康30秒/旧worker退出后继续。任何新颜色/PNG优化先取本机参考并核对像素、profile、metadata及返回行为；主机更快而输出不同的候选保持拒绝。
+
+后台参考已实机完成：CPU2ad33c28/38.015秒回程，GPUff064390/完整14组+五组原PNG/37.813秒完整回程与健康、controller退出。五组输出均为16bpc/48bpp/alphaNone、kCGColorSpaceSRGB，ICC3144B/SHA2b3aa164…；整屏750×1624作者混色PNG4805449B、8.467秒/CPU6.069秒。该高熵样本不代表原Aegir时耗。灰阶在本组最高位0/3对照字节相同；真实混色仅98/1024符合灰阶逐通道查表，单红输入639个码值出现非零G/B，不能用分量查表替代原转换，也不能据此擅改GPU位型或宣称硬件色彩故障。原UI像素仍未读取。完整原数据与范围见v729-cif10-reference-r1-gpu-actual、native14-actual及cif10-reference-r1-native-analysis。
+
+本次构建首先拒绝旧sampler-fixture-wsl的CRLF源码SHA072c376d；保留该失败目录后，以Ubuntu-22.04原LLVM14/f9315b42从正式LF源7b849ba2重新组装，bitcode/library/header三份字节与原先验完全相同，新目录build/cif10-reference-sampler-r1。未改旧manifest或弱化源审计，证据见cif10-reference-sampler-canonical-r1.json。重建入口：
+
+    python3 tools/build/make_air_fixture.py --llvm-as /usr/bin/llvm-as-14 --fixture sampler --output build/cif10-reference-sampler-r1
+
+后台参考probe保留原GLES/native14之后运行的位置；下一步原转换/PNG过滤与byte-swap开销须以原iOS函数和当前源码/库准入，不用AMD/x86快路径或该参考PASS替代原界面验收。

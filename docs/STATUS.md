@@ -1,6 +1,6 @@
 # 当前状态 — 2026-11-17
 
-Sony BH905ND69G当前健康停在fastboot，无controller/串口worker。新PNG输入observer RAM CPU ce96235e已38.594秒完整回程通过；原GPU c45fec49e9327a92仍REVISE/check-in超时，raw146b33417e12006dcca4f3f729fc941a0fa209abbd0ec6301f17711797b74997，39.578秒完整回程/健康/退出。两次原750×1624 Clear/draw result0/sequence628,663，snapshot3.369/2.146秒；两个PNG未返回。真实UIImage输入10bpc/32bpp、stride3000、bitmap0x42000/RGBCIF10/32Little、ExtendedSRGB、scale2/orientation0，未读取原像素。Mac AMD/x86主机的8/16位PNG简化候选均像素/metadata不等，保留拒绝且未安装。接下来仅新observer后台作者CIF10参考，须自身CPU→GPU；当前新参考尚未投递。kernel774b5efd/GLES72d39da5/Metal5e94ab57及native14保持，完整UI/颜色/FPS和其它外设仍未完成。
+Sony BH905ND69G当前健康停在fastboot，无controller/串口worker。CIF10后台参考包CPU 2ad33c28已38.015秒完整回程通过；GPU ff064390d4ccf9d3已完整14组及五组作者CIF10/原UIImagePNGRepresentation通过，raw425bf792c8a6e22673c17ef9358b0e76ee0639c11d2c43587f199df4b258b6b5，37.813秒四回程/健康30秒/worker退出。原UIImage输入c45fec49仍10bpc/32bpp/stride3000/RGBCIF10/ExtendedSRGB，原check-in超时与不完整UI保持。参考输出均16bpc sRGB PNG；750×1624作者混色图8.467秒/CPU6.069秒，不能当原UI时耗。真实混色仅98/1024符合灰阶逐通道查表，保留原跨通道转换，未安装简化编码器。kernel774b5efd/GLES72d39da5/Metal5e94ab57保持。下一步聚焦原转换/过滤/byte-swap的位型保持优化；完整UI/颜色/FPS/睡眠/声音/无线继续active。
 
 ## 当前新GLES验证
 

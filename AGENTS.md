@@ -37,3 +37,5 @@ gpu/sweetgl和gpu/metal是用户态，xnu/lilac-current.patch是完整内核修�
 XR-CLEAR仅在Clear省掉即将覆盖的旧XR颜色解码，原整数位型快照、原Clear/写回、Load/DontCare/采样及half数值保持。真实请求primerd4b6b70f再次完整14组并配对73444B实际Earth请求成功。新原GPUe4eb78cb实际750×1624 Clear/draw通过，单样本wait1.067秒相对旧2.807秒少约62%；总snapshot3.719秒/CPU2.570秒未改善，不能据此宣称完整UI/FPS完成。原check-in超时/不完整面板保留；当前无in-flight，以STATUS为准。
 
 2026-11-17原PNG输入c45fec49已确认RGBCIF10/ExtendedSRGB（10bpc/32bpp/stride3000/bitmap0x42000/scale2），两次原draw通过但PNG仍未返回，39.578秒完整回程。Mac是AMD/x86，不能拿其CIF10色值当835/iOS参考；8/16位简化候选均拒绝。新增后台CIF10参考只创建作者图像、调用原UIImagePNGRepresentation，不读取原UI像素或安装编码器；先自身RAM CPU后GPU，原GLES/native14、启动期限、四回程和全部红线保持，当前投递状态以STATUS为准。
+
+2026-11-17后台CIF10参考ff064390已完整14组+五组原PNG通过、37.813秒回程/健康/worker退出；自身CPU2ad33c28/38.015秒保持。真实输出16位sRGB且有跨通道关系，逐分量查表候选不准入；作者整屏8.467秒不代表原UI时耗。当前健康fastboot/无in-flight，原Aegir超时及完整UI/外设目标保持；下一步原转换/filter/byte-swap位型保持优化。旧CRLF sampler包原样保留，实际LLVM14重编LF源的bitcode/library/header完全相同，当前参考使用build/cif10-reference-sampler-r1。

@@ -1,0 +1,406 @@
+{
+  "token": "ff064390d4ccf9d3",
+  "cases": [
+    {
+      "case": 1,
+      "width": 1024,
+      "height": 1,
+      "input_fnv": "af373a6093bb6aa5",
+      "input_bitmap": "0x42000",
+      "top_bits": "0xc0000000",
+      "input_author_generated": true,
+      "original_UI_pixels_read": false,
+      "complete": true,
+      "PNG": {
+        "bytes": 1522,
+        "fnv": "9dc54de6c8003d69",
+        "wall_ns": 60484427,
+        "thread_cpu_ns": 37724583,
+        "cpu_valid": true,
+        "original_API": true
+      },
+      "decoded": {
+        "bits_per_component": 16,
+        "bits_per_pixel": 48,
+        "pitch": 6144,
+        "bitmap_info": "0x1000",
+        "alpha": 0,
+        "bytes": 6144,
+        "fnv": "29a84e0bc73e86e0"
+      },
+      "color": {
+        "model": 1,
+        "name": "kCGColorSpaceSRGB",
+        "icc_bytes": 3144,
+        "icc_fnv": "56d2cbfca6b54318"
+      },
+      "pixels_sha256": "f1c5297bf807feb32048e8d1d720b9d123d0656f8566ddf326b3d39ea98fe1ba",
+      "icc_sha256": "2b3aa1645779a9e634744faf9b01e9102b0c9b88fd6deced7934df86b949af7e",
+      "decoded_samples": [
+        {
+          "column": 0,
+          "raw_hex": "000000000000"
+        },
+        {
+          "column": 1,
+          "raw_hex": "000000000000"
+        },
+        {
+          "column": 383,
+          "raw_hex": "000000000000"
+        },
+        {
+          "column": 384,
+          "raw_hex": "000000000000"
+        },
+        {
+          "column": 385,
+          "raw_hex": "800080008000"
+        },
+        {
+          "column": 509,
+          "raw_hex": "a03ea03ea03e"
+        },
+        {
+          "column": 510,
+          "raw_hex": "203f203f203f"
+        },
+        {
+          "column": 511,
+          "raw_hex": "a03fa03fa03f"
+        },
+        {
+          "column": 893,
+          "raw_hex": "fffefffefffe"
+        },
+        {
+          "column": 894,
+          "raw_hex": "7fff7fff7fff"
+        },
+        {
+          "column": 895,
+          "raw_hex": "ffffffffffff"
+        },
+        {
+          "column": 1023,
+          "raw_hex": "ffffffffffff"
+        }
+      ]
+    },
+    {
+      "case": 2,
+      "width": 1024,
+      "height": 1,
+      "input_fnv": "1ada2b9c1ca97ea5",
+      "input_bitmap": "0x42000",
+      "top_bits": "0x0",
+      "input_author_generated": true,
+      "original_UI_pixels_read": false,
+      "complete": true,
+      "PNG": {
+        "bytes": 1522,
+        "fnv": "9dc54de6c8003d69",
+        "wall_ns": 9532553,
+        "thread_cpu_ns": 9357448,
+        "cpu_valid": true,
+        "original_API": true
+      },
+      "decoded": {
+        "bits_per_component": 16,
+        "bits_per_pixel": 48,
+        "pitch": 6144,
+        "bitmap_info": "0x1000",
+        "alpha": 0,
+        "bytes": 6144,
+        "fnv": "29a84e0bc73e86e0"
+      },
+      "color": {
+        "model": 1,
+        "name": "kCGColorSpaceSRGB",
+        "icc_bytes": 3144,
+        "icc_fnv": "56d2cbfca6b54318"
+      },
+      "pixels_sha256": "f1c5297bf807feb32048e8d1d720b9d123d0656f8566ddf326b3d39ea98fe1ba",
+      "decoded_samples": [
+        {
+          "column": 0,
+          "raw_hex": "000000000000"
+        },
+        {
+          "column": 1,
+          "raw_hex": "000000000000"
+        },
+        {
+          "column": 383,
+          "raw_hex": "000000000000"
+        },
+        {
+          "column": 384,
+          "raw_hex": "000000000000"
+        },
+        {
+          "column": 385,
+          "raw_hex": "800080008000"
+        },
+        {
+          "column": 509,
+          "raw_hex": "a03ea03ea03e"
+        },
+        {
+          "column": 510,
+          "raw_hex": "203f203f203f"
+        },
+        {
+          "column": 511,
+          "raw_hex": "a03fa03fa03f"
+        },
+        {
+          "column": 893,
+          "raw_hex": "fffefffefffe"
+        },
+        {
+          "column": 894,
+          "raw_hex": "7fff7fff7fff"
+        },
+        {
+          "column": 895,
+          "raw_hex": "ffffffffffff"
+        },
+        {
+          "column": 1023,
+          "raw_hex": "ffffffffffff"
+        }
+      ]
+    },
+    {
+      "case": 3,
+      "width": 1024,
+      "height": 1,
+      "input_fnv": "00f589f952cb0f25",
+      "input_bitmap": "0x42000",
+      "top_bits": "0xc0000000",
+      "input_author_generated": true,
+      "original_UI_pixels_read": false,
+      "complete": true,
+      "PNG": {
+        "bytes": 3762,
+        "fnv": "52d96bd4e8028e10",
+        "wall_ns": 7924271,
+        "thread_cpu_ns": 7288802,
+        "cpu_valid": true,
+        "original_API": true
+      },
+      "decoded": {
+        "bits_per_component": 16,
+        "bits_per_pixel": 48,
+        "pitch": 6144,
+        "bitmap_info": "0x1000",
+        "alpha": 0,
+        "bytes": 6144,
+        "fnv": "37fcc172e97865c8"
+      },
+      "color": {
+        "model": 1,
+        "name": "kCGColorSpaceSRGB",
+        "icc_bytes": 3144,
+        "icc_fnv": "56d2cbfca6b54318"
+      },
+      "pixels_sha256": "765b29da2ae559f4bc147f6c413598716f81946eaf8d6b95a36ac25354bedca1",
+      "decoded_samples": [
+        {
+          "column": 0,
+          "raw_hex": "000000000000"
+        },
+        {
+          "column": 1,
+          "raw_hex": "000000000000"
+        },
+        {
+          "column": 383,
+          "raw_hex": "000000000000"
+        },
+        {
+          "column": 384,
+          "raw_hex": "000000000000"
+        },
+        {
+          "column": 385,
+          "raw_hex": "690004000200"
+        },
+        {
+          "column": 509,
+          "raw_hex": "a0385b05c102"
+        },
+        {
+          "column": 510,
+          "raw_hex": "18397105cc02"
+        },
+        {
+          "column": 511,
+          "raw_hex": "88398705d702"
+        },
+        {
+          "column": 893,
+          "raw_hex": "ffe910334823"
+        },
+        {
+          "column": 894,
+          "raw_hex": "5fea30336023"
+        },
+        {
+          "column": 895,
+          "raw_hex": "dfea48337823"
+        },
+        {
+          "column": 1023,
+          "raw_hex": "ffffe042402f"
+        }
+      ]
+    },
+    {
+      "case": 4,
+      "width": 1024,
+      "height": 1,
+      "input_fnv": "8fbea72e4b9bd675",
+      "input_bitmap": "0x42000",
+      "top_bits": "0xc0000000",
+      "input_author_generated": true,
+      "original_UI_pixels_read": false,
+      "complete": true,
+      "PNG": {
+        "bytes": 4355,
+        "fnv": "b040f3fea32731ab",
+        "wall_ns": 7421562,
+        "thread_cpu_ns": 7257135,
+        "cpu_valid": true,
+        "original_API": true
+      },
+      "decoded": {
+        "bits_per_component": 16,
+        "bits_per_pixel": 48,
+        "pitch": 6144,
+        "bitmap_info": "0x1000",
+        "alpha": 0,
+        "bytes": 6144,
+        "fnv": "2ed597aa8d13bb48"
+      },
+      "color": {
+        "model": 1,
+        "name": "kCGColorSpaceSRGB",
+        "icc_bytes": 3144,
+        "icc_fnv": "56d2cbfca6b54318"
+      },
+      "pixels_sha256": "1b03c2d10bc109d06a473e9d93eb4531a0e56f72193fdc986fe90e1fe15ba6d9",
+      "decoded_samples": [
+        {
+          "column": 0,
+          "raw_hex": "000000000000"
+        },
+        {
+          "column": 1,
+          "raw_hex": "000000000000"
+        },
+        {
+          "column": 383,
+          "raw_hex": "000000000000"
+        },
+        {
+          "column": 384,
+          "raw_hex": "000000000000"
+        },
+        {
+          "column": 385,
+          "raw_hex": "ed014008d822"
+        },
+        {
+          "column": 509,
+          "raw_hex": "203ba0270000"
+        },
+        {
+          "column": 510,
+          "raw_hex": "a03cb82f5e01"
+        },
+        {
+          "column": 511,
+          "raw_hex": "483ee037641f"
+        },
+        {
+          "column": 893,
+          "raw_hex": "fffadfe77f9d"
+        },
+        {
+          "column": 894,
+          "raw_hex": "bffcffefbfbd"
+        },
+        {
+          "column": 895,
+          "raw_hex": "9ffe3ff8bfde"
+        },
+        {
+          "column": 1023,
+          "raw_hex": "ffffffffffff"
+        }
+      ]
+    },
+    {
+      "case": 5,
+      "width": 750,
+      "height": 1624,
+      "input_fnv": "a1e99af8cc4b8deb",
+      "input_bitmap": "0x42000",
+      "top_bits": "0xc0000000",
+      "input_author_generated": true,
+      "original_UI_pixels_read": false,
+      "complete": true,
+      "PNG": {
+        "bytes": 4805449,
+        "fnv": "452c35fb7a8e1973",
+        "wall_ns": 8467186354,
+        "thread_cpu_ns": 6068573386,
+        "cpu_valid": true,
+        "original_API": true
+      },
+      "decoded": {
+        "bits_per_component": 16,
+        "bits_per_pixel": 48,
+        "pitch": 4500,
+        "bitmap_info": "0x1000",
+        "alpha": 0,
+        "bytes": 7308000,
+        "fnv": "86b401ecc5addec1"
+      },
+      "color": {
+        "model": 1,
+        "name": "kCGColorSpaceSRGB",
+        "icc_bytes": 3144,
+        "icc_fnv": "56d2cbfca6b54318"
+      }
+    }
+  ],
+  "original_UIImage_API_referenced": true,
+  "author_generated_inputs_only": true,
+  "installed_converter": false,
+  "does_not_admit_lossless_optimization": true,
+  "does_not_complete_original_UI": true,
+  "post_ACK_exit_period_excluded": true,
+  "raw_sha256": "425bf792c8a6e22673c17ef9358b0e76ee0639c11d2c43587f199df4b258b6b5",
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-cif10-reference-r1-gpu-20261117",
+  "original_result": "PASS",
+  "strict_return": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "ff064390d4ccf9d3",
+    "checkpoint_bytes": 713396,
+    "log_bytes": 716115,
+    "log_sha256": "425bf792c8a6e22673c17ef9358b0e76ee0639c11d2c43587f199df4b258b6b5",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      5,
+      51,
+      53
+    ],
+    "final_reset_marker_seen": true
+  },
+  "decoded_payload_directory": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v729-cif10-reference-r1-decoded-20261117"
+}

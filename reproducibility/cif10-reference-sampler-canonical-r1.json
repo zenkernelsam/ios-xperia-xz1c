@@ -1,0 +1,16 @@
+{
+  "source": "gpu/metal/air/fixtures/sampler.air.ll",
+  "canonical_source_sha256": "7b849ba218ffb3525e598637ef39003937b8dd5bc2df396291d65302b0ae8eca",
+  "prior_CRLF_source_sha256": "072c376d2cc4954c596ae5051c7c2f428ee4527b2de08bc1288ddbbd10343b1d",
+  "LF_to_CRLF_exactly_reproduces_prior_hash": true,
+  "WSL_distribution": "Ubuntu-22.04",
+  "actual_LLVM14_compiler_sha256": "f9315b427542ad01a0b0432df3c768c101ba334623109874b84e911a34514855",
+  "actual_reassembled": true,
+  "bitcode_sha256": "94a9b9ff354715001cf00b5c2c4e39ec54760e8f762df4a8c802e1b08ae7a584",
+  "library_sha256": "2be1bd811578547c1669a4a5eb8aceaeabe0133063ec43e3bb87eb8c192d88e9",
+  "header_sha256": "047e771142edcb3aaffc207680e3e83bcdce1e88612d4c458040a96e17bcfef1",
+  "prior_bitcode_library_header_exactly_equal": true,
+  "old_fixture_and_failed_build_preserved": true,
+  "no_driver_or_kernel_changes": true,
+  "new_fixture": "build/cif10-reference-sampler-r1"
+}
