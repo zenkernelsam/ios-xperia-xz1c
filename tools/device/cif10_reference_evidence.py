@@ -2,6 +2,7 @@
 import hashlib
 import re
 import struct
+import zlib
 
 BEGIN='SWEET CIF10 REFERENCE BEGIN cases=5 original_API=1 author_generated=1 original_UI_pixels_read=0 converter_installed=0'
 END='SWEET CIF10 REFERENCE END result=0 cases=5 original_API=1 author_generated=1 original_UI_pixels_read=0 converter_installed=0'
@@ -9,8 +10,11 @@ INPUT=re.compile(r'SWEET CIF10 INPUT case=(\d+) width=(\d+) height=(\d+) bpc=10 
 PNG=re.compile(r'SWEET CIF10 PNG case=(\d+) bytes=(\d+) fnv=([0-9a-f]{16}) wall_ns=(\d+) cpu_ns=(\d+) cpu_valid=([01]) returned_nil=0 original_API=1')
 DECODE=re.compile(r'SWEET CIF10 DECODE case=(\d+) width=(\d+) height=(\d+) bpc=(\d+) bpp=(\d+) pitch=(\d+) bitmap=(0x[0-9a-f]+) alpha=(\d+) bytes=(\d+) fnv=([0-9a-f]{16})')
 COLOR=re.compile(r'SWEET CIF10 COLOR case=(\d+) model=(-?\d+) name=(\S+) icc_bytes=(\d+) icc_fnv=([0-9a-f]{16})')
-DATA=re.compile(r'SWEET CIF10 DATA case=(\d+) kind=(pixels|icc) offset=(\d+) bytes=(\d+) hex=([0-9a-f]+)')
+DATA=re.compile(r'SWEET CIF10 DATA case=(\d+) kind=(pixels|icc|png) offset=(\d+) bytes=(\d+) hex=([0-9a-f]+)')
 CASE_END=re.compile(r'SWEET CIF10 CASE END case=(\d+) result=0 input_unchanged=1 API_forwarded=1 prediction_used=0')
+CONFIG='SWEET CIF10 CONFIG revision=2 PNG_exports=1 vImage_modes=2 original_options=1 converter_installed=0'
+VIMAGE=re.compile(r'SWEET CIF10 VIMAGE case=(\d+) mode=(default|direct) status=(-?\d+) bytes=(\d+) fnv=([0-9a-f]{16}) mismatches=(\d+) guard=([01]) buffer=([01])')
+VIMAGE_TIME=re.compile(r'SWEET CIF10 VIMAGE TIME case=(\d+) mode=(default|direct) wall_ns=(\d+) cpu_ns=(\d+) cpu_valid=([01])')
 
 
 def fnv(data):
@@ -34,17 +38,54 @@ def authored_input(index):
     return data
 
 
-def parse(text,token):
+def png_container(data,reference,row):
+    assert data[:8]==b'\x89PNG\r\n\x1a\n'
+    at=8;chunks=[];packed=bytearray();ihdr=None;metadata=bytearray()
+    while at<len(data):
+        assert at+12<=len(data);size=struct.unpack_from('>I',data,at)[0];kind=data[at+4:at+8]
+        assert size<=32768 and at+12+size<=len(data);body=data[at+8:at+8+size];crc=struct.unpack_from('>I',data,at+8+size)[0]
+        assert zlib.crc32(kind+body)&0xffffffff==crc
+        chunks.append(dict(type=kind.decode('ascii'),bytes=size,payload_sha256=hashlib.sha256(body).hexdigest()))
+        if kind==b'IHDR':assert ihdr is None and at==8 and size==13;ihdr=struct.unpack('>IIBBBBB',body)
+        elif kind==b'IDAT':packed.extend(body)
+        elif kind==b'IEND':assert size==0 and at+12==len(data)
+        else:metadata.extend(kind+struct.pack('>I',size)+body)
+        at+=12+size
+    assert chunks[-1]['type']=='IEND' and ihdr==(row['width'],row['height'],16,2,0,0,0)
+    width,height=row['width'],row['height'];pitch=width*6;size=height*(pitch+1);decoder=zlib.decompressobj()
+    raw=decoder.decompress(packed,size+1);assert len(raw)==size and decoder.eof and not decoder.unused_data and not decoder.unconsumed_tail
+    decoded=bytearray();previous=bytes(pitch)
+    for y in range(height):
+        off=y*(pitch+1);filter_type=raw[off];assert 0<=filter_type<=4;current=bytearray(raw[off+1:off+pitch+1])
+        for i in range(pitch):
+            left=current[i-6] if i>=6 else 0;above=previous[i];upper_left=previous[i-6] if i>=6 else 0
+            if filter_type==1:predictor=left
+            elif filter_type==2:predictor=above
+            elif filter_type==3:predictor=(left+above)//2
+            elif filter_type==4:
+                p=left+above-upper_left;a,b,c=abs(p-left),abs(p-above),abs(p-upper_left)
+                predictor=left if a<=b and a<=c else above if b<=c else upper_left
+            else:predictor=0
+            current[i]=(current[i]+predictor)&255
+        decoded.extend(current);previous=current
+    for i in range(0,len(decoded),2):decoded[i],decoded[i+1]=decoded[i+1],decoded[i]
+    assert row['decoded']['bits_per_component']==16 and row['decoded']['bits_per_pixel']==48 and row['decoded']['bitmap_info']=='0x1000'
+    assert all(decoded[y*pitch:(y+1)*pitch]==reference[y*row['decoded']['pitch']:y*row['decoded']['pitch']+pitch] for y in range(height))
+    return dict(chunks=chunks,metadata_sha256=hashlib.sha256(metadata).hexdigest(),IDAT_defiltered_pixels_match_original_CG_decode=True)
+
+
+def parse(text,token,revision=1):
     live='SWEET LOOP LIVE proto=1 token='+token;ack='SWEET LOOP ACK FASTBOOT token='+token
     assert text.count(live)==text.count(ack)==1
     start,finish=text.index(live),text.index(ack);assert start<finish
     scope=text[start:finish]
+    assert revision in (1,2) and scope.count(CONFIG)==(1 if revision==2 else 0)
     assert scope.count(BEGIN)==scope.count(END)==1
     begin,end=scope.index(BEGIN),scope.index(END);assert begin<end
     assert 'SWEET AIR STATIC HALF END result=0' in scope[:begin]
     assert 'SWEET METAL PROBES END process=backboardd result=0' in scope[end:]
     rows={};payloads={};current=None
-    events=sorted((m.start(),kind,m) for kind,pattern in (('input',INPUT),('png',PNG),('decode',DECODE),('color',COLOR),('data',DATA),('end',CASE_END)) for m in pattern.finditer(scope))
+    events=sorted((m.start(),kind,m) for kind,pattern in (('input',INPUT),('png',PNG),('decode',DECODE),('color',COLOR),('vimage',VIMAGE),('vimage_time',VIMAGE_TIME),('data',DATA),('end',CASE_END)) for m in pattern.finditer(scope))
     for _,kind,m in events:
         index=int(m[1]);assert 1<=index<=5
         if kind=='input':
@@ -73,13 +114,25 @@ def parse(text,token):
                 assert 'decoded' in row and 'color' not in row and 0<=int(m[4])<=16384
                 if int(m[4])==0:assert m[5]=='0000000000000000'
                 row['color']=dict(model=int(m[2]),name=m[3],icc_bytes=int(m[4]),icc_fnv=m[5])
+            elif kind=='vimage':
+                assert revision==2 and 'color' in row;mode=m[2];values=row.setdefault('vImage',{});assert mode not in values
+                status,size,diffs=int(m[3]),int(m[4]),int(m[6]);assert size==row['decoded']['bytes'] and 0<=diffs<=size and m[7]=='1'
+                if status:assert m[5]=='0000000000000000' and diffs==0
+                else:
+                    assert m[8]=='1'
+                    if not diffs:assert m[5]==row['decoded']['fnv']
+                values[mode]=dict(status=status,bytes=size,fnv=m[5],byte_mismatches=diffs,guard_valid=True,buffer_identity=m[8]=='1',pixels_match=not status and not diffs)
+            elif kind=='vimage_time':
+                assert revision==2;value=row['vImage'][m[2]];assert 'wall_ns' not in value
+                assert m[5]=='1' or int(m[4])==0
+                value.update(wall_ns=int(m[3]),thread_cpu_ns=int(m[4]),cpu_valid=m[5]=='1')
             elif kind=='data':
                 assert 'color' in row
                 label,offset,count,encoded=m.groups()[1:];offset,count=int(offset),int(count)
                 assert 0<count<=48 and len(encoded)==count*2
                 key=(index,label);data=payloads.setdefault(key,bytearray());assert offset==len(data)
-                maximum=row['decoded']['bytes'] if label=='pixels' else row['color']['icc_bytes']
-                assert (label=='pixels' and index<=4 and maximum<=32768) or (label=='icc' and index==1)
+                maximum=row['decoded']['bytes'] if label=='pixels' else row['PNG']['bytes'] if label=='png' else row['color']['icc_bytes']
+                assert (label=='pixels' and index<=4 and maximum<=32768) or (label=='icc' and index==1) or (label=='png' and revision==2 and index<=4 and maximum<=32768)
                 data.extend(bytes.fromhex(encoded));assert len(data)<=maximum
             else:
                 assert 'color' in row and not row['complete']
@@ -88,19 +141,26 @@ def parse(text,token):
                         data=payloads[(index,label)];assert len(data)==size and fnv(data)==digest
                         row[label+'_sha256']=hashlib.sha256(data).hexdigest()
                 row['complete']=True;current=None
+                if revision==2:
+                    assert set(row['vImage'])=={'default','direct'} and all('wall_ns' in v for v in row['vImage'].values())
+                    if index<=4:
+                        data=payloads[(index,'png')];assert len(data)==row['PNG']['bytes'] and fnv(data)==row['PNG']['fnv']
+                        row['PNG']['sha256']=hashlib.sha256(data).hexdigest();row['PNG_container']=png_container(data,payloads[(index,'pixels')],row)
     assert list(rows)==[1,2,3,4,5] and current is None and all(row['complete'] for row in rows.values())
-    for label,pattern in (('INPUT',INPUT),('PNG',PNG),('DECODE',DECODE),('COLOR',COLOR),('DATA',DATA),('CASE END',CASE_END)):
-        assert scope.count('SWEET CIF10 '+label+' ')==len(list(pattern.finditer(scope)))
+    for label,pattern in (('INPUT',INPUT),('PNG',PNG),('DECODE',DECODE),('COLOR',COLOR),('DATA',DATA),('CASE END',CASE_END),('VIMAGE case=',VIMAGE),('VIMAGE TIME',VIMAGE_TIME)):
+        prefix='SWEET CIF10 '+label+('' if label=='VIMAGE case=' else ' ')
+        assert scope.count(prefix)==len(list(pattern.finditer(scope)))
     for index in range(1,5):
         row=rows[index];data=payloads[(index,'pixels')];pixel=row['decoded']['bits_per_pixel']//8
         row['decoded_samples']=[dict(column=x,raw_hex=data[x*pixel:(x+1)*pixel].hex()) for x in (0,1,383,384,385,509,510,511,893,894,895,1023)]
-    return dict(token=token,cases=list(rows.values()),original_UIImage_API_referenced=True,author_generated_inputs_only=True,
+    return dict(token=token,reference_revision=revision,cases=list(rows.values()),original_UIImage_API_referenced=True,author_generated_inputs_only=True,
+                vImage_all_pixel_stages_match=revision==2 and all(v['pixels_match'] for row in rows.values() for v in row['vImage'].values()),
                 installed_converter=False,does_not_admit_lossless_optimization=True,does_not_complete_original_UI=True,
                 post_ACK_exit_period_excluded=True),payloads
 
 
-def inspect(text,token):
-    return parse(text,token)[0]
+def inspect(text,token,revision=1):
+    return parse(text,token,revision)[0]
 
 
 if __name__=='__main__':
@@ -113,7 +173,7 @@ if __name__=='__main__':
     raw=(folder/'cycle-01/serial.raw.log').read_bytes();assert hashlib.sha256(raw).hexdigest()==row['log_sha256']
     returned=inspect_return(raw,artifact['token'],row['checkpoint_log_bytes'],require_drain=True)
     assert returned['complete'] and row['fastboot_returned'] and row['reset_to_fastboot_seconds']>=30
-    report,payloads=parse(raw.decode('ascii','replace'),artifact['token'])
+    report,payloads=parse(raw.decode('ascii','replace'),artifact['token'],artifact['exception_observer']['cif10_reference_revision'])
     report.update(raw_sha256=row['log_sha256'],source=str(folder.resolve()),original_result=row['result'],strict_return=returned)
     if a.decoded_directory:
         target=Path(a.decoded_directory).resolve();assert target.is_relative_to(Path(os.environ['TEMP']).resolve()) and not target.exists();target.mkdir()

@@ -27,7 +27,7 @@ if a.target_process=='backboardd':headers+=['gpu/sweetgl/sweetgl.h']
 if a.pipeline_observe:headers+=['gpu/diagnostics/MetalPipelineObserve.h']
 if a.postdraw_observe:headers+=['gpu/diagnostics/PostDrawObserve.h']
 if a.snapshot_observe:headers+=['gpu/diagnostics/SnapshotMethodObserve.h']
-if a.cif10_png_reference:headers+=['gpu/diagnostics/CIF10PNGReferenceProbe.h']
+if a.cif10_png_reference:headers+=['gpu/diagnostics/CIF10PNGReferenceProbe.h','gpu/diagnostics/CIF10VImageCompare.h']
 if a.program_cache_export:headers+=['gpu/diagnostics/ProgramRequestExport.h','gpu/sweetgl/ProgramCacheCodec.h','gpu/sweetgl/MetalShaderAPI.h','tools/program_request.py']
 resource_manifest=None
 cache_scope=None
@@ -192,7 +192,7 @@ if a.pipeline_observe:
     assert 'PASS' in run([out/'test_pipeline_observer'],'pipeline-host-test')
 if a.cif10_png_reference:
     run(['clang','-fobjc-exceptions','-O1','-g','-fsanitize=address,undefined',root/'tools/build/test_cif10_png_reference.m',
-        '-framework','Foundation','-framework','CoreGraphics','-framework','ImageIO','-o',out/'test_cif10_png_reference'],'cif10-reference-host-compile')
+        '-framework','Foundation','-framework','CoreGraphics','-framework','ImageIO','-framework','Accelerate','-o',out/'test_cif10_png_reference'],'cif10-reference-host-compile')
     assert 'CIF10 PNG reference PASS:' in run([out/'test_cif10_png_reference'],'cif10-reference-host-test')
 if a.postdraw_observe:
     run(['clang','-fobjc-exceptions','-O1','-g','-fsanitize=address,undefined',root/'tools/build/test_postdraw_observe.m',
@@ -224,7 +224,7 @@ if a.register_device:extra+=['-DSWEET_METAL_DISCOVERY_PROBE=1']
 if a.pipeline_observe:extra+=['-DSWEET_METAL_PIPELINE_OBSERVE=1','-framework','Metal']
 if a.postdraw_observe:extra+=['-DSWEET_POSTDRAW_OBSERVE=1','-framework','UIKit','-framework','CoreGraphics','-framework','ImageIO','-framework','ColorSync']
 if a.snapshot_observe:extra+=['-DSWEET_SNAPSHOT_METHOD_OBSERVE=1']
-if a.cif10_png_reference:extra+=['-DSWEET_CIF10_PNG_REFERENCE=1','-framework','UIKit','-framework','CoreGraphics','-framework','ImageIO']
+if a.cif10_png_reference:extra+=['-DSWEET_CIF10_PNG_REFERENCE=1','-framework','UIKit','-framework','CoreGraphics','-framework','ImageIO','-framework','Accelerate']
 if a.xr_probe:extra+=['-DSWEET_AIR_XR_PROBE=1']
 if a.surface_probe:extra+=['-DSWEET_METAL_SURFACE_PROBE=1','-framework','IOSurface']
 if a.mip_probe:extra+=['-DSWEET_METAL_MIP_PROBE=1']
@@ -256,9 +256,10 @@ if a.target_process=='AegirPoster':manifest.update(renderer_abi_and_device_obser
 manifest.update(source_files=source_files,runtime_Metal_ABI_methods=22,metadata_observer_no_device_calls_test_passed=True)
 manifest.update(probe_startup_revision=1,actual_startup_readiness_host_asan_ubsan_passed=True,startup_host_source_sha256=hashlib.sha256((root/'tools/build/test_metal_startup.c').read_bytes()).hexdigest())
 if a.target_process=='backboardd':manifest.update(background_full_suite=True,waits_for_same_process_GLES_suite=True,original_Aegir_not_modified_or_registered=True)
-if a.cif10_png_reference:manifest.update(cif10_PNG_reference=True,cif10_reference_revision=1,cif10_reference_cases=5,
+if a.cif10_png_reference:manifest.update(cif10_PNG_reference=True,cif10_reference_revision=2,cif10_reference_cases=5,
     cif10_reference_author_pixels_only=True,cif10_reference_original_UIImage_API=True,cif10_reference_converter_not_installed=True,
-    cif10_reference_host_fixture_bounds_nil_throw_input_passed=True,
+    cif10_reference_host_fixture_bounds_nil_throw_input_passed=True,cif10_reference_PNG_exports=True,
+    cif10_reference_vImage_modes=2,cif10_reference_vImage_guard_buffer_host_passed=True,
     cif10_reference_host_test_source_sha256=hashlib.sha256((root/'tools/build/test_cif10_png_reference.m').read_bytes()).hexdigest())
 if resource_manifest:manifest.update(metal_resources=resource_manifest)
 if resource_manifest and not a.registration_only:manifest.update(metal_resource_probe=True,

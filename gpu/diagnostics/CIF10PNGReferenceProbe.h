@@ -33,6 +33,7 @@ static uint64_t cif10_reference_cpu(bool *valid)
     struct timespec value={0};*valid=clock_gettime(CLOCK_THREAD_CPUTIME_ID,&value)==0;
     return *valid?(uint64_t)value.tv_sec*1000000000+value.tv_nsec:0;
 }
+#include "CIF10VImageCompare.h"
 static void cif10_reference_export(CIF10ReferenceEmit emit,unsigned index,const char *kind,CFDataRef data)
 {
     const uint8_t *bytes=CFDataGetBytePtr(data);size_t length=(size_t)CFDataGetLength(data);
@@ -48,6 +49,7 @@ static bool cif10_png_reference_probe(CIF10ReferenceEmit emit)
     mach_timebase_info_data_t timebase={0};
     int result=(!emit || mach_timebase_info(&timebase) || !timebase.numer || !timebase.denom)?1:0;
     if(!emit)return false;
+    emit("SWEET CIF10 CONFIG revision=2 PNG_exports=1 vImage_modes=2 original_options=1 converter_installed=0");
     emit("SWEET CIF10 REFERENCE BEGIN cases=5 original_API=1 author_generated=1 original_UI_pixels_read=0 converter_installed=0");
     unsigned completed=0;
     for(unsigned index=1;index<=5 && !result;++index) { @autoreleasepool {
@@ -99,9 +101,11 @@ static bool cif10_png_reference_probe(CIF10ReferenceEmit emit)
             emit("SWEET CIF10 COLOR case=%u model=%d name=%.63s icc_bytes=%ld icc_fnv=%016llx",
                 index,(int)CGColorSpaceGetModel(CGImageGetColorSpace(decoded)),color_name,icc?(long)CFDataGetLength(icc):0,
                 (unsigned long long)(icc?cif10_reference_fnv(CFDataGetBytePtr(icc),(size_t)CFDataGetLength(icc)):0));
+            if(!cif10_vimage_record(emit,index,image,decoded,pixels,timebase)){result=13;break;}
             if(index<=4) {
-                if(CFDataGetLength(pixels)>32768){result=10;break;}
+                if(CFDataGetLength(pixels)>32768 || png.length>32768){result=10;break;}
                 cif10_reference_export(emit,index,"pixels",pixels);
+                cif10_reference_export(emit,index,"png",(CFDataRef)png);
             }
             if(index==1 && icc)cif10_reference_export(emit,index,"icc",icc);
             if(cif10_reference_fnv(input.bytes,input.length)!=input_hash){result=11;break;}

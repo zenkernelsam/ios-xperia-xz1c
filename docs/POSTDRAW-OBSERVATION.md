@@ -61,3 +61,11 @@ CIF10PNGReferenceProbe.h与test_cif10_png_reference.m分别记录目标API与明
     python3 tools/build/make_air_fixture.py --llvm-as /usr/bin/llvm-as-14 --fixture sampler --output build/cif10-reference-sampler-r1
 
 后台参考probe保留原GLES/native14之后运行的位置；下一步原转换/PNG过滤与byte-swap开销须以原iOS函数和当前源码/库准入，不用AMD/x86快路径或该参考PASS替代原界面验收。
+
+## 公开转换对照 revision2
+
+reference revision2仍使用五组原UIImage PNG；另外以vImageBuffer_InitWithCGImage和vImageConverter_CreateWithCGImageFormat/vImageConvert_AnyToAny比较整图转换。目标颜色空间、位深、stride、bitmap及decode来自该组原PNG的真实CGImage解码。两条路径逐字节核对原解码像素，保留API错误和不相等候选；64B前后guard、成功返回时的buffer身份必须保持。未安装图像转换器或PNG替代实现，参考PASS不能准入数值不等候选。
+
+小图还导出原PNG完整字节，PNG/像素/ICC均有界且只在Windows TEMP落地。cif10_reference_evidence.py的revision2检查全部PNG chunk CRC、IHDR、bounded zlib解压、五种filter和16位网络序→CG原端序像素一致；旧revision1兼容保留。原PNG参数、返回和check-in期限保持。
+
+主机修正前的kvImageDoNotTile误用于InitWithCGImage被真实API以-21775拒绝，未投递设备；正确地把该flag用于直接converter路径后，host ASan/UBSan与输入/guard/nil/异常检查通过。AMD/x86上两条路径均与原ImageIO像素不等，保持拒绝；后续须本包CPU→835 GPU/参考取得真实值，不能以host速度替代本机色彩语义。

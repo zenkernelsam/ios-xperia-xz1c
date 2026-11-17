@@ -1,0 +1,56 @@
+{
+  "base_commit": "a814e2e930b369593cd3fb91aa85ae480b31103c",
+  "before_lock_sha256": "a7a3a088a51c046c36f0b4b3a714b55239e2882c21debac8b0bcfa390956f05e",
+  "after_lock_sha256": "8fd8fdfb8343a542e3fd878c129ca1b1bac84a6d51ca32a332fef051da028da6",
+  "updated_sources": [
+    {
+      "path": "tools/device/package_trial.py",
+      "before_sha256": "d92b89819b3a7c3990f4e5052e58fecea606c4867795549045321358305e2b75",
+      "after_sha256": "8c1f233f83af0b961b7d36bb25cb50d0276f5576900b5cac0b041a3f5c293c9a"
+    },
+    {
+      "path": "tools/device/trial_evidence.py",
+      "before_sha256": "173a8ae84b6f9634394a345494e72dc5d2c9a9f6443d144e81419af186a701d5",
+      "after_sha256": "afde7a90e6760a579c041913a39d16b86d747952041f001ef183dd61bcb0c565"
+    },
+    {
+      "path": "tools/device/cif10_reference_evidence.py",
+      "before_sha256": "cf944f62665876fe241d2a6e0b2fc83f4acddff96f2b58d42a0daef4f10dabb3",
+      "after_sha256": "0aa6283cc0b4e3a0fa2d721534c37631157cb32226bfd36679159764fdd87799"
+    },
+    {
+      "path": "tools/device/test_cif10_reference_evidence.py",
+      "before_sha256": "5f83ce852385460c7994e7f7b42eee84fd547c4986afcfaf618a0358a9bf57e7",
+      "after_sha256": "97e44c5e95ce9777b9f70827f9bd86e53c8bf1fed7dd14eb1dfd190441752aea"
+    },
+    {
+      "path": "tools/ram_library.py",
+      "before_sha256": "2798ee9bddaad0f6759e9e7adb1a13dae28244c25a6096405b6ed927c101449f",
+      "after_sha256": "928f350455a3d01f6de0a08c53ed55e466c9ec6e3a48ab043762fce1ec3906ff"
+    },
+    {
+      "path": "tools/build/build_exception_observer.py",
+      "before_sha256": "ec298a3706c3576c8fde7c8f8bcb42ec96b3f289c3c3e4733c8bc62a91c75876",
+      "after_sha256": "0a2edc4e71c4de860997839e45797f69977e330bc82835ede86f22968174018f"
+    },
+    {
+      "path": "tools/build/test_cif10_png_reference.m",
+      "before_sha256": "83de8a02b86bd52d4bb7989d4d18af9b247dc23f39621a11eea344b83752a19e",
+      "after_sha256": "7125c058a3a4c8f5196ca58edc71c8150b6acd7f1ed51332d0ed3de2676a6d10"
+    },
+    {
+      "path": "gpu/diagnostics/CIF10PNGReferenceProbe.h",
+      "before_sha256": "b36344da5f2cba9ee8f6c9bea6c43be539fc219e57679181a8f75f14a6f1b86b",
+      "after_sha256": "29ec6ed03e9fb3d1dd8fa4f0533f19744f823f54027c9a2387a9844fb32a8f76"
+    }
+  ],
+  "new_sources": [
+    {
+      "path": "gpu/diagnostics/CIF10VImageCompare.h",
+      "sha256": "eee3b40c5fcb54e356262eae702ec15911e21fd8612e98f40765625cdfd36b9f"
+    }
+  ],
+  "kernel_GLES_Metal_unchanged": true,
+  "public_conversion_comparison_not_installed": true,
+  "PNG_exports_authored_only": true
+}
