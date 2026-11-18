@@ -90,4 +90,6 @@ PNGImageIOEncoder.h将同一ImageIO编码部分供作者参考与原界面使用
 
 共享源码参考CPU49625fe2已37.812秒回程通过；GPU110c23cd的编码源码SHA61031999…及六组原PNG/filter数据完整，但相机HTTP拒绝连接，controller记STOP/CAMERA_EVIDENCE_MISSING，38.250秒四回程/健康/worker退出。该参考仅单列reference-only，不能作为新encoder的GPU/源码先验；png_encoder_prerequisite已实际拒绝此STOP。用户表示稍后开启DroidCam，保留原STOP/目录/raw，不重发此bundle。新encoder尚未投递原Aegir。
 
+2026-11-19：v730 同库共享源码参考 CPU4ea81eaf／38.140秒、GPUd1a2778c／37.578秒均完整验收，全部14组与六组 PNG/UP 的原16位像素、ICC、metadata一致，原源码SHA61031999…精确绑定。作者混色7.009→2.253秒、渐变4.459→1.098秒，不推为原 UI 或FPS。`png_encoder_prerequisite.py` 现按目标 kernel 的实际版本验证，不能以不同版本或旧 STOP准入。新 Aegir observer becbb403 已编译并通过host组合，需自身RAM CPU后按当前 native/PNG原raw proof投递。607B命令边界用 XNU `PE_parse_boot_argn/getval` 的数值1无值参数形式收回4B，sf2x与sweetbattery的值保持1；原kernel、VM／SCM／PON／allocator代码不变。
+
 增加test_png_postdraw_encoder.m检查实际分派与计时器组合：完整PNG返回、BEGIN/PNG_ROUTE/END明确区分快路径与原路径、原nil/throw/errno和有界root/depth保持。Mac使用明确的fixture proof header，ASan/UBSan通过；该fixture只用于主机编译/单元检查，绝不进入设备包或替代真实PNG source proof。设备builder仅从实际成功的共享源码参考生成PNGEncoderProof.h。

@@ -4,7 +4,7 @@ Sony BH905ND69G 当前健康停在 fastboot，无 controller／串口 worker／�
 
 读屏分辨率为真实 720×1280、BGR888/stride2160、2764800B；本轮截帧约 1.7..10.9 秒。CPU private 图确有日期／时间、camera／homebar、红色提示和红字；两轮 GPU 图捕获时系统 power_off 请求均为 1，即使取证前移也保持原事实，不能据此判断正常亮屏时的时钟／壁纸或面板色彩。UI 内容可用已校验串口帧替代相机，背光／光学色偏／面板真正送帧仍另验。完整 UI/FPS、睡眠和其它外设继续 active。
 
-完整 Metal/native14 先验仍为下方 v729，不准入不同 kernel 的 v730；共享 PNG/UP 原界面路径仍未投递。下一步是 v730 同库自身完整 native／共享 PNG 参考，再验原 Aegir；旧 CAMERA_EVIDENCE_MISSING STOP、原扩展超时及所有失败记录保持。临时 Windows 4 项、Mac 5 项已进原生回收站／Trash，未清空，当前基线、构建和实机证据保持。
+v730 共享编码参考自身 RAM CPU4ea81eaf／38.140秒和 GPUd1a2778c／37.578秒完整回程通过，原八项 GLES／全部14组 native／六组原 UIImage PNG 与同源 ImageIO 策略均已独立复算。共享源61031999…的六组 UP 原16位像素、ICC、metadata一致；作者混色7.009→2.253秒、渐变4.459→1.098秒，不代表原 UI 时耗。新 v730 native／PNG proof 已生成，旧 v729 camera STOP保持拒绝。原编码库becbb403（113200B）已构建并通过 host 参数／nil／异常／errno、像素／ICC／metadata与组合检查，当前尚待新 RAM 自身 CPU及原 Aegir GPU准入；实际 in-flight状态见本段更新及本轮日志。目标仍包括原完整 UI/FPS及其它外设。
 
 此前 v729 的共享 ImageIO/UP 参考记录：CPU49625fe2/37.812秒通过；GPU110c23cd8f167e3c六组原 PNG／源码 SHA61031999…数据返回，但相机拒绝连接而记 STOP/CAMERA_EVIDENCE_MISSING，38.250秒完整回程。此 STOP 保留、源码先验拒绝，未投递原 Aegir 新编码路径。原 host ASan/UBSan、RGB16 PNG／像素／ICC／metadata、nil/throw/errno／回退检查及 reference3 完整14组／六组 filter 先验仍保留，均不能替代新的同 kernel 准入。
 
