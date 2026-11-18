@@ -118,6 +118,15 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
         words=[('sweetfb_noconsole=1' if w.startswith('sweetfb_noconsole=') else w) for w in words]
         words=[('sweetar=420' if w.startswith('sweetar=') else w) for w in words]
         words.append('sfscreen=1');watchdog=420
+    compact_numeric_ones=[]
+    if screen_evidence and len(' '.join(words).encode())>607:
+        # The pinned XNU PE_parse_boot_argn/getval returns numeric 1 for a
+        # present argument without '='. Keep both enabled features identical.
+        for name in ('sweetbattery','sf2x'):
+            explicit=name+'=1'
+            if explicit in words:
+                words=[name if w==explicit else w for w in words]
+                compact_numeric_ones.append(name)
     cmd=' '.join(words);assert len(cmd.encode())<=607
     candidate,info=mkpayload.build(str(kernel),reference,cmd,blobs=files)
     assert b'SWEET SURF CALLER DIAG phase=' in candidate
@@ -140,6 +149,7 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
         if 'metal_resources' in package:m['metal_resources']=package['metal_resources']
     if owner_interval is not None:
         m['owner_observation_interval_seconds']=owner_interval
+    if compact_numeric_ones:m['numeric_one_argument_compaction']=compact_numeric_ones
     if screen_evidence:
         from scanout_snapshot import binding as screen_binding
         m['screen_snapshot_binding']=screen_binding(m)
