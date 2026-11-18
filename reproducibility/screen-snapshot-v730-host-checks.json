@@ -1,0 +1,33 @@
+{
+  "source_files": {
+    "xnu/support/SweetFramebufferScreen.h": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+    "xnu/support/SweetFramebufferScreenRuntime.h": "a1f41eeb87b7cf70ea751884ee38d758191f3cc0a00d697acc363fbba3cd5f63",
+    "tools/device/scanout_snapshot.py": "3bf5c8bfb98303bd3daa67ac3c1516a61be4955fc7efdbf4a4aa9675ec6ca877",
+    "tools/build/test_screen_codec.c": "3d7edfd19904d5e557af8e18ac337bd05a99987fe3aaf0adebd739eb57cedf35",
+    "tools/build/test_screen_wire.py": "2c9bd913194ca50d3c9ddd8b6c5ff9a47db62e0e8665dfc55320fb8d23a87ace"
+  },
+  "ASan_UBSan_passed": true,
+  "ARM64_compile_passed": true,
+  "wire_fault_tests_passed": true,
+  "full_panel_exact_pixels_passed": true,
+  "host_fixtures_only": true,
+  "device_operations": 0,
+  "hardware_acceptance_pending": true,
+  "version": 730,
+  "unchanged_v729_inputs_verified": 80,
+  "same_kernel_runtime_not_yet_tested": true,
+  "wire_faults_rejected": 26,
+  "USB_split_sizes": [
+    1,
+    7,
+    63,
+    511,
+    4096,
+    65536
+  ],
+  "full_panel_patterns": 8,
+  "codec_boundaries": 300,
+  "host_gate_tests_passed": 23,
+  "old_gate_tests_skipped": 2,
+  "initial_host_attempt": "Pillow missing; retained, isolated venv Pillow11.3.0 then tested"
+}

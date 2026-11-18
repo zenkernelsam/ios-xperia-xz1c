@@ -1,4 +1,6 @@
-# 当前状态 — 2026-11-17
+# 当前状态 — 2026-11-18
+
+用户新要求优先通过串口获取完整显示帧。v730 只读 scanout 增量／主机接收器已准备：保持真实 720×1280 BGR888/2160 扫描来源，显示 workloop 私有复制、无损 PRLE1、记录／块／帧 CRC 与原像素 FNV；电脑端生成完整 PNG。整屏 ASan/UBSan、ARM64 编译、独立 PNG 像素和 USB 拆分／错误拒绝主机检查通过；手机仍在健康 fastboot，无 in-flight。待正式源同步、实际内核重编及自身 private 截图→owner/ready/RAM CPU/GPU；当前已验 GPU 基线仍为下方 v729。相机缺失不再阻止独立读屏通道开发，旧 STOP 未改判，真实面板光学和完整 UI/FPS/外设边界保持。详见 SCANOUT-SCREENSHOT。
 
 Sony BH905ND69G当前安全停在fastboot，无controller/串口worker。共享ImageIO/UP编码函数已在正式源码，调用分派与postdraw组合的host ASan/UBSan、real RGB16 PNG/像素/ICC/metadata、原nil/throw/errno与不支持输入回退检查通过。新共享参考CPU49625fe2/37.812秒通过；GPU110c23cd8f167e3c的六组原PNG/源码SHA61031999…/ImageIO策略数据已返回，但因DroidCam拒绝连接缺相机证据记STOP/CAMERA_EVIDENCE_MISSING，38.250秒完整回程。此STOP保留，不准入新PNG encoder；源码先验工具确认拒绝，未投递原Aegir新编码路径。用户表示稍后开启服务。既有reference3完整14组/六组filter先验及原Aegir超时保持，kernel774b5efd/GLES72d39da5/Metal5e94ab57不变。当前继续离线检查；相机与新共享源码完整准入恢复后再新包CPU→原GPU/面板，不重复旧STOP bundle。完整UI/FPS/其它外设目标仍未完成。
 

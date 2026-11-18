@@ -72,7 +72,7 @@ def baseline(name,folder):
     reference=adt.serialize(tree)
     assert sha(reference)=='257076987411b50f037f70bf97524fae56ac2965e773c1bb8678d05d45480ba6'
     return raw,payload,reference,blob_data,payload[72:680].split(b'\0',1)[0].decode(),raw[4096:4096+ks]
-def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interval=None):
+def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interval=None,screen_evidence=False):
     config=configuration(version)
     selected='gpu' if mode=='gpu' else 'ready' if mode in ('owner','ready') else 'private'
     raw,payload,reference,blobs,cmd,shim=baseline(selected,folder)
@@ -107,6 +107,13 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
             # Keep runtime/display/touch settings; make room for explicit tee.
             words=[w for w in words if w not in ('sweetgpuasync=1','-noprogress','keepsyms=1')]
             words.append('sweetnull=backboardd,AegirPoster')
+    if screen_evidence:
+        assert version>=730, 'Full screenshots require the separately audited v730 reader'
+        # Replace periodic diagnostic dumps with an explicit full snapshot; keep
+        # display/GPU/input operation and the existing PON06 return untouched.
+        words=[w for w in words if not w.startswith(('sweetfbshot=','sweetfbshot_surface=','sweetfbcolor='))]
+        words=[('sweetar=420' if w.startswith('sweetar=') else w) for w in words]
+        words.append('sfscreen=1');watchdog=420
     cmd=' '.join(words);assert len(cmd.encode())<=607
     candidate,info=mkpayload.build(str(kernel),reference,cmd,blobs=files)
     assert b'SWEET SURF CALLER DIAG phase=' in candidate
@@ -129,6 +136,9 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
         if 'metal_resources' in package:m['metal_resources']=package['metal_resources']
     if owner_interval is not None:
         m['owner_observation_interval_seconds']=owner_interval
+    if screen_evidence:
+        from scanout_snapshot import binding as screen_binding
+        m['screen_snapshot_binding']=screen_binding(m)
     (output/'artifacts.json').write_text(json.dumps({'target_serial':'BH905ND69G','pon_route':6,'artifacts':[m]},indent=2)+'\n')
     common=['SWEET LOOP LIVE proto=1 token='+token,'SWEET RMI4: F12 page=']
     if mode in ('private','ramcpu'):
@@ -230,9 +240,10 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
         scope=m['exception_observer']['program_cache_scope']
         common+=['SWEET PROGRAM CACHE SCOPE identity='+scope['identity'],
                  'SWEET PROGRAM CACHE SCOPE result=0 inherited=[01] directory='+re.escape(scope['directory'])+' mode=1777 old_files_preserved=1']
-    plan={'target_serial':'BH905ND69G','pon_route':6,'max_cycles':1,'budget_seconds':480,'camera_required':mode=='gpu',
+    plan={'target_serial':'BH905ND69G','pon_route':6,'max_cycles':1,'budget_seconds':600 if screen_evidence else 480,'camera_required':mode=='gpu' and not screen_evidence,
           'steps':[{'artifact_id':m['id'],'observe_seconds':observe,'stable_seconds':30,'return_seconds':120,'goals':common,
                     'return_evidence':'final-drain','on_pass':'stop','on_failure':'stop'}]}
+    if screen_evidence:plan.update(screen_required=True,screen_timeout_seconds=100)
     (output/'plan.json').write_text(json.dumps(plan,indent=2)+'\n')
     (output/'package-proof.json').write_text(json.dumps({'baseline':selected,'baseline_sha256':BASE_HASHES[selected],
        'baseline_payload_exact':True,'kernel_sha256':m['kernel_sha256'],'image_sha256':m['sha256'],'cmdline_bytes':len(cmd),
@@ -241,9 +252,10 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--mode',choices=['private','owner','ready','ramcpu','gpu'],required=True)
     p.add_argument('--kernel',required=True);p.add_argument('--baselines',default=str(ROOT/'assets/baselines'));p.add_argument('--output',required=True)
-    p.add_argument('--version',type=int,choices=[725,726,727,728,729],default=725)
+    p.add_argument('--version',type=int,choices=[725,726,727,728,729,730],default=725)
     p.add_argument('--ram-package')
     p.add_argument('--owner-interval',type=int,choices=[90])
+    p.add_argument('--screen-evidence',action='store_true')
     a=p.parse_args();out=Path(a.output).resolve();assert out.is_relative_to(ROOT/'build') and not out.exists();out.mkdir(parents=True)
-    m=prepare(a.mode,Path(a.kernel),Path(a.baselines),out,a.version,a.ram_package,a.owner_interval)
+    m=prepare(a.mode,Path(a.kernel),Path(a.baselines),out,a.version,a.ram_package,a.owner_interval,a.screen_evidence)
     print(json.dumps({k:m[k] for k in ('trial_mode','token','kernel_sha256','sha256','cmdline_bytes')}))

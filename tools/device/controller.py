@@ -74,6 +74,12 @@ class Artifact:
             if key in words or options.get(key, "0") != "0": raise Refuse(f"Suppression flag {key}")
         for marker in (b"SWEET LOOP LIVE proto=1", b"SWEET LOOP ACK FASTBOOT", b"SWEET LOOP RESET pon=0x06"):
             if marker not in payload: raise Refuse("RPC or PON06 reboot marker absent")
+        if 'screen_snapshot_binding' in self.data:
+            from scanout_snapshot import binding as screen_binding
+            if self.data['screen_snapshot_binding'] != screen_binding(self.data):
+                raise Refuse('Screenshot source binding differs')
+            if b'SWEET SCREEN BEGIN token=' not in payload or b'SWEET SCREEN SCAN token=' not in payload:
+                raise Refuse('Screenshot reader is absent from the actual kernel payload')
         if "boot_sender_sha256" in self.data:
             if self.data.get("boot_sender") != "sony-boot-once" or \
                     hashlib.sha256((HERE / "boot_once.py").read_bytes()).hexdigest() != self.data["boot_sender_sha256"]:
@@ -247,6 +253,38 @@ class LiveOps:
         data = json.loads((directory / "capture.json").read_text())
         if not data.get("frames"): raise Refuse("No camera evidence")
         return data
+    def screen(self, directory, artifact, seconds=100):
+        from scanout_snapshot import ScreenDecoder, write_frame, binding as screen_binding
+        if artifact.data.get('screen_snapshot_binding') != screen_binding(artifact.data):
+            raise Refuse('Screenshot source binding differs')
+        if self.capture_process.process.poll() is not None:
+            raise Refuse('Serial worker exited before screenshot')
+        raw = self.directory / 'serial.raw.log'
+        cursor = raw.stat().st_size
+        decoder = ScreenDecoder(artifact.token)
+        with (self.directory / 'serial-commands.jsonl').open('a', encoding='utf-8') as file:
+            file.write(json.dumps({'command': 'frame'}) + '\n'); file.flush(); os.fsync(file.fileno())
+        self.journal.event('SCREEN_REQUESTED', token=artifact.token, offset=cursor, command_dispatches=1)
+        start = time.monotonic()
+        while time.monotonic() - start < seconds:
+            self.check_stop()
+            with raw.open('rb') as file:
+                file.seek(cursor); added = file.read(256 * 1024); cursor = file.tell()
+            if added: decoder.feed(added)
+            if decoder.frames:
+                frames = decoder.finish()
+                if len(frames) != 1: raise Refuse('Expected exactly one requested screenshot')
+                metadata = write_frame(directory, frames[0], artifact.data)
+                result = dict(protocol=1, verified=True, frames=[metadata], optical_panel_verified=False,
+                              elapsed_seconds=time.monotonic() - start)
+                write_json(Path(directory) / 'capture.json', result)
+                self.journal.event('SCREEN_VERIFIED', token=artifact.token, frame_id=metadata['id'],
+                                   png_sha256=metadata['png_sha256'], optical_panel_verified=False)
+                return result
+            if self.capture_process.process.poll() is not None:
+                raise Refuse('Serial worker exited during screenshot')
+            time.sleep(.05)
+        raise Refuse('No complete checked screenshot before its bounded deadline')
     def request_reset(self, artifact):
         self.check_stop()
         if self.transmitted: raise Refuse("Reset already requested in this cycle")
@@ -317,6 +355,9 @@ class ReplayOps:
         self.calls.append("camera_mjpeg")
         directory.mkdir(exist_ok=True); write_json(directory / "capture.json", {"simulated": True, "frames": ["synthetic"]})
         return {"simulated": True, "frames": ["synthetic"]}
+    def screen(self, directory, artifact, seconds=100):
+        self.calls.append('screen_snapshot')
+        return {'simulated': True, 'verified': False, 'frames': ['host fixture'], 'optical_panel_verified': False}
     def request_reset(self, artifact): self.calls.append("reset_once")
     def wait_return(self, artifact, seconds):
         cycle = self.scenario["cycles"][min(self.n, len(self.scenario["cycles"]) - 1)]
@@ -336,6 +377,8 @@ def validate_plan(plan):
     if maximum != 1 or not 1 <= plan.get("budget_seconds", 480) <= 28800:
         raise Refuse("Invalid bounded cycle/time budget")
     if not plan.get("steps"): raise Refuse("No experiment steps")
+    if type(plan.get('screen_required', False)) is not bool or not 1 <= plan.get('screen_timeout_seconds', 100) <= 110:
+        raise Refuse('Invalid screenshot evidence policy')
     for step in plan["steps"]:
         if not 1 <= step.get("observe_seconds", 0) <= 14400 or not 1 <= step.get("return_seconds", 60) <= 120:
             raise Refuse("Invalid observation/return window")
@@ -375,6 +418,14 @@ def execute(plan, artifacts, ops, journal):
             if decision.kind == "WAIT": row.update(decision="STOP", reason="OBSERVATION_INCOMPLETE")
             write_json(directory / "decision.json", row)
             journal.event("EVIDENCE", cycle=cycle + 1, reason=row["reason"])
+            if plan.get('screen_required', False):
+                try:
+                    if not live: raise Refuse('Screenshot requires the validated current-boot LIVE')
+                    row['screen'] = ops.screen(directory / 'screens', artifact, plan.get('screen_timeout_seconds', 100))
+                except (Refuse, subprocess.TimeoutExpired, OSError, ValueError) as e:
+                    row.update(decision='STOP', reason='SCREEN_EVIDENCE_MISSING', screen_error=str(e))
+                    write_json(directory / 'decision.json', row)
+                    journal.event('SCREEN_UNAVAILABLE', cycle=cycle + 1, error=str(e))
             if plan.get("camera_required", True):
                 try:
                     row["camera"] = ops.camera(directory / "camera")

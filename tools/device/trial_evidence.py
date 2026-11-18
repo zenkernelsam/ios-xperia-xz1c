@@ -130,6 +130,11 @@ def verify(directory,mode,kernel_sha=None,version=None):
             'single_download_boot_verified':True,'actual_stage_verified':True,
             'complete_panel_and_peripheral_goal_not_achieved':True}
     report['payload_audit']=payload_proof
+    if 'screen_snapshot_binding' in a:
+        from scanout_snapshot import verify_saved
+        commands=[json.loads(line)['command'] for line in (root/'cycle-01/serial-commands.jsonl').read_text(encoding='utf-8').splitlines()]
+        assert commands.count('frame')==1, 'Exactly one screenshot command is required'
+        report['screen']=verify_saved(root/'cycle-01/screens',a,row['screen'],raw)
     if mode=='owner':report['snapshots']=snapshots
     if mode=='gpu':report['pixels_and_retirement']=pixels
     if mode=='gpu' and a['version']>=727:report['readonly_pixels']=readonly

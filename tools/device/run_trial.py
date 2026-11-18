@@ -19,6 +19,8 @@ def prerequisites(record, args):
     if mode!='private':
         assert args.private_evidence, 'Same-kernel private evidence is required'
         proof['private']=verify(args.private_evidence,'private',kernel,version)
+        if 'screen_snapshot_binding' in record:
+            assert proof['private'].get('screen',{}).get('current_boot_source_and_payload_checked'), 'Screenshot evidence needs the same-kernel successful private capture first'
     if mode in ('owner','ready','gpu'):
         assert args.rpm_evidence, 'Actual RPM clock evidence is required'
         proof['rpm']=verify_clock(args.rpm_evidence)
@@ -125,6 +127,10 @@ def main():
     Artifact(record).validate();mode=record['trial_mode'];kernel=record['kernel_sha256']
     config=verify_record(record)
     payload_proof=prove_payload(record)
+    plan=json.loads((bundle/'plan.json').read_bytes())
+    assert plan.get('screen_required',False)==('screen_snapshot_binding' in record), 'Plan screenshot requirement differs from the actual artifact'
+    if 'screen_snapshot_binding' in record:
+        assert plan.get('camera_required') is False and plan.get('screen_timeout_seconds')==100
     proof=prerequisites(record,a)
     # Audit actual Mac compile inputs before any phone/COM/camera command.
     assert re.fullmatch('[0-9a-f]{64}',kernel)
@@ -157,7 +163,7 @@ def main():
     write_json(directory/'owner.json',{'pid':os.getpid(),'token':record['token'],'mode':mode,'max_cycles':1})
     print('RUN_DIR='+str(directory),flush=True);print(json.dumps({k:record[k] for k in ('token','kernel_sha256','sha256','trial_mode')}),flush=True)
     try:
-        rows=execute(json.loads((bundle/'plan.json').read_text()),{record['id']:record},ops,journal)
+        rows=execute(plan,{record['id']:record},ops,journal)
     finally:ops.close();lock.close()
     if rows and rows[-1]['result']=='PASS':
         proof=verify(directory,mode,kernel,record['version'])

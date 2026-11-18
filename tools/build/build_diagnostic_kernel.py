@@ -13,7 +13,7 @@ from diagnostic_candidate import ROOT, audit, configuration, sha
 
 
 def main():
-    p = argparse.ArgumentParser(); p.add_argument('--version', type=int, choices=(725, 726,727,728,729), default=725)
+    p = argparse.ArgumentParser(); p.add_argument('--version', type=int, choices=(725, 726,727,728,729,730), default=725)
     args = p.parse_args(); config = configuration(args.version)
     proof = audit(args.version)
     paths = [str(p) for p in (Path('/usr/local/bin'), Path('/opt/homebrew/bin')) if p.is_dir()]

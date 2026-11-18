@@ -6,7 +6,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 MEMORY_SOURCE = 'iokit/Kernel/IOMemoryDescriptor.cpp'
 MEMORY_BASE = '9963ef1a82cfe5e1bfca797c17c686c54eeea6e631ed349babfc80ac8c824379'
-PATCHES = {725: 'lilac-surface-diagnostics.patch', 726: 'lilac-surface-memref-diagnostics.patch',727:'lilac-surface-readonly.patch',728:'lilac-surface-region64.patch',729:'lilac-console-snapshot.patch'}
+PATCHES = {725: 'lilac-surface-diagnostics.patch', 726: 'lilac-surface-memref-diagnostics.patch',727:'lilac-surface-readonly.patch',728:'lilac-surface-region64.patch',729:'lilac-console-snapshot.patch',730:'lilac-scanout-snapshot.patch'}
 
 
 def sha(data):
@@ -57,10 +57,20 @@ def configuration(version):
         assert fourth['overrides'][fourth['source']]==fourth['after_sha256']
         assert all(h==third['overrides'][p] for p,h in fourth['overrides'].items() if p!=fourth['source'])
         expected.update(fourth['overrides'])
-    if version==729:
-        assert manifest['base_version']==728 and manifest['logging_only'] and manifest['GPU_allocator_SCM_PON_RPC_VM_code_unchanged']
-        assert set(manifest['base_sources'])==set(manifest['changed_sources'])=={'bsd/dev/vermeer_debug.c','bsd/dev/vermeer_log_ring.h'}
-        assert all(manifest['overrides'][p]==h for p,h in fourth['overrides'].items())
+    if version>=729:
+        fifth=json.loads((ROOT/'reproducibility/surface-diag-v729.json').read_bytes())
+        assert fifth['base_version']==728 and fifth['logging_only'] and fifth['GPU_allocator_SCM_PON_RPC_VM_code_unchanged']
+        assert set(fifth['base_sources'])==set(fifth['changed_sources'])=={'bsd/dev/vermeer_debug.c','bsd/dev/vermeer_log_ring.h'}
+        assert all(fifth['overrides'][p]==h for p,h in fourth['overrides'].items())
+        expected.update(fifth['overrides']);changed=fifth['changed_sources']
+    if version>=730:
+        source='iokit/Kernel/arm/SweetFramebuffer.cpp'
+        headers={source,'iokit/Kernel/arm/SweetFramebufferScreen.h','iokit/Kernel/arm/SweetFramebufferScreenRuntime.h'}
+        assert manifest['base_version']==729 and manifest['read_only_scanout_snapshot'] and manifest['GPU_allocator_SCM_PON_RPC_VM_code_unchanged']
+        assert set(manifest['base_sources'])=={source} and set(manifest['changed_sources'])==headers
+        assert manifest['prior_actual_sources'][source]==baseline['audited_xnu_files'][source]
+        assert all(manifest['overrides'][p]==h for p,h in fifth['overrides'].items())
+        assert set(manifest['overrides'])==set(fifth['overrides'])|headers
         expected.update(manifest['overrides']);changed=manifest['changed_sources']
     binding = {'version': version, 'manifest_sha256': sha(raw), 'patches': patch_hashes}
     return {'manifest': manifest, 'binding': binding, 'source_hashes': expected,
@@ -91,6 +101,7 @@ def audit(version, kernel_sha=None):
         if version >= 726:
             assert b'SWEET SURF MEMREF ERROR address=' in raw and b'SWEET SURF MEMREF INIT length=' in raw
         if version>=727:assert b'SWEET SURF READONLY id=' in raw
+        if version>=730:assert b'SWEET SCREEN BEGIN token=' in raw and b'SWEET SCREEN SCAN token=' in raw
         result['kernel_sha256'] = sha(raw)
         result['diagnostic_markers_linked'] = True
     return result

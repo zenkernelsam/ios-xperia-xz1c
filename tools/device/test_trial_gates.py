@@ -119,7 +119,11 @@ class Gates(unittest.TestCase):
         verify_record({'version':726,'diagnostic_binding':binding})
         changed=json.loads(json.dumps(binding));changed['manifest_sha256']='0'*64
         with self.assertRaises(AssertionError):verify_record({'version':726,'diagnostic_binding':changed})
-        with self.assertRaises(AssertionError):configuration(730)
+        screen=configuration(730)
+        self.assertEqual(screen['manifest']['base_version'],729)
+        self.assertEqual(len(screen['source_hashes']),83)
+        self.assertEqual(screen['source_hashes']['iokit/Kernel/arm/SweetGPU.cpp'],configuration(729)['source_hashes']['iokit/Kernel/arm/SweetGPU.cpp'])
+        with self.assertRaises(AssertionError):configuration(731)
 
     def test_audit_includes_upstream_memory_descriptor(self):
         first=configuration(725);next_=configuration(726)

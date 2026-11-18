@@ -1,0 +1,41 @@
+{
+  "version": 730,
+  "base_version": 729,
+  "base_sources": {
+    "iokit/Kernel/arm/SweetFramebuffer.cpp": "ff93954b154cad38e620f6e3d07cfa208171b7ceeea0c5f60b5b20ae049c2ebc"
+  },
+  "prior_actual_sources": {
+    "iokit/Kernel/arm/SweetFramebuffer.cpp": "ff93954b154cad38e620f6e3d07cfa208171b7ceeea0c5f60b5b20ae049c2ebc"
+  },
+  "changed_sources": [
+    "iokit/Kernel/arm/SweetFramebuffer.cpp",
+    "iokit/Kernel/arm/SweetFramebufferScreen.h",
+    "iokit/Kernel/arm/SweetFramebufferScreenRuntime.h"
+  ],
+  "overrides": {
+    "iokit/Kernel/arm/SweetSurface.cpp": "ad5b7234448525b6568de4fee9ea72806da838a9766612593c21a1c032f83a4d",
+    "iokit/Kernel/IOMemoryDescriptor.cpp": "7d377fb6e226583b5d0aff7c6439ad937dd95c5b77a085e93e0778cd8db5e3fb",
+    "iokit/Kernel/arm/SweetSurface.h": "6791bce861310ef4d1a13ca3a70111f884f74904c2eeb138fc847dd8b26d43f4",
+    "iokit/Kernel/arm/SGBufferLease.h": "fad507520d8fcb663761e8b8cd3e5ffc6766004dd44e5bbcf253934eb17442a9",
+    "iokit/Kernel/arm/SGSharedMapper.cpp": "7eb0cd013a03f39496a5094ac8137c153c994330c928210a661b2a73b87f544b",
+    "iokit/Kernel/arm/SweetGPUScatter.cpp": "6ea2fcf560e96aeb266500d0e2e6c246807f40727ee6d8946c761863d2634af6",
+    "bsd/dev/vermeer_debug.c": "644ff8fe26f7818d369b063f61d4ac31ce40b4156243fccff08959da2b559f6b",
+    "bsd/dev/vermeer_log_ring.h": "90d341a54fc8819e156f70c603acfa883fc1bd560429545709879cff1c1e335f",
+    "iokit/Kernel/arm/SweetFramebuffer.cpp": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+    "iokit/Kernel/arm/SweetFramebufferScreen.h": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+    "iokit/Kernel/arm/SweetFramebufferScreenRuntime.h": "a1f41eeb87b7cf70ea751884ee38d758191f3cc0a00d697acc363fbba3cd5f63"
+  },
+  "patch_sha256": "d3ae5855335834ab762025249debfce74d35a2a1b26267d823a252db2f93fcc2",
+  "read_only_scanout_snapshot": true,
+  "USB_worker_only_queues": true,
+  "capture_on_display_workloop": true,
+  "immutable_transfer_buffer": true,
+  "per_record_and_payload_CRC32": true,
+  "raw_FNV64": true,
+  "format": "BGR888",
+  "width": 720,
+  "height": 1280,
+  "stride": 2160,
+  "GPU_allocator_SCM_PON_RPC_VM_code_unchanged": true,
+  "hardware_acceptance_pending": true
+}
