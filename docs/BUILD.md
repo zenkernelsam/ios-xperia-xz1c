@@ -2,6 +2,8 @@
 
 完整无损串口截图的新 v730 诊断增量、主机检查与独立实机准入见 [SCANOUT-SCREENSHOT](SCANOUT-SCREENSHOT.md)。它只扩展显示观察；既有 GPU、源码冻结及同 kernel 各阶段的验证继续保持，实际状态以 STATUS 为准。
 
+固定基线另保留三个源文件的精确行尾物化规则，见 `baseline-source-newlines.json`；`prepare_sources.py` 自动应用，与已验内核的源 SHA 一致。代码文本保持相同。`verify_diagnostic_reconstruction.py --version 730` 在新的 TEMP checkout 中从 Apple 固定提交重新应用完整补丁及 v725..v730 增量；旧／浅缓存缺少固定 base 时只向该 TEMP checkout 拉取。原构建树保持，报告不代表新的二进制或设备已通过。
+
 当前实机入口为v729、XR Clear优化GLES72d39da5和Metal half-selection-r1/5e94ab57，完整14组raw proof见STATUS与XR-CLEAR。下方各版本的构建/失败记录保留其原适用范围；不能以旧版本proof准入当前新库。仅observer诊断变更的最新构建、同库CPU准入和原PNG时耗观察见[POSTDRAW-OBSERVATION](POSTDRAW-OBSERVATION.md)，不重编或改动已验kernel/GLES/Metal。
 
 reproducibility/source-lock.json锁定Apple XNU xnu-8796.141.3/f625db25f47631424dc62ac1c3414b6e530f7e8a、darwin-xnu-build基础663906528d1cd5ea8fde7de6f16de73db9511549、Mesa769e51468b49b2a42f0a0eaf71cf9eed5ff4e5de/24.3.4及全部修补。source-reconstruction.json记录逐源重建核验。

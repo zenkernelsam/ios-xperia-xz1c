@@ -1,7 +1,9 @@
 """Fetch fixed OSS sources and apply the repository's complete Lilac patches."""
-import argparse,hashlib,json,subprocess,tempfile
+import argparse,hashlib,json,subprocess,tempfile,sys
 from pathlib import Path
 root=Path(__file__).resolve().parents[2];lock=json.loads((root/'reproducibility/source-lock.json').read_text())
+sys.path.insert(0,str(root/'tools'))
+from baseline_source_inputs import materialize as materialize_baseline
 def command(args,cwd=None):subprocess.run(args,cwd=cwd,check=True)
 def checkout(url,commit,path):
     if path.exists():
@@ -53,6 +55,7 @@ else:
         patch(target,one)
     checkout('https://github.com/apple-oss-distributions/xnu.git',lock['xnu']['base_commit'],target/'xnu')
     patch(target/'xnu',root/'xnu/lilac-current.patch')
+    materialize_baseline(root,target/'xnu')
     for name,row in lock['builder_dependencies'].items():
         checkout('https://github.com/apple-oss-distributions/'+name+'.git',row['commit'],target/name)
 print('PINNED_SOURCES_PREPARED: '+str(target))

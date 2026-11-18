@@ -20,6 +20,8 @@ python3 tools/build/build_diagnostic_kernel.py --version 730
 
 主机检查需要 Pillow（仅用于独立解码核对 PNG），且不能以主机 fixture 代替手机截帧。`xnu/lilac-scanout-snapshot.patch` 含完整增量及两个新增 header，`surface-diag-v730.json` 绑定全部 83 个实际源输入。`prepare_screen_snapshot.py` 仅从保留的精确 v729 `SweetFramebuffer.cpp` 重建增量，不修改旧版本记录。冻结的 GPU／allocator／SCM／PON／RPC／VM 源码均独立保留并逐源复算。
 
+从固定上游完整重建源输入可运行 `python3 tools/build/verify_diagnostic_reconstruction.py --version 730`。基线的三个 LF/CRLF 差异由 `tools/baseline_source_inputs.py` 按固定 SHA 和行尾索引物化；源码文本、现行内核输入与旧实机记录保持。它在 TEMP 中创建新的 checkout，不覆盖现行构建树。
+
 Windows 的单轮打包和投递示例：
 
 ```powershell

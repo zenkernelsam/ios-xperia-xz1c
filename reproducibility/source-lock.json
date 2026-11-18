@@ -105,7 +105,37 @@
       "a/pexpert/pexpert/arm64/board_config.h.rej b/pexpert/pexpert/arm64/board_config.h.rej",
       "a/pexpert/pexpert/arm64/board_config.h.rej.orig b/pexpert/pexpert/arm64/board_config.h.rej.orig"
     ],
-    "current_patch_paths": 404
+    "current_patch_paths": 404,
+    "baseline_source_newlines": {
+      "base_full_patch_sha256": "ef0cf0576d5fb40595ba3cf4a385d7814dc728acda887a9d001c37ee972e8c54",
+      "sources": {
+        "iokit/Kernel/arm/SweetBattery.cpp": {
+          "before_sha256": "747411acd5c0068a4e58af01719d5f0b8ac60621c3624f0015fc68acc06fdb13",
+          "after_sha256": "e793077b9a5a48253a1720fb5250e5c4c692c11624c20d6ad08660dbdea06a0c",
+          "line_count": 330,
+          "lf_only_indices": []
+        },
+        "iokit/Kernel/arm/LilacAPRBasebandProtocol.h": {
+          "before_sha256": "83dfdc3fce3f7a4d20fb09ced4c24fee38ea34a09a23a62792aa19a7ee1c0d21",
+          "after_sha256": "3a23a81bcefe65f14c797e1bd4b51505aebf64eca44016a28abcae055cd77420",
+          "line_count": 63,
+          "lf_only_indices": []
+        },
+        "iokit/Kernel/arm/LilacAPRBasebandGLINK.h": {
+          "before_sha256": "e637a0d6c7d20208d96a4550e2d43726b40142e9e43b77288fed065c04f233bc",
+          "after_sha256": "bcce892c1e57f9c9e4a667f05559f2356e031192c29ce9dc1f5d5d1c5e55dbb1",
+          "line_count": 196,
+          "lf_only_indices": [
+            70,
+            71,
+            72
+          ]
+        }
+      },
+      "LF_normalized_code_identical": true,
+      "existing_compiled_inputs_unchanged": true,
+      "device_operations": 0
+    }
   },
   "builder": {
     "base": "663906528d1cd5ea8fde7de6f16de73db9511549",

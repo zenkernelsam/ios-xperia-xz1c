@@ -1,0 +1,199 @@
+{
+  "version": 730,
+  "mode": "owner",
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-screen-v730-owner-r1-20261118",
+  "token": "296cc71aa33a819a",
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "image_sha256": "b89516b2358adf05f7debbdf4109dcfe97df0c37524008cd3ced50bd82d86ab7",
+  "log_sha256": "b9a23e66c41a0c9eb3244d3b2013a67ec1884708565aa84cef75142f84736ee4",
+  "return_complete": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "296cc71aa33a819a",
+    "checkpoint_bytes": 542517,
+    "log_bytes": 545601,
+    "log_sha256": "b9a23e66c41a0c9eb3244d3b2013a67ec1884708565aa84cef75142f84736ee4",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      9,
+      57,
+      59
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 37.40600000019185,
+  "single_download_boot_verified": true,
+  "actual_stage_verified": true,
+  "complete_panel_and_peripheral_goal_not_achieved": true,
+  "payload_audit": {
+    "image_sha256": "b89516b2358adf05f7debbdf4109dcfe97df0c37524008cd3ced50bd82d86ab7",
+    "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+    "blob_count": 7,
+    "complete_payload_reconstructed_from_compiled_kernel": true
+  },
+  "screen": {
+    "protocol": 1,
+    "frames": [
+      {
+        "id": 1,
+        "token": "296cc71aa33a819a",
+        "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+        "image_sha256": "b89516b2358adf05f7debbdf4109dcfe97df0c37524008cd3ced50bd82d86ab7",
+        "binding": {
+          "protocol": 1,
+          "width": 720,
+          "height": 1280,
+          "stride": 2160,
+          "format": "BGR888",
+          "codec": "PRLE1",
+          "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+          "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+          "runtime_source_sha256": "a1f41eeb87b7cf70ea751884ee38d758191f3cc0a00d697acc363fbba3cd5f63"
+        },
+        "begin": {
+          "token": "296cc71aa33a819a",
+          "id": "1",
+          "width": "720",
+          "height": "1280",
+          "stride": "2160",
+          "format": "BGR888",
+          "bytes": "2764800",
+          "codec": "PRLE1",
+          "encoded": "68466",
+          "raw_fnv": "a458cbe079d0e22b",
+          "enc_crc": "6d10dd7f",
+          "vsync": "13461",
+          "timestamp": "18664916428",
+          "copy_ticks": "7538816",
+          "power_off": "0",
+          "source_checked": "1",
+          "source_match": "1"
+        },
+        "scan": {
+          "token": "296cc71aa33a819a",
+          "id": "1",
+          "pa": "0x9d400000",
+          "map_pa": "0x9d400000",
+          "map_bytes": "2764800",
+          "size": "0x50002d0",
+          "img": "0x50002d0",
+          "xy": "0",
+          "out": "0x50002d0",
+          "outxy": "0",
+          "fmt": "0x2243f",
+          "unpack": "0x20001",
+          "op": "0x80000000",
+          "qop": "0",
+          "ctl": "0x20020",
+          "start": "0",
+          "before_after": "1"
+        },
+        "blocks": 535,
+        "raw_file": "scanout-00000001.bgr",
+        "png_file": "scanout-00000001.png",
+        "raw_sha256": "ab2d6c413b913d94475c53cc894649af3ff7c4c07458dbfd5b82801a824ec4dc",
+        "png_sha256": "ce6786aacd1fa2ad5f732fffd1c15017b87726e39d12a4dc3c1c7939df6baced",
+        "pixel_values_preserved": true,
+        "verified": true,
+        "optical_panel_verified": false
+      }
+    ],
+    "verified": true,
+    "optical_panel_verified": false,
+    "current_boot_source_and_payload_checked": true,
+    "format": "BGR888",
+    "width": 720,
+    "height": 1280
+  },
+  "snapshots": [
+    {
+      "snapshot": 1,
+      "root_pa": 2709549056,
+      "root_hash": "64ba183dab0947d9",
+      "root_words": [
+        0,
+        0,
+        2147485249,
+        3221227073,
+        4294968897,
+        5368710721,
+        6442452545,
+        7516194369
+      ],
+      "root_hash_independently_recomputed": true,
+      "streams": [
+        {
+          "slot": 0,
+          "smr": 2147483648,
+          "s2cr": 0
+        },
+        {
+          "slot": 1,
+          "smr": 0,
+          "s2cr": 0
+        },
+        {
+          "slot": 2,
+          "smr": 2147483650,
+          "s2cr": 131327
+        },
+        {
+          "slot": 3,
+          "smr": 2147483651,
+          "s2cr": 805306373
+        }
+      ],
+      "raw_tcr2": 229393,
+      "sequence": 1,
+      "completed": 1,
+      "observed_fsr": 1024,
+      "observer_root_updates": 0,
+      "alias_gpu_work": 0
+    },
+    {
+      "snapshot": 2,
+      "root_pa": 2709549056,
+      "root_hash": "64ba183dab0947d9",
+      "root_words": [
+        0,
+        0,
+        2147485249,
+        3221227073,
+        4294968897,
+        5368710721,
+        6442452545,
+        7516194369
+      ],
+      "root_hash_independently_recomputed": true,
+      "streams": [
+        {
+          "slot": 0,
+          "smr": 2147483648,
+          "s2cr": 0
+        },
+        {
+          "slot": 1,
+          "smr": 0,
+          "s2cr": 0
+        },
+        {
+          "slot": 2,
+          "smr": 2147483650,
+          "s2cr": 131327
+        },
+        {
+          "slot": 3,
+          "smr": 2147483651,
+          "s2cr": 805306373
+        }
+      ],
+      "raw_tcr2": 229393,
+      "sequence": 1,
+      "completed": 1,
+      "observed_fsr": 1024,
+      "observer_root_updates": 0,
+      "alias_gpu_work": 0
+    }
+  ]
+}

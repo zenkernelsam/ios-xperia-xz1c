@@ -12,6 +12,7 @@ import tempfile
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from diagnostic_candidate import ROOT, PATCHES, configuration, MEMORY_SOURCE, MEMORY_BASE
+from baseline_source_inputs import materialize as materialize_baseline
 
 
 def digest(data):
@@ -50,6 +51,7 @@ def main():
     assert digest(full.read_bytes()) == lock['xnu']['patch_sha256']
     run(['git', 'apply', '--check', full], 'base-check', tree)
     run(['git', 'apply', full], 'base-apply', tree)
+    materialized = materialize_baseline(ROOT, tree)
     expected = dict(lock['audited_xnu_files'])
     expected[MEMORY_SOURCE] = MEMORY_BASE
     assert all(digest((tree / path).read_bytes()) == sha for path, sha in expected.items())
@@ -82,6 +84,7 @@ def main():
         fresh_apply_passed=True, source_hashes=config['source_hashes'], audited_sources=len(config['source_hashes']),
         stages=events, work_directory=str(out), outputs_preserved=True, original_build_tree_unchanged=True,
         pinned_base_fetched_into_temporary_checkout=not available,
+        exact_baseline_source_newlines_materialized=materialized,
         device_operations=0, binary_or_hardware_pass_not_inferred=True)
     with (out / 'report.json').open('xb') as file:
         file.write((json.dumps(report, indent=2) + '\n').encode())
