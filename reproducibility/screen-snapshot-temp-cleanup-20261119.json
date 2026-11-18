@@ -1,0 +1,22 @@
+{
+  "Windows_native_recycle_verified": true,
+  "Windows_items": 4,
+  "Mac_native_trash_verified": true,
+  "Mac_items": 5,
+  "Windows_names": [
+    "lilac-baseline-source-reconciliation.patch",
+    "baseline-source-reconciliation.json",
+    "lilac-screen-host-20261118-rbcm9bkc",
+    "gles-gpu-r1"
+  ],
+  "Mac_names": [
+    "lilac-xnu-v730-reconstruction-gkojl4ax",
+    "lilac-xnu-v730-reconstruction-l9nmzez5",
+    "lilac-xnu-v730-reconstruction-wp_om56e",
+    "lilac-screen-host-20261118-rbcm9bkc",
+    "lilac-screen-host-20261118-rbcm9bkc.tar"
+  ],
+  "Windows_and_Mac_trash_not_emptied": true,
+  "device_evidence_and_current_builds_retained": true,
+  "permanent_deletions": 0
+}

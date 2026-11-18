@@ -1,8 +1,12 @@
-# 当前状态 — 2026-11-18
+# 当前状态 — 2026-11-19
 
-v730/f258dee9（20665112B、83 源）完整串口读屏已实机通过：private token aca5c3305612b99e，真正 720×1280 BGR888/2160 的 2764800B 扫描像素无损传回，压成 69523B、544 块，约 2.906 秒完成；来源 PA/MDP 寄存器前后保持、块／记录／帧 CRC 和原像素 FNV 全部通过。图中真实出现日期／时间、相机与 homebar，此 CPU 靴有红色状态提示、红色字和缺壁纸，不能作为 GPU 修复或完整 UI 结论。38.266 秒完整回程／健康 30 秒／worker 已退出，目前健康 fastboot、无 in-flight。下一阶段为同 kernel owner/ready/RAM CPU/GPU 的独立截图验收；当前已验完整 GPU 基线仍是下方 v729。旧相机 STOP 未改判，面板光学、完整 UI/FPS/其它外设目标保持。详见 SCANOUT-SCREENSHOT 与 v730-screen-private-r1-actual。
+Sony BH905ND69G 当前健康停在 fastboot，无 controller／串口 worker／相机 worker。v730/f258dee9（20665112B、83 源）已通过自身 private、owner、ready、精确 GLES RAM CPU、两轮完整 GLES 八项／readonly 960000 像素与六张完整无损扫描帧，六轮均单 download/boot、PON06 四 marker、连续健康 30 秒和 worker 退出。最新 GPU token 5f97bb217a29d17a，38.750 秒完整回程，45 秒观察点的帧只请求一次并在最终取证复用；完整来源／块／记录／帧 CRC、原像素 FNV 和保存 PNG／BGR 均复算通过。固定 Apple base + 完整补丁 + v725..v730 已在新的 TEMP checkout 重建，83 源逐字节匹配；三个 LF/CRLF 物化规则已锁定，现行内核输入不变。详见 SCANOUT-SCREENSHOT 与对应 reproducibility 记录。
 
-Sony BH905ND69G当前安全停在fastboot，无controller/串口worker。共享ImageIO/UP编码函数已在正式源码，调用分派与postdraw组合的host ASan/UBSan、real RGB16 PNG/像素/ICC/metadata、原nil/throw/errno与不支持输入回退检查通过。新共享参考CPU49625fe2/37.812秒通过；GPU110c23cd8f167e3c的六组原PNG/源码SHA61031999…/ImageIO策略数据已返回，但因DroidCam拒绝连接缺相机证据记STOP/CAMERA_EVIDENCE_MISSING，38.250秒完整回程。此STOP保留，不准入新PNG encoder；源码先验工具确认拒绝，未投递原Aegir新编码路径。用户表示稍后开启服务。既有reference3完整14组/六组filter先验及原Aegir超时保持，kernel774b5efd/GLES72d39da5/Metal5e94ab57不变。当前继续离线检查；相机与新共享源码完整准入恢复后再新包CPU→原GPU/面板，不重复旧STOP bundle。完整UI/FPS/其它外设目标仍未完成。
+读屏分辨率为真实 720×1280、BGR888/stride2160、2764800B；本轮截帧约 1.7..10.9 秒。CPU private 图确有日期／时间、camera／homebar、红色提示和红字；两轮 GPU 图捕获时系统 power_off 请求均为 1，即使取证前移也保持原事实，不能据此判断正常亮屏时的时钟／壁纸或面板色彩。UI 内容可用已校验串口帧替代相机，背光／光学色偏／面板真正送帧仍另验。完整 UI/FPS、睡眠和其它外设继续 active。
+
+完整 Metal/native14 先验仍为下方 v729，不准入不同 kernel 的 v730；共享 PNG/UP 原界面路径仍未投递。下一步是 v730 同库自身完整 native／共享 PNG 参考，再验原 Aegir；旧 CAMERA_EVIDENCE_MISSING STOP、原扩展超时及所有失败记录保持。临时 Windows 4 项、Mac 5 项已进原生回收站／Trash，未清空，当前基线、构建和实机证据保持。
+
+此前 v729 的共享 ImageIO/UP 参考记录：CPU49625fe2/37.812秒通过；GPU110c23cd8f167e3c六组原 PNG／源码 SHA61031999…数据返回，但相机拒绝连接而记 STOP/CAMERA_EVIDENCE_MISSING，38.250秒完整回程。此 STOP 保留、源码先验拒绝，未投递原 Aegir 新编码路径。原 host ASan/UBSan、RGB16 PNG／像素／ICC／metadata、nil/throw/errno／回退检查及 reference3 完整14组／六组 filter 先验仍保留，均不能替代新的同 kernel 准入。
 
 ## 当前新GLES验证
 

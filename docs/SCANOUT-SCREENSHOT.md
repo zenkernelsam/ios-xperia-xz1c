@@ -38,3 +38,5 @@ GPU 的新包在观察开始 45 秒、已确认本靴 LIVE 后截一次，随后
 设计对照为本机 S2 的 `capture-framebuffer.py`（按实际物理扫描地址／stride 读取并对照序列）和 Y700 的 `debug_screen.py`（分块／帧 CRC 与同一串口会话）；Sony 没有引入其它项目的通用内存命令或 RGB565 色彩降精度。
 
 2026-11-18：整屏 codec ASan/UBSan、ARM64 编译、独立 PNG 像素以及 6 种 USB 拆分／26 项故障拒绝主机检查通过。v730/f258dee9 实际重编／83 源审计通过，private aca5c330 的完整手机扫描帧已传回：2764800B→69523B、544 块、2.906 秒，全部校验通过，38.266 秒四 marker 回程及健康／worker 退出。该 CPU 靴的日期／时间、camera 和 homebar 清晰可读，红色提示／文字与缺壁纸照实保留；其它同 kernel 阶段和原 GPU 界面须独立验收。旧 v729 GPU 先验和相机 STOP 原样保留，见 STATUS 及 reproducibility/v730-screen-private-r1-actual.json。
+
+2026-11-19：owner／ready／RAM CPU 及两轮完整 GLES 八项／readonly 像素也独立通过，六轮均完整读屏及正常回程。最新 5f97bb21 实测在观察 45 秒截一次并复用，38.750 秒回程；该图仍记录 power_off=1，不能推成亮屏 UI 或背光结论。原始命令仅 `frame`、`fastboot <本靴token>` 各一次。全部源从固定 Apple base 在新 TEMP checkout 重建并通过 83 源 SHA；一次性源码检验目录／草稿已进入原生回收站，正式源码和当前证据保持。
