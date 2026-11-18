@@ -1,0 +1,118 @@
+{
+  "token": "75bd2dd959bcdac5",
+  "raw_sha256": "f17d0f66a98feb56ba4aa67cf5e3879c077c84945121e03aab31d6775792631c",
+  "crashes": [
+    {
+      "pid": 276,
+      "signal": 9,
+      "code": "0x0",
+      "subcode": "0x0",
+      "actual_shared_cache_slide": "0x3324000",
+      "actual_main_header": "0x10066c000",
+      "reason": "ns 7 code 0x3: extension check-in timeout",
+      "frames": [
+        {
+          "index": 0,
+          "actual_pc": "0x1c593587c",
+          "instruction_sample": true,
+          "symbol_address": "0x1c2611874",
+          "symbol_offset": "0x8",
+          "symbol": "___psynch_cvwait",
+          "unslid_pc": "0x1c261187c",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 1,
+          "actual_pc": "0x1007f6ed4",
+          "instruction_sample": false,
+          "not_resolved_against_shared_cache": true
+        },
+        {
+          "index": 2,
+          "actual_pc": "0x100720630",
+          "instruction_sample": false,
+          "not_resolved_against_shared_cache": true
+        },
+        {
+          "index": 3,
+          "actual_pc": "0x1c4a595a4",
+          "instruction_sample": false,
+          "symbol_address": "0x1c1734e6c",
+          "symbol_offset": "0x738",
+          "symbol": "-[CLKUIMetalQuadView _snapshotTextureInRect:scale:time:withAdditionalPasses:]",
+          "unslid_pc": "0x1c17355a4",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 4,
+          "actual_pc": "0x1c4a58a6c",
+          "instruction_sample": false,
+          "symbol_address": "0x1c1734840",
+          "symbol_offset": "0x22c",
+          "symbol": "___48-[CLKUIMetalQuadView snapshotInRect:scale:time:]_block_invoke",
+          "unslid_pc": "0x1c1734a6c",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 5,
+          "actual_pc": "0x1c4a37ad0",
+          "instruction_sample": false,
+          "symbol_address": "0x1c1713a48",
+          "symbol_offset": "0x88",
+          "symbol": "-[CLKUIQuadView _runOnRenderQueueIfNeeded:]",
+          "unslid_pc": "0x1c1713ad0",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 6,
+          "actual_pc": "0x1c4a5873c",
+          "instruction_sample": false,
+          "symbol_address": "0x1c1734630",
+          "symbol_offset": "0x10c",
+          "symbol": "-[CLKUIMetalQuadView snapshotInRect:scale:time:]",
+          "unslid_pc": "0x1c173473c",
+          "current_boot_slide_used": true,
+          "nearest_symbol_is_not_exact_function_boundary_proof": true
+        },
+        {
+          "index": 7,
+          "actual_pc": "0x10071fd8c",
+          "instruction_sample": false,
+          "not_resolved_against_shared_cache": true
+        },
+        {
+          "index": 8,
+          "actual_pc": "0x10067d730",
+          "instruction_sample": false,
+          "not_resolved_against_shared_cache": true
+        },
+        {
+          "index": 9,
+          "actual_pc": "0x10067b760",
+          "instruction_sample": false,
+          "not_resolved_against_shared_cache": true
+        },
+        {
+          "index": 10,
+          "actual_pc": "0x10067b148",
+          "instruction_sample": false,
+          "not_resolved_against_shared_cache": true
+        }
+      ],
+      "current_boot_slide_observed": true
+    }
+  ],
+  "symbol_map_sha256": "5bf04681af1819e2379319942a97be635100d6ca3844c5a22e372ce78a83b83d",
+  "symbol_map_bytes": 765432322,
+  "symbol_map_format": "A2S v2; 12-byte header and 12-byte sorted address/offset record",
+  "symbol_map_count": 10898361,
+  "symbol_reader_source_sha256": "feff33a6dcacf280664d1dbe32e8cc93d9c065003057d06f9d986d1117f31874",
+  "diagnostic_tool_source_sha256": "8fc222574e3aa64025d60f7af0827f48d48a9431da83fc934dadad86e393b638",
+  "post_ACK_exit_period_excluded": true,
+  "sample_locations_do_not_prove_root_cause": true,
+  "no_kernel_or_allocator_changes": true
+}

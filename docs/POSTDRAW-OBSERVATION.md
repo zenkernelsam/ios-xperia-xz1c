@@ -92,4 +92,6 @@ PNGImageIOEncoder.h将同一ImageIO编码部分供作者参考与原界面使用
 
 2026-11-19：v730 同库共享源码参考 CPU4ea81eaf／38.140秒、GPUd1a2778c／37.578秒均完整验收，全部14组与六组 PNG/UP 的原16位像素、ICC、metadata一致，原源码SHA61031999…精确绑定。作者混色7.009→2.253秒、渐变4.459→1.098秒，不推为原 UI 或FPS。`png_encoder_prerequisite.py` 现按目标 kernel 的实际版本验证，不能以不同版本或旧 STOP准入。新 Aegir observer becbb403 已编译并通过host组合，需自身RAM CPU后按当前 native/PNG原raw proof投递。607B命令边界用 XNU `PE_parse_boot_argn/getval` 的数值1无值参数形式收回4B，sf2x与sweetbattery的值保持1；原kernel、VM／SCM／PON／allocator代码不变。
 
+该原 RAM CPUe9731f67／37.829秒已通过。原 GPU75bd2dd9／40.406秒四marker／健康／worker退出完成，REVISE／首个Aegir check-in超时保持；ACK前编码器已实际安装、五条原管线创建成功，但原snapshot／wait／execute尚未完成，未到PNG入口。最后正常记录为Clear、vertex/texture/sampler绑定；实际slide0x3324000的栈为psynch cvwait／CLKUIMetalQuadView快照等待。新编码器原UI时耗仍无成功样本，下一步细分draw提交、完成等待、writeback；该采样不证明VM或GPU硬件根因，冻结组件不改。
+
 增加test_png_postdraw_encoder.m检查实际分派与计时器组合：完整PNG返回、BEGIN/PNG_ROUTE/END明确区分快路径与原路径、原nil/throw/errno和有界root/depth保持。Mac使用明确的fixture proof header，ASan/UBSan通过；该fixture只用于主机编译/单元检查，绝不进入设备包或替代真实PNG source proof。设备builder仅从实际成功的共享源码参考生成PNGEncoderProof.h。

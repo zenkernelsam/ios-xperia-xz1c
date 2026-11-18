@@ -4,7 +4,9 @@ Sony BH905ND69G 当前健康停在 fastboot，无 controller／串口 worker／�
 
 读屏分辨率为真实 720×1280、BGR888/stride2160、2764800B；本轮截帧约 1.7..10.9 秒。CPU private 图确有日期／时间、camera／homebar、红色提示和红字；两轮 GPU 图捕获时系统 power_off 请求均为 1，即使取证前移也保持原事实，不能据此判断正常亮屏时的时钟／壁纸或面板色彩。UI 内容可用已校验串口帧替代相机，背光／光学色偏／面板真正送帧仍另验。完整 UI/FPS、睡眠和其它外设继续 active。
 
-v730 共享编码参考自身 RAM CPU4ea81eaf／38.140秒和 GPUd1a2778c／37.578秒完整回程通过，原八项 GLES／全部14组 native／六组原 UIImage PNG 与同源 ImageIO 策略均已独立复算。共享源61031999…的六组 UP 原16位像素、ICC、metadata一致；作者混色7.009→2.253秒、渐变4.459→1.098秒，不代表原 UI 时耗。新 v730 native／PNG proof 已生成，旧 v729 camera STOP保持拒绝。原编码库becbb403（113200B）已构建并通过 host 参数／nil／异常／errno、像素／ICC／metadata与组合检查，当前尚待新 RAM 自身 CPU及原 Aegir GPU准入；实际 in-flight状态见本段更新及本轮日志。目标仍包括原完整 UI/FPS及其它外设。
+v730 共享编码参考自身 RAM CPU4ea81eaf／38.140秒和 GPUd1a2778c／37.578秒完整回程通过，原八项 GLES／全部14组 native／六组原 UIImage PNG 与同源 ImageIO 策略均已独立复算。共享源61031999…的六组 UP 原16位像素、ICC、metadata一致；作者混色7.009→2.253秒、渐变4.459→1.098秒，不代表原 UI 时耗。新 v730 native／PNG proof 已生成，旧 v729 camera STOP保持拒绝。原编码库becbb403（113200B）host组合／参数／nil／异常／errno、像素／ICC／metadata检查及自身RAM CPUe9731f67／37.829秒通过。
+
+原 Aegir 编码器 GPU75bd2dd959bcdac5 已单发并完整回程40.406秒，目前健康fastboot／无worker／无in-flight。编码器在ACK前pid276实际安装并绑定d1a2778c原先验；五条原pipeline均nonnull，Clear／纹理／sampler绑定正常，但第一次原snapshot等待执行队列时扩展仍check-in timeout，原draw返回及PNG入口均未观察到，结果REVISE保持。当前实际slide0x3324000的独立栈落在 `___psynch_cvwait`→CLKUIMetalQuadView snapshot等待，只是退出位置采样，不据此判定GPU／VM故障；不把编码器已安装当提速成功。下一步分解原首次draw的提交／等待／写回耗时，保留原参数／位型／期限，继续原UI/FPS及外设目标。完整原失败、postdraw和符号栈见v730-png-encoder-r1-original各记录。
 
 此前 v729 的共享 ImageIO/UP 参考记录：CPU49625fe2/37.812秒通过；GPU110c23cd8f167e3c六组原 PNG／源码 SHA61031999…数据返回，但相机拒绝连接而记 STOP/CAMERA_EVIDENCE_MISSING，38.250秒完整回程。此 STOP 保留、源码先验拒绝，未投递原 Aegir 新编码路径。原 host ASan/UBSan、RGB16 PNG／像素／ICC／metadata、nil/throw/errno／回退检查及 reference3 完整14组／六组 filter 先验仍保留，均不能替代新的同 kernel 准入。
 

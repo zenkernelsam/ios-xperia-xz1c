@@ -34,6 +34,8 @@ gpu/sweetgl和gpu/metal是用户态，xnu/lilac-current.patch是完整内核修�
 
 2026-11-19：v730 自身 private/owner/ready/RAM CPU/两轮完整 GLES 八项与六帧已独立通过，固定上游重新应用补丁逐字节匹配 83 源。新 GPU 观察 45 秒只截一次并复用，失败不补发；5f97bb21 实测完整回程 38.750 秒，power_off=1 事实保持，不能据此判定正常亮屏 UI／光学完成。完整 native14 仍是 v729 先验，不准入新 kernel；原共享 PNG encoder 未投递。当前健康 fastboot／无 worker，以 STATUS 为准。
 
+最新v730完整native14与六组同共享源PNG已独立通过（d1a2778c，37.578秒，UP原16位像素／ICC／metadata一致）；同核native／PNG proof现可准入。原encoder RAM自身CPUe9731f67／37.829秒通过，原GPU75bd2dd9实际安装encoder并绑定该先验，却在首次draw／snapshot等待阶段check-in超时，PNG尚未进入，REVISE及40.406秒完整回程保持。实际符号栈仅采样位置，不动冻结VM／SCM／PON／allocator；下一步分解原draw提交／等待／writeback。当前健康fastboot／无worker，最新STATUS优先。
+
 相机只能override→AF(/cam/1/af)→2秒→MJPEG→每5帧抽1→rotate90；已旋转照片不得再转，grab_cam.py禁用，frame.jpg仅视频失败后单次兜底。一个controller持有COM/camera。
 
 新包必须同kernel/private/owner/ready、对应新包CPU及精确GLES先验，完整payload和Mac源输入复算。短登记需完全相同kernel/GLES/Metal/source-map的完整native raw proof；新Metal/GLES需自身完整GPU准入，新observer RAM须自身CPU准入。ACK前任一native probe失败必须拒绝，回程后的退出期记录另列。不得把离屏PASS当时间/日期/壁纸、FPS、睡眠、声音或无线完成。遵循无人值守授权，不派子代理。
