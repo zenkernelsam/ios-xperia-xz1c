@@ -1,0 +1,26 @@
+{
+  "base_commit": "71c4479fac711d8969f5c827adb780863694d6bc",
+  "before_lock_sha256": "62920f0d79288f60d08c488a7aac722437b5acf764f5b1b0562afea003502943",
+  "after_lock_sha256": "06e1e7a89a2b6b5b3b1cc9fc08b1c1d37c52ce2f7b8e6928b5be4102e41ecf5a",
+  "updated_sources": [
+    {
+      "path": "tools/ram_library.py",
+      "before_sha256": "87af17f1a1248bab428c03380a709ebd4cf4c12470c04b1f812f1d8d1e0aa39f",
+      "after_sha256": "8af66480685b61ecb8e8d613f8a18b9fcb91590a055c66ecbd0ebf98c812103d"
+    },
+    {
+      "path": "tools/build/build_exception_observer.py",
+      "before_sha256": "9669fec77bb66a3398d5ba8cc20e3fc292ec5b0f85a67642b8cd347514f77fb8",
+      "after_sha256": "0effe4945d897a1d229dd61308020438d8127a4a6ab417e34848c7bfb2b166da"
+    }
+  ],
+  "new_sources": [
+    {
+      "path": "tools/build/test_png_postdraw_encoder.m",
+      "sha256": "3eedab34f2549c7ff63f41b60877ede66f5ba83d64839cff9759e41482433d96"
+    }
+  ],
+  "host_composition_fixture_only": true,
+  "source_bound_STOP_not_admitted_as_PNG_proof": true,
+  "kernel_GLES_Metal_unchanged": true
+}

@@ -41,3 +41,5 @@ XR-CLEAR仅在Clear省掉即将覆盖的旧XR颜色解码，原整数位型快�
 2026-11-17后台CIF10参考ff064390已完整14组+五组原PNG通过、37.813秒回程/健康/worker退出；自身CPU2ad33c28/38.015秒保持。真实输出16位sRGB且有跨通道关系，逐分量查表候选不准入；作者整屏8.467秒不代表原UI时耗。当前健康fastboot/无in-flight，原Aegir超时及完整UI/外设目标保持；下一步原转换/filter/byte-swap位型保持优化。旧CRLF sampler包原样保留，实际LLVM14重编LF源的bitcode/library/header完全相同，当前参考使用build/cif10-reference-sampler-r1。
 
 2026-11-17 reference3完整14组+六组原PNG/filter已独立通过，CPU21e8cfa3/47.156秒、GPU5221b885/38.172秒回程。ImageIO/UP保留原16位像素/ICC/metadata，作者混色8.531→2.104秒、渐变4.563→0.965秒，不代表原UI时耗。新编码器尚未安装；原Aegir/UI/外设目标继续。r2独立REJECTED保留，r3改诊断字段differences且GPU guard不变。当前无in-flight、健康fastboot，以STATUS为准。
+
+2026-11-18共享PNG参考110c23cd因相机拒绝连接记STOP/CAMERA_EVIDENCE_MISSING，38.250秒完整回程/健康/worker退出；新编码器源码先验工具拒绝该STOP，未投递原UI。用户稍后开启服务；当前健康fastboot/无in-flight，继续离线检查。新PNG分派/计时组合host fixture通过不代替设备准入，不重复旧STOP bundle，以STATUS为准。

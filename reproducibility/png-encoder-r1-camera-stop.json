@@ -1,0 +1,29 @@
+{
+  "token": "110c23cd8f167e3c",
+  "controller_result": "STOP",
+  "reason": "CAMERA_EVIDENCE_MISSING",
+  "raw_sha256": "df36f77ba89ebc1eff844458407655c018a7c5784364bd819c24191e3f625c8e",
+  "source_sha256": "61031999d4ff1d9a2c9c6a564cf229a82c3b9c49998d752ae0bd4d6fd18e1e92",
+  "strict_return": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "110c23cd8f167e3c",
+    "checkpoint_bytes": 764400,
+    "log_bytes": 769220,
+    "log_sha256": "df36f77ba89ebc1eff844458407655c018a7c5784364bd819c24191e3f625c8e",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      29,
+      82,
+      84
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 38.25,
+  "controller_exit_code": 1,
+  "source_bound_reference_values_do_not_replace_camera_or_GPU_stage_admission": true,
+  "encoder_not_installed": true,
+  "old_STOP_not_relabelled_as_PASS": true,
+  "original_UI_and_peripheral_goal_incomplete": true
+}

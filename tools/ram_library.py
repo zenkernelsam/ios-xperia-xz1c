@@ -65,6 +65,7 @@ def load(folder,expected=None):
                     sources|={'gpu/compat/PNGImageIOEncoder.h','gpu/compat/PNGImageDispatch.h','tools/png_encoder_proof.py'}
                     assert observer['png_filter_encoder'] and observer['png_encoder_fallback_nil_throw_errno_input_metadata_host_passed']
                     assert observer['png_encoder_preserves_pixels_profile_metadata'] and observer['png_encoder_changes_only_encoding_path_and_compression']
+                    assert observer['png_encoder_postdraw_composition_host_passed']
                     assert observer['png_imageio_encoder_source_sha256']==observer['source_files']['gpu/compat/PNGImageIOEncoder.h']
                     p=validate_png(observer['png_encoder_prior_proof'],observer['png_imageio_encoder_source_sha256'],observer['metal_resources']['gles_library_sha256'],observer['metal_resources']['library_sha256'])
                     assert observer['png_encoder_proof_header_sha256']==sha(png_header(p)) and re.fullmatch('[0-9a-f]{64}',observer['png_encoder_host_test_source_sha256'])

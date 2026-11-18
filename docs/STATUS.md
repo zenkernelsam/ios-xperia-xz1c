@@ -1,6 +1,6 @@
 # 当前状态 — 2026-11-17
 
-Sony BH905ND69G当前健康停在fastboot，无controller/串口worker。新reference3 CPU21e8cfa3/47.156秒与GPU5221b88531d39af4完整14组+六组作者PNG/filter均独立验收通过，raw86adccc29a8f4386f262a1874392ef4e8c6758e7e51d7dfae5c5acdbe2bb82dd，38.172秒完整回程/健康/worker退出。公开vImage路径与原像素不等，保持拒绝。原ImageIO编码的baseline/NONE/UP在六组保持16位像素/ICC/metadata；UP作者混色2.104秒（原UIImage8.531秒），渐变0.965秒（原4.563秒），仅作者参考时耗，未安装原UI兼容编码器。reference2 controller PASS后的独立mismatches字段冲突REJECTED原样保留，reference3只改候选字段为differences，没有弱化GPU错误guard。kernel774b5efd/GLES72d39da5/Metal5e94ab57保持。下一步抽出相同ImageIO/UP实现并绑定源/像素/profile/metadata先验，先新RAM CPU再原Aegir GPU/相机；原check-in超时及完整UI/颜色/FPS/睡眠/声音/无线仍未完成。
+Sony BH905ND69G当前安全停在fastboot，无controller/串口worker。共享ImageIO/UP编码函数已在正式源码，调用分派与postdraw组合的host ASan/UBSan、real RGB16 PNG/像素/ICC/metadata、原nil/throw/errno与不支持输入回退检查通过。新共享参考CPU49625fe2/37.812秒通过；GPU110c23cd8f167e3c的六组原PNG/源码SHA61031999…/ImageIO策略数据已返回，但因DroidCam拒绝连接缺相机证据记STOP/CAMERA_EVIDENCE_MISSING，38.250秒完整回程。此STOP保留，不准入新PNG encoder；源码先验工具确认拒绝，未投递原Aegir新编码路径。用户表示稍后开启服务。既有reference3完整14组/六组filter先验及原Aegir超时保持，kernel774b5efd/GLES72d39da5/Metal5e94ab57不变。当前继续离线检查；相机与新共享源码完整准入恢复后再新包CPU→原GPU/面板，不重复旧STOP bundle。完整UI/FPS/其它外设目标仍未完成。
 
 ## 当前新GLES验证
 

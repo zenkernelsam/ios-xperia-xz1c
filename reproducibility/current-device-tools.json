@@ -91,7 +91,7 @@
   "shared_sources": {
     "tools/diagnostic_candidate.py": "b6d27e2e3df5838e63a92dabeddd3bdc68ea23bc49d3db6d7ed0295de8e82f55",
     "tools/mkpayload.py": "5c9a3dacbdf877ffded27971ad2e737e5ee4296fada247d14d5c6051ff1f47ff",
-    "tools/ram_library.py": "87af17f1a1248bab428c03380a709ebd4cf4c12470c04b1f812f1d8d1e0aa39f",
+    "tools/ram_library.py": "8af66480685b61ecb8e8d613f8a18b9fcb91590a055c66ecbd0ebf98c812103d",
     "tools/native_proof.py": "c3354a79a65d3c466d344ad369fb704445e4e1c2430e179570f89fef28024ad1"
   },
   "formal_v726_five_stages_actual_return": true,
@@ -102,7 +102,7 @@
     "tools/build/build_air_frontend.py": "a21f6e3f977e13549eb3fe5371d3a9402e271d84c6df189c05bd5f569e30f00b",
     "tools/build/build_diagnostic_kernel.py": "4d6cb41c7cb5ecd1382e5de7124b90e5a18a046a7002f6a955c9ba26857665da",
     "tools/build/build_diagnostics.sh": "ec361280b6f23ea3f114b762df5f22def9b94d7d1105d39bcd5684bd43214118",
-    "tools/build/build_exception_observer.py": "9669fec77bb66a3398d5ba8cc20e3fc292ec5b0f85a67642b8cd347514f77fb8",
+    "tools/build/build_exception_observer.py": "0effe4945d897a1d229dd61308020438d8127a4a6ab417e34848c7bfb2b166da",
     "tools/build/build_metal_library.py": "60d378fde13cdb96213f381f1b3bc0a1a685d91f4193268ca747ba735d2db514",
     "tools/build/check_console_snapshot.py": "fa9bf2299cf0beec9894df9bc47ec2902262dfaab2396776f0bc422c7fe5f9b2",
     "tools/build/check_metal16_projection.py": "9ab528a51bd5bb6fc58ad243410c488304261622baccfa054d101935f8d27e82",
@@ -163,7 +163,8 @@
     "tools/build/test_png_input_observe.m": "71ec1a803770e24e342c275ee8fa17e86adc60655675d4c700665ca37047c171",
     "tools/build/test_cif10_png_reference.m": "8b814b5d031a5418eb4117934f21121212959a7179645ef6b519b28eed2a0871",
     "tools/build/profile_cif10_png.m": "c8daee07eafe5dc7c524041d1efe194c821318bb68481cea934e16862f42ab7e",
-    "tools/build/test_png_image_dispatch.m": "4dc2ac64f04fd34eaf5978fdfb24995d42f79cc0db60d7d355e2aa50da95faf5"
+    "tools/build/test_png_image_dispatch.m": "4dc2ac64f04fd34eaf5978fdfb24995d42f79cc0db60d7d355e2aa50da95faf5",
+    "tools/build/test_png_postdraw_encoder.m": "3eedab34f2549c7ff63f41b60877ede66f5ba83d64839cff9759e41482433d96"
   },
   "gpu_sources": {
     "gpu/diagnostics/exception_observe.m": "5f90e58ee0092546d440395a5ac23a52a29e174ab810de19f9e8bf9017e6cb92",

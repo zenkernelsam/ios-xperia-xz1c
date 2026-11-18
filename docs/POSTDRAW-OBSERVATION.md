@@ -87,3 +87,7 @@ PNGImageIOEncoder.h将同一ImageIO编码部分供作者参考与原界面使用
 新--png-filter-encoder只允许Aegir短登记及postdraw观察，必须给--png-proof。该proof从新共享函数的后台原UIImage PNG/raw重新核验，绑定kernel/GLES/Metal、共享编码源码SHA、六组UP原像素/ICC/metadata、当前token及完整回程。旧reference3虽通过，但没有新共享源码绑定，不能直接准入新实现。之后仍须新原界面RAM自身CPU，再同库native/PNG先验单发原GPU。
 
 快路径BEGIN明确original_forwarded=0，PNG_ROUTE标明ImageIO_UP；原路径/失败回退仍original_forwarded=1，END对应原行为标记。相机和原Aegir check-in期限保持，不能把兼容编码当成原API实际转发，不能仅凭后台PASS改写原UI失败。最终完整UI/FPS/睡眠/声音/无线目标保持。
+
+共享源码参考CPU49625fe2已37.812秒回程通过；GPU110c23cd的编码源码SHA61031999…及六组原PNG/filter数据完整，但相机HTTP拒绝连接，controller记STOP/CAMERA_EVIDENCE_MISSING，38.250秒四回程/健康/worker退出。该参考仅单列reference-only，不能作为新encoder的GPU/源码先验；png_encoder_prerequisite已实际拒绝此STOP。用户表示稍后开启DroidCam，保留原STOP/目录/raw，不重发此bundle。新encoder尚未投递原Aegir。
+
+增加test_png_postdraw_encoder.m检查实际分派与计时器组合：完整PNG返回、BEGIN/PNG_ROUTE/END明确区分快路径与原路径、原nil/throw/errno和有界root/depth保持。Mac使用明确的fixture proof header，ASan/UBSan通过；该fixture只用于主机编译/单元检查，绝不进入设备包或替代真实PNG source proof。设备builder仅从实际成功的共享源码参考生成PNGEncoderProof.h。

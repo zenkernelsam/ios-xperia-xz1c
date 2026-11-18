@@ -209,6 +209,9 @@ if a.png_filter_encoder:
     run(['clang','-fobjc-exceptions','-O1','-g','-fsanitize=address,undefined',root/'tools/build/test_png_image_dispatch.m',
         '-framework','Foundation','-framework','CoreGraphics','-framework','ImageIO','-o',out/'test_png_image_dispatch'],'png-dispatch-host-compile')
     assert 'PNG image dispatch PASS:' in run([out/'test_png_image_dispatch'],'png-dispatch-host-test')
+    run(['clang','-fobjc-exceptions','-O1','-g','-fsanitize=address,undefined','-I',out,root/'tools/build/test_png_postdraw_encoder.m',
+        '-framework','Foundation','-framework','CoreGraphics','-framework','ImageIO','-framework','ColorSync','-o',out/'test_png_postdraw_encoder'],'png-composition-host-compile')
+    assert 'PNG postdraw encoder composition PASS:' in run([out/'test_png_postdraw_encoder'],'png-composition-host-test')
 if a.postdraw_observe:
     run(['clang','-fobjc-exceptions','-O1','-g','-fsanitize=address,undefined',root/'tools/build/test_postdraw_observe.m',
         '-framework','Foundation','-framework','CoreGraphics','-framework','ImageIO','-framework','ColorSync',
@@ -313,7 +316,7 @@ if a.postdraw_observe:manifest.update(original_postdraw_observer=True,postdraw_o
 if a.png_filter_encoder:manifest.update(png_filter_encoder=True,png_imageio_encoder_source_sha256=png_source_sha,
     png_encoder_prior_proof=png_proof,png_encoder_proof_header_sha256=hashlib.sha256(png_header(png_proof)).hexdigest(),
     png_encoder_fallback_nil_throw_errno_input_metadata_host_passed=True,png_encoder_preserves_pixels_profile_metadata=True,
-    png_encoder_changes_only_encoding_path_and_compression=True,
+    png_encoder_changes_only_encoding_path_and_compression=True,png_encoder_postdraw_composition_host_passed=True,
     png_encoder_host_test_source_sha256=hashlib.sha256((root/'tools/build/test_png_image_dispatch.m').read_bytes()).hexdigest())
 if a.snapshot_observe:manifest.update(snapshot_method_observer=True,snapshot_method_observer_revision=1,snapshot_method_count_max=8,
     snapshot_method_apis=['pipeline','library_url','library_bundle','snapshot','wait','execute','read','read_full'],
