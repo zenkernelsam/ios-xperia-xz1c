@@ -154,6 +154,7 @@ class LiveOps:
         self.boot_attempted = False
         self.boot_wire = None
         self.boot_wire_error = None
+        self.screen_result = None; self.screen_attempted = False; self.screen_token = None
     def check_stop(self):
         if (self.journal.root / "STOP").exists(): raise Refuse("Operator stop requested")
         if self.deadline is not None and time.monotonic() >= self.deadline: raise Refuse("Whole-run time budget reached")
@@ -188,6 +189,7 @@ class LiveOps:
         self.boot_attempted = False
         self.boot_wire = None
         self.boot_wire_error = None
+        self.screen_result = None; self.screen_attempted = False; self.screen_token = None
         # A debug CDC already present cannot be associated with this pending boot.
         if any(p.vid == 0x1209 and p.pid == 1 for p in list_ports.comports()):
             raise Refuse("Pre-existing debug CDC; refusing ambiguous handoff")
@@ -257,8 +259,13 @@ class LiveOps:
         from scanout_snapshot import ScreenDecoder, write_frame, binding as screen_binding
         if artifact.data.get('screen_snapshot_binding') != screen_binding(artifact.data):
             raise Refuse('Screenshot source binding differs')
+        if self.screen_attempted:
+            if self.screen_token != artifact.token: raise Refuse('Cached screenshot belongs to another boot')
+            if self.screen_result is None: raise Refuse('Previous screenshot incomplete; no command resend')
+            return self.screen_result
         if self.capture_process.process.poll() is not None:
             raise Refuse('Serial worker exited before screenshot')
+        self.screen_attempted = True; self.screen_token = artifact.token
         raw = self.directory / 'serial.raw.log'
         cursor = raw.stat().st_size
         decoder = ScreenDecoder(artifact.token)
@@ -280,6 +287,7 @@ class LiveOps:
                 write_json(Path(directory) / 'capture.json', result)
                 self.journal.event('SCREEN_VERIFIED', token=artifact.token, frame_id=metadata['id'],
                                    png_sha256=metadata['png_sha256'], optical_panel_verified=False)
+                self.screen_result = result
                 return result
             if self.capture_process.process.poll() is not None:
                 raise Refuse('Serial worker exited during screenshot')
@@ -379,6 +387,8 @@ def validate_plan(plan):
     if not plan.get("steps"): raise Refuse("No experiment steps")
     if type(plan.get('screen_required', False)) is not bool or not 1 <= plan.get('screen_timeout_seconds', 100) <= 110:
         raise Refuse('Invalid screenshot evidence policy')
+    if 'screen_capture_after_seconds' in plan and (plan.get('screen_required') is not True or plan['screen_capture_after_seconds'] != 45):
+        raise Refuse('Invalid early screenshot policy')
     for step in plan["steps"]:
         if not 1 <= step.get("observe_seconds", 0) <= 14400 or not 1 <= step.get("return_seconds", 60) <= 120:
             raise Refuse("Invalid observation/return window")

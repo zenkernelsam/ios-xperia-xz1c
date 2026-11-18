@@ -143,6 +143,7 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
     if screen_evidence:
         from scanout_snapshot import binding as screen_binding
         m['screen_snapshot_binding']=screen_binding(m)
+        if mode=='gpu':m['screen_capture_after_seconds']=45
     (output/'artifacts.json').write_text(json.dumps({'target_serial':'BH905ND69G','pon_route':6,'artifacts':[m]},indent=2)+'\n')
     common=['SWEET LOOP LIVE proto=1 token='+token,'SWEET RMI4: F12 page=']
     if mode in ('private','ramcpu'):
@@ -248,6 +249,7 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
           'steps':[{'artifact_id':m['id'],'observe_seconds':observe,'stable_seconds':30,'return_seconds':120,'goals':common,
                     'return_evidence':'final-drain','on_pass':'stop','on_failure':'stop'}]}
     if screen_evidence:plan.update(screen_required=True,screen_timeout_seconds=100)
+    if mode=='gpu' and screen_evidence:plan['screen_capture_after_seconds']=45
     (output/'plan.json').write_text(json.dumps(plan,indent=2)+'\n')
     (output/'package-proof.json').write_text(json.dumps({'baseline':selected,'baseline_sha256':BASE_HASHES[selected],
        'baseline_payload_exact':True,'kernel_sha256':m['kernel_sha256'],'image_sha256':m['sha256'],'cmdline_bytes':len(cmd),

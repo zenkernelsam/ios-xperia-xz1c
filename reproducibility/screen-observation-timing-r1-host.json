@@ -1,0 +1,13 @@
+{
+  "source_files": {
+    "tools/device/controller.py": "9b71145cda296e760f33ffe8e288e2863df0b9ccdff6a7b0c207d7bb6d91854e",
+    "tools/device/run_trial.py": "05451ee9eca840890fa3daf0b8d57e2f1c3ccda4cbfc160815eea1a43196f7ca",
+    "tools/device/package_trial.py": "ab89572d328081ff1a30e3aef8acc0850abeedeb785b7ebd50e7e641399c88df",
+    "tools/device/test_scanout_gates.py": "5a2e7125131d1c7dd1667106a10aef0d024dde4da140da1b894aa2e50804f8bf"
+  },
+  "host_tests_passed": 6,
+  "capture_after_seconds": 45,
+  "cached_frame_reused": true,
+  "failed_capture_not_resent": true,
+  "device_acceptance_pending": true
+}

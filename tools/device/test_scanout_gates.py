@@ -8,7 +8,7 @@ from unittest.mock import patch
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from controller import validate_plan
+from controller import validate_plan,LiveOps
 from policy import Refuse
 from run_trial import prerequisites
 from scanout_snapshot import binding
@@ -58,6 +58,19 @@ class ScreenGates(unittest.TestCase):
             with self.assertRaises(Refuse):validate_plan(changed)
         changed=json.loads(json.dumps(plan));changed['steps'][0]['return_evidence']='legacy'
         with self.assertRaises(Refuse):validate_plan(changed)
+
+    def test_observation_frame_is_reused_without_another_command(self):
+        ops=object.__new__(LiveOps);ops.screen_attempted=True;ops.screen_token='0011223344556677'
+        ops.screen_result={'verified':True,'frames':['same retained frame']}
+        artifact=SimpleNamespace(token=ops.screen_token,data=self.record())
+        self.assertIs(ops.screen(None,artifact),ops.screen_result)
+        artifact.token='ffeeddccbbaa9988'
+        with self.assertRaises(Refuse):ops.screen(None,artifact)
+
+    def test_failed_observation_capture_is_not_resent(self):
+        ops=object.__new__(LiveOps);ops.screen_attempted=True;ops.screen_token='0011223344556677';ops.screen_result=None
+        artifact=SimpleNamespace(token=ops.screen_token,data=self.record())
+        with self.assertRaises(Refuse):ops.screen(None,artifact)
 
 
 if __name__=='__main__':unittest.main()

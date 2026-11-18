@@ -31,6 +31,8 @@ python tools/device/run_trial.py --bundle build/screen-v730/private --directory 
 
 输出在本轮 `cycle-01/screens/scanout-00000001.png`，对应 `.bgr`、`.json` 和 `capture.json`。后处理会从原串口字节重新解码，并逐字节比对保存的 BGR 与 PNG；离线恢复工具为 `tools/device/scanout_snapshot.py --raw ... --artifact ... --output ...`，输出必须使用新目录。手机端失败不重发旧 boot bundle。
 
+GPU 的新包在观察开始 45 秒、已确认本靴 LIVE 后截一次，随后继续全部 GPU／native 检查。最终取证复用这张已校验原帧，不再发送第二次 `frame`；失败也不补发。`power_off` 是系统的显示电源请求，截图数据不能用来推定背光。旧 r2 的截图取于该请求已为 1 时，照实保留，不能拿它判断正常亮屏期的时钟／壁纸或颜色。
+
 这类截图证明当前显示缓冲区内的 UI、文字、图标及颜色数值，可以替代 UI 内容观察所需的相机。它不会直接测到 LCD 光学色偏、DSI 是否真正送出该帧、背光或玻璃上的行错位；这些项目仍需相机或用户观察，`optical_panel_verified` 始终单列。完整 UI/FPS、睡眠和其它外设的原目标保持。
 
 设计对照为本机 S2 的 `capture-framebuffer.py`（按实际物理扫描地址／stride 读取并对照序列）和 Y700 的 `debug_screen.py`（分块／帧 CRC 与同一串口会话）；Sony 没有引入其它项目的通用内存命令或 RGB565 色彩降精度。

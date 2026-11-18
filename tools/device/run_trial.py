@@ -92,6 +92,14 @@ class DiagnosticOps(StartupObservation,LiveOps):
         while time.monotonic()-start<step['observe_seconds']:
             self.check_stop();now=time.monotonic()-start
             for line in self.lines():policy.feed(line,now)
+            capture_after=artifact.data.get('screen_capture_after_seconds')
+            if capture_after is not None and policy.live and now>=capture_after and not self.screen_attempted:
+                self.journal.event('SCREEN_OBSERVATION_POINT',token=artifact.token,elapsed_seconds=now)
+                try:self.screen(self.directory/'screens',artifact,100)
+                except (Refuse,OSError,ValueError,subprocess.TimeoutExpired):
+                    return Decision('STOP','SCREEN_EVIDENCE_MISSING'),policy.live
+                now=time.monotonic()-start
+                for line in self.lines():policy.feed(line,now)
             if policy.actual_watchdog is not None and policy.actual_watchdog!=artifact.watchdog:
                 return Decision('STOP','WATCHDOG_CONFIG_MISMATCH'),policy.live
             result=policy.decision(now)
@@ -129,6 +137,7 @@ def main():
     payload_proof=prove_payload(record)
     plan=json.loads((bundle/'plan.json').read_bytes())
     assert plan.get('screen_required',False)==('screen_snapshot_binding' in record), 'Plan screenshot requirement differs from the actual artifact'
+    assert plan.get('screen_capture_after_seconds')==record.get('screen_capture_after_seconds'), 'Screenshot observation time differs'
     if 'screen_snapshot_binding' in record:
         assert plan.get('camera_required') is False and plan.get('screen_timeout_seconds')==100
     proof=prerequisites(record,a)
