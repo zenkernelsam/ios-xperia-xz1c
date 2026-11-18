@@ -38,6 +38,13 @@ def main():
 
     cache = Path(args.source_cache).resolve()
     run(['git', 'clone', '--shared', '--no-checkout', cache, tree], 'clone')
+    available = subprocess.run(['git', 'cat-file', '-e', lock['xnu']['base_commit'] + '^{tree}'],
+                               cwd=tree, capture_output=True).returncode == 0
+    if not available:
+        # Old/shallow build caches may lack the public pinned base. Fetch only
+        # into the new temporary checkout; never change the original cache.
+        run(['git', 'fetch', '--depth', '1', 'https://github.com/apple-oss-distributions/xnu.git',
+             lock['xnu']['base_commit']], 'fetch-pinned-base', tree)
     run(['git', 'checkout', '--detach', lock['xnu']['base_commit']], 'checkout', tree)
     full = ROOT / 'xnu/lilac-current.patch'
     assert digest(full.read_bytes()) == lock['xnu']['patch_sha256']
@@ -74,6 +81,7 @@ def main():
         OSS_base_commit=lock['xnu']['base_commit'], full_patch_sha256=digest(full.read_bytes()),
         fresh_apply_passed=True, source_hashes=config['source_hashes'], audited_sources=len(config['source_hashes']),
         stages=events, work_directory=str(out), outputs_preserved=True, original_build_tree_unchanged=True,
+        pinned_base_fetched_into_temporary_checkout=not available,
         device_operations=0, binary_or_hardware_pass_not_inferred=True)
     with (out / 'report.json').open('xb') as file:
         file.write((json.dumps(report, indent=2) + '\n').encode())
