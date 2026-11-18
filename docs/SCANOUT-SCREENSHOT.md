@@ -33,4 +33,4 @@ python tools/device/run_trial.py --bundle build/screen-v730/private --directory 
 
 设计对照为本机 S2 的 `capture-framebuffer.py`（按实际物理扫描地址／stride 读取并对照序列）和 Y700 的 `debug_screen.py`（分块／帧 CRC 与同一串口会话）；Sony 没有引入其它项目的通用内存命令或 RGB565 色彩降精度。
 
-2026-11-18：整屏 codec ASan/UBSan、ARM64 编译、独立 PNG 像素以及 6 种 USB 拆分／26 项故障拒绝主机检查通过。源码已准备，实际手机捕获及后续阶段仍待逐轮验收；当前已验 GPU 基线仍是 v729，见 STATUS。
+2026-11-18：整屏 codec ASan/UBSan、ARM64 编译、独立 PNG 像素以及 6 种 USB 拆分／26 项故障拒绝主机检查通过。v730/f258dee9 实际重编／83 源审计通过，private aca5c330 的完整手机扫描帧已传回：2764800B→69523B、544 块、2.906 秒，全部校验通过，38.266 秒四 marker 回程及健康／worker 退出。该 CPU 靴的日期／时间、camera 和 homebar 清晰可读，红色提示／文字与缺壁纸照实保留；其它同 kernel 阶段和原 GPU 界面须独立验收。旧 v729 GPU 先验和相机 STOP 原样保留，见 STATUS 及 reproducibility/v730-screen-private-r1-actual.json。

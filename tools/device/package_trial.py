@@ -112,6 +112,9 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
         # Replace periodic diagnostic dumps with an explicit full snapshot; keep
         # display/GPU/input operation and the existing PON06 return untouched.
         words=[w for w in words if not w.startswith(('sweetfbshot=','sweetfbshot_surface=','sweetfbcolor='))]
+        # These zero options have explicit zero defaults in the audited source.
+        # Reclaim the fixed payload command area without changing scanout mode.
+        words=[w for w in words if w not in ('sweetfb_direct=0','sweetfb_kick=0')]
         words=[('sweetfb_noconsole=1' if w.startswith('sweetfb_noconsole=') else w) for w in words]
         words=[('sweetar=420' if w.startswith('sweetar=') else w) for w in words]
         words.append('sfscreen=1');watchdog=420
