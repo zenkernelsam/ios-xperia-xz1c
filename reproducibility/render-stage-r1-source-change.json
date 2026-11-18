@@ -1,0 +1,12 @@
+{
+  "source": "gpu\\sweetgl\\metal_render.c",
+  "before_sha256": "7ddadbe295d8f5d621e5b9fa2366da34763a10ae66572fe31e8292063159552e",
+  "after_sha256": "9113b4b09670930eac265c286b1f4685600c566f39d522803992fedce0fad1e0",
+  "metadata_only": true,
+  "original_call_order_and_arguments_preserved": true,
+  "errno_preserved": true,
+  "limit_draw_calls": 32,
+  "device_acceptance_pending": true,
+  "kernel_GPU_allocator_SCM_PON_RPC_VM_unchanged": true,
+  "counter_saturates_at_limit": true
+}
