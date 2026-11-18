@@ -227,6 +227,8 @@ def binding(record):
     config = verify_record(record)
     if record['version'] < 730 or 'sfscreen=1' not in record['cmdline'].split():
         raise ValueError('Kernel was not packaged for the checked screenshot reader')
+    if 'sweetfb_noconsole=1' not in record['cmdline'].split():
+        raise ValueError('Screenshot requires the separate serial log without concurrent panel console writes')
     sources = config['source_hashes']
     return dict(protocol=1, width=WIDTH, height=HEIGHT, stride=STRIDE, format='BGR888', codec='PRLE1',
         reader_source_sha256=sources['iokit/Kernel/arm/SweetFramebuffer.cpp'],

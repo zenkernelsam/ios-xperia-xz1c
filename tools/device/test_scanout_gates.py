@@ -19,7 +19,7 @@ class ScreenGates(unittest.TestCase):
     def record(self, version=730):
         config = configuration(version)
         record = dict(version=version, trial_mode='ramcpu', kernel_sha256='a'*64,
-            diagnostic_binding=config['binding'], cmdline='sfscreen=1',
+            diagnostic_binding=config['binding'], cmdline='sfscreen=1 sweetfb_noconsole=1',
             ram_library_binding={'library_sha256':'b'*64})
         if version >= 730: record['screen_snapshot_binding'] = binding(record)
         return record
@@ -45,6 +45,8 @@ class ScreenGates(unittest.TestCase):
         self.assertEqual((current['width'],current['height'],current['stride'],current['format']),(720,1280,2160,'BGR888'))
         self.assertEqual(len(current['reader_source_sha256']),64)
         self.assertEqual(len(current['codec_source_sha256']),64)
+        changed=self.record();changed['cmdline']='sfscreen=1 sweetfb_noconsole=0'
+        with self.assertRaises(ValueError):binding(changed)
 
     def test_bounded_evidence_and_complete_return_are_required(self):
         plan=dict(target_serial='BH905ND69G',pon_route=6,max_cycles=1,budget_seconds=600,screen_required=True,

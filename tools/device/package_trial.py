@@ -112,6 +112,7 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
         # Replace periodic diagnostic dumps with an explicit full snapshot; keep
         # display/GPU/input operation and the existing PON06 return untouched.
         words=[w for w in words if not w.startswith(('sweetfbshot=','sweetfbshot_surface=','sweetfbcolor='))]
+        words=[('sweetfb_noconsole=1' if w.startswith('sweetfb_noconsole=') else w) for w in words]
         words=[('sweetar=420' if w.startswith('sweetar=') else w) for w in words]
         words.append('sfscreen=1');watchdog=420
     cmd=' '.join(words);assert len(cmd.encode())<=607

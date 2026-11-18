@@ -1,0 +1,12 @@
+{
+  "change": "Require muted panel text console while retaining CDC logs",
+  "source_files": {
+    "tools/device/package_trial.py": "1aba9bde27ae6b42276dece3511bcb781038f7e20c9f5674f80b55a367368faf",
+    "tools/device/scanout_snapshot.py": "4c6b05b08367bc1541a9b91dfd6237cc1deb8195da8920c9ca0856ef40e0844e",
+    "tools/device/test_scanout_gates.py": "c4663f400da5d9a6ee4acd7561478273fef2c97c73a5c7192cf1230e196f587a"
+  },
+  "host_tests_passed": 4,
+  "receiver_decoder_and_pixel_writer_unchanged": true,
+  "previous_codec_and_wire_evidence_sha256": "6e460e5c1eec764eb387d66cd0a598685930453cce0da4f17ff3458a22e6b271",
+  "device_operations": 0
+}

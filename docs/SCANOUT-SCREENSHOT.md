@@ -6,7 +6,7 @@ v730 增加完整、无损的显示帧读取。现有 USB CDC `frame` 命令在 
 
 捕获期间 workloop 串行，复制后重新读取源像素 FNV64 和扫描寄存器。私有副本不会再被绘制。PRLE1 保存全部三字节颜色；每条元数据和数据记录有 CRC32，每块有独立 CRC32，整段压缩流有 CRC32，解压后再核对原像素 FNV64。协议绑定本靴 token、递增 frame id、vsync、捕获时间和 power request 状态；缺块、重排、重复、越界、来源变化或传输失败均拒绝，不补图。每靴最多四次请求。
 
-Windows 仍由一个 controller／serial_worker 持有 COM≥10、VID1209/PID0001。截图工具只读取该 worker 的原始日志，不另开串口。电脑端将真实 BGR 像素转存 RGB PNG，同时保存 `.bgr`、寄存器、完整源码／镜像绑定和 SHA。无需对截图 rotate90；相机的旋转规则只适用于相机帧。
+Windows 仍由一个 controller／serial_worker 持有 COM≥10、VID1209/PID0001。截图包强制 `sweetfb_noconsole=1`，停止面板文字绘制，完整串口日志继续保留。截图工具只读取该 worker 的原始日志，不另开串口。电脑端将真实 BGR 像素转存 RGB PNG，同时保存 `.bgr`、寄存器、完整源码／镜像绑定和 SHA。无需对截图 rotate90；相机的旋转规则只适用于相机帧。
 
 新 kernel 仍依次需要自身 private／owner／ready、新 RAM CPU 和精确 GLES／native 先验。首次 private 可用截图做通道验收；其它使用截图的阶段必须重新核验同 kernel 成功的 private 截图。旧 CAMERA_EVIDENCE_MISSING／STOP 不能因新增截图工具而变成通过。四回程 marker、PON 0x06、连续健康 30 秒及旧 worker 退出的要求保持。
 
