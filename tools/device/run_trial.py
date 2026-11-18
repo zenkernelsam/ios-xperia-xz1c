@@ -42,7 +42,7 @@ def prerequisites(record, args):
             assert proof['native']==record['exception_observer']['prior_native_hardware_proof'],'Embedded native proof differs from original actual stage'
         if record.get('exception_observer',{}).get('png_filter_encoder'):
             assert getattr(args,'png_evidence',None),'PNG encoder requires exact shared-source native pixel/profile/metadata reference'
-            proof['png_encoder']=verify_png_prerequisite(args.png_evidence,record['metal_resources'],kernel,record['exception_observer']['png_imageio_encoder_source_sha256'])
+            proof['png_encoder']=verify_png_prerequisite(args.png_evidence,record['metal_resources'],kernel,record['exception_observer']['png_imageio_encoder_source_sha256'],version=version)
             assert proof['png_encoder']==record['exception_observer']['png_encoder_prior_proof']
     return proof
 

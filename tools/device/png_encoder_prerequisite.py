@@ -6,9 +6,12 @@ sys.path.insert(0,str(ROOT/'tools'))
 from png_encoder_proof import validate
 from trial_evidence import verify
 
-def inspect(directory,resources,kernel_sha256,encoder_source_sha256):
-    actual=verify(directory,'gpu',kernel_sha256,729)
+def inspect(directory,resources,kernel_sha256,encoder_source_sha256,version=None):
     row=json.loads((Path(directory)/'results.json').read_bytes())[-1]
+    actual_version=row['artifact']['version']
+    expected_version=actual_version if version is None else version
+    assert type(expected_version) is int and expected_version>=729 and actual_version==expected_version, 'PNG reference kernel version differs'
+    actual=verify(directory,'gpu',kernel_sha256,expected_version)
     observer=row['artifact']['exception_observer']
     assert observer['target_process']=='backboardd' and observer.get('cif10_reference_shared_encoder')
     assert observer['png_imageio_encoder_source_sha256']==encoder_source_sha256
