@@ -7,12 +7,13 @@ from program_request import specification as request_specification,header as req
 from program_cache_scope import specification as cache_scope_specification,header as cache_scope_header
 from png_encoder_proof import validate as validate_png,header as png_header
 p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--metal-resources');p.add_argument('--air-fixture');p.add_argument('--render-fixture');p.add_argument('--constants-fixture');p.add_argument('--register-device',action='store_true');p.add_argument('--xr-probe',action='store_true');p.add_argument('--surface-probe',action='store_true');p.add_argument('--mip-probe',action='store_true');p.add_argument('--target-process',choices=['AegirPoster','backboardd'],default='AegirPoster');p.add_argument('--gles-ram-package');p.add_argument('--registration-only',action='store_true');p.add_argument('--native-proof');p.add_argument('--pipeline-observe',action='store_true');p.add_argument('--narrow-fixture');p.add_argument('--half-fixture');p.add_argument('--mrt-fixture');p.add_argument('--sampler-fixture');p.add_argument('--program-cache-prime',action='store_true');p.add_argument('--static-half-fixture');p.add_argument('--program-cache-export',action='store_true')
-p.add_argument('--postdraw-observe',action='store_true');p.add_argument('--snapshot-observe',action='store_true');p.add_argument('--cif10-png-reference',action='store_true');p.add_argument('--png-filter-encoder',action='store_true');p.add_argument('--png-proof');p.add_argument('--clear-cache-probe',action='store_true');p.add_argument('--ir3-cache-probe',action='store_true');a=p.parse_args()
+p.add_argument('--postdraw-observe',action='store_true');p.add_argument('--snapshot-observe',action='store_true');p.add_argument('--cif10-png-reference',action='store_true');p.add_argument('--png-filter-encoder',action='store_true');p.add_argument('--png-proof');p.add_argument('--clear-cache-probe',action='store_true');p.add_argument('--ir3-cache-probe',action='store_true');p.add_argument('--request-observe',action='store_true');a=p.parse_args()
 if a.ir3_cache_probe:assert a.clear_cache_probe and a.constants_fixture and a.target_process=='backboardd' and not a.registration_only
 if a.clear_cache_probe:assert a.target_process=='backboardd' and a.mrt_fixture and a.static_half_fixture and not a.registration_only
 if a.pipeline_observe:assert a.registration_only and a.target_process=='AegirPoster'
 if a.postdraw_observe:assert a.registration_only and a.pipeline_observe and a.target_process=='AegirPoster'
 if a.snapshot_observe:assert a.postdraw_observe
+if a.request_observe:assert a.registration_only and a.postdraw_observe and a.target_process=='AegirPoster'
 if a.cif10_png_reference:assert a.target_process=='backboardd' and a.static_half_fixture and not a.registration_only and not a.program_cache_prime and not a.program_cache_export
 if a.png_filter_encoder:assert a.registration_only and a.postdraw_observe and a.png_proof and not a.cif10_png_reference
 else:assert not a.png_proof
@@ -32,6 +33,7 @@ if a.target_process=='backboardd':headers+=['gpu/sweetgl/sweetgl.h']
 if a.pipeline_observe:headers+=['gpu/diagnostics/MetalPipelineObserve.h']
 if a.postdraw_observe:headers+=['gpu/diagnostics/PostDrawObserve.h']
 if a.snapshot_observe:headers+=['gpu/diagnostics/SnapshotMethodObserve.h']
+if a.request_observe:headers+=['gpu/diagnostics/MetalRequestObserve.h']
 if a.png_filter_encoder:headers+=['gpu/compat/PNGImageIOEncoder.h','gpu/compat/PNGImageDispatch.h','tools/png_encoder_proof.py']
 if a.cif10_png_reference:
     headers+=['gpu/diagnostics/CIF10PNGReferenceProbe.h','gpu/diagnostics/CIF10VImageCompare.h','gpu/diagnostics/CIF10PNGFilterCompare.h','gpu/compat/PNGImageIOEncoder.h']
@@ -239,6 +241,10 @@ if a.snapshot_observe:
     snapshot_test=run([out/'test_snapshot_method_observer'],'snapshot-method-host-test')
     assert 'snapshot method observer PASS:' in snapshot_test
     assert snapshot_test.count('SWEET POSTDRAW BEGIN ')==64 and snapshot_test.count('SWEET POSTDRAW END ')==64
+if a.request_observe:
+    run(['clang','-fobjc-exceptions','-O1','-g','-fsanitize=address,undefined',root/'tools/build/test_metal_request_observe.m',
+        '-framework','Foundation','-framework','QuartzCore','-o',out/'test_request_observer'],'request-host-compile')
+    assert 'Metal request observer PASS:' in run([out/'test_request_observer'],'request-host-test')
 library=out/'exception_observe.dylib'
 extra=[resources/'MetalResources.dylib'] if resource_manifest else []
 if resource_manifest and not a.registration_only:extra+=['-DSWEET_METAL_RESOURCE_PROBE=1']
@@ -251,6 +257,7 @@ if a.register_device:extra+=['-DSWEET_METAL_DISCOVERY_PROBE=1']
 if a.pipeline_observe:extra+=['-DSWEET_METAL_PIPELINE_OBSERVE=1','-framework','Metal']
 if a.postdraw_observe:extra+=['-DSWEET_POSTDRAW_OBSERVE=1','-framework','UIKit','-framework','CoreGraphics','-framework','ImageIO','-framework','ColorSync']
 if a.snapshot_observe:extra+=['-DSWEET_SNAPSHOT_METHOD_OBSERVE=1']
+if a.request_observe:extra+=['-DSWEET_METAL_REQUEST_OBSERVE=1','-framework','QuartzCore']
 if a.png_filter_encoder:extra+=['-DSWEET_PNG_FILTER_ENCODER=1','-I',out]
 if a.cif10_png_reference:extra+=['-DSWEET_CIF10_PNG_REFERENCE=1','-DSWEET_PNG_IMAGEIO_SOURCE_SHA="'+png_source_sha+'"','-framework','UIKit','-framework','CoreGraphics','-framework','ImageIO','-framework','Accelerate']
 if a.xr_probe:extra+=['-DSWEET_AIR_XR_PROBE=1']
@@ -338,6 +345,10 @@ if a.snapshot_observe:manifest.update(snapshot_method_observer=True,snapshot_met
     snapshot_method_read_bytes_guards_and_ABI_owner_repeat_rejection_host_passed=True,
     snapshot_method_target_coverage_requires_actual_metadata=True,
     snapshot_method_host_test_source_sha256=hashlib.sha256((root/'tools/build/test_snapshot_method_observe.m').read_bytes()).hexdigest())
+if a.request_observe:manifest.update(original_request_observer=True,request_observer_revision=1,request_methods=6,request_limit=64,
+    request_original_arguments_returns_errors_throws_errno_host_passed=True,request_does_not_allocate_or_draw=True,
+    request_owned_ABI_and_repeat_rejection_host_passed=True,
+    request_host_test_source_sha256=hashlib.sha256((root/'tools/build/test_metal_request_observe.m').read_bytes()).hexdigest())
 assert all(hashlib.sha256((root/name).read_bytes()).hexdigest()==digest for name,digest in source_files.items())
 (out/'manifest.json').write_bytes((json.dumps(manifest,indent=2)+'\n').encode())
 print(json.dumps(manifest,indent=2))

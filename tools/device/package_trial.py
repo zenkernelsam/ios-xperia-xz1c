@@ -227,6 +227,8 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
                     common+=['SWEET POSTDRAW PNG_CONFIG pid=[0-9]+ revision=1 getters_only=1 pixels_read=0 profile_read=0']
                 if m['exception_observer'].get('snapshot_method_observer'):
                     common+=['SWEET SNAPSHOT observer pid=[0-9]+ installed=[1-8] expected=8 limit=64 metadata_only=1 original_arguments_results=1']
+                if m['exception_observer'].get('original_request_observer'):
+                    common+=['SWEET METAL REQUEST CONFIG pid=[0-9]+ installed=6 expected=6 limit=64 arguments_returns_errors_errno=1 no_GPU_work=1']
                 if 'runtime_Metal_ABI_methods' in m['exception_observer']:
                     common+=['SWEET METAL ABI begin class=_MTLDevice present=1 limits_bytes=264 limits_alignment=8 limits_bounded=1',
                         'SWEET METAL ABI end methods=22 metadata_only=1 instances_created=0 gpu_operations=0']

@@ -37,6 +37,7 @@ from cif10_reference_evidence import inspect as inspect_cif10_reference
 from clear_cache_evidence import verify as verify_clear_cache
 from ir3_cache_evidence import verify as verify_ir3_cache
 from ca_matrix_evidence import verify as verify_ca_matrix
+from metal_request_evidence import inspect as inspect_metal_requests
 from ram_library import load as load_ram
 
 def verify(directory,mode,kernel_sha=None,version=None):
@@ -117,6 +118,9 @@ def verify(directory,mode,kernel_sha=None,version=None):
                 if a['exception_observer'].get('original_Metal_registry_probe'):exceptions['Metal_discovery']=verify_metal_discovery(text,a['token'])
                 if a['exception_observer'].get('registration_only'):exceptions['native_prior_binding']=verify_registry_proof(text,a['token'],a['exception_observer']['prior_native_hardware_proof'])
                 if a['exception_observer'].get('original_pipeline_observer'):exceptions['pipeline_factory']=verify_pipeline_observer(text,a['token'])
+                if a['exception_observer'].get('original_request_observer'):
+                    exceptions['Metal_requests']=inspect_metal_requests(text,a['token'])
+                    assert all(c['installed']==6 for c in exceptions['Metal_requests']['process_configurations'])
                 if a['exception_observer'].get('original_postdraw_observer'):exceptions['postdraw_snapshot']=inspect_postdraw(text,a['token'],method_observer=a['exception_observer'].get('snapshot_method_observer',False),png_input_observer=a['exception_observer'].get('postdraw_png_input_metadata',False),png_encoder=a['exception_observer'].get('png_encoder_prior_proof'))
                 if a['exception_observer'].get('AIR_XR_probe'):exceptions['AIR_XR']=verify_air_xr(text,a['token'])
                 if a['exception_observer'].get('Metal_IOSurface_probe'):exceptions['Metal_IOSurface']=verify_metal_surface(text,a['token'])

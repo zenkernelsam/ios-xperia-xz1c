@@ -36,6 +36,9 @@
 #if defined(SWEET_SNAPSHOT_METHOD_OBSERVE)
 #include "SnapshotMethodObserve.h"
 #endif
+#if defined(SWEET_METAL_REQUEST_OBSERVE)
+#include "MetalRequestObserve.h"
+#endif
 #include "MetalRuntimeObserve.h"
 #if defined(SWEET_CIF10_PNG_REFERENCE)
 #include "CIF10PNGReferenceProbe.h"
@@ -353,6 +356,10 @@ static void install_observer(void)
 #if defined(SWEET_SNAPSHOT_METHOD_OBSERVE)
     (void)snapshot_methods_observe(objc_lookUpClass("SweetMTLDevice"),objc_lookUpClass("CLKUIMetalQuadView"),
         objc_lookUpClass("SweetMTLCommandBuffer"),objc_lookUpClass("SweetMTLTexture"));
+#endif
+#if defined(SWEET_METAL_REQUEST_OBSERVE)
+    (void)metal_request_observe(objc_lookUpClass("SweetMTLLibrary"),objc_lookUpClass("CAMetalLayer"),
+        objc_lookUpClass("CLKUIMetalQuadView"),objc_lookUpClass("NUNIAegirRenderer"),diagnostic);
 #endif
 #if defined(LILAC_EXCEPTION_TEST)
     metal_runtime_observe([MetalABIHostFixture class],@protocol(MetalABIHostProtocol),NULL,NULL,NULL,diagnostic);
