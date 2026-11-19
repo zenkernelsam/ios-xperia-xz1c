@@ -1,0 +1,14 @@
+{
+  "source_files": {
+    "gpu/mesa/IR3VariantCache.h": "a89381bf0b771d926cd2c8915e0c6449608c577482c0c00785007fde6c5c228e",
+    "tools/build/test_ir3_serializer.c": "ed638c1dd92e2b36c1673988f3f2d5ed2b2b37ad64eb92d0aa4c14399a8cb5f8",
+    "tools/build/check_ir3_serializer.py": "72800d98cc712ba91e7d5d094e64e0b0be2038fe0498783f34b2629daeadef34"
+  },
+  "actual_Mesa_types_blob_ralloc": true,
+  "exact_draw_and_binning_payload_roundtrip": true,
+  "partial_restore_not_published": true,
+  "bounds_and_pointer_rebasing_passed": true,
+  "ASan_UBSan_passed": true,
+  "host_only": true,
+  "device_operations": 0
+}

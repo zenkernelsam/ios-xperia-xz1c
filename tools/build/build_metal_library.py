@@ -62,6 +62,9 @@ if air_manifest:
         report.update(native_Clear_shader_cache=True,Clear_shader_cache_private_context_owned=True,
                       original_Clear_colours_viewport_scissor_and_draw_preserved=True,
                       actual_repeated_Clear_GPU_acceptance_pending=True)
+    if manifest['frontend_build_binding'].get('IR3_variant_cache'):
+        report.update(native_IR3_variant_cache=True,original_Freedreno_IR3_serializer=True,
+                      exact_build_original_NIR_variant_key_bound=True,actual_IR3_cache_GPU_acceptance_pending=True)
     report.update(native_AIR_constant_samplers=True,actual_constant_sampler_GPU_acceptance_pending=True,
                   constant_sampler_scope='normalized 2D, actual border/anisotropy capabilities',
                   per_function_immutable_graphics_translation_cache=True)

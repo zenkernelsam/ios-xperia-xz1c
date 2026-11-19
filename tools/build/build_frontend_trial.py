@@ -30,6 +30,11 @@ binding['XR_clear_decode_elision']=True
 binding['Clear_shader_context_cache']=True
 binding['render_target_observation_revision']=1
 binding['mesa_build_directory']=build.relative_to(root).as_posix()
+if (build/'ir3-variant-cache-inputs.json').exists():
+    inputs=json.loads((build/'ir3-variant-cache-inputs.json').read_bytes())
+    assert inputs==lock['mesa']['IR3_variant_cache']
+    binding['IR3_variant_cache']=inputs
+    binding['actual_IR3_variant_cache_GPU_acceptance_pending']=True
 if (out/'ProgramCacheBuildIdentity.json').exists():
     binding['program_cache_build_identity']=json.loads((out/'ProgramCacheBuildIdentity.json').read_bytes())
 (out/'build-binding.json').write_bytes((json.dumps(binding,indent=2)+'\n').encode())

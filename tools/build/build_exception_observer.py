@@ -7,7 +7,8 @@ from program_request import specification as request_specification,header as req
 from program_cache_scope import specification as cache_scope_specification,header as cache_scope_header
 from png_encoder_proof import validate as validate_png,header as png_header
 p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--metal-resources');p.add_argument('--air-fixture');p.add_argument('--render-fixture');p.add_argument('--constants-fixture');p.add_argument('--register-device',action='store_true');p.add_argument('--xr-probe',action='store_true');p.add_argument('--surface-probe',action='store_true');p.add_argument('--mip-probe',action='store_true');p.add_argument('--target-process',choices=['AegirPoster','backboardd'],default='AegirPoster');p.add_argument('--gles-ram-package');p.add_argument('--registration-only',action='store_true');p.add_argument('--native-proof');p.add_argument('--pipeline-observe',action='store_true');p.add_argument('--narrow-fixture');p.add_argument('--half-fixture');p.add_argument('--mrt-fixture');p.add_argument('--sampler-fixture');p.add_argument('--program-cache-prime',action='store_true');p.add_argument('--static-half-fixture');p.add_argument('--program-cache-export',action='store_true')
-p.add_argument('--postdraw-observe',action='store_true');p.add_argument('--snapshot-observe',action='store_true');p.add_argument('--cif10-png-reference',action='store_true');p.add_argument('--png-filter-encoder',action='store_true');p.add_argument('--png-proof');p.add_argument('--clear-cache-probe',action='store_true');a=p.parse_args()
+p.add_argument('--postdraw-observe',action='store_true');p.add_argument('--snapshot-observe',action='store_true');p.add_argument('--cif10-png-reference',action='store_true');p.add_argument('--png-filter-encoder',action='store_true');p.add_argument('--png-proof');p.add_argument('--clear-cache-probe',action='store_true');p.add_argument('--ir3-cache-probe',action='store_true');a=p.parse_args()
+if a.ir3_cache_probe:assert a.clear_cache_probe and a.constants_fixture and a.target_process=='backboardd' and not a.registration_only
 if a.clear_cache_probe:assert a.target_process=='backboardd' and a.mrt_fixture and a.static_half_fixture and not a.registration_only
 if a.pipeline_observe:assert a.registration_only and a.target_process=='AegirPoster'
 if a.postdraw_observe:assert a.registration_only and a.pipeline_observe and a.target_process=='AegirPoster'
@@ -54,6 +55,8 @@ if a.metal_resources:
     if resource_manifest.get('native_Clear_shader_cache'):
         assert a.registration_only or a.clear_cache_probe,'New Clear cache needs its own repeated original-page GPU probe'
     if a.clear_cache_probe:assert resource_manifest.get('native_Clear_shader_cache')
+    if resource_manifest.get('native_IR3_variant_cache'):assert a.registration_only or a.ir3_cache_probe,'New IR3 cache needs its own original-byte hardware probe'
+    if a.ir3_cache_probe:assert resource_manifest.get('native_IR3_variant_cache')
     assert hashlib.sha256((resources/'MetalResources.dylib').read_bytes()).hexdigest()==resource_manifest['library_sha256']
     if resource_manifest.get('requires_source_scoped_cache'):
         cache_scope=cache_scope_specification(resource_manifest)
@@ -167,6 +170,7 @@ if a.static_half_fixture:
 if resource_manifest and resource_manifest.get('native_static_half_bits') and not a.registration_only:
     assert static_half_fixture_manifest,'New static-half library needs its own complete hardware probe'
 if a.clear_cache_probe:headers+=['gpu/diagnostics/MetalClearCacheProbe.h','gpu/diagnostics/ClearCacheProbeValues.h']
+if a.ir3_cache_probe:headers+=['gpu/diagnostics/MetalIR3CacheProbe.h']
 headers=list(dict.fromkeys(headers))
 request_export=None
 if a.program_cache_export:
@@ -259,6 +263,7 @@ if sampler_fixture_manifest:extra+=['-DSWEET_AIR_SAMPLER_PROBE=1','-I',out]
 if sampler_fixture_manifest and resource_manifest.get('native_program_binary_cache'):extra+=['-DSWEET_PROGRAM_CACHE_PROBE=1']
 if static_half_fixture_manifest:extra+=['-DSWEET_AIR_STATIC_HALF_PROBE=1','-I',out]
 if a.clear_cache_probe:extra+=['-DSWEET_CLEAR_CACHE_PROBE=1']
+if a.ir3_cache_probe:extra+=['-DSWEET_IR3_CACHE_PROBE=1']
 if a.program_cache_prime:extra+=['-DSWEET_PROGRAM_CACHE_PRIME=1']
 if a.program_cache_export:extra+=['-DSWEET_PROGRAM_CACHE_EXPORT=1','-I',out]
 if cache_scope:extra+=['-DSWEET_PROGRAM_CACHE_SCOPE=1','-I',out]
@@ -308,6 +313,7 @@ if sampler_fixture_manifest and resource_manifest.get('native_program_binary_cac
 if static_half_fixture_manifest:manifest.update(AIR_static_half_probe=True,AIR_static_half_fixture=static_half_fixture_manifest)
 if a.clear_cache_probe:manifest.update(Clear_cache_probe=True,Clear_cache_phases=2,Clear_cache_targets=8,
     Clear_cache_original_bytes_guard_and_reuse_acceptance_required=True)
+if a.ir3_cache_probe:manifest.update(IR3_cache_probe=True,IR3_cache_phases=3,IR3_cache_original_pages_and_restore_required=True)
 if a.program_cache_prime:manifest['program_cache_prime']=True
 if request_export:manifest['program_request_export']=request_export
 if cache_scope:manifest['program_cache_scope']=cache_scope

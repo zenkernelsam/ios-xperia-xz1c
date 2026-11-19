@@ -5,6 +5,10 @@ root=Path(__file__).resolve().parents[1]
 lock=json.loads((root/'reproducibility/source-lock.json').read_text(encoding='utf-8'))
 assert hashlib.sha256((root/'xnu/lilac-current.patch').read_bytes()).hexdigest()==lock['xnu']['patch_sha256']
 assert hashlib.sha256((root/'gpu/mesa-lilac.patch').read_bytes()).hexdigest()==lock['mesa']['patch_sha256']
+if lock['mesa'].get('IR3_variant_cache'):
+    spec=lock['mesa']['IR3_variant_cache']
+    assert hashlib.sha256((root/spec['patch']).read_bytes()).hexdigest()==spec['patch_sha256']
+    assert hashlib.sha256((root/spec['header']).read_bytes()).hexdigest()==spec['header_sha256']
 assert hashlib.sha256((root/'tools/build/dxb-local.patch').read_bytes()).hexdigest()==lock['builder']['patch_sha256']
 for version,name in ((725,'lilac-surface-diagnostics.patch'),(726,'lilac-surface-memref-diagnostics.patch'),(727,'lilac-surface-readonly.patch'),(728,'lilac-surface-region64.patch'),(729,'lilac-console-snapshot.patch'),(730,'lilac-scanout-snapshot.patch')):
     candidate=json.loads((root/f'reproducibility/surface-diag-v{version}.json').read_text())

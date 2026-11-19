@@ -175,6 +175,10 @@ def load(folder,expected=None):
                 assert observer.get('AIR_static_half_probe') and observer['target_process']=='backboardd'
                 assert observer['Clear_cache_phases']==2 and observer['Clear_cache_targets']==8
                 assert observer['metal_resources'].get('native_Clear_shader_cache')
+            if observer.get('IR3_cache_probe'):
+                sources.add('gpu/diagnostics/MetalIR3CacheProbe.h')
+                assert observer.get('Clear_cache_probe') and observer.get('AIR_constants_probe') and observer['IR3_cache_phases']==3
+                assert observer['metal_resources'].get('native_IR3_variant_cache')
             assert set(observer['source_files'])==sources
             assert observer['source_files'][observer['source']]==observer['source_sha256']
     if 'metal_resources' in m:
@@ -182,6 +186,7 @@ def load(folder,expected=None):
         assert (m['exception_observer'].get('metal_resource_probe') or m['exception_observer'].get('registration_only')) and m['exception_observer']['metal_resources']==resources
         if resources.get('native_static_half_bits'):assert observer.get('registration_only') or observer.get('AIR_static_half_probe'),'New static-half RAM package lacks its own probe'
         if resources.get('native_Clear_shader_cache'):assert observer.get('registration_only') or observer.get('Clear_cache_probe'),'New Clear cache RAM package lacks its own repeated-clear GPU probe'
+        if resources.get('native_IR3_variant_cache'):assert observer.get('registration_only') or observer.get('IR3_cache_probe'),'New IR3 cache RAM package lacks its own hardware-restore GPU probe'
         assert resources['only_explicit_resource_factory'] and resources['system_Metal_plugin_not_advertised']
         if m['frontend_build_binding'].get('XR_clear_decode_elision'):
             assert resources.get('native_XR_clear_decode_elision') and resources['original_XR_raw_snapshot_and_Clear_writeback_preserved']

@@ -69,6 +69,7 @@ SWEET_METAL_SHADER_API int sweetgl_metal_render_clear(const SweetRenderPass *pas
 SWEET_METAL_SHADER_API int sweetgl_metal_texture_mipmaps(const SweetShaderTextureBinding *texture,uint32_t *sequence);
 SWEET_METAL_SHADER_API int sweetgl_metal_program_cache_state(const SweetMetalProgram *program);
 SWEET_METAL_SHADER_API int sweetgl_metal_program_cache_prime(uint32_t *completed,uint32_t *failed);
+SWEET_METAL_SHADER_API void sweetgl_ir3_cache_stats(uint64_t out[6]);
 #ifdef __cplusplus
 }
 #endif

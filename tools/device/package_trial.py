@@ -252,6 +252,8 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
         common+=['SWEET AIR STATIC HALF END result=0 cases=12 paths=4 checked_bytes=196608 final_allocated=0 original_constants=1 GPU_only=1']
     if mode=='gpu' and m.get('exception_observer',{}).get('Clear_cache_probe'):
         common+=['SWEET CLEAR CACHE END result=0 phases=2 targets=8 checked_bytes=262144 final_allocated=0 original_clear=1 GPU_only=1']
+    if mode=='gpu' and m.get('exception_observer',{}).get('IR3_cache_probe'):
+        common+=['SWEET IR3 CACHE PROBE END result=0 phases=3 checked_bytes=960 final_allocated=0 cold_and_restore=1 original_pages=1']
     if mode=='gpu' and m.get('exception_observer',{}).get('program_request_export'):
         common+=['SWEET PROGRAM REQUEST EXPORT END result=0 records=2 bytes=[0-9]+ limit=262144 read_only=1 no_compile=1']
     if mode=='gpu' and m.get('exception_observer',{}).get('cif10_PNG_reference'):

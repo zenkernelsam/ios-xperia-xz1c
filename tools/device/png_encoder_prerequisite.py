@@ -22,6 +22,8 @@ def inspect(directory,resources,kernel_sha256,encoder_source_sha256,version=None
         assert key in actual['exceptions']
     if resources.get('native_Clear_shader_cache'):
         cache=actual['exceptions']['Clear_cache'];assert cache['complete_samples']==1 and cache['incomplete_samples']==0
+    if resources.get('native_IR3_variant_cache'):
+        cache=actual['exceptions']['IR3_cache'];assert cache['complete_samples']==1 and cache['incomplete_samples']==0
     proof=dict(revision=1,kernel_sha256=kernel_sha256,GLES_sha256=actual['ram_library_binding']['library_sha256'],
         Metal_sha256=row['artifact']['metal_resources']['library_sha256'],encoder_source_sha256=encoder_source_sha256,
         reference_token=actual['token'],reference_image_sha256=actual['image_sha256'],reference_raw_sha256=actual['log_sha256'],

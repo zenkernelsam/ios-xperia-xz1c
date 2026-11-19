@@ -2,7 +2,7 @@
 import argparse,os,re,subprocess
 from pathlib import Path
 root=Path(__file__).resolve().parents[2]
-p=argparse.ArgumentParser();p.add_argument('--mesa-build');p.add_argument('--frontend-output');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--mesa-build');p.add_argument('--frontend-output');p.add_argument('--ir3-cache',action='store_true');a=p.parse_args()
 mesa_output=Path(a.mesa_build).absolute() if a.mesa_build else root/'build/mesa-ios'
 frontend_output=Path(a.frontend_output).absolute() if a.frontend_output else root/'build/sweetgl'
 assert mesa_output.is_relative_to(root/'build') and frontend_output.is_relative_to(root/'build')
@@ -16,6 +16,11 @@ env=os.environ.copy();env['PATH']=str(venv/'bin')+os.pathsep+env.get('PATH','');
 tool_dirs=[Path(p) for p in ('/opt/homebrew/opt/bison/bin','/usr/local/opt/bison/bin','/opt/homebrew/opt/flex/bin','/usr/local/opt/flex/bin')]
 env['PATH']=os.pathsep.join(str(p) for p in tool_dirs if p.exists())+os.pathsep+env['PATH']
 subprocess.run(['python3',str(root/'tools/build/prepare_sources.py'),'mesa'],check=True)
+ir3_inputs=None
+if a.ir3_cache:
+    assert a.mesa_build and a.frontend_output,'IR3 variant cache must use new Mesa/frontend outputs'
+    from install_ir3_variant_cache import install
+    ir3_inputs=install()
 source=root/'deps/mesa';build=mesa_output;build.parent.mkdir(exist_ok=True)
 def sdk(*args):return subprocess.check_output(['xcrun','--sdk','iphoneos',*args],text=True).strip()
 cross=root/'build'/(build.name+'-cross.ini' if a.mesa_build else 'ios-cross.ini')
@@ -35,6 +40,9 @@ libraries=re.search(r'LIBS="([^"]+)"',frontend).group(1).split()
 # Compile the actual linked dependency closure, not unrelated xmllint/bsdtar tools.
 targets=libraries+['src/mapi/shared-glapi/libglapi.0.dylib']
 subprocess.run([str(venv/'bin/ninja'),'-C',str(build),'-j8',*targets],env=env,check=True)
+if ir3_inputs:
+    import json
+    (build/'ir3-variant-cache-inputs.json').write_bytes((json.dumps(ir3_inputs,indent=2)+'\n').encode())
 env['SWEETGL_MESA_SOURCE']=str(source);env['SWEETGL_MESA_BUILD']=str(build)
 env['SWEETGL_OUTPUT']=str(frontend_output)
 subprocess.run(['bash',str(root/'gpu/sweetgl/build.sh')],env=env,check=True)

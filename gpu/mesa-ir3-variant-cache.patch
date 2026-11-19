@@ -1,0 +1,59 @@
+diff --git a/src/freedreno/ir3/ir3_disk_cache.c b/src/freedreno/ir3/ir3_disk_cache.c
+--- a/src/freedreno/ir3/ir3_disk_cache.c
++++ b/src/freedreno/ir3/ir3_disk_cache.c
+@@ -7,6 +7,10 @@
+ 
+ #include "ir3_compiler.h"
+ #include "ir3_nir.h"
++
++#if defined(__APPLE__) || defined(LILAC_IR3_CACHE_TEST)
++#include "lilac_ir3_variant_cache.h"
++#endif
+ 
+ #define debug 0
+ 
+@@ -52,6 +56,9 @@
+ ir3_disk_cache_init_shader_key(struct ir3_compiler *compiler,
+                                struct ir3_shader *shader)
+ {
++#if defined(__APPLE__) || defined(LILAC_IR3_CACHE_TEST)
++   lilac_ir3_shader_key(shader);
++#endif
+    if (!compiler->disk_cache)
+       return;
+ 
+@@ -198,6 +205,10 @@
+ ir3_disk_cache_retrieve(struct ir3_shader *shader,
+                         struct ir3_shader_variant *v)
+ {
++#if defined(__APPLE__) || defined(LILAC_IR3_CACHE_TEST)
++   if (lilac_ir3_retrieve(shader, v))
++      return true;
++#endif
+    if (!shader->compiler->disk_cache)
+       return false;
+ 
+@@ -237,6 +248,9 @@
+ ir3_disk_cache_store(struct ir3_shader *shader,
+                      struct ir3_shader_variant *v)
+ {
++#if defined(__APPLE__) || defined(LILAC_IR3_CACHE_TEST)
++   lilac_ir3_store(shader, v);
++#endif
+    if (!shader->compiler->disk_cache)
+       return;
+ 
+diff --git a/src/freedreno/ir3/ir3_shader.h b/src/freedreno/ir3/ir3_shader.h
+--- a/src/freedreno/ir3/ir3_shader.h
++++ b/src/freedreno/ir3/ir3_shader.h
+@@ -969,6 +969,10 @@
+ 
+    cache_key cache_key; /* shader disk-cache key */
+ 
++   /* Exact original NIR/options key for the optional lilac IR3 cache. */
++   uint8_t lilac_key[32];
++   bool lilac_key_valid;
++
+    /* Bitmask of bits of the shader key used by this shader.  Used to avoid
+     * recompiles for GL NOS that doesn't actually apply to the shader.
+     */

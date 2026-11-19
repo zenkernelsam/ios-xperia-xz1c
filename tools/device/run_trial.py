@@ -76,6 +76,7 @@ class DiagnosticPolicy(LogPolicy):
             if re.search(r'SWEET PROGRAM CACHE (?:roundtrip [^\r\n]*valid=0|PRIME END result=[1-9]|PRIME caller result=-)',line):self.recoverable='PROGRAM_CACHE_PROBE_FAILED'
             if re.search(r'SWEET AIR STATIC HALF END result=[1-9]',line):self.recoverable='AIR_STATIC_HALF_PROBE_FAILED'
             if re.search(r'SWEET CLEAR CACHE END result=[1-9]',line):self.recoverable='CLEAR_CACHE_PROBE_FAILED'
+            if re.search(r'SWEET IR3 CACHE PROBE END result=[1-9]',line):self.recoverable='IR3_CACHE_PROBE_FAILED'
             if re.search(r'SWEET METAL PROBES END process=backboardd result=[1-9]',line):self.recoverable='BACKGROUND_METAL_SUITE_FAILED'
             if re.search(r'SWEET GLES SUITE END result=[1-9]',line):self.recoverable='GPU_SELFTEST_FAILED'
             if re.search(r'SWEET CIF10 REFERENCE END result=[1-9]',line):self.recoverable='CIF10_PNG_REFERENCE_FAILED'
@@ -158,6 +159,9 @@ def main():
         wanted=ram['frontend_build_binding']
         relative=Path(record['ram_package']).resolve().relative_to(ROOT).as_posix()+'/manifest.json'
         remote="import sys,json,hashlib;from pathlib import Path;r=Path('Desktop/ios-xperia-xz1c');m=json.load(open(r/"+repr(relative)+"));b=m['frontend_build_binding'];s=b['source_files'];d=b['mesa_dependencies'];mb=Path(b.get('mesa_build_directory','build/mesa-ios'));assert not mb.is_absolute() and mb.parts[0]=='build' and '..' not in mb.parts;assert all(hashlib.sha256((r/'gpu/sweetgl'/p).read_bytes()).hexdigest()==h for p,h in s.items());assert all(hashlib.sha256((r/mb/p).read_bytes()).hexdigest()==h for p,h in d.items());print(json.dumps(b))"
+        if wanted.get('IR3_variant_cache'):
+            spec=wanted['IR3_variant_cache']
+            remote="import hashlib;from pathlib import Path;r=Path('Desktop/ios-xperia-xz1c');sp="+repr(spec)+";assert hashlib.sha256((r/sp['patch']).read_bytes()).hexdigest()==sp['patch_sha256'];assert hashlib.sha256((r/sp['header']).read_bytes()).hexdigest()==sp['header_sha256'];assert all(hashlib.sha256((r/'deps/mesa'/p).read_bytes()).hexdigest()==h for p,h in sp['patched_sources'].items());assert hashlib.sha256((r/'deps/mesa/src/freedreno/ir3/lilac_ir3_variant_cache.h').read_bytes()).hexdigest()==sp['header_sha256'];"+remote
         if 'exception_observer' in ram:
             observer=ram['exception_observer']
             sources=observer.get('source_files',{observer['source']:observer['source_sha256']})

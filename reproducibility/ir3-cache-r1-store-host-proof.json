@@ -1,0 +1,16 @@
+{
+  "source_files": {
+    "gpu/sweetgl/IR3CacheAPI.h": "9d5ec15c901109be334f8b1dc6ea25a097bfae890e7649aeb5527c53bb14ebef",
+    "gpu/sweetgl/IR3CacheRecord.h": "33e47b25fba0e87e51a50866e5e493382d3785c5ce26ed4bd61570ef75283aad",
+    "gpu/sweetgl/ir3_cache.c": "f6213998b92d828494c69124268b0ab309c2becff790f67f72f3ce4a1177c6d4",
+    "tools/build/test_ir3_cache_store.c": "e3e3c968673fbe80f849388bf21f339fcfec4f1205085c160242dde8975231dd",
+    "tools/build/check_ir3_cache_store.py": "c2e43be70ef52db9ad5225e23bb2bee1299a1e69ae10425d783ec162449302b8"
+  },
+  "fixture_build_ID_only": true,
+  "exact_actual_persistence_and_fresh_process_passed": true,
+  "invalid_bytes_rejected_without_overwriting": true,
+  "UBSan_passed": true,
+  "ASan_not_run": true,
+  "device_operations": 0,
+  "actual_IR3_serializer_and_hardware_proof_still_required": true
+}

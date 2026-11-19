@@ -151,7 +151,21 @@
     "extra_sources": [],
     "upstream": "https://gitlab.freedesktop.org/mesa/mesa.git",
     "program_binary_previous_patch_sha256": "53ac862f0997294f2f0d6295fa64b64d6ccff8c7e312ebd3baf10bcafaa7a1b3",
-    "program_binary_identity_patch_sha256": "df9cfc6ac911e99b6aafff4165da6484f4def6891f0925ced446fefc5cb6a496"
+    "program_binary_identity_patch_sha256": "df9cfc6ac911e99b6aafff4165da6484f4def6891f0925ced446fefc5cb6a496",
+    "IR3_variant_cache": {
+      "patch": "gpu/mesa-ir3-variant-cache.patch",
+      "patch_sha256": "a5f5934422b2d695d8985562f66002968b991af95e9167f580da6bd363e192ff",
+      "header": "gpu/mesa/IR3VariantCache.h",
+      "header_sha256": "a89381bf0b771d926cd2c8915e0c6449608c577482c0c00785007fde6c5c228e",
+      "base_mesa_patch_sha256": "0fb7664a6758eb545b7097f6ac0aadae3914bb173332ae441fdb119fa1a1009c",
+      "patched_sources": {
+        "src/freedreno/ir3/ir3_disk_cache.c": "8d6a29d02fb60b1030dcfd58ac67442b899fdc625234b547d3b8c4443c2e3041",
+        "src/freedreno/ir3/ir3_shader.h": "548aff99d229b5ec23253ccc7cabaab6657629aea087b27bcc666f3208a7360a"
+      },
+      "actual_original_variant_serializer_based": true,
+      "cache_file_namespace": "sgiv",
+      "fixed_target_GPU": 540
+    }
   },
   "sweetgl": {
     "source": "gpu/sweetgl",
@@ -171,7 +185,7 @@
       "copy_context_probe.c": "259f2a39397940d1ef78463bc821b995e934536fbb0d1bae7ed84c0a6bcf7d0b",
       "copy_refresh_probe.c": "4e97bf6f69f96fe34ee3e290c5ac730392d56e647651bb075e485f2c70b3ba10",
       "SurfaceProbeUtils.h": "b45e1e67f4a907c50f10cbfdd47fcde406abec96b5322776d66675134943808a",
-      "build.sh": "4266c7cf4906f8f4886c8abb2033031e52e1d8b87d124f71b5fd0111311d3c63",
+      "build.sh": "23c742ea565afd3f65254249fb45394756a9006d438bd08963c995acfe307c24",
       "bridge_state_probe.c": "600b5d4d8e9bce9816f6061430bf0001cee8e426c4573915dbaeae04e6f4de66",
       "program_lifecycle_probe.c": "33dd9bedbfaf8d2811dece56655a07c0389319e47f4d3d5ef53a70bb7620233e",
       "CopyRefreshProbeUtils.h": "e9ec3e55e59b4e92e51818802dda982c05e33e86916809d0621a285151acff70",
@@ -188,7 +202,7 @@
       "MetalBackingAPI.h": "19f5fd76979783dab3e1aff76d33d8eb90d614c73ea108fd39bba013d194bf74",
       "MetalBackingRules.h": "fb0b4c5426debc434ddd4270ddc8a515ab82cec8a97fa598420fd02e2a4203ad",
       "MetalBlitPlan.h": "af847a72bcdba91fea1f24c61147365fd7bc105c7d175eef79c8c00c966927d7",
-      "MetalShaderAPI.h": "8ac0bc9d8130040ef6715663477be0b8ec65a7c09af6df717014b9926242a750",
+      "MetalShaderAPI.h": "3eebe9013770eff5c1092c8ccc50b4cd6ad931986f109573f74905d16dd1c23b",
       "metal_compute.c": "c2780b5202cdc4ae4161b2359d6c694f4bd35e4af7c3d3d50286fed5d12b8376",
       "MetalShaderInternals.h": "f1d2e6dbb16993ec79e8e05c0aa2423825f68e7acdcbcc73e33d25fedf9d951a",
       "metal_render.c": "6a72b11804ba77a871235b4ef5d23b6604f870ed4c581534bc5c7f310a47f895",
@@ -202,10 +216,13 @@
       "program_cache.c": "79d683b94dcd7fe27fd489b9ba2af660bb6ee5abe975ad2f7cefe0634dd8084b",
       "ProgramCacheCodec.h": "1d8e5299f54dd0e6eb28e3cc5a98eb01bf1da2a163bb135fe7f40226c8101b44",
       "ProgramCacheStore.h": "53a4d68ff859c1e473203b12bc84720b5c4f47f06444374e21edec21114d91ea",
-      "make-program-cache-identity.py": "0620f0de7ac8a75e8a6930cc70d99588f7ce647c0b1525e1be2c0cd1ea309d0f"
+      "make-program-cache-identity.py": "0620f0de7ac8a75e8a6930cc70d99588f7ce647c0b1525e1be2c0cd1ea309d0f",
+      "IR3CacheAPI.h": "9d5ec15c901109be334f8b1dc6ea25a097bfae890e7649aeb5527c53bb14ebef",
+      "IR3CacheRecord.h": "33e47b25fba0e87e51a50866e5e493382d3785c5ce26ed4bd61570ef75283aad",
+      "ir3_cache.c": "f6213998b92d828494c69124268b0ab309c2becff790f67f72f3ce4a1177c6d4"
     },
     "tested_library_sha256": "9a59820c7e54b1626cacd49acb70a7d460be3c01c415a17429a2464bb5b11571",
-    "build_script_updated_for_canonical_output": "4266c7cf4906f8f4886c8abb2033031e52e1d8b87d124f71b5fd0111311d3c63",
+    "build_script_updated_for_canonical_output": "23c742ea565afd3f65254249fb45394756a9006d438bd08963c995acfe307c24",
     "previous_tested_source_revision": "8d36439390cd95348ad5ff41ac5da35c79a4589a",
     "current_tested_library_sha256": "0a2c7e698ae59a1afe8608c884f59e87a344a3952e9b4d52899923b9e295b3db",
     "current_tested_library_report": "reproducibility/v729-cache-r2-gles-gpu-actual.json",
