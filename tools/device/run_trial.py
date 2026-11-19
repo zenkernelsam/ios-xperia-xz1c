@@ -79,6 +79,7 @@ class DiagnosticPolicy(LogPolicy):
             if re.search(r'SWEET IR3 CACHE PROBE END result=[1-9]',line):self.recoverable='IR3_CACHE_PROBE_FAILED'
             if re.search(r'SWEET METAL PROBES END process=backboardd result=[1-9]',line):self.recoverable='BACKGROUND_METAL_SUITE_FAILED'
             if re.search(r'SWEET GLES SUITE END result=[1-9]',line):self.recoverable='GPU_SELFTEST_FAILED'
+            if re.search(r'SWEET CA MATRIX (?:INSTALL|END) result=[1-9]',line):self.recoverable='CA_MATRIX_PROBE_FAILED'
             if re.search(r'SWEET CIF10 REFERENCE END result=[1-9]',line):self.recoverable='CIF10_PNG_REFERENCE_FAILED'
             if 'CRASH AegirPoster reason ns 7 code 0x3: extension check-in timeout' in line:self.recoverable='EXTENSION_CHECKIN_TIMEOUT'
     def decision(self,now):

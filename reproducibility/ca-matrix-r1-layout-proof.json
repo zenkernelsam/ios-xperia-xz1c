@@ -1,0 +1,63 @@
+{
+  "native_iOS_version": "16.7.16",
+  "product_build": "20H392",
+  "image_UUID": "9e40b2eb260c3af1ae45a1a551a8c1b9",
+  "image_header_address": "0x188284000",
+  "symbol_map_sha256": "5bf04681af1819e2379319942a97be635100d6ca3844c5a22e372ce78a83b83d",
+  "symbol_map_original_tex_table": "0x1d5b48a10",
+  "symbol_map_original_create_shader": "0x1884b30d8",
+  "original_uniform_switch": "0x18855e1e4",
+  "instruction_anchors": [
+    {
+      "address": "0x1884b3838",
+      "bytes": 24,
+      "sha256": "a83a1bc302d722b06ca749d4149c90fdda2149e0a454b0f8cdbd4c9a2fae8c3c",
+      "verified_calls_original_table_or_switch": true
+    },
+    {
+      "address": "0x1884b3e78",
+      "bytes": 24,
+      "sha256": "7fd76e414d1d3528ad5480aecd536ab9d072ed885924e0ea3d007eb786ca6859",
+      "verified_calls_original_table_or_switch": true
+    }
+  ],
+  "empty_slots": [
+    20,
+    45
+  ],
+  "original_case_byte": 222,
+  "identity_slot": 19,
+  "identity_case_byte": 0,
+  "identity_expression": "colorMatrix4x4Bias(s0)",
+  "input_reference_files": [
+    {
+      "name": "create-shader.bin",
+      "bytes": 13652,
+      "sha256": "808c2e49949ed60d5ac387100144acca85cbd86bd700453a147aaf6f58105533"
+    },
+    {
+      "name": "tex-table.bin",
+      "bytes": 720,
+      "sha256": "4d75ef640903dd7871197312782226eeb7cee5a6dfc449eac0f29717490b7eee"
+    },
+    {
+      "name": "uniform-switch.bin",
+      "bytes": 96,
+      "sha256": "557893343b33b98425dc17052f8fefc4720c82296ee0a26a36e1a1038f5ce1aa"
+    },
+    {
+      "name": "vibrant-matrix-reference.bin",
+      "bytes": 4096,
+      "sha256": "8e2846a195e4ea03eb68dcd81de0aacb3a670d14e9fd6a6b9a155f897bb94f30"
+    }
+  ],
+  "read_only_local_20H392_HFS_mounted_and_detached": true,
+  "Apple_reference_bytes_local_only": true,
+  "runtime_image_UUID_range_anchors_expression_and_empty_slot_checks_required": true,
+  "changed_source": {
+    "path": "gpu/sweetgl/QuartzCoreMatrixLayout.h",
+    "sha256": "b367d643fa616a4c3051a519bd31885ccdf0841f368347bba2942c96d2834912"
+  },
+  "device_operations": 0,
+  "installation_and_UI_not_yet_verified": true
+}

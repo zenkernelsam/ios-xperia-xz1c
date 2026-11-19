@@ -185,13 +185,16 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
                      'sweetgl: copy context selftest -> PASS',
                      'sweetgl: bridge state selftest -> PASS','sweetgl: program life selftest -> PASS',
                      'SWEET SURF CALLER DIAG phase=.*status=(0x[0-9a-f]+|0)']
+            if package['frontend_build_binding'].get('CA_matrix_revision'):
+                assert package['frontend_build_binding']['CA_matrix_revision']==1 and package['frontend_build_binding']['GLES_suite_tests']==9
+                common+=['SWEET CA MATRIX END result=0 phases=6 checked_bytes=1536 guard_bytes=192 context_disposed=1 production_GLI=1 matrix_slots=2']
             if version>=727:
                 assert library_binding,'Read-only trial needs the tested-probe frontend'
                 common+=['sweetgl: readonly selftest -> PASS phase=held_sampler']
             if 'exception_observer' in m:
                 if m['exception_observer']['target_process']=='backboardd':
                     common+=['SWEET EXCEPTION observer installed process=backboardd limit=16 original_chain=1',
-                        'SWEET GLES SUITE END result=0 tests=8 state=2 original_tests=1',
+                        'SWEET GLES SUITE END result=0 tests='+str(package['frontend_build_binding'].get('GLES_suite_tests',8))+' state=2 original_tests=1',
                         'SWEET METAL PROBES begin process=backboardd GLES_state=2 full_suite=1 background=1',
                         'SWEET METAL PROBES END process=backboardd result=0 prerequisite=0 full_suite=1 background=1']
                     if m['exception_observer'].get('AIR_sampler_probe'):

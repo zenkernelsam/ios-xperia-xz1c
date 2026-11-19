@@ -26,10 +26,14 @@
 #include <mach/vm_page_size.h>
 #include <mach/mach_time.h>
 #include <libkern/OSCacheControl.h>
+#include <mach-o/dyld.h>
+#include <mach-o/loader.h>
 
 #include "eagl.h"
 #include "SurfaceCopyRefresh.h"
 #include "SurfaceTextureLayout.h"
+#include "QuartzCoreMatrixLayout.h"
+#include "CAMatrixShaders.h"
 
 #include "pipe/p_screen.h"
 #include "pipe/p_state.h"
@@ -553,21 +557,6 @@ fbfetch_rewrite(char *src)
  * colour as is (CA asks for the full rect then: the bias lights up
  * transparent pixels). SW has neither (no-op there).
  */
-static const char vcm_func[] =
-    "lowp vec4 sgl_vcm(lowp vec4 s) {\n"
-    "  lowp vec4 d = gl_LastFragData[0];\n"
-    "  lowp vec4 u = vec4(d.rgb / max(d.a, .005), d.a);\n"
-    "  u = clamp(u.r * color_matrix[0] + u.g * color_matrix[1] + u.b * color_matrix[2]\n"
-    "    + u.a * color_matrix[3] + color_matrix[4], 0., 1.);\n"
-    "  u.rgb *= u.a;\n"
-    "  return mix(d, d.a > 0. ? u : vec4(0.), s.a);\n"
-    "}\n";
-static const char cm4_func[] =
-    "lowp vec4 sgl_cm4(lowp vec4 s) {\n"
-    "  lowp vec4 u = clamp(s.r * color_matrix[0] + s.g * color_matrix[1] + s.b * color_matrix[2]\n"
-    "    + s.a * color_matrix[3] + color_matrix[4], 0., 1.);\n"
-    "  return vec4(min(u.rgb, u.a), u.a);\n"
-    "}\n";
 
 /*
  * 0x26/0x27 (Context::variable_masked_blur_surface, CAFilter variableBlur):
@@ -2454,8 +2443,53 @@ static const struct {
 	uint8_t fn;
 	const char *expr;
 	uint8_t uniforms;       /* uniform switch case: 0 color_matrix, 0x95 minmax_dir/bgcolor/map/args, 0xde none */
-} sgl_texfns[] = {{0x2d, "sgl_vcm(s0)", 0}, {0x14, "sgl_cm4(s0)", 0}, {0x26, "sgl_nop()", 0xde},
-    {0x27, "sgl_vblur(s1)", 0x95}};
+} sgl_texfns[] = {{0x2d, "sgl_vcm(s0)", 0}, {0x14, "sgl_cm4(s0)", 0}};
+static bool sgl_ca_matrix_ready;
+bool sweetgl_ca_matrix_install_state(void)
+{return __atomic_load_n(&sgl_ca_matrix_ready,__ATOMIC_ACQUIRE);}
+
+static bool sgl_ca_span(const struct mach_header_64 *header,intptr_t slide,
+    const char *name,const void *pointer,size_t bytes)
+{
+    uintptr_t at=(uintptr_t)(header+1),end=at+header->sizeofcmds,address=(uintptr_t)pointer;
+    if(end<at || !bytes || bytes>UINTPTR_MAX-address)return false;
+    for(uint32_t i=0;i<header->ncmds;++i){
+        if(end-at<sizeof(struct load_command))return false;
+        const struct load_command *command=(const void *)at;
+        if(command->cmdsize<sizeof(*command) || command->cmdsize>end-at)return false;
+        if(command->cmd==LC_SEGMENT_64){
+            if(command->cmdsize<sizeof(struct segment_command_64))return false;
+            const struct segment_command_64 *segment=(const void *)command;
+            if(!strncmp(segment->segname,name,16)){
+                uint64_t start=segment->vmaddr+(uint64_t)slide;
+                return start>=segment->vmaddr && start<=UINTPTR_MAX && address>=start &&
+                    address-start<=segment->vmsize && bytes<=segment->vmsize-(address-start);
+            }
+        }
+        at+=command->cmdsize;
+    }return false;
+}
+
+static const struct mach_header_64 *sgl_ca_image(intptr_t *slide,uint8_t uuid[16])
+{
+    for(uint32_t i=0;i<_dyld_image_count();++i){
+        const char *name=_dyld_get_image_name(i);
+        if(!name || strcmp(name,"/System/Library/Frameworks/QuartzCore.framework/QuartzCore"))continue;
+        const struct mach_header_64 *header=(const void *)_dyld_get_image_header(i);
+        if(!header || header->magic!=MH_MAGIC_64 || header->ncmds>100 || header->sizeofcmds>65536)return NULL;
+        *slide=_dyld_get_image_vmaddr_slide(i);if(*slide<0 || (uint64_t)(uintptr_t)header!=(uint64_t)*slide+SWEET_CA_IMAGE)return NULL;
+        uintptr_t at=(uintptr_t)(header+1),end=at+header->sizeofcmds;bool found=false;
+        for(uint32_t n=0;n<header->ncmds;++n){
+            if(end-at<sizeof(struct load_command))return NULL;
+            const struct load_command *command=(const void *)at;
+            if(command->cmdsize<sizeof(*command) || command->cmdsize>end-at)return NULL;
+            if(command->cmd==LC_UUID){if(found || command->cmdsize!=sizeof(struct uuid_command))return NULL;
+                memcpy(uuid,((const struct uuid_command *)command)->uuid,16);found=true;}
+            at+=command->cmdsize;
+        }
+        return found && at==end?header:NULL;
+    }return NULL;
+}
 
 static bool
 sgl_write_const(void *at, const void *val, size_t len, vm_prot_t back)
@@ -2466,36 +2500,40 @@ sgl_write_const(void *at, const void *val, size_t len, vm_prot_t back)
 		return false;
 	}
 	memcpy(at, val, len);
-	vm_protect(mach_task_self(), page, vm_page_size * 2, FALSE, back);
-	return true;
+	return vm_protect(mach_task_self(), page, vm_page_size * 2, FALSE, back)==KERN_SUCCESS;
 }
 
 static void
 sgl_install_texfns(void)
 {
-	size_t len = 0;
-	const uint8_t *cache = _dyld_get_shared_cache_range(&len);
-	if (cache == NULL) {
-		return;
-	}
-	uint64_t slide = (uint64_t)(uintptr_t)cache - 0x180000000ull;
-	const char **table = (const char **)(uintptr_t)(0x1d5b44a10ull + slide);
-	uint8_t *cases = (uint8_t *)(uintptr_t)(0x18855a1e4ull - 0x11 + slide);
-	if (table[0x13] == NULL || strcmp(table[0x13], "colorMatrix4x4Bias(s0)") != 0 || cases[0x13] != 0) {
-		sweet_drm_log("sweetgl: texture function fixes: unexpected QuartzCore, not installed");
-		return;
-	}
-	for (size_t i = 0; i < sizeof(sgl_texfns) / sizeof(sgl_texfns[0]); i++) {
-		uint8_t fn = sgl_texfns[i].fn, uniforms = sgl_texfns[i].uniforms;
-		if (table[fn] != NULL || cases[fn] != 0xde) {
-			sweet_drm_log("sweetgl: texture function %#x: unexpected (%p %#x), not installed", fn,
-			    (void *)table[fn], cases[fn]);
-			continue;
-		}
-		bool ok = sgl_write_const(&table[fn], &sgl_texfns[i].expr, sizeof(char *), VM_PROT_READ) &&
-		    (uniforms == 0xde || sgl_write_const(&cases[fn], &uniforms, 1, VM_PROT_READ | VM_PROT_EXECUTE));
-		sweet_drm_log("sweetgl: texture function %#x = %s: %s", fn, sgl_texfns[i].expr, ok ? "installed" : "FAILED");
-	}
+    int incoming=errno;intptr_t slide=0;uint8_t uuid[16];
+    const struct mach_header_64 *header=sgl_ca_image(&slide,uuid);
+    if(!header || memcmp(uuid,sweet_ca_uuid,16)){
+        sweet_drm_log("SWEET CA MATRIX INSTALL result=1 reason=unsupported_image exact_UUID=0 slots=0");errno=incoming;return;}
+    const char **table=(const void *)(uintptr_t)(SWEET_CA_TABLE+(uint64_t)slide);
+    uint8_t *cases=(void *)(uintptr_t)(SWEET_CA_CASES-0x11+(uint64_t)slide);
+    const void *prologue=(const void *)(uintptr_t)(SWEET_CA_SHADER+(uint64_t)slide);
+    const void *table_anchor=(const void *)(uintptr_t)(SWEET_CA_ANCHOR_TABLE+(uint64_t)slide);
+    const void *cases_anchor=(const void *)(uintptr_t)(SWEET_CA_ANCHOR_CASES+(uint64_t)slide);
+    bool ranges=sgl_ca_span(header,slide,"__DATA_CONST",table,90*sizeof(*table)) &&
+        sgl_ca_span(header,slide,"__TEXT",cases,90-0x11) &&
+        sgl_ca_span(header,slide,"__TEXT",prologue,sizeof(sweet_ca_prologue)) &&
+        sgl_ca_span(header,slide,"__TEXT",table_anchor,sizeof(sweet_ca_table_anchor)) &&
+        sgl_ca_span(header,slide,"__TEXT",cases_anchor,sizeof(sweet_ca_cases_anchor));
+    bool checked=ranges && table[0x13] && sgl_ca_span(header,slide,"__TEXT",table[0x13],sizeof(sweet_ca_identity_expression)) &&
+        sweet_ca_matrix_layout_matches(uuid,prologue,table_anchor,cases_anchor,table[0x13],cases[0x13],table[0x14],cases[0x14],table[0x2d],cases[0x2d]);
+    if(!checked){sweet_drm_log("SWEET CA MATRIX INSTALL result=1 reason=layout_mismatch exact_UUID=1 slots=0");errno=incoming;return;}
+    bool ok=true;for(size_t i=0;i<2;++i){uint8_t fn=sgl_texfns[i].fn,uniforms=sgl_texfns[i].uniforms;
+        if(!sgl_write_const(&table[fn],&sgl_texfns[i].expr,sizeof(char *),VM_PROT_READ) ||
+           !sgl_write_const(&cases[fn],&uniforms,1,VM_PROT_READ|VM_PROT_EXECUTE)){ok=false;break;}}
+    if(ok){for(size_t i=0;i<2;++i)ok=ok && table[sgl_texfns[i].fn]==sgl_texfns[i].expr && cases[sgl_texfns[i].fn]==0;}
+    bool rollback=true;if(!ok){const char *missing=NULL;uint8_t unused=0xde;
+        for(size_t i=0;i<2;++i){uint8_t fn=sgl_texfns[i].fn;
+            if(!sgl_write_const(&table[fn],&missing,sizeof(missing),VM_PROT_READ))rollback=false;
+            if(!sgl_write_const(&cases[fn],&unused,1,VM_PROT_READ|VM_PROT_EXECUTE))rollback=false;}}
+    __atomic_store_n(&sgl_ca_matrix_ready,ok,__ATOMIC_RELEASE);
+    sweet_drm_log("SWEET CA MATRIX INSTALL result=%u uuid=%s table=0x1d5b48a10 cases=0x18855e1e4 slots=%u original_empty_checked=1 code_anchors=2 rollback=%u",
+        ok?0:1,SWEET_CA_UUID_TEXT,ok?2:0,rollback);errno=incoming;
 }
 
 /* Called at load. CA picks its GLES renderer by itself once initWithAPI:3 succeeds. */

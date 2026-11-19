@@ -13,6 +13,11 @@ class BackgroundProbe(unittest.TestCase):
         lines += ['SWEET METAL PROBES END process=backboardd result=0 prerequisite=0 full_suite=1 background=1','SWEET LOOP ACK FASTBOOT token='+self.token]
         return '\n'.join(lines)
     def test_complete_order(self):self.assertEqual(verify(self.sample(),self.token)['probe_suites'],1)
+    def test_new_GLES_matrix_group_cannot_use_old_eight_group_completion(self):
+        text=self.sample()
+        with self.assertRaises(AssertionError):verify(text,self.token,gles_tests=9)
+        self.assertEqual(verify(text.replace('tests=8','tests=9'),self.token,gles_tests=9)['probe_suites'],1)
+        with self.assertRaises(AssertionError):verify(text.replace('tests=8','tests=9'),self.token)
     def test_bad_order_target_missing_or_failure_rejected(self):
         text=self.sample();ready='SWEET GLES SUITE END result=0 tests=8 state=2 original_tests=1'
         for bad in (text.replace(ready,'').replace('SWEET METAL PROBES END process=backboardd',ready+'\nSWEET METAL PROBES END process=backboardd'),

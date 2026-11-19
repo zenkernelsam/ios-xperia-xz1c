@@ -36,6 +36,8 @@ from postdraw_observer_evidence import inspect as inspect_postdraw
 from cif10_reference_evidence import inspect as inspect_cif10_reference
 from clear_cache_evidence import verify as verify_clear_cache
 from ir3_cache_evidence import verify as verify_ir3_cache
+from ca_matrix_evidence import verify as verify_ca_matrix
+from ram_library import load as load_ram
 
 def verify(directory,mode,kernel_sha=None,version=None):
     root=Path(directory)
@@ -91,10 +93,14 @@ def verify(directory,mode,kernel_sha=None,version=None):
                 assert 'sweetgl: '+item+' -> PASS' in scope,item
             assert 'SWEET SURF CALLER DIAG phase=' in scope
             pixels=verify_gpu_pixels(re.sub(r'\r?\n(?!SWEET|CRASH|Process|\||exec|IOK|MESA)', '', text),a['token'])
+            _,_,ram=load_ram(a['ram_package'],a['ram_library_binding'])
+            if ram['frontend_build_binding'].get('CA_matrix_revision'):
+                assert ram['frontend_build_binding']['CA_matrix_revision']==1 and ram['frontend_build_binding']['GLES_suite_tests']==9
+                pixels['CA_matrix']=verify_ca_matrix(text,a['token'])
             if a['version']>=727:
                 readonly=verify_readonly(re.sub(r'\r?\n(?!SWEET|CRASH|Process|\||exec|IOK|MESA)', '', text),a['token'])
             if 'exception_observer' in a:
-                if a['exception_observer']['target_process']=='backboardd':exceptions={'background_probe':verify_backboard_probe(text,a['token'])}
+                if a['exception_observer']['target_process']=='backboardd':exceptions={'background_probe':verify_backboard_probe(text,a['token'],gles_tests=ram['frontend_build_binding'].get('GLES_suite_tests',8))}
                 elif a['exception_observer'].get('registration_only') and 'SWEET EXCEPTION begin call=' not in scope:
                     assert 'SWEET EXCEPTION observer installed process=AegirPoster limit=16 original_chain=1' in scope
                     # An original application succeeding need not throw. Native

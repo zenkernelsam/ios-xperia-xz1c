@@ -1,6 +1,7 @@
 """Require the same-process real GLES pass before the complete background suite."""
 import re
-def verify(text,token):
+def verify(text,token,gles_tests=8):
+    assert type(gles_tests) is int and gles_tests in (8,9)
     scope=text[text.index('SWEET LOOP LIVE proto=1 token='+token):text.index('SWEET LOOP ACK FASTBOOT token='+token)]
     assert 'SWEET ENV: backboardd += DYLD_INSERT_LIBRARIES=/dev/sglram/m:/dev/sglram/e' in scope
     assert 'SWEET ENV: AegirPoster += DYLD_INSERT_LIBRARIES=/dev/sglram/e' not in scope
@@ -8,7 +9,7 @@ def verify(text,token):
     assert not re.search(r'SWEET (?:AIR (?:COMPUTE|RENDER|CONSTANTS|XR|NARROW|HALF)|METAL (?:RESOURCE|QUEUE|SURFACE|MIPS|MRT)) END result=[1-9]',scope)
     installed=list(re.finditer(r'SWEET EXCEPTION observer installed process=backboardd limit=16 original_chain=1',scope))
     scheduled=list(re.finditer(r'SWEET METAL PROBES scheduled process=backboardd constructor_waited=0 background=1',scope))
-    ready=list(re.finditer(r'SWEET GLES SUITE END result=0 tests=8 state=2 original_tests=1',scope))
+    ready=list(re.finditer(r'SWEET GLES SUITE END result=0 tests='+str(gles_tests)+r' state=2 original_tests=1',scope))
     begins=list(re.finditer(r'SWEET METAL PROBES begin process=backboardd GLES_state=2 full_suite=1 background=1',scope))
     ends=list(re.finditer(r'SWEET METAL PROBES END process=backboardd result=0 prerequisite=0 full_suite=1 background=1',scope))
     assert len(installed)==len(scheduled)==len(ready)==len(begins)==len(ends)==1,'Exactly one current-process suite required'

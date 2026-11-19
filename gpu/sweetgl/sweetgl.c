@@ -371,6 +371,7 @@ bool sweetgl_copy_context_selftest(void);
 bool sweetgl_bridge_state_selftest(void);
 bool sweetgl_program_lifecycle_selftest(void);
 bool sweetgl_readonly_selftest(void);
+bool sweetgl_ca_matrix_selftest(void);
 static _Atomic uint32_t selftest_status;
 uint32_t sweetgl_selftest_state(void){return atomic_load_explicit(&selftest_status,memory_order_acquire);}
 
@@ -386,7 +387,8 @@ selftest_thread(void *arg)
 	}
 	bool passed=sweetgl_selftest() && sweetgl_surface_selftest() && sweetgl_caller_selftest() && sweetgl_copy_refresh_selftest() &&
 		sweetgl_copy_context_selftest() && sweetgl_bridge_state_selftest() && sweetgl_program_lifecycle_selftest() && sweetgl_readonly_selftest();
-	sweet_drm_log("SWEET GLES SUITE END result=%u tests=8 state=%u original_tests=1",passed?0:1,passed?2:3);
+	if(passed)passed=sweetgl_ca_matrix_selftest();
+	sweet_drm_log("SWEET GLES SUITE END result=%u tests=9 state=%u original_tests=1",passed?0:1,passed?2:3);
 	atomic_store_explicit(&selftest_status,passed?2:3,memory_order_release);
 	return NULL;
 }

@@ -207,6 +207,9 @@ def load(folder,expected=None):
     assert sha(library)==m['library_sha256'] and len(library)==m['library_bytes'] and fnv(library)==m['library_fnv64']
     assert m['files']['libglapi.0.dylib']['sha256']==API and m['files']['georead.dylib']['sha256']==HELPER
     source=m['frontend_build_binding']['source_files']
+    if m['frontend_build_binding'].get('CA_matrix_revision'):
+        assert m['frontend_build_binding']['CA_matrix_revision']==1 and m['frontend_build_binding']['GLES_suite_tests']==9
+        assert all(path in source for path in ('ca_matrix_probe.c','CAMatrixProbeValues.h','CAMatrixShaders.h','QuartzCoreMatrixLayout.h'))
     for path,digest in source.items():
         path=Path(path);assert not path.is_absolute() and '..' not in path.parts
         assert re.fullmatch('[0-9a-f]{64}',digest)

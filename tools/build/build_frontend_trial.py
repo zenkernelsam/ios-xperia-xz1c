@@ -29,6 +29,11 @@ binding={'source_files':sources,'mesa_dependencies':dependencies,'mesa_base':loc
 binding['XR_clear_decode_elision']=True
 binding['Clear_shader_context_cache']=True
 binding['render_target_observation_revision']=1
+if 'QuartzCoreMatrixLayout.h' in sources:
+    binding['CA_matrix_revision']=1
+    binding['GLES_suite_tests']=9
+    binding['CA_matrix_original_empty_slots']=2
+    binding['actual_CA_matrix_GPU_acceptance_pending']=True
 binding['mesa_build_directory']=build.relative_to(root).as_posix()
 if (build/'ir3-variant-cache-inputs.json').exists():
     inputs=json.loads((build/'ir3-variant-cache-inputs.json').read_bytes())
