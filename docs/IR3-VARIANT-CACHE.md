@@ -1,5 +1,7 @@
 # 固定Freedreno IR3硬件变体缓存
 
+2026-11-19现行GLES为CA矩阵d6d8fcfa，IR3/Mesa原源码和归档保持但build-ID变化；它已自身GLES原8＋CA1组／完整native16与PNG6组重新通过，proof token46747c46。当前锁屏时间日期／上滑主页有完整scanout证据，壁纸黑／原Aegir无pipeline请求的STOP保持，详见 [CA-MATRIX](CA-MATRIX.md) 和STATUS。下方166c08a3／87397739等是原适用库的保留比较，不能准入当前库。
+
 原v730/GLES9d065b69的15线程采样已定位Clear的`glDrawArrays`等待初始IR3编译队列。Mesa标准program binary保存的NIR与此前后台预热可以减少glLink开销，但仍可能在原进程重新创建硬件变体。本实现继续使用固定Mesa24.3.4/769e5146的IR3布局和原编译器，不降低精度或延长check-in。
 
 增量`gpu/mesa-ir3-variant-cache.patch`只接入原`ir3_disk_cache_init_shader_key/retrieve/store`并在shader对象中保存原NIR/options key；`gpu/mesa/IR3VariantCache.h`使用原固定suffix、bin、const_state与immediates布局，draw与binning两份成组保存。存储前清除assembler临时指针和不再使用的NIR指针，恢复后重新绑定本进程对象；未界定的global UBO路径保留冷编译。恢复先在独立ralloc临时域核验尺寸、数目、原options/streamout及整个payload消费，全部完成后发布，两份中任何失败不修改原对象。

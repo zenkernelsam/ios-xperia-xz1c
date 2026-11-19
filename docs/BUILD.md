@@ -1,16 +1,21 @@
 # 固定源码与构建
 
-2026-11-19当前入口为v730/f258dee9、GLES166c08a3及Metal5e94ab57／source-map7b5a083a；新GLES及完整native16已独立实机准入，构建命令与实际request配对见[IR3-VARIANT-CACHE](IR3-VARIANT-CACHE.md)。该库必须追加`--clear-cache-probe --ir3-cache-probe`取得自己的16组proof，旧15组或不同source-map不能准入。电脑端截图打包支持`--screen-evidence --screen-after 150`，只改变单次捕获时间，不重编kernel/GLES或延长原check-in。GPU／库实机和完整UI的边界以STATUS为准；下方旧版本构建记录保留其原适用范围。
+当前正式基线为v730/f258dee9、CA矩阵GLESd6d8fcfa、Metal5e94ab57／source-map7b5a083a。它已通过自己的RAM CPU、GLES原8组＋矩阵第9组、完整native16／六组共享PNG及原RAMCPU；锁屏文字／主页扫描帧有实机改善，黑壁纸／稳定UI／FPS／其它外设仍继续。实际输入／结果见 [STATUS](STATUS.md)、[CA-MATRIX](CA-MATRIX.md) 和reproducibility，不用下方旧14／15组专题证明准入当前库。
 
-完整无损串口截图的新 v730 诊断增量、主机检查与独立实机准入见 [SCANOUT-SCREENSHOT](SCANOUT-SCREENSHOT.md)。它只扩展显示观察；既有 GPU、源码冻结及同 kernel 各阶段的验证继续保持，实际状态以 STATUS 为准。
+当前CA矩阵前端沿用已审计的IR3 Mesa归档，仅重编用户态，全部新目录必须不存在：
 
-固定基线另保留三个源文件的精确行尾物化规则，见 `baseline-source-newlines.json`；`prepare_sources.py` 自动应用，与已验内核的源 SHA 一致。代码文本保持相同。`verify_diagnostic_reconstruction.py --version 730` 在新的 TEMP checkout 中从 Apple 固定提交重新应用完整补丁及 v725..v730 增量；旧／浅缓存缺少固定 base 时只向该 TEMP checkout 拉取。原构建树保持，报告不代表新的二进制或设备已通过。
+```sh
+python3 -B tools/build/build_frontend_trial.py --mesa-build build/mesa-ir3-cache-r1 --output build/my-ca-matrix/frontend
+python3 -B tools/build/package_glram.py --frontend build/my-ca-matrix/frontend --output build/my-ca-matrix/gles-ram
+```
 
-当前实机入口为v729、XR Clear优化GLES72d39da5和Metal half-selection-r1/5e94ab57，完整14组raw proof见STATUS与XR-CLEAR。下方各版本的构建/失败记录保留其原适用范围；不能以旧版本proof准入当前新库。仅observer诊断变更的最新构建、同库CPU准入和原PNG时耗观察见[POSTDRAW-OBSERVATION](POSTDRAW-OBSERVATION.md)，不重编或改动已验kernel/GLES/Metal。
+从零重建当前Mesa／IR3归档使用 [IR3-VARIANT-CACHE](IR3-VARIANT-CACHE.md) 的 `build_gles.py --mesa-build ... --frontend-output ... --ir3-cache`，固定Mesa base／完整patch／独立variant增量与实际source/header锁均核验。SDK／时间可改变产物UUID／SHA，新二进制必须重新实机准入。既有kernel／allocator／SCM／PON／RPC／VM／GPU底层不因CA适配重编。
 
-2026-11-19最新实际入口为v730/f258dee9、原阶段观察GLESa7bad22c及Metal5e94ab57，已完整14组／六组共享PNG和原RAMCPU准入；原UI仍REVISE。该新GLES的真实scope预热与阶段观察见[RENDER-STAGES](RENDER-STAGES.md)。上段旧v729／72d39da5是保留的比较入口，不能准入新库。`validate_current.py`现在同时核对v730补丁及新增截图／行尾物化工具锁；`render_stage_evidence.py`从单轮原raw验证阶段和保存截图，不开启串口。
+完整native后台observer当前必须给全basic／render／constants／narrow／half／MRT／sampler／static-half fixture和`--clear-cache-probe --ir3-cache-probe`，共享PNG再`--cif10-png-reference`；正式命令见 [CA-MATRIX](CA-MATRIX.md)。自身CPU→精确GLES→完整native16／PNG→native_prerequisite／png_encoder_prerequisite生成新proof→原Aegir short observer自身CPU→原GPU，严格顺序保持。
 
-当前更新为GLES9d065b69的Clear context复用／原附件分段，已完整native15、共享PNG及原RAMCPU准入，原Clear仍超时；见[CLEAR-CACHE](CLEAR-CACHE.md)。后台必须追加`--clear-cache-probe`，新native-proof包含Clear_cache，不准入旧14组。原sampler只在该已验RAM包用`package_trial.py --thread-sample --screen-evidence`，绑定数字1拼写与单一现有sample通道，所有同kernel／GLES／CPU／native15／PNG准入保持。`symbolicate_render_threads.py`以精确GLES和原两个callsite符号化全部worker，不改raw／判定或开启COM。
+v730完整扫描帧reader及主机／83源重建见 [SCANOUT-SCREENSHOT](SCANOUT-SCREENSHOT.md)。GPU包可`--screen-evidence --screen-after 150`，单帧150秒；`--swipe-once`为本LIVE／F12后120秒一次原上滑、150秒截帧；`--idle-sample`单独观察原metallib返回后180秒线程栈。它们只改变电脑端有界观察，不改kernel／原check-in／回程；当前包只在独立新bundle发一次。
+
+旧BUILD内容的各版本精确复现及失败记录在 [archive/20261119](archive/20261119/BUILD-before-ca-matrix-actual.md) 与各专题。下方公共构建手册继续保留，其历史库／组数只适用于该版本，不能提升当前库为已验。
 
 reproducibility/source-lock.json锁定Apple XNU xnu-8796.141.3/f625db25f47631424dc62ac1c3414b6e530f7e8a、darwin-xnu-build基础663906528d1cd5ea8fde7de6f16de73db9511549、Mesa769e51468b49b2a42f0a0eaf71cf9eed5ff4e5de/24.3.4及全部修补。source-reconstruction.json记录逐源重建核验。
 

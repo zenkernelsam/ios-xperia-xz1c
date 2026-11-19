@@ -1,0 +1,128 @@
+{
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-ca-matrix-r1-original-swipe-gpu-r3-20261119",
+  "token": "881ce1c5d844e7ba",
+  "version": 730,
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "image_sha256": "7497a3b7bec40c4db3364ed2b22cbe8c3e02694c76f8d584c402287ed22be68b",
+  "original_result": "STOP",
+  "original_reason": "OBSERVATION_INCOMPLETE",
+  "original_results_sha256": "12ef8b50839409687d67afdf40d784b554abee603d3a0c2952b649abf1307d5e",
+  "raw_sha256": "53baff35493de5b6bcb0ce817ed3226d6f095449d94d8d4240a639eef18c6163",
+  "raw_bytes": 3096579,
+  "scheduled_capture_after_seconds": 150,
+  "captured_at_observation_point": true,
+  "actual_observation_elapsed_seconds": 150.03099999995902,
+  "original_recorded_goal_patterns_not_observed": [
+    "SWEET METAL PIPELINE END call=1 returned_nil=[01] error_pointer=[01] error_code=-?[0-9]+ original_return=1"
+  ],
+  "stage_decision_not_promoted": true,
+  "single_frame_and_return_command_verified": true,
+  "synthetic_swipe_command_observed": true,
+  "screenshot_verified_independently_of_trial_result": true,
+  "screen": {
+    "protocol": 1,
+    "frames": [
+      {
+        "id": 1,
+        "token": "881ce1c5d844e7ba",
+        "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+        "image_sha256": "7497a3b7bec40c4db3364ed2b22cbe8c3e02694c76f8d584c402287ed22be68b",
+        "binding": {
+          "protocol": 1,
+          "width": 720,
+          "height": 1280,
+          "stride": 2160,
+          "format": "BGR888",
+          "codec": "PRLE1",
+          "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+          "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+          "runtime_source_sha256": "a1f41eeb87b7cf70ea751884ee38d758191f3cc0a00d697acc363fbba3cd5f63"
+        },
+        "begin": {
+          "token": "881ce1c5d844e7ba",
+          "id": "1",
+          "width": "720",
+          "height": "1280",
+          "stride": "2160",
+          "format": "BGR888",
+          "bytes": "2764800",
+          "codec": "PRLE1",
+          "encoded": "925068",
+          "raw_fnv": "98f2025d52dd2392",
+          "enc_crc": "3ddd8294",
+          "vsync": "7227",
+          "timestamp": "19704785153",
+          "copy_ticks": "8266503",
+          "power_off": "0",
+          "source_checked": "1",
+          "source_match": "1"
+        },
+        "scan": {
+          "token": "881ce1c5d844e7ba",
+          "id": "1",
+          "pa": "0x9d400000",
+          "map_pa": "0x9d400000",
+          "map_bytes": "2764800",
+          "size": "0x50002d0",
+          "img": "0x50002d0",
+          "xy": "0",
+          "out": "0x50002d0",
+          "outxy": "0",
+          "fmt": "0x2243f",
+          "unpack": "0x20001",
+          "op": "0x80000000",
+          "qop": "0",
+          "ctl": "0x20020",
+          "start": "0",
+          "before_after": "1"
+        },
+        "blocks": 7228,
+        "raw_file": "scanout-00000001.bgr",
+        "png_file": "scanout-00000001.png",
+        "raw_sha256": "1b6b844949bc1496f86f1b321d42c4a1ed7fe430bcc7720a279369744963cea7",
+        "png_sha256": "19fb266d1d4637945eb4ecbae123f40d0fafa13f24f1eb95b8313f5468a1ea30",
+        "pixel_values_preserved": true,
+        "verified": true,
+        "optical_panel_verified": false
+      }
+    ],
+    "verified": true,
+    "optical_panel_verified": false,
+    "current_boot_source_and_payload_checked": true,
+    "format": "BGR888",
+    "width": 720,
+    "height": 1280
+  },
+  "payload_audit": {
+    "image_sha256": "7497a3b7bec40c4db3364ed2b22cbe8c3e02694c76f8d584c402287ed22be68b",
+    "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+    "blob_count": 8,
+    "complete_payload_reconstructed_from_compiled_kernel": true
+  },
+  "strict_return": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "881ce1c5d844e7ba",
+    "checkpoint_bytes": 3085786,
+    "log_bytes": 3096579,
+    "log_sha256": "53baff35493de5b6bcb0ce817ed3226d6f095449d94d8d4240a639eef18c6163",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      105,
+      147,
+      149
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 39.688000000081956,
+  "optical_panel_backlight_UI_FPS_not_inferred": true,
+  "evidence_tools": {
+    "tools/device/scanout_trial_evidence.py": "bec2ec52d0c29cff0fd1b2267bb547aa17260f851193436c10f7dd6d38357c8b",
+    "tools/device/scanout_snapshot.py": "0a30b84e983a33a880c726a6ff90cc3ca105250326e292345aa58dfd70e512d2",
+    "tools/device/controller.py": "dff96982b5579a1f3cd0ab0b75dc894eb6f4c34b8e835f1e8b65ae3b2d7c804a",
+    "tools/device/return_evidence.py": "5142d3a90e89f64f796f2ce70227b28703afbca5be582ef25b6d638b09ae7e8d",
+    "tools/device/package_trial.py": "8c6e998820ed6237ac4cf3ae685ceb5283a8fe431fcf151a7c50a911c0d756c6",
+    "tools/diagnostic_candidate.py": "b53e89fdc0bf66a0b38bb4a4c7499ac2222e2704af83cebbd2ae0472a83783b3"
+  }
+}

@@ -248,7 +248,11 @@
         45
       ],
       "GLES_suite_tests": 9,
-      "runtime_acceptance_pending": true
+      "runtime_acceptance_pending": false,
+      "actual_GLES_token": "4946e854d77fe213",
+      "actual_native16_token": "46747c46785bf85c",
+      "actual_max_matrix_difference_LSB": 0,
+      "complete_UI_wallpaper_FPS_pending": true
     }
   },
   "audited_xnu_files": {

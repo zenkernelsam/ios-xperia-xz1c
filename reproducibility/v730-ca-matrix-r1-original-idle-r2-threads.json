@@ -1,0 +1,378 @@
+{
+  "token": "206fb7688e2dacf9",
+  "raw_sha256": "0c8e29dda59d2c66ab68c9825154d6ed3278a5f0c6d3a1247858b47d1fefb047",
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "GLES_sha256": "d6d8fcfa27bcac84ab5edb3d2a11c1ed23374e8b491a3e8de093a9a2a819ac2b",
+  "actual_slide": "0x31644000",
+  "actual_main_header": "0x100dbc000",
+  "sampled_pid": 297,
+  "sample_after_library_return_at_observation_seconds": 180.04699999978766,
+  "command_count": 1,
+  "periodic_previous_samples_are_separate": true,
+  "sample_is_after_unique_serial_sample_queued": true,
+  "thread_count": 9,
+  "threads": [
+    {
+      "index": 0,
+      "frames": [
+        {
+          "actual_pc": "0x1f3c55030",
+          "unslid_pc": "0x1c2611030",
+          "symbol_address": "0x1c2611028",
+          "symbol_offset": "0x8",
+          "symbol": "_mach_msg2_trap"
+        },
+        {
+          "actual_pc": "0x1f3c66b18",
+          "unslid_pc": "0x1c2622b18",
+          "symbol_address": "0x1c2622acc",
+          "symbol_offset": "0x4c",
+          "symbol": "_mach_msg2_internal"
+        },
+        {
+          "actual_pc": "0x1f3c66db8",
+          "unslid_pc": "0x1c2622db8",
+          "symbol_address": "0x1c2622bd4",
+          "symbol_offset": "0x1e4",
+          "symbol": "_mach_msg_overwrite"
+        },
+        {
+          "actual_pc": "0x1f3c55524",
+          "unslid_pc": "0x1c2611524",
+          "symbol_address": "0x1c2611510",
+          "symbol_offset": "0x14",
+          "symbol": "_mach_msg"
+        },
+        {
+          "actual_pc": "0x1b84a0148",
+          "unslid_pc": "0x186e5c148",
+          "symbol_address": "0x186e5c0ac",
+          "symbol_offset": "0x9c",
+          "symbol": "___CFRunLoopServiceMachPort"
+        },
+        {
+          "actual_pc": "0x1b84a12e0",
+          "unslid_pc": "0x186e5d2e0",
+          "symbol_address": "0x186e5ce28",
+          "symbol_offset": "0x4b8",
+          "symbol": "___CFRunLoopRun"
+        },
+        {
+          "actual_pc": "0x1b84a5d20",
+          "unslid_pc": "0x186e61d20",
+          "symbol_address": "0x186e61ad8",
+          "symbol_offset": "0x248",
+          "symbol": "_CFRunLoopRunSpecific"
+        },
+        {
+          "actual_pc": "0x1f0579998",
+          "unslid_pc": "0x1bef35998",
+          "symbol_address": "0x1bef358f8",
+          "symbol_offset": "0xa0",
+          "symbol": "_GSEventRunModal"
+        },
+        {
+          "actual_pc": "0x1ba73834c",
+          "unslid_pc": "0x1890f434c",
+          "symbol_address": "0x1890f3fe8",
+          "symbol_offset": "0x364",
+          "symbol": "-[UIApplication _run]"
+        },
+        {
+          "actual_pc": "0x1ba737fc4",
+          "unslid_pc": "0x1890f3fc4",
+          "symbol_address": "0x1890f3e8c",
+          "symbol_offset": "0x138",
+          "symbol": "_UIApplicationMain"
+        },
+        {
+          "actual_pc": "0x2190892c8",
+          "unslid_pc": "0x1e7a452c8",
+          "symbol_address": "0x1e7a451ac",
+          "symbol_offset": "0x11c",
+          "symbol": "-[_EXRunningUISceneExtension startWithArguments:count:]"
+        },
+        {
+          "actual_pc": "0x1c4d71c80",
+          "unslid_pc": "0x19372dc80",
+          "symbol_address": "0x19372dba8",
+          "symbol_offset": "0xd8",
+          "symbol": "_EXExtensionMain"
+        },
+        {
+          "actual_pc": "0x1b2878618",
+          "unslid_pc": "0x181234618",
+          "symbol_address": "0x181234568",
+          "symbol_offset": "0xb0",
+          "symbol": "_NSExtensionMain"
+        },
+        {
+          "actual_pc": "0x1d5c68344",
+          "unslid_pc": "0x1a4624344",
+          "symbol_address": "0x1a4623c00",
+          "symbol_offset": "0x744",
+          "symbol": "start"
+        },
+        {
+          "local_pc": "0x0"
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "frames": [
+        {
+          "actual_pc": "0x1f3c554f0",
+          "unslid_pc": "0x1c26114f0",
+          "symbol_address": "0x1c26114e8",
+          "symbol_offset": "0x8",
+          "symbol": "___workq_kernreturn"
+        },
+        {
+          "actual_pc": "0x2031dec1c",
+          "unslid_pc": "0x1d1b9ac1c",
+          "symbol_address": "0x1d1b9aab4",
+          "symbol_offset": "0x168",
+          "symbol": "__pthread_wqthread"
+        },
+        {
+          "actual_pc": "0x2031de720",
+          "unslid_pc": "0x1d1b9a720",
+          "symbol_address": "0x1d1b9a718",
+          "symbol_offset": "0x8",
+          "symbol": "_start_wqthread"
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "frames": [
+        {
+          "actual_pc": "0x1f3c5587c",
+          "unslid_pc": "0x1c261187c",
+          "symbol_address": "0x1c2611874",
+          "symbol_offset": "0x8",
+          "symbol": "___psynch_cvwait"
+        },
+        {
+          "actual_pc": "0x2031e69ac",
+          "unslid_pc": "0x1d1ba29ac",
+          "symbol_address": "0x1d1ba24d8",
+          "symbol_offset": "0x4d4",
+          "symbol": "__pthread_cond_wait$VARIANT$mp"
+        },
+        {
+          "local_pc": "0x10250b2bc"
+        },
+        {
+          "local_pc": "0x1024dfc50"
+        },
+        {
+          "local_pc": "0x10250b45c"
+        },
+        {
+          "actual_pc": "0x2031e00ec",
+          "unslid_pc": "0x1d1b9c0ec",
+          "symbol_address": "0x1d1b9c078",
+          "symbol_offset": "0x74",
+          "symbol": "__pthread_start"
+        },
+        {
+          "actual_pc": "0x2031de72c",
+          "unslid_pc": "0x1d1b9a72c",
+          "symbol_address": "0x1d1b9a724",
+          "symbol_offset": "0x8",
+          "symbol": "_thread_start"
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "frames": [
+        {
+          "actual_pc": "0x2031de718",
+          "unslid_pc": "0x1d1b9a718",
+          "symbol_address": "0x1d1b9a718",
+          "symbol_offset": "0x0",
+          "symbol": "_start_wqthread"
+        },
+        {
+          "local_pc": "0x0"
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "frames": [
+        {
+          "actual_pc": "0x2031de718",
+          "unslid_pc": "0x1d1b9a718",
+          "symbol_address": "0x1d1b9a718",
+          "symbol_offset": "0x0",
+          "symbol": "_start_wqthread"
+        },
+        {
+          "local_pc": "0x0"
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "frames": [
+        {
+          "actual_pc": "0x1f3c554f0",
+          "unslid_pc": "0x1c26114f0",
+          "symbol_address": "0x1c26114e8",
+          "symbol_offset": "0x8",
+          "symbol": "___workq_kernreturn"
+        },
+        {
+          "actual_pc": "0x2031dec1c",
+          "unslid_pc": "0x1d1b9ac1c",
+          "symbol_address": "0x1d1b9aab4",
+          "symbol_offset": "0x168",
+          "symbol": "__pthread_wqthread"
+        },
+        {
+          "actual_pc": "0x2031de720",
+          "unslid_pc": "0x1d1b9a720",
+          "symbol_address": "0x1d1b9a718",
+          "symbol_offset": "0x8",
+          "symbol": "_start_wqthread"
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "frames": [
+        {
+          "actual_pc": "0x1f3c55030",
+          "unslid_pc": "0x1c2611030",
+          "symbol_address": "0x1c2611028",
+          "symbol_offset": "0x8",
+          "symbol": "_mach_msg2_trap"
+        },
+        {
+          "actual_pc": "0x1f3c66b18",
+          "unslid_pc": "0x1c2622b18",
+          "symbol_address": "0x1c2622acc",
+          "symbol_offset": "0x4c",
+          "symbol": "_mach_msg2_internal"
+        },
+        {
+          "actual_pc": "0x1f3c66db8",
+          "unslid_pc": "0x1c2622db8",
+          "symbol_address": "0x1c2622bd4",
+          "symbol_offset": "0x1e4",
+          "symbol": "_mach_msg_overwrite"
+        },
+        {
+          "actual_pc": "0x1f3c55524",
+          "unslid_pc": "0x1c2611524",
+          "symbol_address": "0x1c2611510",
+          "symbol_offset": "0x14",
+          "symbol": "_mach_msg"
+        },
+        {
+          "actual_pc": "0x1b84a0148",
+          "unslid_pc": "0x186e5c148",
+          "symbol_address": "0x186e5c0ac",
+          "symbol_offset": "0x9c",
+          "symbol": "___CFRunLoopServiceMachPort"
+        },
+        {
+          "actual_pc": "0x1b84a12e0",
+          "unslid_pc": "0x186e5d2e0",
+          "symbol_address": "0x186e5ce28",
+          "symbol_offset": "0x4b8",
+          "symbol": "___CFRunLoopRun"
+        },
+        {
+          "actual_pc": "0x1b84a5d20",
+          "unslid_pc": "0x186e61d20",
+          "symbol_address": "0x186e61ad8",
+          "symbol_offset": "0x248",
+          "symbol": "_CFRunLoopRunSpecific"
+        },
+        {
+          "actual_pc": "0x1b27f4ef8",
+          "unslid_pc": "0x1811b0ef8",
+          "symbol_address": "0x1811b0e28",
+          "symbol_offset": "0xd0",
+          "symbol": "-[NSRunLoop(NSRunLoop) runMode:beforeDate:]"
+        },
+        {
+          "actual_pc": "0x1b27f4df4",
+          "unslid_pc": "0x1811b0df4",
+          "symbol_address": "0x1811b0db8",
+          "symbol_offset": "0x3c",
+          "symbol": "-[NSRunLoop(NSRunLoop) runUntilDate:]"
+        },
+        {
+          "actual_pc": "0x1ba85a818",
+          "unslid_pc": "0x189216818",
+          "symbol_address": "0x189216684",
+          "symbol_offset": "0x194",
+          "symbol": "-[UIEventFetcher threadMain]"
+        },
+        {
+          "actual_pc": "0x1b280ca5c",
+          "unslid_pc": "0x1811c8a5c",
+          "symbol_address": "0x1811c879c",
+          "symbol_offset": "0x2c0",
+          "symbol": "___NSThread__start__"
+        },
+        {
+          "actual_pc": "0x2031e00ec",
+          "unslid_pc": "0x1d1b9c0ec",
+          "symbol_address": "0x1d1b9c078",
+          "symbol_offset": "0x74",
+          "symbol": "__pthread_start"
+        },
+        {
+          "actual_pc": "0x2031de72c",
+          "unslid_pc": "0x1d1b9a72c",
+          "symbol_address": "0x1d1b9a724",
+          "symbol_offset": "0x8",
+          "symbol": "_thread_start"
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "frames": [
+        {
+          "actual_pc": "0x2031de718",
+          "unslid_pc": "0x1d1b9a718",
+          "symbol_address": "0x1d1b9a718",
+          "symbol_offset": "0x0",
+          "symbol": "_start_wqthread"
+        },
+        {
+          "local_pc": "0x0"
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "frames": [
+        {
+          "local_pc": "0x0"
+        },
+        {
+          "local_pc": "0x0"
+        }
+      ]
+    }
+  ],
+  "exact_symbol_map_sha256": "5bf04681af1819e2379319942a97be635100d6ca3844c5a22e372ce78a83b83d",
+  "main_thread_in_original_UIKit_event_runloop_observed": true,
+  "active_GPU_compile_or_draw_not_present_in_these_samples": true,
+  "entire_boot_latency_or_global_GPU_health_not_inferred": true,
+  "post_ACK_records_excluded": true,
+  "original_result": "STOP",
+  "original_reason": "OBSERVATION_INCOMPLETE",
+  "complete_return_seconds": 38.859999999869615,
+  "single_samples_do_not_establish_causal_root": true,
+  "device_operations": 0
+}

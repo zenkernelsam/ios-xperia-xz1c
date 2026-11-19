@@ -1,5 +1,7 @@
 # 串口显示帧截图
 
+2026-11-19现行CA矩阵GLESd6d8fcfa／v730已通过自身GLES9组／完整native16／PNG6组；cb9a39f8及206fb768两张150秒图恢复灰色锁屏时间日期，881ce1c5在120秒单串口上滑后150秒读到完整正常颜色主页。最后帧2764800B→925068B／7228块，传输30.311秒／PNG301942B，power_off0；所有来源和像素校验通过，壁纸仍黑且原Aegir无pipeline，controller STOP保持。详见 [CA-MATRIX](CA-MATRIX.md)、STATUS和对应v730-ca-matrix-r1证据，下面r6缺字为旧库比较。
+
 v730 增加完整、无损的显示帧读取。现有 USB CDC `frame` 命令在 `sfscreen=1` 时只排队，显示 workloop 在完成本次呈现后复制扫描缓冲区，独立线程压缩并分块发送。v729 的 `frame` 仍只有 ASCII／缩略图，不能当作完整截图。
 
 当前支持的来源是已经验证的 lilac VIG0：720×1280、RGB888（内存 BGR 顺序）、stride 2160、单管线、不裁剪、不使用 QSEED3。读取地址必须同时匹配实际 MDP 寄存器和现有 panel memory descriptor；原四字节 IOSurface、逻辑 750×1624 canvas 或旧 shadow 不作为该截图来源。其它扫描契约明确拒绝，不能用重采样猜测面板输出。
@@ -48,6 +50,8 @@ python -B tools/device/scanout_trial_evidence.py --directory "$env:TEMP\lilac-v7
 ```
 
 该实际r6 token4dd119fa在150.047秒捕获了完整锁屏缓冲区：2764800B→325269B、2542块、10.862秒，power_off=0。33600B PNG的SHA256为`f91e2ff89351927915c45c608cb1b55e9c2702fe79113a4f9601ea2d80e0079f`。来源／寄存器／整帧校验及保存像素均通过；绿色电池、相机、白色homebar清晰，背景仍黑，时间／日期／壁纸缺失。原GPU登记窗口为STOP／OBSERVATION_INCOMPLETE（未见pipeline请求），保留原STOP，38.172秒完整回程／健康／worker退出。该帧只证明真实扫描缓冲区内容，power_off=0也不是LCD背光实测。
+
+新`--swipe-once`只在本LIVE／F12就绪后120秒一次既有touch线程上滑、150秒单frame，与采样独立；raw必须有一次request与一次注入，command／events／回程都核验，合成手势不当物理触控。`--idle-sample`本原library返回后180秒单sample，原周期样本单列；独立scanout工具允许精确绑定的这些额外命令，缺／错／重发仍拒绝。两者不改变原kernel／GLES／期限或覆盖旧试验结果。
 
 这类截图证明当前显示缓冲区内的 UI、文字、图标及颜色数值，可以替代 UI 内容观察所需的相机。它不会直接测到 LCD 光学色偏、DSI 是否真正送出该帧、背光或玻璃上的行错位；这些项目仍需相机或用户观察，`optical_panel_verified` 始终单列。完整 UI/FPS、睡眠和其它外设的原目标保持。
 

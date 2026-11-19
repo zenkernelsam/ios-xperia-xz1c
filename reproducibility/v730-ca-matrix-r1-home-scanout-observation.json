@@ -1,0 +1,32 @@
+{
+  "token": "881ce1c5d844e7ba",
+  "image_sha256": "7497a3b7bec40c4db3364ed2b22cbe8c3e02694c76f8d584c402287ed22be68b",
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "GLES_sha256": "d6d8fcfa27bcac84ab5edb3d2a11c1ed23374e8b491a3e8de093a9a2a819ac2b",
+  "raw_sha256": "53baff35493de5b6bcb0ce817ed3226d6f095449d94d8d4240a639eef18c6163",
+  "original_results_sha256": "12ef8b50839409687d67afdf40d784b554abee603d3a0c2952b649abf1307d5e",
+  "png_sha256": "19fb266d1d4637945eb4ecbae123f40d0fafa13f24f1eb95b8313f5468a1ea30",
+  "png_bytes": 301942,
+  "width": 720,
+  "height": 1280,
+  "source_stride": 2160,
+  "scanout_frame_power_off_request": "0",
+  "swipe_dispatches": 1,
+  "observed_touch_thread_injections": 1,
+  "synthetic_input_is_not_physical_touch_acceptance": true,
+  "visually_observed_home": {
+    "status_time_and_green_battery": true,
+    "weather_and_calendar_widgets": true,
+    "app_icons_and_text": true,
+    "four_app_dock_and_search": true,
+    "normal_multi_colour_icons_and_white_calendar": true,
+    "background_black_wallpaper_incomplete": true
+  },
+  "original_pipeline_requests_in_current_scope": 0,
+  "original_GPU_controller_result": "STOP",
+  "original_reason": "OBSERVATION_INCOMPLETE",
+  "stage_not_promoted_by_home_image": true,
+  "return_seconds_with_health": 39.688000000081956,
+  "optical_panel_sleep_FPS_and_peripherals_pending": true,
+  "private_image_retained_in_TEMP_not_Git": true
+}

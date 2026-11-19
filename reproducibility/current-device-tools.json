@@ -347,5 +347,10 @@
     "requires_F12_and_LIVE": true,
     "commands_max": 1,
     "scanout_and_complete_return_unchanged": true
-  }
+  },
+  "CA_matrix_exact_GLES_native_runtime_proof": "reproducibility/v730-ca-matrix-r1-native-proof.json",
+  "CA_matrix_GLI_six_phase_bytes_guard_actual_passed": true,
+  "CA_matrix_early_and_sample_lockscreens_clock_date_visible": true,
+  "CA_matrix_original_home_scanout_after_one_synthetic_swipe": true,
+  "CA_matrix_wallpaper_FPS_sleep_and_other_peripherals_pending": true
 }

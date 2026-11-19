@@ -1,0 +1,45 @@
+{
+  "region_comparison": [
+    {
+      "label": "old",
+      "token": "4dd119fa71b2420b",
+      "png_sha256": "f91e2ff89351927915c45c608cb1b55e9c2702fe79113a4f9601ea2d80e0079f",
+      "screen_power_off_request": "0",
+      "clock_region": [
+        64,
+        110,
+        650,
+        334
+      ],
+      "region_neutral_80_to_220_pixel_count": 0,
+      "region_bright_pixel_count": 0,
+      "region_red_pixel_count": 0,
+      "screenshot_current_source_verified": true
+    },
+    {
+      "label": "matrix",
+      "token": "cb9a39f8708f1faf",
+      "png_sha256": "60bd7b70dfd464ec0ae7a31080ec05993855a8f91c2afa8fd567c9adc7b29ed2",
+      "screen_power_off_request": "0",
+      "clock_region": [
+        64,
+        110,
+        650,
+        334
+      ],
+      "region_neutral_80_to_220_pixel_count": 16403,
+      "region_bright_pixel_count": 17018,
+      "region_red_pixel_count": 0,
+      "screenshot_current_source_verified": true
+    }
+  ],
+  "image_inspected": {
+    "old": "clock/date absent; battery/camera/homebar present",
+    "matrix": "date Thursday November19 and time1:14 visible in neutral grey; battery/camera/homebar present; wallpaper black"
+  },
+  "observed_change_is_scanout_content_only": true,
+  "clock_absolute_accuracy_or_FPS_optical_not_verified": true,
+  "original_GPU_trial_result_STOP_retained": true,
+  "one_sample_not_general_completeness": true,
+  "no_output_images_in_Git": true
+}

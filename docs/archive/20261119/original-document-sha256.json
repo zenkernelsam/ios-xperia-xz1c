@@ -30,5 +30,31 @@
       "bytes": 13628,
       "sha256": "7a601403dd3662e3bdf5a4cb2d9a6205326437865ca35a06ffbb180c02c04e99"
     }
+  },
+  "before_CA_matrix_actual": {
+    "source_commit": "d015694",
+    "working_copy_bytes_preserved": true,
+    "files": {
+      "AGENTS-before-ca-matrix-actual.md": {
+        "bytes": 12360,
+        "sha256": "182db182a03c3bea6727648d36ae301392127cec4ee471fa8c729e9306bcffc1"
+      },
+      "BUILD-before-ca-matrix-actual.md": {
+        "bytes": 12190,
+        "sha256": "7e66a537b57493c2df58739c8a92e4f2aaf82e73ca4b6c36cff200934218635d"
+      },
+      "OPERATIONS-before-ca-matrix-actual.md": {
+        "bytes": 4569,
+        "sha256": "1956a0ce97f87b84e6219ccd773f7a34b1e56236aadd88eee247a5af73cd026a"
+      },
+      "README-before-ca-matrix-actual.md": {
+        "bytes": 7028,
+        "sha256": "36b1ce67c1fa598d477e8ce18c17ffe8ec4777b6aa9b779200266d5bfacee40f"
+      },
+      "STATUS-before-ca-matrix-actual.md": {
+        "bytes": 17268,
+        "sha256": "2b00a9f0441dce685b1602a7acbbfc34a05615c721ae4df32226b4e2f499676b"
+      }
+    }
   }
 }
