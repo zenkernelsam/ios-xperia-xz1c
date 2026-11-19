@@ -1,0 +1,317 @@
+{
+  "token": "e662710b1d6a0bb4",
+  "process_installations": [
+    {
+      "process": "AegirPoster",
+      "session": 1,
+      "pid": 323,
+      "last_call": 1
+    }
+  ],
+  "observed_requests": 1,
+  "complete_draws": 0,
+  "incomplete_draws": 1,
+  "records": [
+    {
+      "process": "AegirPoster",
+      "session": 1,
+      "pid": 323,
+      "call": 1,
+      "width": 750,
+      "height": 1624,
+      "primitive": 4,
+      "first": 0,
+      "count": 4,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 3,
+      "textures": 1,
+      "samplers": 0,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 113645745000,
+          "complete": true,
+          "wall_ns": 18000,
+          "thread_cpu_ns": 16459,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 113645789000,
+          "complete": true,
+          "wall_ns": 341000,
+          "thread_cpu_ns": 341302,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 113646167000,
+          "complete": true,
+          "wall_ns": 1523800000,
+          "thread_cpu_ns": 225859479,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 115169996000,
+          "complete": true,
+          "wall_ns": 1006000,
+          "thread_cpu_ns": 1008489,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 115171024000,
+          "complete": true,
+          "wall_ns": 504000,
+          "thread_cpu_ns": 505000,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 115171548000,
+          "complete": true,
+          "wall_ns": 17000,
+          "thread_cpu_ns": 16823,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 115171581000,
+          "complete": true,
+          "wall_ns": 36000,
+          "thread_cpu_ns": 35833,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 115171640000,
+          "complete": false
+        }
+      ],
+      "draw": null,
+      "complete": false,
+      "all_stages_completed_successfully": false
+    }
+  ],
+  "pending_draws": [
+    {
+      "process": "AegirPoster",
+      "session": 1,
+      "pid": 323,
+      "call": 1,
+      "width": 750,
+      "height": 1624,
+      "primitive": 4,
+      "first": 0,
+      "count": 4,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 3,
+      "textures": 1,
+      "samplers": 0,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 113645745000,
+          "complete": true,
+          "wall_ns": 18000,
+          "thread_cpu_ns": 16459,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 113645789000,
+          "complete": true,
+          "wall_ns": 341000,
+          "thread_cpu_ns": 341302,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 113646167000,
+          "complete": true,
+          "wall_ns": 1523800000,
+          "thread_cpu_ns": 225859479,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 115169996000,
+          "complete": true,
+          "wall_ns": 1006000,
+          "thread_cpu_ns": 1008489,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 115171024000,
+          "complete": true,
+          "wall_ns": 504000,
+          "thread_cpu_ns": 505000,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 115171548000,
+          "complete": true,
+          "wall_ns": 17000,
+          "thread_cpu_ns": 16823,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 115171581000,
+          "complete": true,
+          "wall_ns": 36000,
+          "thread_cpu_ns": 35833,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 115171640000,
+          "complete": false
+        }
+      ],
+      "draw": null,
+      "complete": false,
+      "all_stages_completed_successfully": false
+    }
+  ],
+  "longest_completed_stages": [
+    {
+      "process": "AegirPoster",
+      "session": 1,
+      "pid": 323,
+      "call": 1,
+      "width": 750,
+      "height": 1624,
+      "stage": "targets",
+      "begin_ns": 113646167000,
+      "complete": true,
+      "wall_ns": 1523800000,
+      "thread_cpu_ns": 225859479,
+      "cpu_valid": true,
+      "result": 0
+    },
+    {
+      "process": "AegirPoster",
+      "session": 1,
+      "pid": 323,
+      "call": 1,
+      "width": 750,
+      "height": 1624,
+      "stage": "buffers",
+      "begin_ns": 115169996000,
+      "complete": true,
+      "wall_ns": 1006000,
+      "thread_cpu_ns": 1008489,
+      "cpu_valid": true,
+      "result": 0
+    },
+    {
+      "process": "AegirPoster",
+      "session": 1,
+      "pid": 323,
+      "call": 1,
+      "width": 750,
+      "height": 1624,
+      "stage": "samples",
+      "begin_ns": 115171024000,
+      "complete": true,
+      "wall_ns": 504000,
+      "thread_cpu_ns": 505000,
+      "cpu_valid": true,
+      "result": 0
+    },
+    {
+      "process": "AegirPoster",
+      "session": 1,
+      "pid": 323,
+      "call": 1,
+      "width": 750,
+      "height": 1624,
+      "stage": "make_current",
+      "begin_ns": 113645789000,
+      "complete": true,
+      "wall_ns": 341000,
+      "thread_cpu_ns": 341302,
+      "cpu_valid": true,
+      "result": 0
+    },
+    {
+      "process": "AegirPoster",
+      "session": 1,
+      "pid": 323,
+      "call": 1,
+      "width": 750,
+      "height": 1624,
+      "stage": "state",
+      "begin_ns": 115171581000,
+      "complete": true,
+      "wall_ns": 36000,
+      "thread_cpu_ns": 35833,
+      "cpu_valid": true,
+      "result": 0
+    },
+    {
+      "process": "AegirPoster",
+      "session": 1,
+      "pid": 323,
+      "call": 1,
+      "width": 750,
+      "height": 1624,
+      "stage": "gate",
+      "begin_ns": 113645745000,
+      "complete": true,
+      "wall_ns": 18000,
+      "thread_cpu_ns": 16459,
+      "cpu_valid": true,
+      "result": 0
+    },
+    {
+      "process": "AegirPoster",
+      "session": 1,
+      "pid": 323,
+      "call": 1,
+      "width": 750,
+      "height": 1624,
+      "stage": "xr_lut",
+      "begin_ns": 115171548000,
+      "complete": true,
+      "wall_ns": 17000,
+      "thread_cpu_ns": 16823,
+      "cpu_valid": true,
+      "result": 0
+    }
+  ],
+  "post_ACK_exit_period_excluded": true,
+  "metadata_only": true,
+  "stage_time_includes_driver_CPU_scheduling_and_wait": true,
+  "stage_totals_not_added_to_overlapping_snapshot_wait_execute": true,
+  "GPU_hardware_root_cause_and_UI_FPS_not_inferred": true,
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-render-stage-r1-original-after-prime-gpu-r4-20261119",
+  "raw_sha256": "b1f1e76a2e0ece263ddc1c38a669b3c3adba712021ef6eb636c94fbcf48e0242",
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "GLES_sha256": "a7bad22c7f48d216a7be4f174d4848005219518fabb7f7a4b5e786e851e6dd95",
+  "render_source_sha256": "9113b4b09670930eac265c286b1f4685600c566f39d522803992fedce0fad1e0",
+  "original_result": "REVISE",
+  "original_reason": "EXTENSION_CHECKIN_TIMEOUT",
+  "return_seconds_with_health": 39.17200000002049,
+  "controller_failure_not_promoted": true
+}

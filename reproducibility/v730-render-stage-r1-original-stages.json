@@ -1,0 +1,31 @@
+{
+  "token": "1c45cff4afd166ee",
+  "process_installations": [
+    {
+      "process": "AegirPoster",
+      "session": 1,
+      "pid": 348,
+      "last_call": 0
+    }
+  ],
+  "observed_requests": 0,
+  "complete_draws": 0,
+  "incomplete_draws": 0,
+  "records": [],
+  "pending_draws": [],
+  "longest_completed_stages": [],
+  "post_ACK_exit_period_excluded": true,
+  "metadata_only": true,
+  "stage_time_includes_driver_CPU_scheduling_and_wait": true,
+  "stage_totals_not_added_to_overlapping_snapshot_wait_execute": true,
+  "GPU_hardware_root_cause_and_UI_FPS_not_inferred": true,
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-render-stage-r1-original-gpu-20261119",
+  "raw_sha256": "fd3671213417b1bf56dc60d4891f4e4da6ce81ebad1184ee008562ed739fcf27",
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "GLES_sha256": "a7bad22c7f48d216a7be4f174d4848005219518fabb7f7a4b5e786e851e6dd95",
+  "render_source_sha256": "9113b4b09670930eac265c286b1f4685600c566f39d522803992fedce0fad1e0",
+  "original_result": "REVISE",
+  "original_reason": "EXTENSION_CHECKIN_TIMEOUT",
+  "return_seconds_with_health": 37.687999999849126,
+  "controller_failure_not_promoted": true
+}

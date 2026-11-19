@@ -1,0 +1,140 @@
+{
+  "based_on_commit": "0e6e3263bdad24dedd3fce670f433a454b640a45",
+  "reviewed_changes": [
+    {
+      "category": "sources",
+      "path": "controller.py",
+      "before": "c8e5f6f3e0dba465c111c775e56be079f7ab5bfa5ba321e7953f025db56e44df",
+      "after": "9b71145cda296e760f33ffe8e288e2863df0b9ccdff6a7b0c207d7bb6d91854e"
+    },
+    {
+      "category": "sources",
+      "path": "package_trial.py",
+      "before": "972a03bf36719f7015cd397a6bf3b329398d0e1576bb28f313c46b0322127a91",
+      "after": "2c825cf4f6067ddeafc5e533e9393561e184dcd80b5a6b91ccdea1d89303e1e0"
+    },
+    {
+      "category": "sources",
+      "path": "run_trial.py",
+      "before": "6dd300c233f038f7709fb380c45d1583d9b6c049944d3e46effbb4c297086af9",
+      "after": "4c22583dce3d2debbccf52769c2644b02f6c0949b245f423435b9d4da28bb86e"
+    },
+    {
+      "category": "sources",
+      "path": "test_trial_gates.py",
+      "before": "55130975f428244e0b57ba432b3a126f1961e36b57ee11615e6a1167da2c37fe",
+      "after": "96aac9af5bd89b829602944f807b9a63a2dbb2578eb1dd96e94af7b13e56bbc4"
+    },
+    {
+      "category": "sources",
+      "path": "trial_evidence.py",
+      "before": "cbc4e3c93a15d751bfcef1b7e7f6a250a181bb424cb8cf80edaa35de8224d47f",
+      "after": "92f38bb7ed961fb516c844be6529f66ec072413dbabdcba77cd19f3cbe225a20"
+    },
+    {
+      "category": "sources",
+      "path": "png_encoder_prerequisite.py",
+      "before": "516f3967d4d02ab59144d2963cb5fbd3914a504065607c3f02cc57311d2a3a6f",
+      "after": "ddf5a1a4a2e50a598daf0de429be42841e780416e00b66762db0ccbef2353c51"
+    },
+    {
+      "category": "shared_sources",
+      "path": "tools/diagnostic_candidate.py",
+      "before": "b6d27e2e3df5838e63a92dabeddd3bdc68ea23bc49d3db6d7ed0295de8e82f55",
+      "after": "b53e89fdc0bf66a0b38bb4a4c7499ac2222e2704af83cebbd2ae0472a83783b3"
+    },
+    {
+      "category": "build_sources",
+      "path": "tools/build/build_diagnostic_kernel.py",
+      "before": "4d6cb41c7cb5ecd1382e5de7124b90e5a18a046a7002f6a955c9ba26857665da",
+      "after": "d6f86fb55f36d1b0dd971973e7cc6d05c25f90004af712c90bb307e325ac09d7"
+    },
+    {
+      "category": "build_sources",
+      "path": "tools/build/prepare_sources.py",
+      "before": "02e42298493344ead9df64bb44aaae47aaae9f0b68588092453302a3213bf592",
+      "after": "3f9918db3b1b7e5337483d8064257e22a1514d763a2f9fc2591f1cac9ce00629"
+    },
+    {
+      "category": "gpu_sources",
+      "path": "gpu/sweetgl/metal_render.c",
+      "before": "7ddadbe295d8f5d621e5b9fa2366da34763a10ae66572fe31e8292063159552e",
+      "after": "9113b4b09670930eac265c286b1f4685600c566f39d522803992fedce0fad1e0"
+    },
+    {
+      "category": "sources",
+      "path": "scanout_snapshot.py",
+      "after": "4c6b05b08367bc1541a9b91dfd6237cc1deb8195da8920c9ca0856ef40e0844e",
+      "new_locked_source": true
+    },
+    {
+      "category": "sources",
+      "path": "test_scanout_gates.py",
+      "after": "5a2e7125131d1c7dd1667106a10aef0d024dde4da140da1b894aa2e50804f8bf",
+      "new_locked_source": true
+    },
+    {
+      "category": "sources",
+      "path": "test_png_encoder_prerequisite.py",
+      "after": "c4a34e69e633061d32e3ec8910dbedcb8e3ecc49a1ddb969ef65141f41990ab2",
+      "new_locked_source": true
+    },
+    {
+      "category": "build_sources",
+      "path": "tools/build/check_screen_snapshot.py",
+      "after": "afba6f17454045f0d091b566cf57db4aa088796052ece9dcaa2edc9541f9e41a",
+      "new_locked_source": true
+    },
+    {
+      "category": "build_sources",
+      "path": "tools/build/install_screen_snapshot.py",
+      "after": "c343e263d8d5cad2e48d03e6f8b9fe5a26971451fd42a397d9ea5ce72bb72357",
+      "new_locked_source": true
+    },
+    {
+      "category": "build_sources",
+      "path": "tools/build/prepare_screen_snapshot.py",
+      "after": "f019ddbfae7fba46a0ffe9af53c375fab64e500b110fdd4dbdbbd2ad91709278",
+      "new_locked_source": true
+    },
+    {
+      "category": "build_sources",
+      "path": "tools/build/test_screen_codec.c",
+      "after": "3d7edfd19904d5e557af8e18ac337bd05a99987fe3aaf0adebd739eb57cedf35",
+      "new_locked_source": true
+    },
+    {
+      "category": "build_sources",
+      "path": "tools/build/test_screen_wire.py",
+      "after": "2c9bd913194ca50d3c9ddd8b6c5ff9a47db62e0e8665dfc55320fb8d23a87ace",
+      "new_locked_source": true
+    },
+    {
+      "category": "build_sources",
+      "path": "tools/build/verify_diagnostic_reconstruction.py",
+      "after": "bf48e02b12486ba642ef13452a6d0f76564a15adb38b9526a7dc9a48ee3b11cf",
+      "new_locked_source": true
+    },
+    {
+      "category": "support_sources",
+      "path": "tools/baseline_source_inputs.py",
+      "after": "5816a8eb5da88cd569bd0261c82fbd52bb6a9f03b68b3565a603d373a202a2ac",
+      "new_locked_source": true
+    },
+    {
+      "category": "support_sources",
+      "path": "xnu/support/SweetFramebufferScreen.h",
+      "after": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+      "new_locked_source": true
+    },
+    {
+      "category": "support_sources",
+      "path": "xnu/support/SweetFramebufferScreenRuntime.h",
+      "after": "a1f41eeb87b7cf70ea751884ee38d758191f3cc0a00d697acc363fbba3cd5f63",
+      "new_locked_source": true
+    }
+  ],
+  "source_lock_only": true,
+  "new_device_stage_claimed": false,
+  "frozen_kernel_components_changed": false
+}

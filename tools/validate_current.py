@@ -6,7 +6,7 @@ lock=json.loads((root/'reproducibility/source-lock.json').read_text(encoding='ut
 assert hashlib.sha256((root/'xnu/lilac-current.patch').read_bytes()).hexdigest()==lock['xnu']['patch_sha256']
 assert hashlib.sha256((root/'gpu/mesa-lilac.patch').read_bytes()).hexdigest()==lock['mesa']['patch_sha256']
 assert hashlib.sha256((root/'tools/build/dxb-local.patch').read_bytes()).hexdigest()==lock['builder']['patch_sha256']
-for version,name in ((725,'lilac-surface-diagnostics.patch'),(726,'lilac-surface-memref-diagnostics.patch'),(727,'lilac-surface-readonly.patch'),(728,'lilac-surface-region64.patch'),(729,'lilac-console-snapshot.patch')):
+for version,name in ((725,'lilac-surface-diagnostics.patch'),(726,'lilac-surface-memref-diagnostics.patch'),(727,'lilac-surface-readonly.patch'),(728,'lilac-surface-region64.patch'),(729,'lilac-console-snapshot.patch'),(730,'lilac-scanout-snapshot.patch')):
     candidate=json.loads((root/f'reproducibility/surface-diag-v{version}.json').read_text())
     assert candidate['version']==version
     assert hashlib.sha256((root/'xnu'/name).read_bytes()).hexdigest()==candidate['patch_sha256']

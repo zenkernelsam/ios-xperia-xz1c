@@ -1,0 +1,118 @@
+{
+  "stages": [
+    {
+      "run": "reference-ramcpu",
+      "token": "0f50a90dbef775ca",
+      "result": "PASS",
+      "reason": "GOALS_STABLE",
+      "return_seconds_with_health": 38.375,
+      "image_sha256": "36b13f1802cfd65c86c92342df323e313c6983abb8088464491c88cb06dd6758",
+      "raw_sha256": "0aa34da66224f4790013755048689977d018f59dbf34d1dc3681bd133f880bf1",
+      "worker_ended_before_next": true
+    },
+    {
+      "run": "reference-gpu",
+      "token": "2506ca584c6c6f6f",
+      "result": "PASS",
+      "reason": "GOALS_STABLE",
+      "return_seconds_with_health": 38.0,
+      "image_sha256": "32cdf52fabb0f2e532d586d1ab3470aaafae4f30b35d1a915f23f27a12985c44",
+      "raw_sha256": "fb2480b6e2f5873cbc855b9725eb4fb24af2d1dd8208a12cadec2ccaf149a53f",
+      "worker_ended_before_next": true
+    },
+    {
+      "run": "original-ramcpu",
+      "token": "35c1e99d7e18eef7",
+      "result": "PASS",
+      "reason": "GOALS_STABLE",
+      "return_seconds_with_health": 38.04600000008941,
+      "image_sha256": "01b31788bda38309252d2336d2068dcd1d51700338ba2ca55b7efc70b5e04ac1",
+      "raw_sha256": "730001cbbd49126fb549ded19d319ad9db96545c47c71e9859c96b74e9ecd88c",
+      "worker_ended_before_next": true
+    },
+    {
+      "run": "original-gpu",
+      "token": "1c45cff4afd166ee",
+      "result": "REVISE",
+      "reason": "EXTENSION_CHECKIN_TIMEOUT",
+      "return_seconds_with_health": 37.687999999849126,
+      "image_sha256": "6bb6f33d693399976fd457ec718431c04997e1fe10529cf170ac28ae2633ee3a",
+      "raw_sha256": "fd3671213417b1bf56dc60d4891f4e4da6ce81ebad1184ee008562ed739fcf27",
+      "worker_ended_before_next": true
+    },
+    {
+      "run": "prime-ramcpu",
+      "token": "f15246a2875e14b2",
+      "result": "PASS",
+      "reason": "GOALS_STABLE",
+      "return_seconds_with_health": 38.26600000006147,
+      "image_sha256": "6948e04dd6c4dd0131c99f152e1398af7e636bac3542f9aac31622349cb17e99",
+      "raw_sha256": "2605fa7c928d0d6a5c49cc7e2bf9e5b36bc9b961715bd28362c7e0574f127385",
+      "worker_ended_before_next": true
+    },
+    {
+      "run": "prime-gpu",
+      "token": "7c3533fb64bfa81a",
+      "result": "PASS",
+      "reason": "GOALS_STABLE",
+      "return_seconds_with_health": 38.15599999995902,
+      "image_sha256": "11cf8a3194279fcbf21edc17a089c38e94eab6e552f0ba19b97607ebccef89a2",
+      "raw_sha256": "2a5d9144becbde48d5af3f03ba097b9bef4fc6ca63c8c68ecea4e695c49df2ed",
+      "worker_ended_before_next": true
+    },
+    {
+      "run": "original-after-prime-gpu-r2",
+      "token": "46c0a6147471c724",
+      "result": "REVISE",
+      "reason": "EXTENSION_CHECKIN_TIMEOUT",
+      "return_seconds_with_health": 38.71900000004098,
+      "image_sha256": "4661c562d4684a1b9bf13a0e3137b5d0487d082dfb76c4557518a98e66fe5ad2",
+      "raw_sha256": "610c198506e1200ac4ef3cb024da3f5c5f1249eb2bfb23170f9cd184e5b47273",
+      "worker_ended_before_next": true
+    },
+    {
+      "run": "prime-gpu-r2",
+      "token": "ba83924ad1045cbc",
+      "result": "PASS",
+      "reason": "GOALS_STABLE",
+      "return_seconds_with_health": 38.843000000109896,
+      "image_sha256": "91adf57976e39b69cd111ff0a419915511b01121b8408e83d50d3fafd357d765",
+      "raw_sha256": "45e2a998e780cc060083113b078893fef42cf17529d006a97b8249a5c4d2e4fa",
+      "worker_ended_before_next": true
+    },
+    {
+      "run": "original-after-prime-gpu-r3",
+      "token": "560b5400ab3a1de3",
+      "result": "REVISE",
+      "reason": "EXTENSION_CHECKIN_TIMEOUT",
+      "return_seconds_with_health": 38.23400000017136,
+      "image_sha256": "6b62a698b81dd5d4489e9467606a284f0d8e66b9691e9ff1d6c8623cb292dfa9",
+      "raw_sha256": "b9f10507a48c9d280fe98fb5473622946f5270d9029af161a7a736929b3763c9",
+      "worker_ended_before_next": true
+    },
+    {
+      "run": "prime-gpu-r3",
+      "token": "e7e3396014c8a4d6",
+      "result": "PASS",
+      "reason": "GOALS_STABLE",
+      "return_seconds_with_health": 38.09400000004098,
+      "image_sha256": "4a7bda605131374d58882797b72d64ef377bbb803869e0a7e470e76e91d0a421",
+      "raw_sha256": "e127d98876f03d99658a7b65097a9f3f4acdfa668a0cbab30217d412b817d91d",
+      "worker_ended_before_next": true
+    },
+    {
+      "run": "original-after-prime-gpu-r4",
+      "token": "e662710b1d6a0bb4",
+      "result": "REVISE",
+      "reason": "EXTENSION_CHECKIN_TIMEOUT",
+      "return_seconds_with_health": 39.17200000002049,
+      "image_sha256": "32effd6aa0be181d7936a4c33d6481c001d358d2e2a7b5386d6a40aa1e405ebe",
+      "raw_sha256": "b1f1e76a2e0ece263ddc1c38a669b3c3adba712021ef6eb636c94fbcf48e0242",
+      "worker_ended_before_next": true
+    }
+  ],
+  "all_single_download_boot": true,
+  "all_complete_PON06_return_with_healthy30": true,
+  "current_in_flight": false,
+  "full_UI_goal_not_achieved": true
+}

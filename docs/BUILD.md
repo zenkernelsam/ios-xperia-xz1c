@@ -6,6 +6,8 @@
 
 当前实机入口为v729、XR Clear优化GLES72d39da5和Metal half-selection-r1/5e94ab57，完整14组raw proof见STATUS与XR-CLEAR。下方各版本的构建/失败记录保留其原适用范围；不能以旧版本proof准入当前新库。仅observer诊断变更的最新构建、同库CPU准入和原PNG时耗观察见[POSTDRAW-OBSERVATION](POSTDRAW-OBSERVATION.md)，不重编或改动已验kernel/GLES/Metal。
 
+2026-11-19最新实际入口为v730/f258dee9、原阶段观察GLESa7bad22c及Metal5e94ab57，已完整14组／六组共享PNG和原RAMCPU准入；原UI仍REVISE。该新GLES的真实scope预热与阶段观察见[RENDER-STAGES](RENDER-STAGES.md)。上段旧v729／72d39da5是保留的比较入口，不能准入新库。`validate_current.py`现在同时核对v730补丁及新增截图／行尾物化工具锁；`render_stage_evidence.py`从单轮原raw验证阶段和保存截图，不开启串口。
+
 reproducibility/source-lock.json锁定Apple XNU xnu-8796.141.3/f625db25f47631424dc62ac1c3414b6e530f7e8a、darwin-xnu-build基础663906528d1cd5ea8fde7de6f16de73db9511549、Mesa769e51468b49b2a42f0a0eaf71cf9eed5ff4e5de/24.3.4及全部修补。source-reconstruction.json记录逐源重建核验。
 
 GLES在Mac构建，需Xcode/iphoneos SDK。脚本创建固定Python依赖环境，下载固定Mesa到deps，输出build/mesa-ios，再编译gpu/sweetgl：

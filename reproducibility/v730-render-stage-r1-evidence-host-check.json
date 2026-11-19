@@ -1,0 +1,14 @@
+{
+  "source_files": {
+    "tools/device/render_stage_evidence.py": "0cc246b7e4f0019305af5d7029800e66e29f68fd749a321db8d009eae01934b4",
+    "tools/device/test_render_stage_evidence.py": "9b455cda8bc8dd371454d17b8a7c3c251bb9f98f0b191f953074f8ff464aa7bc",
+    "tools/validate_current.py": "3beab3c8ed9e8bac24c5ca43185a9e6ac1786bf62719a86356c0510471ac9d4d"
+  },
+  "host_fault_test_methods": 5,
+  "actual_background_draws_rechecked": 32,
+  "actual_background_complete_draws": 32,
+  "actual_original_pending_draws": 1,
+  "original_failed_stage_not_promoted": true,
+  "source_and_return_screen_rechecked": true,
+  "device_operations_by_inspector": 0
+}

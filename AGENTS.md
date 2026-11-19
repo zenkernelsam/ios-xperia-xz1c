@@ -4,6 +4,8 @@
 
 ## 当前基线与真实边界
 
+2026-11-19最新render-stage-r1：v730/f258dee9保持，GLES a7bad22c只加原阶段计时；自身CPU/GLES八项及后台2506ca58完整14组／六组共享PNG通过，原observer72586fe2自身CPU35c1e99d通过。三轮同scope实际request预热通过后，原e662710b五条pipeline均命中／nonnull并进入750×1624draw；targets1.523800秒／线程CPU0.225859秒，submit未完成、check-in超时与REVISE保持，39.172秒完整回程／健康／worker退出。当前无in-flight、健康fastboot，最新STATUS/RENDER-STAGES优先。旧72d39da5证明不能准入a7bad22c；新包继续精确GLES/native/PNG/CPU门槛。不同stage与postdraw时钟起点不混算，两个附件clear不凭行数当重复。render_stage_evidence按进程安装/pid/call核验原raw，未完成与ACK后记录分别保留。下一步分解目标准备／首次提交，不据采样改冻结组件。
+
 2026-11-17 XR Clear优化：kernel v729/774b5efd、20648064B、81源保持；固定Mesa24.3.4/FD540新GLES72d39da5及Metal5e94ab57已独立GLES/完整后台14组GPU/原bytes/guard/fence/lifecycle通过，token4bcd571c9e12b34d、39.125秒完整回程，proof见reproducibility/v729-xr-clear-r1-native-proof.json。旧GLES0a2c7e69的完整14组45a839fc及原失败/样本仍保留作比较，不能准入不同GLES。旧Metalbe56或旧13组proof不能准入新库。half整数选择仅折叠已证等价路径，全部4294967296种float32/12884901888检查及65536 unpack、Mac target ASan/UBSan、131072个host GLES样本通过；WSL ASan基础设施失败单独保留，不能声称其通过。
 
 原Aegir r2 token6d17bdf97a8fc7c8已恢复五条nonnull管线并实际出现两次750×1624 GPU draw result0；原extension check-in timeout三次/REVISE与不完整面板保持。新的PNG/ColorSync/释放采样不是旧glLink卡点的同一栈，不凭采样推定VM或颜色故障。postdraw-r1只增加原快照API耗时观察，保持原参数、返回、nil、异常、errno、颜色配置及像素；host真实PNG字节/解码/ICC保持不代替原手机验收。当前唯一controller/token、实际回程和本包CPU门槛以STATUS为准。

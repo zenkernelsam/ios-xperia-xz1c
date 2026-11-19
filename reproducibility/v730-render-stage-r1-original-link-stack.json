@@ -1,0 +1,50 @@
+{
+  "library_sha256": "a7bad22c7f48d216a7be4f174d4848005219518fabb7f7a4b5e786e851e6dd95",
+  "raw_log_sha256": "fd3671213417b1bf56dc60d4891f4e4da6ce81ebad1184ee008562ed739fcf27",
+  "glLinkProgram_return_offset": "0xa158",
+  "crashes": [
+    {
+      "pid": 348,
+      "frames": [
+        {
+          "relative_pc": "0x633dec",
+          "symbol": "_nir_split_var_copies",
+          "offset": "0x114"
+        },
+        {
+          "relative_pc": "0x633e78",
+          "symbol": "_nir_split_var_copies",
+          "offset": "0x1a0"
+        },
+        {
+          "relative_pc": "0x4fa848",
+          "symbol": "_gl_nir_lower_named_interface_blocks",
+          "offset": "0x6c"
+        },
+        {
+          "relative_pc": "0x513a4c",
+          "symbol": "_gl_nir_link_glsl",
+          "offset": "0x1c78"
+        },
+        {
+          "relative_pc": "0x23d6b8",
+          "symbol": "_st_link_shader",
+          "offset": "0x1b0"
+        },
+        {
+          "relative_pc": "0x18d3ac",
+          "symbol": "_link_program_error",
+          "offset": "0x144"
+        },
+        {
+          "relative_pc": "0xa158",
+          "symbol": "_sweetgl_metal_render_create",
+          "offset": "0x9dc"
+        }
+      ],
+      "current_library_base_inferred_from_unique_16K_aligned_return": true
+    }
+  ],
+  "actual_IR3_execution_not_seen_in_these_stacks": true,
+  "original_absolute_process_addresses_not_published": true
+}

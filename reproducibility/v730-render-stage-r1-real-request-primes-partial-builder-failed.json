@@ -1,0 +1,57 @@
+{
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "GLES_sha256": "a7bad22c7f48d216a7be4f174d4848005219518fabb7f7a4b5e786e851e6dd95",
+  "Metal_sha256": "5e94ab57401479b42f506884a172a7a839378a82310661a1f66164e99c21f988",
+  "pairs": [
+    {
+      "original_token": "1c45cff4afd166ee",
+      "original_raw_sha256": "fd3671213417b1bf56dc60d4891f4e4da6ce81ebad1184ee008562ed739fcf27",
+      "primer_token": "7c3533fb64bfa81a",
+      "primer_raw_sha256": "2a5d9144becbde48d5af3f03ba097b9bef4fc6ca63c8c68ecea4e695c49df2ed",
+      "request_lengths": [
+        15521,
+        5005
+      ],
+      "compiled_inputs": [
+        {
+          "stage": "vertex",
+          "compiled_bytes": 15560,
+          "compiled_fnv64": "e3032730ccf5a0dd"
+        },
+        {
+          "stage": "fragment",
+          "compiled_bytes": 8430,
+          "compiled_fnv64": "4f093dd87a65d771"
+        }
+      ],
+      "link_wall_us": 3146575,
+      "link_cpu_us": 1993792,
+      "stored_bytes": 64317,
+      "format": "0x875f",
+      "native_tests": [
+        "Metal_resources",
+        "Metal_queue",
+        "AIR_compute",
+        "AIR_render",
+        "AIR_constants",
+        "AIR_XR",
+        "Metal_IOSurface",
+        "Metal_mipmaps",
+        "AIR_narrow",
+        "AIR_half",
+        "Metal_MRT",
+        "AIR_sampler",
+        "Program_cache",
+        "AIR_static_half"
+      ],
+      "return_seconds_with_health": 38.15599999995902
+    }
+  ],
+  "full_source_export_not_claimed": true,
+  "pairing_by_original_runtime_length_and_FNV64": true,
+  "original_failures_unchanged": true,
+  "all14_native_and_source_identity_checked": true,
+  "incomplete_builder_output": true,
+  "accepted_as_complete_proof": false,
+  "reason": "Output was written inside pairing loop; remaining pairs not processed"
+}

@@ -4,7 +4,7 @@
     "boot_once.py": "e862e430514f7aaceb5ac5b2037a19770ba91889cb0088438e925b920dcde83c",
     "capture.py": "6bf670ec0fd55b50ee5f83997931dee98549461435f89474dfd3b757e3b39c70",
     "clock_evidence.py": "0e7d7fcf93daf09af915b974c6b06a7165408bf1891ba553427330fcd089c42f",
-    "controller.py": "c8e5f6f3e0dba465c111c775e56be079f7ab5bfa5ba321e7953f025db56e44df",
+    "controller.py": "9b71145cda296e760f33ffe8e288e2863df0b9ccdff6a7b0c207d7bb6d91854e",
     "exception_evidence.py": "c4b1cfd24ec2cc2a942b351797b6cab1445873350ca7b96be4540b03ce596921",
     "failed_queue_evidence.py": "a5b29da0bec03a5fc48270421712e8a392a2c8fba9f351a3d15cd98c0bf14bce",
     "failed_trial_evidence.py": "d6c712a90fedb4aeaf8e5b6b07f45ff211fbb3509989fb72f7518109598935a3",
@@ -17,13 +17,13 @@
     "metal_resource_evidence.py": "e3737afff830f8d7466fddf67f4980d33dc9cf54fe89079828aa603fa9ddd35c",
     "observe_fastboot.py": "7c82964e346fa9166bdbaee1b8d74905f8cf1b53d151b42ba68909dc2e82100b",
     "owner_metadata.py": "e0f4e4fa2d54381d63128a39fbcabfe6c3ab9468a99f44cd44c37d86af84d564",
-    "package_trial.py": "972a03bf36719f7015cd397a6bf3b329398d0e1576bb28f313c46b0322127a91",
+    "package_trial.py": "2c825cf4f6067ddeafc5e533e9393561e184dcd80b5a6b91ccdea1d89303e1e0",
     "policy.py": "788151bcae524eb1dbb58e21743e957cf4ff2e819247dcf74db05e173cf00365",
     "preflight_processes.ps1": "6586345710fe618415ce2ddd8b53d230c14c280c93f34c5fb1a190fcc7e1f91f",
     "procguard.py": "7cc150c13ca8d6fce28ec9784af8886eaaa4cdd8fad9cb3ff6befa9fd67d116d",
     "readonly_pixels.py": "bd1c86eddff0c7ca30d74b63cf2c5ac200a4691360f78f121e4cced5cd86fb5f",
     "return_evidence.py": "5142d3a90e89f64f796f2ce70227b28703afbca5be582ef25b6d638b09ae7e8d",
-    "run_trial.py": "6dd300c233f038f7709fb380c45d1583d9b6c049944d3e46effbb4c297086af9",
+    "run_trial.py": "4c22583dce3d2debbccf52769c2644b02f6c0949b245f423435b9d4da28bb86e",
     "serial_worker.py": "85c441bff24e081fc4fa759748676b130becf2a070bbacbff6b23fba96ae3fd4",
     "sony_usb_guard.py": "e1f636a6327530f28ef407732d58f0e7310494c4660010f793f4dcbe2ebdc4c6",
     "source_region_evidence.py": "748edd1bd5e5783e12a925524876a36e7d2538ad18700ba1af55b6b940ac5b2f",
@@ -35,9 +35,9 @@
     "test_metal_abi.py": "c9c3e37c494ee0940726f8357b4e3c8e5a823a367d9f900f5cabe252f51fae3f",
     "test_metal_queue.py": "256875e78c1275f04f2d24abbc1b9283782f11c0846fb421e8db77ca9db3ab5a",
     "test_metal_resources.py": "703326750212def783aa6aa95dc55f78028eb4f7149171aecb34797e15815f99",
-    "test_trial_gates.py": "55130975f428244e0b57ba432b3a126f1961e36b57ee11615e6a1167da2c37fe",
+    "test_trial_gates.py": "96aac9af5bd89b829602944f807b9a63a2dbb2578eb1dd96e94af7b13e56bbc4",
     "texture_offset_evidence.py": "73e50f64af52491a94464d13268c44a8d917175926bdd92caf260eced329f230",
-    "trial_evidence.py": "cbc4e3c93a15d751bfcef1b7e7f6a250a181bb424cb8cf80edaa35de8224d47f",
+    "trial_evidence.py": "92f38bb7ed961fb516c844be6529f66ec072413dbabdcba77cd19f3cbe225a20",
     "air_render_evidence.py": "75f984119f1d9b1b76c52aec3729b9e2255748941d51d2e1c03cb994f1779e2c",
     "test_air_render.py": "ec4b80934ace27763ae2ee48cce8e7b7bbf8ff45f3928df745b3ebcd0d3e9913",
     "air_constants_evidence.py": "dccd155a957d1e8c8290c6e140ed42b33da21ba8f4017dbcf6bebbba5335e5e2",
@@ -75,8 +75,13 @@
     "test_postdraw_observer_evidence.py": "b198b1c28f962745a70eb9fac37afc6cfc320922797c990ab2a0b0965b584681",
     "cif10_reference_evidence.py": "1edb2f45ccf08986f0557fdfb983258ce9e5040b62ef1bf2990146002d7070a5",
     "test_cif10_reference_evidence.py": "f1775013fd2db13fa0be2bb7d810b6e957382eef1f84606c4a96e1922a93f538",
-    "png_encoder_prerequisite.py": "516f3967d4d02ab59144d2963cb5fbd3914a504065607c3f02cc57311d2a3a6f",
-    "test_png_encoder_proof.py": "4b6043effd463d8592acdd479cfed771509ff42492ef5965f8a0c663fc2a78d8"
+    "png_encoder_prerequisite.py": "ddf5a1a4a2e50a598daf0de429be42841e780416e00b66762db0ccbef2353c51",
+    "test_png_encoder_proof.py": "4b6043effd463d8592acdd479cfed771509ff42492ef5965f8a0c663fc2a78d8",
+    "scanout_snapshot.py": "4c6b05b08367bc1541a9b91dfd6237cc1deb8195da8920c9ca0856ef40e0844e",
+    "test_scanout_gates.py": "5a2e7125131d1c7dd1667106a10aef0d024dde4da140da1b894aa2e50804f8bf",
+    "test_png_encoder_prerequisite.py": "c4a34e69e633061d32e3ec8910dbedcb8e3ecc49a1ddb969ef65141f41990ab2",
+    "render_stage_evidence.py": "0cc246b7e4f0019305af5d7029800e66e29f68fd749a321db8d009eae01934b4",
+    "test_render_stage_evidence.py": "9b455cda8bc8dd371454d17b8a7c3c251bb9f98f0b191f953074f8ff464aa7bc"
   },
   "supervisor_based_on_actual_tested_one_shot": true,
   "platform_tools_from_environment_or_PATH": true,
@@ -89,7 +94,7 @@
   "formal_v725_five_stages_actual_return": true,
   "all_transport_and_diagnostic_tests_passed": 52,
   "shared_sources": {
-    "tools/diagnostic_candidate.py": "b6d27e2e3df5838e63a92dabeddd3bdc68ea23bc49d3db6d7ed0295de8e82f55",
+    "tools/diagnostic_candidate.py": "b53e89fdc0bf66a0b38bb4a4c7499ac2222e2704af83cebbd2ae0472a83783b3",
     "tools/mkpayload.py": "5c9a3dacbdf877ffded27971ad2e737e5ee4296fada247d14d5c6051ff1f47ff",
     "tools/ram_library.py": "8af66480685b61ecb8e8d613f8a18b9fcb91590a055c66ecbd0ebf98c812103d",
     "tools/native_proof.py": "c3354a79a65d3c466d344ad369fb704445e4e1c2430e179570f89fef28024ad1"
@@ -100,7 +105,7 @@
     "tools/build/air_frontend_cli.cpp": "2463a946137e2bb048ac7c54cfc0f5a30ca0e360ca512e62eadc9ce8492d0b6a",
     "tools/build/audit_air_llvm.py": "0e22f9b32aba521388967a0d74f0dd0eb8791e627b172beaf389120e4df49e4e",
     "tools/build/build_air_frontend.py": "a21f6e3f977e13549eb3fe5371d3a9402e271d84c6df189c05bd5f569e30f00b",
-    "tools/build/build_diagnostic_kernel.py": "4d6cb41c7cb5ecd1382e5de7124b90e5a18a046a7002f6a955c9ba26857665da",
+    "tools/build/build_diagnostic_kernel.py": "d6f86fb55f36d1b0dd971973e7cc6d05c25f90004af712c90bb307e325ac09d7",
     "tools/build/build_diagnostics.sh": "ec361280b6f23ea3f114b762df5f22def9b94d7d1105d39bcd5684bd43214118",
     "tools/build/build_exception_observer.py": "0effe4945d897a1d229dd61308020438d8127a4a6ab417e34848c7bfb2b166da",
     "tools/build/build_metal_library.py": "60d378fde13cdb96213f381f1b3bc0a1a685d91f4193268ca747ba735d2db514",
@@ -151,7 +156,7 @@
     "tools/build/check_sampler_gles.py": "d2e9711e25f0ce6ad335ab5aaadbdedf908e9f479da9d93900f88aa253f9a554",
     "tools/build/symbolicate_link_crash.py": "df8677c6b4673e81299358b553648e4e8a118c02219b8bfead90e03aacb5b218",
     "tools/build/test_program_cache.c": "8a562653d9cc7670d1f9b8f97a74d91feb59b1a70249a22798712d479fd71a52",
-    "tools/build/prepare_sources.py": "02e42298493344ead9df64bb44aaae47aaae9f0b68588092453302a3213bf592",
+    "tools/build/prepare_sources.py": "3f9918db3b1b7e5337483d8064257e22a1514d763a2f9fc2591f1cac9ce00629",
     "tools/build/air_specialize_cli.cpp": "89a86cae635e8b3de52f39fa7067e56f54225ea1574a5fa2e728ecf09bdd65e1",
     "tools/build/test_static_half_bits.cpp": "02321e6d44d1946304381c5146c9de16b7123f9d38d0e80ff975ad87bb663443",
     "tools/build/a2s_lookup.py": "feff33a6dcacf280664d1dbe32e8cc93d9c065003057d06f9d986d1117f31874",
@@ -164,7 +169,13 @@
     "tools/build/test_cif10_png_reference.m": "8b814b5d031a5418eb4117934f21121212959a7179645ef6b519b28eed2a0871",
     "tools/build/profile_cif10_png.m": "c8daee07eafe5dc7c524041d1efe194c821318bb68481cea934e16862f42ab7e",
     "tools/build/test_png_image_dispatch.m": "4dc2ac64f04fd34eaf5978fdfb24995d42f79cc0db60d7d355e2aa50da95faf5",
-    "tools/build/test_png_postdraw_encoder.m": "3eedab34f2549c7ff63f41b60877ede66f5ba83d64839cff9759e41482433d96"
+    "tools/build/test_png_postdraw_encoder.m": "3eedab34f2549c7ff63f41b60877ede66f5ba83d64839cff9759e41482433d96",
+    "tools/build/check_screen_snapshot.py": "afba6f17454045f0d091b566cf57db4aa088796052ece9dcaa2edc9541f9e41a",
+    "tools/build/install_screen_snapshot.py": "c343e263d8d5cad2e48d03e6f8b9fe5a26971451fd42a397d9ea5ce72bb72357",
+    "tools/build/prepare_screen_snapshot.py": "f019ddbfae7fba46a0ffe9af53c375fab64e500b110fdd4dbdbbd2ad91709278",
+    "tools/build/test_screen_codec.c": "3d7edfd19904d5e557af8e18ac337bd05a99987fe3aaf0adebd739eb57cedf35",
+    "tools/build/test_screen_wire.py": "2c9bd913194ca50d3c9ddd8b6c5ff9a47db62e0e8665dfc55320fb8d23a87ace",
+    "tools/build/verify_diagnostic_reconstruction.py": "bf48e02b12486ba642ef13452a6d0f76564a15adb38b9526a7dc9a48ee3b11cf"
   },
   "gpu_sources": {
     "gpu/diagnostics/exception_observe.m": "5f90e58ee0092546d440395a5ac23a52a29e174ab810de19f9e8bf9017e6cb92",
@@ -234,7 +245,7 @@
     "gpu/diagnostics/PostDrawObserve.h": "e293e701736657e5ad28850d6970b7a2ed5cd299b5f4d04ea4bfb926e6c7f963",
     "gpu/diagnostics/ProgramCacheScope.h": "bb6546f8c148f71e54c058bcf2877e7de903942ae1934a9d933c76636513fc6a",
     "gpu/diagnostics/SnapshotMethodObserve.h": "10dded48c0cf90d28999f03624e9f1b9c84c46cc1ba4b69567867ee42e9d04a8",
-    "gpu/sweetgl/metal_render.c": "7ddadbe295d8f5d621e5b9fa2366da34763a10ae66572fe31e8292063159552e",
+    "gpu/sweetgl/metal_render.c": "9113b4b09670930eac265c286b1f4685600c566f39d522803992fedce0fad1e0",
     "gpu/diagnostics/CIF10PNGReferenceProbe.h": "0b3d2c6e8caacc4456c0d9e9fd797539d571eab4303fe9e30172787d2475e564",
     "gpu/diagnostics/CIF10VImageCompare.h": "60387397043d88ab01dadadfbadd21054b1476182c19e412f3bd30e384840079",
     "gpu/diagnostics/CIF10PNGFilterCompare.h": "8728f1a2de6daf58b2de87408b6483ebbf9831ca5cfda5cea47ba9b5dacf8028",
@@ -247,7 +258,10 @@
   "r2_actual_CPU_GPU_and_multi_device_return_passed": true,
   "support_sources": {
     "xnu/support/vermeer_log_ring.h": "90d341a54fc8819e156f70c603acfa883fc1bd560429545709879cff1c1e335f",
-    "tools/png_encoder_proof.py": "5ac2776ae74977ef2bc43bc92b65fc4f53bb6abafb23cf6402a9c8c8250b37f1"
+    "tools/png_encoder_proof.py": "5ac2776ae74977ef2bc43bc92b65fc4f53bb6abafb23cf6402a9c8c8250b37f1",
+    "tools/baseline_source_inputs.py": "5816a8eb5da88cd569bd0261c82fbd52bb6a9f03b68b3565a603d373a202a2ac",
+    "xnu/support/SweetFramebufferScreen.h": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+    "xnu/support/SweetFramebufferScreenRuntime.h": "a1f41eeb87b7cf70ea751884ee38d758191f3cc0a00d697acc363fbba3cd5f63"
   },
   "v729_private_actual_return_passed": true,
   "v729_private_owner_ready_actual_return_passed": true,
@@ -264,5 +278,6 @@
   "program_cache_r2_runtime_native_proof": "reproducibility/v729-cache-r2-native-proof.json",
   "program_cache_standard_binary_and_sampler_actual_native_passed": true,
   "static_half_r1_runtime_native_proof": "reproducibility/v729-static-half-r1-native-proof.json",
-  "static_half_original_byte_guard_snapshot_actual_passed": true
+  "static_half_original_byte_guard_snapshot_actual_passed": true,
+  "v730_screen_sources_locked": true
 }

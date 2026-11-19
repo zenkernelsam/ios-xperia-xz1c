@@ -1,5 +1,13 @@
 # 当前状态 — 2026-11-19
 
+最新原GPUe662710b1d6a0bb4已完成39.172秒PON06四marker／连续健康30秒／worker退出；Sony BH905ND69G当前健康fastboot，无in-flight。新绘制观察GLES a7bad22c（只加原阶段计时）、v730/f258dee9与Metal5e94ab57／source-map3e79503f已取得自身GLES CPU／GPU、完整14组native／六组同源PNG及原observer CPU的独立准入，不能使用旧72d39da5的proof替代。完整结果见[RENDER-STAGES](RENDER-STAGES.md)与v730-render-stage-r1各记录。
+
+三轮后台预热均完整14组通过，并实际编译同scope缺bin的原request：15521／5005B、4840／73444B、4840／9711B，link分别3.147／37.936／2.872秒。原失败／partial-builder失败均保留；最后五条原pipeline命中64421／64317／747773／17437／44221B binary并nonnull，约195／80／236／59／72ms返回，随后首个真实750×1624 draw进入。`targets`完整1.523800秒／线程CPU0.225859秒，后续buffer／sample约1.006／0.504ms；`submit`只有BEGIN，原extension仍check-in超时，未见本次draw返回或PNG入口，REVISE保持。不得把draw进入当原UI／FPS通过，也不把stage墙钟直接归为GPU硬件时间。下一步细分原两个附件的目标准备／clear与首次提交；不据退出采样修改冻结VM／SCM／PON／allocator。
+
+本轮串口原scanout截图均完整复算；CPU靴power_off=0，原GPU45秒图仍power_off=1，仅用于缓冲区UI内容，不证明正常亮屏／LCD光学／睡眠。`render_stage_evidence.py`按原进程／pid／call核对阶段、退出期及缺失；最后r2报告保留submit pending并独立核验原PNG／BGR。正式工具锁已补齐v730截图／构建／行尾物化依赖，`validate_current.py`当前170个Python源语法／锁及v730增量通过。所有源码在正式仓库，旧raw和失败未覆盖。
+
+以下保留v730前序截图／编码器与旧库比较事实，当前可准入的库及下一步以上述最新记录为准。
+
 Sony BH905ND69G 当前健康停在 fastboot，无 controller／串口 worker／相机 worker。v730/f258dee9（20665112B、83 源）已通过自身 private、owner、ready、精确 GLES RAM CPU、两轮完整 GLES 八项／readonly 960000 像素与六张完整无损扫描帧，六轮均单 download/boot、PON06 四 marker、连续健康 30 秒和 worker 退出。最新 GPU token 5f97bb217a29d17a，38.750 秒完整回程，45 秒观察点的帧只请求一次并在最终取证复用；完整来源／块／记录／帧 CRC、原像素 FNV 和保存 PNG／BGR 均复算通过。固定 Apple base + 完整补丁 + v725..v730 已在新的 TEMP checkout 重建，83 源逐字节匹配；三个 LF/CRLF 物化规则已锁定，现行内核输入不变。详见 SCANOUT-SCREENSHOT 与对应 reproducibility 记录。
 
 读屏分辨率为真实 720×1280、BGR888/stride2160、2764800B；本轮截帧约 1.7..10.9 秒。CPU private 图确有日期／时间、camera／homebar、红色提示和红字；两轮 GPU 图捕获时系统 power_off 请求均为 1，即使取证前移也保持原事实，不能据此判断正常亮屏时的时钟／壁纸或面板色彩。UI 内容可用已校验串口帧替代相机，背光／光学色偏／面板真正送帧仍另验。完整 UI/FPS、睡眠和其它外设继续 active。
