@@ -1,0 +1,35 @@
+{
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-usb-open-descriptors-20261120",
+  "observation_json_SHA256": "2c4bf382431272e9109bed44f6a42e62dfac14022a077e16b320f6d9903a6a1a",
+  "observation": {
+    "serial": "BH905ND69G",
+    "fastboot_download_commands": 0,
+    "fastboot_boot_commands": 0,
+    "reset_commands": 0,
+    "set_configuration_calls": 0,
+    "bulk_reads": 0,
+    "bulk_writes": 0,
+    "requested_claim": true,
+    "claim_attempts": 1,
+    "release_attempts": 1,
+    "observed_serial": "BH905ND69G",
+    "active_configuration": 1,
+    "bulk_endpoints": [
+      {
+        "address": 1,
+        "attributes": 2,
+        "max_packet": 512
+      },
+      {
+        "address": 129,
+        "attributes": 2,
+        "max_packet": 512
+      }
+    ],
+    "result": "OPEN_AVAILABLE",
+    "source_sha256": "3dcf63a562ebfce95df14712cf06e3d2be45df0b2679d2b11eb87bed5355c46d",
+    "audited_sender_sha256": "e862e430514f7aaceb5ac5b2037a19770ba91889cb0088438e925b920dcde83c",
+    "observation_does_not_authorize_replaying_a_failed_trial": true
+  },
+  "r4_r5_original_failure_results_preserved": true
+}

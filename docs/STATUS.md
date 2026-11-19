@@ -1,6 +1,6 @@
 # 当前状态 — 2026-11-20
 
-Sony BH905ND69G 当前健康停在 fastboot，无 controller／串口 worker／in-flight。最新场景／队列观察 r3 靴 `3541e07973fe676f` 已完成 PON 0x06 的 ACK／DRAIN／RESET／FINAL_DRAIN、连续健康30秒及 worker 退出，回程39.109秒。40条原场景／队列请求完整返回：共享队列5次nonnull，场景加入／设置各5次，paused5次全YES，sync与tick仍0。原13方法20请求也完整，但display／nextDrawable／pipeline未发生。150秒完整扫描帧仍灰色锁屏时间日期与黑壁纸，原GPU登记窗口保持 STOP／OBSERVATION_INCOMPLETE。前轮单次上滑 `881ce1c5d844e7ba` 的正常颜色主页证据保留，截图成功没有改判GPU或壁纸阶段。
+Sony BH905ND69G 当前停在 fastboot，无 controller／串口 worker／in-flight。最新成功进入内核的是r4自身RAMCPU `93a7b9a5851e3ed3`／38.454秒完整0x06回程。随后r4 GPU在传输前USB open拒绝、r5 RAMCPU在guard test4退出，均未启动新内核，原STOP_ERROR保留；失败后独立连续健康30.016秒及一次无bulk传输的接口claim／release观察正常，旧失败包不重发。最近实际GPU仍是场景／队列r3 `3541e07973fe676f`：40请求完整、共享队列与场景有效，但sync／tick／display／nextDrawable／pipeline未发生，150秒灰字锁屏／黑壁纸，原STOP／OBSERVATION_INCOMPLETE保持。前轮`881ce1c5d844e7ba`正常颜色主页证据保留。
 
 当前正式基线为 CA 矩阵修订 r1：
 
@@ -43,6 +43,10 @@ Sony BH905ND69G 当前健康停在 fastboot，无 controller／串口 worker／i
 本轮 r1 observer 自身RAMCPU `5754f4626364190d` 通过，GPU `be248be112e4e024` 保持STOP；两条长ABI记录拆分／交错导致原请求核验拒绝，独立截图与39.594秒完整回程仍通过。r2采用短记录／分块ABI，自身RAMCPU `f66de2d4094eec8a` 通过，GPU `61745a1e16c8ab41` 的20条原请求完整：quad_init／quad_init_async／set_device／quad_layout各5，另外9类均0，未见init返回nil。原输入frame375×812、options114／0x72、color_space2、async_nil1。完整来源／截图／回程均复验，原STOP保留；详情与四靴输入在 [METAL-REQUEST-OBSERVATION](METAL-REQUEST-OBSERVATION.md)。
 
 r3仅增12类原场景／队列方法，observer`07d1360de49b9af17f2aad1fed72de5f8db3da92f7526991534aea8664c02a86`／132544B，自身RAMCPU `aa9d5a21aae2f148`通过，38.141秒完整回程。GPU原40请求全部完成，12项ABI／owner／metaclass完整核验；五次共享队列与四次实际队列创建均返回SweetMTLCommandQueue，五次addQuad与五次setScene原参数分别是NUNIQuad／NUNIScene。manager_device与window各8条触及采样上限，不能计成实际总数。paused五条全部YES，disable／enable／sync／tick均0；原postdraw九条仅library与colorsync，无snapshot／PNG。原图SHA`ca2603c424113a64e9ff22d04055e6f0146a2b44b214235949ca0d7e80258e97`，150.063秒捕获、2735块、11.921秒传输，完整来源与保存像素核验通过。见 [route](../reproducibility/v730-quad-route-r3-gpu-route.json) 与 [scanout](../reproducibility/v730-quad-route-r3-gpu-scanout.json)。
+
+r4／r5补原environment／animation观察，源码`6ef54b2`／`2b28508`，Mac ASan／UBSan转发与iOS ARM64编译通过，生产GLES／Metal及kernel保持。r4 observer12773784／149920B自身RAMCPU `93a7b9a5851e3ed3`通过；GPU `21d075ecbe605483` 在guard2/2后USB open报Entity not found，wire明确download0／boot0，没有LIVE／截图。r5 observer9e09ba1d／149984B增加原PRRenderer.environment／return identity，RAMCPU `e6788a5d9d05f334` 在guard test4退出1，无boot sender／wire／LIVE，未取得CPU准入。两次STOP_ERROR完整保留，不能把controller dispatch计数当USB boot写入，也不能发r5 GPU。见 [r4拒绝](../reproducibility/v730-quad-route-r4-gpu-transfer-refused.json)、[r5拒绝](../reproducibility/v730-quad-route-r5-ramcpu-guard-refused.json)。
+
+拒绝后Sony仍0fce:0dde／BH905ND69G、原fastboot健康31.688／30.016秒；描述符配置1、bulk端点1／129、packet512正常，单次接口claim／release正常，bulk读写／download／boot／reset均0。独立 [USB观察](../reproducibility/sony-usb-open-observation-20261120.json)证明当前能打开接口，不能解释首次竞态或提升失败包。正式`tools/device/usb_open_observation.py`记录身份／配置／描述符／claim失败阶段并仅在--claim-once单次打开释放；单worker锁保持，已验boot_once源码SHAe862e430未改。下一步离线核对loader仍处于已patch未boot状态的guard行为及原环境／快照触发，停止用新token重复同一失败。
 
 锁屏文字和主页扫描帧已改善；壁纸仍黑，原画布仅init／layout，未进入display／prewarm／drawable-size-update，原Aegir没有pipeline／snapshot／PNG请求。共享设备与队列原返回已确认nonnull，继续查原environment、动画启动／快照调用及显示触发。只读20H392原Vista init在`0x1ee946f5c`本就传YES给setPaused，原startAnimation才经_updateAnimation判断动画和显示标志；因此五次paused不能独立当作故障或强制解除。`sharedCommandQueue`属于resource-manager class方法，不能误补SweetMTLDevice；layout也不会更新drawable-size，更新在display开头。观察没有新增绘制工作，不强制draw或用旧靴离屏数据补造本靴壁纸成功。当前新scope没有实际缺binary请求，primer只有CPU准入，不能无请求空跑或称已完整硬件预热。
 

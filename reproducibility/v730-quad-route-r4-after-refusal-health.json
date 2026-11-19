@@ -1,0 +1,89 @@
+{
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-quad-route-r4-refused-health-20261120",
+  "health_json_SHA256": "8df36657bb701d1d9b9aee71042456e84131a5e6993ecacc7a2defa562a52ec8",
+  "health": {
+    "serial": "BH905ND69G",
+    "usb_vid": "0fce",
+    "usb_pid": "0dde",
+    "download_commands": 0,
+    "boot_commands": 0,
+    "reset_commands": 0,
+    "independent_health_only": true,
+    "previous_trial_result_unchanged": true,
+    "result": "PASS",
+    "continuous_health_seconds": 31.688000000081956,
+    "samples": [
+      {
+        "elapsed_seconds": 1.577999999979511,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 4.141000000061467,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 6.75,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 9.313000000081956,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 12.125,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 14.766000000061467,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 17.359000000171363,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 19.969000000040978,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 22.563000000081956,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 25.266000000061467,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 27.938000000081956,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 30.594000000040978,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 33.26600000006147,
+        "healthy": true
+      }
+    ]
+  },
+  "previous_failed_GPU_stage_not_promoted": true,
+  "read_only_descriptor_check": {
+    "identity": "BH905ND69G",
+    "VID": 4046,
+    "PID": 3550,
+    "configuration": 1,
+    "interface_class": 255,
+    "interface_subclass": 66,
+    "interface_protocol": 3,
+    "bulk_endpoints": [
+      129,
+      1
+    ],
+    "max_packet": 512,
+    "no_reset_or_set_config": true
+  },
+  "single_interface_claim_release_available": true,
+  "claim_probe_download_boot_reset_commands": 0,
+  "original_failed_bundle_not_resent": true
+}

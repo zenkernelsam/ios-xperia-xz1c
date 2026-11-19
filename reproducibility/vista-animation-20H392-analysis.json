@@ -1,0 +1,77 @@
+{
+  "system": "iOS 16.7.16 / 20H392",
+  "A2S_SHA256": "5bf04681af1819e2379319942a97be635100d6ca3844c5a22e372ce78a83b83d",
+  "local_slice_bounds_manifest_SHA256": "a3be61f9a3261122c98b689bbb5ba8a6a5e234bead12edcb0980915356256fb2",
+  "slices_metadata": [
+    {
+      "name": "vista-init",
+      "address": "0x1ee946d68",
+      "bytes": 1300,
+      "sha256": "bb25c97f2ab00a2eaaf24d89c4ed8ba083139b4c4785fae26afbd7abd3d5b873"
+    },
+    {
+      "name": "vista-start",
+      "address": "0x1ee94788c",
+      "bytes": 96,
+      "sha256": "98319b660354d6a22977a3962678a210163b8ecfe922bd44b18d1a3f3e1a0db1"
+    },
+    {
+      "name": "vista-stop",
+      "address": "0x1ee9478ec",
+      "bytes": 96,
+      "sha256": "7b1b6f54b51797311374a660d644e099ec648abe42f0bd349670ad30b4d551aa"
+    },
+    {
+      "name": "vista-start-public",
+      "address": "0x1ee94794c",
+      "bytes": 80,
+      "sha256": "86ac9d402e06395f890bd05541eb88842fa43716592dafcf1d08fbc5c19bcbdc"
+    },
+    {
+      "name": "vista-update",
+      "address": "0x1ee94797c",
+      "bytes": 40,
+      "sha256": "7e677a7a756c7fc011cba6d4e73d983463aedb6cda31044351f51e2e2d83e6c6"
+    },
+    {
+      "name": "view-paused",
+      "address": "0x1c1714ec8",
+      "bytes": 136,
+      "sha256": "b4e6820e7b60859fff87565e51112b48a461402fef9df02cbddaaa7548bff2b8"
+    },
+    {
+      "name": "controller-active",
+      "address": "0x1ee94ea00",
+      "bytes": 96,
+      "sha256": "6c31bd4e57d61eda55bddf2ab89e0486c6115e4df26f495671b89bdbe335a5e0"
+    }
+  ],
+  "A2S_exact_call_targets": [
+    {
+      "address": "0x1ee991260",
+      "symbol": "_objc_msgSend$_stopAnimation"
+    },
+    {
+      "address": "0x1ee991240",
+      "symbol": "_objc_msgSend$_startAnimation"
+    },
+    {
+      "address": "0x1ee991280",
+      "symbol": "_objc_msgSend$_updateAnimation"
+    },
+    {
+      "address": "0x1ee992940",
+      "symbol": "_objc_msgSend$isPaused"
+    },
+    {
+      "address": "0x1ee994120",
+      "symbol": "_objc_msgSend$setPaused:"
+    }
+  ],
+  "original_init_pauses_at": "0x1ee946f5c",
+  "original_init_pause_is_not_alone_a_fault": true,
+  "public_start_sets_animation_bit": "0x04",
+  "update_requires_animation_and_display_flags_before_private_start": true,
+  "runtime_environment_cause_not_verified": true,
+  "Apple_binary_and_disassembly_local_only_not_committed": true
+}

@@ -95,7 +95,9 @@
     "metal_request_evidence.py": "5df7fafa4e24c464975ba6d698c3a33dd7c4b54b0ee61f7e8eac738533e93adb",
     "test_metal_request_evidence.py": "1abded84a856060d15208542fb4e085f4cd6077f74d1d0a868bc4fd0e5e0d1b0",
     "quad_route_evidence.py": "0ae8035e19520fe6ba84e814eb98de9bbb250dd105aa076aab95b3bc94d31e9a",
-    "test_quad_route_evidence.py": "b9e49e0bc6618c1d1148147efce9498b79609822c66bd02210a92acce93559ca"
+    "test_quad_route_evidence.py": "b9e49e0bc6618c1d1148147efce9498b79609822c66bd02210a92acce93559ca",
+    "usb_open_observation.py": "3dcf63a562ebfce95df14712cf06e3d2be45df0b2679d2b11eb87bed5355c46d",
+    "test_usb_open_observation.py": "ef5c9780ec4967ac606fb916e5078eebc5bb7ff8d2c74f2f72e14b19cccc2e25"
   },
   "supervisor_based_on_actual_tested_one_shot": true,
   "platform_tools_from_environment_or_PATH": true,

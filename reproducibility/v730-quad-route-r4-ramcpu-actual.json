@@ -1,0 +1,131 @@
+{
+  "version": 730,
+  "mode": "ramcpu",
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-quad-route-r4-ramcpu-20261120",
+  "token": "93a7b9a5851e3ed3",
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "image_sha256": "295ecb03da134dd60207eadd2a44580386df0c009826120baa82d0e0c63e1174",
+  "log_sha256": "a959d349db33552f112b91490192d64e323d0284f39977959b5cee0dfee6979b",
+  "return_complete": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "93a7b9a5851e3ed3",
+    "checkpoint_bytes": 529018,
+    "log_bytes": 532260,
+    "log_sha256": "a959d349db33552f112b91490192d64e323d0284f39977959b5cee0dfee6979b",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      5,
+      60,
+      62
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 38.45399999991059,
+  "single_download_boot_verified": true,
+  "actual_stage_verified": true,
+  "complete_panel_and_peripheral_goal_not_achieved": true,
+  "payload_audit": {
+    "image_sha256": "295ecb03da134dd60207eadd2a44580386df0c009826120baa82d0e0c63e1174",
+    "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+    "blob_count": 8,
+    "complete_payload_reconstructed_from_compiled_kernel": true
+  },
+  "screen": {
+    "protocol": 1,
+    "frames": [
+      {
+        "id": 1,
+        "token": "93a7b9a5851e3ed3",
+        "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+        "image_sha256": "295ecb03da134dd60207eadd2a44580386df0c009826120baa82d0e0c63e1174",
+        "binding": {
+          "protocol": 1,
+          "width": 720,
+          "height": 1280,
+          "stride": 2160,
+          "format": "BGR888",
+          "codec": "PRLE1",
+          "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+          "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+          "runtime_source_sha256": "a1f41eeb87b7cf70ea751884ee38d758191f3cc0a00d697acc363fbba3cd5f63"
+        },
+        "begin": {
+          "token": "93a7b9a5851e3ed3",
+          "id": "1",
+          "width": "720",
+          "height": "1280",
+          "stride": "2160",
+          "format": "BGR888",
+          "bytes": "2764800",
+          "codec": "PRLE1",
+          "encoded": "69160",
+          "raw_fnv": "7a5c18d144b038c2",
+          "enc_crc": "03359b37",
+          "vsync": "9079",
+          "timestamp": "185681176102",
+          "copy_ticks": "7567554",
+          "power_off": "0",
+          "source_checked": "1",
+          "source_match": "1"
+        },
+        "scan": {
+          "token": "93a7b9a5851e3ed3",
+          "id": "1",
+          "pa": "0x9d400000",
+          "map_pa": "0x9d400000",
+          "map_bytes": "2764800",
+          "size": "0x50002d0",
+          "img": "0x50002d0",
+          "xy": "0",
+          "out": "0x50002d0",
+          "outxy": "0",
+          "fmt": "0x2243f",
+          "unpack": "0x20001",
+          "op": "0x80000000",
+          "qop": "0",
+          "ctl": "0x20020",
+          "start": "0",
+          "before_after": "1"
+        },
+        "blocks": 541,
+        "raw_file": "scanout-00000001.bgr",
+        "png_file": "scanout-00000001.png",
+        "raw_sha256": "72e4bf15f93075dbebb90ccec8daa330f7fe7b15c588c0a95c5a56fc4db07177",
+        "png_sha256": "045d18702b0db188bfdae3f50a2b5b6d3e2320f55f3e3653729ca493f1392801",
+        "pixel_values_preserved": true,
+        "verified": true,
+        "optical_panel_verified": false
+      }
+    ],
+    "verified": true,
+    "optical_panel_verified": false,
+    "current_boot_source_and_payload_checked": true,
+    "format": "BGR888",
+    "width": 720,
+    "height": 1280
+  },
+  "ram_library_binding": {
+    "library_sha256": "d6d8fcfa27bcac84ab5edb3d2a11c1ed23374e8b491a3e8de093a9a2a819ac2b",
+    "library_bytes": 14765296,
+    "library_fnv64": "4260fc84efae3182",
+    "blob_sha256": "f9090dd50d87128b8338ca282e72f9bd9f71037f47e52e32b1db91c6728f9a98",
+    "raw_sha256": "47ecd3df42e896395550da5b2d1c449928010513984197f5a1324cdf95f3eb92",
+    "manifest_sha256": "6423426ba2df5776c904c64752037fba266b92d01ad68b8611d20f2ee4af0e92"
+  },
+  "library_loaded_before_current_live": false,
+  "ram_library_prefix": {
+    "logical_library_reads": 1,
+    "raw_library_reads": 1,
+    "ready_positions": [
+      8968
+    ],
+    "read_positions": [
+      12580
+    ],
+    "startup_block_sha256": "8c94c831f1096c886e258fb177e96b5a6f8882682a0905cd33fcad50b2ffd53a",
+    "explicit_exact_prefix_replay": false,
+    "raw_log_unchanged": true
+  }
+}

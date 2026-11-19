@@ -26,4 +26,6 @@ gl5已在设备，不flash／erase userdata、SD、TA、XFL、救砖固件／校
 
 fastboot／bash来自LILAC_FASTBOOT／LILAC_BASH或PATH；xperable由使用者放assets/device-tools/xperable.exe，guard核对SHA且只操作Sony。boot使用boot_once无重试，不能用xperable内置boot重试。读取现有raw的后处理工具不打开COM；原结果／raw不覆盖，退出期记录单列。
 
+USB投递前拒绝可独立使用`usb_open_observation.py --output "$env:TEMP\新的观察目录"`读取准确Sony身份／现有配置／bulk描述符；`--claim-once`只单次claim／release原接口。该工具不发bulk读写／download／boot／reset，也不set_configuration或detach驱动，一个device lock且输出目录必须新建。它记录失败所在阶段，成功不授权重发旧失败试验。r4 USB open拒绝与r5 guard退出均未boot，原记录见STATUS；实际单发发送器SHAe862e430保持。
+
 Mac正式仓库~/Desktop/ios-xperia-xz1c，~/xnu-autobuild.pause保持，旧常驻构建器不启动。每轮核对Mac实际Git和源码／归档SHA，单独复制源码不当作同步完成。当前镜像／原输入／失败证据受保护；回收站规则和历史原文见 [LAYOUT](LAYOUT.md) 与 [archive](archive/20261119/OPERATIONS-before-ca-matrix-actual.md)。不永久删除，不清空Windows／Mac回收站。

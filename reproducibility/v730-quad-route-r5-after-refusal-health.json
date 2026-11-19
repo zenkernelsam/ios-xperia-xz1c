@@ -1,0 +1,69 @@
+{
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-quad-route-r5-refused-health-20261120",
+  "health_json_SHA256": "f04f798663f84bcb4dae1c7a8f63dc35081f36a7c12c13197b07a0956a6127e6",
+  "health": {
+    "serial": "BH905ND69G",
+    "usb_vid": "0fce",
+    "usb_pid": "0dde",
+    "download_commands": 0,
+    "boot_commands": 0,
+    "reset_commands": 0,
+    "independent_health_only": true,
+    "previous_trial_result_unchanged": true,
+    "result": "PASS",
+    "continuous_health_seconds": 30.015999999828637,
+    "samples": [
+      {
+        "elapsed_seconds": 1.718000000109896,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 4.405999999959022,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 7.311999999918044,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 9.983999999938533,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 12.639999999897555,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 15.343000000109896,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 18.233999999938533,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 21.030999999959022,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 23.70299999997951,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 26.32799999997951,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 29.046000000089407,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 31.733999999938533,
+        "healthy": true
+      }
+    ]
+  },
+  "previous_refused_RAMCPU_stage_not_promoted": true,
+  "no_device_reset_or_boot_sent_by_health_check": true,
+  "original_failed_bundles_not_resent": true
+}

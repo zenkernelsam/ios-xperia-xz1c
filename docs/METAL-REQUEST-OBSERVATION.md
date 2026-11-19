@@ -73,3 +73,13 @@ GPU共40条完整原route请求，0未完成；manager_device／window各8条及
 ```powershell
 python -B tools/device/quad_route_evidence.py --directory "$env:TEMP\lilac-v730-quad-route-r3-gpu-20261119" --output "$env:TEMP\lilac-quad-route-r3-recheck.json"
 ```
+
+## r4／r5环境观察与投递拒绝
+
+r4／`6ef54b2`把观察扩展到26类：原`PRPosterEnvironmentImpl`的preview／snapshot／low-luminance、backlight／linear-backlight／unlock double、content CGSize，原Vista start／stop／update／snapshotImage以及Aegir delegate init／update。每类8条／208条总上限，receiver／argument对象ID绑定实际原请求，scalar／size日志保存原64位位型。r5／`2b28508`再增`-[PRRenderer environment]`和返回对象ID，27类／216条上限；用来区分renderer getter与delegate环境是否一致，不额外调用原getter／动画或快照。Mac原ObjC方法、nil／异常／errno／BOOL／double／CGSize／block／环境对象转发ASan／UBSan及ARM64构建通过。准确20H392元数据在[environment](../reproducibility/poster-environment-20H392-methods.json)，host结果与手机观察分别保存。
+
+r4 observer SHA`12773784797c95b0418f5e25ef5bd40ceb96223438f41bed5ddd814172976784`／149920B，自身RAMCPU `93a7b9a5851e3ed3`通过，38.454秒四marker／健康／worker退出；[CPU](../reproducibility/v730-quad-route-r4-ramcpu-actual.json)。其GPU `21d075ecbe605483` guard2/2后USB open报`[Errno 2] Entity not found`，wire实际download0／boot0，未有LIVE／屏幕或环境观察。原controller STOP_ERROR与原wire保留，dispatch1只表示调用发送器，不能计为写了一次USB boot；[拒绝](../reproducibility/v730-quad-route-r4-gpu-transfer-refused.json)。
+
+r5 observer SHA`9e09ba1d9cb0b16ee33348289fa59a330fb6a4921ac7ef54e7b91b75fc676d5e`／149984B，其新RAMCPU `e6788a5d9d05f334`在guard test4退出1，未到boot sender、无wire／LIVE，因此未取得CPU先验，不能发GPU；[拒绝](../reproducibility/v730-quad-route-r5-ramcpu-guard-refused.json)。两版旧失败bundle未重发，原内核／GLES／Metal保持。
+
+之后独立fastboot健康31.688／30.016秒通过，Sony身份／现有配置／bulk描述符正常，单次claim／release成功，期间download／boot／bulk读写／reset均0；[USB](../reproducibility/sony-usb-open-observation-20261120.json)。这些只读观察不解释前次竞态，也不提升失败试验。原已patch未boot的loader状态与guard交互需离线核对，不能继续换token重复失败。已验`boot_once.py`SHAe862e430保持，独立`usb_open_observation.py`提供准确打开阶段诊断。手机当前fastboot，无in-flight。

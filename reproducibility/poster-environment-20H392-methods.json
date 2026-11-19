@@ -1,0 +1,121 @@
+{
+  "system": "iOS 16.7.16 / 20H392",
+  "A2S_SHA256": "5bf04681af1819e2379319942a97be635100d6ca3844c5a22e372ce78a83b83d",
+  "source_SHA256": "480c712d9fd0627b1c294372dae6593c1ba163db64c765ec9a3f59ef1ede7daa",
+  "method_list_types_and_IMP_A2S_start_verified": true,
+  "methods": [
+    {
+      "owner": "PRPosterEnvironmentImpl",
+      "kind": "-",
+      "selector": "isLowLuminance",
+      "types": "B16@0:8",
+      "impl": "0x18ee8e78c",
+      "symbol": "-[PRPosterEnvironmentImpl isLowLuminance]"
+    },
+    {
+      "owner": "PRPosterEnvironmentImpl",
+      "kind": "-",
+      "selector": "isSnapshot",
+      "types": "B16@0:8",
+      "impl": "0x18ee8e780",
+      "symbol": "-[PRPosterEnvironmentImpl isSnapshot]"
+    },
+    {
+      "owner": "PRPosterEnvironmentImpl",
+      "kind": "-",
+      "selector": "isPreview",
+      "types": "B16@0:8",
+      "impl": "0x18ee8e760",
+      "symbol": "-[PRPosterEnvironmentImpl isPreview]"
+    },
+    {
+      "owner": "PRPosterEnvironmentImpl",
+      "kind": "-",
+      "selector": "linearBacklightProgress",
+      "types": "d16@0:8",
+      "impl": "0x18ee8f078",
+      "symbol": "-[PRPosterEnvironmentImpl linearBacklightProgress]"
+    },
+    {
+      "owner": "PRPosterEnvironmentImpl",
+      "kind": "-",
+      "selector": "backlightProgress",
+      "types": "d16@0:8",
+      "impl": "0x18ee8f068",
+      "symbol": "-[PRPosterEnvironmentImpl backlightProgress]"
+    },
+    {
+      "owner": "PRPosterEnvironmentImpl",
+      "kind": "-",
+      "selector": "desiredContentSize",
+      "types": "{CGSize=dd}16@0:8",
+      "impl": "0x18ee8e820",
+      "symbol": "-[PRPosterEnvironmentImpl desiredContentSize]"
+    },
+    {
+      "owner": "PRPosterEnvironmentImpl",
+      "kind": "-",
+      "selector": "minimumContentSize",
+      "types": "{CGSize=dd}16@0:8",
+      "impl": "0x18ee8e8c4",
+      "symbol": "-[PRPosterEnvironmentImpl minimumContentSize]"
+    },
+    {
+      "owner": "PRPosterEnvironmentImpl",
+      "kind": "-",
+      "selector": "unlockProgress",
+      "types": "d16@0:8",
+      "impl": "0x18ee8f088",
+      "symbol": "-[PRPosterEnvironmentImpl unlockProgress]"
+    },
+    {
+      "owner": "NUNIAstronomyVistaView",
+      "kind": "-",
+      "selector": "snapshotImage",
+      "types": "@16@0:8",
+      "impl": "0x1ee9475d8",
+      "symbol": "-[NUNIAstronomyVistaView snapshotImage]"
+    },
+    {
+      "owner": "NUNIAstronomyVistaView",
+      "kind": "-",
+      "selector": "stopAnimation",
+      "types": "v16@0:8",
+      "impl": "0x1ee947964",
+      "symbol": "-[NUNIAstronomyVistaView stopAnimation]"
+    },
+    {
+      "owner": "NUNIAstronomyVistaView",
+      "kind": "-",
+      "selector": "startAnimation",
+      "types": "v16@0:8",
+      "impl": "0x1ee94794c",
+      "symbol": "-[NUNIAstronomyVistaView startAnimation]"
+    },
+    {
+      "owner": "NUNIAstronomyVistaView",
+      "kind": "-",
+      "selector": "_updateAnimation",
+      "types": "v16@0:8",
+      "impl": "0x1ee94797c",
+      "symbol": "-[NUNIAstronomyVistaView _updateAnimation]"
+    }
+  ],
+  "local_original_Aegir_binary_SHA256": "a4abba1e22350a5c577dc3ce551da90ab42606d872509cd50859ef63751454a7",
+  "delegate_methods": [
+    {
+      "owner": "_TtC11AegirPoster24AegirRenderingController",
+      "selector": "renderer:didInitializeWithEnvironment:",
+      "types": "v32@0:8@16@24",
+      "impl": "0x100023280"
+    },
+    {
+      "owner": "_TtC11AegirPoster24AegirRenderingController",
+      "selector": "renderer:didUpdateEnvironment:withTransition:",
+      "types": "v40@0:8@16@24@32",
+      "impl": "0x1000232e8"
+    }
+  ],
+  "original_binary_not_committed": true,
+  "metadata_not_runtime_acceptance": true
+}

@@ -1,0 +1,26 @@
+{
+  "token": "21d075ecbe605483",
+  "image_sha256": "50ec89d59f3ea146caaf2594b10568b1cc24cdcf7aa8545b587da6a6715b6c63",
+  "original_result": "STOP_ERROR",
+  "original_reason": null,
+  "original_error": "boot_once failed: {\"serial\": \"BH905ND69G\", \"boot_command_attempts\": 0, \"download_command_attempts\": 0, \"retries\": 0, \"result\": \"REFUSE_BEFORE_TRANSFER\", \"error\": \"[Errno 2] Entity not found\", \"image_sha256\": \"50ec89d59f3ea146caaf2594b10568b1cc24cdcf7aa8545b587da6a6715b6c63\", \"sender_sha256\": \"e862e430514f7aaceb5ac5b2037a19770ba91889cb0088438e925b920dcde83c\"}\r\n",
+  "original_results_sha256": "4dacdaa7917ffbe4a6b5c329fef423895ea6f04c2ebade7a9d841cfdbc92d119",
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-quad-route-r4-gpu-20261120",
+  "boot_wire": {
+    "serial": "BH905ND69G",
+    "boot_command_attempts": 0,
+    "download_command_attempts": 0,
+    "retries": 0,
+    "result": "REFUSE_BEFORE_TRANSFER",
+    "error": "[Errno 2] Entity not found",
+    "image_sha256": "50ec89d59f3ea146caaf2594b10568b1cc24cdcf7aa8545b587da6a6715b6c63",
+    "sender_sha256": "e862e430514f7aaceb5ac5b2037a19770ba91889cb0088438e925b920dcde83c"
+  },
+  "boot_wire_sha256": "0ac378b4b13efab2f4a7d16e6966d0c7e5462ff74d5bcaf913c3a40c80ff1810",
+  "zero_download_and_boot_commands_verified": true,
+  "controller_dispatch_is_not_a_USB_boot_write": true,
+  "GPU_environment_observation_not_started": true,
+  "old_bundle_not_resent": true,
+  "same_kernel_preceding_RAMCPU_token": "93a7b9a5851e3ed3",
+  "same_kernel_preceding_RAMCPU_return_seconds": 38.45399999991059
+}

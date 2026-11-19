@@ -1,0 +1,13 @@
+{
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-quad-route-r5-ramcpu-20261120",
+  "token": "e6788a5d9d05f334",
+  "image_sha256": "6f60ebf1ff348d7a47ceb98e9bb1c03db953e2f998f94741bc114173db9faca4",
+  "original_result": "STOP_ERROR",
+  "original_error": "patch failed: version-bootloader: 1306-5035_X_Boot_MSM8998_LA2.0_P_114\r\n[+] Starting test4 size = 0xf49880, offset = 0x30, payloadsize = 0xe7000\r\n",
+  "original_results_sha256": "63374852986bbf069fd051d73f6a3476fd8a694da366a0a39367962883d6ea09",
+  "guard_patch_exit_code": 1,
+  "download_and_boot_not_dispatched": true,
+  "RAMCPU_acceptance_not_obtained": true,
+  "old_bundle_not_resent": true,
+  "consecutive_refused_trial_after_prior_patched_loader_without_boot": true
+}
