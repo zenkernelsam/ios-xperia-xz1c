@@ -124,7 +124,8 @@ def verify(directory,mode,kernel_sha=None,version=None):
                 if a['exception_observer'].get('quad_route_observer'):
                     from quad_route_evidence import inspect as inspect_quad_route
                     exceptions['Quad_route']=inspect_quad_route(text,a['token'])
-                    assert all(c['installed']==a['exception_observer']['quad_route_methods']==12 for c in exceptions['Quad_route']['process_configurations'])
+                    assert exceptions['Quad_route']['revision']==a['exception_observer']['quad_route_revision']
+                    assert all(c['installed']==a['exception_observer']['quad_route_methods'] for c in exceptions['Quad_route']['process_configurations'])
                 if a['exception_observer'].get('original_postdraw_observer'):exceptions['postdraw_snapshot']=inspect_postdraw(text,a['token'],method_observer=a['exception_observer'].get('snapshot_method_observer',False),png_input_observer=a['exception_observer'].get('postdraw_png_input_metadata',False),png_encoder=a['exception_observer'].get('png_encoder_prior_proof'))
                 if a['exception_observer'].get('AIR_XR_probe'):exceptions['AIR_XR']=verify_air_xr(text,a['token'])
                 if a['exception_observer'].get('Metal_IOSurface_probe'):exceptions['Metal_IOSurface']=verify_metal_surface(text,a['token'])
