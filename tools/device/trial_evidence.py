@@ -120,7 +120,7 @@ def verify(directory,mode,kernel_sha=None,version=None):
                 if a['exception_observer'].get('original_pipeline_observer'):exceptions['pipeline_factory']=verify_pipeline_observer(text,a['token'])
                 if a['exception_observer'].get('original_request_observer'):
                     exceptions['Metal_requests']=inspect_metal_requests(text,a['token'])
-                    assert all(c['installed']==6 for c in exceptions['Metal_requests']['process_configurations'])
+                    assert all(c['installed']==a['exception_observer']['request_methods'] for c in exceptions['Metal_requests']['process_configurations'])
                 if a['exception_observer'].get('original_postdraw_observer'):exceptions['postdraw_snapshot']=inspect_postdraw(text,a['token'],method_observer=a['exception_observer'].get('snapshot_method_observer',False),png_input_observer=a['exception_observer'].get('postdraw_png_input_metadata',False),png_encoder=a['exception_observer'].get('png_encoder_prior_proof'))
                 if a['exception_observer'].get('AIR_XR_probe'):exceptions['AIR_XR']=verify_air_xr(text,a['token'])
                 if a['exception_observer'].get('Metal_IOSurface_probe'):exceptions['Metal_IOSurface']=verify_metal_surface(text,a['token'])

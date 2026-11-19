@@ -345,9 +345,10 @@ if a.snapshot_observe:manifest.update(snapshot_method_observer=True,snapshot_met
     snapshot_method_read_bytes_guards_and_ABI_owner_repeat_rejection_host_passed=True,
     snapshot_method_target_coverage_requires_actual_metadata=True,
     snapshot_method_host_test_source_sha256=hashlib.sha256((root/'tools/build/test_snapshot_method_observe.m').read_bytes()).hexdigest())
-if a.request_observe:manifest.update(original_request_observer=True,request_observer_revision=1,request_methods=6,request_limit=64,
+if a.request_observe:manifest.update(original_request_observer=True,request_observer_revision=2,request_methods=13,request_limit=64,
     request_original_arguments_returns_errors_throws_errno_host_passed=True,request_does_not_allocate_or_draw=True,
     request_owned_ABI_and_repeat_rejection_host_passed=True,
+    request_record_max_bytes=190,request_short_framing=True,
     request_host_test_source_sha256=hashlib.sha256((root/'tools/build/test_metal_request_observe.m').read_bytes()).hexdigest())
 assert all(hashlib.sha256((root/name).read_bytes()).hexdigest()==digest for name,digest in source_files.items())
 (out/'manifest.json').write_bytes((json.dumps(manifest,indent=2)+'\n').encode())

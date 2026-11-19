@@ -51,7 +51,8 @@ def load(folder,expected=None):
             if observer.get('original_request_observer'):
                 sources.add('gpu/diagnostics/MetalRequestObserve.h')
                 assert observer.get('registration_only') and observer.get('original_postdraw_observer')
-                assert observer['request_observer_revision']==1 and observer['request_methods']==6 and observer['request_limit']==64
+                assert observer['request_observer_revision'] in (1,2) and observer['request_methods']==(6 if observer['request_observer_revision']==1 else 13) and observer['request_limit']==64
+                if observer['request_observer_revision']==2:assert observer['request_short_framing'] and observer['request_record_max_bytes']==190
                 assert observer['request_original_arguments_returns_errors_throws_errno_host_passed'] and observer['request_does_not_allocate_or_draw']
                 assert observer['request_owned_ABI_and_repeat_rejection_host_passed']
                 assert re.fullmatch('[0-9a-f]{64}',observer['request_host_test_source_sha256'])
