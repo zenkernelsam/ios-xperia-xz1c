@@ -1,7 +1,7 @@
 """One owned diagnostic stage, gated by real same-kernel prerequisites; no failure replay."""
 import argparse,hashlib,json,os,re,subprocess,time
 from pathlib import Path
-from controller import Artifact,Journal,LiveOps,write_json,execute,checked_screen_capture_after
+from controller import Artifact,Journal,LiveOps,write_json,execute,checked_screen_capture_after,swipe_once_binding
 from package_trial import ROOT,prove_payload
 from policy import LogPolicy,Decision,Refuse
 from procguard import LiveLock
@@ -93,16 +93,23 @@ class DiagnosticOps(StartupObservation,LiveOps):
         policy.minimum=180 if artifact.data['trial_mode']=='gpu' else 0
         start=time.monotonic();next_progress=0
         original_library_returned=False
+        F12_ready=False
         while time.monotonic()-start<step['observe_seconds']:
             self.check_stop();now=time.monotonic()-start
             for line in self.lines():
                 policy.feed(line,now)
+                if policy.live and 'SWEET RMI4: F12 page=' in line:F12_ready=True
                 if policy.live and re.search(r'\|AegirPoster\| SWEET METAL LIBRARY END call=\d+ kind=bundle returned_nil=0 ',line):
                     original_library_returned=True
                 if (policy.live and artifact.data.get('thread_sample_observation') and not getattr(self,'sample_requested',False) and
                     artifact.data['thread_sample_observation']['trigger']=='first_target_clear' and
                     re.search(r'\|AegirPoster\| SWEET RENDER TARGET BEGIN call=\d+ index=[0-7] format=\d+ load=2 part=clear ',line)):
                     self.request_sample(artifact)
+            gesture=artifact.data.get('swipe_observation')
+            if (policy.live and F12_ready and gesture and now>=gesture['after_seconds'] and
+                not getattr(self,'swipe_requested',False)):
+                self.journal.event('SWIPE_OBSERVATION_POINT',token=artifact.token,elapsed_seconds=now,F12_ready=True,current_LIVE=True)
+                self.request_swipe(artifact)
             capture_after=artifact.data.get('screen_capture_after_seconds')
             if capture_after is not None and policy.live and now>=capture_after and not self.screen_attempted:
                 self.journal.event('SCREEN_OBSERVATION_POINT',token=artifact.token,elapsed_seconds=now)
@@ -158,6 +165,9 @@ def main():
     plan=json.loads((bundle/'plan.json').read_bytes())
     assert plan.get('screen_required',False)==('screen_snapshot_binding' in record), 'Plan screenshot requirement differs from the actual artifact'
     assert plan.get('screen_capture_after_seconds')==record.get('screen_capture_after_seconds'), 'Screenshot observation time differs'
+    if 'swipe_observation' in record:
+        assert mode=='gpu' and record['swipe_observation']==swipe_once_binding()
+        assert record.get('screen_capture_after_seconds')==150 and not record.get('thread_sample_observation')
     if 'screen_capture_after_seconds' in record:
         assert mode=='gpu' and 'screen_snapshot_binding' in record
         checked_screen_capture_after(record['screen_capture_after_seconds'])

@@ -8,7 +8,7 @@ from unittest.mock import patch
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from controller import validate_plan,LiveOps
+from controller import validate_plan,LiveOps,swipe_once_binding
 from policy import Refuse
 from run_trial import prerequisites,DiagnosticOps
 from scanout_snapshot import binding
@@ -137,6 +137,30 @@ class ScreenGates(unittest.TestCase):
                 decision,live=ops.observe(artifact,step)
             self.assertTrue(live);self.assertEqual(decision.kind,'STOP')
             self.assertEqual(sent,[180.0] if library_returned else [])
+
+    def test_one_swipe_requires_LIVE_and_F12_before_single_late_frame(self):
+        for touch in (False,True):
+            now=[0.0];calls=[];delivered=[False]
+            ops=object.__new__(DiagnosticOps);ops.screen_attempted=False
+            ops.directory=Path('absent-swipe-fixture');ops.journal=SimpleNamespace(root=ops.directory,event=lambda *a,**k:None)
+            ops.capture_process=SimpleNamespace(process=SimpleNamespace(poll=lambda:None));ops.check_stop=lambda:None
+            token='0123456789abcdef'
+            def lines():
+                if delivered[0]:return []
+                delivered[0]=True;result=['SWEET LOOP LIVE proto=1 token='+token,'native-ready']
+                if touch:result.append('SWEET RMI4: F12 page=0 max=719x1279 obj=10 bytes=8')
+                return result
+            def swipe(*a):calls.append(('swipe',now[0]));ops.swipe_requested=True
+            def screen(*a):calls.append(('frame',now[0]));ops.screen_attempted=True;return {'verified':True}
+            ops.lines=lines;ops.request_swipe=swipe;ops.screen=screen
+            artifact=SimpleNamespace(token=token,watchdog=420,data={'trial_mode':'gpu',
+                'screen_capture_after_seconds':150,'swipe_observation':swipe_once_binding()})
+            step={'goals':['native-ready'],'stable_seconds':30,'observe_seconds':240}
+            with patch('run_trial.time.monotonic',side_effect=lambda:now[0]), \
+                 patch('run_trial.time.sleep',side_effect=lambda seconds:now.__setitem__(0,now[0]+1)),patch('run_trial.write_json'):
+                decision,live=ops.observe(artifact,step)
+            self.assertTrue(live);self.assertEqual(decision.kind,'PASS')
+            self.assertEqual(calls,[('swipe',120.0),('frame',150.0)] if touch else [('frame',150.0)])
 
 
 if __name__=='__main__':unittest.main()

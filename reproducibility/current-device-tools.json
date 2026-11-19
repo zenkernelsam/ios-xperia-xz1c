@@ -4,7 +4,7 @@
     "boot_once.py": "e862e430514f7aaceb5ac5b2037a19770ba91889cb0088438e925b920dcde83c",
     "capture.py": "6bf670ec0fd55b50ee5f83997931dee98549461435f89474dfd3b757e3b39c70",
     "clock_evidence.py": "0e7d7fcf93daf09af915b974c6b06a7165408bf1891ba553427330fcd089c42f",
-    "controller.py": "c47972217cf27f75fa057b8ce8345116f01180d247ac018a9a49c43e8beb10b2",
+    "controller.py": "dff96982b5579a1f3cd0ab0b75dc894eb6f4c34b8e835f1e8b65ae3b2d7c804a",
     "exception_evidence.py": "c4b1cfd24ec2cc2a942b351797b6cab1445873350ca7b96be4540b03ce596921",
     "failed_queue_evidence.py": "a5b29da0bec03a5fc48270421712e8a392a2c8fba9f351a3d15cd98c0bf14bce",
     "failed_trial_evidence.py": "e7f7b26ab2b6530574323769db01f91ad2e2111abdee0e71ba3e2921f0997363",
@@ -17,13 +17,13 @@
     "metal_resource_evidence.py": "e3737afff830f8d7466fddf67f4980d33dc9cf54fe89079828aa603fa9ddd35c",
     "observe_fastboot.py": "7c82964e346fa9166bdbaee1b8d74905f8cf1b53d151b42ba68909dc2e82100b",
     "owner_metadata.py": "e0f4e4fa2d54381d63128a39fbcabfe6c3ab9468a99f44cd44c37d86af84d564",
-    "package_trial.py": "db5e887d7418cb98affa82e231dd3c90e67515fb9453addedae206d7b6827773",
+    "package_trial.py": "8c6e998820ed6237ac4cf3ae685ceb5283a8fe431fcf151a7c50a911c0d756c6",
     "policy.py": "788151bcae524eb1dbb58e21743e957cf4ff2e819247dcf74db05e173cf00365",
     "preflight_processes.ps1": "6586345710fe618415ce2ddd8b53d230c14c280c93f34c5fb1a190fcc7e1f91f",
     "procguard.py": "7cc150c13ca8d6fce28ec9784af8886eaaa4cdd8fad9cb3ff6befa9fd67d116d",
     "readonly_pixels.py": "bd1c86eddff0c7ca30d74b63cf2c5ac200a4691360f78f121e4cced5cd86fb5f",
     "return_evidence.py": "5142d3a90e89f64f796f2ce70227b28703afbca5be582ef25b6d638b09ae7e8d",
-    "run_trial.py": "876e80e377faf63a1ee406fd4b65c51647b929763f6437e7dcae62102dcb80c6",
+    "run_trial.py": "64fb4cd5c68dc1551c5f9840d03a703dcdc3255d89edc6ca89acb200422f17a3",
     "serial_worker.py": "85c441bff24e081fc4fa759748676b130becf2a070bbacbff6b23fba96ae3fd4",
     "sony_usb_guard.py": "e1f636a6327530f28ef407732d58f0e7310494c4660010f793f4dcbe2ebdc4c6",
     "source_region_evidence.py": "748edd1bd5e5783e12a925524876a36e7d2538ad18700ba1af55b6b940ac5b2f",
@@ -78,7 +78,7 @@
     "png_encoder_prerequisite.py": "b64cde1c5c990d342cd2d61a6efc158f243c08e51ca2256b1c69f95f402345f3",
     "test_png_encoder_proof.py": "4b6043effd463d8592acdd479cfed771509ff42492ef5965f8a0c663fc2a78d8",
     "scanout_snapshot.py": "0a30b84e983a33a880c726a6ff90cc3ca105250326e292345aa58dfd70e512d2",
-    "test_scanout_gates.py": "58eefee027bd2cf8d6f9e8d51a94238d6c3f103b344f3141a3ab63e8faac1328",
+    "test_scanout_gates.py": "23050200fc53048c9f70d2287863dbfd62489d4760233f040bf7aa2b904c6c2b",
     "test_png_encoder_prerequisite.py": "c4a34e69e633061d32e3ec8910dbedcb8e3ecc49a1ddb969ef65141f41990ab2",
     "render_stage_evidence.py": "313c8fc03fb37f9045ff7a71e4e738fee007fc868c63603508a764b057ccc749",
     "test_render_stage_evidence.py": "c2e0c9e2a01013bac677d3089f32df2f213441679d1bbee3ed2dc4f09e480d17",
@@ -89,7 +89,7 @@
     "test_thread_sample.py": "7249a1502ed214a07bd737fe0f4e47bd9a52378d0b8f3d640f23cf1181fe32bd",
     "ir3_cache_evidence.py": "df54492e59aa008699ac04542413007476a9008fc07081098037eb31e88f8711",
     "test_ir3_cache_evidence.py": "7532e65103d86b61266b21d3959f25f892a1df602b88483a5389fb9555ef2c90",
-    "scanout_trial_evidence.py": "ff2a0de08c6ff11e15ccd84efbfafd4fae76fd522b8f8a6a3630ba33000bf41c",
+    "scanout_trial_evidence.py": "bec2ec52d0c29cff0fd1b2267bb547aa17260f851193436c10f7dd6d38357c8b",
     "ca_matrix_evidence.py": "5019d86e3c86ec8accf7152a9b7ac93fca4e9ad69b0ef8da7b29d2e3eb7e8a53",
     "test_ca_matrix_evidence.py": "09d796c8a70193cb87ae35abea24404799a96491ea4a953e26c5aac243769fa8"
   },
@@ -340,5 +340,12 @@
     "requires_original_library_return": true,
     "max_commands": 1,
     "kernel_sampling_path_unchanged": true
+  },
+  "single_synthetic_swipe_host_checked": {
+    "after_seconds": 120,
+    "screen_after_seconds": 150,
+    "requires_F12_and_LIVE": true,
+    "commands_max": 1,
+    "scanout_and_complete_return_unchanged": true
   }
 }

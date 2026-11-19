@@ -27,6 +27,10 @@ IOS = PATCH
 SHIM_SHA = "e1369bff6498d6f03f4ae29559bb99ebc7f3f9a7eee71a0f0d6a9e68ff73d7c3"
 SCREEN_CAPTURE_TIMES = (45, 150)
 
+def swipe_once_binding():
+    return dict(command='swipe',max_commands=1,after_seconds=120,requires_current_LIVE=True,
+                requires_F12_ready=True,screen_after_seconds=150)
+
 def checked_screen_capture_after(value):
     if type(value) is not int or value not in SCREEN_CAPTURE_TIMES:
         raise Refuse('Invalid screenshot observation time')
@@ -318,6 +322,15 @@ class LiveOps:
         with (self.directory/'serial-commands.jsonl').open('a',encoding='utf-8') as file:
             file.write(json.dumps({'command':'sample'})+'\n');file.flush();os.fsync(file.fileno())
         self.journal.event('THREAD_SAMPLE_REQUESTED',token=artifact.token,process='AegirPoster',command_dispatches=1,read_only=True)
+    def request_swipe(self,artifact):
+        self.check_stop()
+        if artifact.data.get('swipe_observation')!=swipe_once_binding():raise Refuse('No reviewed single-swipe binding')
+        if getattr(self,'swipe_requested',False):raise Refuse('Swipe already requested; no resend')
+        if self.capture_process.process.poll() is not None:raise Refuse('Serial worker exited before swipe')
+        self.swipe_requested=True
+        with (self.directory/'serial-commands.jsonl').open('a',encoding='utf-8') as file:
+            file.write(json.dumps({'command':'swipe'})+'\n');file.flush();os.fsync(file.fileno())
+        self.journal.event('SWIPE_REQUESTED',token=artifact.token,command_dispatches=1,synthetic_input=True)
     def wait_return(self, artifact, seconds):
         ack = False; start = time.monotonic(); last_probe = 0; stability=FastbootStability(30)
         while time.monotonic() - start < seconds:

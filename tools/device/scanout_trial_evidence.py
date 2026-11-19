@@ -5,7 +5,7 @@ import json
 import re
 from pathlib import Path
 
-from controller import Artifact, checked_screen_capture_after, validate_plan
+from controller import Artifact, checked_screen_capture_after, validate_plan, swipe_once_binding
 from package_trial import ROOT, prove_payload
 from return_evidence import inspect_return
 from scanout_snapshot import verify_saved
@@ -43,7 +43,11 @@ def verify(directory):
                 (root/'cycle-01/serial-commands.jsonl').read_text(encoding='utf-8').splitlines()]
     allowed=['frame', 'fastboot '+artifact['token']]
     sampling=artifact.get('thread_sample_observation')
-    if sampling:
+    gesture=artifact.get('swipe_observation')
+    if gesture:
+        assert not sampling and gesture==swipe_once_binding()
+        assert commands in (allowed,['swipe','frame','fastboot '+artifact['token']])
+    elif sampling:
         from numeric_boot_args import sampler_binding
         assert sampling==sampler_binding(sampling['trigger'])
         assert commands in (allowed,['frame','sample','fastboot '+artifact['token']])
@@ -66,6 +70,13 @@ def verify(directory):
     requested = [event for event in events if event['state'] == 'SCREEN_REQUESTED']
     verified = [event for event in events if event['state'] == 'SCREEN_VERIFIED']
     assert len(requested) == len(verified) == 1
+    if 'swipe' in commands:
+        swipes=[event for event in events if event['state']=='SWIPE_REQUESTED']
+        swipe_points=[event for event in events if event['state']=='SWIPE_OBSERVATION_POINT']
+        assert len(swipes)==len(swipe_points)==1 and swipes[0]['token']==swipe_points[0]['token']==artifact['token']
+        assert swipes[0]['command_dispatches']==1 and swipe_points[0]['elapsed_seconds']>=gesture['after_seconds']
+        assert swipe_points[0]['F12_ready'] is True and swipe_points[0]['current_LIVE'] is True
+        assert events.index(swipes[0])<events.index(requested[0])
     frame = screen['frames'][0]
     assert requested[0]['token'] == verified[0]['token'] == artifact['token']
     assert requested[0]['command_dispatches'] == 1 and verified[0]['frame_id'] == frame['id']
@@ -94,6 +105,7 @@ def verify(directory):
         actual_observation_elapsed_seconds=points[0]['elapsed_seconds'] if points else None,
         original_recorded_goal_patterns_not_observed=missing,
         stage_decision_not_promoted=True, single_frame_and_return_command_verified=True,
+        synthetic_swipe_command_observed='swipe' in commands,
         screenshot_verified_independently_of_trial_result=True, screen=screen,
         payload_audit=payload, strict_return=returned,
         return_seconds_with_health=row['reset_to_fastboot_seconds'],
