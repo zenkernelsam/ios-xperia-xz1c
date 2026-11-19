@@ -1,0 +1,156 @@
+{
+  "date": "2026-11-20",
+  "windows": {
+    "items": 10,
+    "bytes": 335544320,
+    "native_recycle_verified": true,
+    "records": [
+      {
+        "verified_native_recycle": true,
+        "time": "2026-11-20T06:16:35.7659851+08:00",
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RRS60N0.raw",
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\quad-route-r3\\original-ram\\glram.raw"
+      },
+      {
+        "verified_native_recycle": true,
+        "time": "2026-11-20T06:16:35.9650946+08:00",
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$ROMVGMJ.dmg",
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\quad-route-r3\\original-ram\\glram.dmg"
+      },
+      {
+        "verified_native_recycle": true,
+        "time": "2026-11-20T06:16:35.9927265+08:00",
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R8BQIR3.raw",
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\quad-route-r4\\original-ram\\glram.raw"
+      },
+      {
+        "verified_native_recycle": true,
+        "time": "2026-11-20T06:16:36.0173051+08:00",
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RSK93P6.dmg",
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\quad-route-r4\\original-ram\\glram.dmg"
+      },
+      {
+        "verified_native_recycle": true,
+        "time": "2026-11-20T06:16:36.0397064+08:00",
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RDULE5C.raw",
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\quad-route-r5\\original-ram\\glram.raw"
+      },
+      {
+        "verified_native_recycle": true,
+        "time": "2026-11-20T06:16:36.0620784+08:00",
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RGUQ1X2.dmg",
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\quad-route-r5\\original-ram\\glram.dmg"
+      },
+      {
+        "verified_native_recycle": true,
+        "time": "2026-11-20T06:16:36.0830151+08:00",
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R10YLUU.raw",
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\depth-stencil-r1\\gles-ram\\glram.raw"
+      },
+      {
+        "verified_native_recycle": true,
+        "time": "2026-11-20T06:16:36.1059566+08:00",
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RNVVH4S.dmg",
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\depth-stencil-r1\\gles-ram\\glram.dmg"
+      },
+      {
+        "verified_native_recycle": true,
+        "time": "2026-11-20T06:16:36.1297905+08:00",
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$REZDXL6.raw",
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\depth-stencil-r1\\reference-ram\\glram.raw"
+      },
+      {
+        "verified_native_recycle": true,
+        "time": "2026-11-20T06:16:36.1521725+08:00",
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RF8DONX.dmg",
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\depth-stencil-r1\\reference-ram\\glram.dmg"
+      }
+    ]
+  },
+  "macOS": {
+    "items": 14,
+    "bytes": 335986618,
+    "native_Trash_verified_by_host": true,
+    "records": [
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/quad-route-r3/original-ram/glram.raw",
+        "trash_path": "/Users/ciscohe/.Trash/glram.raw"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/quad-route-r3/original-ram/glram.dmg",
+        "trash_path": "/Users/ciscohe/.Trash/glram.dmg"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/quad-route-r4/original-ram/glram.raw",
+        "trash_path": "/Users/ciscohe/.Trash/glram.raw 06-17-59-475.raw"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/quad-route-r4/original-ram/glram.dmg",
+        "trash_path": "/Users/ciscohe/.Trash/glram.dmg 06-17-59-533.dmg"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/quad-route-r5/original-ram/glram.raw",
+        "trash_path": "/Users/ciscohe/.Trash/glram.raw 06-17-59-584.raw"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/quad-route-r5/original-ram/glram.dmg",
+        "trash_path": "/Users/ciscohe/.Trash/glram.dmg 06-17-59-636.dmg"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-stencil-r1/gles-ram/glram.raw",
+        "trash_path": "/Users/ciscohe/.Trash/glram.raw 06-17-59-693.raw"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-stencil-r1/gles-ram/glram.dmg",
+        "trash_path": "/Users/ciscohe/.Trash/glram.dmg 06-17-59-748.dmg"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-stencil-r1/reference-ram/glram.raw",
+        "trash_path": "/Users/ciscohe/.Trash/glram.raw 06-17-59-800.raw"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-stencil-r1/reference-ram/glram.dmg",
+        "trash_path": "/Users/ciscohe/.Trash/glram.dmg 06-17-59-851.dmg"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/quad-route-r3-host-check/staged-sources",
+        "trash_path": "/Users/ciscohe/.Trash/staged-sources"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/quad-route-r4-host-check/staged-sources",
+        "trash_path": "/Users/ciscohe/.Trash/staged-sources 06-17-59-954"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/quad-route-r5-host-check/staged-sources",
+        "trash_path": "/Users/ciscohe/.Trash/staged-sources 06-18-00-010"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-stencil-r1/pre-sync-staged-sources",
+        "trash_path": "/Users/ciscohe/.Trash/pre-sync-staged-sources"
+      }
+    ]
+  },
+  "plans_and_journals_sha256": {
+    "mac-plan.json": "4d3e8174dec706c722bbe8373bda821fb69ca639e6452f8119578327ba6d7ed7",
+    "mac-trash.json": "09229768f37c2d3e235d82fd89fda56eede8e85bab9598280d7dd3b1f4fb83ed",
+    "windows-plan.json": "373b0d3d272e34b6f7512e929f6e00408ca4ca8b634f044b5d1c701e704106ae",
+    "windows-recycle.jsonl": "57445fa6b2a8085dd8e867552835600e7e127bc610099aff78e6ac9ae948c5b4"
+  },
+  "recycle_bins_not_emptied": true,
+  "raw_serial_logs_private_frames_baselines_failed_trials_and_latest_candidate_preserved": true,
+  "only_duplicate_glram_raw_dmg_and_temporary_staging_recycled": true
+}
