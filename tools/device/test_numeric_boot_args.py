@@ -23,6 +23,14 @@ class NumericBootArgs(unittest.TestCase):
                        dict(record,cmdline=record['cmdline'].replace('sweetsample=AegirPoster','sweetsample=SpringBoard'))]:
             with self.assertRaises(AssertionError):numeric_options(broken)
         with self.assertRaises(AssertionError):add_sampler(original[:-1],[])
+    def test_idle_trigger_keeps_the_same_numeric_spellings_and_single_command(self):
+        compact=[];original=[n+'=1' for n in SAMPLER_ONES]
+        words,binding=add_sampler(original,compact,'after_library_idle')
+        record=dict(cmdline=' '.join(words),numeric_one_argument_compaction=compact,thread_sample_observation=binding)
+        self.assertEqual(numeric_options(record)['sweetsample'],'AegirPoster')
+        self.assertEqual(binding['after_seconds'],180);self.assertEqual(binding['max_commands'],1)
+        for bad in (dict(binding,after_seconds=179),dict(binding,max_commands=2),dict(binding,process='SpringBoard')):
+            with self.assertRaises(AssertionError):numeric_options(dict(record,thread_sample_observation=bad))
 
 
 if __name__=='__main__':unittest.main()

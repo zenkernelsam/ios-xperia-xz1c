@@ -4,6 +4,12 @@ SAMPLER_ONES=('ufsrw','rootrw','cs_enforcement_disable','amfi_get_out_of_my_way'
               'sweetgpuplan','sweetloopdrain','ssca','sfscreen')
 PARSER_SHA='1431f1f8aacae240b87bd29cd91905784c968f8014784201b3ed862bdb1b4ed9'
 
+def sampler_binding(trigger='first_target_clear'):
+    assert trigger in ('first_target_clear','after_library_idle')
+    value=dict(process='AegirPoster',command='sample',max_commands=1,trigger=trigger,parser_sha256=PARSER_SHA)
+    if trigger=='after_library_idle':value['after_seconds']=180
+    return value
+
 
 def numeric_options(record):
     words=record['cmdline'].split();options={w.split('=',1)[0]:w.split('=',1)[1] for w in words if '=' in w}
@@ -13,12 +19,13 @@ def numeric_options(record):
         assert words.count(name)==1 and name not in options
         options[name]='1'
     if set(compact)&set(SAMPLER_ONES):
-        assert record.get('thread_sample_observation')==dict(process='AegirPoster',command='sample',max_commands=1,trigger='first_target_clear',parser_sha256=PARSER_SHA)
+        observed=record.get('thread_sample_observation')
+        assert isinstance(observed,dict) and observed==sampler_binding(observed.get('trigger'))
         assert options.get('sweetsample')=='AegirPoster'
     return options
 
 
-def add_sampler(words, compact):
+def add_sampler(words, compact,trigger='first_target_clear'):
     assert not any(w.startswith('sweetsample') for w in words)
     # These twelve options all use numeric PE_parse_boot_argn consumers in
     # the audited kernel. String-valued/user-space and shim options stay intact.
@@ -27,4 +34,4 @@ def add_sampler(words, compact):
         words=[name if w==name+'=1' else w for w in words]
         compact.append(name)
     words.append('sweetsample=AegirPoster')
-    return words,dict(process='AegirPoster',command='sample',max_commands=1,trigger='first_target_clear',parser_sha256=PARSER_SHA)
+    return words,sampler_binding(trigger)

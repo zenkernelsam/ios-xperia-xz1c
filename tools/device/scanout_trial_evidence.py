@@ -41,7 +41,13 @@ def verify(directory):
     assert returned['complete']
     commands = [json.loads(line)['command'] for line in
                 (root/'cycle-01/serial-commands.jsonl').read_text(encoding='utf-8').splitlines()]
-    assert commands == ['frame', 'fastboot '+artifact['token']]
+    allowed=['frame', 'fastboot '+artifact['token']]
+    sampling=artifact.get('thread_sample_observation')
+    if sampling:
+        from numeric_boot_args import sampler_binding
+        assert sampling==sampler_binding(sampling['trigger'])
+        assert commands in (allowed,['frame','sample','fastboot '+artifact['token']])
+    else:assert commands==allowed
     screen = verify_saved(root/'cycle-01/screens', artifact, row['screen'], raw)
     inputs = json.loads((root/'stage-inputs.json').read_bytes())
     bundle = Path(inputs['bundle'])

@@ -17,13 +17,13 @@
     "metal_resource_evidence.py": "e3737afff830f8d7466fddf67f4980d33dc9cf54fe89079828aa603fa9ddd35c",
     "observe_fastboot.py": "7c82964e346fa9166bdbaee1b8d74905f8cf1b53d151b42ba68909dc2e82100b",
     "owner_metadata.py": "e0f4e4fa2d54381d63128a39fbcabfe6c3ab9468a99f44cd44c37d86af84d564",
-    "package_trial.py": "75776df1f408f0b3ce771d1e8883e6e1491fbfe50e814e05b05b25ca7d6bfa30",
+    "package_trial.py": "db5e887d7418cb98affa82e231dd3c90e67515fb9453addedae206d7b6827773",
     "policy.py": "788151bcae524eb1dbb58e21743e957cf4ff2e819247dcf74db05e173cf00365",
     "preflight_processes.ps1": "6586345710fe618415ce2ddd8b53d230c14c280c93f34c5fb1a190fcc7e1f91f",
     "procguard.py": "7cc150c13ca8d6fce28ec9784af8886eaaa4cdd8fad9cb3ff6befa9fd67d116d",
     "readonly_pixels.py": "bd1c86eddff0c7ca30d74b63cf2c5ac200a4691360f78f121e4cced5cd86fb5f",
     "return_evidence.py": "5142d3a90e89f64f796f2ce70227b28703afbca5be582ef25b6d638b09ae7e8d",
-    "run_trial.py": "92078be7e948341e5edd6f3bf9a40b3aabb80c45a903fddc4aee2c1c5a5d6275",
+    "run_trial.py": "876e80e377faf63a1ee406fd4b65c51647b929763f6437e7dcae62102dcb80c6",
     "serial_worker.py": "85c441bff24e081fc4fa759748676b130becf2a070bbacbff6b23fba96ae3fd4",
     "sony_usb_guard.py": "e1f636a6327530f28ef407732d58f0e7310494c4660010f793f4dcbe2ebdc4c6",
     "source_region_evidence.py": "748edd1bd5e5783e12a925524876a36e7d2538ad18700ba1af55b6b940ac5b2f",
@@ -78,18 +78,18 @@
     "png_encoder_prerequisite.py": "b64cde1c5c990d342cd2d61a6efc158f243c08e51ca2256b1c69f95f402345f3",
     "test_png_encoder_proof.py": "4b6043effd463d8592acdd479cfed771509ff42492ef5965f8a0c663fc2a78d8",
     "scanout_snapshot.py": "0a30b84e983a33a880c726a6ff90cc3ca105250326e292345aa58dfd70e512d2",
-    "test_scanout_gates.py": "5050e4dfd0f67ecf9e9b0e8076f3dfc6cce8b218504b14842a9d1cf6f73158e1",
+    "test_scanout_gates.py": "58eefee027bd2cf8d6f9e8d51a94238d6c3f103b344f3141a3ab63e8faac1328",
     "test_png_encoder_prerequisite.py": "c4a34e69e633061d32e3ec8910dbedcb8e3ecc49a1ddb969ef65141f41990ab2",
     "render_stage_evidence.py": "313c8fc03fb37f9045ff7a71e4e738fee007fc868c63603508a764b057ccc749",
     "test_render_stage_evidence.py": "c2e0c9e2a01013bac677d3089f32df2f213441679d1bbee3ed2dc4f09e480d17",
     "clear_cache_evidence.py": "0d0746a07bf504db8a12a10f3bf2afbd458303f5a9cf41bdf89e1e9b1a5e973e",
     "test_clear_cache_evidence.py": "280460f83b4e3c39fbea91dbcb7b94dbf6d4ebc37c960e876dbc393e5e4ee82a",
-    "numeric_boot_args.py": "77143262ef56533e041f6df0b2a889bf2ae8ea6586e2f050523a870d58035c97",
-    "test_numeric_boot_args.py": "eacfcb58f850a802793580e42e56c433b19bbce9de8323aea5d82de2ee618459",
+    "numeric_boot_args.py": "5f5942d3f2b2af6543c6e27b3047c2d88eb268ed4e569f47ac65c38c2b279133",
+    "test_numeric_boot_args.py": "5819431864e33a798461c97d004022fc51753f2cc64639516eedbddf9c45ed1e",
     "test_thread_sample.py": "7249a1502ed214a07bd737fe0f4e47bd9a52378d0b8f3d640f23cf1181fe32bd",
     "ir3_cache_evidence.py": "df54492e59aa008699ac04542413007476a9008fc07081098037eb31e88f8711",
     "test_ir3_cache_evidence.py": "7532e65103d86b61266b21d3959f25f892a1df602b88483a5389fb9555ef2c90",
-    "scanout_trial_evidence.py": "4b04349642fc27fab064f7ceb758f39401a62c3c0e45bd2c5fdde87e8b71d4d7",
+    "scanout_trial_evidence.py": "ff2a0de08c6ff11e15ccd84efbfafd4fae76fd522b8f8a6a3630ba33000bf41c",
     "ca_matrix_evidence.py": "5019d86e3c86ec8accf7152a9b7ac93fca4e9ad69b0ef8da7b29d2e3eb7e8a53",
     "test_ca_matrix_evidence.py": "09d796c8a70193cb87ae35abea24404799a96491ea4a953e26c5aac243769fa8"
   },
@@ -334,5 +334,11 @@
     "actual_raw_in_memory_fault_rejections": 7
   },
   "IR3_variant_cache_exact_native_runtime_proof": "reproducibility/v730-ir3-cache-r1-native-proof.json",
-  "IR3_variant_cache_original_specialization_bytes_and_guard_verified": true
+  "IR3_variant_cache_original_specialization_bytes_and_guard_verified": true,
+  "single_original_idle_sample_host_checked": {
+    "after_seconds": 180,
+    "requires_original_library_return": true,
+    "max_commands": 1,
+    "kernel_sampling_path_unchanged": true
+  }
 }

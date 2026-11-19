@@ -114,5 +114,29 @@ class ScreenGates(unittest.TestCase):
         self.assertTrue(live);self.assertEqual(decision.kind,'PASS')
         self.assertEqual(sent,[150.0]);self.assertEqual(now[0],180.0)
 
+    def test_idle_sample_requires_actual_library_and_dispatches_once(self):
+        from numeric_boot_args import sampler_binding
+        for library_returned in (False,True):
+            now=[0.0];sent=[];ready=[False]
+            ops=object.__new__(DiagnosticOps);ops.screen_attempted=True
+            ops.directory=Path('absent-idle-sample-fixture');ops.journal=SimpleNamespace(root=ops.directory,event=lambda *a,**k:None)
+            ops.capture_process=SimpleNamespace(process=SimpleNamespace(poll=lambda:None));ops.check_stop=lambda:None
+            token='0123456789abcdef'
+            def lines():
+                if ready[0]:return []
+                ready[0]=True;result=['SWEET LOOP LIVE proto=1 token='+token]
+                if library_returned:result+=['|AegirPoster| SWEET METAL LIBRARY END call=1 kind=bundle returned_nil=0 error_pointer=0 error_code=0 original_return=1']
+                return result
+            ops.lines=lines
+            def sample(*a):sent.append(now[0]);ops.sample_requested=True
+            ops.request_sample=sample
+            artifact=SimpleNamespace(token=token,watchdog=420,data={'trial_mode':'gpu','thread_sample_observation':sampler_binding('after_library_idle')})
+            step={'goals':['not-returned-pipeline'],'stable_seconds':30,'observe_seconds':240}
+            with patch('run_trial.time.monotonic',side_effect=lambda:now[0]), \
+                 patch('run_trial.time.sleep',side_effect=lambda seconds:now.__setitem__(0,now[0]+1)),patch('run_trial.write_json'):
+                decision,live=ops.observe(artifact,step)
+            self.assertTrue(live);self.assertEqual(decision.kind,'STOP')
+            self.assertEqual(sent,[180.0] if library_returned else [])
+
 
 if __name__=='__main__':unittest.main()

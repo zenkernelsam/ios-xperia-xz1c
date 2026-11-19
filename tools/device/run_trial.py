@@ -92,11 +92,15 @@ class DiagnosticOps(StartupObservation,LiveOps):
         policy=DiagnosticPolicy(artifact.token,step['goals'],step['stable_seconds'])
         policy.minimum=180 if artifact.data['trial_mode']=='gpu' else 0
         start=time.monotonic();next_progress=0
+        original_library_returned=False
         while time.monotonic()-start<step['observe_seconds']:
             self.check_stop();now=time.monotonic()-start
             for line in self.lines():
                 policy.feed(line,now)
+                if policy.live and re.search(r'\|AegirPoster\| SWEET METAL LIBRARY END call=\d+ kind=bundle returned_nil=0 ',line):
+                    original_library_returned=True
                 if (policy.live and artifact.data.get('thread_sample_observation') and not getattr(self,'sample_requested',False) and
+                    artifact.data['thread_sample_observation']['trigger']=='first_target_clear' and
                     re.search(r'\|AegirPoster\| SWEET RENDER TARGET BEGIN call=\d+ index=[0-7] format=\d+ load=2 part=clear ',line)):
                     self.request_sample(artifact)
             capture_after=artifact.data.get('screen_capture_after_seconds')
@@ -106,7 +110,16 @@ class DiagnosticOps(StartupObservation,LiveOps):
                 except (Refuse,OSError,ValueError,subprocess.TimeoutExpired):
                     return Decision('STOP','SCREEN_EVIDENCE_MISSING'),policy.live
                 now=time.monotonic()-start
-                for line in self.lines():policy.feed(line,now)
+                for line in self.lines():
+                    policy.feed(line,now)
+                    if policy.live and re.search(r'\|AegirPoster\| SWEET METAL LIBRARY END call=\d+ kind=bundle returned_nil=0 ',line):
+                        original_library_returned=True
+            sampling=artifact.data.get('thread_sample_observation',{})
+            if (policy.live and original_library_returned and sampling.get('trigger')=='after_library_idle' and
+                now>=sampling['after_seconds'] and not getattr(self,'sample_requested',False)):
+                self.journal.event('THREAD_SAMPLE_OBSERVATION_POINT',token=artifact.token,elapsed_seconds=now,
+                    original_library_returned=True,trigger='after_library_idle')
+                self.request_sample(artifact)
             if policy.actual_watchdog is not None and policy.actual_watchdog!=artifact.watchdog:
                 return Decision('STOP','WATCHDOG_CONFIG_MISMATCH'),policy.live
             result=policy.decision(now)
