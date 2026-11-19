@@ -4,6 +4,10 @@
 
 ## 当前基线与真实边界
 
+2026-11-19最新4dd119fa：150.047秒完整真实scanout／2542块／power_off0已独立校验，绿色电池／相机／白底条可见，时间日期壁纸缺失。原Aegir只见登记／metallib返回，无pipeline／snapshot／PNG请求，controller保持STOP／OBSERVATION_INCOMPLETE；完整截图不代替GPU阶段PASS。38.172秒四marker／健康30秒／worker退出后Sony健康fastboot，无in-flight。新`scanout_trial_evidence.py`只读本靴原raw／artifact／plan／commands／events并保留原结果，禁止借独立截图提升STOP。完整UI／睡眠／外设仍active。
+
+2026-11-19最新IR3已安装并独立准入：v730/f258dee9、GLES166c08a3、Metal5e94ab57／source-map7b5a083a，精确GLESCPU／八项GPU／新referenceRAMCPU／完整native16及六组共享PNG／新原RAMCPU／新primerRAMCPU均通过。原87397739登记阶段PASS、26管线nonnull、三次750×1624draw／PNG35558B／53完整样本无check-in timeout，39.625秒完整回程／健康30秒／worker退出。前三次cold-link及5398eff3仍REVISE保留；不能以controller PASS／45秒logo／power_off1完成完整UI／FPS／背光。三轮实际request primer只证明标准program binary，prime_begin→ACK无IR3 stored／accepted日志，不称完整硬件预热。新截图时机只允许45或150秒，单frame／失败不补发，当前controller及最新STATUS优先。此前各“尚未安装”／“当前无in-flight”均是保留历史，不能覆盖实际当前靴。内核／GPU底层／allocator／SCM／PON／RPC／VM冻结与SweetGPU SHA保持，不派子代理。
+
 2026-11-19最新Clear缓存：v730/f258dee9、GLES9d065b69、Metal5e94ab57保持；新增Clear_cache原262144B／15次复用／最终0及完整native15／共享PNG0c563b0d已通过，原RAM自身CPUe281f838通过。旧14组和不同GLES不能准入新库。原410e6aa0／ebc8114c五管线全部命中并nonnull，首次Clear仍超时，REVISE／40.031和38.656秒完整回程保持。最后15线程采样用精确GLES两个唯一callsite确认t4等ir3编译fence，四worker运行初始variant IR3/NIR；不以单采样推全部硬件时耗，不据此修改冻结组件。数字1参数无值拼写由固定ARM parser48项UBSan验证，原fptimeout／check-in保持；单worker一次sample，不重发。当前无in-flight、健康fastboot。下一步沿原Mesa／Freedreno硬件variant缓存，须自身新全组准入；该缓存尚未安装。最新STATUS/CLEAR-CACHE优先，完整UI／睡眠／其它外设active。
 
 2026-11-19最新render-stage-r1：v730/f258dee9保持，GLES a7bad22c只加原阶段计时；自身CPU/GLES八项及后台2506ca58完整14组／六组共享PNG通过，原observer72586fe2自身CPU35c1e99d通过。三轮同scope实际request预热通过后，原e662710b五条pipeline均命中／nonnull并进入750×1624draw；targets1.523800秒／线程CPU0.225859秒，submit未完成、check-in超时与REVISE保持，39.172秒完整回程／健康／worker退出。当前无in-flight、健康fastboot，最新STATUS/RENDER-STAGES优先。旧72d39da5证明不能准入a7bad22c；新包继续精确GLES/native/PNG/CPU门槛。不同stage与postdraw时钟起点不混算，两个附件clear不凭行数当重复。render_stage_evidence按进程安装/pid/call核验原raw，未完成与ACK后记录分别保留。下一步分解目标准备／首次提交，不据采样改冻结组件。

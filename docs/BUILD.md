@@ -1,5 +1,7 @@
 # 固定源码与构建
 
+2026-11-19当前入口为v730/f258dee9、GLES166c08a3及Metal5e94ab57／source-map7b5a083a；新GLES及完整native16已独立实机准入，构建命令与实际request配对见[IR3-VARIANT-CACHE](IR3-VARIANT-CACHE.md)。该库必须追加`--clear-cache-probe --ir3-cache-probe`取得自己的16组proof，旧15组或不同source-map不能准入。电脑端截图打包支持`--screen-evidence --screen-after 150`，只改变单次捕获时间，不重编kernel/GLES或延长原check-in。GPU／库实机和完整UI的边界以STATUS为准；下方旧版本构建记录保留其原适用范围。
+
 完整无损串口截图的新 v730 诊断增量、主机检查与独立实机准入见 [SCANOUT-SCREENSHOT](SCANOUT-SCREENSHOT.md)。它只扩展显示观察；既有 GPU、源码冻结及同 kernel 各阶段的验证继续保持，实际状态以 STATUS 为准。
 
 固定基线另保留三个源文件的精确行尾物化规则，见 `baseline-source-newlines.json`；`prepare_sources.py` 自动应用，与已验内核的源 SHA 一致。代码文本保持相同。`verify_diagnostic_reconstruction.py --version 730` 在新的 TEMP checkout 中从 Apple 固定提交重新应用完整补丁及 v725..v730 增量；旧／浅缓存缺少固定 base 时只向该 TEMP checkout 拉取。原构建树保持，报告不代表新的二进制或设备已通过。

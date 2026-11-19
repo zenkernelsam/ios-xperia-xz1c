@@ -1,0 +1,2 @@
+# Preserve the original working-copy bytes of these historical documents.
+*.md -text whitespace=cr-at-eol

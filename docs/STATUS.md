@@ -1,5 +1,17 @@
 # 当前状态 — 2026-11-19
 
+当前Sony BH905ND69G健康停在fastboot，无controller／串口worker／in-flight。最新`4dd119fa71b2420b`在观察150.047秒成功读取完整720×1280／stride2160／BGR888真实扫描帧，2764800B→325269B、2542块、10.862秒；寄存器／来源／记录与块CRC／整帧FNV／保存PNG与原BGR逐字节复核通过，power_off=0照实记录。图像可见绿色电池、相机与白色homebar，背景黑，时间／日期／壁纸仍缺失。该靴Aegir完成device登记及metallib返回，但没有实际pipeline／snapshot／PNG请求，原controller为STOP／OBSERVATION_INCOMPLETE，独立截图通过不能提升为GPU／完整UI PASS。38.172秒PON06四marker／连续健康30秒／worker退出已确认，单frame与单fastboot token命令原样保存。见`reproducibility/v730-ir3-cache-r1-original-late-screen-r6-scanout.json`及[串口截图](SCANOUT-SCREENSHOT.md)。
+
+最新已完成的原Aegir `87397739a6610f49` 在本观察窗口内无extension check-in timeout，登记阶段PASS；26条原pipeline均nonnull、三次750×1624原GPU draw result0，53个postdraw样本完整／0未完成。三个snapshot分别10.030／1.123／4.295秒，三个PNG通过已验ImageIO_UP返回35558B，分别0.843／0.396／0.690秒。首个snapshot含新的月球管线8.498秒，不能只挑第二个样本宣称完整UI或FPS已完成。39.625秒PON06四marker／连续健康30秒／worker退出均独立通过。详见[IR3-VARIANT-CACHE](IR3-VARIANT-CACHE.md)与`reproducibility/v730-ir3-cache-r1-original-after-draw-*`。
+
+当前精确基线为v730 `f258dee9…`、GLES `166c08a3…`（14764656B）、Metal `5e94ab57…`／source-map `7b5a083a…`；前一版`9d065b69`／source-map`3e79503f`是历史比较。新GLES自身CPU／八项GPU、新reference RAM CPU／完整native16／六组同共享源PNG、新原RAM CPU及新primer RAM CPU全部通过。完整16组token `0852dc25cd348667`／38.391秒回程；新增IR3组fresh specialize13／29／13检查960B原结果与guard、最终分配0，三组进程计数hits5／bytes_read18584／rejected0。计数是本进程累计差值，不推每次hit严格属于该kernel。旧15组或不同GLES／source-map的proof不能准入新库。
+
+同scope三轮后台primer只读原实际request，15521／5005B、4840／73444B、4840／9711B配对原wrapper长度与FNV，link分别2.156／45.721／2.100秒并保存标准binary，完整16组和回程均通过。但各prime_begin→ACK内均无IR3 stored／accepted日志，不能把标准NIR程序预热称为完整硬件变体预热。正式缓存只使用固定Mesa24.3.4／Freedreno原序列化布局、精确build／NIR／完整key、成组draw／binning恢复及失败冷编译回退；kernel／GPU底层／allocator／SCM／PON／RPC／VM冻结保持。
+
+原cold-link三轮失败及`5398eff3c0143cb1`仍REVISE／extension timeout原样保留；后者已实际完成Clear／draw、snapshot1.935秒和PNG0.760秒返回35558B，38.281秒完整回程，但不能改判PASS。随后`87397739…`的阶段PASS仅覆盖上述真实登记与绘制。45秒scanout仍启动logo且power_off=1，不证明完整锁屏／壁纸／正常亮屏或LCD光学。新增`--screen-after 150`只调整电脑端单次捕获时机，内核及GPU库保持同字节；已完成的较晚截图及当前状态以首段为准。
+
+以下记录是旧库的完整比较事实。2026-11-19更新前的README／AGENTS／STATUS／BUILD／OPERATIONS及专题原文已逐字保存在[archive/20261119](archive/20261119/STATUS-before-ir3-actual.md)，旧raw／结果／失败没有覆盖。当前完整UI／FPS／睡眠／其它外设目标继续active。
+
 最新ebc8114c6c2c4cf7原线程采样靴已38.656秒PON06四marker／连续健康30秒／worker退出；Sony BH905ND69G健康fastboot，无controller／serial worker／in-flight。Clear复用GLES9d065b69（14747328B）、Metal5e94ab57／source-map3e79503f、v730/f258dee9已自身GLES CPU／八项GPU／新RAM CPU及0c563b0d完整native15／六组共享PNG／原像素和串口扫描帧通过。新增`Clear_cache`两轮八附件262144B原页／padding／guard零差异、15次实际复用、最终资源0；旧14组不能准入新库。详见[CLEAR-CACHE](CLEAR-CACHE.md)。
 
 新原RAM CPUe281f838／38.250秒和primer CPU78cd38e1／37.656秒保持。三个同scope真实request已后台预热，原cold-link REVISE和一次缺add_image元数据的postprocessor拒绝都保留。原410e6aa0／ebc8114c五条pipeline全部命中并nonnull，首次Clear内仍check-in超时，draw／PNG未返回，不能当原UI／FPS成功。原410e6aa0完整附件import0.465ms／snapshot127.821ms／linear24.670ms返回，Clear只有BEGIN；40.031秒回程。最后ebc8114c采样原15线程，用精确库两个唯一return PC证明t4在Clear的glDrawArrays→FD540→ir3_get_shader→util_queue_fence_wait，t2／7／9／11实际运行IR3/NIR初始variant编译。仅证明采样时的工作／等待位置，不将墙钟差或主线程栈归为GPU／VM根因。

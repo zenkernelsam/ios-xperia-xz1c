@@ -33,6 +33,22 @@ python tools/device/run_trial.py --bundle build/screen-v730/private --directory 
 
 GPU 的新包在观察开始 45 秒、已确认本靴 LIVE 后截一次，随后继续全部 GPU／native 检查。最终取证复用这张已校验原帧，不再发送第二次 `frame`；失败也不补发。`power_off` 是系统的显示电源请求，截图数据不能用来推定背光。旧 r2 的截图取于该请求已为 1 时，照实保留，不能拿它判断正常亮屏期的时钟／壁纸或颜色。
 
+2026-11-19电脑端新增`--screen-after 150`。GPU默认仍45秒，新包允许独立选择150秒，plan／artifact同值且位于原观察期限内；一个worker／每靴单frame／完整校验与回程保持，kernel／GPU库及原extension期限不改。完整原GPU draw／PNG已在87397739实际返回，但其45秒帧仍logo，较晚捕获用于补足UI内容，不能从离屏PNG推扫描画面。示例使用已独立准入的v730／原RAM包，输出必须为新目录：
+
+```powershell
+python -B tools/device/package_trial.py --mode gpu --version 730 --kernel build/surface-diag-v730/kernel.v730.macho --ram-package build/ir3-cache-r1/original-ram --output build/ir3-cache-r1/my-late-ui --screen-evidence --screen-after 150
+```
+
+随后`run_trial.py`继续绑定同kernel private／owner／ready、该RAM自身CPU、精确GLES、完整native16／同共享源PNG、真实RPM及Mac源输入；只在全部门槛通过后单发。若原失败要求提前回程，保留失败并在既有最终取证位置捕获一次，不称其为150秒样本。输出路径仍为本轮`cycle-01/screens/scanout-00000001.png`；无须摄像头服务或rotate90。
+
+独立核验入口`scanout_trial_evidence.py`同时读取本靴原results／artifact／plan／commands／events、完整raw和保存帧，检查单frame／单token回程、完整payload、150秒实际观察记录与四marker／健康；它保留PASS／REVISE／STOP原判定，单列缺失的原目标日志，不改变GPU准入结果：
+
+```powershell
+python -B tools/device/scanout_trial_evidence.py --directory "$env:TEMP\lilac-v730-ir3-cache-r1-original-late-screen-gpu-r6-20261119" --output build/ir3-cache-r1/my-late-screen-evidence.json
+```
+
+该实际r6 token4dd119fa在150.047秒捕获了完整锁屏缓冲区：2764800B→325269B、2542块、10.862秒，power_off=0。33600B PNG的SHA256为`f91e2ff89351927915c45c608cb1b55e9c2702fe79113a4f9601ea2d80e0079f`。来源／寄存器／整帧校验及保存像素均通过；绿色电池、相机、白色homebar清晰，背景仍黑，时间／日期／壁纸缺失。原GPU登记窗口为STOP／OBSERVATION_INCOMPLETE（未见pipeline请求），保留原STOP，38.172秒完整回程／健康／worker退出。该帧只证明真实扫描缓冲区内容，power_off=0也不是LCD背光实测。
+
 这类截图证明当前显示缓冲区内的 UI、文字、图标及颜色数值，可以替代 UI 内容观察所需的相机。它不会直接测到 LCD 光学色偏、DSI 是否真正送出该帧、背光或玻璃上的行错位；这些项目仍需相机或用户观察，`optical_panel_verified` 始终单列。完整 UI/FPS、睡眠和其它外设的原目标保持。
 
 设计对照为本机 S2 的 `capture-framebuffer.py`（按实际物理扫描地址／stride 读取并对照序列）和 Y700 的 `debug_screen.py`（分块／帧 CRC 与同一串口会话）；Sony 没有引入其它项目的通用内存命令或 RGB565 色彩降精度。

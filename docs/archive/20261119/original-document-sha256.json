@@ -1,0 +1,34 @@
+{
+  "archived_before_commit": "05ff53c042e49627041c0c4e7a5c3511e78df065",
+  "working_copy_bytes_preserved": true,
+  "files": {
+    "AGENTS-before-ir3-actual.md": {
+      "bytes": 10776,
+      "sha256": "db0777247527035dc6d7aafb786cd53d40cb65030e554d7fe007bc053e8df6ce"
+    },
+    "BUILD-before-ir3-actual.md": {
+      "bytes": 11676,
+      "sha256": "21977f5c9e5ff11bdae4f8b1e79a06f2eeee21aa89422d9e4e2ccbb35e066825"
+    },
+    "IR3-VARIANT-CACHE-before-ir3-actual.md": {
+      "bytes": 3310,
+      "sha256": "80aa1fe5b03937fd3da317c4fcb5337e1b4f98bea6f718410a015da365be7ab4"
+    },
+    "OPERATIONS-before-ir3-actual.md": {
+      "bytes": 4086,
+      "sha256": "8a018b5bae458f168349960b0225dc44d5c17aa636c0f696d4d1019f2e549a1d"
+    },
+    "README-before-ir3-actual.md": {
+      "bytes": 6323,
+      "sha256": "38331c0cff38b4b82fd653a97ea25031e357b2f6d597d778d93b5dcfc0e40b04"
+    },
+    "SCANOUT-SCREENSHOT-before-ir3-actual.md": {
+      "bytes": 6159,
+      "sha256": "fdbf1fc50868f77329485a7f563674f4e5c8bd99bb80824d6b807d6221d5584d"
+    },
+    "STATUS-before-ir3-actual.md": {
+      "bytes": 13628,
+      "sha256": "7a601403dd3662e3bdf5a4cb2d9a6205326437865ca35a06ffbb180c02c04e99"
+    }
+  }
+}

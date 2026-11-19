@@ -2,6 +2,8 @@
 
 用户已授权优先使用串口显示帧取证。v730 的新包可用 `--screen-evidence`；除首次 private 通道验收，其它阶段必须有同 kernel 完整 private 截图先验。只能用通过来源／整帧校验的扫描缓冲区 PNG 替代 UI 内容的相机观察；物理面板、背光／睡眠和光学颜色仍另验。旧相机 STOP 保持拒绝。完整规则见 [SCANOUT-SCREENSHOT](SCANOUT-SCREENSHOT.md)。
 
+GPU截图默认观察开始45秒；`package_trial.py --screen-evidence --screen-after 150`可独立包装较晚的一次捕获，以免只看到早期logo。仅允许45或150秒，plan／artifact时机必须相同且位于观察窗口内。仍只发送一次`frame`，最终取证复用已验帧，失败不补发；若在150秒前需要返回，原失败优先，最终捕获保留真实时机，不冒充150秒截图。不另开串口，不修改已有靴或重发失败bundle。
+
 只BH905ND69G，fastboot带-s；COM>=10且VID1209/PID0001，禁止COM3。PON只0x06；单download/boot、失败不重发。ACK/DRAIN/RESET/FINAL_DRAIN、连续健康30秒、原worker退出后下一轮。
 
 gl5已在设备，不因整理重刷。禁止擅自flash/erase userdata、SD、TA、XFL、救砖固件与备份。新内核对应private/owner/ready，新库对应CPU门槛；无LIVE的早期E1F4仍可能需物理恢复。

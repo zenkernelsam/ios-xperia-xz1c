@@ -2,6 +2,8 @@
 
 Sony Xperia XZ1 Compact（Snapdragon835 / Adreno540）的开源XNU、shim与Mesa/GLES移植。本仓库是唯一正式源码及操作入口；Patch/Xperia保存参考Git仓库、受保护输入与本地历史。GPU后端使用固定Mesa/FD540 GLES3.1。
 
+当前v730／GLES166c08a3的[原Freedreno IR3缓存](docs/IR3-VARIANT-CACHE.md)已完成自身CPU／GLES八项／完整native16／共享PNG准入。原Aegir最新观察窗口内26管线nonnull、三次750×1624 GPU绘制和PNG返回，登记阶段PASS并完整自动回程；完整锁屏／壁纸／FPS／睡眠及其它外设仍未完成。串口可以无损保存720×1280真实扫描帧，UI内容无需相机；LCD光学／背光另验。最新事实集中在[STATUS](docs/STATUS.md)，下方旧库里程碑保留作比较。
+
 实机已验证8核CPU、launchd、F12触控/音量键和以下GPU基线。最新设备状态、当前token与未完成项集中在[STATUS](docs/STATUS.md)，原失败及历史里程碑保留各专题证据。
 
 | 范围 | 已验证内容 |
@@ -18,6 +20,7 @@ Sony Xperia XZ1 Compact（Snapdragon835 / Adreno540）的开源XNU、shim与Mesa
 | [串口完整截图](docs/SCANOUT-SCREENSHOT.md) | v730真实720×1280扫描帧无损读回，原像素／来源／CRC复核；UI内容取证可不用摄像头，光学／背光另验 |
 | [原绘制阶段](docs/RENDER-STAGES.md) | 新GLESa7bad22c完整14组与原请求预热通过，原五管线cache命中；首draw目标准备1.524秒，submit仍未完成 |
 | [Clear shader复用](docs/CLEAR-CACHE.md) | 新GLES9d065b69完整15组、重复八附件262144B零差异；原15线程采样定位首次Clear等待IR3编译 |
+| [原IR3硬件缓存](docs/IR3-VARIANT-CACHE.md) | 新GLES166c08a3完整16组、fresh specialize13/29/13原960B及guard一致；最新原26管线、三次draw／PNG返回 |
 | [原Aegir短登记](docs/METAL-REGISTRY-SHORT.md) | 原默认device返回真实A540，threshold管线编译成功；必须有同kernel/GLES/Metal/source-map的完整实机先验 |
 
 [多颜色附件与XR混色](docs/METAL-MRT.md)现已完整实机通过：8附件输出、四XR与BGRA独立blend/writeMask、FP32 image按图元有序混色；1245184B原页面/低位/保护区零差异，523全撤销并38.562秒完整自动回程。当前half-selection-r1已完整14组/39.062秒回程验证；原Aegir现已恢复五条真实管线并出现两次750×1624 GPU draw，check-in超时和不完整面板仍保留。新的[原快照耗时观察](docs/POSTDRAW-OBSERVATION.md)已取得一次32179B真实PNG返回；快照约3.31秒（含队列等待2.81秒）、PNG/ICC约3.91秒，原check-in失败及不完整UI仍保留。未完成真实锁屏时间/日期/壁纸、完整UI/FPS、睡眠唤醒、声音、Wi-Fi/蓝牙及广义texture/depth/stencil/MSAA。离屏GPU通过不代表完整系统完成。

@@ -1,0 +1,23 @@
+{
+  "source_files": {
+    "tools/device/scanout_trial_evidence.py": "4b04349642fc27fab064f7ceb758f39401a62c3c0e45bd2c5fdde87e8b71d4d7",
+    "tools/device/controller.py": "c47972217cf27f75fa057b8ce8345116f01180d247ac018a9a49c43e8beb10b2",
+    "tools/device/package_trial.py": "a2ce19ae63479fb3cf25ad852c381ca60a711b629cce02abdf93d870c887039e",
+    "tools/device/run_trial.py": "d8593b11f1553eb4918a2312d8a41532c51e823bd3daf5082f84e0efceb87b67"
+  },
+  "actual_log_sha256": "da81095c3d5c1ea964dbfe7899d48b2fce38adc07cfdc3720b2968ae78ce9b3b",
+  "token": "4dd119fa71b2420b",
+  "unmodified_STOP_retained": true,
+  "in_memory_faults_rejected": [
+    "different_raw_bytes",
+    "saved_pixel_changed",
+    "wrong_capture_time",
+    "duplicate_frame_command",
+    "wrong_boot_token",
+    "missing_observation_health",
+    "observed_too_early"
+  ],
+  "original_files_not_modified": true,
+  "actual_screen_source_and_bytes_verified": true,
+  "device_operations": 0
+}

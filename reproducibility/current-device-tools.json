@@ -88,7 +88,8 @@
     "test_numeric_boot_args.py": "eacfcb58f850a802793580e42e56c433b19bbce9de8323aea5d82de2ee618459",
     "test_thread_sample.py": "7249a1502ed214a07bd737fe0f4e47bd9a52378d0b8f3d640f23cf1181fe32bd",
     "ir3_cache_evidence.py": "df54492e59aa008699ac04542413007476a9008fc07081098037eb31e88f8711",
-    "test_ir3_cache_evidence.py": "7532e65103d86b61266b21d3959f25f892a1df602b88483a5389fb9555ef2c90"
+    "test_ir3_cache_evidence.py": "7532e65103d86b61266b21d3959f25f892a1df602b88483a5389fb9555ef2c90",
+    "scanout_trial_evidence.py": "4b04349642fc27fab064f7ceb758f39401a62c3c0e45bd2c5fdde87e8b71d4d7"
   },
   "supervisor_based_on_actual_tested_one_shot": true,
   "platform_tools_from_environment_or_PATH": true,
@@ -313,7 +314,14 @@
     "strict_transport_tests": 6,
     "trial_gate_tests": 21,
     "trial_gate_optional_legacy_skipped": 2,
-    "actual_late_device_capture_pending": true,
-    "kernel_or_GPU_sources_changed": false
-  }
+    "actual_late_device_capture_pending": false,
+    "kernel_or_GPU_sources_changed": false,
+    "actual_late_device_token": "4dd119fa71b2420b",
+    "actual_late_observation_elapsed_seconds": 150.047,
+    "actual_screen_and_complete_return_verified": true,
+    "original_controller_STOP_not_promoted": true,
+    "actual_raw_in_memory_fault_rejections": 7
+  },
+  "IR3_variant_cache_exact_native_runtime_proof": "reproducibility/v730-ir3-cache-r1-native-proof.json",
+  "IR3_variant_cache_original_specialization_bytes_and_guard_verified": true
 }

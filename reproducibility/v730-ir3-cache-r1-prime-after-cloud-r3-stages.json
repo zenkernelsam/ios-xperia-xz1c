@@ -1,0 +1,5089 @@
+{
+  "token": "c437b449fff3bf87",
+  "process_installations": [
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "last_call": 32
+    }
+  ],
+  "observed_requests": 32,
+  "complete_draws": 32,
+  "incomplete_draws": 0,
+  "records": [
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 1,
+      "width": 33,
+      "height": 19,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 0,
+      "samplers": 0,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 29894954000,
+          "complete": true,
+          "wall_ns": 27000,
+          "thread_cpu_ns": 23073,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 29894999000,
+          "complete": true,
+          "wall_ns": 43000,
+          "thread_cpu_ns": 43021,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 29895060000,
+          "complete": true,
+          "wall_ns": 195000,
+          "thread_cpu_ns": 195677,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 29895275000,
+          "complete": true,
+          "wall_ns": 108000,
+          "thread_cpu_ns": 107761,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 29895399000,
+          "complete": true,
+          "wall_ns": 356000,
+          "thread_cpu_ns": 356771,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 29895774000,
+          "complete": true,
+          "wall_ns": 16000,
+          "thread_cpu_ns": 15312,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 29895805000,
+          "complete": true,
+          "wall_ns": 29000,
+          "thread_cpu_ns": 29062,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 29895859000,
+          "complete": true,
+          "wall_ns": 822000,
+          "thread_cpu_ns": 762135,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 29896717000,
+          "complete": true,
+          "wall_ns": 465000,
+          "thread_cpu_ns": 417968,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 29897218000,
+          "complete": true,
+          "wall_ns": 106000,
+          "thread_cpu_ns": 105156,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 29897341000,
+          "complete": true,
+          "wall_ns": 14000,
+          "thread_cpu_ns": 13698,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 29897370000,
+          "complete": true,
+          "wall_ns": 126000,
+          "thread_cpu_ns": 124792,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 80,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 29895088000,
+          "complete": true,
+          "wall_ns": 101000,
+          "thread_cpu_ns": 100365,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 58,
+        "result": 0,
+        "sequence": 385
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 2,
+      "width": 33,
+      "height": 19,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 1,
+      "samplers": 1,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 29900572000,
+          "complete": true,
+          "wall_ns": 50000,
+          "thread_cpu_ns": 46145,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 29900679000,
+          "complete": true,
+          "wall_ns": 64000,
+          "thread_cpu_ns": 63490,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 29900791000,
+          "complete": true,
+          "wall_ns": 396000,
+          "thread_cpu_ns": 399844,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 29901242000,
+          "complete": true,
+          "wall_ns": 205000,
+          "thread_cpu_ns": 206459,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 29901513000,
+          "complete": true,
+          "wall_ns": 1145000,
+          "thread_cpu_ns": 1146771,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 29902717000,
+          "complete": true,
+          "wall_ns": 54000,
+          "thread_cpu_ns": 49062,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 29902815000,
+          "complete": true,
+          "wall_ns": 64000,
+          "thread_cpu_ns": 64844,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 29902952000,
+          "complete": true,
+          "wall_ns": 1814000,
+          "thread_cpu_ns": 1751771,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 29904840000,
+          "complete": true,
+          "wall_ns": 559000,
+          "thread_cpu_ns": 527187,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 29905429000,
+          "complete": true,
+          "wall_ns": 111000,
+          "thread_cpu_ns": 111146,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 29905556000,
+          "complete": true,
+          "wall_ns": 14000,
+          "thread_cpu_ns": 13854,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 29905584000,
+          "complete": true,
+          "wall_ns": 113000,
+          "thread_cpu_ns": 113386,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 80,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 29900840000,
+          "complete": true,
+          "wall_ns": 214000,
+          "thread_cpu_ns": 214323,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 58,
+        "result": 0,
+        "sequence": 387
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 3,
+      "width": 33,
+      "height": 19,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 1,
+      "samplers": 1,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 29913604000,
+          "complete": true,
+          "wall_ns": 20000,
+          "thread_cpu_ns": 17240,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 29913641000,
+          "complete": true,
+          "wall_ns": 28000,
+          "thread_cpu_ns": 28021,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 29913687000,
+          "complete": true,
+          "wall_ns": 167000,
+          "thread_cpu_ns": 168541,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 29913874000,
+          "complete": true,
+          "wall_ns": 79000,
+          "thread_cpu_ns": 78750,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 29913968000,
+          "complete": true,
+          "wall_ns": 465000,
+          "thread_cpu_ns": 464948,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 29914450000,
+          "complete": true,
+          "wall_ns": 15000,
+          "thread_cpu_ns": 14948,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 29914480000,
+          "complete": true,
+          "wall_ns": 29000,
+          "thread_cpu_ns": 28594,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 29914543000,
+          "complete": true,
+          "wall_ns": 834000,
+          "thread_cpu_ns": 770313,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 29915427000,
+          "complete": true,
+          "wall_ns": 13178000,
+          "thread_cpu_ns": 482343,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 29928661000,
+          "complete": true,
+          "wall_ns": 135000,
+          "thread_cpu_ns": 135364,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 29928812000,
+          "complete": true,
+          "wall_ns": 14000,
+          "thread_cpu_ns": 13750,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 29928841000,
+          "complete": true,
+          "wall_ns": 109000,
+          "thread_cpu_ns": 108698,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 80,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 29913708000,
+          "complete": true,
+          "wall_ns": 86000,
+          "thread_cpu_ns": 86355,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 58,
+        "result": 0,
+        "sequence": 389
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 4,
+      "width": 17,
+      "height": 9,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 0,
+      "samplers": 0,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 30977537000,
+          "complete": true,
+          "wall_ns": 21000,
+          "thread_cpu_ns": 17917,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 30977576000,
+          "complete": true,
+          "wall_ns": 31000,
+          "thread_cpu_ns": 30885,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 30977626000,
+          "complete": true,
+          "wall_ns": 170569000,
+          "thread_cpu_ns": 77635573,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 31148216000,
+          "complete": true,
+          "wall_ns": 113000,
+          "thread_cpu_ns": 113646,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 31148346000,
+          "complete": true,
+          "wall_ns": 361000,
+          "thread_cpu_ns": 363020,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 31148729000,
+          "complete": true,
+          "wall_ns": 16000,
+          "thread_cpu_ns": 15989,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 31148760000,
+          "complete": true,
+          "wall_ns": 31000,
+          "thread_cpu_ns": 31823,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 31148816000,
+          "complete": true,
+          "wall_ns": 951000,
+          "thread_cpu_ns": 940209,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 31149867000,
+          "complete": true,
+          "wall_ns": 1352000,
+          "thread_cpu_ns": 486042,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 31151272000,
+          "complete": true,
+          "wall_ns": 253933000,
+          "thread_cpu_ns": 151633698,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 31405226000,
+          "complete": true,
+          "wall_ns": 14000,
+          "thread_cpu_ns": 14219,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 31405255000,
+          "complete": true,
+          "wall_ns": 102000,
+          "thread_cpu_ns": 101823,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 552,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 30977649000,
+          "complete": true,
+          "wall_ns": 98000,
+          "thread_cpu_ns": 98125,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "index": 0,
+          "format": 552,
+          "load_action": 1,
+          "part": "snapshot",
+          "begin_ns": 30977764000,
+          "complete": true,
+          "wall_ns": 13113000,
+          "thread_cpu_ns": 4437135,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "index": 0,
+          "format": 552,
+          "load_action": 1,
+          "part": "linear",
+          "begin_ns": 30990990000,
+          "complete": true,
+          "wall_ns": 157130000,
+          "thread_cpu_ns": 72883542,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 59,
+        "result": 0,
+        "sequence": 403
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 5,
+      "width": 17,
+      "height": 9,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 1,
+      "samplers": 1,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 31408354000,
+          "complete": true,
+          "wall_ns": 21000,
+          "thread_cpu_ns": 16979,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 31408393000,
+          "complete": true,
+          "wall_ns": 51000,
+          "thread_cpu_ns": 51666,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 31408864000,
+          "complete": true,
+          "wall_ns": 248000,
+          "thread_cpu_ns": 245886,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 31409192000,
+          "complete": true,
+          "wall_ns": 99000,
+          "thread_cpu_ns": 99167,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 31411834000,
+          "complete": true,
+          "wall_ns": 106615000,
+          "thread_cpu_ns": 54756771,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 31518472000,
+          "complete": true,
+          "wall_ns": 16000,
+          "thread_cpu_ns": 15937,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 31523292000,
+          "complete": true,
+          "wall_ns": 76000,
+          "thread_cpu_ns": 72188,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 31523400000,
+          "complete": true,
+          "wall_ns": 858000,
+          "thread_cpu_ns": 823334,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 31524301000,
+          "complete": true,
+          "wall_ns": 513000,
+          "thread_cpu_ns": 434948,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 31524856000,
+          "complete": true,
+          "wall_ns": 109000,
+          "thread_cpu_ns": 108750,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 31524981000,
+          "complete": true,
+          "wall_ns": 15000,
+          "thread_cpu_ns": 14896,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 31525011000,
+          "complete": true,
+          "wall_ns": 118000,
+          "thread_cpu_ns": 118333,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 80,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 31408920000,
+          "complete": true,
+          "wall_ns": 116000,
+          "thread_cpu_ns": 115625,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 60,
+        "result": 0,
+        "sequence": 406
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 6,
+      "width": 17,
+      "height": 9,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 0,
+      "samplers": 0,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 31897679000,
+          "complete": true,
+          "wall_ns": 22000,
+          "thread_cpu_ns": 17865,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 31897738000,
+          "complete": true,
+          "wall_ns": 72000,
+          "thread_cpu_ns": 71771,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 31897831000,
+          "complete": true,
+          "wall_ns": 80726000,
+          "thread_cpu_ns": 74872500,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 31978578000,
+          "complete": true,
+          "wall_ns": 113000,
+          "thread_cpu_ns": 112760,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 31978707000,
+          "complete": true,
+          "wall_ns": 378000,
+          "thread_cpu_ns": 363386,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 31979106000,
+          "complete": true,
+          "wall_ns": 17000,
+          "thread_cpu_ns": 17395,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 31979138000,
+          "complete": true,
+          "wall_ns": 34000,
+          "thread_cpu_ns": 34062,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 31979203000,
+          "complete": true,
+          "wall_ns": 977000,
+          "thread_cpu_ns": 941198,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 31980220000,
+          "complete": true,
+          "wall_ns": 1453000,
+          "thread_cpu_ns": 626354,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 31981734000,
+          "complete": true,
+          "wall_ns": 218737000,
+          "thread_cpu_ns": 185090208,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 32200492000,
+          "complete": true,
+          "wall_ns": 15000,
+          "thread_cpu_ns": 14531,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 32200522000,
+          "complete": true,
+          "wall_ns": 124000,
+          "thread_cpu_ns": 124688,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 553,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 31897860000,
+          "complete": true,
+          "wall_ns": 140000,
+          "thread_cpu_ns": 140886,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "index": 0,
+          "format": 553,
+          "load_action": 1,
+          "part": "snapshot",
+          "begin_ns": 31898019000,
+          "complete": true,
+          "wall_ns": 7361000,
+          "thread_cpu_ns": 7110208,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "index": 0,
+          "format": 553,
+          "load_action": 1,
+          "part": "linear",
+          "begin_ns": 31905486000,
+          "complete": true,
+          "wall_ns": 72986000,
+          "thread_cpu_ns": 67390104,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 61,
+        "result": 0,
+        "sequence": 414
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 7,
+      "width": 17,
+      "height": 9,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 1,
+      "samplers": 1,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 32211920000,
+          "complete": true,
+          "wall_ns": 49000,
+          "thread_cpu_ns": 44791,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 32212016000,
+          "complete": true,
+          "wall_ns": 115000,
+          "thread_cpu_ns": 112656,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 32212187000,
+          "complete": true,
+          "wall_ns": 451000,
+          "thread_cpu_ns": 451823,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 32212689000,
+          "complete": true,
+          "wall_ns": 185000,
+          "thread_cpu_ns": 186041,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 32212917000,
+          "complete": true,
+          "wall_ns": 81345000,
+          "thread_cpu_ns": 74255521,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 32294289000,
+          "complete": true,
+          "wall_ns": 18000,
+          "thread_cpu_ns": 18906,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 32294430000,
+          "complete": true,
+          "wall_ns": 45000,
+          "thread_cpu_ns": 42968,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 32294512000,
+          "complete": true,
+          "wall_ns": 2032000,
+          "thread_cpu_ns": 1825677,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 32296600000,
+          "complete": true,
+          "wall_ns": 717000,
+          "thread_cpu_ns": 566198,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 32297360000,
+          "complete": true,
+          "wall_ns": 113000,
+          "thread_cpu_ns": 112761,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 32297490000,
+          "complete": true,
+          "wall_ns": 14000,
+          "thread_cpu_ns": 14427,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 32297519000,
+          "complete": true,
+          "wall_ns": 117000,
+          "thread_cpu_ns": 117292,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 80,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 32212240000,
+          "complete": true,
+          "wall_ns": 229000,
+          "thread_cpu_ns": 229427,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 80,
+        "result": 0,
+        "sequence": 417
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 8,
+      "width": 17,
+      "height": 9,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 0,
+      "samplers": 0,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 32727945000,
+          "complete": true,
+          "wall_ns": 21000,
+          "thread_cpu_ns": 16614,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 32727985000,
+          "complete": true,
+          "wall_ns": 48000,
+          "thread_cpu_ns": 49010,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 32728053000,
+          "complete": true,
+          "wall_ns": 73938000,
+          "thread_cpu_ns": 63731979,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 32802012000,
+          "complete": true,
+          "wall_ns": 109000,
+          "thread_cpu_ns": 109114,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 32802137000,
+          "complete": true,
+          "wall_ns": 1044000,
+          "thread_cpu_ns": 411562,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 32803231000,
+          "complete": true,
+          "wall_ns": 16000,
+          "thread_cpu_ns": 16094,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 32803263000,
+          "complete": true,
+          "wall_ns": 33000,
+          "thread_cpu_ns": 32865,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 32803324000,
+          "complete": true,
+          "wall_ns": 848000,
+          "thread_cpu_ns": 805313,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 32804207000,
+          "complete": true,
+          "wall_ns": 382000,
+          "thread_cpu_ns": 356250,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 32804613000,
+          "complete": true,
+          "wall_ns": 275335000,
+          "thread_cpu_ns": 170647604,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 33079967000,
+          "complete": true,
+          "wall_ns": 14000,
+          "thread_cpu_ns": 13959,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 33079996000,
+          "complete": true,
+          "wall_ns": 106000,
+          "thread_cpu_ns": 107187,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 554,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 32728084000,
+          "complete": true,
+          "wall_ns": 132000,
+          "thread_cpu_ns": 132083,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "index": 0,
+          "format": 554,
+          "load_action": 1,
+          "part": "snapshot",
+          "begin_ns": 32728234000,
+          "complete": true,
+          "wall_ns": 3213000,
+          "thread_cpu_ns": 3216928,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "index": 0,
+          "format": 554,
+          "load_action": 1,
+          "part": "linear",
+          "begin_ns": 32731510000,
+          "complete": true,
+          "wall_ns": 70407000,
+          "thread_cpu_ns": 60201458,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 61,
+        "result": 0,
+        "sequence": 423
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 9,
+      "width": 17,
+      "height": 9,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 1,
+      "samplers": 1,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 33081904000,
+          "complete": true,
+          "wall_ns": 19000,
+          "thread_cpu_ns": 16355,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 33081953000,
+          "complete": true,
+          "wall_ns": 42000,
+          "thread_cpu_ns": 42760,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 33082014000,
+          "complete": true,
+          "wall_ns": 168000,
+          "thread_cpu_ns": 168907,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 33082202000,
+          "complete": true,
+          "wall_ns": 80000,
+          "thread_cpu_ns": 80365,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 33082298000,
+          "complete": true,
+          "wall_ns": 286871000,
+          "thread_cpu_ns": 75587760,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 33369192000,
+          "complete": true,
+          "wall_ns": 17000,
+          "thread_cpu_ns": 16823,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 33369224000,
+          "complete": true,
+          "wall_ns": 42000,
+          "thread_cpu_ns": 42083,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 33369288000,
+          "complete": true,
+          "wall_ns": 807000,
+          "thread_cpu_ns": 704115,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 33370130000,
+          "complete": true,
+          "wall_ns": 1498000,
+          "thread_cpu_ns": 944323,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 33371678000,
+          "complete": true,
+          "wall_ns": 134000,
+          "thread_cpu_ns": 133854,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 33371829000,
+          "complete": true,
+          "wall_ns": 14000,
+          "thread_cpu_ns": 13958,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 33371858000,
+          "complete": true,
+          "wall_ns": 108000,
+          "thread_cpu_ns": 108802,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 80,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 33082035000,
+          "complete": true,
+          "wall_ns": 85000,
+          "thread_cpu_ns": 85208,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 81,
+        "result": 0,
+        "sequence": 426
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 10,
+      "width": 17,
+      "height": 9,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 0,
+      "samplers": 0,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 33759043000,
+          "complete": true,
+          "wall_ns": 18000,
+          "thread_cpu_ns": 16823,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 33759081000,
+          "complete": true,
+          "wall_ns": 62000,
+          "thread_cpu_ns": 62552,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 33759173000,
+          "complete": true,
+          "wall_ns": 60564000,
+          "thread_cpu_ns": 53640521,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 33819791000,
+          "complete": true,
+          "wall_ns": 213000,
+          "thread_cpu_ns": 212605,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 33820049000,
+          "complete": true,
+          "wall_ns": 863000,
+          "thread_cpu_ns": 865937,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 33820965000,
+          "complete": true,
+          "wall_ns": 39000,
+          "thread_cpu_ns": 39479,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 33821044000,
+          "complete": true,
+          "wall_ns": 64000,
+          "thread_cpu_ns": 63698,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 33821163000,
+          "complete": true,
+          "wall_ns": 2252000,
+          "thread_cpu_ns": 2025156,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 33823490000,
+          "complete": true,
+          "wall_ns": 610000,
+          "thread_cpu_ns": 569166,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 33824145000,
+          "complete": true,
+          "wall_ns": 350694000,
+          "thread_cpu_ns": 172661563,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 34174860000,
+          "complete": true,
+          "wall_ns": 15000,
+          "thread_cpu_ns": 14167,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 34174890000,
+          "complete": true,
+          "wall_ns": 121000,
+          "thread_cpu_ns": 122604,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 555,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 33759202000,
+          "complete": true,
+          "wall_ns": 141000,
+          "thread_cpu_ns": 141771,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "index": 0,
+          "format": 555,
+          "load_action": 1,
+          "part": "snapshot",
+          "begin_ns": 33759361000,
+          "complete": true,
+          "wall_ns": 5027000,
+          "thread_cpu_ns": 3508021,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "index": 0,
+          "format": 555,
+          "load_action": 1,
+          "part": "linear",
+          "begin_ns": 33764444000,
+          "complete": true,
+          "wall_ns": 55151000,
+          "thread_cpu_ns": 49752291,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 80,
+        "result": 0,
+        "sequence": 432
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 11,
+      "width": 17,
+      "height": 9,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 1,
+      "samplers": 1,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 34178539000,
+          "complete": true,
+          "wall_ns": 51000,
+          "thread_cpu_ns": 46771,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 34178640000,
+          "complete": true,
+          "wall_ns": 67000,
+          "thread_cpu_ns": 67604,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 34178755000,
+          "complete": true,
+          "wall_ns": 348000,
+          "thread_cpu_ns": 350521,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 34179235000,
+          "complete": true,
+          "wall_ns": 194000,
+          "thread_cpu_ns": 195469,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 34179475000,
+          "complete": true,
+          "wall_ns": 82222000,
+          "thread_cpu_ns": 58535312,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 34262819000,
+          "complete": true,
+          "wall_ns": 37000,
+          "thread_cpu_ns": 33958,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 34262873000,
+          "complete": true,
+          "wall_ns": 37000,
+          "thread_cpu_ns": 37344,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 34262940000,
+          "complete": true,
+          "wall_ns": 2312000,
+          "thread_cpu_ns": 1144166,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 34265454000,
+          "complete": true,
+          "wall_ns": 747000,
+          "thread_cpu_ns": 650573,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 34266252000,
+          "complete": true,
+          "wall_ns": 114000,
+          "thread_cpu_ns": 114583,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 34266384000,
+          "complete": true,
+          "wall_ns": 15000,
+          "thread_cpu_ns": 14531,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 34266414000,
+          "complete": true,
+          "wall_ns": 118000,
+          "thread_cpu_ns": 118281,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 80,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 34178804000,
+          "complete": true,
+          "wall_ns": 182000,
+          "thread_cpu_ns": 182812,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 87,
+        "result": 0,
+        "sequence": 435
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 12,
+      "width": 17,
+      "height": 9,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 0,
+      "samplers": 0,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 34548179000,
+          "complete": true,
+          "wall_ns": 53000,
+          "thread_cpu_ns": 48281,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 34548281000,
+          "complete": true,
+          "wall_ns": 61000,
+          "thread_cpu_ns": 62135,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 34548388000,
+          "complete": true,
+          "wall_ns": 400000,
+          "thread_cpu_ns": 402083,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 34548839000,
+          "complete": true,
+          "wall_ns": 196000,
+          "thread_cpu_ns": 196354,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 34549079000,
+          "complete": true,
+          "wall_ns": 890000,
+          "thread_cpu_ns": 894063,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 34550027000,
+          "complete": true,
+          "wall_ns": 41000,
+          "thread_cpu_ns": 41146,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 34550108000,
+          "complete": true,
+          "wall_ns": 62000,
+          "thread_cpu_ns": 63021,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 34550238000,
+          "complete": true,
+          "wall_ns": 1753000,
+          "thread_cpu_ns": 1679583,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 34552083000,
+          "complete": true,
+          "wall_ns": 1090000,
+          "thread_cpu_ns": 1014739,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 34553255000,
+          "complete": true,
+          "wall_ns": 322000,
+          "thread_cpu_ns": 322917,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 34553625000,
+          "complete": true,
+          "wall_ns": 38000,
+          "thread_cpu_ns": 37865,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 34553703000,
+          "complete": true,
+          "wall_ns": 258000,
+          "thread_cpu_ns": 258958,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 80,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 34548437000,
+          "complete": true,
+          "wall_ns": 214000,
+          "thread_cpu_ns": 214114,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 81,
+        "result": 0,
+        "sequence": 438
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 13,
+      "width": 17,
+      "height": 9,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 1,
+      "samplers": 1,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 34556021000,
+          "complete": true,
+          "wall_ns": 47000,
+          "thread_cpu_ns": 43906,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 34556113000,
+          "complete": true,
+          "wall_ns": 58000,
+          "thread_cpu_ns": 58646,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 34556218000,
+          "complete": true,
+          "wall_ns": 370000,
+          "thread_cpu_ns": 373177,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 34556641000,
+          "complete": true,
+          "wall_ns": 194000,
+          "thread_cpu_ns": 194740,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 34556879000,
+          "complete": true,
+          "wall_ns": 1088000,
+          "thread_cpu_ns": 1089948,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 34558013000,
+          "complete": true,
+          "wall_ns": 39000,
+          "thread_cpu_ns": 38541,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 34558091000,
+          "complete": true,
+          "wall_ns": 69000,
+          "thread_cpu_ns": 70520,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 34558233000,
+          "complete": true,
+          "wall_ns": 1743000,
+          "thread_cpu_ns": 1670834,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 34560062000,
+          "complete": true,
+          "wall_ns": 1144000,
+          "thread_cpu_ns": 1082240,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 34561295000,
+          "complete": true,
+          "wall_ns": 628000,
+          "thread_cpu_ns": 429740,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 34561948000,
+          "complete": true,
+          "wall_ns": 14000,
+          "thread_cpu_ns": 14532,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 34561978000,
+          "complete": true,
+          "wall_ns": 140000,
+          "thread_cpu_ns": 138542,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 80,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 34556278000,
+          "complete": true,
+          "wall_ns": 185000,
+          "thread_cpu_ns": 185365,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 87,
+        "result": 0,
+        "sequence": 440
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 14,
+      "width": 17,
+      "height": 9,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 0,
+      "samplers": 0,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 34649476000,
+          "complete": true,
+          "wall_ns": 52000,
+          "thread_cpu_ns": 47447,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 34649592000,
+          "complete": true,
+          "wall_ns": 119000,
+          "thread_cpu_ns": 117656,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 34649782000,
+          "complete": true,
+          "wall_ns": 484000,
+          "thread_cpu_ns": 486718,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 34650321000,
+          "complete": true,
+          "wall_ns": 171000,
+          "thread_cpu_ns": 172084,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 34650536000,
+          "complete": true,
+          "wall_ns": 988000,
+          "thread_cpu_ns": 991562,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 34651579000,
+          "complete": true,
+          "wall_ns": 41000,
+          "thread_cpu_ns": 40625,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 34651661000,
+          "complete": true,
+          "wall_ns": 56000,
+          "thread_cpu_ns": 56875,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 34651774000,
+          "complete": true,
+          "wall_ns": 1710000,
+          "thread_cpu_ns": 1633333,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 34653579000,
+          "complete": true,
+          "wall_ns": 1112000,
+          "thread_cpu_ns": 1039583,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 34654781000,
+          "complete": true,
+          "wall_ns": 322000,
+          "thread_cpu_ns": 322083,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 34655151000,
+          "complete": true,
+          "wall_ns": 38000,
+          "thread_cpu_ns": 37500,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 34655229000,
+          "complete": true,
+          "wall_ns": 261000,
+          "thread_cpu_ns": 261927,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 80,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 34649848000,
+          "complete": true,
+          "wall_ns": 283000,
+          "thread_cpu_ns": 282708,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 94,
+        "result": 0,
+        "sequence": 443
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 15,
+      "width": 17,
+      "height": 9,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 1,
+      "samplers": 1,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 34658301000,
+          "complete": true,
+          "wall_ns": 60000,
+          "thread_cpu_ns": 49583,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 34658407000,
+          "complete": true,
+          "wall_ns": 56000,
+          "thread_cpu_ns": 55782,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 34658509000,
+          "complete": true,
+          "wall_ns": 365000,
+          "thread_cpu_ns": 368020,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 34658928000,
+          "complete": true,
+          "wall_ns": 352000,
+          "thread_cpu_ns": 303958,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 34659335000,
+          "complete": true,
+          "wall_ns": 1120000,
+          "thread_cpu_ns": 1122396,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 34662769000,
+          "complete": true,
+          "wall_ns": 39000,
+          "thread_cpu_ns": 40156,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 34664476000,
+          "complete": true,
+          "wall_ns": 70000,
+          "thread_cpu_ns": 66927,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 34664580000,
+          "complete": true,
+          "wall_ns": 4109000,
+          "thread_cpu_ns": 4034115,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 34668746000,
+          "complete": true,
+          "wall_ns": 448000,
+          "thread_cpu_ns": 411823,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 34669225000,
+          "complete": true,
+          "wall_ns": 133000,
+          "thread_cpu_ns": 133177,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 34669375000,
+          "complete": true,
+          "wall_ns": 15000,
+          "thread_cpu_ns": 15833,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 34669406000,
+          "complete": true,
+          "wall_ns": 124000,
+          "thread_cpu_ns": 125313,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 80,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 34658557000,
+          "complete": true,
+          "wall_ns": 196000,
+          "thread_cpu_ns": 194635,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 95,
+        "result": 0,
+        "sequence": 445
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 16,
+      "width": 32,
+      "height": 16,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 1,
+      "samplers": 1,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 34906038000,
+          "complete": true,
+          "wall_ns": 58000,
+          "thread_cpu_ns": 51614,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 34906148000,
+          "complete": true,
+          "wall_ns": 61000,
+          "thread_cpu_ns": 62344,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 34906260000,
+          "complete": true,
+          "wall_ns": 382000,
+          "thread_cpu_ns": 384480,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 34906697000,
+          "complete": true,
+          "wall_ns": 333000,
+          "thread_cpu_ns": 279896,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 34907081000,
+          "complete": true,
+          "wall_ns": 37054000,
+          "thread_cpu_ns": 25811771,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 34944198000,
+          "complete": true,
+          "wall_ns": 50000,
+          "thread_cpu_ns": 49843,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 34944291000,
+          "complete": true,
+          "wall_ns": 72000,
+          "thread_cpu_ns": 73282,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 34944422000,
+          "complete": true,
+          "wall_ns": 2041000,
+          "thread_cpu_ns": 1917032,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 34946554000,
+          "complete": true,
+          "wall_ns": 1130000,
+          "thread_cpu_ns": 1065417,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 34947766000,
+          "complete": true,
+          "wall_ns": 334000,
+          "thread_cpu_ns": 333855,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 34948148000,
+          "complete": true,
+          "wall_ns": 40000,
+          "thread_cpu_ns": 38854,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 34948228000,
+          "complete": true,
+          "wall_ns": 218000,
+          "thread_cpu_ns": 220469,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 80,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 34906310000,
+          "complete": true,
+          "wall_ns": 201000,
+          "thread_cpu_ns": 201354,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 81,
+        "result": 0,
+        "sequence": 458
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 17,
+      "width": 32,
+      "height": 16,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 1,
+      "samplers": 1,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 34957462000,
+          "complete": true,
+          "wall_ns": 25000,
+          "thread_cpu_ns": 19844,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 34957506000,
+          "complete": true,
+          "wall_ns": 29000,
+          "thread_cpu_ns": 29063,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 34957554000,
+          "complete": true,
+          "wall_ns": 178000,
+          "thread_cpu_ns": 178750,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 34957750000,
+          "complete": true,
+          "wall_ns": 75000,
+          "thread_cpu_ns": 75156,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 34957842000,
+          "complete": true,
+          "wall_ns": 10350000,
+          "thread_cpu_ns": 9694427,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 34968246000,
+          "complete": true,
+          "wall_ns": 45000,
+          "thread_cpu_ns": 45208,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 34968333000,
+          "complete": true,
+          "wall_ns": 61000,
+          "thread_cpu_ns": 61302,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 34968446000,
+          "complete": true,
+          "wall_ns": 2412000,
+          "thread_cpu_ns": 1192916,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 34970951000,
+          "complete": true,
+          "wall_ns": 885000,
+          "thread_cpu_ns": 850729,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 34971935000,
+          "complete": true,
+          "wall_ns": 324000,
+          "thread_cpu_ns": 324843,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 34972305000,
+          "complete": true,
+          "wall_ns": 40000,
+          "thread_cpu_ns": 39896,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 34972385000,
+          "complete": true,
+          "wall_ns": 307000,
+          "thread_cpu_ns": 309271,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 80,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 34957575000,
+          "complete": true,
+          "wall_ns": 94000,
+          "thread_cpu_ns": 94844,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 81,
+        "result": 0,
+        "sequence": 466
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 18,
+      "width": 32,
+      "height": 16,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 1,
+      "samplers": 1,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 34977196000,
+          "complete": true,
+          "wall_ns": 49000,
+          "thread_cpu_ns": 45677,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 34977291000,
+          "complete": true,
+          "wall_ns": 64000,
+          "thread_cpu_ns": 64011,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 34977402000,
+          "complete": true,
+          "wall_ns": 365000,
+          "thread_cpu_ns": 367396,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 34977822000,
+          "complete": true,
+          "wall_ns": 176000,
+          "thread_cpu_ns": 176250,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 34978042000,
+          "complete": true,
+          "wall_ns": 14444000,
+          "thread_cpu_ns": 13441928,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 34992542000,
+          "complete": true,
+          "wall_ns": 42000,
+          "thread_cpu_ns": 41667,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 34992625000,
+          "complete": true,
+          "wall_ns": 60000,
+          "thread_cpu_ns": 60052,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 34992739000,
+          "complete": true,
+          "wall_ns": 1765000,
+          "thread_cpu_ns": 1686875,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 34994594000,
+          "complete": true,
+          "wall_ns": 1154000,
+          "thread_cpu_ns": 757344,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 34995813000,
+          "complete": true,
+          "wall_ns": 130000,
+          "thread_cpu_ns": 129479,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 34996183000,
+          "complete": true,
+          "wall_ns": 83000,
+          "thread_cpu_ns": 78541,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 34996318000,
+          "complete": true,
+          "wall_ns": 261000,
+          "thread_cpu_ns": 263177,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 80,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 34977454000,
+          "complete": true,
+          "wall_ns": 195000,
+          "thread_cpu_ns": 195416,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 81,
+        "result": 0,
+        "sequence": 474
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 19,
+      "width": 32,
+      "height": 16,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 1,
+      "samplers": 1,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 35101315000,
+          "complete": true,
+          "wall_ns": 21000,
+          "thread_cpu_ns": 17917,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 35101355000,
+          "complete": true,
+          "wall_ns": 54000,
+          "thread_cpu_ns": 54375,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 35101429000,
+          "complete": true,
+          "wall_ns": 350000,
+          "thread_cpu_ns": 297291,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 35101798000,
+          "complete": true,
+          "wall_ns": 97000,
+          "thread_cpu_ns": 97135,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 35101912000,
+          "complete": true,
+          "wall_ns": 10330000,
+          "thread_cpu_ns": 9457552,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 35112263000,
+          "complete": true,
+          "wall_ns": 16000,
+          "thread_cpu_ns": 16250,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 35112295000,
+          "complete": true,
+          "wall_ns": 30000,
+          "thread_cpu_ns": 30104,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 35112349000,
+          "complete": true,
+          "wall_ns": 816000,
+          "thread_cpu_ns": 761875,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 35113222000,
+          "complete": true,
+          "wall_ns": 916000,
+          "thread_cpu_ns": 812500,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 35114247000,
+          "complete": true,
+          "wall_ns": 331000,
+          "thread_cpu_ns": 332083,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 35114629000,
+          "complete": true,
+          "wall_ns": 37000,
+          "thread_cpu_ns": 36563,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 35114706000,
+          "complete": true,
+          "wall_ns": 245000,
+          "thread_cpu_ns": 246354,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 80,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 35101552000,
+          "complete": true,
+          "wall_ns": 132000,
+          "thread_cpu_ns": 130521,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 81,
+        "result": 0,
+        "sequence": 487
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 20,
+      "width": 32,
+      "height": 16,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 1,
+      "samplers": 1,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 35118824000,
+          "complete": true,
+          "wall_ns": 48000,
+          "thread_cpu_ns": 45416,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 35118920000,
+          "complete": true,
+          "wall_ns": 74000,
+          "thread_cpu_ns": 72395,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 35119046000,
+          "complete": true,
+          "wall_ns": 363000,
+          "thread_cpu_ns": 365313,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 35119461000,
+          "complete": true,
+          "wall_ns": 172000,
+          "thread_cpu_ns": 172969,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 35119677000,
+          "complete": true,
+          "wall_ns": 8218000,
+          "thread_cpu_ns": 7818177,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 35127918000,
+          "complete": true,
+          "wall_ns": 17000,
+          "thread_cpu_ns": 17396,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 35127952000,
+          "complete": true,
+          "wall_ns": 30000,
+          "thread_cpu_ns": 29896,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 35128005000,
+          "complete": true,
+          "wall_ns": 909000,
+          "thread_cpu_ns": 839479,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 35128969000,
+          "complete": true,
+          "wall_ns": 470000,
+          "thread_cpu_ns": 430990,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 35129470000,
+          "complete": true,
+          "wall_ns": 108000,
+          "thread_cpu_ns": 108698,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 35129595000,
+          "complete": true,
+          "wall_ns": 14000,
+          "thread_cpu_ns": 14063,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 35129624000,
+          "complete": true,
+          "wall_ns": 879000,
+          "thread_cpu_ns": 242812,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 80,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 35119098000,
+          "complete": true,
+          "wall_ns": 181000,
+          "thread_cpu_ns": 183854,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 81,
+        "result": 0,
+        "sequence": 495
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 21,
+      "width": 32,
+      "height": 16,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 1,
+      "samplers": 1,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 35132308000,
+          "complete": true,
+          "wall_ns": 18000,
+          "thread_cpu_ns": 16094,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 35132344000,
+          "complete": true,
+          "wall_ns": 27000,
+          "thread_cpu_ns": 28281,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 35132390000,
+          "complete": true,
+          "wall_ns": 172000,
+          "thread_cpu_ns": 173333,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 35132582000,
+          "complete": true,
+          "wall_ns": 79000,
+          "thread_cpu_ns": 79115,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 35132677000,
+          "complete": true,
+          "wall_ns": 12256000,
+          "thread_cpu_ns": 11451511,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 35145006000,
+          "complete": true,
+          "wall_ns": 43000,
+          "thread_cpu_ns": 42291,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 35145090000,
+          "complete": true,
+          "wall_ns": 58000,
+          "thread_cpu_ns": 58385,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 35145201000,
+          "complete": true,
+          "wall_ns": 1760000,
+          "thread_cpu_ns": 1692396,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 35147054000,
+          "complete": true,
+          "wall_ns": 1078000,
+          "thread_cpu_ns": 1020885,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 35148221000,
+          "complete": true,
+          "wall_ns": 314000,
+          "thread_cpu_ns": 314479,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 35148582000,
+          "complete": true,
+          "wall_ns": 37000,
+          "thread_cpu_ns": 36927,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 35148660000,
+          "complete": true,
+          "wall_ns": 210000,
+          "thread_cpu_ns": 211666,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 80,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 35132410000,
+          "complete": true,
+          "wall_ns": 85000,
+          "thread_cpu_ns": 85573,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 81,
+        "result": 0,
+        "sequence": 503
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 22,
+      "width": 32,
+      "height": 16,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 1,
+      "samplers": 1,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 35236664000,
+          "complete": true,
+          "wall_ns": 22000,
+          "thread_cpu_ns": 18750,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 35236704000,
+          "complete": true,
+          "wall_ns": 32000,
+          "thread_cpu_ns": 32344,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 35236754000,
+          "complete": true,
+          "wall_ns": 194000,
+          "thread_cpu_ns": 195104,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 35236968000,
+          "complete": true,
+          "wall_ns": 83000,
+          "thread_cpu_ns": 83906,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 35237068000,
+          "complete": true,
+          "wall_ns": 12351000,
+          "thread_cpu_ns": 10673333,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 35249441000,
+          "complete": true,
+          "wall_ns": 16000,
+          "thread_cpu_ns": 16042,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 35249473000,
+          "complete": true,
+          "wall_ns": 29000,
+          "thread_cpu_ns": 29115,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 35249526000,
+          "complete": true,
+          "wall_ns": 1149000,
+          "thread_cpu_ns": 863906,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 35250754000,
+          "complete": true,
+          "wall_ns": 513000,
+          "thread_cpu_ns": 469063,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 35251315000,
+          "complete": true,
+          "wall_ns": 127000,
+          "thread_cpu_ns": 125782,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 35251458000,
+          "complete": true,
+          "wall_ns": 14000,
+          "thread_cpu_ns": 14270,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 35251488000,
+          "complete": true,
+          "wall_ns": 117000,
+          "thread_cpu_ns": 117083,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 80,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 35236775000,
+          "complete": true,
+          "wall_ns": 106000,
+          "thread_cpu_ns": 106875,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 94,
+        "result": 0,
+        "sequence": 516
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 23,
+      "width": 32,
+      "height": 16,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 1,
+      "samplers": 1,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 35253429000,
+          "complete": true,
+          "wall_ns": 20000,
+          "thread_cpu_ns": 16615,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 35253467000,
+          "complete": true,
+          "wall_ns": 29000,
+          "thread_cpu_ns": 29115,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 35253514000,
+          "complete": true,
+          "wall_ns": 167000,
+          "thread_cpu_ns": 167240,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 35253699000,
+          "complete": true,
+          "wall_ns": 75000,
+          "thread_cpu_ns": 75886,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 35253790000,
+          "complete": true,
+          "wall_ns": 9395000,
+          "thread_cpu_ns": 7779896,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 35263217000,
+          "complete": true,
+          "wall_ns": 21000,
+          "thread_cpu_ns": 20365,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 35263254000,
+          "complete": true,
+          "wall_ns": 30000,
+          "thread_cpu_ns": 30312,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 35263312000,
+          "complete": true,
+          "wall_ns": 1344000,
+          "thread_cpu_ns": 1270209,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 35264786000,
+          "complete": true,
+          "wall_ns": 1343000,
+          "thread_cpu_ns": 1211354,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 35266225000,
+          "complete": true,
+          "wall_ns": 218000,
+          "thread_cpu_ns": 217344,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 35266461000,
+          "complete": true,
+          "wall_ns": 16000,
+          "thread_cpu_ns": 16302,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 35266492000,
+          "complete": true,
+          "wall_ns": 264000,
+          "thread_cpu_ns": 238334,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 80,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 35253535000,
+          "complete": true,
+          "wall_ns": 86000,
+          "thread_cpu_ns": 86355,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 94,
+        "result": 0,
+        "sequence": 524
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 24,
+      "width": 32,
+      "height": 16,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 1,
+      "samplers": 1,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 35270672000,
+          "complete": true,
+          "wall_ns": 21000,
+          "thread_cpu_ns": 19063,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 35270712000,
+          "complete": true,
+          "wall_ns": 30000,
+          "thread_cpu_ns": 30885,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 35270760000,
+          "complete": true,
+          "wall_ns": 181000,
+          "thread_cpu_ns": 181302,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 35270959000,
+          "complete": true,
+          "wall_ns": 80000,
+          "thread_cpu_ns": 80834,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 35271055000,
+          "complete": true,
+          "wall_ns": 8092000,
+          "thread_cpu_ns": 7751563,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 35279909000,
+          "complete": true,
+          "wall_ns": 47000,
+          "thread_cpu_ns": 43594,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 35279977000,
+          "complete": true,
+          "wall_ns": 69000,
+          "thread_cpu_ns": 73645,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 35280087000,
+          "complete": true,
+          "wall_ns": 1972000,
+          "thread_cpu_ns": 1875052,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 35282121000,
+          "complete": true,
+          "wall_ns": 1162000,
+          "thread_cpu_ns": 1114948,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 35283395000,
+          "complete": true,
+          "wall_ns": 331000,
+          "thread_cpu_ns": 331198,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 35283772000,
+          "complete": true,
+          "wall_ns": 38000,
+          "thread_cpu_ns": 36979,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 35283849000,
+          "complete": true,
+          "wall_ns": 226000,
+          "thread_cpu_ns": 227552,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 80,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 35270783000,
+          "complete": true,
+          "wall_ns": 95000,
+          "thread_cpu_ns": 94740,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 94,
+        "result": 0,
+        "sequence": 532
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 25,
+      "width": 32,
+      "height": 16,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 1,
+      "samplers": 1,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 35356209000,
+          "complete": true,
+          "wall_ns": 52000,
+          "thread_cpu_ns": 47344,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 35356308000,
+          "complete": true,
+          "wall_ns": 64000,
+          "thread_cpu_ns": 64532,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 35356423000,
+          "complete": true,
+          "wall_ns": 385000,
+          "thread_cpu_ns": 387969,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 35356867000,
+          "complete": true,
+          "wall_ns": 177000,
+          "thread_cpu_ns": 177969,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 35357090000,
+          "complete": true,
+          "wall_ns": 10607000,
+          "thread_cpu_ns": 10237344,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 35367719000,
+          "complete": true,
+          "wall_ns": 16000,
+          "thread_cpu_ns": 16042,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 35367751000,
+          "complete": true,
+          "wall_ns": 28000,
+          "thread_cpu_ns": 28854,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 35367804000,
+          "complete": true,
+          "wall_ns": 1243000,
+          "thread_cpu_ns": 1186614,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 35369148000,
+          "complete": true,
+          "wall_ns": 1156000,
+          "thread_cpu_ns": 1086823,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 35370383000,
+          "complete": true,
+          "wall_ns": 344000,
+          "thread_cpu_ns": 344687,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 35370773000,
+          "complete": true,
+          "wall_ns": 37000,
+          "thread_cpu_ns": 36250,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 35370853000,
+          "complete": true,
+          "wall_ns": 231000,
+          "thread_cpu_ns": 231875,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 80,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 35356473000,
+          "complete": true,
+          "wall_ns": 175000,
+          "thread_cpu_ns": 175572,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 94,
+        "result": 0,
+        "sequence": 545
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 26,
+      "width": 32,
+      "height": 16,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 1,
+      "samplers": 1,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 35375583000,
+          "complete": true,
+          "wall_ns": 49000,
+          "thread_cpu_ns": 46302,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 35375681000,
+          "complete": true,
+          "wall_ns": 55000,
+          "thread_cpu_ns": 56667,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 35375786000,
+          "complete": true,
+          "wall_ns": 367000,
+          "thread_cpu_ns": 372813,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 35376208000,
+          "complete": true,
+          "wall_ns": 173000,
+          "thread_cpu_ns": 173229,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 35376433000,
+          "complete": true,
+          "wall_ns": 9799000,
+          "thread_cpu_ns": 9334479,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 35386254000,
+          "complete": true,
+          "wall_ns": 16000,
+          "thread_cpu_ns": 15469,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 35386285000,
+          "complete": true,
+          "wall_ns": 29000,
+          "thread_cpu_ns": 28698,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 35386338000,
+          "complete": true,
+          "wall_ns": 859000,
+          "thread_cpu_ns": 822448,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 35387247000,
+          "complete": true,
+          "wall_ns": 543000,
+          "thread_cpu_ns": 487500,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 35387830000,
+          "complete": true,
+          "wall_ns": 118000,
+          "thread_cpu_ns": 118282,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 35387964000,
+          "complete": true,
+          "wall_ns": 15000,
+          "thread_cpu_ns": 14635,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 35387994000,
+          "complete": true,
+          "wall_ns": 114000,
+          "thread_cpu_ns": 114531,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 80,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 35375847000,
+          "complete": true,
+          "wall_ns": 175000,
+          "thread_cpu_ns": 183333,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 94,
+        "result": 0,
+        "sequence": 553
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 27,
+      "width": 32,
+      "height": 16,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 1,
+      "samplers": 1,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 35389816000,
+          "complete": true,
+          "wall_ns": 20000,
+          "thread_cpu_ns": 17084,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 35389855000,
+          "complete": true,
+          "wall_ns": 28000,
+          "thread_cpu_ns": 28386,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 35389902000,
+          "complete": true,
+          "wall_ns": 170000,
+          "thread_cpu_ns": 170313,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 35390090000,
+          "complete": true,
+          "wall_ns": 79000,
+          "thread_cpu_ns": 78125,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 35390185000,
+          "complete": true,
+          "wall_ns": 6555000,
+          "thread_cpu_ns": 6126979,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 35396763000,
+          "complete": true,
+          "wall_ns": 16000,
+          "thread_cpu_ns": 16146,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 35396795000,
+          "complete": true,
+          "wall_ns": 29000,
+          "thread_cpu_ns": 29583,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 35396848000,
+          "complete": true,
+          "wall_ns": 946000,
+          "thread_cpu_ns": 760625,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 35397844000,
+          "complete": true,
+          "wall_ns": 470000,
+          "thread_cpu_ns": 440469,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 35398350000,
+          "complete": true,
+          "wall_ns": 109000,
+          "thread_cpu_ns": 109218,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 35398476000,
+          "complete": true,
+          "wall_ns": 14000,
+          "thread_cpu_ns": 14480,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 35398505000,
+          "complete": true,
+          "wall_ns": 109000,
+          "thread_cpu_ns": 110052,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 80,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 35389924000,
+          "complete": true,
+          "wall_ns": 85000,
+          "thread_cpu_ns": 85573,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 94,
+        "result": 0,
+        "sequence": 561
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 28,
+      "width": 32,
+      "height": 16,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 1,
+      "samplers": 1,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 35477223000,
+          "complete": true,
+          "wall_ns": 49000,
+          "thread_cpu_ns": 45261,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 35477319000,
+          "complete": true,
+          "wall_ns": 90000,
+          "thread_cpu_ns": 89896,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 35477464000,
+          "complete": true,
+          "wall_ns": 370000,
+          "thread_cpu_ns": 372864,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 35477897000,
+          "complete": true,
+          "wall_ns": 189000,
+          "thread_cpu_ns": 190000,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 35478132000,
+          "complete": true,
+          "wall_ns": 16920000,
+          "thread_cpu_ns": 12601718,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 35495075000,
+          "complete": true,
+          "wall_ns": 16000,
+          "thread_cpu_ns": 16719,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 35495108000,
+          "complete": true,
+          "wall_ns": 29000,
+          "thread_cpu_ns": 29062,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 35495160000,
+          "complete": true,
+          "wall_ns": 932000,
+          "thread_cpu_ns": 808854,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 35496147000,
+          "complete": true,
+          "wall_ns": 574000,
+          "thread_cpu_ns": 501042,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 35496764000,
+          "complete": true,
+          "wall_ns": 123000,
+          "thread_cpu_ns": 122760,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 35496904000,
+          "complete": true,
+          "wall_ns": 15000,
+          "thread_cpu_ns": 14323,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 35496934000,
+          "complete": true,
+          "wall_ns": 137000,
+          "thread_cpu_ns": 138125,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 80,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 35477516000,
+          "complete": true,
+          "wall_ns": 179000,
+          "thread_cpu_ns": 179531,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 87,
+        "result": 0,
+        "sequence": 574
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 29,
+      "width": 32,
+      "height": 16,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 1,
+      "samplers": 1,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 35498983000,
+          "complete": true,
+          "wall_ns": 20000,
+          "thread_cpu_ns": 16927,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 35499151000,
+          "complete": true,
+          "wall_ns": 36000,
+          "thread_cpu_ns": 36406,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 35499207000,
+          "complete": true,
+          "wall_ns": 182000,
+          "thread_cpu_ns": 182084,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 35499408000,
+          "complete": true,
+          "wall_ns": 82000,
+          "thread_cpu_ns": 82395,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 35499506000,
+          "complete": true,
+          "wall_ns": 9387000,
+          "thread_cpu_ns": 9044532,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 35508948000,
+          "complete": true,
+          "wall_ns": 42000,
+          "thread_cpu_ns": 42084,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 35509031000,
+          "complete": true,
+          "wall_ns": 58000,
+          "thread_cpu_ns": 58698,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 35509140000,
+          "complete": true,
+          "wall_ns": 1721000,
+          "thread_cpu_ns": 1658802,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 35510949000,
+          "complete": true,
+          "wall_ns": 1298000,
+          "thread_cpu_ns": 1117031,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 35512333000,
+          "complete": true,
+          "wall_ns": 239000,
+          "thread_cpu_ns": 239167,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 35512590000,
+          "complete": true,
+          "wall_ns": 14000,
+          "thread_cpu_ns": 14218,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 35512620000,
+          "complete": true,
+          "wall_ns": 132000,
+          "thread_cpu_ns": 133125,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 80,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 35499230000,
+          "complete": true,
+          "wall_ns": 91000,
+          "thread_cpu_ns": 91563,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 87,
+        "result": 0,
+        "sequence": 582
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 30,
+      "width": 32,
+      "height": 16,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 1,
+      "samplers": 1,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 35515269000,
+          "complete": true,
+          "wall_ns": 21000,
+          "thread_cpu_ns": 17447,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 35515310000,
+          "complete": true,
+          "wall_ns": 30000,
+          "thread_cpu_ns": 30468,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 35515358000,
+          "complete": true,
+          "wall_ns": 1349000,
+          "thread_cpu_ns": 357239,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 35516730000,
+          "complete": true,
+          "wall_ns": 258000,
+          "thread_cpu_ns": 177187,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 35517006000,
+          "complete": true,
+          "wall_ns": 7113000,
+          "thread_cpu_ns": 6689011,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 35524176000,
+          "complete": true,
+          "wall_ns": 43000,
+          "thread_cpu_ns": 42865,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 35524262000,
+          "complete": true,
+          "wall_ns": 67000,
+          "thread_cpu_ns": 64166,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 35524391000,
+          "complete": true,
+          "wall_ns": 1912000,
+          "thread_cpu_ns": 1843385,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 35526381000,
+          "complete": true,
+          "wall_ns": 1166000,
+          "thread_cpu_ns": 1099792,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 35527624000,
+          "complete": true,
+          "wall_ns": 315000,
+          "thread_cpu_ns": 315260,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 35527985000,
+          "complete": true,
+          "wall_ns": 37000,
+          "thread_cpu_ns": 36615,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 35528062000,
+          "complete": true,
+          "wall_ns": 205000,
+          "thread_cpu_ns": 206979,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 80,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 35515379000,
+          "complete": true,
+          "wall_ns": 1179000,
+          "thread_cpu_ns": 195417,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 87,
+        "result": 0,
+        "sequence": 590
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 31,
+      "width": 32,
+      "height": 16,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 1,
+      "samplers": 1,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 35603345000,
+          "complete": true,
+          "wall_ns": 19000,
+          "thread_cpu_ns": 16354,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 35603382000,
+          "complete": true,
+          "wall_ns": 28000,
+          "thread_cpu_ns": 28697,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 35603428000,
+          "complete": true,
+          "wall_ns": 171000,
+          "thread_cpu_ns": 170833,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 35603617000,
+          "complete": true,
+          "wall_ns": 78000,
+          "thread_cpu_ns": 78542,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 35603712000,
+          "complete": true,
+          "wall_ns": 9995000,
+          "thread_cpu_ns": 9613646,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 35613761000,
+          "complete": true,
+          "wall_ns": 42000,
+          "thread_cpu_ns": 42136,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 35613845000,
+          "complete": true,
+          "wall_ns": 58000,
+          "thread_cpu_ns": 58750,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 35613958000,
+          "complete": true,
+          "wall_ns": 1799000,
+          "thread_cpu_ns": 1721250,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 35615839000,
+          "complete": true,
+          "wall_ns": 1123000,
+          "thread_cpu_ns": 1054115,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 35617043000,
+          "complete": true,
+          "wall_ns": 310000,
+          "thread_cpu_ns": 306666,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 35617399000,
+          "complete": true,
+          "wall_ns": 48000,
+          "thread_cpu_ns": 49687,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 35617497000,
+          "complete": true,
+          "wall_ns": 222000,
+          "thread_cpu_ns": 223803,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 80,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 35603450000,
+          "complete": true,
+          "wall_ns": 86000,
+          "thread_cpu_ns": 86562,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 87,
+        "result": 0,
+        "sequence": 603
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 32,
+      "width": 32,
+      "height": 16,
+      "primitive": 3,
+      "first": 0,
+      "count": 3,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 1,
+      "textures": 1,
+      "samplers": 1,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 35620992000,
+          "complete": true,
+          "wall_ns": 21000,
+          "thread_cpu_ns": 17188,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 35621032000,
+          "complete": true,
+          "wall_ns": 34000,
+          "thread_cpu_ns": 34219,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 35621084000,
+          "complete": true,
+          "wall_ns": 188000,
+          "thread_cpu_ns": 188594,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "buffers",
+          "begin_ns": 35621291000,
+          "complete": true,
+          "wall_ns": 85000,
+          "thread_cpu_ns": 84740,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "samples",
+          "begin_ns": 35621391000,
+          "complete": true,
+          "wall_ns": 10096000,
+          "thread_cpu_ns": 9534427,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "xr_lut",
+          "begin_ns": 35631509000,
+          "complete": true,
+          "wall_ns": 16000,
+          "thread_cpu_ns": 15469,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "state",
+          "begin_ns": 35631540000,
+          "complete": true,
+          "wall_ns": 29000,
+          "thread_cpu_ns": 28594,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "submit",
+          "begin_ns": 35631589000,
+          "complete": true,
+          "wall_ns": 770000,
+          "thread_cpu_ns": 734011,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "gpu_finish",
+          "begin_ns": 35632393000,
+          "complete": true,
+          "wall_ns": 900000,
+          "thread_cpu_ns": 1135938,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "writeback",
+          "begin_ns": 35633916000,
+          "complete": true,
+          "wall_ns": 802000,
+          "thread_cpu_ns": 800782,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "fragment_sync",
+          "begin_ns": 35634766000,
+          "complete": true,
+          "wall_ns": 40000,
+          "thread_cpu_ns": 40105,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "retire",
+          "begin_ns": 35634848000,
+          "complete": true,
+          "wall_ns": 238000,
+          "thread_cpu_ns": 243073,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 80,
+          "load_action": 1,
+          "part": "import",
+          "begin_ns": 35621106000,
+          "complete": true,
+          "wall_ns": 96000,
+          "thread_cpu_ns": 96563,
+          "cpu_valid": true,
+          "result": 0
+        }
+      ],
+      "draw": {
+        "target_handle": 87,
+        "result": 0,
+        "sequence": 611
+      },
+      "complete": true,
+      "all_stages_completed_successfully": true
+    }
+  ],
+  "pending_draws": [],
+  "longest_completed_stages": [
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 10,
+      "width": 17,
+      "height": 9,
+      "stage": "writeback",
+      "begin_ns": 33824145000,
+      "complete": true,
+      "wall_ns": 350694000,
+      "thread_cpu_ns": 172661563,
+      "cpu_valid": true,
+      "result": 0
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 9,
+      "width": 17,
+      "height": 9,
+      "stage": "samples",
+      "begin_ns": 33082298000,
+      "complete": true,
+      "wall_ns": 286871000,
+      "thread_cpu_ns": 75587760,
+      "cpu_valid": true,
+      "result": 0
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 8,
+      "width": 17,
+      "height": 9,
+      "stage": "writeback",
+      "begin_ns": 32804613000,
+      "complete": true,
+      "wall_ns": 275335000,
+      "thread_cpu_ns": 170647604,
+      "cpu_valid": true,
+      "result": 0
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 4,
+      "width": 17,
+      "height": 9,
+      "stage": "writeback",
+      "begin_ns": 31151272000,
+      "complete": true,
+      "wall_ns": 253933000,
+      "thread_cpu_ns": 151633698,
+      "cpu_valid": true,
+      "result": 0
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 6,
+      "width": 17,
+      "height": 9,
+      "stage": "writeback",
+      "begin_ns": 31981734000,
+      "complete": true,
+      "wall_ns": 218737000,
+      "thread_cpu_ns": 185090208,
+      "cpu_valid": true,
+      "result": 0
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 4,
+      "width": 17,
+      "height": 9,
+      "stage": "targets",
+      "begin_ns": 30977626000,
+      "complete": true,
+      "wall_ns": 170569000,
+      "thread_cpu_ns": 77635573,
+      "cpu_valid": true,
+      "result": 0
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 5,
+      "width": 17,
+      "height": 9,
+      "stage": "samples",
+      "begin_ns": 31411834000,
+      "complete": true,
+      "wall_ns": 106615000,
+      "thread_cpu_ns": 54756771,
+      "cpu_valid": true,
+      "result": 0
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 11,
+      "width": 17,
+      "height": 9,
+      "stage": "samples",
+      "begin_ns": 34179475000,
+      "complete": true,
+      "wall_ns": 82222000,
+      "thread_cpu_ns": 58535312,
+      "cpu_valid": true,
+      "result": 0
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 7,
+      "width": 17,
+      "height": 9,
+      "stage": "samples",
+      "begin_ns": 32212917000,
+      "complete": true,
+      "wall_ns": 81345000,
+      "thread_cpu_ns": 74255521,
+      "cpu_valid": true,
+      "result": 0
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 6,
+      "width": 17,
+      "height": 9,
+      "stage": "targets",
+      "begin_ns": 31897831000,
+      "complete": true,
+      "wall_ns": 80726000,
+      "thread_cpu_ns": 74872500,
+      "cpu_valid": true,
+      "result": 0
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 8,
+      "width": 17,
+      "height": 9,
+      "stage": "targets",
+      "begin_ns": 32728053000,
+      "complete": true,
+      "wall_ns": 73938000,
+      "thread_cpu_ns": 63731979,
+      "cpu_valid": true,
+      "result": 0
+    },
+    {
+      "process": "backboardd",
+      "session": 1,
+      "pid": null,
+      "call": 10,
+      "width": 17,
+      "height": 9,
+      "stage": "targets",
+      "begin_ns": 33759173000,
+      "complete": true,
+      "wall_ns": 60564000,
+      "thread_cpu_ns": 53640521,
+      "cpu_valid": true,
+      "result": 0
+    }
+  ],
+  "post_ACK_exit_period_excluded": true,
+  "metadata_only": true,
+  "target_observer_requested": true,
+  "stage_time_includes_driver_CPU_scheduling_and_wait": true,
+  "stage_totals_not_added_to_overlapping_snapshot_wait_execute": true,
+  "GPU_hardware_root_cause_and_UI_FPS_not_inferred": true,
+  "screen": {
+    "protocol": 1,
+    "frames": [
+      {
+        "id": 1,
+        "token": "c437b449fff3bf87",
+        "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+        "image_sha256": "edeafdafe1abfc1faeaca06d17f1aaf57ff8d73e9bf78b6512054b54cae7d854",
+        "binding": {
+          "protocol": 1,
+          "width": 720,
+          "height": 1280,
+          "stride": 2160,
+          "format": "BGR888",
+          "codec": "PRLE1",
+          "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+          "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+          "runtime_source_sha256": "a1f41eeb87b7cf70ea751884ee38d758191f3cc0a00d697acc363fbba3cd5f63"
+        },
+        "begin": {
+          "token": "c437b449fff3bf87",
+          "id": "1",
+          "width": "720",
+          "height": "1280",
+          "stride": "2160",
+          "format": "BGR888",
+          "bytes": "2764800",
+          "codec": "PRLE1",
+          "encoded": "32508",
+          "raw_fnv": "afabda2998b075a2",
+          "enc_crc": "a0a1937d",
+          "vsync": "1615",
+          "timestamp": "7277736539",
+          "copy_ticks": "7624302",
+          "power_off": "1",
+          "source_checked": "1",
+          "source_match": "1"
+        },
+        "scan": {
+          "token": "c437b449fff3bf87",
+          "id": "1",
+          "pa": "0x9d400000",
+          "map_pa": "0x9d400000",
+          "map_bytes": "2764800",
+          "size": "0x50002d0",
+          "img": "0x50002d0",
+          "xy": "0",
+          "out": "0x50002d0",
+          "outxy": "0",
+          "fmt": "0x2243f",
+          "unpack": "0x20001",
+          "op": "0x80000000",
+          "qop": "0",
+          "ctl": "0x20020",
+          "start": "0",
+          "before_after": "1"
+        },
+        "blocks": 254,
+        "raw_file": "scanout-00000001.bgr",
+        "png_file": "scanout-00000001.png",
+        "raw_sha256": "8731b76f22ea154f517271fed3a585182152eede5a1952aa88ed945803d28746",
+        "png_sha256": "ba36346eaa277a698d76750ec2e2ef9d9faf01c5abe18cb0a120191a0ae4f1d0",
+        "pixel_values_preserved": true,
+        "verified": true,
+        "optical_panel_verified": false
+      }
+    ],
+    "verified": true,
+    "optical_panel_verified": false,
+    "current_boot_source_and_payload_checked": true,
+    "format": "BGR888",
+    "width": 720,
+    "height": 1280
+  },
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-ir3-cache-r1-prime-after-cloud-gpu-r3-20261119",
+  "raw_sha256": "7f06d92bbf14d58ea7c6a6ac15c4f7de7a6b630d8d8468d9a140911ed07b9ac4",
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "GLES_sha256": "166c08a396609046bb0fb4ae59c9ccb36aefcab64f6d7888448675e5e0627917",
+  "render_source_sha256": "6a72b11804ba77a871235b4ef5d23b6604f870ed4c581534bc5c7f310a47f895",
+  "inspector_source_sha256": "313c8fc03fb37f9045ff7a71e4e738fee007fc868c63603508a764b057ccc749",
+  "original_result": "PASS",
+  "original_reason": "GOALS_STABLE",
+  "return_seconds_with_health": 38.85899999993853,
+  "controller_failure_not_promoted": false
+}
