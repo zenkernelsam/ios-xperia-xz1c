@@ -105,6 +105,12 @@ static CGSize route_size(void) { return (CGSize){route_time, -0.0}; }
 - (void)renderer:(id)renderer didUpdateEnvironment:(id)environment withTransition:(id)transition
 { assert(renderer == route_completion && environment == route_argument && transition == route_completion); route_original(self, _cmd); }
 @end
+@interface PRRenderer : NSObject
+- (id)environment;
+@end
+@implementation PRRenderer
+- (id)environment { route_original(self, _cmd); return route_answer; }
+@end
 @interface RouteThrowingReason : NSString @end
 @implementation RouteThrowingReason
 - (NSUInteger)length { return 1; }
@@ -126,18 +132,19 @@ int main(void) { @autoreleasepool {
     errno = 73;
     assert(quad_route_observe([SweetMTLDevice class], [CLKUIMetalResourceManager class], [CLKUIQuadView class],
         [CLKUIQuadViewRenderCoordinator class], [NUNIQuad class], [PRPosterEnvironmentImpl class], [NUNIAstronomyVistaView class],
-        [_TtC11AegirPoster24AegirRenderingController class], route_emit) == QR_API_COUNT);
+        [_TtC11AegirPoster24AegirRenderingController class], [PRRenderer class], route_emit) == QR_API_COUNT);
     assert(errno == 73);
     SweetMTLDevice *device = [SweetMTLDevice new]; CLKUIMetalQuadView *base = [CLKUIMetalQuadView new];
     CLKUIQuadViewRenderCoordinator *coordinator = [CLKUIQuadViewRenderCoordinator new]; NUNIQuad *scene = [NUNIQuad new];
     PRPosterEnvironmentImpl *environment = [PRPosterEnvironmentImpl new]; NUNIAstronomyVistaView *vista = [NUNIAstronomyVistaView new];
     _TtC11AegirPoster24AegirRenderingController *controller = [_TtC11AegirPoster24AegirRenderingController new];
+    PRRenderer *renderer = [PRRenderer new];
     const char *selectors[] = { "sharedDevice", "sharedCommandQueue", "newCommandQueue", "addQuad:", "addQuadsFromArray:",
         "didMoveToWindow", "setPaused:", "addDisabledRenderingReason:", "removeDisabledRenderingReason:",
         "_sync_prepareAndRenderForTime:inGroup:checkForDrawable:completion:", "_renderLinkFired:", "setScene:",
         "isPreview", "isSnapshot", "isLowLuminance", "backlightProgress", "linearBacklightProgress", "unlockProgress",
         "minimumContentSize", "desiredContentSize", "startAnimation", "stopAnimation", "_updateAnimation", "snapshotImage",
-        "renderer:didInitializeWithEnvironment:", "renderer:didUpdateEnvironment:withTransition:" };
+        "renderer:didInitializeWithEnvironment:", "renderer:didUpdateEnvironment:withTransition:", "environment" };
     for (unsigned pass = 0; pass < 3; ++pass) {
         id saved = route_answer; if (pass == 1) route_answer = nil; route_throws = pass == 2;
         for (unsigned api = 0; api < QR_API_COUNT; ++api) {
@@ -170,16 +177,17 @@ int main(void) { @autoreleasepool {
                 case QR_UPDATE: [vista _updateAnimation]; break;
                 case QR_SNAPSHOT_IMAGE: answer = [vista snapshotImage]; break;
                 case QR_ENV_INIT: [controller renderer:route_completion didInitializeWithEnvironment:route_argument]; break;
-                default: [controller renderer:route_completion didUpdateEnvironment:route_argument withTransition:route_completion]; break;
+                case QR_ENV_UPDATE: [controller renderer:route_completion didUpdateEnvironment:route_argument withTransition:route_completion]; break;
+                default: answer = [renderer environment]; break;
                 }
             } @catch (id error) { assert(error == route_exception); caught = true; }
-            assert(caught == route_throws && errno == 91); if (!route_throws && (api <= QR_DEVICE_QUEUE || api == QR_SNAPSHOT_IMAGE)) assert(answer == route_answer);
+            assert(caught == route_throws && errno == 91); if (!route_throws && (api <= QR_DEVICE_QUEUE || api == QR_SNAPSHOT_IMAGE || api == QR_RENDERER_ENV)) assert(answer == route_answer);
         }
         route_answer = saved;
     }
     route_throws = false; route_expected_selector = @selector(_renderLinkFired:);
     for (unsigned i = 0; i < 70; ++i) { errno = 73; [coordinator _renderLinkFired:route_argument]; assert(errno == 91); }
-    assert(route_originals == 148 && route_begins == 83 && route_ends == 83 && route_limits == 1);
+    assert(route_originals == 151 && route_begins == 86 && route_ends == 86 && route_limits == 1);
     id previous = route_argument; route_argument = @"paused / not attached"; route_expected_selector = @selector(addDisabledRenderingReason:);
     errno = 73; [base addDisabledRenderingReason:route_argument]; assert(errno == 91);
     route_argument = [RouteThrowingReason new]; errno = 73; [base addDisabledRenderingReason:route_argument]; assert(errno == 91);
@@ -194,7 +202,7 @@ int main(void) { @autoreleasepool {
         (IMP)quad_route_device_queue, @encode(id), NULL, 0));
     assert(!quad_route_install([CLKUIQuadView class], false, "CLKUIQuadView", "setPaused:", QR_PAUSED,
         (IMP)quad_route_paused, @encode(void), (const char *const []){@encode(NSUInteger)}, 1));
-    [device release]; [base release]; [coordinator release]; [scene release]; [environment release]; [vista release]; [controller release]; [route_answer release];
+    [device release]; [base release]; [coordinator release]; [scene release]; [environment release]; [vista release]; [controller release]; [renderer release]; [route_answer release];
     [route_argument release]; [route_completion release];
     puts("Quad route observer PASS: metaclass/owner/ABI rejection, original nil/throw/errno/BOOL/double/block forwarding, reason getter containment, per-API bounds");
 } return 0; }

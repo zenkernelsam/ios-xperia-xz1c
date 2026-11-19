@@ -70,11 +70,11 @@ class QuadRouteEvidence(unittest.TestCase):
             with self.assertRaises(AssertionError): inspect(bad, self.token)
 
     def test_incomplete_install_routes_return(self):
-        for expected,counts in ((12,(0,5,10,11)),(26,(0,11,19,20,25))):
+        for expected,counts in ((12,(0,5,10,11)),(26,(0,11,19,20,25)),(27,(0,12,20,26))):
             for count in counts:
                 policy = DiagnosticPolicy(self.token, [], 0)
                 policy.feed('SWEET LOOP LIVE proto=1 token='+self.token, 0)
-                policy.feed(f'SWEET QUAD ROUTE CONFIG pid=278 installed={count} expected={expected} per_api=8 max={expected*8} revision={1 if expected==12 else 2} original_behavior=1 no_extra_GPU_work=1', 1)
+                policy.feed(f'SWEET QUAD ROUTE CONFIG pid=278 installed={count} expected={expected} per_api=8 max={expected*8} revision={(12,26,27).index(expected)+1} original_behavior=1 no_extra_GPU_work=1', 1)
                 self.assertEqual(policy.recoverable, 'QUAD_ROUTE_OBSERVER_INSTALL_INCOMPLETE')
 
     def configured2(self):
@@ -118,6 +118,30 @@ class QuadRouteEvidence(unittest.TestCase):
                     text.replace('transition=0000000000000000','transition=0000000000000001'),
                     text.replace('expected=26 per_api=8 max=208 revision=2','expected=12 per_api=8 max=96 revision=1'),
                     text.replace('SWEET QUAD ROUTE DOUBLE pid=278 call=1 bits=7ff8000000001234\n','')):
+            with self.assertRaises(AssertionError):inspect(bad,self.token)
+
+    def return_identity_sample(self):
+        old='SWEET QUAD ROUTE CONFIG pid=278 installed=26 expected=26 per_api=8 max=208 revision=2 original_behavior=1 no_extra_GPU_work=1\n'
+        types=b'@16@0:8'
+        text=self.configured2().replace(old,'')+(f'SWEET QUAD ROUTE METHOD pid=278 api=renderer_env present=1 owned=1 installed=1 arguments=2 owner_checked=1 meta=0\n'
+            f'SWEET QUAD ROUTE ABI pid=278 api=renderer_env bytes={len(types)} truncated=0\n'
+            f'SWEET QUAD ROUTE ABI_DATA pid=278 api=renderer_env offset=0 bytes={len(types)} hex={types.hex()}\n'
+            'SWEET QUAD ROUTE ABI_END pid=278 api=renderer_env\n'
+            'SWEET QUAD ROUTE CONFIG pid=278 installed=27 expected=27 per_api=8 max=216 revision=3 original_behavior=1 no_extra_GPU_work=1\n'
+            'SWEET QUAD ROUTE BEGIN pid=278 call=1 api=renderer_env original_forwarded=1\n'
+            'SWEET QUAD ROUTE OBJECT pid=278 call=1 receiver=PRRenderer argument_nil=1 argument_class=nil\n'
+            'SWEET QUAD ROUTE ID pid=278 call=1 receiver=0000000100100000 argument=0000000000000000\n'
+            'SWEET QUAD ROUTE RETURN pid=278 call=1 returned_nil=0 return_class=PRPosterEnvironmentImpl\n'
+            'SWEET QUAD ROUTE RETURN_ID pid=278 call=1 value=0000000100200000\n'
+            'SWEET QUAD ROUTE END pid=278 call=1 api=renderer_env outcome=return original_behavior=1\n')
+        return self.finish(text)
+
+    def test_original_renderer_return_identity_cannot_be_missing_or_nil(self):
+        text=self.return_identity_sample();r=inspect(text,self.token)
+        self.assertEqual(r['revision'],3);self.assertEqual(r['records'][0]['return_identity'],'0000000100200000')
+        for bad in (text.replace('SWEET QUAD ROUTE RETURN_ID pid=278 call=1 value=0000000100200000\n',''),
+                    text.replace('value=0000000100200000','value=0000000000000000'),
+                    text.replace('returned_nil=0 return_class=PRPosterEnvironmentImpl','returned_nil=1 return_class=nil')):
             with self.assertRaises(AssertionError):inspect(bad,self.token)
 
 

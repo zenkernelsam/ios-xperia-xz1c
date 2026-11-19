@@ -18,7 +18,7 @@ enum SweetQuadRouteAPI {
     QR_WINDOW, QR_PAUSED, QR_DISABLE, QR_ENABLE, QR_SYNC, QR_TICK, QR_SCENE,
     QR_PREVIEW, QR_SNAPSHOT, QR_LOW_LIGHT, QR_BACKLIGHT, QR_LINEAR_BACKLIGHT, QR_UNLOCK,
     QR_MIN_SIZE, QR_DESIRED_SIZE, QR_START, QR_STOP, QR_UPDATE, QR_SNAPSHOT_IMAGE,
-    QR_ENV_INIT, QR_ENV_UPDATE,
+    QR_ENV_INIT, QR_ENV_UPDATE, QR_RENDERER_ENV,
     QR_API_COUNT
 };
 enum { QR_SAMPLES_PER_API = 8, QR_SAMPLES_MAX = QR_API_COUNT * QR_SAMPLES_PER_API };
@@ -26,7 +26,7 @@ static const char *const quad_route_apis[] = {
     "manager_device", "manager_queue", "device_queue", "add_quad", "add_quads",
     "window", "paused", "disable", "enable", "sync", "tick", "scene",
     "preview", "snapshot", "low_light", "backlight", "linear_backlight", "unlock",
-    "min_size", "desired_size", "start", "stop", "update", "snapshot_image", "env_init", "env_update"
+    "min_size", "desired_size", "start", "stop", "update", "snapshot_image", "env_init", "env_update", "renderer_env"
 };
 static IMP quad_route_original[QR_API_COUNT];
 static atomic_uint quad_route_calls[QR_API_COUNT], quad_route_records;
@@ -53,6 +53,7 @@ static void quad_route_end(unsigned call, unsigned api, id answer, bool returned
     if (!call) return;
     quad_route_emit("SWEET QUAD ROUTE RETURN pid=%d call=%u returned_nil=%u return_class=%.40s",
         getpid(), call, answer == nil, answer ? object_getClassName(answer) : "nil");
+    quad_route_emit("SWEET QUAD ROUTE RETURN_ID pid=%d call=%u value=%016llx", getpid(), call, (unsigned long long)(uintptr_t)answer);
     quad_route_emit("SWEET QUAD ROUTE END pid=%d call=%u api=%s outcome=%s original_behavior=1",
         getpid(), call, quad_route_apis[api], returned ? "return" : "throw");
 }
@@ -66,6 +67,7 @@ static id quad_route_manager_device(id receiver, SEL selector) { return quad_rou
 static id quad_route_manager_queue(id receiver, SEL selector) { return quad_route_id0(receiver, selector, QR_MANAGER_QUEUE); }
 static id quad_route_device_queue(id receiver, SEL selector) { return quad_route_id0(receiver, selector, QR_DEVICE_QUEUE); }
 static id quad_route_snapshot_image(id receiver, SEL selector) { return quad_route_id0(receiver, selector, QR_SNAPSHOT_IMAGE); }
+static id quad_route_renderer_env(id receiver, SEL selector) { return quad_route_id0(receiver, selector, QR_RENDERER_ENV); }
 
 static void quad_route_reason(unsigned call, id reason)
 {
@@ -210,7 +212,7 @@ static bool quad_route_install(Class owner, bool metaclass, const char *owner_na
     quad_route_emit("SWEET QUAD ROUTE ABI_END pid=%d api=%s", getpid(), quad_route_apis[api]);
     errno = incoming; return valid;
 }
-static unsigned quad_route_observe(Class device, Class manager, Class base, Class coordinator, Class scene, Class environment, Class vista, Class controller, SweetQuadRouteEmit emit)
+static unsigned quad_route_observe(Class device, Class manager, Class base, Class coordinator, Class scene, Class environment, Class vista, Class controller, Class renderer, SweetQuadRouteEmit emit)
 {
     int incoming = errno; quad_route_emit = emit; unsigned installed = 0;
     const char *object[] = {@encode(id)}, *flag[] = {@encode(BOOL)};
@@ -243,7 +245,8 @@ static unsigned quad_route_observe(Class device, Class manager, Class base, Clas
     const char *pair[] = {@encode(id), @encode(id)}, *triple[] = {@encode(id), @encode(id), @encode(id)};
     installed += quad_route_install(controller, false, "_TtC11AegirPoster24AegirRenderingController", "renderer:didInitializeWithEnvironment:", QR_ENV_INIT, (IMP)quad_route_env_init, @encode(void), pair, 2);
     installed += quad_route_install(controller, false, "_TtC11AegirPoster24AegirRenderingController", "renderer:didUpdateEnvironment:withTransition:", QR_ENV_UPDATE, (IMP)quad_route_env_update, @encode(void), triple, 3);
-    quad_route_emit("SWEET QUAD ROUTE CONFIG pid=%d installed=%u expected=26 per_api=8 max=208 revision=2 original_behavior=1 no_extra_GPU_work=1", getpid(), installed);
+    installed += quad_route_install(renderer, false, "PRRenderer", "environment", QR_RENDERER_ENV, (IMP)quad_route_renderer_env, @encode(id), NULL, 0);
+    quad_route_emit("SWEET QUAD ROUTE CONFIG pid=%d installed=%u expected=27 per_api=8 max=216 revision=3 original_behavior=1 no_extra_GPU_work=1", getpid(), installed);
     errno = incoming; return installed;
 }
 _Static_assert(sizeof(double) == 8 && sizeof(CGSize) == 16, "Original scalar/CGSize ABI differs");

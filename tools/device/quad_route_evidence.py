@@ -39,17 +39,21 @@ IDENTITY = re.compile(r'SWEET QUAD ROUTE ID pid=(\d+) call=(\d+) receiver=([0-9a
 DOUBLE = re.compile(r'SWEET QUAD ROUTE DOUBLE pid=(\d+) call=(\d+) bits=([0-9a-f]{16})')
 SIZE = re.compile(r'SWEET QUAD ROUTE SIZE pid=(\d+) call=(\d+) width_bits=([0-9a-f]{16}) height_bits=([0-9a-f]{16})')
 ENV = re.compile(r'SWEET QUAD ROUTE ENV pid=(\d+) call=(\d+) renderer=([0-9a-f]{16}) transition=([0-9a-f]{16})')
+CONFIG3 = re.compile(r'SWEET QUAD ROUTE CONFIG pid=(\d+) installed=(\d+) expected=27 per_api=8 max=216 revision=3 original_behavior=1 no_extra_GPU_work=1')
+RETURN_ID = re.compile(r'SWEET QUAD ROUTE RETURN_ID pid=(\d+) call=(\d+) value=([0-9a-f]{16})')
 
 
 def inspect(text, token):
     live, ack = 'SWEET LOOP LIVE proto=1 token='+token, 'SWEET LOOP ACK FASTBOOT token='+token
     assert text.count(live) == text.count(ack) == 1
     scope = text[text.index(live):text.index(ack)]
-    revision = 2 if 'expected=26 per_api=8 max=208 revision=2' in scope else 1
-    apis = APIS+EXTRA_APIS if revision==2 else APIS
-    arguments = {**ARGUMENTS, **EXTRA_ARGUMENTS}; types = {**TYPES, **EXTRA_TYPES}; maximum = len(apis)*8
-    patterns = (METHOD, ABI, ABI_DATA, ABI_END, CONFIG2 if revision==2 else CONFIG, BEGIN, OBJECT, RETURN, END, FLAG, SYNC, BOOL, REASON, REASON_DATA, LIMIT)
-    if revision==2: patterns += (IDENTITY, DOUBLE, SIZE, ENV)
+    revision = 3 if 'expected=27 per_api=8 max=216 revision=3' in scope else 2 if 'expected=26 per_api=8 max=208 revision=2' in scope else 1
+    apis = APIS+EXTRA_APIS if revision>=2 else APIS
+    if revision==3: apis += ('renderer_env',)
+    arguments = {**ARGUMENTS, **EXTRA_ARGUMENTS, 'renderer_env':2}; types = {**TYPES, **EXTRA_TYPES, 'renderer_env':'@16@0:8'}; maximum = len(apis)*8
+    patterns = (METHOD, ABI, ABI_DATA, ABI_END, (CONFIG,CONFIG2,CONFIG3)[revision-1], BEGIN, OBJECT, RETURN, END, FLAG, SYNC, BOOL, REASON, REASON_DATA, LIMIT)
+    if revision>=2: patterns += (IDENTITY, DOUBLE, SIZE, ENV)
+    if revision==3: patterns += (RETURN_ID,)
     matches = sorted((m.start(), i, m) for i, p in enumerate(patterns) for m in p.finditer(scope))
     assert len(matches) == scope.count('SWEET QUAD ROUTE '), 'Truncated or unknown original route record'
     methods, inventory, configured, records, limits = {}, {}, {}, {}, set()
@@ -107,7 +111,8 @@ def inspect(text, token):
             record.update(returned_nil=m[3]=='1', return_class=m[4])
         elif kind == 8:
             assert m[3]==record['api'] and all(k in record for k in ('receiver', 'returned_nil'))
-            if revision==2: assert 'receiver_identity' in record
+            if revision>=2: assert 'receiver_identity' in record
+            if revision==3: assert 'return_identity' in record
             if record['api']=='paused': assert 'paused' in record
             if record['api']=='sync': assert 'time' in record and 'boolean_result' in record
             if record['api'] in ('preview', 'snapshot', 'low_light'): assert 'boolean_result' in record
@@ -147,10 +152,13 @@ def inspect(text, token):
             assert record['api'] in ('min_size', 'desired_size') and 'size_bits' not in record
             values = [struct.unpack('<d',int(m[k],16).to_bytes(8,'little'))[0] for k in (3,4)]
             record.update(size_bits=[m[3],m[4]], size_values=[v if math.isfinite(v) else None for v in values], size_finite=all(math.isfinite(v) for v in values))
-        else:
-            assert kind==18 and record['api'] in ('env_init','env_update') and 'renderer_identity' not in record
+        elif kind==18:
+            assert record['api'] in ('env_init','env_update') and 'renderer_identity' not in record
             assert record['api']!='env_init' or int(m[4],16)==0
             record.update(renderer_identity=m[3], transition_identity=m[4])
+        else:
+            assert kind==19 and 'return_identity' not in record and 'returned_nil' in record
+            assert (int(m[3],16)==0)==record['returned_nil']; record['return_identity']=m[3]
     assert configured
     complete = [r for r in records.values() if r['complete']]; pending = [r for r in records.values() if not r['complete']]
     for r in pending:
@@ -170,11 +178,11 @@ def verify(directory):
     from scanout_trial_evidence import verify as verify_screen
     root = Path(directory); screen = verify_screen(root); row = json.loads((root/'results.json').read_bytes())[0]
     artifact = row['artifact']; observer = artifact['exception_observer']
-    assert observer['quad_route_observer'] and observer['quad_route_revision'] in (1,2)
+    assert observer['quad_route_observer'] and observer['quad_route_revision'] in (1,2,3)
     raw = (root/'cycle-01/serial.raw.log').read_bytes(); assert hashlib.sha256(raw).hexdigest()==screen['raw_sha256']
     result = inspect(raw.decode('ascii', 'replace'), artifact['token'])
     assert result['revision']==observer['quad_route_revision']
-    assert all(p['installed']==observer['quad_route_methods']==(12 if result['revision']==1 else 26) for p in result['process_configurations'])
+    assert all(p['installed']==observer['quad_route_methods']==(12,26,27)[result['revision']-1] for p in result['process_configurations'])
     result.update(token=artifact['token'], kernel_sha256=artifact['kernel_sha256'], GLES_sha256=artifact['ram_library_binding']['library_sha256'],
                   raw_sha256=screen['raw_sha256'], original_result=row['result'], original_reason=row['reason'], stage_not_promoted=True,
                   source=str(root.resolve()), return_seconds_with_health=screen['return_seconds_with_health'], screen=screen['screen'],

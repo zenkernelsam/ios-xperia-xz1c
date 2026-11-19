@@ -60,12 +60,13 @@ def load(folder,expected=None):
                 sources.add('gpu/diagnostics/QuadRouteObserve.h')
                 assert observer.get('original_request_observer') and observer.get('snapshot_method_observer')
                 assert observer['target_process']=='AegirPoster' and observer.get('registration_only')
-                assert observer['quad_route_revision'] in (1,2) and observer['quad_route_methods']==(12 if observer['quad_route_revision']==1 else 26)
+                assert observer['quad_route_revision'] in (1,2,3) and observer['quad_route_methods']==(12,26,27)[observer['quad_route_revision']-1]
                 assert observer['quad_route_per_API_samples']==8 and observer['quad_route_max_records']==observer['quad_route_methods']*8 and observer['quad_route_record_max_bytes']==190
                 assert observer['quad_route_metaclass_owner_and_exact_ABI_host_passed'] and observer['quad_route_original_nil_throws_errno_BOOL_double_block_host_passed']
                 assert observer['quad_route_reason_getter_exception_containment_host_passed'] and observer['quad_route_no_additional_GPU_or_scene_calls']
-                if observer['quad_route_revision']==2:
+                if observer['quad_route_revision']>=2:
                     assert observer['quad_route_original_scalar_and_size_bits_preserved_host_passed'] and observer['quad_route_environment_identity_metadata']
+                if observer['quad_route_revision']==3: assert observer['quad_route_original_renderer_environment_and_return_identity']
                 assert re.fullmatch('[0-9a-f]{64}',observer['quad_route_host_test_source_sha256'])
             if observer.get('original_postdraw_observer'):
                 sources.add('gpu/diagnostics/PostDrawObserve.h')
