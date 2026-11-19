@@ -1,6 +1,6 @@
-# 当前状态 — 2026-11-19
+# 当前状态 — 2026-11-20
 
-Sony BH905ND69G 当前健康停在 fastboot，无 controller／串口 worker／in-flight。最新原请求观察 r2 靴 `61745a1e16c8ab41` 已完成 PON 0x06 的 ACK／DRAIN／RESET／FINAL_DRAIN、连续健康30秒及 worker 退出，回程39.375秒。13个原方法安装与10条ABI inventory完整，20条请求全部返回；五次画布初始化nonnull，但原display／nextDrawable／pipeline仍未发生。150秒完整扫描帧显示灰色锁屏时间日期、绿色电池、相机和白色homebar，壁纸仍黑，原GPU登记窗口保持 STOP／OBSERVATION_INCOMPLETE。前轮单次上滑 `881ce1c5d844e7ba` 的正常颜色主页证据继续保留，截图成功没有改判GPU或壁纸阶段。
+Sony BH905ND69G 当前健康停在 fastboot，无 controller／串口 worker／in-flight。最新场景／队列观察 r3 靴 `3541e07973fe676f` 已完成 PON 0x06 的 ACK／DRAIN／RESET／FINAL_DRAIN、连续健康30秒及 worker 退出，回程39.109秒。40条原场景／队列请求完整返回：共享队列5次nonnull，场景加入／设置各5次，paused5次全YES，sync与tick仍0。原13方法20请求也完整，但display／nextDrawable／pipeline未发生。150秒完整扫描帧仍灰色锁屏时间日期与黑壁纸，原GPU登记窗口保持 STOP／OBSERVATION_INCOMPLETE。前轮单次上滑 `881ce1c5d844e7ba` 的正常颜色主页证据保留，截图成功没有改判GPU或壁纸阶段。
 
 当前正式基线为 CA 矩阵修订 r1：
 
@@ -42,7 +42,9 @@ Sony BH905ND69G 当前健康停在 fastboot，无 controller／串口 worker／i
 
 本轮 r1 observer 自身RAMCPU `5754f4626364190d` 通过，GPU `be248be112e4e024` 保持STOP；两条长ABI记录拆分／交错导致原请求核验拒绝，独立截图与39.594秒完整回程仍通过。r2采用短记录／分块ABI，自身RAMCPU `f66de2d4094eec8a` 通过，GPU `61745a1e16c8ab41` 的20条原请求完整：quad_init／quad_init_async／set_device／quad_layout各5，另外9类均0，未见init返回nil。原输入frame375×812、options114／0x72、color_space2、async_nil1。完整来源／截图／回程均复验，原STOP保留；详情与四靴输入在 [METAL-REQUEST-OBSERVATION](METAL-REQUEST-OBSERVATION.md)。
 
-锁屏文字和主页扫描帧已改善；壁纸仍黑，当前原画布仅init／layout，未进入display／prewarm／drawable-size-update，原Aegir没有pipeline／snapshot／PNG请求。下一步沿原Poster／scene的显示触发与resource-manager原调用继续查。`sharedCommandQueue`属于`+[CLKUIMetalResourceManager sharedCommandQueue]`，不能误当SweetMTLDevice方法补实现；原init会调用它，而layout只更新frame／viewport，drawable-size-update在display开头才发生。只读原请求观察没有新增绘制工作，不用强制draw或旧靴离屏数据补造本靴壁纸成功。当前新scope没有实际缺binary请求，primer只有CPU准入，不能无请求空跑或称已完整硬件预热。
+r3仅增12类原场景／队列方法，observer`07d1360de49b9af17f2aad1fed72de5f8db3da92f7526991534aea8664c02a86`／132544B，自身RAMCPU `aa9d5a21aae2f148`通过，38.141秒完整回程。GPU原40请求全部完成，12项ABI／owner／metaclass完整核验；五次共享队列与四次实际队列创建均返回SweetMTLCommandQueue，五次addQuad与五次setScene原参数分别是NUNIQuad／NUNIScene。manager_device与window各8条触及采样上限，不能计成实际总数。paused五条全部YES，disable／enable／sync／tick均0；原postdraw九条仅library与colorsync，无snapshot／PNG。原图SHA`ca2603c424113a64e9ff22d04055e6f0146a2b44b214235949ca0d7e80258e97`，150.063秒捕获、2735块、11.921秒传输，完整来源与保存像素核验通过。见 [route](../reproducibility/v730-quad-route-r3-gpu-route.json) 与 [scanout](../reproducibility/v730-quad-route-r3-gpu-scanout.json)。
+
+锁屏文字和主页扫描帧已改善；壁纸仍黑，原画布仅init／layout，未进入display／prewarm／drawable-size-update，原Aegir没有pipeline／snapshot／PNG请求。共享设备与队列原返回已确认nonnull，继续查原environment、动画启动／快照调用及显示触发。只读20H392原Vista init在`0x1ee946f5c`本就传YES给setPaused，原startAnimation才经_updateAnimation判断动画和显示标志；因此五次paused不能独立当作故障或强制解除。`sharedCommandQueue`属于resource-manager class方法，不能误补SweetMTLDevice；layout也不会更新drawable-size，更新在display开头。观察没有新增绘制工作，不强制draw或用旧靴离屏数据补造本靴壁纸成功。当前新scope没有实际缺binary请求，primer只有CPU准入，不能无请求空跑或称已完整硬件预热。
 
 完整动态壁纸、稳定UI／帧率、睡眠唤醒、LCD光学色偏／背光、声音、Wi-Fi／蓝牙，以及广义texture／depth／stencil／MSAA仍未完成；目标保持active。GPU底层／allocator／SCM／PON／RPC／VM及SweetGPU源码冻结。这里只读帧不是LCD光学实测，power_off=0也不证明背光正常。
 

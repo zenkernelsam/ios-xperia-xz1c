@@ -1,0 +1,107 @@
+{
+  "system": "iOS 16.7.16 / 20H392",
+  "A2S_SHA256": "5bf04681af1819e2379319942a97be635100d6ca3844c5a22e372ce78a83b83d",
+  "local_method_list_and_A2S_crosscheck_SHA256": "d4a0f950078d6a47f50ef67148cc58e97c3510257b4df1e37a82ae95cff3e08c",
+  "implementation_starts_exactly_match_A2S": true,
+  "relative_selector_decoding_not_used": true,
+  "methods": [
+    {
+      "owner": "CLKUIQuadView",
+      "kind": "-",
+      "selector": "didMoveToWindow",
+      "types": "v16@0:8",
+      "impl": "0x1c1714cd4",
+      "symbol": "-[CLKUIQuadView didMoveToWindow]"
+    },
+    {
+      "owner": "CLKUIQuadView",
+      "kind": "-",
+      "selector": "setPaused:",
+      "types": "v20@0:8B16",
+      "impl": "0x1c1714ec8",
+      "symbol": "-[CLKUIQuadView setPaused:]"
+    },
+    {
+      "owner": "CLKUIQuadView",
+      "kind": "-",
+      "selector": "addQuad:",
+      "types": "v24@0:8@16",
+      "impl": "0x1c1714fc4",
+      "symbol": "-[CLKUIQuadView addQuad:]"
+    },
+    {
+      "owner": "CLKUIQuadView",
+      "kind": "-",
+      "selector": "_sync_prepareAndRenderForTime:inGroup:checkForDrawable:completion:",
+      "types": "B44@0:8d16@24B32@?36",
+      "impl": "0x1c1714714",
+      "symbol": "-[CLKUIQuadView _sync_prepareAndRenderForTime:inGroup:checkForDrawable:completion:]"
+    },
+    {
+      "owner": "CLKUIQuadView",
+      "kind": "-",
+      "selector": "addDisabledRenderingReason:",
+      "types": "v24@0:8@16",
+      "impl": "0x1c1714360",
+      "symbol": "-[CLKUIQuadView addDisabledRenderingReason:]"
+    },
+    {
+      "owner": "CLKUIQuadView",
+      "kind": "-",
+      "selector": "addQuadsFromArray:",
+      "types": "v24@0:8@16",
+      "impl": "0x1c171506c",
+      "symbol": "-[CLKUIQuadView addQuadsFromArray:]"
+    },
+    {
+      "owner": "CLKUIQuadView",
+      "kind": "-",
+      "selector": "removeDisabledRenderingReason:",
+      "types": "v24@0:8@16",
+      "impl": "0x1c17143c8",
+      "symbol": "-[CLKUIQuadView removeDisabledRenderingReason:]"
+    },
+    {
+      "owner": "CLKUIMetalResourceManager",
+      "kind": "+",
+      "selector": "sharedDevice",
+      "types": "@16@0:8",
+      "impl": "0x1c17199ec",
+      "symbol": "+[CLKUIMetalResourceManager sharedDevice]"
+    },
+    {
+      "owner": "CLKUIMetalResourceManager",
+      "kind": "+",
+      "selector": "sharedCommandQueue",
+      "types": "@16@0:8",
+      "impl": "0x1c1719a48",
+      "symbol": "+[CLKUIMetalResourceManager sharedCommandQueue]"
+    },
+    {
+      "owner": "CLKUIQuadViewRenderCoordinator",
+      "kind": "-",
+      "selector": "setPaused:",
+      "types": "v20@0:8B16",
+      "impl": "0x1c17391c8",
+      "symbol": "-[CLKUIQuadViewRenderCoordinator setPaused:]"
+    },
+    {
+      "owner": "CLKUIQuadViewRenderCoordinator",
+      "kind": "-",
+      "selector": "_renderLinkFired:",
+      "types": "v24@0:8@16",
+      "impl": "0x1c17390cc",
+      "symbol": "-[CLKUIQuadViewRenderCoordinator _renderLinkFired:]"
+    },
+    {
+      "owner": "NUNIQuad",
+      "kind": "-",
+      "selector": "setScene:",
+      "types": "v24@0:8@16",
+      "impl": "0x1ee94c92c",
+      "symbol": "-[NUNIQuad setScene:]"
+    }
+  ],
+  "Apple_binary_slices_local_only_not_committed": true,
+  "metadata_not_runtime_acceptance": true
+}

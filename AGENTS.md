@@ -12,6 +12,8 @@
 
 完整壁纸／稳定UI与FPS／睡眠／光学／声音无线及广义texture-depth-stencil-MSAA目标仍active。原IR3库26pipeline／三次draw／PNG返回及旧check-in／cold-link／STOP失败完整保留专题和docs/archive/20261119；不从过时工作日志恢复已结束in-flight。
 
+2026-11-20最新quad-route-r3／3541e07973fe676f已39.109秒四marker／健康30秒／worker退出，当前fastboot／无in-flight。observer07d1360d／132544B只增12原场景／队列方法观察，生产库及kernel保持；自身RAMCPU aa9d5a21通过／38.141秒。原40请求完整：共享队列5次nonnull、device_queue4次nonnull，NUNIQuad加入5次／NUNIScene设置5次，paused5次全YES；sync／tick／disable／enable均0，manager_device与window各8条达到采样上限，不能当总调用数。原13类20请求仍完整但display／nextDrawable／pipeline0，150秒灰字锁屏／黑壁纸，STOP保留。原Vista init本就setPaused:YES，不据此判驱动错误；下一步查原environment／startAnimation／snapshot触发。见METAL-REQUEST-OBSERVATION与v730-quad-route-r3证据。
+
 ## 硬件与返回
 
 - 仅Sony BH905ND69G；所有fastboot设备命令必须带 `-s BH905ND69G`。

@@ -1,0 +1,809 @@
+{
+  "revision": 1,
+  "process_configurations": [
+    {
+      "pid": 275,
+      "installed": 12,
+      "methods": {
+        "manager_device": {
+          "present": true,
+          "owned": true,
+          "installed": true,
+          "arguments": 2,
+          "owner_checked": true,
+          "metaclass": true
+        },
+        "manager_queue": {
+          "present": true,
+          "owned": true,
+          "installed": true,
+          "arguments": 2,
+          "owner_checked": true,
+          "metaclass": true
+        },
+        "device_queue": {
+          "present": true,
+          "owned": true,
+          "installed": true,
+          "arguments": 2,
+          "owner_checked": true,
+          "metaclass": false
+        },
+        "add_quad": {
+          "present": true,
+          "owned": true,
+          "installed": true,
+          "arguments": 3,
+          "owner_checked": true,
+          "metaclass": false
+        },
+        "add_quads": {
+          "present": true,
+          "owned": true,
+          "installed": true,
+          "arguments": 3,
+          "owner_checked": true,
+          "metaclass": false
+        },
+        "window": {
+          "present": true,
+          "owned": true,
+          "installed": true,
+          "arguments": 2,
+          "owner_checked": true,
+          "metaclass": false
+        },
+        "paused": {
+          "present": true,
+          "owned": true,
+          "installed": true,
+          "arguments": 3,
+          "owner_checked": true,
+          "metaclass": false
+        },
+        "disable": {
+          "present": true,
+          "owned": true,
+          "installed": true,
+          "arguments": 3,
+          "owner_checked": true,
+          "metaclass": false
+        },
+        "enable": {
+          "present": true,
+          "owned": true,
+          "installed": true,
+          "arguments": 3,
+          "owner_checked": true,
+          "metaclass": false
+        },
+        "sync": {
+          "present": true,
+          "owned": true,
+          "installed": true,
+          "arguments": 6,
+          "owner_checked": true,
+          "metaclass": false
+        },
+        "tick": {
+          "present": true,
+          "owned": true,
+          "installed": true,
+          "arguments": 3,
+          "owner_checked": true,
+          "metaclass": false
+        },
+        "scene": {
+          "present": true,
+          "owned": true,
+          "installed": true,
+          "arguments": 3,
+          "owner_checked": true,
+          "metaclass": false
+        }
+      }
+    }
+  ],
+  "inventory": [
+    {
+      "pid": 275,
+      "api": "manager_device",
+      "bytes": 7,
+      "truncated": false,
+      "complete": true,
+      "types": "@16@0:8"
+    },
+    {
+      "pid": 275,
+      "api": "manager_queue",
+      "bytes": 7,
+      "truncated": false,
+      "complete": true,
+      "types": "@16@0:8"
+    },
+    {
+      "pid": 275,
+      "api": "device_queue",
+      "bytes": 7,
+      "truncated": false,
+      "complete": true,
+      "types": "@16@0:8"
+    },
+    {
+      "pid": 275,
+      "api": "add_quad",
+      "bytes": 10,
+      "truncated": false,
+      "complete": true,
+      "types": "v24@0:8@16"
+    },
+    {
+      "pid": 275,
+      "api": "add_quads",
+      "bytes": 10,
+      "truncated": false,
+      "complete": true,
+      "types": "v24@0:8@16"
+    },
+    {
+      "pid": 275,
+      "api": "window",
+      "bytes": 7,
+      "truncated": false,
+      "complete": true,
+      "types": "v16@0:8"
+    },
+    {
+      "pid": 275,
+      "api": "paused",
+      "bytes": 10,
+      "truncated": false,
+      "complete": true,
+      "types": "v20@0:8B16"
+    },
+    {
+      "pid": 275,
+      "api": "disable",
+      "bytes": 10,
+      "truncated": false,
+      "complete": true,
+      "types": "v24@0:8@16"
+    },
+    {
+      "pid": 275,
+      "api": "enable",
+      "bytes": 10,
+      "truncated": false,
+      "complete": true,
+      "types": "v24@0:8@16"
+    },
+    {
+      "pid": 275,
+      "api": "sync",
+      "bytes": 20,
+      "truncated": false,
+      "complete": true,
+      "types": "B44@0:8d16@24B32@?36"
+    },
+    {
+      "pid": 275,
+      "api": "tick",
+      "bytes": 10,
+      "truncated": false,
+      "complete": true,
+      "types": "v24@0:8@16"
+    },
+    {
+      "pid": 275,
+      "api": "scene",
+      "bytes": 10,
+      "truncated": false,
+      "complete": true,
+      "types": "v24@0:8@16"
+    }
+  ],
+  "complete_samples": 40,
+  "incomplete_samples": 0,
+  "records": [
+    {
+      "pid": 275,
+      "call": 1,
+      "api": "manager_device",
+      "complete": true,
+      "receiver": "CLKUIMetalResourceManager",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "returned_nil": false,
+      "return_class": "SweetMTLDevice",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 2,
+      "api": "manager_queue",
+      "complete": true,
+      "receiver": "CLKUIMetalResourceManager",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "returned_nil": false,
+      "return_class": "SweetMTLCommandQueue",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 3,
+      "api": "manager_device",
+      "complete": true,
+      "receiver": "CLKUIMetalResourceManager",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "returned_nil": false,
+      "return_class": "SweetMTLDevice",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 4,
+      "api": "device_queue",
+      "complete": true,
+      "receiver": "SweetMTLDevice",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "returned_nil": false,
+      "return_class": "SweetMTLCommandQueue",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 5,
+      "api": "manager_device",
+      "complete": true,
+      "receiver": "CLKUIMetalResourceManager",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "returned_nil": false,
+      "return_class": "SweetMTLDevice",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 6,
+      "api": "manager_device",
+      "complete": true,
+      "receiver": "CLKUIMetalResourceManager",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "returned_nil": false,
+      "return_class": "SweetMTLDevice",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 7,
+      "api": "manager_device",
+      "complete": true,
+      "receiver": "CLKUIMetalResourceManager",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "returned_nil": false,
+      "return_class": "SweetMTLDevice",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 8,
+      "api": "add_quad",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": false,
+      "argument_class": "NUNIQuad",
+      "returned_nil": true,
+      "return_class": "nil",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 9,
+      "api": "paused",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "paused": true,
+      "returned_nil": true,
+      "return_class": "nil",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 10,
+      "api": "scene",
+      "complete": true,
+      "receiver": "NUNIQuad",
+      "argument_nil": false,
+      "argument_class": "NUNIScene",
+      "returned_nil": true,
+      "return_class": "nil",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 11,
+      "api": "window",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "returned_nil": true,
+      "return_class": "nil",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 12,
+      "api": "manager_device",
+      "complete": true,
+      "receiver": "CLKUIMetalResourceManager",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "returned_nil": false,
+      "return_class": "SweetMTLDevice",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 13,
+      "api": "manager_queue",
+      "complete": true,
+      "receiver": "CLKUIMetalResourceManager",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "returned_nil": false,
+      "return_class": "SweetMTLCommandQueue",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 14,
+      "api": "manager_device",
+      "complete": true,
+      "receiver": "CLKUIMetalResourceManager",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "returned_nil": false,
+      "return_class": "SweetMTLDevice",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 15,
+      "api": "add_quad",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": false,
+      "argument_class": "NUNIQuad",
+      "returned_nil": true,
+      "return_class": "nil",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 16,
+      "api": "paused",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "paused": true,
+      "returned_nil": true,
+      "return_class": "nil",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 17,
+      "api": "scene",
+      "complete": true,
+      "receiver": "NUNIQuad",
+      "argument_nil": false,
+      "argument_class": "NUNIScene",
+      "returned_nil": true,
+      "return_class": "nil",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 18,
+      "api": "window",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "returned_nil": true,
+      "return_class": "nil",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 19,
+      "api": "window",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "returned_nil": true,
+      "return_class": "nil",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 20,
+      "api": "window",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "returned_nil": true,
+      "return_class": "nil",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 21,
+      "api": "manager_device",
+      "complete": true,
+      "receiver": "CLKUIMetalResourceManager",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "returned_nil": false,
+      "return_class": "SweetMTLDevice",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 22,
+      "api": "manager_queue",
+      "complete": true,
+      "receiver": "CLKUIMetalResourceManager",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "returned_nil": false,
+      "return_class": "SweetMTLCommandQueue",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 23,
+      "api": "device_queue",
+      "complete": true,
+      "receiver": "SweetMTLDevice",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "returned_nil": false,
+      "return_class": "SweetMTLCommandQueue",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 24,
+      "api": "add_quad",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": false,
+      "argument_class": "NUNIQuad",
+      "returned_nil": true,
+      "return_class": "nil",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 25,
+      "api": "paused",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "paused": true,
+      "returned_nil": true,
+      "return_class": "nil",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 26,
+      "api": "scene",
+      "complete": true,
+      "receiver": "NUNIQuad",
+      "argument_nil": false,
+      "argument_class": "NUNIScene",
+      "returned_nil": true,
+      "return_class": "nil",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 27,
+      "api": "window",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "returned_nil": true,
+      "return_class": "nil",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 28,
+      "api": "window",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "returned_nil": true,
+      "return_class": "nil",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 29,
+      "api": "manager_queue",
+      "complete": true,
+      "receiver": "CLKUIMetalResourceManager",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "returned_nil": false,
+      "return_class": "SweetMTLCommandQueue",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 30,
+      "api": "device_queue",
+      "complete": true,
+      "receiver": "SweetMTLDevice",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "returned_nil": false,
+      "return_class": "SweetMTLCommandQueue",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 31,
+      "api": "add_quad",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": false,
+      "argument_class": "NUNIQuad",
+      "returned_nil": true,
+      "return_class": "nil",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 32,
+      "api": "paused",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "paused": true,
+      "returned_nil": true,
+      "return_class": "nil",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 33,
+      "api": "scene",
+      "complete": true,
+      "receiver": "NUNIQuad",
+      "argument_nil": false,
+      "argument_class": "NUNIScene",
+      "returned_nil": true,
+      "return_class": "nil",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 34,
+      "api": "window",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "returned_nil": true,
+      "return_class": "nil",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 35,
+      "api": "window",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "returned_nil": true,
+      "return_class": "nil",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 36,
+      "api": "manager_queue",
+      "complete": true,
+      "receiver": "CLKUIMetalResourceManager",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "returned_nil": false,
+      "return_class": "SweetMTLCommandQueue",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 37,
+      "api": "device_queue",
+      "complete": true,
+      "receiver": "SweetMTLDevice",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "returned_nil": false,
+      "return_class": "SweetMTLCommandQueue",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 38,
+      "api": "add_quad",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": false,
+      "argument_class": "NUNIQuad",
+      "returned_nil": true,
+      "return_class": "nil",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 39,
+      "api": "paused",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "paused": true,
+      "returned_nil": true,
+      "return_class": "nil",
+      "outcome": "return"
+    },
+    {
+      "pid": 275,
+      "call": 40,
+      "api": "scene",
+      "complete": true,
+      "receiver": "NUNIQuad",
+      "argument_nil": false,
+      "argument_class": "NUNIScene",
+      "returned_nil": true,
+      "return_class": "nil",
+      "outcome": "return"
+    }
+  ],
+  "pending_calls": [],
+  "observed_API_calls": {
+    "manager_device": 8,
+    "manager_queue": 5,
+    "device_queue": 4,
+    "add_quad": 5,
+    "add_quads": 0,
+    "window": 8,
+    "paused": 5,
+    "disable": 0,
+    "enable": 0,
+    "sync": 0,
+    "tick": 0,
+    "scene": 5
+  },
+  "sampling_limits": [
+    {
+      "pid": 275,
+      "api": "manager_device"
+    },
+    {
+      "pid": 275,
+      "api": "window"
+    }
+  ],
+  "original_nil_resource_returns": [],
+  "per_API_record_counts_are_not_total_calls": true,
+  "original_arguments_results_errno_throws_preserved": true,
+  "no_additional_GPU_or_scene_calls": true,
+  "post_ACK_exit_period_excluded": true,
+  "absent_calls_are_not_global_GPU_or_UI_proof": true,
+  "token": "3541e07973fe676f",
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "GLES_sha256": "d6d8fcfa27bcac84ab5edb3d2a11c1ed23374e8b491a3e8de093a9a2a819ac2b",
+  "raw_sha256": "bafcac71423a0f69dfc145229b4d6c94868470a37b3d844ab75caef1235a8a0e",
+  "original_result": "STOP",
+  "original_reason": "OBSERVATION_INCOMPLETE",
+  "stage_not_promoted": true,
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-quad-route-r3-gpu-20261119",
+  "return_seconds_with_health": 39.10899999993853,
+  "screen": {
+    "protocol": 1,
+    "frames": [
+      {
+        "id": 1,
+        "token": "3541e07973fe676f",
+        "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+        "image_sha256": "b19fdabc3acb24c13fb98766ad7825fe45b55f491090dea61bac574c4a24fe8f",
+        "binding": {
+          "protocol": 1,
+          "width": 720,
+          "height": 1280,
+          "stride": 2160,
+          "format": "BGR888",
+          "codec": "PRLE1",
+          "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+          "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+          "runtime_source_sha256": "a1f41eeb87b7cf70ea751884ee38d758191f3cc0a00d697acc363fbba3cd5f63"
+        },
+        "begin": {
+          "token": "3541e07973fe676f",
+          "id": "1",
+          "width": "720",
+          "height": "1280",
+          "stride": "2160",
+          "format": "BGR888",
+          "bytes": "2764800",
+          "codec": "PRLE1",
+          "encoded": "350046",
+          "raw_fnv": "725bca763f416538",
+          "enc_crc": "fd7b92d3",
+          "vsync": "7869",
+          "timestamp": "19418721917",
+          "copy_ticks": "7930413",
+          "power_off": "0",
+          "source_checked": "1",
+          "source_match": "1"
+        },
+        "scan": {
+          "token": "3541e07973fe676f",
+          "id": "1",
+          "pa": "0x9d400000",
+          "map_pa": "0x9d400000",
+          "map_bytes": "2764800",
+          "size": "0x50002d0",
+          "img": "0x50002d0",
+          "xy": "0",
+          "out": "0x50002d0",
+          "outxy": "0",
+          "fmt": "0x2243f",
+          "unpack": "0x20001",
+          "op": "0x80000000",
+          "qop": "0",
+          "ctl": "0x20020",
+          "start": "0",
+          "before_after": "1"
+        },
+        "blocks": 2735,
+        "raw_file": "scanout-00000001.bgr",
+        "png_file": "scanout-00000001.png",
+        "raw_sha256": "aec0a3a155bed07eb12bcaa235179fd8b79c1d4ecb47be5f83c7bbd5dde7cbc3",
+        "png_sha256": "ca2603c424113a64e9ff22d04055e6f0146a2b44b214235949ca0d7e80258e97",
+        "pixel_values_preserved": true,
+        "verified": true,
+        "optical_panel_verified": false
+      }
+    ],
+    "verified": true,
+    "optical_panel_verified": false,
+    "current_boot_source_and_payload_checked": true,
+    "format": "BGR888",
+    "width": 720,
+    "height": 1280
+  },
+  "inspector_sha256": "1446ae9ff027e35dcb60ae7153498fec875102a719cba0def405397bb18e7e70"
+}

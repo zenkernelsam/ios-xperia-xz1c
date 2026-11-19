@@ -1,6 +1,8 @@
-# 原 Metal 画布请求观察 — 2026-11-19
+# 原 Metal 画布请求观察 — 2026-11-20
 
 当前壁纸卡点已缩小到原画布初始化后的显示路由。最新r2的五次`CLKUIMetalQuadView`初始化均返回nonnull，原layout执行；观察窗口内没有display、prewarm、drawable-size-update、nextDrawable或pipeline请求。完整720×1280扫描帧仍是灰色锁屏文字与黑壁纸。原GPU结果保持STOP／OBSERVATION_INCOMPLETE，尚未证明壁纸或完整UI完成。
+
+最新r3继续原调用观察，实机确认共享设备与共享队列均nonnull，五次NUNIQuad加入和NUNIScene设置完成；随后原画布五次paused=YES。sync／tick均0，图仍灰字锁屏／黑壁纸。原Vista初始化本来就暂停画布，不能将这一点直接认作故障；下一观察应定位原环境、动画启动或快照路由缺少的触发。生产内核／GLES／Metal保持，r3原STOP与39.109秒完整回程单列。
 
 生产输入保持v730／`f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d`，GLES／`d6d8fcfa27bcac84ab5edb3d2a11c1ed23374e8b491a3e8de093a9a2a819ac2b`，Metal／`5e94ab57401479b42f506884a172a7a839378a82310661a1f66164e99c21f988`，source-map／`7b5a083abdb98fa5d29ef82fbd8e7e68b2a29fd995f16c4163d5c612cb8b9de7`。完整GLES9／native16／PNG6原raw先验来自`4946e854d77fe213`／`46747c46785bf85c`。这轮仅更新诊断observer及其RAM包，没有新增GPU绘制或改变原请求的参数、返回、异常、error和errno。
 
@@ -50,3 +52,24 @@ python -B tools/device/scanout_trial_evidence.py --directory "$env:TEMP\lilac-v7
 ```
 
 下一步继续查原Poster／scene如何触发画布显示及resource-manager原返回。内核GPU底层／allocator／SCM／PON／RPC／VM与SweetGPU冻结，单worker、仅BH905ND69G、PON0x06及完整回程约束保持。
+
+## r3共享资源与场景 — 2026-11-20
+
+源码`7a6fc1e`增加`QuadRouteObserve.h`，观察12类原方法，准确owner／class或metaclass／返回及参数ABI核验后安装，每类最多8条、总96条、记录小于190B。原nil、异常、errno、BOOL／double／block参数保持；字符串暂停原因只读且观察getter异常不改变原调用。真实Mac ASan／UBSan、ARM64及原observer组合构建通过。observer为`07d1360de49b9af17f2aad1fed72de5f8db3da92f7526991534aea8664c02a86`／132544B，GLES／Metal源码及二进制未变。构建初次因native-proof位于reproducibility被拒绝，原拒绝保留；精确proof复制到新build目录后构建成功，未有手机重发。
+
+| 试验 | token | 原判定 | 完整回程含健康 |
+| --- | --- | --- | --- |
+| 新RAM自身CPU | `aa9d5a21aae2f148` | PASS | 38.141秒 |
+| 原GPU／route | `3541e07973fe676f` | STOP／OBSERVATION_INCOMPLETE | 39.109秒 |
+
+GPU共40条完整原route请求，0未完成；manager_device／window各8条及明确LIMIT说明采样已封顶，不能作为实际总数。manager_queue5／device_queue4均返回SweetMTLCommandQueue，add_quad5的原参数为NUNIQuad，scene5为NUNIScene，paused5全YES；add_quads／disable／enable／sync／tick均0。原13类request20条也完整，display／nextDrawable仍0，原postdraw9条只有library_bundle／library_url／colorsync，无snapshot／PNG。详见 [route](../reproducibility/v730-quad-route-r3-gpu-route.json)、[requests](../reproducibility/v730-quad-route-r3-gpu-requests.json)、[postdraw](../reproducibility/v730-quad-route-r3-gpu-postdraw.json)、[CPU](../reproducibility/v730-quad-route-r3-ramcpu-actual.json)。
+
+150.063秒捕获真实BGR888／2160扫描帧，2735块／11.921秒，PNG SHA`ca2603c424113a64e9ff22d04055e6f0146a2b44b214235949ca0d7e80258e97`；灰色时间日期、绿色电池、相机与白homebar可见，背景仍黑，原STOP保留。[来源／像素／回程](../reproducibility/v730-quad-route-r3-gpu-scanout.json)全部复验，光学／睡眠／FPS未据此验收。
+
+原方法元数据来自本机20H392 method-list的type／IMP，并与固定A2S的准确symbol start交叉核对，[元数据](../reproducibility/quad-route-20H392-methods.json)不含原二进制。一个初始relative-selector解码器得到无效名称，保留原输出且未用于绑定；准确A2S与实际runtime ABI核验共同准入。原Vista init的`0x1ee946f5c`本就设置setPaused:YES；startAnimation经_updateAnimation检查`_isAnimating`／`_isDisplayOn`才可能解除，故不能把五条YES直接当驱动错误。继续观察原环境更新、原startAnimation／stopAnimation与snapshotImage触发，避免强制绘制改变原策略。
+
+新增构建选项`--quad-route-observe`要求原`--request-observe --snapshot-observe`及其完整先验，保持新包自身CPU→GPU。复验入口只读已有raw：
+
+```powershell
+python -B tools/device/quad_route_evidence.py --directory "$env:TEMP\lilac-v730-quad-route-r3-gpu-20261119" --output "$env:TEMP\lilac-quad-route-r3-recheck.json"
+```

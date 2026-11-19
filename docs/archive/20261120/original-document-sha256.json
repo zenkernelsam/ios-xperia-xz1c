@@ -1,0 +1,18 @@
+{
+  "source_commit": "7a6fc1e43f9ea0c930fd0fb6fc88cce9bb5e4c1a",
+  "working_copy_bytes_preserved": true,
+  "before_quad_route_r3_actual": {
+    "AGENTS-before-quad-route-r3.md": {
+      "bytes": 5689,
+      "sha256": "4a7bee0766cc90b98200a3a2b892acb0695a119030436022c8974d02ab128363"
+    },
+    "STATUS-before-quad-route-r3.md": {
+      "bytes": 7551,
+      "sha256": "a58b89cb2abb50a0f88d3f14ec1ca708b195a4a8866eb5d81f2599ca382c8406"
+    },
+    "METAL-REQUEST-before-quad-route-r3.md": {
+      "bytes": 5903,
+      "sha256": "e66fc5ba2d2557f1de7b4868e9173769b5a8e6a3911a8487641ef67cd0243db1"
+    }
+  }
+}

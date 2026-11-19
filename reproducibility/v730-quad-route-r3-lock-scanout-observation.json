@@ -1,0 +1,23 @@
+{
+  "token": "3541e07973fe676f",
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "image_sha256": "b19fdabc3acb24c13fb98766ad7825fe45b55f491090dea61bac574c4a24fe8f",
+  "raw_sha256": "bafcac71423a0f69dfc145229b4d6c94868470a37b3d844ab75caef1235a8a0e",
+  "png_sha256": "ca2603c424113a64e9ff22d04055e6f0146a2b44b214235949ca0d7e80258e97",
+  "width": 720,
+  "height": 1280,
+  "source_stride": 2160,
+  "visually_observed_lock": {
+    "neutral_gray_time_and_date": true,
+    "green_battery": true,
+    "camera_and_white_homebar": true,
+    "black_wallpaper_incomplete": true
+  },
+  "source_and_saved_pixels_verified": true,
+  "original_result": "STOP",
+  "original_reason": "OBSERVATION_INCOMPLETE",
+  "stage_not_promoted": true,
+  "return_seconds_with_health": 39.10899999993853,
+  "optical_panel_sleep_FPS_and_peripherals_pending": true,
+  "private_frame_retained_in_TEMP_not_Git": true
+}
