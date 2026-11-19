@@ -17,6 +17,7 @@ Sony Xperia XZ1 Compact（Snapdragon835 / Adreno540）的开源XNU、shim与Mesa
 | [XR Clear优化](docs/XR-CLEAR.md) | 保留原Clear/位型写回与Load，省去覆盖旧色的解码；新GLES完整14组通过，真实750×1624 Clear/draw已出现 |
 | [串口完整截图](docs/SCANOUT-SCREENSHOT.md) | v730真实720×1280扫描帧无损读回，原像素／来源／CRC复核；UI内容取证可不用摄像头，光学／背光另验 |
 | [原绘制阶段](docs/RENDER-STAGES.md) | 新GLESa7bad22c完整14组与原请求预热通过，原五管线cache命中；首draw目标准备1.524秒，submit仍未完成 |
+| [Clear shader复用](docs/CLEAR-CACHE.md) | 新GLES9d065b69完整15组、重复八附件262144B零差异；原15线程采样定位首次Clear等待IR3编译 |
 | [原Aegir短登记](docs/METAL-REGISTRY-SHORT.md) | 原默认device返回真实A540，threshold管线编译成功；必须有同kernel/GLES/Metal/source-map的完整实机先验 |
 
 [多颜色附件与XR混色](docs/METAL-MRT.md)现已完整实机通过：8附件输出、四XR与BGRA独立blend/writeMask、FP32 image按图元有序混色；1245184B原页面/低位/保护区零差异，523全撤销并38.562秒完整自动回程。当前half-selection-r1已完整14组/39.062秒回程验证；原Aegir现已恢复五条真实管线并出现两次750×1624 GPU draw，check-in超时和不完整面板仍保留。新的[原快照耗时观察](docs/POSTDRAW-OBSERVATION.md)已取得一次32179B真实PNG返回；快照约3.31秒（含队列等待2.81秒）、PNG/ICC约3.91秒，原check-in失败及不完整UI仍保留。未完成真实锁屏时间/日期/壁纸、完整UI/FPS、睡眠唤醒、声音、Wi-Fi/蓝牙及广义texture/depth/stencil/MSAA。离屏GPU通过不代表完整系统完成。
@@ -34,3 +35,5 @@ iPhoneX iOS16.7.16/20H392镜像、Sony原厂固件、设备备份由使用者提
 作者CIF10图像的iOS后台原PNG参考已实机完成：新RAM CPU及完整14组GPU/五组PNG均自动回程通过。真实输出16位sRGB且有跨通道转换；原界面的PNG期限、完整UI/FPS和其它外设仍继续。详细边界与复现入口集中在STATUS/POSTDRAW-OBSERVATION。
 
 2026-11-19当前为v730/f258dee9和阶段观察GLESa7bad22c；精确GLES／native14／六组PNG／原RAMCPU已独立通过。五条原管线预热后全部命中并进入750×1624绘制，原submit／check-in仍REVISE，39.172秒完整回程后健康fastboot。完整串口截图已可用，目标仍包括原壁纸／完整UI／睡眠和其它外设，见STATUS/RENDER-STAGES。
+
+最新Clear context复用GLES9d065b69已自身CPU／GPU／完整native15和共享PNG／原RAMCPU通过。五条原管线命中后，首个Clear仍在等原IR3硬件变体编译；精确15线程采样及38.656秒完整回程见CLEAR-CACHE。完整UI／睡眠和其它外设目标保持，下一步原硬件编译结果缓存尚未安装。

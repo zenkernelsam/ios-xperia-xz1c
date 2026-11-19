@@ -1,0 +1,548 @@
+{
+  "token": "ebc8114c6c2c4cf7",
+  "raw_sha256": "d12a9ac2be7abbdd9ec72b898e4e4b3b56b1f046849bb1c94bbf7997c277f0e1",
+  "GLES_sha256": "9d065b69295a0055a706bbb05104137fe8a24d3c51f904ebe78c41a53c0ca085",
+  "pid": 299,
+  "actual_shared_cache_slide": "0x45230000",
+  "sample_threads": 15,
+  "base_inferred_by_two_unique_actual_16K_aligned_return_PCs": true,
+  "clear_draw_return_offset": "0xc944",
+  "render_targets_return_offset": "0xb764",
+  "render_thread": 4,
+  "compiler_worker_threads": [
+    2,
+    7,
+    9,
+    11
+  ],
+  "threads": [
+    {
+      "index": 0,
+      "native_library_frames": []
+    },
+    {
+      "index": 1,
+      "native_library_frames": []
+    },
+    {
+      "index": 2,
+      "native_library_frames": [
+        {
+          "frame": 0,
+          "relative_pc": "0x62db50",
+          "symbol": "_match_expression",
+          "symbol_offset": "0x754"
+        },
+        {
+          "frame": 1,
+          "relative_pc": "0x62cd7c",
+          "symbol": "_nir_algebraic_impl",
+          "symbol_offset": "0x6bc"
+        },
+        {
+          "frame": 2,
+          "relative_pc": "0x62cd7c",
+          "symbol": "_nir_algebraic_impl",
+          "symbol_offset": "0x6bc"
+        },
+        {
+          "frame": 3,
+          "relative_pc": "0x551508",
+          "symbol": "_nir_opt_algebraic",
+          "symbol_offset": "0x984"
+        },
+        {
+          "frame": 4,
+          "relative_pc": "0x449c4c",
+          "symbol": "_ir3_optimize_loop",
+          "symbol_offset": "0x4c0"
+        },
+        {
+          "frame": 5,
+          "relative_pc": "0x44ad94",
+          "symbol": "_ir3_nir_lower_variant",
+          "symbol_offset": "0x618"
+        },
+        {
+          "frame": 6,
+          "relative_pc": "0x43a2a8",
+          "symbol": "_ir3_context_init",
+          "symbol_offset": "0x168"
+        },
+        {
+          "frame": 7,
+          "relative_pc": "0x4249b0",
+          "symbol": "_ir3_compile_shader_nir",
+          "symbol_offset": "0x40"
+        },
+        {
+          "frame": 8,
+          "relative_pc": "0x46735c",
+          "symbol": "_compile_variant",
+          "symbol_offset": "0x44"
+        },
+        {
+          "frame": 9,
+          "relative_pc": "0x465370",
+          "symbol": "_create_variant",
+          "symbol_offset": "0x11c"
+        },
+        {
+          "frame": 10,
+          "relative_pc": "0x465478",
+          "symbol": "_ir3_shader_get_variant",
+          "symbol_offset": "0x74"
+        },
+        {
+          "frame": 11,
+          "relative_pc": "0x40ac1c",
+          "symbol": "_ir3_shader_variant",
+          "symbol_offset": "0x148"
+        },
+        {
+          "frame": 12,
+          "relative_pc": "0x40b388",
+          "symbol": "_create_initial_variants",
+          "symbol_offset": "0xcc"
+        },
+        {
+          "frame": 13,
+          "relative_pc": "0x40b494",
+          "symbol": "_create_initial_variants_async",
+          "symbol_offset": "0x20"
+        },
+        {
+          "frame": 14,
+          "relative_pc": "0x6c8d84",
+          "symbol": "_util_queue_thread_func",
+          "symbol_offset": "0x168"
+        },
+        {
+          "frame": 15,
+          "relative_pc": "0x6f45e8",
+          "symbol": "_impl_thrd_routine",
+          "symbol_offset": "0x1c"
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "native_library_frames": []
+    },
+    {
+      "index": 4,
+      "native_library_frames": [
+        {
+          "frame": 2,
+          "relative_pc": "0x6ba74c",
+          "symbol": "_u_cnd_monotonic_wait",
+          "symbol_offset": "0xc"
+        },
+        {
+          "frame": 3,
+          "relative_pc": "0x6c8148",
+          "symbol": "__util_queue_fence_wait",
+          "symbol_offset": "0x28"
+        },
+        {
+          "frame": 4,
+          "relative_pc": "0x40b5c0",
+          "symbol": "_ir3_get_shader",
+          "symbol_offset": "0x8c"
+        },
+        {
+          "frame": 5,
+          "relative_pc": "0x40a170",
+          "symbol": "_ir3_cache_lookup",
+          "symbol_offset": "0xa4"
+        },
+        {
+          "frame": 6,
+          "relative_pc": "0x3bca4c",
+          "symbol": "_fd5_draw_vbos",
+          "symbol_offset": "0x170"
+        },
+        {
+          "frame": 7,
+          "relative_pc": "0x384700",
+          "symbol": "_fd_draw_vbo",
+          "symbol_offset": "0x1d8"
+        },
+        {
+          "frame": 8,
+          "relative_pc": "0xee420",
+          "symbol": "__mesa_DrawArrays",
+          "symbol_offset": "0x170"
+        },
+        {
+          "frame": 9,
+          "relative_pc": "0xc944",
+          "symbol": "_prepare_targets",
+          "symbol_offset": "0x620"
+        },
+        {
+          "frame": 10,
+          "relative_pc": "0xb764",
+          "symbol": "_sweetgl_metal_render_draw",
+          "symbol_offset": "0x724"
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "native_library_frames": []
+    },
+    {
+      "index": 6,
+      "native_library_frames": []
+    },
+    {
+      "index": 7,
+      "native_library_frames": [
+        {
+          "frame": 0,
+          "relative_pc": "0x456df4",
+          "symbol": "_ir3_nir_lower_layer_id",
+          "symbol_offset": "0xcc"
+        },
+        {
+          "frame": 1,
+          "relative_pc": "0x456e08",
+          "symbol": "_ir3_nir_lower_layer_id",
+          "symbol_offset": "0xe0"
+        },
+        {
+          "frame": 2,
+          "relative_pc": "0x44a438",
+          "symbol": "_ir3_nir_post_finalize",
+          "symbol_offset": "0x6c"
+        },
+        {
+          "frame": 3,
+          "relative_pc": "0x4652c4",
+          "symbol": "_create_variant",
+          "symbol_offset": "0x70"
+        },
+        {
+          "frame": 4,
+          "relative_pc": "0x465478",
+          "symbol": "_ir3_shader_get_variant",
+          "symbol_offset": "0x74"
+        },
+        {
+          "frame": 5,
+          "relative_pc": "0x40ac1c",
+          "symbol": "_ir3_shader_variant",
+          "symbol_offset": "0x148"
+        },
+        {
+          "frame": 6,
+          "relative_pc": "0x40b388",
+          "symbol": "_create_initial_variants",
+          "symbol_offset": "0xcc"
+        },
+        {
+          "frame": 7,
+          "relative_pc": "0x40b494",
+          "symbol": "_create_initial_variants_async",
+          "symbol_offset": "0x20"
+        },
+        {
+          "frame": 8,
+          "relative_pc": "0x6c8d84",
+          "symbol": "_util_queue_thread_func",
+          "symbol_offset": "0x168"
+        },
+        {
+          "frame": 9,
+          "relative_pc": "0x6f45e8",
+          "symbol": "_impl_thrd_routine",
+          "symbol_offset": "0x1c"
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "native_library_frames": [
+        {
+          "frame": 2,
+          "relative_pc": "0x6f4448",
+          "symbol": "_cnd_wait",
+          "symbol_offset": "0xc"
+        },
+        {
+          "frame": 3,
+          "relative_pc": "0x6c8ddc",
+          "symbol": "_util_queue_thread_func",
+          "symbol_offset": "0x1c0"
+        },
+        {
+          "frame": 4,
+          "relative_pc": "0x6f45e8",
+          "symbol": "_impl_thrd_routine",
+          "symbol_offset": "0x1c"
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "native_library_frames": [
+        {
+          "frame": 0,
+          "relative_pc": "0x43bf38",
+          "symbol": "_ir3_cp",
+          "symbol_offset": "0x4c"
+        },
+        {
+          "frame": 1,
+          "relative_pc": "0x426218",
+          "symbol": "_ir3_compile_shader_nir",
+          "symbol_offset": "0x18a8"
+        },
+        {
+          "frame": 2,
+          "relative_pc": "0x426218",
+          "symbol": "_ir3_compile_shader_nir",
+          "symbol_offset": "0x18a8"
+        },
+        {
+          "frame": 3,
+          "relative_pc": "0x46735c",
+          "symbol": "_compile_variant",
+          "symbol_offset": "0x44"
+        },
+        {
+          "frame": 4,
+          "relative_pc": "0x465370",
+          "symbol": "_create_variant",
+          "symbol_offset": "0x11c"
+        },
+        {
+          "frame": 5,
+          "relative_pc": "0x465478",
+          "symbol": "_ir3_shader_get_variant",
+          "symbol_offset": "0x74"
+        },
+        {
+          "frame": 6,
+          "relative_pc": "0x40ac1c",
+          "symbol": "_ir3_shader_variant",
+          "symbol_offset": "0x148"
+        },
+        {
+          "frame": 7,
+          "relative_pc": "0x40b388",
+          "symbol": "_create_initial_variants",
+          "symbol_offset": "0xcc"
+        },
+        {
+          "frame": 8,
+          "relative_pc": "0x40b494",
+          "symbol": "_create_initial_variants_async",
+          "symbol_offset": "0x20"
+        },
+        {
+          "frame": 9,
+          "relative_pc": "0x6c8d84",
+          "symbol": "_util_queue_thread_func",
+          "symbol_offset": "0x168"
+        },
+        {
+          "frame": 10,
+          "relative_pc": "0x6f45e8",
+          "symbol": "_impl_thrd_routine",
+          "symbol_offset": "0x1c"
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "native_library_frames": [
+        {
+          "frame": 2,
+          "relative_pc": "0x6f4448",
+          "symbol": "_cnd_wait",
+          "symbol_offset": "0xc"
+        },
+        {
+          "frame": 3,
+          "relative_pc": "0x6c8ddc",
+          "symbol": "_util_queue_thread_func",
+          "symbol_offset": "0x1c0"
+        },
+        {
+          "frame": 4,
+          "relative_pc": "0x6f45e8",
+          "symbol": "_impl_thrd_routine",
+          "symbol_offset": "0x1c"
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "native_library_frames": [
+        {
+          "frame": 0,
+          "relative_pc": "0x59c96c",
+          "symbol": "_nir_instr_set_add_or_rewrite",
+          "symbol_offset": "0x4"
+        },
+        {
+          "frame": 1,
+          "relative_pc": "0x5fa2f4",
+          "symbol": "_nir_opt_cse",
+          "symbol_offset": "0xbc"
+        },
+        {
+          "frame": 2,
+          "relative_pc": "0x449b58",
+          "symbol": "_ir3_optimize_loop",
+          "symbol_offset": "0x3cc"
+        },
+        {
+          "frame": 3,
+          "relative_pc": "0x44ad94",
+          "symbol": "_ir3_nir_lower_variant",
+          "symbol_offset": "0x618"
+        },
+        {
+          "frame": 4,
+          "relative_pc": "0x43a2a8",
+          "symbol": "_ir3_context_init",
+          "symbol_offset": "0x168"
+        },
+        {
+          "frame": 5,
+          "relative_pc": "0x4249b0",
+          "symbol": "_ir3_compile_shader_nir",
+          "symbol_offset": "0x40"
+        },
+        {
+          "frame": 6,
+          "relative_pc": "0x46735c",
+          "symbol": "_compile_variant",
+          "symbol_offset": "0x44"
+        },
+        {
+          "frame": 7,
+          "relative_pc": "0x465370",
+          "symbol": "_create_variant",
+          "symbol_offset": "0x11c"
+        },
+        {
+          "frame": 8,
+          "relative_pc": "0x465478",
+          "symbol": "_ir3_shader_get_variant",
+          "symbol_offset": "0x74"
+        },
+        {
+          "frame": 9,
+          "relative_pc": "0x40ac1c",
+          "symbol": "_ir3_shader_variant",
+          "symbol_offset": "0x148"
+        },
+        {
+          "frame": 10,
+          "relative_pc": "0x40b388",
+          "symbol": "_create_initial_variants",
+          "symbol_offset": "0xcc"
+        },
+        {
+          "frame": 11,
+          "relative_pc": "0x40b494",
+          "symbol": "_create_initial_variants_async",
+          "symbol_offset": "0x20"
+        },
+        {
+          "frame": 12,
+          "relative_pc": "0x6c8d84",
+          "symbol": "_util_queue_thread_func",
+          "symbol_offset": "0x168"
+        },
+        {
+          "frame": 13,
+          "relative_pc": "0x6f45e8",
+          "symbol": "_impl_thrd_routine",
+          "symbol_offset": "0x1c"
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "native_library_frames": [
+        {
+          "frame": 2,
+          "relative_pc": "0x6f4448",
+          "symbol": "_cnd_wait",
+          "symbol_offset": "0xc"
+        },
+        {
+          "frame": 3,
+          "relative_pc": "0x6c8ddc",
+          "symbol": "_util_queue_thread_func",
+          "symbol_offset": "0x1c0"
+        },
+        {
+          "frame": 4,
+          "relative_pc": "0x6f45e8",
+          "symbol": "_impl_thrd_routine",
+          "symbol_offset": "0x1c"
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "native_library_frames": [
+        {
+          "frame": 2,
+          "relative_pc": "0x6f4448",
+          "symbol": "_cnd_wait",
+          "symbol_offset": "0xc"
+        },
+        {
+          "frame": 3,
+          "relative_pc": "0x6c8ddc",
+          "symbol": "_util_queue_thread_func",
+          "symbol_offset": "0x1c0"
+        },
+        {
+          "frame": 4,
+          "relative_pc": "0x6f45e8",
+          "symbol": "_impl_thrd_routine",
+          "symbol_offset": "0x1c"
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "native_library_frames": [
+        {
+          "frame": 2,
+          "relative_pc": "0x6f4448",
+          "symbol": "_cnd_wait",
+          "symbol_offset": "0xc"
+        },
+        {
+          "frame": 3,
+          "relative_pc": "0x6c8ddc",
+          "symbol": "_util_queue_thread_func",
+          "symbol_offset": "0x1c0"
+        },
+        {
+          "frame": 4,
+          "relative_pc": "0x6f45e8",
+          "symbol": "_impl_thrd_routine",
+          "symbol_offset": "0x1c"
+        }
+      ]
+    }
+  ],
+  "original_result": "REVISE",
+  "return_seconds_with_health": 38.65600000019185,
+  "compiler_worker_samples_and_original_draw_fence_wait_observed": true,
+  "entire_wait_duration_or_CPU_hardware_time_not_inferred": true,
+  "optical_UI_not_verified": true,
+  "post_ACK_exit_period_excluded": true,
+  "kernel_allocator_SCM_PON_RPC_VM_unchanged": true,
+  "tool_source_sha256": "a2d1275595f926ac73fc9b4649adbc2d6d721b49966b3ba6b5cc7fc0e6fda927"
+}

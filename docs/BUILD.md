@@ -8,6 +8,8 @@
 
 2026-11-19最新实际入口为v730/f258dee9、原阶段观察GLESa7bad22c及Metal5e94ab57，已完整14组／六组共享PNG和原RAMCPU准入；原UI仍REVISE。该新GLES的真实scope预热与阶段观察见[RENDER-STAGES](RENDER-STAGES.md)。上段旧v729／72d39da5是保留的比较入口，不能准入新库。`validate_current.py`现在同时核对v730补丁及新增截图／行尾物化工具锁；`render_stage_evidence.py`从单轮原raw验证阶段和保存截图，不开启串口。
 
+当前更新为GLES9d065b69的Clear context复用／原附件分段，已完整native15、共享PNG及原RAMCPU准入，原Clear仍超时；见[CLEAR-CACHE](CLEAR-CACHE.md)。后台必须追加`--clear-cache-probe`，新native-proof包含Clear_cache，不准入旧14组。原sampler只在该已验RAM包用`package_trial.py --thread-sample --screen-evidence`，绑定数字1拼写与单一现有sample通道，所有同kernel／GLES／CPU／native15／PNG准入保持。`symbolicate_render_threads.py`以精确GLES和原两个callsite符号化全部worker，不改raw／判定或开启COM。
+
 reproducibility/source-lock.json锁定Apple XNU xnu-8796.141.3/f625db25f47631424dc62ac1c3414b6e530f7e8a、darwin-xnu-build基础663906528d1cd5ea8fde7de6f16de73db9511549、Mesa769e51468b49b2a42f0a0eaf71cf9eed5ff4e5de/24.3.4及全部修补。source-reconstruction.json记录逐源重建核验。
 
 GLES在Mac构建，需Xcode/iphoneos SDK。脚本创建固定Python依赖环境，下载固定Mesa到deps，输出build/mesa-ios，再编译gpu/sweetgl：

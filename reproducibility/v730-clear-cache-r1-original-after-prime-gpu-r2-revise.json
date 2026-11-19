@@ -1,0 +1,60 @@
+{
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-clear-cache-r1-original-after-prime-gpu-r2-20261119",
+  "version": 730,
+  "token": "0e7cc253d51e8e01",
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "image_sha256": "54926bd5d882b38ccdf53299d9d95d5742257df309e21a77bfdb1354ae6f968b",
+  "log_sha256": "440667cc4764c9d5ef0c4584069843ad5d1f9f4fde845a160d3d9c9801c666ca",
+  "original_result": "REVISE",
+  "original_reason": "EXTENSION_CHECKIN_TIMEOUT",
+  "actual_failures": [],
+  "native_GPU_failure_results": [],
+  "actual_program_cache_failures": [],
+  "registry_assertions": [],
+  "actual_AIR_render_failure_results": [],
+  "actual_MRT_context_capability_records": [
+    {
+      "targets": 8,
+      "fp32_rt": 1,
+      "fp32_blend": 0,
+      "fp32_image": 1,
+      "independent_enable": 1,
+      "independent_func": 1,
+      "float_blend": 0,
+      "fbfetch": 0,
+      "no_attachment": 1,
+      "fragment_images": 24,
+      "image_units": 192
+    }
+  ],
+  "actual_MRT_GL_errors": [],
+  "missing_device_API": [],
+  "original_exception_missing_API": [],
+  "original_extension_checkin_timeout_count": 1,
+  "actual_program_prime_incomplete": [],
+  "actual_program_cache_scope_errors": [],
+  "payload_audit": {
+    "image_sha256": "54926bd5d882b38ccdf53299d9d95d5742257df309e21a77bfdb1354ae6f968b",
+    "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+    "blob_count": 8,
+    "complete_payload_reconstructed_from_compiled_kernel": true
+  },
+  "strict_return": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "0e7cc253d51e8e01",
+    "checkpoint_bytes": 435065,
+    "log_bytes": 447934,
+    "log_sha256": "440667cc4764c9d5ef0c4584069843ad5d1f9f4fde845a160d3d9c9801c666ca",
+    "require_final_drain": true,
+    "marker_positions": [
+      6,
+      128,
+      176,
+      178
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 37.82799999997951,
+  "failed_stage_not_accepted": true
+}

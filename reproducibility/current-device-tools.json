@@ -86,7 +86,7 @@
     "test_clear_cache_evidence.py": "280460f83b4e3c39fbea91dbcb7b94dbf6d4ebc37c960e876dbc393e5e4ee82a",
     "numeric_boot_args.py": "77143262ef56533e041f6df0b2a889bf2ae8ea6586e2f050523a870d58035c97",
     "test_numeric_boot_args.py": "eacfcb58f850a802793580e42e56c433b19bbce9de8323aea5d82de2ee618459",
-    "test_thread_sample.py": "781fd52fb84702f9d243bd5663738884d807037bc0b3200ff3502a219007917e"
+    "test_thread_sample.py": "7249a1502ed214a07bd737fe0f4e47bd9a52378d0b8f3d640f23cf1181fe32bd"
   },
   "supervisor_based_on_actual_tested_one_shot": true,
   "platform_tools_from_environment_or_PATH": true,
@@ -182,7 +182,9 @@
     "tools/build/test_screen_wire.py": "2c9bd913194ca50d3c9ddd8b6c5ff9a47db62e0e8665dfc55320fb8d23a87ace",
     "tools/build/verify_diagnostic_reconstruction.py": "bf48e02b12486ba642ef13452a6d0f76564a15adb38b9526a7dc9a48ee3b11cf",
     "tools/build/test_clear_cache.c": "8ee8c6bc4eb30d0e62d7700ecce1230e4021fec02ddb0457d15e2d6397f44833",
-    "tools/build/check_clear_cache.py": "c615991a2200934582e365589a10947590535e6b0f4165a1ae089039ff25dc66"
+    "tools/build/check_clear_cache.py": "c615991a2200934582e365589a10947590535e6b0f4165a1ae089039ff25dc66",
+    "tools/build/symbolicate_render_threads.py": "a2d1275595f926ac73fc9b4649adbc2d6d721b49966b3ba6b5cc7fc0e6fda927",
+    "tools/build/test_render_thread_sample.py": "4e33e6a6af023408f6467669a6044ac79b613bd835553f1239573d5a4fe23d39"
   },
   "gpu_sources": {
     "gpu/diagnostics/exception_observe.m": "d8c7d606a7cac153e98e06a860ed16dd67575a6175bea3a46032adb216503136",

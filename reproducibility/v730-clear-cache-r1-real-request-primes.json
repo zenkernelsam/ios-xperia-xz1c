@@ -1,0 +1,143 @@
+{
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "GLES_sha256": "9d065b69295a0055a706bbb05104137fe8a24d3c51f904ebe78c41a53c0ca085",
+  "Metal_sha256": "5e94ab57401479b42f506884a172a7a839378a82310661a1f66164e99c21f988",
+  "pairs": [
+    {
+      "original_token": "0bbb2ee302ec6f91",
+      "original_raw_sha256": "d10b98996878c38d288f3fec454a21eace9a0d87fb6423952edb8a08e5a7474b",
+      "primer_token": "2eafdd90c3bd7a83",
+      "primer_raw_sha256": "cadf042148ebd44f9fd4fd104e340049fc352e95e2a37f04dc857fd99da217f4",
+      "request_lengths": [
+        15521,
+        5005
+      ],
+      "compiled_inputs": [
+        {
+          "stage": "vertex",
+          "compiled_bytes": 15560,
+          "compiled_fnv64": "e3032730ccf5a0dd"
+        },
+        {
+          "stage": "fragment",
+          "compiled_bytes": 8430,
+          "compiled_fnv64": "4f093dd87a65d771"
+        }
+      ],
+      "link_wall_us": 2154701,
+      "link_cpu_us": 2126517,
+      "stored_bytes": 64317,
+      "format": "0x875f",
+      "native_tests": [
+        "Metal_resources",
+        "Metal_queue",
+        "AIR_compute",
+        "AIR_render",
+        "AIR_constants",
+        "AIR_XR",
+        "Metal_IOSurface",
+        "Metal_mipmaps",
+        "AIR_narrow",
+        "AIR_half",
+        "Metal_MRT",
+        "AIR_sampler",
+        "Program_cache",
+        "AIR_static_half",
+        "Clear_cache"
+      ],
+      "return_seconds_with_health": 39.23400000017136
+    },
+    {
+      "original_token": "0e7cc253d51e8e01",
+      "original_raw_sha256": "440667cc4764c9d5ef0c4584069843ad5d1f9f4fde845a160d3d9c9801c666ca",
+      "primer_token": "d8155a3daae9973e",
+      "primer_raw_sha256": "79bb4dfd5f58ba6146c934d493e46e8d9aab2eb13a253d15c028433deafa349e",
+      "request_lengths": [
+        4840,
+        73444
+      ],
+      "compiled_inputs": [
+        {
+          "stage": "vertex",
+          "compiled_bytes": 4879,
+          "compiled_fnv64": "f2eef44db6a198a7"
+        },
+        {
+          "stage": "fragment",
+          "compiled_bytes": 76869,
+          "compiled_fnv64": "27c2d57438bf46fe"
+        }
+      ],
+      "link_wall_us": 37676532,
+      "link_cpu_us": 34190084,
+      "stored_bytes": 747773,
+      "format": "0x875f",
+      "native_tests": [
+        "Metal_resources",
+        "Metal_queue",
+        "AIR_compute",
+        "AIR_render",
+        "AIR_constants",
+        "AIR_XR",
+        "Metal_IOSurface",
+        "Metal_mipmaps",
+        "AIR_narrow",
+        "AIR_half",
+        "Metal_MRT",
+        "AIR_sampler",
+        "Program_cache",
+        "AIR_static_half",
+        "Clear_cache"
+      ],
+      "return_seconds_with_health": 39.78100000019185
+    },
+    {
+      "original_token": "0795124fe2d2c989",
+      "original_raw_sha256": "48e37ebd0d83417349907568dbf5e1c79e51eda5e613458695479c07cf3b73fb",
+      "primer_token": "1989b9a0f30b5cf7",
+      "primer_raw_sha256": "85bd353ee40290e2814f89a53a6e3bd5c4080f34c7c17dec92e1bd92fb039a83",
+      "request_lengths": [
+        4840,
+        9711
+      ],
+      "compiled_inputs": [
+        {
+          "stage": "vertex",
+          "compiled_bytes": 4879,
+          "compiled_fnv64": "f2eef44db6a198a7"
+        },
+        {
+          "stage": "fragment",
+          "compiled_bytes": 13136,
+          "compiled_fnv64": "9190c08af7ff5cf8"
+        }
+      ],
+      "link_wall_us": 2222925,
+      "link_cpu_us": 1889793,
+      "stored_bytes": 44221,
+      "format": "0x875f",
+      "native_tests": [
+        "Metal_resources",
+        "Metal_queue",
+        "AIR_compute",
+        "AIR_render",
+        "AIR_constants",
+        "AIR_XR",
+        "Metal_IOSurface",
+        "Metal_mipmaps",
+        "AIR_narrow",
+        "AIR_half",
+        "Metal_MRT",
+        "AIR_sampler",
+        "Program_cache",
+        "AIR_static_half",
+        "Clear_cache"
+      ],
+      "return_seconds_with_health": 38.70299999997951
+    }
+  ],
+  "full_source_export_not_claimed": true,
+  "pairing_by_original_runtime_length_and_FNV64": true,
+  "original_failures_unchanged": true,
+  "all15_native_and_source_identity_checked": true
+}

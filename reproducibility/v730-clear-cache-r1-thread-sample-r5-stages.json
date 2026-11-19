@@ -1,0 +1,320 @@
+{
+  "token": "ebc8114c6c2c4cf7",
+  "process_installations": [
+    {
+      "process": "AegirPoster",
+      "session": 1,
+      "pid": 299,
+      "last_call": 1
+    }
+  ],
+  "observed_requests": 1,
+  "complete_draws": 0,
+  "incomplete_draws": 1,
+  "records": [
+    {
+      "process": "AegirPoster",
+      "session": 1,
+      "pid": 299,
+      "call": 1,
+      "width": 750,
+      "height": 1624,
+      "primitive": 4,
+      "first": 0,
+      "count": 4,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 3,
+      "textures": 1,
+      "samplers": 0,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 97913334000,
+          "complete": true,
+          "wall_ns": 85000,
+          "thread_cpu_ns": 77656,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 97913506000,
+          "complete": true,
+          "wall_ns": 4102000,
+          "thread_cpu_ns": 1435157,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 97922237000,
+          "complete": false
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 555,
+          "load_action": 2,
+          "part": "import",
+          "begin_ns": 97922832000,
+          "complete": true,
+          "wall_ns": 44611000,
+          "thread_cpu_ns": 1595990,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "index": 0,
+          "format": 555,
+          "load_action": 2,
+          "part": "snapshot",
+          "begin_ns": 97967469000,
+          "complete": true,
+          "wall_ns": 107172000,
+          "thread_cpu_ns": 93346562,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "index": 0,
+          "format": 555,
+          "load_action": 2,
+          "part": "linear",
+          "begin_ns": 98074727000,
+          "complete": true,
+          "wall_ns": 19876000,
+          "thread_cpu_ns": 19881250,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "index": 0,
+          "format": 555,
+          "load_action": 2,
+          "part": "clear",
+          "begin_ns": 98094657000,
+          "complete": false
+        }
+      ],
+      "draw": null,
+      "complete": false,
+      "all_stages_completed_successfully": false
+    }
+  ],
+  "pending_draws": [
+    {
+      "process": "AegirPoster",
+      "session": 1,
+      "pid": 299,
+      "call": 1,
+      "width": 750,
+      "height": 1624,
+      "primitive": 4,
+      "first": 0,
+      "count": 4,
+      "instances": 1,
+      "ordered_mask": 0,
+      "buffers": 3,
+      "textures": 1,
+      "samplers": 0,
+      "stages": [
+        {
+          "stage": "gate",
+          "begin_ns": 97913334000,
+          "complete": true,
+          "wall_ns": 85000,
+          "thread_cpu_ns": 77656,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "make_current",
+          "begin_ns": 97913506000,
+          "complete": true,
+          "wall_ns": 4102000,
+          "thread_cpu_ns": 1435157,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "stage": "targets",
+          "begin_ns": 97922237000,
+          "complete": false
+        }
+      ],
+      "targets": [
+        {
+          "index": 0,
+          "format": 555,
+          "load_action": 2,
+          "part": "import",
+          "begin_ns": 97922832000,
+          "complete": true,
+          "wall_ns": 44611000,
+          "thread_cpu_ns": 1595990,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "index": 0,
+          "format": 555,
+          "load_action": 2,
+          "part": "snapshot",
+          "begin_ns": 97967469000,
+          "complete": true,
+          "wall_ns": 107172000,
+          "thread_cpu_ns": 93346562,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "index": 0,
+          "format": 555,
+          "load_action": 2,
+          "part": "linear",
+          "begin_ns": 98074727000,
+          "complete": true,
+          "wall_ns": 19876000,
+          "thread_cpu_ns": 19881250,
+          "cpu_valid": true,
+          "result": 0
+        },
+        {
+          "index": 0,
+          "format": 555,
+          "load_action": 2,
+          "part": "clear",
+          "begin_ns": 98094657000,
+          "complete": false
+        }
+      ],
+      "draw": null,
+      "complete": false,
+      "all_stages_completed_successfully": false
+    }
+  ],
+  "longest_completed_stages": [
+    {
+      "process": "AegirPoster",
+      "session": 1,
+      "pid": 299,
+      "call": 1,
+      "width": 750,
+      "height": 1624,
+      "stage": "make_current",
+      "begin_ns": 97913506000,
+      "complete": true,
+      "wall_ns": 4102000,
+      "thread_cpu_ns": 1435157,
+      "cpu_valid": true,
+      "result": 0
+    },
+    {
+      "process": "AegirPoster",
+      "session": 1,
+      "pid": 299,
+      "call": 1,
+      "width": 750,
+      "height": 1624,
+      "stage": "gate",
+      "begin_ns": 97913334000,
+      "complete": true,
+      "wall_ns": 85000,
+      "thread_cpu_ns": 77656,
+      "cpu_valid": true,
+      "result": 0
+    }
+  ],
+  "post_ACK_exit_period_excluded": true,
+  "metadata_only": true,
+  "target_observer_requested": true,
+  "stage_time_includes_driver_CPU_scheduling_and_wait": true,
+  "stage_totals_not_added_to_overlapping_snapshot_wait_execute": true,
+  "GPU_hardware_root_cause_and_UI_FPS_not_inferred": true,
+  "screen": {
+    "protocol": 1,
+    "frames": [
+      {
+        "id": 1,
+        "token": "ebc8114c6c2c4cf7",
+        "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+        "image_sha256": "d7e7700fbb426992fe4dc126c0ed44cdceb275e7f45a171d836912f5fe9bcbc7",
+        "binding": {
+          "protocol": 1,
+          "width": 720,
+          "height": 1280,
+          "stride": 2160,
+          "format": "BGR888",
+          "codec": "PRLE1",
+          "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+          "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+          "runtime_source_sha256": "a1f41eeb87b7cf70ea751884ee38d758191f3cc0a00d697acc363fbba3cd5f63"
+        },
+        "begin": {
+          "token": "ebc8114c6c2c4cf7",
+          "id": "1",
+          "width": "720",
+          "height": "1280",
+          "stride": "2160",
+          "format": "BGR888",
+          "bytes": "2764800",
+          "codec": "PRLE1",
+          "encoded": "32508",
+          "raw_fnv": "afabda2998b075a2",
+          "enc_crc": "a0a1937d",
+          "vsync": "1609",
+          "timestamp": "53527584638",
+          "copy_ticks": "7662032",
+          "power_off": "1",
+          "source_checked": "1",
+          "source_match": "1"
+        },
+        "scan": {
+          "token": "ebc8114c6c2c4cf7",
+          "id": "1",
+          "pa": "0x9d400000",
+          "map_pa": "0x9d400000",
+          "map_bytes": "2764800",
+          "size": "0x50002d0",
+          "img": "0x50002d0",
+          "xy": "0",
+          "out": "0x50002d0",
+          "outxy": "0",
+          "fmt": "0x2243f",
+          "unpack": "0x20001",
+          "op": "0x80000000",
+          "qop": "0",
+          "ctl": "0x20020",
+          "start": "0",
+          "before_after": "1"
+        },
+        "blocks": 254,
+        "raw_file": "scanout-00000001.bgr",
+        "png_file": "scanout-00000001.png",
+        "raw_sha256": "8731b76f22ea154f517271fed3a585182152eede5a1952aa88ed945803d28746",
+        "png_sha256": "ba36346eaa277a698d76750ec2e2ef9d9faf01c5abe18cb0a120191a0ae4f1d0",
+        "pixel_values_preserved": true,
+        "verified": true,
+        "optical_panel_verified": false
+      }
+    ],
+    "verified": true,
+    "optical_panel_verified": false,
+    "current_boot_source_and_payload_checked": true,
+    "format": "BGR888",
+    "width": 720,
+    "height": 1280
+  },
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-clear-cache-r1-original-thread-sample-gpu-r5-20261119",
+  "raw_sha256": "d12a9ac2be7abbdd9ec72b898e4e4b3b56b1f046849bb1c94bbf7997c277f0e1",
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "GLES_sha256": "9d065b69295a0055a706bbb05104137fe8a24d3c51f904ebe78c41a53c0ca085",
+  "render_source_sha256": "6a72b11804ba77a871235b4ef5d23b6604f870ed4c581534bc5c7f310a47f895",
+  "inspector_source_sha256": "313c8fc03fb37f9045ff7a71e4e738fee007fc868c63603508a764b057ccc749",
+  "original_result": "REVISE",
+  "original_reason": "EXTENSION_CHECKIN_TIMEOUT",
+  "return_seconds_with_health": 38.65600000019185,
+  "controller_failure_not_promoted": true
+}

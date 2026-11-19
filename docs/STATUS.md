@@ -1,5 +1,11 @@
 # 当前状态 — 2026-11-19
 
+最新ebc8114c6c2c4cf7原线程采样靴已38.656秒PON06四marker／连续健康30秒／worker退出；Sony BH905ND69G健康fastboot，无controller／serial worker／in-flight。Clear复用GLES9d065b69（14747328B）、Metal5e94ab57／source-map3e79503f、v730/f258dee9已自身GLES CPU／八项GPU／新RAM CPU及0c563b0d完整native15／六组共享PNG／原像素和串口扫描帧通过。新增`Clear_cache`两轮八附件262144B原页／padding／guard零差异、15次实际复用、最终资源0；旧14组不能准入新库。详见[CLEAR-CACHE](CLEAR-CACHE.md)。
+
+新原RAM CPUe281f838／38.250秒和primer CPU78cd38e1／37.656秒保持。三个同scope真实request已后台预热，原cold-link REVISE和一次缺add_image元数据的postprocessor拒绝都保留。原410e6aa0／ebc8114c五条pipeline全部命中并nonnull，首次Clear内仍check-in超时，draw／PNG未返回，不能当原UI／FPS成功。原410e6aa0完整附件import0.465ms／snapshot127.821ms／linear24.670ms返回，Clear只有BEGIN；40.031秒回程。最后ebc8114c采样原15线程，用精确库两个唯一return PC证明t4在Clear的glDrawArrays→FD540→ir3_get_shader→util_queue_fence_wait，t2／7／9／11实际运行IR3/NIR初始variant编译。仅证明采样时的工作／等待位置，不将墙钟差或主线程栈归为GPU／VM根因。
+
+下一步补齐固定Mesa／Freedreno原硬件shader variant缓存，保留实际build／NIR／key／原序列化、像素／guard／回退及新的独立GPU准入；当前尚未安装。新sampler只用已验内核原采样器、单controller一次sample，数字1拼写已固定ARM parser48项UBSan验证，FairPlay／原check-in期限和冻结组件保持。完整UI／睡眠／外设继续active，串口截图只能证明扫描缓冲区UI内容；本轮GPU图power_off=1保持，光学／背光仍另验。以下为完整历史比较事实，当前库以本段为准。
+
 最新原GPUe662710b1d6a0bb4已完成39.172秒PON06四marker／连续健康30秒／worker退出；Sony BH905ND69G当前健康fastboot，无in-flight。新绘制观察GLES a7bad22c（只加原阶段计时）、v730/f258dee9与Metal5e94ab57／source-map3e79503f已取得自身GLES CPU／GPU、完整14组native／六组同源PNG及原observer CPU的独立准入，不能使用旧72d39da5的proof替代。完整结果见[RENDER-STAGES](RENDER-STAGES.md)与v730-render-stage-r1各记录。
 
 三轮后台预热均完整14组通过，并实际编译同scope缺bin的原request：15521／5005B、4840／73444B、4840／9711B，link分别3.147／37.936／2.872秒。原失败／partial-builder失败均保留；最后五条原pipeline命中64421／64317／747773／17437／44221B binary并nonnull，约195／80／236／59／72ms返回，随后首个真实750×1624 draw进入。`targets`完整1.523800秒／线程CPU0.225859秒，后续buffer／sample约1.006／0.504ms；`submit`只有BEGIN，原extension仍check-in超时，未见本次draw返回或PNG入口，REVISE保持。不得把draw进入当原UI／FPS通过，也不把stage墙钟直接归为GPU硬件时间。下一步细分原两个附件的目标准备／clear与首次提交；不据退出采样修改冻结VM／SCM／PON／allocator。

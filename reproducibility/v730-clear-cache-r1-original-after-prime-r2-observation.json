@@ -1,0 +1,352 @@
+{
+  "original_snapshot_observer_configured": true,
+  "source_references": {
+    "326": {
+      "png": {
+        "image": "UIKitCore",
+        "offset": "0x3f57d8",
+        "resolved": true
+      },
+      "add_image": {
+        "image": "ImageIO",
+        "offset": "0x48150",
+        "resolved": true
+      },
+      "finalize": {
+        "image": "ImageIO",
+        "offset": "0x98e0",
+        "resolved": true
+      },
+      "colorsync": {
+        "image": "ColorSync",
+        "offset": "0x89a4",
+        "resolved": true
+      }
+    }
+  },
+  "png_input_observer_requested": true,
+  "png_input_metadata_configured_pids": [
+    326
+  ],
+  "png_input_samples": 0,
+  "png_encoder_requested": true,
+  "png_encoder_installations": {
+    "326": {
+      "source_sha256": "61031999d4ff1d9a2c9c6a564cf229a82c3b9c49998d752ae0bd4d6fd18e1e92",
+      "reference_token": "0c563b0d137ebc0e"
+    }
+  },
+  "optimized_PNG_returns": 0,
+  "snapshot_method_observer_requested": true,
+  "snapshot_method_metadata": {
+    "326": {
+      "pipeline": {
+        "present": true,
+        "owned": true,
+        "installed": true,
+        "arguments": 4
+      },
+      "library_url": {
+        "present": true,
+        "owned": true,
+        "installed": true,
+        "arguments": 4
+      },
+      "library_bundle": {
+        "present": true,
+        "owned": true,
+        "installed": true,
+        "arguments": 4
+      },
+      "snapshot": {
+        "present": true,
+        "owned": true,
+        "installed": true,
+        "arguments": 5
+      },
+      "wait": {
+        "present": true,
+        "owned": true,
+        "installed": true,
+        "arguments": 2
+      },
+      "execute": {
+        "present": true,
+        "owned": true,
+        "installed": true,
+        "arguments": 2
+      },
+      "read": {
+        "present": true,
+        "owned": true,
+        "installed": true,
+        "arguments": 6
+      },
+      "read_full": {
+        "present": true,
+        "owned": true,
+        "installed": true,
+        "arguments": 8
+      }
+    }
+  },
+  "snapshot_method_coverage": {
+    "326": 8
+  },
+  "snapshot_observer_init_ns": {
+    "326": 309879910885
+  },
+  "elapsed_since_observer_init_is_not_full_extension_budget": true,
+  "observed_apis": [
+    "library_bundle",
+    "library_url",
+    "pipeline",
+    "snapshot"
+  ],
+  "complete_samples": 4,
+  "incomplete_samples": 2,
+  "records": [
+    {
+      "pid": 326,
+      "tid": 4300,
+      "call": 1,
+      "root": 1,
+      "depth": 1,
+      "api": "library_bundle",
+      "begin_ns": 310546823802,
+      "original_forwarded": true,
+      "complete": true,
+      "since_snapshot_observer_init_ns": 666912917,
+      "object_tag": "0x100e054c0",
+      "wall_ns": 330960730,
+      "thread_cpu_ns": 304943906,
+      "cpu_valid": true,
+      "outcome": "return",
+      "output_bytes": 0,
+      "returned_nil": false,
+      "original_behavior_preserved": true
+    },
+    {
+      "pid": 326,
+      "tid": 4300,
+      "call": 2,
+      "root": 1,
+      "depth": 2,
+      "api": "library_url",
+      "begin_ns": 310554523177,
+      "original_forwarded": true,
+      "complete": true,
+      "since_snapshot_observer_init_ns": 674612292,
+      "object_tag": "0x100e054c0",
+      "wall_ns": 323269688,
+      "thread_cpu_ns": 297624792,
+      "cpu_valid": true,
+      "outcome": "return",
+      "output_bytes": 0,
+      "returned_nil": false,
+      "original_behavior_preserved": true
+    },
+    {
+      "pid": 326,
+      "tid": 4300,
+      "call": 3,
+      "root": 3,
+      "depth": 1,
+      "api": "snapshot",
+      "begin_ns": 311002783177,
+      "original_forwarded": true,
+      "complete": false,
+      "since_snapshot_observer_init_ns": 1122872292,
+      "object_tag": "0x100e0a9a0"
+    },
+    {
+      "pid": 326,
+      "tid": 4300,
+      "call": 4,
+      "root": 3,
+      "depth": 2,
+      "api": "pipeline",
+      "begin_ns": 311056165677,
+      "original_forwarded": true,
+      "complete": true,
+      "since_snapshot_observer_init_ns": 1176254792,
+      "object_tag": "0x100e054c0",
+      "wall_ns": 205089010,
+      "thread_cpu_ns": 168226718,
+      "cpu_valid": true,
+      "outcome": "return",
+      "output_bytes": 0,
+      "returned_nil": false,
+      "original_behavior_preserved": true
+    },
+    {
+      "pid": 326,
+      "tid": 4300,
+      "call": 5,
+      "root": 3,
+      "depth": 2,
+      "api": "pipeline",
+      "begin_ns": 311266961822,
+      "original_forwarded": true,
+      "complete": true,
+      "since_snapshot_observer_init_ns": 1387050937,
+      "object_tag": "0x100e054c0",
+      "wall_ns": 40549688,
+      "thread_cpu_ns": 38934219,
+      "cpu_valid": true,
+      "outcome": "return",
+      "output_bytes": 0,
+      "returned_nil": false,
+      "original_behavior_preserved": true
+    },
+    {
+      "pid": 326,
+      "tid": 4300,
+      "call": 6,
+      "root": 3,
+      "depth": 2,
+      "api": "pipeline",
+      "begin_ns": 311321559114,
+      "original_forwarded": true,
+      "complete": false,
+      "since_snapshot_observer_init_ns": 1441648229,
+      "object_tag": "0x100e054c0"
+    }
+  ],
+  "pending_calls": [
+    {
+      "pid": 326,
+      "tid": 4300,
+      "call": 3,
+      "root": 3,
+      "depth": 1,
+      "api": "snapshot",
+      "begin_ns": 311002783177,
+      "original_forwarded": true,
+      "complete": false,
+      "since_snapshot_observer_init_ns": 1122872292,
+      "object_tag": "0x100e0a9a0"
+    },
+    {
+      "pid": 326,
+      "tid": 4300,
+      "call": 6,
+      "root": 3,
+      "depth": 2,
+      "api": "pipeline",
+      "begin_ns": 311321559114,
+      "original_forwarded": true,
+      "complete": false,
+      "since_snapshot_observer_init_ns": 1441648229,
+      "object_tag": "0x100e054c0"
+    }
+  ],
+  "longest_completed_inclusive_calls": [
+    {
+      "pid": 326,
+      "tid": 4300,
+      "call": 1,
+      "root": 1,
+      "depth": 1,
+      "api": "library_bundle",
+      "begin_ns": 310546823802,
+      "original_forwarded": true,
+      "complete": true,
+      "since_snapshot_observer_init_ns": 666912917,
+      "object_tag": "0x100e054c0",
+      "wall_ns": 330960730,
+      "thread_cpu_ns": 304943906,
+      "cpu_valid": true,
+      "outcome": "return",
+      "output_bytes": 0,
+      "returned_nil": false,
+      "original_behavior_preserved": true
+    },
+    {
+      "pid": 326,
+      "tid": 4300,
+      "call": 2,
+      "root": 1,
+      "depth": 2,
+      "api": "library_url",
+      "begin_ns": 310554523177,
+      "original_forwarded": true,
+      "complete": true,
+      "since_snapshot_observer_init_ns": 674612292,
+      "object_tag": "0x100e054c0",
+      "wall_ns": 323269688,
+      "thread_cpu_ns": 297624792,
+      "cpu_valid": true,
+      "outcome": "return",
+      "output_bytes": 0,
+      "returned_nil": false,
+      "original_behavior_preserved": true
+    },
+    {
+      "pid": 326,
+      "tid": 4300,
+      "call": 4,
+      "root": 3,
+      "depth": 2,
+      "api": "pipeline",
+      "begin_ns": 311056165677,
+      "original_forwarded": true,
+      "complete": true,
+      "since_snapshot_observer_init_ns": 1176254792,
+      "object_tag": "0x100e054c0",
+      "wall_ns": 205089010,
+      "thread_cpu_ns": 168226718,
+      "cpu_valid": true,
+      "outcome": "return",
+      "output_bytes": 0,
+      "returned_nil": false,
+      "original_behavior_preserved": true
+    },
+    {
+      "pid": 326,
+      "tid": 4300,
+      "call": 5,
+      "root": 3,
+      "depth": 2,
+      "api": "pipeline",
+      "begin_ns": 311266961822,
+      "original_forwarded": true,
+      "complete": true,
+      "since_snapshot_observer_init_ns": 1387050937,
+      "object_tag": "0x100e054c0",
+      "wall_ns": 40549688,
+      "thread_cpu_ns": 38934219,
+      "cpu_valid": true,
+      "outcome": "return",
+      "output_bytes": 0,
+      "returned_nil": false,
+      "original_behavior_preserved": true
+    }
+  ],
+  "nested_durations_inclusive_not_additive": true,
+  "absent_API_calls_do_not_prove_absent_work": true,
+  "full_UI_or_root_cause_not_inferred": true,
+  "post_ACK_exit_period_excluded": true,
+  "token": "0e7cc253d51e8e01",
+  "raw_sha256": "440667cc4764c9d5ef0c4584069843ad5d1f9f4fde845a160d3d9c9801c666ca",
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-clear-cache-r1-original-after-prime-gpu-r2-20261119",
+  "original_result": "REVISE",
+  "original_reason": "EXTENSION_CHECKIN_TIMEOUT",
+  "strict_return": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "0e7cc253d51e8e01",
+    "checkpoint_bytes": 435065,
+    "log_bytes": 447934,
+    "log_sha256": "440667cc4764c9d5ef0c4584069843ad5d1f9f4fde845a160d3d9c9801c666ca",
+    "require_final_drain": true,
+    "marker_positions": [
+      6,
+      128,
+      176,
+      178
+    ],
+    "final_reset_marker_seen": true
+  },
+  "original_failed_stage_not_accepted": true
+}

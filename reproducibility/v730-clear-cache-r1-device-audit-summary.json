@@ -1,0 +1,192 @@
+{
+  "stages": [
+    {
+      "run": "gles-ramcpu",
+      "token": "d8e7ff738e0a6b0d",
+      "result": "PASS",
+      "reason": "GOALS_STABLE",
+      "return_seconds_with_health": 38.09400000004098,
+      "image_sha256": "5f8a7b885cc33b5597000c3b8a92b6e5935db415c9e6bd600d8c7f4d1e90dc36",
+      "raw_sha256": "34dacddeb94b8e3ca4958ed9cc2fa6367622c9c96f94b4b2627b73820a4efcc2",
+      "serial_commands": [
+        "frame",
+        "fastboot d8e7ff738e0a6b0d"
+      ]
+    },
+    {
+      "run": "gles-gpu",
+      "token": "a0a24b45f14e43c7",
+      "result": "PASS",
+      "reason": "GOALS_STABLE",
+      "return_seconds_with_health": 37.686999999918044,
+      "image_sha256": "49733b24fa358aa3d65644d09affa84c16ab90471856f4d5fcd4c8b0903c2d83",
+      "raw_sha256": "1c815958b3fe6db06555458fa5a9c22c7d73cb9a5aa88f48d967b3690a34bf0a",
+      "serial_commands": [
+        "frame",
+        "fastboot a0a24b45f14e43c7"
+      ]
+    },
+    {
+      "run": "reference-ramcpu",
+      "token": "8ef168dbea6c9cb7",
+      "result": "PASS",
+      "reason": "GOALS_STABLE",
+      "return_seconds_with_health": 38.67200000002049,
+      "image_sha256": "1618c7e05758e75f1b11bbe8a9cbf078de5a15f059f9b8b1edf6531b5c8af689",
+      "raw_sha256": "da96a237aecabf63817b9d78a56da40616da777d1419b81bfddf0b86c9fa7861",
+      "serial_commands": [
+        "frame",
+        "fastboot 8ef168dbea6c9cb7"
+      ]
+    },
+    {
+      "run": "reference-gpu",
+      "token": "0c563b0d137ebc0e",
+      "result": "PASS",
+      "reason": "GOALS_STABLE",
+      "return_seconds_with_health": 38.5,
+      "image_sha256": "ad98d4743a90e6df67cf6e39b64bec6f09ff8bb63f7f29a09df503edf4274458",
+      "raw_sha256": "c5e29c5a7ed8fe216ed7259a4634516efa3a085414d0156f05cc3f96441cab64",
+      "serial_commands": [
+        "frame",
+        "fastboot 0c563b0d137ebc0e"
+      ]
+    },
+    {
+      "run": "original-ramcpu",
+      "token": "e281f83809e23efe",
+      "result": "PASS",
+      "reason": "GOALS_STABLE",
+      "return_seconds_with_health": 38.25,
+      "image_sha256": "efc13d5b210f309252a22812cd1f9cc65e307009b2cc7fa9a0a66c21d3caab56",
+      "raw_sha256": "61ee16ce11538574c3edc6e80861405bf7af446190a676cecb2d98e88262efb1",
+      "serial_commands": [
+        "frame",
+        "fastboot e281f83809e23efe"
+      ]
+    },
+    {
+      "run": "original-gpu",
+      "token": "0bbb2ee302ec6f91",
+      "result": "REVISE",
+      "reason": "EXTENSION_CHECKIN_TIMEOUT",
+      "return_seconds_with_health": 39.29699999978766,
+      "image_sha256": "312fde39e9cac04d2bbe6ab9d7b6f370bf09372a26656ab811e635acb460933b",
+      "raw_sha256": "d10b98996878c38d288f3fec454a21eace9a0d87fb6423952edb8a08e5a7474b",
+      "serial_commands": [
+        "frame",
+        "fastboot 0bbb2ee302ec6f91"
+      ]
+    },
+    {
+      "run": "prime-ramcpu",
+      "token": "78cd38e18e933a2e",
+      "result": "PASS",
+      "reason": "GOALS_STABLE",
+      "return_seconds_with_health": 37.65600000019185,
+      "image_sha256": "6bc7dfd79ecad3e8390c2cf2b0bfde075946303c5c91c83277ed9c5d4fa2c710",
+      "raw_sha256": "69927b63e6d90559c5e4f532ff1ae22a4451ea50fa09c4f858b6edeeab24028b",
+      "serial_commands": [
+        "frame",
+        "fastboot 78cd38e18e933a2e"
+      ]
+    },
+    {
+      "run": "prime-gpu",
+      "token": "2eafdd90c3bd7a83",
+      "result": "PASS",
+      "reason": "GOALS_STABLE",
+      "return_seconds_with_health": 39.23400000017136,
+      "image_sha256": "2f7adc726ca43b262da8cb645f463ad3f1b9ef7f9a815146a5bd76a297414f72",
+      "raw_sha256": "cadf042148ebd44f9fd4fd104e340049fc352e95e2a37f04dc857fd99da217f4",
+      "serial_commands": [
+        "frame",
+        "fastboot 2eafdd90c3bd7a83"
+      ]
+    },
+    {
+      "run": "original-after-prime-gpu-r2",
+      "token": "0e7cc253d51e8e01",
+      "result": "REVISE",
+      "reason": "EXTENSION_CHECKIN_TIMEOUT",
+      "return_seconds_with_health": 37.82799999997951,
+      "image_sha256": "54926bd5d882b38ccdf53299d9d95d5742257df309e21a77bfdb1354ae6f968b",
+      "raw_sha256": "440667cc4764c9d5ef0c4584069843ad5d1f9f4fde845a160d3d9c9801c666ca",
+      "serial_commands": [
+        "frame",
+        "fastboot 0e7cc253d51e8e01"
+      ]
+    },
+    {
+      "run": "prime-gpu-r2",
+      "token": "d8155a3daae9973e",
+      "result": "PASS",
+      "reason": "GOALS_STABLE",
+      "return_seconds_with_health": 39.78100000019185,
+      "image_sha256": "8c04331d3bf2ef1c338b28679283154ea2b9f16407f65108b13305a29d0f2003",
+      "raw_sha256": "79bb4dfd5f58ba6146c934d493e46e8d9aab2eb13a253d15c028433deafa349e",
+      "serial_commands": [
+        "frame",
+        "fastboot d8155a3daae9973e"
+      ]
+    },
+    {
+      "run": "original-after-prime-gpu-r3",
+      "token": "0795124fe2d2c989",
+      "result": "REVISE",
+      "reason": "EXTENSION_CHECKIN_TIMEOUT",
+      "return_seconds_with_health": 39.5,
+      "image_sha256": "e72002feb36b9c93d4fb117cecfd014d8345d29aee74fb1f0ac362479407db55",
+      "raw_sha256": "48e37ebd0d83417349907568dbf5e1c79e51eda5e613458695479c07cf3b73fb",
+      "serial_commands": [
+        "frame",
+        "fastboot 0795124fe2d2c989"
+      ]
+    },
+    {
+      "run": "prime-gpu-r3",
+      "token": "1989b9a0f30b5cf7",
+      "result": "PASS",
+      "reason": "GOALS_STABLE",
+      "return_seconds_with_health": 38.70299999997951,
+      "image_sha256": "daa7870f9b9016e9a51e64c4ed8fcf8af033758b23fb8aa349f408be608fafff",
+      "raw_sha256": "85bd353ee40290e2814f89a53a6e3bd5c4080f34c7c17dec92e1bd92fb039a83",
+      "serial_commands": [
+        "frame",
+        "fastboot 1989b9a0f30b5cf7"
+      ]
+    },
+    {
+      "run": "original-after-prime-gpu-r4",
+      "token": "410e6aa0b148c314",
+      "result": "REVISE",
+      "reason": "EXTENSION_CHECKIN_TIMEOUT",
+      "return_seconds_with_health": 40.03099999995902,
+      "image_sha256": "8e719a1b795cbaf59c0a32c9db793d83686f83be714a155d5d8fc49e12331a9f",
+      "raw_sha256": "5920e67f31e3450727267aa72767fc63f36ea863bb271ba22942a562203239ec",
+      "serial_commands": [
+        "frame",
+        "fastboot 410e6aa0b148c314"
+      ]
+    },
+    {
+      "run": "original-thread-sample-gpu-r5",
+      "token": "ebc8114c6c2c4cf7",
+      "result": "REVISE",
+      "reason": "EXTENSION_CHECKIN_TIMEOUT",
+      "return_seconds_with_health": 38.65600000019185,
+      "image_sha256": "d7e7700fbb426992fe4dc126c0ed44cdceb275e7f45a171d836912f5fe9bcbc7",
+      "raw_sha256": "d12a9ac2be7abbdd9ec72b898e4e4b3b56b1f046849bb1c94bbf7997c277f0e1",
+      "serial_commands": [
+        "frame",
+        "sample",
+        "fastboot ebc8114c6c2c4cf7"
+      ]
+    }
+  ],
+  "all_single_download_boot": true,
+  "all_complete_PON06_return_with_healthy30": true,
+  "current_in_flight": false,
+  "full_UI_goal_not_achieved": true,
+  "no_original_failures_promoted": true
+}

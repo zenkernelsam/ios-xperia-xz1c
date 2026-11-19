@@ -1,0 +1,10 @@
+{
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-clear-cache-r1-original-after-prime-gpu-r3-20261119",
+  "token": "0795124fe2d2c989",
+  "raw_sha256": "48e37ebd0d83417349907568dbf5e1c79e51eda5e613458695479c07cf3b73fb",
+  "controller_result": "REVISE",
+  "return_seconds_with_health": 39.5,
+  "postdraw_evidence_accepted": false,
+  "reason": "Missing complete per-pid ORIGINAL API metadata; original raw preserved and validator not relaxed",
+  "validator_source_sha256": "e501b18c21f82fc6dc83eacd8bb31e05c7d11f10537470a128eb20fcf729761f"
+}
