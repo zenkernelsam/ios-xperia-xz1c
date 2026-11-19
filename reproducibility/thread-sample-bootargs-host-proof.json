@@ -1,0 +1,9 @@
+{
+  "pinned_parser_sha256": "1431f1f8aacae240b87bd29cd91905784c968f8014784201b3ed862bdb1b4ed9",
+  "test_sha256": "19429084ba21d30ec9d8150cbf6f6e7d0e948b78f9cbe5acb39d24472708e82d",
+  "output": "PINNED ARM bootargs PASS comparisons=48 widths=1,2,4,8 sampler_exact=1 timeout_unchanged=1 guards_equal=1",
+  "same_12_numeric_values_and_guard_bytes": true,
+  "UBSan_nonrecovering": true,
+  "ASan_not_run": true,
+  "device_operations": 0
+}

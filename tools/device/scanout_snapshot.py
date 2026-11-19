@@ -224,10 +224,12 @@ def inspect(raw, token):
 
 def binding(record):
     from diagnostic_candidate import verify_record
+    from numeric_boot_args import numeric_options
     config = verify_record(record)
-    if record['version'] < 730 or 'sfscreen=1' not in record['cmdline'].split():
+    options=numeric_options(record)
+    if record['version'] < 730 or options.get('sfscreen')!='1':
         raise ValueError('Kernel was not packaged for the checked screenshot reader')
-    if 'sweetfb_noconsole=1' not in record['cmdline'].split():
+    if options.get('sweetfb_noconsole')!='1':
         raise ValueError('Screenshot requires the separate serial log without concurrent panel console writes')
     sources = config['source_hashes']
     return dict(protocol=1, width=WIDTH, height=HEIGHT, stride=STRIDE, format='BGR888', codec='PRLE1',

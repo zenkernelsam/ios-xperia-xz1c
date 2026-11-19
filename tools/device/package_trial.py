@@ -7,6 +7,7 @@ from diagnostic_candidate import configuration
 from ram_library import load as load_ram
 from native_proof import validate as validate_native,digest as native_digest
 from controller import Artifact,SHIM_SHA
+from numeric_boot_args import add_sampler
 def sha(data):return hashlib.sha256(data).hexdigest()
 def observer_environment(word,target):
     assert word.startswith('sweetenv=') and target in ('AegirPoster','backboardd')
@@ -72,7 +73,7 @@ def baseline(name,folder):
     reference=adt.serialize(tree)
     assert sha(reference)=='257076987411b50f037f70bf97524fae56ac2965e773c1bb8678d05d45480ba6'
     return raw,payload,reference,blob_data,payload[72:680].split(b'\0',1)[0].decode(),raw[4096:4096+ks]
-def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interval=None,screen_evidence=False):
+def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interval=None,screen_evidence=False,thread_sample=False):
     config=configuration(version)
     selected='gpu' if mode=='gpu' else 'ready' if mode in ('owner','ready') else 'private'
     raw,payload,reference,blobs,cmd,shim=baseline(selected,folder)
@@ -127,6 +128,11 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
             if explicit in words:
                 words=[name if w==explicit else w for w in words]
                 compact_numeric_ones.append(name)
+    sample_binding=None
+    if thread_sample:
+        assert mode=='gpu' and screen_evidence and version>=730 and ram_package
+        assert package['exception_observer'].get('registration_only') and package['metal_resources'].get('native_Clear_shader_cache')
+        words,sample_binding=add_sampler(words,compact_numeric_ones)
     cmd=' '.join(words);assert len(cmd.encode())<=607
     candidate,info=mkpayload.build(str(kernel),reference,cmd,blobs=files)
     assert b'SWEET SURF CALLER DIAG phase=' in candidate
@@ -142,6 +148,8 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
        'return_evidence_sha256':sha((ROOT/'tools/device/return_evidence.py').read_bytes()),
        'trial_mode':mode,'baseline_full_payload_reconstructed':True,
        'blobs':{name:{'bytes':len(data),'sha256':sha(data)} for name,data in files}}
+    if compact_numeric_ones:m['numeric_one_argument_compaction']=compact_numeric_ones
+    if sample_binding:m['thread_sample_observation']=sample_binding
     Artifact(m).validate()
     if library_binding:
         m.update(ram_package=str(Path(ram_package).resolve()),ram_library_binding=library_binding)
@@ -274,6 +282,7 @@ if __name__=='__main__':
     p.add_argument('--ram-package')
     p.add_argument('--owner-interval',type=int,choices=[90])
     p.add_argument('--screen-evidence',action='store_true')
+    p.add_argument('--thread-sample',action='store_true')
     a=p.parse_args();out=Path(a.output).resolve();assert out.is_relative_to(ROOT/'build') and not out.exists();out.mkdir(parents=True)
-    m=prepare(a.mode,Path(a.kernel),Path(a.baselines),out,a.version,a.ram_package,a.owner_interval,a.screen_evidence)
+    m=prepare(a.mode,Path(a.kernel),Path(a.baselines),out,a.version,a.ram_package,a.owner_interval,a.screen_evidence,a.thread_sample)
     print(json.dumps({k:m[k] for k in ('trial_mode','token','kernel_sha256','sha256','cmdline_bytes')}))

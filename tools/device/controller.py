@@ -17,6 +17,7 @@ import tempfile
 import time
 
 from policy import Decision, LogPolicy, Refuse, SERIAL, unique_fastboot, FastbootStability
+from numeric_boot_args import numeric_options
 from procguard import OwnedProcess, LiveLock, active_tool_processes, run as run_process
 from sony_usb_guard import target_fastboot_lines
 
@@ -64,6 +65,8 @@ class Artifact:
                 key, value = word.split("=", 1)
                 if key in options: raise Refuse(f"Duplicate boot argument {key}")
                 options[key] = value
+        if self.data.get('numeric_one_argument_compaction'):
+            options=numeric_options(self.data)
         if not re.fullmatch(r"[0-9a-f]{16}", self.token) or options.get("sweetloop") != self.token:
             raise Refuse("Missing artifact-associated token")
         required = {"serial": "3", "cpus": "8", "lilac_usbdbg": "1", "shimponly": "1"}
@@ -300,6 +303,15 @@ class LiveOps:
         with (self.directory / "serial-commands.jsonl").open("a", encoding="utf-8") as f:
             f.write(json.dumps({"command": f"fastboot {artifact.token}"}) + "\n"); f.flush(); os.fsync(f.fileno())
         self.transmitted = 1
+    def request_sample(self,artifact):
+        self.check_stop()
+        if not artifact.data.get('thread_sample_observation'):raise Refuse('No current artifact thread-sample binding')
+        if getattr(self,'sample_requested',False):raise Refuse('Thread sample already requested; no resend')
+        if self.capture_process.process.poll() is not None:raise Refuse('Serial worker exited before thread sample')
+        self.sample_requested=True
+        with (self.directory/'serial-commands.jsonl').open('a',encoding='utf-8') as file:
+            file.write(json.dumps({'command':'sample'})+'\n');file.flush();os.fsync(file.fileno())
+        self.journal.event('THREAD_SAMPLE_REQUESTED',token=artifact.token,process='AegirPoster',command_dispatches=1,read_only=True)
     def wait_return(self, artifact, seconds):
         ack = False; start = time.monotonic(); last_probe = 0; stability=FastbootStability(30)
         while time.monotonic() - start < seconds:

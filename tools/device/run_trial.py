@@ -92,7 +92,11 @@ class DiagnosticOps(StartupObservation,LiveOps):
         start=time.monotonic();next_progress=0
         while time.monotonic()-start<step['observe_seconds']:
             self.check_stop();now=time.monotonic()-start
-            for line in self.lines():policy.feed(line,now)
+            for line in self.lines():
+                policy.feed(line,now)
+                if (policy.live and artifact.data.get('thread_sample_observation') and not getattr(self,'sample_requested',False) and
+                    re.search(r'\|AegirPoster\| SWEET RENDER TARGET BEGIN call=\d+ index=[0-7] format=\d+ load=2 part=clear ',line)):
+                    self.request_sample(artifact)
             capture_after=artifact.data.get('screen_capture_after_seconds')
             if capture_after is not None and policy.live and now>=capture_after and not self.screen_attempted:
                 self.journal.event('SCREEN_OBSERVATION_POINT',token=artifact.token,elapsed_seconds=now)
