@@ -20,6 +20,8 @@ def inspect(directory,resources,kernel_sha256,encoder_source_sha256,version=None
     assert len(png['cases'])==6 and all(c['filters']['up']['pixels_equal'] and c['filters']['up']['ICC_equal'] and c['filters']['up']['metadata_equal'] for c in png['cases'])
     for key in ('Metal_resources','Metal_queue','AIR_compute','AIR_render','AIR_constants','AIR_XR','Metal_IOSurface','Metal_mipmaps','AIR_narrow','AIR_half','Metal_MRT','AIR_sampler','Program_cache','AIR_static_half'):
         assert key in actual['exceptions']
+    if resources.get('native_Clear_shader_cache'):
+        cache=actual['exceptions']['Clear_cache'];assert cache['complete_samples']==1 and cache['incomplete_samples']==0
     proof=dict(revision=1,kernel_sha256=kernel_sha256,GLES_sha256=actual['ram_library_binding']['library_sha256'],
         Metal_sha256=row['artifact']['metal_resources']['library_sha256'],encoder_source_sha256=encoder_source_sha256,
         reference_token=actual['token'],reference_image_sha256=actual['image_sha256'],reference_raw_sha256=actual['log_sha256'],

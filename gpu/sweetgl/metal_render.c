@@ -58,6 +58,23 @@ static void render_stage_end(struct render_stage_observation value,int result)
             (unsigned long long)(value.cpu && cpu>=value.cpu?cpu-value.cpu:0),value.cpu && cpu>=value.cpu,result);}
     errno=saved;
 }
+struct render_target_observation {unsigned call,index,format,load;const char *part;uint64_t wall,cpu;};
+static struct render_target_observation render_target_begin(unsigned call,unsigned index,const SweetRenderColorAttachment *a,const char *part)
+{
+    int saved=errno;struct render_target_observation value={call,index,a->target.format,a->load_action,part,0,0};
+    if(call){value.wall=render_clock_ns(CLOCK_MONOTONIC);value.cpu=render_clock_ns(CLOCK_THREAD_CPUTIME_ID);
+        sweet_drm_log("SWEET RENDER TARGET BEGIN call=%u index=%u format=%u load=%u part=%s at_ns=%llu metadata_only=1",
+            call,index,value.format,value.load,part,(unsigned long long)value.wall);}
+    errno=saved;return value;
+}
+static void render_target_end(struct render_target_observation value,int result)
+{
+    int saved=errno;if(value.call){uint64_t wall=render_clock_ns(CLOCK_MONOTONIC),cpu=render_clock_ns(CLOCK_THREAD_CPUTIME_ID);
+        sweet_drm_log("SWEET RENDER TARGET END call=%u index=%u part=%s wall_ns=%llu cpu_ns=%llu cpu_valid=%u result=%d original_order=1",
+            value.call,value.index,value.part,(unsigned long long)(value.wall && wall>=value.wall?wall-value.wall:0),
+            (unsigned long long)(value.cpu && cpu>=value.cpu?cpu-value.cpu:0),value.cpu && cpu>=value.cpu,result);}
+    errno=saved;
+}
 /* These are the same pinned Mesa entry bodies used by EXT_draw_buffers_indexed.
  * The iOS dispatch table does not expose their spellings, so call the linked
  * internal entry bodies on this private Mesa context. */
@@ -404,29 +421,41 @@ static int bind_samples(SweetMetalProgram *program,const SweetShaderTextureBindi
     }
     int result=render_gl_error("sampler-uniforms",-1);return result?result:bind_texture_metadata(program,textures,count,samplers,sampler_count);
 }
-static int bounded_clear(const SweetRenderPass *pass)
+static int bounded_clear(const SweetRenderPass *pass,SweetMetalShaderCache *cache)
 {
     // fd5 fast-clear/GMEM resolve rounds the rectangle into caller padding.
     // A fullscreen shader draw retains ordinary raster/scissor bounds and
     // the driver's system-memory rendering path over these imported pages.
     static const char *vertex="#version 310 es\nvoid main(){vec2 p=gl_VertexID==0?vec2(-1,-1):gl_VertexID==1?vec2(3,-1):vec2(-1,3);gl_Position=vec4(p,0,1);}";
     static const char *fragment="#version 310 es\nprecision highp float;\nuniform vec4 colour;layout(location=0) out vec4 out_colour;void main(){out_colour=colour;}";
-    GLuint shaders[2]={0},program=0,vao=0,lut=0;GLint ok=0;int result=-EIO;char *xr_source=NULL;
+    unsigned slot=xr_format(pass->target.format)?pass->target.format-551:0;
+    GLuint shaders[2]={0},program=cache?cache->clear[slot]:0,vao=0,lut=0;GLint ok=0;int result=-EIO;char *xr_source=NULL;
+    bool reused=program!=0;
     const GLenum types[2]={GL_VERTEX_SHADER,GL_FRAGMENT_SHADER};const char *sources[2]={vertex,fragment};
+    if(!program){
     if(xr_format(pass->target.format)){size_t bytes=strlen(sweet_xr_shader)+512;xr_source=malloc(bytes);if(!xr_source)return -ENOMEM;
         snprintf(xr_source,bytes,"#version 310 es\nprecision highp float;precision highp int;\n%s\nuniform vec4 colour;layout(location=0) out highp uvec4 out_colour;void main(){out_colour=_smtl_xr_pack(colour,%uu);}",sweet_xr_shader,pass->target.format);sources[1]=xr_source;}
     for(unsigned i=0;i<2;++i){shaders[i]=glCreateShader(types[i]);glShaderSource(shaders[i],1,&sources[i],NULL);glCompileShader(shaders[i]);
         glGetShaderiv(shaders[i],GL_COMPILE_STATUS,&ok);if(!ok)goto done;}
     program=glCreateProgram();for(unsigned i=0;i<2;++i)glAttachShader(program,shaders[i]);glLinkProgram(program);
-    glGetProgramiv(program,GL_LINK_STATUS,&ok);if(!ok)goto done;glUseProgram(program);
-    if(bind_xr_lut(program,&lut))goto done;
+    glGetProgramiv(program,GL_LINK_STATUS,&ok);if(!ok)goto done;
+    // These identical clear shaders are owned by this private context's cache.
+    // Every call still sets the original colour, viewport/scissor and draws.
+    if(cache)cache->clear[slot]=program;
+    }
+    glUseProgram(program);
+    if(bind_xr_lut(program,cache?&cache->lut:&lut))goto done;
     glUniform4f(glGetUniformLocation(program,"colour"),pass->clear[0],pass->clear[1],pass->clear[2],pass->clear[3]);
     glViewport(0,0,pass->target.width,pass->target.height);glEnable(GL_SCISSOR_TEST);glScissor(0,0,pass->target.width,pass->target.height);
     glDisable(GL_BLEND);glDisable(GL_CULL_FACE);glGenVertexArrays(1,&vao);glBindVertexArray(vao);glDrawArrays(GL_TRIANGLES,0,3);
     result=glGetError()==GL_NO_ERROR?0:-EIO;
 done:
-    if(vao)glDeleteVertexArrays(1,&vao);glUseProgram(0);if(program)glDeleteProgram(program);for(unsigned i=0;i<2;++i)if(shaders[i])glDeleteShader(shaders[i]);
+    if(vao)glDeleteVertexArrays(1,&vao);glUseProgram(0);if(program && (!cache || cache->clear[slot]!=program))glDeleteProgram(program);for(unsigned i=0;i<2;++i)if(shaders[i])glDeleteShader(shaders[i]);
     if(lut)glDeleteTextures(1,&lut);free(xr_source);
+    // All callers hold sweet_metal_shader_gate; keep the additional log bounded.
+    static unsigned observations;if(observations<32){++observations;int saved=errno;
+        sweet_drm_log("SWEET METAL CLEAR shader format=%u slot=%u reused=%u cached=%u result=%d original_shader=1 original_clear=1",
+            pass->target.format,slot,reused,cache && program && cache->clear[slot]==program,result);errno=saved;}
     sweet_drm_log("SWEET AIR RENDER bounded_clear width=%u height=%u shader_draw=1 result=%d",pass->target.width,pass->target.height,result);return result;
 }
 struct sweet_render_targets {GLuint raw[8],old[8],linear[8],framebuffer;uint32_t mask;};
@@ -476,20 +505,24 @@ static int allocate_xr_clear_texture(const SweetShaderTextureBinding *binding,GL
     if(result && *texture){glDeleteTextures(1,texture);*texture=0;}
     return result;
 }
-static int prepare_targets(struct st_context *context,const SweetRenderPass *pass,struct sweet_render_targets *targets,SweetMetalShaderCache *cache,uint32_t ordered_xr_mask)
+static int prepare_targets(struct st_context *context,const SweetRenderPass *pass,struct sweet_render_targets *targets,SweetMetalShaderCache *cache,uint32_t ordered_xr_mask,unsigned observation)
 {
     if(!color_pass_valid(pass))return -EINVAL;targets->mask=sweet_render_pass_mask(pass);
     glDisable(GL_BLEND);glDisable(GL_DEPTH_TEST);glDisable(GL_STENCIL_TEST);glDisable(GL_DITHER);glColorMask(GL_TRUE,GL_TRUE,GL_TRUE,GL_TRUE);
     for(unsigned i=0;i<8;++i)if(targets->mask&(1u<<i)){SweetRenderColorAttachment attachment=sweet_render_attachment(pass,i);
-        glActiveTexture(GL_TEXTURE0);int result=bind_texture(context,&attachment.target,&targets->raw[i]);if(result)return result;
-        if(xr_format(attachment.target.format)){result=snapshot_raw_image(targets->raw[i],&attachment.target,&targets->old[i]);if(result)return result;
+        glActiveTexture(GL_TEXTURE0);struct render_target_observation part=render_target_begin(observation,i,&attachment,"import");
+        int result=bind_texture(context,&attachment.target,&targets->raw[i]);render_target_end(part,result);if(result)return result;
+        if(xr_format(attachment.target.format)){part=render_target_begin(observation,i,&attachment,"snapshot");
+            result=snapshot_raw_image(targets->raw[i],&attachment.target,&targets->old[i]);render_target_end(part,result);if(result)return result;
+            part=render_target_begin(observation,i,&attachment,"linear");
             result=attachment.load_action==2?allocate_xr_clear_texture(&attachment.target,&targets->linear[i]):
-                decode_xr_texture_mode(context,&attachment.target,&targets->linear[i],cache,true);if(result)return result;}
-        if(attachment.load_action==2){GLuint fbo=0;glGenFramebuffers(1,&fbo);glBindFramebuffer(GL_FRAMEBUFFER,fbo);
+                decode_xr_texture_mode(context,&attachment.target,&targets->linear[i],cache,true);render_target_end(part,result);if(result)return result;}
+        if(attachment.load_action==2){part=render_target_begin(observation,i,&attachment,"clear");
+            GLuint fbo=0;glGenFramebuffers(1,&fbo);glBindFramebuffer(GL_FRAMEBUFFER,fbo);
             glFramebufferTexture2D(GL_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D,targets->linear[i]?targets->linear[i]:targets->raw[i],0);
             SweetRenderPass clear={0};clear.target=attachment.target;clear.load_action=2;clear.store_action=1;memcpy(clear.clear,attachment.clear,sizeof(clear.clear));
             if(targets->linear[i])clear.target.format=115;
-            result=glCheckFramebufferStatus(GL_FRAMEBUFFER)==GL_FRAMEBUFFER_COMPLETE?bounded_clear(&clear):-EIO;glDeleteFramebuffers(1,&fbo);if(result)return result;
+            result=glCheckFramebufferStatus(GL_FRAMEBUFFER)==GL_FRAMEBUFFER_COMPLETE?bounded_clear(&clear,cache):-EIO;glDeleteFramebuffers(1,&fbo);render_target_end(part,result);if(result)return result;
             if(targets->linear[i])sweet_drm_log("SWEET METAL MRT clear_target index=%u format=%u handle=%u width=%u height=%u result=0 decode_skipped=1 original_code_snapshot=1 original_clear=1",
                 i,attachment.target.format,attachment.target.handle,attachment.target.width,attachment.target.height);}
     }
@@ -583,7 +616,7 @@ int sweetgl_metal_render_draw(SweetMetalProgram *program,const SweetRenderPass *
     stage=render_stage_begin(observation,"make_current");bool current=sweetgl_make_current(program->context);
     render_stage_end(stage,current?0:-EIO);if(!current){result=-EIO;goto done;}
     if(render_gl_error("draw-entry",-1)){result=-EIO;goto done;}
-    stage=render_stage_begin(observation,"targets");result=prepare_targets(sweetgl_internal_context(program->context),pass,&targets,&program->cache,program->ordered_xr_mask);
+    stage=render_stage_begin(observation,"targets");result=prepare_targets(sweetgl_internal_context(program->context),pass,&targets,&program->cache,program->ordered_xr_mask,observation);
     render_stage_end(stage,result);if(result)goto done;
     stage=render_stage_begin(observation,"buffers");
     glUseProgram(program->program);for(unsigned i=0;i<count && !result;++i)result=buffers[i].index<8?
@@ -642,7 +675,7 @@ int sweetgl_metal_render_clear(const SweetRenderPass *pass,uint32_t *sequence)
     if(sequence)*sequence=0;if(!pass || !sequence)return -EINVAL;
     pthread_mutex_lock(&sweet_metal_shader_gate);struct st_context *previous=st_api_get_current();struct sweetgl_ctx *context=sweetgl_create_metal();
     struct sweet_render_targets targets={0};SweetMetalShaderCache cache={0};int result=-EIO;
-    if(context && sweetgl_make_current(context)){result=prepare_targets(sweetgl_internal_context(context),pass,&targets,&cache,0);
+    if(context && sweetgl_make_current(context)){result=prepare_targets(sweetgl_internal_context(context),pass,&targets,&cache,0,0);
         bool any=false;for(unsigned i=0;i<8;++i)if(sweet_render_pass_mask(pass)&(1u<<i))any|=sweet_render_attachment(pass,i).load_action==2;
         if(!result && any){glFinish();result=finish_targets(pass,NULL,&targets,&cache,sequence);}else if(!result)result=-ENOTSUP;
         retire_targets(&targets);sweet_metal_shader_cache_dispose(&cache);}

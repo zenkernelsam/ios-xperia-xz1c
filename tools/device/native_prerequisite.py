@@ -16,6 +16,7 @@ def verify(directory,resources=None,kernel_sha=None,version=None):
     if artifact['metal_resources'].get('native_AIR_constant_samplers'):native_tests.append('AIR_sampler')
     if artifact['metal_resources'].get('native_program_binary_cache'):native_tests.append('Program_cache')
     if artifact['metal_resources'].get('native_static_half_bits'):native_tests.append('AIR_static_half')
+    if artifact['metal_resources'].get('native_Clear_shader_cache'):native_tests.append('Clear_cache')
     for name in native_tests:
         assert suite[name]['complete_samples']>=1 and suite[name]['incomplete_samples']==0,'Prior native probe incomplete: '+name
     native=artifact['metal_resources']

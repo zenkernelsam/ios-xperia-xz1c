@@ -40,7 +40,7 @@ def verify(directory):
     capability_pattern=r'SWEET METAL MRT caps '+r' '.join(key+r'=(\d+)' for key in capability_keys)
     capabilities=[dict(zip(capability_keys,map(int,record))) for record in dict.fromkeys(re.findall(capability_pattern,scope))]
     gl_errors=[dict(stage=stage,target=int(target),error=error) for stage,target,error in re.findall(r'SWEET METAL MRT GL_error stage=(\S+) target=(-?\d+) error=(0x[0-9a-f]+)',scope)]
-    failures=re.findall(r'SWEET (?:AIR (?:COMPUTE|RENDER|CONSTANTS|XR|NARROW|HALF|SAMPLER)|METAL (?:RESOURCE|QUEUE|DISCOVERY|SURFACE|MIPS|MRT)) END result=([1-9]\d*)',scope)
+    failures=re.findall(r'SWEET (?:AIR (?:COMPUTE|RENDER|CONSTANTS|XR|NARROW|HALF|SAMPLER)|METAL (?:RESOURCE|QUEUE|DISCOVERY|SURFACE|MIPS|MRT)|CLEAR CACHE) END result=([1-9]\d*)',scope)
     cache_failures=[dict(phase=int(phase),first_state=int(first),restored_state=int(restored)) for phase,first,restored in
         re.findall(r'SWEET PROGRAM CACHE roundtrip phase=(\d+) first_state=(-?\d+) restored_state=(-?\d+) fresh_pipeline=1 valid=0',scope)]
     registry_assertions=re.findall(r'failed assertion ([^\r\n]+) at line (\d+) in MTLAddDevice',scope)

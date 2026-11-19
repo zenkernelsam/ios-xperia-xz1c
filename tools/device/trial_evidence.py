@@ -34,6 +34,7 @@ from program_request_evidence import verify as verify_program_request
 from program_cache_scope_evidence import verify as verify_cache_scope
 from postdraw_observer_evidence import inspect as inspect_postdraw
 from cif10_reference_evidence import inspect as inspect_cif10_reference
+from clear_cache_evidence import verify as verify_clear_cache
 
 def verify(directory,mode,kernel_sha=None,version=None):
     root=Path(directory)
@@ -119,6 +120,7 @@ def verify(directory,mode,kernel_sha=None,version=None):
                 if a['exception_observer'].get('AIR_sampler_probe'):exceptions['AIR_sampler']=verify_air_sampler(text,a['token'],a['exception_observer']['AIR_sampler_fixture'])
                 if a['exception_observer'].get('program_cache_probe'):exceptions['Program_cache']=verify_program_cache(text,a['token'],a['exception_observer']['AIR_sampler_fixture'])
                 if a['exception_observer'].get('AIR_static_half_probe'):exceptions['AIR_static_half']=verify_static_half(text,a['token'],a['exception_observer']['AIR_static_half_fixture'])
+                if a['exception_observer'].get('Clear_cache_probe'):exceptions['Clear_cache']=verify_clear_cache(text,a['token'],a['exception_observer']['AIR_MRT_fixture'])
                 if a['exception_observer'].get('program_request_export'):exceptions['Program_request_export']=verify_program_request(text,a['token'],a['exception_observer']['program_request_export'])
                 if a['exception_observer'].get('program_cache_scope'):exceptions['Program_cache_scope']=verify_cache_scope(text,a['token'],a['exception_observer']['program_cache_scope'])
                 if a['exception_observer'].get('cif10_PNG_reference'):exceptions['CIF10_PNG_reference']=inspect_cif10_reference(text,a['token'],a['exception_observer']['cif10_reference_revision'],a['exception_observer'].get('png_imageio_encoder_source_sha256'))

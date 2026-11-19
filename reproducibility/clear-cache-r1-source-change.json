@@ -1,0 +1,90 @@
+{
+  "base_commit": "365f39af4f5f450365107ca49e875242ee09fff0",
+  "changed_locked_sources": [
+    {
+      "path": "tools\\device\\failed_trial_evidence.py",
+      "before": "d6c712a90fedb4aeaf8e5b6b07f45ff211fbb3509989fb72f7518109598935a3",
+      "after": "c1d29104be3da9b2a34c7cb1c9404ee7a1c8c9a9c3297a652db557ab2b88743e"
+    },
+    {
+      "path": "tools\\device\\package_trial.py",
+      "before": "2c825cf4f6067ddeafc5e533e9393561e184dcd80b5a6b91ccdea1d89303e1e0",
+      "after": "26a4e3dee1237909ff11d18f5bcb95e3f1a1f4deaeef541eb0242e7fbb37f218"
+    },
+    {
+      "path": "tools\\device\\run_trial.py",
+      "before": "4c22583dce3d2debbccf52769c2644b02f6c0949b245f423435b9d4da28bb86e",
+      "after": "bd29ea2fe7df4ce105d3be9e4b47bf1637dcfaddf0765735bc309b889b8e7ba2"
+    },
+    {
+      "path": "tools\\device\\trial_evidence.py",
+      "before": "92f38bb7ed961fb516c844be6529f66ec072413dbabdcba77cd19f3cbe225a20",
+      "after": "6a0e4011b669b0a843cc587e580526051727733fa30a97a60e0fc5bb06913fc0"
+    },
+    {
+      "path": "tools\\device\\native_prerequisite.py",
+      "before": "a2b6d9ed9f6eebef98910bef162e3fb9bec4f0e55b1f16e492d584720a14be10",
+      "after": "d0621471a66da44d8ad7ebdd7863554764ac2115346e5dc75dcaabf2885ab0b7"
+    },
+    {
+      "path": "tools\\device\\render_stage_evidence.py",
+      "before": "0cc246b7e4f0019305af5d7029800e66e29f68fd749a321db8d009eae01934b4",
+      "after": "313c8fc03fb37f9045ff7a71e4e738fee007fc868c63603508a764b057ccc749"
+    },
+    {
+      "path": "tools\\device\\test_render_stage_evidence.py",
+      "before": "9b455cda8bc8dd371454d17b8a7c3c251bb9f98f0b191f953074f8ff464aa7bc",
+      "after": "c2e0c9e2a01013bac677d3089f32df2f213441679d1bbee3ed2dc4f09e480d17"
+    },
+    {
+      "path": "tools\\ram_library.py",
+      "before": "8af66480685b61ecb8e8d613f8a18b9fcb91590a055c66ecbd0ebf98c812103d",
+      "after": "d08bf029b8842e02f608a536df70529fcfdaaa37f641048ac060e10085935484"
+    },
+    {
+      "path": "tools\\native_proof.py",
+      "before": "c3354a79a65d3c466d344ad369fb704445e4e1c2430e179570f89fef28024ad1",
+      "after": "bb5369802eee3d16d88117f66a079ac082517fc764a8584dcce3b574b25911f0"
+    },
+    {
+      "path": "tools\\build\\build_exception_observer.py",
+      "before": "0effe4945d897a1d229dd61308020438d8127a4a6ab417e34848c7bfb2b166da",
+      "after": "1c8a0cae1ff7ab6d809d766bee11c53fa1c3b7bc24d650f1f74087944a089393"
+    },
+    {
+      "path": "tools\\build\\build_metal_library.py",
+      "before": "60d378fde13cdb96213f381f1b3bc0a1a685d91f4193268ca747ba735d2db514",
+      "after": "d55ea0c06eb8ebd74340f84d0f91ee88f8ac7776d578b707cc561ab123463683"
+    },
+    {
+      "path": "tools\\build\\build_frontend_trial.py",
+      "before": "07016f39a3fa9e7039f4f4a1019f1a6d8647ca8f7ed28ee0a4e4ebdbd16fea74",
+      "after": "207ace51b5d8d2857159f86bb410bdbdc308c1503968a008ead9e1e2690b5621"
+    },
+    {
+      "path": "gpu\\diagnostics\\exception_observe.m",
+      "before": "5f90e58ee0092546d440395a5ac23a52a29e174ab810de19f9e8bf9017e6cb92",
+      "after": "d8c7d606a7cac153e98e06a860ed16dd67575a6175bea3a46032adb216503136"
+    }
+  ],
+  "new_locked_sources": {
+    "sources": [
+      "clear_cache_evidence.py",
+      "test_clear_cache_evidence.py"
+    ],
+    "build_sources": [
+      "tools/build/test_clear_cache.c",
+      "tools/build/check_clear_cache.py"
+    ],
+    "gpu_sources": [
+      "gpu/diagnostics/MetalClearCacheProbe.h",
+      "gpu/diagnostics/ClearCacheProbeValues.h"
+    ]
+  },
+  "same_original_shader_source_and_Clear_draw": true,
+  "context_scoped_only": true,
+  "additional_full_native_group": "Clear_cache",
+  "15_groups_required_for_new_native_proof": true,
+  "device_acceptance_pending": true,
+  "kernel_components_changed": false
+}

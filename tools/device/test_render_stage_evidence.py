@@ -77,6 +77,21 @@ class RenderStageTests(unittest.TestCase):
         with self.assertRaises(AssertionError):
             inspect(scope('\n'.join(body).replace('BEGIN call=2 stage=targets', 'BEGIN call=1 stage=targets') + '\n'), TOKEN)
 
+    def test_actual_attachment_parts_are_required_inside_targets(self):
+        value=scope(draw());parts=[]
+        for index,fmt in [(0,555),(1,10)]:
+            for n,part in enumerate(['import','snapshot','linear','clear'] if not index else ['import','clear']):
+                at=301+index*4+n
+                parts+=[f'|AegirPoster| SWEET RENDER TARGET BEGIN call=1 index={index} format={fmt} load=2 part={part} at_ns={at} metadata_only=1',
+                        f'|AegirPoster| SWEET RENDER TARGET END call=1 index={index} part={part} wall_ns=0 cpu_ns=0 cpu_valid=1 result=0 original_order=1']
+        value=value.replace('|AegirPoster| SWEET RENDER STAGE END call=1 stage=targets','\n'.join(parts)+'\n|AegirPoster| SWEET RENDER STAGE END call=1 stage=targets')
+        record=inspect(value,TOKEN,target_observer=True)['records'][0]
+        self.assertEqual(len(record['targets']),6)
+        for broken in [value.replace('index=1 part=clear wall_ns=0','index=0 part=clear wall_ns=0'),
+                       value.replace('format=555 load=2 part=snapshot','format=10 load=2 part=snapshot'),
+                       value.replace('part=clear wall_ns=0 cpu_ns=0','part=clear wall_ns= cpu_ns=0')]:
+            with self.assertRaises(AssertionError):inspect(broken,TOKEN,target_observer=True)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -27,6 +27,8 @@ binding={'source_files':sources,'mesa_dependencies':dependencies,'mesa_base':loc
          'mesa_patch_sha256':lock['mesa']['patch_sha256'],'only_frontend_recompiled':True,
          'library_sha256':sha(out/'sweetgl.dylib'),'device_operations':0}
 binding['XR_clear_decode_elision']=True
+binding['Clear_shader_context_cache']=True
+binding['render_target_observation_revision']=1
 binding['mesa_build_directory']=build.relative_to(root).as_posix()
 if (out/'ProgramCacheBuildIdentity.json').exists():
     binding['program_cache_build_identity']=json.loads((out/'ProgramCacheBuildIdentity.json').read_bytes())

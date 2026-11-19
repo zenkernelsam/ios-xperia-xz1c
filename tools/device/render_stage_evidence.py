@@ -10,12 +10,14 @@ STAGES = ('gate', 'make_current', 'targets', 'buffers', 'samples', 'xr_lut',
 REQUEST = re.compile(r'SWEET RENDER REQUEST call=(\d+) width=(\d+) height=(\d+) primitive=(\d+) first=(\d+) count=(\d+) instances=(\d+) ordered_mask=(\d+) buffers=(\d+) textures=(\d+) samplers=(\d+) metadata_only=1$')
 BEGIN = re.compile(r'SWEET RENDER STAGE BEGIN call=(\d+) stage=(\w+) at_ns=(\d+) metadata_only=1$')
 END = re.compile(r'SWEET RENDER STAGE END call=(\d+) stage=(\w+) wall_ns=(\d+) cpu_ns=(\d+) cpu_valid=([01]) result=(-?\d+) original_order=1$')
+TARGET_BEGIN = re.compile(r'SWEET RENDER TARGET BEGIN call=(\d+) index=([0-7]) format=(\d+) load=([012]) part=(import|snapshot|linear|clear) at_ns=(\d+) metadata_only=1$')
+TARGET_END = re.compile(r'SWEET RENDER TARGET END call=(\d+) index=([0-7]) part=(import|snapshot|linear|clear) wall_ns=(\d+) cpu_ns=(\d+) cpu_valid=([01]) result=(-?\d+) original_order=1$')
 DRAW = re.compile(r'SWEET AIR RENDER draw width=(\d+) height=(\d+) primitive=(\d+) first=(\d+) count=(\d+) instances=(\d+) target_handle=(\d+) result=(-?\d+) sequence=(\d+) original_pages=1$')
 INSTALL = re.compile(r'SWEET EXCEPTION observer installed process=(backboardd|AegirPoster) limit=16 original_chain=1$')
 PID = re.compile(r'SWEET SNAPSHOT INIT pid=(\d+) at_ns=\d+ expected=8 metadata_only=1$')
 
 
-def inspect(text, token):
+def inspect(text, token, target_observer=False):
     assert re.fullmatch('[0-9a-f]{16}', token)
     live = 'SWEET LOOP LIVE proto=1 token=' + token
     ack = 'SWEET LOOP ACK FASTBOOT token=' + token
@@ -23,7 +25,7 @@ def inspect(text, token):
     start, stop = text.index(live), text.index(ack)
     assert start < stop
     scope = text[start:stop]
-    sessions, current, records, seen = [], {}, [], dict(request=0, begin=0, end=0)
+    sessions, current, records, seen = [], {}, [], dict(request=0, begin=0, end=0, target_begin=0, target_end=0)
     for tagged in re.finditer(r'\|(backboardd|AegirPoster)\| ([^\r\n]*)', scope):
         process, line = tagged.groups()
         installed = INSTALL.fullmatch(line)
@@ -40,10 +42,10 @@ def inspect(text, token):
             assert current[process]['pid'] is None and int(pid[1]) > 0
             current[process]['pid'] = int(pid[1])
             continue
-        request, begin, end, draw = (pattern.fullmatch(line) for pattern in (REQUEST, BEGIN, END, DRAW))
-        if line.startswith(('SWEET RENDER REQUEST ', 'SWEET RENDER STAGE ')):
-            assert request or begin or end, 'Truncated or unknown draw-stage record'
-        if not any((request, begin, end, draw)):
+        request, begin, end, draw, target_begin, target_end = (pattern.fullmatch(line) for pattern in (REQUEST, BEGIN, END, DRAW, TARGET_BEGIN, TARGET_END))
+        if line.startswith(('SWEET RENDER REQUEST ', 'SWEET RENDER STAGE ', 'SWEET RENDER TARGET ')):
+            assert request or begin or end or target_begin or target_end, 'Truncated or unknown draw-stage record'
+        if not any((request, begin, end, draw, target_begin, target_end)):
             continue
         if draw and (process not in current or not current[process]['records']):
             # Only the first 32 draws are observed; ordinary draws may follow.
@@ -58,7 +60,7 @@ def inspect(text, token):
             record = dict(process=process, session=session['session'], pid=session['pid'],
                           call=call, **dict(zip(('width', 'height', 'primitive', 'first', 'count',
                                                'instances', 'ordered_mask', 'buffers', 'textures', 'samplers'), fields[1:])),
-                          stages=[], draw=None)
+                          stages=[], targets=[], draw=None)
             assert record['width'] > 0 and record['height'] > 0 and record['count'] > 0 and record['instances'] > 0
             session['last_call'] = max(session['last_call'], call)
             session['records'].append(record)
@@ -73,11 +75,32 @@ def inspect(text, token):
             assert len(candidates) == 1, 'Draw return lacks one observed retiring request'
             record = candidates[0]
         else:
-            call = int((begin or end)[1])
+            call = int((begin or end or target_begin or target_end)[1])
             candidates = [r for r in session['records'] if r['call'] == call]
             assert len(candidates) == 1, 'Stage has no unique process/call binding'
             record = candidates[0]
-        if begin:
+        if target_begin or target_end:
+            assert target_observer and record['stages'] and record['stages'][-1]['stage']=='targets' and not record['stages'][-1]['complete']
+            if target_begin:
+                seen['target_begin']+=1
+                call,index,fmt,load,part,at=target_begin.groups();index,fmt,load,at=int(index),int(fmt),int(load),int(at)
+                previous=record['targets'][-1] if record['targets'] else None
+                assert at>=record['stages'][-1]['begin_ns']
+                if previous:
+                    assert previous['complete'] and at>=previous['begin_ns']+previous['wall_ns']
+                    if index==previous['index']:
+                        assert fmt==previous['format'] and load==previous['load_action']
+                        assert ['import','snapshot','linear','clear'].index(part)>['import','snapshot','linear','clear'].index(previous['part'])
+                    else:assert index>previous['index'] and part=='import'
+                else:assert part=='import'
+                record['targets'].append(dict(index=index,format=fmt,load_action=load,part=part,begin_ns=at,complete=False))
+            else:
+                seen['target_end']+=1
+                call,index,part,wall,cpu,valid,result=target_end.groups();assert record['targets']
+                target=record['targets'][-1];assert int(index)==target['index'] and part==target['part'] and not target['complete']
+                assert valid=='1' or int(cpu)==0
+                target.update(complete=True,wall_ns=int(wall),thread_cpu_ns=int(cpu),cpu_valid=valid=='1',result=int(result))
+        elif begin:
             seen['begin'] += 1
             call, name, at = int(begin[1]), begin[2], int(begin[3])
             assert call == record['call'] and name in STAGES
@@ -99,6 +122,14 @@ def inspect(text, token):
             assert valid == '1' or int(cpu) == 0
             if name == 'retire':
                 assert record['draw'] is not None and int(result) == record['draw']['result']
+            if name=='targets' and target_observer:
+                if int(result)==0:
+                    assert record['targets'] and all(t['complete'] and t['result']==0 for t in record['targets'])
+                    for index in sorted(set(t['index'] for t in record['targets'])):
+                        parts=[t for t in record['targets'] if t['index']==index]
+                        expected=['import']+(['snapshot','linear'] if 552<=parts[0]['format']<=555 else [])+(['clear'] if parts[0]['load_action']==2 else [])
+                        assert [t['part'] for t in parts]==expected
+                assert all(t['begin_ns']+t.get('wall_ns',0)<=stage['begin_ns']+int(wall) for t in record['targets'])
             stage.update(complete=True, wall_ns=int(wall), thread_cpu_ns=int(cpu),
                          cpu_valid=valid == '1', result=int(result))
         elif draw:
@@ -109,6 +140,8 @@ def inspect(text, token):
     assert seen['request'] == scope.count('SWEET RENDER REQUEST ')
     assert seen['begin'] == scope.count('SWEET RENDER STAGE BEGIN ')
     assert seen['end'] == scope.count('SWEET RENDER STAGE END ')
+    assert seen['target_begin']==scope.count('SWEET RENDER TARGET BEGIN ')
+    assert seen['target_end']==scope.count('SWEET RENDER TARGET END ')
     complete, pending = [], []
     for record in records:
         record['complete'] = bool(record['draw'] and record['stages'] and
@@ -123,7 +156,7 @@ def inspect(text, token):
                 observed_requests=len(records), complete_draws=len(complete), incomplete_draws=len(pending),
                 records=records, pending_draws=pending,
                 longest_completed_stages=sorted(longest, key=lambda s:s['wall_ns'], reverse=True)[:12],
-                post_ACK_exit_period_excluded=True, metadata_only=True,
+                post_ACK_exit_period_excluded=True, metadata_only=True,target_observer_requested=target_observer,
                 stage_time_includes_driver_CPU_scheduling_and_wait=True,
                 stage_totals_not_added_to_overlapping_snapshot_wait_execute=True,
                 GPU_hardware_root_cause_and_UI_FPS_not_inferred=True)
@@ -139,11 +172,13 @@ def verify(directory):
     assert artifact['trial_mode'] == 'gpu' and not row['simulated']
     actual = verify_trial(root, 'gpu') if row['result'] == 'PASS' else verify_failure(root)
     _, _, ram = load(artifact['ram_package'], artifact['ram_library_binding'])
-    source = '9113b4b09670930eac265c286b1f4685600c566f39d522803992fedce0fad1e0'
-    assert ram['frontend_build_binding']['source_files']['metal_render.c'] == source
+    source = ram['frontend_build_binding']['source_files']['metal_render.c']
+    assert source in ('9113b4b09670930eac265c286b1f4685600c566f39d522803992fedce0fad1e0','6a72b11804ba77a871235b4ef5d23b6604f870ed4c581534bc5c7f310a47f895')
+    target_observer=ram['frontend_build_binding'].get('render_target_observation_revision')==1
+    assert target_observer==(source=='6a72b11804ba77a871235b4ef5d23b6604f870ed4c581534bc5c7f310a47f895')
     raw = (root / 'cycle-01/serial.raw.log').read_bytes()
     assert hashlib.sha256(raw).hexdigest() == actual['log_sha256']
-    report = inspect(raw.decode('ascii', 'replace'), artifact['token'])
+    report = inspect(raw.decode('ascii', 'replace'), artifact['token'],target_observer=target_observer)
     if 'screen_snapshot_binding' in artifact:
         from scanout_snapshot import verify_saved
         report['screen'] = verify_saved(root/'cycle-01/screens', artifact, row['screen'], raw)

@@ -1,0 +1,18 @@
+{
+  "source_files": {
+    "gpu/sweetgl/metal_render.c": "6a72b11804ba77a871235b4ef5d23b6604f870ed4c581534bc5c7f310a47f895",
+    "gpu/sweetgl/MetalShaderInternals.h": "f1d2e6dbb16993ec79e8e05c0aa2423825f68e7acdcbcc73e33d25fedf9d951a",
+    "gpu/sweetgl/XRColourShader.h": "9a4e6514d9f203dac4fa95def0ec418777c8422125bfacfdbb0d1a7ea1c6d973",
+    "gpu/sweetgl/XRColourTables.h": "7564148cfcdb509061e1cebc76cd8afb59a292f4dea18086f2d7fa753bb723fa",
+    "tools/build/test_clear_cache.c": "8ee8c6bc4eb30d0e62d7700ecce1230e4021fec02ddb0457d15e2d6397f44833",
+    "tools/build/check_clear_cache.py": "c615991a2200934582e365589a10947590535e6b0f4165a1ae089039ff25dc66"
+  },
+  "production_extracted_sha256": "213bf11907ac75b4a0839ee9d7d0f6cdba07313efc0484140a5cd5db9123c8e7",
+  "actual_GLES_Clear_cached_uncached_21_cases_bytes_equal": true,
+  "actual_context_isolation_failure_rollback_and_retirement": true,
+  "UBSan_passed": true,
+  "ASan_not_run": true,
+  "host_Mesa_only": true,
+  "FD540_padding_fences_and_original_UI_still_require_device": true,
+  "device_operations": 0
+}
