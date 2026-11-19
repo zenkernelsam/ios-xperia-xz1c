@@ -7,13 +7,14 @@ from program_request import specification as request_specification,header as req
 from program_cache_scope import specification as cache_scope_specification,header as cache_scope_header
 from png_encoder_proof import validate as validate_png,header as png_header
 p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--metal-resources');p.add_argument('--air-fixture');p.add_argument('--render-fixture');p.add_argument('--constants-fixture');p.add_argument('--register-device',action='store_true');p.add_argument('--xr-probe',action='store_true');p.add_argument('--surface-probe',action='store_true');p.add_argument('--mip-probe',action='store_true');p.add_argument('--target-process',choices=['AegirPoster','backboardd'],default='AegirPoster');p.add_argument('--gles-ram-package');p.add_argument('--registration-only',action='store_true');p.add_argument('--native-proof');p.add_argument('--pipeline-observe',action='store_true');p.add_argument('--narrow-fixture');p.add_argument('--half-fixture');p.add_argument('--mrt-fixture');p.add_argument('--sampler-fixture');p.add_argument('--program-cache-prime',action='store_true');p.add_argument('--static-half-fixture');p.add_argument('--program-cache-export',action='store_true')
-p.add_argument('--postdraw-observe',action='store_true');p.add_argument('--snapshot-observe',action='store_true');p.add_argument('--cif10-png-reference',action='store_true');p.add_argument('--png-filter-encoder',action='store_true');p.add_argument('--png-proof');p.add_argument('--clear-cache-probe',action='store_true');p.add_argument('--ir3-cache-probe',action='store_true');p.add_argument('--request-observe',action='store_true');a=p.parse_args()
+p.add_argument('--postdraw-observe',action='store_true');p.add_argument('--snapshot-observe',action='store_true');p.add_argument('--cif10-png-reference',action='store_true');p.add_argument('--png-filter-encoder',action='store_true');p.add_argument('--png-proof');p.add_argument('--clear-cache-probe',action='store_true');p.add_argument('--ir3-cache-probe',action='store_true');p.add_argument('--request-observe',action='store_true');p.add_argument('--quad-route-observe',action='store_true');a=p.parse_args()
 if a.ir3_cache_probe:assert a.clear_cache_probe and a.constants_fixture and a.target_process=='backboardd' and not a.registration_only
 if a.clear_cache_probe:assert a.target_process=='backboardd' and a.mrt_fixture and a.static_half_fixture and not a.registration_only
 if a.pipeline_observe:assert a.registration_only and a.target_process=='AegirPoster'
 if a.postdraw_observe:assert a.registration_only and a.pipeline_observe and a.target_process=='AegirPoster'
 if a.snapshot_observe:assert a.postdraw_observe
 if a.request_observe:assert a.registration_only and a.postdraw_observe and a.target_process=='AegirPoster'
+if a.quad_route_observe:assert a.request_observe and a.snapshot_observe
 if a.cif10_png_reference:assert a.target_process=='backboardd' and a.static_half_fixture and not a.registration_only and not a.program_cache_prime and not a.program_cache_export
 if a.png_filter_encoder:assert a.registration_only and a.postdraw_observe and a.png_proof and not a.cif10_png_reference
 else:assert not a.png_proof
@@ -34,6 +35,7 @@ if a.pipeline_observe:headers+=['gpu/diagnostics/MetalPipelineObserve.h']
 if a.postdraw_observe:headers+=['gpu/diagnostics/PostDrawObserve.h']
 if a.snapshot_observe:headers+=['gpu/diagnostics/SnapshotMethodObserve.h']
 if a.request_observe:headers+=['gpu/diagnostics/MetalRequestObserve.h']
+if a.quad_route_observe:headers+=['gpu/diagnostics/QuadRouteObserve.h']
 if a.png_filter_encoder:headers+=['gpu/compat/PNGImageIOEncoder.h','gpu/compat/PNGImageDispatch.h','tools/png_encoder_proof.py']
 if a.cif10_png_reference:
     headers+=['gpu/diagnostics/CIF10PNGReferenceProbe.h','gpu/diagnostics/CIF10VImageCompare.h','gpu/diagnostics/CIF10PNGFilterCompare.h','gpu/compat/PNGImageIOEncoder.h']
@@ -245,6 +247,10 @@ if a.request_observe:
     run(['clang','-fobjc-exceptions','-O1','-g','-fsanitize=address,undefined',root/'tools/build/test_metal_request_observe.m',
         '-framework','Foundation','-framework','QuartzCore','-o',out/'test_request_observer'],'request-host-compile')
     assert 'Metal request observer PASS:' in run([out/'test_request_observer'],'request-host-test')
+if a.quad_route_observe:
+    run(['clang','-fblocks','-fobjc-exceptions','-O1','-g','-fsanitize=address,undefined',root/'tools/build/test_quad_route_observe.m',
+        '-framework','Foundation','-o',out/'test_quad_route_observer'],'quad-route-host-compile')
+    assert 'Quad route observer PASS:' in run([out/'test_quad_route_observer'],'quad-route-host-test')
 library=out/'exception_observe.dylib'
 extra=[resources/'MetalResources.dylib'] if resource_manifest else []
 if resource_manifest and not a.registration_only:extra+=['-DSWEET_METAL_RESOURCE_PROBE=1']
@@ -258,6 +264,7 @@ if a.pipeline_observe:extra+=['-DSWEET_METAL_PIPELINE_OBSERVE=1','-framework','M
 if a.postdraw_observe:extra+=['-DSWEET_POSTDRAW_OBSERVE=1','-framework','UIKit','-framework','CoreGraphics','-framework','ImageIO','-framework','ColorSync']
 if a.snapshot_observe:extra+=['-DSWEET_SNAPSHOT_METHOD_OBSERVE=1']
 if a.request_observe:extra+=['-DSWEET_METAL_REQUEST_OBSERVE=1','-framework','QuartzCore']
+if a.quad_route_observe:extra+=['-DSWEET_QUAD_ROUTE_OBSERVE=1']
 if a.png_filter_encoder:extra+=['-DSWEET_PNG_FILTER_ENCODER=1','-I',out]
 if a.cif10_png_reference:extra+=['-DSWEET_CIF10_PNG_REFERENCE=1','-DSWEET_PNG_IMAGEIO_SOURCE_SHA="'+png_source_sha+'"','-framework','UIKit','-framework','CoreGraphics','-framework','ImageIO','-framework','Accelerate']
 if a.xr_probe:extra+=['-DSWEET_AIR_XR_PROBE=1']
@@ -350,6 +357,11 @@ if a.request_observe:manifest.update(original_request_observer=True,request_obse
     request_owned_ABI_and_repeat_rejection_host_passed=True,
     request_record_max_bytes=190,request_short_framing=True,
     request_host_test_source_sha256=hashlib.sha256((root/'tools/build/test_metal_request_observe.m').read_bytes()).hexdigest())
+if a.quad_route_observe:manifest.update(quad_route_observer=True,quad_route_revision=1,quad_route_methods=12,
+    quad_route_per_API_samples=8,quad_route_max_records=96,quad_route_record_max_bytes=190,
+    quad_route_metaclass_owner_and_exact_ABI_host_passed=True,quad_route_original_nil_throws_errno_BOOL_double_block_host_passed=True,
+    quad_route_reason_getter_exception_containment_host_passed=True,quad_route_no_additional_GPU_or_scene_calls=True,
+    quad_route_host_test_source_sha256=hashlib.sha256((root/'tools/build/test_quad_route_observe.m').read_bytes()).hexdigest())
 assert all(hashlib.sha256((root/name).read_bytes()).hexdigest()==digest for name,digest in source_files.items())
 (out/'manifest.json').write_bytes((json.dumps(manifest,indent=2)+'\n').encode())
 print(json.dumps(manifest,indent=2))

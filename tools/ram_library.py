@@ -56,6 +56,15 @@ def load(folder,expected=None):
                 assert observer['request_original_arguments_returns_errors_throws_errno_host_passed'] and observer['request_does_not_allocate_or_draw']
                 assert observer['request_owned_ABI_and_repeat_rejection_host_passed']
                 assert re.fullmatch('[0-9a-f]{64}',observer['request_host_test_source_sha256'])
+            if observer.get('quad_route_observer'):
+                sources.add('gpu/diagnostics/QuadRouteObserve.h')
+                assert observer.get('original_request_observer') and observer.get('snapshot_method_observer')
+                assert observer['target_process']=='AegirPoster' and observer.get('registration_only')
+                assert observer['quad_route_revision']==1 and observer['quad_route_methods']==12
+                assert observer['quad_route_per_API_samples']==8 and observer['quad_route_max_records']==96 and observer['quad_route_record_max_bytes']==190
+                assert observer['quad_route_metaclass_owner_and_exact_ABI_host_passed'] and observer['quad_route_original_nil_throws_errno_BOOL_double_block_host_passed']
+                assert observer['quad_route_reason_getter_exception_containment_host_passed'] and observer['quad_route_no_additional_GPU_or_scene_calls']
+                assert re.fullmatch('[0-9a-f]{64}',observer['quad_route_host_test_source_sha256'])
             if observer.get('original_postdraw_observer'):
                 sources.add('gpu/diagnostics/PostDrawObserve.h')
                 assert observer.get('registration_only') and observer.get('original_pipeline_observer') and observer['target_process']=='AegirPoster'

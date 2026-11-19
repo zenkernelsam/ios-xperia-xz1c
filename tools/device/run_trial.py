@@ -82,6 +82,7 @@ class DiagnosticPolicy(LogPolicy):
             if re.search(r'SWEET CA MATRIX (?:INSTALL|END) result=[1-9]',line):self.recoverable='CA_MATRIX_PROBE_FAILED'
             if re.search(r'SWEET METAL REQUEST CONFIG pid=\d+ installed=[0-5] expected=6',line):self.recoverable='REQUEST_OBSERVER_INSTALL_INCOMPLETE'
             if re.search(r'SWEET METAL REQUEST CONFIG pid=\d+ installed=(?:[0-9]|1[0-2]) expected=13',line):self.recoverable='REQUEST_OBSERVER_INSTALL_INCOMPLETE'
+            if re.search(r'SWEET QUAD ROUTE CONFIG pid=\d+ installed=(?:[0-9]|1[01]) expected=12',line):self.recoverable='QUAD_ROUTE_OBSERVER_INSTALL_INCOMPLETE'
             if re.search(r'SWEET CIF10 REFERENCE END result=[1-9]',line):self.recoverable='CIF10_PNG_REFERENCE_FAILED'
             if 'CRASH AegirPoster reason ns 7 code 0x3: extension check-in timeout' in line:self.recoverable='EXTENSION_CHECKIN_TIMEOUT'
     def decision(self,now):
