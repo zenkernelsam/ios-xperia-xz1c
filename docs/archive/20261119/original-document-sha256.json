@@ -56,5 +56,27 @@
         "sha256": "2b00a9f0441dce685b1602a7acbbfc34a05615c721ae4df32226b4e2f499676b"
       }
     }
+  },
+  "before_request_observe_r2_actual": {
+    "source_commit": "e34ef65521209362e319792c8db5cb45c255bf02",
+    "working_copy_bytes_preserved": true,
+    "files": {
+      "AGENTS-before-request-observe-r2.md": {
+        "bytes": 5331,
+        "sha256": "696395b5aba00cbc8f5d5b3d99b8a9ab66d3cf1aea58d3d6f574c9e60984008f"
+      },
+      "STATUS-before-request-observe-r2.md": {
+        "bytes": 6440,
+        "sha256": "c945444b862fe64ee2787d79b4e35b792f50f8199678709c87f11a7d1b12859a"
+      },
+      "SCANOUT-SCREENSHOT-before-request-observe-r2.md": {
+        "bytes": 9465,
+        "sha256": "d655ba191572c2d9f58785e23e9f3e094457060e8a82c4856eeaca387d455258"
+      },
+      "BUILD-before-request-observe-r2.md": {
+        "bytes": 11651,
+        "sha256": "7f3f700b52c6b1bcfbae964201f447e7011b610fa01b31a1f7b7dffcbb702acd"
+      }
+    }
   }
 }

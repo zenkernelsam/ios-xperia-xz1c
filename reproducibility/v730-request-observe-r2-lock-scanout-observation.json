@@ -1,0 +1,41 @@
+{
+  "token": "61745a1e16c8ab41",
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "image_sha256": "dcdfc3ad38040f3f02d55eeb3640f423abb7f2cf0c079d41e4a8fedcd7ebafce",
+  "raw_sha256": "ad8c8a66f6a7fabfdec6f0362a0b7a822cfda8ae2e609c11131511129b5e27f0",
+  "png_sha256": "3902559110ffee1182d7590f7feec0cbd94a91919e1334853556f0851597ef51",
+  "png_bytes": 52248,
+  "width": 720,
+  "height": 1280,
+  "source_stride": 2160,
+  "source_and_saved_pixels_verified": true,
+  "visually_observed_lock": {
+    "neutral_gray_time_and_date": true,
+    "green_battery": true,
+    "camera_and_white_homebar": true,
+    "black_wallpaper_incomplete": true
+  },
+  "original_request_counts": {
+    "function": 0,
+    "function_constants": 0,
+    "function_names": 0,
+    "next_drawable": 0,
+    "set_device": 5,
+    "set_drawable_size": 0,
+    "quad_init": 5,
+    "quad_init_async": 5,
+    "quad_layout": 5,
+    "quad_display": 0,
+    "quad_prewarm": 0,
+    "quad_drawable_size": 0,
+    "quad_update_size": 0
+  },
+  "complete_original_requests": 20,
+  "incomplete_original_requests": 0,
+  "original_controller_result": "STOP",
+  "original_reason": "OBSERVATION_INCOMPLETE",
+  "stage_not_promoted": true,
+  "return_seconds_with_health": 39.375,
+  "optical_panel_sleep_FPS_peripherals_pending": true,
+  "private_frame_retained_in_TEMP_not_Git": true
+}

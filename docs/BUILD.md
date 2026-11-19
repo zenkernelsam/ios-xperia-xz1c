@@ -15,6 +15,8 @@ python3 -B tools/build/package_glram.py --frontend build/my-ca-matrix/frontend -
 
 v730完整扫描帧reader及主机／83源重建见 [SCANOUT-SCREENSHOT](SCANOUT-SCREENSHOT.md)。GPU包可`--screen-evidence --screen-after 150`，单帧150秒；`--swipe-once`为本LIVE／F12后120秒一次原上滑、150秒截帧；`--idle-sample`单独观察原metallib返回后180秒线程栈。它们只改变电脑端有界观察，不改kernel／原check-in／回程；当前包只在独立新bundle发一次。
 
+原Metal／画布请求r2构建与四靴实际结果见 [METAL-REQUEST-OBSERVATION](METAL-REQUEST-OBSERVATION.md)：生产kernel／GLES／Metal保持，`--request-observe`增加13类原方法转发及分块ABI元数据，自身RAMCPU后再GPU。r2原20请求完整，但未出现display／pipeline，STOP保持；r1长ABI记录拒绝照实保留。当前UI截图通道已实机通过，不依赖DroidCam，LCD光学仍独立验收。
+
 旧BUILD内容的各版本精确复现及失败记录在 [archive/20261119](archive/20261119/BUILD-before-ca-matrix-actual.md) 与各专题。下方公共构建手册继续保留，其历史库／组数只适用于该版本，不能提升当前库为已验。
 
 reproducibility/source-lock.json锁定Apple XNU xnu-8796.141.3/f625db25f47631424dc62ac1c3414b6e530f7e8a、darwin-xnu-build基础663906528d1cd5ea8fde7de6f16de73db9511549、Mesa769e51468b49b2a42f0a0eaf71cf9eed5ff4e5de/24.3.4及全部修补。source-reconstruction.json记录逐源重建核验。

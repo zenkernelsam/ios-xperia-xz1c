@@ -8,7 +8,7 @@
 
 新矩阵适配只在准确20H392 QuartzCore UUID／范围／两代码锚点／原表达式／原空槽全部匹配后补0x14、0x2d，原方程保持；其它模糊槽未安装。生产GLI矩阵6阶段1536B／192B guard实际最大差异0／context释放；不能把host测试当手机像素。
 
-原cb9a39f8／206fb768两张150秒完整scanout已恢复正常灰色锁屏时间日期，背景黑；原881ce1c5经一次串口上滑出现完整主页／正常多彩图标／文字／widgets／dock，39.688秒四marker／健康30秒／worker退出，当前健康fastboot／无in-flight。三靴Aegir无pipeline请求，controller STOP／OBSERVATION_INCOMPLETE保留；实际截图成功不提升GPU／壁纸阶段。唯一串口idle sample显示同靴主线程在UIKit事件循环，原周期样本单列，不凭一次栈推全部耗时。详情在STATUS／CA-MATRIX和v730-ca-matrix-r1-run-index.json。
+原cb9a39f8／206fb768两张150秒完整scanout已恢复正常灰色锁屏时间日期，背景黑；原881ce1c5经一次串口上滑出现完整主页／正常多彩图标／文字／widgets／dock，39.688秒四marker／健康30秒／worker退出。最新原请求observer-r2 token61745a1e16c8ab41已39.375秒完整回程／健康30秒／worker退出，当前健康fastboot／无in-flight。r2全部13方法／10条ABI inventory完整，20条原请求完成：quad_init／quad_init_async／set_device／quad_layout各5，五次画布初始化nonnull，其余9类0。150秒锁屏扫描帧仍灰字／黑壁纸，无display／nextDrawable／pipeline请求，原STOP／OBSERVATION_INCOMPLETE保持；仅改变observer，生产GLES／Metal／内核未变。r1两条长ABI记录破损仍拒绝，不能补造或重发旧包。详情见STATUS／METAL-REQUEST-OBSERVATION和对应reproducibility。原idle sample与周期样本独立，不凭一次栈推全部耗时。
 
 完整壁纸／稳定UI与FPS／睡眠／光学／声音无线及广义texture-depth-stencil-MSAA目标仍active。原IR3库26pipeline／三次draw／PNG返回及旧check-in／cold-link／STOP失败完整保留专题和docs/archive/20261119；不从过时工作日志恢复已结束in-flight。
 

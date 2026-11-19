@@ -1,6 +1,6 @@
 # 串口显示帧截图
 
-2026-11-19现行CA矩阵GLESd6d8fcfa／v730已通过自身GLES9组／完整native16／PNG6组；cb9a39f8及206fb768两张150秒图恢复灰色锁屏时间日期，881ce1c5在120秒单串口上滑后150秒读到完整正常颜色主页。最后帧2764800B→925068B／7228块，传输30.311秒／PNG301942B，power_off0；所有来源和像素校验通过，壁纸仍黑且原Aegir无pipeline，controller STOP保持。详见 [CA-MATRIX](CA-MATRIX.md)、STATUS和对应v730-ca-matrix-r1证据，下面r6缺字为旧库比较。
+2026-11-19现行CA矩阵GLESd6d8fcfa／v730已通过自身GLES9组／完整native16／PNG6组；cb9a39f8及206fb768两张150秒图恢复灰色锁屏时间日期，881ce1c5在120秒单串口上滑后150秒读到完整正常颜色主页。该主页帧2764800B→925068B／7228块，传输30.311秒／PNG301942B，power_off0；所有来源和像素校验通过，壁纸仍黑且原Aegir无pipeline，controller STOP保持。最新原请求r2／61745a1e16c8ab41在150.031秒再次保存灰字锁屏，2764800B→349908B／2734块，PNG52248B／SHA39025591；来源／保存像素／完整回程均通过，原STOP仍保留。详见 [CA-MATRIX](CA-MATRIX.md)、[METAL-REQUEST-OBSERVATION](METAL-REQUEST-OBSERVATION.md)、STATUS及对应证据，下面r6缺字为旧库比较。
 
 v730 增加完整、无损的显示帧读取。现有 USB CDC `frame` 命令在 `sfscreen=1` 时只排队，显示 workloop 在完成本次呈现后复制扫描缓冲区，独立线程压缩并分块发送。v729 的 `frame` 仍只有 ASCII／缩略图，不能当作完整截图。
 

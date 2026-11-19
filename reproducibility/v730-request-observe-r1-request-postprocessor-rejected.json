@@ -1,0 +1,15 @@
+{
+  "token": "be248be112e4e024",
+  "original_result": "STOP",
+  "original_reason": "OBSERVATION_INCOMPLETE",
+  "raw_sha256": "e2a58495e897daeae991d81f3dc89e559fa5a7d56cb0bbf2dc7042ad5950a2a0",
+  "image_sha256": "a797a8ed9be8dc0c3baa722eb1c570ae6ecaf096a1d1a85ec0a938cb5ed298d6",
+  "request_inspector_sha256": "4991c59a73eece1199fafb44332e79491ef54e6ac05061e320f2f0c17344be42",
+  "actual_request_verifier_passed": false,
+  "reason": "Two long original REQUEST ABI metadata lines fragmented/interleaved; record count check rejected",
+  "original_logs_results_not_rewritten": true,
+  "old_bundle_not_resent": true,
+  "independent_scanout_and_four_marker_return_verified": true,
+  "return_seconds_with_health": 39.59400000004098,
+  "incomplete_ABI_source_fragments_not_used_for_new_typed_calls": true
+}

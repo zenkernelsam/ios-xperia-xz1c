@@ -1,0 +1,690 @@
+{
+  "revision": 2,
+  "process_configurations": [
+    {
+      "pid": 280,
+      "installed": 13,
+      "methods": {
+        "function": {
+          "present": true,
+          "owned": true,
+          "installed": true,
+          "arguments": 3
+        },
+        "function_constants": {
+          "present": true,
+          "owned": true,
+          "installed": true,
+          "arguments": 5
+        },
+        "function_names": {
+          "present": true,
+          "owned": true,
+          "installed": true,
+          "arguments": 2
+        },
+        "next_drawable": {
+          "present": true,
+          "owned": true,
+          "installed": true,
+          "arguments": 2
+        },
+        "set_device": {
+          "present": true,
+          "owned": true,
+          "installed": true,
+          "arguments": 3
+        },
+        "set_drawable_size": {
+          "present": true,
+          "owned": true,
+          "installed": true,
+          "arguments": 3
+        },
+        "quad_init": {
+          "present": true,
+          "owned": true,
+          "installed": true,
+          "arguments": 6
+        },
+        "quad_init_async": {
+          "present": true,
+          "owned": true,
+          "installed": true,
+          "arguments": 7
+        },
+        "quad_layout": {
+          "present": true,
+          "owned": true,
+          "installed": true,
+          "arguments": 2
+        },
+        "quad_display": {
+          "present": true,
+          "owned": true,
+          "installed": true,
+          "arguments": 4
+        },
+        "quad_prewarm": {
+          "present": true,
+          "owned": true,
+          "installed": true,
+          "arguments": 3
+        },
+        "quad_drawable_size": {
+          "present": true,
+          "owned": true,
+          "installed": true,
+          "arguments": 2
+        },
+        "quad_update_size": {
+          "present": true,
+          "owned": true,
+          "installed": true,
+          "arguments": 2
+        }
+      }
+    }
+  ],
+  "inventory": [
+    {
+      "pid": 280,
+      "owner": "quad",
+      "index": 0,
+      "selector": "initWithFrame:identifier:options:colorSpace:",
+      "types": "@72@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16@48Q56q64",
+      "present": true,
+      "truncated": false
+    },
+    {
+      "pid": 280,
+      "owner": "quad",
+      "index": 1,
+      "selector": "initWithFrame:identifier:options:colorSpace:asyncRenderQueue:",
+      "types": "@80@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16@48Q56q64@72",
+      "present": true,
+      "truncated": false
+    },
+    {
+      "pid": 280,
+      "owner": "quad",
+      "index": 2,
+      "selector": "_displayAndCheckForDrawable:withCompletion:",
+      "types": "B28@0:8B16@?20",
+      "present": true,
+      "truncated": false
+    },
+    {
+      "pid": 280,
+      "owner": "quad",
+      "index": 3,
+      "selector": "prewarmWithCompletion:",
+      "types": "B24@0:8@?16",
+      "present": true,
+      "truncated": false
+    },
+    {
+      "pid": 280,
+      "owner": "quad",
+      "index": 4,
+      "selector": "snapshotTextureInRect:scale:time:",
+      "types": "@64@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16d48d56",
+      "present": true,
+      "truncated": false
+    },
+    {
+      "pid": 280,
+      "owner": "quad",
+      "index": 5,
+      "selector": "_msaaCount",
+      "types": "Q16@0:8",
+      "present": true,
+      "truncated": false
+    },
+    {
+      "pid": 280,
+      "owner": "renderer",
+      "index": 0,
+      "selector": "initWithPixelFormat:textureSuffix:rendererStyle:",
+      "types": "@40@0:8Q16@24Q32",
+      "present": true,
+      "truncated": false
+    },
+    {
+      "pid": 280,
+      "owner": "renderer",
+      "index": 1,
+      "selector": "renderOffscreenWithScene:viewport:commandBuffer:",
+      "types": "v40@0:8@16{NUNIViewport=ii}24@32",
+      "present": true,
+      "truncated": false
+    },
+    {
+      "pid": 280,
+      "owner": "renderer",
+      "index": 2,
+      "selector": "renderWithScene:viewport:commandBuffer:passDescriptor:",
+      "types": "v48@0:8@16{NUNIViewport=ii}24@32@40",
+      "present": true,
+      "truncated": false
+    },
+    {
+      "pid": 280,
+      "owner": "renderer",
+      "index": 3,
+      "selector": "setRendererOptions:",
+      "types": "v24@0:8@16",
+      "present": true,
+      "truncated": false
+    }
+  ],
+  "complete_samples": 20,
+  "incomplete_samples": 0,
+  "records": [
+    {
+      "pid": 280,
+      "call": 1,
+      "api": "quad_init",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": false,
+      "argument_class": "__NSCFConstantString",
+      "options": 114,
+      "color_space": 2,
+      "async_nil": true,
+      "origin": [
+        0.0,
+        0.0
+      ],
+      "size": [
+        375.0,
+        812.0
+      ],
+      "size_finite": true,
+      "returned_nil": false,
+      "return_class": "CLKUIMetalQuadView",
+      "error_pointer": false,
+      "error_code": 0,
+      "outcome": "return"
+    },
+    {
+      "pid": 280,
+      "call": 2,
+      "api": "quad_init_async",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": false,
+      "argument_class": "__NSCFConstantString",
+      "options": 114,
+      "color_space": 2,
+      "async_nil": true,
+      "origin": [
+        0.0,
+        0.0
+      ],
+      "size": [
+        375.0,
+        812.0
+      ],
+      "size_finite": true,
+      "returned_nil": false,
+      "return_class": "CLKUIMetalQuadView",
+      "error_pointer": false,
+      "error_code": 0,
+      "outcome": "return"
+    },
+    {
+      "pid": 280,
+      "call": 3,
+      "api": "set_device",
+      "complete": true,
+      "receiver": "CAMetalLayer",
+      "argument_nil": false,
+      "argument_class": "SweetMTLDevice",
+      "returned_nil": true,
+      "return_class": "nil",
+      "error_pointer": false,
+      "error_code": 0,
+      "outcome": "return"
+    },
+    {
+      "pid": 280,
+      "call": 4,
+      "api": "quad_layout",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "returned_nil": true,
+      "return_class": "nil",
+      "error_pointer": false,
+      "error_code": 0,
+      "outcome": "return"
+    },
+    {
+      "pid": 280,
+      "call": 5,
+      "api": "quad_init",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": false,
+      "argument_class": "__NSCFConstantString",
+      "options": 114,
+      "color_space": 2,
+      "async_nil": true,
+      "origin": [
+        0.0,
+        0.0
+      ],
+      "size": [
+        375.0,
+        812.0
+      ],
+      "size_finite": true,
+      "returned_nil": false,
+      "return_class": "CLKUIMetalQuadView",
+      "error_pointer": false,
+      "error_code": 0,
+      "outcome": "return"
+    },
+    {
+      "pid": 280,
+      "call": 6,
+      "api": "quad_init_async",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": false,
+      "argument_class": "__NSCFConstantString",
+      "options": 114,
+      "color_space": 2,
+      "async_nil": true,
+      "origin": [
+        0.0,
+        0.0
+      ],
+      "size": [
+        375.0,
+        812.0
+      ],
+      "size_finite": true,
+      "returned_nil": false,
+      "return_class": "CLKUIMetalQuadView",
+      "error_pointer": false,
+      "error_code": 0,
+      "outcome": "return"
+    },
+    {
+      "pid": 280,
+      "call": 7,
+      "api": "set_device",
+      "complete": true,
+      "receiver": "CAMetalLayer",
+      "argument_nil": false,
+      "argument_class": "SweetMTLDevice",
+      "returned_nil": true,
+      "return_class": "nil",
+      "error_pointer": false,
+      "error_code": 0,
+      "outcome": "return"
+    },
+    {
+      "pid": 280,
+      "call": 8,
+      "api": "quad_layout",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "returned_nil": true,
+      "return_class": "nil",
+      "error_pointer": false,
+      "error_code": 0,
+      "outcome": "return"
+    },
+    {
+      "pid": 280,
+      "call": 9,
+      "api": "quad_init",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": false,
+      "argument_class": "__NSCFConstantString",
+      "options": 114,
+      "color_space": 2,
+      "async_nil": true,
+      "origin": [
+        0.0,
+        0.0
+      ],
+      "size": [
+        375.0,
+        812.0
+      ],
+      "size_finite": true,
+      "returned_nil": false,
+      "return_class": "CLKUIMetalQuadView",
+      "error_pointer": false,
+      "error_code": 0,
+      "outcome": "return"
+    },
+    {
+      "pid": 280,
+      "call": 10,
+      "api": "quad_init_async",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": false,
+      "argument_class": "__NSCFConstantString",
+      "options": 114,
+      "color_space": 2,
+      "async_nil": true,
+      "origin": [
+        0.0,
+        0.0
+      ],
+      "size": [
+        375.0,
+        812.0
+      ],
+      "size_finite": true,
+      "returned_nil": false,
+      "return_class": "CLKUIMetalQuadView",
+      "error_pointer": false,
+      "error_code": 0,
+      "outcome": "return"
+    },
+    {
+      "pid": 280,
+      "call": 11,
+      "api": "set_device",
+      "complete": true,
+      "receiver": "CAMetalLayer",
+      "argument_nil": false,
+      "argument_class": "SweetMTLDevice",
+      "returned_nil": true,
+      "return_class": "nil",
+      "error_pointer": false,
+      "error_code": 0,
+      "outcome": "return"
+    },
+    {
+      "pid": 280,
+      "call": 12,
+      "api": "quad_layout",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "returned_nil": true,
+      "return_class": "nil",
+      "error_pointer": false,
+      "error_code": 0,
+      "outcome": "return"
+    },
+    {
+      "pid": 280,
+      "call": 13,
+      "api": "quad_init",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": false,
+      "argument_class": "__NSCFConstantString",
+      "options": 114,
+      "color_space": 2,
+      "async_nil": true,
+      "origin": [
+        0.0,
+        0.0
+      ],
+      "size": [
+        375.0,
+        812.0
+      ],
+      "size_finite": true,
+      "returned_nil": false,
+      "return_class": "CLKUIMetalQuadView",
+      "error_pointer": false,
+      "error_code": 0,
+      "outcome": "return"
+    },
+    {
+      "pid": 280,
+      "call": 14,
+      "api": "quad_init_async",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": false,
+      "argument_class": "__NSCFConstantString",
+      "options": 114,
+      "color_space": 2,
+      "async_nil": true,
+      "origin": [
+        0.0,
+        0.0
+      ],
+      "size": [
+        375.0,
+        812.0
+      ],
+      "size_finite": true,
+      "returned_nil": false,
+      "return_class": "CLKUIMetalQuadView",
+      "error_pointer": false,
+      "error_code": 0,
+      "outcome": "return"
+    },
+    {
+      "pid": 280,
+      "call": 15,
+      "api": "set_device",
+      "complete": true,
+      "receiver": "CAMetalLayer",
+      "argument_nil": false,
+      "argument_class": "SweetMTLDevice",
+      "returned_nil": true,
+      "return_class": "nil",
+      "error_pointer": false,
+      "error_code": 0,
+      "outcome": "return"
+    },
+    {
+      "pid": 280,
+      "call": 16,
+      "api": "quad_layout",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "returned_nil": true,
+      "return_class": "nil",
+      "error_pointer": false,
+      "error_code": 0,
+      "outcome": "return"
+    },
+    {
+      "pid": 280,
+      "call": 17,
+      "api": "quad_init",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": false,
+      "argument_class": "__NSCFConstantString",
+      "options": 114,
+      "color_space": 2,
+      "async_nil": true,
+      "origin": [
+        0.0,
+        0.0
+      ],
+      "size": [
+        375.0,
+        812.0
+      ],
+      "size_finite": true,
+      "returned_nil": false,
+      "return_class": "CLKUIMetalQuadView",
+      "error_pointer": false,
+      "error_code": 0,
+      "outcome": "return"
+    },
+    {
+      "pid": 280,
+      "call": 18,
+      "api": "quad_init_async",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": false,
+      "argument_class": "__NSCFConstantString",
+      "options": 114,
+      "color_space": 2,
+      "async_nil": true,
+      "origin": [
+        0.0,
+        0.0
+      ],
+      "size": [
+        375.0,
+        812.0
+      ],
+      "size_finite": true,
+      "returned_nil": false,
+      "return_class": "CLKUIMetalQuadView",
+      "error_pointer": false,
+      "error_code": 0,
+      "outcome": "return"
+    },
+    {
+      "pid": 280,
+      "call": 19,
+      "api": "set_device",
+      "complete": true,
+      "receiver": "CAMetalLayer",
+      "argument_nil": false,
+      "argument_class": "SweetMTLDevice",
+      "returned_nil": true,
+      "return_class": "nil",
+      "error_pointer": false,
+      "error_code": 0,
+      "outcome": "return"
+    },
+    {
+      "pid": 280,
+      "call": 20,
+      "api": "quad_layout",
+      "complete": true,
+      "receiver": "CLKUIMetalQuadView",
+      "argument_nil": true,
+      "argument_class": "nil",
+      "returned_nil": true,
+      "return_class": "nil",
+      "error_pointer": false,
+      "error_code": 0,
+      "outcome": "return"
+    }
+  ],
+  "pending_calls": [],
+  "observed_API_calls": {
+    "function": 0,
+    "function_constants": 0,
+    "function_names": 0,
+    "next_drawable": 0,
+    "set_device": 5,
+    "set_drawable_size": 0,
+    "quad_init": 5,
+    "quad_init_async": 5,
+    "quad_layout": 5,
+    "quad_display": 0,
+    "quad_prewarm": 0,
+    "quad_drawable_size": 0,
+    "quad_update_size": 0
+  },
+  "original_nil_returns": [],
+  "original_argument_return_error_errno_preserved": true,
+  "no_GPU_work_created": true,
+  "absence_of_calls_not_global_GPU_or_UI_proof": true,
+  "post_ACK_exit_period_excluded": true,
+  "token": "61745a1e16c8ab41",
+  "raw_sha256": "ad8c8a66f6a7fabfdec6f0362a0b7a822cfda8ae2e609c11131511129b5e27f0",
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "GLES_sha256": "d6d8fcfa27bcac84ab5edb3d2a11c1ed23374e8b491a3e8de093a9a2a819ac2b",
+  "original_result": "STOP",
+  "original_reason": "OBSERVATION_INCOMPLETE",
+  "stage_not_promoted": true,
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-request-observe-r2-gpu-20261119",
+  "return_seconds_with_health": 39.375,
+  "screen": {
+    "protocol": 1,
+    "frames": [
+      {
+        "id": 1,
+        "token": "61745a1e16c8ab41",
+        "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+        "image_sha256": "dcdfc3ad38040f3f02d55eeb3640f423abb7f2cf0c079d41e4a8fedcd7ebafce",
+        "binding": {
+          "protocol": 1,
+          "width": 720,
+          "height": 1280,
+          "stride": 2160,
+          "format": "BGR888",
+          "codec": "PRLE1",
+          "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+          "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+          "runtime_source_sha256": "a1f41eeb87b7cf70ea751884ee38d758191f3cc0a00d697acc363fbba3cd5f63"
+        },
+        "begin": {
+          "token": "61745a1e16c8ab41",
+          "id": "1",
+          "width": "720",
+          "height": "1280",
+          "stride": "2160",
+          "format": "BGR888",
+          "bytes": "2764800",
+          "codec": "PRLE1",
+          "encoded": "349908",
+          "raw_fnv": "248773377eb07ade",
+          "enc_crc": "3f142f91",
+          "vsync": "7848",
+          "timestamp": "8089097988",
+          "copy_ticks": "4724285",
+          "power_off": "0",
+          "source_checked": "1",
+          "source_match": "1"
+        },
+        "scan": {
+          "token": "61745a1e16c8ab41",
+          "id": "1",
+          "pa": "0x9d400000",
+          "map_pa": "0x9d400000",
+          "map_bytes": "2764800",
+          "size": "0x50002d0",
+          "img": "0x50002d0",
+          "xy": "0",
+          "out": "0x50002d0",
+          "outxy": "0",
+          "fmt": "0x2243f",
+          "unpack": "0x20001",
+          "op": "0x80000000",
+          "qop": "0",
+          "ctl": "0x20020",
+          "start": "0",
+          "before_after": "1"
+        },
+        "blocks": 2734,
+        "raw_file": "scanout-00000001.bgr",
+        "png_file": "scanout-00000001.png",
+        "raw_sha256": "59bb1aa059580c678bb9e35731c066e1a883e8ce645a50172b7a2c38d96266fd",
+        "png_sha256": "3902559110ffee1182d7590f7feec0cbd94a91919e1334853556f0851597ef51",
+        "pixel_values_preserved": true,
+        "verified": true,
+        "optical_panel_verified": false
+      }
+    ],
+    "verified": true,
+    "optical_panel_verified": false,
+    "current_boot_source_and_payload_checked": true,
+    "format": "BGR888",
+    "width": 720,
+    "height": 1280
+  },
+  "inspector_sha256": "5df7fafa4e24c464975ba6d698c3a33dd7c4b54b0ee61f7e8eac738533e93adb"
+}
