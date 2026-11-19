@@ -5,7 +5,7 @@
 #include <pthread.h>
 struct sweetgl_ctx;
 struct st_context;
-typedef struct SweetMetalShaderCache {GLuint copy[5],decode[4],encode[8],clear[5],lut;} SweetMetalShaderCache;
+typedef struct SweetMetalShaderCache {GLuint copy[5],decode[4],encode[8],clear[5],lut,depth_clear;} SweetMetalShaderCache;
 static inline void sweet_metal_shader_cache_dispose(SweetMetalShaderCache *cache)
 {
     for(unsigned i=0;i<5;++i){if(cache->copy[i])glDeleteProgram(cache->copy[i]);cache->copy[i]=0;}
@@ -13,6 +13,7 @@ static inline void sweet_metal_shader_cache_dispose(SweetMetalShaderCache *cache
     for(unsigned i=0;i<8;++i){if(cache->encode[i])glDeleteProgram(cache->encode[i]);cache->encode[i]=0;}
     for(unsigned i=0;i<5;++i){if(cache->clear[i])glDeleteProgram(cache->clear[i]);cache->clear[i]=0;}
     if(cache->lut)glDeleteTextures(1,&cache->lut);cache->lut=0;
+    if(cache->depth_clear)glDeleteProgram(cache->depth_clear);cache->depth_clear=0;
 }
 struct SweetMetalProgram {
     struct sweetgl_ctx *context;

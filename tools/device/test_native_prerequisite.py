@@ -36,6 +36,11 @@ class NativePrerequisite(unittest.TestCase):
                 self.assertEqual(prerequisites(record,args)['native'],self.proof);replay.assert_called_once_with('native',self.resources,'1'*64,729)
             wrong=copy.deepcopy(self.proof);wrong['native_run_log_sha256']='0'*64
             with patch('run_trial.verify_native_prerequisite',return_value=wrong),self.assertRaisesRegex(AssertionError,'Embedded native proof'):prerequisites(record,args)
+    def test_new_depth_backend_rejects_old_full_native_proof(self):
+        resources=copy.deepcopy(self.resources);resources['native_depth32_attachment']=True
+        proof=copy.deepcopy(self.proof);proof['native_tests']+=['AIR_narrow','AIR_half','Metal_MRT','AIR_sampler','Program_cache','AIR_static_half','Clear_cache','IR3_cache']
+        with self.assertRaisesRegex(AssertionError,'Depth32'):validate(proof,resources)
+        proof['native_tests'].append('Metal_depth32');validate(proof,resources)
     def test_current_log_identity(self):
         p=self.proof;token='f'*16
         scope='\n'.join(['SWEET LOOP LIVE proto=1 token='+token,'SWEET ENV: AegirPoster += DYLD_INSERT_LIBRARIES=/dev/sglram/e',

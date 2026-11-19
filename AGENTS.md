@@ -16,6 +16,8 @@
 
 随后r4 observer12773784／149920B（26类environment／animation）自身RAMCPU93a7b9a5通过／38.454秒；GPU21d075ec在guard2/2后USB open拒绝，wire下载／boot均0，STOP_ERROR保持。r5 observer9e09ba1d／149984B（27类，另加PRRenderer.environment／返回对象ID）RAMCPUe6788a5d在guard test4退出1，无boot-wire／LIVE，未获得CPU先验，不得发GPU或重发。当前仍Sony fastboot／无worker，独立健康30.016秒通过；bulk-free单次claim/release观察正常，不能据此放行旧失败包。只读工具usb_open_observation.py输出精确阶段；已验boot_once SHAe862e430保持。原环境路由尚未实机取样，见USB拒绝及METAL-REQUEST-OBSERVATION。
 
+当前源码Depth32候选GLES1720c1df（14766032B）／Metald5c89a2c（786976B）／source-map36e8fae9／reference observer97e03083，仅offline／host验收，未替代已验CA基线。新增Depth32原页面导入／GPU draw清深度／native depth-stencil state与immutable快照；host Mesa2382draw／246636像素、Mac原生ASan／UBSan和ARM64通过。新CPU bundlee57b450d已offline83源audit未发送；新库必须自身CPU／GLES9／native17（新增Metal_depth32）／PNG6，旧native16拒绝。depth probe29phase／74240B／38744Bguard／26100B读回／原handle与fence／final0；无实际证据不提升。模板附件／MSAA／sampled depth／Depth-XR有序组合未接入，原环境／壁纸仍未完成。见METAL-DEPTH-STENCIL及depth-stencil-r1-offline-proof。
+
 ## 硬件与返回
 
 - 仅Sony BH905ND69G；所有fastboot设备命令必须带 `-s BH905ND69G`。

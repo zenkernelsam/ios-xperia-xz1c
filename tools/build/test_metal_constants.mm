@@ -2,6 +2,7 @@
 #define SWEET_METAL_HOST_TEST 1
 #import "../../gpu/metal/MetalResources.mm"
 #include <assert.h>
+#include "DepthBackendHostStub.h"
 #include <map>
 #include <string>
 static std::map<uint32_t,SweetMetalBacking> backing;static uint32_t nextHandle=1,dispatched;

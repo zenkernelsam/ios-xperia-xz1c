@@ -199,6 +199,11 @@ def load(folder,expected=None):
                 sources.add('gpu/diagnostics/MetalIR3CacheProbe.h')
                 assert observer.get('Clear_cache_probe') and observer.get('AIR_constants_probe') and observer['IR3_cache_phases']==3
                 assert observer['metal_resources'].get('native_IR3_variant_cache')
+            if observer.get('depth32_probe'):
+                sources.add('gpu/diagnostics/MetalDepth32Probe.h')
+                assert observer.get('IR3_cache_probe') and observer.get('AIR_render_probe') and observer['target_process']=='backboardd'
+                assert observer['depth32_probe_phases']==29 and observer['depth32_original_pages_guards_and_compare_required']
+                assert observer['metal_resources'].get('native_depth32_attachment')
             assert set(observer['source_files'])==sources
             assert observer['source_files'][observer['source']]==observer['source_sha256']
     if 'metal_resources' in m:
@@ -215,6 +220,8 @@ def load(folder,expected=None):
         if resources.get('AIR_compute_pipeline'):
             air=resources['AIR_frontend'];assert air['actual_AIR_stage_translation_verified'] and air['forced_legacy_interface_host_test_passed']
             assert not air['llvm_import_audit']['missing_target_imports']
+        if resources.get('native_depth32_attachment'):
+            assert observer.get('depth32_probe') or observer.get('registration_only')
         assert m['files']['exception_observe.dylib']['sha256']==observer['library_sha256']
         if resources.get('requires_source_scoped_cache'):assert observer.get('program_cache_scope'),'Source-scoped resource package lacks its matching root'
     assert set(m['files'])==names
@@ -230,6 +237,9 @@ def load(folder,expected=None):
     if m['frontend_build_binding'].get('CA_matrix_revision'):
         assert m['frontend_build_binding']['CA_matrix_revision']==1 and m['frontend_build_binding']['GLES_suite_tests']==9
         assert all(path in source for path in ('ca_matrix_probe.c','CAMatrixProbeValues.h','CAMatrixShaders.h','QuartzCoreMatrixLayout.h'))
+    if m['frontend_build_binding'].get('depth32_attachment_revision'):
+        assert m['frontend_build_binding']['depth32_attachment_revision']==1 and m['frontend_build_binding']['depth_stencil_state_mapping']
+        assert all(path in source for path in ('MetalDepthAttachment.h','MetalDepthStencilRules.h','DepthStencilGLES.h','Depth32ClearGLES.h'))
     for path,digest in source.items():
         path=Path(path);assert not path.is_absolute() and '..' not in path.parts
         assert re.fullmatch('[0-9a-f]{64}',digest)

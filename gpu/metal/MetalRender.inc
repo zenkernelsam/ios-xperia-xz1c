@@ -24,14 +24,15 @@
 @end
 @interface SweetMTLRenderPipeline : NSObject <MTLRenderPipelineState> {
 @public SweetMTLDevice *_owner;SweetMTLFunction *_vertex,*_fragment;SweetMetalProgram *_program;
-    MTLRenderPipelineDescriptor *_descriptor;
+    MTLRenderPipelineDescriptor *_descriptor;MTLPixelFormat _depthFormat;
 }
 - (instancetype)initWithOwner:(SweetMTLDevice *)owner descriptor:(MTLRenderPipelineDescriptor *)descriptor error:(NSError **)error;
 @end
 @interface SweetMTLRenderEncoder : NSObject <MTLRenderCommandEncoder> {
     SweetMTLCommandBuffer *_commands;SweetMTLTexture *_target;NSArray *_targets;SweetMTLRenderPipeline *_pipeline;
     NSMutableDictionary *_vertexBuffers,*_fragmentBuffers,*_vertexTextures,*_fragmentTextures,*_vertexSamplers,*_fragmentSamplers;
-    SweetRenderPass _pass;SweetRenderDraw _draw;BOOL _ended,_drew;NSString *_label;
+    SweetRenderPass _pass;SweetRenderDraw _draw;SweetRenderDepthPass _depthPass;SweetMTLTexture *_depthTarget;SweetDepthStencilState _depthState;
+    BOOL _ended,_drew;NSString *_label;
 }
 - (instancetype)initWithCommands:(SweetMTLCommandBuffer *)commands descriptor:(MTLRenderPassDescriptor *)descriptor;
 @end
@@ -41,10 +42,12 @@
 {
     if(!(self=[super init]))return nil;
     uint64_t total=0;
+    bool depth=d && d.pixelFormat==MTLPixelFormatDepth32Float;
     if(![buffer isKindOfClass:[SweetMTLBuffer class]] || !d || d.textureType!=MTLTextureType2D || d.depth!=1 || d.arrayLength!=1 || d.mipmapLevelCount>15 ||
         d.sampleCount!=1 || !sweet_metal_shared_options(d.resourceOptions&~MTLResourceStorageModeMask) ||
         (d.storageMode!=MTLStorageModeShared && d.storageMode!=MTLStorageModePrivate) ||
         (d.usage&~(MTLTextureUsageShaderRead|MTLTextureUsageRenderTarget)) ||
+        (depth && (d.mipmapLevelCount!=1 || d.usage!=MTLTextureUsageRenderTarget || !sweetgl_metal_depth32_supported())) ||
         !sweet_texture_chain(d.width,d.height,(uint32_t)d.pixelFormat,offset,pitch,d.mipmapLevelCount,buffer.length,_levels,total)){
         [self release];return nil;}
     _layout=_levels[0];_levelCount=(uint32_t)d.mipmapLevelCount;_buffer=[buffer retain];_format=d.pixelFormat;_usage=d.usage;_surfaceOptions=d.resourceOptions&~MTLResourceCPUCacheModeMask;return self;
@@ -53,7 +56,7 @@
 {
     if(!(self=[super init]))return nil;
     if(surface)_surface=(IOSurfaceRef)CFRetain(surface);
-    unsigned pixel=d?sweet_texture_pixel_bytes((uint32_t)d.pixelFormat):0;bool valid=owner && d && surface && !plane && !IOSurfaceGetPlaneCount(surface) &&
+    unsigned pixel=d?sweet_texture_pixel_bytes((uint32_t)d.pixelFormat):0;bool valid=owner && d && d.pixelFormat!=MTLPixelFormatDepth32Float && surface && !plane && !IOSurfaceGetPlaneCount(surface) &&
         d.textureType==MTLTextureType2D && d.depth==1 && d.arrayLength==1 && d.sampleCount==1 && d.mipmapLevelCount<=15 &&
         (d.storageMode==MTLStorageModeShared || d.storageMode==MTLStorageModePrivate) &&
         sweet_metal_shared_options(d.resourceOptions&~MTLResourceStorageModeMask) &&
@@ -190,12 +193,12 @@ static bool render_entry(SweetMTLFunction *function,unsigned stage,GPU::Compiler
     if(!owner || !d){if(error)*error=metal_compile_error("Render descriptor and device required");[self release];return nil;}
     auto vertex=(SweetMTLFunction *)d.vertexFunction,fragment=(SweetMTLFunction *)d.fragmentFunction;
     auto color=d.colorAttachments[0];bool valid=owner && d && [vertex isKindOfClass:[SweetMTLFunction class]] && [fragment isKindOfClass:[SweetMTLFunction class]] && vertex.device==owner && fragment.device==owner && d.rasterSampleCount==1 &&
-        d.depthAttachmentPixelFormat==MTLPixelFormatInvalid && d.stencilAttachmentPixelFormat==MTLPixelFormatInvalid &&
+        (d.depthAttachmentPixelFormat==MTLPixelFormatInvalid || (d.depthAttachmentPixelFormat==MTLPixelFormatDepth32Float && sweetgl_metal_depth32_supported())) && d.stencilAttachmentPixelFormat==MTLPixelFormatInvalid &&
         !d.alphaToCoverageEnabled && !d.alphaToOneEnabled && d.rasterizationEnabled && !d.vertexDescriptor.layouts[0].stride &&
-        sweet_texture_pixel_bytes((uint32_t)color.pixelFormat);
+        color.pixelFormat!=MTLPixelFormatDepth32Float && sweet_texture_pixel_bytes((uint32_t)color.pixelFormat);
     SweetRenderPipelineConfig config={};
     if(valid)for(unsigned i=0;i<8;++i){auto c=d.colorAttachments[i];if(c.pixelFormat==MTLPixelFormatInvalid)continue;
-        if(!sweet_texture_pixel_bytes((uint32_t)c.pixelFormat)){valid=false;break;}config.color_mask|=1u<<i;
+        if(c.pixelFormat==MTLPixelFormatDepth32Float || !sweet_texture_pixel_bytes((uint32_t)c.pixelFormat)){valid=false;break;}config.color_mask|=1u<<i;
         SweetRenderColorConfig state={(uint32_t)c.pixelFormat,(uint32_t)c.blendingEnabled,(uint32_t)c.sourceRGBBlendFactor,(uint32_t)c.destinationRGBBlendFactor,(uint32_t)c.rgbBlendOperation,
             (uint32_t)c.sourceAlphaBlendFactor,(uint32_t)c.destinationAlphaBlendFactor,(uint32_t)c.alphaBlendOperation,(uint32_t)c.writeMask};
         if(state.source_rgb>14 || state.destination_rgb>14 || state.source_alpha>14 || state.destination_alpha>14 || state.operation_rgb>4 || state.operation_alpha>4 || state.write_mask>15){valid=false;diagnostic="Unsupported color attachment blend/mask";break;}
@@ -219,7 +222,7 @@ static bool render_entry(SweetMTLFunction *function,unsigned stage,GPU::Compiler
     char message[4096]={0};if(valid)_program=sweetgl_metal_render_create(vertex_source.c_str(),fragment_source.c_str(),&config,message,sizeof(message));
     if(!_program){if(diagnostic.empty())diagnostic=message;if(diagnostic.empty())diagnostic="Render descriptor or actual AIR interface is unsupported";
         if(error)*error=metal_compile_error(diagnostic);[self release];return nil;}
-    _owner=[owner retain];_vertex=[vertex retain];_fragment=[fragment retain];_descriptor=[d copy];return self;
+    _owner=[owner retain];_vertex=[vertex retain];_fragment=[fragment retain];_descriptor=[d copy];_depthFormat=d.depthAttachmentPixelFormat;return self;
 }
 - (void)dealloc{sweetgl_metal_program_destroy(_program);[_owner release];[_vertex release];[_fragment release];[_descriptor release];[super dealloc];}
 - (id<MTLDevice>)device{return _owner;}
@@ -233,13 +236,13 @@ static bool render_entry(SweetMTLFunction *function,unsigned stage,GPU::Compiler
 {
     if(!(self=[super init]))return nil;auto target=(SweetMTLTexture *)d.colorAttachments[0].texture;
     bool valid=d && [target isKindOfClass:[SweetMTLTexture class]] && target.device==commands.device && (!target.usage || (target.usage&MTLTextureUsageRenderTarget)) &&
-        !d.depthAttachment.texture && !d.stencilAttachment.texture && !d.colorAttachments[0].resolveTexture && d.colorAttachments[0].level==0 &&
+        !d.stencilAttachment.texture && !d.colorAttachments[0].resolveTexture && d.colorAttachments[0].level==0 &&
         d.colorAttachments[0].slice==0 && d.colorAttachments[0].depthPlane==0 && d.colorAttachments[0].loadAction<=MTLLoadActionClear &&
         d.colorAttachments[0].storeAction<=MTLStoreActionStore;
     NSMutableArray *targets=[NSMutableArray new];
     if(valid)for(unsigned i=0;i<8;++i){auto a=d.colorAttachments[i];auto texture=(SweetMTLTexture *)a.texture;
         [targets addObject:texture?texture:(id)[NSNull null]];if(!texture)continue;
-        valid=[texture isKindOfClass:[SweetMTLTexture class]] && texture.device==commands.device && (!texture.usage || (texture.usage&MTLTextureUsageRenderTarget)) &&
+        valid=[texture isKindOfClass:[SweetMTLTexture class]] && texture.pixelFormat!=MTLPixelFormatDepth32Float && texture.device==commands.device && (!texture.usage || (texture.usage&MTLTextureUsageRenderTarget)) &&
             texture.width==target.width && texture.height==target.height && !a.resolveTexture && !a.level && !a.slice && !a.depthPlane && a.loadAction<=MTLLoadActionClear && a.storeAction<=MTLStoreActionStore;
         if(!valid)break;
         for(unsigned j=0;j<i && valid;++j){id previous=targets[j];if(previous==[NSNull null])continue;auto other=(SweetMTLTexture *)previous;
@@ -249,13 +252,26 @@ static bool render_entry(SweetMTLFunction *function,unsigned stage,GPU::Compiler
         if(!valid)break;_pass.color_mask|=1u<<i;
         if(i){auto binding=[texture bindingForIndex:i stage:0];_pass.colors[i-1]={binding,(uint32_t)a.loadAction,(uint32_t)a.storeAction,{a.clearColor.red,a.clearColor.green,a.clearColor.blue,a.clearColor.alpha}};}
     }
+    auto depth=(SweetMTLTexture *)d.depthAttachment.texture;
+    if(valid && depth){auto a=d.depthAttachment;
+        valid=[depth isKindOfClass:[SweetMTLTexture class]] && depth.device==commands.device && depth.pixelFormat==MTLPixelFormatDepth32Float &&
+            depth.usage==MTLTextureUsageRenderTarget && depth.width==target.width && depth.height==target.height && !depth->_surface && depth.mipmapLevelCount==1 &&
+            !a.resolveTexture && !a.level && !a.slice && !a.depthPlane && a.loadAction<=MTLLoadActionClear && a.storeAction<=MTLStoreActionStore &&
+            std::isfinite(a.clearDepth) && a.clearDepth>=0 && a.clearDepth<=1;
+        for(id item in targets)if(valid && item!=[NSNull null]){auto color=(SweetMTLTexture *)item;
+            if([color sweetBacking].handle==[depth sweetBacking].handle){uint64_t begin=color->_layout.offset,end=begin+color->_layout.bytes;
+                if(begin<depth->_layout.offset+depth->_layout.bytes && depth->_layout.offset<end)valid=false;}}
+        if(valid){_depthPass.target=[depth bindingForIndex:0 stage:0];_depthPass.load_action=(uint32_t)a.loadAction;
+            _depthPass.store_action=(uint32_t)a.storeAction;_depthPass.clear_depth=a.clearDepth;_depthTarget=[depth retain];}
+    }
     if(!valid){[targets release];[self release];return nil;}_targets=[targets copy];[targets release];_commands=[commands retain];_target=[target retain];
     auto attachment=d.colorAttachments[0];_pass.target=[target bindingForIndex:0 stage:0];_pass.load_action=(uint32_t)attachment.loadAction;_pass.store_action=(uint32_t)attachment.storeAction;
     _pass.clear[0]=attachment.clearColor.red;_pass.clear[1]=attachment.clearColor.green;_pass.clear[2]=attachment.clearColor.blue;_pass.clear[3]=attachment.clearColor.alpha;
     _draw={(uint32_t)MTLPrimitiveTypeTriangle,0,0,1,(uint32_t)MTLCullModeNone,(uint32_t)MTLWindingClockwise,0,0,(double)target.width,(double)target.height,0,1,0,0,(uint32_t)target.width,(uint32_t)target.height};
+    _depthState=sweet_depth_stencil_default();
     _vertexBuffers=[NSMutableDictionary new];_fragmentBuffers=[NSMutableDictionary new];_vertexTextures=[NSMutableDictionary new];_fragmentTextures=[NSMutableDictionary new];_vertexSamplers=[NSMutableDictionary new];_fragmentSamplers=[NSMutableDictionary new];return self;
 }
-- (void)dealloc{[_commands release];[_target release];[_targets release];[_pipeline release];[_vertexBuffers release];[_fragmentBuffers release];[_vertexTextures release];[_fragmentTextures release];[_vertexSamplers release];[_fragmentSamplers release];[_label release];[super dealloc];}
+- (void)dealloc{[_commands release];[_target release];[_targets release];[_depthTarget release];[_pipeline release];[_vertexBuffers release];[_fragmentBuffers release];[_vertexTextures release];[_fragmentTextures release];[_vertexSamplers release];[_fragmentSamplers release];[_label release];[super dealloc];}
 - (id<MTLDevice>)device{return _commands.device;}
 - (void)doesNotRecognizeSelector:(SEL)selector
 {fprintf(stderr,"SWEET METAL missing class=render_encoder selector=%s original_exception=1\n",sel_getName(selector));[super doesNotRecognizeSelector:selector];}
@@ -264,6 +280,18 @@ static bool render_entry(SweetMTLFunction *function,unsigned stage,GPU::Compiler
 - (void)setRenderPipelineState:(id<MTLRenderPipelineState>)pipeline
 {if(_ended || ![pipeline isKindOfClass:[SweetMTLRenderPipeline class]] || pipeline.device!=self.device)[NSException raise:NSInvalidArgumentException format:@"Invalid Metal render pipeline owner"];
     [pipeline retain];[_pipeline release];_pipeline=(SweetMTLRenderPipeline *)pipeline;}
+- (void)setDepthStencilState:(id<MTLDepthStencilState>)state
+{
+    if(_ended || (state && (![state isKindOfClass:[SweetMTLDepthStencilState class]] || state.device!=self.device)))
+        [NSException raise:NSInvalidArgumentException format:@"Invalid Metal depth/stencil state owner"];
+    uint32_t front=_depthState.front_reference,back=_depthState.back_reference;
+    _depthState=state?((SweetMTLDepthStencilState *)state)->_state:sweet_depth_stencil_default();
+    _depthState.front_reference=front;_depthState.back_reference=back;
+}
+- (void)setStencilReferenceValue:(uint32_t)value{[self setStencilFrontReferenceValue:value backReferenceValue:value];}
+- (void)setStencilFrontReferenceValue:(uint32_t)front backReferenceValue:(uint32_t)back
+{if(_ended)[NSException raise:NSInvalidArgumentException format:@"Metal render encoder ended"];
+    _depthState.front_reference=front&255u;_depthState.back_reference=back&255u;}
 - (void)setBlendColorRed:(float)red green:(float)green blue:(float)blue alpha:(float)alpha
 {if(_ended || !std::isfinite(red) || !std::isfinite(green) || !std::isfinite(blue) || !std::isfinite(alpha))[NSException raise:NSInvalidArgumentException format:@"Invalid blend constant"];
     _draw.blend_color[0]=red;_draw.blend_color[1]=green;_draw.blend_color[2]=blue;_draw.blend_color[3]=alpha;}
@@ -304,24 +332,32 @@ static bool render_entry(SweetMTLFunction *function,unsigned stage,GPU::Compiler
 {
     if(_ended || !_pipeline || primitive>MTLPrimitiveTypeTriangleStrip || !count || start>1048576 || count>1048576-start || !instances || instances>65535 || count>16777216/instances)
         [NSException raise:NSInvalidArgumentException format:@"Invalid Metal draw range/state"];
+    if(_pipeline->_depthFormat!=(_depthTarget?_depthTarget.pixelFormat:MTLPixelFormatInvalid))
+        [NSException raise:NSInvalidArgumentException format:@"Metal pipeline depth format differs from attachment"];
+    if(!sweet_depth_stencil_valid(&_depthState))[NSException raise:NSInvalidArgumentException format:@"Invalid depth/stencil state snapshot"];
+    _depthPass.state=_depthState;
     _draw.primitive=(uint32_t)primitive;_draw.first=(uint32_t)start;_draw.count=(uint32_t)count;_draw.instances=(uint32_t)instances;
     @autoreleasepool{NSData *pass=[NSData dataWithBytes:&_pass length:sizeof(_pass)],*draw=[NSData dataWithBytes:&_draw length:sizeof(_draw)];
         if(![_commands appendOperation:@{@"renderPipeline":_pipeline,@"target":_target,@"targets":_targets,@"pass":pass,@"draw":draw,
+            @"depthTarget":_depthTarget?(id)_depthTarget:[NSNull null],@"depthPass":[NSData dataWithBytes:&_depthPass length:sizeof(_depthPass)],
             @"vertexBuffers":[NSDictionary dictionaryWithDictionary:_vertexBuffers],@"fragmentBuffers":[NSDictionary dictionaryWithDictionary:_fragmentBuffers],
             @"vertexTextures":[NSDictionary dictionaryWithDictionary:_vertexTextures],@"fragmentTextures":[NSDictionary dictionaryWithDictionary:_fragmentTextures],
             @"vertexSamplers":[NSDictionary dictionaryWithDictionary:_vertexSamplers],@"fragmentSamplers":[NSDictionary dictionaryWithDictionary:_fragmentSamplers]}])
             [NSException raise:NSInternalInconsistencyException format:@"Render command buffer no longer writable"];}
     _drew=YES;_pass.load_action=MTLLoadActionLoad;for(unsigned i=1;i<8;++i)_pass.colors[i-1].load_action=MTLLoadActionLoad;
+    if(_depthTarget)_depthPass.load_action=MTLLoadActionLoad;
 }
 - (void)drawPrimitives:(MTLPrimitiveType)p vertexStart:(NSUInteger)start vertexCount:(NSUInteger)count{[self drawPrimitives:p vertexStart:start vertexCount:count instanceCount:1];}
 - (void)endEncoding
 {
     if(_ended)[NSException raise:NSInternalInconsistencyException format:@"Metal render encoder already ended"];
     bool clear=false;for(unsigned i=0;i<8;++i)if(_pass.color_mask&(1u<<i))clear|=sweet_render_attachment(&_pass,i).load_action==MTLLoadActionClear;
+    clear|=_depthTarget && _depthPass.load_action==MTLLoadActionClear;
     if(!_drew && clear){@autoreleasepool{
-        if(![_commands appendOperation:@{@"renderClear":@YES,@"target":_target,@"targets":_targets,@"pass":[NSData dataWithBytes:&_pass length:sizeof(_pass)]}])
+        if(![_commands appendOperation:@{@"renderClear":@YES,@"target":_target,@"targets":_targets,@"pass":[NSData dataWithBytes:&_pass length:sizeof(_pass)],
+            @"depthTarget":_depthTarget?(id)_depthTarget:[NSNull null],@"depthPass":[NSData dataWithBytes:&_depthPass length:sizeof(_depthPass)]}])
             [NSException raise:NSInternalInconsistencyException format:@"Render clear command buffer not writable"];}}
-    _ended=YES;[_vertexBuffers removeAllObjects];[_fragmentBuffers removeAllObjects];[_vertexTextures removeAllObjects];[_fragmentTextures removeAllObjects];[_vertexSamplers removeAllObjects];[_fragmentSamplers removeAllObjects];[_pipeline release];_pipeline=nil;[_target release];_target=nil;[_targets release];_targets=nil;[_commands finishEncoder];
+    _ended=YES;[_vertexBuffers removeAllObjects];[_fragmentBuffers removeAllObjects];[_vertexTextures removeAllObjects];[_fragmentTextures removeAllObjects];[_vertexSamplers removeAllObjects];[_fragmentSamplers removeAllObjects];[_pipeline release];_pipeline=nil;[_target release];_target=nil;[_targets release];_targets=nil;[_depthTarget release];_depthTarget=nil;[_commands finishEncoder];
 }
 @end
 static id<MTLRenderCommandEncoder> create_render_encoder(SweetMTLCommandBuffer *commands,MTLRenderPassDescriptor *descriptor)
@@ -335,24 +371,36 @@ static NSError *execute_metal_render(NSDictionary *operation,id<MTLDevice> devic
     for(unsigned i=0;i<8;++i){id object=targets[i];bool absent=object==[NSNull null];if(absent!=( !(pass.color_mask&(1u<<i))))return metal_queue_error(@"Render attachment mask differs from retained targets");if(absent)continue;
         auto texture=(SweetMTLTexture *)object;if(![texture isKindOfClass:[SweetMTLTexture class]] || texture.device!=device)return metal_queue_error(@"Render attachment owner invalid");
         auto actual=[texture bindingForIndex:i stage:0];auto saved=sweet_render_attachment(&pass,i);if(memcmp(&actual,&saved.target,sizeof(actual)))return metal_queue_error(@"Render target snapshot differs from retained backing");}
-    if(operation[@"renderClear"]){int error=sweetgl_metal_render_clear(&pass,sequence);return error?metal_queue_error(@"GPU render clear failed"):nil;}
+    id retainedDepth=operation[@"depthTarget"];SweetMTLTexture *depth=retainedDepth==[NSNull null]?nil:(SweetMTLTexture *)retainedDepth;
+    NSData *depthData=operation[@"depthPass"];SweetRenderDepthPass depthPass={};
+    if(!retainedDepth || depthData.length!=sizeof(depthPass))return metal_queue_error(@"Render depth snapshot missing or ABI invalid");
+    memcpy(&depthPass,depthData.bytes,sizeof(depthPass));
+    if(depth){if(![depth isKindOfClass:[SweetMTLTexture class]] || depth.device!=device || depth.pixelFormat!=MTLPixelFormatDepth32Float)
+            return metal_queue_error(@"Render depth attachment owner or format invalid");
+        auto actual=[depth bindingForIndex:0 stage:0];if(memcmp(&actual,&depthPass.target,sizeof(actual)))return metal_queue_error(@"Render depth snapshot differs from original retained backing");}
+    else if(depthPass.target.handle)return metal_queue_error(@"Unexpected depth backing without retained attachment");
+    if(operation[@"renderClear"]){int error=depth?sweetgl_metal_render_clear_depth(&pass,&depthPass,sequence):sweetgl_metal_render_clear(&pass,sequence);return error?metal_queue_error(@"GPU render clear failed"):nil;}
     auto pipeline=(SweetMTLRenderPipeline *)operation[@"renderPipeline"];if(![pipeline isKindOfClass:[SweetMTLRenderPipeline class]] || pipeline.device!=device || drawData.length!=sizeof(SweetRenderDraw))return metal_queue_error(@"Render pipeline/draw ABI invalid");
+    if(pipeline->_depthFormat!=(depth?depth.pixelFormat:MTLPixelFormatInvalid))return metal_queue_error(@"Render depth pipeline/pass format differs");
     SweetRenderDraw draw;memcpy(&draw,drawData.bytes,sizeof(draw));SweetShaderBufferBinding buffers[16]={};SweetShaderTextureBinding textures[32]={};SweetShaderSamplerBinding samplers[16]={};unsigned n=0,t=0,s=0;
     for(unsigned stage=1;stage<=2;++stage){NSDictionary *bindings=operation[stage==1?@"vertexBuffers":@"fragmentBuffers"];
         for(NSNumber *key in bindings){NSDictionary *binding=bindings[key];auto buffer=(SweetMTLBuffer *)binding[@"buffer"];uint64_t offset=[binding[@"offset"] unsignedLongLongValue];
             if(n>=16 || key.unsignedLongLongValue>=8 || ![buffer isKindOfClass:[SweetMTLBuffer class]] || buffer.device!=device ||
                 offset>=buffer.length)return metal_queue_error(@"Render buffer owner/range invalid");
             for(id object in targets)if(object!=[NSNull null] && buffer->_backing.handle==[(SweetMTLTexture *)object sweetBacking].handle)return metal_queue_error(@"Render buffer aliases a color target");
+            if(depth && buffer->_backing.handle==[depth sweetBacking].handle)return metal_queue_error(@"Render buffer aliases depth target");
             buffers[n++]={buffer->_backing.handle,key.unsignedIntValue+(stage==2?8:0),offset,buffer.length-offset};}
         bindings=operation[stage==1?@"vertexTextures":@"fragmentTextures"];for(NSNumber *key in bindings){auto texture=(SweetMTLTexture *)bindings[key];
             if(t>=32 || ![texture isKindOfClass:[SweetMTLTexture class]] || texture.device!=device)return metal_queue_error(@"Render texture owner invalid");
             for(id object in targets)if(object!=[NSNull null]){auto other=(SweetMTLTexture *)object;
                 if([texture sweetBacking].handle==[other sweetBacking].handle || (texture->_surface && texture->_surface==other->_surface))return metal_queue_error(@"Render texture aliases a color target");}
+            if(depth && [texture sweetBacking].handle==[depth sweetBacking].handle)return metal_queue_error(@"Render sampled texture aliases depth target");
             textures[t++]=[texture bindingForIndex:key.unsignedIntValue stage:stage];}
         bindings=operation[stage==1?@"vertexSamplers":@"fragmentSamplers"];for(NSNumber *key in bindings){auto sampler=(SweetMTLSampler *)bindings[key];
             if(s>=16 || ![sampler isKindOfClass:[SweetMTLSampler class]] || sampler.device!=device)return metal_queue_error(@"Render sampler owner invalid");
             samplers[s]=sampler->_binding;samplers[s].index=key.unsignedIntValue;samplers[s].stage=stage;++s;}}
-    int result=sweetgl_metal_render_draw(pipeline->_program,&pass,&draw,buffers,n,textures,t,samplers,s,sequence);
+    int result=depth?sweetgl_metal_render_draw_depth(pipeline->_program,&pass,&depthPass,&draw,buffers,n,textures,t,samplers,s,sequence):
+        sweetgl_metal_render_draw(pipeline->_program,&pass,&draw,buffers,n,textures,t,samplers,s,sequence);
     return result?metal_queue_error([NSString stringWithFormat:@"AIR render failed result=%d",result]):nil;
 }
 static BOOL record_metal_mipmaps(SweetMTLCommandBuffer *commands,id<MTLTexture> input)
@@ -361,7 +409,7 @@ static BOOL record_metal_mipmaps(SweetMTLCommandBuffer *commands,id<MTLTexture> 
     fprintf(stderr,"SWEET METAL MIPMAP request class=%s width=%lu height=%lu levels=%lu format=%lu storage=%lu valid=%u\n",input?object_getClassName(input):"nil",
         (unsigned long)(valid?texture.width:0),(unsigned long)(valid?texture.height:0),(unsigned long)(valid?texture.mipmapLevelCount:0),
         (unsigned long)(valid?texture.pixelFormat:0),(unsigned long)(valid?texture.storageMode:0),valid);
-    if(!valid)return NO;SweetShaderTextureBinding binding=[texture bindingForIndex:0 stage:0];
+    if(!valid || texture.pixelFormat==MTLPixelFormatDepth32Float)return NO;SweetShaderTextureBinding binding=[texture bindingForIndex:0 stage:0];
     @autoreleasepool{return [commands appendOperation:@{@"mipmapTexture":texture,@"binding":[NSData dataWithBytes:&binding length:sizeof(binding)]}];}
 }
 static NSError *execute_metal_mipmaps(NSDictionary *operation,id<MTLDevice> device,uint32_t *sequence,uint32_t *operations)

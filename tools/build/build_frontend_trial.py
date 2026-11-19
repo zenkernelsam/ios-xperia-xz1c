@@ -29,6 +29,10 @@ binding={'source_files':sources,'mesa_dependencies':dependencies,'mesa_base':loc
 binding['XR_clear_decode_elision']=True
 binding['Clear_shader_context_cache']=True
 binding['render_target_observation_revision']=1
+if 'MetalDepthAttachment.h' in sources:
+    binding['depth32_attachment_revision']=1
+    binding['depth_stencil_state_mapping']=True
+    binding['actual_depth32_GPU_acceptance_pending']=True
 if 'QuartzCoreMatrixLayout.h' in sources:
     binding['CA_matrix_revision']=1
     binding['GLES_suite_tests']=9

@@ -28,5 +28,19 @@
       "bytes": 3948,
       "sha256": "51ceb29132fe9a88a2cd9a062bcaaa483107c693b48f28d470ed4d419523a4cf"
     }
+  },
+  "before_depth32_candidate": {
+    "AGENTS-before-depth32-candidate.md": {
+      "bytes": 7204,
+      "sha256": "3f0508f6459f19fa7e52e6f82ec98de3b98564b13d2c7b55468334df19291eb7"
+    },
+    "STATUS-before-depth32-candidate.md": {
+      "bytes": 10124,
+      "sha256": "a2b77ff9b06b8f58494756b0acdb363072efe995aea3c6da655a147d8be1c340"
+    },
+    "BUILD-before-depth32-candidate.md": {
+      "bytes": 12086,
+      "sha256": "9c3f039178fe2ab8e28d4f3ab9eb181c0500e3b42c33fd997298f85d936d820a"
+    }
   }
 }

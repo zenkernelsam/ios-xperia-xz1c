@@ -4,6 +4,8 @@ Sony BH905ND69G 当前停在 fastboot，无 controller／串口 worker／in-flig
 
 当前正式基线为 CA 矩阵修订 r1：
 
+正式源码另有尚未手机准入的Depth32候选，GLES1720c1df／Metald5c89a2c／source-map36e8fae9，仅离线构建和主机验证通过，未替换下表的已验基线。真实host Mesa2382draw／246636像素、Mac原生对象ASan／UBSan和ARM64前端／库／native17 probe构建通过；新CPU bundle已offline audit，仍未投递。模板附件／MSAA／depth-XR有序组合等继续缺口，见 [METAL-DEPTH-STENCIL](METAL-DEPTH-STENCIL.md)。
+
 | 输入 | 精确身份 |
 | --- | --- |
 | 内核 v730／83源 | `f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d`，20665112B |
