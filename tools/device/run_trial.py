@@ -1,7 +1,7 @@
 """One owned diagnostic stage, gated by real same-kernel prerequisites; no failure replay."""
 import argparse,hashlib,json,os,re,subprocess,time
 from pathlib import Path
-from controller import Artifact,Journal,LiveOps,write_json,execute
+from controller import Artifact,Journal,LiveOps,write_json,execute,checked_screen_capture_after
 from package_trial import ROOT,prove_payload
 from policy import LogPolicy,Decision,Refuse
 from procguard import LiveLock
@@ -144,6 +144,9 @@ def main():
     plan=json.loads((bundle/'plan.json').read_bytes())
     assert plan.get('screen_required',False)==('screen_snapshot_binding' in record), 'Plan screenshot requirement differs from the actual artifact'
     assert plan.get('screen_capture_after_seconds')==record.get('screen_capture_after_seconds'), 'Screenshot observation time differs'
+    if 'screen_capture_after_seconds' in record:
+        assert mode=='gpu' and 'screen_snapshot_binding' in record
+        checked_screen_capture_after(record['screen_capture_after_seconds'])
     if 'screen_snapshot_binding' in record:
         assert plan.get('camera_required') is False and plan.get('screen_timeout_seconds')==100
     proof=prerequisites(record,a)

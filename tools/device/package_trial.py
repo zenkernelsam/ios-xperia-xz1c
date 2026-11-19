@@ -6,7 +6,7 @@ sys.path.insert(0,str(ROOT/'tools'));import adt,mkpayload
 from diagnostic_candidate import configuration
 from ram_library import load as load_ram
 from native_proof import validate as validate_native,digest as native_digest
-from controller import Artifact,SHIM_SHA
+from controller import Artifact,SHIM_SHA,SCREEN_CAPTURE_TIMES,checked_screen_capture_after
 from numeric_boot_args import add_sampler
 def sha(data):return hashlib.sha256(data).hexdigest()
 def observer_environment(word,target):
@@ -73,7 +73,11 @@ def baseline(name,folder):
     reference=adt.serialize(tree)
     assert sha(reference)=='257076987411b50f037f70bf97524fae56ac2965e773c1bb8678d05d45480ba6'
     return raw,payload,reference,blob_data,payload[72:680].split(b'\0',1)[0].decode(),raw[4096:4096+ks]
-def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interval=None,screen_evidence=False,thread_sample=False):
+def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interval=None,screen_evidence=False,thread_sample=False,screen_after=None):
+    if screen_after is not None:
+        assert mode=='gpu' and screen_evidence, 'Screenshot timing is only for a GPU screen-evidence trial'
+        checked_screen_capture_after(screen_after)
+    capture_after=(45 if screen_after is None else screen_after) if mode=='gpu' and screen_evidence else None
     config=configuration(version)
     selected='gpu' if mode=='gpu' else 'ready' if mode in ('owner','ready') else 'private'
     raw,payload,reference,blobs,cmd,shim=baseline(selected,folder)
@@ -161,7 +165,7 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
     if screen_evidence:
         from scanout_snapshot import binding as screen_binding
         m['screen_snapshot_binding']=screen_binding(m)
-        if mode=='gpu':m['screen_capture_after_seconds']=45
+        if mode=='gpu':m['screen_capture_after_seconds']=capture_after
     (output/'artifacts.json').write_text(json.dumps({'target_serial':'BH905ND69G','pon_route':6,'artifacts':[m]},indent=2)+'\n')
     common=['SWEET LOOP LIVE proto=1 token='+token,'SWEET RMI4: F12 page=']
     if mode in ('private','ramcpu'):
@@ -271,7 +275,7 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
           'steps':[{'artifact_id':m['id'],'observe_seconds':observe,'stable_seconds':30,'return_seconds':120,'goals':common,
                     'return_evidence':'final-drain','on_pass':'stop','on_failure':'stop'}]}
     if screen_evidence:plan.update(screen_required=True,screen_timeout_seconds=100)
-    if mode=='gpu' and screen_evidence:plan['screen_capture_after_seconds']=45
+    if mode=='gpu' and screen_evidence:plan['screen_capture_after_seconds']=capture_after
     (output/'plan.json').write_text(json.dumps(plan,indent=2)+'\n')
     (output/'package-proof.json').write_text(json.dumps({'baseline':selected,'baseline_sha256':BASE_HASHES[selected],
        'baseline_payload_exact':True,'kernel_sha256':m['kernel_sha256'],'image_sha256':m['sha256'],'cmdline_bytes':len(cmd),
@@ -284,7 +288,8 @@ if __name__=='__main__':
     p.add_argument('--ram-package')
     p.add_argument('--owner-interval',type=int,choices=[90])
     p.add_argument('--screen-evidence',action='store_true')
+    p.add_argument('--screen-after',type=int,choices=SCREEN_CAPTURE_TIMES,help='GPU single-frame observation time; default 45 seconds')
     p.add_argument('--thread-sample',action='store_true')
     a=p.parse_args();out=Path(a.output).resolve();assert out.is_relative_to(ROOT/'build') and not out.exists();out.mkdir(parents=True)
-    m=prepare(a.mode,Path(a.kernel),Path(a.baselines),out,a.version,a.ram_package,a.owner_interval,a.screen_evidence,a.thread_sample)
+    m=prepare(a.mode,Path(a.kernel),Path(a.baselines),out,a.version,a.ram_package,a.owner_interval,a.screen_evidence,a.thread_sample,a.screen_after)
     print(json.dumps({k:m[k] for k in ('trial_mode','token','kernel_sha256','sha256','cmdline_bytes')}))

@@ -25,6 +25,12 @@ HERE = Path(__file__).resolve().parent
 PATCH = HERE.parent.parent
 IOS = PATCH
 SHIM_SHA = "e1369bff6498d6f03f4ae29559bb99ebc7f3f9a7eee71a0f0d6a9e68ff73d7c3"
+SCREEN_CAPTURE_TIMES = (45, 150)
+
+def checked_screen_capture_after(value):
+    if type(value) is not int or value not in SCREEN_CAPTURE_TIMES:
+        raise Refuse('Invalid screenshot observation time')
+    return value
 
 def write_json(path, data):
     path = Path(path); pending = path.with_name(path.name + ".new")
@@ -399,11 +405,15 @@ def validate_plan(plan):
     if not plan.get("steps"): raise Refuse("No experiment steps")
     if type(plan.get('screen_required', False)) is not bool or not 1 <= plan.get('screen_timeout_seconds', 100) <= 110:
         raise Refuse('Invalid screenshot evidence policy')
-    if 'screen_capture_after_seconds' in plan and (plan.get('screen_required') is not True or plan['screen_capture_after_seconds'] != 45):
-        raise Refuse('Invalid early screenshot policy')
+    if 'screen_capture_after_seconds' in plan:
+        if plan.get('screen_required') is not True:
+            raise Refuse('Screenshot observation time requires screen evidence')
+        checked_screen_capture_after(plan['screen_capture_after_seconds'])
     for step in plan["steps"]:
         if not 1 <= step.get("observe_seconds", 0) <= 14400 or not 1 <= step.get("return_seconds", 60) <= 120:
             raise Refuse("Invalid observation/return window")
+        if plan.get('screen_capture_after_seconds', 0) >= step['observe_seconds']:
+            raise Refuse('Screenshot must start inside the observation window')
         for regex in step.get("goals", []): re.compile(regex)
         if step.get("return_evidence") != "final-drain":
             raise Refuse("Current device plans require complete final-drain evidence")

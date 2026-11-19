@@ -10,7 +10,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from controller import validate_plan,LiveOps
 from policy import Refuse
-from run_trial import prerequisites
+from run_trial import prerequisites,DiagnosticOps
 from scanout_snapshot import binding
 from diagnostic_candidate import configuration
 
@@ -71,6 +71,48 @@ class ScreenGates(unittest.TestCase):
         ops=object.__new__(LiveOps);ops.screen_attempted=True;ops.screen_token='0011223344556677';ops.screen_result=None
         artifact=SimpleNamespace(token=ops.screen_token,data=self.record())
         with self.assertRaises(Refuse):ops.screen(None,artifact)
+
+    def test_late_frame_keeps_one_shot_return_and_observation_bounds(self):
+        plan=dict(target_serial='BH905ND69G',pon_route=6,max_cycles=1,budget_seconds=600,
+            screen_required=True,screen_timeout_seconds=100,steps=[dict(observe_seconds=240,
+                return_seconds=120,return_evidence='final-drain',on_pass='stop',on_failure='stop')])
+        for seconds in (45,150):
+            plan['screen_capture_after_seconds']=seconds
+            self.assertEqual(validate_plan(plan),1)
+        for invalid in (True,150.0,0,-1,46,149,180,300,'150'):
+            plan['screen_capture_after_seconds']=invalid
+            with self.subTest(invalid=invalid),self.assertRaises(Refuse):validate_plan(plan)
+        plan['screen_capture_after_seconds']=150;plan['steps'][0]['observe_seconds']=150
+        with self.assertRaises(Refuse):validate_plan(plan)
+        plan['steps'][0]['observe_seconds']=240;plan['screen_required']=False
+        with self.assertRaises(Refuse):validate_plan(plan)
+
+    def test_late_observation_dispatches_once_before_normal_return_decision(self):
+        now=[0.0];sent=[];delivered=[False]
+        ops=object.__new__(DiagnosticOps)
+        ops.screen_attempted=False;ops.directory=Path('absent-test-serial-directory')
+        ops.journal=SimpleNamespace(root=ops.directory,event=lambda *a,**k:None)
+        ops.capture_process=SimpleNamespace(process=SimpleNamespace(poll=lambda:None))
+        ops.check_stop=lambda:None
+        token='0123456789abcdef'
+        def lines():
+            if delivered[0]:return []
+            delivered[0]=True
+            return ['SWEET LOOP LIVE proto=1 token='+token,'native-ready']
+        ops.lines=lines
+        def capture(*args):
+            sent.append(now[0]);ops.screen_attempted=True
+            return {'verified':True}
+        ops.screen=capture
+        def sleep(seconds):now[0]+=1
+        artifact=SimpleNamespace(token=token,watchdog=420,
+            data={'trial_mode':'gpu','screen_capture_after_seconds':150})
+        step={'goals':['native-ready'],'stable_seconds':30,'observe_seconds':240}
+        with patch('run_trial.time.monotonic',side_effect=lambda:now[0]), \
+             patch('run_trial.time.sleep',side_effect=sleep),patch('run_trial.write_json'):
+            decision,live=ops.observe(artifact,step)
+        self.assertTrue(live);self.assertEqual(decision.kind,'PASS')
+        self.assertEqual(sent,[150.0]);self.assertEqual(now[0],180.0)
 
 
 if __name__=='__main__':unittest.main()

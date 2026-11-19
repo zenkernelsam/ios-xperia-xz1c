@@ -4,7 +4,7 @@
     "boot_once.py": "e862e430514f7aaceb5ac5b2037a19770ba91889cb0088438e925b920dcde83c",
     "capture.py": "6bf670ec0fd55b50ee5f83997931dee98549461435f89474dfd3b757e3b39c70",
     "clock_evidence.py": "0e7d7fcf93daf09af915b974c6b06a7165408bf1891ba553427330fcd089c42f",
-    "controller.py": "8b30bcbad47577ef106f55923978bdc21f329edf73717fe39461a87a1f74f3bc",
+    "controller.py": "c47972217cf27f75fa057b8ce8345116f01180d247ac018a9a49c43e8beb10b2",
     "exception_evidence.py": "c4b1cfd24ec2cc2a942b351797b6cab1445873350ca7b96be4540b03ce596921",
     "failed_queue_evidence.py": "a5b29da0bec03a5fc48270421712e8a392a2c8fba9f351a3d15cd98c0bf14bce",
     "failed_trial_evidence.py": "e7f7b26ab2b6530574323769db01f91ad2e2111abdee0e71ba3e2921f0997363",
@@ -17,13 +17,13 @@
     "metal_resource_evidence.py": "e3737afff830f8d7466fddf67f4980d33dc9cf54fe89079828aa603fa9ddd35c",
     "observe_fastboot.py": "7c82964e346fa9166bdbaee1b8d74905f8cf1b53d151b42ba68909dc2e82100b",
     "owner_metadata.py": "e0f4e4fa2d54381d63128a39fbcabfe6c3ab9468a99f44cd44c37d86af84d564",
-    "package_trial.py": "5dd118512110d50f594a853cf282c21d70df04e70a88758582783a2a8989d363",
+    "package_trial.py": "a2ce19ae63479fb3cf25ad852c381ca60a711b629cce02abdf93d870c887039e",
     "policy.py": "788151bcae524eb1dbb58e21743e957cf4ff2e819247dcf74db05e173cf00365",
     "preflight_processes.ps1": "6586345710fe618415ce2ddd8b53d230c14c280c93f34c5fb1a190fcc7e1f91f",
     "procguard.py": "7cc150c13ca8d6fce28ec9784af8886eaaa4cdd8fad9cb3ff6befa9fd67d116d",
     "readonly_pixels.py": "bd1c86eddff0c7ca30d74b63cf2c5ac200a4691360f78f121e4cced5cd86fb5f",
     "return_evidence.py": "5142d3a90e89f64f796f2ce70227b28703afbca5be582ef25b6d638b09ae7e8d",
-    "run_trial.py": "dfe576644deaa830a40834875517cf5584b711104af6d8cc97a3eaeeb303c44c",
+    "run_trial.py": "d8593b11f1553eb4918a2312d8a41532c51e823bd3daf5082f84e0efceb87b67",
     "serial_worker.py": "85c441bff24e081fc4fa759748676b130becf2a070bbacbff6b23fba96ae3fd4",
     "sony_usb_guard.py": "e1f636a6327530f28ef407732d58f0e7310494c4660010f793f4dcbe2ebdc4c6",
     "source_region_evidence.py": "748edd1bd5e5783e12a925524876a36e7d2538ad18700ba1af55b6b940ac5b2f",
@@ -78,7 +78,7 @@
     "png_encoder_prerequisite.py": "b64cde1c5c990d342cd2d61a6efc158f243c08e51ca2256b1c69f95f402345f3",
     "test_png_encoder_proof.py": "4b6043effd463d8592acdd479cfed771509ff42492ef5965f8a0c663fc2a78d8",
     "scanout_snapshot.py": "0a30b84e983a33a880c726a6ff90cc3ca105250326e292345aa58dfd70e512d2",
-    "test_scanout_gates.py": "5a2e7125131d1c7dd1667106a10aef0d024dde4da140da1b894aa2e50804f8bf",
+    "test_scanout_gates.py": "5050e4dfd0f67ecf9e9b0e8076f3dfc6cce8b218504b14842a9d1cf6f73158e1",
     "test_png_encoder_prerequisite.py": "c4a34e69e633061d32e3ec8910dbedcb8e3ecc49a1ddb969ef65141f41990ab2",
     "render_stage_evidence.py": "313c8fc03fb37f9045ff7a71e4e738fee007fc868c63603508a764b057ccc749",
     "test_render_stage_evidence.py": "c2e0c9e2a01013bac677d3089f32df2f213441679d1bbee3ed2dc4f09e480d17",
@@ -303,5 +303,17 @@
   "program_cache_standard_binary_and_sampler_actual_native_passed": true,
   "static_half_r1_runtime_native_proof": "reproducibility/v729-static-half-r1-native-proof.json",
   "static_half_original_byte_guard_snapshot_actual_passed": true,
-  "v730_screen_sources_locked": true
+  "v730_screen_sources_locked": true,
+  "v730_late_scanout_single_request_host_checks": {
+    "capture_after_seconds": [
+      45,
+      150
+    ],
+    "scanout_gate_tests": 8,
+    "strict_transport_tests": 6,
+    "trial_gate_tests": 21,
+    "trial_gate_optional_legacy_skipped": 2,
+    "actual_late_device_capture_pending": true,
+    "kernel_or_GPU_sources_changed": false
+  }
 }
