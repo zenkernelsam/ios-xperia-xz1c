@@ -1,0 +1,55 @@
+{
+  "plan": {
+    "items": [
+      {
+        "sha256": "9dda3a22cdb2d2516d3c9a17c70891c7eb19c6ba4a12cd2296900a3dc860645c",
+        "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-raw-render-threads-r5-20261119.json"
+      },
+      {
+        "sha256": "9f50191ff142302b916551a738d52e4ae8e066c7d0c9f48a601bcf6694e3a531",
+        "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-sampler-pinned-bootargs-test-20261119"
+      },
+      {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-sampler-pinned-bootargs-compile-20261119.log"
+      },
+      {
+        "sha256": "5d4caf02fb938ab075a3de3c83c15849b5cc670bf71a34021309a0d16a6c91de",
+        "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-run-clear-cache-prime-pairing-20261119.py"
+      }
+    ],
+    "allowed_roots": [
+      "C:\\Users\\Cisco He\\AppData\\Local\\Temp"
+    ]
+  },
+  "verified_recycled": [
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-19T12:01:13.0881101+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R11ZLDL.json",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-raw-render-threads-r5-20261119.json"
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-19T12:01:13.2672638+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RZ57S8E",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-sampler-pinned-bootargs-test-20261119"
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-19T12:01:13.2946178+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R69GM8T.log",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-sampler-pinned-bootargs-compile-20261119.log"
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-19T12:01:13.3303952+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RDC21EV.py",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-run-clear-cache-prime-pairing-20261119.py"
+    }
+  ],
+  "plan_sha256": "20dbcc526ef3821287bdf1002163f0049d64bdbb1a91fc4df37df5a593b3b14f",
+  "journal_sha256": "30af3a7586d754b34897f8336805b9c28833313a67e19eaad893b44fb02ed216",
+  "original_evidence_and_build_inputs_preserved": true,
+  "recycle_bin_not_emptied": true
+}
