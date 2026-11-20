@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-20",
+  "source_commit": "ca4214e52ab1c97c2dceda095ca5f2fbe18d60c4",
+  "Windows_native_recycle_items": 4,
+  "Windows_duplicate_RAM_container_bytes": 134217728,
+  "Windows_items": [
+    {
+      "path": "build\\stencil-attachment-r2\\gles-ram\\glram.dmg",
+      "bytes": 33554432,
+      "sha256": "72a19f38bedc65f87f4ca1632c6884bbb6e3f6375e2ed337c6903855f126bb12"
+    },
+    {
+      "path": "build\\stencil-attachment-r2\\gles-ram\\glram.raw",
+      "bytes": 33554432,
+      "sha256": "72a19f38bedc65f87f4ca1632c6884bbb6e3f6375e2ed337c6903855f126bb12"
+    },
+    {
+      "path": "build\\stencil-attachment-r2\\reference-ram\\glram.dmg",
+      "bytes": 33554432,
+      "sha256": "55a725ea3a4c5f59dfa58215692651bfce8f82f8d7f60e1a121f81215f51686e"
+    },
+    {
+      "path": "build\\stencil-attachment-r2\\reference-ram\\glram.raw",
+      "bytes": 33554432,
+      "sha256": "55a725ea3a4c5f59dfa58215692651bfce8f82f8d7f60e1a121f81215f51686e"
+    }
+  ],
+  "Windows_source_absent_and_native_recycle_file_verified": true,
+  "Mac_native_Trash_duplicate_RAM_container_items": 4,
+  "Mac_duplicate_RAM_container_bytes": 134217728,
+  "Mac_native_Trash_source_staging_items": 2,
+  "Mac_final49task_sources_byte_verified_against_commit": true,
+  "Mac_previous20task_changes_recoverable_in_Trash": true,
+  "candidate_compressed_RAM_manifests_libraries_and_new_CPU_bundle_retained": true,
+  "compressed_RAM_after_cleanup_byte_audit_passed": true,
+  "original_UI_screens_and_failure_evidence_retained": true,
+  "Windows_Mac_trash_not_emptied": true,
+  "device_operations": 0,
+  "permanent_deletions": 0
+}
