@@ -428,5 +428,6 @@
   "serial_capture_revision": 1,
   "serial_capture_startup": "closed-dtr-single-stream",
   "serial_capture_host_regression_tests": 7,
-  "serial_capture_device_accepted": false
+  "serial_capture_device_accepted": true,
+  "serial_capture_actual_cpu_evidence": "reproducibility/serial-capture-r1-reference-cpu-20261121.json"
 }

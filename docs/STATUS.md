@@ -1,6 +1,6 @@
 # 当前状态 — 2026-11-21
 
-Sony BH905ND69G 健康停在 fastboot；本轮 controller 和串口 worker 均已退出，无 in-flight。最后一靴为 tiled reference CPU `b2f3fc4f69000ff2`，单download／boot和0x06四marker回程完整，含健康30秒共38.594秒；独立后处理因启动前缀重放字节不一致退出1，**没有取得CPU准入**，未打包或发送该reference GPU。原controller的PASS保持，软件拒绝单列，不重发旧包。用户要求此轮后先整理Mac和本周文档，本周回收和文档整合已完成，当前仍健康fastboot，后续按新证据继续。
+Sony BH905ND69G 健康停在 fastboot；controller和串口worker已退出，无in-flight。本周清理和文档整合已完成。新主机捕获revision1的tiled reference CPU `d0c3a52cd3eb2841` 实机完整通过，一份READY／banner／LIVE及RAM读取、无replay；0x06四marker和健康30秒共38.844秒。旧 `b2f3fc4f69000ff2` 38.594秒回程后的独立启动前缀字节拒绝保持，不重发旧包。完整tiled native21／PNG仍未准入，先核对工作页／GPU copy和MSAA importer证据，见[新CPU原报告](../reproducibility/serial-capture-r1-reference-cpu-20261121.json)。
 
 ## 已验基线和候选
 
@@ -29,7 +29,7 @@ CA基线native16包括资源、queue、AIR compute／render／constants、XR、I
 
 1. **深度／模板布局。** 原附件候选reference GPU `011e16b3caf5b1a6` 与独立页面诊断 `62fb2e559abcbe3d` 均REVISE。颜色原sample与guard正确，D32／S8在非线性位置写入且部分逻辑guard改变；12个原作者页完整取回。固定Freedreno已说明A5xx sysmem深度不能采用线性布局。正式源码新增独立FDL5 tiled工作页及GPU raw-copy，原线性页／offset／stride保持。ARM64构建与其自身GLES通过，但reference CPU的软件日志门槛未通过，完整附件和resolve仍未验，详见[ATTACHMENT-HARDWARE](ATTACHMENT-HARDWARE.md)。
 2. **原壁纸请求路由。** 最后实际原场景r3 `3541e07973fe676f` 有40条完整请求，共享设备／queue、NUNIQuad／NUNIScene有效，原paused=YES；display／sync／tick／nextDrawable／pipeline均未出现。原Vista初始化本来暂停，后续模式和环境触发待观察，不能强制解除或画一张替代原请求。33方法模式observer源码已完成，尚无成功实机模式记录，见[METAL-REQUEST-OBSERVATION](METAL-REQUEST-OBSERVATION.md)。
-3. **启动日志一致性。** tiled reference CPU原READY重放在第3232B首次不同：原流进入Darwin banner，重放进入GLRAM mount；原CPU拒绝保持。实际v730 USB源显示DTR开启后立即传输，而旧主机打开端口后才建raw文件，再发replay重置游标，尚未完成的IN与重放前缀交错。两段最初3232B完全一致，不是完整启动块一致的证明。主机新增closed-DTR单流捕获及artifact／worker源码SHA绑定；7项模拟故障、10项原字节前缀、6项回程检查通过，尚待独立CPU实机，未重发旧包或放宽旧核验。见[捕获研究](../reproducibility/serial-capture-r1-research-20261121.json)。
+3. **启动日志一致性已独立恢复。** 旧reference CPU READY重放在第3232B首次不同，原CPU拒绝保持。实际v730 USB源显示旧主机DTR提前开启和replay重置游标会交错尚未完成的IN；两段最初3232B完全一致，不是完整启动块一致的证明。新closed-DTR单流捕获及artifact／worker源码SHA绑定有7项模拟故障、10项原字节前缀、6项回程检查，独立CPU `d0c3a52c` 已取得实机准入；worker SHA b37f33c1、raw c638c960、一份READY／banner／LIVE及RAM读取，无replay，38.844秒完整回程。未重发旧包或放宽旧核验，见[捕获研究](../reproducibility/serial-capture-r1-research-20261121.json)。
 4. **原生显示比例。** 当前系统375×812点／750×1624像素／scale2，最后映射到720×1280，横纵比例不同。用户要求改720×1280、360×640点／scale2的原生16:9布局。ADT离线profile已补，真实UIScreen／MobileGestalt、状态栏／safe area、触控和原界面须同靴核验；未投递新geometry，见[DISPLAY-GEOMETRY](DISPLAY-GEOMETRY.md)。
 5. **其它未完成。** 完整壁纸、动态UI／FPS、睡眠唤醒、LCD光学／背光、声音、Wi-Fi／蓝牙及更广的texture／depth／stencil／MSAA能力保持active。v730实际SweetSurface对共享事件selectors36／37／38／45仍返回零输出，不能当共享事件工作；事件草稿未接入当前库。
 
