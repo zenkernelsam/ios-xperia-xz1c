@@ -19,6 +19,7 @@ enum SweetQuadRouteAPI {
     QR_PREVIEW, QR_SNAPSHOT, QR_LOW_LIGHT, QR_BACKLIGHT, QR_LINEAR_BACKLIGHT, QR_UNLOCK,
     QR_MIN_SIZE, QR_DESIRED_SIZE, QR_START, QR_STOP, QR_UPDATE, QR_SNAPSHOT_IMAGE,
     QR_ENV_INIT, QR_ENV_UPDATE, QR_RENDERER_ENV,
+    QR_APPLY_MODE, QR_TRANSITION_MODE, QR_ACTIVE_MODE, QR_DEACTIVE_MODE, QR_INTERACTIVE_MODE, QR_SUPPLEMENTAL_MODE,
     QR_API_COUNT
 };
 enum { QR_SAMPLES_PER_API = 8, QR_SAMPLES_MAX = QR_API_COUNT * QR_SAMPLES_PER_API };
@@ -26,7 +27,8 @@ static const char *const quad_route_apis[] = {
     "manager_device", "manager_queue", "device_queue", "add_quad", "add_quads",
     "window", "paused", "disable", "enable", "sync", "tick", "scene",
     "preview", "snapshot", "low_light", "backlight", "linear_backlight", "unlock",
-    "min_size", "desired_size", "start", "stop", "update", "snapshot_image", "env_init", "env_update", "renderer_env"
+    "min_size", "desired_size", "start", "stop", "update", "snapshot_image", "env_init", "env_update", "renderer_env",
+    "apply_mode", "transition_mode", "active_mode", "deactive_mode", "interactive_mode", "supplemental_mode"
 };
 static IMP quad_route_original[QR_API_COUNT];
 static atomic_uint quad_route_calls[QR_API_COUNT], quad_route_records;
@@ -113,6 +115,20 @@ static void quad_route_window(id receiver, SEL selector) { quad_route_void0(rece
 static void quad_route_start(id receiver, SEL selector) { quad_route_void0(receiver, selector, QR_START); }
 static void quad_route_stop(id receiver, SEL selector) { quad_route_void0(receiver, selector, QR_STOP); }
 static void quad_route_update(id receiver, SEL selector) { quad_route_void0(receiver, selector, QR_UPDATE); }
+static void quad_route_active(id receiver, SEL selector) { quad_route_void0(receiver, selector, QR_ACTIVE_MODE); }
+static void quad_route_deactive(id receiver, SEL selector) { quad_route_void0(receiver, selector, QR_DEACTIVE_MODE); }
+static void quad_route_interactive(id receiver, SEL selector) { quad_route_void0(receiver, selector, QR_INTERACTIVE_MODE); }
+static void quad_route_supplemental(id receiver, SEL selector) { quad_route_void0(receiver, selector, QR_SUPPLEMENTAL_MODE); }
+static void quad_route_mode(id receiver, SEL selector, NSInteger mode, unsigned api)
+{
+    int incoming = errno; unsigned call = quad_route_begin(api, receiver, nil); bool returned = false;
+    uint64_t bits = 0; memcpy(&bits, &mode, sizeof(bits));
+    if (call) quad_route_emit("SWEET QUAD ROUTE INTEGER pid=%d call=%u bits=%016llx", getpid(), call, (unsigned long long)bits);
+    @try { errno = incoming; ((void (*)(id, SEL, NSInteger))quad_route_original[api])(receiver, selector, mode); returned = true; }
+    @finally { int outgoing = errno; quad_route_end(call, api, nil, returned); errno = outgoing; }
+}
+static void quad_route_apply_mode(id receiver, SEL selector, NSInteger mode) { quad_route_mode(receiver, selector, mode, QR_APPLY_MODE); }
+static void quad_route_transition_mode(id receiver, SEL selector, NSInteger mode) { quad_route_mode(receiver, selector, mode, QR_TRANSITION_MODE); }
 static BOOL quad_route_bool0(id receiver, SEL selector, unsigned api)
 {
     int incoming = errno; unsigned call = quad_route_begin(api, receiver, nil); BOOL answer = NO; bool returned = false;
@@ -212,7 +228,7 @@ static bool quad_route_install(Class owner, bool metaclass, const char *owner_na
     quad_route_emit("SWEET QUAD ROUTE ABI_END pid=%d api=%s", getpid(), quad_route_apis[api]);
     errno = incoming; return valid;
 }
-static unsigned quad_route_observe(Class device, Class manager, Class base, Class coordinator, Class scene, Class environment, Class vista, Class controller, Class renderer, SweetQuadRouteEmit emit)
+static unsigned quad_route_observe(Class device, Class manager, Class base, Class coordinator, Class scene, Class environment, Class vista, Class controller, Class renderer, Class vista_controller, SweetQuadRouteEmit emit)
 {
     int incoming = errno; quad_route_emit = emit; unsigned installed = 0;
     const char *object[] = {@encode(id)}, *flag[] = {@encode(BOOL)};
@@ -246,7 +262,15 @@ static unsigned quad_route_observe(Class device, Class manager, Class base, Clas
     installed += quad_route_install(controller, false, "_TtC11AegirPoster24AegirRenderingController", "renderer:didInitializeWithEnvironment:", QR_ENV_INIT, (IMP)quad_route_env_init, @encode(void), pair, 2);
     installed += quad_route_install(controller, false, "_TtC11AegirPoster24AegirRenderingController", "renderer:didUpdateEnvironment:withTransition:", QR_ENV_UPDATE, (IMP)quad_route_env_update, @encode(void), triple, 3);
     installed += quad_route_install(renderer, false, "PRRenderer", "environment", QR_RENDERER_ENV, (IMP)quad_route_renderer_env, @encode(id), NULL, 0);
-    quad_route_emit("SWEET QUAD ROUTE CONFIG pid=%d installed=%u expected=27 per_api=8 max=216 revision=3 original_behavior=1 no_extra_GPU_work=1", getpid(), installed);
+    const char *mode[] = {@encode(NSInteger)};
+    installed += quad_route_install(vista_controller, false, "NUNIAstronomyVistaController", "applyMode:", QR_APPLY_MODE, (IMP)quad_route_apply_mode, @encode(void), mode, 1);
+    installed += quad_route_install(vista_controller, false, "NUNIAstronomyVistaController", "animateTransitionToMode:", QR_TRANSITION_MODE, (IMP)quad_route_transition_mode, @encode(void), mode, 1);
+    installed += quad_route_install(vista_controller, false, "NUNIAstronomyVistaController", "activeMode", QR_ACTIVE_MODE, (IMP)quad_route_active, @encode(void), NULL, 0);
+    installed += quad_route_install(vista_controller, false, "NUNIAstronomyVistaController", "deactiveMode", QR_DEACTIVE_MODE, (IMP)quad_route_deactive, @encode(void), NULL, 0);
+    installed += quad_route_install(vista_controller, false, "NUNIAstronomyVistaController", "interactiveMode", QR_INTERACTIVE_MODE, (IMP)quad_route_interactive, @encode(void), NULL, 0);
+    installed += quad_route_install(vista_controller, false, "NUNIAstronomyVistaController", "supplementalMode", QR_SUPPLEMENTAL_MODE, (IMP)quad_route_supplemental, @encode(void), NULL, 0);
+    quad_route_emit("SWEET QUAD ROUTE CONFIG pid=%d installed=%u expected=33 per_api=8 max=264 revision=4 original_behavior=1 no_extra_GPU_work=1", getpid(), installed);
     errno = incoming; return installed;
 }
 _Static_assert(sizeof(double) == 8 && sizeof(CGSize) == 16, "Original scalar/CGSize ABI differs");
+_Static_assert(sizeof(NSInteger) == 8, "Original signed mode ABI differs");

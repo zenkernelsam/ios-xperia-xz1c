@@ -14,6 +14,8 @@ Depth-stencil descriptor语义对照[开源ios_sagit QcomMTL](https://github.com
 
 当前仍拒绝MSAA、sampled-depth／sampled-stencil、mipmap／IOSurface depth-stencil和depth-stencil与XR有序image blend组合。后者的late depth test无法保护fragment image副作用，不能静默忽略深度或模板。kernel GPU底层／allocator／SCM／PON／RPC／VM、SweetGPU、Mesa归档和AIR lowering源保持，只编译正式仓库用户态。
 
+本轮后续只读20H392原ClockKitUI确认：options0x08开启4×MSAA、0x01开启depth，深度descriptor为252／RenderTarget4／Memoryless3。原r3十条init皆0x72，当前scope未请求MSAA／depth，不将这些缺口当该黑壁纸原因；其它配置真实Memoryless和MSAA须继续实现。来源／九个代码SHA与可复现工具见[原模式静态证明](../reproducibility/poster-routing-20H392-offline.json)。
+
 ## 离线身份与证据
 
 | 输入 | 准确身份 |
@@ -35,6 +37,8 @@ WSL真实Mesa23.2.1／llvmpipe GLES3.2的UBSan执行2390draw、247860像素，�
 本轮WSL ASan测试停在libasan6 startup，实际PC模块offset0xcdf02／`__sanitizer::internal_iserror`，尚未进入Mesa，原失败单列，最终GLES不宣称ASan通过。旧未限长输出产生11,881,859,070B重复DEADLYSIGNAL日志，已实际进入Windows回收站，SHA55931387、首4096B与失败元数据保留，回收站未清空。runner现在限45秒、Python等待55秒、Linux文件1MiB，RLIMIT覆盖shell，实际超量拒绝；ASAN handle_segv=0只停递归handler，不关闭memory checks。
 
 Mac真实Metal对象ASan／UBSan通过：原资源／queue／AIR compute-render-constants-MRT回归、Depth32、Stencil8页面和guard、owner、Private权限、descriptor状态、独立Load-Clear、immutable快照、caller释放及最终回收。GPU传输是host stub，不能称手机绘制。iOS ARM64前端／Metal／完整observer均构建签名成功，源码与候选manifest逐项匹配。
+
+原模式observer源码扩展后，在当前源码重新构建完整attachment reference仍产生observer7e164ad1同字节。新HFS重新打包有自己的raw／blob身份：4274554B、SHA90dc4934c2555bdfd15723cc404e5bde495b114ccbd9631ffdd34ef173877f0e；CPU c10521e2f389104f／image67656595b86727101cd4549007fb8c9e5a7cc6e9a6585b47af0f8f91fbd558f3已offline同核private／payload／Mac83源通过。r2原包和proof保持；新reference与原壁纸包仍须各自CPU和完整native18／PNG6门槛，见[后续offline](../reproducibility/poster-route-r6-offline-proof.json)。
 
 ## 可复现构建
 

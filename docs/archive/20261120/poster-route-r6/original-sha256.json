@@ -1,0 +1,22 @@
+{
+  "AGENTS.md": {
+    "path": "docs/archive/20261120/poster-route-r6/AGENTS.md",
+    "sha256": "f09fce981ed9e408d5007fd1465414e652f59b069b64d33300760a8e6d1aa4ac"
+  },
+  "docs/STATUS.md": {
+    "path": "docs/archive/20261120/poster-route-r6/STATUS.md",
+    "sha256": "d5b274769f7da2c455f1a7bd675f24025ec5f2781f7834338e062cf90bb20289"
+  },
+  "docs/BUILD.md": {
+    "path": "docs/archive/20261120/poster-route-r6/BUILD.md",
+    "sha256": "e06a48c4fca3166ed02e39671357b69f97230cf7fd6e0cd40171408533efcec0"
+  },
+  "docs/METAL-REQUEST-OBSERVATION.md": {
+    "path": "docs/archive/20261120/poster-route-r6/METAL-REQUEST-OBSERVATION.md",
+    "sha256": "3c6ee79beefa3b2e0733a98f98ee054c8e8cbd5946c2242a2459cf0b0dc6cac1"
+  },
+  "docs/METAL-DEPTH-STENCIL.md": {
+    "path": "docs/archive/20261120/poster-route-r6/METAL-DEPTH-STENCIL.md",
+    "sha256": "31a04037fa90146696a2b1c2dcf7fde22610e6af5ce1bad458f742dead9fa612"
+  }
+}

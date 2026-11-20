@@ -19,6 +19,9 @@ EXTRA_ARGUMENTS = dict(zip(EXTRA_APIS, (2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 5
 EXTRA_TYPES = dict(zip(EXTRA_APIS, ('B16@0:8', 'B16@0:8', 'B16@0:8', 'd16@0:8', 'd16@0:8', 'd16@0:8',
                                    '{CGSize=dd}16@0:8', '{CGSize=dd}16@0:8', 'v16@0:8', 'v16@0:8', 'v16@0:8', '@16@0:8',
                                    'v32@0:8@16@24', 'v40@0:8@16@24@32')))
+MODE_APIS = ('apply_mode', 'transition_mode', 'active_mode', 'deactive_mode', 'interactive_mode', 'supplemental_mode')
+MODE_ARGUMENTS = dict(zip(MODE_APIS, (3, 3, 2, 2, 2, 2)))
+MODE_TYPES = dict(zip(MODE_APIS, ('v24@0:8q16', 'v24@0:8q16', 'v16@0:8', 'v16@0:8', 'v16@0:8', 'v16@0:8')))
 METHOD = re.compile(r'SWEET QUAD ROUTE METHOD pid=(\d+) api=(\w+) present=([01]) owned=([01]) installed=([01]) arguments=(\d+) owner_checked=([01]) meta=([01])')
 ABI = re.compile(r'SWEET QUAD ROUTE ABI pid=(\d+) api=(\w+) bytes=(\d+) truncated=([01])')
 ABI_DATA = re.compile(r'SWEET QUAD ROUTE ABI_DATA pid=(\d+) api=(\w+) offset=(\d+) bytes=(\d+) hex=([0-9a-f]+)')
@@ -41,19 +44,23 @@ SIZE = re.compile(r'SWEET QUAD ROUTE SIZE pid=(\d+) call=(\d+) width_bits=([0-9a
 ENV = re.compile(r'SWEET QUAD ROUTE ENV pid=(\d+) call=(\d+) renderer=([0-9a-f]{16}) transition=([0-9a-f]{16})')
 CONFIG3 = re.compile(r'SWEET QUAD ROUTE CONFIG pid=(\d+) installed=(\d+) expected=27 per_api=8 max=216 revision=3 original_behavior=1 no_extra_GPU_work=1')
 RETURN_ID = re.compile(r'SWEET QUAD ROUTE RETURN_ID pid=(\d+) call=(\d+) value=([0-9a-f]{16})')
+CONFIG4 = re.compile(r'SWEET QUAD ROUTE CONFIG pid=(\d+) installed=(\d+) expected=33 per_api=8 max=264 revision=4 original_behavior=1 no_extra_GPU_work=1')
+INTEGER = re.compile(r'SWEET QUAD ROUTE INTEGER pid=(\d+) call=(\d+) bits=([0-9a-f]{16})')
 
 
 def inspect(text, token):
     live, ack = 'SWEET LOOP LIVE proto=1 token='+token, 'SWEET LOOP ACK FASTBOOT token='+token
     assert text.count(live) == text.count(ack) == 1
     scope = text[text.index(live):text.index(ack)]
-    revision = 3 if 'expected=27 per_api=8 max=216 revision=3' in scope else 2 if 'expected=26 per_api=8 max=208 revision=2' in scope else 1
+    revision = 4 if 'expected=33 per_api=8 max=264 revision=4' in scope else 3 if 'expected=27 per_api=8 max=216 revision=3' in scope else 2 if 'expected=26 per_api=8 max=208 revision=2' in scope else 1
     apis = APIS+EXTRA_APIS if revision>=2 else APIS
-    if revision==3: apis += ('renderer_env',)
-    arguments = {**ARGUMENTS, **EXTRA_ARGUMENTS, 'renderer_env':2}; types = {**TYPES, **EXTRA_TYPES, 'renderer_env':'@16@0:8'}; maximum = len(apis)*8
-    patterns = (METHOD, ABI, ABI_DATA, ABI_END, (CONFIG,CONFIG2,CONFIG3)[revision-1], BEGIN, OBJECT, RETURN, END, FLAG, SYNC, BOOL, REASON, REASON_DATA, LIMIT)
+    if revision>=3: apis += ('renderer_env',)
+    if revision==4: apis += MODE_APIS
+    arguments = {**ARGUMENTS, **EXTRA_ARGUMENTS, **MODE_ARGUMENTS, 'renderer_env':2}; types = {**TYPES, **EXTRA_TYPES, **MODE_TYPES, 'renderer_env':'@16@0:8'}; maximum = len(apis)*8
+    patterns = (METHOD, ABI, ABI_DATA, ABI_END, (CONFIG,CONFIG2,CONFIG3,CONFIG4)[revision-1], BEGIN, OBJECT, RETURN, END, FLAG, SYNC, BOOL, REASON, REASON_DATA, LIMIT)
     if revision>=2: patterns += (IDENTITY, DOUBLE, SIZE, ENV)
-    if revision==3: patterns += (RETURN_ID,)
+    if revision>=3: patterns += (RETURN_ID,)
+    if revision==4: patterns += (INTEGER,)
     matches = sorted((m.start(), i, m) for i, p in enumerate(patterns) for m in p.finditer(scope))
     assert len(matches) == scope.count('SWEET QUAD ROUTE '), 'Truncated or unknown original route record'
     methods, inventory, configured, records, limits = {}, {}, {}, {}, set()
@@ -112,7 +119,8 @@ def inspect(text, token):
         elif kind == 8:
             assert m[3]==record['api'] and all(k in record for k in ('receiver', 'returned_nil'))
             if revision>=2: assert 'receiver_identity' in record
-            if revision==3: assert 'return_identity' in record
+            if revision>=3: assert 'return_identity' in record
+            if record['api'] in MODE_APIS[:2]: assert 'integer_bits' in record
             if record['api']=='paused': assert 'paused' in record
             if record['api']=='sync': assert 'time' in record and 'boolean_result' in record
             if record['api'] in ('preview', 'snapshot', 'low_light'): assert 'boolean_result' in record
@@ -156,9 +164,13 @@ def inspect(text, token):
             assert record['api'] in ('env_init','env_update') and 'renderer_identity' not in record
             assert record['api']!='env_init' or int(m[4],16)==0
             record.update(renderer_identity=m[3], transition_identity=m[4])
-        else:
-            assert kind==19 and 'return_identity' not in record and 'returned_nil' in record
+        elif kind==19:
+            assert 'return_identity' not in record and 'returned_nil' in record
             assert (int(m[3],16)==0)==record['returned_nil']; record['return_identity']=m[3]
+        else:
+            assert kind==20 and record['api'] in MODE_APIS[:2] and 'integer_bits' not in record
+            value = struct.unpack('<q', int(m[3],16).to_bytes(8,'little'))[0]
+            record.update(integer_bits=m[3], integer_value=value)
     assert configured
     complete = [r for r in records.values() if r['complete']]; pending = [r for r in records.values() if not r['complete']]
     for r in pending:
@@ -178,11 +190,11 @@ def verify(directory):
     from scanout_trial_evidence import verify as verify_screen
     root = Path(directory); screen = verify_screen(root); row = json.loads((root/'results.json').read_bytes())[0]
     artifact = row['artifact']; observer = artifact['exception_observer']
-    assert observer['quad_route_observer'] and observer['quad_route_revision'] in (1,2,3)
+    assert observer['quad_route_observer'] and observer['quad_route_revision'] in (1,2,3,4)
     raw = (root/'cycle-01/serial.raw.log').read_bytes(); assert hashlib.sha256(raw).hexdigest()==screen['raw_sha256']
     result = inspect(raw.decode('ascii', 'replace'), artifact['token'])
     assert result['revision']==observer['quad_route_revision']
-    assert all(p['installed']==observer['quad_route_methods']==(12,26,27)[result['revision']-1] for p in result['process_configurations'])
+    assert all(p['installed']==observer['quad_route_methods']==(12,26,27,33)[result['revision']-1] for p in result['process_configurations'])
     result.update(token=artifact['token'], kernel_sha256=artifact['kernel_sha256'], GLES_sha256=artifact['ram_library_binding']['library_sha256'],
                   raw_sha256=screen['raw_sha256'], original_result=row['result'], original_reason=row['reason'], stage_not_promoted=True,
                   source=str(root.resolve()), return_seconds_with_health=screen['return_seconds_with_health'], screen=screen['screen'],

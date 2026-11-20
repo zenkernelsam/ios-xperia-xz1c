@@ -20,6 +20,10 @@
 
 2026-11-20从两份原串口日志独立复验881ce1c5主页／3541e079锁屏完整截图，来源／像素／PNG SHA／回程均通过。日常UI／颜色数值取证继续使用串口，DroidCam仅用于LCD光学／背光／物理错行；上述图片捕获于11月19日，不冒充本轮新boot。r4／r5失败后尚未收到用户恢复新蓝灯fastboot会话的确认，当前枚举健康不等于会话已恢复，不因截图问题重发失败包。
 
+随后离线poster-route-r6新增原Vista controller的applyMode／animateTransitionToMode及四分支，33方法／264记录／每类8，signed NSInteger位型、owner／ABI／原nil-throw-errno保持，Mac ASan／UBSan和ARM64编译通过。de4fc867／150304B observer配旧CA基线CPU b2a5bc90仅offline，六份已编译源码与当前Depth32-Stencil8源码不一致被run_trial拒绝，手机下载／boot0；不绕过源码审计。当前源码匹配完整附件reference仍7e164ad1，重新打包blob4274554B／90dc4934，CPU c10521e2／67656595已offline83源及同核private-payload通过，尚未手机准入。先附件自身CPU→GLES9→referenceCPU→native18／PNG6→新proof，再新原壁纸observer，不复用基线16组。
+
+固定20H392原root只读重建／分析／卸载已验证；新inspect_poster_routing.py锁9代码SHA及6方法ABI／A2S。实际0=active、1=deactive、2=interactive、3=supplemental；active才原startAnimation解除paused，Vista init已置display bit。ClockKitUI options0x08才4×MSAA、0x01才depth，原r3十条init皆0x72未请求两者，不能拿MSAA解释本轮黑壁纸；其它配置原depth为252／usage4／Memoryless3仍缺功能。静态链不能当原runtime模式／背光验收。见METAL-REQUEST-OBSERVATION、poster-routing-20H392-offline及poster-route-r6-offline-proof。
+
 ## 硬件与返回
 
 - 仅Sony BH905ND69G；所有fastboot设备命令必须带 `-s BH905ND69G`。

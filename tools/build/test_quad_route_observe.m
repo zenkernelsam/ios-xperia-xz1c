@@ -8,6 +8,7 @@ static NSException *route_exception;
 static bool route_throws;
 static unsigned route_originals, route_begins, route_ends, route_limits;
 static double route_time = 0x1.23456789abcdep+17;
+static NSInteger route_mode_value = -1;
 static SEL route_expected_selector;
 static void route_original(id receiver, SEL selector)
 {
@@ -111,6 +112,22 @@ static CGSize route_size(void) { return (CGSize){route_time, -0.0}; }
 @implementation PRRenderer
 - (id)environment { route_original(self, _cmd); return route_answer; }
 @end
+@interface NUNIAstronomyVistaController : NSObject
+- (void)applyMode:(NSInteger)mode;
+- (void)animateTransitionToMode:(NSInteger)mode;
+- (void)activeMode;
+- (void)deactiveMode;
+- (void)interactiveMode;
+- (void)supplementalMode;
+@end
+@implementation NUNIAstronomyVistaController
+- (void)applyMode:(NSInteger)mode { assert(!memcmp(&mode, &route_mode_value, sizeof(mode))); route_original(self, _cmd); }
+- (void)animateTransitionToMode:(NSInteger)mode { assert(!memcmp(&mode, &route_mode_value, sizeof(mode))); route_original(self, _cmd); }
+- (void)activeMode { route_original(self, _cmd); }
+- (void)deactiveMode { route_original(self, _cmd); }
+- (void)interactiveMode { route_original(self, _cmd); }
+- (void)supplementalMode { route_original(self, _cmd); }
+@end
 @interface RouteThrowingReason : NSString @end
 @implementation RouteThrowingReason
 - (NSUInteger)length { return 1; }
@@ -132,19 +149,21 @@ int main(void) { @autoreleasepool {
     errno = 73;
     assert(quad_route_observe([SweetMTLDevice class], [CLKUIMetalResourceManager class], [CLKUIQuadView class],
         [CLKUIQuadViewRenderCoordinator class], [NUNIQuad class], [PRPosterEnvironmentImpl class], [NUNIAstronomyVistaView class],
-        [_TtC11AegirPoster24AegirRenderingController class], [PRRenderer class], route_emit) == QR_API_COUNT);
+        [_TtC11AegirPoster24AegirRenderingController class], [PRRenderer class], [NUNIAstronomyVistaController class], route_emit) == QR_API_COUNT);
     assert(errno == 73);
     SweetMTLDevice *device = [SweetMTLDevice new]; CLKUIMetalQuadView *base = [CLKUIMetalQuadView new];
     CLKUIQuadViewRenderCoordinator *coordinator = [CLKUIQuadViewRenderCoordinator new]; NUNIQuad *scene = [NUNIQuad new];
     PRPosterEnvironmentImpl *environment = [PRPosterEnvironmentImpl new]; NUNIAstronomyVistaView *vista = [NUNIAstronomyVistaView new];
     _TtC11AegirPoster24AegirRenderingController *controller = [_TtC11AegirPoster24AegirRenderingController new];
     PRRenderer *renderer = [PRRenderer new];
+    NUNIAstronomyVistaController *modeController = [NUNIAstronomyVistaController new];
     const char *selectors[] = { "sharedDevice", "sharedCommandQueue", "newCommandQueue", "addQuad:", "addQuadsFromArray:",
         "didMoveToWindow", "setPaused:", "addDisabledRenderingReason:", "removeDisabledRenderingReason:",
         "_sync_prepareAndRenderForTime:inGroup:checkForDrawable:completion:", "_renderLinkFired:", "setScene:",
         "isPreview", "isSnapshot", "isLowLuminance", "backlightProgress", "linearBacklightProgress", "unlockProgress",
         "minimumContentSize", "desiredContentSize", "startAnimation", "stopAnimation", "_updateAnimation", "snapshotImage",
-        "renderer:didInitializeWithEnvironment:", "renderer:didUpdateEnvironment:withTransition:", "environment" };
+        "renderer:didInitializeWithEnvironment:", "renderer:didUpdateEnvironment:withTransition:", "environment",
+        "applyMode:", "animateTransitionToMode:", "activeMode", "deactiveMode", "interactiveMode", "supplementalMode" };
     for (unsigned pass = 0; pass < 3; ++pass) {
         id saved = route_answer; if (pass == 1) route_answer = nil; route_throws = pass == 2;
         for (unsigned api = 0; api < QR_API_COUNT; ++api) {
@@ -178,7 +197,14 @@ int main(void) { @autoreleasepool {
                 case QR_SNAPSHOT_IMAGE: answer = [vista snapshotImage]; break;
                 case QR_ENV_INIT: [controller renderer:route_completion didInitializeWithEnvironment:route_argument]; break;
                 case QR_ENV_UPDATE: [controller renderer:route_completion didUpdateEnvironment:route_argument withTransition:route_completion]; break;
-                default: answer = [renderer environment]; break;
+                case QR_RENDERER_ENV: answer = [renderer environment]; break;
+                case QR_APPLY_MODE: [modeController applyMode:route_mode_value]; break;
+                case QR_TRANSITION_MODE: [modeController animateTransitionToMode:route_mode_value]; break;
+                case QR_ACTIVE_MODE: [modeController activeMode]; break;
+                case QR_DEACTIVE_MODE: [modeController deactiveMode]; break;
+                case QR_INTERACTIVE_MODE: [modeController interactiveMode]; break;
+                case QR_SUPPLEMENTAL_MODE: [modeController supplementalMode]; break;
+                default: assert(!"Unexpected route API"); break;
                 }
             } @catch (id error) { assert(error == route_exception); caught = true; }
             assert(caught == route_throws && errno == 91); if (!route_throws && (api <= QR_DEVICE_QUEUE || api == QR_SNAPSHOT_IMAGE || api == QR_RENDERER_ENV)) assert(answer == route_answer);
@@ -187,7 +213,12 @@ int main(void) { @autoreleasepool {
     }
     route_throws = false; route_expected_selector = @selector(_renderLinkFired:);
     for (unsigned i = 0; i < 70; ++i) { errno = 73; [coordinator _renderLinkFired:route_argument]; assert(errno == 91); }
-    assert(route_originals == 151 && route_begins == 86 && route_ends == 86 && route_limits == 1);
+    assert(route_originals == 169 && route_begins == 104 && route_ends == 104 && route_limits == 1);
+    const NSInteger modeValues[] = {NSIntegerMin, NSIntegerMax, 0, 1, 3};
+    for (unsigned i = 0; i < 5; ++i) {
+        route_mode_value = modeValues[i]; route_expected_selector = @selector(applyMode:); errno = 73;
+        [modeController applyMode:route_mode_value]; assert(errno == 91);
+    }
     id previous = route_argument; route_argument = @"paused / not attached"; route_expected_selector = @selector(addDisabledRenderingReason:);
     errno = 73; [base addDisabledRenderingReason:route_argument]; assert(errno == 91);
     route_argument = [RouteThrowingReason new]; errno = 73; [base addDisabledRenderingReason:route_argument]; assert(errno == 91);
@@ -202,7 +233,9 @@ int main(void) { @autoreleasepool {
         (IMP)quad_route_device_queue, @encode(id), NULL, 0));
     assert(!quad_route_install([CLKUIQuadView class], false, "CLKUIQuadView", "setPaused:", QR_PAUSED,
         (IMP)quad_route_paused, @encode(void), (const char *const []){@encode(NSUInteger)}, 1));
-    [device release]; [base release]; [coordinator release]; [scene release]; [environment release]; [vista release]; [controller release]; [renderer release]; [route_answer release];
+    assert(!quad_route_install([NUNIAstronomyVistaController class], false, "NUNIAstronomyVistaController", "applyMode:", QR_APPLY_MODE,
+        (IMP)quad_route_apply_mode, @encode(void), (const char *const []){@encode(NSUInteger)}, 1));
+    [device release]; [base release]; [coordinator release]; [scene release]; [environment release]; [vista release]; [controller release]; [renderer release]; [modeController release]; [route_answer release];
     [route_argument release]; [route_completion release];
     puts("Quad route observer PASS: metaclass/owner/ABI rejection, original nil/throw/errno/BOOL/double/block forwarding, reason getter containment, per-API bounds");
 } return 0; }

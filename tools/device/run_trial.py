@@ -87,6 +87,7 @@ class DiagnosticPolicy(LogPolicy):
             if re.search(r'SWEET QUAD ROUTE CONFIG pid=\d+ installed=(?:[0-9]|1[01]) expected=12',line):self.recoverable='QUAD_ROUTE_OBSERVER_INSTALL_INCOMPLETE'
             if re.search(r'SWEET QUAD ROUTE CONFIG pid=\d+ installed=(?:[0-9]|1[0-9]|2[0-5]) expected=26',line):self.recoverable='QUAD_ROUTE_OBSERVER_INSTALL_INCOMPLETE'
             if re.search(r'SWEET QUAD ROUTE CONFIG pid=\d+ installed=(?:[0-9]|1[0-9]|2[0-6]) expected=27',line):self.recoverable='QUAD_ROUTE_OBSERVER_INSTALL_INCOMPLETE'
+            if re.search(r'SWEET QUAD ROUTE CONFIG pid=\d+ installed=(?:[0-9]|[12][0-9]|3[0-2]) expected=33',line):self.recoverable='QUAD_ROUTE_OBSERVER_INSTALL_INCOMPLETE'
             if re.search(r'SWEET CIF10 REFERENCE END result=[1-9]',line):self.recoverable='CIF10_PNG_REFERENCE_FAILED'
             if 'CRASH AegirPoster reason ns 7 code 0x3: extension check-in timeout' in line:self.recoverable='EXTENSION_CHECKIN_TIMEOUT'
     def decision(self,now):

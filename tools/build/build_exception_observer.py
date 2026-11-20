@@ -371,12 +371,13 @@ if a.request_observe:manifest.update(original_request_observer=True,request_obse
     request_owned_ABI_and_repeat_rejection_host_passed=True,
     request_record_max_bytes=190,request_short_framing=True,
     request_host_test_source_sha256=hashlib.sha256((root/'tools/build/test_metal_request_observe.m').read_bytes()).hexdigest())
-if a.quad_route_observe:manifest.update(quad_route_observer=True,quad_route_revision=3,quad_route_methods=27,
-    quad_route_per_API_samples=8,quad_route_max_records=216,quad_route_record_max_bytes=190,
+if a.quad_route_observe:manifest.update(quad_route_observer=True,quad_route_revision=4,quad_route_methods=33,
+    quad_route_per_API_samples=8,quad_route_max_records=264,quad_route_record_max_bytes=190,
     quad_route_metaclass_owner_and_exact_ABI_host_passed=True,quad_route_original_nil_throws_errno_BOOL_double_block_host_passed=True,
     quad_route_reason_getter_exception_containment_host_passed=True,quad_route_no_additional_GPU_or_scene_calls=True,
     quad_route_original_scalar_and_size_bits_preserved_host_passed=True,quad_route_environment_identity_metadata=True,
     quad_route_original_renderer_environment_and_return_identity=True,
+    quad_route_original_signed_mode_arguments_and_branch_calls=True,
     quad_route_host_test_source_sha256=hashlib.sha256((root/'tools/build/test_quad_route_observe.m').read_bytes()).hexdigest())
 assert all(hashlib.sha256((root/name).read_bytes()).hexdigest()==digest for name,digest in source_files.items())
 (out/'manifest.json').write_bytes((json.dumps(manifest,indent=2)+'\n').encode())

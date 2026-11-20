@@ -46,6 +46,12 @@ Sony BH905ND69G 当前停在 fastboot，无 controller／串口 worker／in-flig
 
 ## 继续方向与未完成
 
+原模式观察r6只增Vista controller六方法，33方法／264记录／signed NSInteger原位型，Mac ASan／UBSan与ARM64编译通过。observer de4fc867／150304B配旧CA库CPU b2a5bc90在offline源码audit被拒绝：六份已编译GLES／Metal源码与当前Depth32-Stencil8不同，手机下载／boot0。拒绝原样保留，不绕过审计；当前源码匹配完整附件reference重新编译仍7e164ad1、blob4274554B／90dc4934，CPU c10521e2f389104f／image67656595已offline同核private／payload／Mac83源通过，尚未发送。先新附件完整native18／PNG6，随后模式observer必须绑定新proof。详见 [本轮offline](../reproducibility/poster-route-r6-offline-proof.json)。
+
+固定20H392新增[原模式／采样静态分析](../reproducibility/poster-routing-20H392-offline.json)，从准确gl5只读挂载核验9个代码SHA、6个原方法type／IMP和A2S；原root已卸载。applyMode跳表0=active／1=deactive／2=interactive／3=supplemental，active／interactive／supplemental原调用startAnimation，deactive停止。Vista init已置显示bit而初始画布paused，后续动画bit才进入原_startAnimation。静态不能证明本靴是否调用哪个mode，新observer记录实际原参数，不强制改变模式或暂停状态。
+
+原ClockKitUI的options0x08决定4×MSAA，0x01决定depth；独立复验r3十条init实际options0x72，当前该scope两者未请求，不能把4×MSAA缺口当本轮黑壁纸原因。其它配置depth明确252／RenderTarget4／Memoryless3，现候选Memoryless、MSAA及sampling仍未接入。既有shader／GPU／系统基线不因静态分析提升；手机仍fastboot、无worker、待新物理会话确认，本轮所有工作手机download／boot／reset0。
+
 本轮 r1 observer 自身RAMCPU `5754f4626364190d` 通过，GPU `be248be112e4e024` 保持STOP；两条长ABI记录拆分／交错导致原请求核验拒绝，独立截图与39.594秒完整回程仍通过。r2采用短记录／分块ABI，自身RAMCPU `f66de2d4094eec8a` 通过，GPU `61745a1e16c8ab41` 的20条原请求完整：quad_init／quad_init_async／set_device／quad_layout各5，另外9类均0，未见init返回nil。原输入frame375×812、options114／0x72、color_space2、async_nil1。完整来源／截图／回程均复验，原STOP保留；详情与四靴输入在 [METAL-REQUEST-OBSERVATION](METAL-REQUEST-OBSERVATION.md)。
 
 r3仅增12类原场景／队列方法，observer`07d1360de49b9af17f2aad1fed72de5f8db3da92f7526991534aea8664c02a86`／132544B，自身RAMCPU `aa9d5a21aae2f148`通过，38.141秒完整回程。GPU原40请求全部完成，12项ABI／owner／metaclass完整核验；五次共享队列与四次实际队列创建均返回SweetMTLCommandQueue，五次addQuad与五次setScene原参数分别是NUNIQuad／NUNIScene。manager_device与window各8条触及采样上限，不能计成实际总数。paused五条全部YES，disable／enable／sync／tick均0；原postdraw九条仅library与colorsync，无snapshot／PNG。原图SHA`ca2603c424113a64e9ff22d04055e6f0146a2b44b214235949ca0d7e80258e97`，150.063秒捕获、2735块、11.921秒传输，完整来源与保存像素核验通过。见 [route](../reproducibility/v730-quad-route-r3-gpu-route.json) 与 [scanout](../reproducibility/v730-quad-route-r3-gpu-scanout.json)。

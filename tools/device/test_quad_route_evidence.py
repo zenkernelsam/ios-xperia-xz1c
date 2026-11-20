@@ -1,6 +1,6 @@
 """Corrupt route records cannot become evidence of an original draw or resource."""
 import unittest
-from quad_route_evidence import inspect, APIS, ARGUMENTS, TYPES, EXTRA_APIS, EXTRA_ARGUMENTS, EXTRA_TYPES
+from quad_route_evidence import inspect, APIS, ARGUMENTS, TYPES, EXTRA_APIS, EXTRA_ARGUMENTS, EXTRA_TYPES, MODE_APIS, MODE_ARGUMENTS, MODE_TYPES
 from run_trial import DiagnosticPolicy
 
 
@@ -70,11 +70,11 @@ class QuadRouteEvidence(unittest.TestCase):
             with self.assertRaises(AssertionError): inspect(bad, self.token)
 
     def test_incomplete_install_routes_return(self):
-        for expected,counts in ((12,(0,5,10,11)),(26,(0,11,19,20,25)),(27,(0,12,20,26))):
+        for expected,counts in ((12,(0,5,10,11)),(26,(0,11,19,20,25)),(27,(0,12,20,26)),(33,(0,12,27,32))):
             for count in counts:
                 policy = DiagnosticPolicy(self.token, [], 0)
                 policy.feed('SWEET LOOP LIVE proto=1 token='+self.token, 0)
-                policy.feed(f'SWEET QUAD ROUTE CONFIG pid=278 installed={count} expected={expected} per_api=8 max={expected*8} revision={(12,26,27).index(expected)+1} original_behavior=1 no_extra_GPU_work=1', 1)
+                policy.feed(f'SWEET QUAD ROUTE CONFIG pid=278 installed={count} expected={expected} per_api=8 max={expected*8} revision={(12,26,27,33).index(expected)+1} original_behavior=1 no_extra_GPU_work=1', 1)
                 self.assertEqual(policy.recoverable, 'QUAD_ROUTE_OBSERVER_INSTALL_INCOMPLETE')
 
     def configured2(self):
@@ -143,6 +143,46 @@ class QuadRouteEvidence(unittest.TestCase):
                     text.replace('value=0000000100200000','value=0000000000000000'),
                     text.replace('returned_nil=0 return_class=PRPosterEnvironmentImpl','returned_nil=1 return_class=nil')):
             with self.assertRaises(AssertionError):inspect(bad,self.token)
+
+    def mode_sample(self):
+        text=self.return_identity_sample().split('SWEET QUAD ROUTE BEGIN ',1)[0]
+        text=text.replace('SWEET QUAD ROUTE CONFIG pid=278 installed=27 expected=27 per_api=8 max=216 revision=3 original_behavior=1 no_extra_GPU_work=1\n','')
+        rows=[]
+        for api in MODE_APIS:
+            types=MODE_TYPES[api].encode()
+            rows += [f'SWEET QUAD ROUTE METHOD pid=278 api={api} present=1 owned=1 installed=1 arguments={MODE_ARGUMENTS[api]} owner_checked=1 meta=0',
+                     f'SWEET QUAD ROUTE ABI pid=278 api={api} bytes={len(types)} truncated=0',
+                     f'SWEET QUAD ROUTE ABI_DATA pid=278 api={api} offset=0 bytes={len(types)} hex={types.hex()}',
+                     f'SWEET QUAD ROUTE ABI_END pid=278 api={api}']
+        rows.append('SWEET QUAD ROUTE CONFIG pid=278 installed=33 expected=33 per_api=8 max=264 revision=4 original_behavior=1 no_extra_GPU_work=1')
+        for call,(api,bits) in enumerate((('apply_mode','ffffffffffffffff'),('transition_mode','8000000000000000'),('active_mode',None)),1):
+            rows += [f'SWEET QUAD ROUTE BEGIN pid=278 call={call} api={api} original_forwarded=1',
+                     f'SWEET QUAD ROUTE OBJECT pid=278 call={call} receiver=NUNIAstronomyVistaController argument_nil=1 argument_class=nil',
+                     f'SWEET QUAD ROUTE ID pid=278 call={call} receiver=0000000100100000 argument=0000000000000000']
+            if bits:rows.append(f'SWEET QUAD ROUTE INTEGER pid=278 call={call} bits={bits}')
+            rows += [f'SWEET QUAD ROUTE RETURN pid=278 call={call} returned_nil=1 return_class=nil',
+                     f'SWEET QUAD ROUTE RETURN_ID pid=278 call={call} value=0000000000000000',
+                     f'SWEET QUAD ROUTE END pid=278 call={call} api={api} outcome=return original_behavior=1']
+        return self.finish(text+'\n'.join(rows)+'\n')
+
+    def test_signed_modes_keep_original_bits_and_branch_absence(self):
+        result=inspect(self.mode_sample(),self.token)
+        self.assertEqual(result['revision'],4)
+        self.assertEqual(result['records'][0]['integer_value'],-1)
+        self.assertEqual(result['records'][1]['integer_value'],-(1<<63))
+        self.assertEqual(result['observed_API_calls']['active_mode'],1)
+        self.assertEqual(result['observed_API_calls']['deactive_mode'],0)
+
+    def test_signed_mode_missing_wrong_ABI_or_branch_record_refused(self):
+        text=self.mode_sample()
+        line='SWEET QUAD ROUTE INTEGER pid=278 call=1 bits=ffffffffffffffff\n'
+        wrong_types='v24@0:8Q16'.encode().hex()
+        for bad in (text.replace(line,''),text.replace(line,line+line),text.replace(line,line.replace('call=1','call=3')),
+                    text.replace('bits=ffffffffffffffff','bits=fffffffffffffff'),
+                    text.replace('api=apply_mode offset=0 bytes=10 hex='+MODE_TYPES['apply_mode'].encode().hex(),
+                                 'api=apply_mode offset=0 bytes=10 hex='+wrong_types)):
+            with self.assertRaises(AssertionError):inspect(bad,self.token)
+        with self.assertRaises(AssertionError):inspect(text.replace(line,'')+line,self.token)
 
 
 if __name__=='__main__': unittest.main()

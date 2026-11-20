@@ -83,3 +83,25 @@ r4 observer SHA`12773784797c95b0418f5e25ef5bd40ceb96223438f41bed5ddd814172976784
 r5 observer SHA`9e09ba1d9cb0b16ee33348289fa59a330fb6a4921ac7ef54e7b91b75fc676d5e`／149984B，其新RAMCPU `e6788a5d9d05f334`在guard test4退出1，未到boot sender、无wire／LIVE，因此未取得CPU先验，不能发GPU；[拒绝](../reproducibility/v730-quad-route-r5-ramcpu-guard-refused.json)。两版旧失败bundle未重发，原内核／GLES／Metal保持。
 
 之后独立fastboot健康31.688／30.016秒通过，Sony身份／现有配置／bulk描述符正常，单次claim／release成功，期间download／boot／bulk读写／reset均0；[USB](../reproducibility/sony-usb-open-observation-20261120.json)。这些只读观察不解释前次竞态，也不提升失败试验。原已patch未boot的loader状态与guard交互需离线核对，不能继续换token重复失败。已验`boot_once.py`SHAe862e430保持，独立`usb_open_observation.py`提供准确打开阶段诊断。手机当前fastboot，无in-flight。
+
+## r6原模式分支与准确采样选项
+
+2026-11-20对准确gl5原root只读重建／挂载，固定A2S、原Aegir与cache header逐SHA核对，原输入无修改，分析后已卸载。新`inspect_poster_routing.py`从实际20H392读九处代码byte锚点、原relative method list六项type／IMP、A2S精确函数起点及四字节跳转表。工具只提交源码、SHA、metadata与结论，原Apple切片／反汇编保持本地build，不提交；实际[static proof](../reproducibility/poster-routing-20H392-offline.json)。
+
+`applyMode:`／`animateTransitionToMode:`是signed NSInteger／`v24@0:8q16`，原跳表明确0=activeMode、1=deactiveMode、2=interactiveMode、3=supplementalMode。active／interactive／supplemental调用Vista startAnimation，deactive调用stopAnimation；Vista init已置_isDisplayOn bit0x02，start置_isAnimating bit0x04，_updateAnimation同时检查两bit才进入_startAnimation并setPaused:NO。原Aegir自己选择模式，不能让observer强制active或取消paused。
+
+ClockKitUI `_msaaCount`本身返回4，但init只有options0x08置位才使用它；没有该bit时sample1。options0x01另决定depth，实际depth descriptor是252／RenderTarget4／Memoryless3。独立从r3原raw核验十条quad_init／async_init全部options114／0x72、color_space2，因此当前scope没有请求MSAA或depth；这些是更广的功能缺口，不能解释这个黑壁纸。Memoryless／MSAA实作继续，静态不冒充本靴运行参数或面板背光。
+
+r6 route revision4再增加Vista controller apply_mode／transition_mode／active_mode／deactive_mode／interactive_mode／supplemental_mode，共33方法、每类8条／264上限。所有NSInteger保留原64位位型，无额外mode getter／scene／GPU调用；原owner、ABI、nil-return、throw和errno逐项转发。Mac真实ObjC ASan／UBSan、signed极值与无符号ABI拒绝测试通过；Python10项原记录／缺块／signed-bits／ACK后拒绝通过，旧r1..r3仍可独立复验。
+
+编译observer`de4fc867883c1d731fe2b2819646d17fb5b38dc9faa4d550e3bb204e86ddb500`／150304B ARM64完成，与旧CA基线配CPU b2a5bc908eec01c2／image7fa57a71只进行offline。run_trial严格拒绝六份compiled源码与当前Depth32-Stencil8源码不一致，下载／boot均0，原拒绝保持。不能绕过当前source audit来测试旧库；当前新附件完整reference与新CPU c10521e2已offline源码审计通过，先其自身CPU→GLES9→referenceCPU→native18／PNG6→新proof，再构建原模式包自身CPU／GPU。新包源码可构建和真机准入分别验，见[offline proof](../reproducibility/poster-route-r6-offline-proof.json)。
+
+Mac原模式observer构建沿完整本版本native／PNG proof，`--registration-only --register-device --pipeline-observe --postdraw-observe --snapshot-observe --request-observe --quad-route-observe --png-filter-encoder`；输出必须新建，绑定当前准确Metal库，不能拿旧16组proof准入新18组库。静态复现入口，在已经只读挂载的准确原gl5上运行：
+
+```sh
+python3 -B tools/build/inspect_poster_routing.py --root build/my-original-root/root \
+  --symbols assets/symbols/ios16-20H392-root.a2s --ipsw /path/to/local/ipsw \
+  --output build/my-poster-routing-proof
+```
+
+本轮使用blacktop/ipsw3.1.749的普通macOS x86_64公开release，archive b141b419／binarye90ac1e0与release checksum匹配，只有本地静态读取。手机仍fastboot／无worker，新物理会话确认未到，未下载、启动或复发r4／r5；完整壁纸／UI／FPS／睡眠／其它外设目标保持。

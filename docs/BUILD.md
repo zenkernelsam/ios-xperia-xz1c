@@ -4,6 +4,8 @@
 
 2026-11-20现行源码增加尚未手机准入的Depth32＋Stencil8附件r2候选，完整构建／源锁／host证明与新增native18门槛见 [METAL-DEPTH-STENCIL](METAL-DEPTH-STENCIL.md)。新包自身CPU、GLES9、referenceCPU、native18原depth／stencil页面及PNG6均需独立验收，旧库native16／17不能准入；不将离线candidate或host像素称为当前实机基线。WSL当前GLES host证明只用UBSan，ASan启动失败另存；host runner限45秒／日志1MiB。
 
+随后原模式r6 observer／33方法只改观察源码，当前准确原调用／byte锚点工具和构建见 [METAL-REQUEST-OBSERVATION](METAL-REQUEST-OBSERVATION.md)。旧CA基线配新observer即使所有host测试通过，仍因当前六份GLES／Metal源码不一致被offline run_trial拒绝；不跳过源码audit。新附件GLES6211bac2／Metalf40f796b保持，按当前source重编完整reference observer仍7e164ad1，重新打包blob4274554B／90dc4934；CPU c10521e2已offline audit，完整native18／PNG6实机验收后才能用新proof构建模式observer原GPU包。
+
 当前CA矩阵前端沿用已审计的IR3 Mesa归档，仅重编用户态，全部新目录必须不存在：
 
 ```sh

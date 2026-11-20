@@ -379,7 +379,7 @@ static void install_observer(void)
 #if defined(SWEET_QUAD_ROUTE_OBSERVE)
     (void)quad_route_observe(objc_lookUpClass("SweetMTLDevice"),objc_lookUpClass("CLKUIMetalResourceManager"),
         objc_lookUpClass("CLKUIQuadView"),objc_lookUpClass("CLKUIQuadViewRenderCoordinator"),objc_lookUpClass("NUNIQuad"),
-        objc_lookUpClass("PRPosterEnvironmentImpl"),objc_lookUpClass("NUNIAstronomyVistaView"),objc_lookUpClass("_TtC11AegirPoster24AegirRenderingController"),objc_lookUpClass("PRRenderer"),diagnostic);
+        objc_lookUpClass("PRPosterEnvironmentImpl"),objc_lookUpClass("NUNIAstronomyVistaView"),objc_lookUpClass("_TtC11AegirPoster24AegirRenderingController"),objc_lookUpClass("PRRenderer"),objc_lookUpClass("NUNIAstronomyVistaController"),diagnostic);
 #endif
 #if defined(LILAC_EXCEPTION_TEST)
     metal_runtime_observe([MetalABIHostFixture class],@protocol(MetalABIHostProtocol),NULL,NULL,NULL,diagnostic);

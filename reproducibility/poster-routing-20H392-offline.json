@@ -1,0 +1,188 @@
+{
+  "system": "iOS16.7.16/20H392",
+  "A2S_sha256": "5bf04681af1819e2379319942a97be635100d6ca3844c5a22e372ce78a83b83d",
+  "cache_header_sha256": "76874e8375252ee643011ff8063f0cce12355f05cf5f9897a34e5679667a65aa",
+  "Aegir_sha256": "a4abba1e22350a5c577dc3ce551da90ab42606d872509cd50859ef63751454a7",
+  "ipsw_tool_sha256": "e90ac1e07e8dd74f533513e61088afc27c4e995c82902be80aab9618cb868c47",
+  "root_readonly_verified": true,
+  "controller_methods": [
+    {
+      "owner": "NUNIAstronomyVistaController",
+      "selector": "activeMode",
+      "types": "v16@0:8",
+      "imp": "0x1ee94ea00",
+      "entry_index": 9,
+      "method_list": "0x1ee971ff8",
+      "type_address": "0x1ee98f3cc",
+      "exact_A2S_IMP_start_verified": true
+    },
+    {
+      "owner": "NUNIAstronomyVistaController",
+      "selector": "interactiveMode",
+      "types": "v16@0:8",
+      "imp": "0x1ee94eac8",
+      "entry_index": 12,
+      "method_list": "0x1ee971ff8",
+      "type_address": "0x1ee98f3cc",
+      "exact_A2S_IMP_start_verified": true
+    },
+    {
+      "owner": "NUNIAstronomyVistaController",
+      "selector": "animateTransitionToMode:",
+      "types": "v24@0:8q16",
+      "imp": "0x1ee94e898",
+      "entry_index": 20,
+      "method_list": "0x1ee971ff8",
+      "type_address": "0x1ee98f798",
+      "exact_A2S_IMP_start_verified": true
+    },
+    {
+      "owner": "NUNIAstronomyVistaController",
+      "selector": "applyMode:",
+      "types": "v24@0:8q16",
+      "imp": "0x1ee94eb70",
+      "entry_index": 21,
+      "method_list": "0x1ee971ff8",
+      "type_address": "0x1ee98f798",
+      "exact_A2S_IMP_start_verified": true
+    },
+    {
+      "owner": "NUNIAstronomyVistaController",
+      "selector": "deactiveMode",
+      "types": "v16@0:8",
+      "imp": "0x1ee94ea60",
+      "entry_index": 43,
+      "method_list": "0x1ee971ff8",
+      "type_address": "0x1ee98f3cc",
+      "exact_A2S_IMP_start_verified": true
+    },
+    {
+      "owner": "NUNIAstronomyVistaController",
+      "selector": "supplementalMode",
+      "types": "v16@0:8",
+      "imp": "0x1ee94eb1c",
+      "entry_index": 75,
+      "method_list": "0x1ee971ff8",
+      "type_address": "0x1ee98f3cc",
+      "exact_A2S_IMP_start_verified": true
+    }
+  ],
+  "original_mode_dispatch": {
+    "0": "activeMode",
+    "1": "deactiveMode",
+    "2": "interactiveMode",
+    "3": "supplementalMode"
+  },
+  "mode_dispatch_raw_jump_table_sha256": "18a98fde62bc6d0e1a564793f8e5330c8844a96b3144d34e14a372970a395ea8",
+  "Vista_init_sets_display_on": true,
+  "Vista_animation_needs_display_and_animation_bits": true,
+  "active_mode_calls_original_startAnimation": true,
+  "original_start_clears_quad_paused": true,
+  "ClockKitUI_MSAA_option_bit": 8,
+  "ClockKitUI_MSAA_sample_count_when_requested": 4,
+  "ClockKitUI_depth_option_bit": 1,
+  "ClockKitUI_depth_format": 252,
+  "ClockKitUI_depth_storage_mode": 3,
+  "ClockKitUI_depth_usage": 4,
+  "Aegir_reads_original_backlight_and_linear_backlight": true,
+  "metadata_and_static_calls_are_not_runtime_acceptance": true,
+  "exact_code_anchors_verified": {
+    "vista-update": {
+      "address": "0x1ee94797c",
+      "bytes": 40,
+      "sha256": "7e677a7a756c7fc011cba6d4e73d983463aedb6cda31044351f51e2e2d83e6c6"
+    },
+    "vista-display-init": {
+      "address": "0x1ee9471dc",
+      "bytes": 24,
+      "sha256": "8499c8077a8769038156344392ac9f0f39dc998c65799439ffbb66bedaaf547b"
+    },
+    "vista-start": {
+      "address": "0x1ee94794c",
+      "bytes": 24,
+      "sha256": "4efb554e71cf7cc1c576e3a2aae129d84c41f382b9545e54c8cdf226989143cd"
+    },
+    "vista-resume": {
+      "address": "0x1ee94788c",
+      "bytes": 96,
+      "sha256": "98319b660354d6a22977a3962678a210163b8ecfe922bd44b18d1a3f3e1a0db1"
+    },
+    "controller-active": {
+      "address": "0x1ee94ea00",
+      "bytes": 96,
+      "sha256": "6c31bd4e57d61eda55bddf2ab89e0486c6115e4df26f495671b89bdbe335a5e0"
+    },
+    "controller-dispatch": {
+      "address": "0x1ee94eb70",
+      "bytes": 176,
+      "sha256": "c2b1667b8d766ee1e20a03a37690c6fc6341bb6371647938d8169fef515e6caf"
+    },
+    "canvas-options": {
+      "address": "0x1c1733548",
+      "bytes": 160,
+      "sha256": "50a96f32bb4b3e0f53a2ec8414dd7982e1ab27a1847eadfff6d3db4006d82106"
+    },
+    "canvas-msaa-count": {
+      "address": "0x1c1738330",
+      "bytes": 24,
+      "sha256": "9a2b9619316801bc7b1a0e979b1f987fdae59c1e19bc3409bcb1dce780747098"
+    },
+    "canvas-depth-descriptor": {
+      "address": "0x1c1733da0",
+      "bytes": 336,
+      "sha256": "4c0bc6af8bc88d950257c80726f444ec6e5c11a7fba03acf42eff9de459a94cf"
+    }
+  },
+  "original_Apple_bytes_not_for_Git": true,
+  "phone_downloads": 0,
+  "phone_boots": 0,
+  "phone_resets": 0,
+  "tool_source_sha256": "71d22da549493176957e1d5f9268eec3530904317d2600f32942bae8cecc7177",
+  "local_analysis_hashes": {
+    "mode-jumps.txt": "ea8f79b28040a3683b3769ad5db235f8fafc7a3f8fea18f7d3d84e643d7da537",
+    "mode-jumps.bin": "18a98fde62bc6d0e1a564793f8e5330c8844a96b3144d34e14a372970a395ea8",
+    "canvas-msaa-count-bytes.txt": "0e6a13f712c15f3f5c4e42bda33e666d022cc5c59cb269cb6f83e3dad1958ede",
+    "vista-display-init.bin": "8499c8077a8769038156344392ac9f0f39dc998c65799439ffbb66bedaaf547b",
+    "vista-display-init.txt": "8ce371486a66851b11ff20b9cc5df15e0fd69edb6eaa2073ded5c07c5e110ba4",
+    "vista-start-bytes.txt": "90be684cabfc3265d7bc09ca224bb292142ddb50239f9c525225b5c0c467d3d4",
+    "vista-start.txt": "5b73578171e9bd36492cfecca0158db13d412d6c7696e34a362d75a5aca4a864",
+    "vista-start.bin": "4efb554e71cf7cc1c576e3a2aae129d84c41f382b9545e54c8cdf226989143cd",
+    "controller-active-bytes.txt": "d2e8a2118e8cea517770b92cecde46f5d3b7284873b73cb546631ca44ea01c8c",
+    "vista-resume-bytes.txt": "b7d5330ac4e7412b4d5a09cf667362c187dcda3291ca57af775f809a8437d292",
+    "vista-update-bytes.txt": "c43be3a2ad6937697677e487e3276ca1a2ebe40430d9c2b26a6a45e2545fdb05",
+    "nano-extract.txt": "d33db1eb14642ab57289a340a5f6e65d7408dcae119a06c0b1b9390d93634d57",
+    "canvas-msaa-count.bin": "9a2b9619316801bc7b1a0e979b1f987fdae59c1e19bc3409bcb1dce780747098",
+    "canvas-msaa-count.txt": "513dc1c674a76e27fe9eb75494c342a6735a61e759a806802ca2ac164fbb8a0e",
+    "method-list.txt": "ce4b113b558ae332b8178bbc635f09e28eb792023094c705ddc05c0a4e4800de",
+    "vista-update.bin": "7e677a7a756c7fc011cba6d4e73d983463aedb6cda31044351f51e2e2d83e6c6",
+    "vista-update.txt": "0c740846672fe46bac08a9e4f72821ef35436a82c99fbc20ba9841f2dd9d5125",
+    "method-list.bin": "3f400c2f33ad8d96e41fe14b0740d220312419be5aef76c916c073ca90e0122a",
+    "controller-dispatch.txt": "b888e4f8721f7e80fa7fca749d5962ffdd0ec8b69dea03830b641dbd8b0caa9f",
+    "controller-dispatch.bin": "c2b1667b8d766ee1e20a03a37690c6fc6341bb6371647938d8169fef515e6caf",
+    "canvas-options-bytes.txt": "0cf5073680486e9f6a208cc70daa7d0a5217f44ec20ae68ed462662fbdc7cde4",
+    "controller-active.txt": "05b874d6fbca0ad30b90348144363454435f19d03536662539f8b4bc9baa6fba",
+    "controller-active.bin": "6c31bd4e57d61eda55bddf2ab89e0486c6115e4df26f495671b89bdbe335a5e0",
+    "canvas-depth-descriptor-bytes.txt": "c62e04d14ca804c075cb99c349f25044d1be705fae623261b9d1470afcd65028",
+    "aegir-wake.txt": "6523430c072abb423afab4f0dab09562407abdec987431420d71db824a0141da",
+    "canvas-options.txt": "0e55c56df9daab9d1576c2684b085c81c8856eddf90606e683ab63cd28c6f900",
+    "canvas-depth-descriptor.txt": "b090b9712b24b4bbdf2d262a1200a9aa4fecc02c56a88d5a27a5c498545249b0",
+    "canvas-options.bin": "50a96f32bb4b3e0f53a2ec8414dd7982e1ab27a1847eadfff6d3db4006d82106",
+    "canvas-depth-descriptor.bin": "4c0bc6af8bc88d950257c80726f444ec6e5c11a7fba03acf42eff9de459a94cf",
+    "vista-resume.bin": "98319b660354d6a22977a3962678a210163b8ecfe922bd44b18d1a3f3e1a0db1",
+    "vista-resume.txt": "2fa62d65995465bba940f16de02ae950cdf32a867a92885530b067212004935a",
+    "vista-display-init-bytes.txt": "10bf4ad320c1cb30e1ae359b72ebc4995d27a50c64da459b14a6d67beeabee4b",
+    "controller-dispatch-bytes.txt": "78b691865f331850e9f54badb12309b2f25f970332e17a4488d5bda33b3530c1"
+  },
+  "actual_observed_canvas_options": {
+    "source": "reproducibility/v730-quad-route-r3-gpu-requests.json",
+    "token": "3541e07973fe676f",
+    "raw_sha256": "bafcac71423a0f69dfc145229b4d6c94868470a37b3d844ab75caef1235a8a0e",
+    "complete_original_init_calls": 10,
+    "original_options": 114,
+    "MSAA_option_not_set": true,
+    "depth_option_not_set": true,
+    "rechecked_from_original_serial_bytes": true,
+    "no_runtime_mode_calls_inferred_from_static_code": true
+  },
+  "candidate_Memoryless_MSAA_depth_texture_gaps_pending": true
+}

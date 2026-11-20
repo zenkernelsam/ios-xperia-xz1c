@@ -1,0 +1,157 @@
+{
+  "date": "2026-11-20",
+  "stage": "OFFLINE_MODE_OBSERVER_AND_CURRENT_ATTACHMENT_REFERENCE_ONLY",
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "mode_observer": {
+    "library_sha256": "de4fc867883c1d731fe2b2819646d17fb5b38dc9faa4d550e3bb204e86ddb500",
+    "library_bytes": 150304,
+    "route_revision": 4,
+    "methods": 33,
+    "per_API_limit": 8,
+    "total_limit": 264,
+    "source_files": {
+      "gpu/diagnostics/exception_observe.m": "2d7101d5476564e007c239a61480a7686bbbcc6ddf247c1b2546db91890b351d",
+      "gpu/diagnostics/MetalRuntimeObserve.h": "1b7a8de73a2aec267a53bcb5a50acc1d55796f62d992da6d70e2402812a9386e",
+      "gpu/diagnostics/MetalProbeStartup.h": "7a99f308d807f01b6b1e02fdfa9655a83eaecdae29b0ccea785feb446a3936fb",
+      "gpu/diagnostics/MetalPipelineObserve.h": "bbb1025ab5dabb340f508eccaaa6a5741149d9ea8e4a36562ed3eb45659224a9",
+      "gpu/diagnostics/PostDrawObserve.h": "e293e701736657e5ad28850d6970b7a2ed5cd299b5f4d04ea4bfb926e6c7f963",
+      "gpu/diagnostics/SnapshotMethodObserve.h": "10dded48c0cf90d28999f03624e9f1b9c84c46cc1ba4b69567867ee42e9d04a8",
+      "gpu/diagnostics/MetalRequestObserve.h": "afc8ee2c02e2a1041a153a6a2e33df8d39146f3291775fca5f6ed1e790762213",
+      "gpu/diagnostics/QuadRouteObserve.h": "e154d1828ce47cd1af50319d6cc650c5af1eeada5ed51a3e391a550a3c11f897",
+      "gpu/compat/PNGImageIOEncoder.h": "61031999d4ff1d9a2c9c6a564cf229a82c3b9c49998d752ae0bd4d6fd18e1e92",
+      "gpu/compat/PNGImageDispatch.h": "a0c30d97527b731571437a70e717e4dbe4b2dafe3f29e881bced604fe8bae5a7",
+      "tools/png_encoder_proof.py": "5ac2776ae74977ef2bc43bc92b65fc4f53bb6abafb23cf6402a9c8c8250b37f1",
+      "gpu/diagnostics/ProgramCacheScope.h": "bb6546f8c148f71e54c058bcf2877e7de903942ae1934a9d933c76636513fc6a",
+      "tools/program_cache_scope.py": "9fcd14133fa3e0531f5cc0a01fb6d8b84d62432df41f3d0e688df7e151c097e9",
+      "gpu/metal/MetalResources.h": "3b6d9e01a1368e94a9a5ffb723c92a14987e25706559b588937c2b55ee9a3f7b",
+      "gpu/diagnostics/MetalDiscoveryProbe.h": "d497fbe096e7261ac177e302308712968824207d60dd84a4610015b297e6020c"
+    },
+    "actual_ObjC_host": {
+      "source_files": {
+        "gpu/diagnostics/QuadRouteObserve.h": "e154d1828ce47cd1af50319d6cc650c5af1eeada5ed51a3e391a550a3c11f897",
+        "tools/build/test_quad_route_observe.m": "16958515dc0a8f768b91bc9494e0ea5926abd94de0fab59c47bc63ff9e554da9"
+      },
+      "actual_ObjC_signed_NSInteger_mode_bits_owner_metaclass_nil_throw_errno_forwarding_ASan_UBSan_passed": true,
+      "observed_methods": 33,
+      "records_max": 264,
+      "additional_GPU_scene_or_mode_calls": 0,
+      "device_operations": 0
+    },
+    "iOS_ARM64_compiled": true,
+    "additional_mode_getters_or_GPU_calls": 0,
+    "runtime_CPU_acceptance_pending": true
+  },
+  "baseline_library_mode_candidate_refused": {
+    "token": "b2a5bc908eec01c2",
+    "image_sha256": "7fa57a7169836e5bf7c20caeed5b56c401cc010e39341809689d8fe72f1cb446",
+    "offline_only": true,
+    "offline_source_audit_result": "REFUSED_COMPILED_BASELINE_DIFFERS_FROM_CURRENT_SOURCES",
+    "compiled_GLES_sha256": "d6d8fcfa27bcac84ab5edb3d2a11c1ed23374e8b491a3e8de093a9a2a819ac2b",
+    "compiled_Metal_sha256": "5e94ab57401479b42f506884a172a7a839378a82310661a1f66164e99c21f988",
+    "new_observer_sha256": "de4fc867883c1d731fe2b2819646d17fb5b38dc9faa4d550e3bb204e86ddb500",
+    "current_source_mismatches": [
+      {
+        "source": "gpu/sweetgl/build.sh",
+        "baseline_compile_sha256": "58212fae022964023762479ae9e776d96a9a165b5b635d431b70a1cab818e1a5",
+        "current_sha256": "a7d649af1d8cc59727755046744567ee1277dac672c845a64635431ad2569b82"
+      },
+      {
+        "source": "gpu/sweetgl/MetalShaderInternals.h",
+        "baseline_compile_sha256": "f1d2e6dbb16993ec79e8e05c0aa2423825f68e7acdcbcc73e33d25fedf9d951a",
+        "current_sha256": "9ec56cb0dbdb7ef46f936f277d652db436703420c4fc837ee81a10cd6b385480"
+      },
+      {
+        "source": "gpu/sweetgl/metal_render.c",
+        "baseline_compile_sha256": "6a72b11804ba77a871235b4ef5d23b6604f870ed4c581534bc5c7f310a47f895",
+        "current_sha256": "ecbdef2f6308bae3347d9f1b008f65e351a2f9502b6910f62446bb73289738cd"
+      },
+      {
+        "source": "gpu/metal/MetalResources.mm",
+        "baseline_compile_sha256": "31fde8388e18a894e2453757677769ee463c3e829b86b7a754373c44b7178061",
+        "current_sha256": "d22b214e3fb601b91229383e70045c7a4e8a4414c11c5848f30463bd1ccb2433"
+      },
+      {
+        "source": "gpu/metal/MetalRender.inc",
+        "baseline_compile_sha256": "56bacd7392ca5a917904ca90883d38325bf3cc190b059a927d142427c18ca07c",
+        "current_sha256": "e54135ed97eba21b9359ebd86b7291758248d31595046fcbc6a5653c4b2026f2"
+      },
+      {
+        "source": "gpu/metal/MetalTextureRules.h",
+        "baseline_compile_sha256": "60788dd0d7fba81850327f95b563482061afb3f48f55d8551114ded6f64f046d",
+        "current_sha256": "1c17d64335bd8309c490343f4e6ef8c375c0677a6c163723d8dfa65928a0c5a6"
+      }
+    ],
+    "same_kernel_private_and_payload_checked_before_remote_source_refusal": true,
+    "actual_CPU_acceptance_not_obtained": true,
+    "phone_download_commands": 0,
+    "phone_boot_commands": 0,
+    "failed_r4_r5_packages_not_replayed": true
+  },
+  "current_attachment_reference": {
+    "path": "build/poster-routing-r6/stencil-reference-ram",
+    "manifest_sha256": "86f30e38ab689ae47433a5974795c43815aac3202684bee646639515f0fd3e3a",
+    "GLES_sha256": "6211bac248655bad1f1fb3c1386e68037160f8f78bd264893030ad69e60bd5df",
+    "Metal_sha256": "f40f796b7d04d143685a7ac0e9414cfed2aae68d0184249ebaf3cd09c286ec53",
+    "Metal_source_map_sha256": "b86e29eb0c15237abc95b5ea31e976569ec47fc13513883184e66b3cf47b09d0",
+    "observer_sha256": "7e164ad1c0e54efa6f17f461e604b3554642d1d8c8c9b033b3d30070285c7e9d",
+    "blob_sha256": "90dc4934c2555bdfd15723cc404e5bde495b114ccbd9631ffdd34ef173877f0e",
+    "blob_bytes": 4274554,
+    "byte_verified": true,
+    "current_source_observer_manifest_verified": true,
+    "CPU_bundle_token": "c10521e2f389104f",
+    "CPU_bundle_image_sha256": "67656595b86727101cd4549007fb8c9e5a7cc6e9a6585b47af0f8f91fbd558f3",
+    "payload_audit": {
+      "image_sha256": "67656595b86727101cd4549007fb8c9e5a7cc6e9a6585b47af0f8f91fbd558f3",
+      "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+      "blob_count": 8,
+      "complete_payload_reconstructed_from_compiled_kernel": true
+    },
+    "offline_Mac83_sources_and_same_kernel_private_audit": {
+      "command": [
+        "python",
+        "-B",
+        "tools/device/run_trial.py",
+        "--bundle",
+        "build/poster-routing-r6/stencil-reference-ramcpu",
+        "--directory",
+        "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-poster-r6-reference-offline-20261120\\not-live",
+        "--private-evidence",
+        "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-screen-v730-private-r1-20261118"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "aaf3cd37562ca718dd8168af6b5875f8356c4db5483503e833f38af8cff7dcb1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bound_same_kernel_private_payload_and_Mac83_sources": true,
+      "device_operations": 0,
+      "live": false
+    }
+  },
+  "host_fault_tests": {
+    "quad_route_evidence": {
+      "run": 10,
+      "passed": 10
+    },
+    "native_prerequisite": {
+      "run": 4,
+      "passed": 4
+    },
+    "scanout_gates": {
+      "run": 10,
+      "passed": 10
+    }
+  },
+  "original_r3_route_and_scanout_rechecked_from_raw": {
+    "token": "3541e07973fe676f",
+    "complete_route_calls": 40,
+    "complete_canvas_init_calls": 10,
+    "original_STOP_not_promoted": true
+  },
+  "poster_static_proof": "reproducibility/poster-routing-20H392-offline.json",
+  "current_attachment_GLES9_native18_PNG6_and_original_UI_acceptance_pending": true,
+  "Memoryless_MSAA_sampled_depth_stencil_and_ordered_XR_pending": true,
+  "failed_r4_r5_not_replayed": true,
+  "new_blue_fastboot_physical_session_confirmation_pending": true,
+  "phone_download_commands": 0,
+  "phone_boot_commands": 0,
+  "phone_reset_commands": 0
+}
