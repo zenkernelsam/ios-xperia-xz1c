@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-20",
+  "source_commit": "b235512141216c8d471bea2d6066f2904a3f80b5",
+  "Mac": {
+    "native_Mac_Trash_items": 10,
+    "regular_file_bytes": 155322368,
+    "source_and_final_RAM_zblob_library_and_host_proofs_retained": true,
+    "first_missing_standard_getter_failure_retained": true,
+    "original_source_task_changes_recoverable": true,
+    "all_round_processes_terminal": true,
+    "trash_emptied": false,
+    "permanent_deletions": 0,
+    "phone_operations": 0
+  },
+  "Windows": {
+    "native_recycle_items": 3,
+    "verified_native_recycle": true,
+    "one_use_source_and_candidate_transfer_only": true,
+    "trash_emptied": false,
+    "permanent_deletions": 0
+  },
+  "current_candidate_RAM_after_cleanup_byte_audit_passed": true,
+  "baseline_images_private_frames_original_failure_and_host_proofs_retained": true,
+  "phone_operations": 0
+}
