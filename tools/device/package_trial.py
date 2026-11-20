@@ -8,6 +8,7 @@ from ram_library import load as load_ram
 from native_proof import validate as validate_native,digest as native_digest
 from controller import Artifact,SHIM_SHA,SCREEN_CAPTURE_TIMES,checked_screen_capture_after,swipe_once_binding
 from numeric_boot_args import add_sampler
+from serial_worker import capture_binding
 def sha(data):return hashlib.sha256(data).hexdigest()
 def observer_environment(word,target):
     assert word.startswith('sweetenv=') and target in ('AegirPoster','backboardd')
@@ -155,6 +156,7 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
        'boot_sender':'sony-boot-once','boot_sender_sha256':sha((ROOT/'tools/device/boot_once.py').read_bytes()),
        'return_evidence_sha256':sha((ROOT/'tools/device/return_evidence.py').read_bytes()),
        'trial_mode':mode,'baseline_full_payload_reconstructed':True,
+        'serial_capture_binding':capture_binding(token),
        'blobs':{name:{'bytes':len(data),'sha256':sha(data)} for name,data in files}}
     if compact_numeric_ones:m['numeric_one_argument_compaction']=compact_numeric_ones
     if sample_binding:m['thread_sample_observation']=sample_binding

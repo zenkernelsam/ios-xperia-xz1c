@@ -23,4 +23,4 @@
 
 reproducibility保存原结果摘要、源码锁、精确proof和回收记录；原日志／镜像／作者失败page／光学媒体保持本地。任何host、局部byte、offscreen、seed或回程成功都不扩大为整机完成。
 
-过时handover／handout／工作日志和本周46份入口原文均归入[archive](archive/20261121/weekly-integration/original-document-manifest.json)，原字节与SHA保持。阶段专题保留复现信息，旧编号实验不再是当前执行入口。文档链接以正式仓库相对路径为准。
+过时handover／handout／工作日志和本周47份入口原文均归入[archive](archive/20261121/weekly-integration/original-document-manifest.json)，原字节与SHA保持。阶段专题保留复现信息，旧编号实验不再是当前执行入口。文档链接以正式仓库相对路径为准。

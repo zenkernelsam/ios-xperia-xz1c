@@ -171,6 +171,10 @@ def main():
     a=p.parse_args();bundle=Path(a.bundle)
     record=json.loads((bundle/'artifacts.json').read_text())['artifacts'][0]
     Artifact(record).validate();mode=record['trial_mode'];kernel=record['kernel_sha256']
+    if a.live:
+        from serial_worker import capture_binding
+        assert record.get('serial_capture_binding')==capture_binding(record['token']), \
+            'New live trial requires current serial capture binding before device operations'
     config=verify_record(record)
     payload_proof=prove_payload(record)
     plan=json.loads((bundle/'plan.json').read_bytes())

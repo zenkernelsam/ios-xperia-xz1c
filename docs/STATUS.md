@@ -29,7 +29,7 @@ CA基线native16包括资源、queue、AIR compute／render／constants、XR、I
 
 1. **深度／模板布局。** 原附件候选reference GPU `011e16b3caf5b1a6` 与独立页面诊断 `62fb2e559abcbe3d` 均REVISE。颜色原sample与guard正确，D32／S8在非线性位置写入且部分逻辑guard改变；12个原作者页完整取回。固定Freedreno已说明A5xx sysmem深度不能采用线性布局。正式源码新增独立FDL5 tiled工作页及GPU raw-copy，原线性页／offset／stride保持。ARM64构建与其自身GLES通过，但reference CPU的软件日志门槛未通过，完整附件和resolve仍未验，详见[ATTACHMENT-HARDWARE](ATTACHMENT-HARDWARE.md)。
 2. **原壁纸请求路由。** 最后实际原场景r3 `3541e07973fe676f` 有40条完整请求，共享设备／queue、NUNIQuad／NUNIScene有效，原paused=YES；display／sync／tick／nextDrawable／pipeline均未出现。原Vista初始化本来暂停，后续模式和环境触发待观察，不能强制解除或画一张替代原请求。33方法模式observer源码已完成，尚无成功实机模式记录，见[METAL-REQUEST-OBSERVATION](METAL-REQUEST-OBSERVATION.md)。
-3. **启动日志一致性。** tiled reference CPU原READY重放在第3232B首次不同：原流进入Darwin banner，重放进入GLRAM mount；38.594秒完整回程和只读目标成功不能代替字节一致门槛。原raw／结果保留，先查捕获／retained-log交错，无同包重发。
+3. **启动日志一致性。** tiled reference CPU原READY重放在第3232B首次不同：原流进入Darwin banner，重放进入GLRAM mount；原CPU拒绝保持。实际v730 USB源显示DTR开启后立即传输，而旧主机打开端口后才建raw文件，再发replay重置游标，尚未完成的IN与重放前缀交错。两段最初3232B完全一致，不是完整启动块一致的证明。主机新增closed-DTR单流捕获及artifact／worker源码SHA绑定；7项模拟故障、10项原字节前缀、6项回程检查通过，尚待独立CPU实机，未重发旧包或放宽旧核验。见[捕获研究](../reproducibility/serial-capture-r1-research-20261121.json)。
 4. **原生显示比例。** 当前系统375×812点／750×1624像素／scale2，最后映射到720×1280，横纵比例不同。用户要求改720×1280、360×640点／scale2的原生16:9布局。ADT离线profile已补，真实UIScreen／MobileGestalt、状态栏／safe area、触控和原界面须同靴核验；未投递新geometry，见[DISPLAY-GEOMETRY](DISPLAY-GEOMETRY.md)。
 5. **其它未完成。** 完整壁纸、动态UI／FPS、睡眠唤醒、LCD光学／背光、声音、Wi-Fi／蓝牙及更广的texture／depth／stencil／MSAA能力保持active。v730实际SweetSurface对共享事件selectors36／37／38／45仍返回零输出，不能当共享事件工作；事件草稿未接入当前库。
 

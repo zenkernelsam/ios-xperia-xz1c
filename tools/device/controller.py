@@ -97,11 +97,19 @@ class Artifact:
             if self.data.get("boot_sender") != "sony-boot-once" or \
                     hashlib.sha256((HERE / "boot_once.py").read_bytes()).hexdigest() != self.data["boot_sender_sha256"]:
                 raise Refuse("Boot sender differs from the artifact's audited transport revision")
+        if "serial_capture_binding" in self.data:
+            from serial_worker import capture_binding
+            if self.data["serial_capture_binding"] != capture_binding(self.token):
+                raise Refuse("Serial capture differs from the artifact's source-bound revision")
         return self
     def experiment(self):
         # Changing only a token or compiler timestamp is not a new hypothesis.
         args = tuple(sorted(x for x in self.data["cmdline"].split() if not x.startswith("sweetloop=")))
-        return self.data["source_revision"], args, self.data.get("boot_sender_sha256")
+        capture = self.data.get("serial_capture_binding")
+        if capture is not None:
+            capture = {key: value for key, value in capture.items() if key != "startup_commands"}
+        return (self.data["source_revision"], args, self.data.get("boot_sender_sha256"),
+                json.dumps(capture, sort_keys=True))
 
 class Journal:
     def __init__(self, root):
@@ -207,9 +215,15 @@ class LiveOps:
         if any(p.vid == 0x1209 and p.pid == 1 for p in list_ports.comports()):
             raise Refuse("Pre-existing debug CDC; refusing ambiguous handoff")
         if active_tool_processes(): raise Refuse("Another fastboot/xperable process is running before boot")
+        from serial_worker import capture_binding
+        capture = capture_binding(artifact.token)
+        if artifact.data.get("serial_capture_binding") != capture:
+            raise Refuse("Live boot requires the current source-bound serial capture")
+        self.journal.event("SERIAL_CAPTURE", token=artifact.token, binding=capture)
         self.worker_err = (directory / "serial-worker.stderr").open("wb")
         self.capture_process = OwnedProcess([sys.executable, HERE / "serial_worker.py", "--directory", directory,
-            "--token", artifact.token, "--attach-seconds", "90"], cwd=PATCH, env=self.env,
+            "--token", artifact.token, "--source-sha256", capture["worker_sha256"],
+            "--attach-seconds", "90"], cwd=PATCH, env=self.env,
             stdout=subprocess.DEVNULL, stderr=self.worker_err)
         # One dispatch only. A timeout/nonzero result is ambiguous, never an invitation to retry.
         artifact.validate()
@@ -443,6 +457,10 @@ def execute(plan, artifacts, ops, journal):
         if time.monotonic() - started >= plan["budget_seconds"]: break
         step = plan["steps"][min(index, len(plan["steps"]) - 1)]
         artifact = (produced or Artifact(artifacts[step["artifact_id"]])).validate(); produced = None
+        if not ops.simulated:
+            from serial_worker import capture_binding
+            if artifact.data.get("serial_capture_binding") != capture_binding(artifact.token):
+                raise Refuse("New live trials require the current serial capture binding before patching")
         directory = journal.root / f"cycle-{cycle + 1:02d}"; directory.mkdir()
         row = {"cycle": cycle + 1, "artifact": artifact.data, "simulated": ops.simulated,
                "boot_dispatches": 0, "reset_requests": 0, "fastboot_returned": False}

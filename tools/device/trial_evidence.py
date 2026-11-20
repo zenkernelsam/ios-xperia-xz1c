@@ -43,6 +43,7 @@ from stencil8_evidence import verify as verify_stencil8
 from memoryless_evidence import verify as verify_memoryless
 from multisample_evidence import verify as verify_multisample
 from presentation_evidence import verify as verify_presentation
+from serial_capture_evidence import verify as verify_serial_capture
 from ram_library import load as load_ram
 
 def verify(directory,mode,kernel_sha=None,version=None):
@@ -67,6 +68,10 @@ def verify(directory,mode,kernel_sha=None,version=None):
     assert sha(raw[:row['checkpoint_log_bytes']])==row['checkpoint_log_sha256']
     returned=inspect_return(raw,a['token'],row['checkpoint_log_bytes'],require_drain=True)
     assert returned['complete']
+    serial_capture = None
+    if 'serial_capture_binding' in a:
+        serial_capture = verify_serial_capture(root/'cycle-01/serial-events.jsonl', raw,
+                                              a['token'], a['serial_capture_binding'])
     text=raw.decode('ascii','replace')
     assert text.count('SWEET LOOP LIVE proto=1 token='+a['token'])==1
     start=text.index('SWEET LOOP LIVE proto=1 token='+a['token'])
@@ -172,6 +177,7 @@ def verify(directory,mode,kernel_sha=None,version=None):
     if mode=='ramcpu':
         report['library_loaded_before_current_live']=text.index(library_line)<start
         report['ram_library_prefix']=ramcpu_prefix
+    if serial_capture is not None:report['serial_capture']=serial_capture
     return report
 
 if __name__=='__main__':

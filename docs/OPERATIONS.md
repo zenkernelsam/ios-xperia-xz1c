@@ -8,6 +8,8 @@
 
 每包单download／boot、max_cycles1、on_pass／on_failure均stop，失败不重发，不换token重复同一失败。PON只0x06。ACK／DRAIN／RESET／FINAL_DRAIN、fastboot连续健康30秒、旧worker退出逐项通过后才下一轮。无匹配LIVE不发回程命令；回程成功不改变GPU的REVISE／STOP。gl5／userdata／SD／TA／XFL／固件／校准／备份不flash／erase。
 
+新包绑定serial_capture_revision1及实际worker源码SHA。worker先构造关闭的Serial，DTR=false后打开唯一COM，再以xb新建原raw文件，DTR=true后仅发一次loop token／status，连续读取当前靴cursor0流，不发replay／二次loop。Windows驱动打开期间会清RX，DTR提前开启和随后replay会交错启动字节。独立后处理核对顺序、COM身份、单READY／banner／LIVE、原RAM读字节和完整回程；旧exact replay核验保留，只供原历史证据。旧包缺新绑定不准实机；原失败不重分类。见[捕获研究](../reproducibility/serial-capture-r1-research-20261121.json)。
+
 新的物理会话确认之后，可先独立只读健康观察：
 
 ```powershell
