@@ -12,8 +12,10 @@ static MTLRenderPassDescriptor *memoryless_pass_descriptor(SweetMTLCommandBuffer
     NSMutableArray *originals=[NSMutableArray new];bool valid=true;
     for(unsigned slot=0;slot<10 && valid;++slot){auto attachment=memoryless_attachment(input,slot);auto texture=(SweetMTLTexture *)attachment.texture;
         if(![texture isKindOfClass:[SweetMTLTexture class]] || !texture->_memorylessOwner)continue;
+        bool resolve=texture.sampleCount>1 && slot<9 && attachment.storeAction==MTLStoreActionMultisampleResolve;
         valid=texture.device==commands.device && attachment.loadAction!=MTLLoadActionLoad && attachment.loadAction<=MTLLoadActionClear &&
-            attachment.storeAction==MTLStoreActionDontCare && !attachment.resolveTexture && !attachment.level && !attachment.slice && !attachment.depthPlane;
+            (attachment.storeAction==MTLStoreActionDontCare || resolve) && ((attachment.resolveTexture!=nil)==resolve) &&
+            !attachment.level && !attachment.slice && !attachment.depthPlane;
         for(id prior in originals)if(prior==texture)valid=false;
         [originals addObject:texture];
     }
@@ -46,7 +48,7 @@ static bool memoryless_operation_valid(NSDictionary *operation,id<MTLDevice> dev
             ![original isKindOfClass:[SweetMTLTexture class]] || ![backing isKindOfClass:[SweetMTLTexture class]] ||
             !original->_memorylessOwner || backing->_memorylessOwner || original.device!=device || backing.device!=device ||
             backing.storageMode!=MTLStorageModePrivate || original.pixelFormat!=backing.pixelFormat ||
-            original.width!=backing.width || original.height!=backing.height || !backing->_buffer || backing->_layout.offset!=64)return false;
+            original.width!=backing.width || original.height!=backing.height || original.sampleCount!=backing.sampleCount || !backing->_buffer || backing->_layout.offset!=64)return false;
         id actual=slot<8?targets[slot]:operation[slot==8?@"depthTarget":@"stencilTarget"];
         unsigned store=slot<8?sweet_render_attachment(&color,slot).store_action:slot==8?depth.store_action:stencil.store_action;
         if(store!=MTLStoreActionDontCare)return false;

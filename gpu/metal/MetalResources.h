@@ -25,6 +25,23 @@ _Static_assert(sizeof(SweetMTLMemorylessPassInfo)==64,"Transient diagnostic ABI 
 #endif
 __attribute__((visibility("default"))) id<MTLBuffer> SweetMTLRetainMemorylessPassBuffer(id<MTLRenderCommandEncoder> encoder,
     uint32_t slot,SweetMTLMemorylessPassInfo *info) NS_RETURNS_RETAINED;
+typedef struct SweetMTLMultisampleTextureInfo {
+    uint64_t public_texture,gpu_address,buffer_bytes,offset;
+    uint32_t handle,width,height,pitch,format,samples,reserved[2];
+} SweetMTLMultisampleTextureInfo;
+#ifdef __cplusplus
+static_assert(sizeof(SweetMTLMultisampleTextureInfo)==64,"Multisample diagnostic ABI differs");
+#else
+_Static_assert(sizeof(SweetMTLMultisampleTextureInfo)==64,"Multisample diagnostic ABI differs");
+#endif
+/* Author-diagnostic lease of an owned existing Private multisample texture. */
+__attribute__((visibility("default"))) id<MTLBuffer> SweetMTLRetainMultisampleTextureBuffer(id<MTLTexture> texture,
+    SweetMTLMultisampleTextureInfo *info) NS_RETURNS_RETAINED;
+/* Diagnostic lease of the owned single-sample resolve destination. */
+__attribute__((visibility("default"))) id<MTLBuffer> SweetMTLRetainResolveTextureBuffer(id<MTLTexture> texture,
+    SweetMTLMultisampleTextureInfo *info) NS_RETURNS_RETAINED;
+/* Only for authored independent sample-byte probes; default API draws all samples. */
+__attribute__((visibility("default"))) BOOL SweetMTLSetDiagnosticSampleMask(id<MTLRenderCommandEncoder> encoder,uint32_t mask);
 /* Diagnostic registration through original Metal.framework entry points.
  * No registry properties or framework functions are replaced. */
 __attribute__((visibility("default"))) id<MTLDevice> SweetMTLCreateRegisteredDevice(NSError **error) NS_RETURNS_RETAINED;

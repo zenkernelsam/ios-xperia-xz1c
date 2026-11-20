@@ -41,6 +41,7 @@ from metal_request_evidence import inspect as inspect_metal_requests
 from depth32_evidence import verify as verify_depth32
 from stencil8_evidence import verify as verify_stencil8
 from memoryless_evidence import verify as verify_memoryless
+from multisample_evidence import verify as verify_multisample
 from ram_library import load as load_ram
 
 def verify(directory,mode,kernel_sha=None,version=None):
@@ -144,6 +145,7 @@ def verify(directory,mode,kernel_sha=None,version=None):
                 if a['exception_observer'].get('depth32_probe'):exceptions['Metal_depth32']=verify_depth32(text,a['token'],a['exception_observer']['AIR_render_fixture'])
                 if a['exception_observer'].get('stencil8_probe'):exceptions['Metal_stencil8']=verify_stencil8(text,a['token'],a['exception_observer']['AIR_render_fixture'])
                 if a['exception_observer'].get('memoryless_probe'):exceptions['Metal_memoryless']=verify_memoryless(text,a['token'],a['exception_observer']['AIR_render_fixture'])
+                if a['exception_observer'].get('multisample_probe'):exceptions['Metal_multisample']=verify_multisample(text,a['token'],a['exception_observer']['AIR_multisample_fixture'])
                 if a['exception_observer'].get('program_request_export'):exceptions['Program_request_export']=verify_program_request(text,a['token'],a['exception_observer']['program_request_export'])
                 if a['exception_observer'].get('program_cache_scope'):exceptions['Program_cache_scope']=verify_cache_scope(text,a['token'],a['exception_observer']['program_cache_scope'])
                 if a['exception_observer'].get('cif10_PNG_reference'):exceptions['CIF10_PNG_reference']=inspect_cif10_reference(text,a['token'],a['exception_observer']['cif10_reference_revision'],a['exception_observer'].get('png_imageio_encoder_source_sha256'))

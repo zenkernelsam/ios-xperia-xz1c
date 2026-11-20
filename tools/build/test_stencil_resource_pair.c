@@ -52,6 +52,16 @@ int main(void)
     check_original_plane(primary,false);check_original_plane(owned,true);
     struct pipe_resource *consumer=primary;++consumer->refs;unsigned before=retired;release(&primary);assert(retired==before);
     check_original_plane(consumer,false);check_original_plane(&fd_resource(consumer)->stencil->base,true);release(&consumer);assert(retired==before+2);
+    for(unsigned samples=2;samples<=4;samples*=2){
+        primary=plane(screen,false);secondary=plane(screen,true);
+        primary->nr_samples=primary->nr_storage_samples=secondary->nr_samples=secondary->nr_storage_samples=samples;
+        struct pipe_resource *saved=secondary;
+        assert(!sweet_stencil_pair_take(primary,&secondary) && secondary==saved);
+        secondary->nr_storage_samples=1;assert(!sweet_stencil_pair_take_samples(primary,&secondary,samples));secondary->nr_storage_samples=samples;
+        assert(sweet_stencil_pair_take_samples(primary,&secondary,samples) && !secondary);
+        assert(primary->nr_samples==samples && fd_resource(primary)->stencil->base.nr_samples==samples);
+        release(&primary);
+    }
     assert(!sweet_stencil_pair_take(NULL,NULL) && retired==allocated);
     puts("Stencil resource pair PASS: exact original layouts/pages, single-reference ownership, shared consumer lifetime, fifteen fault rollback cases; host model only");return 0;
 }

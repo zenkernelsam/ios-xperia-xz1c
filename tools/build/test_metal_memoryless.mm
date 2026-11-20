@@ -6,6 +6,7 @@
 #include <map>
 #include <vector>
 #include <mutex>
+#include "MultisampleBackendHostStub.h"
 static std::map<uint32_t,SweetMetalBacking> memoryPages;
 static std::mutex memoryPagesLock;
 static uint32_t memoryHandle=1,memoryFence;

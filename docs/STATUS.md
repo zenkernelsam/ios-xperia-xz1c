@@ -2,13 +2,15 @@
 
 Sony BH905ND69G 当前停在 fastboot，无 controller／串口 worker／in-flight。最新成功进入内核的是r4自身RAMCPU `93a7b9a5851e3ed3`／38.454秒完整0x06回程。随后r4 GPU在传输前USB open拒绝、r5 RAMCPU在guard test4退出，均未启动新内核，原STOP_ERROR保留；失败后独立连续健康30.016秒及一次无bulk传输的接口claim／release观察正常，旧失败包不重发。最近实际GPU仍是场景／队列r3 `3541e07973fe676f`：40请求完整、共享队列与场景有效，但sync／tick／display／nextDrawable／pipeline未发生，150秒灰字锁屏／黑壁纸，原STOP／OBSERVATION_INCOMPLETE保持。前轮`881ce1c5d844e7ba`正常颜色主页证据保留。
 
-当前正式基线为 CA 矩阵修订 r1：
+当前源码最新候选为[MSAA附件r1](METAL-MULTISAMPLE.md)：2×／4×颜色-depth-stencil、Private／Memoryless原页、颜色平均及Depth32 Sample0／Min／Max GPU resolve。GLES21de6821／14784032B、Metalb25bfe6c／807568B／source-map149d4577（47源）、reference34219504／238384B、blob4295582B／188cf328；两自身CPU包87c89bcf／0ed40224和386c4f42／4e46f3d6只offline同核private／payload／Mac83源audit通过，未投递。实际作者AIR→ESSL在主机Mesa48draw／5508独立sample／26928B／8resolve通过UBSan；Mac原生对象与18阶段作者probe本体ASan／UBSan通过，90记录／151488B／55098Bguard被独立Python核验。host没有运行FD540 importer；新native20／PNG6手机证明仍待完成，旧native19拒绝。原r4／r5失败和最新用户“暂时不方便，继续离线”保持，本轮download／boot／reset0。见[MSAA offline proof](../reproducibility/multisample-attachment-r1-offline-proof.json)。
 
-当前源码最新候选为[Memoryless附件r1](METAL-MEMORYLESS.md)，在Depth32／Stencil8上增加标准Memoryless颜色／深度／模板公开元数据与每encoder独立私有页。GLES6211bac2保持，新Metalf4aa2b35／789024B、source-map31478965、reference observerb083c28f／237216B、RAM blob4280557B／692b62e9。Mac完整真实原生对象ASan／UBSan与iOS ARM64库／探针构建通过；WSL真实Mesa八阶段19draw／10404B颜色-depth-stencil读回UBSan通过。CPU a6ed4392a66f7af4／imagec1539667已offline同核private／payload／Mac83源audit，尚未发送，旧native18不能准入新native19。先前候选及下表已验基线均保留；详见[新offline proof](../reproducibility/memoryless-attachment-r1-offline-proof.json)。
+已验正式基线为 CA 矩阵修订 r1：
+
+前一离线候选为[Memoryless附件r1](METAL-MEMORYLESS.md)，在Depth32／Stencil8上增加标准Memoryless颜色／深度／模板公开元数据与每encoder独立私有页。GLES6211bac2保持，新Metalf4aa2b35／789024B、source-map31478965、reference observerb083c28f／237216B、RAM blob4280557B／692b62e9。Mac完整真实原生对象ASan／UBSan与iOS ARM64库／探针构建通过；WSL真实Mesa八阶段19draw／10404B颜色-depth-stencil读回UBSan通过。CPU a6ed4392a66f7af4／imagec1539667已offline同核private／payload／Mac83源audit，尚未发送，旧native18不能准入新native19。先前候选及下表已验基线均保留；详见[新offline proof](../reproducibility/memoryless-attachment-r1-offline-proof.json)。
 
 首轮host实际抛isFramebufferOnly缺selector异常，原日志与失败保存；已補标准getter后真实回归通过。公开Memoryless无CPU backing，跨pass Load／persistent Store／sampling／mipmap／IOSurface拒绝；每pass内部原页保留到命令fence，双queue并发页面不同，partial allocation和GPU失败回收实际主机验过。新8phase需19456B／10888Bguard、11原pass页／handle-IOVA与真实backend import-retire核验，不能以host stub或未发送bundle宣称手机Memoryless或壁纸恢复。
 
-正式源码另有尚未手机准入的Stencil8附件r2候选，GLES6211bac2／Metalf40f796b／source-mapb86e29eb，仅离线构建和主机验证通过，未替换下表的已验基线。它在Depth32上增加独立模板页面、准确Mesa separate-z32s8引用转交、独立Load／Clear与front-back状态快照；真实host Mesa2390draw／247860像素UBSan、15类pair回滚和Mac原生对象ASan／UBSan通过，iOS ARM64前端／库／完整native18 probe构建通过。CPU bundle3ec7416adc2cfeea／image5567d656已offline同核private／payload／Mac83源audit，仍未投递。MSAA／sampled depth-stencil／depth-stencil-XR有序组合继续缺口，见 [METAL-DEPTH-STENCIL](METAL-DEPTH-STENCIL.md) 和 [新offline proof](../reproducibility/stencil-attachment-r2-offline-proof.json)。
+正式源码另有尚未手机准入的Stencil8附件r2候选，GLES6211bac2／Metalf40f796b／source-mapb86e29eb，仅离线构建和主机验证通过，未替换下表的已验基线。它在Depth32上增加独立模板页面、准确Mesa separate-z32s8引用转交、独立Load／Clear与front-back状态快照；真实host Mesa2390draw／247860像素UBSan、15类pair回滚和Mac原生对象ASan／UBSan通过，iOS ARM64前端／库／完整native18 probe构建通过。CPU bundle3ec7416adc2cfeea／image5567d656已offline同核private／payload／Mac83源audit，仍未投递。该旧候选当时的MSAA缺口已由新离线r1补窄范围；sampled depth-stencil／depth-stencil-XR有序组合仍缺，见 [METAL-DEPTH-STENCIL](METAL-DEPTH-STENCIL.md) 和 [新offline proof](../reproducibility/stencil-attachment-r2-offline-proof.json)。
 
 本轮WSL ASan停在libasan启动阶段，未进入Mesa，原失败与PC／模块／符号保留；最终host GLES只宣称UBSan通过。11,881,859,070B重复日志已实际进入Windows回收站，首4096B、原SHA及失败元数据保留，回收站未清空；新host运行限45秒、日志1MiB，超量边界实际核验通过。旧Depth32离线证明保持原样，不能拿上轮ASan结果替代本轮。
 

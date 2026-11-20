@@ -1,5 +1,7 @@
 # Metal 深度／模板候选 — 2026-11-20
 
+此专题保留单采样候选的原结果和适用边界；当前源码已扩展[MSAA附件r1](METAL-MULTISAMPLE.md)，旧native18和此页旧二进制不能准入当前MSAA库，完整新门槛为native20／PNG6。新源码不是此页旧候选的同字节重建。
+
 现行实机基线仍是v730／GLES CA矩阵r1／Metal5e94ab57。正式源码在Depth32候选上增加Stencil8附件，两个原页面、状态快照、GPU独立清除和引用回收已接入，离线构建与主机检查通过。新候选没有投递手机，仍须自己的CPU／GLES9／referenceCPU／native18／PNG6证明；黑壁纸、完整动态UI／FPS／睡眠和其它外设没有因此完成。
 
 ## 原页面和开源契约

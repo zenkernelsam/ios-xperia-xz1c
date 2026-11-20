@@ -21,6 +21,7 @@ struct SweetMetalProgram {
     GLuint program;
     uint32_t buffer_mask,write_mask;
     uint32_t ordered_xr_mask;
+    uint32_t raster_samples;
     GLint instance_base,blend_constant;
     SweetRenderPipelineConfig render;
     SweetMetalShaderCache cache;

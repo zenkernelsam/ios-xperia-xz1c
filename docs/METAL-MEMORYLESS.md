@@ -1,5 +1,7 @@
 # Metal Memoryless附件 — 2026-11-20
 
+此专题保留单采样候选的原结果和适用边界；当前源码已扩展[MSAA附件r1](METAL-MULTISAMPLE.md)，旧native19和此页旧二进制不能准入当前MSAA库，完整新门槛为native20／PNG6。新源码不是此页旧候选的同字节重建。
+
 正式源码已接入单采样Memoryless颜色／Depth32Float／Stencil8临时附件：公开纹理只保存原descriptor元数据，实际页面在render encoder创建时独立分配，所有本pass的draw／clear保留该页，完成或失败后回收。当前仅离线构建与主机验收，手机未投递，原壁纸、UI／FPS／睡眠／光学和其它外设仍未完成；已验CA基线保持。
 
 ## 原请求与开源来源

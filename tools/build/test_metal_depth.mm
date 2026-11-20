@@ -4,6 +4,7 @@
 #include <cassert>
 #include <map>
 #include <vector>
+#include "MultisampleBackendHostStub.h"
 static std::map<uint32_t,SweetMetalBacking> pages;
 static std::vector<SweetRenderDepthPass> depthDraws;
 static std::vector<SweetRenderStencilPass> stencilDraws;

@@ -215,6 +215,13 @@ def load(folder,expected=None):
                 assert observer.get('stencil8_probe') and observer['target_process']=='backboardd'
                 assert observer['memoryless_probe_phases']==8 and observer['memoryless_original_pass_pages_guards_and_two_queue_isolation_required']
                 assert observer['metal_resources'].get('native_memoryless_attachments')
+            if observer.get('multisample_probe'):
+                sources|={'gpu/diagnostics/MetalMultisampleProbe.h','gpu/diagnostics/MultisampleProbeValues.h'}
+                assert observer.get('memoryless_probe') and observer['target_process']=='backboardd'
+                assert observer['multisample_probe_phases']==18 and observer['multisample_original_samples_resolve_guards_and_queue_isolation_required']
+                assert observer['metal_resources'].get('native_multisample_attachments')
+                fixture=observer['AIR_multisample_fixture'];assert fixture['fixture']=='multisample' and fixture['authored_semantic_fixture']
+                assert fixture['source']=='gpu/metal/air/fixtures/multisample.air.ll' and all(re.fullmatch('[0-9a-f]{64}',fixture[key]) for key in ('source_sha256','bitcode_sha256','header_sha256','library_sha256'))
             assert set(observer['source_files'])==sources
             assert observer['source_files'][observer['source']]==observer['source_sha256']
     if 'metal_resources' in m:
@@ -237,6 +244,9 @@ def load(folder,expected=None):
             assert observer.get('stencil8_probe') or observer.get('registration_only')
         if resources.get('native_memoryless_attachments'):
             assert observer.get('memoryless_probe') or observer.get('registration_only')
+        if resources.get('native_multisample_attachments'):
+            assert observer.get('multisample_probe') or observer.get('registration_only')
+            assert resources['multisample_required_native_tests']==20 and resources['native_samples']==[2,4]
         assert m['files']['exception_observe.dylib']['sha256']==observer['library_sha256']
         if resources.get('requires_source_scoped_cache'):assert observer.get('program_cache_scope'),'Source-scoped resource package lacks its matching root'
     assert set(m['files'])==names
@@ -258,6 +268,9 @@ def load(folder,expected=None):
     if m['frontend_build_binding'].get('stencil8_attachment_revision'):
         assert m['frontend_build_binding']['stencil8_attachment_revision']==1 and m['frontend_build_binding']['stencil8_original_separate_plane_import']
         assert all(path in source for path in ('MetalStencilAttachment.h','Stencil8ClearGLES.h'))
+    if m['frontend_build_binding'].get('multisample_backend_revision'):
+        assert m['frontend_build_binding']['multisample_backend_revision']==1 and m['frontend_build_binding']['multisample_real_sample_count_and_original_page_import']
+        assert all(path in source for path in ('MetalMultisampleAPI.h','MultisampleLayout.h','MultisampleResolveGLES.h'))
     for path,digest in source.items():
         path=Path(path);assert not path.is_absolute() and '..' not in path.parts
         assert re.fullmatch('[0-9a-f]{64}',digest)

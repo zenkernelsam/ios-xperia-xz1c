@@ -1,0 +1,37 @@
+{
+  "AGENTS.md": {
+    "archive": "docs/archive/20261120/multisample-r1/before-MSAA-AGENTS.md",
+    "bytes": 11301,
+    "sha256": "3bad6a38217785cdf3a8f2ace20c451f283a40c6345af7efc132156f651b5c22"
+  },
+  "README.md": {
+    "archive": "docs/archive/20261120/multisample-r1/before-MSAA-README.md",
+    "bytes": 3827,
+    "sha256": "43776cf2cead8a793e38798427e5f0406b805d725043ad948fdd6975cc262a65"
+  },
+  "docs/STATUS.md": {
+    "archive": "docs/archive/20261120/multisample-r1/before-MSAA-STATUS.md",
+    "bytes": 14860,
+    "sha256": "015da0633a025e6131d634bd0621b2f185ee3b8032e57428d428334d52b016fa"
+  },
+  "docs/BUILD.md": {
+    "archive": "docs/archive/20261120/multisample-r1/before-MSAA-BUILD.md",
+    "bytes": 13563,
+    "sha256": "05216654af7df80ca70a05cd255f6905546288255f161f80b24648834a4ea7a1"
+  },
+  "docs/OPERATIONS.md": {
+    "archive": "docs/archive/20261120/multisample-r1/before-MSAA-OPERATIONS.md",
+    "bytes": 5020,
+    "sha256": "1ec5349711990f0567a0f5190c0dbfcbaa61b418d20d23788b7044c07086a5da"
+  },
+  "docs/METAL-MEMORYLESS.md": {
+    "archive": "docs/archive/20261120/multisample-r1/before-MSAA-METAL-MEMORYLESS.md",
+    "bytes": 6967,
+    "sha256": "5643e86d93722a881fb61d908860fe84cdc483fb9f44a8a13bcd704342ef1a47"
+  },
+  "docs/METAL-DEPTH-STENCIL.md": {
+    "archive": "docs/archive/20261120/multisample-r1/before-MSAA-METAL-DEPTH-STENCIL.md",
+    "bytes": 10583,
+    "sha256": "fc52371c81f9933b43983b47cbaaa74ba8bc04f5e74ed02c6a891079a94fa3df"
+  }
+}

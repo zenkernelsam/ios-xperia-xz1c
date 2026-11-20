@@ -132,7 +132,7 @@ static NSError *metal_queue_error(NSString *message,NSInteger code=MTLCommandBuf
         if(operation[@"computePipeline"]){uint32_t sequence=0;failure=execute_metal_compute(operation,self.device,&sequence);
             if(failure)break;if(!sequence){failure=metal_queue_error(@"Compute completed without its owned GPU fence");break;}
             [_condition lock];_sequence=sequence;++_GPUOperations;[_condition unlock];continue;}
-        if(operation[@"renderPipeline"] || operation[@"renderClear"]){uint32_t sequence=0;failure=execute_metal_render(operation,self.device,&sequence);
+        if(operation[@"renderPipeline"] || operation[@"renderClear"] || operation[@"multisampleResolve"]){uint32_t sequence=0;failure=execute_metal_render(operation,self.device,&sequence);
             if(failure)break;if(!sequence){failure=metal_queue_error(@"Render completed without its owned GPU fence");break;}
             [_condition lock];_sequence=sequence;++_GPUOperations;[_condition unlock];continue;}
         if(operation[@"mipmapTexture"]){uint32_t sequence=0,operations=0;failure=execute_metal_mipmaps(operation,self.device,&sequence,&operations);

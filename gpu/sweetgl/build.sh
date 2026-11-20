@@ -51,6 +51,7 @@ printf '_sweetgl_metal_compute_create\n_sweetgl_metal_compute_dispatch\n_sweetgl
 printf '_sweetgl_metal_render_create\n_sweetgl_metal_render_draw\n_sweetgl_metal_render_clear\n' >> "$O/exports.txt"
 printf '_sweetgl_metal_depth32_supported\n_sweetgl_metal_render_draw_depth\n_sweetgl_metal_render_clear_depth\n' >> "$O/exports.txt"
 printf '_sweetgl_metal_stencil8_supported\n_sweetgl_metal_render_draw_stencil\n_sweetgl_metal_render_clear_stencil\n' >> "$O/exports.txt"
+printf '_sweetgl_metal_multisample_supported\n_sweetgl_metal_render_create_multisample\n_sweetgl_metal_render_draw_multisample\n_sweetgl_metal_render_clear_multisample\n_sweetgl_metal_multisample_resolve\n' >> "$O/exports.txt"
 printf '_sweetgl_metal_texture_mipmaps\n' >> "$O/exports.txt"
 printf '_sweetgl_metal_program_cache_state\n_sweetgl_metal_program_cache_prime\n_sweetgl_program_binary_identity\n' >> "$O/exports.txt"
 printf '_sweetgl_ir3_cache_enabled\n_sweetgl_ir3_cache_get\n_sweetgl_ir3_cache_put\n_sweetgl_ir3_cache_digest\n_sweetgl_ir3_cache_accepted\n_sweetgl_ir3_cache_rejected\n_sweetgl_ir3_cache_stats\n' >> "$O/exports.txt"

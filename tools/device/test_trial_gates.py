@@ -98,7 +98,7 @@ class Gates(unittest.TestCase):
     def test_positive_and_negative_nonzero_failures_return_after_live(self):
         for line in ('SWEET SG OWN END snap=1 result=1', 'SWEET SG OWN END snap=2 result=-2',
                      'SWEET SCATTER READY END result=3', 'sweetgl: caller selftest -> WRONG phase=map',
-                     'SWEET DEPTH32 END result=1', 'SWEET STENCIL8 END result=1', 'SWEET MEMORYLESS END result=1'):
+                     'SWEET DEPTH32 END result=1', 'SWEET STENCIL8 END result=1', 'SWEET MEMORYLESS END result=1', 'SWEET MULTISAMPLE END result=1'):
             with self.subTest(line=line):
                 policy = DiagnosticPolicy('0123456789abcdef', [], 30)
                 policy.feed(line, 0)

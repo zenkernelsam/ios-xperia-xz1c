@@ -37,6 +37,10 @@ if 'MetalStencilAttachment.h' in sources:
     binding['stencil8_attachment_revision']=1
     binding['stencil8_original_separate_plane_import']=True
     binding['actual_stencil8_GPU_acceptance_pending']=True
+if 'MetalMultisampleAPI.h' in sources:
+    binding['multisample_backend_revision']=1
+    binding['multisample_real_sample_count_and_original_page_import']=True
+    binding['actual_multisample_GPU_acceptance_pending']=True
 if 'QuartzCoreMatrixLayout.h' in sources:
     binding['CA_matrix_revision']=1
     binding['GLES_suite_tests']=9

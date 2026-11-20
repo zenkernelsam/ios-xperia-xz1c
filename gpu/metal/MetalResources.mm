@@ -211,21 +211,29 @@ static bool native_base_available(void)
 {return descriptor.storageMode==MTLStorageModeShared?[[SweetMTLTexture alloc] initWithBuffer:self descriptor:descriptor offset:offset pitch:pitch]:nil;}
 @end
 @implementation SweetMTLDevice (Rendering)
+- (BOOL)supportsTextureSampleCount:(NSUInteger)count
+{return count==1 || ((count==2 || count==4) && sweetgl_metal_multisample_supported((uint32_t)MTLPixelFormatBGRA8Unorm,(uint32_t)count));}
 - (id<MTLTexture>)newTextureWithDescriptor:(MTLTextureDescriptor *)descriptor
 {
     if(!descriptor || !descriptor.width || !descriptor.height)return nil;
     if(descriptor.storageMode==MTLStorageModeMemoryless)return [[SweetMTLTexture alloc] initMemorylessWithOwner:self descriptor:descriptor];
     uint32_t pixel=sweet_texture_pixel_bytes((uint32_t)descriptor.pixelFormat);
-    if(!pixel || descriptor.width>16384 || descriptor.height>16384)return nil;
-    if(descriptor.pixelFormat==MTLPixelFormatDepth32Float && (descriptor.mipmapLevelCount!=1 || descriptor.sampleCount!=1 ||
+    if(!pixel || descriptor.width>16384 || descriptor.height>16384 || descriptor.sampleCount>4 || !sweet_multisample_count((uint32_t)descriptor.sampleCount))return nil;
+    if(descriptor.pixelFormat==MTLPixelFormatDepth32Float && (descriptor.mipmapLevelCount!=1 || !sweet_multisample_count((uint32_t)descriptor.sampleCount) ||
         descriptor.usage!=MTLTextureUsageRenderTarget || !sweetgl_metal_depth32_supported()))return nil;
-    if(descriptor.pixelFormat==MTLPixelFormatStencil8 && (descriptor.mipmapLevelCount!=1 || descriptor.sampleCount!=1 ||
+    if(descriptor.pixelFormat==MTLPixelFormatStencil8 && (descriptor.mipmapLevelCount!=1 || !sweet_multisample_count((uint32_t)descriptor.sampleCount) ||
         descriptor.usage!=MTLTextureUsageRenderTarget || !sweetgl_metal_stencil8_supported()))return nil;
     uint64_t pitch=(descriptor.width*pixel+63)&~UINT64_C(63);
     SweetTextureLayout levels[15];uint64_t bytes=0;
-    if(!sweet_texture_chain(descriptor.width,descriptor.height,(uint32_t)descriptor.pixelFormat,0,pitch,descriptor.mipmapLevelCount,UINT64_C(256)<<20,levels,bytes))return nil;
+    if(descriptor.sampleCount>1){uint32_t row=0;
+        if(descriptor.storageMode!=MTLStorageModePrivate || descriptor.textureType!=MTLTextureType2DMultisample || descriptor.mipmapLevelCount!=1 ||
+            descriptor.usage!=MTLTextureUsageRenderTarget || !sweetgl_metal_multisample_supported((uint32_t)descriptor.pixelFormat,(uint32_t)descriptor.sampleCount) ||
+            !sweet_multisample_footprint((uint32_t)descriptor.width,(uint32_t)descriptor.height,pixel,(uint32_t)descriptor.sampleCount,64,(UINT64_C(256)<<20)-64,&row,&bytes))return nil;
+        pitch=row;
+    }else if(!sweet_texture_chain(descriptor.width,descriptor.height,(uint32_t)descriptor.pixelFormat,0,pitch,descriptor.mipmapLevelCount,UINT64_C(256)<<20,levels,bytes))return nil;
+    uint64_t offset=descriptor.sampleCount>1?64:0;if(offset)bytes+=128;
     auto buffer=(SweetMTLBuffer *)[self newBufferWithLength:bytes options:descriptor.resourceOptions&~MTLResourceStorageModeMask];
-    auto texture=buffer?[[SweetMTLTexture alloc] initWithBuffer:buffer descriptor:descriptor offset:0 pitch:pitch]:nil;
+    auto texture=buffer?[[SweetMTLTexture alloc] initWithBuffer:buffer descriptor:descriptor offset:offset pitch:pitch]:nil;
     [buffer release];return texture;
 }
 - (id<MTLTexture>)newTextureWithDescriptor:(MTLTextureDescriptor *)descriptor iosurface:(IOSurfaceRef)surface plane:(NSUInteger)plane
@@ -264,6 +272,40 @@ id<MTLBuffer> SweetMTLRetainMemorylessPassBuffer(id<MTLRenderCommandEncoder> enc
     if(info)memset(info,0,sizeof(*info));
 #if !defined(SWEET_METAL_NO_COMPUTE)
     if(info && [encoder isKindOfClass:[SweetMTLRenderEncoder class]])return [(SweetMTLRenderEncoder *)encoder retainMemorylessPassBuffer:slot info:info];
+#endif
+    return nil;
+}
+id<MTLBuffer> SweetMTLRetainMultisampleTextureBuffer(id<MTLTexture> input,SweetMTLMultisampleTextureInfo *info)
+{
+    if(info)memset(info,0,sizeof(*info));
+#if !defined(SWEET_METAL_NO_COMPUTE)
+    auto texture=(SweetMTLTexture *)input;
+    if(info && [texture isKindOfClass:[SweetMTLTexture class]] && !texture->_memorylessOwner && texture.sampleCount>1 && texture->_buffer){
+        auto backing=texture->_buffer->_backing;
+        *info={(uint64_t)(uintptr_t)texture,backing.gpu_address,backing.logical_bytes,texture->_layout.offset,backing.handle,
+            (uint32_t)texture.width,(uint32_t)texture.height,texture->_layout.pitch,(uint32_t)texture.pixelFormat,(uint32_t)texture.sampleCount,{0,0}};
+        return [texture->_buffer retain];}
+#endif
+    return nil;
+}
+BOOL SweetMTLSetDiagnosticSampleMask(id<MTLRenderCommandEncoder> input,uint32_t mask)
+{
+#if !defined(SWEET_METAL_NO_COMPUTE)
+    if([input isKindOfClass:[SweetMTLRenderEncoder class]])return [(SweetMTLRenderEncoder *)input setDiagnosticSampleMask:mask];
+#endif
+    return NO;
+}
+id<MTLBuffer> SweetMTLRetainResolveTextureBuffer(id<MTLTexture> input,SweetMTLMultisampleTextureInfo *info)
+{
+    if(info)memset(info,0,sizeof(*info));
+#if !defined(SWEET_METAL_NO_COMPUTE)
+    auto texture=(SweetMTLTexture *)input;
+    if(info && [texture isKindOfClass:[SweetMTLTexture class]] && !texture->_memorylessOwner && !texture->_surface && texture.sampleCount==1 &&
+        texture.mipmapLevelCount==1 && (texture.usage&MTLTextureUsageRenderTarget) && texture->_buffer){
+        auto backing=texture->_buffer->_backing;
+        *info={(uint64_t)(uintptr_t)texture,backing.gpu_address,backing.logical_bytes,texture->_layout.offset,backing.handle,
+            (uint32_t)texture.width,(uint32_t)texture.height,texture->_layout.pitch,(uint32_t)texture.pixelFormat,1,{0,0}};
+        return [texture->_buffer retain];}
 #endif
     return nil;
 }

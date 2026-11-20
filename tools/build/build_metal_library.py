@@ -23,6 +23,7 @@ if args.air_package:
     assert all(sha(root/path)==digest for path,digest in air_manifest['source_files'].items())
     files+=['gpu/metal/MetalCompute.inc','gpu/metal/MetalFunctionConstants.inc','gpu/metal/MetalRender.inc','gpu/metal/MetalTextureRules.h',
         'gpu/metal/MetalDepthStencilState.inc','gpu/sweetgl/MetalDepthStencilRules.h','gpu/sweetgl/MetalDepthAttachment.h','gpu/sweetgl/MetalStencilAttachment.h','gpu/metal/MetalMemoryless.inc',
+        'gpu/metal/MetalMultisample.inc','gpu/sweetgl/MetalMultisampleAPI.h','gpu/sweetgl/MultisampleLayout.h',
         'gpu/metal/air/ESSLTarget.h','gpu/metal/air/HalfESSL.h','gpu/metal/air/Compiler.h','gpu/sweetgl/MetalShaderAPI.h','gpu/sweetgl/XRColourShader.h']
     sources={p:sha(root/p) for p in files}
     sources.update(air_manifest['source_files'])
@@ -54,12 +55,18 @@ if air_manifest:report.update(native_depth32_attachment=True,native_depth_stenci
     native_stencil8_attachment=True,stencil8_original_separate_plane_import=True,stencil8_independent_draw_clear=True,actual_stencil8_GPU_acceptance_pending=True)
 if air_manifest:report.update(native_memoryless_attachments=True,memoryless_public_metadata_without_backing=True,
     memoryless_independent_per_encoder_private_storage=True,memoryless_Load_Store_CPU_sampling_rejected=True,actual_memoryless_GPU_acceptance_pending=True)
+if air_manifest:report.update(native_multisample_attachments=True,native_samples=[2,4],multisample_original_linear_pages=True,
+    multisample_colour_average_depth_sample0_min_max_GPU_resolve=True,actual_multisample_GPU_acceptance_pending=True,
+    multisample_XR_and_stencil_resolve_pending=True,multisample_required_native_tests=20)
 if air_manifest:report.update(native_MRT_and_XR_blend=True,independent_color_attachments_max=8,original_XR_codes_preserved_with_GPU_writeback=True,
     native_XR_ordered_FP32_image_blend=True,actual_MRT_GPU_acceptance_pending=True)
 if air_manifest:
     bindings=manifest['frontend_build_binding']['source_files']
     assert bindings.get('RenderSamplerRules.h')==sha(root/'gpu/sweetgl/RenderSamplerRules.h')
     assert bindings.get('metal_render.c')==sha(root/'gpu/sweetgl/metal_render.c')
+    assert manifest['frontend_build_binding'].get('multisample_backend_revision')==1
+    for name in ('MetalMultisampleAPI.h','MultisampleLayout.h','MultisampleResolveGLES.h'):
+        assert bindings.get(name)==sha(root/'gpu/sweetgl'/name),'Actual MSAA GLES transport header differs: '+name
     if manifest['frontend_build_binding'].get('XR_clear_decode_elision'):
         report.update(native_XR_clear_decode_elision=True,original_XR_raw_snapshot_and_Clear_writeback_preserved=True,
                       actual_XR_Clear_Load_GPU_acceptance_pending=True)

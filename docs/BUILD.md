@@ -2,7 +2,9 @@
 
 当前正式基线为v730/f258dee9、CA矩阵GLESd6d8fcfa、Metal5e94ab57／source-map7b5a083a。它已通过自己的RAM CPU、GLES原8组＋矩阵第9组、完整native16／六组共享PNG及原RAMCPU；锁屏文字／主页扫描帧有实机改善，黑壁纸／稳定UI／FPS／其它外设仍继续。实际输入／结果见 [STATUS](STATUS.md)、[CA-MATRIX](CA-MATRIX.md) 和reproducibility，不用下方旧14／15组专题证明准入当前库。
 
-2026-11-20现行源码增加尚未手机准入的Depth32＋Stencil8附件r2候选，完整构建／源锁／host证明与新增native18门槛见 [METAL-DEPTH-STENCIL](METAL-DEPTH-STENCIL.md)。新包自身CPU、GLES9、referenceCPU、native18原depth／stencil页面及PNG6均需独立验收，旧库native16／17不能准入；不将离线candidate或host像素称为当前实机基线。WSL当前GLES host证明只用UBSan，ASan启动失败另存；host runner限45秒／日志1MiB。
+最新源码为[2×／4× MSAA附件r1](METAL-MULTISAMPLE.md)：独立原页／resolve ABI和作者AIR／18阶段probe均已构建，完整native20／PNG6手机准入未发。新前端必须重编当前源，GLES21de6821／Metalb25bfe6c只作offline候选；旧native19不放行。完整重建命令与本轮输入SHA集中在该专题。
+
+2026-11-20此前源码增加尚未手机准入的Depth32＋Stencil8附件r2候选，完整构建／源锁／host证明与新增native18门槛见 [METAL-DEPTH-STENCIL](METAL-DEPTH-STENCIL.md)。新包自身CPU、GLES9、referenceCPU、native18原depth／stencil页面及PNG6均需独立验收，旧库native16／17不能准入；不将离线candidate或host像素称为当前实机基线。WSL当前GLES host证明只用UBSan，ASan启动失败另存；host runner限45秒／日志1MiB。
 
 随后原模式r6 observer／33方法只改观察源码，当前准确原调用／byte锚点工具和构建见 [METAL-REQUEST-OBSERVATION](METAL-REQUEST-OBSERVATION.md)。旧CA基线配新observer即使所有host测试通过，仍因当前六份GLES／Metal源码不一致被offline run_trial拒绝；不跳过源码audit。新附件GLES6211bac2／Metalf40f796b保持，按当前source重编完整reference observer仍7e164ad1，重新打包blob4274554B／90dc4934；CPU c10521e2已offline audit，完整native18／PNG6实机验收后才能用新proof构建模式observer原GPU包。
 
