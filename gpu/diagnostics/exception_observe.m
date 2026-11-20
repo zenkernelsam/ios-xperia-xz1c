@@ -116,6 +116,9 @@
 #include "AIRMultisampleFixture.h"
 #include "MetalMultisampleProbe.h"
 #endif
+#if defined(SWEET_METAL_PRESENTATION_PROBE)
+#include "MetalPresentationProbe.h"
+#endif
 
 #if defined(LILAC_EXCEPTION_TEST)
 struct MetalABIHostLimits { uint32_t fields[63];uint64_t maxBufferLength; };
@@ -306,6 +309,9 @@ static bool run_native_probes(void)
 #endif
 #if defined(SWEET_METAL_MULTISAMPLE_PROBE)
     native_probes_valid=metal_multisample_probe(diagnostic) && native_probes_valid;
+#endif
+#if defined(SWEET_METAL_PRESENTATION_PROBE)
+    if(native_probes_valid)native_probes_valid=metal_presentation_probe(diagnostic);
 #endif
 #if defined(SWEET_PROGRAM_CACHE_PRIME)
     if(native_probes_valid){uint32_t completed=0,failed=0;int result=sweetgl_metal_program_cache_prime(&completed,&failed);

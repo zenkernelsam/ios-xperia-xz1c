@@ -7,8 +7,9 @@ from program_request import specification as request_specification,header as req
 from program_cache_scope import specification as cache_scope_specification,header as cache_scope_header
 from png_encoder_proof import validate as validate_png,header as png_header
 p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--metal-resources');p.add_argument('--air-fixture');p.add_argument('--render-fixture');p.add_argument('--constants-fixture');p.add_argument('--register-device',action='store_true');p.add_argument('--xr-probe',action='store_true');p.add_argument('--surface-probe',action='store_true');p.add_argument('--mip-probe',action='store_true');p.add_argument('--target-process',choices=['AegirPoster','backboardd'],default='AegirPoster');p.add_argument('--gles-ram-package');p.add_argument('--registration-only',action='store_true');p.add_argument('--native-proof');p.add_argument('--pipeline-observe',action='store_true');p.add_argument('--narrow-fixture');p.add_argument('--half-fixture');p.add_argument('--mrt-fixture');p.add_argument('--sampler-fixture');p.add_argument('--program-cache-prime',action='store_true');p.add_argument('--static-half-fixture');p.add_argument('--program-cache-export',action='store_true')
-p.add_argument('--postdraw-observe',action='store_true');p.add_argument('--snapshot-observe',action='store_true');p.add_argument('--cif10-png-reference',action='store_true');p.add_argument('--png-filter-encoder',action='store_true');p.add_argument('--png-proof');p.add_argument('--clear-cache-probe',action='store_true');p.add_argument('--ir3-cache-probe',action='store_true');p.add_argument('--request-observe',action='store_true');p.add_argument('--quad-route-observe',action='store_true');p.add_argument('--depth32-probe',action='store_true');p.add_argument('--stencil8-probe',action='store_true');p.add_argument('--memoryless-probe',action='store_true');p.add_argument('--multisample-fixture');a=p.parse_args()
+p.add_argument('--postdraw-observe',action='store_true');p.add_argument('--snapshot-observe',action='store_true');p.add_argument('--cif10-png-reference',action='store_true');p.add_argument('--png-filter-encoder',action='store_true');p.add_argument('--png-proof');p.add_argument('--clear-cache-probe',action='store_true');p.add_argument('--ir3-cache-probe',action='store_true');p.add_argument('--request-observe',action='store_true');p.add_argument('--quad-route-observe',action='store_true');p.add_argument('--depth32-probe',action='store_true');p.add_argument('--stencil8-probe',action='store_true');p.add_argument('--memoryless-probe',action='store_true');p.add_argument('--multisample-fixture');p.add_argument('--presentation-probe',action='store_true');a=p.parse_args()
 if a.memoryless_probe:assert a.stencil8_probe and a.target_process=='backboardd' and not a.registration_only
+if a.presentation_probe:assert a.multisample_fixture and a.target_process=='backboardd' and not a.registration_only
 if a.stencil8_probe:assert a.depth32_probe and a.target_process=='backboardd' and not a.registration_only
 if a.depth32_probe:assert a.ir3_cache_probe and a.render_fixture and a.target_process=='backboardd' and not a.registration_only
 if a.ir3_cache_probe:assert a.clear_cache_probe and a.constants_fixture and a.target_process=='backboardd' and not a.registration_only
@@ -68,6 +69,7 @@ if a.metal_resources:
     if resource_manifest.get('native_stencil8_attachment'):assert a.registration_only or a.stencil8_probe,'New stencil8 needs its own original-page GPU/mask/guard probe'
     if resource_manifest.get('native_memoryless_attachments'):assert a.registration_only or a.memoryless_probe,'New Memoryless needs its own transient page GPU/isolation/guard probe'
     if resource_manifest.get('native_multisample_attachments'):assert a.registration_only or a.multisample_fixture,'New MSAA needs its own original sample/resolve/guard probe'
+    if resource_manifest.get('native_drawable_presentation'):assert a.registration_only or a.presentation_probe,'New drawable presentation needs its own real CAMetalLayer/IOSurface/GPU proof'
     if a.ir3_cache_probe:assert resource_manifest.get('native_IR3_variant_cache')
     assert hashlib.sha256((resources/'MetalResources.dylib').read_bytes()).hexdigest()==resource_manifest['library_sha256']
     if resource_manifest.get('requires_source_scoped_cache'):
@@ -146,6 +148,9 @@ if a.multisample_fixture:
         assert hashlib.sha256((fixture/name).read_bytes()).hexdigest()==multisample_fixture_manifest[key]
     (out/'AIRMultisampleFixture.h').write_bytes((fixture/'AIRMultisampleFixture.h').read_bytes())
     headers+=['gpu/diagnostics/MetalMultisampleProbe.h','gpu/diagnostics/MultisampleProbeValues.h']
+if a.presentation_probe:
+    assert resource_manifest.get('native_drawable_presentation') and render_fixture_manifest
+    headers+=['gpu/diagnostics/MetalPresentationProbe.h','gpu/metal/NativePresentation16.h']
 if a.narrow_fixture:
     assert resource_manifest and resource_manifest['AIR_frontend'].get('local_narrow_conversion_adaptation')
     fixture=Path(a.narrow_fixture).resolve();assert fixture.is_relative_to(root/'build')
@@ -308,6 +313,7 @@ if a.depth32_probe:extra+=['-DSWEET_METAL_DEPTH32_PROBE=1']
 if a.stencil8_probe:extra+=['-DSWEET_METAL_STENCIL8_PROBE=1']
 if a.memoryless_probe:extra+=['-DSWEET_METAL_MEMORYLESS_PROBE=1']
 if multisample_fixture_manifest:extra+=['-DSWEET_METAL_MULTISAMPLE_PROBE=1','-I',out]
+if a.presentation_probe:extra+=['-DSWEET_METAL_PRESENTATION_PROBE=1','-framework','QuartzCore']
 if a.program_cache_prime:extra+=['-DSWEET_PROGRAM_CACHE_PRIME=1']
 if a.program_cache_export:extra+=['-DSWEET_PROGRAM_CACHE_EXPORT=1','-I',out]
 if cache_scope:extra+=['-DSWEET_PROGRAM_CACHE_SCOPE=1','-I',out]
@@ -362,6 +368,8 @@ if a.depth32_probe:manifest.update(depth32_probe=True,depth32_probe_phases=29,de
 if a.stencil8_probe:manifest.update(stencil8_probe=True,stencil8_probe_phases=99,stencil8_original_planes_front_back_masks_and_guards_required=True)
 if a.memoryless_probe:manifest.update(memoryless_probe=True,memoryless_probe_phases=8,memoryless_original_pass_pages_guards_and_two_queue_isolation_required=True)
 if multisample_fixture_manifest:manifest.update(multisample_probe=True,multisample_probe_phases=18,multisample_original_samples_resolve_guards_and_queue_isolation_required=True,AIR_multisample_fixture=multisample_fixture_manifest)
+if a.presentation_probe:manifest.update(presentation_probe=True,presentation_probe_phases=5,original_CAMetalLayer_drawable_IOSurface_pixels_guard_and_GPU_retirement_required=True,
+    presentation_original_20H392_QuartzCore_UUID='9e40b2eb260c3af1ae45a1a551a8c1b9',presentation_optical_and_system_UI_acceptance_pending=True)
 if a.program_cache_prime:manifest['program_cache_prime']=True
 if request_export:manifest['program_request_export']=request_export
 if cache_scope:manifest['program_cache_scope']=cache_scope

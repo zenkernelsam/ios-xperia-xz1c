@@ -279,6 +279,8 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
         common+=['SWEET MEMORYLESS END result=0 phases=8 checked_bytes=19456 guard_bytes=10888 final_allocated=0 GPU_only=1 transient_pages=1']
     if mode=='gpu' and m.get('exception_observer',{}).get('multisample_probe'):
         common+=['SWEET MULTISAMPLE END result=0 phases=18 checked_bytes=151488 guard_bytes=55098 final_allocated=0 GPU_only=1 original_samples=1']
+    if mode=='gpu' and m.get('exception_observer',{}).get('presentation_probe'):
+        common+=['SWEET PRESENT PROBE END result=0 phases=5 checked_pixels=765 final_allocated=0 original_drawables=1 display_completion_unverified=1']
     if mode=='gpu' and m.get('exception_observer',{}).get('program_request_export'):
         common+=['SWEET PROGRAM REQUEST EXPORT END result=0 records=2 bytes=[0-9]+ limit=262144 read_only=1 no_compile=1']
     if mode=='gpu' and m.get('exception_observer',{}).get('cif10_PNG_reference'):

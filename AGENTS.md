@@ -28,6 +28,8 @@
 
 2026-11-20最新离线MSAA附件r1已接入2×／4×颜色-depth-stencil、Private／Memoryless原页、颜色平均及Depth32 Sample0／Min／Max GPU resolve。GLES21de6821／14784032B、Metalb25bfe6c／807568B／source-map149d4577（47源）、reference34219504／238384B、blob4295582B／188cf328；自身CPU87c89bcf／0ed40224和referenceCPU386c4f42／4e46f3d6均offline同核private／payload／Mac83源audit通过，未投递。真实AIR→ESSL主机Mesa48draw／5508sample／26928B／8resolve、非单调depth filter及resolve后源sample检查UBSan通过；Mac原生对象／18阶段实际作者probe本体ASan／UBSan通过，Python独立复算90页／151488B／55098Bguard，host不代替FD540。native20新Metal_multisample组要求实际sample mask／跨pass Load／全部源-target guard／import-pair-retire／Memoryless双queue原页／fence；旧native19拒绝，新失败仅本LIVE走现有0x06回程。最终source exact，r4／r5不重发；用户本轮明确继续离线。XR MSAA／stencil resolve／sampled-depth-stencil／有序XR及完整UI目标仍active。见METAL-MULTISAMPLE及multisample-attachment-r1-offline-proof。
 
+2026-11-20最新离线原生presentation-r1补原drawable／framebufferOnly descriptor、四presentDrawable方法及原IOSurface GPU synchronize→lock/seed发布；实际操作和页发布后才Scheduled，以匹配20H392 ClockKitUI waitUntilScheduled→直接present原路径。新GLES21de6821保持，Metal8feea459／810304B／source-mapdb1605ef、reference33bf5ee4／256656B、blob4304475B／7a3361f6。自身CPU367bebc6／image177af34a仅offline同核private／payload／Mac83源audit通过，未投递；新native21 Metal_presentation需原CAMetalLayer／CAMetalDrawable／IOSurface像素-padding／import-retire-publish／fence，旧native20拒绝。Mac原生ASan／UBSan及MSAA作者回归通过，host drawable fixture不代替手机；20原方法ABI／8锚点SHA原只读静态核验，原root已卸载。已验底层和发送器保持，用户继续离线、r4／r5不复发；完整壁纸／原UI／FPS／光学与其它外设active。见METAL-PRESENTATION、presentation-r1-offline-proof。
+
 ## 硬件与返回
 
 - 仅Sony BH905ND69G；所有fastboot设备命令必须带 `-s BH905ND69G`。
@@ -39,7 +41,7 @@
 
 ## 准入与证据
 
-新kernel自身private／owner／ready；新RAM包自身CPU；新GLES完整自身GPU；新Metal／source-map必须与能力匹配的完整native组，生产基线16、Depth32候选17、Stencil8候选18、Memoryless候选19、现行MSAA候选20，还需GLES矩阵第9组和共享PNG精确先验。short registry必须同kernel／GLES／Metal／source-map的完整原raw proof，run_trial独立复算完整payload与Mac实际源码／归档。ACK前任一GPUprobe失败拒绝，ACK后退出期记录单列；不以host／离屏／缓存／controller PASS代替原UI。
+新kernel自身private／owner／ready；新RAM包自身CPU；新GLES完整自身GPU；新Metal／source-map必须与能力匹配的完整native组，生产基线16、Depth32候选17、Stencil8候选18、Memoryless候选19、MSAA候选20、现行presentation候选21，还需GLES矩阵第9组和共享PNG精确先验。short registry必须同kernel／GLES／Metal／source-map的完整原raw proof，run_trial独立复算完整payload与Mac实际源码／归档。ACK前任一GPUprobe失败拒绝，ACK后退出期记录单列；不以host／离屏／缓存／controller PASS代替原UI。
 
 程序cache仅本实际build／Metal source-map scope；1777 sticky，原文件／旧scope不改不删。primer只读本scope实际缺bin请求；标准NIR binary不等于异步IR3完全预热，旧三轮prime_begin→ACK没有IR3日志事实保留。新库无实际请求时不得空跑primer冒充改善。
 

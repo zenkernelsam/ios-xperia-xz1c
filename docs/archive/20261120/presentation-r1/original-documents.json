@@ -1,0 +1,37 @@
+{
+  "AGENTS.md": {
+    "path": "docs/archive/20261120/presentation-r1/before-presentation-AGENTS.md",
+    "bytes": 12465,
+    "sha256": "0b9ae99be1423ec8d601e09a14340c3bd1c95999ecbcada16e799a583b9eb507"
+  },
+  "README.md": {
+    "path": "docs/archive/20261120/presentation-r1/before-presentation-README.md",
+    "bytes": 4089,
+    "sha256": "a47e355cc422d413d532e0d3f2c686be0f51c404beb8316d208dc727664e151b"
+  },
+  "docs/STATUS.md": {
+    "path": "docs/archive/20261120/presentation-r1/before-presentation-STATUS.md",
+    "bytes": 15869,
+    "sha256": "c358324b9f3a4e7f043ebeef0e06c3b0dc06e02736e1db03c0763a8dfe329772"
+  },
+  "docs/BUILD.md": {
+    "path": "docs/archive/20261120/presentation-r1/before-presentation-BUILD.md",
+    "bytes": 13903,
+    "sha256": "022e618cc9e3fe85ab8c14b80cc0c509190dba3c135188f72713e0f65b5dd9f9"
+  },
+  "docs/OPERATIONS.md": {
+    "path": "docs/archive/20261120/presentation-r1/before-presentation-OPERATIONS.md",
+    "bytes": 5387,
+    "sha256": "e1162edc1d6eb9a9751f6c104e24dabd3675f7a0deaad58054060f8acaa8cec9"
+  },
+  "docs/METAL-MULTISAMPLE.md": {
+    "path": "docs/archive/20261120/presentation-r1/before-presentation-METAL-MULTISAMPLE.md",
+    "bytes": 10604,
+    "sha256": "e817094b72f7bf547c8951129f9b24675896746cf05cee7ab1e5eab0ebd1107e"
+  },
+  "gpu/metal/README.md": {
+    "path": "docs/archive/20261120/presentation-r1/Metal-front-end-README.md",
+    "bytes": 1840,
+    "sha256": "d9c2743baa37298364dfc6c2b9a59e6eefd0be6b230e61776d24685eb5bb648d"
+  }
+}

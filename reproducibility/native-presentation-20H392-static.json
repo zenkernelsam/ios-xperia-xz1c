@@ -1,0 +1,220 @@
+{
+  "system": "iOS16.7.16/20H392",
+  "readonly_root_verified": true,
+  "cache_header_sha256": "76874e8375252ee643011ff8063f0cce12355f05cf5f9897a34e5679667a65aa",
+  "A2S_sha256": "5bf04681af1819e2379319942a97be635100d6ca3844c5a22e372ce78a83b83d",
+  "ipsw_tool_sha256": "e90ac1e07e8dd74f533513e61088afc27c4e995c82902be80aab9618cb868c47",
+  "original_images": {
+    "QuartzCore": {
+      "sha256": "b136667d82490fcd9868ec96941b3397d61b03bbe58efce23ac8ec0df6ce7d0c",
+      "uuid": "9e40b2eb260c3af1ae45a1a551a8c1b9"
+    },
+    "Metal": {
+      "sha256": "4dabe5cbbe35f94fcf680ae682d18a278a037b744bbdb5a1273342c0a1c420dc",
+      "uuid": "0f0b7b9690bf3a07b7e185e2fb6160e6"
+    }
+  },
+  "original_methods": [
+    {
+      "owner": "CAMetalDrawable",
+      "selector": "present",
+      "types": "v16@0:8",
+      "IMP": "0x188329184",
+      "exact_A2S_IMP_start": true
+    },
+    {
+      "owner": "CAMetalDrawable",
+      "selector": "presentWithOptions:",
+      "types": "v24@0:8@16",
+      "IMP": "0x1884bc174",
+      "exact_A2S_IMP_start": true
+    },
+    {
+      "owner": "CAMetalDrawable",
+      "selector": "texture",
+      "types": "@16@0:8",
+      "IMP": "0x188325670",
+      "exact_A2S_IMP_start": true
+    },
+    {
+      "owner": "CAMetalDrawable",
+      "selector": "presentAfterMinimumDuration:",
+      "types": "v24@0:8d16",
+      "IMP": "0x1884bb980",
+      "exact_A2S_IMP_start": true
+    },
+    {
+      "owner": "CAMetalDrawable",
+      "selector": "addPresentScheduledHandler:",
+      "types": "v24@0:8@?16",
+      "IMP": "0x18838b22c",
+      "exact_A2S_IMP_start": true
+    },
+    {
+      "owner": "CAMetalDrawable",
+      "selector": "presentedTime",
+      "types": "d16@0:8",
+      "IMP": "0x1884bc2a4",
+      "exact_A2S_IMP_start": true
+    },
+    {
+      "owner": "CAMetalDrawable",
+      "selector": "addPresentedHandler:",
+      "types": "v24@0:8@?16",
+      "IMP": "0x1884bbd18",
+      "exact_A2S_IMP_start": true
+    },
+    {
+      "owner": "CAMetalDrawable",
+      "selector": "presentAtTime:",
+      "types": "v24@0:8d16",
+      "IMP": "0x1884bbe04",
+      "exact_A2S_IMP_start": true
+    },
+    {
+      "owner": "CAMetalDrawable",
+      "selector": "newTextureWithResourceIndex:",
+      "types": "@24@0:8Q16",
+      "IMP": "0x1884bc220",
+      "exact_A2S_IMP_start": true
+    },
+    {
+      "owner": "MTLTextureDescriptorInternal",
+      "selector": "swizzle",
+      "types": "{?=CCCC}16@0:8",
+      "IMP": "0x181ab7850",
+      "exact_A2S_IMP_start": true
+    },
+    {
+      "owner": "MTLTextureDescriptorInternal",
+      "selector": "isDrawable",
+      "types": "B16@0:8",
+      "IMP": "0x181ab7930",
+      "exact_A2S_IMP_start": true
+    },
+    {
+      "owner": "MTLTextureDescriptorInternal",
+      "selector": "framebufferOnly",
+      "types": "B16@0:8",
+      "IMP": "0x181ab7908",
+      "exact_A2S_IMP_start": true
+    },
+    {
+      "owner": "MTLTextureDescriptorInternal",
+      "selector": "setIsDrawable:",
+      "types": "v20@0:8B16",
+      "IMP": "0x181ab791c",
+      "exact_A2S_IMP_start": true
+    },
+    {
+      "owner": "MTLTextureDescriptorInternal",
+      "selector": "rotation",
+      "types": "Q16@0:8",
+      "IMP": "0x181a1a128",
+      "exact_A2S_IMP_start": true
+    },
+    {
+      "owner": "MTLTextureDescriptorInternal",
+      "selector": "setFramebufferOnly:",
+      "types": "v20@0:8B16",
+      "IMP": "0x181a46cec",
+      "exact_A2S_IMP_start": true
+    },
+    {
+      "owner": "MTLTextureDescriptorInternal",
+      "selector": "protectionOptions",
+      "types": "Q16@0:8",
+      "IMP": "0x181a37e98",
+      "exact_A2S_IMP_start": true
+    },
+    {
+      "owner": "_MTLCommandBuffer",
+      "selector": "presentDrawable:atTime:",
+      "types": "v32@0:8@16d24",
+      "IMP": "0x181b210ac",
+      "exact_A2S_IMP_start": true
+    },
+    {
+      "owner": "_MTLCommandBuffer",
+      "selector": "presentDrawable:options:",
+      "types": "v32@0:8@16@24",
+      "IMP": "0x181b20db4",
+      "exact_A2S_IMP_start": true
+    },
+    {
+      "owner": "_MTLCommandBuffer",
+      "selector": "presentDrawable:",
+      "types": "v24@0:8@16",
+      "IMP": "0x181a29fd4",
+      "exact_A2S_IMP_start": true
+    },
+    {
+      "owner": "_MTLCommandBuffer",
+      "selector": "presentDrawable:afterMinimumDuration:",
+      "types": "v32@0:8@16d24",
+      "IMP": "0x181b21320",
+      "exact_A2S_IMP_start": true
+    }
+  ],
+  "exact_call_anchors": {
+    "allocate-texture": {
+      "address": "0x1884bc2cc",
+      "bytes": 340,
+      "sha256": "ebe38249fdb0c40ec606eee530e7f4796d1c27b0632da3c5e2122deabe81c679"
+    },
+    "queue-present": {
+      "address": "0x181a29fd4",
+      "bytes": 384,
+      "sha256": "d8f9cc24a79c492a254042bd8ecbe748de1d8711430644fae73f502d1f3588d5"
+    },
+    "queue-present-block": {
+      "address": "0x181a31874",
+      "bytes": 120,
+      "sha256": "f58d095056656885e4ccdead210d393f41eed3107d75af2cb85ec8ba22dfe0f7"
+    },
+    "queue-options": {
+      "address": "0x181b20db4",
+      "bytes": 376,
+      "sha256": "09fb32c39f68297789f5e4ca8bd218e61bc8493c56d166f8a6491d2c894b5e12"
+    },
+    "queue-options-block": {
+      "address": "0x181b20f88",
+      "bytes": 104,
+      "sha256": "b4c301cdc1f516d43e36af0b891a649669fb4a468e1fdfb9ce30001f43396923"
+    },
+    "drawable-options": {
+      "address": "0x1884bc174",
+      "bytes": 176,
+      "sha256": "6f97daced3c3f9d663371de9d6709ec399ee9d71b0f2fc4e843e2d701b38a78c"
+    },
+    "canvas-present-commit": {
+      "address": "0x1c1737740",
+      "bytes": 32,
+      "sha256": "49a913f1c7f4324fe3d5f7827019913d7a938e7fc45d7611a191f05a20efd747"
+    },
+    "canvas-transaction-wait": {
+      "address": "0x1c17379d4",
+      "bytes": 68,
+      "sha256": "909ae4e274d19108156b120b20c18c311d4a6214398235e019570fd1e845d7f4"
+    }
+  },
+  "CAMetalLayer_sets_original_drawable_and_framebuffer_flags": true,
+  "original_drawable_uses_original_IOSurface_texture": true,
+  "original_command_present_scheduled_handler_calls_native_present": true,
+  "original_options_are_copied_and_forwarded": true,
+  "original_ClockKitUI_has_presentDrawable_then_commit_and_transaction_waitUntilScheduled_then_present_paths": true,
+  "original_option_keys": [
+    "presentationMode",
+    "presentTimeInterval"
+  ],
+  "original_option_modes": {
+    "0": "present",
+    "1": "presentAtTime",
+    "2": "presentAfterMinimumDuration"
+  },
+  "existing_backend_Scheduled_must_not_release_inputs_before_real_operations": true,
+  "static_metadata_is_not_runtime_or_optical_evidence": true,
+  "Apple_bytes_disassembly_not_for_Git": true,
+  "device_operations": 0,
+  "tool_source_sha256": "521ea66818b2217199cae6b40f06f07b137ccea6a7a6c12a2818522af1305a97"
+}

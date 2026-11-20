@@ -11,6 +11,8 @@ static NSError *execute_metal_render(NSDictionary *,id<MTLDevice>,uint32_t *);
 static id<MTLRenderCommandEncoder> create_render_encoder(SweetMTLCommandBuffer *,MTLRenderPassDescriptor *);
 static BOOL record_metal_mipmaps(SweetMTLCommandBuffer *,id<MTLTexture>);
 static NSError *execute_metal_mipmaps(NSDictionary *,id<MTLDevice>,uint32_t *,uint32_t *);
+static NSDictionary *new_metal_presentation(id,id<MTLDevice>,NSUInteger,double,NSDictionary *,NSError **);
+static NSError *execute_metal_presentation(NSDictionary *,id<MTLDevice>,uint32_t);
 #endif
 @interface SweetMTLCommandQueue : NSObject <MTLCommandQueue> {
 @public SweetMTLDevice *_device;dispatch_queue_t _execution;NSString *_label;
@@ -23,13 +25,14 @@ static NSError *execute_metal_mipmaps(NSDictionary *,id<MTLDevice>,uint32_t *,ui
 @end
 @interface SweetMTLCommandBuffer : NSObject <MTLCommandBuffer> {
 @public NSCondition *_condition;SweetMTLCommandQueue *_queue;SweetMetal::QueueState _state;
-    NSMutableArray *_operations,*_scheduledHandlers,*_completedHandlers;NSError *_error;NSString *_label;
+    NSMutableArray *_operations,*_scheduledHandlers,*_completedHandlers,*_presentations;NSError *_error;NSString *_label;
     uint32_t _sequence;NSUInteger _GPUOperations;BOOL _reserved,_capacityReleased;
 }
 - (instancetype)initWithQueue:(SweetMTLCommandQueue *)queue;
 - (BOOL)appendOperation:(NSDictionary *)operation;
 - (void)finishEncoder;
 - (void)executeOperations;
+- (void)recordPresentation:(id<MTLDrawable>)drawable mode:(NSUInteger)mode time:(double)time options:(NSDictionary *)options;
 @end
 @interface SweetMTLBlitEncoder : NSObject <MTLBlitCommandEncoder> {
     SweetMTLCommandBuffer *_commands;BOOL _ended;NSString *_label;
@@ -67,9 +70,9 @@ static NSError *metal_queue_error(NSString *message,NSInteger code=MTLCommandBuf
 - (instancetype)initWithQueue:(SweetMTLCommandQueue *)queue
 {
     if(!(self=[super init]))return nil;_queue=[queue retain];[_queue reserveBuffer];_condition=[NSCondition new];
-    _operations=[NSMutableArray new];_scheduledHandlers=[NSMutableArray new];_completedHandlers=[NSMutableArray new];return self;
+    _operations=[NSMutableArray new];_scheduledHandlers=[NSMutableArray new];_completedHandlers=[NSMutableArray new];_presentations=[NSMutableArray new];return self;
 }
-- (void)dealloc{if(!_capacityReleased)[_queue retireBuffer];[_condition release];[_queue release];[_operations release];[_scheduledHandlers release];[_completedHandlers release];[_error release];[_label release];[super dealloc];}
+- (void)dealloc{if(!_capacityReleased)[_queue retireBuffer];[_condition release];[_queue release];[_operations release];[_scheduledHandlers release];[_completedHandlers release];[_presentations release];[_error release];[_label release];[super dealloc];}
 - (id<MTLDevice>)device{return _queue.device;}
 - (id<MTLCommandQueue>)commandQueue{return _queue;}
 - (BOOL)retainedReferences{return YES;}
@@ -96,6 +99,27 @@ static NSError *metal_queue_error(NSString *message,NSInteger code=MTLCommandBuf
     if(!encoder)[self finishEncoder];return encoder;
 }
 #endif
+- (void)recordPresentation:(id<MTLDrawable>)drawable mode:(NSUInteger)mode time:(double)time options:(NSDictionary *)options
+{
+#if !defined(SWEET_METAL_NO_COMPUTE)
+    // Getters on the original drawable can execute code. Validate and retain
+    // outside our condition lock, then recheck command state before recording.
+    [_condition lock];bool writable=(_state.status==SweetMetal::QueueStatus::Created || _state.status==SweetMetal::QueueStatus::Enqueued) && !_state.invalid && _presentations.count<16;
+    if(writable)for(NSDictionary *prior in _presentations)if(prior[@"drawable"]==drawable){writable=false;break;}[_condition unlock];
+    if(!writable)[NSException raise:NSInvalidArgumentException format:@"Metal presentation command buffer is late, full or already contains this drawable"];
+    NSError *failure=nil;NSDictionary *record=new_metal_presentation(drawable,self.device,mode,time,options,&failure);
+    [_condition lock];bool valid=record && (_state.status==SweetMetal::QueueStatus::Created || _state.status==SweetMetal::QueueStatus::Enqueued) && !_state.invalid && _presentations.count<16;
+    if(valid)for(NSDictionary *prior in _presentations)if(prior[@"drawable"]==drawable){valid=false;break;}
+    if(valid)[_presentations addObject:record];[_condition unlock];[record release];
+    if(!valid)[NSException raise:NSInvalidArgumentException format:@"Invalid, duplicate or late Metal drawable presentation: %@",failure.localizedDescription?:@"command state"];
+#else
+    (void)drawable;(void)mode;(void)time;(void)options;[NSException raise:NSInvalidArgumentException format:@"Drawable presentation requires the render backend"];
+#endif
+}
+- (void)presentDrawable:(id<MTLDrawable>)drawable{[self recordPresentation:drawable mode:0 time:0 options:nil];}
+- (void)presentDrawable:(id<MTLDrawable>)drawable atTime:(CFTimeInterval)time{[self recordPresentation:drawable mode:1 time:time options:nil];}
+- (void)presentDrawable:(id<MTLDrawable>)drawable afterMinimumDuration:(CFTimeInterval)duration{[self recordPresentation:drawable mode:2 time:duration options:nil];}
+- (void)presentDrawable:(id<MTLDrawable>)drawable options:(NSDictionary *)options{[self recordPresentation:drawable mode:3 time:0 options:options];}
 - (BOOL)appendOperation:(NSDictionary *)operation
 {
     [_condition lock];bool allowed=_state.status==SweetMetal::QueueStatus::Created && _state.encoderOpen && !_state.invalid;
@@ -122,10 +146,8 @@ static NSError *metal_queue_error(NSString *message,NSInteger code=MTLCommandBuf
 }
 - (void)executeOperations
 {
-    [_condition lock];while(_state.status==SweetMetal::QueueStatus::Enqueued)[_condition wait];bool scheduled=_state.schedule();
-    NSArray *handlers=[_scheduledHandlers copy];[_scheduledHandlers removeAllObjects];[_condition broadcast];[_condition unlock];
-    if(!scheduled){[handlers release];return;}
-    for(id handler in handlers)((MTLCommandBufferHandler)handler)(self);[handlers release];
+    [_condition lock];while(_state.status==SweetMetal::QueueStatus::Enqueued)[_condition wait];bool executable=_state.status==SweetMetal::QueueStatus::Committed;[_condition unlock];
+    if(!executable)return;
     NSError *failure=nil;
     for(NSDictionary *operation in _operations) {
 #if !defined(SWEET_METAL_NO_COMPUTE)
@@ -150,11 +172,24 @@ static NSError *metal_queue_error(NSString *message,NSInteger code=MTLCommandBuf
         if(!sequence){failure=metal_queue_error(@"A540 blit completed without a hardware fence");break;}
         [_condition lock];_sequence=sequence;++_GPUOperations;[_condition unlock];
     }
+    // The synchronous backend has now admitted and retired every operation.
+    // Publish Scheduled only here so original scheduled cleanup cannot recycle
+    // its input resources while they are still queued for execution.
+    [_condition lock];bool scheduled=_state.schedule();if(failure)_error=[failure retain];
+    NSArray *handlers=[_scheduledHandlers copy];[_scheduledHandlers removeAllObjects];[_condition broadcast];[_condition unlock];
+    if(scheduled)for(id handler in handlers)((MTLCommandBufferHandler)handler)(self);[handlers release];
+#if !defined(SWEET_METAL_NO_COMPUTE)
+    // Every backend operation has already waited for its real owned fence
+    // and synchronized the original pages. Only then hand the unchanged
+    // drawable to QuartzCore. Display completion remains the system's job.
+    if(!failure)for(NSDictionary *presentation in _presentations){failure=execute_metal_presentation(presentation,self.device,_sequence);if(failure)break;}
+#endif
     // Retire retained backing after every issued fence and before publishing
     // terminal status to a concurrent waitUntilCompleted caller.
     [_operations removeAllObjects];
+    [_presentations removeAllObjects];
     [_queue retireBuffer];_capacityReleased=YES;
-    [_condition lock];_error=[failure retain];bool finished=_state.finish(failure==nil);
+    [_condition lock];[_error release];_error=[failure retain];bool finished=_state.finish(failure==nil);
     handlers=[_completedHandlers copy];[_completedHandlers removeAllObjects];[_condition broadcast];[_condition unlock];
     if(finished)for(id handler in handlers)((MTLCommandBufferHandler)handler)(self);[handlers release];
 }

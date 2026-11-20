@@ -50,6 +50,9 @@ class NativePrerequisite(unittest.TestCase):
         resources['native_multisample_attachments']=True
         with self.assertRaisesRegex(AssertionError,'Multisample'):validate(proof,resources)
         proof['native_tests'].append('Metal_multisample');validate(proof,resources)
+        resources['native_drawable_presentation']=True
+        with self.assertRaisesRegex(AssertionError,'Native presentation'):validate(proof,resources)
+        proof['native_tests'].append('Metal_presentation');validate(proof,resources)
     def test_current_log_identity(self):
         p=self.proof;token='f'*16
         scope='\n'.join(['SWEET LOOP LIVE proto=1 token='+token,'SWEET ENV: AegirPoster += DYLD_INSERT_LIBRARIES=/dev/sglram/e',

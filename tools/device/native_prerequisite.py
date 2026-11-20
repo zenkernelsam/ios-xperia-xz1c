@@ -22,6 +22,7 @@ def verify(directory,resources=None,kernel_sha=None,version=None):
     if artifact['metal_resources'].get('native_stencil8_attachment'):native_tests.append('Metal_stencil8')
     if artifact['metal_resources'].get('native_memoryless_attachments'):native_tests.append('Metal_memoryless')
     if artifact['metal_resources'].get('native_multisample_attachments'):native_tests.append('Metal_multisample')
+    if artifact['metal_resources'].get('native_drawable_presentation'):native_tests.append('Metal_presentation')
     for name in native_tests:
         assert suite[name]['complete_samples']>=1 and suite[name]['incomplete_samples']==0,'Prior native probe incomplete: '+name
     native=artifact['metal_resources']

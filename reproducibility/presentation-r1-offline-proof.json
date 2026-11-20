@@ -1,0 +1,710 @@
+{
+  "date": "2026-11-20",
+  "stage": "OFFLINE_NATIVE_PRESENTATION_CANDIDATE_NOT_DEVICE_ACCEPTED",
+  "source_base_commit": "03ca997deeaa7903dca84aa8a66159ef1c30f05a",
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "kernel_bytes": 20665112,
+  "GLES_kept_previous_MSAA_candidate_bytes": true,
+  "GLES_sha256": "21de6821910c452f1bda70720f3573b81ac76483a10f1959ef95e7b0bc9447b4",
+  "GLES_bytes": 14784032,
+  "Metal_sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27",
+  "Metal_bytes": 810304,
+  "Metal_source_map_sha256": "db1605ef8dae8f8ed0a29999dcb2cf7537457aba7ad428677c21e0e914771b78",
+  "reference_observer_sha256": "33bf5ee4988352c747bb9309b2aa7e790caf13da3b801a81d263cb20d37de4a4",
+  "reference_observer_bytes": 256656,
+  "RAM_blob_sha256": "7a3361f68dc15c12d274ef0f158766aa6ec0b684ccf036b52172046717ac57d8",
+  "RAM_blob_bytes": 4304475,
+  "RAM_manifest_sha256": "f5fe1447c7ba8acf3cb0639fffd103c4561d3eced1b6cf7faa76921244af1933",
+  "implementation": {
+    "upstream": "https://github.com/MC-XiaoXiao/ios_sagit",
+    "upstream_commit": "898998cf1b74ea103e0c16d6dc0016822d8d644b",
+    "license": "BSD-2-Clause",
+    "native_selectors_declared_only_without_system_replacement": true,
+    "original_isDrawable_framebufferOnly_flags_saved": true,
+    "original_IOSurface_linear_RGBA_BGRA_sample1_mip1_zero_rotation_identity_swizzle_only": true,
+    "drawable_FourCC_checked_against_actual_format": true,
+    "new_command_paths": [
+      "presentDrawable",
+      "presentDrawable_atTime",
+      "presentDrawable_afterMinimumDuration",
+      "presentDrawable_options"
+    ],
+    "original_options_copied_and_time_bits_preserved": true,
+    "native_texture_object_binding_rechecked_before_present": true,
+    "all_real_GPU_operations_and_surface_publication_before_Scheduled": true,
+    "IOSurface_synchronize_lock_unlock_seed_publication_before_native_present_or_transaction_wait": true,
+    "native_display_callbacks_and_presented_time_not_manufactured": true,
+    "caller_release_original_drawable_texture_and_IOSurface_retained_to_retirement": true,
+    "no_present_after_backend_failure": true,
+    "native_present_exception_or_changed_texture_keeps_Error": true,
+    "kernel_allocator_SCM_PON_RPC_VM_GPU_low_level_unchanged": true,
+    "SweetGPU_required_sha256": "aa2c36792a2298b060aa858eabdc039522fcdde3cfdbafd453c5fc6c0683c157",
+    "Mesa_dependencies_unchanged": {
+      "src/mesa/libmesa.a": "e914e5f080cdbd48da3b7a4605a5c0119096adc9604ba83ec2e02579b5b972d3",
+      "src/gallium/auxiliary/libgallium.a": "df6405e7ecf7c8b6307a3e531364d661b639056e35a6b6a1b975061eea4c9e2f",
+      "src/gallium/drivers/freedreno/libfreedreno.a": "df5c34319653ad99c4c5da1404097b58d3c6013c435f3d8e597d3d1c88390818",
+      "src/gallium/winsys/freedreno/drm/libfreedrenowinsys.a": "416ca3962a3f3850abfe1e2a132b86500b0e945fbab79542fb48ed4cc9053040",
+      "src/freedreno/drm/libfreedreno_drm.a": "2fcfe7246bdccebd4f9102a3e6adadad4ecff31a1f2a1726f7095d2bca92c804",
+      "src/freedreno/ir3/libfreedreno_ir3.a": "092fa39739a5b1d4bed71ec2eb0e692cc1ab11e1a31164e55724e7c16bf7c00a",
+      "src/freedreno/ir2/libfreedreno_ir2.a": "3aecb33121d0c9880b59da8bfe3458b731155b5890e3e77d96231bda6729eb01",
+      "src/freedreno/fdl/libfreedreno_layout.a": "17cf871707419fb1c2ea44b3a2577b665c836d3ef0d05355f7a6837338cd0916",
+      "src/freedreno/common/libfreedreno_common.a": "36fa3acdd996189269556f2c00d52a2c0667d52929549a7c01e9bb913365f8ae",
+      "src/freedreno/isa/libir3encode.a": "5c3a5dd747f11fc11e7f981043fe10bc883e8f2aa16c0d46069df70022d97adc",
+      "src/freedreno/isa/libir3decode.a": "bd62d6a0f77a2ea08c9e13346aa1c86cf61a2bad5454cd5c82cc484a3d4d7987",
+      "src/compiler/isaspec/libisaspec.a": "7647eb437948fd5bf0d6162cdd9020663105b7ebe40acfa480a678f73ca05a05",
+      "src/freedreno/perfcntrs/libfreedreno_perfcntrs.a": "47e53e053324d5894f735565d839dbfae74a38c3689351185c4f93b928581500",
+      "src/compiler/glsl/libglsl.a": "8f59fc4df353ecad5971718abefc7f03b2803281c3f799dc475223ef02c53381",
+      "src/compiler/glsl/glcpp/libglcpp.a": "05ef3f7db2ced495d4d6144ddb3880e69d914e37cc734f1dee0e521387fef056",
+      "src/compiler/nir/libnir.a": "61dd35f2c53f4cd06b2036f02fbf9100710c9424d077bdb851952b04a0f68aed",
+      "src/compiler/spirv/libvtn.a": "97d0be0dc012531a43f25b758f36e5ec468adac989a074abbfc46dbeb2398dc9",
+      "src/compiler/libcompiler.a": "256f245f375bd6898ecc9da87df08ed3ab6984e900d6e9273fee4abc1be6fc70",
+      "src/mapi/glapi/libglapi_bridge.a": "8ade61d00e1ac005bd1c1ad49585f4f50260b351c0362305b377a83d94b33b93",
+      "src/util/libxmlconfig.a": "907981b2fc5b08b10764c64239b766aff7e81e3907b4558cdca109edd2c1c080",
+      "src/util/libmesa_util.a": "6ae09902f7f985dd184a8bf812da0547ab4c57682c075ae7e0b308673eee7e31",
+      "src/util/blake3/libblake3.a": "076b5884bd90eb1ebae14abad9773a1718dae7913dc0cc5ce2f29c363b356247",
+      "src/c11/impl/libmesa_util_c11.a": "b80051b79df5c412bf663e2676154728b6af442f315dbf4c72b3349b2b5065c9",
+      "src/mapi/shared-glapi/libglapi.0.dylib": "20230440548681ff2c4c5afdc1ea89f5416c59f0ac9b4d4aeb55c671eb35c6a3"
+    },
+    "Metal_actual_sources": {
+      "gpu/metal/MetalResources.mm": "704b03a923fea29a51fb821fa6c439546040c804335dcffafd7b1946416afbbd",
+      "gpu/metal/MetalResources.h": "d5d165451738ef08c8eccd6a6d774d73f32902c4d3dc08961d450b53c88a7756",
+      "gpu/metal/MetalBufferRules.h": "ae78052ff954ba1376cef29e4aa75ef28592ce029e9ac7e2ca795369cf3b0b4c",
+      "gpu/metal/MetalDeviceLimits16.h": "bbf67110466a21bb8b9bb034c94f96e94fa7b61e3be024f06eba80fe817bf373",
+      "gpu/sweetgl/MetalBackingAPI.h": "19f5fd76979783dab3e1aff76d33d8eb90d614c73ea108fd39bba013d194bf74",
+      "gpu/sweetgl/MetalBackingRules.h": "fb0b4c5426debc434ddd4270ddc8a515ab82cec8a97fa598420fd02e2a4203ad",
+      "gpu/sweetgl/MetalBlitPlan.h": "af847a72bcdba91fea1f24c61147365fd7bc105c7d175eef79c8c00c966927d7",
+      "gpu/metal/MetalCommandQueue.inc": "a473b1d422ac1c4b7399e3ed7285279bbc99183166123fbde9fa0dc0f155c0aa",
+      "gpu/metal/MetalQueueState.h": "3f1711b713f5e06f3657456be5262bbfaa4803663ca8a9b25aa245f6e328b66b",
+      "gpu/metal/MetalCompute.inc": "f18fb39b5c451dc291a04624fdf9ba684fd7f11117072099d81a0d680a4c2de4",
+      "gpu/metal/MetalFunctionConstants.inc": "c50086a36fc7eec22c06d122751b0cb765569a1fefd25b0f656227b8bf86b730",
+      "gpu/metal/MetalRender.inc": "1e78625cc09e718ed8fada9a722f02b8c6c96d9d76aa61aa1fd47eb926162f65",
+      "gpu/metal/MetalTextureRules.h": "1c17d64335bd8309c490343f4e6ef8c375c0677a6c163723d8dfa65928a0c5a6",
+      "gpu/metal/MetalDepthStencilState.inc": "d059293f74a3b855de64a0d3a2bdd45a9906d5cc72e90cd585ce36ab91b27036",
+      "gpu/sweetgl/MetalDepthStencilRules.h": "d1918e6cadf7a0dd9ad8c75e91d37a1a334f4940360ff7cad51162c833615af7",
+      "gpu/sweetgl/MetalDepthAttachment.h": "45ab58140a76bb13ccb7156f40f4a3587752295250ac22bdaf8d4bbb3b8a9841",
+      "gpu/sweetgl/MetalStencilAttachment.h": "3a8761f3bf18014a64127480e1eec65332d00aca65e74028b5fb52ea47ed7147",
+      "gpu/metal/MetalMemoryless.inc": "0593503e3e869e3f5b77427df0280f7972f14fb1e292777d21027cf9e160394e",
+      "gpu/metal/MetalMultisample.inc": "5a1025b42a502e301e76a31a41d693b3a879ecb2e23805a11c70877b5eaf0fa6",
+      "gpu/sweetgl/MetalMultisampleAPI.h": "d91d5769eb8d15e1f4e1fd881271c2fcb22591536a76485b96df65d9b588384e",
+      "gpu/sweetgl/MultisampleLayout.h": "8401b48a17b9ec55b5209a34389cc87aa8f374417e4d1e391f7958dc441f76ae",
+      "gpu/metal/NativePresentation16.h": "b1a312eb806aea3954559da7374edbc41597389e7b67bbeca62fab7360be6ab2",
+      "gpu/metal/MetalPresentation.inc": "371bbb97ddaaf1deda0cdc96decbab51122740621d4094912a78fc41ae228e99",
+      "gpu/metal/air/ESSLTarget.h": "a64b7768d9690af95e1d34e3a7b0793eeec67a38d5672884a61ff4492cde7430",
+      "gpu/metal/air/HalfESSL.h": "6c10c9bc5e0f7051cc6275adb4e85ff21e7226b62910537fc4acfa7f3a69dbb4",
+      "gpu/metal/air/Compiler.h": "bbb6a04cb05e13ee9f72fe66903b42f2484debc7785750f537eb32848d00733d",
+      "gpu/sweetgl/MetalShaderAPI.h": "3eebe9013770eff5c1092c8ccc50b4cd6ad931986f109573f74905d16dd1c23b",
+      "gpu/sweetgl/XRColourShader.h": "9a4e6514d9f203dac4fa95def0ec418777c8422125bfacfdbb0d1a7ea1c6d973",
+      "tools/build/air_frontend_cli.cpp": "2463a946137e2bb048ac7c54cfc0f5a30ca0e360ca512e62eadc9ce8492d0b6a",
+      "gpu/metal/air/LLVM16Compat.h": "7827793f6653d2526206612308fbf2e38e3f6f00c42de271805317b2137a8966",
+      "gpu/metal/air/AIRFrontend.cpp": "36818d9281160890ab88de13a9fea9a0741a955d83b97d1c58240c80a9585a45",
+      "gpu/metal/air/lilac-air-conversion.patch": "e3981d4666f852530b7b933e677bcb74f6ae0e8f288d7e717609dbc8761ea796",
+      "gpu/metal/air/lilac-air-half-storage.patch": "db01b10a413d085ac039d2bf5988029e65bd4731f6019fdf6cbf7a11b8c12ee8",
+      "gpu/metal/air/lilac-air-static-half-bits.patch": "ede245d9c575e3789e10182de7ecf8454beb8aeaf983b9abcd282806831067bf",
+      "gpu/metal/air/StaticHalfBits.h": "f78d78cc0e41b67ffdd1ba32359dd2a45d9e0036b96d50fbdd27b50cc4121bf4",
+      "tools/build/materialize_air_sources.py": "7d514f4bdc5c79df852ed323ba43659b6bf7e95c70adb58b5a96fd204e93152b",
+      "gpu/metal/air/fixtures/basic.air.ll": "5e707af678870c3a02f272e5a323f41a9a5f5bf184dd16ef25b893bebe6d7228",
+      "gpu/metal/air/reference/AIRRuntime.cpp": "fafd94dfff9961b4fc6313e44cbf7c42827282267b6eed5274f1f3884478112d",
+      "gpu/metal/air/reference/Semantic.h": "abdf67a1088c61a3bb5e99d86a05974a149e49285f929727a2e448a210c0a216",
+      "gpu/metal/air/reference/AIRControlFlow.h": "f034bc1d2e0c6b1b6cfa9f5d1659dbe6af320aa92d58b6c97d2448f80c9f7ab8",
+      "gpu/metal/air/reference/AIRSpecialization.h": "72354a4d35fc6d824d8feb7d4942515b924ad313b99a8f1b47d728a39c3b6699",
+      "gpu/metal/air/reference/FunctionConstants.h": "086220f53bfa1ca611182342964b2f1351a8c2dd64b38be19856fef99a216b97",
+      "gpu/metal/air/reference/Compiler.h": "a9a41964b192b18bb29ea4a46b351ca4f21c7991546dbfd513f0037c57516848",
+      "gpu/metal/air/reference/LibraryArchive.h": "0958f5c5fb0fbc9aef17045d5e49aae405cb4db7daca144de0f97db45fb26b1c",
+      "gpu/metal/air/reference/NOTICE.txt": "b042d07d533ceaeafdee25b6c808dc69ae51fb8315a2e91ad45c757d955ae234",
+      "gpu/metal/air/reference/GPUShaderInterface.h": "3f542bcfffb27099c09c9cef28f311a48298ef79230339ba5701d250b19e4998",
+      "gpu/metal/air/reference/GPUShaderProtocol.h": "7d7f2096a4adee19f02c561a988f7a1ad9bc3b077f6cadb40573a28464d5629e",
+      "gpu/metal/air/reference/GPUUserProtocol.h": "9ea3cd722394a504fa3f5346f402c67bd593c304e58f13d4bd79b66584b4c510",
+      "gpu/metal/air/reference/GPUJITProtocol.h": "2e56fcafb5c80375c915e3a8d8e582df32ce9857f94856f947db388e12202c1d"
+    },
+    "observer_actual_sources": {
+      "gpu/diagnostics/exception_observe.m": "6238849a2a027d8edce5be0da3a0bc7d897b160ffb54e59e678dd2c3ad9e4580",
+      "gpu/diagnostics/MetalRuntimeObserve.h": "1b7a8de73a2aec267a53bcb5a50acc1d55796f62d992da6d70e2402812a9386e",
+      "gpu/diagnostics/MetalProbeStartup.h": "7a99f308d807f01b6b1e02fdfa9655a83eaecdae29b0ccea785feb446a3936fb",
+      "gpu/sweetgl/sweetgl.h": "a9c9fa63837da5dc3578ef726087571cd1a16614f1a5042a5b1337c94c373bb3",
+      "gpu/diagnostics/CIF10PNGReferenceProbe.h": "0b3d2c6e8caacc4456c0d9e9fd797539d571eab4303fe9e30172787d2475e564",
+      "gpu/diagnostics/CIF10VImageCompare.h": "60387397043d88ab01dadadfbadd21054b1476182c19e412f3bd30e384840079",
+      "gpu/diagnostics/CIF10PNGFilterCompare.h": "8728f1a2de6daf58b2de87408b6483ebbf9831ca5cfda5cea47ba9b5dacf8028",
+      "gpu/compat/PNGImageIOEncoder.h": "61031999d4ff1d9a2c9c6a564cf229a82c3b9c49998d752ae0bd4d6fd18e1e92",
+      "gpu/diagnostics/ProgramCacheScope.h": "bb6546f8c148f71e54c058bcf2877e7de903942ae1934a9d933c76636513fc6a",
+      "tools/program_cache_scope.py": "9fcd14133fa3e0531f5cc0a01fb6d8b84d62432df41f3d0e688df7e151c097e9",
+      "gpu/metal/MetalResources.h": "d5d165451738ef08c8eccd6a6d774d73f32902c4d3dc08961d450b53c88a7756",
+      "gpu/diagnostics/MetalResourceProbe.h": "5f57f18df728f3027cc3c5ae3b316b1b5a23be8ac161d2c390597f735d8d7b17",
+      "gpu/diagnostics/MetalQueueProbe.h": "1866ff8605bf68f40ae0b83e58c7b95e07fdda1f18c0efc0357d194ef0068d54",
+      "gpu/diagnostics/MetalComputeProbe.h": "836c4cdc513c5d2827f4b5cab3d10d944d3487d1d5245e45e964f70dee5299d7",
+      "gpu/diagnostics/MetalRenderProbe.h": "a22fcd66df1ca8ae8a3cebe2dee818a72ccda411f3ebbed314e684d9b67c400c",
+      "gpu/diagnostics/MetalConstantsProbe.h": "9b8e38bd1ec394906bee741f5df4f0d8f8c5eafe1fe14a58b813488193a98fa6",
+      "gpu/diagnostics/MetalXRProbe.h": "0f75f6d8acf30539df90eb75e32d4e6ab9664bfdeb42d23051ab4e8e21ce46bc",
+      "gpu/sweetgl/XRColourTables.h": "7564148cfcdb509061e1cebc76cd8afb59a292f4dea18086f2d7fa753bb723fa",
+      "gpu/diagnostics/MetalSurfaceProbe.h": "05e713b9fd277ae39fef64d9770c94c7b5261df7bf43827aaa9dfe2a7e4010c9",
+      "gpu/sweetgl/MetalBackingAPI.h": "19f5fd76979783dab3e1aff76d33d8eb90d614c73ea108fd39bba013d194bf74",
+      "gpu/diagnostics/MetalMipProbe.h": "0b67fe5e2e02f65f4d3e5b7dfa58a5c6dc7ef8ed151850880fb6a752573eb181",
+      "gpu/sweetgl/MetalShaderAPI.h": "3eebe9013770eff5c1092c8ccc50b4cd6ad931986f109573f74905d16dd1c23b",
+      "gpu/diagnostics/MetalDepth32Probe.h": "d3c821cf4c01a78c69c201ae533b4b1861d3110f36c4a1fc03a5e146395692f9",
+      "gpu/diagnostics/MetalStencil8Probe.h": "0c6b2a8cd11c2e28e0ba7bae17c6f8526cbe1e2aa0df66ed1b6521c4e7b72b7d",
+      "gpu/diagnostics/MetalMemorylessProbe.h": "e6a00b6c916b42ce71f1f85e5ec941e93d492937ac85ee1cfd17bc81e7827ab8",
+      "gpu/diagnostics/MetalMultisampleProbe.h": "8f3451e881d9a7ce134b8d16ac09c280ebcca54fbd53d955a679acd6f4c35786",
+      "gpu/diagnostics/MultisampleProbeValues.h": "0de549de0e71cd3968f5f167924faea6edaa12094ca9413e93733a3d81cc651e",
+      "gpu/diagnostics/MetalPresentationProbe.h": "715ddce7c9b2a713f64ae4134ae399cef37bf29375a1a82e073ff7899b5b1591",
+      "gpu/metal/NativePresentation16.h": "b1a312eb806aea3954559da7374edbc41597389e7b67bbeca62fab7360be6ab2",
+      "gpu/diagnostics/MetalNarrowProbe.h": "ebf16763de55d4081125b87495c2e92036f01a261634997598039c55eb754880",
+      "gpu/diagnostics/NarrowProbeValues.h": "132c0fdb0fbea03d3a99761375f8c7d6cc485be69babb18ae7e390276dc63dc9",
+      "gpu/diagnostics/MetalHalfProbe.h": "0dc0e1423ec289b7339d48c7d45a1e429318f6085d1974472c55d18e37180df4",
+      "gpu/diagnostics/HalfProbeValues.h": "8cb2c8eaaa837981fc5fc565ede9e18cd026c87258d9f1c734776f288421e131",
+      "gpu/diagnostics/MetalMRTProbe.h": "f3c9cfb56f69cf052d3ee3d2aba85c9cc816f9e4ce3b8defa9b42c2e4a8e0f7e",
+      "gpu/diagnostics/MRTProbeValues.h": "63a26a373f682e599451b6fc5f0e684ecac3b7cddbe9a9f1badc1986f93b4661",
+      "gpu/diagnostics/MetalSamplerProbe.h": "d8a83392bf905db8c75f2e2defc256002281a16bd0db19c984be3f294ac3fa74",
+      "gpu/diagnostics/MetalStaticHalfProbe.h": "fc160b7a3e47df5472b55e52908eabbda4cd818dd6849cce05534a7db2bdca35",
+      "gpu/diagnostics/MetalClearCacheProbe.h": "e8b11d9ba123708aaa8f672f4c71493092aec4c627c11c63a0bcec066567da27",
+      "gpu/diagnostics/ClearCacheProbeValues.h": "5a49f7b8cdc86d67d8557f114c8e31801cee0238551ee4e7402938f92ee41e1b",
+      "gpu/diagnostics/MetalIR3CacheProbe.h": "ca10edf8f56d01458f078d14a5bd7a73d7ac61318f223e7819dc501ace8581db"
+    }
+  },
+  "native_20H392_static_ABI": {
+    "system": "iOS16.7.16/20H392",
+    "readonly_root_verified": true,
+    "cache_header_sha256": "76874e8375252ee643011ff8063f0cce12355f05cf5f9897a34e5679667a65aa",
+    "A2S_sha256": "5bf04681af1819e2379319942a97be635100d6ca3844c5a22e372ce78a83b83d",
+    "ipsw_tool_sha256": "e90ac1e07e8dd74f533513e61088afc27c4e995c82902be80aab9618cb868c47",
+    "original_images": {
+      "QuartzCore": {
+        "sha256": "b136667d82490fcd9868ec96941b3397d61b03bbe58efce23ac8ec0df6ce7d0c",
+        "uuid": "9e40b2eb260c3af1ae45a1a551a8c1b9"
+      },
+      "Metal": {
+        "sha256": "4dabe5cbbe35f94fcf680ae682d18a278a037b744bbdb5a1273342c0a1c420dc",
+        "uuid": "0f0b7b9690bf3a07b7e185e2fb6160e6"
+      }
+    },
+    "original_methods": [
+      {
+        "owner": "CAMetalDrawable",
+        "selector": "present",
+        "types": "v16@0:8",
+        "IMP": "0x188329184",
+        "exact_A2S_IMP_start": true
+      },
+      {
+        "owner": "CAMetalDrawable",
+        "selector": "presentWithOptions:",
+        "types": "v24@0:8@16",
+        "IMP": "0x1884bc174",
+        "exact_A2S_IMP_start": true
+      },
+      {
+        "owner": "CAMetalDrawable",
+        "selector": "texture",
+        "types": "@16@0:8",
+        "IMP": "0x188325670",
+        "exact_A2S_IMP_start": true
+      },
+      {
+        "owner": "CAMetalDrawable",
+        "selector": "presentAfterMinimumDuration:",
+        "types": "v24@0:8d16",
+        "IMP": "0x1884bb980",
+        "exact_A2S_IMP_start": true
+      },
+      {
+        "owner": "CAMetalDrawable",
+        "selector": "addPresentScheduledHandler:",
+        "types": "v24@0:8@?16",
+        "IMP": "0x18838b22c",
+        "exact_A2S_IMP_start": true
+      },
+      {
+        "owner": "CAMetalDrawable",
+        "selector": "presentedTime",
+        "types": "d16@0:8",
+        "IMP": "0x1884bc2a4",
+        "exact_A2S_IMP_start": true
+      },
+      {
+        "owner": "CAMetalDrawable",
+        "selector": "addPresentedHandler:",
+        "types": "v24@0:8@?16",
+        "IMP": "0x1884bbd18",
+        "exact_A2S_IMP_start": true
+      },
+      {
+        "owner": "CAMetalDrawable",
+        "selector": "presentAtTime:",
+        "types": "v24@0:8d16",
+        "IMP": "0x1884bbe04",
+        "exact_A2S_IMP_start": true
+      },
+      {
+        "owner": "CAMetalDrawable",
+        "selector": "newTextureWithResourceIndex:",
+        "types": "@24@0:8Q16",
+        "IMP": "0x1884bc220",
+        "exact_A2S_IMP_start": true
+      },
+      {
+        "owner": "MTLTextureDescriptorInternal",
+        "selector": "swizzle",
+        "types": "{?=CCCC}16@0:8",
+        "IMP": "0x181ab7850",
+        "exact_A2S_IMP_start": true
+      },
+      {
+        "owner": "MTLTextureDescriptorInternal",
+        "selector": "isDrawable",
+        "types": "B16@0:8",
+        "IMP": "0x181ab7930",
+        "exact_A2S_IMP_start": true
+      },
+      {
+        "owner": "MTLTextureDescriptorInternal",
+        "selector": "framebufferOnly",
+        "types": "B16@0:8",
+        "IMP": "0x181ab7908",
+        "exact_A2S_IMP_start": true
+      },
+      {
+        "owner": "MTLTextureDescriptorInternal",
+        "selector": "setIsDrawable:",
+        "types": "v20@0:8B16",
+        "IMP": "0x181ab791c",
+        "exact_A2S_IMP_start": true
+      },
+      {
+        "owner": "MTLTextureDescriptorInternal",
+        "selector": "rotation",
+        "types": "Q16@0:8",
+        "IMP": "0x181a1a128",
+        "exact_A2S_IMP_start": true
+      },
+      {
+        "owner": "MTLTextureDescriptorInternal",
+        "selector": "setFramebufferOnly:",
+        "types": "v20@0:8B16",
+        "IMP": "0x181a46cec",
+        "exact_A2S_IMP_start": true
+      },
+      {
+        "owner": "MTLTextureDescriptorInternal",
+        "selector": "protectionOptions",
+        "types": "Q16@0:8",
+        "IMP": "0x181a37e98",
+        "exact_A2S_IMP_start": true
+      },
+      {
+        "owner": "_MTLCommandBuffer",
+        "selector": "presentDrawable:atTime:",
+        "types": "v32@0:8@16d24",
+        "IMP": "0x181b210ac",
+        "exact_A2S_IMP_start": true
+      },
+      {
+        "owner": "_MTLCommandBuffer",
+        "selector": "presentDrawable:options:",
+        "types": "v32@0:8@16@24",
+        "IMP": "0x181b20db4",
+        "exact_A2S_IMP_start": true
+      },
+      {
+        "owner": "_MTLCommandBuffer",
+        "selector": "presentDrawable:",
+        "types": "v24@0:8@16",
+        "IMP": "0x181a29fd4",
+        "exact_A2S_IMP_start": true
+      },
+      {
+        "owner": "_MTLCommandBuffer",
+        "selector": "presentDrawable:afterMinimumDuration:",
+        "types": "v32@0:8@16d24",
+        "IMP": "0x181b21320",
+        "exact_A2S_IMP_start": true
+      }
+    ],
+    "exact_call_anchors": {
+      "allocate-texture": {
+        "address": "0x1884bc2cc",
+        "bytes": 340,
+        "sha256": "ebe38249fdb0c40ec606eee530e7f4796d1c27b0632da3c5e2122deabe81c679"
+      },
+      "queue-present": {
+        "address": "0x181a29fd4",
+        "bytes": 384,
+        "sha256": "d8f9cc24a79c492a254042bd8ecbe748de1d8711430644fae73f502d1f3588d5"
+      },
+      "queue-present-block": {
+        "address": "0x181a31874",
+        "bytes": 120,
+        "sha256": "f58d095056656885e4ccdead210d393f41eed3107d75af2cb85ec8ba22dfe0f7"
+      },
+      "queue-options": {
+        "address": "0x181b20db4",
+        "bytes": 376,
+        "sha256": "09fb32c39f68297789f5e4ca8bd218e61bc8493c56d166f8a6491d2c894b5e12"
+      },
+      "queue-options-block": {
+        "address": "0x181b20f88",
+        "bytes": 104,
+        "sha256": "b4c301cdc1f516d43e36af0b891a649669fb4a468e1fdfb9ce30001f43396923"
+      },
+      "drawable-options": {
+        "address": "0x1884bc174",
+        "bytes": 176,
+        "sha256": "6f97daced3c3f9d663371de9d6709ec399ee9d71b0f2fc4e843e2d701b38a78c"
+      },
+      "canvas-present-commit": {
+        "address": "0x1c1737740",
+        "bytes": 32,
+        "sha256": "49a913f1c7f4324fe3d5f7827019913d7a938e7fc45d7611a191f05a20efd747"
+      },
+      "canvas-transaction-wait": {
+        "address": "0x1c17379d4",
+        "bytes": 68,
+        "sha256": "909ae4e274d19108156b120b20c18c311d4a6214398235e019570fd1e845d7f4"
+      }
+    },
+    "CAMetalLayer_sets_original_drawable_and_framebuffer_flags": true,
+    "original_drawable_uses_original_IOSurface_texture": true,
+    "original_command_present_scheduled_handler_calls_native_present": true,
+    "original_options_are_copied_and_forwarded": true,
+    "original_ClockKitUI_has_presentDrawable_then_commit_and_transaction_waitUntilScheduled_then_present_paths": true,
+    "original_option_keys": [
+      "presentationMode",
+      "presentTimeInterval"
+    ],
+    "original_option_modes": {
+      "0": "present",
+      "1": "presentAtTime",
+      "2": "presentAfterMinimumDuration"
+    },
+    "existing_backend_Scheduled_must_not_release_inputs_before_real_operations": true,
+    "static_metadata_is_not_runtime_or_optical_evidence": true,
+    "Apple_bytes_disassembly_not_for_Git": true,
+    "device_operations": 0,
+    "tool_source_sha256": "521ea66818b2217199cae6b40f06f07b137ccea6a7a6c12a2818522af1305a97"
+  },
+  "readonly_root_detached": {
+    "root_detached": true,
+    "raw_in_native_Trash_retained": true,
+    "static_original_bytes_only_local": true,
+    "phone_operations": 0
+  },
+  "host_native_objects": {
+    "source_files": {
+      "gpu/metal/MetalCompute.inc": "f18fb39b5c451dc291a04624fdf9ba684fd7f11117072099d81a0d680a4c2de4",
+      "gpu/metal/MetalCommandQueue.inc": "a473b1d422ac1c4b7399e3ed7285279bbc99183166123fbde9fa0dc0f155c0aa",
+      "gpu/metal/MetalResources.mm": "704b03a923fea29a51fb821fa6c439546040c804335dcffafd7b1946416afbbd",
+      "gpu/metal/MetalRender.inc": "1e78625cc09e718ed8fada9a722f02b8c6c96d9d76aa61aa1fd47eb926162f65",
+      "gpu/metal/MetalFunctionConstants.inc": "c50086a36fc7eec22c06d122751b0cb765569a1fefd25b0f656227b8bf86b730",
+      "gpu/metal/MetalTextureRules.h": "1c17d64335bd8309c490343f4e6ef8c375c0677a6c163723d8dfa65928a0c5a6",
+      "gpu/metal/air/ESSLTarget.h": "a64b7768d9690af95e1d34e3a7b0793eeec67a38d5672884a61ff4492cde7430",
+      "gpu/metal/air/LLVM16Compat.h": "7827793f6653d2526206612308fbf2e38e3f6f00c42de271805317b2137a8966",
+      "gpu/metal/air/fixtures/render.air.ll": "a87e43dba485a69e16df6f80c7c38deee0434968d9a0d4b281928fc0036df606",
+      "gpu/metal/air/fixtures/constants.air.ll": "35cbe0bbe6108c3450ebc9529c80fecc5a46e6bcefcc7e7dc50b3f7bf9019b85",
+      "tools/build/test_metal_constants.mm": "d24d5a62eca53b6d735ffd621e180a0d8f9af263d7b875b9ab733d4289aa3659",
+      "tools/build/test_metal_render.mm": "10b76c23f93c1d1b4199a0d68b8fc1cfaedaa56e8b93537bbd11a52758bf4514",
+      "tools/build/test_metal_compute.mm": "a9530efecba774853c36327867114d3b864f1ba247cd0c1db713e2d4ab0e32af",
+      "tools/build/test_llvm16_compat.cpp": "5dba3563721dcaf1ef02137f3396fa9cd640dba2b4b2bd39389281c54caf9545",
+      "gpu/sweetgl/MetalShaderAPI.h": "3eebe9013770eff5c1092c8ccc50b4cd6ad931986f109573f74905d16dd1c23b",
+      "gpu/sweetgl/MetalBackingAPI.h": "19f5fd76979783dab3e1aff76d33d8eb90d614c73ea108fd39bba013d194bf74",
+      "gpu/sweetgl/MetalBackingRules.h": "fb0b4c5426debc434ddd4270ddc8a515ab82cec8a97fa598420fd02e2a4203ad",
+      "gpu/metal/MetalBufferRules.h": "ae78052ff954ba1376cef29e4aa75ef28592ce029e9ac7e2ca795369cf3b0b4c",
+      "gpu/metal/air/lilac-air-conversion.patch": "e3981d4666f852530b7b933e677bcb74f6ae0e8f288d7e717609dbc8761ea796",
+      "gpu/metal/air/lilac-air-half-storage.patch": "db01b10a413d085ac039d2bf5988029e65bd4731f6019fdf6cbf7a11b8c12ee8",
+      "gpu/metal/air/HalfESSL.h": "6c10c9bc5e0f7051cc6275adb4e85ff21e7226b62910537fc4acfa7f3a69dbb4",
+      "tools/build/materialize_air_sources.py": "7d514f4bdc5c79df852ed323ba43659b6bf7e95c70adb58b5a96fd204e93152b",
+      "gpu/metal/air/fixtures/mrt.air.ll": "b4decd0b37ed10a3440d209f3a7e04e84741ce4ab8f4cbff617752b28d45c022",
+      "tools/build/test_metal_mrt.mm": "d3d534110715e67f5fa765efe1b5015abd38fa247824501c3189db4cbf6608ae",
+      "tools/build/test_metal_depth.mm": "80c33115a1e4121d858c8525ea5a9f4de824bc277ef3caa32ad8ee1454580e2a",
+      "tools/build/DepthBackendHostStub.h": "dd7573a34a26fbb471c918f39ffbae6dc33a89887cadcbe695961e4af844dd2a",
+      "gpu/metal/MetalDepthStencilState.inc": "d059293f74a3b855de64a0d3a2bdd45a9906d5cc72e90cd585ce36ab91b27036",
+      "gpu/sweetgl/MetalDepthStencilRules.h": "d1918e6cadf7a0dd9ad8c75e91d37a1a334f4940360ff7cad51162c833615af7",
+      "gpu/sweetgl/MetalDepthAttachment.h": "45ab58140a76bb13ccb7156f40f4a3587752295250ac22bdaf8d4bbb3b8a9841",
+      "gpu/sweetgl/MetalStencilAttachment.h": "3a8761f3bf18014a64127480e1eec65332d00aca65e74028b5fb52ea47ed7147",
+      "gpu/metal/MetalMemoryless.inc": "0593503e3e869e3f5b77427df0280f7972f14fb1e292777d21027cf9e160394e",
+      "gpu/metal/MetalResources.h": "d5d165451738ef08c8eccd6a6d774d73f32902c4d3dc08961d450b53c88a7756",
+      "tools/build/test_metal_memoryless.mm": "a8da659a3e58aeee5250eab9b8407d1ec0dbbf57492c365afea80a62fabc6738",
+      "gpu/metal/MetalMultisample.inc": "5a1025b42a502e301e76a31a41d693b3a879ecb2e23805a11c70877b5eaf0fa6",
+      "gpu/sweetgl/MetalMultisampleAPI.h": "d91d5769eb8d15e1f4e1fd881271c2fcb22591536a76485b96df65d9b588384e",
+      "gpu/sweetgl/MultisampleLayout.h": "8401b48a17b9ec55b5209a34389cc87aa8f374417e4d1e391f7958dc441f76ae",
+      "tools/build/MultisampleBackendHostStub.h": "6eff57ef13fedd9d28ff2a8af260776ff17e70d8d273366e5b40327fe40d5aa1",
+      "tools/build/test_metal_multisample.mm": "52bcd3b42ef72ffcd278afc2aab60b684442ebce8da712c2cf60edef851e8ed7",
+      "gpu/metal/NativePresentation16.h": "b1a312eb806aea3954559da7374edbc41597389e7b67bbeca62fab7360be6ab2",
+      "gpu/metal/MetalPresentation.inc": "371bbb97ddaaf1deda0cdc96decbab51122740621d4094912a78fc41ae228e99",
+      "tools/build/test_metal_presentation.mm": "48055b92197208a705117e3d9138a838f256ed5bcbc2ed2d04e6607600f3d7ce",
+      "tools/build/test_metal_queue.mm": "7a76e1eb31c51ea76b5f73b3b1520525902e633bd33458423d52ec8f7127ad6d"
+    },
+    "real_legacy_LLVM_adapter_ASan_UBSan_passed": true,
+    "real_Metal_compute_objects_ASan_UBSan_passed": true,
+    "real_AIR_to_ESSL_translation_passed": true,
+    "host_GPU_stub_not_hardware_proof": true,
+    "device_operations": 0,
+    "real_Metal_texture_render_objects_ASan_UBSan_passed": true,
+    "real_AIR_graphics_translation_passed": true,
+    "real_native_Metal_function_constants_ASan_UBSan_passed": true,
+    "real_host_IOSurface_texture_pages_lifetime_regions_ASan_UBSan_passed": true,
+    "real_native_mip_chain_regions_Private_permissions_queue_retention_and_failure_retirement_ASan_UBSan_passed": true,
+    "real_native_MRT_format_masks_queue_snapshots_nonoverlap_and_final_lifetime_ASan_UBSan_passed": true,
+    "real_native_depth32_objects_state_snapshots_owner_guards_and_final_lifetime_ASan_UBSan_passed": true,
+    "real_native_stencil8_objects_front_back_state_load_clear_snapshots_owner_and_final_lifetime_ASan_UBSan_passed": true,
+    "real_native_Memoryless_public_metadata_per_pass_storage_queue_isolation_rollback_retirement_ASan_UBSan_passed": true,
+    "real_native_multisample_2x4x_original_page_samples_resolve_order_and_retirement_ASan_UBSan_passed": true,
+    "real_native_presentation_flags_queue_order_exact_time_options_and_failure_retirement_ASan_UBSan_passed": true,
+    "native_original_queue_FIFO_capacity_callbacks_and_backend_failure_regression_ASan_UBSan_passed": true
+  },
+  "host_actual_MSAA_author_probe_regression": {
+    "source_files": {
+      "tools/build/test_metal_multisample_probe.mm": "ed62000894496b88571d699e8cc7b03dc79e08b86447039ea4cf0d9781a1393e",
+      "tools/build/check_metal_multisample_probe.py": "c6190634e66996d43c4c821f54f2d553815da613bf403f04d8461060b560e503",
+      "gpu/diagnostics/MetalMultisampleProbe.h": "8f3451e881d9a7ce134b8d16ac09c280ebcca54fbd53d955a679acd6f4c35786",
+      "gpu/diagnostics/MultisampleProbeValues.h": "0de549de0e71cd3968f5f167924faea6edaa12094ca9413e93733a3d81cc651e",
+      "tools/device/multisample_evidence.py": "b307d98734a2b380f80cc008d3f7b83356babd1e2b2fcfef91659f2d0f24be59",
+      "gpu/metal/MetalCompute.inc": "f18fb39b5c451dc291a04624fdf9ba684fd7f11117072099d81a0d680a4c2de4",
+      "gpu/metal/MetalCommandQueue.inc": "a473b1d422ac1c4b7399e3ed7285279bbc99183166123fbde9fa0dc0f155c0aa",
+      "gpu/metal/MetalResources.mm": "704b03a923fea29a51fb821fa6c439546040c804335dcffafd7b1946416afbbd",
+      "gpu/metal/MetalRender.inc": "1e78625cc09e718ed8fada9a722f02b8c6c96d9d76aa61aa1fd47eb926162f65",
+      "gpu/metal/MetalFunctionConstants.inc": "c50086a36fc7eec22c06d122751b0cb765569a1fefd25b0f656227b8bf86b730",
+      "gpu/metal/MetalTextureRules.h": "1c17d64335bd8309c490343f4e6ef8c375c0677a6c163723d8dfa65928a0c5a6",
+      "gpu/metal/air/ESSLTarget.h": "a64b7768d9690af95e1d34e3a7b0793eeec67a38d5672884a61ff4492cde7430",
+      "gpu/metal/air/LLVM16Compat.h": "7827793f6653d2526206612308fbf2e38e3f6f00c42de271805317b2137a8966",
+      "gpu/metal/air/fixtures/render.air.ll": "a87e43dba485a69e16df6f80c7c38deee0434968d9a0d4b281928fc0036df606",
+      "gpu/metal/air/fixtures/constants.air.ll": "35cbe0bbe6108c3450ebc9529c80fecc5a46e6bcefcc7e7dc50b3f7bf9019b85",
+      "tools/build/test_metal_constants.mm": "d24d5a62eca53b6d735ffd621e180a0d8f9af263d7b875b9ab733d4289aa3659",
+      "tools/build/test_metal_render.mm": "10b76c23f93c1d1b4199a0d68b8fc1cfaedaa56e8b93537bbd11a52758bf4514",
+      "tools/build/test_metal_compute.mm": "a9530efecba774853c36327867114d3b864f1ba247cd0c1db713e2d4ab0e32af",
+      "tools/build/test_llvm16_compat.cpp": "5dba3563721dcaf1ef02137f3396fa9cd640dba2b4b2bd39389281c54caf9545",
+      "gpu/sweetgl/MetalShaderAPI.h": "3eebe9013770eff5c1092c8ccc50b4cd6ad931986f109573f74905d16dd1c23b",
+      "gpu/sweetgl/MetalBackingAPI.h": "19f5fd76979783dab3e1aff76d33d8eb90d614c73ea108fd39bba013d194bf74",
+      "gpu/sweetgl/MetalBackingRules.h": "fb0b4c5426debc434ddd4270ddc8a515ab82cec8a97fa598420fd02e2a4203ad",
+      "gpu/metal/MetalBufferRules.h": "ae78052ff954ba1376cef29e4aa75ef28592ce029e9ac7e2ca795369cf3b0b4c",
+      "gpu/metal/air/lilac-air-conversion.patch": "e3981d4666f852530b7b933e677bcb74f6ae0e8f288d7e717609dbc8761ea796",
+      "gpu/metal/air/lilac-air-half-storage.patch": "db01b10a413d085ac039d2bf5988029e65bd4731f6019fdf6cbf7a11b8c12ee8",
+      "gpu/metal/air/HalfESSL.h": "6c10c9bc5e0f7051cc6275adb4e85ff21e7226b62910537fc4acfa7f3a69dbb4",
+      "tools/build/materialize_air_sources.py": "7d514f4bdc5c79df852ed323ba43659b6bf7e95c70adb58b5a96fd204e93152b",
+      "gpu/metal/air/fixtures/mrt.air.ll": "b4decd0b37ed10a3440d209f3a7e04e84741ce4ab8f4cbff617752b28d45c022",
+      "tools/build/test_metal_mrt.mm": "d3d534110715e67f5fa765efe1b5015abd38fa247824501c3189db4cbf6608ae",
+      "tools/build/test_metal_depth.mm": "80c33115a1e4121d858c8525ea5a9f4de824bc277ef3caa32ad8ee1454580e2a",
+      "tools/build/DepthBackendHostStub.h": "dd7573a34a26fbb471c918f39ffbae6dc33a89887cadcbe695961e4af844dd2a",
+      "gpu/metal/MetalDepthStencilState.inc": "d059293f74a3b855de64a0d3a2bdd45a9906d5cc72e90cd585ce36ab91b27036",
+      "gpu/sweetgl/MetalDepthStencilRules.h": "d1918e6cadf7a0dd9ad8c75e91d37a1a334f4940360ff7cad51162c833615af7",
+      "gpu/sweetgl/MetalDepthAttachment.h": "45ab58140a76bb13ccb7156f40f4a3587752295250ac22bdaf8d4bbb3b8a9841",
+      "gpu/sweetgl/MetalStencilAttachment.h": "3a8761f3bf18014a64127480e1eec65332d00aca65e74028b5fb52ea47ed7147",
+      "gpu/metal/MetalMemoryless.inc": "0593503e3e869e3f5b77427df0280f7972f14fb1e292777d21027cf9e160394e",
+      "gpu/metal/MetalResources.h": "d5d165451738ef08c8eccd6a6d774d73f32902c4d3dc08961d450b53c88a7756",
+      "tools/build/test_metal_memoryless.mm": "a8da659a3e58aeee5250eab9b8407d1ec0dbbf57492c365afea80a62fabc6738",
+      "gpu/metal/MetalMultisample.inc": "5a1025b42a502e301e76a31a41d693b3a879ecb2e23805a11c70877b5eaf0fa6",
+      "gpu/sweetgl/MetalMultisampleAPI.h": "d91d5769eb8d15e1f4e1fd881271c2fcb22591536a76485b96df65d9b588384e",
+      "gpu/sweetgl/MultisampleLayout.h": "8401b48a17b9ec55b5209a34389cc87aa8f374417e4d1e391f7958dc441f76ae",
+      "tools/build/MultisampleBackendHostStub.h": "6eff57ef13fedd9d28ff2a8af260776ff17e70d8d273366e5b40327fe40d5aa1",
+      "tools/build/test_metal_multisample.mm": "52bcd3b42ef72ffcd278afc2aab60b684442ebce8da712c2cf60edef851e8ed7",
+      "gpu/metal/NativePresentation16.h": "b1a312eb806aea3954559da7374edbc41597389e7b67bbeca62fab7360be6ab2",
+      "gpu/metal/MetalPresentation.inc": "371bbb97ddaaf1deda0cdc96decbab51122740621d4094912a78fc41ae228e99",
+      "tools/build/test_metal_presentation.mm": "48055b92197208a705117e3d9138a838f256ed5bcbc2ed2d04e6607600f3d7ce",
+      "tools/build/test_metal_queue.mm": "7a76e1eb31c51ea76b5f73b3b1520525902e633bd33458423d52ec8f7127ad6d"
+    },
+    "actual_author_probe_native_objects_ASan_UBSan_passed": true,
+    "actual_probe_logs_match_independent_original_byte_page_resolve_recipe": true,
+    "phases": 18,
+    "checked_bytes": 151488,
+    "guard_bytes": 55098,
+    "original_buffer_inputs_retained_per_draw": true,
+    "full_source_resolve_guard_and_final_retirement_host_model_passed": true,
+    "host_model_only_not_device_proof": true,
+    "device_operations": 0
+  },
+  "host_fault_tests": {
+    "test_presentation_evidence.py": {
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/device",
+        "-p",
+        "test_presentation_evidence.py"
+      ],
+      "returncode": 0,
+      "output_sha256": "ac6da122ee68e864b5c1ee1b221337f9cd417311cc52044f21551cbe8fafc85e",
+      "output": "...\r\n----------------------------------------------------------------------\r\nRan 3 tests in 0.012s\r\n\r\nOK"
+    },
+    "test_native_prerequisite.py": {
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/device",
+        "-p",
+        "test_native_prerequisite.py"
+      ],
+      "returncode": 0,
+      "output_sha256": "4a203f958ef9d765ff1f89816631e1bdf553b4acf1d56449f1d10ad92bb46ff3",
+      "output": "....\r\n----------------------------------------------------------------------\r\nRan 4 tests in 0.001s\r\n\r\nOK"
+    },
+    "test_trial_gates.py": {
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/device",
+        "-p",
+        "test_trial_gates.py"
+      ],
+      "returncode": 0,
+      "output_sha256": "9f5680b071894bbac602661eeda05ed9f853bd5a8284190c8985fe20e8fcd294",
+      "output": "..s.s................\r\n----------------------------------------------------------------------\r\nRan 21 tests in 5.994s\r\n\r\nOK (skipped=2)"
+    },
+    "test_memoryless_evidence.py": {
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/device",
+        "-p",
+        "test_memoryless_evidence.py"
+      ],
+      "returncode": 0,
+      "output_sha256": "8f8f994f78db8fd53aeb49426da3a16af3ffe63f5f1adcee45db0c78d2a51834",
+      "output": "....\r\n----------------------------------------------------------------------\r\nRan 4 tests in 0.023s\r\n\r\nOK"
+    },
+    "test_multisample_evidence.py": {
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/device",
+        "-p",
+        "test_multisample_evidence.py"
+      ],
+      "returncode": 0,
+      "output_sha256": "5f1adf9fe60e40b0ac9be8d59c428ecf5b23d7fc3e9ba2421dbb1f5d931bc766",
+      "output": "...\r\n----------------------------------------------------------------------\r\nRan 3 tests in 0.252s\r\n\r\nOK"
+    },
+    "test_depth32_evidence.py": {
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/device",
+        "-p",
+        "test_depth32_evidence.py"
+      ],
+      "returncode": 0,
+      "output_sha256": "175fa670be9ee9a8f4980c73b0917c2f67b511c220ff32c9205b2a055866647c",
+      "output": "....\r\n----------------------------------------------------------------------\r\nRan 4 tests in 0.077s\r\n\r\nOK"
+    },
+    "test_stencil8_evidence.py": {
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/device",
+        "-p",
+        "test_stencil8_evidence.py"
+      ],
+      "returncode": 0,
+      "output_sha256": "1229360a7fca96b3c3fc80f41fea4291094c1bfae5fafe5abe846cd950ae2c58",
+      "output": "....\r\n----------------------------------------------------------------------\r\nRan 4 tests in 0.331s\r\n\r\nOK"
+    }
+  },
+  "host_source_and_old_native20_refusal": {
+    "GLES_kept_previous_candidate_bytes": true,
+    "GLES_sha256": "21de6821910c452f1bda70720f3573b81ac76483a10f1959ef95e7b0bc9447b4",
+    "Metal_sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27",
+    "Metal_bytes": 810304,
+    "Metal_source_map_sha256": "db1605ef8dae8f8ed0a29999dcb2cf7537457aba7ad428677c21e0e914771b78",
+    "reference_observer_sha256": "33bf5ee4988352c747bb9309b2aa7e790caf13da3b801a81d263cb20d37de4a4",
+    "reference_observer_bytes": 256656,
+    "RAM_blob_sha256": "7a3361f68dc15c12d274ef0f158766aa6ec0b684ccf036b52172046717ac57d8",
+    "RAM_blob_bytes": 4304475,
+    "source_match": true,
+    "required_native_tests": 21,
+    "old_native20_rejected": true,
+    "old_proof_synthetic_host_unit_fixture_not_device": true,
+    "phone_operations": 0
+  },
+  "first_host_compile_failure": {
+    "reason": "Block cannot directly capture C array; fixed by using pointer to original array",
+    "source": "tools/build/test_metal_presentation.mm",
+    "log_sha256": "5697a7c67f8f69d1774003209843ee905e2d16d180359c7fa48f7427bdf69e7b",
+    "original_log_retained": true,
+    "GPU_and_phone_not_executed": true
+  },
+  "new_CPU_candidate": {
+    "token": "367bebc61fc1866b",
+    "image_sha256": "177af34ae64c230121cfc6b44d228b5cac620a22ded682dd950c83a223cc85b1",
+    "RAM_binding": {
+      "library_sha256": "21de6821910c452f1bda70720f3573b81ac76483a10f1959ef95e7b0bc9447b4",
+      "library_bytes": 14784032,
+      "library_fnv64": "f2723afd294f90aa",
+      "blob_sha256": "7a3361f68dc15c12d274ef0f158766aa6ec0b684ccf036b52172046717ac57d8",
+      "raw_sha256": "fc2882968ddd1a49abf235543aa951f01971fa3fc8fe3abccfd9924452f2048e",
+      "manifest_sha256": "f5fe1447c7ba8acf3cb0639fffd103c4561d3eced1b6cf7faa76921244af1933"
+    },
+    "offline_payload_private_and_Mac83_source_audit": {
+      "command": [
+        "python",
+        "-B",
+        "tools/device/run_trial.py",
+        "--bundle",
+        "build/presentation-abi-r1/reference-ramcpu-r1",
+        "--directory",
+        "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-presentation-r1-not-live-20261120",
+        "--private-evidence",
+        "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-screen-v730-private-r1-20261118"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "aaf3cd37562ca718dd8168af6b5875f8356c4db5483503e833f38af8cff7dcb1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "live": false,
+      "phone_operations": 0
+    },
+    "phone_delivery_attempts": 0
+  },
+  "author_native_presentation_probe": {
+    "phases": 5,
+    "checked_pixels": 765,
+    "native_objects": [
+      "CAMetalLayer",
+      "CAMetalDrawable",
+      "SweetMTLTexture",
+      "IOSurface"
+    ],
+    "QuartzCore_UUID_must_match": "9e40b2eb260c3af1ae45a1a551a8c1b9",
+    "sample_count": 1,
+    "dimensions": [
+      17,
+      9
+    ],
+    "raw_pixel_padding_hashes_page_IOVA_binding_and_real_import_retire_publish_required": true,
+    "native_command_and_transaction_wait_paths": true,
+    "presentedTime_telemetry_is_not_optical_proof": true,
+    "actual_original_drawable_GPU_acceptance_pending": true
+  },
+  "required_admission": "same kernel private/owner/ready -> exact GLES RAMCPU/GLES9 -> this reference RAMCPU -> full native21/PNG6 -> new proof -> original poster CPU/GPU",
+  "old_native20_proof_not_admissible": true,
+  "host_drawable_fixture_is_not_phone_native_display_evidence": true,
+  "original_black_wallpaper_scope_no_display_requests_remains_STOP": true,
+  "original_wallpaper_UI_FPS_sleep_optical_audio_wireless_pending": true,
+  "phone_download_commands": 0,
+  "phone_boot_commands": 0,
+  "phone_reset_commands": 0,
+  "latest_user_constraint": "暂时不方便，继续离线",
+  "failed_r4_r5_not_replayed": true,
+  "previous_original_docs_manifest": "docs/archive/20261120/presentation-r1/original-documents.json"
+}

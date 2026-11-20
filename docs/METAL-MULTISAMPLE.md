@@ -1,5 +1,7 @@
 # Metal 2×／4× MSAA候选 — 2026-11-20
 
+此页保存MSAA候选的原离线结果；当前源码另增[原生presentation-r1](METAL-PRESENTATION.md)，同GLES配新Metal须完整native21，不能以此页旧native20或旧Metal-source-map准入。
+
 正式源码已接入颜色／Depth32Float／Stencil8的2×和4×附件、Private与Memoryless存储，以及颜色平均／深度Sample0、Min、Max的GPU resolve。iOS ARM64构建、原生对象ASan／UBSan、实际AIR→ESSL主机Mesa绘制及独立字节核验通过；没有投递手机。已验基线仍为v730／CA矩阵GLESd6d8fcfa／Metal5e94ab57，完整壁纸、UI／FPS、睡眠、LCD光学和其它外设继续。
 
 ## 开源契约与页面

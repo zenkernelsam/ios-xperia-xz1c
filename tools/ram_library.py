@@ -222,6 +222,11 @@ def load(folder,expected=None):
                 assert observer['metal_resources'].get('native_multisample_attachments')
                 fixture=observer['AIR_multisample_fixture'];assert fixture['fixture']=='multisample' and fixture['authored_semantic_fixture']
                 assert fixture['source']=='gpu/metal/air/fixtures/multisample.air.ll' and all(re.fullmatch('[0-9a-f]{64}',fixture[key]) for key in ('source_sha256','bitcode_sha256','header_sha256','library_sha256'))
+            if observer.get('presentation_probe'):
+                sources|={'gpu/diagnostics/MetalPresentationProbe.h','gpu/metal/NativePresentation16.h'}
+                assert observer.get('multisample_probe') and observer['target_process']=='backboardd' and observer['presentation_probe_phases']==5
+                assert observer['original_CAMetalLayer_drawable_IOSurface_pixels_guard_and_GPU_retirement_required'] and observer['metal_resources'].get('native_drawable_presentation')
+                assert observer['presentation_original_20H392_QuartzCore_UUID']=='9e40b2eb260c3af1ae45a1a551a8c1b9'
             assert set(observer['source_files'])==sources
             assert observer['source_files'][observer['source']]==observer['source_sha256']
     if 'metal_resources' in m:
@@ -247,6 +252,9 @@ def load(folder,expected=None):
         if resources.get('native_multisample_attachments'):
             assert observer.get('multisample_probe') or observer.get('registration_only')
             assert resources['multisample_required_native_tests']==20 and resources['native_samples']==[2,4]
+        if resources.get('native_drawable_presentation'):
+            assert observer.get('presentation_probe') or observer.get('registration_only')
+            assert resources['native_presentation_required_tests']==21
         assert m['files']['exception_observe.dylib']['sha256']==observer['library_sha256']
         if resources.get('requires_source_scoped_cache'):assert observer.get('program_cache_scope'),'Source-scoped resource package lacks its matching root'
     assert set(m['files'])==names

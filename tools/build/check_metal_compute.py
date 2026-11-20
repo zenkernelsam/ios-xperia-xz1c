@@ -23,6 +23,10 @@ run(['clang++',*object_common,'-g','-O1','-fsanitize=address,undefined','-fno-ob
 run(['clang++','-fsanitize=address,undefined',out/'frontend-test.o',out/'compute-test.o',*link,
     '-framework','Metal','-framework','Foundation','-framework','IOSurface','-o',out/'compute-test'],'compute-link')
 assert 'PASS' in run([out/'compute-test',root/'gpu/metal/air/fixtures/basic.air.ll'],'compute-test')
+run(['clang++','-std=c++17','-DSWEET_METAL_HOST_TEST=1','-DSWEET_METAL_NO_COMPUTE=1','-g','-O1',
+    '-fsanitize=address,undefined','-fno-objc-arc',root/'tools/build/test_metal_queue.mm',
+    '-framework','Foundation','-framework','Metal','-framework','IOSurface','-o',out/'queue-test'],'queue-compile')
+assert 'native queue:' in run([out/'queue-test'],'queue-test')
 run(['clang++',*object_common,'-g','-O1','-fsanitize=address,undefined','-fno-objc-arc','-c',
     root/'tools/build/test_metal_render.mm','-o',out/'render-test.o'],'render-compile')
 run(['clang++','-fsanitize=address,undefined',out/'frontend-test.o',out/'render-test.o',*link,
@@ -50,6 +54,11 @@ run(['clang++','-fsanitize=address,undefined',out/'frontend-test.o',out/'multisa
     '-framework','Metal','-framework','Foundation','-framework','IOSurface','-o',out/'multisample-test'],'multisample-link')
 assert 'Native multisample objects PASS:' in run([out/'multisample-test',root/'gpu/metal/air/fixtures/render.air.ll'],'multisample-test')
 run(['clang++',*object_common,'-g','-O1','-fsanitize=address,undefined','-fno-objc-arc','-c',
+    root/'tools/build/test_metal_presentation.mm','-o',out/'presentation-test.o'],'presentation-compile')
+run(['clang++','-fsanitize=address,undefined',out/'frontend-test.o',out/'presentation-test.o',*link,
+    '-framework','Metal','-framework','Foundation','-framework','IOSurface','-o',out/'presentation-test'],'presentation-link')
+assert 'Native presentation objects PASS:' in run([out/'presentation-test'],'presentation-test')
+run(['clang++',*object_common,'-g','-O1','-fsanitize=address,undefined','-fno-objc-arc','-c',
     root/'tools/build/test_metal_constants.mm','-o',out/'constants-test.o'],'constants-compile')
 run(['clang++','-fsanitize=address,undefined',out/'frontend-test.o',out/'constants-test.o',*link,
     '-framework','Metal','-framework','Foundation','-framework','IOSurface','-o',out/'constants-test'],'constants-link')
@@ -64,7 +73,9 @@ paths=['gpu/metal/MetalCompute.inc','gpu/metal/MetalCommandQueue.inc','gpu/metal
     'gpu/metal/MetalDepthStencilState.inc','gpu/sweetgl/MetalDepthStencilRules.h','gpu/sweetgl/MetalDepthAttachment.h','gpu/sweetgl/MetalStencilAttachment.h',
     'gpu/metal/MetalMemoryless.inc','gpu/metal/MetalResources.h','tools/build/test_metal_memoryless.mm',
     'gpu/metal/MetalMultisample.inc','gpu/sweetgl/MetalMultisampleAPI.h','gpu/sweetgl/MultisampleLayout.h',
-    'tools/build/MultisampleBackendHostStub.h','tools/build/test_metal_multisample.mm']
+    'tools/build/MultisampleBackendHostStub.h','tools/build/test_metal_multisample.mm','gpu/metal/NativePresentation16.h',
+    'gpu/metal/MetalPresentation.inc','tools/build/test_metal_presentation.mm']
+paths+=['tools/build/test_metal_queue.mm']
 report=dict(source_files={p:hashlib.sha256((root/p).read_bytes()).hexdigest() for p in paths},
     real_legacy_LLVM_adapter_ASan_UBSan_passed=True,real_Metal_compute_objects_ASan_UBSan_passed=True,
     real_AIR_to_ESSL_translation_passed=True,host_GPU_stub_not_hardware_proof=True,device_operations=0)
@@ -77,4 +88,6 @@ report['real_native_depth32_objects_state_snapshots_owner_guards_and_final_lifet
 report['real_native_stencil8_objects_front_back_state_load_clear_snapshots_owner_and_final_lifetime_ASan_UBSan_passed']=True
 report['real_native_Memoryless_public_metadata_per_pass_storage_queue_isolation_rollback_retirement_ASan_UBSan_passed']=True
 report['real_native_multisample_2x4x_original_page_samples_resolve_order_and_retirement_ASan_UBSan_passed']=True
+report['real_native_presentation_flags_queue_order_exact_time_options_and_failure_retirement_ASan_UBSan_passed']=True
+report['native_original_queue_FIFO_capacity_callbacks_and_backend_failure_regression_ASan_UBSan_passed']=True
 (out/'manifest.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print(json.dumps(report))
