@@ -83,3 +83,5 @@ python3 -B tools/build/package_glram.py --presigned --frontend build/my-msaa/gle
 用户本轮明确要求继续离线；r4／r5失败后尚未确认新物理fastboot会话，枚举健康不等于恢复，不能因新token重发。仅BH905ND69G、COM≥10／VID1209-PID0001、单download／boot、PON0x06、四回程marker／健康30秒／旧worker退出规则保持。串口720×1280 PNG用于UI，DroidCam仅光学／背光验收。
 
 全部精确输入、已执行host结果和离线audit见[MSAA offline proof](../reproducibility/multisample-attachment-r1-offline-proof.json)。此前七份手册原字节和SHA保存在[archive](archive/20261120/multisample-r1/original-document-manifest.json)。
+
+本轮实际回收Windows20项／54文件／71492607B，Mac35项／878文件／378478631B，全部原生回收并核对目标。两Ubuntu垃圾桶为空；Windows／Mac未清空。当前CPU包、raw／zblob、精确输入和原失败保留。详情见[回收清单](../reproducibility/multisample-attachment-r1-native-recycle.json)。

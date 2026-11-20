@@ -1,0 +1,327 @@
+{
+  "date": "2026-11-20",
+  "source_commit": "0bfec68a2d5c8d1319dea4ae9a4b6da088a3eb07",
+  "windows": {
+    "native_recycle_verified": true,
+    "items": 20,
+    "files": 54,
+    "bytes": 71492607,
+    "records": [
+      {
+        "verified_native_recycle": true,
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R9Z1KRZ.dmg",
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\multisample-backend-r1\\reference-ram-r1\\glram.dmg",
+        "time": "2026-11-20T16:33:21.3472026+08:00"
+      },
+      {
+        "verified_native_recycle": true,
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$ROKSK97.dmg",
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\multisample-backend-r1\\gles-ram-r2\\glram.dmg",
+        "time": "2026-11-20T16:33:21.5437761+08:00"
+      },
+      {
+        "verified_native_recycle": true,
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RD24C6R",
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-msaa-backend-r1-source-20261120",
+        "time": "2026-11-20T16:33:21.5766442+08:00"
+      },
+      {
+        "verified_native_recycle": true,
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RLC2JY6",
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-msaa-r1-docs-source-20261120",
+        "time": "2026-11-20T16:33:21.9360133+08:00"
+      },
+      {
+        "verified_native_recycle": true,
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RVYOEB6",
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-msaa-r1-final-source-r1-20261120",
+        "time": "2026-11-20T16:33:22.1698649+08:00"
+      },
+      {
+        "verified_native_recycle": true,
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RWPFHPE",
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-msaa-r1-native-source-20261120",
+        "time": "2026-11-20T16:33:22.4021809+08:00"
+      },
+      {
+        "verified_native_recycle": true,
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RJTXFAS",
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-msaa-r1-native-source-r2-20261120",
+        "time": "2026-11-20T16:33:22.6218838+08:00"
+      },
+      {
+        "verified_native_recycle": true,
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R511BLW",
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-msaa-r1-probe-source-r1-20261120",
+        "time": "2026-11-20T16:33:22.8632309+08:00"
+      },
+      {
+        "verified_native_recycle": true,
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RFYB978",
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-msaa-r1-probe-source-r2-20261120",
+        "time": "2026-11-20T16:33:23.0921572+08:00"
+      },
+      {
+        "verified_native_recycle": true,
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R6HHNQ2",
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-msaa-r1-resolve-input-r1-20261120",
+        "time": "2026-11-20T16:33:23.3154608+08:00"
+      },
+      {
+        "verified_native_recycle": true,
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R0TE3F4",
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-msaa-r1-host-queue-lock-r1-20261120",
+        "time": "2026-11-20T16:33:23.5473087+08:00"
+      },
+      {
+        "verified_native_recycle": true,
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RGYKLUL",
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-msaa-r1-retirement-check-r1-20261120",
+        "time": "2026-11-20T16:33:23.7659528+08:00"
+      },
+      {
+        "verified_native_recycle": true,
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R35QOVT.inc",
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-msaa-render-capability-r1.inc",
+        "time": "2026-11-20T16:33:23.9820479+08:00"
+      },
+      {
+        "verified_native_recycle": true,
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R7J5HJA",
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\multisample-backend-r1\\host-gles-r2",
+        "time": "2026-11-20T16:33:24.0282633+08:00"
+      },
+      {
+        "verified_native_recycle": true,
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RYWMNUV",
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\multisample-backend-r1\\host-gles-r3",
+        "time": "2026-11-20T16:33:24.2390022+08:00"
+      },
+      {
+        "verified_native_recycle": true,
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R0O1VKH",
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\multisample-backend-r1\\host-gles-r4",
+        "time": "2026-11-20T16:33:24.4503310+08:00"
+      },
+      {
+        "verified_native_recycle": true,
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RF6X5V2",
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\multisample-backend-r1\\host-regression",
+        "time": "2026-11-20T16:33:24.6667143+08:00"
+      },
+      {
+        "verified_native_recycle": true,
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RET3F9Z",
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\multisample-backend-r1\\host-memoryless-regression",
+        "time": "2026-11-20T16:33:24.8918342+08:00"
+      },
+      {
+        "verified_native_recycle": true,
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RQ02MPT",
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\multisample-backend-r1\\host-recipe-r1",
+        "time": "2026-11-20T16:33:25.1398824+08:00"
+      },
+      {
+        "verified_native_recycle": true,
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RF4G31K",
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\multisample-backend-r1\\host-recipe-r2",
+        "time": "2026-11-20T16:33:25.3661844+08:00"
+      }
+    ],
+    "before_manifest_sha256": "6fc6b8b47ae65f545fde5e3289885b2439cbf2dc7b35d801058845b76c10d3b8"
+  },
+  "macOS": {
+    "native_trash_verified": true,
+    "items": 35,
+    "files": 878,
+    "bytes": 378478631,
+    "records": [
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/native-host-r2",
+        "trash_path": "/Users/ciscohe/.Trash/native-host-r2"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/native-host-r3",
+        "trash_path": "/Users/ciscohe/.Trash/native-host-r3"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/native-host-r4",
+        "trash_path": "/Users/ciscohe/.Trash/native-host-r4"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/author-probe-host-r1",
+        "trash_path": "/Users/ciscohe/.Trash/author-probe-host-r1"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/author-probe-host-r2",
+        "trash_path": "/Users/ciscohe/.Trash/author-probe-host-r2"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/frontend-r3",
+        "trash_path": "/Users/ciscohe/.Trash/frontend-r3"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/frontend-r4",
+        "trash_path": "/Users/ciscohe/.Trash/frontend-r4"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/frontend-r5",
+        "trash_path": "/Users/ciscohe/.Trash/frontend-r5"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/gles-ram-r1",
+        "trash_path": "/Users/ciscohe/.Trash/gles-ram-r1"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/library-r1",
+        "trash_path": "/Users/ciscohe/.Trash/library-r1"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/reference-observer-r1",
+        "trash_path": "/Users/ciscohe/.Trash/reference-observer-r1"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/reference-observer-r2",
+        "trash_path": "/Users/ciscohe/.Trash/reference-observer-r2"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/generated-air-r1",
+        "trash_path": "/Users/ciscohe/.Trash/generated-air-r1"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/native-source.tar",
+        "trash_path": "/Users/ciscohe/.Trash/native-source.tar"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/native-source-r2.tar",
+        "trash_path": "/Users/ciscohe/.Trash/native-source-r2.tar"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/probe-source-r1.tar",
+        "trash_path": "/Users/ciscohe/.Trash/probe-source-r1.tar"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/probe-source-r2.tar",
+        "trash_path": "/Users/ciscohe/.Trash/probe-source-r2.tar"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/resolve-input-r1.tar",
+        "trash_path": "/Users/ciscohe/.Trash/resolve-input-r1.tar"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/final-source-r1.tar",
+        "trash_path": "/Users/ciscohe/.Trash/final-source-r1.tar"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/host-queue-lock-r1.tar",
+        "trash_path": "/Users/ciscohe/.Trash/host-queue-lock-r1.tar"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/retirement-check-r1.tar",
+        "trash_path": "/Users/ciscohe/.Trash/retirement-check-r1.tar"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/docs-r1.tar",
+        "trash_path": "/Users/ciscohe/.Trash/docs-r1.tar"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/render-before-capability-r1.inc",
+        "trash_path": "/Users/ciscohe/.Trash/render-before-capability-r1.inc"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/render-capability-r1.inc",
+        "trash_path": "/Users/ciscohe/.Trash/render-capability-r1.inc"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/source-stage",
+        "trash_path": "/Users/ciscohe/.Trash/source-stage 16-34-39-075"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/native-source-stage-r2",
+        "trash_path": "/Users/ciscohe/.Trash/native-source-stage-r2"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/probe-source-stage-r1",
+        "trash_path": "/Users/ciscohe/.Trash/probe-source-stage-r1"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/probe-source-stage-r2",
+        "trash_path": "/Users/ciscohe/.Trash/probe-source-stage-r2"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/resolve-input-stage-r1",
+        "trash_path": "/Users/ciscohe/.Trash/resolve-input-stage-r1"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/final-source-stage-r1",
+        "trash_path": "/Users/ciscohe/.Trash/final-source-stage-r1"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/host-queue-lock-stage-r1",
+        "trash_path": "/Users/ciscohe/.Trash/host-queue-lock-stage-r1"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/retirement-check-stage-r1",
+        "trash_path": "/Users/ciscohe/.Trash/retirement-check-stage-r1"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/docs-stage-r1",
+        "trash_path": "/Users/ciscohe/.Trash/docs-stage-r1"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/reference-ram-r1/glram.dmg",
+        "trash_path": "/Users/ciscohe/.Trash/glram.dmg 16-34-39-567.dmg"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/multisample-backend-r1/gles-ram-r2/glram.dmg",
+        "trash_path": "/Users/ciscohe/.Trash/glram.dmg 16-34-39-620.dmg"
+      }
+    ],
+    "before_manifest_sha256": "e00ca2528f2cf21d566757c87f0afbcee2f37bb9f2bfbc263cc7fd74ebf76774"
+  },
+  "Ubuntu_trash_empty_checked": true,
+  "Ubuntu_22_04_trash_empty_checked": true,
+  "Windows_Mac_trash_not_emptied": true,
+  "permanent_deletions": 0,
+  "phone_operations": 0,
+  "kept_current_candidate_cpu_bundles_raw_blob_and_inputs": true,
+  "kept_failed_build_and_actual_device_priors": true,
+  "Mac_superseded_manifests_and_logs_copied_before_native_trash": true,
+  "raw_source_inputs_archived_or_committed_before_recycle": true,
+  "windows_and_mac_HEAD_match_source_commit": true
+}
