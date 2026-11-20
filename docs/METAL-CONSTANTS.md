@@ -1,5 +1,7 @@
 # Native Metal function constants — 2026-11-14
 
+此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。新附件native21尚未准入，旧阶段成功不扩展为完整UI。
+
 v729/774b5efd、原GLES render-r4/7944112d与新Metal79eb8207已实际完成原生MTLFunctionConstantValues→不可变快照→AIR specialization→ESSL/Mesa→FD540→原buffer计算。14完整/0缺项样本，每份3phase×64invocation，240word全部结果与48保护word零差异。按名称step=13、索引7=29、range7..9首值37创建函数；每次创建后reset并设step=99，真正GPU仍分别计算累计13/42/79。所有phase使用同一原CPU地址/IOVA，独立重算hash174f4dc1714c892a/493ed3b863ba5caf/213b3193a6d2e556全部一致。
 
 本靴token068ab8c95cc7facb，镜像SHAce1ce8dcb623aa01810e28586c2917a06220554684807ce2ac7c9beb9a508628；642928B原日志SHA8d09e92c6584d8f87e370744fdbff16e910b5aa6df7d0a9767b2cf940329f3c4。新包CPU37.734秒、GPU38.750秒完整PON06回程，四标记/连续健康30秒和旧worker退出通过，手机健康fastboot。source锁和完整payload复算保持，原GLES SHA没有改变。

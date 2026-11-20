@@ -145,6 +145,7 @@ static bool texture_layout_samples(const SweetShaderTextureBinding *texture,unsi
 static bool texture_layout(const SweetShaderTextureBinding *texture,SweetMetalBacking *backing)
 {return texture_layout_samples(texture,1,backing);}
 static GLenum sample_target(unsigned samples){return samples>1?GL_TEXTURE_2D_MULTISAMPLE:GL_TEXTURE_2D;}
+#include "DepthTiledPlane.h"
 static struct pipe_resource *import_multisample_plane(struct st_context *context,const SweetShaderTextureBinding *texture,unsigned samples,unsigned usage)
 {
     SweetMetalBacking backing={0};if(!texture_layout_samples(texture,samples,&backing) || texture->offset>UINT32_MAX || texture->mip_count>1 || texture->reserved)return NULL;
@@ -658,11 +659,13 @@ done:
             pass->target.format,slot,reused,cache && program && cache->clear[slot]==program,result);errno=saved;}
     sweet_drm_log("SWEET AIR RENDER bounded_clear width=%u height=%u shader_draw=1 result=%d",pass->target.width,pass->target.height,result);return result;
 }
-struct sweet_render_targets {GLuint raw[8],old[8],linear[8],framebuffer,depth;uint32_t mask;};
+struct sweet_render_targets {GLuint raw[8],old[8],linear[8],framebuffer,depth;uint32_t mask;
+    SweetDepthTiledPlane depthPlane,stencilPlane;struct st_context *context;};
 static void retire_targets(struct sweet_render_targets *targets)
 {
     if(targets->framebuffer)glDeleteFramebuffers(1,&targets->framebuffer);
     if(targets->depth)glDeleteTextures(1,&targets->depth);
+    sweet_depth_tiled_retire(&targets->depthPlane);sweet_depth_tiled_retire(&targets->stencilPlane);
     for(unsigned i=0;i<8;++i){if(targets->raw[i])glDeleteTextures(1,&targets->raw[i]);if(targets->old[i])glDeleteTextures(1,&targets->old[i]);if(targets->linear[i])glDeleteTextures(1,&targets->linear[i]);}
     memset(targets,0,sizeof(*targets));
 }
@@ -740,6 +743,46 @@ static bool stencil_pass_valid_samples(const SweetRenderPass *pass,const SweetRe
     }
     return true;
 }
+static int prepare_depth_tiled(struct st_context *context,const SweetRenderDepthPass *depth,const SweetRenderStencilPass *stencil,
+    unsigned samples,struct sweet_render_targets *targets)
+{
+    struct pipe_resource *primary=NULL,*secondary=NULL;int result=0;
+    if(depth){result=sweet_depth_tiled_create(context,&depth->target,samples,depth->load_action,&targets->depthPlane);
+        if(result)return result;pipe_resource_reference(&primary,targets->depthPlane.attachment);}
+    else{unsigned width=stencil->target.width,height=stencil->target.height;
+        struct pipe_resource description={.target=PIPE_TEXTURE_2D,.format=PIPE_FORMAT_Z32_FLOAT,.width0=width,.height0=height,
+            .depth0=1,.array_size=1,.nr_samples=samples,.nr_storage_samples=samples,.bind=PIPE_BIND_DEPTH_STENCIL,.usage=PIPE_USAGE_DEFAULT};
+        uint64_t modifier=DRM_FORMAT_MOD_LINEAR;primary=context->screen->resource_create_with_modifiers(context->screen,&description,&modifier,1);
+        // This unused primary supplies only the original helper's paired format;
+        // depth is disabled and has no caller page to read or publish.
+    }
+    if(!primary)return -ENOMEM;
+    if(stencil){result=sweet_depth_tiled_create(context,&stencil->target,samples,stencil->load_action,&targets->stencilPlane);
+        if(result)goto done;pipe_resource_reference(&secondary,targets->stencilPlane.attachment);
+        if(!sweet_stencil_pair_take_samples(primary,&secondary,samples)){result=-EINVAL;goto done;}}
+    if(samples>1)result=describe_multisample_image(context,primary,samples,stencil?GL_DEPTH32F_STENCIL8:GL_DEPTH_COMPONENT32F,
+        stencil?MESA_FORMAT_Z32_FLOAT_S8X24_UINT:MESA_FORMAT_Z_FLOAT32,&targets->depth);
+    else{glGenTextures(1,&targets->depth);glBindTexture(GL_TEXTURE_2D,targets->depth);
+        bool accepted=st_context_teximage(context,GL_TEXTURE_2D,0,primary->format,primary,false);
+        if(accepted){struct gl_texture_object *object=_mesa_get_current_tex_object(context->ctx,GL_TEXTURE_2D);_mesa_lock_texture(context->ctx,object);
+            struct gl_texture_image *image=_mesa_get_tex_image(context->ctx,object,GL_TEXTURE_2D,0);
+            if(!image)accepted=false;else{_mesa_init_teximage_fields(context->ctx,image,primary->width0,primary->height0,1,0,
+                stencil?GL_DEPTH32F_STENCIL8:GL_DEPTH_COMPONENT32F,stencil?MESA_FORMAT_Z32_FLOAT_S8X24_UINT:MESA_FORMAT_Z_FLOAT32);
+                _mesa_update_texture_object_swizzle(context->ctx,object);_mesa_dirty_texobj(context->ctx,object);}
+            _mesa_unlock_texture(context->ctx,object);}
+        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_BASE_LEVEL,0);glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAX_LEVEL,0);
+        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+        result=accepted && glGetError()==GL_NO_ERROR?0:-EIO;
+    }
+    if(!result){if(depth){SweetMetalBacking backing={0};(void)texture_layout_samples(&depth->target,samples,&backing);
+            sweet_drm_log("SWEET METAL DEPTH import handle=%u width=%u height=%u pitch=%u offset=%llu GPU=%#llx original_pages=1",
+                depth->target.handle,depth->target.width,depth->target.height,depth->target.pitch,(unsigned long long)depth->target.offset,(unsigned long long)backing.gpu_address);}
+        if(stencil){SweetMetalBacking backing={0};(void)texture_layout_samples(&stencil->target,samples,&backing);
+            sweet_drm_log("SWEET METAL STENCIL import handle=%u width=%u height=%u pitch=%u offset=%llu GPU=%#llx original_pages=1 separate_z32s8=1",
+                stencil->target.handle,stencil->target.width,stencil->target.height,stencil->target.pitch,(unsigned long long)stencil->target.offset,(unsigned long long)backing.gpu_address);}}
+done:
+    pipe_resource_reference(&secondary,NULL);pipe_resource_reference(&primary,NULL);return result;
+}
 static int prepare_targets(struct st_context *context,const SweetRenderPass *pass,const SweetRenderDepthPass *depth,const SweetRenderStencilPass *stencil,unsigned samples,struct sweet_render_targets *targets,SweetMetalShaderCache *cache,uint32_t ordered_xr_mask,unsigned observation)
 {
     if(!sweet_multisample_count(samples) || !color_pass_valid_samples(pass,samples) || !depth_pass_valid_samples(pass,depth,samples) || !stencil_pass_valid_samples(pass,depth,stencil,samples))return -EINVAL;targets->mask=sweet_render_pass_mask(pass);
@@ -764,8 +807,7 @@ static int prepare_targets(struct st_context *context,const SweetRenderPass *pas
             if(targets->linear[i])sweet_drm_log("SWEET METAL MRT clear_target index=%u format=%u handle=%u width=%u height=%u result=0 decode_skipped=1 original_code_snapshot=1 original_clear=1",
                 i,attachment.target.format,attachment.target.handle,attachment.target.width,attachment.target.height);}
     }
-    if(depth || stencil){int result=samples>1?(stencil?bind_multisample_stencil(context,depth,stencil,samples,&targets->depth):bind_multisample_texture(context,&depth->target,samples,&targets->depth)):
-            stencil?bind_stencil8(context,depth,stencil,&targets->depth):bind_depth32(context,&depth->target,&targets->depth);if(result)return result;
+    if(depth || stencil){targets->context=context;int result=prepare_depth_tiled(context,depth,stencil,samples,targets);if(result)return result;
         if(depth && depth->load_action==2){result=sweet_depth32_clear_samples(targets->depth,depth->target.width,depth->target.height,depth->clear_depth,samples,&cache->depth_clear);
             if(result)return result;sweet_drm_log("SWEET METAL DEPTH clear handle=%u width=%u height=%u shader_draw=1 result=0 original_pages=1",
                 depth->target.handle,depth->target.width,depth->target.height);}
@@ -806,7 +848,10 @@ done:
 }
 static int finish_targets(const SweetRenderPass *pass,const SweetRenderDepthPass *depth,const SweetRenderStencilPass *stencil,const SweetRenderPipelineConfig *config,struct sweet_render_targets *targets,SweetMetalShaderCache *cache,uint32_t *sequence)
 {
-    int result=0;for(unsigned i=0;i<8 && !result;++i)if(targets->mask&(1u<<i)){SweetRenderColorAttachment a=sweet_render_attachment(pass,i);
+    int result=0;
+    if(depth && (config || depth->load_action==2))result=sweet_depth_tiled_copy(targets->context,&targets->depthPlane,true);
+    if(!result && stencil && (config || stencil->load_action==2))result=sweet_depth_tiled_copy(targets->context,&targets->stencilPlane,true);
+    for(unsigned i=0;i<8 && !result;++i)if(targets->mask&(1u<<i)){SweetRenderColorAttachment a=sweet_render_attachment(pass,i);
         if(!config && a.load_action!=2)continue;
         if(targets->linear[i]){uint32_t mask=config?sweet_render_color(config,i).write_mask:0;
             if(a.load_action==2)mask=15;result=writeback_xr(&a,targets->linear[i],targets->old[i],targets->raw[i],mask,cache);}
@@ -991,14 +1036,17 @@ int sweetgl_metal_multisample_resolve(const SweetMultisampleResolve *request,uin
         uint64_t targetEnd=request->target.offset+(uint64_t)request->target.pitch*request->target.height;
         if(request->source.offset<targetEnd && request->target.offset<sourceEnd)return -EINVAL;}
     pthread_mutex_lock(&sweet_metal_shader_gate);struct st_context *previous=st_api_get_current();struct sweetgl_ctx *context=sweetgl_create_metal();
-    GLuint source=0,target=0;int result=-EIO;
+    GLuint source=0,target=0;int result=-EIO;struct sweet_render_targets tiled={0};
     if(context && sweetgl_make_current(context)){
         result=bind_multisample_texture(sweetgl_internal_context(context),&request->source,request->samples,&source);
-        if(!result)result=request->aspect?bind_depth32(sweetgl_internal_context(context),&request->target,&target):bind_texture(sweetgl_internal_context(context),&request->target,&target);
+        if(!result && request->aspect){SweetRenderDepthPass pass={0};pass.target=request->target;pass.load_action=0;pass.store_action=1;
+            tiled.context=sweetgl_internal_context(context);result=prepare_depth_tiled(tiled.context,&pass,NULL,1,&tiled);target=tiled.depth;}
+        else if(!result)result=bind_texture(sweetgl_internal_context(context),&request->target,&target);
         if(!result)result=sweet_multisample_resolve_draw(source,target,request->source.width,request->source.height,request->samples,request->aspect,request->filter);
+        if(!result && request->aspect)result=sweet_depth_tiled_copy(tiled.context,&tiled.depthPlane,true);
         if(!result)result=sweet_drm_metal_buffer_sequence(request->target.handle,sequence);
         if(!result)result=sweetgl_metal_buffer_synchronize(request->target.handle);
-        if(source)glDeleteTextures(1,&source);if(target)glDeleteTextures(1,&target);
+        if(source)glDeleteTextures(1,&source);if(!request->aspect && target)glDeleteTextures(1,&target);retire_targets(&tiled);
     }
     if(context){sweetgl_make_current(NULL);sweetgl_destroy(context);}sweetgl_internal_restore(previous);pthread_mutex_unlock(&sweet_metal_shader_gate);
     sweet_drm_log("SWEET MSAA resolve src=%u dst=%u samples=%u aspect=%u filter=%u result=%d sequence=%u original_pages=1 GPU_only=1",

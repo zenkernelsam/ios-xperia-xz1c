@@ -1,0 +1,237 @@
+{
+  "AGENTS.md": {
+    "bytes": 14462,
+    "sha256": "f422291e4c7aaa28498a685e0709e98de1b8bef12c176c49c63689ec24bb991c",
+    "archived_path": "docs/archive/20261121/weekly-integration/AGENTS.md"
+  },
+  "README.md": {
+    "bytes": 5334,
+    "sha256": "55c3979ee1bc9059f2868288f418686de3cc11f0a83cbb07834bbb50aa7d67db",
+    "archived_path": "docs/archive/20261121/weekly-integration/README.md"
+  },
+  "docs/AEGIR-RENDERING.md": {
+    "bytes": 5251,
+    "sha256": "7f3a7662813ea80f48991a6f6cd2c0c164d9dd884e8f3850d1a1e75398599a02",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/AEGIR-RENDERING.md"
+  },
+  "docs/AIR-COMPUTE.md": {
+    "bytes": 4052,
+    "sha256": "7ab689c99726917e6f1b779f5570794080c33bddfe123e7ccc322322735c918a",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/AIR-COMPUTE.md"
+  },
+  "docs/AIR-HALF.md": {
+    "bytes": 4791,
+    "sha256": "b8cc59876cece14fc810e875767afa48f621e3e793d0d176f7388368a51e5731",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/AIR-HALF.md"
+  },
+  "docs/AIR-NARROW.md": {
+    "bytes": 3004,
+    "sha256": "3a2ec2cdb4f9edef2b93f56ae11e7eab6b652ef4f59e28e6656d85da15d9d18d",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/AIR-NARROW.md"
+  },
+  "docs/AIR-STATIC-HALF.md": {
+    "bytes": 3087,
+    "sha256": "44e2232b7983897d1d30d20e9d6c1af7f9434518d324151598896afd1db08480",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/AIR-STATIC-HALF.md"
+  },
+  "docs/ATTACHMENT-HARDWARE.md": {
+    "bytes": 6073,
+    "sha256": "12df82c9c5484e3d9f4b36d7e2835ab779151ce1d6d591409cd2bc0bebb548fb",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/ATTACHMENT-HARDWARE.md"
+  },
+  "docs/BUILD.md": {
+    "bytes": 15193,
+    "sha256": "ee1e17718740fe548d9afe1bafd0dcfead3efc68b20f4df290be6163ea3fc6e2",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/BUILD.md"
+  },
+  "docs/CA-MATRIX.md": {
+    "bytes": 5951,
+    "sha256": "e2d5a80d9ccda02543cabdaa65a66ff65d520d78c7ebaff9bd1aa92e715cf56a",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/CA-MATRIX.md"
+  },
+  "docs/CLEAR-CACHE.md": {
+    "bytes": 6601,
+    "sha256": "4a5ad7cce8e496b95c17e12ed5ad87d8a397d596a93fdaa4a7a7d926d016de0e",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/CLEAR-CACHE.md"
+  },
+  "docs/HALF-SELECTION.md": {
+    "bytes": 3396,
+    "sha256": "99b569e0ffdb332a607380dc0da8710188245a0dbfe1b13cde89b813b82fcbdb",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/HALF-SELECTION.md"
+  },
+  "docs/IR3-VARIANT-CACHE.md": {
+    "bytes": 6278,
+    "sha256": "9da63bddec0be62e1cfe9e8aa38b0d45afc23014d448cdfc46443476a6a6d880",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/IR3-VARIANT-CACHE.md"
+  },
+  "docs/LAYOUT.md": {
+    "bytes": 2032,
+    "sha256": "027075e8df073cc0e51e22ccfa72c225fd4e6c2d9eeee22c5022a1009df4990c",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/LAYOUT.md"
+  },
+  "docs/METAL-BACKBOARD.md": {
+    "bytes": 3432,
+    "sha256": "0ce7f339672c0f480f58c249bf298fe1c7060050dbe2ef8259305c7c60ef9838",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/METAL-BACKBOARD.md"
+  },
+  "docs/METAL-CONSTANTS.md": {
+    "bytes": 3809,
+    "sha256": "39d4d4f699ce4e8cb6eb3a63a197a81ff2657a6812ec0d648872220e5d760f5b",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/METAL-CONSTANTS.md"
+  },
+  "docs/METAL-DEPTH-STENCIL.md": {
+    "bytes": 11261,
+    "sha256": "2dd050b7186c26dffd40c9e971498de83db7a31046459c9080ec25f6cd850d8c",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/METAL-DEPTH-STENCIL.md"
+  },
+  "docs/METAL-DISCOVERY.md": {
+    "bytes": 3232,
+    "sha256": "5189baa1b2850a8e1cfd27a0610dd7f3d86b25a27a11f15dfa0d5ec42b706842",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/METAL-DISCOVERY.md"
+  },
+  "docs/METAL-IOSURFACE.md": {
+    "bytes": 4373,
+    "sha256": "ac574c50b4874840120a61a2cf0b284609e7e9267539446d43948f56940024f1",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/METAL-IOSURFACE.md"
+  },
+  "docs/METAL-MEMORYLESS.md": {
+    "bytes": 7645,
+    "sha256": "3a82b935d288c846ebaaeaaf57a23fbdaad686df29d78680de434464386cbd65",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/METAL-MEMORYLESS.md"
+  },
+  "docs/METAL-MIPMAPS.md": {
+    "bytes": 4560,
+    "sha256": "b8b69a20a3efe45111390a95bc5cd2341075b6fba2080b7694bc1912d1e91a78",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/METAL-MIPMAPS.md"
+  },
+  "docs/METAL-MRT.md": {
+    "bytes": 5003,
+    "sha256": "14697da855537b2b02ffbae424e43a426932915bec3cef4f2e8b5374298ea1bc",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/METAL-MRT.md"
+  },
+  "docs/METAL-MULTISAMPLE.md": {
+    "bytes": 11220,
+    "sha256": "dbe9ccc8988df64b99b63b82ba2c6676ea85434c38e256c5636ac32888035400",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/METAL-MULTISAMPLE.md"
+  },
+  "docs/METAL-PRESENTATION.md": {
+    "bytes": 9366,
+    "sha256": "7b9526c0a922b143144a241aa70cb252062e4045e1f71bafde45fb7f1f2a620f",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/METAL-PRESENTATION.md"
+  },
+  "docs/METAL-QUEUES.md": {
+    "bytes": 3940,
+    "sha256": "31fb05a2272178889b5af778d08452e441ef495105f3e8114b972f98e1e28f51",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/METAL-QUEUES.md"
+  },
+  "docs/METAL-REGISTRY-SHORT.md": {
+    "bytes": 3251,
+    "sha256": "7daefe2b70c4ff59d19b260815e5aa156ec974778e4c9c80ee502a038f4af85f",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/METAL-REGISTRY-SHORT.md"
+  },
+  "docs/METAL-RENDER.md": {
+    "bytes": 5521,
+    "sha256": "8afb6a8b9c87353704e4f66f24d2da8ee736925acd2472f2eea350bfbe1edbe3",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/METAL-RENDER.md"
+  },
+  "docs/METAL-REQUEST-OBSERVATION.md": {
+    "bytes": 15410,
+    "sha256": "ee74ddad28bb93a8c0df5f3beec66d95e4be27cc1245a93e1d4dc9e6e3964e52",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/METAL-REQUEST-OBSERVATION.md"
+  },
+  "docs/METAL-RESOURCES.md": {
+    "bytes": 4635,
+    "sha256": "fd437e285b0582a1ff08639d69c80fcf8557da0bbc6da1afbb15b57efefa933b",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/METAL-RESOURCES.md"
+  },
+  "docs/METAL-SAMPLERS.md": {
+    "bytes": 4580,
+    "sha256": "6f356c9f0c0b5d764fe8d4d4a9d7e154968ec5d57c144c80622e408dcd02a8e0",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/METAL-SAMPLERS.md"
+  },
+  "docs/METAL-XR.md": {
+    "bytes": 3263,
+    "sha256": "740b57591da7c877cd9bcb2d2ff04bbd739c99e5703a4be8cc853820a4ddecc9",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/METAL-XR.md"
+  },
+  "docs/MSM8998-PEER-SURVEY-2026-11-15.md": {
+    "bytes": 14278,
+    "sha256": "fa769efcf71fb1fe1985182ccc5b498040ea0e2957c02c032cda3056ad1241ad",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/MSM8998-PEER-SURVEY-2026-11-15.md"
+  },
+  "docs/OPERATIONS.md": {
+    "bytes": 5859,
+    "sha256": "f0459de16e83f3fe26d3dbe88ebc2b8739fedafd85b85f12b15e947c88390307",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/OPERATIONS.md"
+  },
+  "docs/ORGANIZATION-2026-11-12.md": {
+    "bytes": 3531,
+    "sha256": "513b5c2b7101f3ba94eb593dd4ab79e2f8e710844c91778afae410b79d464329",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/ORGANIZATION-2026-11-12.md"
+  },
+  "docs/ORGANIZATION-2026-11-13.md": {
+    "bytes": 2744,
+    "sha256": "eb99faa82e8ed8b1d393d70ff6aa0c55c5503b481a4dac22466fd5f9a7ac4e4c",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/ORGANIZATION-2026-11-13.md"
+  },
+  "docs/ORGANIZATION-2026-11-15.md": {
+    "bytes": 1745,
+    "sha256": "9f744ec810ad124080f975a47c60abe50ff626980c155f6a6165902bd5b47ed5",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/ORGANIZATION-2026-11-15.md"
+  },
+  "docs/POSTDRAW-OBSERVATION.md": {
+    "bytes": 19125,
+    "sha256": "9752cc874397e26e6933d864c19a0f26b57e92108e3705984153ba0c3dafd1c6",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/POSTDRAW-OBSERVATION.md"
+  },
+  "docs/PROGRAM-CACHE.md": {
+    "bytes": 7163,
+    "sha256": "a5bc19d9d76dfbc15447ebc8c1c7af67477ddf2f6445a6830bd31a1bd85ee872",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/PROGRAM-CACHE.md"
+  },
+  "docs/REFERENCE-REPOSITORIES.md": {
+    "bytes": 10495,
+    "sha256": "864c080b90b4c755e96d12f7850799268b931d96180caef566b0f9c96bad8cbc",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/REFERENCE-REPOSITORIES.md"
+  },
+  "docs/RENDER-STAGES.md": {
+    "bytes": 6867,
+    "sha256": "29806be616f4333dbb3c4387d3b8cfa03a795992c8068049f22038da760c1bf0",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/RENDER-STAGES.md"
+  },
+  "docs/ROOT-GL5.md": {
+    "bytes": 3261,
+    "sha256": "ecb74488524644ad568177f7d5534d6055e01d9ed562ce96355a8d7a09a8cbeb",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/ROOT-GL5.md"
+  },
+  "docs/SCANOUT-SCREENSHOT.md": {
+    "bytes": 10643,
+    "sha256": "efbd64c0e1ae0c4db02192239fa426dfb78c94614e8636be349b84b55dc1a7d2",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/SCANOUT-SCREENSHOT.md"
+  },
+  "docs/STATUS.md": {
+    "bytes": 17175,
+    "sha256": "fae241fa039c51a30e736202addbb2ff8b0009df4bea2002d5fe189ffbb21a9b",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/STATUS.md"
+  },
+  "docs/SURFACE-DIAGNOSTICS.md": {
+    "bytes": 5364,
+    "sha256": "ac600ac3489477be8e4d6aa9d3802045ee84eb928d21b4f5d00db338583a3fe8",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/SURFACE-DIAGNOSTICS.md"
+  },
+  "docs/SURFACE-READONLY.md": {
+    "bytes": 6573,
+    "sha256": "50cd565e23fcc5e65b97b84029feb3b186ca5b05954d811dc39886bb26d02b38",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/SURFACE-READONLY.md"
+  },
+  "docs/XR-CLEAR.md": {
+    "bytes": 3092,
+    "sha256": "34523c059f6de060d97652c9326423aa4a6aa0476b69be7475dd05aa33714f13",
+    "archived_path": "docs/archive/20261121/weekly-integration/docs/XR-CLEAR.md"
+  },
+  "gpu/metal/README.md": {
+    "bytes": 1050,
+    "sha256": "8d4812aa67d7f9c2a5d9bb3e0b9aed20234f113a7fe5a0318b8c87a2c39c0edf",
+    "archived_path": "docs/archive/20261121/weekly-integration/gpu/metal/README.md"
+  }
+}

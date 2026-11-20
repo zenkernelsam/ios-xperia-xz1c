@@ -1,5 +1,7 @@
 # Native Metal IOSurface textures — 2026-11-14
 
+此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。新附件native21尚未准入，旧阶段成功不扩展为完整UI。
+
 v729/surface-r1已实机通过标准newTextureWithDescriptor:iosurface:plane:接入原IOSurface页面：13完整/1未完成样本，两个64/128字节逻辑偏移各三phase，194688B实际核对零差异，包含84240B行尾padding。先GPU清屏，再释放创建者VM映射和CF引用后scissor AIR绘制，最后GPU采样该Surface到另一个原buffer。像素和逻辑origin、真实handle、递增fence及纹理持有关系独立核对。未完成样本没有计为通过。
 
 内核仍v729 SHA774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec，81源审计不变；GLES4241a0200f974dffe3513c9ff225fdd2f4c8833530d94167d2884d61e1d429d1，Metal f8d7839652c898938f04b8a1dcb0d80414fd3847b5dbfaabf79bbb5529b77365。本靴token d502a8e29c42bfc0，镜像db78666744a01094c3f84020da5fcd4328a5b61ee9ed8cfc48a752baf58b667d，878454B原串口SHA bc761459f8d812b686b1a9043c50d418900879bedb065ec844f6de6cdc7149d6。完整PON06返回45.859秒，含健康30秒和旧worker结束。1652allocated/released/unmapped，最终active/orphan/root0。

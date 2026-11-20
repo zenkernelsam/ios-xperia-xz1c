@@ -1,5 +1,7 @@
 # 私有context中的Clear shader复用
 
+此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。新附件native21尚未准入，旧阶段成功不扩展为完整UI。
+
 原v730／GLESa7bad22c的五条Aegir管线已预热并命中，但首次750×1624绘制的`targets`为1.523800秒／线程CPU0.225859秒，submit仍未返回。两个目标分别为XR format555与R8；两条Clear记录对应不同附件，不能删成重复操作。
 
 `bounded_clear`每次都会编译相同的shader。新实现把这些成功链接的程序保留在原私有GLES context的`SweetMetalShaderCache`内，普通浮点／UNorm使用一个slot，四种XR整数格式各用独立slot。每次仍重新设置原clear颜色、viewport、scissor和shader draw；原raw snapshot、XR／Load、padding、附件／fence／retire语义保持。编译或链接失败不发布缓存，context释放时删除全部clear程序，跨context不复用GL名字。该优化不影响原失败结果或延长check-in。

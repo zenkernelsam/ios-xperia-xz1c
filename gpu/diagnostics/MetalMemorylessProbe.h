@@ -1,6 +1,7 @@
 /* Author-only original transient pass pages, guard bytes and queue isolation. */
 #pragma once
 #include <CommonCrypto/CommonDigest.h>
+#include "AttachmentPageSnapshot.h"
 enum { MEMORYLESS_PHASES=8, MEMORYLESS_COLOR_BYTES=1280, MEMORYLESS_DEPTH_BYTES=1280, MEMORYLESS_STENCIL_BYTES=704 };
 static uint64_t memoryless_hash(const unsigned char *bytes,unsigned count)
 {uint64_t h=UINT64_C(14695981039346656037);for(unsigned i=0;i<count;++i)h=(h^bytes[i])*UINT64_C(1099511628211);return h;}
@@ -77,6 +78,11 @@ static bool memoryless_probe_check(MemorylessProbePass *pass,unsigned phase,uint
     memoryless_expected(phase,color,depth,stencil);
     if(valid){for(unsigned i=0;i<1280;++i)mismatch+=pass->colorBytes[i]!=color[i];if(pass->depth)for(unsigned i=0;i<1280;++i)mismatch+=pass->depthBytes[i]!=depth[i];
         if(pass->stencil)for(unsigned i=0;i<704;++i)mismatch+=pass->stencilBytes[i]!=stencil[i];}
+    if(valid && mismatch){
+        attachment_page_snapshot(emit,"memoryless",phase,0,pass->colorBytes,1280,pass->color.gpuAddress,sequence);
+        if(pass->depth)attachment_page_snapshot(emit,"memoryless",phase,8,pass->depthBytes,1280,pass->depth.gpuAddress,sequence);
+        if(pass->stencil)attachment_page_snapshot(emit,"memoryless",phase,9,pass->stencilBytes,704,pass->stencil.gpuAddress,sequence);
+    }
     valid=valid && !mismatch;
     emit("SWEET MEMORYLESS PHASE index=%u valid=%u sequence=%u operations=%u checked_bytes=%u mismatches=%u original_pass_pages=1",
         phase,valid,sequence,operations,checked,mismatch);

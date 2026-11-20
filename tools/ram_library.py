@@ -202,6 +202,11 @@ def load(folder,expected=None):
                 assert observer['metal_resources'].get('native_IR3_variant_cache')
             if observer.get('depth32_probe'):
                 sources.add('gpu/diagnostics/MetalDepth32Probe.h')
+                if observer.get('attachment_failure_snapshot_revision'):
+                    sources.add('gpu/diagnostics/AttachmentPageSnapshot.h')
+                    assert observer['attachment_failure_snapshot_revision']==1 and observer['attachment_failure_snapshot_chunk_bytes']==24
+                    assert observer['attachment_failure_snapshot_max_page_bytes']==4096 and observer['attachment_failure_snapshot_author_pages_only']
+                    assert observer['attachment_failure_snapshot_retired_pages_readonly'] and observer['attachment_failure_snapshot_does_not_change_verdict']
                 assert observer.get('IR3_cache_probe') and observer.get('AIR_render_probe') and observer['target_process']=='backboardd'
                 assert observer['depth32_probe_phases']==29 and observer['depth32_original_pages_guards_and_compare_required']
                 assert observer['metal_resources'].get('native_depth32_attachment')

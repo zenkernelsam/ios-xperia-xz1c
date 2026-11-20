@@ -1,5 +1,7 @@
 # XR Clear 旧颜色解码优化 — 2026-11-17
 
+此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。新附件native21尚未准入，旧阶段成功不扩展为完整UI。
+
 原snapshot-r1实际快照约3.307秒，其中队列等待2.807秒，随后PNG/ICC约3.911秒。等待包含驱动准备、绘制及同步，不能全部当成GPU硬件时间。检查固定Mesa24.3.4/FD540与现行GLES源码时发现：XR附件在loadAction=Clear时仍先将旧XR颜色解码到FP32，再由原Clear整块覆盖。
 
 xr-clear-elision-r1仅在这个Clear分支创建相同的RGBA32F临时目标，省去被覆盖的旧颜色解码。原始整数纹理和raw位型快照继续保留，原bounded_clear、写回、channel mask、padding/低位和fence/生命周期逻辑保持。Load和DontCare继续原解码路径，采样/mipmap路径不改。没有修改half数值转换或关闭原GLES自检。

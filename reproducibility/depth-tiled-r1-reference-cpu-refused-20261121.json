@@ -1,0 +1,47 @@
+{
+  "date": "2026-11-21",
+  "token": "b2f3fc4f69000ff2",
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "image_sha256": "26ea30610a4023b445698a193f1a7f9e55bbedf9f4abe3807dbd62124c8f2a88",
+  "GLES_sha256": "c617f2eec2c60dd1b925797f0295815e65e2d705b62817ca1d6053b2743de9aa",
+  "Metal_sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27",
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-depth-tiled-reference-cpu-live-20261121-mwp77hpa",
+  "original_controller_result": "PASS",
+  "original_controller_reason": "GOALS_STABLE",
+  "original_results_sha256": "15f8e6ad8b7dac2c3783679d041b2a302f8189ab9bfa376bc43f319642df886e",
+  "raw_sha256": "b9e8ad23586fb8bb1d5cb26548d78ae016533a24edca620c2525b6af058d60a3",
+  "raw_bytes": 336810,
+  "strict_return": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "b2f3fc4f69000ff2",
+    "checkpoint_bytes": 333508,
+    "log_bytes": 336810,
+    "log_sha256": "b9e8ad23586fb8bb1d5cb26548d78ae016533a24edca620c2525b6af058d60a3",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      9,
+      61,
+      63
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 38.59400000004098,
+  "postprocess_exit_code": 1,
+  "postprocess_failure": "Partial retained startup bytes differ",
+  "READY_positions": [
+    754,
+    12928
+  ],
+  "retained_partial_bytes": 3290,
+  "first_mismatch": 3232,
+  "first_block_sha256": "7513d1825a43e748724551993a56124ff1d4d2b7b77d8a0cb7231ef203a213d9",
+  "replay_block_sha256": "e06b90672676eed50bc3ef63d10fe19e01aadc0fe42880a695bf098be49e642b",
+  "original_bytes_at_mismatch": "44617277696e204b65726e656c2056657273696f6e2032322e362e303a204d6f6e204175672031342030353a30363a3037205554432032303233",
+  "replay_bytes_at_mismatch": "535745455420474c52414d3a206d6f756e7420626567696e206465763d2f6465762f6d64312062797465733d333335353434333220726f3d310a",
+  "CPU_prerequisite_not_obtained": true,
+  "GPU_not_packaged_or_sent": true,
+  "old_trial_not_replayed": true,
+  "current_device": "BH905ND69G healthy fastboot; no worker; software gate refused"
+}

@@ -1,5 +1,9 @@
 # 原生 Metal 呈现候选 — 2026-11-20
 
+最新tiled GLES c617f2ee已通过自身CPU／GLES9，reference CPU b2f3fc4f因独立启动日志字节不一致拒绝，native21未投递；本页此前离线及失败记录保持，准入以[STATUS](STATUS.md)为准。详见[ATTACHMENT-HARDWARE](ATTACHMENT-HARDWARE.md)。
+
+2026-11-20恢复新蓝灯会话后的最新实际验收与12个失败页面见[ATTACHMENT-HARDWARE](ATTACHMENT-HARDWARE.md)。当前GLES21de自身CPU／GLES9已通过；完整Metal21的深度／模板／Memoryless／MSAA首阶段原字节失败，原presentation／PNG未执行，不能提升此页旧离线结果为整组通过。全部0x06回程／健康／worker退出完整，失败包保留不重发。
+
 正式源码新增原`CAMetalDrawable`的呈现交接和drawable纹理标志，补上`presentDrawable:`、指定时间、最短间隔及原options四条命令路径。绘制／resolve原IOSurface页面在实际GPU退休后通过原lock／seed发布，随后才发布Scheduled并允许系统呈现。原生对象ASan／UBSan、旧单采样及MSAA回归、iOS ARM64库／完整探针构建通过；新CPU包只offline审计通过，没有投递手机。当前UI／光学和完整native21实机验收仍缺，已验基线仍是v730／CA矩阵r1。
 
 ## 本机原调用与开源来源

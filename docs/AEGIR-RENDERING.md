@@ -1,5 +1,7 @@
 # Aegir 壁纸与 Metal — 2026-11-13
 
+此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。新附件native21尚未准入，旧阶段成功不扩展为完整UI。
+
 第二版实际入口观测已消除歧义：20次均 `_device=nil` / `new_buffer_method=0`，真实方法ABI的index=Q，原方法原异常继续。17条完整异常栈，3条丢帧不补猜。CPU两次VM/SMEM与37.188秒完整回程通过；GPU原全尺寸/Surface/caller/动态纹理/CA/lifecycle与960000只读像素仍通过，308对象全部released/unmapped，无orphan/active/root残留，37.641秒含健康30秒完整回程。多台fastboot同时连接下新Sony判定已实际通过；暂无device/COM/camera/in-flight。相机80帧MJPEG，照片仍无时间/日期/壁纸。新观察器SHA2354ed0888e33497b3dddf37d9e6f67b61dcd456f2c98db913909c9f2402971a，仅增加元数据，GLES仍原r4全部字节。
 
 iOS16 limits与参考iOS18虽然都264B，但iOS16缺maxAccelerationStructureLevels，maxConstantBufferArguments实际248/参考252；maxBufferLength均256。已在gpu/metal/MetalDeviceLimits16.h修正，独立目标元数据的全部64字段偏移原生/arm64编译通过。尚未提供Metal device或render/command实现，真实方法编码/前端/后端仍需逐项移植；不能将这一header通过称为壁纸恢复。

@@ -19,6 +19,12 @@ def unfinished_prime(scope,observer):
                  wrapped_vertex_bytes=int(link[0][0]),wrapped_fragment_bytes=int(link[0][1]),
                  compile_times=[dict(stage=s,wall_us=int(w),cpu_us=int(c)) for s,w,c in compiled],
                  link_return_not_observed=True,reason='BACKGROUND_ORIGINAL_REQUEST_LINK_INCOMPLETE')]
+
+def attachment_failures(scope):
+    """Preserve only complete explicit failures from the current LIVE scope."""
+    pattern=r'SWEET (DEPTH32|STENCIL8|MEMORYLESS|MULTISAMPLE|PRESENT PROBE) END result=([1-9]\d*) phases=(\d+) [^\r\n]*?final_allocated=(\d+)'
+    return [dict(suite=name,result=int(result),completed_phases=int(phases),final_allocated=int(allocated))
+        for name,result,phases,allocated in re.findall(pattern,scope)]
 def verify(directory):
     root=Path(directory);row=json.loads((root/'results.json').read_bytes())[-1];a=row['artifact']
     assert row['simulated'] is False
@@ -41,6 +47,7 @@ def verify(directory):
     capabilities=[dict(zip(capability_keys,map(int,record))) for record in dict.fromkeys(re.findall(capability_pattern,scope))]
     gl_errors=[dict(stage=stage,target=int(target),error=error) for stage,target,error in re.findall(r'SWEET METAL MRT GL_error stage=(\S+) target=(-?\d+) error=(0x[0-9a-f]+)',scope)]
     failures=re.findall(r'SWEET (?:AIR (?:COMPUTE|RENDER|CONSTANTS|XR|NARROW|HALF|SAMPLER)|METAL (?:RESOURCE|QUEUE|DISCOVERY|SURFACE|MIPS|MRT)|CLEAR CACHE|IR3 CACHE PROBE) END result=([1-9]\d*)',scope)
+    failed_attachments=attachment_failures(scope)
     cache_failures=[dict(phase=int(phase),first_state=int(first),restored_state=int(restored)) for phase,first,restored in
         re.findall(r'SWEET PROGRAM CACHE roundtrip phase=(\d+) first_state=(-?\d+) restored_state=(-?\d+) fresh_pipeline=1 valid=0',scope)]
     registry_assertions=re.findall(r'failed assertion ([^\r\n]+) at line (\d+) in MTLAddDevice',scope)
@@ -53,10 +60,11 @@ def verify(directory):
     prime_incomplete=unfinished_prime(scope,a.get('exception_observer',{}))
     scope_errors=[int(code) for code in re.findall(r'SWEET PROGRAM CACHE SCOPE result=(-?\d+)',scope) if int(code)]
     if row['result']=='STOP':assert row['reason']=='OBSERVATION_INCOMPLETE' and (scope_errors or prime_incomplete or ((registry_assertions or missing_API or extension_timeout) and 'CRASH AegirPoster' in scope))
-    assert wrong or failures or cache_failures or registry_assertions or missing_API or extension_timeout or prime_incomplete or scope_errors,'Actual failure must be present in the current LIVE scope'
+    assert wrong or failures or failed_attachments or cache_failures or registry_assertions or missing_API or extension_timeout or prime_incomplete or scope_errors,'Actual failure must be present in the current LIVE scope'
     return dict(source=str(root.resolve()),version=a['version'],token=a['token'],kernel_sha256=a['kernel_sha256'],
         image_sha256=a['sha256'],log_sha256=sha(raw),original_result=row['result'],original_reason=row['reason'],
-        actual_failures=wrong,native_GPU_failure_results=list(map(int,failures)),actual_program_cache_failures=cache_failures,registry_assertions=registry_assertions,
+        actual_failures=wrong,native_GPU_failure_results=list(map(int,failures)),attachment_failure_results=failed_attachments,
+        actual_program_cache_failures=cache_failures,registry_assertions=registry_assertions,
         actual_AIR_render_failure_results=render_errors,actual_MRT_context_capability_records=capabilities,actual_MRT_GL_errors=gl_errors,
         missing_device_API=missing_API,original_exception_missing_API=original_missing_API,original_extension_checkin_timeout_count=len(extension_timeout),actual_program_prime_incomplete=prime_incomplete,actual_program_cache_scope_errors=scope_errors,payload_audit=payload,strict_return=returned,
         return_seconds_with_health=row['reset_to_fastboot_seconds'],failed_stage_not_accepted=True)

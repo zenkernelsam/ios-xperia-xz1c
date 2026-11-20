@@ -1,5 +1,7 @@
 # AIR/Metal compute — 2026-11-14
 
+此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。新附件native21尚未准入，旧阶段成功不扩展为完整UI。
+
 实际v729/774b5efd+r8/c84403c1与Metal/575e0764已通过原生AIR计算全链：MTLB容器的真正bitcode → system LLVM C解析 → 原始开源AIR lowering → ESSL目标适配 → Mesa/FD540 → 当前SweetScatter → 原Metal buffer的GPU/CPU共享页面。使用标准newLibraryWithData/newFunctionWithName/newComputePipelineStateWithFunction/computeCommandEncoder/dispatchThreadgroups/commit/wait；没有用shader名字替代实现，也没有CPU计算填充预期结果。
 
 22份完整/0缺项样本，每份2次64invocation的非空add_seven kernel，完整检查80word/phase含16word保护区。共2816invocation、3520word结果核对及704次保护word检查，hashfce665879360b812与2222334a6653ec69按独立CPU配方重算一致。两次GPU fence属于相同原buffer，CPU地址与IOVA保持；actual compiled ESSL1820B/hash18725e3c75b5d3f5/robust1，原buffer logical320B，未改动后16word。原GLES全链、IOSurface/caller动态共享和960000只读像素仍通过，最后892资源全部released/unmapped，orphan/active/root0。

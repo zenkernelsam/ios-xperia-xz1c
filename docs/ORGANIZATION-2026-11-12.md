@@ -1,5 +1,7 @@
 # 2026-11-12 整理与正式源码迁移
 
+此页保留该日期的原回收事实与数量；本周清理及当前目录／恢复以[ORGANIZATION](ORGANIZATION.md)和[LAYOUT](LAYOUT.md)为准。旧移入记录不保证条目目前仍存在。
+
 唯一正式源码仓库为 ios-xperia-xz1c。Patch/Xperia只保留参考Git仓库、受保护输入/备份和历史资料。research只参考Git仓库：Patch86个、Mac3个；索引在REFERENCE-REPOSITORIES.md。
 
 ## 实际回收

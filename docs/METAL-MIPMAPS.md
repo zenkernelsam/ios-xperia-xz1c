@@ -1,5 +1,7 @@
 # Native Metal mipmaps — 2026-11-14
 
+此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。新附件native21尚未准入，旧阶段成功不扩展为完整UI。
+
 原generateMipmapsForTexture:现已有实际多级存储、GPU下采样和nearest/trilinear采样实现，源码与主机检查已完成；实机四格式完整验收尚未通过。mips-r1被原Aegir的extension check-in timeout打断31次，原STOP/OBSERVATION_INCOMPLETE保留，不能将已通过的RGBA/BGRA部分样本当四格式完成。r2改为按GL context复用copy/decode shader和XR LUT，继续同库CPU/GPU门槛。
 
 纹理支持界定的单plane线性2D、多级数量1..15及实际尺寸上限。各级宽高floor减半、最小1，每级pitch和offset保持64B对齐；buffer纹理使用同一原GEM的不同区域，IOSurface第0级继续持有原Surface lease，后续级用纹理持有的原Metal buffer。Shared允许各级标准region/stride CPU读写，Private隐藏CPU入口。单级生成确实没有后续level，但独立GPU探针必须验证六级、重新上传后再生成及LOD采样，不能以单级空操作宣称实现mipmap。

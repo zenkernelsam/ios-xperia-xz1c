@@ -1,5 +1,7 @@
 # Dynamic packed integer AIR conversion — 2026-11-15
 
+此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。新附件native21尚未准入，旧阶段成功不扩展为完整UI。
+
 原NanoUniverse/aegir_pass_vsh在动态short2顶点输入调用air.convert.f.f32.s.i16，开源前端仅允许常量8/16位conversion，因而实际返回nil pipeline。本机原库拆出的AIR 4928B SHA22b2b082c18cdf49a02bdbd4aa19702ae3e07b4cb4da5c7f8b9d795102ce796e，旧编译器和真实手机均复现同一错误。原库从使用者镜像只读挂载后提取，/dev/disk12正常detach，无镜像修改；不上传原系统库。
 
 独立适配补丁gpu/metal/air/lilac-air-conversion.patch应用于materialized build副本，保留固定898998cf开源参考字节及声明。接受准确i8/i16 scalar/vector签名，按intrinsic的s/u在32位carrier先执行符号扩展/掩码，再数值转换；仍拒绝错suffix、错shape和未知sign。target narrow整数结果按位掩码，原半精度不冒充支持。

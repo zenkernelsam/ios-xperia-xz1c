@@ -1,5 +1,7 @@
 # Native AIR/Metal rendering — 2026-11-14
 
+此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。新附件native21尚未准入，旧阶段成功不扩展为完整UI。
+
 v729/774b5efd与GLES render-r4/7944112d、Metal1b8d1f5d已完成标准MTLB/AIR→system LLVM C→开源lowering→ESSL/Mesa FD540→原Metal texture页面的实际绘制验收。10完整样本、0缺项；每样本一次清屏和三次draw，四个phase共检查17152B逻辑范围（含6560B未写保护/填充），另检查getBytes输出stride和保护区。四个目标hash按独立Python配方重算，全部零差异。不能据此宣称系统Metal、完整壁纸/时间/日期、FPS或其它外设已完成。
 
 本靴token27ed79126f7e4b51，镜像SHA5427210db145a792477b8026c57935652b348669c451dff7633e67cbe84111ae，原日志535739B/SHA00280f14b472aa87c731a176bd9c21fa974b346d49246c9018eedfadcc0681e4。ACK/DRAIN/RESET/FINAL_DRAIN、连续健康30秒和旧worker退出均核对；完整PON06回程38.594秒。CPU新GLES37.281/GPU38.750秒、含Metal的新包CPU37.891秒也已实际通过。最终830资源allocated/released/unmapped，orphan/active/root0；原GLES全尺寸绘制、共享/刷新/CA/lifecycle和960000只读像素仍通过。原生buffer/queue/compute同靴各10份完整证据保持。

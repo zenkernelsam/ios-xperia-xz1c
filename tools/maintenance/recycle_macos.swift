@@ -19,6 +19,16 @@ let sources = items.map { item -> URL in
     else { fatalError("Source outside approved workspace or protected: \(source.path)") }
     return source
 }
+// Duplicate paths or a child inside an already requested parent make later
+// entries disappear after a successful move. Refuse the whole plan up front.
+var sourcePaths = Set<String>()
+for source in sources {
+    guard sourcePaths.insert(source.path).inserted else { fatalError("Duplicate recycle source: \(source.path)") }
+}
+for source in sources {
+    guard !sources.contains(where: { source != $0 && source.path.hasPrefix($0.path + "/") })
+    else { fatalError("Nested recycle source: \(source.path)") }
+}
 var results = [[String: String]]()
 for source in sources {
     var finished = false

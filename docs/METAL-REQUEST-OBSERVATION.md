@@ -1,5 +1,7 @@
 # 原 Metal 画布请求观察 — 2026-11-20
 
+此页r1..r6是原请求观察历史，最后有实机route仍r3／3541e079；33方法mode观察没有成功手机记录。用户蓝灯会话已恢复，最新附件验收／软件拒绝与当前设备见[STATUS](STATUS.md)，不从旧“待物理确认”恢复旧任务。
+
 当前壁纸卡点已缩小到原画布初始化后的显示路由。最新r2的五次`CLKUIMetalQuadView`初始化均返回nonnull，原layout执行；观察窗口内没有display、prewarm、drawable-size-update、nextDrawable或pipeline请求。完整720×1280扫描帧仍是灰色锁屏文字与黑壁纸。原GPU结果保持STOP／OBSERVATION_INCOMPLETE，尚未证明壁纸或完整UI完成。
 
 最新r3继续原调用观察，实机确认共享设备与共享队列均nonnull，五次NUNIQuad加入和NUNIScene设置完成；随后原画布五次paused=YES。sync／tick均0，图仍灰字锁屏／黑壁纸。原Vista初始化本来就暂停画布，不能将这一点直接认作故障；下一观察应定位原环境、动画启动或快照路由缺少的触发。生产内核／GLES／Metal保持，r3原STOP与39.109秒完整回程单列。
@@ -104,4 +106,4 @@ python3 -B tools/build/inspect_poster_routing.py --root build/my-original-root/r
   --output build/my-poster-routing-proof
 ```
 
-本轮使用blacktop/ipsw3.1.749的普通macOS x86_64公开release，archive b141b419／binarye90ac1e0与release checksum匹配，只有本地静态读取。手机仍fastboot／无worker，新物理会话确认未到，未下载、启动或复发r4／r5；完整壁纸／UI／FPS／睡眠／其它外设目标保持。
+本轮使用blacktop/ipsw3.1.749的普通macOS x86_64公开release，archive b141b419／binarye90ac1e0与release checksum匹配，只有本地静态读取。该r6离线轮结束时手机fastboot／无worker、尚待物理会话确认；后续会话恢复和附件结果见STATUS，不复发r4／r5；完整壁纸／UI／FPS／睡眠／其它外设目标保持。

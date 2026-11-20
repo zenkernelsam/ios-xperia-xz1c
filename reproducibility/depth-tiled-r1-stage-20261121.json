@@ -1,0 +1,42 @@
+{
+  "date": "2026-11-21",
+  "stage": "TILED_ATTACHMENT_GLES_DEVICE_ACCEPTED_REFERENCE_CPU_POSTPROCESS_REFUSED",
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "GLES_sha256": "c617f2eec2c60dd1b925797f0295815e65e2d705b62817ca1d6053b2743de9aa",
+  "Metal_sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27",
+  "Metal_source_map_sha256": "db1605ef8dae8f8ed0a29999dcb2cf7537457aba7ad428677c21e0e914771b78",
+  "reference_CPU_refusal": "reproducibility/depth-tiled-r1-reference-cpu-refused-20261121.json",
+  "full_native21_pending": true,
+  "current_device": "BH905ND69G healthy fastboot; no worker",
+  "hardware_round_finished_before_cleanup": true,
+  "new_geometry_test_not_sent": true,
+  "runs": [
+    {
+      "name": "GLES_CPU",
+      "token": "122537a02a664b5b",
+      "result": "PASS",
+      "reason": "GOALS_STABLE",
+      "image_sha256": "4df2c7ff33592a00c7257628db43fb33271a803aca39238660af3513125d21c2",
+      "raw_sha256": "2c7c51ccd4b0247542e6ae289b3e9917ff91fc8e24f180858ffb500ac09ce159",
+      "raw_bytes": 343875,
+      "return_seconds_with_health": 39.187999999849126,
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-depth-tiled-gles-cpu-live-20261120-mwp5vndt",
+      "single_download_boot_verified": true,
+      "four_markers_complete": true
+    },
+    {
+      "name": "GLES_GPU",
+      "token": "16c49c8229f99b2c",
+      "result": "PASS",
+      "reason": "GOALS_STABLE",
+      "image_sha256": "edfccca0d66bb0bf5cd626994c265f90bacbe7e410c46dd732126d5b7439aee4",
+      "raw_sha256": "de7b1c6e536b19354809d863623479077d9aeb44db493dc2738aba9325dcb45e",
+      "raw_bytes": 576145,
+      "return_seconds_with_health": 39.29700000002049,
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-depth-tiled-gles-gpu-live-20261121-mwp6g22z",
+      "single_download_boot_verified": true,
+      "four_markers_complete": true
+    }
+  ],
+  "reference_observer_sha256": "4d1f7e9c11e608a2f76f88e8e5eec36273b690af716d27e0a8ff68e0dff0223d"
+}

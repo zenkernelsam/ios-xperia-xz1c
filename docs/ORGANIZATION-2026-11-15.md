@@ -1,5 +1,7 @@
 # 2026-11-15 MRT 轮整理
 
+此页保留该日期的原回收事实与数量；本周清理及当前目录／恢复以[ORGANIZATION](ORGANIZATION.md)和[LAYOUT](LAYOUT.md)为准。旧移入记录不保证条目目前仍存在。
+
 Windows原生回收站已核对90条移入记录，涵盖93个文件、142687976字节；Mac NSWorkspace原生垃圾桶已核对13条、129个文件、300480732字节。回收的是重复HFS .dmg、未部署/被替代的构建输出、一次性传输tar、主机测试程序和已结束轮次的多余相机帧。完整清单和当前原生回收路径在reproducibility/organization-mrt-20261115.json。
 
 四个已结束GPU轮各保留两张相机帧，合计8张。原始串口raw、原结果、command/回程证据、当前与失败的signed RAM包/blob/raw、r1精确源输入保持。不是永久删除，没有清空Windows/Mac回收站。Ubuntu及Ubuntu-22.04用户垃圾桶复核为0文件；本轮WSL生成的可再生程序本来位于D盘，已走Windows原生回收站。

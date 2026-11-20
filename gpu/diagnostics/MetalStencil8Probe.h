@@ -1,6 +1,7 @@
 /* Original Stencil8 page plus optional Depth32: compares, operations, masks. */
 #pragma once
 #include <CommonCrypto/CommonDigest.h>
+#include "AttachmentPageSnapshot.h"
 enum { STENCIL8_PHASES=99, STENCIL8_COLOR_BYTES=1280, STENCIL8_DEPTH_BYTES=1280, STENCIL8_BYTES=768 };
 static unsigned stencil8_operation(unsigned op,unsigned original,unsigned reference)
 {
@@ -90,6 +91,11 @@ static bool metal_stencil8_probe(MetalABIEmit emit)
             for(unsigned i=0;i<900;++i){unsigned char wanted=0xe7;if(i>=8){unsigned y=(i-8)/96,x=(i-8)%96;if(y<9 && x<68)wanted=ed[64+y*128+x];}read_mismatches+=rd[i]!=wanted;}
             for(unsigned i=0;i<300;++i){unsigned char wanted=0xd8;if(i>=8){unsigned y=(i-8)/32,x=(i-8)%32;if(y<9 && x<17)wanted=es[64+y*64+x];}read_mismatches+=rs[i]!=wanted;}}
         uint64_t ch=valid?stencil8_hash(cp,1280):0,dh=valid?stencil8_hash(dp,1280):0,sh=valid?stencil8_hash(sp,768):0;
+        if(valid && (mismatches || read_mismatches)){
+            attachment_page_snapshot(emit,"stencil8",phase,0,cp,1280,cb.gpuAddress,sequence);
+            attachment_page_snapshot(emit,"stencil8",phase,8,dp,1280,db.gpuAddress,sequence);
+            attachment_page_snapshot(emit,"stencil8",phase,9,sp,768,sb.gpuAddress,sequence);
+        }
         valid=valid && !mismatches && !read_mismatches;
         emit("SWEET STENCIL8 PHASE index=%u valid=%u sequence=%u operations=%u mismatches=%u read_mismatches=%u",phase,valid,sequence,operations,mismatches,read_mismatches);
         emit("SWEET STENCIL8 HASH index=%u color=%016llx depth=%016llx stencil=%016llx original_pages=%u",phase,(unsigned long long)ch,(unsigned long long)dh,(unsigned long long)sh,cb.contents==cp && db.contents==dp && sb.contents==sp);

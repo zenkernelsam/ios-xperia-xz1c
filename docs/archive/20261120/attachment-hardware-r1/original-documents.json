@@ -1,0 +1,42 @@
+{
+  "AGENTS.md": {
+    "sha256": "58ee9cb2fd2252dcd6995e6c7bbcc8b527fe504bd3c79d39fd528c7fc6464e10",
+    "bytes": 13493
+  },
+  "README.md": {
+    "sha256": "c166e1717583a3f291944aea61df3dc20d41fa3b877db6c9b8c1b78f4dacd67a",
+    "bytes": 4365
+  },
+  "docs/STATUS.md": {
+    "sha256": "d1353168b0d7084b7ab99b98b6519a690f802e78f551a3b63713bd75e9b1aa1d",
+    "bytes": 16927
+  },
+  "docs/BUILD.md": {
+    "sha256": "07c29d6256fc7806fa4541702ae097af9633c7d75e290291284446cc957e9542",
+    "bytes": 14224
+  },
+  "docs/OPERATIONS.md": {
+    "sha256": "fc3a901d5a9389752c46589c67b4a26d8eb47abd3a5ee307e4669b22dc98f08e",
+    "bytes": 5759
+  },
+  "docs/METAL-DEPTH-STENCIL.md": {
+    "sha256": "a979ee386d0fc0022c273fcb211d0dd66ea79ee6d7b4017431e89e9280997ac5",
+    "bytes": 10852
+  },
+  "docs/METAL-MEMORYLESS.md": {
+    "sha256": "82b7990c14364b5698de830b2586c7cc5fe32bc64401b88787627424bccec16e",
+    "bytes": 7236
+  },
+  "docs/METAL-MULTISAMPLE.md": {
+    "sha256": "2eca4623dc7021cc14f490051e38ed76c87d5c97c1de724522a5a28a0b020f00",
+    "bytes": 10811
+  },
+  "docs/METAL-PRESENTATION.md": {
+    "sha256": "5066e9eb10fcd5bc0e0d8f042e7fb3ffa7709778ed5629e7c4ae88cbd234fbd8",
+    "bytes": 8957
+  },
+  "docs/SCANOUT-SCREENSHOT.md": {
+    "sha256": "21758811fc4630faca521656710ff614d030f8082989cde9a1d53aae0fc6aa1b",
+    "bytes": 10234
+  }
+}

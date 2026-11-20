@@ -1,5 +1,7 @@
 # 原生 Metal 队列 — 2026-11-13
 
+此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。新附件native21尚未准入，旧阶段成功不扩展为完整UI。
+
 v729/774b5efd 与r7 GLES/db47937b已实际完整准入。自有SweetMTLCommandQueue / SweetMTLCommandBuffer / SweetMTLBlitEncoder接入现有SweetScatter，内核GPU allocator、SCM、PON、RPC、VM或时钟没有改变。显式工厂提供真实Metal对象；system MetalPluginName、AIR library/pipeline和texture/render尚未接入，原Aegir系统device仍nil，时间/日期/壁纸未恢复。
 
 队列保留enqueue的FIFO位置，后发commit不越过未提交的前序command buffer；队列限制实际未完成command buffer数量。encoder必须结束才能提交，commit只能一次。recorded operations强持有资源直到issued fence退休，完成后先释放backing引用，再发布terminal status；scheduled/completed callback在状态改变后调用。copy/fill当前支持DWORD对齐逻辑区间，拒绝越界、重叠复制和别的device的buffer。字节边缘、其他encoder和GPU shader/render继续待实现，不能将局部API当完整Metal协议。

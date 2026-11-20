@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-21",
+  "items": 4,
+  "files": 16,
+  "logical_bytes": 163611132,
+  "native_windows_recycle_verified": true,
+  "records": [
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-attachment-snapshot-stage-20261120-mwozwqde",
+      "reason": "Completed one-time staging or compiled host regression binary; canonical source/locks/current evidence retained",
+      "files": 13,
+      "bytes": 161601084,
+      "sha256": null,
+      "verified_native_recycle": true,
+      "time": "2026-11-21T03:08:02.0694018+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RL84GK9",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-attachment-snapshot-stage-20261120-mwozwqde"
+    },
+    {
+      "path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\weekly-20261121\\canonical-sync.tar",
+      "reason": "Completed one-time staging or compiled host regression binary; canonical source/locks/current evidence retained",
+      "files": 1,
+      "bytes": 1853440,
+      "sha256": "7db70b116c65d68ea7da3bb3160672ac33e7f5fe1412c01e406d3d536382e654",
+      "verified_native_recycle": true,
+      "time": "2026-11-21T03:08:04.0318835+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RIMPVD9.tar",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\weekly-20261121\\canonical-sync.tar"
+    },
+    {
+      "path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\depth-tiled-r1\\state-host-regression\\test",
+      "reason": "Completed one-time staging or compiled host regression binary; canonical source/locks/current evidence retained",
+      "files": 1,
+      "bytes": 102192,
+      "sha256": "b1106bb29e27d17f004d693b953fa5b2ef9575a7c1b8f61135b71083af09914f",
+      "verified_native_recycle": true,
+      "time": "2026-11-21T03:08:05.2546218+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RGJ669A",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\depth-tiled-r1\\state-host-regression\\test"
+    },
+    {
+      "path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\depth-tiled-r1\\state-host-regression\\test-pair",
+      "reason": "Completed one-time staging or compiled host regression binary; canonical source/locks/current evidence retained",
+      "files": 1,
+      "bytes": 54416,
+      "sha256": "212a71d3f7e97160e4b2d9ca068289e1d5c23417b30612089543d2e8fa0f8346",
+      "verified_native_recycle": true,
+      "time": "2026-11-21T03:08:06.4506515+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$ROTM8JL",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\depth-tiled-r1\\state-host-regression\\test-pair"
+    }
+  ],
+  "trash_not_emptied": true,
+  "protected_inputs_not_moved": true
+}

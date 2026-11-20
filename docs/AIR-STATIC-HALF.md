@@ -1,5 +1,7 @@
 # AIR 常量内存 binary16 按位访问
 
+此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。新附件native21尚未准入，旧阶段成功不扩展为完整UI。
+
 原Aegir在cache-r2/r2已实际恢复星空89,821B、云层84,333B和threshold18,929B的程序，原pipeline返回nonnull；完整UI仍因earth/post管线nil而失败。39.516秒完整0x06回程，原REVISE/raw保留。实际错误为AIR specialization: static initializer memory type mismatch。
 
 固定BSD-2-Clause ios_sagit的常量内存解释器按LLVM类型递归匹配。主机用原earth/post AIR和有明确标注的代表常量重现为source=half/target=i16、offset0、allocation/access均2B。新StaticHalfBits.h与独立lilac-air-static-half-bits.patch只接受一个完整binary16标量的half/i16双向按位读取或替换；使用LLVMConstBitCast，不做数值转换。原引用源码/校验不改；非零偏移、不同尺寸、不同位宽、向量、越界、跨成员、padding等仍拒绝。

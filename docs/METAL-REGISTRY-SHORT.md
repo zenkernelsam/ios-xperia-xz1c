@@ -1,5 +1,7 @@
 # Scoped original Metal registration — 2026-11-15
 
+此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。新附件native21尚未准入，旧阶段成功不扩展为完整UI。
+
 原Aegir登记已与长native GPU诊断分离。registry-short-r1/r2只登记原MTLAddDevice→MTLCreateSystemDefaultDevice并观察原factory/异常；不会在扩展constructor重跑全部GPU探针。单发前native_prerequisite.py从前一完整backboard实际results/raw log重核内核/GLES/Metal/源码、全套byte/fence和回程，不能用摘要或模拟结果准入。
 
 固定native-proof的版本、内核/GLES/Metal/source-map SHA、前轮token/image/raw SHA与必需探针列表嵌入observer并写短串口记录。RAM包校验schema/header，run_trial --native-evidence再独立重验原日志并与嵌入proof全匹配后才派发。新AIR窄整数补丁的库须额外AIR_narrow完整实机证据，旧库证据不能替代。

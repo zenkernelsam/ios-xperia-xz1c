@@ -1,0 +1,49 @@
+{
+  "date": "2026-11-21",
+  "scope": "Sony Xperia XZ1 Compact canonical project",
+  "mac_actual_recycle_report": "reproducibility/weekly-macos-native-trash-20261121-final-host.json",
+  "raw_mac_recycle_report_sha256": "3cda37b6388f298e2eb59a7aedbaae45613b1ea64fb244966e4f56403104121c",
+  "source_and_doc_original_manifest": "docs/archive/20261121/weekly-integration/original-document-manifest.json",
+  "documents_originals_preserved": 47,
+  "current_entry_documents": [
+    "AGENTS.md",
+    "README.md",
+    "docs/STATUS.md",
+    "docs/BUILD.md",
+    "docs/OPERATIONS.md",
+    "docs/LAYOUT.md",
+    "docs/INDEX.md",
+    "docs/ORGANIZATION.md",
+    "docs/DISPLAY-GEOMETRY.md"
+  ],
+  "windows_staging_recycle_pending": false,
+  "WSL_Trash_verified_empty_for_root_and_cisco": {
+    "Ubuntu": true,
+    "Ubuntu-22.04": true
+  },
+  "WSL_files_recycled_this_round": 0,
+  "trash_emptying_performed": false,
+  "hardware_round_finished": true,
+  "current_device": "BH905ND69G healthy fastboot; no worker",
+  "current_candidate_native_accepted": false,
+  "new_geometry_device_tested": false,
+  "windows_recycle_report": "reproducibility/weekly-windows-native-recycle-20261121.json",
+  "mac_duplicate_nested_preflight_tests": [
+    {
+      "kind": "duplicate",
+      "refused_before_any_recycle": true,
+      "fixture_preserved": true
+    },
+    {
+      "kind": "nested",
+      "refused_before_any_recycle": true,
+      "fixture_preserved": true
+    }
+  ],
+  "mac_items": 1713,
+  "mac_files": 34883,
+  "mac_logical_bytes": 11852238934,
+  "mac_disk_latest_df": "Filesystem      Size    Used   Avail Capacity iused ifree %iused  Mounted on\n/dev/disk2s1   954Gi   862Gi    62Gi    94%    3.9M  655M    1%   /System/Volumes/Data\n",
+  "active_work_and_current_trash_not_emptied": true,
+  "unrelated_same_disk_growth_not_removed": true
+}

@@ -1,6 +1,7 @@
 /* Original Depth32Float pages: all compares, writes, Load/Clear, guard bytes. */
 #pragma once
 #include <CommonCrypto/CommonDigest.h>
+#include "AttachmentPageSnapshot.h"
 enum { DEPTH32_PHASES=29, DEPTH32_BYTES=1280, DEPTH32_READ_BYTES=900 };
 static bool depth32_compare(unsigned compare,float incoming,float old)
 {
@@ -69,6 +70,10 @@ static bool metal_depth32_probe(MetalABIEmit emit)
             for(unsigned i=0;i<900;++i){unsigned char wanted=0xe7;
                 if(i>=8){unsigned y=(i-8)/96,x=(i-8)%96;if(y<9 && x<68)wanted=expectedDepth[64+y*128+x];}read_mismatches+=output[i]!=wanted;}}
         uint64_t colorHash=valid?depth32_hash(cp,1280):0,depthHash=valid?depth32_hash(dp,1280):0;
+        if(valid && (mismatches || read_mismatches)){
+            attachment_page_snapshot(emit,"depth32",phase,0,cp,1280,cb.gpuAddress,sequence);
+            attachment_page_snapshot(emit,"depth32",phase,8,dp,1280,db.gpuAddress,sequence);
+        }
         valid=valid && !mismatches && !read_mismatches;
         emit("SWEET DEPTH32 PHASE index=%u valid=%u sequence=%u operations=%u mismatches=%u read_mismatches=%u",phase,valid,sequence,operations,mismatches,read_mismatches);
         emit("SWEET DEPTH32 HASH index=%u color=%016llx depth=%016llx original_pages=%u",phase,(unsigned long long)colorHash,(unsigned long long)depthHash,cb.contents==cp && db.contents==dp);

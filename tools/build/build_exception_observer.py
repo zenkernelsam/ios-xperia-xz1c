@@ -132,7 +132,7 @@ if a.mip_probe:
     headers+=['gpu/diagnostics/MetalMipProbe.h','gpu/sweetgl/MetalShaderAPI.h','gpu/sweetgl/XRColourTables.h']
 if a.depth32_probe:
     assert resource_manifest.get('native_depth32_attachment') and render_fixture_manifest
-    headers+=['gpu/diagnostics/MetalDepth32Probe.h']
+    headers+=['gpu/diagnostics/MetalDepth32Probe.h','gpu/diagnostics/AttachmentPageSnapshot.h']
 if a.stencil8_probe:
     assert resource_manifest.get('native_stencil8_attachment') and render_fixture_manifest
     headers+=['gpu/diagnostics/MetalStencil8Probe.h']
@@ -239,6 +239,15 @@ assert 'PASS' in run([out/'test_startup'],'startup-host-test')
 if cache_scope:
     run(['clang','-O1','-g','-fsanitize=address,undefined',root/'tools/build/test_program_cache_scope.c','-o',out/'test_cache_scope'],'cache-scope-host-compile')
     assert 'PASS' in run([out/'test_cache_scope'],'cache-scope-host-test')
+if a.depth32_probe:
+    run(['clang','-O1','-g','-fsanitize=address,undefined',root/'tools/build/test_attachment_page_snapshot.c',
+        '-o',out/'test_attachment_snapshot'],'attachment-snapshot-host-compile')
+    snapshot=run([out/'test_attachment_snapshot'],'attachment-snapshot-host-test')
+    assert 'Attachment page snapshot host PASS:' in snapshot
+    sys.path.insert(0,str(root/'tools/device'))
+    from attachment_snapshot_evidence import decode as decode_attachment_snapshot
+    pages=decode_attachment_snapshot(snapshot);page=pages[('msaa',17,11)]
+    assert len(pages)==1 and page['bytes']==bytes((i*17+3)&255 for i in range(4096))
 if a.program_cache_export:
     run(['clang','-O1','-g','-fsanitize=address,undefined',root/'tools/build/test_program_request_export.c','-o',out/'test_request_export'],'request-export-host-compile')
     assert 'PASS' in run([out/'test_request_export'],'request-export-host-test')
@@ -334,6 +343,9 @@ manifest=dict(source='gpu/diagnostics/exception_observe.m',source_sha256=hashlib
 if a.target_process=='AegirPoster':manifest.update(renderer_abi_and_device_observer_test_passed=True,renderer_observations_max=32,
     metadata_only_no_buffer_allocation=True,original_renderer_return_and_exception_preserved=True)
 manifest.update(source_files=source_files,runtime_Metal_ABI_methods=22,metadata_observer_no_device_calls_test_passed=True)
+if a.depth32_probe:manifest.update(attachment_failure_snapshot_revision=1,attachment_failure_snapshot_chunk_bytes=24,
+    attachment_failure_snapshot_max_page_bytes=4096,attachment_failure_snapshot_author_pages_only=True,
+    attachment_failure_snapshot_retired_pages_readonly=True,attachment_failure_snapshot_does_not_change_verdict=True)
 manifest.update(probe_startup_revision=1,actual_startup_readiness_host_asan_ubsan_passed=True,startup_host_source_sha256=hashlib.sha256((root/'tools/build/test_metal_startup.c').read_bytes()).hexdigest())
 if a.target_process=='backboardd':manifest.update(background_full_suite=True,waits_for_same_process_GLES_suite=True,original_Aegir_not_modified_or_registered=True)
 if a.cif10_png_reference:manifest.update(cif10_PNG_reference=True,cif10_reference_revision=3,cif10_reference_cases=6,

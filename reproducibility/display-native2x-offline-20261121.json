@@ -1,0 +1,64 @@
+{
+  "date": "2026-11-21",
+  "from_pixels": [
+    750,
+    1624
+  ],
+  "from_points": [
+    375,
+    812
+  ],
+  "to_pixels": [
+    720,
+    1280
+  ],
+  "to_points": [
+    360,
+    640
+  ],
+  "scale": 2,
+  "pixel_reduction_percent": 24.33497536945812,
+  "old_scale_x": 0.96,
+  "old_scale_y": 0.7881773399014779,
+  "horizontal_vs_vertical_stretch_ratio": 1.218,
+  "requested_by_user": true,
+  "ADT_profile_available": "xz1c-native-2x",
+  "changed_ADT_properties": 4,
+  "actual_boot_UIKit_MobileGestalt_statusbar_safearea_touch_mapping_pending": true,
+  "kernel_SweetFramebuffer_has_existing_native_geometry_option": true,
+  "existing_sf2x_and_native_conflict_requires_new_package": true,
+  "current_device_geometry_unchanged": true,
+  "host_unit_tests": 3,
+  "device_operations": 0,
+  "actual_local_adt_conversion": {
+    "revision": 1,
+    "profile": "xz1c-native-2x",
+    "canvas_pixels": [
+      720,
+      1280
+    ],
+    "UIKit_points": [
+      360,
+      640
+    ],
+    "display_scale": 2,
+    "panel_pixels": [
+      720,
+      1280
+    ],
+    "aspect_ratio_preserved": true,
+    "source_sha256": "257076987411b50f037f70bf97524fae56ac2965e773c1bb8678d05d45480ba6",
+    "render_adt_sha256": "077aac63b2e5cd48e0e4fbd024a07cac3533eaea6a04a94376d2966dbef4d2e6",
+    "four_properties_only": true,
+    "other_properties_byte_exact": true,
+    "device_operations": 0,
+    "device_geometry_acceptance_pending": true,
+    "required_boot_arguments": {
+      "sweetfb_native": 1,
+      "sf2x": 0,
+      "sweetfb_xf": 8
+    },
+    "MobileGestalt_and_UIScreen_must_be_verified_on_the_same_boot": true,
+    "statusbar_safe_area_original_UI_touch_and_optical_acceptance_pending": true
+  }
+}

@@ -1,5 +1,7 @@
 # 原锁屏绘制阶段 — 2026-11-19
 
+此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。新附件native21尚未准入，旧阶段成功不扩展为完整UI。
+
 当前同核诊断库为 v730/f258dee9、GLES a7bad22c、Metal 5e94ab57，Metal source-map 3e79503f。GLES 只在原绘制路径增加最多 32 次的阶段计时，原 GL 调用顺序、参数、errno、像素和既有同步保持。完整源码及变更边界见 `gpu/sweetgl/metal_render.c` 和 `reproducibility/render-stage-r1-source-change.json`。
 
 新 GLES 自身 CPU12f3b34d／38.312秒与 GLES1e4c90b4／38.453秒已独立通过。新增共享参考 RAM 自身 CPU0f50a90d／38.375秒、GPU2506ca58／38.000秒也已通过全部 GLES 八项、14组 native、六组共享 PNG、原字节／padding／guard／fence／释放和完整串口截图。当前新库必须使用这些精确先验，旧72d39da5和旧kernel的 proof不能准入新 GLES。

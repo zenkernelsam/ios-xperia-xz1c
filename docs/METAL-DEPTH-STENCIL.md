@@ -1,5 +1,9 @@
 # Metal 深度／模板候选 — 2026-11-20
 
+最新tiled GLES c617f2ee已通过自身CPU／GLES9，reference CPU b2f3fc4f因独立启动日志字节不一致拒绝，native21未投递；本页此前离线及失败记录保持，准入以[STATUS](STATUS.md)为准。详见[ATTACHMENT-HARDWARE](ATTACHMENT-HARDWARE.md)。
+
+2026-11-20恢复新蓝灯会话后的最新实际验收与12个失败页面见[ATTACHMENT-HARDWARE](ATTACHMENT-HARDWARE.md)。当前GLES21de自身CPU／GLES9已通过；完整Metal21的深度／模板／Memoryless／MSAA首阶段原字节失败，原presentation／PNG未执行，不能提升此页旧离线结果为整组通过。全部0x06回程／健康／worker退出完整，失败包保留不重发。
+
 此专题保留单采样候选的原结果和适用边界；当前源码已扩展[MSAA附件r1](METAL-MULTISAMPLE.md)，旧native18和此页旧二进制不能准入当前MSAA库，完整新门槛为native20／PNG6。新源码不是此页旧候选的同字节重建。
 
 现行实机基线仍是v730／GLES CA矩阵r1／Metal5e94ab57。正式源码在Depth32候选上增加Stencil8附件，两个原页面、状态快照、GPU独立清除和引用回收已接入，离线构建与主机检查通过。新候选没有投递手机，仍须自己的CPU／GLES9／referenceCPU／native18／PNG6证明；黑壁纸、完整动态UI／FPS／睡眠和其它外设没有因此完成。

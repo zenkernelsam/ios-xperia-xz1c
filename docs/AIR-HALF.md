@@ -1,5 +1,7 @@
 # Binary16 AIR storage and arithmetic — 2026-11-15
 
+此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。新附件native21尚未准入，旧阶段成功不扩展为完整UI。
+
 air-half-r1已实机完成原16位buffer读取/写回、逐half结果舍入、float32→half边界、scalar/vector计算和half顶点/片元绘制，1完整/0缺项。131072B全部原输入/输出/级间与尾部保护区验证；finite bits严格匹配，NaN类别、出现位置和实际raw payload分别记录再复算全hash。前序全部native/GLES/960000只读像素保持通过，303allocated/released/unmapped、active/orphan/root0，38.282秒完整PON06返回。
 
 内核仍v729 SHA774b5efd5f715dc40d81e3c207c85b9b690c83fe44f4fd9061a2189ef7db71ec，81源审计保持；GLES499bc6e9ddcf8143a0cc5578a3b8dd9c6ce3396f660917b7ac5655aaedf25cf3，Metal3b4a4082b5d5b2cc4ff93197451b1ad4d7dba07a42405cea00c2900ef54cd9e8。token4da8a0c9068a1b8f，镜像a24f94654e7bed20fe4b80413d51a01931f957a3b234247afe614f3ce9a46e15，411797B日志SHAaee71e2e3f44e5db61a11ad81ddc2c918ca9fd719f8655b96a9b85d3840bad29。只改AIR前端/ESSL，allocator/SCM/PON/RPC/VM保持。

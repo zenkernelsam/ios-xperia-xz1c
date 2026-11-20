@@ -1,5 +1,7 @@
 # 串口显示帧截图
 
+2026-11-20恢复新蓝灯会话后的最新实际验收与12个失败页面见[ATTACHMENT-HARDWARE](ATTACHMENT-HARDWARE.md)。当前GLES21de自身CPU／GLES9已通过；完整Metal21的深度／模板／Memoryless／MSAA首阶段原字节失败，原presentation／PNG未执行，不能提升此页旧离线结果为整组通过。全部0x06回程／健康／worker退出完整，失败包保留不重发。
+
 2026-11-20重新从881ce1c5主页与3541e079锁屏原串口日志独立核验全部源／寄存器／CRC／FNV／保存PNG像素，均通过，未发送手机命令。两张图实际捕获于11月19日；日常UI／文字／颜色数值已经可直接取串口无损720×1280 PNG，不必等待DroidCam。复杂主页原传输30.311秒、锁屏11.921秒，当前为单帧取证，不能当实时录屏或FPS；LCD实际发光、光学色偏、错行及背光仍单独验收。原raw、失败判定和已验基线保持。
 
 2026-11-19现行CA矩阵GLESd6d8fcfa／v730已通过自身GLES9组／完整native16／PNG6组；cb9a39f8及206fb768两张150秒图恢复灰色锁屏时间日期，881ce1c5在120秒单串口上滑后150秒读到完整正常颜色主页。该主页帧2764800B→925068B／7228块，传输30.311秒／PNG301942B，power_off0；所有来源和像素校验通过，壁纸仍黑且原Aegir无pipeline，controller STOP保持。最新原请求r2／61745a1e16c8ab41在150.031秒再次保存灰字锁屏，2764800B→349908B／2734块，PNG52248B／SHA39025591；来源／保存像素／完整回程均通过，原STOP仍保留。详见 [CA-MATRIX](CA-MATRIX.md)、[METAL-REQUEST-OBSERVATION](METAL-REQUEST-OBSERVATION.md)、STATUS及对应证据，下面r6缺字为旧库比较。

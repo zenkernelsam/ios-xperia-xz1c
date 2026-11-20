@@ -1,5 +1,7 @@
 # 原始快照耗时观察 — 2026-11-16
 
+此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。新附件native21尚未准入，旧阶段成功不扩展为完整UI。
+
 原Aegir r2在五个实际管线恢复后已出现两次750×1624 GPU draw，但扩展仍在check-in期限内退出。当前靴的三个采样分别处于malloc释放、ColorSync ICC变换初始化、ImageIO PNG过滤/deflate/finalize。采样位置只能说明退出时正在执行的路径，不能据此认定VM、色彩配置或PNG实现有故障。
 
 postdraw-r1仅在原Aegir的短登记observer中添加四个标准API的入口/返回观察：UIImagePNGRepresentation、CGImageDestinationAddImage、CGImageDestinationFinalize、ColorSyncTransformCreate。与已有IOSurface观察相同，使用独立dylib的标准dyld interpose section；不修改原系统映像，不调整图像属性、压缩参数、颜色配置、像素或check-in期限。每次原调用保持参数及返回对象/布尔值、nil、异常和errno。记录PNG返回长度与CGImage尺寸/stride/颜色模型等metadata，不读取原像素页或PNG内容。

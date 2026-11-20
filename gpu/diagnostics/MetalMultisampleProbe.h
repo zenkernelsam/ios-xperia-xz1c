@@ -1,6 +1,7 @@
 /* SPDX-License-Identifier: BSD-2-Clause; actual original FD540 sample pages. */
 #pragma once
 #include <CommonCrypto/CommonDigest.h>
+#include "AttachmentPageSnapshot.h"
 #include "MultisampleProbeValues.h"
 static const unsigned multisample_slots[5]={0,8,9,10,11};
 typedef struct MultisampleProbeSet {
@@ -95,6 +96,8 @@ static bool multisample_probe_check(MultisampleProbeSet *set,unsigned phase,uint
         valid=valid && set->buffers[i].contents==set->bytes[i] && set->bytes[i];
         multisample_probe_expected(phase,slot,expected);
         if(set->bytes[i]){for(unsigned byte=0;byte<size;++byte)mismatches+=set->bytes[i][byte]!=expected[byte];hashes[i]=multisample_probe_hash(set->bytes[i],size);}}
+    if(valid && mismatches)for(unsigned i=0;i<5;++i)attachment_page_snapshot(emit,"msaa",phase,multisample_slots[i],set->bytes[i],
+        multisample_probe_bytes(samples,multisample_slots[i]),set->buffers[i].gpuAddress,sequence);
     valid=valid && !mismatches;
     emit("SWEET MULTISAMPLE PHASE index=%u valid=%u sequence=%u operations=%u checked_bytes=%u guard_bytes=%u mismatches=%u original_pages=1",
         phase,valid,sequence,operations,checked,guards,mismatches);
