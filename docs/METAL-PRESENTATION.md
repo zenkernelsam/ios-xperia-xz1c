@@ -71,3 +71,5 @@ python3 -B tools/build/inspect_native_presentation.py --root build/my-readonly-r
 严格顺序为同核private／owner／ready→精确GLES自身CPU／GLES9→本reference CPU→完整native21／PNG6→新native／PNG proof→原poster CPU／GPU与150秒scanout。`native_drawable_presentation`强制`Metal_presentation`，旧20组拒绝。探针错误只在本LIVE后按现有PON0x06回程并保留REVISE，低层发送器无修改。用户目前明确要求继续离线，r4／r5失败后未确认新物理fastboot会话，本轮不操作手机。
 
 七份旧手册原字节和SHA在[归档](archive/20261120/presentation-r1/original-documents.json)，原黑壁纸scope没有display／pipeline请求仍保持STOP。呈现是后续真实显示所需的缺口，不把它当作已证黑壁纸原因；完整壁纸／UI／FPS、睡眠、LCD光学及其它外设保持active。
+
+本轮实际回收Windows7项／12文件／34820404B、Mac21项／432文件／300997854B；全部原生回收核验，未清空。候选CPU包、raw／blob／库、原失败和20H392 ABI证据保留，两Ubuntu垃圾桶为空。[回收记录](../reproducibility/presentation-r1-native-recycle.json)。

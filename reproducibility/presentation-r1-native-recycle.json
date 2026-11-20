@@ -1,0 +1,178 @@
+{
+  "date": "2026-11-20",
+  "source_commit": "169df32d1e7808049dab7422b84b047ce1346945",
+  "Windows": {
+    "items": 7,
+    "files": 12,
+    "bytes": 34820404,
+    "native_recycle_verified": true,
+    "records": [
+      {
+        "time": "2026-11-20T19:07:22.1812123+08:00",
+        "verified_native_recycle": true,
+        "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\presentation-abi-r1\\reference-ram-r2\\glram.dmg",
+        "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R8PT3PW.dmg"
+      },
+      {
+        "time": "2026-11-20T19:07:22.5567015+08:00",
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-presentation-r1-complete-source-20261120",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$REZQDJF"
+      },
+      {
+        "time": "2026-11-20T19:07:22.8427512+08:00",
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-presentation-r1-docs-20261120",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R9QQ051"
+      },
+      {
+        "time": "2026-11-20T19:07:23.0762494+08:00",
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-presentation-r1-publish-source-20261120",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RLTEMLT"
+      },
+      {
+        "time": "2026-11-20T19:07:23.2893530+08:00",
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-presentation-r1-scheduled-source-20261120",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RQZM8JM"
+      },
+      {
+        "time": "2026-11-20T19:07:23.5284845+08:00",
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-presentation-r1-source-20261120",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RL0G4SM"
+      },
+      {
+        "time": "2026-11-20T19:07:23.7435713+08:00",
+        "verified_native_recycle": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-presentation-host-r2.mm",
+        "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R7KOM72.mm"
+      }
+    ],
+    "before_manifest_SHA": "fe9638e6ca49adcbdcdd0ba24da00a61bf11e656d09256c1e709b2a6fc07b7bb"
+  },
+  "macOS": {
+    "items": 21,
+    "files": 432,
+    "bytes": 300997854,
+    "native_Trash_verified": true,
+    "records": [
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-abi-r1/native-host-r2",
+        "trash_path": "/Users/ciscohe/.Trash/native-host-r2 19-08-17-570"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-abi-r1/native-host-r3",
+        "trash_path": "/Users/ciscohe/.Trash/native-host-r3 19-08-17-590"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-abi-r1/native-host-r4",
+        "trash_path": "/Users/ciscohe/.Trash/native-host-r4 19-08-17-647"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-abi-r1/library-r1",
+        "trash_path": "/Users/ciscohe/.Trash/library-r1 19-08-17-703"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-abi-r1/reference-observer-r1",
+        "trash_path": "/Users/ciscohe/.Trash/reference-observer-r1 19-08-17-754"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-abi-r1/reference-ram-r1",
+        "trash_path": "/Users/ciscohe/.Trash/reference-ram-r1"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-abi-r1/source-stage-r1",
+        "trash_path": "/Users/ciscohe/.Trash/source-stage-r1"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-abi-r1/scheduled-source-stage-r1",
+        "trash_path": "/Users/ciscohe/.Trash/scheduled-source-stage-r1"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-abi-r1/complete-source-stage-r1",
+        "trash_path": "/Users/ciscohe/.Trash/complete-source-stage-r1"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-abi-r1/publish-source-stage-r1",
+        "trash_path": "/Users/ciscohe/.Trash/publish-source-stage-r1"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-abi-r1/docs-stage-r1",
+        "trash_path": "/Users/ciscohe/.Trash/docs-stage-r1 19-08-18-078"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-abi-r1/source-r1.tar",
+        "trash_path": "/Users/ciscohe/.Trash/source-r1.tar"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-abi-r1/scheduled-source-r1.tar",
+        "trash_path": "/Users/ciscohe/.Trash/scheduled-source-r1.tar"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-abi-r1/complete-source-r1.tar",
+        "trash_path": "/Users/ciscohe/.Trash/complete-source-r1.tar"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-abi-r1/publish-source-r1.tar",
+        "trash_path": "/Users/ciscohe/.Trash/publish-source-r1.tar"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-abi-r1/docs-r1.tar",
+        "trash_path": "/Users/ciscohe/.Trash/docs-r1.tar 19-08-18-340.tar"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-abi-r1/host-r2.mm",
+        "trash_path": "/Users/ciscohe/.Trash/host-r2.mm"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-abi-r1/host-r1-before.mm",
+        "trash_path": "/Users/ciscohe/.Trash/host-r1-before.mm"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-abi-r1/mount-helper.py",
+        "trash_path": "/Users/ciscohe/.Trash/mount-helper.py"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-abi-r1/static-helper.py",
+        "trash_path": "/Users/ciscohe/.Trash/static-helper.py"
+      },
+      {
+        "native_trash_verified": "true",
+        "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-abi-r1/reference-ram-r2/glram.dmg",
+        "trash_path": "/Users/ciscohe/.Trash/glram.dmg 19-08-18-615.dmg"
+      }
+    ],
+    "before_manifest_SHA": "4e802b78dc3a6014229abdd6571925fb9b9db1b95007b74e8f1c98b990abb3e7"
+  },
+  "current_CPU_bundle_raw_blob_and_library_preserved": true,
+  "superseded_host_manifests_and_logs_copied_before_native_Trash": true,
+  "failed_first_presentation_compile_and_exact_original_ABI_metadata_preserved": true,
+  "raw_original_root_in_native_Trash_only_readonly_mounted_then_detached": true,
+  "Windows_Mac_Trash_not_emptied": true,
+  "Ubuntu_Trash_empty_checked": true,
+  "Ubuntu_22_04_Trash_empty_checked": true,
+  "permanent_deletions": 0,
+  "phone_operations": 0
+}
