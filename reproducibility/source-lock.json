@@ -205,7 +205,7 @@
       "MetalShaderAPI.h": "3eebe9013770eff5c1092c8ccc50b4cd6ad931986f109573f74905d16dd1c23b",
       "metal_compute.c": "c2780b5202cdc4ae4161b2359d6c694f4bd35e4af7c3d3d50286fed5d12b8376",
       "MetalShaderInternals.h": "3161513604b8d3643e37a42f4ceed7d742461a50bee365a0de2e2db0e93ee6df",
-      "metal_render.c": "9e84ec106bdfe60355d46bc7846b719ebf513e27f7129259bfb055cbaa3c6154",
+      "metal_render.c": "edda57195b6505e7f18465ac0ba02da06beafaab68041450995ad75ba82dce80",
       "XRColourTables.h": "7564148cfcdb509061e1cebc76cd8afb59a292f4dea18086f2d7fa753bb723fa",
       "XRColourShader.h": "9a4e6514d9f203dac4fa95def0ec418777c8422125bfacfdbb0d1a7ea1c6d973",
       "MipColourShader.h": "15d9f983a7fd0d71604193262a19b7b6cad8f6900c6366f7e12b155db47c8ed1",
@@ -234,7 +234,7 @@
       "MetalMultisampleAPI.h": "d91d5769eb8d15e1f4e1fd881271c2fcb22591536a76485b96df65d9b588384e",
       "MultisampleLayout.h": "8401b48a17b9ec55b5209a34389cc87aa8f374417e4d1e391f7958dc441f76ae",
       "MultisampleResolveGLES.h": "d2ee66bf5a9a900b3a3a26d85d4fcded09573f3d7d052afcbf69c4b7fd7ac8d4",
-      "DepthTiledPlane.h": "c46ad55186216a91764273c199a7bf4447a3feeb634c631dc47aface47b6bcdb"
+      "DepthTiledPlane.h": "e96276b04dc13f303548af460ff8ce0b585892e345a2dc43a9c24ba50d08f7c5"
     },
     "tested_library_sha256": "9a59820c7e54b1626cacd49acb70a7d460be3c01c415a17429a2464bb5b11571",
     "build_script_updated_for_canonical_output": "956340e5f130698f8fc1e188009a2966c6a935b91caf5001d629b8a74d14a55c",

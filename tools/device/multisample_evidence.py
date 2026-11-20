@@ -73,7 +73,8 @@ def expected_bytes(phase,slot):
 
 def expected(phase):return tuple(fnv(expected_bytes(phase,slot)) for slot in SLOTS)
 
-def verify(text,token,fixture):
+def verify(text,token,fixture,tiled_revision=0):
+    assert tiled_revision in (0,2)
     live='SWEET LOOP LIVE proto=1 token='+token;ack='SWEET LOOP ACK FASTBOOT token='+token
     assert text.count(live)==text.count(ack)==1
     scope=text[text.index(live):text.index(ack)]
@@ -85,7 +86,7 @@ def verify(text,token,fixture):
     assert len(pages)==90 and len(phases)==len(sources)==len(resolved)==18 and len(isolation)==2
     assert block.count('SWEET MULTISAMPLE ')==1+1+90+18*3+2,'Unknown, duplicated, truncated or failed MSAA record'
     assert [int(p[1]) for p in phases]==[int(p[1]) for p in sources]==[int(p[1]) for p in resolved]==list(range(18))
-    original={};records=[];sequences=[];total=guards=0
+    original={};records=[];sequences=[];total=guards=0;tiled=[]
     for phase,(p,s,r) in enumerate(zip(phases,sources,resolved)):
         count=samples(phase);checked=sum(size(count,slot) for slot in SLOTS);guard=checked-17*9*(9*count+8)
         sequence=int(p[3]);assert sequence>0 and sequence not in sequences and p[2]=='1' and p[7]=='0'
@@ -123,7 +124,7 @@ def verify(text,token,fixture):
             handle=original[phase,slot]['handle']
             pattern=(r'SWEET METAL MRT retired index=0 handle='+str(handle)+r' format=80 result=0 sequence=(\d+) original_pages=1') if slot==0 else (
                 r'SWEET METAL '+name+r' retired handle='+str(handle)+r' result=0 sequence=(\d+) original_pages=1')
-            retired=list(re.finditer(pattern,segment));assert len(retired)==len(draws)+len(clears)
+            retired=list(re.finditer(pattern,segment));assert len(retired)==len(draws)+len(clears), f'Original retirement count differs phase={phase} slot={slot}'
             assert all(0<int(m[1])<=sequence for m in retired)
         # The importer must expose original real sample count, stride, offset
         # and the page's actual IOVA. S8 must be paired with the original Z32.
@@ -134,9 +135,17 @@ def verify(text,token,fixture):
             need=len(draws)+len(clears)+(1 if should and slot in (0,8) else 0)
             # Combined Z/S import does not produce a standalone depth record.
             if slot==8:need=1 if should else 0
+            if tiled_revision and slot==9:need=0
             assert len(imported)==need and all(m[1]==info['gpu_address'] for m in imported)
         paired=list(re.finditer(r'SWEET MSAA pair depth='+str(z)+r' stencil='+str(st)+r' samples='+str(count)+r' result=0 separate_z32s8=1 original_pages=1',segment))
-        assert len(paired)==len(draws)+len(clears)
+        assert len(paired)==(0 if tiled_revision else len(draws)+len(clears))
+        if tiled_revision:
+            from depth_tiled_evidence import plane,verify_groups
+            groups=[[plane(original[phase,slot]['handle'],original[phase,slot]['gpu_address'],
+                           253 if slot==9 else 252,count,pitch(count,slot),2 if clears or phase>=14 and operation==0 else 1)
+                     for slot in (8,9)] for operation in range(len(draws)+len(clears))]
+            if should:groups.append([plane(rz,original[phase,11]['gpu_address'],252,1,pitch(count,11),0)])
+            tiled.append(dict(phase=phase,**verify_groups(segment,groups)))
         if phase<14 and phase%7>0:
             for slot in SLOTS:assert original[phase,slot]==original[phase-1,slot],'A stored pass silently replaced its original source or resolve destination'
         if phase>=14:
@@ -153,6 +162,8 @@ def verify(text,token,fixture):
             a=original[start,slot];b=original[start+1,slot]
             assert a['public']==b['public'] and a['handle']!=b['handle'] and a['gpu_address']!=b['gpu_address'] and a['pass_id']!=b['pass_id']
     assert (total,guards)==(151488,55098)
-    return dict(complete_samples=1,incomplete_samples=0,phases=18,checked_bytes=total,guard_bytes=guards,records=records,original_pages=[dict(phase=phase,slot=slot,**info) for (phase,slot),info in original.items()],
+    result=dict(complete_samples=1,incomplete_samples=0,phases=18,checked_bytes=total,guard_bytes=guards,records=records,original_pages=[dict(phase=phase,slot=slot,**info) for (phase,slot),info in original.items()],
         original_sample_mask_and_Load_Clear_retention_verified=True,colour_average_depth_sample0_min_max_GPU_resolve_verified=True,source_samples_and_all_guards_preserved=True,
         Memoryless_two_queue_original_pages_are_independent=True,final_allocated=0,raw_is_actual_device_evidence_only_when_called_from_verified_trial=True)
+    if tiled_revision:result['tiled_work_planes']=tiled
+    return result

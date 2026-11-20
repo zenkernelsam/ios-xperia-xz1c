@@ -42,7 +42,8 @@ def expected(phase):
     return fnv(color),fnv(depth),fnv(stencil)
 
 
-def verify(text,token,fixture):
+def verify(text,token,fixture,tiled_revision=0):
+    assert tiled_revision in (0,2)
     live='SWEET LOOP LIVE proto=1 token='+token;ack='SWEET LOOP ACK FASTBOOT token='+token
     assert text.count(live)==text.count(ack)==1
     scope=text[text.index(live):text.index(ack)];assert scope.count(BEGIN)==scope.count('SWEET STENCIL8 BEGIN ')==1
@@ -70,8 +71,20 @@ def verify(text,token,fixture):
     assert int(imported[0][2],16)%16384==int(depths[0][2],16)%16384==0
     assert all(m[1]==handle for m in cleared+retired) and all(0<int(m[2])<=s for m,s in zip(retired,sequences))
     assert block.count('SWEET METAL STENCIL import ')==99 and block.count('SWEET METAL STENCIL clear ')==98 and block.count('SWEET METAL STENCIL retired ')==99
-    return dict(complete_samples=1,incomplete_samples=0,phases=99,checked_bytes=329472,guard_bytes=193149,read_bytes=118800,
+    tiled=None
+    if tiled_revision:
+        from depth_tiled_evidence import plane,verify_groups
+        groups=[]
+        for phase in range(99):
+            group=[]
+            if phase!=96:group.append(plane(depth_handle,depths[0][2],252,1,128,2 if phase<96 or phase==98 else 1,publish=phase!=97))
+            group.append(plane(handle,imported[0][2],253,1,64,1 if phase==98 else 2,publish=phase!=98))
+            groups.append(group)
+        tiled=verify_groups(block,groups)
+    result=dict(complete_samples=1,incomplete_samples=0,phases=99,checked_bytes=329472,guard_bytes=193149,read_bytes=118800,
                 records=records,original_stencil_handle=int(handle),original_depth_handle=int(depth_handle),original_GPU_offset=64,
                 original_stencil_GPU_address=imported[0][2],original_depth_GPU_address=depths[0][2],
                 original_separate_planes_front_back_compares_all_operations_masks_Load_Clear_and_padding_verified=True,
                 final_allocated=0,MSAA_XR_and_full_UI_not_inferred=True)
+    if tiled is not None:result['tiled_work_planes']=tiled
+    return result

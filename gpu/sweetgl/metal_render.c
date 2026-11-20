@@ -774,7 +774,9 @@ static int prepare_depth_tiled(struct st_context *context,const SweetRenderDepth
         glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
         result=accepted && glGetError()==GL_NO_ERROR?0:-EIO;
     }
-    if(!result){if(depth){SweetMetalBacking backing={0};(void)texture_layout_samples(&depth->target,samples,&backing);
+    if(!result){if(stencil)sweet_drm_log("SWEET DEPTH TILE PAIR depth=%u stencil=%u depth_work=%u stencil_work=%u samples=%u result=0 separate_z32s8=1",
+            depth?depth->target.handle:0,stencil->target.handle,targets->depthPlane.work.handle,targets->stencilPlane.work.handle,samples);
+        if(depth){SweetMetalBacking backing={0};(void)texture_layout_samples(&depth->target,samples,&backing);
             sweet_drm_log("SWEET METAL DEPTH import handle=%u width=%u height=%u pitch=%u offset=%llu GPU=%#llx original_pages=1",
                 depth->target.handle,depth->target.width,depth->target.height,depth->target.pitch,(unsigned long long)depth->target.offset,(unsigned long long)backing.gpu_address);}
         if(stencil){SweetMetalBacking backing={0};(void)texture_layout_samples(&stencil->target,samples,&backing);
@@ -859,12 +861,12 @@ static int finish_targets(const SweetRenderPass *pass,const SweetRenderDepthPass
             if(!result)result=sweetgl_metal_buffer_synchronize(a.target.handle);
             sweet_drm_log("SWEET METAL MRT retired index=%u handle=%u format=%u result=%d sequence=%u original_pages=1",i,a.target.handle,a.target.format,result,completed);}
     }
-    if(!result && depth && (config || depth->load_action==2)){
+    if(!result && depth){
         uint32_t completed=0;result=sweet_drm_metal_buffer_sequence(depth->target.handle,&completed);if(completed>*sequence)*sequence=completed;
         if(!result)result=sweetgl_metal_buffer_synchronize(depth->target.handle);
         sweet_drm_log("SWEET METAL DEPTH retired handle=%u result=%d sequence=%u original_pages=1",depth->target.handle,result,completed);
     }
-    if(!result && stencil && (config || stencil->load_action==2)){
+    if(!result && stencil){
         uint32_t completed=0;result=sweet_drm_metal_buffer_sequence(stencil->target.handle,&completed);if(completed>*sequence)*sequence=completed;
         if(!result)result=sweetgl_metal_buffer_synchronize(stencil->target.handle);
         sweet_drm_log("SWEET METAL STENCIL retired handle=%u result=%d sequence=%u original_pages=1",stencil->target.handle,result,completed);

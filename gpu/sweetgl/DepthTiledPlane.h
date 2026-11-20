@@ -28,8 +28,10 @@ static enum pipe_format sweet_tiled_transfer_format(unsigned pixel,unsigned samp
 }
 static void sweet_depth_tiled_retire(SweetDepthTiledPlane *plane)
 {
+    uint32_t original=plane->original.handle,work=plane->work.handle;
     pipe_resource_reference(&plane->attachment,NULL);pipe_resource_reference(&plane->linear,NULL);pipe_resource_reference(&plane->raw,NULL);
-    if(plane->work.handle)(void)sweetgl_metal_buffer_release(plane->work.handle);
+    if(work){int result=sweetgl_metal_buffer_release(work);
+        sweet_drm_log("SWEET DEPTH TILE RETIRE original=%u work=%u result=%d references_retired=1",original,work,result);}
     memset(plane,0,sizeof(*plane));
 }
 static struct pipe_resource *sweet_tiled_alias(struct st_context *context,uint32_t handle,enum pipe_format format,
@@ -70,8 +72,8 @@ static int sweet_depth_tiled_copy(struct st_context *context,SweetDepthTiledPlan
     if(fence)context->screen->fence_reference(context->screen,&fence,NULL);
     uint32_t sequence=0;int result=completed?sweet_drm_metal_buffer_sequence(to_original?plane->original.handle:plane->work.handle,&sequence):-ETIMEDOUT;
     if(!result)result=sweetgl_metal_buffer_synchronize(to_original?plane->original.handle:plane->work.handle);
-    sweet_drm_log("SWEET DEPTH TILE COPY original=%u work=%u direction=%s samples=%u width=%u height=%u result=%d sequence=%u GPU_only=1",
-        plane->original.handle,plane->work.handle,to_original?"store":"load",plane->samples,plane->original.width,plane->original.height,result,sequence);
+    sweet_drm_log("SWEET DEPTH TILE COPY original=%u work=%u direction=%s samples=%u width=%u height=%u result=%d sequence=%u GPU_only=1 fence=%u",
+        plane->original.handle,plane->work.handle,to_original?"store":"load",plane->samples,plane->original.width,plane->original.height,result,sequence,completed);
     return result;
 }
 static int sweet_depth_tiled_create(struct st_context *context,const SweetShaderTextureBinding *original,unsigned samples,
@@ -92,6 +94,9 @@ static int sweet_depth_tiled_create(struct st_context *context,const SweetShader
     if(!plane->attachment || !plane->raw || !plane->linear){result=-ENOMEM;goto failure;}
     sweet_drm_log("SWEET DEPTH TILE PAGE original=%u work=%u format=%u samples=%u pitch=%u bytes=%llu tile=%u original_pitch=%u original_offset=%llu",
         original->handle,plane->work.handle,original->format,samples,layout.pitch0,(unsigned long long)layout.size,layout.tile_mode,original->pitch,(unsigned long long)original->offset);
+    sweet_drm_log("SWEET DEPTH TILE MAP original=%u work=%u original_GPU=%#llx work_GPU=%#llx load=%u width=%u height=%u cpp=%u raw_cpp=%u alias_samples=1",
+        original->handle,plane->work.handle,(unsigned long long)backing.gpu_address,(unsigned long long)plane->work.gpu_address,load,
+        original->width,original->height,layout.cpp,fd_resource(plane->raw)->layout.cpp);
     if(load==1){result=sweet_depth_tiled_copy(context,plane,false);if(result)goto failure;}
     return 0;
 failure:
