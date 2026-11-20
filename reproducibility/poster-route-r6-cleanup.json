@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-20",
+  "source_commit": "d69856f21cba6b9516ea8d72ec5ed348c25df841",
+  "Mac": {
+    "items": 12,
+    "bytes_of_regular_files": 18151464139,
+    "temporary_raw_bytes": 17179869184,
+    "native_Trash_verified": true,
+    "protected_sparse_gl5_and_original_A2S_retained": true,
+    "original_Apple_metadata_and_complete_failure_logs_retained_locally": true,
+    "compiled_candidates_and_current_source_proofs_retained": true,
+    "trash_emptied": false,
+    "permanent_deletions": 0
+  },
+  "Windows": {
+    "native_recycle_items": 3,
+    "native_recycle_verified": true,
+    "single_use_source_and_transfer_archive_only": true,
+    "original_private_frames_and_candidate_packages_retained": true,
+    "trash_emptied": false,
+    "permanent_deletions": 0
+  },
+  "source_and_current_candidate_proofs_retained": true,
+  "old_baseline_CPU_source_audit_refusal_preserved": true,
+  "phone_operations": 0
+}
