@@ -24,4 +24,7 @@ xnu/patches/** text eol=lf
 *.ps1   text eol=lf
 gpu/metal/xr/reference/** -text
 gpu/metal/air/half/reference/** -text
+# Historical originals are fingerprinted as bytes, including their line ends.
+# Keep them exactly as archived rather than applying current source formatting.
+docs/archive/** -text -eol
 .gitattributes text eol=lf
