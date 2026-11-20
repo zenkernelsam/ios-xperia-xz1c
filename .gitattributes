@@ -26,5 +26,9 @@ gpu/metal/xr/reference/** -text
 gpu/metal/air/half/reference/** -text
 # Historical originals are fingerprinted as bytes, including their line ends.
 # Keep them exactly as archived rather than applying current source formatting.
-docs/archive/** -text -eol
+docs/archive/20261120/attachment-hardware-r1/** -text -eol whitespace=cr-at-eol
+docs/archive/20261121/weekly-integration/** -text -eol whitespace=cr-at-eol
+# Archive manifests are current metadata, not copies of historical sources.
+docs/archive/20261120/attachment-hardware-r1/original-documents.json text eol=lf
+docs/archive/20261121/weekly-integration/original-document-manifest.json text eol=lf
 .gitattributes text eol=lf
