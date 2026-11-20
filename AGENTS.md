@@ -24,6 +24,8 @@
 
 固定20H392原root只读重建／分析／卸载已验证；新inspect_poster_routing.py锁9代码SHA及6方法ABI／A2S。实际0=active、1=deactive、2=interactive、3=supplemental；active才原startAnimation解除paused，Vista init已置display bit。ClockKitUI options0x08才4×MSAA、0x01才depth，原r3十条init皆0x72未请求两者，不能拿MSAA解释本轮黑壁纸；其它配置原depth为252／usage4／Memoryless3仍缺功能。静态链不能当原runtime模式／背光验收。见METAL-REQUEST-OBSERVATION、poster-routing-20H392-offline及poster-route-r6-offline-proof。
 
+本轮Memoryless附件候选已接入颜色／Depth32／Stencil8单采样：标准公开纹理只有immutable元数据，独立每encoder私有页面，跨pass Load／Store／CPU／sampling／mipmap拒绝，同pass多draw保持原页，queue完成／失败后回收；isFramebufferOnly标准getter已补。GLES6211bac2字节保持，新Metalf4aa2b35（789024B）／source-map31478965、reference observerb083c28f（237216B）／blob4280557B／692b62e9。Mac完整原生ASan／UBSan与ARM64库／observer构建通过，WSL八阶段19draw／10404B真实颜色-depth-stencil读回UBSan通过；host不能代替FD540。CPU a6ed4392／imagec1539667已offline同kernel private／payload／Mac83源audit，尚未投递。新增Memoryless8phase／19456B／10888Bguard、11原pass页面、两queue不同handle-IOVA及fence-retirement必须实际native19，旧native18拒绝。first host isFramebufferOnly异常原日志保留；完整壁纸／UI／FPS／睡眠／光学／其它外设及MSAA／sampled depth-stencil／有序XR仍未完成。见METAL-MEMORYLESS及memoryless-attachment-r1-offline-proof。
+
 ## 硬件与返回
 
 - 仅Sony BH905ND69G；所有fastboot设备命令必须带 `-s BH905ND69G`。
@@ -35,7 +37,7 @@
 
 ## 准入与证据
 
-新kernel自身private／owner／ready；新RAM包自身CPU；新GLES完整自身GPU；新Metal／source-map必须与能力匹配的完整native组，生产基线16、Depth32候选17、现行Stencil8候选18，还需GLES矩阵第9组和共享PNG精确先验。short registry必须同kernel／GLES／Metal／source-map的完整原raw proof，run_trial独立复算完整payload与Mac实际源码／归档。ACK前任一GPUprobe失败拒绝，ACK后退出期记录单列；不以host／离屏／缓存／controller PASS代替原UI。
+新kernel自身private／owner／ready；新RAM包自身CPU；新GLES完整自身GPU；新Metal／source-map必须与能力匹配的完整native组，生产基线16、Depth32候选17、Stencil8候选18、现行Memoryless候选19，还需GLES矩阵第9组和共享PNG精确先验。short registry必须同kernel／GLES／Metal／source-map的完整原raw proof，run_trial独立复算完整payload与Mac实际源码／归档。ACK前任一GPUprobe失败拒绝，ACK后退出期记录单列；不以host／离屏／缓存／controller PASS代替原UI。
 
 程序cache仅本实际build／Metal source-map scope；1777 sticky，原文件／旧scope不改不删。primer只读本scope实际缺bin请求；标准NIR binary不等于异步IR3完全预热，旧三轮prime_begin→ACK没有IR3日志事实保留。新库无实际请求时不得空跑primer冒充改善。
 

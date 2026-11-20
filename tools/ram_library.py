@@ -210,6 +210,11 @@ def load(folder,expected=None):
                 assert observer.get('depth32_probe') and observer['target_process']=='backboardd'
                 assert observer['stencil8_probe_phases']==99 and observer['stencil8_original_planes_front_back_masks_and_guards_required']
                 assert observer['metal_resources'].get('native_stencil8_attachment')
+            if observer.get('memoryless_probe'):
+                sources.add('gpu/diagnostics/MetalMemorylessProbe.h')
+                assert observer.get('stencil8_probe') and observer['target_process']=='backboardd'
+                assert observer['memoryless_probe_phases']==8 and observer['memoryless_original_pass_pages_guards_and_two_queue_isolation_required']
+                assert observer['metal_resources'].get('native_memoryless_attachments')
             assert set(observer['source_files'])==sources
             assert observer['source_files'][observer['source']]==observer['source_sha256']
     if 'metal_resources' in m:
@@ -230,6 +235,8 @@ def load(folder,expected=None):
             assert observer.get('depth32_probe') or observer.get('registration_only')
         if resources.get('native_stencil8_attachment'):
             assert observer.get('stencil8_probe') or observer.get('registration_only')
+        if resources.get('native_memoryless_attachments'):
+            assert observer.get('memoryless_probe') or observer.get('registration_only')
         assert m['files']['exception_observe.dylib']['sha256']==observer['library_sha256']
         if resources.get('requires_source_scoped_cache'):assert observer.get('program_cache_scope'),'Source-scoped resource package lacks its matching root'
     assert set(m['files'])==names

@@ -20,6 +20,8 @@ Sony Xperia XZ1 Compact（Snapdragon835／Adreno540）的开源XNU、shim和Mesa
 
 2026-11-20正式源码新增[Depth32／Stencil8附件候选](docs/METAL-DEPTH-STENCIL.md)：独立原页面、front-back比较／操作／掩码、独立Load／Clear和引用回收已通过离线构建与主机验证，新库完整native18／PNG6实机准入仍待完成，已验基线保持。串口720×1280无损截图已实机可用，日常UI取证不依赖摄像头，面板光学另验。
 
+后续[Memoryless附件候选](docs/METAL-MEMORYLESS.md)已补颜色／深度／模板临时存储、每渲染通道独立页面和错误回收；原生对象、主机Mesa像素与iOS ARM64构建通过，新库完整native19／PNG6仍待真机验收，生产基线保持。
+
 仅操作BH905ND69G，fastboot必须-s；COM>=10且VID1209/PID0001，单controller／worker、PON仅0x06、单download／boot、失败不重发；四回程marker、健康30秒及旧worker退出后继续。内核GPU底层／allocator／SCM／PON／RPC／VM冻结；不重刷已有gl5／userdata／SD／TA／XFL。
 
 iPhoneX iOS16.7.16／20H392、Sony原厂固件和备份由使用者提供，不进入Git；回收／归档规则见 [LAYOUT](docs/LAYOUT.md)。此前README及旧里程碑原文在 [archive](docs/archive/20261119/README-before-ca-matrix-actual.md)，各专题和reproducibility保留全部旧失败与适用范围。

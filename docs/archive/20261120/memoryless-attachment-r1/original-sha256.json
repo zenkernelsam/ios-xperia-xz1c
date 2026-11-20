@@ -1,0 +1,26 @@
+{
+  "AGENTS.md": {
+    "archive": "docs/archive/20261120/memoryless-attachment-r1/AGENTS.md",
+    "sha256": "4821335471a463303e6d60726a11754120ec6a7d480df5eb88e250c53299aa8e"
+  },
+  "README.md": {
+    "archive": "docs/archive/20261120/memoryless-attachment-r1/README.md",
+    "sha256": "751d7d7fb83b898344719f803d5428310f6c9e2f2411f531a5199f433e7eaa8c"
+  },
+  "docs/STATUS.md": {
+    "archive": "docs/archive/20261120/memoryless-attachment-r1/STATUS.md",
+    "sha256": "c97c1362ff18c77712e00cf4fc2e8faa27ae50105b52b6462a08b97a1b8d4d5a"
+  },
+  "docs/BUILD.md": {
+    "archive": "docs/archive/20261120/memoryless-attachment-r1/BUILD.md",
+    "sha256": "62c5a16b074d377daa8d67946fbbafc4df1f2d72a3c4a81caca3430a5a3a09e1"
+  },
+  "docs/OPERATIONS.md": {
+    "archive": "docs/archive/20261120/memoryless-attachment-r1/OPERATIONS.md",
+    "sha256": "42ec0b87b93667dc7809c355c2afe297355f1083811865004545c8b35a093461"
+  },
+  "docs/METAL-DEPTH-STENCIL.md": {
+    "archive": "docs/archive/20261120/memoryless-attachment-r1/METAL-DEPTH-STENCIL.md",
+    "sha256": "9965b7fd59071a7100cee12dea4b85a036afa16df1906a7b70936807504c4e46"
+  }
+}

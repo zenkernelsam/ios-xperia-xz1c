@@ -22,7 +22,7 @@ if args.air_package:
     assert sha(air/'AIRFrontend.ios.o')==air_manifest['compiled_AIR_object_sha256']
     assert all(sha(root/path)==digest for path,digest in air_manifest['source_files'].items())
     files+=['gpu/metal/MetalCompute.inc','gpu/metal/MetalFunctionConstants.inc','gpu/metal/MetalRender.inc','gpu/metal/MetalTextureRules.h',
-        'gpu/metal/MetalDepthStencilState.inc','gpu/sweetgl/MetalDepthStencilRules.h','gpu/sweetgl/MetalDepthAttachment.h','gpu/sweetgl/MetalStencilAttachment.h',
+        'gpu/metal/MetalDepthStencilState.inc','gpu/sweetgl/MetalDepthStencilRules.h','gpu/sweetgl/MetalDepthAttachment.h','gpu/sweetgl/MetalStencilAttachment.h','gpu/metal/MetalMemoryless.inc',
         'gpu/metal/air/ESSLTarget.h','gpu/metal/air/HalfESSL.h','gpu/metal/air/Compiler.h','gpu/sweetgl/MetalShaderAPI.h','gpu/sweetgl/XRColourShader.h']
     sources={p:sha(root/p) for p in files}
     sources.update(air_manifest['source_files'])
@@ -52,6 +52,8 @@ if air_manifest:report.update(native_mipmaps=True,native_mip_level_CPU_regions_a
 if air_manifest:report.update(native_depth32_attachment=True,native_depth_stencil_state_objects=True,
     depth32_GPU_page_import_and_draw_clear=True,actual_depth32_GPU_acceptance_pending=True,depth_XR_ordered_pending=True,
     native_stencil8_attachment=True,stencil8_original_separate_plane_import=True,stencil8_independent_draw_clear=True,actual_stencil8_GPU_acceptance_pending=True)
+if air_manifest:report.update(native_memoryless_attachments=True,memoryless_public_metadata_without_backing=True,
+    memoryless_independent_per_encoder_private_storage=True,memoryless_Load_Store_CPU_sampling_rejected=True,actual_memoryless_GPU_acceptance_pending=True)
 if air_manifest:report.update(native_MRT_and_XR_blend=True,independent_color_attachments_max=8,original_XR_codes_preserved_with_GPU_writeback=True,
     native_XR_ordered_FP32_image_blend=True,actual_MRT_GPU_acceptance_pending=True)
 if air_manifest:

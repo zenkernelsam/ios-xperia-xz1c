@@ -1,0 +1,181 @@
+{
+  "date": "2026-11-20",
+  "stage": "OFFLINE_CANDIDATE_NOT_DEVICE_ACCEPTED",
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "GLES_unchanged_from_stencil_r2": "6211bac248655bad1f1fb3c1386e68037160f8f78bd264893030ad69e60bd5df",
+  "Metal_candidate_sha256": "f4aa2b3546f5fe83bc4ab5e40887848c1c9cb078a93eb6b5d16afa4ada33b95d",
+  "Metal_bytes": 789024,
+  "Metal_source_map_sha256": "314789651a86509927834b1a94a05ee91e1d44782272a06aed6864b7b007fdad",
+  "reference_observer_sha256": "b083c28f41d02733c2417f06c2bb29482e7a138595bc0fb0b045398f82984c4c",
+  "reference_observer_bytes": 237216,
+  "RAM_blob_sha256": "692b62e97d2eecc9b8da354894e74eb660be4d9bdb81fd4f39a4b02731a835ed",
+  "RAM_blob_bytes": 4280557,
+  "RAM_manifest_sha256": "99383538714c06e10cbc4574c574d4bda7d3333499a1c5f9be3efcf9f8c98714",
+  "host_native": {
+    "source_files": {
+      "gpu/metal/MetalCompute.inc": "f18fb39b5c451dc291a04624fdf9ba684fd7f11117072099d81a0d680a4c2de4",
+      "gpu/metal/MetalCommandQueue.inc": "6684cae4882244967842bd45fd350b15eb74cdd91eccb0aaf26320e02e4d8fef",
+      "gpu/metal/MetalResources.mm": "b477ff9e8bf794981db58db9d1c0926435856c4bb37102ea7224f651b4d38899",
+      "gpu/metal/MetalRender.inc": "6d2c339d833ec562e234b8ff80d12e55c004e33242f36632aa1a05b47999e26c",
+      "gpu/metal/MetalFunctionConstants.inc": "c50086a36fc7eec22c06d122751b0cb765569a1fefd25b0f656227b8bf86b730",
+      "gpu/metal/MetalTextureRules.h": "1c17d64335bd8309c490343f4e6ef8c375c0677a6c163723d8dfa65928a0c5a6",
+      "gpu/metal/air/ESSLTarget.h": "a64b7768d9690af95e1d34e3a7b0793eeec67a38d5672884a61ff4492cde7430",
+      "gpu/metal/air/LLVM16Compat.h": "7827793f6653d2526206612308fbf2e38e3f6f00c42de271805317b2137a8966",
+      "gpu/metal/air/fixtures/render.air.ll": "a87e43dba485a69e16df6f80c7c38deee0434968d9a0d4b281928fc0036df606",
+      "gpu/metal/air/fixtures/constants.air.ll": "35cbe0bbe6108c3450ebc9529c80fecc5a46e6bcefcc7e7dc50b3f7bf9019b85",
+      "tools/build/test_metal_constants.mm": "d24d5a62eca53b6d735ffd621e180a0d8f9af263d7b875b9ab733d4289aa3659",
+      "tools/build/test_metal_render.mm": "10b76c23f93c1d1b4199a0d68b8fc1cfaedaa56e8b93537bbd11a52758bf4514",
+      "tools/build/test_metal_compute.mm": "a9530efecba774853c36327867114d3b864f1ba247cd0c1db713e2d4ab0e32af",
+      "tools/build/test_llvm16_compat.cpp": "5dba3563721dcaf1ef02137f3396fa9cd640dba2b4b2bd39389281c54caf9545",
+      "gpu/sweetgl/MetalShaderAPI.h": "3eebe9013770eff5c1092c8ccc50b4cd6ad931986f109573f74905d16dd1c23b",
+      "gpu/sweetgl/MetalBackingAPI.h": "19f5fd76979783dab3e1aff76d33d8eb90d614c73ea108fd39bba013d194bf74",
+      "gpu/sweetgl/MetalBackingRules.h": "fb0b4c5426debc434ddd4270ddc8a515ab82cec8a97fa598420fd02e2a4203ad",
+      "gpu/metal/MetalBufferRules.h": "ae78052ff954ba1376cef29e4aa75ef28592ce029e9ac7e2ca795369cf3b0b4c",
+      "gpu/metal/air/lilac-air-conversion.patch": "e3981d4666f852530b7b933e677bcb74f6ae0e8f288d7e717609dbc8761ea796",
+      "gpu/metal/air/lilac-air-half-storage.patch": "db01b10a413d085ac039d2bf5988029e65bd4731f6019fdf6cbf7a11b8c12ee8",
+      "gpu/metal/air/HalfESSL.h": "6c10c9bc5e0f7051cc6275adb4e85ff21e7226b62910537fc4acfa7f3a69dbb4",
+      "tools/build/materialize_air_sources.py": "7d514f4bdc5c79df852ed323ba43659b6bf7e95c70adb58b5a96fd204e93152b",
+      "gpu/metal/air/fixtures/mrt.air.ll": "b4decd0b37ed10a3440d209f3a7e04e84741ce4ab8f4cbff617752b28d45c022",
+      "tools/build/test_metal_mrt.mm": "d3d534110715e67f5fa765efe1b5015abd38fa247824501c3189db4cbf6608ae",
+      "tools/build/test_metal_depth.mm": "8d4b97e9e75db7a40144c83fbed67517b157d93d2809aa6c2115ac88e6233bbb",
+      "tools/build/DepthBackendHostStub.h": "1c157e3a26c58baa1ac9ff99eebdd1e69bc4fff01422fa80d8a111eb368854ab",
+      "gpu/metal/MetalDepthStencilState.inc": "d059293f74a3b855de64a0d3a2bdd45a9906d5cc72e90cd585ce36ab91b27036",
+      "gpu/sweetgl/MetalDepthStencilRules.h": "d1918e6cadf7a0dd9ad8c75e91d37a1a334f4940360ff7cad51162c833615af7",
+      "gpu/sweetgl/MetalDepthAttachment.h": "45ab58140a76bb13ccb7156f40f4a3587752295250ac22bdaf8d4bbb3b8a9841",
+      "gpu/sweetgl/MetalStencilAttachment.h": "3a8761f3bf18014a64127480e1eec65332d00aca65e74028b5fb52ea47ed7147",
+      "gpu/metal/MetalMemoryless.inc": "30f622dbade3362beba8325509d143b5c055c14374c002469067c9b6e3cab84d",
+      "gpu/metal/MetalResources.h": "6ded2a735d71009f57ca0d23e286633a80004365054459ef2be01210353f2d9c",
+      "tools/build/test_metal_memoryless.mm": "c03c71e4e9afe8c4564a62f6f14693f10bf134252af5c75b1a46a9f871022bfd"
+    },
+    "real_legacy_LLVM_adapter_ASan_UBSan_passed": true,
+    "real_Metal_compute_objects_ASan_UBSan_passed": true,
+    "real_AIR_to_ESSL_translation_passed": true,
+    "host_GPU_stub_not_hardware_proof": true,
+    "device_operations": 0,
+    "real_Metal_texture_render_objects_ASan_UBSan_passed": true,
+    "real_AIR_graphics_translation_passed": true,
+    "real_native_Metal_function_constants_ASan_UBSan_passed": true,
+    "real_host_IOSurface_texture_pages_lifetime_regions_ASan_UBSan_passed": true,
+    "real_native_mip_chain_regions_Private_permissions_queue_retention_and_failure_retirement_ASan_UBSan_passed": true,
+    "real_native_MRT_format_masks_queue_snapshots_nonoverlap_and_final_lifetime_ASan_UBSan_passed": true,
+    "real_native_depth32_objects_state_snapshots_owner_guards_and_final_lifetime_ASan_UBSan_passed": true,
+    "real_native_stencil8_objects_front_back_state_load_clear_snapshots_owner_and_final_lifetime_ASan_UBSan_passed": true,
+    "real_native_Memoryless_public_metadata_per_pass_storage_queue_isolation_rollback_retirement_ASan_UBSan_passed": true
+  },
+  "host_GLES": {
+    "source_files": {
+      "tools/build/test_memoryless_gles.c": "9933649e11f7a1d2ca8608581ff6889e4d43f0e8acff73e89b731f2d7c5b75f0",
+      "tools/build/check_memoryless_gles.py": "a136bd4875cf1673b1969ec55455a7671cae421022f6e4d46b9a544ff46750bb",
+      "tools/build/check_depth_stencil_gles.py": "a0b7cef8afe64f3155f6b389ea49c4e6accfea376c537d94b351694f0927ebeb",
+      "gpu/sweetgl/DepthStencilGLES.h": "8d3998970300d6fc110189b3f1b3a700eb644dae4f9197710f35d5ced3853290",
+      "gpu/sweetgl/MetalDepthStencilRules.h": "d1918e6cadf7a0dd9ad8c75e91d37a1a334f4940360ff7cad51162c833615af7",
+      "gpu/sweetgl/Depth32ClearGLES.h": "7a44433fd55f1ab5722ad606ec258a944de9a41d9e58291e45024aff4436c435",
+      "gpu/sweetgl/Stencil8ClearGLES.h": "702c2eff608298ae377ba3dcd7000f2eb4ec0c0d7acbf5692b2e000624a098fc"
+    },
+    "host_renderer": "Host renderer: llvmpipe (LLVM 15.0.7, 256 bits) / OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.2",
+    "phases": 8,
+    "draws": 19,
+    "checked_bytes": 10404,
+    "UBSan_passed": true,
+    "original_depth_stencil_readback_and_separate_store_recipe_verified": true,
+    "host_native_objects_and_FD540_original_page_import_not_executed": true,
+    "actual_Memoryless_device_acceptance_pending": true,
+    "host_time_limit_seconds": 45,
+    "host_log_limit_bytes": 1048576,
+    "device_operations": 0
+  },
+  "first_host_failure": {
+    "result": "REFUSED_HOST_MISSING_STANDARD_FRAMEBUFFER_GETTER",
+    "missing_selector": "isFramebufferOnly",
+    "source_file": "gpu/metal/MetalRender.inc",
+    "GPU_transport_host_stub": true,
+    "original_test_log_retained": true,
+    "device_operations": 0
+  },
+  "new_CPU_candidate": {
+    "token": "a6ed4392a66f7af4",
+    "image_sha256": "c1539667793c580f88c6292de9894ff0bbd611d8962ffae1560a625726b8483c",
+    "payload_audit": {
+      "image_sha256": "c1539667793c580f88c6292de9894ff0bbd611d8962ffae1560a625726b8483c",
+      "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+      "blob_count": 8,
+      "complete_payload_reconstructed_from_compiled_kernel": true
+    },
+    "offline_source_private_and_Mac83_audit": {
+      "command": [
+        "python",
+        "-B",
+        "tools/device/run_trial.py",
+        "--bundle",
+        "build/memoryless-attachment-r1/reference-ramcpu",
+        "--directory",
+        "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-memoryless-r1-offline-20261120\\not-live",
+        "--private-evidence",
+        "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-screen-v730-private-r1-20261118"
+      ],
+      "exit_code": 0,
+      "same_kernel_private_payload_and_Mac83_source_audit": true,
+      "stdout_sha256": "aaf3cd37562ca718dd8168af6b5875f8356c4db5483503e833f38af8cff7dcb1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "phone_downloads": 0,
+      "phone_boots": 0,
+      "live": false
+    },
+    "phone_delivery_attempts": 0
+  },
+  "implementation": {
+    "upstream": "https://github.com/MC-XiaoXiao/ios_sagit",
+    "upstream_commit": "898998cf1b74ea103e0c16d6dc0016822d8d644b",
+    "source_license": "BSD-2-Clause",
+    "public_Memoryless_metadata_without_backing": true,
+    "independent_private_storage_per_render_encoder": true,
+    "same_encoder_draws_share_original_private_page": true,
+    "cross_pass_Load_and_persistent_Store_refused": true,
+    "CPU_sampling_mipmap_external_surface_use_refused": true,
+    "command_retains_private_page_until_fence_and_failure_retirement": true,
+    "guarded_private_pages_offset64_and_trailing64": true,
+    "diagnostic_original_pass_lease_does_not_create_storage": true,
+    "standard_isFramebufferOnly_getter_added": true
+  },
+  "actual_original_memoryless_page_probe": {
+    "phases": 8,
+    "checked_bytes": 19456,
+    "guard_bytes": 10888,
+    "two_queues_independent_materialization": true,
+    "depth32_and_stencil8_separate_original_planes": true,
+    "raw_hashes_full_byte_recipe_source_page_handle_IOVA_and_retirement_required": true,
+    "actual_device_pass_pending": true
+  },
+  "host_fault_tests": {
+    "memoryless_evidence": {
+      "run": 4,
+      "passed": 4
+    },
+    "native_prerequisite": {
+      "run": 4,
+      "passed": 4
+    },
+    "trial_gates": {
+      "run": 21,
+      "passed": 19,
+      "optional_old_evidence_skipped": 2
+    },
+    "depth32": {
+      "run": 4,
+      "passed": 4
+    },
+    "stencil8": {
+      "run": 4,
+      "passed": 4
+    }
+  },
+  "required_admission": "same kernel private/owner/ready -> exact GLES9 -> this RAMCPU -> full native19/PNG6 -> new proof -> original poster CPU/GPU",
+  "previous_native18_proof_not_admissible": true,
+  "actual_new_RAMCPU_native19_PNG6_pending": true,
+  "original_poster_mode_wallpaper_UI_FPS_sleep_optical_audio_wireless_pending": true,
+  "MSAA_sampled_depth_stencil_and_ordered_XR_pending": true,
+  "phone_download_commands": 0,
+  "phone_boot_commands": 0,
+  "phone_reset_commands": 0,
+  "failed_r4_r5_not_replayed": true
+}

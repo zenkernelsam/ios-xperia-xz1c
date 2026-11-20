@@ -8,7 +8,7 @@
 
 单download／boot，失败不重发，max_cycles=1、on_pass/on_failure=stop。PON仅0x06；每轮ACK／DRAIN／RESET／FINAL_DRAIN、连续健康30秒、旧worker退出必须独立通过，才可下一轮。无匹配token LIVE不发送回程控制；失败或缺证据保持原STOP／REVISE，自动回程成功不提升GPU阶段。
 
-gl5已在设备，不flash／erase userdata、SD、TA、XFL、救砖固件／校准／备份。新kernel自身private／owner／ready，新RAM自身CPU，新GLES自身全部组、新Metal精确能力组／source-map及共享PNG先验。生产CA基线native16，Depth32候选17，现行Depth32＋Stencil8候选18；新模板库不接受旧16／17组proof。run_trial投递前复算整个payload和Mac实际源码／Mesa归档；短登记嵌入proof必须与原raw复验完全一致。当前CA矩阵库还有GLES第9组，旧库或漏组proof拒绝。
+gl5已在设备，不flash／erase userdata、SD、TA、XFL、救砖固件／校准／备份。新kernel自身private／owner／ready，新RAM自身CPU，新GLES自身全部组、新Metal精确能力组／source-map及共享PNG先验。生产CA基线native16，Depth32候选17，Depth32＋Stencil8候选18，现行Memoryless候选19；新Memoryless库不接受旧18组proof。run_trial投递前复算整个payload和Mac实际源码／Mesa归档；短登记嵌入proof必须与原raw复验完全一致。当前CA矩阵库还有GLES第9组，旧库或漏组proof拒绝。
 
 ## UI取证与单次输入
 

@@ -4,6 +4,10 @@ Sony BH905ND69G 当前停在 fastboot，无 controller／串口 worker／in-flig
 
 当前正式基线为 CA 矩阵修订 r1：
 
+当前源码最新候选为[Memoryless附件r1](METAL-MEMORYLESS.md)，在Depth32／Stencil8上增加标准Memoryless颜色／深度／模板公开元数据与每encoder独立私有页。GLES6211bac2保持，新Metalf4aa2b35／789024B、source-map31478965、reference observerb083c28f／237216B、RAM blob4280557B／692b62e9。Mac完整真实原生对象ASan／UBSan与iOS ARM64库／探针构建通过；WSL真实Mesa八阶段19draw／10404B颜色-depth-stencil读回UBSan通过。CPU a6ed4392a66f7af4／imagec1539667已offline同核private／payload／Mac83源audit，尚未发送，旧native18不能准入新native19。先前候选及下表已验基线均保留；详见[新offline proof](../reproducibility/memoryless-attachment-r1-offline-proof.json)。
+
+首轮host实际抛isFramebufferOnly缺selector异常，原日志与失败保存；已補标准getter后真实回归通过。公开Memoryless无CPU backing，跨pass Load／persistent Store／sampling／mipmap／IOSurface拒绝；每pass内部原页保留到命令fence，双queue并发页面不同，partial allocation和GPU失败回收实际主机验过。新8phase需19456B／10888Bguard、11原pass页／handle-IOVA与真实backend import-retire核验，不能以host stub或未发送bundle宣称手机Memoryless或壁纸恢复。
+
 正式源码另有尚未手机准入的Stencil8附件r2候选，GLES6211bac2／Metalf40f796b／source-mapb86e29eb，仅离线构建和主机验证通过，未替换下表的已验基线。它在Depth32上增加独立模板页面、准确Mesa separate-z32s8引用转交、独立Load／Clear与front-back状态快照；真实host Mesa2390draw／247860像素UBSan、15类pair回滚和Mac原生对象ASan／UBSan通过，iOS ARM64前端／库／完整native18 probe构建通过。CPU bundle3ec7416adc2cfeea／image5567d656已offline同核private／payload／Mac83源audit，仍未投递。MSAA／sampled depth-stencil／depth-stencil-XR有序组合继续缺口，见 [METAL-DEPTH-STENCIL](METAL-DEPTH-STENCIL.md) 和 [新offline proof](../reproducibility/stencil-attachment-r2-offline-proof.json)。
 
 本轮WSL ASan停在libasan启动阶段，未进入Mesa，原失败与PC／模块／符号保留；最终host GLES只宣称UBSan通过。11,881,859,070B重复日志已实际进入Windows回收站，首4096B、原SHA及失败元数据保留，回收站未清空；新host运行限45秒、日志1MiB，超量边界实际核验通过。旧Depth32离线证明保持原样，不能拿上轮ASan结果替代本轮。

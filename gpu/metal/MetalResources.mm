@@ -214,6 +214,7 @@ static bool native_base_available(void)
 - (id<MTLTexture>)newTextureWithDescriptor:(MTLTextureDescriptor *)descriptor
 {
     if(!descriptor || !descriptor.width || !descriptor.height)return nil;
+    if(descriptor.storageMode==MTLStorageModeMemoryless)return [[SweetMTLTexture alloc] initMemorylessWithOwner:self descriptor:descriptor];
     uint32_t pixel=sweet_texture_pixel_bytes((uint32_t)descriptor.pixelFormat);
     if(!pixel || descriptor.width>16384 || descriptor.height>16384)return nil;
     if(descriptor.pixelFormat==MTLPixelFormatDepth32Float && (descriptor.mipmapLevelCount!=1 || descriptor.sampleCount!=1 ||
@@ -256,6 +257,15 @@ BOOL SweetMTLCommandResult(id<MTLCommandBuffer> commands,uint32_t *sequence,uint
     auto buffer=(SweetMTLCommandBuffer *)commands;
     *sequence=[buffer sweetCompletedSequence];*operations=(uint32_t)[buffer sweetGPUOperations];
     return *sequence && *operations;
+}
+
+id<MTLBuffer> SweetMTLRetainMemorylessPassBuffer(id<MTLRenderCommandEncoder> encoder,uint32_t slot,SweetMTLMemorylessPassInfo *info)
+{
+    if(info)memset(info,0,sizeof(*info));
+#if !defined(SWEET_METAL_NO_COMPUTE)
+    if(info && [encoder isKindOfClass:[SweetMTLRenderEncoder class]])return [(SweetMTLRenderEncoder *)encoder retainMemorylessPassBuffer:slot info:info];
+#endif
+    return nil;
 }
 
 id<MTLDevice> SweetMTLCreateRegisteredDevice(NSError **error)

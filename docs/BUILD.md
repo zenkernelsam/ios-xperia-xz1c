@@ -6,6 +6,8 @@
 
 随后原模式r6 observer／33方法只改观察源码，当前准确原调用／byte锚点工具和构建见 [METAL-REQUEST-OBSERVATION](METAL-REQUEST-OBSERVATION.md)。旧CA基线配新observer即使所有host测试通过，仍因当前六份GLES／Metal源码不一致被offline run_trial拒绝；不跳过源码audit。新附件GLES6211bac2／Metalf40f796b保持，按当前source重编完整reference observer仍7e164ad1，重新打包blob4274554B／90dc4934；CPU c10521e2已offline audit，完整native18／PNG6实机验收后才能用新proof构建模式observer原GPU包。
 
+最新Memoryless单采样候选GLES6211bac2保持，Metalf4aa2b35／source-map31478965／referenceb083c28f；正式源码、host、构建与native19门槛见[METAL-MEMORYLESS](METAL-MEMORYLESS.md)。它沿完整native18全部fixtures再加`--memoryless-probe`，reference包必须自己的RAMCPU后native19／PNG6原实机验收；CPU a6ed4392仅offline通过，旧native18及host不能放行原GPU。
+
 当前CA矩阵前端沿用已审计的IR3 Mesa归档，仅重编用户态，全部新目录必须不存在：
 
 ```sh

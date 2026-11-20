@@ -14,6 +14,8 @@ Depth-stencil descriptor语义对照[开源ios_sagit QcomMTL](https://github.com
 
 当前仍拒绝MSAA、sampled-depth／sampled-stencil、mipmap／IOSurface depth-stencil和depth-stencil与XR有序image blend组合。后者的late depth test无法保护fragment image副作用，不能静默忽略深度或模板。kernel GPU底层／allocator／SCM／PON／RPC／VM、SweetGPU、Mesa归档和AIR lowering源保持，只编译正式仓库用户态。
 
+随后标准[Memoryless临时附件](METAL-MEMORYLESS.md)已接入单采样颜色／Depth32／Stencil8，公开纹理无backing、每encoder独立私有页、非法Load／Store与CPU-sampling拒绝、完成／失败回收；原生host／ARM64编译与Mesa读回通过，Metalf4aa2b35／referenceb083c28f只offline。新能力须完整native19原证据，旧r2 native18候选及本专题原字节身份保留；Memoryless和完整原壁纸实机仍未验收。
+
 本轮后续只读20H392原ClockKitUI确认：options0x08开启4×MSAA、0x01开启depth，深度descriptor为252／RenderTarget4／Memoryless3。原r3十条init皆0x72，当前scope未请求MSAA／depth，不将这些缺口当该黑壁纸原因；其它配置真实Memoryless和MSAA须继续实现。来源／九个代码SHA与可复现工具见[原模式静态证明](../reproducibility/poster-routing-20H392-offline.json)。
 
 ## 离线身份与证据

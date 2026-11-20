@@ -44,6 +44,9 @@ class NativePrerequisite(unittest.TestCase):
         resources['native_stencil8_attachment']=True
         with self.assertRaisesRegex(AssertionError,'Stencil8'):validate(proof,resources)
         proof['native_tests'].append('Metal_stencil8');validate(proof,resources)
+        resources['native_memoryless_attachments']=True
+        with self.assertRaisesRegex(AssertionError,'Memoryless'):validate(proof,resources)
+        proof['native_tests'].append('Metal_memoryless');validate(proof,resources)
     def test_current_log_identity(self):
         p=self.proof;token='f'*16
         scope='\n'.join(['SWEET LOOP LIVE proto=1 token='+token,'SWEET ENV: AegirPoster += DYLD_INSERT_LIBRARIES=/dev/sglram/e',
