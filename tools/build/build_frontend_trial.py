@@ -33,6 +33,10 @@ if 'MetalDepthAttachment.h' in sources:
     binding['depth32_attachment_revision']=1
     binding['depth_stencil_state_mapping']=True
     binding['actual_depth32_GPU_acceptance_pending']=True
+if 'MetalStencilAttachment.h' in sources:
+    binding['stencil8_attachment_revision']=1
+    binding['stencil8_original_separate_plane_import']=True
+    binding['actual_stencil8_GPU_acceptance_pending']=True
 if 'QuartzCoreMatrixLayout.h' in sources:
     binding['CA_matrix_revision']=1
     binding['GLES_suite_tests']=9

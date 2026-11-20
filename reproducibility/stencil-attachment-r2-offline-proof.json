@@ -1,0 +1,228 @@
+{
+  "revision": 1,
+  "stage": "OFFLINE_CANDIDATE_NOT_DEVICE_ACCEPTED",
+  "date": "2026-11-20",
+  "production_baseline": {
+    "kernel_v730_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+    "GLES_CA_matrix_r1_sha256": "d6d8fcfa27bcac84ab5edb3d2a11c1ed23374e8b491a3e8de093a9a2a819ac2b",
+    "Metal_sha256": "5e94ab57401479b42f506884a172a7a839378a82310661a1f66164e99c21f988",
+    "Metal_source_map_sha256": "7b5a083abdb98fa5d29ef82fbd8e7e68b2a29fd995f16c4163d5c612cb8b9de7",
+    "not_replaced_by_candidate": true
+  },
+  "packages": {
+    "gles-ram": {
+      "path": "build/stencil-attachment-r2/gles-ram",
+      "manifest_sha256": "8346dbe05d36a89b8c994e5c098a47cfeca0ec405d7037fa26b606e5e9af2ecd",
+      "raw_bytes": 33554432,
+      "raw_sha256": "72a19f38bedc65f87f4ca1632c6884bbb6e3f6375e2ed337c6903855f126bb12",
+      "blob_bytes": 3899356,
+      "blob_sha256": "36d0aeb3b6d466fe69e726596a162c67bf45f6362631573e33ce450cb9cdc918",
+      "library_sha256": "6211bac248655bad1f1fb3c1386e68037160f8f78bd264893030ad69e60bd5df",
+      "library_bytes": 14783008,
+      "full_byte_bound_RAM_audit_passed": true,
+      "device_tested": false
+    },
+    "reference-ram": {
+      "path": "build/stencil-attachment-r2/reference-ram",
+      "manifest_sha256": "c13e068b05f34706ca34dced2fbd56fc6a0b6c7715216cd8305f870d321791a8",
+      "raw_bytes": 33554432,
+      "raw_sha256": "55a725ea3a4c5f59dfa58215692651bfce8f82f8d7f60e1a121f81215f51686e",
+      "blob_bytes": 4274561,
+      "blob_sha256": "1c13889d220e5a5f7aa75b4bae3d83ba51e3515cc456dad6ab307707f147978b",
+      "library_sha256": "6211bac248655bad1f1fb3c1386e68037160f8f78bd264893030ad69e60bd5df",
+      "library_bytes": 14783008,
+      "full_byte_bound_RAM_audit_passed": true,
+      "device_tested": false,
+      "metal_library_sha256": "f40f796b7d04d143685a7ac0e9414cfed2aae68d0184249ebaf3cd09c286ec53",
+      "metal_library_bytes": 787648,
+      "metal_source_map_sha256": "b86e29eb0c15237abc95b5ea31e976569ec47fc13513883184e66b3cf47b09d0",
+      "reference_observer_sha256": "7e164ad1c0e54efa6f17f461e604b3554642d1d8c8c9b033b3d30070285c7e9d",
+      "reference_observer_bytes": 220336,
+      "depth_probe_phases": 29,
+      "stencil_probe_phases": 99
+    }
+  },
+  "host_native": {
+    "source_files": {
+      "gpu/metal/MetalCompute.inc": "f18fb39b5c451dc291a04624fdf9ba684fd7f11117072099d81a0d680a4c2de4",
+      "gpu/metal/MetalCommandQueue.inc": "6684cae4882244967842bd45fd350b15eb74cdd91eccb0aaf26320e02e4d8fef",
+      "gpu/metal/MetalResources.mm": "d22b214e3fb601b91229383e70045c7a4e8a4414c11c5848f30463bd1ccb2433",
+      "gpu/metal/MetalRender.inc": "e54135ed97eba21b9359ebd86b7291758248d31595046fcbc6a5653c4b2026f2",
+      "gpu/metal/MetalFunctionConstants.inc": "c50086a36fc7eec22c06d122751b0cb765569a1fefd25b0f656227b8bf86b730",
+      "gpu/metal/MetalTextureRules.h": "1c17d64335bd8309c490343f4e6ef8c375c0677a6c163723d8dfa65928a0c5a6",
+      "gpu/metal/air/ESSLTarget.h": "a64b7768d9690af95e1d34e3a7b0793eeec67a38d5672884a61ff4492cde7430",
+      "gpu/metal/air/LLVM16Compat.h": "7827793f6653d2526206612308fbf2e38e3f6f00c42de271805317b2137a8966",
+      "gpu/metal/air/fixtures/render.air.ll": "a87e43dba485a69e16df6f80c7c38deee0434968d9a0d4b281928fc0036df606",
+      "gpu/metal/air/fixtures/constants.air.ll": "35cbe0bbe6108c3450ebc9529c80fecc5a46e6bcefcc7e7dc50b3f7bf9019b85",
+      "tools/build/test_metal_constants.mm": "d24d5a62eca53b6d735ffd621e180a0d8f9af263d7b875b9ab733d4289aa3659",
+      "tools/build/test_metal_render.mm": "10b76c23f93c1d1b4199a0d68b8fc1cfaedaa56e8b93537bbd11a52758bf4514",
+      "tools/build/test_metal_compute.mm": "a9530efecba774853c36327867114d3b864f1ba247cd0c1db713e2d4ab0e32af",
+      "tools/build/test_llvm16_compat.cpp": "5dba3563721dcaf1ef02137f3396fa9cd640dba2b4b2bd39389281c54caf9545",
+      "gpu/sweetgl/MetalShaderAPI.h": "3eebe9013770eff5c1092c8ccc50b4cd6ad931986f109573f74905d16dd1c23b",
+      "gpu/sweetgl/MetalBackingAPI.h": "19f5fd76979783dab3e1aff76d33d8eb90d614c73ea108fd39bba013d194bf74",
+      "gpu/sweetgl/MetalBackingRules.h": "fb0b4c5426debc434ddd4270ddc8a515ab82cec8a97fa598420fd02e2a4203ad",
+      "gpu/metal/MetalBufferRules.h": "ae78052ff954ba1376cef29e4aa75ef28592ce029e9ac7e2ca795369cf3b0b4c",
+      "gpu/metal/air/lilac-air-conversion.patch": "e3981d4666f852530b7b933e677bcb74f6ae0e8f288d7e717609dbc8761ea796",
+      "gpu/metal/air/lilac-air-half-storage.patch": "db01b10a413d085ac039d2bf5988029e65bd4731f6019fdf6cbf7a11b8c12ee8",
+      "gpu/metal/air/HalfESSL.h": "6c10c9bc5e0f7051cc6275adb4e85ff21e7226b62910537fc4acfa7f3a69dbb4",
+      "tools/build/materialize_air_sources.py": "7d514f4bdc5c79df852ed323ba43659b6bf7e95c70adb58b5a96fd204e93152b",
+      "gpu/metal/air/fixtures/mrt.air.ll": "b4decd0b37ed10a3440d209f3a7e04e84741ce4ab8f4cbff617752b28d45c022",
+      "tools/build/test_metal_mrt.mm": "d3d534110715e67f5fa765efe1b5015abd38fa247824501c3189db4cbf6608ae",
+      "tools/build/test_metal_depth.mm": "8d4b97e9e75db7a40144c83fbed67517b157d93d2809aa6c2115ac88e6233bbb",
+      "tools/build/DepthBackendHostStub.h": "1c157e3a26c58baa1ac9ff99eebdd1e69bc4fff01422fa80d8a111eb368854ab",
+      "gpu/metal/MetalDepthStencilState.inc": "d059293f74a3b855de64a0d3a2bdd45a9906d5cc72e90cd585ce36ab91b27036",
+      "gpu/sweetgl/MetalDepthStencilRules.h": "d1918e6cadf7a0dd9ad8c75e91d37a1a334f4940360ff7cad51162c833615af7",
+      "gpu/sweetgl/MetalDepthAttachment.h": "45ab58140a76bb13ccb7156f40f4a3587752295250ac22bdaf8d4bbb3b8a9841",
+      "gpu/sweetgl/MetalStencilAttachment.h": "3a8761f3bf18014a64127480e1eec65332d00aca65e74028b5fb52ea47ed7147"
+    },
+    "real_legacy_LLVM_adapter_ASan_UBSan_passed": true,
+    "real_Metal_compute_objects_ASan_UBSan_passed": true,
+    "real_AIR_to_ESSL_translation_passed": true,
+    "host_GPU_stub_not_hardware_proof": true,
+    "device_operations": 0,
+    "real_Metal_texture_render_objects_ASan_UBSan_passed": true,
+    "real_AIR_graphics_translation_passed": true,
+    "real_native_Metal_function_constants_ASan_UBSan_passed": true,
+    "real_host_IOSurface_texture_pages_lifetime_regions_ASan_UBSan_passed": true,
+    "real_native_mip_chain_regions_Private_permissions_queue_retention_and_failure_retirement_ASan_UBSan_passed": true,
+    "real_native_MRT_format_masks_queue_snapshots_nonoverlap_and_final_lifetime_ASan_UBSan_passed": true,
+    "real_native_depth32_objects_state_snapshots_owner_guards_and_final_lifetime_ASan_UBSan_passed": true,
+    "real_native_stencil8_objects_front_back_state_load_clear_snapshots_owner_and_final_lifetime_ASan_UBSan_passed": true
+  },
+  "host_GLES": {
+    "source_files": {
+      "gpu/sweetgl/MetalDepthStencilRules.h": "d1918e6cadf7a0dd9ad8c75e91d37a1a334f4940360ff7cad51162c833615af7",
+      "tools/build/test_depth_stencil_gles.c": "271ad62e2246339de9f273726e6bcd383e1cc197ba7971ad32dedca55dec3e9f",
+      "tools/build/check_depth_stencil_gles.py": "a0b7cef8afe64f3155f6b389ea49c4e6accfea376c537d94b351694f0927ebeb",
+      "gpu/sweetgl/DepthStencilGLES.h": "8d3998970300d6fc110189b3f1b3a700eb644dae4f9197710f35d5ced3853290",
+      "gpu/sweetgl/Depth32ClearGLES.h": "7a44433fd55f1ab5722ad606ec258a944de9a41d9e58291e45024aff4436c435",
+      "gpu/sweetgl/Stencil8ClearGLES.h": "702c2eff608298ae377ba3dcd7000f2eb4ec0c0d7acbf5692b2e000624a098fc",
+      "gpu/sweetgl/StencilResourcePair.h": "094a511dafa5cbe9a6fd21278ff1e4eb91021164f3f27941c24562c5dc52013f",
+      "tools/build/test_stencil_resource_pair.c": "a2985be327a91bf1ca60f889c912b8908282b503647185b66eb5a86f60e3d907"
+    },
+    "host_renderer": "Host renderer: llvmpipe (LLVM 15.0.7, 256 bits) / OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.2",
+    "draws": 2390,
+    "checked_pixels": 247860,
+    "actual_shared_GL_state_compares_and_stencil_ops_passed": true,
+    "ASan_UBSan_passed": false,
+    "selected_sanitizers": "undefined",
+    "UBSan_passed": true,
+    "ASan_recursive_SIGSEGV_handler_disabled": true,
+    "host_test_timeout_seconds": 45,
+    "host_test_log_byte_limit": 1048576,
+    "original_pair_ownership_fault_rollback_host_model_passed": true,
+    "host_leak_detection_disabled_for_Mesa": true,
+    "host_attachment_format": "GL_DEPTH32F_STENCIL8",
+    "host_test_does_not_execute_native_Metal_or_FD540_importer": true,
+    "device_operations": 0,
+    "original_GPU_wallpaper_and_peripheral_goal_not_achieved": true
+  },
+  "pinned_Mesa_pairing_review": {
+    "mesa_base": "769e51468b49b2a42f0a0eaf71cf9eed5ff4e5de",
+    "Mesa_lilac_patch_sha256": "0fb7664a6758eb545b7097f6ac0aadae3914bb173332ae441fdb119fa1a1009c",
+    "source_files": {
+      "src/gallium/auxiliary/util/u_transfer_helper.c": "87f6830f0bfb81c9fdbeded415cba65d2cea2b15ebcc530e0b9194d71a4dc161",
+      "src/gallium/drivers/freedreno/freedreno_resource.c": "1d7a74928bcbebba1f3a7137e8fc2eb18648f39a16f510791a1660cce17125c6",
+      "src/gallium/drivers/freedreno/a5xx/fd5_gmem.c": "d177708f8c1807d434c03dfcf2fb06160dc72e5f102fb0697486ed0e74215291",
+      "src/gallium/drivers/freedreno/a5xx/fd5_emit.c": "784b61bc4a2a1f1243319570af6ac6eb573e822538256e8d894b862cfab4e062"
+    },
+    "external_Z32_S8_format_with_original_Z32_internal_format_and_S8_reference": true,
+    "secondary_ref_transferred_once_and_destroyed_with_primary": true,
+    "fifteen_failure_rollback_cases_host_model_only": true,
+    "native18_original_FD540_planes_still_required": true
+  },
+  "host_ASan_runtime_refusal": {
+    "pid": 653,
+    "executable": "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/stencil-attachment-r2/host-gles-pair/test",
+    "observed_rip": "0x721d7b4cdf02",
+    "runtime_module": "libasan.so.6.0.0",
+    "module_offset": "0xcdf02",
+    "symbol": "__sanitizer::internal_iserror(unsigned long, int*)",
+    "ASan_runtime_failed_to_enter_Mesa_test": true,
+    "actual_ASan_PASS_not_claimed": true,
+    "host_test_only_TERMinated_after_authoritative_process_inspection": true
+  },
+  "bounded_host_test_output": {
+    "bounded_host_file_bytes": 1048576,
+    "overflow_rejected": true,
+    "actual_Linux_RLIMIT_FSIZE_exercised": true,
+    "SHA256": "637ac7b38b21d757cb6ca83f988d99fc1610ce0f7ac9037d22e1936b6a84295c",
+    "no_phone_operations": true
+  },
+  "native_Windows_recycle": {
+    "items": 1,
+    "bytes": 11881859070,
+    "sha256": "5593138704d66711a281b9f0b8ab7c7bccc5fd26d9e93f99a373f59424337c18",
+    "original_first_4096_sha256": "f2a3d584dcbd2f3f7169184a425569d3067f85d6080d0232036e2426d23c2490",
+    "native_recycle_verified": true,
+    "original_path_absent": true,
+    "recycle_path_exists": true,
+    "trash_emptied": false,
+    "permanent_deletions": 0
+  },
+  "CPU_candidate": {
+    "token": "3ec7416adc2cfeea",
+    "image_sha256": "5567d6561e517b8270c180ccc3a64d1105e93da57ae8179c6679946a7a170fde",
+    "payload": {
+      "image_sha256": "5567d6561e517b8270c180ccc3a64d1105e93da57ae8179c6679946a7a170fde",
+      "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+      "blob_count": 8,
+      "complete_payload_reconstructed_from_compiled_kernel": true
+    },
+    "offline_current_source_audit": {
+      "command": [
+        "python",
+        "-B",
+        "tools/device/run_trial.py",
+        "--bundle",
+        "build/stencil-attachment-r2/gles-ramcpu",
+        "--directory",
+        "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-stencil-r2-offline-current-20261120\\not-live",
+        "--private-evidence",
+        "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-screen-v730-private-r1-20261118"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "aaf3cd37562ca718dd8168af6b5875f8356c4db5483503e833f38af8cff7dcb1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bound_private_and_payload_and_Mac83_source_audit": true,
+      "live_flag_used": false,
+      "device_downloads": 0,
+      "device_boots": 0
+    },
+    "phone_delivery_attempts": 0
+  },
+  "host_tests": {
+    "Stencil8_evidence": {
+      "run": 4,
+      "passed": 4
+    },
+    "Depth32_evidence": {
+      "run": 4,
+      "passed": 4
+    },
+    "native_prerequisite": {
+      "run": 4,
+      "passed": 4
+    },
+    "trial_gates": {
+      "run": 21,
+      "passed": 19,
+      "optional_old_evidence_skipped": 2
+    },
+    "source_syntax_scripts": 198,
+    "source_lock_and_diff_check_passed": true
+  },
+  "actual_new_RAMCPU_GLES9_referenceCPU_native18_PNG6_required": true,
+  "stencil_attachment_separate_C_ABI_original_color_and_Depth32_ABI_retained": true,
+  "MSAA_sampled_depth_sampled_stencil_and_depth_stencil_ordered_XR_pending": true,
+  "original_wallpaper_environment_UI_FPS_sleep_optical_and_peripherals_pending": true,
+  "failed_r4_r5_trials_not_replayed": true,
+  "device_downloads": 0,
+  "device_boots": 0,
+  "device_resets": 0,
+  "old_Depth32_offline_proof": {
+    "path": "reproducibility/depth-stencil-r1-offline-proof.json",
+    "sha256": "1fdbcf76b46ae9d2fb85841594db4f2155cb23d9afb07609ee7cc7c6746adaa8",
+    "preserved": true
+  }
+}

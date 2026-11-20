@@ -2,7 +2,7 @@
 
 当前正式基线为v730/f258dee9、CA矩阵GLESd6d8fcfa、Metal5e94ab57／source-map7b5a083a。它已通过自己的RAM CPU、GLES原8组＋矩阵第9组、完整native16／六组共享PNG及原RAMCPU；锁屏文字／主页扫描帧有实机改善，黑壁纸／稳定UI／FPS／其它外设仍继续。实际输入／结果见 [STATUS](STATUS.md)、[CA-MATRIX](CA-MATRIX.md) 和reproducibility，不用下方旧14／15组专题证明准入当前库。
 
-2026-11-20现行源码增加尚未手机准入的Depth32候选，完整构建／源锁／host证明与新增native17门槛见 [METAL-DEPTH-STENCIL](METAL-DEPTH-STENCIL.md)。新包自身CPU、GLES9、native17原depth页面及PNG6均需独立验收，旧库native16不能准入；不将离线candidate或host像素称为当前实机基线。
+2026-11-20现行源码增加尚未手机准入的Depth32＋Stencil8附件r2候选，完整构建／源锁／host证明与新增native18门槛见 [METAL-DEPTH-STENCIL](METAL-DEPTH-STENCIL.md)。新包自身CPU、GLES9、referenceCPU、native18原depth／stencil页面及PNG6均需独立验收，旧库native16／17不能准入；不将离线candidate或host像素称为当前实机基线。WSL当前GLES host证明只用UBSan，ASan启动失败另存；host runner限45秒／日志1MiB。
 
 当前CA矩阵前端沿用已审计的IR3 Mesa归档，仅重编用户态，全部新目录必须不存在：
 

@@ -39,6 +39,7 @@ from ir3_cache_evidence import verify as verify_ir3_cache
 from ca_matrix_evidence import verify as verify_ca_matrix
 from metal_request_evidence import inspect as inspect_metal_requests
 from depth32_evidence import verify as verify_depth32
+from stencil8_evidence import verify as verify_stencil8
 from ram_library import load as load_ram
 
 def verify(directory,mode,kernel_sha=None,version=None):
@@ -140,6 +141,7 @@ def verify(directory,mode,kernel_sha=None,version=None):
                 if a['exception_observer'].get('Clear_cache_probe'):exceptions['Clear_cache']=verify_clear_cache(text,a['token'],a['exception_observer']['AIR_MRT_fixture'])
                 if a['exception_observer'].get('IR3_cache_probe'):exceptions['IR3_cache']=verify_ir3_cache(text,a['token'],a['exception_observer']['AIR_constants_fixture'])
                 if a['exception_observer'].get('depth32_probe'):exceptions['Metal_depth32']=verify_depth32(text,a['token'],a['exception_observer']['AIR_render_fixture'])
+                if a['exception_observer'].get('stencil8_probe'):exceptions['Metal_stencil8']=verify_stencil8(text,a['token'],a['exception_observer']['AIR_render_fixture'])
                 if a['exception_observer'].get('program_request_export'):exceptions['Program_request_export']=verify_program_request(text,a['token'],a['exception_observer']['program_request_export'])
                 if a['exception_observer'].get('program_cache_scope'):exceptions['Program_cache_scope']=verify_cache_scope(text,a['token'],a['exception_observer']['program_cache_scope'])
                 if a['exception_observer'].get('cif10_PNG_reference'):exceptions['CIF10_PNG_reference']=inspect_cif10_reference(text,a['token'],a['exception_observer']['cif10_reference_revision'],a['exception_observer'].get('png_imageio_encoder_source_sha256'))

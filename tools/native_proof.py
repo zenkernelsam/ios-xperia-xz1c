@@ -7,7 +7,7 @@ def validate(proof,resources=None):
     keys={'revision','version','native_run_token','native_run_process','native_tests',*HEX_FIELDS}
     assert set(proof)==keys,'Native proof fields differ from revision1 schema'
     assert proof['revision']==1 and type(proof['version']) is int and proof['version']>=729
-    extensions=('AIR_narrow','AIR_half','Metal_MRT','AIR_sampler','Program_cache','AIR_static_half','Clear_cache','IR3_cache','Metal_depth32')
+    extensions=('AIR_narrow','AIR_half','Metal_MRT','AIR_sampler','Program_cache','AIR_static_half','Clear_cache','IR3_cache','Metal_depth32','Metal_stencil8')
     assert proof['native_run_process']=='backboardd' and proof['native_tests'] in [list(NATIVE_TESTS)+list(extensions[:n]) for n in range(len(extensions)+1)]
     assert isinstance(proof['native_run_token'],str) and re.fullmatch('[0-9a-f]{16}',proof['native_run_token'])
     for name in HEX_FIELDS:assert isinstance(proof[name],str) and re.fullmatch('[0-9a-f]{64}',proof[name]),name
@@ -22,6 +22,7 @@ def validate(proof,resources=None):
         if resources.get('native_Clear_shader_cache'):assert 'Clear_cache' in proof['native_tests'],'Clear shader reuse needs its own complete original-page hardware proof'
         if resources.get('native_IR3_variant_cache'):assert 'IR3_cache' in proof['native_tests'],'IR3 variant restore needs its own complete original-page hardware proof'
         if resources.get('native_depth32_attachment'):assert 'Metal_depth32' in proof['native_tests'],'Depth32 attachments need their own original-page GPU/guard/compare proof'
+        if resources.get('native_stencil8_attachment'):assert 'Metal_stencil8' in proof['native_tests'],'Stencil8 attachments need their own original-page front/back/guard/compare proof'
         assert proof['gles_library_sha256']==resources['gles_library_sha256'],'Native prior GLES differs'
         assert proof['metal_library_sha256']==resources['library_sha256'],'Native prior Metal differs'
         assert proof['metal_source_files_sha256']==digest(resources['source_files']),'Native prior Metal sources differ'

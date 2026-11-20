@@ -41,6 +41,9 @@ class NativePrerequisite(unittest.TestCase):
         proof=copy.deepcopy(self.proof);proof['native_tests']+=['AIR_narrow','AIR_half','Metal_MRT','AIR_sampler','Program_cache','AIR_static_half','Clear_cache','IR3_cache']
         with self.assertRaisesRegex(AssertionError,'Depth32'):validate(proof,resources)
         proof['native_tests'].append('Metal_depth32');validate(proof,resources)
+        resources['native_stencil8_attachment']=True
+        with self.assertRaisesRegex(AssertionError,'Stencil8'):validate(proof,resources)
+        proof['native_tests'].append('Metal_stencil8');validate(proof,resources)
     def test_current_log_identity(self):
         p=self.proof;token='f'*16
         scope='\n'.join(['SWEET LOOP LIVE proto=1 token='+token,'SWEET ENV: AegirPoster += DYLD_INSERT_LIBRARIES=/dev/sglram/e',

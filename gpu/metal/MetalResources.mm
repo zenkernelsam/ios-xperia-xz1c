@@ -218,6 +218,8 @@ static bool native_base_available(void)
     if(!pixel || descriptor.width>16384 || descriptor.height>16384)return nil;
     if(descriptor.pixelFormat==MTLPixelFormatDepth32Float && (descriptor.mipmapLevelCount!=1 || descriptor.sampleCount!=1 ||
         descriptor.usage!=MTLTextureUsageRenderTarget || !sweetgl_metal_depth32_supported()))return nil;
+    if(descriptor.pixelFormat==MTLPixelFormatStencil8 && (descriptor.mipmapLevelCount!=1 || descriptor.sampleCount!=1 ||
+        descriptor.usage!=MTLTextureUsageRenderTarget || !sweetgl_metal_stencil8_supported()))return nil;
     uint64_t pitch=(descriptor.width*pixel+63)&~UINT64_C(63);
     SweetTextureLayout levels[15];uint64_t bytes=0;
     if(!sweet_texture_chain(descriptor.width,descriptor.height,(uint32_t)descriptor.pixelFormat,0,pitch,descriptor.mipmapLevelCount,UINT64_C(256)<<20,levels,bytes))return nil;

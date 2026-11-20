@@ -1,57 +1,81 @@
 # Metal 深度／模板候选 — 2026-11-20
 
-现行实机基线仍为v730／GLES CA矩阵r1／Metal5e94ab57。本轮离线补齐了原生Depth32Float附件、深度状态、原页面导入、GPU清深度与命令快照；候选没有投递手机，尚未获得自身CPU／GLES／native17／PNG6准入。模板状态与GLES映射已实现及离线验证，模板附件、MSAA、深度与XR有序混色组合仍未接入。这些改动不代表黑壁纸或其它外设完成。
+现行实机基线仍是v730／GLES CA矩阵r1／Metal5e94ab57。正式源码在Depth32候选上增加Stencil8附件，两个原页面、状态快照、GPU独立清除和引用回收已接入，离线构建与主机检查通过。新候选没有投递手机，仍须自己的CPU／GLES9／referenceCPU／native18／PNG6证明；黑壁纸、完整动态UI／FPS／睡眠和其它外设没有因此完成。
 
-## 改动与开源来源
+## 原页面和开源契约
 
-原`SweetMTLRenderPipeline`和encoder拒绝全部depth／stencil附件，`SweetMTLDevice`也没有原生depth-stencil state对象。固定Mesa24.3.4／FD540已经有`PIPE_FORMAT_Z32_FLOAT`深度测试，外部纹理helper`st_context_teximage`却按颜色格式描述导入资源。候选按准确Depth32Float／252、2D／单sample／单level／RenderTarget、64B stride及完整原buffer范围，导入原pipe_resource后补真实深度texture image格式，保持原GPU页面和同步／fence通道。
+Depth32Float／252和Stencil8／253均只支持2D、单sample、单level、RenderTarget和完整原buffer范围；offset／stride须64B对齐。颜色／旧Depth32 ABI保持，新增独立`MetalStencilAttachment.h` C ABI。encoder保留原纹理和不可变front／back状态到命令执行，检查owner、格式、尺寸、原范围、颜色／深度／模板重叠；调用者先释放后仍可执行，最后原分配回收。
 
-`MetalDepthStencilState.inc`的descriptor semantics对照[开源ios_sagit QcomMTL](https://github.com/MC-XiaoXiao/ios_sagit/blob/898998cf1b74ea103e0c16d6dc0016822d8d644b/drivers/gpu/QcomMTL/QcomMTL.mm)，BSD-2-Clause来源保留。按本机Metal16 ABI验证八种compare值，复制原front／back descriptor及掩码，保留label／device；nil state恢复默认Always／不写深度并保留stencil参考值。Apple descriptor设置backFaceStencil=nil后getter仍提供默认Always／Keep描述符，测试核对实际getter而不是推定缺face。
+Depth-stencil descriptor语义对照[开源ios_sagit QcomMTL](https://github.com/MC-XiaoXiao/ios_sagit/blob/898998cf1b74ea103e0c16d6dc0016822d8d644b/drivers/gpu/QcomMTL/QcomMTL.mm)，BSD-2-Clause来源保留。八种compare、八种stencil operation、参考值和掩码按实际Metal16 ABI映射到GLES。nil state恢复Always／不写深度，参考值保持；Apple backFaceStencil=nil后的实际getter给默认Always／Keep，已按原对象验证。
 
-新增`MetalDepthAttachment.h`提供独立C ABI，旧`SweetRenderPipelineConfig`／`SweetRenderPass`／`SweetRenderDraw`结构和程序cache记录尺寸保持。原native encoder把depth texture与不可变状态快照保留到命令执行，检查device／格式／范围及颜色附件重叠，调用者先释放仍可执行。Depth-only clear可在颜色附件Load时执行；GPU shader写gl_FragDepth并用完整原像素scissor，避免FD5 fast-clear向caller padding写入。真正FD540写入及padding仍需手机证明。
+固定[Mesa24.3.4](https://gitlab.freedesktop.org/mesa/mesa/-/tree/769e51468b49b2a42f0a0eaf71cf9eed5ff4e5de) Freedreno原`u_transfer_helper`采用separate-z32s8：primary对外是Z32_FLOAT_S8X24，对内仍是原Z32_FLOAT布局，secondary保留原S8_UINT。新`StencilResourcePair.h`在screen／格式／尺寸／sample等全部一致后仅转交secondary的一个引用，primary销毁时由原Mesa helper回收S8，绝不把Depth32改成8B交错存储。实际固定源码`fd5_gmem.c`也分别编程depth和stencil地址／pitch；主机15类回滚模型核对错误时没有修改或丢失原引用。
 
-模板附件继续拒绝，Depth32仅RenderTarget；mipmap／sampled-depth／surface-depth尚未实现。XR有序image blend与深度组合继续拒绝，因为late depth test不能保护已有fragment image写入，不能在组合路径静默忽略深度。kernel GPU底层／allocator／SCM／PON／RPC／VM、SweetGPU、Mesa归档及AIR lowering源保持；只编译正式仓库用户态候选。
+仅有stencil附件时，Mesa需要一个primary depth布局，候选建立私有未使用Depth32平面。实际深度测试和写入关闭，caller没有depth页就不读写任何caller深度；模板仍用原S8页面。Depth／Stencil独立Load／Clear，使用实际GPU draw和完整像素scissor，避免fast-clear污染caller padding。stencil clear禁用depth test／write，depth clear禁用stencil，颜色Load与另外一层clear可分别执行。
 
-## 离线证据和准确身份
+当前仍拒绝MSAA、sampled-depth／sampled-stencil、mipmap／IOSurface depth-stencil和depth-stencil与XR有序image blend组合。后者的late depth test无法保护fragment image副作用，不能静默忽略深度或模板。kernel GPU底层／allocator／SCM／PON／RPC／VM、SweetGPU、Mesa归档和AIR lowering源保持，只编译正式仓库用户态。
+
+## 离线身份与证据
 
 | 输入 | 准确身份 |
 | --- | --- |
-| 已验内核v730 | `f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d` |
-| 候选GLES／已打包签名 | `1720c1df2b0efeb40412508b94d54d7eb10847ef6b7f5aa560d69520e9718184`，14766032B |
-| 候选Metal | `d5c89a2c6adb4e07f62fee175aac8520cbb8a80a0b41b164bb23b25f17fef2b3`，786976B |
-| 候选Metal source-map | `36e8fae9163c35ca09f83abcf3277ab7a53c43b53174e9ad53b84da7ed682774` |
-| 完整reference observer | `97e03083e11caddd351ed4996d07807e49a3adab0e5f517ea90325ffa113911b` |
-| 新reference RAM blob | 4267574B，原生HFS只读／库别名及完整像素源码锁已验 |
+| 已验v730 kernel | `f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d` |
+| 候选打包签名GLES | `6211bac248655bad1f1fb3c1386e68037160f8f78bd264893030ad69e60bd5df`，14783008B |
+| 候选Metal | `f40f796b7d04d143685a7ac0e9414cfed2aae68d0184249ebaf3cd09c286ec53`，787648B |
+| 候选Metal source-map | `b86e29eb0c15237abc95b5ea31e976569ec47fc13513883184e66b3cf47b09d0` |
+| reference observer | `7e164ad1c0e54efa6f17f461e604b3554642d1d8c8c9b033b3d30070285c7e9d`，220336B |
+| GLES RAM blob | 3899356B／`36d0aeb3b6d466fe69e726596a162c67bf45f6362631573e33ce450cb9cdc918` |
+| reference RAM blob | 4274561B／`1c13889d220e5a5f7aa75b4bae3d83ba51e3515cc456dad6ab307707f147978b` |
 
-Mac前端原产物SHA6a27ca64与上述打包后GLES1720c1df不同，来自install_name／重签步骤，不能互换准入。实际Metal绑定打包后1720c1df。所有输入、源码SHA、主机结果见[offline-proof](../reproducibility/depth-stencil-r1-offline-proof.json)。
+Mac前端原产物SHA51770f95与打包后GLES6211bac2不同，来自install_name／重签，不能互换准入。Metal准确绑定6211bac2；RAM只读HFS、别名、全部库字节／blob／来源锁已复算。新CPU bundle token`3ec7416adc2cfeea`／image`5567d6561e517b8270c180ccc3a64d1105e93da57ae8179c6679946a7a170fde`完成offline同核private／payload／Mac83实际源audit，发送次数0。
 
-WSL实际Mesa23.2.1／llvmpipe GLES3.2＋ASan／UBSan执行2382次draw、246636像素检查，覆盖八种depth compare／八种stencil operation、front／back、三条stencil操作分支、clamp／wrap边界、read／write masks、scissor与输出guard；额外验证真实GPU shader深度清除及缓存。它没有执行FD540原page importer，不能称为手机GPU像素。
+最新[offline proof](../reproducibility/stencil-attachment-r2-offline-proof.json)保留全部身份与验收边界。旧[Depth32 proof](../reproducibility/depth-stencil-r1-offline-proof.json)及[旧专题原文](archive/20261120/stencil-attachment-r2/METAL-DEPTH-STENCIL.md)原样保留，不能把旧库native17或ASan结果准入本轮。
 
-Mac真实Metal资源／queue／AIR compute-render-constants-MRT回归与Depth32对象ASan／UBSan通过；新对象验证原descriptor／label／owner、原depth buffer范围／row padding、Private CPU拒绝、unsupported capability回滚、immutable状态／attachment快照、caller释放及最终回收。GPU传输是host stub，单列原生对象验收，不冒充手机深度绘制。首次host断言因错误假设backFaceStencil=nil而拒绝，原失败与getter原测试保留；修正测试后完整通过。
+WSL真实Mesa23.2.1／llvmpipe GLES3.2的UBSan执行2390draw、247860像素，覆盖8compare／8operation、front-back、三条操作分支、clamp-wrap、read-write masks、scissor／输出guard和GPU depth-stencil清除；pair helper15类回滚／引用生命周期模型通过。它没有执行FD540 importer，不代表本机原页GPU像素。
 
-Mac实际用户态前端、native Metal和带原native16／PNG6＋depth29新probe的observer均iOS ARM64编译／签名成功；新RAM包完整byte／SHA／只读HFS核验通过。Windows新CPU bundle token`e57b450de07ac3fe`、image`295d83dc56e16588f307fc215c161051875148087f8287b16edb2b88bf4c0006`完成offline run_trial检查和Mac83源audit，尚未投递。既有Sony仍fastboot，r4／r5拒绝包不重发。
+本轮WSL ASan测试停在libasan6 startup，实际PC模块offset0xcdf02／`__sanitizer::internal_iserror`，尚未进入Mesa，原失败单列，最终GLES不宣称ASan通过。旧未限长输出产生11,881,859,070B重复DEADLYSIGNAL日志，已实际进入Windows回收站，SHA55931387、首4096B与失败元数据保留，回收站未清空。runner现在限45秒、Python等待55秒、Linux文件1MiB，RLIMIT覆盖shell，实际超量拒绝；ASAN handle_segv=0只停递归handler，不关闭memory checks。
 
-## 构建与完整实机准入
+Mac真实Metal对象ASan／UBSan通过：原资源／queue／AIR compute-render-constants-MRT回归、Depth32、Stencil8页面和guard、owner、Private权限、descriptor状态、独立Load-Clear、immutable快照、caller释放及最终回收。GPU传输是host stub，不能称手机绘制。iOS ARM64前端／Metal／完整observer均构建签名成功，源码与候选manifest逐项匹配。
 
-全部输出目录必须新建。离线host检查：
+## 可复现构建
+
+输出目录必须新建。Windows／WSL使用最终有界runner：
 
 ```powershell
-python -B tools/build/check_depth_stencil_gles.py --output build/my-depth/host-gles
+python -B tools/build/check_depth_stencil_gles.py --sanitizers undefined --output build/my-stencil/host-gles
 ```
 
-Mac原生host及前端构建：
+要测试ASan时明确选择`--sanitizers address,undefined`，失败保留实际输出，不能替代成PASS。Mac前端、原生对象和库：
 
 ```sh
-python3 -B tools/build/check_metal_compute.py --output build/my-depth/host-native --llvm-headers deps/llvm-c-14
-python3 -B tools/build/build_frontend_trial.py --mesa-build build/mesa-ir3-cache-r1 --output build/my-depth/frontend
-python3 -B tools/build/package_glram.py --frontend build/my-depth/frontend --output build/my-depth/gles-ram
-python3 -B tools/build/build_metal_library.py --ram-package build/my-depth/gles-ram --air-package build/static-initializer-r1/frontend --output build/my-depth/library
+python3 -B tools/build/check_metal_compute.py --output build/my-stencil/host-native --llvm-headers deps/llvm-c-14
+python3 -B tools/build/build_frontend_trial.py --mesa-build build/mesa-ir3-cache-r1 --output build/my-stencil/frontend
+python3 -B tools/build/package_glram.py --frontend build/my-stencil/frontend --output build/my-stencil/gles-ram
+python3 -B tools/build/build_metal_library.py --ram-package build/my-stencil/gles-ram --air-package build/static-initializer-r1/frontend --output build/my-stencil/library
 ```
 
-固定AIR来源按[BUILD](BUILD.md)与对应source-map重建，不能以另一份产物冒充相同SHA。新reference observer沿现行完整native16全部fixtures／`--clear-cache-probe --ir3-cache-probe --cif10-png-reference`，增加`--depth32-probe`，只在backboardd并先等待同进程GLES9通过后执行，原Aegir不注入长探针。`package_glram --presigned --observer --metal-resources`保持已经验的准确新GLES。
+完整固定Mesa／AIR输入从[BUILD](BUILD.md)、[IR3 cache](IR3-VARIANT-CACHE.md)和对应source-map重建，重新编译的SHA需自己的实机准入。完整observer命令：
 
-`MetalDepth32Probe.h`实际用标准Metal库／position-color AIR、原17×9两张1280B buffer纹理、offset64／pitch128。29phase覆盖24种比较、Less写深度／Load后的后续比较、nil默认不写、Never拒绝及只有depth clear，全部74240B／38744B guard及26100B getBytes输出核验；输入SHA、原页面、IOVA、严格递增fence和最后allocated0绑定同靴。`depth32_evidence.py`独立重算每个原BGR像素与float32 depth字节，错块、错handle／offset、错fence、缺阶段／guard／回收都拒绝。
+```sh
+python3 -B tools/build/build_exception_observer.py --output build/my-stencil/observer \
+  --metal-resources build/my-stencil/library --target-process backboardd \
+  --gles-ram-package build/my-stencil/gles-ram \
+  --air-fixture build/air-r1/fixture --render-fixture build/render-r1/fixture \
+  --constants-fixture build/constants-r1/fixture --xr-probe --surface-probe --mip-probe \
+  --narrow-fixture build/air-conversion-r1/narrow-fixture --half-fixture build/air-half-r1/fixture \
+  --mrt-fixture build/metal-mrt-r2/fixture-final --sampler-fixture build/link-cache-r1/sampler-fixture-lf \
+  --static-half-fixture build/static-initializer-r1/fixture --clear-cache-probe --ir3-cache-probe \
+  --depth32-probe --stencil8-probe --cif10-png-reference
+python3 -B tools/build/package_glram.py --presigned --frontend build/my-stencil/gles-ram \
+  --observer build/my-stencil/observer --metal-resources build/my-stencil/library \
+  --output build/my-stencil/reference-ram
+```
 
-新GLES包CPU→完整GLES9→新reference RAMCPU→完整native17／PNG6→新native-proof→原Aegir observer自身CPU→原GPU／150秒scanout，严格顺序保持。新`native_depth32_attachment`必须`Metal_depth32`原raw证明，旧native16即使全通过也拒绝。host与offline bundle不替代这些准入；手机恢复到新的健康fastboot会话后才按OPERATIONS单发，四marker／0x06／健康30秒／worker退出仍强制。
+长探针只在backboardd、等待同进程GLES9后执行，原Aegir不注入长suite。打包保留准确GLES6211bac2对应字节；完整reference添加新Metal／observer。
 
-后续完整方向仍包含模板附件与MSAA、深度texture sampling及XR正确组合、原环境／动画触发、完整壁纸／UI／FPS／睡眠／光学／声音无线和其它外设。
+## 原字节实机门槛
+
+Depth32原29phase保留，74240B／38744Bguard／26100B读回。新增`MetalStencil8Probe.h`为99phase，17×9、color1280B／depth1280B／stencil768B、原offset64／pitch128-128-64，覆盖正反面比较、各操作三分支、参考值掩码、stencil-only和两个独立clear。所有329472B、193149Bguard与118800B getBytes读回、原handle／IOVA／offset、递增fence／最终allocated0必须本靴核验。
+
+`stencil8_evidence.py`独立重算原BGR／float32深度／S8字节，不接受缺阶段、错mask／字节、外来页面、错误fence或未回收；ACK后记录不能补齐ACK前缺失。新库须自身RAMCPU→完整GLES9→新referenceCPU→完整native18／PNG6→新native-proof→原Aegir observer自身CPU→原GPU／150秒scanout。native16／17旧proof明确拒绝Stencil8库。
+
+r4／r5失败仍保留，新的健康物理fastboot会话尚待确认，枚举健康不能推定用户已恢复，不换token重发旧失败。按[OPERATIONS](OPERATIONS.md)只Sony、单download／boot、PON0x06、四marker／健康30秒／旧worker退出。日常原UI用已验串口真实720×1280截图，摄像头只用于LCD光学／背光／错行。没有原环境／动画触发／pipeline证据仍保留STOP；完整壁纸／UI／FPS／睡眠和其它外设继续。

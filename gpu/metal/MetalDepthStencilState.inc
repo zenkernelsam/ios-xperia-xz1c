@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: BSD-2-Clause
 // Native descriptor semantics follow ios_sagit/QcomMTL (898998cf); Metal16 ABI.
 #include "../sweetgl/MetalDepthAttachment.h"
+#include "../sweetgl/MetalStencilAttachment.h"
 @interface SweetMTLDepthStencilState : NSObject <MTLDepthStencilState> {
 @public SweetMTLDevice *_owner;SweetDepthStencilState _state;NSString *_label;
 }
@@ -38,3 +39,4 @@ SWEET_COMPARE_ABI(Never,0);SWEET_COMPARE_ABI(Less,1);SWEET_COMPARE_ABI(Equal,2);
 SWEET_COMPARE_ABI(Greater,4);SWEET_COMPARE_ABI(NotEqual,5);SWEET_COMPARE_ABI(GreaterEqual,6);SWEET_COMPARE_ABI(Always,7);
 #undef SWEET_COMPARE_ABI
 static_assert(uint32_t(MTLPixelFormatDepth32Float)==252,"Metal depth32 format ABI differs");
+static_assert(uint32_t(MTLPixelFormatStencil8)==253,"Metal stencil8 format ABI differs");

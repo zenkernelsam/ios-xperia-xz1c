@@ -1,0 +1,30 @@
+{
+  "AGENTS.md": {
+    "archive": "docs/archive/20261120/stencil-attachment-r2/AGENTS.md",
+    "sha256": "33b82476eceee21cee0bf0a699718c76c338014998a5b2ede73020d2df883ca4"
+  },
+  "README.md": {
+    "archive": "docs/archive/20261120/stencil-attachment-r2/README.md",
+    "sha256": "5b2ee23b4d1ea9c1628ff1755f69036bf72e2893dba0da06f25cc36f2d647beb"
+  },
+  "docs/STATUS.md": {
+    "archive": "docs/archive/20261120/stencil-attachment-r2/STATUS.md",
+    "sha256": "dd774e79349265340d0557013a8751c6868a45e933df95687e74605e41441ffd"
+  },
+  "docs/BUILD.md": {
+    "archive": "docs/archive/20261120/stencil-attachment-r2/BUILD.md",
+    "sha256": "40bfeae04bc6a7ff1d9e074938f3757d77b43edbeba2b0827a9203394ceb4811"
+  },
+  "docs/OPERATIONS.md": {
+    "archive": "docs/archive/20261120/stencil-attachment-r2/OPERATIONS.md",
+    "sha256": "9c1335560436b9b525c0d691dd8e86d88b80fde03d2099625a392c9a3d8c9122"
+  },
+  "docs/METAL-DEPTH-STENCIL.md": {
+    "archive": "docs/archive/20261120/stencil-attachment-r2/METAL-DEPTH-STENCIL.md",
+    "sha256": "ef25f4ed67c66c3d547ae0e0d35c94d61294934f795926c4c0ece8f041850145"
+  },
+  "docs/SCANOUT-SCREENSHOT.md": {
+    "archive": "docs/archive/20261120/stencil-attachment-r2/SCANOUT-SCREENSHOT.md",
+    "sha256": "2d9dc6c235a7acf13d96d99e4081b3a1555a1d17867861cec5acefd86f6e4d32"
+  }
+}

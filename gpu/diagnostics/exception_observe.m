@@ -106,6 +106,9 @@
 #if defined(SWEET_METAL_DEPTH32_PROBE)
 #include "MetalDepth32Probe.h"
 #endif
+#if defined(SWEET_METAL_STENCIL8_PROBE)
+#include "MetalStencil8Probe.h"
+#endif
 
 #if defined(LILAC_EXCEPTION_TEST)
 struct MetalABIHostLimits { uint32_t fields[63];uint64_t maxBufferLength; };
@@ -287,6 +290,9 @@ static bool run_native_probes(void)
 #endif
 #if defined(SWEET_METAL_DEPTH32_PROBE)
     native_probes_valid=metal_depth32_probe(diagnostic) && native_probes_valid;
+#endif
+#if defined(SWEET_METAL_STENCIL8_PROBE)
+    native_probes_valid=metal_stencil8_probe(diagnostic) && native_probes_valid;
 #endif
 #if defined(SWEET_PROGRAM_CACHE_PRIME)
     if(native_probes_valid){uint32_t completed=0,failed=0;int result=sweetgl_metal_program_cache_prime(&completed,&failed);

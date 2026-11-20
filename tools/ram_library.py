@@ -204,6 +204,11 @@ def load(folder,expected=None):
                 assert observer.get('IR3_cache_probe') and observer.get('AIR_render_probe') and observer['target_process']=='backboardd'
                 assert observer['depth32_probe_phases']==29 and observer['depth32_original_pages_guards_and_compare_required']
                 assert observer['metal_resources'].get('native_depth32_attachment')
+            if observer.get('stencil8_probe'):
+                sources.add('gpu/diagnostics/MetalStencil8Probe.h')
+                assert observer.get('depth32_probe') and observer['target_process']=='backboardd'
+                assert observer['stencil8_probe_phases']==99 and observer['stencil8_original_planes_front_back_masks_and_guards_required']
+                assert observer['metal_resources'].get('native_stencil8_attachment')
             assert set(observer['source_files'])==sources
             assert observer['source_files'][observer['source']]==observer['source_sha256']
     if 'metal_resources' in m:
@@ -222,6 +227,8 @@ def load(folder,expected=None):
             assert not air['llvm_import_audit']['missing_target_imports']
         if resources.get('native_depth32_attachment'):
             assert observer.get('depth32_probe') or observer.get('registration_only')
+        if resources.get('native_stencil8_attachment'):
+            assert observer.get('stencil8_probe') or observer.get('registration_only')
         assert m['files']['exception_observe.dylib']['sha256']==observer['library_sha256']
         if resources.get('requires_source_scoped_cache'):assert observer.get('program_cache_scope'),'Source-scoped resource package lacks its matching root'
     assert set(m['files'])==names
@@ -240,6 +247,9 @@ def load(folder,expected=None):
     if m['frontend_build_binding'].get('depth32_attachment_revision'):
         assert m['frontend_build_binding']['depth32_attachment_revision']==1 and m['frontend_build_binding']['depth_stencil_state_mapping']
         assert all(path in source for path in ('MetalDepthAttachment.h','MetalDepthStencilRules.h','DepthStencilGLES.h','Depth32ClearGLES.h'))
+    if m['frontend_build_binding'].get('stencil8_attachment_revision'):
+        assert m['frontend_build_binding']['stencil8_attachment_revision']==1 and m['frontend_build_binding']['stencil8_original_separate_plane_import']
+        assert all(path in source for path in ('MetalStencilAttachment.h','Stencil8ClearGLES.h'))
     for path,digest in source.items():
         path=Path(path);assert not path.is_absolute() and '..' not in path.parts
         assert re.fullmatch('[0-9a-f]{64}',digest)

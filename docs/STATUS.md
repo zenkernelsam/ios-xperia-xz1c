@@ -4,7 +4,9 @@ Sony BH905ND69G 当前停在 fastboot，无 controller／串口 worker／in-flig
 
 当前正式基线为 CA 矩阵修订 r1：
 
-正式源码另有尚未手机准入的Depth32候选，GLES1720c1df／Metald5c89a2c／source-map36e8fae9，仅离线构建和主机验证通过，未替换下表的已验基线。真实host Mesa2382draw／246636像素、Mac原生对象ASan／UBSan和ARM64前端／库／native17 probe构建通过；新CPU bundle已offline audit，仍未投递。模板附件／MSAA／depth-XR有序组合等继续缺口，见 [METAL-DEPTH-STENCIL](METAL-DEPTH-STENCIL.md)。
+正式源码另有尚未手机准入的Stencil8附件r2候选，GLES6211bac2／Metalf40f796b／source-mapb86e29eb，仅离线构建和主机验证通过，未替换下表的已验基线。它在Depth32上增加独立模板页面、准确Mesa separate-z32s8引用转交、独立Load／Clear与front-back状态快照；真实host Mesa2390draw／247860像素UBSan、15类pair回滚和Mac原生对象ASan／UBSan通过，iOS ARM64前端／库／完整native18 probe构建通过。CPU bundle3ec7416adc2cfeea／image5567d656已offline同核private／payload／Mac83源audit，仍未投递。MSAA／sampled depth-stencil／depth-stencil-XR有序组合继续缺口，见 [METAL-DEPTH-STENCIL](METAL-DEPTH-STENCIL.md) 和 [新offline proof](../reproducibility/stencil-attachment-r2-offline-proof.json)。
+
+本轮WSL ASan停在libasan启动阶段，未进入Mesa，原失败与PC／模块／符号保留；最终host GLES只宣称UBSan通过。11,881,859,070B重复日志已实际进入Windows回收站，首4096B、原SHA及失败元数据保留，回收站未清空；新host运行限45秒、日志1MiB，超量边界实际核验通过。旧Depth32离线证明保持原样，不能拿上轮ASan结果替代本轮。
 
 | 输入 | 精确身份 |
 | --- | --- |
@@ -39,6 +41,8 @@ Sony BH905ND69G 当前停在 fastboot，无 controller／串口 worker／in-flig
 原 `206fb768…` 的唯一串口 sample 在确认 metallib 返回后180.047秒执行；同靴slide0x31644000与固定A2S符号图核验，9个线程样本中主线程在 mach_msg→CFRunLoop→UIApplication／ExtensionKit事件循环，另一线程在UIEventFetcher。样本里没有正在编译或draw的GPU调用，不能据此推整靴或所有线程无GPU耗时。原周期初始化样本独立保留。两靴分别38.500／38.860秒完整回程，原STOP未提升，见 [threads](../reproducibility/v730-ca-matrix-r1-original-idle-r2-threads.json)。
 
 原 `881ce1c5…` 120.078秒经同一worker发送一次swipe，内核F12线程确认一次注入；150.031秒捕获720×1280／BGR888／stride2160完整主页。2764800B→925068B／7228块，传输30.311秒，301942B PNG SHA `19fb266d1d4637945eb4ecbae123f40d0fafa13f24f1eb95b8313f5468a1ea30`。所有來源／寄存器／记录-块-整帧CRC／FNV及保存像素复算，power_off=0照实记录。合成手势可验证无人值守UI路由，但不能替代手指触控验收。见 [home](../reproducibility/v730-ca-matrix-r1-home-scanout-observation.json) 与 [scanout](../reproducibility/v730-ca-matrix-r1-original-swipe-r3-scanout.json)。
+
+2026-11-20针对串口截图问题，重新从881ce1c5主页与3541e079锁屏的原raw／results／artifact／plan／commands／events独立核验：两个来源、完整像素、PNG SHA和四marker回程均通过，原STOP未提升。图片实际捕获于11月19日；当前无需DroidCam也能继续UI内容和颜色数值取证，LCD光学／背光／物理错行另验。没有为此次复验发送新frame或boot，r4／r5失败后尚待新的物理fastboot会话确认。
 
 ## 继续方向与未完成
 

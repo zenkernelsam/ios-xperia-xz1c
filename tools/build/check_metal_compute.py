@@ -38,6 +38,7 @@ run(['clang++',*object_common,'-g','-O1','-fsanitize=address,undefined','-fno-ob
 run(['clang++','-fsanitize=address,undefined',out/'frontend-test.o',out/'depth-test.o',*link,
     '-framework','Metal','-framework','Foundation','-framework','IOSurface','-o',out/'depth-test'],'depth-link')
 assert 'Native depth objects PASS:' in run([out/'depth-test',root/'gpu/metal/air/fixtures/render.air.ll'],'depth-test')
+assert 'Native stencil objects PASS:' in (out/'depth-test.log').read_text()
 run(['clang++',*object_common,'-g','-O1','-fsanitize=address,undefined','-fno-objc-arc','-c',
     root/'tools/build/test_metal_constants.mm','-o',out/'constants-test.o'],'constants-compile')
 run(['clang++','-fsanitize=address,undefined',out/'frontend-test.o',out/'constants-test.o',*link,
@@ -50,7 +51,7 @@ paths=['gpu/metal/MetalCompute.inc','gpu/metal/MetalCommandQueue.inc','gpu/metal
     'gpu/sweetgl/MetalShaderAPI.h','gpu/sweetgl/MetalBackingAPI.h','gpu/sweetgl/MetalBackingRules.h','gpu/metal/MetalBufferRules.h',
     'gpu/metal/air/lilac-air-conversion.patch','gpu/metal/air/lilac-air-half-storage.patch','gpu/metal/air/HalfESSL.h','tools/build/materialize_air_sources.py',
     'gpu/metal/air/fixtures/mrt.air.ll','tools/build/test_metal_mrt.mm','tools/build/test_metal_depth.mm','tools/build/DepthBackendHostStub.h',
-    'gpu/metal/MetalDepthStencilState.inc','gpu/sweetgl/MetalDepthStencilRules.h','gpu/sweetgl/MetalDepthAttachment.h']
+    'gpu/metal/MetalDepthStencilState.inc','gpu/sweetgl/MetalDepthStencilRules.h','gpu/sweetgl/MetalDepthAttachment.h','gpu/sweetgl/MetalStencilAttachment.h']
 report=dict(source_files={p:hashlib.sha256((root/p).read_bytes()).hexdigest() for p in paths},
     real_legacy_LLVM_adapter_ASan_UBSan_passed=True,real_Metal_compute_objects_ASan_UBSan_passed=True,
     real_AIR_to_ESSL_translation_passed=True,host_GPU_stub_not_hardware_proof=True,device_operations=0)
@@ -60,4 +61,5 @@ report['real_host_IOSurface_texture_pages_lifetime_regions_ASan_UBSan_passed']=T
 report['real_native_mip_chain_regions_Private_permissions_queue_retention_and_failure_retirement_ASan_UBSan_passed']=True
 report['real_native_MRT_format_masks_queue_snapshots_nonoverlap_and_final_lifetime_ASan_UBSan_passed']=True
 report['real_native_depth32_objects_state_snapshots_owner_guards_and_final_lifetime_ASan_UBSan_passed']=True
+report['real_native_stencil8_objects_front_back_state_load_clear_snapshots_owner_and_final_lifetime_ASan_UBSan_passed']=True
 (out/'manifest.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print(json.dumps(report))

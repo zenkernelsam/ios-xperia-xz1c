@@ -8,6 +8,7 @@
 #include <string.h>
 #include "../../gpu/sweetgl/DepthStencilGLES.h"
 #include "../../gpu/sweetgl/Depth32ClearGLES.h"
+#include "../../gpu/sweetgl/Stencil8ClearGLES.h"
 
 enum { WIDTH=17,HEIGHT=9,LEFT=3,TOP=2,BOX_WIDTH=11,BOX_HEIGHT=5 };
 static GLuint pipeline;
@@ -131,6 +132,20 @@ static void depth_clear_pixels(GLuint texture)
     assert(sweet_depth32_clear(texture,WIDTH,HEIGHT,-0.5,&cache)==-EINVAL);
     glDeleteProgram(cache);
 }
+static void stencil_clear_pixels(GLuint texture)
+{
+    GLuint cache=0;const unsigned values[]={0,1,127,255};const uint8_t yes[]={0,255,0,255},no[]={255,0,255,255};
+    for(unsigned i=0;i<4;++i){clear(values[i]^255,0.25f);
+        assert(!sweet_stencil8_clear(texture,WIDTH,HEIGHT,values[i],&cache) && cache);
+        SweetDepthStencilState state=sweet_depth_stencil_default();state.front=state.back=face(2,0,0,0,255,0);state.front_reference=state.back_reference=values[i];
+        assert(sweet_depth_stencil_apply(&state,true,true));draw(0.5f,false,green,true);check(true,false,yes,no);
+        state.compare=1;assert(sweet_depth_stencil_apply(&state,true,true));
+        glDisable(GL_SCISSOR_TEST);glClearColor(1,0,1,1);glClear(GL_COLOR_BUFFER_BIT);draw(0.5f,false,green,true);check(false,false,yes,no);
+        // Template clearing did not replace the Depth32 plane; Less with .5
+        // still fails against the original .25 depth value.
+    }
+    assert(sweet_stencil8_clear(texture,WIDTH,HEIGHT,256,&cache)==-EINVAL);glDeleteProgram(cache);
+}
 int main(void)
 {
     EGLDisplay display=eglGetDisplay(EGL_DEFAULT_DISPLAY);assert(display!=EGL_NO_DISPLAY && eglInitialize(display,NULL,NULL));
@@ -149,7 +164,7 @@ int main(void)
     glGenTextures(1,&depth);glBindTexture(GL_TEXTURE_2D,depth);glTexStorage2D(GL_TEXTURE_2D,1,GL_DEPTH32F_STENCIL8,WIDTH,HEIGHT);
     glFramebufferTexture2D(GL_FRAMEBUFFER,GL_DEPTH_STENCIL_ATTACHMENT,GL_TEXTURE_2D,depth,0);
     assert(glCheckFramebufferStatus(GL_FRAMEBUFFER)==GL_FRAMEBUFFER_COMPLETE);glDisable(GL_DITHER);
-    depth_comparisons();stencil_comparisons();stencil_updates();rejected_state_preserves_current_GL();depth_clear_pixels(depth);
+    depth_comparisons();stencil_comparisons();stencil_updates();rejected_state_preserves_current_GL();depth_clear_pixels(depth);stencil_clear_pixels(depth);
     assert(glGetError()==GL_NO_ERROR);glDeleteTextures(1,&depth);glDeleteTextures(1,&colour);glDeleteFramebuffers(1,&fbo);glDeleteVertexArrays(1,&vao);glDeleteProgram(pipeline);
     eglMakeCurrent(display,EGL_NO_SURFACE,EGL_NO_SURFACE,EGL_NO_CONTEXT);eglDestroyContext(display,context);eglTerminate(display);
     printf("Depth/stencil GLES PASS: draws=%u checked_pixels=%u all_compare_ops=8 all_stencil_ops=8 front_back=1 scissor_masks_guards=1 host_only=1\n",draws,pixel_checks);
