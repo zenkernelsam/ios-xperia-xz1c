@@ -1,0 +1,94 @@
+{
+  "date": "2026-11-22",
+  "source_commit": "264b20f32c6c751a2a3ac38a469cf693d68eb770",
+  "geocompat_build_binding": {
+    "revision": 1,
+    "source_files": {
+      "gpu/geocompat/geocompat.mm": "84f26a7e19ee26f114b15599385bed29b00aa119b94642224dc9b74955f99da9",
+      "gpu/geocompat/test_adapter.mm": "606071f8ad24e58253e4bf7e777dea8672118ad431e77ac56b6e759cb9ab259f",
+      "tools/build/build_geocompat_trial.py": "082fbef9e232d15b12411a7c286ad951ab9c74678d89a829a494a9c48b91b80d"
+    },
+    "library_sha256": "70ba50b67a3b9cf95f6f2e53df6516003970059b23b61ac9837224e3012d1e36",
+    "library_bytes": 72096,
+    "host_ASan_UBSan_real_four_argument_provider_dispatch_passed": true,
+    "exact_native360x640_720x1280_scale2_flat_provider": true,
+    "opaque_visual_provider_info_forwarded": true,
+    "valid_other_screen_providers_preserved": true,
+    "read_only_window_safe_area_ABI_checked": true,
+    "read_only_layout_observer_revision": 1,
+    "host_ASan_UBSan_bounded_layout_and_CGRect_conversion_passed": true,
+    "original_frame_grid_values_preserved": true,
+    "layout_snapshot_once_after_constructor_seconds": 135,
+    "new_device_RAM_CPU_GLES_UI_NOT_verified": true,
+    "device_operations": 0
+  },
+  "RAM_blob_sha256": "68f0c4e5dbe4ae9a2d5267465ec532c954a34e8e46c04dd47d53aa4ca642b3a3",
+  "GLES_sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+  "packages": [
+    {
+      "stage": "cpu",
+      "token": "2cd8a244ad3a9533",
+      "image_sha256": "3a38da2d773cc9758ad0bf37311a50e3f8e1f7eb890f4a48233923febeb00f2c",
+      "cmdline_bytes": 607,
+      "geometry_binding": {
+        "revision": 1,
+        "profile": "xz1c-native-2x",
+        "canvas_pixels": [
+          720,
+          1280
+        ],
+        "UIKit_points": [
+          360,
+          640
+        ],
+        "scale": 2,
+        "source_reference_sha256": "257076987411b50f037f70bf97524fae56ac2965e773c1bb8678d05d45480ba6",
+        "target_reference_sha256": "077aac63b2e5cd48e0e4fbd024a07cac3533eaea6a04a94376d2966dbef4d2e6",
+        "converter_sha256": "ad0b5cd47f32968fa95d13a00fe54bf619bb9909efb5e6c796d04adb17d274de",
+        "parser_sha256": "1431f1f8aacae240b87bd29cd91905784c968f8014784201b3ed862bdb1b4ed9",
+        "required_boot_arguments": {
+          "sweetfb_native": 1,
+          "sf2x": 0
+        },
+        "four_original_CFData_properties_only": true
+      },
+      "package_proof_sha256": "37eee7673ca8a8b349c89d869cc95403048002d292447237de68e35eba4a9cfd"
+    },
+    {
+      "stage": "gpu",
+      "token": "226d56831b80e600",
+      "image_sha256": "76900c4520f6900539127d6743a551bbf03d114ad0a43718fa48a6887291f251",
+      "cmdline_bytes": 602,
+      "geometry_binding": {
+        "revision": 1,
+        "profile": "xz1c-native-2x",
+        "canvas_pixels": [
+          720,
+          1280
+        ],
+        "UIKit_points": [
+          360,
+          640
+        ],
+        "scale": 2,
+        "source_reference_sha256": "257076987411b50f037f70bf97524fae56ac2965e773c1bb8678d05d45480ba6",
+        "target_reference_sha256": "077aac63b2e5cd48e0e4fbd024a07cac3533eaea6a04a94376d2966dbef4d2e6",
+        "converter_sha256": "ad0b5cd47f32968fa95d13a00fe54bf619bb9909efb5e6c796d04adb17d274de",
+        "parser_sha256": "1431f1f8aacae240b87bd29cd91905784c968f8014784201b3ed862bdb1b4ed9",
+        "required_boot_arguments": {
+          "sweetfb_native": 1,
+          "sf2x": 0
+        },
+        "four_original_CFData_properties_only": true
+      },
+      "package_proof_sha256": "8f5c868f987627d00fba9160fe4391aeb5deb6f56c568de27f33bc944eb931b3"
+    }
+  ],
+  "Mac_Windows_compiled_helper_sources_equal": true,
+  "Mac_ARM64_signature_verified": true,
+  "canonical_source_validation_passed": true,
+  "CPU_GLES9_original_UI_layout_device_NOT_tested": true,
+  "device_operations": 0,
+  "all_frozen_kernel_and_GLES_Metal_bytes_unchanged": true,
+  "original_R15_package_raw_proofs_retained": true
+}
