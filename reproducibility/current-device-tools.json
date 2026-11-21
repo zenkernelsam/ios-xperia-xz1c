@@ -114,7 +114,8 @@
     "test_serial_worker.py": "ac5c7b55b6c6f445f03f4dc5a8f902651878ff24562e87ab5c559dcfeeb7fa76",
     "depth_tiled_evidence.py": "7d51ff50e1790fa9794d9dea5755d85eb47d41f1d58a6e48f8b4d1e272f960d3",
     "test_depth_tiled_evidence.py": "723f7cd7e01ba54a40490475e436816b2473ba8eeeba9a9b391ac5c96e637bb0",
-    "display_geometry_binding.py": "a038abef8991e196e9aa995bd2a4d24ba3924d195fd4514d5afdec13bd28a59c"
+    "display_geometry_binding.py": "a038abef8991e196e9aa995bd2a4d24ba3924d195fd4514d5afdec13bd28a59c",
+    "geometry_layout_evidence.py": "6c23477c8e14ef1d71155b6bb90c2e437e842a82d8aee691f00b8c36629ff514"
   },
   "supervisor_based_on_actual_tested_one_shot": true,
   "platform_tools_from_environment_or_PATH": true,

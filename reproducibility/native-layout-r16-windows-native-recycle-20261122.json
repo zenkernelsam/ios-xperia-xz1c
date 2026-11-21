@@ -1,0 +1,122 @@
+{
+  "date": "2026-11-22",
+  "items": 4,
+  "files": 10,
+  "logical_bytes": 26943333,
+  "records": [
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-native-layout-r16-stage-20261122",
+      "reason": "R16 completed transfer/CLI duplicates; original controller, raw, source scanout, helper and layout evidence retained",
+      "files": [
+        {
+          "relative": "ram\\georead.dylib",
+          "bytes": 72096,
+          "sha256": "70ba50b67a3b9cf95f6f2e53df6516003970059b23b61ac9837224e3012d1e36"
+        },
+        {
+          "relative": "ram\\glram.zblob",
+          "bytes": 3916202,
+          "sha256": "68f0c4e5dbe4ae9a2d5267465ec532c954a34e8e46c04dd47d53aa4ca642b3a3"
+        },
+        {
+          "relative": "ram\\libglapi.0.dylib",
+          "bytes": 344544,
+          "sha256": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3"
+        },
+        {
+          "relative": "ram\\manifest.json",
+          "bytes": 24502,
+          "sha256": "30fe176fbd0cc36b142e07c9c516d9f4bc4d1ef0dd8cd5916915ed2d200231f8"
+        },
+        {
+          "relative": "ram\\sweetgl.dylib",
+          "bytes": 14801120,
+          "sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607"
+        },
+        {
+          "relative": "transfer-package.tar.gz",
+          "bytes": 7760912,
+          "sha256": "90fa4220e116cf484e6385e73e52e67d719db15cfd5e7078ea5fbcb8144e433a"
+        },
+        {
+          "relative": "transfer-SHA-manifest.json",
+          "bytes": 846,
+          "sha256": "5d69dfe637075af03a9bafa8637dff136d8cafb677e71a7ce6784b25bc34482e"
+        }
+      ],
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RNX64B2",
+      "verified_native_recycle": true,
+      "time": "2026-11-22T07:15:59.0285768+08:00",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-native-layout-r16-stage-20261122",
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-native-layout-r16-cpu-cli-20261122.log",
+      "reason": "R16 completed transfer/CLI duplicates; original controller, raw, source scanout, helper and layout evidence retained",
+      "files": [
+        {
+          "relative": "lilac-native-layout-r16-cpu-cli-20261122.log",
+          "bytes": 3082,
+          "sha256": "2120b6466adff132f99e17f1df08dfd7bb04bf941911cc1b1e52ab01814be179"
+        }
+      ],
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RNEDPU0.log",
+      "verified_native_recycle": true,
+      "time": "2026-11-22T07:15:59.4476210+08:00",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-native-layout-r16-cpu-cli-20261122.log",
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-native-layout-r16-gpu-cli-20261122.log",
+      "reason": "R16 completed transfer/CLI duplicates; original controller, raw, source scanout, helper and layout evidence retained",
+      "files": [
+        {
+          "relative": "lilac-native-layout-r16-gpu-cli-20261122.log",
+          "bytes": 19092,
+          "sha256": "ce133c698218189c3910ef64e88e7df0767293b82b21dcad392e8482c8f034ec"
+        }
+      ],
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RQ76HWD.log",
+      "verified_native_recycle": true,
+      "time": "2026-11-22T07:15:59.4885625+08:00",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-native-layout-r16-gpu-cli-20261122.log",
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-native-layout-r16-health-cli-20261122.log",
+      "reason": "R16 completed transfer/CLI duplicates; original controller, raw, source scanout, helper and layout evidence retained",
+      "files": [
+        {
+          "relative": "lilac-native-layout-r16-health-cli-20261122.log",
+          "bytes": 937,
+          "sha256": "8c1ce8aadad2455ba089195e36daf463ff881df4faf5d57924febd281e03bb81"
+        }
+      ],
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RMVOAPR.log",
+      "verified_native_recycle": true,
+      "time": "2026-11-22T07:15:59.5240818+08:00",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-native-layout-r16-health-cli-20261122.log",
+      "all_content_SHA_verified": true
+    }
+  ],
+  "protected_fingerprints": {
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\native2x-layout-r1-20261122\\ram\\glram.zblob": "68f0c4e5dbe4ae9a2d5267465ec532c954a34e8e46c04dd47d53aa4ca642b3a3",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\native2x-layout-r1-20261122\\ram\\manifest.json": "30fe176fbd0cc36b142e07c9c516d9f4bc4d1ef0dd8cd5916915ed2d200231f8",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\native2x-layout-r1-20261122\\ram\\georead.dylib": "70ba50b67a3b9cf95f6f2e53df6516003970059b23b61ac9837224e3012d1e36",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\native2x-layout-r1-20261122\\original-layout.json": "9fac7319319f1797c30ae4436fca362b72bbdd75f0697581232ac25315f23106",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\reproducibility\\native-layout-r16-stage-20261122.json": "9d6a3865cfd0dbd3501685ad11abc991337cef7d2676d61b0a950b3e54aafc60",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\reproducibility\\current-native21-proof.json": "0befb9e3d3afd08cdb3b32e16441af271f36de02ba662a953606a3b7dfe0f50d",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\reproducibility\\current-PNG6-proof.json": "719e10e82f20d1ec32680a826f51516e380aa8ea10960d6535c987277cc50cc1",
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-native-layout-r16-health-20261122\\health.json": "8884c336729edcb6a762a0643e215bb4161c27afef5e6ca0419f443f45ca792f",
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-layout-r16-cpu-live-20261122\\results.json": "360fe68a174c6e3d68ae25dbb77695d71deb20639a3e1e575c635f1f5b128a10",
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-layout-r16-cpu-live-20261122\\actual-evidence.json": "ba9f365f3bc19ec1e0195ac58f4273dd6fc95a3c62f418ba6c591de854c88b44",
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-layout-r16-cpu-live-20261122\\cycle-01\\serial.raw.log": "fb35186ae680124714ac239102c209736c5f6b7678ca1e96369474e6dddb56c8",
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-layout-r16-gpu-live-20261122\\results.json": "55c6c06fba9d8b349bbf42f2cf5f376ea9f05a73c8a401e09a79498d6f42b8c4",
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-layout-r16-gpu-live-20261122\\actual-evidence.json": "e36a0fa7623e76833bb27dc1f3ff39e323e24c02c00fd1754e28557db589164e",
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-layout-r16-gpu-live-20261122\\cycle-01\\serial.raw.log": "673252a2a97ca42cf56c5a362fd60f90705f5924899fbf5ad7233cc6d43c23df",
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-layout-r16-gpu-live-20261122\\cycle-01\\screens\\scanout-00000001.png": "df5ed37e2144307393e1f5b4a93fa09d9ebe70d35f31605ca6beaa110b71a872"
+  },
+  "all_protected_fingerprints_unchanged": true,
+  "trash_not_emptied": true,
+  "original_layout_raw_and_source_scanout_retained": true
+}

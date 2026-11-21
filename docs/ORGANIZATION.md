@@ -4,13 +4,13 @@
 
 | Mac累计 | 实际数量 |
 | --- | ---: |
-| 原生Trash项 | 1873 |
-| 文件 | 35381 |
-| 逻辑字节 | 13510835475（约12.58GiB） |
-| 最新正式build | 4362504KiB（约4.16GiB） |
-| 最新系统可用空间 | 98031190016B（约91.3GiB） |
+| 原生Trash项 | 1878 |
+| 文件 | 35388 |
+| 逻辑字节 | 13585903123（约12.65GiB） |
+| 最新正式build | 4381360KiB（约4.18GiB） |
+| 最新系统可用空间 | 97065099264B（约90.4GiB） |
 
-垃圾桶仍占磁盘；这些数字表示从工作目录移入垃圾桶的内容量，不表示释放量。旧报告中的94%／62GiB等是当时快照，当前值来自r15收尾实测。Mac范围仅`~/Desktop/ios-xperia-xz1c`，`~/xnu-autobuild.pause`保持。
+垃圾桶仍占磁盘；这些数字表示从工作目录移入垃圾桶的内容量，不表示释放量。旧报告中的94%／62GiB等是当时快照，当前值来自r16收尾实测。Mac范围仅`~/Desktop/ios-xperia-xz1c`，`~/xnu-autobuild.pause`保持。
 
 ## 原生回收记录
 
@@ -27,6 +27,7 @@
 | original-mode r12 | 25／47／76896058 | [记录](../reproducibility/original-mode-r12-macos-native-trash-20261122.json) |
 | owner r13 | 26／132／78473846 | [记录](../reproducibility/original-owner-r13-macos-native-trash-20261122.json) |
 | native-flat r15 | 5／7／74951630 | [记录](../reproducibility/native2x-flat-r15-macos-native-trash-20261122.json) |
+| native-layout r16 | 5／7／75067648 | [记录](../reproducibility/native-layout-r16-macos-native-trash-20261122.json) |
 
 回收包括可由保留SGLZ0001 blob逐字节恢复的HFS raw／dmg、重复765MB符号表、已结束OSS checkout、旧库展开副本、host／dSYM、一次性tar和日志。原失败raw／包／proof及当前需要的少量页面保留。主体四项Finder元数据变化及旧partial journal原样保留，未当用户内容SHA或整批成功；正式Mac工具在首个移动前拒绝重复／父子嵌套路径。
 
@@ -43,3 +44,5 @@ gl4／gl5、IPSW、Sony固件、SD／TA／XFL／校准／救砖与备份、当�
 当前原生几何／平直状态栏与r11完整native21／PNG6有各自实机报告；小组件重叠、黑壁纸、光学、FPS、睡眠、声音和无线未扩大为完成。回收不会重新分类旧GPU失败。
 
 源码／工具／锁只在正式Windows与Mac的ios-xperia-xz1c维护并同步；Patch/Xperia是参考与历史入口，research只参考Git仓库，不存新实验。用户输入与二进制本地保留，Git里保存免费OSS方案、精确构建和验证方法；新构建产物须独立准入。
+
+r16两靴完整回程后追加Mac5项／7文件／75067648B和Windows4项／10文件／26943333B，原生目标SHA及保护指纹全部通过；原layout／raw／scanout／helper／RAM／proof保留，两个回收站未清空。[Mac原路径](../reproducibility/native-layout-r16-macos-native-trash-20261122.json)／[Windows原路径](../reproducibility/native-layout-r16-windows-native-recycle-20261122.json)。新源码及只读decoder仅在正式仓库维护。

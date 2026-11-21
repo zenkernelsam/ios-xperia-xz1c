@@ -37,3 +37,9 @@ r15实际from=nil、to=LegacyPhone，串口真实scanout中“iPhone／时间／
 完整验收还需四角／文字／状态栏／homebar／锁屏／home布局一致、F12全屏映射与真人触控、LCD光学／背光及动态UI／FPS。已验F12 max719×1279和120秒一次合成上滑，但合成输入不能替代真人测试。单frame缺块不补发；截图不是背光或睡眠证明。
 
 原GPU／allocator／SCM／PON／RPC／VM保持冻结；gl5及用户输入不刷写。原750×1624生产基线和旧helper保留，可按原manifest恢复，不能把native几何包覆盖成旧包或以恢复名义重发失败。
+
+## r16原布局与标签bbox
+
+同靴948节点／166相关view／3组grid完整，原root list frame360×640、其listSizeForIconSpacingCalculation320×693、6行4列、portrait insets57／19／155／19。iconSpacing返回-123／-123照实保留，不当实际间距；常规图标view的y205.667、280、354.333、429给出约74.333点行距。小组件label原框y195.167／h21，与下一排图标y205.667重叠10.5点；窗口坐标来自原convertRect:toView:nil，同靴scanout也有可见重叠。
+
+配置来源、有效layoutMetrics和密度策略尚待核对，不能凭异常getter猜值或改全局safe area。完整[原阶段](../reproducibility/native-layout-r16-stage-20261122.json)绑定本token／原raw／helper；[decoder](../tools/device/geometry_layout_evidence.py)拒绝缺RECT、重复VIEW、错summary、foreign token及重复snapshot，原bytes不改。

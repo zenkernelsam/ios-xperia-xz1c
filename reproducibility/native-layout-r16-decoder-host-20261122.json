@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-22",
+  "source_sha256": "6c23477c8e14ef1d71155b6bb90c2e437e842a82d8aee691f00b8c36629ff514",
+  "original_raw_sha256": "673252a2a97ca42cf56c5a362fd60f90705f5924899fbf5ad7233cc6d43c23df",
+  "original_raw_unchanged": true,
+  "valid_original_capture_accepted": true,
+  "faults_refused": {
+    "missing_RECT": true,
+    "duplicate_VIEW": true,
+    "summary_count": true,
+    "foreign_token": true,
+    "duplicate_snapshot": true
+  },
+  "fault_bytes_only_in_memory": true,
+  "device_operations": 0
+}

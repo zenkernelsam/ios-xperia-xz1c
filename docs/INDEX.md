@@ -28,3 +28,5 @@ reproducibility保存原结果摘要、源码锁、精确proof和回收记录；
 最新原结果：[完整native21／PNG6](../reproducibility/presentation-lifecycle-r2-stage-20261122.json)、[原壁纸mode](../reproducibility/original-mode-swift-owner-r13-stage-20261122.json)、[原生尺寸](../reproducibility/native2x-r14-stage-20261122.json)、[平直状态栏](../reproducibility/native2x-flat-r15-stage-20261122.json)。旧r10 presentation拒绝与全部失败原样保留，当前边界统一由STATUS解释。
 
 此次[50份修改前原文／SHA](archive/20261122/native-r15-close-out/original-document-manifest.json)保留旧in-flight和重复工作日志，现行入口已收敛。实际回收与所有阶段记录由[ORGANIZATION](ORGANIZATION.md)汇总。
+
+[r16原布局取证](../reproducibility/native-layout-r16-stage-20261122.json)定位小组件label bbox与下一排图标重叠；窗口／grid配置差异仍待追查，GLES9通过不扩大为完整原UI成功。
