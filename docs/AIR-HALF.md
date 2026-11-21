@@ -1,6 +1,6 @@
 # Binary16 AIR storage and arithmetic — 2026-11-15
 
-此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。新附件native21尚未准入，旧阶段成功不扩展为完整UI。
+此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。历史阶段结果保留其准确边界，完整原UI／光学需独立验收。
 
 air-half-r1已实机完成原16位buffer读取/写回、逐half结果舍入、float32→half边界、scalar/vector计算和half顶点/片元绘制，1完整/0缺项。131072B全部原输入/输出/级间与尾部保护区验证；finite bits严格匹配，NaN类别、出现位置和实际raw payload分别记录再复算全hash。前序全部native/GLES/960000只读像素保持通过，303allocated/released/unmapped、active/orphan/root0，38.282秒完整PON06返回。
 

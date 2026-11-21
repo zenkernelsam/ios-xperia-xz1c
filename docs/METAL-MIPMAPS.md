@@ -1,6 +1,6 @@
 # Native Metal mipmaps — 2026-11-14
 
-此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。新附件native21尚未准入，旧阶段成功不扩展为完整UI。
+此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。历史阶段结果保留其准确边界，完整原UI／光学需独立验收。
 
 原generateMipmapsForTexture:现已有实际多级存储、GPU下采样和nearest/trilinear采样实现，源码与主机检查已完成；实机四格式完整验收尚未通过。mips-r1被原Aegir的extension check-in timeout打断31次，原STOP/OBSERVATION_INCOMPLETE保留，不能将已通过的RGBA/BGRA部分样本当四格式完成。r2改为按GL context复用copy/decode shader和XR LUT，继续同库CPU/GPU门槛。
 

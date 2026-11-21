@@ -1,6 +1,6 @@
 # 原锁屏绘制阶段 — 2026-11-19
 
-此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。新附件native21尚未准入，旧阶段成功不扩展为完整UI。
+此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。历史阶段结果保留其准确边界，完整原UI／光学需独立验收。
 
 当前同核诊断库为 v730/f258dee9、GLES a7bad22c、Metal 5e94ab57，Metal source-map 3e79503f。GLES 只在原绘制路径增加最多 32 次的阶段计时，原 GL 调用顺序、参数、errno、像素和既有同步保持。完整源码及变更边界见 `gpu/sweetgl/metal_render.c` 和 `reproducibility/render-stage-r1-source-change.json`。
 

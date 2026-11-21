@@ -1,6 +1,6 @@
 # 原始快照耗时观察 — 2026-11-16
 
-此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。新附件native21尚未准入，旧阶段成功不扩展为完整UI。
+此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。历史阶段结果保留其准确边界，完整原UI／光学需独立验收。
 
 原Aegir r2在五个实际管线恢复后已出现两次750×1624 GPU draw，但扩展仍在check-in期限内退出。当前靴的三个采样分别处于malloc释放、ColorSync ICC变换初始化、ImageIO PNG过滤/deflate/finalize。采样位置只能说明退出时正在执行的路径，不能据此认定VM、色彩配置或PNG实现有故障。
 

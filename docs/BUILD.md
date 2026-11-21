@@ -102,7 +102,17 @@ python3 -B tools/build/package_glram.py --presigned --frontend build/my-gles/ram
 
 ## 显示比例和现行验证
 
-已验显示契约仍750×1624像素／375×812点／scale2；最终扫描720×1280。用户新增原生720×1280／360×640点要求见[DISPLAY-GEOMETRY](DISPLAY-GEOMETRY.md)。make_render_adt.py新增xz1c-native-2x，只改四个CFData属性，原node、内存映射和其它输入保持字节一致。原生profile尚未投递，必须同时协调现有sweetfb_native／sf2x及MobileGestalt、UIScreen和statusbar，不能只改一处就称全屏完成。
+现行native几何包已实机核对720×1280像素／360×640点／scale2、MG／UIScreen和真实扫描尺寸；小组件布局、safe-area和光学未完成，见[DISPLAY-GEOMETRY](DISPLAY-GEOMETRY.md)。make_render_adt.py的xz1c-native-2x只改四个CFData属性，原node、内存映射和其它输入保持字节一致。package_trial.py --display-profile xz1c-native-2x绑定native1／sf2x0和整个payload；旧750×1624配置按原manifest保留。
+
+原生状态栏helper必须单独构建并绑定实际source／signed library，不能把临时修改的库放进RAM：
+
+```sh
+python3 -B tools/build/build_geocompat_trial.py --output build/my-native/helper
+python3 -B tools/build/package_glram.py --presigned --frontend build/my-gles/ram \
+  --geocompat-package build/my-native/helper --output build/my-native/ram
+```
+
+builder执行真实host四参数ObjC转发／ASan／UBSan及ARM64签名；新helper包必须自身CPU后再GLES9／原UI。run_trial在USB前核对Mac实际helper源码及签名SHA。精确native配置的nil／unsupported provider使用已有LegacyPhone，其它有效返回保持；safe-area只读，详见几何专题。新包仍需要自己的CPU，不能沿用旧helper RAM证明。
 
 Windows源码核验和当前相关单元验证：
 

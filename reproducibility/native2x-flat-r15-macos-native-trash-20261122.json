@@ -1,0 +1,107 @@
+{
+  "date": "2026-11-22",
+  "items": 5,
+  "files": 7,
+  "logical_bytes": 74951630,
+  "records": [
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native2x-flat-provider-r2-20261122/ram/glram.raw",
+      "reason": "Completed R15 duplicated reconstructible HFS containers, transfer archive or host executable; signed sources, libraries, blob, manifests and original device evidence retained",
+      "files": [
+        {
+          "relative": "glram.raw",
+          "bytes": 33554432,
+          "sha256": "255963dda4f78e484a7050ec3112abf356611711848361e8925152b7c10ba33f"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/glram.raw 05-20-35-380.raw",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native2x-flat-provider-r2-20261122/ram/glram.dmg",
+      "reason": "Completed R15 duplicated reconstructible HFS containers, transfer archive or host executable; signed sources, libraries, blob, manifests and original device evidence retained",
+      "files": [
+        {
+          "relative": "glram.dmg",
+          "bytes": 33554432,
+          "sha256": "255963dda4f78e484a7050ec3112abf356611711848361e8925152b7c10ba33f"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/glram.dmg 05-20-35-456.dmg",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native2x-flat-provider-r2-20261122/transfer-package.tar.gz",
+      "reason": "Completed R15 duplicated reconstructible HFS containers, transfer archive or host executable; signed sources, libraries, blob, manifests and original device evidence retained",
+      "files": [
+        {
+          "relative": "transfer-package.tar.gz",
+          "bytes": 7742027,
+          "sha256": "efe5f0b6cda8c49d1fcee197635b369da3735d4eea098549f5e68e0f521e4386"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/transfer-package.tar.gz 05-20-35-508.gz",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native2x-flat-provider-r2-20261122/helper/test_adapter",
+      "reason": "Completed R15 duplicated reconstructible HFS containers, transfer archive or host executable; signed sources, libraries, blob, manifests and original device evidence retained",
+      "files": [
+        {
+          "relative": "test_adapter",
+          "bytes": 53656,
+          "sha256": "eee1bd086947d9622fbe264d24e9f854f55ae7695c1cdc6d03a41cc7e454fe54"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_adapter",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native2x-flat-provider-r2-20261122/helper/test_adapter.dSYM",
+      "reason": "Completed R15 duplicated reconstructible HFS containers, transfer archive or host executable; signed sources, libraries, blob, manifests and original device evidence retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 641,
+          "sha256": "cea0518f4e35a1d3f4fcf451b344352534f6e5def2a6ee609c6ae10897aa57c1"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_adapter",
+          "bytes": 46256,
+          "sha256": "0d6ec5ab0b24892448c69a475a07c132c3744587b923626fd25684576bd5e3b3"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_adapter.yml",
+          "bytes": 186,
+          "sha256": "2c1b99cb62e42b090a7960d65e0b2f71518e937e66edb7c34b30d2bebc7a6351"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_adapter.dSYM",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    }
+  ],
+  "protected_fingerprints": {
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native2x-flat-provider-r2-20261122/ram/glram.zblob": "b52f72f05cb14a0b76bcfc8b9986b6c3e51e7dd6ad301442fe81ccf91c9bc27f",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native2x-flat-provider-r2-20261122/ram/manifest.json": "d32faa576cf39b9f0c278f0502e24789fa7bf440a01a0a49283c518181c2834c",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native2x-flat-provider-r2-20261122/ram/sweetgl.dylib": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native2x-flat-provider-r2-20261122/ram/georead.dylib": "f4416b274a553f4900402f73bd0761462e38f7c968e7ecf912a1be745d2ac3b8",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native2x-flat-provider-r2-20261122/helper/georead.dylib": "f4416b274a553f4900402f73bd0761462e38f7c968e7ecf912a1be745d2ac3b8",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native2x-flat-provider-r2-20261122/helper/manifest.json": "69516440539d3195cc616c55892a417c0831edca257f28323eb96e8132fee5ff",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/assets/symbols/ios16-20H392-root.a2s": "5bf04681af1819e2379319942a97be635100d6ca3844c5a22e372ce78a83b83d",
+    "/Users/ciscohe/xnu-autobuild.pause": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/surface-diag-v730/kernel.v730.macho": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/dxb/xnu/iokit/Kernel/arm/SweetGPU.cpp": "aa2c36792a2298b060aa858eabdc039522fcdde3cfdbafd453c5fc6c0683c157"
+  },
+  "all_protected_fingerprints_unchanged": true,
+  "raw_exactly_reconstructed_from_retained_blob": true,
+  "trash_not_emptied": true,
+  "current_signed_packages_and_original_device_evidence_retained": true,
+  "disk_total_bytes": 1023999787008,
+  "disk_free_bytes": 98031190016,
+  "project_build_KiB": 4362504
+}

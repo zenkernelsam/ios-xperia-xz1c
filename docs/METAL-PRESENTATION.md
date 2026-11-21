@@ -1,10 +1,8 @@
-# 原生 Metal 呈现候选 — 2026-11-20
+# 原生Metal呈现契约与证据 — 2026-11-22
 
-最新tiled GLES c617f2ee已通过自身CPU／GLES9，reference CPU b2f3fc4f因独立启动日志字节不一致拒绝，native21未投递；本页此前离线及失败记录保持，准入以[STATUS](STATUS.md)为准。详见[ATTACHMENT-HARDWARE](ATTACHMENT-HARDWARE.md)。
+2026-11-22 r11的lifecycle revision2已完整通过native21／PNG6：probe自有CA事务闭合后五phase实际分配均0、最终0，原pixels／padding／present mode／time／options保持。原r10的11520B失败与此前附件／启动拒绝保留，完整证明见页末及[STATUS](STATUS.md)；LCD光学、原UI及FPS继续独立验收。
 
-2026-11-20恢复新蓝灯会话后的最新实际验收与12个失败页面见[ATTACHMENT-HARDWARE](ATTACHMENT-HARDWARE.md)。当前GLES21de自身CPU／GLES9已通过；完整Metal21的深度／模板／Memoryless／MSAA首阶段原字节失败，原presentation／PNG未执行，不能提升此页旧离线结果为整组通过。全部0x06回程／健康／worker退出完整，失败包保留不重发。
-
-正式源码新增原`CAMetalDrawable`的呈现交接和drawable纹理标志，补上`presentDrawable:`、指定时间、最短间隔及原options四条命令路径。绘制／resolve原IOSurface页面在实际GPU退休后通过原lock／seed发布，随后才发布Scheduled并允许系统呈现。原生对象ASan／UBSan、旧单采样及MSAA回归、iOS ARM64库／完整探针构建通过；新CPU包只offline审计通过，没有投递手机。当前UI／光学和完整native21实机验收仍缺，已验基线仍是v730／CA矩阵r1。
+正式源码保留原`CAMetalDrawable`的呈现交接和drawable纹理标志，实现`presentDrawable:`、指定时间、最短间隔及原options四条命令路径。绘制／resolve原IOSurface页面在实际GPU退休后通过原lock／seed发布，随后才发布Scheduled并允许系统呈现。host原生对象ASan／UBSan、单采样／MSAA和真实r11五阶段分别验收；下面2026-11-20候选表是历史输入，现行准确SHA与原probe证明由STATUS维护。
 
 ## 本机原调用与开源来源
 
@@ -33,7 +31,7 @@ framebuffer-only纹理保留原usage，拒绝CPU getBytes／replaceRegion／buff
 
 渲染和resolve返回前对写入Surface沿原GPU synchronize→IOSurface lock/unlock发布内容和seed。该步骤也覆盖没有`presentDrawable`而在waitUntilScheduled后自行呈现的原路径。seed、queue Completed和GPU fence分别只是内容／执行证据，LCD真正扫描、backlight／光学色偏与原UI仍需独立验收。没有调用`didPresentAtTime:`或制造presentedTime。
 
-## 实际离线结果与候选
+## 2026-11-20离线候选历史
 
 | 输入 | 精确身份 |
 | --- | --- |
@@ -49,7 +47,7 @@ Mac实际native对象、原queue FIFO／capacity／callbacks／error、四presen
 
 新完整RAM只读32MiB HFS、m／g／e硬链接与全部库／blob复算通过；CPU包offline同核private真实截图先验、完整payload及Mac83源audit通过，download／boot／reset0。旧native20的合成host拒绝测试确认新库必须native21；没有伪造新的hardware proof。完整[offline证明](../reproducibility/presentation-r1-offline-proof.json)保存实际输入与边界。
 
-## 正式复现与未来准入
+## 正式复现与准入
 
 在正式Mac仓库，所有输出目录必须新建，固定Mesa／AIR构建见[BUILD](BUILD.md)和[MSAA](METAL-MULTISAMPLE.md)。保持`~/xnu-autobuild.pause`，原源／库先验和旧失败不覆盖。
 
@@ -70,9 +68,9 @@ python3 -B tools/build/inspect_native_presentation.py --root build/my-readonly-r
 
 它校验原cache／image／A2S／tool、method-list type／IMP及精确调用锚点，生成metadata／SHA报告，原字节不进Git。本轮复用回收站中已核raw只读挂载，完成后卸载，原gl5 sparse与raw垃圾桶条目保持。
 
-手机`MetalPresentationProbe.h`使用真实原CAMetalLayer获取五个原drawable，核对QuartzCore UUID、SweetMTLTexture原页面／owner／FourCC／pitch／CPU framebuffer拒绝。作者初始化padding为0xa5后GPU Clear＋scissor AIR draw，独立验765像素、padding／raw／pixels hash、实际import-retire-publish与sequence；四命令present和原transaction wait→present分别验证，记录原presentedTime位型而不强制非零。探针未执行手机，无host替身替代原对象；日常原UI仍用v730串口720×1280 PNG独立验收。
+手机`MetalPresentationProbe.h`使用真实原CAMetalLayer获取五个原drawable，核对QuartzCore UUID、SweetMTLTexture原页面／owner／FourCC／pitch／CPU framebuffer拒绝。作者初始化padding为0xa5后GPU Clear＋scissor AIR draw，独立验765像素、padding／raw／pixels hash、实际import-retire-publish与sequence；四命令present和原transaction wait→present分别验证，记录原presentedTime位型而不强制非零。r11已实际执行这些原对象路径；host fixture和LCD光学边界独立，日常原UI仍用v730串口720×1280 PNG验收。
 
-严格顺序为同核private／owner／ready→精确GLES自身CPU／GLES9→本reference CPU→完整native21／PNG6→新native／PNG proof→原poster CPU／GPU与150秒scanout。`native_drawable_presentation`强制`Metal_presentation`，旧20组拒绝。探针错误只在本LIVE后按现有PON0x06回程并保留REVISE，低层发送器无修改。用户目前明确要求继续离线，r4／r5失败后未确认新物理fastboot会话，本轮不操作手机。
+严格顺序为同核private／owner／ready→精确GLES自身CPU／GLES9→本reference CPU→完整native21／PNG6→新native／PNG proof→原poster CPU／GPU与150秒scanout。`native_drawable_presentation`强制`Metal_presentation`，旧20组拒绝。探针错误只在本LIVE后按现有PON0x06回程并保留REVISE，低层发送器无修改。2026-11-20旧离线阶段的r4／r5和物理会话限制保留为历史；当前授权及实际手机状态看AGENTS／STATUS。
 
 七份旧手册原字节和SHA在[归档](archive/20261120/presentation-r1/original-documents.json)，原黑壁纸scope没有display／pipeline请求仍保持STOP。呈现是后续真实显示所需的缺口，不把它当作已证黑壁纸原因；完整壁纸／UI／FPS、睡眠、LCD光学及其它外设保持active。
 

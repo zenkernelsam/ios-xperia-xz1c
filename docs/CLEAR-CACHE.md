@@ -1,6 +1,6 @@
 # 私有context中的Clear shader复用
 
-此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。新附件native21尚未准入，旧阶段成功不扩展为完整UI。
+此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。历史阶段结果保留其准确边界，完整原UI／光学需独立验收。
 
 原v730／GLESa7bad22c的五条Aegir管线已预热并命中，但首次750×1624绘制的`targets`为1.523800秒／线程CPU0.225859秒，submit仍未返回。两个目标分别为XR format555与R8；两条Clear记录对应不同附件，不能删成重复操作。
 

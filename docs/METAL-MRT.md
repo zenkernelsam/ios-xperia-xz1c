@@ -1,6 +1,6 @@
 # 多颜色附件与 XR 混色
 
-此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。新附件native21尚未准入，旧阶段成功不扩展为完整UI。
+此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。历史阶段结果保留其准确边界，完整原UI／光学需独立验收。
 
 本轮实现最多8个颜色附件、各附件独立clear/blend/writeMask、不可变命令快照及原页面逐附件fence/撤销。XR552..555使用FP32暂存与GPU写回，保留未画区域和未改通道的原始码及低位。正式源码在gpu/metal/MetalRender.inc、gpu/sweetgl/metal_render.c、MultiTargetShader.h与XRBlendShader.h。
 

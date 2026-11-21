@@ -1,6 +1,6 @@
 # Native Metal IOSurface textures — 2026-11-14
 
-此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。新附件native21尚未准入，旧阶段成功不扩展为完整UI。
+此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。历史阶段结果保留其准确边界，完整原UI／光学需独立验收。
 
 v729/surface-r1已实机通过标准newTextureWithDescriptor:iosurface:plane:接入原IOSurface页面：13完整/1未完成样本，两个64/128字节逻辑偏移各三phase，194688B实际核对零差异，包含84240B行尾padding。先GPU清屏，再释放创建者VM映射和CF引用后scissor AIR绘制，最后GPU采样该Surface到另一个原buffer。像素和逻辑origin、真实handle、递增fence及纹理持有关系独立核对。未完成样本没有计为通过。
 

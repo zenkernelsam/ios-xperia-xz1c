@@ -1,6 +1,6 @@
 # 原生 Metal 前端与资源 — 2026-11-13
 
-此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。新附件native21尚未准入，旧阶段成功不扩展为完整UI。
+此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。历史阶段结果保留其准确边界，完整原UI／光学需独立验收。
 
 更新：v729/r7已完成原生Metal copy/fill command queue实机全链，20组FIFO/80次chunk提交等待/完整字节/回调与38.454秒回程通过，详见METAL-QUEUES.md。以下保留资源阶段结论；AIR、system Metal和texture/render尚未接入。
 

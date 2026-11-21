@@ -1,88 +1,57 @@
 # 当前状态 — 2026-11-22
 
-r14原生尺寸两靴已结束，CPU／GLES9／一次上滑通过并健康返回38.157秒；UIScreen360x640／native720x1280／MG720,1280,2一致，真实home图标圆形比例正确。状态栏rdar占位及widget标签重叠未解决；当前r15新helper仅源码，尚未准入。
-r13原UI观察已结束，33／33安装、一次上滑和150秒原home扫描帧均核验，原判定STOP／OBSERVATION_INCOMPLETE，39.750秒完整返回。手机健康fastboot、无worker；当前native2x打包器和离线CPU／GPU包就绪，尚未实机。
-r12原模式两靴已结束：CPU通过，GPU因QUAD_ROUTE_OBSERVER_INSTALL_INCOMPLETE为REVISE，39.468秒完整0x06回程／健康30秒，Sony健康fastboot无worker。当前r13仅known Swift owner查找／校验源码修补，尚未实机。
-当前r11新RAM CPU／native21与PNG6已独立通过并完成回程；最后66715b9659b47bc1健康返回38.656秒，Sony健康fastboot、无worker。下方r10为历史失败，当前下一步为原poster模式／界面与原生几何。
-Sony BH905ND69G健康fastboot。本轮四靴已结束，无controller／串口worker／in-flight；最后native21 c75b0e696cfee083为REVISE／BACKGROUND_METAL_SUITE_FAILED，40.812秒完成0x06四marker、连续健康30秒和worker退出。GPU四组附件和当前r11完整native21／PNG6已独立通过；当前下一步转为原poster模式／UI和原生显示比例，原失败不重发。
+Sony BH905ND69G已完成r15两靴并健康返回fastboot；没有controller、串口worker、构建任务或in-flight boot。下一步查原生布局中小组件标签重叠和原壁纸模式。原生720×1280显示、平直状态栏已实机核对，完整UI、光学、FPS和其它外设继续验收。
 
-## 已验基线与当前候选
+## 当前准确输入与验收范围
 
-| 范围 | 精确身份 | 实际边界 |
+| 输入 | 精确身份 | 已验范围 |
 | --- | --- | --- |
-| 固定v730 kernel／83源 | f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d，20665112B | private／owner／ready、CPU、原scanout及0x06回程 |
-| 生产CA GLES | d6d8fcfa27bcac84ab5edb3d2a11c1ed23374e8b491a3e8de093a9a2a819ac2b | 完整自身CPU／GLES9 |
-| 生产CA Metal／source-map | 5e94ab57401479b42f506884a172a7a839378a82310661a1f66164e99c21f988／7b5a083abdb98fa5d29ef82fbd8e7e68b2a29fd995f16c4163d5c612cb8b9de7 | 完整native16＋共享PNG6 |
-| 固定Mesa／GPU | 24.3.4／769e51468b49b2a42f0a0eaf71cf9eed5ff4e5de／FD540 GLES3.1 | 无Vulkan移植 |
-| 当前r10源码 | 35990ab，正式Windows／Mac同步 | 本次实际编译源 |
-| 当前r10 GLES | 0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607 | 自身CPU／GLES9／reference CPU及四组附件通过 |
-| 当前已验Metal／source-map | 8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27／db1605ef8dae8f8ed0a29999dcb2cf7537457aba7ad428677c21e0e914771b78 | r11完整native21＋PNG6已准入，原UI／光学另验 |
+| v730 kernel／83源 | `f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d`，20665112B | private／owner／ready、CPU、真实scanout及0x06回程 |
+| 固定Mesa／GPU | 24.3.4／`769e51468b49b2a42f0a0eaf71cf9eed5ff4e5de`／FD540 GLES3.1 | Mesa／Freedreno GLES；Vulkan未移植 |
+| 当前GLES | `0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607` | 自身CPU／完整GLES9，最新r15独立复验 |
+| 当前Metal／source-map | `8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27`／`db1605ef8dae8f8ed0a29999dcb2cf7537457aba7ad428677c21e0e914771b78` | r11完整native21＋PNG6；原UI／光学另验 |
+| r15 geocompat | `f4416b274a553f4900402f73bd0761462e38f7c968e7ecf912a1be745d2ac3b8` | 精确native屏幕的LegacyPhone provider，host ABI／签名及自身RAM CPU／GLES9通过 |
+| r15 RAM blob | `b52f72f05cb14a0b76bcfc8b9986b6c3e51e7dd6ad301442fe81ccf91c9bc27f` | 新helper源／库／manifest绑定，完整payload和Mac实际源复算 |
+| r15实际源码 | `cc4e637350c334125d2f3d5124a45fe9ef8d524e` | 正式Windows／Mac一致；产物必须按各manifest重建 |
 
-CPU／launchd、F12真实触控和音量键已验。生产CA基线GLES9、Metal16与PNG6包括原资源／queue／AIR／XR／IOSurface／mip／MRT／sampler及缓存的原byte、guard、fence、释放；精确证据见[CA-MATRIX](CA-MATRIX.md)与[基线run-index](../reproducibility/v730-ca-matrix-r1-run-index.json)。
+生产CA基线仍由[run-index](../reproducibility/v730-ca-matrix-r1-run-index.json)及准确source manifest复现。当前候选完整probe通过不会自动提升为完整原UI基线。CPU／launchd、真人F12触控与音量键已有原证据；本轮串口合成上滑不代替真人验收。
 
-原720×1280／BGR888／stride2160扫描帧可经串口取得。灰色锁屏时间日期、正常颜色主页已有基线证据；壁纸仍黑。合成上滑不替代真人触控，扫描帧不证明LCD光学、背光、FPS或唤醒，见[SCANOUT-SCREENSHOT](SCANOUT-SCREENSHOT.md)。
+## 最新r15：原生屏幕与状态栏
 
-## r10实机结果
-
-| 单发阶段 | token | 结果 |
+| 独立单发 | token | 原结果／完整回程含健康30秒 |
 | --- | --- | --- |
-| 自身CPU | f292f8e49ffb1204 | PASS，原RAM和启动流独立核验 |
-| GLES9 | 5191d205f7d9a072 | PASS，完整原9组及单次150秒扫描帧 |
-| reference CPU | a47eac3cd446ab81 | PASS，37.765秒完整回程 |
-| 完整native21 | c75b0e696cfee083 | REVISE，presentation final_allocated11520，40.812秒完整回程 |
+| 新RAM CPU | `270a90b49369cd96` | PASS，38.672秒 |
+| 新RAM GLES9／原UI扫描 | `2d7d487dbeeb4afe` | PASS，38.906秒 |
 
-以下四组已逐项独立核验本LIVE→ACK原raw，不以END或GPU Completed代替结果：
+同靴UIScreen为360×640点、nativeBounds720×1280、scale2；MobileGestalt三个main-screen答案为720／1280／2，ADT四属性与native1／sf2x0绑定。150秒真实720×1280／BGR888／stride2160扫描图显示正常比例图标和Clock圆形；LegacyPhone平直状态栏替换原nil／unsupported fallback，红色rdar占位消失。Windows原raw SHA为`91e5ab29c4d2d1e9217f283592e6a33aa1f8cf5f814f58a1053f236ed624fa68`。
 
-| GPU附件 | 完整阶段 | 已验内容 |
-| --- | ---: | --- |
-| Depth32 | 29 | 原byte／guard／getBytes、work IOVA／CPP／BOX／copy fence／释放 |
-| Stencil8 | 99 | front/back全部比较／操作／mask、Clear／Load、原独立Z32/S8、字节及guard |
-| Memoryless | 8 | 原私有pass页、CPU backing拒绝、双queue隔离、模板单独使用及释放 |
-| 2×／4×MSAA | 18 | 原逐sample色／depth／stencil、resolve、guard、copy／fence与两queue隔离 |
+八个窗口的原safeAreaInsets为38／0／29／0。Weather／Calendar小组件标签仍与第一排图标重叠，壁纸仍黑；未证明完整布局、真实全屏触控、面板光学、背光或FPS完成。GLES9作者probe仍按原750×1624测试canvas执行，不把它混成原UI尺寸。完整绑定和保存PNG SHA见[r15原阶段](../reproducibility/native2x-flat-r15-stage-20261122.json)，尺寸契约和恢复方法见[DISPLAY-GEOMETRY](DISPLAY-GEOMETRY.md)。
 
-r8 GPU清零draw＋八个bitplane覆盖draw使S8推进到phase96；剩下stencil-only分支中unused depth primary仍linear。r9普通创建器未得到所需布局并明确-45拒绝。r10复用真实private FDL5 allocation／alias，dummy与S8均TILE5_3，实际独立handle／IOVA／cpp／pitch／size及dummy退役全部核验，四组现已完整通过。无caller depth、无CPU seed／linear shadow／depth发布；内核GPU底层、allocator、SCM、PON、RPC和VM保持冻结。
+## GPU与原壁纸证据
 
-日志writer的有界EINTR／部分写处理、串行fd初始化及errno保存已通过10个真实helper故障测试。MSAA核验按原作者local0／1／6首操作Clear，并以真实独立resolve src/dst/samples/filter/fence绑定；旧缺失或坏记录不补造。原r7／r8／r9失败、r8缺块拒绝和r9缺退休日志拒绝保留。见[r10阶段与完整附件证明](../reproducibility/stencil-private-r10-stage-20261121.json)、[r8](../reproducibility/stencil-bitplane-r8-stage-20261121.json)／[r9](../reproducibility/stencil-only-r9-stage-20261121.json)及[附件专题](ATTACHMENT-HARDWARE.md)。
+r11以probe自己创建的native layer补显式CA begin／commit／flush，五个phase在各自pool关闭后actual allocated均0、最终0；原765pixels／padding及present mode／time／options不变。完整[native21 proof](../reproducibility/current-native21-proof.json)及[PNG6 proof](../reproducibility/current-PNG6-proof.json)必须绑定同kernel／GLES／Metal／source-map。native presentedTime仍0，不能当LCD光学completion。原r10 final_allocated11520的失败保留，见[呈现契约](METAL-PRESENTATION.md)。
 
-## r10历史卡点与后续范围
+r13修正known Swift owner名字后33／33方法安装；127条原route、20条request完整，120秒一次合成上滑、150秒真实home scanout完成。原applyMode随后deactiveMode，原display／tick／pipeline未观察到，保持STOP／OBSERVATION_INCOMPLETE。global getter前8次样本preview／snapshot为true、unlock0、backlight1，采样上限不能推整靴或后续新environment。见[原请求](METAL-REQUEST-OBSERVATION.md)和[r13原阶段](../reproducibility/original-mode-swift-owner-r13-stage-20261122.json)。
 
-1. **Presentation资源生命周期。** 五个真实CAMetalDrawable阶段的原IOSurface像素、padding、fence与原present方法成功；END result1、final_allocated11520，等于五个2304B surface。native presentedTime仍0且光学未验；未出现IOSurface release_failed日志。原queue已在Completed前移除operation／presentation引用，下一步查原生layer／drawable pool和CoreAnimation事务持有及释放。不能忽略分配计数、注入didPresentAtTime或伪造completion。完整native21与PNG6尚未准入，见[METAL-PRESENTATION](METAL-PRESENTATION.md)。
-2. **原壁纸／动态UI。** 完整native21＋PNG6后恢复原poster mode／environment观察。原queue／scene有效而display／tick／pipeline未出现，原Vista paused=YES；不强制解除暂停或画替代帧，见[原请求专题](METAL-REQUEST-OBSERVATION.md)。
-3. **原生16:9。** 目标720×1280像素／360×640点／scale2，当前设备375×812／750×1624。ADT离线profile已完成；package_trial几何集成及同靴MG／UIScreen／ADT／状态栏／safe area／触控还未验。既有native1与sf2x1冲突，见[DISPLAY-GEOMETRY](DISPLAY-GEOMETRY.md)。
-4. **其它外设。** FPS、睡眠唤醒、光学／背光、声音、Wi-Fi／蓝牙保持active。v730共享事件selectors36／37／38／45仍零输出，草稿未接入编译。
+| 保留的阶段 | 原判定与关键证据 |
+| --- | --- |
+| [r10](../reproducibility/stencil-private-r10-stage-20261121.json) | 四组GPU附件完整通过，presentation11520B未归零，REVISE |
+| [r11](../reproducibility/presentation-lifecycle-r2-stage-20261122.json) | 完整native21／PNG6实机通过 |
+| [r12](../reproducibility/original-mode-native21-r12-stage-20261122.json) | 31／33安装，REVISE；原失败包不重发 |
+| [r13](../reproducibility/original-mode-swift-owner-r13-stage-20261122.json) | 33／33及真实home通过，原壁纸观察仍STOP |
+| [r14](../reproducibility/native2x-r14-stage-20261122.json) | 原生尺寸／MG／F12上滑通过，rdar与标签重叠仍在 |
+| [r15](../reproducibility/native2x-flat-r15-stage-20261122.json) | 平直状态栏通过，标签重叠／黑壁纸未解决 |
 
-本轮RPM／GPU时钟正常；历史txh8／txt0死锁及所有恢复失败保留。无LIVE早期E1F4仍可能需物理恢复。只BH905ND69G、COM≥10／VID1209-PID0001、单发、PON0x06、四marker／健康30秒／worker退出。
+## 下一步与操作边界
 
-## 整理与复现
+1. 读取准确20H392的SpringBoard布局／icon-grid／safe-area来源，先观察原view与配置，不猜机型／FaceID／notch，也不全局伪造safeAreaInsets。
+2. 继续原Poster环境和mode路由观察；维持原暂停策略，不强制active／unpause、不画替代壁纸冒充原UI。
+3. FPS、睡眠唤醒、LCD光学／背光、声音、Wi-Fi／蓝牙保持active。共享事件selectors36／37／38／45仍零输出，未编译草稿没有接入当前库。
 
-本周及追加Mac累计1803项／35167文件／13185344737B（约12.28GiB）已原生Trash并逐用户内容SHA复核，未清空。最新Mac91%使用、92GiB可用，正式build约4.08GiB。续轮Windows已回收传输、重复CLI及WSL ELF，原签名库／blob／manifest／失败包／raw／所需少量页面保留，两个Ubuntu实际垃圾桶已复核为空。
+只BH905ND69G；COM≥10且VID1209/PID0001；单download／boot、失败不重发、PON只0x06，ACK／DRAIN／RESET／FINAL_DRAIN、连续健康30秒及worker退出后才下一轮。内核GPU底层、allocator、SCM、PON、RPC、VM和SweetGPU冻结。无LIVE早期E1F4仍可能需要物理恢复。gl5／userdata／SD／TA／XFL／救砖／校准／备份受保护。
 
-50份现行文档统一入口，修改前原文／SHA和过时handover／handout在docs/archive；[ORGANIZATION](ORGANIZATION.md)给实际回收与整合记录，[LAYOUT](LAYOUT.md)给恢复，[INDEX](INDEX.md)联专题。所有源码／工具／锁在正式仓库提交并同步Mac；HEAD是当前候选，生产基线按原source manifest与准确Git版本复现，新库需要自己的实机准入。
+## 整理与文档
 
-## 当前离线候选：presentation lifecycle revision2
+本周及追加Mac累计1873项／35381文件／13510835475B（约12.58GiB）已进原生Trash，全部用户内容SHA复核，垃圾桶未清空。最新Mac约91.3GiB可用，正式build约4.16GiB；移入垃圾桶仍占磁盘。r15另有Windows3项／9文件／26918845B进原生回收站，原signed库／blob／manifest／raw／proof／失败和少量当前页面保留。
 
-重新读取r10原证据确认：queue在Completed前已移除own operation/presentation引用，五surface没有release错误，device残留11520B，native presentedTime0。新候选只给后台探针自己创建的native layer补显式CA begin／commit／flush及每phase autoreleasepool关闭后的实际分配日志；原present四mode／time／options、GPU像素／padding和最终零分配门槛保持，不能造completion。四项证据故障检查通过，ARM64构建／新RAM CPU和native21还未准入，见[离线记录](../reproducibility/presentation-lifecycle-r2-offline-20261121.json)。
-
-## r11完整native21／PNG6已准入
-
-新探针own native layers的显式CA begin／commit／flush和pool关闭后，五阶段各自actual allocated0，最终0；原765pixels／padding／四present modes／transaction_wait保持。完整21组和六PNG原byte／ICC／metadata均经原raw独立验证，原r10残留与probe线程CA事务边界有关，不重新分类旧失败。完整[阶段](../reproducibility/presentation-lifecycle-r2-stage-20261122.json)、[native21 proof](../reproducibility/current-native21-proof.json)和[PNG6 proof](../reproducibility/current-PNG6-proof.json)已保存，必须同kernel／GLES／Metal／source-map绑定。原始production UI／光学／wallpaper／FPS／geometry／其它外设未扩大为完成。
-
-## r11最新下一步
-
-新包自身CPU 6dc5ffb5fd270602／完整native21与PNG6 66715b9659b47bc1均独立通过，GPU回程38.656秒含健康30秒，手机健康fastboot无worker。原R10_11520B失败保留；新probe只对自己创建的native layer闭合CA事务并在pool关闭后核对各phase0分配，原native presentedTime仍0，不能称LCD显示completion。下一包按新完整proof构建原poster33方法mode／environment观察、自己的CPU→GPU及150秒扫描帧，保持原策略，无额外draw或强制active。原生16:9、FPS、睡眠、光学、声音和无线保持完整目标。
-
-## r12原模式安装拒绝
-
-原33方法只安装31；env_init／env_update present0／owner_checked0，但固定20H392静态元数据有原delegate方法。原系统已实际选择applyMode→deactiveMode，完整[原报告](../reproducibility/original-mode-native21-r12-stage-20261122.json)保留；一次swipe／150秒验收未完成。ACK后退出期kernel import／submit错误单列，不据此改冻结底层。r13只解析已知Swift mangled／module-qualified name，owned-method／完整ABI仍严格，33门槛不降低。
-
-## 当前原UI及原生比例离线包
-
-r13 runtime owner实为AegirPoster.AegirRenderingController，known-name matcher修正后33方法全部owned／ABI匹配；127条原route、20条原request完整，一次上滑150秒读取真实正常颜色home，黑壁纸保持STOP。8次global getter采样上限内preview／snapshot为true、unlock0／backlight1，原mode1 deactive；不能推整靴所有新环境，原[阶段](../reproducibility/original-mode-swift-owner-r13-stage-20261122.json)保留。
-
-正式package_trial新增--display-profile xz1c-native-2x：完整基线重建后只转四个ADT CFData显示值，native1／sf2x0和source/target SHA、已核numeric parser绑定。CPU607B／GPU602B命令区、整个payload和六个missing/mixed/flag fault已离线复算；内核／GLES／firmware/RAM blob不变，其他ADT字节保持，未投递，见[离线](../reproducibility/native2x-package-r1-offline-20261122.json)。真正完成仍需同靴UIScreen／MG／safe-area／触控／原画面；其它外设继续完整目标。
-
-## r14原生链与r15 provider候选
-
-[R14阶段](../reproducibility/native2x-r14-stage-20261122.json)完整核对新ADT／native1／sf2x0、UIScreen360x640、native720x1280 scale2和MG三个main-screen值，GLES9和上滑home真实扫描通过。图中顶部rdar fallback／widget标签重叠，safe-area／完整真人触控和光学未验，原生比例不得称完成。
-
-固定20H392 A2S里有Phone／LegacyPhone原provider；r15仅对精确360x640／720x1280 scale2且原选择fallback/unsupported时用LegacyPhone flat provider，其它有效返回保持。新geocompat独立new build＋签名＋host四参数ObjC／ASan/UBSan／原info-forwarding，读取guarded UIEdgeInsets64 window safe-area；新helper包由实际源码/签名SHA绑定，run_trial在USB前核对Mac编译源／库，旧e65 helper和旧native21 proof保持。未投递，GPU/内核不编译。
+现行文档只由本页给状态、BUILD给复现、OPERATIONS给规则、LAYOUT给恢复、INDEX联专题。此次整合前50份原文／SHA已归入[归档manifest](archive/20261122/native-r15-close-out/original-document-manifest.json)；旧in-flight只保留为历史。实际回收清单及本周汇总见[ORGANIZATION](ORGANIZATION.md)。所有源修补、工具和锁只在正式ios-xperia-xz1c维护。

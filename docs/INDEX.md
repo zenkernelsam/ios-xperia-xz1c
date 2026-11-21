@@ -1,12 +1,12 @@
-# 文档入口 — 2026-11-21
+# 文档入口 — 2026-11-22
 
 当前设备／基线／候选只看[STATUS](STATUS.md)。[BUILD](BUILD.md)放现行复现，[OPERATIONS](OPERATIONS.md)放手机与回程，[LAYOUT](LAYOUT.md)放目录／恢复，[ORGANIZATION](ORGANIZATION.md)放整理报告。历史专题保留其原版本、token和失败边界；旧页面中的“当前”指当次日期，不覆盖STATUS。
 
 | 当前专题 | 内容 |
 | --- | --- |
 | [附件验收](ATTACHMENT-HARDWARE.md) | D32／S8／Memoryless／MSAA原byte、模板Clear、作者page与tiled候选 |
-| [显示比例](DISPLAY-GEOMETRY.md) | 750×1624到720×1280、360×640点、ADT／MG／UIScreen核验 |
-| [原壁纸请求](METAL-REQUEST-OBSERVATION.md) | queue／scene有效、paused与mode／environment待观察 |
+| [显示比例](DISPLAY-GEOMETRY.md) | 已验720×1280／360×640点／scale2及平直状态栏，小组件布局待修 |
+| [原壁纸请求](METAL-REQUEST-OBSERVATION.md) | 原33方法／mode已观察，deactive／黑壁纸仍STOP |
 | [串口截图](SCANOUT-SCREENSHOT.md) | 无损720×1280、CRC／FNV／保存像素、光学边界 |
 | [CA矩阵](CA-MATRIX.md) | 已验GLES第9组、准确20H392绑定 |
 | [完整原生基线](METAL-BACKBOARD.md) | backboard suite、完整proof与实际GPU边界 |
@@ -25,6 +25,6 @@ reproducibility保存原结果摘要、源码锁、精确proof和回收记录；
 
 过时handover／handout／工作日志和本周47份入口原文均归入[archive](archive/20261121/weekly-integration/original-document-manifest.json)，原字节与SHA保持。阶段专题保留复现信息，旧编号实验不再是当前执行入口。文档链接以正式仓库相对路径为准。
 
-本轮[四靴原结果](../reproducibility/stencil-sample-r7-stage-20261121.json)、[主机语义](../reproducibility/stencil-sample-r7-host-20261121.json)、[追加回收](ORGANIZATION.md#r6r7追加与当前汇总)及[10份修改前原文／SHA](archive/20261121/stencil-r7-integration/original-document-manifest.json)保持各自边界。
+最新原结果：[完整native21／PNG6](../reproducibility/presentation-lifecycle-r2-stage-20261122.json)、[原壁纸mode](../reproducibility/original-mode-swift-owner-r13-stage-20261122.json)、[原生尺寸](../reproducibility/native2x-r14-stage-20261122.json)、[平直状态栏](../reproducibility/native2x-flat-r15-stage-20261122.json)。旧r10 presentation拒绝与全部失败原样保留，当前边界统一由STATUS解释。
 
-[r10完整附件原证明与presentation拒绝](../reproducibility/stencil-private-r10-stage-20261121.json)统一由STATUS解释当前边界。
+此次[50份修改前原文／SHA](archive/20261122/native-r15-close-out/original-document-manifest.json)保留旧in-flight和重复工作日志，现行入口已收敛。实际回收与所有阶段记录由[ORGANIZATION](ORGANIZATION.md)汇总。

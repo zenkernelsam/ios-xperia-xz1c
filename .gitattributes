@@ -28,6 +28,7 @@ gpu/metal/air/half/reference/** -text
 # Keep them exactly as archived rather than applying current source formatting.
 docs/archive/20261120/attachment-hardware-r1/** -text -eol whitespace=cr-at-eol
 docs/archive/20261121/weekly-integration/** -text -eol whitespace=cr-at-eol
+docs/archive/20261122/native-r15-close-out/originals/** -text -eol whitespace=cr-at-eol
 # Archive manifests are current metadata, not copies of historical sources.
 docs/archive/20261120/attachment-hardware-r1/original-documents.json text eol=lf
 docs/archive/20261121/weekly-integration/original-document-manifest.json text eol=lf

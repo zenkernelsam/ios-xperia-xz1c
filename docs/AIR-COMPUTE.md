@@ -1,6 +1,6 @@
 # AIR/Metal compute — 2026-11-14
 
-此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。新附件native21尚未准入，旧阶段成功不扩展为完整UI。
+此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。历史阶段结果保留其准确边界，完整原UI／光学需独立验收。
 
 实际v729/774b5efd+r8/c84403c1与Metal/575e0764已通过原生AIR计算全链：MTLB容器的真正bitcode → system LLVM C解析 → 原始开源AIR lowering → ESSL目标适配 → Mesa/FD540 → 当前SweetScatter → 原Metal buffer的GPU/CPU共享页面。使用标准newLibraryWithData/newFunctionWithName/newComputePipelineStateWithFunction/computeCommandEncoder/dispatchThreadgroups/commit/wait；没有用shader名字替代实现，也没有CPU计算填充预期结果。
 

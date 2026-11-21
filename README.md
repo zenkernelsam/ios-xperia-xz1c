@@ -2,9 +2,9 @@
 
 Sony Xperia XZ1 Compact（Snapdragon835／Adreno540）的开源XNU、Mesa／Freedreno GLES和Metal用户态移植。正式源码、操作规范与复现记录都在ios-xperia-xz1c；Patch/Xperia保存参考Git仓库和历史。固定Mesa24.3.4／FD540 GLES3.1，Vulkan尚未移植。
 
-已验v730／CA基线可显示灰色锁屏文字与正常颜色主页。CPU、launchd、F12触控、音量键、完整GLES9、native Metal16及PNG6已验；壁纸、原生比例、动态UI／FPS、睡眠、光学／背光、声音和无线待完成。
+已验v730／CA基线可显示灰色锁屏文字与正常颜色主页。CPU、launchd、F12触控、音量键、完整GLES9、native Metal21及PNG6已验；原生720×1280／360×640点／scale2和平直状态栏已有同靴证据。小组件布局、壁纸、动态UI／FPS、睡眠、光学／背光、声音和无线待完成。
 
-HEAD包含当前GPU候选和严格验收工具。最新GLES／Metal及四组附件完整通过；lifecycle revision2原生呈现每阶段分配归零，完整native21与PNG6已实机准入。原UI／壁纸、原生比例、FPS及其它外设继续独立验收。手机健康fastboot、无worker；精确SHA、原页面和下一步见[STATUS](docs/STATUS.md)。本周原生回收与现行文档整合已完成。
+HEAD包含当前GPU候选和严格验收工具。最新GLES／Metal及四组附件完整通过；lifecycle revision2原生呈现每阶段分配归零，完整native21与PNG6已实机准入。原UI／壁纸、完整原生布局、FPS及其它外设继续独立验收。手机健康fastboot、无worker；精确SHA、原页面和下一步见[STATUS](docs/STATUS.md)。本周原生回收与50份现行文档整合已完成，垃圾桶未清空。
 
 | 入口 | 内容 |
 | --- | --- |

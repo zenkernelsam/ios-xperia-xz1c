@@ -1,6 +1,6 @@
 # Metal XR colour formats — 2026-11-14
 
-此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。新附件native21尚未准入，旧阶段成功不扩展为完整UI。
+此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。历史阶段结果保留其准确边界，完整原UI／光学需独立验收。
 
 v729/xr-r1已经实机完成552/553/554/555四种XR10格式的原页面GPU清屏、scissor AIR绘制和GPU解码采样。16完整/1缺项样本，12phase共34944B/完整样本，559104B实际核对零差异，包含prefix/suffix和行尾padding。缺日志的样本保留，不用其它样本补齐。主机Mesa4096实际像素也通过，主机结果与手机证据分别记录。
 

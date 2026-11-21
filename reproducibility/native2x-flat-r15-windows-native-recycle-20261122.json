@@ -1,0 +1,105 @@
+{
+  "date": "2026-11-22",
+  "items": 3,
+  "files": 9,
+  "logical_bytes": 26918845,
+  "records": [
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-native-flat-helper-stage-20261122",
+      "reason": "R15 completed duplicate signed transfer staging and CLI output; canonical build package, original results/raw/proof/screens retained",
+      "files": [
+        {
+          "relative": "ram\\georead.dylib",
+          "bytes": 71184,
+          "sha256": "f4416b274a553f4900402f73bd0761462e38f7c968e7ecf912a1be745d2ac3b8"
+        },
+        {
+          "relative": "ram\\glram.zblob",
+          "bytes": 3912510,
+          "sha256": "b52f72f05cb14a0b76bcfc8b9986b6c3e51e7dd6ad301442fe81ccf91c9bc27f"
+        },
+        {
+          "relative": "ram\\libglapi.0.dylib",
+          "bytes": 344544,
+          "sha256": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3"
+        },
+        {
+          "relative": "ram\\manifest.json",
+          "bytes": 24275,
+          "sha256": "d32faa576cf39b9f0c278f0502e24789fa7bf440a01a0a49283c518181c2834c"
+        },
+        {
+          "relative": "ram\\sweetgl.dylib",
+          "bytes": 14801120,
+          "sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607"
+        },
+        {
+          "relative": "transfer-package.tar.gz",
+          "bytes": 7742027,
+          "sha256": "efe5f0b6cda8c49d1fcee197635b369da3735d4eea098549f5e68e0f521e4386"
+        },
+        {
+          "relative": "transfer-SHA-manifest.json",
+          "bytes": 1020,
+          "sha256": "b47669936326a83337957a724a848d8ba60005d16de461e4098ca8d54c36b1da"
+        }
+      ],
+      "time": "2026-11-22T05:22:03.9439627+08:00",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-native-flat-helper-stage-20261122",
+      "verified_native_recycle": true,
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RV43MIN",
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-native-flat-r15-cpu-cli-20261122.log",
+      "reason": "R15 completed duplicate signed transfer staging and CLI output; canonical build package, original results/raw/proof/screens retained",
+      "files": [
+        {
+          "relative": "lilac-native-flat-r15-cpu-cli-20261122.log",
+          "bytes": 3077,
+          "sha256": "b5ac76361a42a90e30b36408b21660f5b86c2c42db57cdb96a9d4b2f740dbcff"
+        }
+      ],
+      "time": "2026-11-22T05:22:04.3715959+08:00",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-native-flat-r15-cpu-cli-20261122.log",
+      "verified_native_recycle": true,
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RI681M4.log",
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-native-flat-r15-gpu-cli-20261122.log",
+      "reason": "R15 completed duplicate signed transfer staging and CLI output; canonical build package, original results/raw/proof/screens retained",
+      "files": [
+        {
+          "relative": "lilac-native-flat-r15-gpu-cli-20261122.log",
+          "bytes": 19088,
+          "sha256": "dac1f993bf140c20c1e3c975e02b7c9cff95d968de1d93d0a0dc117c184a6c9b"
+        }
+      ],
+      "time": "2026-11-22T05:22:04.4245286+08:00",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-native-flat-r15-gpu-cli-20261122.log",
+      "verified_native_recycle": true,
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RUDRQ8Z.log",
+      "all_content_SHA_verified": true
+    }
+  ],
+  "protected_fingerprints": {
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\native2x-flat-provider-r2-20261122\\ram\\glram.zblob": "b52f72f05cb14a0b76bcfc8b9986b6c3e51e7dd6ad301442fe81ccf91c9bc27f",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\native2x-flat-provider-r2-20261122\\ram\\manifest.json": "d32faa576cf39b9f0c278f0502e24789fa7bf440a01a0a49283c518181c2834c",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\native2x-flat-provider-r2-20261122\\ram\\georead.dylib": "f4416b274a553f4900402f73bd0761462e38f7c968e7ecf912a1be745d2ac3b8",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\native2x-flat-provider-r2-20261122\\ram\\sweetgl.dylib": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\reproducibility\\current-native21-proof.json": "0befb9e3d3afd08cdb3b32e16441af271f36de02ba662a953606a3b7dfe0f50d",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\reproducibility\\current-PNG6-proof.json": "719e10e82f20d1ec32680a826f51516e380aa8ea10960d6535c987277cc50cc1",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\reproducibility\\native2x-flat-r15-stage-20261122.json": "ba253d5a7f07662a516c45fdd142f4f25722bfe5bf372c2995b285480fe45563",
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-flat-r15-cpu-live-20261122\\results.json": "ed93a36099f58ccee5275053f11541e6cdc28a147333b20abcc5c3d0864b4b88",
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-flat-r15-cpu-live-20261122\\actual-evidence.json": "9bd8bdbc93c9f5beab75601aec8dd910c4f54de11655ac82ad14381c260f1386",
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-flat-r15-cpu-live-20261122\\cycle-01\\serial.raw.log": "02e1404aa2e0c18dd4df266296991527152d45ce16c698743351cff998ca9b49",
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-flat-r15-gpu-live-20261122\\results.json": "0d529704f8609df04c462b34f1261a3d585f261c17f43f08f42936295bf882aa",
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-flat-r15-gpu-live-20261122\\actual-evidence.json": "3f8efe1ee8421ff936f9bead5ebd47651ad23d90d5fd5b6c4583e12cca0d454f",
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-flat-r15-gpu-live-20261122\\cycle-01\\serial.raw.log": "91e5ab29c4d2d1e9217f283592e6a33aa1f8cf5f814f58a1053f236ed624fa68",
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-flat-r15-gpu-live-20261122\\cycle-01\\screens\\scanout-00000001.png": "04e352affaea458964b080b01f2379ddda8eafaf02dc88251ce7f5ae6bcf0820"
+  },
+  "all_protected_fingerprints_unchanged": true,
+  "trash_not_emptied": true,
+  "original_native_geometry_evidence_retained": true
+}

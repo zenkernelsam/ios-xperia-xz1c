@@ -1,6 +1,6 @@
 # v725 Surface 诊断与单次准入
 
-此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。新附件native21尚未准入，旧阶段成功不扩展为完整UI。
+此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。历史阶段结果保留其准确边界，完整原UI／光学需独立验收。
 
 v725 只在 SweetSurface.cpp 增加有界日志：request、allocate、prepare、kernel_map、acquire。成功最多8条、失败最多24条；分配、pin、map、complete/release 的原操作保持。成功额度可能被启动探针用完，不能用缺少成功日志推断失败。
 

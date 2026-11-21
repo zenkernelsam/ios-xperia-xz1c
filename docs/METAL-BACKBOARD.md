@@ -1,6 +1,6 @@
 # Background native Metal acceptance — 2026-11-14
 
-此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。新附件native21尚未准入，旧阶段成功不扩展为完整UI。
+此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。历史阶段结果保留其准确边界，完整原UI／光学需独立验收。
 
 backboard-r1已实机完成整组原生资源/queue/AIR compute/render/constants/XR/IOSurface/mipmap，全部1完整/0缺项。新诊断在backboardd独立线程等待本进程原GLES八项全部通过后才开始，constructor不等待诊断；没有在此轮给Aegir注入或登记device。原Aegir check-in timeout保持不变，原UI仍未验收。
 

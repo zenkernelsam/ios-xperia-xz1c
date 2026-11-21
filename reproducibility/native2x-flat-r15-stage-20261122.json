@@ -1,0 +1,294 @@
+{
+  "date": "2026-11-22",
+  "profile": "xz1c-native-2x",
+  "source_commit": "cc4e637350c334125d2f3d5124a45fe9ef8d524e",
+  "runs": [
+    {
+      "stage": "cpu",
+      "result": "PASS",
+      "reason": "GOALS_STABLE",
+      "token": "270a90b49369cd96",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-native-flat-r15-cpu-live-20261122",
+      "image_sha256": "d2bea50b29d84654b01ccb1ab9b14ec4e868c059ae4fe6ad2b1e6f52e2abb186",
+      "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+      "raw_sha256": "02e1404aa2e0c18dd4df266296991527152d45ce16c698743351cff998ca9b49",
+      "raw_bytes": 347922,
+      "original_result_sha256": "ed93a36099f58ccee5275053f11541e6cdc28a147333b20abcc5c3d0864b4b88",
+      "actual_evidence_sha256": "9bd8bdbc93c9f5beab75601aec8dd910c4f54de11655ac82ad14381c260f1386",
+      "reset_to_fastboot_seconds": 38.67200000002049,
+      "return_log_complete": true,
+      "return_evidence": {
+        "complete": true,
+        "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+        "current_token": "270a90b49369cd96",
+        "checkpoint_bytes": 344120,
+        "log_bytes": 347922,
+        "log_sha256": "02e1404aa2e0c18dd4df266296991527152d45ce16c698743351cff998ca9b49",
+        "require_final_drain": true,
+        "marker_positions": [
+          3,
+          13,
+          68,
+          70
+        ],
+        "final_reset_marker_seen": true
+      },
+      "serial_capture": {
+        "revision": 1,
+        "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+        "event_log_sha256": "93e42d5738cf0c8abf589eaf847ede5900911d50379a0971e336d753722de8fe",
+        "raw_sha256": "02e1404aa2e0c18dd4df266296991527152d45ce16c698743351cff998ca9b49",
+        "serial_port": "COM17",
+        "dtr_low_through_open": true,
+        "raw_log_before_stream": true,
+        "one_continuous_current_boot_stream": true,
+        "replay_commands": 0,
+        "old_failure_not_reclassified": true
+      },
+      "geometry_binding": {
+        "revision": 1,
+        "profile": "xz1c-native-2x",
+        "canvas_pixels": [
+          720,
+          1280
+        ],
+        "UIKit_points": [
+          360,
+          640
+        ],
+        "scale": 2,
+        "source_reference_sha256": "257076987411b50f037f70bf97524fae56ac2965e773c1bb8678d05d45480ba6",
+        "target_reference_sha256": "077aac63b2e5cd48e0e4fbd024a07cac3533eaea6a04a94376d2966dbef4d2e6",
+        "converter_sha256": "ad0b5cd47f32968fa95d13a00fe54bf619bb9909efb5e6c796d04adb17d274de",
+        "parser_sha256": "1431f1f8aacae240b87bd29cd91905784c968f8014784201b3ed862bdb1b4ed9",
+        "required_boot_arguments": {
+          "sweetfb_native": 1,
+          "sf2x": 0
+        },
+        "four_original_CFData_properties_only": true
+      },
+      "ram_library_binding": {
+        "library_sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+        "library_bytes": 14801120,
+        "library_fnv64": "9929cfe79edd5bce",
+        "blob_sha256": "b52f72f05cb14a0b76bcfc8b9986b6c3e51e7dd6ad301442fe81ccf91c9bc27f",
+        "raw_sha256": "255963dda4f78e484a7050ec3112abf356611711848361e8925152b7c10ba33f",
+        "manifest_sha256": "d32faa576cf39b9f0c278f0502e24789fa7bf440a01a0a49283c518181c2834c"
+      }
+    },
+    {
+      "stage": "gpu",
+      "result": "PASS",
+      "reason": "GOALS_STABLE",
+      "token": "2d7d487dbeeb4afe",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-native-flat-r15-gpu-live-20261122",
+      "image_sha256": "18a600a07d577cb122be89bd71d7ea80c2b7694a40dde050fe81daeb947cf022",
+      "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+      "raw_sha256": "91e5ab29c4d2d1e9217f283592e6a33aa1f8cf5f814f58a1053f236ed624fa68",
+      "raw_bytes": 3527080,
+      "original_result_sha256": "0d529704f8609df04c462b34f1261a3d585f261c17f43f08f42936295bf882aa",
+      "actual_evidence_sha256": "3f8efe1ee8421ff936f9bead5ebd47651ad23d90d5fd5b6c4583e12cca0d454f",
+      "reset_to_fastboot_seconds": 38.90599999995902,
+      "return_log_complete": true,
+      "return_evidence": {
+        "complete": true,
+        "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+        "current_token": "2d7d487dbeeb4afe",
+        "checkpoint_bytes": 3512296,
+        "log_bytes": 3527080,
+        "log_sha256": "91e5ab29c4d2d1e9217f283592e6a33aa1f8cf5f814f58a1053f236ed624fa68",
+        "require_final_drain": true,
+        "marker_positions": [
+          6,
+          160,
+          206,
+          208
+        ],
+        "final_reset_marker_seen": true
+      },
+      "serial_capture": {
+        "revision": 1,
+        "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+        "event_log_sha256": "26279f686b7a6479baedc3e7f16b8f7f5ea5fd96776c93787214c5e5a677151f",
+        "raw_sha256": "91e5ab29c4d2d1e9217f283592e6a33aa1f8cf5f814f58a1053f236ed624fa68",
+        "serial_port": "COM17",
+        "dtr_low_through_open": true,
+        "raw_log_before_stream": true,
+        "one_continuous_current_boot_stream": true,
+        "replay_commands": 0,
+        "old_failure_not_reclassified": true
+      },
+      "geometry_binding": {
+        "revision": 1,
+        "profile": "xz1c-native-2x",
+        "canvas_pixels": [
+          720,
+          1280
+        ],
+        "UIKit_points": [
+          360,
+          640
+        ],
+        "scale": 2,
+        "source_reference_sha256": "257076987411b50f037f70bf97524fae56ac2965e773c1bb8678d05d45480ba6",
+        "target_reference_sha256": "077aac63b2e5cd48e0e4fbd024a07cac3533eaea6a04a94376d2966dbef4d2e6",
+        "converter_sha256": "ad0b5cd47f32968fa95d13a00fe54bf619bb9909efb5e6c796d04adb17d274de",
+        "parser_sha256": "1431f1f8aacae240b87bd29cd91905784c968f8014784201b3ed862bdb1b4ed9",
+        "required_boot_arguments": {
+          "sweetfb_native": 1,
+          "sf2x": 0
+        },
+        "four_original_CFData_properties_only": true
+      },
+      "ram_library_binding": {
+        "library_sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+        "library_bytes": 14801120,
+        "library_fnv64": "9929cfe79edd5bce",
+        "blob_sha256": "b52f72f05cb14a0b76bcfc8b9986b6c3e51e7dd6ad301442fe81ccf91c9bc27f",
+        "raw_sha256": "255963dda4f78e484a7050ec3112abf356611711848361e8925152b7c10ba33f",
+        "manifest_sha256": "d32faa576cf39b9f0c278f0502e24789fa7bf440a01a0a49283c518181c2834c"
+      },
+      "actual_geometry_and_safe_area_rows": [
+        "|SpringBoard| SWEET GEOCOMPAT: from=nil to=_UIStatusBarVisualProvider_LegacyPhone bounds=360x640 scale=2 abi=4",
+        "|SpringBoard| SWEET GEO: pid=26 bounds=0,0,360,640 scale=2 native=0,0,720,1280 nativeScale=2",
+        "|SpringBoard| SWEET GEO: MG main-screen-width=720",
+        "|SpringBoard| SWEET GEO: MG main-screen-height=1280",
+        "|SpringBoard| SWEET GEO: MG main-screen-scale=2",
+        "|SpringBoard| SWEET GEO: MG DisplayPixelDensity type=0",
+        "|SpringBoard| SWEET GEO: MG ArtworkDeviceSubType type=0",
+        "|SpringBoard| SWEET GEO: window=0 safe_area=38,0,29,0 ABI=UIEdgeInsets64",
+        "|SpringBoard| SWEET GEO: window=1 safe_area=38,0,29,0 ABI=UIEdgeInsets64",
+        "|SpringBoard| SWEET GEO: window=2 safe_area=38,0,29,0 ABI=UIEdgeInsets64",
+        "|SpringBoard| SWEET GEO: window=3 safe_area=38,0,29,0 ABI=UIEdgeInsets64",
+        "|SpringBoard| SWEET GEO: window=4 safe_area=38,0,29,0 ABI=UIEdgeInsets64",
+        "|SpringBoard| SWEET GEO: window=5 safe_area=38,0,29,0 ABI=UIEdgeInsets64",
+        "|SpringBoard| SWEET GEO: window=6 safe_area=38,0,29,0 ABI=UIEdgeInsets64",
+        "|SpringBoard| SWEET GEO: window=7 safe_area=38,0,29,0 ABI=UIEdgeInsets64",
+        "IOK SpringBoard: IOServiceFirstMatch <dict ID=\"0\"><key>IOProviderClass</key><string ID=\"1\">IOHIDDevice</string><key>DeviceUsagePage</key><integer size=\"32\" ID=\"2\">0x1</integer><key>DeviceUsage</key><integer size=\"32\" ID=\"3\">0x5</integer><key>IOServiceNoti|SpringBoard| SWEET GEO: pid=26 bounds=0,0,360,640 scale=2 native=0,0,720,1280 nativeScale=2"
+      ],
+      "source_checked_scanout": {
+        "protocol": 1,
+        "frames": [
+          {
+            "id": 1,
+            "token": "2d7d487dbeeb4afe",
+            "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+            "image_sha256": "18a600a07d577cb122be89bd71d7ea80c2b7694a40dde050fe81daeb947cf022",
+            "binding": {
+              "protocol": 1,
+              "width": 720,
+              "height": 1280,
+              "stride": 2160,
+              "format": "BGR888",
+              "codec": "PRLE1",
+              "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+              "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+              "runtime_source_sha256": "a1f41eeb87b7cf70ea751884ee38d758191f3cc0a00d697acc363fbba3cd5f63"
+            },
+            "begin": {
+              "token": "2d7d487dbeeb4afe",
+              "id": "1",
+              "width": "720",
+              "height": "1280",
+              "stride": "2160",
+              "format": "BGR888",
+              "bytes": "2764800",
+              "codec": "PRLE1",
+              "encoded": "1036777",
+              "raw_fnv": "c1caedafc5ddc5ef",
+              "enc_crc": "f9e759a9",
+              "vsync": "7669",
+              "timestamp": "11055883312",
+              "copy_ticks": "7740066",
+              "power_off": "0",
+              "source_checked": "1",
+              "source_match": "1"
+            },
+            "scan": {
+              "token": "2d7d487dbeeb4afe",
+              "id": "1",
+              "pa": "0x9d400000",
+              "map_pa": "0x9d400000",
+              "map_bytes": "2764800",
+              "size": "0x50002d0",
+              "img": "0x50002d0",
+              "xy": "0",
+              "out": "0x50002d0",
+              "outxy": "0",
+              "fmt": "0x2243f",
+              "unpack": "0x20001",
+              "op": "0x80000000",
+              "qop": "0",
+              "ctl": "0x20020",
+              "start": "0",
+              "before_after": "1"
+            },
+            "blocks": 8100,
+            "raw_file": "scanout-00000001.bgr",
+            "png_file": "scanout-00000001.png",
+            "raw_sha256": "0d1c47d6436f092abb9b7053d648cec92fe922bbad6661311871eed48e1365f7",
+            "png_sha256": "04e352affaea458964b080b01f2379ddda8eafaf02dc88251ce7f5ae6bcf0820",
+            "pixel_values_preserved": true,
+            "verified": true,
+            "optical_panel_verified": false
+          }
+        ],
+        "verified": true,
+        "optical_panel_verified": false,
+        "current_boot_source_and_payload_checked": true,
+        "format": "BGR888",
+        "width": 720,
+        "height": 1280
+      },
+      "GLES9_actual_stage_verified": true,
+      "GLES9_probe_canvas": [
+        750,
+        1624
+      ],
+      "UI_canvas": [
+        720,
+        1280
+      ],
+      "single_swipe_actual": {
+        "command": "swipe",
+        "max_commands": 1,
+        "after_seconds": 120,
+        "requires_current_LIVE": true,
+        "requires_F12_ready": true,
+        "screen_after_seconds": 150
+      },
+      "observed_serial_png_visual": {
+        "native_ratio_original_home": true,
+        "flat_statusbar_visible": true,
+        "red_rdar_fallback_absent": true,
+        "widget_label_overlap_remains": true,
+        "wallpaper_black": true,
+        "physical_panel_or_full_real_touch_verified": false
+      }
+    }
+  ],
+  "geocompat_package_binding": {
+    "geocompat_build_binding": {
+      "revision": 1,
+      "source_files": {
+        "gpu/geocompat/geocompat.mm": "e22344a4dcb6e35dee8cb31016875a5b04a3aae825fd55bb2da48bc860a95f48",
+        "gpu/geocompat/test_adapter.mm": "9870e3f99dc96437b60fca41029d4fac2d78b10e1da759d7a4b5b7e5a3315c42",
+        "tools/build/build_geocompat_trial.py": "e6f871b0e638e05770b84e63688870f53c432c6c3e9f6439c7d5b1de3e079710"
+      },
+      "library_sha256": "f4416b274a553f4900402f73bd0761462e38f7c968e7ecf912a1be745d2ac3b8",
+      "library_bytes": 71184,
+      "host_ASan_UBSan_real_four_argument_provider_dispatch_passed": true,
+      "exact_native360x640_720x1280_scale2_flat_provider": true,
+      "opaque_visual_provider_info_forwarded": true,
+      "valid_other_screen_providers_preserved": true,
+      "read_only_window_safe_area_ABI_checked": true,
+      "new_device_RAM_CPU_GLES_UI_NOT_verified": true,
+      "device_operations": 0
+    }
+  },
+  "GPU_kernel_GLES_Metal_unchanged": true,
+  "full_native_geometry_ui_layout_NOT_complete": true,
+  "original_wallpaper_FPS_sleep_optical_audio_wireless_NOT_complete": true,
+  "final_device": "BH905ND69G returned healthy fastboot; controllers and workers exited",
+  "no_in_flight_boot": true
+}

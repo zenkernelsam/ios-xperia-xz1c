@@ -1,0 +1,306 @@
+{
+  "date": "2026-11-22",
+  "reason": "Preserve exact pre-integration active documents and old in-flight notes before R15 close-out",
+  "documents": [
+    {
+      "source": "AGENTS.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/AGENTS.md",
+      "bytes": 5619,
+      "sha256": "081bc55222fdc14cd2760c5d99768ae23eca61ca5c700126e21c3f69aef13f2c"
+    },
+    {
+      "source": "README.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/README.md",
+      "bytes": 2243,
+      "sha256": "60fc26b4b8b83ad6ccabe25442c28f5453d2cf9f5895931a58cac3c8c9c5269a"
+    },
+    {
+      "source": "gpu/metal/README.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/gpu/metal/README.md",
+      "bytes": 1369,
+      "sha256": "5f5a2196b7d1355115fbd6d0b10dc5e7ba80b3cd3322b80b18ed31f04b9623cf"
+    },
+    {
+      "source": "docs/AEGIR-RENDERING.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/AEGIR-RENDERING.md",
+      "bytes": 5560,
+      "sha256": "194d50e303f9bdd18faf8cf6ed2d1c68ef112f8350931af8c9cefc8c6b95c59c"
+    },
+    {
+      "source": "docs/AIR-COMPUTE.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/AIR-COMPUTE.md",
+      "bytes": 4361,
+      "sha256": "98d6aed30f84d53805b8b67bfc2b4e315bdeff5891b0ecd71343eca20e2efd96"
+    },
+    {
+      "source": "docs/AIR-HALF.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/AIR-HALF.md",
+      "bytes": 5100,
+      "sha256": "cb370eeba1a7ec8320d76ecdd681f4b073123675e5c7343b028d05b196a2bed0"
+    },
+    {
+      "source": "docs/AIR-NARROW.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/AIR-NARROW.md",
+      "bytes": 3313,
+      "sha256": "a1ac4bbe095e2fbedcbef7de0559652ea503d36dba00c865b601a585f7fa341e"
+    },
+    {
+      "source": "docs/AIR-STATIC-HALF.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/AIR-STATIC-HALF.md",
+      "bytes": 3396,
+      "sha256": "c9b8d4fa2f40437376acd72f2d4f11c75e906a28e9448738535b38d0e6dfc716"
+    },
+    {
+      "source": "docs/ATTACHMENT-HARDWARE.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/ATTACHMENT-HARDWARE.md",
+      "bytes": 16950,
+      "sha256": "7de452bc7c060a2e1d10af7edbb6bba643a5e7f3402d7db19fe3387626dc7c6e"
+    },
+    {
+      "source": "docs/BUILD.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/BUILD.md",
+      "bytes": 10374,
+      "sha256": "125b0c941041fa1edd9d73e330ebd0dff2c89da9bfff26086c290383f08ea21f"
+    },
+    {
+      "source": "docs/CA-MATRIX.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/CA-MATRIX.md",
+      "bytes": 5951,
+      "sha256": "e2d5a80d9ccda02543cabdaa65a66ff65d520d78c7ebaff9bd1aa92e715cf56a"
+    },
+    {
+      "source": "docs/CLEAR-CACHE.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/CLEAR-CACHE.md",
+      "bytes": 6910,
+      "sha256": "d392695f934170d2f98d340c1839943832f0ec1fe1bc3e4aae8396b58a1c1bc7"
+    },
+    {
+      "source": "docs/DISPLAY-GEOMETRY.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/DISPLAY-GEOMETRY.md",
+      "bytes": 4273,
+      "sha256": "6f180393f13fbf8e73b9d4a2378780988298a814987df56a9dc359e692a0255e"
+    },
+    {
+      "source": "docs/HALF-SELECTION.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/HALF-SELECTION.md",
+      "bytes": 3705,
+      "sha256": "52de70441e9f4bf03c0ebee44866a69afcda96058deb1c35cd6596012c902d85"
+    },
+    {
+      "source": "docs/INDEX.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/INDEX.md",
+      "bytes": 3387,
+      "sha256": "485fd4af564d1decd71f356ade0fd97966fb573e542d155e288720e27de7763f"
+    },
+    {
+      "source": "docs/IR3-VARIANT-CACHE.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/IR3-VARIANT-CACHE.md",
+      "bytes": 6587,
+      "sha256": "8ed9a7d1855e014011b5567d18ff820aa24a5d539f1c2266491574de945549da"
+    },
+    {
+      "source": "docs/LAYOUT.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/LAYOUT.md",
+      "bytes": 5029,
+      "sha256": "431562a0a1b74fbd60eca95701921a858283b30422f1a0eb6caaf4808375af48"
+    },
+    {
+      "source": "docs/METAL-BACKBOARD.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/METAL-BACKBOARD.md",
+      "bytes": 3741,
+      "sha256": "12aa2e7f99e1c33e45d864a4a8cd9db578adfd6c6a86adcb65700152925a31d9"
+    },
+    {
+      "source": "docs/METAL-CONSTANTS.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/METAL-CONSTANTS.md",
+      "bytes": 4118,
+      "sha256": "bbef4cad1fa781d57d2b2b1150f6bf69875fd2d5193f60840fb5c21639fae0bd"
+    },
+    {
+      "source": "docs/METAL-DEPTH-STENCIL.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/METAL-DEPTH-STENCIL.md",
+      "bytes": 11537,
+      "sha256": "fd383a57e908bdfeff3c53af19f127d05737b13bbae3483c978d7b46d526027e"
+    },
+    {
+      "source": "docs/METAL-DISCOVERY.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/METAL-DISCOVERY.md",
+      "bytes": 3541,
+      "sha256": "45fe4402c1f838a1500514cabc266d2accb1103112275b83ed9c2d52269bd236"
+    },
+    {
+      "source": "docs/METAL-IOSURFACE.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/METAL-IOSURFACE.md",
+      "bytes": 4682,
+      "sha256": "f220b73f443b07c415d55835eb7809d6404d23f3cb33fa68b989a0bef3dc471c"
+    },
+    {
+      "source": "docs/METAL-MEMORYLESS.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/METAL-MEMORYLESS.md",
+      "bytes": 7921,
+      "sha256": "b6123fb202fc441cf1a5182d83b3cf66e0ace472ddeaa64a4588b2729c62ac93"
+    },
+    {
+      "source": "docs/METAL-MIPMAPS.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/METAL-MIPMAPS.md",
+      "bytes": 4869,
+      "sha256": "17886c982365f8d4d99192100d9a5576f8b4a245e4970af4c838b7a3c556d09e"
+    },
+    {
+      "source": "docs/METAL-MRT.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/METAL-MRT.md",
+      "bytes": 5312,
+      "sha256": "dbf591810bb0516b513162990d627f70a1a15277392a19d6f5cc1bbe68ec5d8c"
+    },
+    {
+      "source": "docs/METAL-MULTISAMPLE.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/METAL-MULTISAMPLE.md",
+      "bytes": 11496,
+      "sha256": "f9563048fc96aef5fbc6e2e4758c45cbcea7c9f50fac25a8248fc6e1673b29b5"
+    },
+    {
+      "source": "docs/METAL-PRESENTATION.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/METAL-PRESENTATION.md",
+      "bytes": 10908,
+      "sha256": "18184c45c6d7645b04ed3d75609dc790147dc9194bdf559417dad8941d3c0f6e"
+    },
+    {
+      "source": "docs/METAL-QUEUES.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/METAL-QUEUES.md",
+      "bytes": 4249,
+      "sha256": "d9729271c88e04ceb7d358113086b90aff491d8b9059145555f4fbb296d755eb"
+    },
+    {
+      "source": "docs/METAL-REGISTRY-SHORT.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/METAL-REGISTRY-SHORT.md",
+      "bytes": 3560,
+      "sha256": "e92955b1d202cabec830388f78dad27033e99a010f5eda430d375ee691663091"
+    },
+    {
+      "source": "docs/METAL-RENDER.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/METAL-RENDER.md",
+      "bytes": 5830,
+      "sha256": "229a52d159f771cf2047134438cb33e81b334aa552aa9975e87004b4d384ece8"
+    },
+    {
+      "source": "docs/METAL-REQUEST-OBSERVATION.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/METAL-REQUEST-OBSERVATION.md",
+      "bytes": 15730,
+      "sha256": "7ea3743a92db70eb3a622e4220e6cf036bc7c92fe697cebb7e8112ab536cbc7d"
+    },
+    {
+      "source": "docs/METAL-RESOURCES.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/METAL-RESOURCES.md",
+      "bytes": 4944,
+      "sha256": "0bcedb85f8c3d273644851c40036897283f9a3bd66a22fd0dcf2036449a85e62"
+    },
+    {
+      "source": "docs/METAL-SAMPLERS.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/METAL-SAMPLERS.md",
+      "bytes": 4859,
+      "sha256": "d86c8f8f1098e832e9a3de41da068e4daa6d3eae3977ec3f58c48f02f172035c"
+    },
+    {
+      "source": "docs/METAL-XR.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/METAL-XR.md",
+      "bytes": 3572,
+      "sha256": "1d07f7171d105cb31e63663029305fb8ac1550ba8197e21057a7b7a2e8f0be9d"
+    },
+    {
+      "source": "docs/MSM8998-PEER-SURVEY-2026-11-15.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/MSM8998-PEER-SURVEY-2026-11-15.md",
+      "bytes": 14530,
+      "sha256": "98c48ca3c4a6f1cd754377dec413610ac9b48fcbdc16dc624cdb4c0ad3c4fd33"
+    },
+    {
+      "source": "docs/OPERATIONS.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/OPERATIONS.md",
+      "bytes": 6512,
+      "sha256": "92efaecb5afeb688916c0a698113a23067666e39f2bd8b71f726163205ee0648"
+    },
+    {
+      "source": "docs/ORGANIZATION-2026-11-12.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/ORGANIZATION-2026-11-12.md",
+      "bytes": 3733,
+      "sha256": "e72236d5ab581e51cc8e453a8c8d91b685c874ecf1564ee167b9731419dda6be"
+    },
+    {
+      "source": "docs/ORGANIZATION-2026-11-13.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/ORGANIZATION-2026-11-13.md",
+      "bytes": 2946,
+      "sha256": "8daa6330bf7783a077f420d6f68960ae149b054d288ccae022fdcfcad016a33a"
+    },
+    {
+      "source": "docs/ORGANIZATION-2026-11-15.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/ORGANIZATION-2026-11-15.md",
+      "bytes": 1947,
+      "sha256": "51ff8d9abbbbc8c7eb6949952798d34e6b6ffa0efecda8a2b72f0a1de35d53bb"
+    },
+    {
+      "source": "docs/ORGANIZATION.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/ORGANIZATION.md",
+      "bytes": 10295,
+      "sha256": "b8f7246ae726ae28159ca6906c1fbf6ed06cae022c71a384e06edd9b8fbdf63a"
+    },
+    {
+      "source": "docs/POSTDRAW-OBSERVATION.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/POSTDRAW-OBSERVATION.md",
+      "bytes": 19434,
+      "sha256": "7be4498442c53ea23f2eb9d2c0cf352b2afc78d335cf710bf852598fa0d39b81"
+    },
+    {
+      "source": "docs/PROGRAM-CACHE.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/PROGRAM-CACHE.md",
+      "bytes": 7472,
+      "sha256": "2220b4903eff1f1be4ff870c2f0a7c7af71a008952522e7e3cde564fc73ac7db"
+    },
+    {
+      "source": "docs/REFERENCE-REPOSITORIES.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/REFERENCE-REPOSITORIES.md",
+      "bytes": 10495,
+      "sha256": "864c080b90b4c755e96d12f7850799268b931d96180caef566b0f9c96bad8cbc"
+    },
+    {
+      "source": "docs/RENDER-STAGES.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/RENDER-STAGES.md",
+      "bytes": 7176,
+      "sha256": "389bb6c2f0c0d65899679b70bb7d39d43af3f09f9371fd34cf72e26ecc4120de"
+    },
+    {
+      "source": "docs/ROOT-GL5.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/ROOT-GL5.md",
+      "bytes": 3261,
+      "sha256": "ecb74488524644ad568177f7d5534d6055e01d9ed562ce96355a8d7a09a8cbeb"
+    },
+    {
+      "source": "docs/SCANOUT-SCREENSHOT.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/SCANOUT-SCREENSHOT.md",
+      "bytes": 10643,
+      "sha256": "efbd64c0e1ae0c4db02192239fa426dfb78c94614e8636be349b84b55dc1a7d2"
+    },
+    {
+      "source": "docs/STATUS.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/STATUS.md",
+      "bytes": 12344,
+      "sha256": "77648b8d64ae7a54f5940087280ffcf285155f1afd894c0138ec7a959e6269f3"
+    },
+    {
+      "source": "docs/SURFACE-DIAGNOSTICS.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/SURFACE-DIAGNOSTICS.md",
+      "bytes": 5673,
+      "sha256": "07246814101a10c82d6e23de22c4a59239ed7f4aee3389a4b5959491c2f1b6ee"
+    },
+    {
+      "source": "docs/SURFACE-READONLY.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/SURFACE-READONLY.md",
+      "bytes": 6882,
+      "sha256": "be00839222e56ce74cf1888ec962973dbfd3d6108ae24c77513c1a6c56c625a5"
+    },
+    {
+      "source": "docs/XR-CLEAR.md",
+      "archive": "docs/archive/20261122/native-r15-close-out/originals/docs/XR-CLEAR.md",
+      "bytes": 3386,
+      "sha256": "4845b355dd26cb680e089474c7a03bb982612c25372f5db0dfe26589cf876154"
+    }
+  ]
+}

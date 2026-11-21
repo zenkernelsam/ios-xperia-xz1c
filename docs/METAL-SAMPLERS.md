@@ -1,6 +1,6 @@
 # AIR 常量 sampler 与编译复用 — 2026-11-15
 
-此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。新附件native21尚未准入，旧阶段成功不扩展为完整UI。
+此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。历史阶段结果保留其准确边界，完整原UI／光学需独立验收。
 
 生产 GLES 绑定器已适配 ios_sagit 的 constexpr sampler 契约，处理普通与常量逻辑 slot、完整 `_c_` 七字段／`_level`、同一阶段同一 literal 的状态一致性。逻辑8..23映射到真正纹理单元，避开顶点buffer的8..15和XR LUT的16；单位总数按真实GL能力检查。普通 mirror-clamp 的坐标／导数标志同步到原AIR辅助uniform。
 

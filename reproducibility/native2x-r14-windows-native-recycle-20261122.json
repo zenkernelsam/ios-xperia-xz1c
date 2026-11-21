@@ -1,0 +1,42 @@
+{
+  "date": "2026-11-22",
+  "items": 2,
+  "files": 2,
+  "logical_bytes": 22152,
+  "records": [
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-native2x-r14-cpu-cli-20261122.log",
+      "reason": "Completed duplicate CLI; native geometry original payload/proof/raw/source frame retained",
+      "files": [
+        {
+          "relative": "lilac-native2x-r14-cpu-cli-20261122.log",
+          "bytes": 3070,
+          "sha256": "e159cfa5c33d9bd411a5e4c1b0a9392633e4fe571da3d8f1a67d24c214f5ff89"
+        }
+      ],
+      "time": "2026-11-22T04:29:56.3062162+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RL79URA.log",
+      "verified_native_recycle": true,
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-native2x-r14-cpu-cli-20261122.log",
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-native2x-r14-gpu-cli-20261122.log",
+      "reason": "Completed duplicate CLI; native geometry original payload/proof/raw/source frame retained",
+      "files": [
+        {
+          "relative": "lilac-native2x-r14-gpu-cli-20261122.log",
+          "bytes": 19082,
+          "sha256": "005821ff19c676dfe68e4835c3a72415260835c812dc46c238c4c3d98f76d9fe"
+        }
+      ],
+      "time": "2026-11-22T04:29:56.4442030+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R5QQS8D.log",
+      "verified_native_recycle": true,
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-native2x-r14-gpu-cli-20261122.log",
+      "all_content_SHA_verified": true
+    }
+  ],
+  "trash_not_emptied": true,
+  "original_native_geometry_evidence_retained": true
+}

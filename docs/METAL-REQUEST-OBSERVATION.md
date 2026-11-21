@@ -1,6 +1,10 @@
-# 原 Metal 画布请求观察 — 2026-11-20
+# 原Metal画布请求与mode观察 — 2026-11-22
 
-此页r1..r6是原请求观察历史，最后有实机route仍r3／3541e079；33方法mode观察没有成功手机记录。用户蓝灯会话已恢复，最新附件验收／软件拒绝与当前设备见[STATUS](STATUS.md)，不从旧“待物理确认”恢复旧任务。
+此页r1..r6保留原请求观察历史。最新r13已修正known Swift runtime owner名字，33／33方法全部准确owned／ABI安装；127条原route、20条request和一次上滑／150秒真实home扫描完整，仍为STOP／OBSERVATION_INCOMPLETE，见[r13原阶段](../reproducibility/original-mode-swift-owner-r13-stage-20261122.json)及[STATUS](STATUS.md)。不从旧“待物理确认”恢复旧任务。
+
+r13原applyMode→deactiveMode，原active／interactive／display／nextDrawable／pipeline未观察到。global getter前8次样本preview／snapshot为true、unlock0、backlight1；这个全局上限不能代表整靴或上滑后全部新environment。原policy保持，不强制解除Vista暂停、不造替代壁纸；后续继续原环境与服务路由。
+
+## 历史r1..r3的画布与路由证据
 
 当前壁纸卡点已缩小到原画布初始化后的显示路由。最新r2的五次`CLKUIMetalQuadView`初始化均返回nonnull，原layout执行；观察窗口内没有display、prewarm、drawable-size-update、nextDrawable或pipeline请求。完整720×1280扫描帧仍是灰色锁屏文字与黑壁纸。原GPU结果保持STOP／OBSERVATION_INCOMPLETE，尚未证明壁纸或完整UI完成。
 

@@ -1,6 +1,6 @@
 # Original Metal device registration — 2026-11-14
 
-此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。新附件native21尚未准入，旧阶段成功不扩展为完整UI。
+此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。历史阶段结果保留其准确边界，完整原UI／光学需独立验收。
 
 v729、GLES7944112d与discovery-r3新Metal已实机通过Aegir进程内的原版MTLAddDevice→MTLCreateSystemDefaultDevice。28完整/0缺项样本，original default指向真实SweetMTLDevice、nativeMTLDeviceSPI、原SweetGPUScatter kernel registryID0000000100000184；先同进程验收buffer/queue/compute/render/constants再登记。没有替换系统函数、伪造原renderer返回、写私有Metal变量或改IORegistry plugin属性。此阶段尚非开机自动插件发现；backboardd仍用原GLES。
 
