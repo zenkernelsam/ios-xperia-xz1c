@@ -51,3 +51,9 @@ Windows本轮两个完成传输目录、8个WSL在Windows挂载盘生成的ELF�
 r8结束后另15项／25文件／150861981B入Mac原生Trash，9项／22文件／56556776B入Windows回收站，含4个WSL ELF；目标SHA与保护指纹通过，原四靴及拒绝转储raw保留。见[Mac r8](../reproducibility/stencil-r8-macos-native-trash-20261121.json)／[Windows r8](../reproducibility/stencil-r8-windows-native-recycle-20261121.json)。回收站未清空。
 
 r9轮后15项／25文件／150862932B进入Mac原生Trash，5项／18文件／56212424B进入Windows回收站；目标SHA和保护指纹复核，垃圾桶未清空。原四靴、拒绝和当前少量有效页面保留，见[Mac r9](../reproducibility/stencil-r9-macos-native-trash-20261121.json)／[Windows r9](../reproducibility/stencil-r9-windows-native-recycle-20261121.json)。
+
+## r10收尾与本周累计
+
+r10四靴完整返回后，15项／25文件／150868099B进Mac原生Trash；Windows6项／19文件进原生回收站，含最后一个WSL日志writer ELF，目标SHA／保护指纹全部通过。[Mac r10](../reproducibility/stencil-r10-macos-native-trash-20261121.json)／[Windows r10](../reproducibility/stencil-r10-windows-native-recycle-20261121.json)保存路径和原内容SHA。
+
+主体及全部追加Mac共1803项／35167文件／13185344737B（12.28GiB）；回收站未清空，最新91%使用／92GiB可用、build4281044KiB（4.08GiB），其它项目未改。现行50份文档按STATUS／BUILD／OPERATIONS／LAYOUT／INDEX／专题职责整理；本轮编辑前STATUS／ORGANIZATION原文和SHA另归入[r10归档](archive/20261121/r10-close-out/original-document-manifest.json)。GPU完整附件证明和presentation拒绝分开保留，源修补只在正式仓库。

@@ -103,3 +103,5 @@ r7把BLIT／BOX合成一次frontend write，实机32个BLIT和COPY完整，但32
 r8离线候选直接遵循固定u_blitter的每位writemask／REPLACE思想：清零使用GL_ZERO全覆盖draw，随后ref255／1<<bit／fragment discard逐位写回；Clear每次9draw，Load为1+8*samples。避免依赖FD5明确拒绝Z32的硬件快清及空fragment路径，不CPU重排、不改底层。详见r8主机报告，仍需新库完整native21和PNG。
 
 r8实机已将S8 phase2推进至phase96；独立核对前96个原byte／guard／getBytes阶段及严格D32全29。剩下Stencil8 phase96和Memoryless phase2均无caller depth，原临时primary强制linear／真实S8 work TILE5_3。r9恢复固定驱动原生tiled primary并强制记录实际layout；原r8失败和转储decoder拒绝不变。
+
+r10独立D32全29／S8全99／Memoryless全8／MSAA全18原byte／guard／copy fence／IOVA及dummy生命周期全部通过。GPU逐位Clear与private tiled dummy补齐附件分支；整体native21仍在真实presentation五次像素检查成功后留11520B分配而REVISE，PNG未执行，不提升生产基线。原证据见[r10阶段](../reproducibility/stencil-private-r10-stage-20261121.json)。

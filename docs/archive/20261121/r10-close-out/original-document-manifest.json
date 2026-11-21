@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-21",
+  "documents": [
+    {
+      "source": "docs/STATUS.md",
+      "archive": "docs/archive/20261121/r10-close-out/STATUS.md",
+      "bytes": 9908,
+      "sha256": "2e64d082d737ec63707518ecac2fa508efb401dcc3266e95c5f8972e2f3be2ee"
+    },
+    {
+      "source": "docs/ORGANIZATION.md",
+      "archive": "docs/archive/20261121/r10-close-out/ORGANIZATION.md",
+      "bytes": 8120,
+      "sha256": "7b2746df9e163207a5203d2df833e05a5d9ed3d9ec8d96c725f4c13faeb77508"
+    }
+  ],
+  "original_bytes_preserved": true
+}

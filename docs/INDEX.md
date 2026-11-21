@@ -26,3 +26,5 @@ reproducibility保存原结果摘要、源码锁、精确proof和回收记录；
 过时handover／handout／工作日志和本周47份入口原文均归入[archive](archive/20261121/weekly-integration/original-document-manifest.json)，原字节与SHA保持。阶段专题保留复现信息，旧编号实验不再是当前执行入口。文档链接以正式仓库相对路径为准。
 
 本轮[四靴原结果](../reproducibility/stencil-sample-r7-stage-20261121.json)、[主机语义](../reproducibility/stencil-sample-r7-host-20261121.json)、[追加回收](ORGANIZATION.md#r6r7追加与当前汇总)及[10份修改前原文／SHA](archive/20261121/stencil-r7-integration/original-document-manifest.json)保持各自边界。
+
+[r10完整附件原证明与presentation拒绝](../reproducibility/stencil-private-r10-stage-20261121.json)统一由STATUS解释当前边界。

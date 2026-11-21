@@ -77,3 +77,5 @@ python3 -B tools/build/inspect_native_presentation.py --root build/my-readonly-r
 七份旧手册原字节和SHA在[归档](archive/20261120/presentation-r1/original-documents.json)，原黑壁纸scope没有display／pipeline请求仍保持STOP。呈现是后续真实显示所需的缺口，不把它当作已证黑壁纸原因；完整壁纸／UI／FPS、睡眠、LCD光学及其它外设保持active。
 
 本轮实际回收Windows7项／12文件／34820404B、Mac21项／432文件／300997854B；全部原生回收核验，未清空。候选CPU包、raw／blob／库、原失败和20H392 ABI证据保留，两Ubuntu垃圾桶为空。[回收记录](../reproducibility/presentation-r1-native-recycle.json)。
+
+2026-11-21 r10已首次实际走完此前附件组并执行五次原生presentation：原drawable／IOSurface像素765、padding及present四种mode＋transaction_wait检查都成功，但final_allocated11520（五个2304B surface）未归零，native presentedTime0、LCD光学未验。原queue在Completed前已移除operation/presentation引用，未见surface release失败，后续查native layer/drawable pool及CA事务持有。不得扣账、伪造didPresentAtTime或把GPU写入当实际display completion；原[阶段](../reproducibility/stencil-private-r10-stage-20261121.json)保持REVISE。

@@ -4,7 +4,7 @@ Sony Xperia XZ1 Compact（Snapdragon835／Adreno540）的开源XNU、Mesa／Free
 
 已验v730／CA基线可显示灰色锁屏文字与正常颜色主页。CPU、launchd、F12触控、音量键、完整GLES9、native Metal16及PNG6已验；壁纸、原生比例、动态UI／FPS、睡眠、光学／背光、声音和无线待完成。
 
-HEAD包含当前GPU候选和严格验收工具。最新Stencil8 r7自身CPU／GLES9／reference CPU通过，完整native21仍失败，基线保持。手机健康fastboot、无worker；精确SHA、原页面和下一步见[STATUS](docs/STATUS.md)。本周原生回收与现行文档整合已完成。
+HEAD包含当前GPU候选和严格验收工具。最新r10自身CPU／GLES9／reference CPU以及Depth32／Stencil8／Memoryless／MSAA四组附件完整通过；native21最后presentation仍有11520B资源未释放，基线保持。手机健康fastboot、无worker；精确SHA、原页面和下一步见[STATUS](docs/STATUS.md)。本周原生回收与现行文档整合已完成。
 
 | 入口 | 内容 |
 | --- | --- |
