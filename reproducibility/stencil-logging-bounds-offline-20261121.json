@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-21",
+  "source_commit": "316500acd9ac5cb32de8a4c7d7e9bf32a9ea948f",
+  "frontend_library_sha256": "172c7de2036f467ebb9432e795e9b3d0497a0f84a14ce2d14a8a5ce56f8ed9b1",
+  "actual_frontend_source_files": 68,
+  "unchanged_Mesa_inputs": 24,
+  "only_frontend_recompiled": true,
+  "kernel_console_source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/dxb/xnu/bsd/dev/mem.c",
+  "kernel_console_source_sha256": "3c840194226099216d7b0177c97b87740f6f6ed889328cfb6b7e863fbf6bd22c",
+  "actual_console_chunks_at_most_bytes": 256,
+  "separate_BLIT_BOX_records_restored": true,
+  "native_r7_failure_unchanged": true,
+  "new_library_RAM_CPU_GLES_native21_NOT_tested": true,
+  "device_operations": 0,
+  "pause_preserved": true
+}

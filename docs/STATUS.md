@@ -48,3 +48,5 @@ RPM历史txh=8／txt=0死锁及恢复失败保持；本轮GPU时钟正常。无L
 本周及追加共1758个Mac项目项／35092文件／12732751725B（约11.86GiB）已原生Trash，用户内容SHA复核。最新21项／29文件／285078590B；Windows本轮14项／38文件／96769680B进回收站，含8个WSL ELF。两个Ubuntu实际root／cisco垃圾桶均为空。垃圾桶未清空；最后Mac系统91%使用／91GiB可用，正式build约3.91GiB，其它项目未改。
 
 50份现行文档链接审计并统一入口；本周47份与本轮10份修改前原文／SHA分别archive。精确清单在[ORGANIZATION](ORGANIZATION.md)，目录与恢复在[LAYOUT](LAYOUT.md)，专题在[INDEX](INDEX.md)。源码／工具／锁只在正式仓库；HEAD是当前候选，已验基线按原manifest和对应源码版本复现，新产物仍需自己的准入。
+
+日志修补已在Mac离线编译：68份实际frontend源、24份未改Mesa输入，库SHA 172c7de2036f467ebb9432e795e9b3d0497a0f84a14ce2d14a8a5ce56f8ed9b1；kernel console实际源SHA 3c840194226099216d7b0177c97b87740f6f6ed889328cfb6b7e863fbf6bd22c。尚未打新RAM或实机，旧r7 proof不准入此新库，见[编译原报告](../reproducibility/stencil-logging-bounds-offline-20261121.json)。
