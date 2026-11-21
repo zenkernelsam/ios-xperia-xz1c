@@ -13,6 +13,8 @@
 @implementation _UIStatusBarVisualProvider_Fallback @end
 @interface _UIStatusBarVisualProvider_Split1125:NSObject @end
 @implementation _UIStatusBarVisualProvider_Split1125 @end
+@interface _UIStatusBarVisualProvider_LegacyPhone:NSObject @end
+@implementation _UIStatusBarVisualProvider_LegacyPhone @end
 static id expected_info;
 @interface _UIStatusBarVisualProvider_Split:NSObject
 +(Class)visualProviderSubclassForScreen:(UIScreen *)screen visualProviderInfo:(id)info;
@@ -39,6 +41,10 @@ int main(void){ @autoreleasepool {
  setenv("GEO_FIX","1",1);install_provider_adapter();
  assert([_UIStatusBarVisualProvider_iOS visualProviderSubclassForScreen:s visualProviderInfo:expected_info]==[_UIStatusBarVisualProvider_Split1125 class]);
  assert(s.scale==2 && s.bounds.size.width==375 && s.nativeBounds.size.width==750);
+ s.bounds=CGRectMake(0,0,360,640);s.nativeBounds=CGRectMake(0,0,720,1280);
+ assert([_UIStatusBarVisualProvider_iOS visualProviderSubclassForScreen:s visualProviderInfo:expected_info]==[_UIStatusBarVisualProvider_LegacyPhone class]);
+ assert(s.scale==2 && s.bounds.size.width==360 && s.nativeBounds.size.height==1280);
+ s.bounds=CGRectMake(0,0,375,812);s.nativeBounds=CGRectMake(0,0,750,1624);
  s.scale=3;s.nativeBounds=CGRectMake(0,0,1125,2436);
  assert([_UIStatusBarVisualProvider_iOS visualProviderSubclassForScreen:s visualProviderInfo:expected_info]==[_UIStatusBarVisualProvider_Split1125 class]);
  s.scale=2;s.bounds=CGRectMake(0,0,320,568);s.nativeBounds=CGRectMake(0,0,640,1136);

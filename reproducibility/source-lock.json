@@ -377,7 +377,9 @@
     }
   },
   "geocompat": {
-    "source_sha256": "7fc043ca67ad4d88efdd309416579ef37dbb4779f8d24891ac760c360dc4bde2",
-    "rebuilt_matches_device_tested_helper_sha256": "e65bdc7b70d098725918c637cc8cb1c25a8a544186d0f4468b399fda52024898"
+    "source_sha256": "e22344a4dcb6e35dee8cb31016875a5b04a3aae825fd55bb2da48bc860a95f48",
+    "rebuilt_matches_device_tested_helper_sha256": "e65bdc7b70d098725918c637cc8cb1c25a8a544186d0f4468b399fda52024898",
+    "native_geometry_new_helper_acceptance_pending": true,
+    "baseline_helper_sha256": "e65bdc7b70d098725918c637cc8cb1c25a8a544186d0f4468b399fda52024898"
   }
 }

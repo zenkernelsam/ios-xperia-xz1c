@@ -3,7 +3,7 @@ import argparse,hashlib,json,os,shutil,struct,subprocess,time,zlib
 from pathlib import Path
 root=Path(__file__).resolve().parents[2]
 p=argparse.ArgumentParser();p.add_argument('--output');p.add_argument('--frontend')
-p.add_argument('--presigned',action='store_true');p.add_argument('--observer');p.add_argument('--metal-resources');a=p.parse_args()
+p.add_argument('--presigned',action='store_true');p.add_argument('--observer');p.add_argument('--metal-resources');p.add_argument('--geocompat-package');a=p.parse_args()
 out=Path(a.output).absolute() if a.output else root/'build'/('glram-'+time.strftime('%Y%m%d-%H%M%S'))
 assert out.is_relative_to(root/'build') and not out.exists();out.mkdir(parents=True)
 frontend=Path(a.frontend).absolute() if a.frontend else root/'build/sweetgl'
@@ -12,6 +12,16 @@ inputs={'sweetgl.dylib':frontend/'sweetgl.dylib','libglapi.0.dylib':frontend/'li
         'georead.dylib':frontend/'georead.dylib' if a.presigned else root/'build/geocompat/georead.dylib'}
 observer_manifest=None
 resource_manifest=None
+geocompat_manifest=None
+if a.geocompat_package:
+    assert a.presigned,'New geocompat keeps exact tested GPU/frontend signed bytes'
+    geocompat=Path(a.geocompat_package).resolve();assert geocompat.is_relative_to(root/'build')
+    geocompat_manifest=json.loads((geocompat/'manifest.json').read_bytes())
+    assert geocompat_manifest['revision']==1 and geocompat_manifest['host_ASan_UBSan_real_four_argument_provider_dispatch_passed']
+    assert geocompat_manifest['exact_native360x640_720x1280_scale2_flat_provider']
+    assert hashlib.sha256((geocompat/'georead.dylib').read_bytes()).hexdigest()==geocompat_manifest['library_sha256']
+    assert all(hashlib.sha256((root/p).read_bytes()).hexdigest()==sha for p,sha in geocompat_manifest['source_files'].items())
+    inputs['georead.dylib']=geocompat/'georead.dylib'
 if a.observer:
     assert a.presigned, 'Observer trial preserves the tested frontend bytes'
     observer=Path(a.observer).resolve();assert observer.is_relative_to(root/'build')
@@ -79,6 +89,7 @@ elif a.presigned:
 if observer_manifest:
     manifest['exception_observer']=observer_manifest
     manifest['observer_alias_e_verified']=True
+if geocompat_manifest:manifest['geocompat_build_binding']=geocompat_manifest
 if resource_manifest:manifest['metal_resources']=resource_manifest
 (out/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n',encoding='utf-8')
 print(json.dumps({'output':str(out),**manifest},indent=2))

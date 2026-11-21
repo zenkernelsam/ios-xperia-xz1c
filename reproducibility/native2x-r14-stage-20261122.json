@@ -1,0 +1,170 @@
+{
+  "date": "2026-11-22",
+  "profile": "xz1c-native-2x",
+  "source_commit": "39710c4",
+  "runs": [
+    {
+      "result": "PASS",
+      "reason": "GOALS_STABLE",
+      "reset_to_fastboot_seconds": 38.98399999993853,
+      "return_log_complete": true,
+      "stage": "cpu",
+      "token": "5a20e436669f59d8",
+      "raw_sha256": "8b8efa8071b28afc4ce2f81cf1a1fc2ed29d16570e136644b0de0331e36f81b6",
+      "raw_bytes": 346843,
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-native2x-r14-cpu-live-20261122",
+      "image_sha256": "52ee57ffa9b5463af8047b8cdbcc84b90b270311a4c3bea1c0e6c32574aed444",
+      "original_result_sha256": "b839f023c2d752d0903e1112646a76de944a042e0c2325263a6ce6c07806c2f7",
+      "geometry_binding": {
+        "revision": 1,
+        "profile": "xz1c-native-2x",
+        "canvas_pixels": [
+          720,
+          1280
+        ],
+        "UIKit_points": [
+          360,
+          640
+        ],
+        "scale": 2,
+        "source_reference_sha256": "257076987411b50f037f70bf97524fae56ac2965e773c1bb8678d05d45480ba6",
+        "target_reference_sha256": "077aac63b2e5cd48e0e4fbd024a07cac3533eaea6a04a94376d2966dbef4d2e6",
+        "converter_sha256": "ad0b5cd47f32968fa95d13a00fe54bf619bb9909efb5e6c796d04adb17d274de",
+        "parser_sha256": "1431f1f8aacae240b87bd29cd91905784c968f8014784201b3ed862bdb1b4ed9",
+        "required_boot_arguments": {
+          "sweetfb_native": 1,
+          "sf2x": 0
+        },
+        "four_original_CFData_properties_only": true
+      }
+    },
+    {
+      "result": "PASS",
+      "reason": "GOALS_STABLE",
+      "reset_to_fastboot_seconds": 38.156999999890104,
+      "return_log_complete": true,
+      "stage": "gpu",
+      "token": "338a986e5379a5e1",
+      "raw_sha256": "fbbe0c6d04f8c1f60967d8ae3d4ef36e0d3e263b6dc92eae199a487aa8503ad6",
+      "raw_bytes": 3194602,
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-native2x-r14-gpu-live-20261122",
+      "image_sha256": "3f6d920b73675da605d9b832b6c366c39f936500628058d31998d517987040d0",
+      "original_result_sha256": "5c5a8427c74376592af35329e44de4d2a4e8ed4e73233c514a939ea1b5594c33",
+      "geometry_binding": {
+        "revision": 1,
+        "profile": "xz1c-native-2x",
+        "canvas_pixels": [
+          720,
+          1280
+        ],
+        "UIKit_points": [
+          360,
+          640
+        ],
+        "scale": 2,
+        "source_reference_sha256": "257076987411b50f037f70bf97524fae56ac2965e773c1bb8678d05d45480ba6",
+        "target_reference_sha256": "077aac63b2e5cd48e0e4fbd024a07cac3533eaea6a04a94376d2966dbef4d2e6",
+        "converter_sha256": "ad0b5cd47f32968fa95d13a00fe54bf619bb9909efb5e6c796d04adb17d274de",
+        "parser_sha256": "1431f1f8aacae240b87bd29cd91905784c968f8014784201b3ed862bdb1b4ed9",
+        "required_boot_arguments": {
+          "sweetfb_native": 1,
+          "sf2x": 0
+        },
+        "four_original_CFData_properties_only": true
+      },
+      "actual_UIScreen_rows": [
+        "SWEET GEO: pid=26 bounds=0,0,360,640 scale=2 native=0,0,720,1280 nativeScale=2",
+        "SWEET GEO: pid=26 bounds=0,0,360,640 scale=2 native=0,0,720,1280 nativeScale=2"
+      ],
+      "actual_MG_rows": [
+        "|SpringBoard| SWEET GEO: MG main-screen-width=720",
+        "|SpringBoard| SWEET GEO: MG main-screen-height=1280",
+        "|SpringBoard| SWEET GEO: MG main-screen-scale=2",
+        "|SpringBoard| SWEET GEO: MG main-screen-width=720",
+        "|SpringBoard| SWEET GEO: MG main-screen-height=1280",
+        "|SpringBoard| SWEET GEO: MG main-screen-scale=2"
+      ],
+      "source_checked_scanout": {
+        "protocol": 1,
+        "verified": true,
+        "frames": [
+          {
+            "id": 1,
+            "token": "338a986e5379a5e1",
+            "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+            "image_sha256": "3f6d920b73675da605d9b832b6c366c39f936500628058d31998d517987040d0",
+            "binding": {
+              "protocol": 1,
+              "width": 720,
+              "height": 1280,
+              "stride": 2160,
+              "format": "BGR888",
+              "codec": "PRLE1",
+              "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+              "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+              "runtime_source_sha256": "a1f41eeb87b7cf70ea751884ee38d758191f3cc0a00d697acc363fbba3cd5f63"
+            },
+            "begin": {
+              "token": "338a986e5379a5e1",
+              "id": "1",
+              "width": "720",
+              "height": "1280",
+              "stride": "2160",
+              "format": "BGR888",
+              "bytes": "2764800",
+              "codec": "PRLE1",
+              "encoded": "925518",
+              "raw_fnv": "fd27713779273e4b",
+              "enc_crc": "4302e88d",
+              "vsync": "7650",
+              "timestamp": "13459758919",
+              "copy_ticks": "8328994",
+              "power_off": "0",
+              "source_checked": "1",
+              "source_match": "1"
+            },
+            "scan": {
+              "token": "338a986e5379a5e1",
+              "id": "1",
+              "pa": "0x9d400000",
+              "map_pa": "0x9d400000",
+              "map_bytes": "2764800",
+              "size": "0x50002d0",
+              "img": "0x50002d0",
+              "xy": "0",
+              "out": "0x50002d0",
+              "outxy": "0",
+              "fmt": "0x2243f",
+              "unpack": "0x20001",
+              "op": "0x80000000",
+              "qop": "0",
+              "ctl": "0x20020",
+              "start": "0",
+              "before_after": "1"
+            },
+            "blocks": 7231,
+            "raw_file": "scanout-00000001.bgr",
+            "png_file": "scanout-00000001.png",
+            "raw_sha256": "a70d877269ffee8053f3123e15a9cdcf9eee8bd1e529cb01d290bcdd24cacebe",
+            "png_sha256": "b47e47fa9c3c32c165ed3bbbd3a612b4a69fc818a2e931190fbb7fdf978aa4ab",
+            "pixel_values_preserved": true,
+            "verified": true,
+            "optical_panel_verified": false
+          }
+        ],
+        "optical_panel_verified": false,
+        "elapsed_seconds": 30.375
+      },
+      "F12_rows": [
+        "SWEET RMI4: F12 page=0 max=719x1279 obj=10 bytes=8"
+      ],
+      "single_swipe_actual": true,
+      "native_ratio_original_home_visual_observed": true,
+      "visual_statusbar_rdar_and_widget_label_overlap_unresolved": true,
+      "safe_area_and_full_real_touch_optical_NOT_verified": true
+    }
+  ],
+  "default_GPU_kernel_unchanged": true,
+  "full_native_geometry_ui_statusbar_layout_NOT_complete": true,
+  "final_device": "BH905ND69G healthy fastboot; workers exited"
+}

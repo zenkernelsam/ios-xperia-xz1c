@@ -19,7 +19,14 @@ def load(folder,expected=None):
     folder=Path(folder).resolve();assert folder.is_relative_to(ROOT/'build')
     manifest_bytes=(folder/'manifest.json').read_bytes();m=json.loads(manifest_bytes)
     assert m['read_only_verified'] and m['aliases_m_g_verified']
-    assert m['api_sha256']==API and m['helper_sha256']==HELPER
+    helper=HELPER
+    if m.get('geocompat_build_binding'):
+        geo=m['geocompat_build_binding'];assert geo['revision']==1 and geo['host_ASan_UBSan_real_four_argument_provider_dispatch_passed']
+        assert geo['exact_native360x640_720x1280_scale2_flat_provider'] and geo['read_only_window_safe_area_ABI_checked']
+        assert set(geo['source_files'])=={'gpu/geocompat/geocompat.mm','gpu/geocompat/test_adapter.mm','tools/build/build_geocompat_trial.py'}
+        assert re.fullmatch('[0-9a-f]{64}',geo['library_sha256']) and all(re.fullmatch('[0-9a-f]{64}',x) for x in geo['source_files'].values())
+        helper=geo['library_sha256']
+    assert m['api_sha256']==API and m['helper_sha256']==helper
     blob=(folder/'glram.zblob').read_bytes()
     assert len(blob)==m['blob_bytes'] and sha(blob)==m['blob_sha256'] and len(blob)<=8<<20
     magic,version,header,raw_bytes,packed_bytes,raw_fnv=struct.unpack_from('<8sIIQQQ',blob)
@@ -272,7 +279,7 @@ def load(folder,expected=None):
         assert len(data)==size and sha(data)==info['sha256'] and raw[offset:offset+size]==data
     library=(folder/'sweetgl.dylib').read_bytes()
     assert sha(library)==m['library_sha256'] and len(library)==m['library_bytes'] and fnv(library)==m['library_fnv64']
-    assert m['files']['libglapi.0.dylib']['sha256']==API and m['files']['georead.dylib']['sha256']==HELPER
+    assert m['files']['libglapi.0.dylib']['sha256']==API and m['files']['georead.dylib']['sha256']==helper
     source=m['frontend_build_binding']['source_files']
     if m['frontend_build_binding'].get('depth_tiled_backend_revision'):
         assert m['frontend_build_binding']['depth_tiled_backend_revision'] in (2,3,4,5,6,7,8,9,10)

@@ -1,5 +1,6 @@
 # 当前状态 — 2026-11-22
 
+r14原生尺寸两靴已结束，CPU／GLES9／一次上滑通过并健康返回38.157秒；UIScreen360x640／native720x1280／MG720,1280,2一致，真实home图标圆形比例正确。状态栏rdar占位及widget标签重叠未解决；当前r15新helper仅源码，尚未准入。
 r13原UI观察已结束，33／33安装、一次上滑和150秒原home扫描帧均核验，原判定STOP／OBSERVATION_INCOMPLETE，39.750秒完整返回。手机健康fastboot、无worker；当前native2x打包器和离线CPU／GPU包就绪，尚未实机。
 r12原模式两靴已结束：CPU通过，GPU因QUAD_ROUTE_OBSERVER_INSTALL_INCOMPLETE为REVISE，39.468秒完整0x06回程／健康30秒，Sony健康fastboot无worker。当前r13仅known Swift owner查找／校验源码修补，尚未实机。
 当前r11新RAM CPU／native21与PNG6已独立通过并完成回程；最后66715b9659b47bc1健康返回38.656秒，Sony健康fastboot、无worker。下方r10为历史失败，当前下一步为原poster模式／界面与原生几何。
@@ -79,3 +80,9 @@ r8 GPU清零draw＋八个bitplane覆盖draw使S8推进到phase96；剩下stencil
 r13 runtime owner实为AegirPoster.AegirRenderingController，known-name matcher修正后33方法全部owned／ABI匹配；127条原route、20条原request完整，一次上滑150秒读取真实正常颜色home，黑壁纸保持STOP。8次global getter采样上限内preview／snapshot为true、unlock0／backlight1，原mode1 deactive；不能推整靴所有新环境，原[阶段](../reproducibility/original-mode-swift-owner-r13-stage-20261122.json)保留。
 
 正式package_trial新增--display-profile xz1c-native-2x：完整基线重建后只转四个ADT CFData显示值，native1／sf2x0和source/target SHA、已核numeric parser绑定。CPU607B／GPU602B命令区、整个payload和六个missing/mixed/flag fault已离线复算；内核／GLES／firmware/RAM blob不变，其他ADT字节保持，未投递，见[离线](../reproducibility/native2x-package-r1-offline-20261122.json)。真正完成仍需同靴UIScreen／MG／safe-area／触控／原画面；其它外设继续完整目标。
+
+## r14原生链与r15 provider候选
+
+[R14阶段](../reproducibility/native2x-r14-stage-20261122.json)完整核对新ADT／native1／sf2x0、UIScreen360x640、native720x1280 scale2和MG三个main-screen值，GLES9和上滑home真实扫描通过。图中顶部rdar fallback／widget标签重叠，safe-area／完整真人触控和光学未验，原生比例不得称完成。
+
+固定20H392 A2S里有Phone／LegacyPhone原provider；r15仅对精确360x640／720x1280 scale2且原选择fallback/unsupported时用LegacyPhone flat provider，其它有效返回保持。新geocompat独立new build＋签名＋host四参数ObjC／ASan/UBSan／原info-forwarding，读取guarded UIEdgeInsets64 window safe-area；新helper包由实际源码/签名SHA绑定，run_trial在USB前核对Mac编译源／库，旧e65 helper和旧native21 proof保持。未投递，GPU/内核不编译。

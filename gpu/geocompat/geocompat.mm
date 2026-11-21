@@ -28,7 +28,7 @@ static CGRect screen_rect(id object,SEL selector)
 
 typedef Class (*provider_picker)(id,SEL,id,id);
 static provider_picker original_ios,original_split;
-static Class compatible_provider;
+static Class compatible_provider,native_provider;
 static unsigned provider_traces;
 static Class choose_provider(provider_picker original,id receiver,SEL selector,id screen,id info)
 {
@@ -36,17 +36,20 @@ static Class choose_provider(provider_picker original,id receiver,SEL selector,i
     const char *name=answer?class_getName(answer):"nil";
     Class type=screen?object_getClass(screen):Nil;
     SEL bounds=sel_registerName("bounds"),scale=sel_registerName("scale"),native=sel_registerName("nativeBounds");
-    bool eligible=false;
+    bool eligible=false,nativeEligible=false;CGRect b=CGRectZero,n=CGRectZero;double s=0;
     if (type && class_getInstanceMethod(type,bounds) && class_getInstanceMethod(type,scale) && class_getInstanceMethod(type,native)) {
-        CGRect b=screen_rect(screen,bounds),n=screen_rect(screen,native);
-        double s=((CGFloat (*)(id,SEL))objc_msgSend)(screen,scale);
+        b=screen_rect(screen,bounds);n=screen_rect(screen,native);
+        s=((CGFloat (*)(id,SEL))objc_msgSend)(screen,scale);
         eligible=fabs(b.size.width-375)<0.01 && fabs(b.size.height-812)<0.01 && fabs(s-2)<0.01 &&
                  fabs(n.size.width-750)<0.01 && fabs(n.size.height-1624)<0.01;
+        nativeEligible=fabs(b.size.width-360)<0.01 && fabs(b.size.height-640)<0.01 && fabs(s-2)<0.01 &&
+                       fabs(n.size.width-720)<0.01 && fabs(n.size.height-1280)<0.01;
     }
     unsigned trace=__atomic_fetch_add(&provider_traces,1,__ATOMIC_RELAXED);
-    if (eligible && (!answer || strstr(name,"Unsupported") || strstr(name,"Fallback")) && compatible_provider) {
-        if (trace<16) { char line[256];snprintf(line,sizeof(line),"SWEET GEOCOMPAT: from=%s to=%s bounds=375x812 scale=2 abi=4\n",name,class_getName(compatible_provider));emit(line); }
-        return compatible_provider;
+    Class selected=nativeEligible?native_provider:eligible?compatible_provider:Nil;
+    if ((eligible || nativeEligible) && (!answer || strstr(name,"Unsupported") || strstr(name,"Fallback")) && selected) {
+        if (trace<16) { char line[256];snprintf(line,sizeof(line),"SWEET GEOCOMPAT: from=%s to=%s bounds=%gx%g scale=%g abi=4\n",name,class_getName(selected),b.size.width,b.size.height,s);emit(line); }
+        return selected;
     }
     if (trace<16) { char line[256];snprintf(line,sizeof(line),"SWEET GEOCOMPAT: keep=%s eligible=%u abi=4\n",name,(unsigned)eligible);emit(line); }
     return answer;
@@ -72,12 +75,36 @@ static void install_provider_adapter(void)
     const char *enabled=getenv("GEO_FIX");
     if (!enabled || strcmp(enabled,"1") || original_ios || original_split) return;
     compatible_provider=objc_lookUpClass("_UIStatusBarVisualProvider_Split1125");
+    native_provider=objc_lookUpClass("_UIStatusBarVisualProvider_LegacyPhone");
     if (!compatible_provider) { emit("SWEET GEOCOMPAT: REFUSE missing Split1125\n");return; }
+    if(!native_provider)emit("SWEET GEOCOMPAT: native LegacyPhone unavailable; keep original native picker result\n");
     bool ios=hook_picker("_UIStatusBarVisualProvider_iOS",&original_ios,(IMP)select_ios);
     bool split=hook_picker("_UIStatusBarVisualProvider_Split",&original_split,(IMP)select_split);
     if (!ios && !split) emit("SWEET GEOCOMPAT: REFUSE no matching 4-argument ABI\n");
 }
 
+typedef struct SweetGeoInsets {double top,left,bottom,right;} SweetGeoInsets;
+static void inspect_window_safe_area(void)
+{
+    Class appClass=objc_lookUpClass("UIApplication");SEL shared=sel_registerName("sharedApplication"),windows=sel_registerName("windows"),safe=sel_registerName("safeAreaInsets");
+    Method sharedMethod=appClass?class_getClassMethod(appClass,shared):NULL;char ret[64]={0};
+    if(sharedMethod)method_getReturnType(sharedMethod,ret,sizeof(ret));
+    if(!sharedMethod || method_getNumberOfArguments(sharedMethod)!=2 || ret[0]!='@')return;
+    id app=((id (*)(id,SEL))objc_msgSend)((id)appClass,shared);Method getWindows=app?class_getInstanceMethod(object_getClass(app),windows):NULL;
+    if(!getWindows || method_getNumberOfArguments(getWindows)!=2)return;method_getReturnType(getWindows,ret,sizeof(ret));if(ret[0]!='@')return;
+    id values=((id (*)(id,SEL))objc_msgSend)(app,windows);if(!values || CFGetTypeID((CFTypeRef)values)!=CFArrayGetTypeID())return;
+    CFIndex count=CFArrayGetCount((CFArrayRef)values);if(count<0 || count>32)return;
+    for(CFIndex i=0;i<count && i<8;++i){id window=(id)CFArrayGetValueAtIndex((CFArrayRef)values,i);Method method=window?class_getInstanceMethod(object_getClass(window),safe):NULL;
+        if(!method || method_getNumberOfArguments(method)!=2)continue;method_getReturnType(method,ret,sizeof(ret));if(strcmp(ret,"{UIEdgeInsets=dddd}"))continue;
+        SweetGeoInsets insets;
+#if defined(__x86_64__)
+        ((void (*)(SweetGeoInsets *,id,SEL))objc_msgSend_stret)(&insets,window,safe);
+#else
+        insets=((SweetGeoInsets (*)(id,SEL))objc_msgSend)(window,safe);
+#endif
+        char line[240];snprintf(line,sizeof(line),"SWEET GEO: window=%ld safe_area=%g,%g,%g,%g ABI=UIEdgeInsets64\n",(long)i,insets.top,insets.left,insets.bottom,insets.right);emit(line);
+    }
+}
 static void inspect_geometry(void)
 {
     char line[640];
@@ -120,6 +147,7 @@ static void inspect_geometry(void)
         if (value) CFRelease(value);
         if (question) CFRelease(question);
     }
+    inspect_window_safe_area();
 }
 __attribute__((constructor)) static void start_geometry_reader(void)
 {
