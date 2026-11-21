@@ -10,6 +10,7 @@ BLIT = re.compile(r'SWEET DEPTH TILE BLIT original=(\d+) work=(\d+) direction=(l
 BOX = re.compile(r'SWEET DEPTH TILE BOX original=(\d+) work=(\d+) src=(-?\d+,-?\d+,-?\d+,-?\d+,-?\d+,-?\d+) dst=(-?\d+,-?\d+,-?\d+,-?\d+,-?\d+,-?\d+) src_size=(\d+,\d+,\d+) dst_size=(\d+,\d+,\d+) src_pitch=(\d+) dst_pitch=(\d+) src_offset=(\d+) dst_offset=(\d+)')
 SAMPLE = re.compile(r'SWEET DEPTH TILE SAMPLE original=(\d+) work=(\d+) direction=(load|store) samples=(\d+) width=(\d+) height=(\d+) src_samples=(\d+) dst_samples=(\d+) passes=(\d+) masks=(\d+) bitcast=1 GPU_only=1')
 STATE = re.compile(r'SWEET DEPTH TILE STATE original=(\d+) work=(\d+) direction=(load|store) all_dirty=(\d+) stencil_ref=(\d+) sample_mask=(\d+) scissor=(\d+) gen_dirty=(\d+) gen_all=(\d+)')
+STENCIL_SAMPLE = re.compile(r'SWEET STENCIL TILE SAMPLE original=(\d+) work=(\d+) direction=(load|store) samples=(\d+) width=(\d+) height=(\d+) src_samples=(\d+) dst_samples=(\d+) passes=(\d+) masks=(\d+) bitplanes=8 GPU_only=1')
 
 
 def plane(handle, gpu, format_, samples, pitch, load, publish=True):
@@ -34,7 +35,7 @@ def verify_groups(segment, groups,revision=2):
     Filtered segments for concurrent probes retain original handles explicitly;
     no unrelated plane is used as proof of this group's work or copy.
     """
-    assert revision in (2,3,4,5,6)
+    assert revision in (2,3,4,5,6,7)
     tile_mode=3 if revision>=4 else 2
     handles = {p['handle'] for group in groups for p in group}
     tables = [list(pattern.finditer(segment)) for pattern in (PAGE, MAP, COPY, PAIR, RETIRE)]
@@ -52,14 +53,17 @@ def verify_groups(segment, groups,revision=2):
     boxes = [m for m in BOX.finditer(segment) if int(m[1]) in handles]
     sampled = [m for m in SAMPLE.finditer(segment) if int(m[1]) in handles]
     states = [m for m in STATE.finditer(segment) if int(m[1]) in handles]
+    stencil_sampled = [m for m in STENCIL_SAMPLE.finditer(segment) if int(m[1]) in handles]
     if revision>=3:
         assert 'SWEET DEPTH TILE REJECT ' not in segment
         assert segment.count('SWEET DEPTH TILE BLIT ')==len(list(BLIT.finditer(segment)))
         assert segment.count('SWEET DEPTH TILE BOX ')==len(list(BOX.finditer(segment)))
-        assert len(blits)==len(boxes) and len(blits)+len(sampled)==len(copies), 'Original GPU copy metadata missing'
+        assert len(blits)==len(boxes) and len(blits)+len(sampled)+len(stencil_sampled)==len(copies), 'Original GPU copy metadata missing'
         assert segment.count('SWEET DEPTH TILE SAMPLE ')==len(list(SAMPLE.finditer(segment)))
         if revision<5:assert not sampled
-        if revision==6:
+        if revision<7:assert not stencil_sampled
+        else:assert segment.count('SWEET STENCIL TILE SAMPLE ')==len(list(STENCIL_SAMPLE.finditer(segment)))
+        if revision>=6:
             assert segment.count('SWEET DEPTH TILE STATE ')==len(list(STATE.finditer(segment)))
             assert len(states)==len(blits), 'Native 3D state replay missing after an internal 2D batch'
     assert len(pages) == len(maps) == len(retired) == len(expected), 'Work page/map/retirement count differs'
@@ -93,7 +97,13 @@ def verify_groups(segment, groups,revision=2):
                 assert tuple(int(copy[i]) for i in (4,5,6)) == (p['samples'],p['width'],p['height'])
                 assert mapping.end() < copy.start() < release.start() and int(copy[7]) > 0
                 sequence.append(int(copy[7]))
-                if revision>=5 and p['format']==252 and p['samples']>1:
+                if revision>=7 and p['format']==253:
+                    candidates=[m for m in stencil_sampled if begin<=m.start()<copy.start() and (int(m[1]),int(m[2]),m[3])==(original,handle,copy[3])]
+                    assert len(candidates)==1
+                    sample=candidates[0];count=p['samples'];wanted=(count,p['width'],p['height'],1,count,1+8*count,(1<<count)-1) if copy[3]=='load' else (count,p['width'],p['height'],count,1,1,0)
+                    assert tuple(int(sample[i]) for i in range(4,11))==wanted
+                    assert mapping.end()<sample.start()<sample.end()<copy.start()
+                elif revision>=5 and p['format']==252 and p['samples']>1:
                     candidates=[m for m in sampled if begin<=m.start()<copy.start() and (int(m[1]),int(m[2]),m[3])==(original,handle,copy[3])]
                     assert len(candidates)==1
                     sample=candidates[0];count=p['samples'];wanted=(count,p['width'],p['height'],1,count,count,(1<<count)-1) if copy[3]=='load' else (count,p['width'],p['height'],count,1,1,0)
@@ -113,11 +123,15 @@ def verify_groups(segment, groups,revision=2):
                     assert tuple(map(int,box[5].split(',')))==tuple(map(int,box[6].split(',')))==(p['width'],p['height'],1)
                     wanted=(p['pitch'],pitch,p['offset'],0) if copy[3]=='load' else (pitch,p['pitch'],0,p['offset'])
                     assert tuple(int(box[i]) for i in (7,8,9,10))==wanted
-                    if revision==6:
+                    if revision>=6:
                         replay=[m for m in states if copy.end()<m.start()<release.start() and (int(m[1]),int(m[2]),m[3])==(original,handle,copy[3])]
                         assert len(replay)==1
                         replay=replay[0];assert tuple(int(replay[i]) for i in (4,5,6,7))==(1,1,1,1)
-                        assert int(replay[8])==int(replay[9]) and int(replay[8])>0
+                        # FD5 uses the common FD_DIRTY_* state mask; unlike
+                        # FD6+, its pinned context installs no gen_dirty maps.
+                        # The real zero/zero gen masks are valid only alongside
+                        # the actual all_dirty/stencil/sample/scissor flags.
+                        assert int(replay[8])==int(replay[9])
                         assert copy.end()<replay.start()<replay.end()<release.start()
             assert sequence == sorted(set(sequence)), 'Load/store must use actual ordered nonzero fences'
             name = 'DEPTH' if p['format'] == 252 else 'STENCIL'
@@ -146,5 +160,6 @@ def verify_groups(segment, groups,revision=2):
                 actual_designated_pipe_box_and_raw_copy_metadata_verified=revision>=3 and bool(blits),
                 actual_pinned_fd5_sysmem_tile_mode_verified=revision>=4,
                 actual_depth_MSAA_sample_shader_bitcast_verified=revision>=5 and bool(sampled),
-                native_3D_state_marked_dirty_after_internal_2D_copy=revision==6 and bool(states),
+                native_3D_state_marked_dirty_after_internal_2D_copy=revision>=6 and bool(states),
+                actual_stencil_texture_GPU_bitplane_transfer_verified=revision>=7 and bool(stencil_sampled),
                 operations=len(groups), planes=len(expected), records=records)

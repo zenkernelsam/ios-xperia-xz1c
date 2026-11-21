@@ -273,7 +273,7 @@ def load(folder,expected=None):
     assert m['files']['libglapi.0.dylib']['sha256']==API and m['files']['georead.dylib']['sha256']==HELPER
     source=m['frontend_build_binding']['source_files']
     if m['frontend_build_binding'].get('depth_tiled_backend_revision'):
-        assert m['frontend_build_binding']['depth_tiled_backend_revision'] in (2,3,4,5,6)
+        assert m['frontend_build_binding']['depth_tiled_backend_revision'] in (2,3,4,5,6,7)
         assert m['frontend_build_binding']['depth_tiled_independent_FDL5_work_pages']
         assert m['frontend_build_binding']['depth_tiled_GPU_copy_fences_and_retirement_required']
         assert all(path in source for path in ('DepthTiledPlane.h','StencilResourcePair.h','metal_render.c'))
@@ -286,8 +286,12 @@ def load(folder,expected=None):
             assert 'DepthMultisampleCopyGLES.h' in source
             assert m['frontend_build_binding']['depth_multisample_Load_Store_actual_sample_shader_bitcast']
             assert m['frontend_build_binding']['stencil_clear_combined_depth_attachment_preserves_depth']
-        if m['frontend_build_binding']['depth_tiled_backend_revision']==6:
+        if m['frontend_build_binding']['depth_tiled_backend_revision']>=6:
             assert m['frontend_build_binding']['depth_tiled_internal_2D_native_3D_state_replay_required']
+        if m['frontend_build_binding']['depth_tiled_backend_revision']==7:
+            assert 'StencilSampleCopyGLES.h' in source
+            assert m['frontend_build_binding']['stencil_Load_Store_actual_texture_GPU_bitplanes']
+            assert m['frontend_build_binding']['stencil_Clear_native_API_on_private_padded_work_page']
     if m['frontend_build_binding'].get('CA_matrix_revision'):
         assert m['frontend_build_binding']['CA_matrix_revision']==1 and m['frontend_build_binding']['GLES_suite_tests']==9
         assert all(path in source for path in ('ca_matrix_probe.c','CAMatrixProbeValues.h','CAMatrixShaders.h','QuartzCoreMatrixLayout.h'))

@@ -1,0 +1,843 @@
+{
+  "date": "2026-11-21",
+  "scope": "Completed r3/r4 duplicates and offline-only r5 artifacts",
+  "items": 9,
+  "files": 147,
+  "logical_bytes": 460725414,
+  "records": [
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-tiled-r3-20261121/gles-ram/glram.raw",
+      "reason": "Duplicate/reconstructible HFS container; exact accepted/failed blob and signed library retained",
+      "logical_bytes": 33554432,
+      "files": [
+        {
+          "relative": "glram.raw",
+          "bytes": 33554432,
+          "sha256": "9041d140235e6e3ee5003802e1116240023ece3a45c558ad79ee9d71271bb570"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/glram.raw",
+      "native_trash_verified": true,
+      "all_content_sha256_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-tiled-r3-20261121/gles-ram/glram.dmg",
+      "reason": "Duplicate/reconstructible HFS container; exact accepted/failed blob and signed library retained",
+      "logical_bytes": 33554432,
+      "files": [
+        {
+          "relative": "glram.dmg",
+          "bytes": 33554432,
+          "sha256": "9041d140235e6e3ee5003802e1116240023ece3a45c558ad79ee9d71271bb570"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/glram.dmg",
+      "native_trash_verified": true,
+      "all_content_sha256_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-tiled-r3-20261121/reference-ram/glram.raw",
+      "reason": "Duplicate/reconstructible HFS container; exact accepted/failed blob and signed library retained",
+      "logical_bytes": 33554432,
+      "files": [
+        {
+          "relative": "glram.raw",
+          "bytes": 33554432,
+          "sha256": "9f013e1253f189386c4fdff4e7a2876712aff96bea2da8ff89512f7bf0175f8e"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/glram.raw 14-25-21-278.raw",
+      "native_trash_verified": true,
+      "all_content_sha256_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-tiled-r3-20261121/reference-ram/glram.dmg",
+      "reason": "Duplicate/reconstructible HFS container; exact accepted/failed blob and signed library retained",
+      "logical_bytes": 33554432,
+      "files": [
+        {
+          "relative": "glram.dmg",
+          "bytes": 33554432,
+          "sha256": "9f013e1253f189386c4fdff4e7a2876712aff96bea2da8ff89512f7bf0175f8e"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/glram.dmg 14-25-21-333.dmg",
+      "native_trash_verified": true,
+      "all_content_sha256_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-tiled-r4-20261121/gles-ram/glram.raw",
+      "reason": "Duplicate/reconstructible HFS container; exact accepted/failed blob and signed library retained",
+      "logical_bytes": 33554432,
+      "files": [
+        {
+          "relative": "glram.raw",
+          "bytes": 33554432,
+          "sha256": "08b8cd7f4654b5778d9a1e6ccac92db79f8a206fdb6d9ee4a9e6a7d77728f039"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/glram.raw 14-25-21-391.raw",
+      "native_trash_verified": true,
+      "all_content_sha256_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-tiled-r4-20261121/gles-ram/glram.dmg",
+      "reason": "Duplicate/reconstructible HFS container; exact accepted/failed blob and signed library retained",
+      "logical_bytes": 33554432,
+      "files": [
+        {
+          "relative": "glram.dmg",
+          "bytes": 33554432,
+          "sha256": "08b8cd7f4654b5778d9a1e6ccac92db79f8a206fdb6d9ee4a9e6a7d77728f039"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/glram.dmg 14-25-21-447.dmg",
+      "native_trash_verified": true,
+      "all_content_sha256_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-tiled-r4-20261121/reference-ram/glram.raw",
+      "reason": "Duplicate/reconstructible HFS container; exact accepted/failed blob and signed library retained",
+      "logical_bytes": 33554432,
+      "files": [
+        {
+          "relative": "glram.raw",
+          "bytes": 33554432,
+          "sha256": "e360672f278bf51813b320be7d5a55b8cbc248048758e6d30de886ff831584b3"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/glram.raw 14-25-21-506.raw",
+      "native_trash_verified": true,
+      "all_content_sha256_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-tiled-r4-20261121/reference-ram/glram.dmg",
+      "reason": "Duplicate/reconstructible HFS container; exact accepted/failed blob and signed library retained",
+      "logical_bytes": 33554432,
+      "files": [
+        {
+          "relative": "glram.dmg",
+          "bytes": 33554432,
+          "sha256": "e360672f278bf51813b320be7d5a55b8cbc248048758e6d30de886ff831584b3"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/glram.dmg 14-25-21-561.dmg",
+      "native_trash_verified": true,
+      "all_content_sha256_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-msaa-sample-r5-20261121",
+      "reason": "Superseded offline-only build; no r5 device boot; canonical shader host report and r6 source preserved",
+      "logical_bytes": 192289958,
+      "files": [
+        {
+          "relative": "reference-ram/glram.dmg",
+          "bytes": 33554432,
+          "sha256": "0fbc6482282c9e1bd9180fc7939db7e95f1576bfe920aa3f58ab36e05f033a5d"
+        },
+        {
+          "relative": "reference-ram/sweetgl.dylib",
+          "bytes": 14800816,
+          "sha256": "91d8e4d322b2faeb93f5ad15cac4217d7d8aa16b61e6c44c0cc775d2871f789d"
+        },
+        {
+          "relative": "reference-ram/glram.raw",
+          "bytes": 33554432,
+          "sha256": "0fbc6482282c9e1bd9180fc7939db7e95f1576bfe920aa3f58ab36e05f033a5d"
+        },
+        {
+          "relative": "reference-ram/libglapi.0.dylib",
+          "bytes": 344544,
+          "sha256": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3"
+        },
+        {
+          "relative": "reference-ram/manifest.json",
+          "bytes": 80520,
+          "sha256": "643314db8b7a0bcff21cf7a329799e28396ec322619a9d5f8481f6957a68179f"
+        },
+        {
+          "relative": "reference-ram/glram.zblob",
+          "bytes": 4308407,
+          "sha256": "c860743cd62ae262b62023da3d8ead02ca53d49bea45b5d0cfe37d3cc0c90a56"
+        },
+        {
+          "relative": "reference-ram/exception_observe.dylib",
+          "bytes": 256704,
+          "sha256": "5a3601ad4c1a5771e1a2b304083def7301447ee85cfa6695cdb5419e753c1867"
+        },
+        {
+          "relative": "reference-ram/georead.dylib",
+          "bytes": 70944,
+          "sha256": "e65bdc7b70d098725918c637cc8cb1c25a8a544186d0f4468b399fda52024898"
+        },
+        {
+          "relative": "reference-ram/MetalResources.dylib",
+          "bytes": 810304,
+          "sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27"
+        },
+        {
+          "relative": "frontend/ProgramCacheBuildIdentity.json",
+          "bytes": 9353,
+          "sha256": "62d35ae248157d0b2d0bd1b339fde87a90141bfca0f75a4a53fea34b6c672677"
+        },
+        {
+          "relative": "frontend/sweetgl.dylib",
+          "bytes": 14800816,
+          "sha256": "d676e4802ec680552a8408646e6c22f60b6edf27dba60e20075d2d5b358c30a7"
+        },
+        {
+          "relative": "frontend/dispatch.c",
+          "bytes": 139483,
+          "sha256": "a30b3c134f84c0c5206e0d2e6142938bc03eda05ff1933c4bcde7367972fcfd4"
+        },
+        {
+          "relative": "frontend/program_lifecycle_probe.o",
+          "bytes": 12648,
+          "sha256": "52ac27f95682555004c0ab8bc5963a5099403ff2d2acc7b217a369968780c4b9"
+        },
+        {
+          "relative": "frontend/bridge_state_probe.o",
+          "bytes": 8928,
+          "sha256": "b45a9d0b19d0f02240f2681c5c3b05d7ea78a8dcd1ebc183889cd5e4a8a0a3fb"
+        },
+        {
+          "relative": "frontend/program_cache.o",
+          "bytes": 15784,
+          "sha256": "e7adb38517a6c27a02d0ce277b9fbf908e1bbc0fed93ec470b8f1ffc43c131a1"
+        },
+        {
+          "relative": "frontend/sweetgl.o",
+          "bytes": 34768,
+          "sha256": "5b691b7c8823bb5681526b2b3be62645688194c06df4195e2940fa20910e149f"
+        },
+        {
+          "relative": "frontend/sweet_drm.o",
+          "bytes": 21464,
+          "sha256": "40fbc77249b6ed73d771319f4ed0e682b061f6d0050bb9167ff10354a4ab5e24"
+        },
+        {
+          "relative": "frontend/caller_probe.o",
+          "bytes": 12672,
+          "sha256": "b72af0511f7e7971a1593e7ec2d1b25c9ab83a263e48426b08536cb0cb2ba347"
+        },
+        {
+          "relative": "frontend/eagl.o",
+          "bytes": 91376,
+          "sha256": "395210678842296b281d15205febcd6448bb9a7e6e0d474522d788420d95b36c"
+        },
+        {
+          "relative": "frontend/metal_render.o",
+          "bytes": 101136,
+          "sha256": "f3e9cb32414cbed3296c88112eda8617665168c87a2b7c001a6485bb0dba7e6b"
+        },
+        {
+          "relative": "frontend/libglapi.0.dylib",
+          "bytes": 323760,
+          "sha256": "8672201fa9f8ddb471bf8ad6f16a9de35909a19a53f6ab7586a311e2f10dc78e"
+        },
+        {
+          "relative": "frontend/surface_initial_copy.o",
+          "bytes": 6928,
+          "sha256": "bdf2074f0d9c78e9729e6cdb350c3f6f79fa29fbc957fb7671deff18a4030fde"
+        },
+        {
+          "relative": "frontend/exports.txt",
+          "bytes": 1151,
+          "sha256": "42b90cd9b93c50d7447616b11ad035f69e88aa72fe7f287acb3883f163dd2e1c"
+        },
+        {
+          "relative": "frontend/ProgramCacheBuildIdentity.h",
+          "bytes": 230,
+          "sha256": "51159fbb34587571e512d9c74c66030bcff9feeed2fc7e0f376b5cbcdc58ca49"
+        },
+        {
+          "relative": "frontend/layerdump.o",
+          "bytes": 12184,
+          "sha256": "2a65ea4e54364f6241d0c66b6dc1aee6daf31956c39f995daca700a23231df24"
+        },
+        {
+          "relative": "frontend/ca_matrix_probe.o",
+          "bytes": 7776,
+          "sha256": "815a2bbc2801f39e7bdd162459a1450696b4ab4840c88faa1efacfafb818bf31"
+        },
+        {
+          "relative": "frontend/surface_observe.o",
+          "bytes": 7880,
+          "sha256": "5e9149c9c80735b235971fc592828f34e179188049de4308141ce3214e96609e"
+        },
+        {
+          "relative": "frontend/surface_region_observe.o",
+          "bytes": 5264,
+          "sha256": "a5d5767b6629e75a3b4ec41256e7f0762889533316171a4f47d369bb13afd711"
+        },
+        {
+          "relative": "frontend/compat.o",
+          "bytes": 560,
+          "sha256": "2ea99532d84dfcd3cf420c3c3f3063f8788e81d9df432293a9d454ec443bb119"
+        },
+        {
+          "relative": "frontend/dispatch.o",
+          "bytes": 249312,
+          "sha256": "704648cf1dcf4b69894c5a5f4c99b7252e869526ba8be137da883411806a2137"
+        },
+        {
+          "relative": "frontend/readonly_probe.o",
+          "bytes": 9744,
+          "sha256": "f043178488c3367b9e8504b3e277c721bb6d29ae73ced4a6e644f0689673d61a"
+        },
+        {
+          "relative": "frontend/bridge.nm",
+          "bytes": 49252,
+          "sha256": "8c873fef0e5704d6a1e20fb3a4daf3e2990c68885c5d1dd2bfab5ca1a6148e39"
+        },
+        {
+          "relative": "frontend/metal_compute.o",
+          "bytes": 8800,
+          "sha256": "26600685d6b9ed0dc992c173144cac90d5cf96b33ab93e0fcd5a71c1eb6edb65"
+        },
+        {
+          "relative": "frontend/mesa-defines.rsp",
+          "bytes": 1711,
+          "sha256": "bc0279d7c8d0c18dcd785a4517d9d558db6d6dbb84f57ec7e99454c673a19fa3"
+        },
+        {
+          "relative": "frontend/copy_refresh_probe.o",
+          "bytes": 11640,
+          "sha256": "ee34cc29409c7a7015c08000b66b28378c550bb036ffb476a213b66f27b99227"
+        },
+        {
+          "relative": "frontend/build-binding.json",
+          "bytes": 20862,
+          "sha256": "fecb2dffed192f5026449df05e4cb0b92770cc05e6c46740eca909469062dad4"
+        },
+        {
+          "relative": "frontend/copy_context_probe.o",
+          "bytes": 6568,
+          "sha256": "da8290fb2fae4f462cedaf09e04de2e6edd14801706591bd4bd71879aef28f0e"
+        },
+        {
+          "relative": "frontend/build.rc",
+          "bytes": 2,
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+        },
+        {
+          "relative": "frontend/surface_probe.o",
+          "bytes": 11752,
+          "sha256": "df85e9c5d57eb84c3a8aac5f049c31c07dbf0150b565fcb0b126cea745ce4005"
+        },
+        {
+          "relative": "frontend/build.log",
+          "bytes": 16582,
+          "sha256": "2daa7e82325edb023e2b3df7d4174113066ecb655895218b645ef93a49f3dfe3"
+        },
+        {
+          "relative": "frontend/ir3_cache.o",
+          "bytes": 9488,
+          "sha256": "8f373fc383e9516dabcaa95e4b1958f7e33879c08de71faa99ee0ea294fe60f3"
+        },
+        {
+          "relative": "reference-observer/startup-host-test.log",
+          "bytes": 122,
+          "sha256": "4199da64e28274335e4847fa54bc736b8fb96a55bfa40564b1e59265be8150b5"
+        },
+        {
+          "relative": "reference-observer/MetalNarrowProbe.h",
+          "bytes": 3629,
+          "sha256": "ebf16763de55d4081125b87495c2e92036f01a261634997598039c55eb754880"
+        },
+        {
+          "relative": "reference-observer/AIRConstantsFixture.h",
+          "bytes": 11689,
+          "sha256": "a6fd4b1ab2810d92957cc092f72dc5d7d5fadcb78e62177b24aea6bd850f17bf"
+        },
+        {
+          "relative": "reference-observer/ios-compile.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "relative": "reference-observer/NativePresentation16.h",
+          "bytes": 2423,
+          "sha256": "b1a312eb806aea3954559da7374edbc41597389e7b67bbeca62fab7360be6ab2"
+        },
+        {
+          "relative": "reference-observer/cache-scope-host-compile.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "relative": "reference-observer/cif10-reference-host-compile.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "relative": "reference-observer/AIRRenderFixture.h",
+          "bytes": 19336,
+          "sha256": "ecbc386917efa7a57db2a904cc12a09ece2962b84c6da787518f9cf9c6467225"
+        },
+        {
+          "relative": "reference-observer/MetalIR3CacheProbe.h",
+          "bytes": 4090,
+          "sha256": "ca10edf8f56d01458f078d14a5bd7a73d7ac61318f223e7819dc501ace8581db"
+        },
+        {
+          "relative": "reference-observer/MetalSamplerProbe.h",
+          "bytes": 7966,
+          "sha256": "d8a83392bf905db8c75f2e2defc256002281a16bd0db19c984be3f294ac3fa74"
+        },
+        {
+          "relative": "reference-observer/MetalPresentationProbe.h",
+          "bytes": 10727,
+          "sha256": "715ddce7c9b2a713f64ae4134ae399cef37bf29375a1a82e073ff7899b5b1591"
+        },
+        {
+          "relative": "reference-observer/MetalMipProbe.h",
+          "bytes": 11313,
+          "sha256": "0b67fe5e2e02f65f4d3e5b7dfa58a5c6dc7ef8ed151850880fb6a752573eb181"
+        },
+        {
+          "relative": "reference-observer/AIRMultisampleFixture.h",
+          "bytes": 12791,
+          "sha256": "7c3caaae06c35ed66ee50df19df4a0de3dfeea751e7fe81b45726f8b2ef59a4c"
+        },
+        {
+          "relative": "reference-observer/CIF10VImageCompare.h",
+          "bytes": 5118,
+          "sha256": "60387397043d88ab01dadadfbadd21054b1476182c19e412f3bd30e384840079"
+        },
+        {
+          "relative": "reference-observer/MetalRuntimeObserve.h",
+          "bytes": 4073,
+          "sha256": "1b7a8de73a2aec267a53bcb5a50acc1d55796f62d992da6d70e2402812a9386e"
+        },
+        {
+          "relative": "reference-observer/NarrowProbeValues.h",
+          "bytes": 2073,
+          "sha256": "132c0fdb0fbea03d3a99761375f8c7d6cc485be69babb18ae7e390276dc63dc9"
+        },
+        {
+          "relative": "reference-observer/MetalShaderAPI.h",
+          "bytes": 4615,
+          "sha256": "3eebe9013770eff5c1092c8ccc50b4cd6ad931986f109573f74905d16dd1c23b"
+        },
+        {
+          "relative": "reference-observer/sweetgl.h",
+          "bytes": 1233,
+          "sha256": "a9c9fa63837da5dc3578ef726087571cd1a16614f1a5042a5b1337c94c373bb3"
+        },
+        {
+          "relative": "reference-observer/MetalResourceProbe.h",
+          "bytes": 3119,
+          "sha256": "5f57f18df728f3027cc3c5ae3b316b1b5a23be8ac161d2c390597f735d8d7b17"
+        },
+        {
+          "relative": "reference-observer/startup-host-compile.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "relative": "reference-observer/attachment-snapshot-host-compile.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "relative": "reference-observer/host-test.log",
+          "bytes": 17675,
+          "sha256": "9c28e35046417eb097ce09f2f93dcdb6211420563e2397e526aff4054b2fdd5b"
+        },
+        {
+          "relative": "reference-observer/MetalDepth32Probe.h",
+          "bytes": 8076,
+          "sha256": "5f848a8a748ccafa28d509e858477578f0b37ac5e539121e974ab6927de252df"
+        },
+        {
+          "relative": "reference-observer/MRTProbeValues.h",
+          "bytes": 5847,
+          "sha256": "63a26a373f682e599451b6fc5f0e684ecac3b7cddbe9a9f1badc1986f93b4661"
+        },
+        {
+          "relative": "reference-observer/MultisampleProbeValues.h",
+          "bytes": 4058,
+          "sha256": "0de549de0e71cd3968f5f167924faea6edaa12094ca9413e93733a3d81cc651e"
+        },
+        {
+          "relative": "reference-observer/MetalStaticHalfProbe.h",
+          "bytes": 4604,
+          "sha256": "fc160b7a3e47df5472b55e52908eabbda4cd818dd6849cce05534a7db2bdca35"
+        },
+        {
+          "relative": "reference-observer/MetalHalfProbe.h",
+          "bytes": 7481,
+          "sha256": "0dc0e1423ec289b7339d48c7d45a1e429318f6085d1974472c55d18e37180df4"
+        },
+        {
+          "relative": "reference-observer/AIRNarrowFixture.h",
+          "bytes": 16401,
+          "sha256": "3bb67b4f5fb701a11d61c3ff843ce142d95301c2f90a41510363da10d2917c58"
+        },
+        {
+          "relative": "reference-observer/MetalRenderProbe.h",
+          "bytes": 11312,
+          "sha256": "a22fcd66df1ca8ae8a3cebe2dee818a72ccda411f3ebbed314e684d9b67c400c"
+        },
+        {
+          "relative": "reference-observer/test_attachment_snapshot",
+          "bytes": 27872,
+          "sha256": "fb7a565f808de14b461857b6725a8985bbe4f74da93d5bfda307683e76dff4dc"
+        },
+        {
+          "relative": "reference-observer/ProgramCacheScope.h",
+          "bytes": 1562,
+          "sha256": "bb6546f8c148f71e54c058bcf2877e7de903942ae1934a9d933c76636513fc6a"
+        },
+        {
+          "relative": "reference-observer/AIRHalfFixture.h",
+          "bytes": 16114,
+          "sha256": "9d8052b4292d20c879ce79a2927b8a669d353ef08d4700c5a5fcc680c0508160"
+        },
+        {
+          "relative": "reference-observer/MetalComputeProbe.h",
+          "bytes": 4472,
+          "sha256": "836c4cdc513c5d2827f4b5cab3d10d944d3487d1d5245e45e964f70dee5299d7"
+        },
+        {
+          "relative": "reference-observer/ProgramCacheScopeIdentity.h",
+          "bytes": 255,
+          "sha256": "b32dcf5d9382bda582ff9878c5c6cb9e6e3cdc20b8b767b4d9742dd9fbe53d0d"
+        },
+        {
+          "relative": "reference-observer/cif10-reference-host-test.log",
+          "bytes": 6946,
+          "sha256": "2f64f612ec1c8b2e8710235ed6ef9e0a3e0445e39a3b6bd1dd34efdf8faebbd0"
+        },
+        {
+          "relative": "reference-observer/MetalProbeStartup.h",
+          "bytes": 497,
+          "sha256": "7a99f308d807f01b6b1e02fdfa9655a83eaecdae29b0ccea785feb446a3936fb"
+        },
+        {
+          "relative": "reference-observer/CIF10PNGFilterCompare.h",
+          "bytes": 4329,
+          "sha256": "8728f1a2de6daf58b2de87408b6483ebbf9831ca5cfda5cea47ba9b5dacf8028"
+        },
+        {
+          "relative": "reference-observer/CIF10PNGReferenceProbe.h",
+          "bytes": 8922,
+          "sha256": "0b3d2c6e8caacc4456c0d9e9fd797539d571eab4303fe9e30172787d2475e564"
+        },
+        {
+          "relative": "reference-observer/AIRMRTFixture.h",
+          "bytes": 23583,
+          "sha256": "7ef6fb5424edb024bec6c9468b477fff1d48d9fcc0dde1ebadb2890e8700df62"
+        },
+        {
+          "relative": "reference-observer/MetalStencil8Probe.h",
+          "bytes": 11305,
+          "sha256": "e57a5592b5dcd753179aa4a2d944d1a74509b8c27825ea5a9c179edc04032584"
+        },
+        {
+          "relative": "reference-observer/test_cache_scope",
+          "bytes": 28320,
+          "sha256": "cee539a9f2c0d76e0d98b31376d0234018aa1c38e17e835d8c38c86cab994bef"
+        },
+        {
+          "relative": "reference-observer/HalfProbeValues.h",
+          "bytes": 4217,
+          "sha256": "8cb2c8eaaa837981fc5fc565ede9e18cd026c87258d9f1c734776f288421e131"
+        },
+        {
+          "relative": "reference-observer/MetalQueueProbe.h",
+          "bytes": 4743,
+          "sha256": "1866ff8605bf68f40ae0b83e58c7b95e07fdda1f18c0efc0357d194ef0068d54"
+        },
+        {
+          "relative": "reference-observer/host-compile.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "relative": "reference-observer/ClearCacheProbeValues.h",
+          "bytes": 987,
+          "sha256": "5a49f7b8cdc86d67d8557f114c8e31801cee0238551ee4e7402938f92ee41e1b"
+        },
+        {
+          "relative": "reference-observer/AIRStaticHalfFixture.h",
+          "bytes": 14126,
+          "sha256": "880f446a0548cd732dabb259b1780fb4de6802411ab04222ab474dd585d57ca5"
+        },
+        {
+          "relative": "reference-observer/MetalClearCacheProbe.h",
+          "bytes": 5279,
+          "sha256": "e8b11d9ba123708aaa8f672f4c71493092aec4c627c11c63a0bcec066567da27"
+        },
+        {
+          "relative": "reference-observer/MetalXRProbe.h",
+          "bytes": 9398,
+          "sha256": "0f75f6d8acf30539df90eb75e32d4e6ab9664bfdeb42d23051ab4e8e21ce46bc"
+        },
+        {
+          "relative": "reference-observer/manifest.json",
+          "bytes": 37071,
+          "sha256": "01e7e47c58026271fbda476cc897ad84fcdf2a18a432bc8824c378784cbbfc33"
+        },
+        {
+          "relative": "reference-observer/AttachmentPageSnapshot.h",
+          "bytes": 2050,
+          "sha256": "1f1c660e84209e062bccee9659405bfa33e6db04c96350bf926a312f5f351afa"
+        },
+        {
+          "relative": "reference-observer/MetalMemorylessProbe.h",
+          "bytes": 14420,
+          "sha256": "14124096f5b02ad1213f01438052bfb95ff07bc95dc61244344284ada899f038"
+        },
+        {
+          "relative": "reference-observer/program_cache_scope.py",
+          "bytes": 1037,
+          "sha256": "9fcd14133fa3e0531f5cc0a01fb6d8b84d62432df41f3d0e688df7e151c097e9"
+        },
+        {
+          "relative": "reference-observer/MetalBackingAPI.h",
+          "bytes": 1643,
+          "sha256": "19f5fd76979783dab3e1aff76d33d8eb90d614c73ea108fd39bba013d194bf74"
+        },
+        {
+          "relative": "reference-observer/AIRSamplerFixture.h",
+          "bytes": 18592,
+          "sha256": "047e771142edcb3aaffc207680e3e83bcdce1e88612d4c458040a96e17bcfef1"
+        },
+        {
+          "relative": "reference-observer/MetalMRTProbe.h",
+          "bytes": 14341,
+          "sha256": "f3c9cfb56f69cf052d3ee3d2aba85c9cc816f9e4ce3b8defa9b42c2e4a8e0f7e"
+        },
+        {
+          "relative": "reference-observer/exception_observe.dylib",
+          "bytes": 256704,
+          "sha256": "5a3601ad4c1a5771e1a2b304083def7301447ee85cfa6695cdb5419e753c1867"
+        },
+        {
+          "relative": "reference-observer/source.m",
+          "bytes": 19401,
+          "sha256": "6238849a2a027d8edce5be0da3a0bc7d897b160ffb54e59e678dd2c3ad9e4580"
+        },
+        {
+          "relative": "reference-observer/attachment-snapshot-host-test.log",
+          "bytes": 22557,
+          "sha256": "6e08209b202b6bb88cce8f205ece2aecef606067b55eb789a3c725d722e4ff44"
+        },
+        {
+          "relative": "reference-observer/MetalConstantsProbe.h",
+          "bytes": 6021,
+          "sha256": "9b8e38bd1ec394906bee741f5df4f0d8f8c5eafe1fe14a58b813488193a98fa6"
+        },
+        {
+          "relative": "reference-observer/codesign.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "relative": "reference-observer/XRColourTables.h",
+          "bytes": 6804,
+          "sha256": "7564148cfcdb509061e1cebc76cd8afb59a292f4dea18086f2d7fa753bb723fa"
+        },
+        {
+          "relative": "reference-observer/MetalResources.h",
+          "bytes": 3018,
+          "sha256": "d5d165451738ef08c8eccd6a6d774d73f32902c4d3dc08961d450b53c88a7756"
+        },
+        {
+          "relative": "reference-observer/MetalMultisampleProbe.h",
+          "bytes": 14363,
+          "sha256": "f2911df49fd5118f27c73600b28301745645e166b1b5bfbe13d8f6acaf811f99"
+        },
+        {
+          "relative": "reference-observer/cache-scope-host-test.log",
+          "bytes": 124,
+          "sha256": "9b626d12cc37011f803c71e0755edd710ba8d83bedad4b90528dfc7ab462e8e7"
+        },
+        {
+          "relative": "reference-observer/MetalSurfaceProbe.h",
+          "bytes": 9484,
+          "sha256": "05e713b9fd277ae39fef64d9770c94c7b5261df7bf43827aaa9dfe2a7e4010c9"
+        },
+        {
+          "relative": "reference-observer/test_startup",
+          "bytes": 20592,
+          "sha256": "128f2597d9b3ad69424bfd42ae9282619639f387250e3319663da7ed53000d65"
+        },
+        {
+          "relative": "reference-observer/test_cif10_png_reference",
+          "bytes": 63872,
+          "sha256": "8f8dad9ce9ccebd2ea85d51975d5d269cf815be30bd1d43e5938ab98b2c44870"
+        },
+        {
+          "relative": "reference-observer/test_observer",
+          "bytes": 65680,
+          "sha256": "516069dd686124a8c23f640e2c660a033dd6611dc15b3a43731b2028d211ca2d"
+        },
+        {
+          "relative": "reference-observer/verify-signature.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "relative": "reference-observer/AIRFixture.h",
+          "bytes": 14424,
+          "sha256": "7e59f9fc565d1b3e18bbf2a12ec6b6a422f26b7f2c7bc33df661858d9f2a0f48"
+        },
+        {
+          "relative": "reference-observer/PNGImageIOEncoder.h",
+          "bytes": 2848,
+          "sha256": "61031999d4ff1d9a2c9c6a564cf229a82c3b9c49998d752ae0bd4d6fd18e1e92"
+        },
+        {
+          "relative": "reference-observer/test_startup.dSYM/Contents/Info.plist",
+          "bytes": 641,
+          "sha256": "944829fa3c1a4d913161b503f6352fa20f7c101cdeefe97a15208dadbe4a587a"
+        },
+        {
+          "relative": "reference-observer/test_startup.dSYM/Contents/Resources/Relocations/x86_64/test_startup.yml",
+          "bytes": 193,
+          "sha256": "dfe5a01eae794f05287625824351f03621cf7e23403bcd8d6901254db80b96f0"
+        },
+        {
+          "relative": "reference-observer/test_startup.dSYM/Contents/Resources/DWARF/test_startup",
+          "bytes": 14936,
+          "sha256": "a310e8dbf9c33d03cd10aa3b757b9ad748e25d37fbb376e4046d8fc7b8e78bbd"
+        },
+        {
+          "relative": "reference-observer/test_cache_scope.dSYM/Contents/Info.plist",
+          "bytes": 645,
+          "sha256": "2d56eca2217abc049f49309a8cb04e54f45a4ba11b0491143bbbb28280638af2"
+        },
+        {
+          "relative": "reference-observer/test_cache_scope.dSYM/Contents/Resources/Relocations/x86_64/test_cache_scope.yml",
+          "bytes": 197,
+          "sha256": "d9ce427a779f3961a4e7ffca93a2a34bcbadf1b5a2bff8d00f061af09e900f83"
+        },
+        {
+          "relative": "reference-observer/test_cache_scope.dSYM/Contents/Resources/DWARF/test_cache_scope",
+          "bytes": 18224,
+          "sha256": "1998706340306c42c091d91fdd6f43f8943ac635c58dbc4a920311b75a4f8ba3"
+        },
+        {
+          "relative": "reference-observer/test_observer.dSYM/Contents/Info.plist",
+          "bytes": 642,
+          "sha256": "589d796cebc46abadfe0ec147d2a15f3b4f4f50d2c7edbebfc3cde26f51d66bf"
+        },
+        {
+          "relative": "reference-observer/test_observer.dSYM/Contents/Resources/Relocations/x86_64/test_observer.yml",
+          "bytes": 194,
+          "sha256": "63b2a8a6657a4061a5272ac76950849132dde7fdc0a2768017d771a9f0294de1"
+        },
+        {
+          "relative": "reference-observer/test_observer.dSYM/Contents/Resources/DWARF/test_observer",
+          "bytes": 41828,
+          "sha256": "3007679f4289dd1f2a16d401d562c9452ab5ddedd2a3bf498453ddfd9bf20b12"
+        },
+        {
+          "relative": "reference-observer/test_cif10_png_reference.dSYM/Contents/Info.plist",
+          "bytes": 653,
+          "sha256": "8e989f94a66cd0e1d9a42e7c8d6fd05eae260f619024f56a29676dfdceffdade"
+        },
+        {
+          "relative": "reference-observer/test_cif10_png_reference.dSYM/Contents/Resources/Relocations/x86_64/test_cif10_png_reference.yml",
+          "bytes": 205,
+          "sha256": "c7cec9edb56668c7d014a5a7b355bcf3f2a10dff4289fb50e58254fe6bcea014"
+        },
+        {
+          "relative": "reference-observer/test_cif10_png_reference.dSYM/Contents/Resources/DWARF/test_cif10_png_reference",
+          "bytes": 55532,
+          "sha256": "70e8ad6f1e10caa27f78c64a6583ddb5c8ee7275cf57660a5731b837001b03f9"
+        },
+        {
+          "relative": "reference-observer/test_attachment_snapshot.dSYM/Contents/Info.plist",
+          "bytes": 653,
+          "sha256": "d5f0029ed8ca7a9036c2cab1990c35358da4fe52e5317a53347f17210346329e"
+        },
+        {
+          "relative": "reference-observer/test_attachment_snapshot.dSYM/Contents/Resources/Relocations/x86_64/test_attachment_snapshot.yml",
+          "bytes": 205,
+          "sha256": "aa6d1ef0fb4777d1f48d6c59da28e6ae1a5df999ecf7e33bcfe2ae7dc4e73bb3"
+        },
+        {
+          "relative": "reference-observer/test_attachment_snapshot.dSYM/Contents/Resources/DWARF/test_attachment_snapshot",
+          "bytes": 15996,
+          "sha256": "988ce2879ae573d837db94d16c7b4fc91edccc7ed4f11b10a19ec887376a3fe5"
+        },
+        {
+          "relative": "metal/ios-link.log",
+          "bytes": 315437,
+          "sha256": "c383eff7324b18dac64195d6f218bde80bc6d3b04ca257e3d54e8201f4d1406f"
+        },
+        {
+          "relative": "metal/manifest.json",
+          "bytes": 18207,
+          "sha256": "ae41c854479d53be591ff4b3118ab4d35ddd5be5bf1fbc35203b3f18f5a9bd47"
+        },
+        {
+          "relative": "metal/codesign.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "relative": "metal/MetalResources.dylib",
+          "bytes": 810304,
+          "sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27"
+        },
+        {
+          "relative": "metal/verify-signature.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "relative": "gles-ram/glram.dmg",
+          "bytes": 33554432,
+          "sha256": "d3ef8b775196884ce67fa0ca6bbcf81e5b4577e62fa391e73deaca3ec0943c77"
+        },
+        {
+          "relative": "gles-ram/sweetgl.dylib",
+          "bytes": 14800816,
+          "sha256": "91d8e4d322b2faeb93f5ad15cac4217d7d8aa16b61e6c44c0cc775d2871f789d"
+        },
+        {
+          "relative": "gles-ram/glram.raw",
+          "bytes": 33554432,
+          "sha256": "d3ef8b775196884ce67fa0ca6bbcf81e5b4577e62fa391e73deaca3ec0943c77"
+        },
+        {
+          "relative": "gles-ram/libglapi.0.dylib",
+          "bytes": 344544,
+          "sha256": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3"
+        },
+        {
+          "relative": "gles-ram/manifest.json",
+          "bytes": 22611,
+          "sha256": "4e0edbedd0bb259fa38df675e27e2a5ecc969ead4ee7545b70190ec2884859d2"
+        },
+        {
+          "relative": "gles-ram/glram.zblob",
+          "bytes": 3908766,
+          "sha256": "894c0a2116f42b49b665bb44297bf090d69dfabe979a24e345c97a42866c766f"
+        },
+        {
+          "relative": "gles-ram/georead.dylib",
+          "bytes": 70944,
+          "sha256": "e65bdc7b70d098725918c637cc8cb1c25a8a544186d0f4468b399fda52024898"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/depth-msaa-sample-r5-20261121",
+      "native_trash_verified": true,
+      "all_content_sha256_verified": true
+    }
+  ],
+  "protected_SHA_unchanged": {
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/surface-diag-v730/kernel.v730.macho": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/dxb/xnu/iokit/Kernel/arm/SweetGPU.cpp": "aa2c36792a2298b060aa858eabdc039522fcdde3cfdbafd453c5fc6c0683c157",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-tiled-r3-20261121/reference-ram/glram.zblob": "b6b2b520cfd3970245b724db12b193437bdf9c6670aab24563107a2c9a4a0746",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-tiled-r4-20261121/reference-ram/glram.zblob": "3b6af4c007a9b7e646dcc192ac37e6e8f972bcb50fc217a1f538f0e937c66c8b",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-msaa-state-r6-20261121/gles-ram/glram.zblob": "21bd3aed986751226f25cff49cff6e4a8e9c046c1b89b7d46407958a334e7245"
+  },
+  "trash_not_emptied": true,
+  "pause_preserved": true
+}

@@ -1,5 +1,6 @@
 """Missing work pages, alias sample bytes, copy fences or guards must refuse."""
 import unittest
+import re
 
 from depth_tiled_evidence import plane,verify_groups,layout_bytes
 from depth32_evidence import verify as verify_depth
@@ -28,7 +29,62 @@ def records(group, work_base=101, sequence=1):
     return '\n'.join(rows+imports+copies+finishes+releases)+'\n'
 
 
+def revision7_records(group,sequence=1):
+    """Synthetic fault fixture only; never a device prerequisite or raw proof."""
+    by_handle={p['handle']:p for p in group};rows=[]
+    for line in records(group,sequence=sequence).replace('tile=2','tile=3').splitlines():
+        copy=re.match(r'SWEET DEPTH TILE COPY original=(\d+) work=(\d+) direction=(load|store)',line)
+        if not copy:rows.append(line);continue
+        original,work=int(copy[1]),int(copy[2]);direction=copy[3];p=by_handle[original];count=p['samples'];store=direction=='store'
+        if p['format']==253:
+            rows.append(f'SWEET STENCIL TILE SAMPLE original={original} work={work} direction={direction} samples={count} width=17 height=9 src_samples={count if store else 1} dst_samples={1 if store else count} passes={1 if store else 1+8*count} masks={0 if store else (1<<count)-1} bitplanes=8 GPU_only=1')
+        elif count>1:
+            rows.append(f'SWEET DEPTH TILE SAMPLE original={original} work={work} direction={direction} samples={count} width=17 height=9 src_samples={count if store else 1} dst_samples={1 if store else count} passes={1 if store else count} masks={0 if store else (1<<count)-1} bitcast=1 GPU_only=1')
+        else:
+            cpp,pitch,size=layout_bytes(p['format'],count)
+            rows.extend([f'SWEET DEPTH TILE BLIT original={original} work={work} direction={direction} gen=5 src_fmt=11 dst_fmt=11 src_color=13 dst_color=13 src_samples=1 dst_samples=1 src_mask=15 dst_mask=15 mask=15 filter=0 src_tile={3 if store else 0} dst_tile={0 if store else 3}',
+                f'SWEET DEPTH TILE BOX original={original} work={work} src=0,0,0,17,9,1 dst=0,0,0,17,9,1 src_size=17,9,1 dst_size=17,9,1 src_pitch={pitch if store else p["pitch"]} dst_pitch={p["pitch"] if store else pitch} src_offset={0 if store else 64} dst_offset={64 if store else 0}'])
+        rows.append(line)
+        if p['format']==252 and count==1:rows.append(f'SWEET DEPTH TILE STATE original={original} work={work} direction={direction} all_dirty=1 stencil_ref=1 sample_mask=1 scissor=1 gen_dirty=15 gen_all=15')
+    return '\n'.join(rows)+'\n'
+
+
 class TiledEvidence(unittest.TestCase):
+    def test_revision7_actual_stencil_bitplanes_sample_masks_and_fences(self):
+        for count in (1,2,4):
+            group=[plane(1,0x40004000,252,count,128 if count==1 else 192 if count==2 else 320,1),
+                   plane(2,0x40008000,253,count,128 if count==4 else 64,1)]
+            raw=revision7_records(group);result=verify_groups(raw,[group],7)
+            self.assertTrue(result['actual_stencil_texture_GPU_bitplane_transfer_verified']);self.assertEqual(result['planes'],2)
+            sample=next(line for line in raw.splitlines() if line.startswith('SWEET STENCIL TILE SAMPLE '))
+            cases=(raw.replace('bitplanes=8','bitplanes=0',1),raw.replace(f'passes={1+8*count} masks=','passes=1 masks=',1),
+                   raw.replace(f'masks={(1<<count)-1} bitplanes','masks=0 bitplanes',1),raw.replace(sample+'\n','',1),
+                   raw.replace(sample+'\n',sample+'\n'+sample+'\n',1),raw.replace('GPU_only=1 fence=1','GPU_only=1 fence=0',1),
+                   raw.replace('SWEET STENCIL TILE SAMPLE original=2','SWEET STENCIL TILE SAMPLE original=99',1))
+            for bad in cases:
+                with self.subTest(count=count),self.assertRaises(AssertionError):verify_groups(bad,[group],7)
+            with self.assertRaises(AssertionError):verify_groups(raw,[group],6)
+
+    def test_revision7_native_clear_and_original_99_stencil_byte_phases(self):
+        import test_stencil8_evidence as source
+        import stencil8_evidence as stencil
+        fixture=source.StencilEvidence();out=[];phase=0
+        for line in fixture.sample().splitlines():
+            if line.startswith('SWEET METAL STENCIL import '):
+                group=[]
+                if phase!=96:group.append(plane(2,0x40008000,252,1,128,2 if phase<96 or phase==98 else 1,publish=phase!=97))
+                group.append(plane(1,0x40004000,253,1,64,1 if phase==98 else 2,publish=phase!=98))
+                out.extend(revision7_records(group,sequence=phase*10+1).splitlines())
+                if phase==98:out.append(f'SWEET METAL STENCIL retired handle=1 result=0 sequence={phase*10+4} original_pages=1')
+            elif line.startswith(('SWEET METAL DEPTH import ','SWEET METAL STENCIL retired ')):continue
+            elif line.startswith('SWEET METAL STENCIL clear '):out.append(line.replace('shader_draw=1','native_clear=1'))
+            elif line.startswith('SWEET STENCIL8 PHASE '):out.append(re.sub(r'sequence=\d+',f'sequence={phase*10+4}',line));phase+=1
+            else:out.append(line)
+        raw='\n'.join(out)+'\n';result=stencil.verify(raw,fixture.token,fixture.fixture,7);self.assertEqual(result['phases'],99)
+        for bad in (raw.replace('native_clear=1','shader_draw=1',1),raw.replace('native_clear=1','native_clear=0',1),
+                    raw.replace('bitplanes=8','bitplanes=1',1),raw.replace('mismatches=0','mismatches=1',1)):
+            with self.assertRaises(AssertionError):stencil.verify(bad,fixture.token,fixture.fixture,7)
+
     def test_real_depth_msaa_shader_route_is_required(self):
         group=[plane(1,0x40004000,252,2,192,1)]
         raw=records(group).replace('tile=2','tile=3');rows=[]
@@ -66,6 +122,9 @@ class TiledEvidence(unittest.TestCase):
                 state_lines.append(f'SWEET DEPTH TILE STATE original=1 work=101 direction={direction} all_dirty=1 stencil_ref=1 sample_mask=1 scissor=1 gen_dirty=15 gen_all=15')
         replayed='\n'.join(state_lines)+'\n'
         self.assertTrue(verify_groups(replayed,[group],6)['native_3D_state_marked_dirty_after_internal_2D_copy'])
+        fd5=replayed.replace('gen_dirty=15 gen_all=15','gen_dirty=0 gen_all=0')
+        self.assertTrue(verify_groups(fd5,[group],6)['native_3D_state_marked_dirty_after_internal_2D_copy'])
+        with self.assertRaises(AssertionError):verify_groups(fd5.replace('gen_dirty=0','gen_dirty=1',1),[group],6)
         for bad in (native,replayed.replace('stencil_ref=1','stencil_ref=0',1),replayed.replace('gen_dirty=15','gen_dirty=1',1)):
             with self.assertRaises(AssertionError):verify_groups(bad,[group],6)
         with self.assertRaises(AssertionError):verify_groups(text,[group],4)

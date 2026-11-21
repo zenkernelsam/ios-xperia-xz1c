@@ -43,7 +43,7 @@ def expected(phase):
 
 
 def verify(text,token,fixture,tiled_revision=0):
-    assert tiled_revision in (0,2,3,4,5,6)
+    assert tiled_revision in (0,2,3,4,5,6,7)
     live='SWEET LOOP LIVE proto=1 token='+token;ack='SWEET LOOP ACK FASTBOOT token='+token
     assert text.count(live)==text.count(ack)==1
     scope=text[text.index(live):text.index(ack)];assert scope.count(BEGIN)==scope.count('SWEET STENCIL8 BEGIN ')==1
@@ -61,7 +61,8 @@ def verify(text,token,fixture,tiled_revision=0):
         sequences.append(int(p[3]));records.append(dict(phase=index,sequence=int(p[3]),color_hash=h[2],depth_hash=h[3],stencil_hash=h[4]))
     assert sequences==sorted(set(sequences))
     imported=list(re.finditer(r'SWEET METAL STENCIL import handle=(\d+) width=17 height=9 pitch=64 offset=64 GPU=(0x[0-9a-f]+) original_pages=1 separate_z32s8=1',block))
-    cleared=list(re.finditer(r'SWEET METAL STENCIL clear handle=(\d+) width=17 height=9 shader_draw=1 result=0 original_pages=1',block))
+    clear_method='native_clear=1' if tiled_revision>=7 else 'shader_draw=1'
+    cleared=list(re.finditer(r'SWEET METAL STENCIL clear handle=(\d+) width=17 height=9 '+clear_method+r' result=0 original_pages=1',block))
     retired=list(re.finditer(r'SWEET METAL STENCIL retired handle=(\d+) result=0 sequence=(\d+) original_pages=1',block))
     depths=list(re.finditer(r'SWEET METAL DEPTH import handle=(\d+) width=17 height=9 pitch=128 offset=64 GPU=(0x[0-9a-f]+) original_pages=1',block))
     assert len(imported)==len(retired)==99 and len(cleared)==98 and len(depths)==98

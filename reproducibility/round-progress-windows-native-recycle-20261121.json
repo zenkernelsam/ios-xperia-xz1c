@@ -1,0 +1,191 @@
+{
+  "date": "2026-11-21",
+  "items": 3,
+  "files": 29,
+  "logical_bytes": 98712673,
+  "records": [
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-depth-tiled-r3-stage-20261121",
+      "reason": "Completed one-time transfers; canonical signed package/blob and original device evidence retained",
+      "files": [
+        {
+          "relative": "georead.dylib",
+          "bytes": 70944,
+          "sha256": "e65bdc7b70d098725918c637cc8cb1c25a8a544186d0f4468b399fda52024898"
+        },
+        {
+          "relative": "glram.zblob",
+          "bytes": 3906957,
+          "sha256": "155a3d84d0167cf583e307672a76e8ffc7a196f87f2fcab4c953723ff5170b17"
+        },
+        {
+          "relative": "libglapi.0.dylib",
+          "bytes": 344544,
+          "sha256": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3"
+        },
+        {
+          "relative": "manifest.json",
+          "bytes": 22199,
+          "sha256": "bafa1443afc6503369cba6bf7e00a5e4dcabcc4f74b365577d7d0d38f036875c"
+        },
+        {
+          "relative": "sweetgl.dylib",
+          "bytes": 14784032,
+          "sha256": "fdcb01f65ac3ff2d5355887112e5e6b5b484948f84a2d66180b7b31842774989"
+        },
+        {
+          "relative": "reference\\exception_observe.dylib",
+          "bytes": 256704,
+          "sha256": "8190ffc82beaea0aef83cc110e9aad68090e3419532d9e6cbe942e22bb8e74e0"
+        },
+        {
+          "relative": "reference\\georead.dylib",
+          "bytes": 70944,
+          "sha256": "e65bdc7b70d098725918c637cc8cb1c25a8a544186d0f4468b399fda52024898"
+        },
+        {
+          "relative": "reference\\glram.zblob",
+          "bytes": 4307278,
+          "sha256": "b6b2b520cfd3970245b724db12b193437bdf9c6670aab24563107a2c9a4a0746"
+        },
+        {
+          "relative": "reference\\libglapi.0.dylib",
+          "bytes": 344544,
+          "sha256": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3"
+        },
+        {
+          "relative": "reference\\manifest.json",
+          "bytes": 80108,
+          "sha256": "102c63bd82a4ba78b7c9c75d660018d7128eb09bef2761f225b5aa5635469513"
+        },
+        {
+          "relative": "reference\\MetalResources.dylib",
+          "bytes": 810304,
+          "sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27"
+        },
+        {
+          "relative": "reference\\sweetgl.dylib",
+          "bytes": 14784032,
+          "sha256": "fdcb01f65ac3ff2d5355887112e5e6b5b484948f84a2d66180b7b31842774989"
+        }
+      ],
+      "logical_bytes": 39782590,
+      "verified_native_recycle": true,
+      "time": "2026-11-21T14:51:39.4181260+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R0U39A8",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-depth-tiled-r3-stage-20261121",
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-depth-tiled-r4-stage-20261121",
+      "reason": "Completed one-time transfers; canonical signed package/blob and original device evidence retained",
+      "files": [
+        {
+          "relative": "georead.dylib",
+          "bytes": 70944,
+          "sha256": "e65bdc7b70d098725918c637cc8cb1c25a8a544186d0f4468b399fda52024898"
+        },
+        {
+          "relative": "glram.zblob",
+          "bytes": 3906779,
+          "sha256": "23050fbb02e4c0265f832e8d1578686bd24b47d6e307c84aca32bd02758acf51"
+        },
+        {
+          "relative": "libglapi.0.dylib",
+          "bytes": 344544,
+          "sha256": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3"
+        },
+        {
+          "relative": "manifest.json",
+          "bytes": 22259,
+          "sha256": "f514add681016872b2ae2cfed0779c7e0715cc0a8cdc34d9a7391cabfeae0df5"
+        },
+        {
+          "relative": "sweetgl.dylib",
+          "bytes": 14784032,
+          "sha256": "e1ed77e8b77a20329d2d56bbe17ced3bbdd347ba339eb6a3b486b5a3b86e68e7"
+        },
+        {
+          "relative": "reference\\exception_observe.dylib",
+          "bytes": 256704,
+          "sha256": "2abed03d0a822d50dbdc5e42a70064c62aa1e004ed68891b03df0ceaac085be4"
+        },
+        {
+          "relative": "reference\\georead.dylib",
+          "bytes": 70944,
+          "sha256": "e65bdc7b70d098725918c637cc8cb1c25a8a544186d0f4468b399fda52024898"
+        },
+        {
+          "relative": "reference\\glram.zblob",
+          "bytes": 4307148,
+          "sha256": "3b6af4c007a9b7e646dcc192ac37e6e8f972bcb50fc217a1f538f0e937c66c8b"
+        },
+        {
+          "relative": "reference\\libglapi.0.dylib",
+          "bytes": 344544,
+          "sha256": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3"
+        },
+        {
+          "relative": "reference\\manifest.json",
+          "bytes": 80168,
+          "sha256": "30cc0f19659a5aecfc3efd6a38926a4191701dd8b6c512ee03753b4257fa4600"
+        },
+        {
+          "relative": "reference\\MetalResources.dylib",
+          "bytes": 810304,
+          "sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27"
+        },
+        {
+          "relative": "reference\\sweetgl.dylib",
+          "bytes": 14784032,
+          "sha256": "e1ed77e8b77a20329d2d56bbe17ced3bbdd347ba339eb6a3b486b5a3b86e68e7"
+        }
+      ],
+      "logical_bytes": 39782402,
+      "verified_native_recycle": true,
+      "time": "2026-11-21T14:51:39.7918233+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RZI8HV3",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-depth-tiled-r4-stage-20261121",
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-depth-msaa-r5-stage-20261121",
+      "reason": "Completed one-time transfers; canonical signed package/blob and original device evidence retained",
+      "files": [
+        {
+          "relative": "georead.dylib",
+          "bytes": 70944,
+          "sha256": "e65bdc7b70d098725918c637cc8cb1c25a8a544186d0f4468b399fda52024898"
+        },
+        {
+          "relative": "glram.zblob",
+          "bytes": 3908766,
+          "sha256": "894c0a2116f42b49b665bb44297bf090d69dfabe979a24e345c97a42866c766f"
+        },
+        {
+          "relative": "libglapi.0.dylib",
+          "bytes": 344544,
+          "sha256": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3"
+        },
+        {
+          "relative": "manifest.json",
+          "bytes": 22611,
+          "sha256": "4e0edbedd0bb259fa38df675e27e2a5ecc969ead4ee7545b70190ec2884859d2"
+        },
+        {
+          "relative": "sweetgl.dylib",
+          "bytes": 14800816,
+          "sha256": "91d8e4d322b2faeb93f5ad15cac4217d7d8aa16b61e6c44c0cc775d2871f789d"
+        }
+      ],
+      "logical_bytes": 19147681,
+      "verified_native_recycle": true,
+      "time": "2026-11-21T14:51:40.0361824+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R6VC201",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-depth-msaa-r5-stage-20261121",
+      "all_content_SHA_verified": true
+    }
+  ],
+  "trash_not_emptied": true,
+  "current_blocker_and_baseline_evidence_retained": true
+}

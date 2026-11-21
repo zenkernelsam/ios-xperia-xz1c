@@ -1,0 +1,1022 @@
+{
+  "date": "2026-11-21",
+  "tiled_revision": 6,
+  "runs": [
+    {
+      "result": "PASS",
+      "decision": "PASS",
+      "reason": "GOALS_STABLE",
+      "boot_dispatches": 1,
+      "reset_requests": 1,
+      "fastboot_returned": true,
+      "reset_to_fastboot_seconds": 38.015000000130385,
+      "return_log_complete": true,
+      "stage": "GLESCPU",
+      "token": "594c70b81e6bab09",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-depth-msaa-r6-gles-cpu-live-20261121",
+      "image_sha256": "ad046ab46d0a7fb59a2afe924baf117d120debaa66ce7e661aad3f0cfc1df6f8",
+      "raw_sha256": "4111f4f2f7f6c4f3f69856c3a2293c9690382841de218623430452f5925e87f3",
+      "raw_bytes": 342865,
+      "original_results_sha256": "53cf4465440c6b3cc5fa59f004bdbdb15d098fd4f94b5270ea63dedfad3e62ab",
+      "ram_library_binding": {
+        "library_sha256": "7918487706bf41c5493216301850e5205b50405037f80315fe801065b3fba877",
+        "library_bytes": 14800816,
+        "library_fnv64": "d9f62a2132b7e3c9",
+        "blob_sha256": "21bd3aed986751226f25cff49cff6e4a8e9c046c1b89b7d46407958a334e7245",
+        "raw_sha256": "ef5ef605f772d932b83365eb5df2b15b5f3aa447812379a795d0211571b171ef",
+        "manifest_sha256": "acb88bb625a980120eeeff4f7db7038eeac015700f8af1fcee7ed58c64e247fa"
+      },
+      "strict_return": {
+        "complete": true,
+        "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+        "current_token": "594c70b81e6bab09",
+        "checkpoint_bytes": 339273,
+        "log_bytes": 342865,
+        "log_sha256": "4111f4f2f7f6c4f3f69856c3a2293c9690382841de218623430452f5925e87f3",
+        "require_final_drain": true,
+        "marker_positions": [
+          5,
+          9,
+          65,
+          67
+        ],
+        "final_reset_marker_seen": true
+      },
+      "independent_complete_stage_verification_passed": true
+    },
+    {
+      "result": "PASS",
+      "decision": "PASS",
+      "reason": "GOALS_STABLE",
+      "boot_dispatches": 1,
+      "reset_requests": 1,
+      "fastboot_returned": true,
+      "reset_to_fastboot_seconds": 37.937000000150874,
+      "return_log_complete": true,
+      "stage": "GLES9",
+      "token": "f0df0784593a0251",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-depth-msaa-r6-gles-gpu-live-20261121",
+      "image_sha256": "b6879c101c18807e3ba1ce21904aeff9b81a666de66a8ce4a3f8b6906bb5c068",
+      "raw_sha256": "26bc10d74ea60dafa099b72c1a413de2316e0fa97138aed20ac7eb6c898d3088",
+      "raw_bytes": 1492141,
+      "original_results_sha256": "0a0f9b0a4713ff78dacf4d42b60f73ee1ec77840f8cbf40673b43be819c074cf",
+      "ram_library_binding": {
+        "library_sha256": "7918487706bf41c5493216301850e5205b50405037f80315fe801065b3fba877",
+        "library_bytes": 14800816,
+        "library_fnv64": "d9f62a2132b7e3c9",
+        "blob_sha256": "21bd3aed986751226f25cff49cff6e4a8e9c046c1b89b7d46407958a334e7245",
+        "raw_sha256": "ef5ef605f772d932b83365eb5df2b15b5f3aa447812379a795d0211571b171ef",
+        "manifest_sha256": "acb88bb625a980120eeeff4f7db7038eeac015700f8af1fcee7ed58c64e247fa"
+      },
+      "strict_return": {
+        "complete": true,
+        "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+        "current_token": "f0df0784593a0251",
+        "checkpoint_bytes": 1488912,
+        "log_bytes": 1492141,
+        "log_sha256": "26bc10d74ea60dafa099b72c1a413de2316e0fa97138aed20ac7eb6c898d3088",
+        "require_final_drain": true,
+        "marker_positions": [
+          3,
+          5,
+          56,
+          58
+        ],
+        "final_reset_marker_seen": true
+      },
+      "independent_complete_stage_verification_passed": true
+    },
+    {
+      "result": "PASS",
+      "decision": "PASS",
+      "reason": "GOALS_STABLE",
+      "boot_dispatches": 1,
+      "reset_requests": 1,
+      "fastboot_returned": true,
+      "reset_to_fastboot_seconds": 39.17200000002049,
+      "return_log_complete": true,
+      "stage": "referenceCPU",
+      "token": "d6a49df5d6b3ad0f",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-depth-msaa-r6-reference-cpu-live-20261121",
+      "image_sha256": "69830890ef7fb3d10b55589b446a678c46738e50e2cda4d3f4b44bcc41eed851",
+      "raw_sha256": "e1ed2c2ce341c45aaa7714f6adf8fb95f835b7365ce3d79039c3a23994ef0df7",
+      "raw_bytes": 337586,
+      "original_results_sha256": "5e06b05cd2c598af871077da1c51e16dfa855b33dc81ccbaa8ee47c8d20ef262",
+      "ram_library_binding": {
+        "library_sha256": "7918487706bf41c5493216301850e5205b50405037f80315fe801065b3fba877",
+        "library_bytes": 14800816,
+        "library_fnv64": "d9f62a2132b7e3c9",
+        "blob_sha256": "91f5490942638512aff7296c57e1fe9912f64a0576f1d97e0ede58f32425bcd5",
+        "raw_sha256": "18ec1daf237bd3b4b337ae8143a4197e97a3d5fdbb9a51e7fcb4d2c467f25cc0",
+        "manifest_sha256": "d247c2e5bdb417970734a69122366d0533e058613dd7f652aeba40b7a91b48ec"
+      },
+      "strict_return": {
+        "complete": true,
+        "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+        "current_token": "d6a49df5d6b3ad0f",
+        "checkpoint_bytes": 334811,
+        "log_bytes": 337586,
+        "log_sha256": "e1ed2c2ce341c45aaa7714f6adf8fb95f835b7365ce3d79039c3a23994ef0df7",
+        "require_final_drain": true,
+        "marker_positions": [
+          3,
+          5,
+          53,
+          55
+        ],
+        "final_reset_marker_seen": true
+      },
+      "independent_complete_stage_verification_passed": true
+    },
+    {
+      "result": "REVISE",
+      "decision": "REVISE",
+      "reason": "STENCIL8_PROBE_FAILED",
+      "boot_dispatches": 1,
+      "reset_requests": 1,
+      "fastboot_returned": true,
+      "reset_to_fastboot_seconds": 40.187000000150874,
+      "return_log_complete": true,
+      "stage": "native21",
+      "token": "4b1ca1573bfdc55d",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-depth-msaa-r6-reference-gpu-live-20261121",
+      "image_sha256": "94689207b82fe61040cd5c74477f12fa04735aaab9cc2903e11efbbcc0c6f8b4",
+      "raw_sha256": "d747e445bd0d1f32b26037ce897972fa04902fcae4aa00ac8b0848f99ba6085a",
+      "raw_bytes": 868395,
+      "original_results_sha256": "3be008015148e9a65a24a504e6f9f4289049154e8154eb0b565fdce017c30c0d",
+      "ram_library_binding": {
+        "library_sha256": "7918487706bf41c5493216301850e5205b50405037f80315fe801065b3fba877",
+        "library_bytes": 14800816,
+        "library_fnv64": "d9f62a2132b7e3c9",
+        "blob_sha256": "91f5490942638512aff7296c57e1fe9912f64a0576f1d97e0ede58f32425bcd5",
+        "raw_sha256": "18ec1daf237bd3b4b337ae8143a4197e97a3d5fdbb9a51e7fcb4d2c467f25cc0",
+        "manifest_sha256": "d247c2e5bdb417970734a69122366d0533e058613dd7f652aeba40b7a91b48ec"
+      },
+      "strict_return": {
+        "complete": true,
+        "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+        "current_token": "4b1ca1573bfdc55d",
+        "checkpoint_bytes": 855895,
+        "log_bytes": 868395,
+        "log_sha256": "d747e445bd0d1f32b26037ce897972fa04902fcae4aa00ac8b0848f99ba6085a",
+        "require_final_drain": true,
+        "marker_positions": [
+          6,
+          20,
+          191,
+          193
+        ],
+        "final_reset_marker_seen": true
+      },
+      "complete_Depth32_original_bytes_guards_and_CPU_read_only": {
+        "complete_samples": 1,
+        "incomplete_samples": 0,
+        "phases": 29,
+        "checked_bytes": 74240,
+        "guard_bytes": 38744,
+        "read_bytes": 26100,
+        "records": [
+          {
+            "phase": 0,
+            "sequence": 902,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 1,
+            "sequence": 908,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 2,
+            "sequence": 914,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 3,
+            "sequence": 920,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 4,
+            "sequence": 926,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 5,
+            "sequence": 932,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 6,
+            "sequence": 938,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 7,
+            "sequence": 944,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 8,
+            "sequence": 950,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 9,
+            "sequence": 956,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 10,
+            "sequence": 962,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 11,
+            "sequence": 968,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 12,
+            "sequence": 974,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 13,
+            "sequence": 980,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 14,
+            "sequence": 986,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 15,
+            "sequence": 992,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 16,
+            "sequence": 998,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 17,
+            "sequence": 1004,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 18,
+            "sequence": 1010,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 19,
+            "sequence": 1016,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 20,
+            "sequence": 1022,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 21,
+            "sequence": 1028,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 22,
+            "sequence": 1034,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 23,
+            "sequence": 1040,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 24,
+            "sequence": 1046,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "326de098dfd22e4b"
+          },
+          {
+            "phase": 25,
+            "sequence": 1052,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "326de098dfd22e4b"
+          },
+          {
+            "phase": 26,
+            "sequence": 1058,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "326de098dfd22e4b"
+          },
+          {
+            "phase": 27,
+            "sequence": 1064,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "326de098dfd22e4b"
+          },
+          {
+            "phase": 28,
+            "sequence": 1067,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4c36570a90046120"
+          }
+        ],
+        "original_depth_handle": 60,
+        "original_GPU_address": "0x400b8000",
+        "original_GPU_offset": 64,
+        "original_depth32_pages_compare_load_clear_and_padding_verified": true,
+        "GPU_fences_strictly_increasing": true,
+        "final_allocated": 0,
+        "stencil_MSAA_and_full_UI_not_inferred": true
+      },
+      "Depth32_strict_tiled_metadata_NOT_accepted": {
+        "reason": "One original BLIT missing; no reconstruction or record replay",
+        "original_COPY_count": 32,
+        "original_BOX_count": 32,
+        "original_BLIT_count": 31
+      },
+      "complete_Memoryless_original_bytes_and_work_protocol": {
+        "complete_samples": 1,
+        "incomplete_samples": 0,
+        "phases": 8,
+        "checked_bytes": 19456,
+        "guard_bytes": 10888,
+        "records": [
+          {
+            "phase": 0,
+            "sequence": 1107,
+            "operations": 2,
+            "checked_bytes": 2560,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "326de098dfd22e4b",
+            "stencil_hash": "0000000000000000"
+          },
+          {
+            "phase": 1,
+            "sequence": 1113,
+            "operations": 1,
+            "checked_bytes": 2560,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "ee6a99493d5cc79b",
+            "stencil_hash": "0000000000000000"
+          },
+          {
+            "phase": 2,
+            "sequence": 1125,
+            "operations": 2,
+            "checked_bytes": 1984,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "0000000000000000",
+            "stencil_hash": "da1063780f0bbc44"
+          },
+          {
+            "phase": 3,
+            "sequence": 1144,
+            "operations": 2,
+            "checked_bytes": 3264,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "326de098dfd22e4b",
+            "stencil_hash": "02e450fc938adea9"
+          },
+          {
+            "phase": 4,
+            "sequence": 1146,
+            "operations": 1,
+            "checked_bytes": 1280,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "0000000000000000",
+            "stencil_hash": "0000000000000000"
+          },
+          {
+            "phase": 5,
+            "sequence": 1147,
+            "operations": 1,
+            "checked_bytes": 1280,
+            "color_hash": "ae58cb1e5ee24ae6",
+            "depth_hash": "0000000000000000",
+            "stencil_hash": "0000000000000000"
+          },
+          {
+            "phase": 6,
+            "sequence": 1165,
+            "operations": 1,
+            "checked_bytes": 3264,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "326de098dfd22e4b",
+            "stencil_hash": "5b81eab704ddb3fc"
+          },
+          {
+            "phase": 7,
+            "sequence": 1156,
+            "operations": 1,
+            "checked_bytes": 3264,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "ee6a99493d5cc79b",
+            "stencil_hash": "3a95557d20d485a0"
+          }
+        ],
+        "original_pass_pages": [
+          {
+            "phase": 0,
+            "slot": 8,
+            "pass_id": 1,
+            "handle": 78,
+            "gpu_address": "0x400e4000",
+            "public_identity": "00000001012cf950"
+          },
+          {
+            "phase": 1,
+            "slot": 8,
+            "pass_id": 2,
+            "handle": 11,
+            "gpu_address": "0x40024000",
+            "public_identity": "00000001012cf950"
+          },
+          {
+            "phase": 2,
+            "slot": 9,
+            "pass_id": 3,
+            "handle": 11,
+            "gpu_address": "0x40024000",
+            "public_identity": "00000001012836f0"
+          },
+          {
+            "phase": 3,
+            "slot": 8,
+            "pass_id": 4,
+            "handle": 11,
+            "gpu_address": "0x40024000",
+            "public_identity": "00000001012cf950"
+          },
+          {
+            "phase": 3,
+            "slot": 9,
+            "pass_id": 4,
+            "handle": 119,
+            "gpu_address": "0x40110000",
+            "public_identity": "00000001012836f0"
+          },
+          {
+            "phase": 4,
+            "slot": 0,
+            "pass_id": 5,
+            "handle": 11,
+            "gpu_address": "0x40024000",
+            "public_identity": "00000001012e4e80"
+          },
+          {
+            "phase": 5,
+            "slot": 0,
+            "pass_id": 6,
+            "handle": 139,
+            "gpu_address": "0x403b8000",
+            "public_identity": "00000001012e4e80"
+          },
+          {
+            "phase": 6,
+            "slot": 8,
+            "pass_id": 7,
+            "handle": 152,
+            "gpu_address": "0x403ec000",
+            "public_identity": "00000001012cf950"
+          },
+          {
+            "phase": 6,
+            "slot": 9,
+            "pass_id": 7,
+            "handle": 153,
+            "gpu_address": "0x403f0000",
+            "public_identity": "00000001012836f0"
+          },
+          {
+            "phase": 7,
+            "slot": 8,
+            "pass_id": 8,
+            "handle": 154,
+            "gpu_address": "0x403f4000",
+            "public_identity": "00000001012cf950"
+          },
+          {
+            "phase": 7,
+            "slot": 9,
+            "pass_id": 8,
+            "handle": 155,
+            "gpu_address": "0x403f8000",
+            "public_identity": "00000001012836f0"
+          }
+        ],
+        "exact_author_pixels_original_private_pass_storage_and_guards_verified": true,
+        "two_queue_pages_are_independent": true,
+        "public_CPU_buffer_not_exposed": true,
+        "final_allocated": 0,
+        "raw_is_actual_device_evidence_only_when_called_from_verified_trial": true,
+        "tiled_work_planes": [
+          {
+            "phase": 0,
+            "revision": 6,
+            "independent_FDL5_work_pages": true,
+            "GPU_copy_and_fence_verified": true,
+            "original_stride_offset_and_IOVA_verified": true,
+            "work_reference_retirement_verified": true,
+            "actual_designated_pipe_box_and_raw_copy_metadata_verified": true,
+            "actual_pinned_fd5_sysmem_tile_mode_verified": true,
+            "actual_depth_MSAA_sample_shader_bitcast_verified": false,
+            "native_3D_state_marked_dirty_after_internal_2D_copy": true,
+            "actual_stencil_texture_GPU_bitplane_transfer_verified": false,
+            "operations": 2,
+            "planes": 2,
+            "records": [
+              [
+                {
+                  "original": 78,
+                  "work": 80,
+                  "work_GPU": "0x400f0000",
+                  "format": 252,
+                  "samples": 1,
+                  "pitch": 256,
+                  "bytes": 4096,
+                  "load": 2,
+                  "publish": true,
+                  "copy_sequences": [
+                    1100
+                  ]
+                }
+              ],
+              [
+                {
+                  "original": 78,
+                  "work": 81,
+                  "work_GPU": "0x400fc000",
+                  "format": 252,
+                  "samples": 1,
+                  "pitch": 256,
+                  "bytes": 4096,
+                  "load": 1,
+                  "publish": true,
+                  "copy_sequences": [
+                    1102,
+                    1106
+                  ]
+                }
+              ]
+            ]
+          },
+          {
+            "phase": 1,
+            "revision": 6,
+            "independent_FDL5_work_pages": true,
+            "GPU_copy_and_fence_verified": true,
+            "original_stride_offset_and_IOVA_verified": true,
+            "work_reference_retirement_verified": true,
+            "actual_designated_pipe_box_and_raw_copy_metadata_verified": true,
+            "actual_pinned_fd5_sysmem_tile_mode_verified": true,
+            "actual_depth_MSAA_sample_shader_bitcast_verified": false,
+            "native_3D_state_marked_dirty_after_internal_2D_copy": true,
+            "actual_stencil_texture_GPU_bitplane_transfer_verified": false,
+            "operations": 1,
+            "planes": 1,
+            "records": [
+              [
+                {
+                  "original": 11,
+                  "work": 78,
+                  "work_GPU": "0x400e4000",
+                  "format": 252,
+                  "samples": 1,
+                  "pitch": 256,
+                  "bytes": 4096,
+                  "load": 2,
+                  "publish": true,
+                  "copy_sequences": [
+                    1112
+                  ]
+                }
+              ]
+            ]
+          },
+          {
+            "phase": 2,
+            "revision": 6,
+            "independent_FDL5_work_pages": true,
+            "GPU_copy_and_fence_verified": true,
+            "original_stride_offset_and_IOVA_verified": true,
+            "work_reference_retirement_verified": true,
+            "actual_designated_pipe_box_and_raw_copy_metadata_verified": true,
+            "actual_pinned_fd5_sysmem_tile_mode_verified": true,
+            "actual_depth_MSAA_sample_shader_bitcast_verified": false,
+            "native_3D_state_marked_dirty_after_internal_2D_copy": true,
+            "actual_stencil_texture_GPU_bitplane_transfer_verified": false,
+            "operations": 2,
+            "planes": 2,
+            "records": [
+              [
+                {
+                  "original": 11,
+                  "work": 119,
+                  "work_GPU": "0x40110000",
+                  "format": 253,
+                  "samples": 1,
+                  "pitch": 128,
+                  "bytes": 4096,
+                  "load": 2,
+                  "publish": true,
+                  "copy_sequences": [
+                    1118
+                  ]
+                }
+              ],
+              [
+                {
+                  "original": 11,
+                  "work": 124,
+                  "work_GPU": "0x40158000",
+                  "format": 253,
+                  "samples": 1,
+                  "pitch": 128,
+                  "bytes": 4096,
+                  "load": 1,
+                  "publish": true,
+                  "copy_sequences": [
+                    1120,
+                    1124
+                  ]
+                }
+              ]
+            ]
+          },
+          {
+            "phase": 3,
+            "revision": 6,
+            "independent_FDL5_work_pages": true,
+            "GPU_copy_and_fence_verified": true,
+            "original_stride_offset_and_IOVA_verified": true,
+            "work_reference_retirement_verified": true,
+            "actual_designated_pipe_box_and_raw_copy_metadata_verified": true,
+            "actual_pinned_fd5_sysmem_tile_mode_verified": true,
+            "actual_depth_MSAA_sample_shader_bitcast_verified": false,
+            "native_3D_state_marked_dirty_after_internal_2D_copy": true,
+            "actual_stencil_texture_GPU_bitplane_transfer_verified": false,
+            "operations": 2,
+            "planes": 4,
+            "records": [
+              [
+                {
+                  "original": 11,
+                  "work": 129,
+                  "work_GPU": "0x40350000",
+                  "format": 252,
+                  "samples": 1,
+                  "pitch": 256,
+                  "bytes": 4096,
+                  "load": 2,
+                  "publish": true,
+                  "copy_sequences": [
+                    1131
+                  ]
+                },
+                {
+                  "original": 119,
+                  "work": 130,
+                  "work_GPU": "0x40354000",
+                  "format": 253,
+                  "samples": 1,
+                  "pitch": 128,
+                  "bytes": 4096,
+                  "load": 2,
+                  "publish": true,
+                  "copy_sequences": [
+                    1133
+                  ]
+                }
+              ],
+              [
+                {
+                  "original": 11,
+                  "work": 137,
+                  "work_GPU": "0x403b0000",
+                  "format": 252,
+                  "samples": 1,
+                  "pitch": 256,
+                  "bytes": 4096,
+                  "load": 1,
+                  "publish": true,
+                  "copy_sequences": [
+                    1135,
+                    1141
+                  ]
+                },
+                {
+                  "original": 119,
+                  "work": 138,
+                  "work_GPU": "0x403b4000",
+                  "format": 253,
+                  "samples": 1,
+                  "pitch": 128,
+                  "bytes": 4096,
+                  "load": 1,
+                  "publish": true,
+                  "copy_sequences": [
+                    1137,
+                    1143
+                  ]
+                }
+              ]
+            ]
+          },
+          {
+            "phase": 6,
+            "revision": 6,
+            "independent_FDL5_work_pages": true,
+            "GPU_copy_and_fence_verified": true,
+            "original_stride_offset_and_IOVA_verified": true,
+            "work_reference_retirement_verified": true,
+            "actual_designated_pipe_box_and_raw_copy_metadata_verified": true,
+            "actual_pinned_fd5_sysmem_tile_mode_verified": true,
+            "actual_depth_MSAA_sample_shader_bitcast_verified": false,
+            "native_3D_state_marked_dirty_after_internal_2D_copy": true,
+            "actual_stencil_texture_GPU_bitplane_transfer_verified": false,
+            "operations": 1,
+            "planes": 2,
+            "records": [
+              [
+                {
+                  "original": 152,
+                  "work": 125,
+                  "work_GPU": "0x40184000",
+                  "format": 252,
+                  "samples": 1,
+                  "pitch": 256,
+                  "bytes": 4096,
+                  "load": 2,
+                  "publish": true,
+                  "copy_sequences": [
+                    1162
+                  ]
+                },
+                {
+                  "original": 153,
+                  "work": 137,
+                  "work_GPU": "0x403b0000",
+                  "format": 253,
+                  "samples": 1,
+                  "pitch": 128,
+                  "bytes": 4096,
+                  "load": 2,
+                  "publish": true,
+                  "copy_sequences": [
+                    1164
+                  ]
+                }
+              ]
+            ]
+          },
+          {
+            "phase": 7,
+            "revision": 6,
+            "independent_FDL5_work_pages": true,
+            "GPU_copy_and_fence_verified": true,
+            "original_stride_offset_and_IOVA_verified": true,
+            "work_reference_retirement_verified": true,
+            "actual_designated_pipe_box_and_raw_copy_metadata_verified": true,
+            "actual_pinned_fd5_sysmem_tile_mode_verified": true,
+            "actual_depth_MSAA_sample_shader_bitcast_verified": false,
+            "native_3D_state_marked_dirty_after_internal_2D_copy": true,
+            "actual_stencil_texture_GPU_bitplane_transfer_verified": false,
+            "operations": 1,
+            "planes": 2,
+            "records": [
+              [
+                {
+                  "original": 154,
+                  "work": 137,
+                  "work_GPU": "0x403b0000",
+                  "format": 252,
+                  "samples": 1,
+                  "pitch": 256,
+                  "bytes": 4096,
+                  "load": 2,
+                  "publish": true,
+                  "copy_sequences": [
+                    1153
+                  ]
+                },
+                {
+                  "original": 155,
+                  "work": 138,
+                  "work_GPU": "0x403b4000",
+                  "format": 253,
+                  "samples": 1,
+                  "pitch": 128,
+                  "bytes": 4096,
+                  "load": 2,
+                  "publish": true,
+                  "copy_sequences": [
+                    1155
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      "failed_stage_NOT_accepted": true
+    }
+  ],
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "GLES_sha256": "7918487706bf41c5493216301850e5205b50405037f80315fe801065b3fba877",
+  "Metal_sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27",
+  "Metal_source_map_sha256": "db1605ef8dae8f8ed0a29999dcb2cf7537457aba7ad428677c21e0e914771b78",
+  "original_author_pages": [
+    {
+      "suite": "stencil8",
+      "phase": 2,
+      "slot": 0,
+      "handle": 50,
+      "GPU": "0x400b4000",
+      "sequence": 1095,
+      "byte_count": 1280,
+      "pitch": 128,
+      "offset": 64,
+      "format": 80,
+      "samples": 1,
+      "fnv": "f6c90a96ef7f6194",
+      "sha256": "78ad38bdd5b8b9c7878ba08ea0eb4fe0276765a441ca3b111aa0a30904e3ad2d",
+      "file": "stencil8-phase2-slot0.bin",
+      "original_expected_FNV_matches": true
+    },
+    {
+      "suite": "stencil8",
+      "phase": 2,
+      "slot": 8,
+      "handle": 60,
+      "GPU": "0x400b8000",
+      "sequence": 1095,
+      "byte_count": 1280,
+      "pitch": 128,
+      "offset": 64,
+      "format": 252,
+      "samples": 1,
+      "fnv": "4741378f99cef880",
+      "sha256": "d29581ba790bd7dde6460fbb41545de863b419983907e5ddb31f4821929b20e8",
+      "file": "stencil8-phase2-slot8.bin",
+      "original_expected_FNV_matches": true
+    },
+    {
+      "suite": "stencil8",
+      "phase": 2,
+      "slot": 9,
+      "handle": 67,
+      "GPU": "0x400bc000",
+      "sequence": 1095,
+      "byte_count": 768,
+      "pitch": 64,
+      "offset": 64,
+      "format": 253,
+      "samples": 1,
+      "fnv": "7c11b71758d0f732",
+      "sha256": "9d6b45f086754014404f39bb41c1744f99764e44dc00fc660c08f628983dfbd5",
+      "file": "stencil8-phase2-slot9.bin",
+      "original_expected_FNV_matches": false,
+      "logical_zero_values": 153,
+      "logical_pixels": 153,
+      "expected_stencil_value": 3
+    },
+    {
+      "suite": "msaa",
+      "phase": 2,
+      "slot": 0,
+      "handle": 11,
+      "GPU": "0x40024000",
+      "sequence": 1202,
+      "byte_count": 1856,
+      "pitch": 192,
+      "offset": 64,
+      "format": 80,
+      "samples": 2,
+      "fnv": "b83650d47500e20d",
+      "sha256": "aac30ecf3e31d005b80dc1c46523cc46ef417740668e1de3942008e2fb6f1af1",
+      "file": "msaa-phase2-slot0.bin",
+      "original_mismatch_bytes": 0
+    },
+    {
+      "suite": "msaa",
+      "phase": 2,
+      "slot": 8,
+      "handle": 25,
+      "GPU": "0x40028000",
+      "sequence": 1202,
+      "byte_count": 1856,
+      "pitch": 192,
+      "offset": 64,
+      "format": 252,
+      "samples": 2,
+      "fnv": "a795ee0f09b68bc5",
+      "sha256": "cecaed3978808bfff3e228faa47c386e932e7c8c9846853e51ebe69278f1a3a0",
+      "file": "msaa-phase2-slot8.bin",
+      "original_mismatch_bytes": 0
+    },
+    {
+      "suite": "msaa",
+      "phase": 2,
+      "slot": 9,
+      "handle": 31,
+      "GPU": "0x40064000",
+      "sequence": 1202,
+      "byte_count": 704,
+      "pitch": 64,
+      "offset": 64,
+      "format": 253,
+      "samples": 2,
+      "fnv": "df6628a7efe94276",
+      "sha256": "362da58ed7493a37caffc6c766d7a2e4f6c7420869607d09693c1ad894c66838",
+      "file": "msaa-phase2-slot9.bin",
+      "original_mismatch_bytes": 55
+    },
+    {
+      "suite": "msaa",
+      "phase": 2,
+      "slot": 10,
+      "handle": 50,
+      "GPU": "0x400b4000",
+      "sequence": 1202,
+      "byte_count": 1280,
+      "pitch": 128,
+      "offset": 64,
+      "format": 80,
+      "samples": 1,
+      "fnv": "3052a32e73d2c725",
+      "sha256": "57e2b35a7061c12f09d836f1a4a65e119f22667036f430aac3a08fd23775e37f",
+      "file": "msaa-phase2-slot10.bin",
+      "original_mismatch_bytes": 0
+    },
+    {
+      "suite": "msaa",
+      "phase": 2,
+      "slot": 11,
+      "handle": 60,
+      "GPU": "0x400b8000",
+      "sequence": 1202,
+      "byte_count": 1280,
+      "pitch": 128,
+      "offset": 64,
+      "format": 252,
+      "samples": 1,
+      "fnv": "81fc98983e2d8c25",
+      "sha256": "3a4d4a2e4b0373cbe87467c591344bacd17487b5b8e34eee8f68834c54673017",
+      "file": "msaa-phase2-slot11.bin",
+      "original_mismatch_bytes": 0
+    }
+  ],
+  "original_failure_summary": [
+    {
+      "suite": "STENCIL8",
+      "result": 1,
+      "completed_phases": 2,
+      "final_allocated": 0
+    },
+    {
+      "suite": "MULTISAMPLE",
+      "result": 1,
+      "completed_phases": 2,
+      "final_allocated": 0
+    }
+  ],
+  "MSAA_phase1_original_byte_checks_passed": true,
+  "MSAA_phase2_depth_color_and_all_guards_preserved": true,
+  "MSAA_phase2_stencil_mismatch_bytes": 55,
+  "whole_native21_PNG_UI_geometry_peripherals_NOT_complete": true,
+  "failure_not_replayed": true,
+  "production_baseline_NOT_promoted": true,
+  "final_device": "BH905ND69G healthy fastboot; no worker",
+  "next_r7": "GPU stencil bitplane Load/native Clear/actual stencil-texture Store; no kernel change"
+}
