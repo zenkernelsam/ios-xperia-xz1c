@@ -1,0 +1,336 @@
+{
+  "date": "2026-11-21",
+  "scope": "Current depth tiled r2 completed round artifact cleanup",
+  "items": 15,
+  "files": 33,
+  "logical_bytes": 134708787,
+  "records": [
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-tiled-r2-20261121/gles-ram/glram.raw",
+      "reason": "Exact duplicate/reconstructible current HFS container; retained blob, manifest and signed libraries",
+      "files": [
+        {
+          "relative": "glram.raw",
+          "bytes": 33554432,
+          "sha256": "962c8c125686f3d366e88ee69ae7fba39c43400bdb7281716dec0c0a57f71d54"
+        }
+      ],
+      "logical_bytes": 33554432,
+      "trash_path": "/Users/ciscohe/.Trash/glram.raw 08-51-26-779.raw",
+      "native_trash_verified": true,
+      "all_content_sha256_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-tiled-r2-20261121/gles-ram/glram.dmg",
+      "reason": "Exact duplicate/reconstructible current HFS container; retained blob, manifest and signed libraries",
+      "files": [
+        {
+          "relative": "glram.dmg",
+          "bytes": 33554432,
+          "sha256": "962c8c125686f3d366e88ee69ae7fba39c43400bdb7281716dec0c0a57f71d54"
+        }
+      ],
+      "logical_bytes": 33554432,
+      "trash_path": "/Users/ciscohe/.Trash/glram.dmg 08-51-26-855.dmg",
+      "native_trash_verified": true,
+      "all_content_sha256_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-tiled-r2-20261121/reference-ram/glram.raw",
+      "reason": "Exact duplicate/reconstructible current HFS container; retained blob, manifest and signed libraries",
+      "files": [
+        {
+          "relative": "glram.raw",
+          "bytes": 33554432,
+          "sha256": "860d28e70abe8990bdbf0568d519853922a2395ac39374a983194044a74c30b6"
+        }
+      ],
+      "logical_bytes": 33554432,
+      "trash_path": "/Users/ciscohe/.Trash/glram.raw 08-51-26-906.raw",
+      "native_trash_verified": true,
+      "all_content_sha256_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-tiled-r2-20261121/reference-ram/glram.dmg",
+      "reason": "Exact duplicate/reconstructible current HFS container; retained blob, manifest and signed libraries",
+      "files": [
+        {
+          "relative": "glram.dmg",
+          "bytes": 33554432,
+          "sha256": "860d28e70abe8990bdbf0568d519853922a2395ac39374a983194044a74c30b6"
+        }
+      ],
+      "logical_bytes": 33554432,
+      "trash_path": "/Users/ciscohe/.Trash/glram.dmg 08-51-26-958.dmg",
+      "native_trash_verified": true,
+      "all_content_sha256_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-tiled-r2-20261121/reference-observer-lf/test_startup.dSYM",
+      "reason": "Completed host test debug symbols; canonical source, host report and ARM64 observer retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 641,
+          "sha256": "944829fa3c1a4d913161b503f6352fa20f7c101cdeefe97a15208dadbe4a587a"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_startup.yml",
+          "bytes": 190,
+          "sha256": "2e0fe0b5a9108c7e20afe51a1c85c85ac6861e9d7f4a2e2d7a883e35af00cd36"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_startup",
+          "bytes": 14936,
+          "sha256": "0321d0e6d2b5587be9441b11a500ed036e2899c936c60e79bc2abbee2ce420c7"
+        }
+      ],
+      "logical_bytes": 15767,
+      "trash_path": "/Users/ciscohe/.Trash/test_startup.dSYM 08-51-27-016.dSYM",
+      "native_trash_verified": true,
+      "all_content_sha256_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-tiled-r2-20261121/reference-observer-lf/test_cache_scope.dSYM",
+      "reason": "Completed host test debug symbols; canonical source, host report and ARM64 observer retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 645,
+          "sha256": "2d56eca2217abc049f49309a8cb04e54f45a4ba11b0491143bbbb28280638af2"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_cache_scope.yml",
+          "bytes": 194,
+          "sha256": "4b58679acedf900fa5a28fddf32ee148da805e17fec270dd6e5019d258516fe3"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_cache_scope",
+          "bytes": 18224,
+          "sha256": "aedd5204f50bbe32499f3ed8e14c6220f039ef3d99fb0bbff50a84a4a608761b"
+        }
+      ],
+      "logical_bytes": 19063,
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_scope.dSYM 08-51-27-068.dSYM",
+      "native_trash_verified": true,
+      "all_content_sha256_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-tiled-r2-20261121/reference-observer-lf/test_observer.dSYM",
+      "reason": "Completed host test debug symbols; canonical source, host report and ARM64 observer retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 642,
+          "sha256": "589d796cebc46abadfe0ec147d2a15f3b4f4f50d2c7edbebfc3cde26f51d66bf"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_observer.yml",
+          "bytes": 191,
+          "sha256": "9b019b05f898b80110154a81277c3b9c1cf39491eb1fd8ceae7f1d98d0c0efd3"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_observer",
+          "bytes": 41828,
+          "sha256": "da33a18f31467a95e8352579ad33210a1d44a8c4f29cf90d49be8527726c5e2f"
+        }
+      ],
+      "logical_bytes": 42661,
+      "trash_path": "/Users/ciscohe/.Trash/test_observer.dSYM 08-51-27-119.dSYM",
+      "native_trash_verified": true,
+      "all_content_sha256_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-tiled-r2-20261121/reference-observer-lf/test_attachment_snapshot",
+      "reason": "Completed host test executable; source and validation logs retained",
+      "files": [
+        {
+          "relative": "test_attachment_snapshot",
+          "bytes": 27872,
+          "sha256": "56331f853989bb989e5908e9a46ab694dbfa355086d134f106ba40c6ad37ced6"
+        }
+      ],
+      "logical_bytes": 27872,
+      "trash_path": "/Users/ciscohe/.Trash/test_attachment_snapshot 08-51-27-170",
+      "native_trash_verified": true,
+      "all_content_sha256_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-tiled-r2-20261121/reference-observer-lf/test_cif10_png_reference.dSYM",
+      "reason": "Completed host test debug symbols; canonical source, host report and ARM64 observer retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 653,
+          "sha256": "8e989f94a66cd0e1d9a42e7c8d6fd05eae260f619024f56a29676dfdceffdade"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_cif10_png_reference.yml",
+          "bytes": 202,
+          "sha256": "bad908d8544928b204cdd37ee058a86c0df9e912cad12bd2968d0486a20b92b9"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_cif10_png_reference",
+          "bytes": 55532,
+          "sha256": "80811b6935be58ef0e09ce71dd5dc10c6c44610e9bbd204f6be06645e2f82c85"
+        }
+      ],
+      "logical_bytes": 56387,
+      "trash_path": "/Users/ciscohe/.Trash/test_cif10_png_reference.dSYM 08-51-27-221.dSYM",
+      "native_trash_verified": true,
+      "all_content_sha256_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-tiled-r2-20261121/reference-observer-lf/test_cache_scope",
+      "reason": "Completed host test executable; source and validation logs retained",
+      "files": [
+        {
+          "relative": "test_cache_scope",
+          "bytes": 28320,
+          "sha256": "d30c6c0c19183ed5697ff85f3df683cfd415fda99f29ce689924ef14d948bed3"
+        }
+      ],
+      "logical_bytes": 28320,
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_scope 08-51-27-272",
+      "native_trash_verified": true,
+      "all_content_sha256_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-tiled-r2-20261121/reference-observer-lf/test_startup",
+      "reason": "Completed host test executable; source and validation logs retained",
+      "files": [
+        {
+          "relative": "test_startup",
+          "bytes": 20592,
+          "sha256": "ccfcd674d4202383a840511b4a883ba24e0dec9f3ec6cdbb89255d650c8f0f33"
+        }
+      ],
+      "logical_bytes": 20592,
+      "trash_path": "/Users/ciscohe/.Trash/test_startup 08-51-27-329",
+      "native_trash_verified": true,
+      "all_content_sha256_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-tiled-r2-20261121/reference-observer-lf/test_cif10_png_reference",
+      "reason": "Completed host test executable; source and validation logs retained",
+      "files": [
+        {
+          "relative": "test_cif10_png_reference",
+          "bytes": 63872,
+          "sha256": "c4554e0b3714add02a6fcc360ee2175136c13bcf95c9754388ad31eeeb8552ca"
+        }
+      ],
+      "logical_bytes": 63872,
+      "trash_path": "/Users/ciscohe/.Trash/test_cif10_png_reference 08-51-27-380",
+      "native_trash_verified": true,
+      "all_content_sha256_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-tiled-r2-20261121/reference-observer-lf/test_observer",
+      "reason": "Completed host test executable; source and validation logs retained",
+      "files": [
+        {
+          "relative": "test_observer",
+          "bytes": 65680,
+          "sha256": "ff9409f8d785da97f6b39786b66bb9171a46d701d87444a5e6fc56ae68cfd7b6"
+        }
+      ],
+      "logical_bytes": 65680,
+      "trash_path": "/Users/ciscohe/.Trash/test_observer 08-51-27-432",
+      "native_trash_verified": true,
+      "all_content_sha256_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-tiled-r2-20261121/reference-observer-lf/test_attachment_snapshot.dSYM",
+      "reason": "Completed host test debug symbols; canonical source, host report and ARM64 observer retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 653,
+          "sha256": "d5f0029ed8ca7a9036c2cab1990c35358da4fe52e5317a53347f17210346329e"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_attachment_snapshot.yml",
+          "bytes": 202,
+          "sha256": "cba2d5398be45d92ef85c6cac37b0ba9ef13d184afba09abd6dead595b1e9bb3"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_attachment_snapshot",
+          "bytes": 15996,
+          "sha256": "6f3b3924a69b8466a9d5b2ab38115aca2caa3fdd6409b87d757259867091f35c"
+        }
+      ],
+      "logical_bytes": 16851,
+      "trash_path": "/Users/ciscohe/.Trash/test_attachment_snapshot.dSYM",
+      "native_trash_verified": true,
+      "all_content_sha256_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-tiled-r2-20261121/reference-observer",
+      "reason": "Incomplete offline fixture-CRLF-refused build; successful exact-LF observer preserved",
+      "files": [
+        {
+          "relative": "AIRConstantsFixture.h",
+          "bytes": 11689,
+          "sha256": "a6fd4b1ab2810d92957cc092f72dc5d7d5fadcb78e62177b24aea6bd850f17bf"
+        },
+        {
+          "relative": "AIRRenderFixture.h",
+          "bytes": 19336,
+          "sha256": "ecbc386917efa7a57db2a904cc12a09ece2962b84c6da787518f9cf9c6467225"
+        },
+        {
+          "relative": "AIRMultisampleFixture.h",
+          "bytes": 12791,
+          "sha256": "7c3caaae06c35ed66ee50df19df4a0de3dfeea751e7fe81b45726f8b2ef59a4c"
+        },
+        {
+          "relative": "AIRNarrowFixture.h",
+          "bytes": 16401,
+          "sha256": "3bb67b4f5fb701a11d61c3ff843ce142d95301c2f90a41510363da10d2917c58"
+        },
+        {
+          "relative": "AIRHalfFixture.h",
+          "bytes": 16114,
+          "sha256": "9d8052b4292d20c879ce79a2927b8a669d353ef08d4700c5a5fcc680c0508160"
+        },
+        {
+          "relative": "ProgramCacheScopeIdentity.h",
+          "bytes": 255,
+          "sha256": "2a68c5d05072e43949f4456ec349ad875ddeefdd585371a1e9aa889465dba5f5"
+        },
+        {
+          "relative": "AIRMRTFixture.h",
+          "bytes": 23583,
+          "sha256": "7ef6fb5424edb024bec6c9468b477fff1d48d9fcc0dde1ebadb2890e8700df62"
+        },
+        {
+          "relative": "source.m",
+          "bytes": 19401,
+          "sha256": "6238849a2a027d8edce5be0da3a0bc7d897b160ffb54e59e678dd2c3ad9e4580"
+        },
+        {
+          "relative": "AIRFixture.h",
+          "bytes": 14424,
+          "sha256": "7e59f9fc565d1b3e18bbf2a12ec6b6a422f26b7f2c7bc33df661858d9f2a0f48"
+        }
+      ],
+      "logical_bytes": 133994,
+      "trash_path": "/Users/ciscohe/.Trash/reference-observer",
+      "native_trash_verified": true,
+      "all_content_sha256_verified": true
+    }
+  ],
+  "protected_fingerprints_unchanged": {
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/surface-diag-v730/kernel.v730.macho": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/dxb/xnu/iokit/Kernel/arm/SweetGPU.cpp": "aa2c36792a2298b060aa858eabdc039522fcdde3cfdbafd453c5fc6c0683c157",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-tiled-r2-20261121/gles-ram/glram.zblob": "edb7b7cc977f64ccf4b87ed701137dcf6b13c1d27de650d7e45b03678eb3e317",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-tiled-r2-20261121/reference-ram/glram.zblob": "f948e429645ee241140934e2cc810eb58a7fa87ba44174552978515abc35f4c5",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/depth-tiled-r2-20261121/reference-observer-lf/exception_observe.dylib": "48325a9f1784f403ecdcc7a0e406e209eb6bd2e546288affcf3b16ca926d8996"
+  },
+  "trash_not_emptied": true,
+  "current_failure_evidence_retained": true,
+  "autobuild_pause_preserved": true,
+  "disk_df": "Filesystem      Size    Used   Avail Capacity iused ifree %iused  Mounted on\n/dev/disk2s1   954Gi   865Gi    59Gi    94%    3.9M  623M    1%   /System/Volumes/Data\n",
+  "build_du": "3.7G\t/Users/ciscohe/Desktop/ios-xperia-xz1c/build\n"
+}

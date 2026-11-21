@@ -21,7 +21,7 @@
 
 禁止永久删除。Windows原生Recycle Bin；WSL废弃内容转Windows回收站；Mac NSWorkspace／Finder Trash。不清空Windows／Mac回收站；Ubuntu垃圾桶非空先转Windows回收站再恢复空目录。所有递归移动／回收先核对绝对范围、符号链接和父子路径，重复或嵌套整批拒绝。flash/fw、unlock、XFL、救砖、SD／TA／校准和备份受保护，备份不去重。
 
-本周Mac1713项／34883文件／11.04GiB已原生垃圾桶，build约14→3.6GiB；垃圾桶仍占空间，系统仍约94%。原路径与Trash位置及内容SHA见[ORGANIZATION](ORGANIZATION.md)。之前Windows旧回收条目有部分在最终复核时已缺失，原因未证明；保留原移入记录，不保证它们仍可恢复。每次原生移入和最终目标复核分别记录。
+本周主体和本轮追加Mac共1728项／34916文件／11.16GiB已原生垃圾桶，当前build约3.7GiB；垃圾桶仍占空间，系统仍约94%。原路径／Trash位置／内容SHA及实际可用空间见[ORGANIZATION](ORGANIZATION.md)。之前Windows旧回收条目有部分在最终复核时已缺失，原因未证明；保留原移入记录，不保证仍可恢复。每次原生移入和最终目标复核分别记录。
 
 当前Mac保留gl4／gl5和IPSW，符号表assets/symbols/ios16-20H392-root.a2s，v730 build/surface-diag-v730/kernel.v730.macho、dxb实际源码、deps固定源／Mesa IR3归档、AIR输入及CA／当前tiled／原失败包精确blob／manifest／必要signed库。Windowsassets/baselines的v724 private／ready／tested-panel、kernel／shim和恢复资料保持，作为完整payload重建输入。
 

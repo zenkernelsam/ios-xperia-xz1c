@@ -1,6 +1,6 @@
 # 真机、串口与相机
 
-当前设备和候选以[STATUS](STATUS.md)为准，源码／包构建见[BUILD](BUILD.md)。用户授权无人值守，但最新要求设备轮结束后先整理Mac和文档；本轮已经收尾，Sony健康fastboot、无worker。tiled reference CPU独立后处理拒绝，未发其GPU。下次继续依据新证据制定独立试验，旧失败包不复发。
+当前设备和候选以[STATUS](STATUS.md)为准，源码／包构建见[BUILD](BUILD.md)。用户授权无人值守并要求轮后先整理Mac和文档；主体整理及本轮补充回收已完成。最后tiled r2完整native21为REVISE／复制路径-45，40秒完整0x06回程含健康30秒，Sony健康fastboot、无worker。下次按新证据制定独立试验，旧失败包不复发。
 
 ## 单发和回程
 

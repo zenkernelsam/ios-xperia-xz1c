@@ -27,3 +27,11 @@ gl4、gl5、IPSW、本机固件／SD／TA／XFL／校准／救砖及备份保持
 旧整理报告20261112／13／15保留原事件和数量，作为历史；当前汇总在本页。原参考仓库索引和MSM8998调查保持来源，当前Patch/research89个Git参考仓库。源码／锁／工具和整合文档只提交正式ios-xperia-xz1c，不在Patch维护新修补。
 
 本轮GPU结果独立保留：GLES21de与c617两库各自CPU／GLES9通过；原附件reference GPU两次REVISE；tiled reference CPU原controller PASS但启动日志独立核验拒绝，native21未投递。整理没有改变这些结果或证明完整UI完成。显示比例720×1280／360×640计划与离线ADT放[DISPLAY-GEOMETRY](DISPLAY-GEOMETRY.md)。
+
+## 本轮追加收尾
+
+主体整理后，capture revision1恢复真实单份启动流，tiled r2新GLES自身CPU／GLES9／reference CPU通过；完整native21复制路径-45拒绝，40秒回程后停止。原四靴及截图／失败报告见[本轮阶段](../reproducibility/depth-tiled-r2-stage-20261121.json)，未提升基线，原failed package／raw保持。
+
+本轮Mac另15项／33文件／134708787B通过NSWorkspace进原生垃圾桶，包括两组可由保留blob精确重建的raw／dmg、已完成host程序／dSYM及未编译成功的旧CRLF-fixture观察器目录。所有用户内容SHA复核，当前signed库、blob／manifest、内核及SweetGPU指纹保持。实际记录见[Mac追加回收](../reproducibility/depth-tiled-r2-macos-native-trash-20261121.json)。主体和追加合计1728项／34916文件／11986947721B（11.16GiB），垃圾桶未清空；最新Mac94%使用／59GiB可用、build3.7GiB，其它项目未清理。
+
+Windows本轮传输及mock fixture3项／37文件／174001078B另进原生回收站，目标内容SHA通过，见[Windows追加回收](../reproducibility/serial-capture-r1-windows-recycle-20261121.json)。实际设备raw／失败、作者页面和少量必要扫描图受保护，临时传输已回收。现行文档已更新到r2真实边界；47份本周原始归档manifest保持逐字节一致。

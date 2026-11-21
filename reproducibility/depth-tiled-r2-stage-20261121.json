@@ -1,0 +1,588 @@
+{
+  "date": "2026-11-21",
+  "kernel": "v730",
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "GLES_sha256": "0c71a9f6bb36c877acb1cf282a429b74ca68c0dcd88d717eeed67288dd57b158",
+  "tiled_frontend_revision": 2,
+  "runs": [
+    {
+      "result": "PASS",
+      "decision": "PASS",
+      "reason": "GOALS_STABLE",
+      "boot_dispatches": 1,
+      "reset_requests": 1,
+      "reset_to_fastboot_seconds": 38.406999999890104,
+      "fastboot_returned": true,
+      "return_log_complete": true,
+      "stage": "glesCPU",
+      "token": "3c1d50d57f570af9",
+      "image_sha256": "29f8b922efb5b67a9893cafb1f9fc6758b8fe453e868111b18f7778e6173f9d4",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-depth-tiled-r2-gles-cpu-live-20261121",
+      "raw_sha256": "195d48332c4d8f2f79db0f7257c2cc64630a677fa8e7426faab807229089f76f",
+      "raw_bytes": 338071,
+      "original_results_sha256": "b189bf71556143e803ac26fac4b49ce506f65905bc0bb89de4d9c78824c9db19",
+      "serial_capture": {
+        "revision": 1,
+        "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+        "event_log_sha256": "2bd961a6dbdbfa9296621db615583e28698b6504ad921d98a0617c8b5cbaa5e6",
+        "raw_sha256": "195d48332c4d8f2f79db0f7257c2cc64630a677fa8e7426faab807229089f76f",
+        "serial_port": "COM17",
+        "dtr_low_through_open": true,
+        "raw_log_before_stream": true,
+        "one_continuous_current_boot_stream": true,
+        "replay_commands": 0,
+        "old_failure_not_reclassified": true
+      },
+      "ram_library_binding": {
+        "library_sha256": "0c71a9f6bb36c877acb1cf282a429b74ca68c0dcd88d717eeed67288dd57b158",
+        "library_bytes": 14784032,
+        "library_fnv64": "a4f9386bf0e64039",
+        "blob_sha256": "edb7b7cc977f64ccf4b87ed701137dcf6b13c1d27de650d7e45b03678eb3e317",
+        "raw_sha256": "962c8c125686f3d366e88ee69ae7fba39c43400bdb7281716dec0c0a57f71d54",
+        "manifest_sha256": "306d2dd93142359100b7fd09cfe7b0630bed2ae1ae09df78ecfd8377df9dd20c"
+      },
+      "independent_postprocess_passed": true
+    },
+    {
+      "result": "PASS",
+      "decision": "PASS",
+      "reason": "GOALS_STABLE",
+      "boot_dispatches": 1,
+      "reset_requests": 1,
+      "reset_to_fastboot_seconds": 38.188000000081956,
+      "fastboot_returned": true,
+      "return_log_complete": true,
+      "stage": "GLES9",
+      "token": "c2ee83f72bd0c04d",
+      "image_sha256": "db3d3c2287590e8254d904b4c8c82211393c19209e5418b77b3753dfdc59f5e8",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-depth-tiled-r2-gles-gpu-live-20261121",
+      "raw_sha256": "3580da5a761bf3f4059fe8f739e5b91217f72ad13178b5448aa86bc35790d628",
+      "raw_bytes": 1480554,
+      "original_results_sha256": "251a32c5904a10431947ab584427b10b4f211197498502b72257b74794fd6b73",
+      "serial_capture": {
+        "revision": 1,
+        "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+        "event_log_sha256": "2e1c12ab5162e986faffec6ab5b18ddf11a4a70321bed706f2279242dcc09990",
+        "raw_sha256": "3580da5a761bf3f4059fe8f739e5b91217f72ad13178b5448aa86bc35790d628",
+        "serial_port": "COM17",
+        "dtr_low_through_open": true,
+        "raw_log_before_stream": true,
+        "one_continuous_current_boot_stream": true,
+        "replay_commands": 0,
+        "old_failure_not_reclassified": true
+      },
+      "ram_library_binding": {
+        "library_sha256": "0c71a9f6bb36c877acb1cf282a429b74ca68c0dcd88d717eeed67288dd57b158",
+        "library_bytes": 14784032,
+        "library_fnv64": "a4f9386bf0e64039",
+        "blob_sha256": "edb7b7cc977f64ccf4b87ed701137dcf6b13c1d27de650d7e45b03678eb3e317",
+        "raw_sha256": "962c8c125686f3d366e88ee69ae7fba39c43400bdb7281716dec0c0a57f71d54",
+        "manifest_sha256": "306d2dd93142359100b7fd09cfe7b0630bed2ae1ae09df78ecfd8377df9dd20c"
+      },
+      "independent_postprocess_passed": true,
+      "CA_matrix": {
+        "complete_samples": 1,
+        "incomplete_samples": 0,
+        "phases": 6,
+        "checked_bytes": 1536,
+        "guard_bytes": 192,
+        "exact_QuartzCore_UUID": "9e40b2eb260c3af1ae45a1a551a8c1b9",
+        "original_two_empty_slots_verified": true,
+        "production_GL_source_link_draw_and_framebuffer_fetch_used": true,
+        "independent_CPU_reference_tolerance_LSB": 1,
+        "max_difference_LSB": 0,
+        "raw_hashes": [
+          "e002c8c736038125",
+          "3db840f69453cf25",
+          "417f4a85b435ed25",
+          "7cbef14f14a7cd45",
+          "adfac8854eef9b45",
+          "afde0606ecb79345"
+        ],
+        "context_disposed": true,
+        "full_UI_not_inferred": true
+      },
+      "screen": {
+        "protocol": 1,
+        "frames": [
+          {
+            "id": 1,
+            "token": "c2ee83f72bd0c04d",
+            "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+            "image_sha256": "db3d3c2287590e8254d904b4c8c82211393c19209e5418b77b3753dfdc59f5e8",
+            "binding": {
+              "protocol": 1,
+              "width": 720,
+              "height": 1280,
+              "stride": 2160,
+              "format": "BGR888",
+              "codec": "PRLE1",
+              "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+              "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+              "runtime_source_sha256": "a1f41eeb87b7cf70ea751884ee38d758191f3cc0a00d697acc363fbba3cd5f63"
+            },
+            "begin": {
+              "token": "c2ee83f72bd0c04d",
+              "id": "1",
+              "width": "720",
+              "height": "1280",
+              "stride": "2160",
+              "format": "BGR888",
+              "bytes": "2764800",
+              "codec": "PRLE1",
+              "encoded": "347731",
+              "raw_fnv": "44317b55940aede9",
+              "enc_crc": "5fdcbc78",
+              "vsync": "7882",
+              "timestamp": "19012344546",
+              "copy_ticks": "7976465",
+              "power_off": "0",
+              "source_checked": "1",
+              "source_match": "1"
+            },
+            "scan": {
+              "token": "c2ee83f72bd0c04d",
+              "id": "1",
+              "pa": "0x9d400000",
+              "map_pa": "0x9d400000",
+              "map_bytes": "2764800",
+              "size": "0x50002d0",
+              "img": "0x50002d0",
+              "xy": "0",
+              "out": "0x50002d0",
+              "outxy": "0",
+              "fmt": "0x2243f",
+              "unpack": "0x20001",
+              "op": "0x80000000",
+              "qop": "0",
+              "ctl": "0x20020",
+              "start": "0",
+              "before_after": "1"
+            },
+            "blocks": 2717,
+            "raw_file": "scanout-00000001.bgr",
+            "png_file": "scanout-00000001.png",
+            "raw_sha256": "c953fc2113cfdbd71ecb12e6bc83c7315a4d90555b4394baabc1fbfa697886ef",
+            "png_sha256": "90c83f11d44b113561aabd82776ea9d855b24ace0c59930a76e2ec39d9d8d583",
+            "pixel_values_preserved": true,
+            "verified": true,
+            "optical_panel_verified": false
+          }
+        ],
+        "verified": true,
+        "optical_panel_verified": false,
+        "current_boot_source_and_payload_checked": true,
+        "format": "BGR888",
+        "width": 720,
+        "height": 1280
+      },
+      "scope": "Own GLES9 only; native attachment stage not inferred"
+    },
+    {
+      "result": "PASS",
+      "decision": "PASS",
+      "reason": "GOALS_STABLE",
+      "boot_dispatches": 1,
+      "reset_requests": 1,
+      "reset_to_fastboot_seconds": 38.5,
+      "fastboot_returned": true,
+      "return_log_complete": true,
+      "stage": "referenceCPU",
+      "token": "3fd7fdb36cfc8a1e",
+      "image_sha256": "fef483e152541df2f09c5ce43738d48db055e6470eba27e96d8836cc3ce8583e",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-depth-tiled-r2-reference-cpu-live-20261121",
+      "raw_sha256": "de3ebf93a14761518b0b12b1db89821f118640b367bf8409b8e1791bb2d67f17",
+      "raw_bytes": 333555,
+      "original_results_sha256": "48e1a0ebf9a57a1fd42a33a52ed5b1e5e64dcc310b6093f60492ff516285168a",
+      "serial_capture": {
+        "revision": 1,
+        "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+        "event_log_sha256": "9e592dbce4db424424a4e2d01832302132f99ac51e26e2cea9aa320d15d3694e",
+        "raw_sha256": "de3ebf93a14761518b0b12b1db89821f118640b367bf8409b8e1791bb2d67f17",
+        "serial_port": "COM17",
+        "dtr_low_through_open": true,
+        "raw_log_before_stream": true,
+        "one_continuous_current_boot_stream": true,
+        "replay_commands": 0,
+        "old_failure_not_reclassified": true
+      },
+      "ram_library_binding": {
+        "library_sha256": "0c71a9f6bb36c877acb1cf282a429b74ca68c0dcd88d717eeed67288dd57b158",
+        "library_bytes": 14784032,
+        "library_fnv64": "a4f9386bf0e64039",
+        "blob_sha256": "f948e429645ee241140934e2cc810eb58a7fa87ba44174552978515abc35f4c5",
+        "raw_sha256": "860d28e70abe8990bdbf0568d519853922a2395ac39374a983194044a74c30b6",
+        "manifest_sha256": "25dd0f6c0f662ca6b06c08c064c8e53eb64eec8d8433d99ac520cb9671704ef1"
+      },
+      "independent_postprocess_passed": true
+    },
+    {
+      "result": "REVISE",
+      "decision": "REVISE",
+      "reason": "DEPTH32_PROBE_FAILED",
+      "boot_dispatches": 1,
+      "reset_requests": 1,
+      "reset_to_fastboot_seconds": 40.0,
+      "fastboot_returned": true,
+      "return_log_complete": true,
+      "stage": "native21",
+      "token": "770f8d4a8ae8676d",
+      "image_sha256": "f845a031351462ae4dde66c5655c6e9595e43bfbec899f5a62dbf356ad50ce39",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-depth-tiled-r2-reference-gpu-live-20261121",
+      "raw_sha256": "8fab5b22d3ca0b140dafb295c676a1a90e3b28ff0f464b2b5563ddf10325e5aa",
+      "raw_bytes": 695308,
+      "original_results_sha256": "e453d68d844f6d807ccdfca89b20b372a1d63248e52e2fa4f6cb87eed8d0636a",
+      "serial_capture": {
+        "revision": 1,
+        "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+        "event_log_sha256": "81321c1ec8f7e292576de7d0029d7e9f91e314d7fa748312a2eca54fbaac709c",
+        "raw_sha256": "8fab5b22d3ca0b140dafb295c676a1a90e3b28ff0f464b2b5563ddf10325e5aa",
+        "serial_port": "COM17",
+        "dtr_low_through_open": true,
+        "raw_log_before_stream": true,
+        "one_continuous_current_boot_stream": true,
+        "replay_commands": 0,
+        "old_failure_not_reclassified": true
+      },
+      "ram_library_binding": {
+        "library_sha256": "0c71a9f6bb36c877acb1cf282a429b74ca68c0dcd88d717eeed67288dd57b158",
+        "library_bytes": 14784032,
+        "library_fnv64": "a4f9386bf0e64039",
+        "blob_sha256": "f948e429645ee241140934e2cc810eb58a7fa87ba44174552978515abc35f4c5",
+        "raw_sha256": "860d28e70abe8990bdbf0568d519853922a2395ac39374a983194044a74c30b6",
+        "manifest_sha256": "25dd0f6c0f662ca6b06c08c064c8e53eb64eec8d8433d99ac520cb9671704ef1"
+      },
+      "failure": {
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-depth-tiled-r2-reference-gpu-live-20261121",
+        "version": 730,
+        "token": "770f8d4a8ae8676d",
+        "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+        "image_sha256": "f845a031351462ae4dde66c5655c6e9595e43bfbec899f5a62dbf356ad50ce39",
+        "log_sha256": "8fab5b22d3ca0b140dafb295c676a1a90e3b28ff0f464b2b5563ddf10325e5aa",
+        "original_result": "REVISE",
+        "original_reason": "DEPTH32_PROBE_FAILED",
+        "actual_failures": [],
+        "native_GPU_failure_results": [],
+        "attachment_failure_results": [
+          {
+            "suite": "DEPTH32",
+            "result": 1,
+            "completed_phases": 0,
+            "final_allocated": 0
+          },
+          {
+            "suite": "STENCIL8",
+            "result": 1,
+            "completed_phases": 0,
+            "final_allocated": 0
+          },
+          {
+            "suite": "MEMORYLESS",
+            "result": 1,
+            "completed_phases": 0,
+            "final_allocated": 0
+          },
+          {
+            "suite": "MULTISAMPLE",
+            "result": 1,
+            "completed_phases": 0,
+            "final_allocated": 0
+          }
+        ],
+        "actual_program_cache_failures": [],
+        "registry_assertions": [],
+        "actual_AIR_render_failure_results": [
+          -45,
+          -45,
+          -45
+        ],
+        "actual_MRT_context_capability_records": [
+          {
+            "targets": 8,
+            "fp32_rt": 1,
+            "fp32_blend": 0,
+            "fp32_image": 1,
+            "independent_enable": 1,
+            "independent_func": 1,
+            "float_blend": 0,
+            "fbfetch": 0,
+            "no_attachment": 1,
+            "fragment_images": 24,
+            "image_units": 192
+          }
+        ],
+        "actual_MRT_GL_errors": [],
+        "missing_device_API": [],
+        "original_exception_missing_API": [],
+        "original_extension_checkin_timeout_count": 0,
+        "actual_program_prime_incomplete": [],
+        "actual_program_cache_scope_errors": [],
+        "payload_audit": {
+          "image_sha256": "f845a031351462ae4dde66c5655c6e9595e43bfbec899f5a62dbf356ad50ce39",
+          "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+          "blob_count": 8,
+          "complete_payload_reconstructed_from_compiled_kernel": true
+        },
+        "strict_return": {
+          "complete": true,
+          "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+          "current_token": "770f8d4a8ae8676d",
+          "checkpoint_bytes": 682551,
+          "log_bytes": 695308,
+          "log_sha256": "8fab5b22d3ca0b140dafb295c676a1a90e3b28ff0f464b2b5563ddf10325e5aa",
+          "require_final_drain": true,
+          "marker_positions": [
+            16,
+            75,
+            221,
+            223
+          ],
+          "final_reset_marker_seen": true
+        },
+        "return_seconds_with_health": 40.0,
+        "failed_stage_not_accepted": true
+      },
+      "scanout": {
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-depth-tiled-r2-reference-gpu-live-20261121",
+        "token": "770f8d4a8ae8676d",
+        "version": 730,
+        "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+        "image_sha256": "f845a031351462ae4dde66c5655c6e9595e43bfbec899f5a62dbf356ad50ce39",
+        "original_result": "REVISE",
+        "original_reason": "DEPTH32_PROBE_FAILED",
+        "original_results_sha256": "e453d68d844f6d807ccdfca89b20b372a1d63248e52e2fa4f6cb87eed8d0636a",
+        "raw_sha256": "8fab5b22d3ca0b140dafb295c676a1a90e3b28ff0f464b2b5563ddf10325e5aa",
+        "raw_bytes": 695308,
+        "scheduled_capture_after_seconds": 150,
+        "captured_at_observation_point": false,
+        "actual_observation_elapsed_seconds": null,
+        "original_recorded_goal_patterns_not_observed": [
+          "SWEET RMI4: F12 page=",
+          "SWEET METAL PROBES END process=backboardd result=0 prerequisite=0 full_suite=1 background=1",
+          "SWEET DEPTH32 END result=0 phases=29 checked_bytes=74240 guard_bytes=38744 read_bytes=26100 final_allocated=0 GPU_only=1",
+          "SWEET STENCIL8 END result=0 phases=99 checked_bytes=329472 guard_bytes=193149 read_bytes=118800 final_allocated=0 GPU_only=1",
+          "SWEET MEMORYLESS END result=0 phases=8 checked_bytes=19456 guard_bytes=10888 final_allocated=0 GPU_only=1 transient_pages=1",
+          "SWEET MULTISAMPLE END result=0 phases=18 checked_bytes=151488 guard_bytes=55098 final_allocated=0 GPU_only=1 original_samples=1",
+          "SWEET PRESENT PROBE END result=0 phases=5 checked_pixels=765 final_allocated=0 original_drawables=1 display_completion_unverified=1",
+          "SWEET CIF10 REFERENCE END result=0 cases=6 original_API=1 author_generated=1 original_UI_pixels_read=0 converter_installed=0",
+          "SWEET CIF10 CONFIG revision=3 PNG_exports=1 vImage_modes=2 filter_policies=3 original_options=1 converter_installed=0"
+        ],
+        "stage_decision_not_promoted": true,
+        "single_frame_and_return_command_verified": true,
+        "synthetic_swipe_command_observed": false,
+        "screenshot_verified_independently_of_trial_result": true,
+        "screen": {
+          "protocol": 1,
+          "frames": [
+            {
+              "id": 1,
+              "token": "770f8d4a8ae8676d",
+              "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+              "image_sha256": "f845a031351462ae4dde66c5655c6e9595e43bfbec899f5a62dbf356ad50ce39",
+              "binding": {
+                "protocol": 1,
+                "width": 720,
+                "height": 1280,
+                "stride": 2160,
+                "format": "BGR888",
+                "codec": "PRLE1",
+                "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+                "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+                "runtime_source_sha256": "a1f41eeb87b7cf70ea751884ee38d758191f3cc0a00d697acc363fbba3cd5f63"
+              },
+              "begin": {
+                "token": "770f8d4a8ae8676d",
+                "id": "1",
+                "width": "720",
+                "height": "1280",
+                "stride": "2160",
+                "format": "BGR888",
+                "bytes": "2764800",
+                "codec": "PRLE1",
+                "encoded": "32508",
+                "raw_fnv": "afabda2998b075a2",
+                "enc_crc": "a0a1937d",
+                "vsync": "3312",
+                "timestamp": "10872098343",
+                "copy_ticks": "7622240",
+                "power_off": "0",
+                "source_checked": "1",
+                "source_match": "1"
+              },
+              "scan": {
+                "token": "770f8d4a8ae8676d",
+                "id": "1",
+                "pa": "0x9d400000",
+                "map_pa": "0x9d400000",
+                "map_bytes": "2764800",
+                "size": "0x50002d0",
+                "img": "0x50002d0",
+                "xy": "0",
+                "out": "0x50002d0",
+                "outxy": "0",
+                "fmt": "0x2243f",
+                "unpack": "0x20001",
+                "op": "0x80000000",
+                "qop": "0",
+                "ctl": "0x20020",
+                "start": "0",
+                "before_after": "1"
+              },
+              "blocks": 254,
+              "raw_file": "scanout-00000001.bgr",
+              "png_file": "scanout-00000001.png",
+              "raw_sha256": "8731b76f22ea154f517271fed3a585182152eede5a1952aa88ed945803d28746",
+              "png_sha256": "ba36346eaa277a698d76750ec2e2ef9d9faf01c5abe18cb0a120191a0ae4f1d0",
+              "pixel_values_preserved": true,
+              "verified": true,
+              "optical_panel_verified": false
+            }
+          ],
+          "verified": true,
+          "optical_panel_verified": false,
+          "current_boot_source_and_payload_checked": true,
+          "format": "BGR888",
+          "width": 720,
+          "height": 1280
+        },
+        "payload_audit": {
+          "image_sha256": "f845a031351462ae4dde66c5655c6e9595e43bfbec899f5a62dbf356ad50ce39",
+          "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+          "blob_count": 8,
+          "complete_payload_reconstructed_from_compiled_kernel": true
+        },
+        "strict_return": {
+          "complete": true,
+          "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+          "current_token": "770f8d4a8ae8676d",
+          "checkpoint_bytes": 682551,
+          "log_bytes": 695308,
+          "log_sha256": "8fab5b22d3ca0b140dafb295c676a1a90e3b28ff0f464b2b5563ddf10325e5aa",
+          "require_final_drain": true,
+          "marker_positions": [
+            16,
+            75,
+            221,
+            223
+          ],
+          "final_reset_marker_seen": true
+        },
+        "return_seconds_with_health": 40.0,
+        "optical_panel_backlight_UI_FPS_not_inferred": true,
+        "evidence_tools": {
+          "tools/device/scanout_trial_evidence.py": "bec2ec52d0c29cff0fd1b2267bb547aa17260f851193436c10f7dd6d38357c8b",
+          "tools/device/scanout_snapshot.py": "0a30b84e983a33a880c726a6ff90cc3ca105250326e292345aa58dfd70e512d2",
+          "tools/device/controller.py": "b947afc42b30fb10321141badd78626cef7323abdd03a7fd36f0be866af987d5",
+          "tools/device/return_evidence.py": "5142d3a90e89f64f796f2ce70227b28703afbca5be582ef25b6d638b09ae7e8d",
+          "tools/device/package_trial.py": "0cffd43e1f36e231d5f90e3eeddeeec59bbdbf244e44dfabfc47e50c1ad7c062",
+          "tools/diagnostic_candidate.py": "b53e89fdc0bf66a0b38bb4a4c7499ac2222e2704af83cebbd2ae0472a83783b3"
+        }
+      },
+      "tiled_pages_created": [
+        "SWEET DEPTH TILE PAGE original=62 work=65 format=252 samples=1 pitch=256 bytes=4096 tile=2 original_pitch=128 original_offset=64",
+        "SWEET DEPTH TILE PAGE original=65 work=68 format=252 samples=1 pitch=256 bytes=4096 tile=2 original_pitch=128 original_offset=64",
+        "SWEET DEPTH TILE PAGE original=66 work=69 format=253 samples=1 pitch=128 bytes=4096 tile=2 original_pitch=64 original_offset=64",
+        "SWEET DEPTH TILE PAGE original=74 work=78 format=252 samples=1 pitch=256 bytes=4096 tile=2 original_pitch=128 original_offset=64",
+        "SWEET DEPTH TILE PAGE original=22 work=66 format=252 samples=2 pitch=512 bytes=8192 tile=2 original_pitch=192 original_offset=64",
+        "SWEET DEPTH TILE PAGE original=61 work=74 format=253 samples=2 pitch=256 bytes=4096 tile=2 original_pitch=64 original_offset=64"
+      ],
+      "tiled_pairs": [
+        "SWEET DEPTH TILE PAIR depth=65 stencil=66 depth_work=68 stencil_work=69 samples=1 result=0 separate_z32s8=1",
+        "SWEET DEPTH TILE PAIR depth=22 stencil=61 depth_work=66 stencil_work=74 samples=2 result=0 separate_z32s8=1"
+      ],
+      "tiled_retires": [
+        "SWEET DEPTH TILE RETIRE original=62 work=65 result=0 references_retired=1",
+        "SWEET DEPTH TILE RETIRE original=65 work=68 result=0 references_retired=1",
+        "SWEET DEPTH TILE RETIRE original=66 work=69 result=0 references_retired=1",
+        "SWEET DEPTH TILE RETIRE original=74 work=78 result=0 references_retired=1",
+        "SWEET DEPTH TILE RETIRE original=22 work=66 result=0 references_retired=1",
+        "SWEET DEPTH TILE RETIRE original=61 work=74 result=0 references_retired=1"
+      ],
+      "actual_GPU_copy_records": 0,
+      "depth_import_and_clear_completed_before_refusal": true,
+      "exact_refusal": "Draw/clear returned -45 (Darwin ENOTSUP), sequence=0 operations=0, after tiled page creation/depth import+clear and before a completed FD5 2D copy. No tiled COPY record. Do not claim a submitted copy, byte-layout success, or allocator failure.",
+      "partial_prior_native_suite_success_not_full_proof": true,
+      "Metal": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27",
+      "Metal_source_map_sha256": "db1605ef8dae8f8ed0a29999dcb2cf7537457aba7ad428677c21e0e914771b78",
+      "observer_sha256": "48325a9f1784f403ecdcc7a0e406e209eb6bd2e546288affcf3b16ca926d8996"
+    }
+  ],
+  "failed_package_not_replayed": true,
+  "complete_native21_and_PNG_not_admitted": true,
+  "production_baseline_unchanged": true,
+  "kernel_allocator_scm_pon_rpc_vm_unchanged": true,
+  "native_geometry_not_tested": true,
+  "device_final": "BH905ND69G healthy fastboot; controller and serial worker exited",
+  "postround_mac_recycle_report": "reproducibility/depth-tiled-r2-macos-native-trash-20261121.json",
+  "postround_windows_recycle_report": "reproducibility/serial-capture-r1-windows-recycle-20261121.json",
+  "final_independent_health": {
+    "serial": "BH905ND69G",
+    "usb_vid": "0fce",
+    "usb_pid": "0dde",
+    "download_commands": 0,
+    "boot_commands": 0,
+    "reset_commands": 0,
+    "independent_health_only": true,
+    "previous_trial_result_unchanged": true,
+    "result": "PASS",
+    "continuous_health_seconds": 31.436999999918044,
+    "samples": [
+      {
+        "elapsed_seconds": 1.906999999890104,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 4.4689999998081475,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 7.1719999997876585,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 9.796999999787658,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 12.390999999828637,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 14.968999999808148,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 17.593999999808148,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 20.20299999997951,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 22.82799999997951,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 25.484999999869615,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 28.109999999869615,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 30.734999999869615,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 33.34399999980815,
+        "healthy": true
+      }
+    ]
+  },
+  "WSL_root_and_cisco_Trash_empty": {
+    "Ubuntu": true,
+    "Ubuntu-22.04": true
+  }
+}

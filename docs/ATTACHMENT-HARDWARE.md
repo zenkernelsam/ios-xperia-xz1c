@@ -50,3 +50,20 @@ python -B tools/device/attachment_snapshot_evidence.py "$env:TEMP\本轮目录" 
 新reference observer4d1f7e9c／blob33af7c5b配该GLES，CPU b2f3fc4f原controller PASS，38.594秒完整0x06回程／健康30秒／worker退出；独立ramcpu-prefix核验发现READY重放第3232B不同，退出1，没有准入，不打包或发送GPU。原stream该处进入Darwin banner，replay进入GLRAM mount，原raw与结果不可改写。下一次先查日志交错／retained-log来源，失败包不复发。见[阶段](../reproducibility/depth-tiled-r1-stage-20261121.json)与[拒绝](../reproducibility/depth-tiled-r1-reference-cpu-refused-20261121.json)。
 
 用户要求这一轮后先清理Mac／整合文档，现已结束实机并整理；显示原生720×1280／360×640profile离线完成，当前device geometry保持，后续独立试验见[DISPLAY-GEOMETRY](DISPLAY-GEOMETRY.md)。
+
+## r2单流及附件回程 — 2026-11-21
+
+主机打开串口DTR提前开启、随后replay会交错尚未完成的IN及重新归零的retained cursor。新capture revision1先DTR低电平打开COM17、以xb新建raw、一次loop token／status后连续读取；原b2f3fc4f字节拒绝保持。独立d0c3a52c CPU一份READY／banner／LIVE和库读取、无replay、38.844秒完整回程，见[原CPU报告](../reproducibility/serial-capture-r1-reference-cpu-20261121.json)。
+
+FDL5 r2新增原/work IOVA、真实sample／cpp、Load／Store copy fence、Z32/S8配对及引用释放记录。仅清一个aspect时同步并记录另一个未改变原页，原byte／guard验证保持。新GLES `0c71a9f6bb36c877acb1cf282a429b74ca68c0dcd88d717eeed67288dd57b158`／14784032B；Metal8feea459及source-mapdb1605ef保持，observer48325a9f。
+
+| r2独立阶段 | token | 结果 | 回程含健康 |
+| --- | --- | --- | --- |
+| 自身CPU | `3c1d50d57f570af9` | PASS | 38.407秒 |
+| 完整GLES9 | `c2ee83f72bd0c04d` | PASS，CA max_diff0 | 38.188秒 |
+| reference CPU | `3fd7fdb36cfc8a1e` | PASS | 38.500秒 |
+| 完整native21 | `770f8d4a8ae8676d` | REVISE／DEPTH32_PROBE_FAILED | 40.000秒 |
+
+原raw695308B／SHA8fab5b22中创建6个工作页、两条Z/S配对、6条释放；depth原页导入和shader清屏成功，随后复制入口-45（Darwin ENOTSUP），sequence0／operations0／COPY0。D32／S8／Memoryless／MSAA完成phase均0，final_allocated0。没有已完成的FD5 copy，不能声称新字节布局已验，也不能由图像错误推allocator故障。下一步区分context／generation检查与fd5_blitter准入拒绝；当前Mesa编译defines／归档SHA和实际headers已核对，未直接改冻结组件。前序native16本靴输出成功只是局部记录；presentation／PNG没有完整执行，不能生成21组proof。
+
+GLES9的150秒单帧为灰字黑壁纸锁屏／绿色电池／白homebar，PNG90c83f11；reference提前失败帧为logo，PNGba36346e，单帧来源和原REVISE独立保留。完整原报告、精确输入和光学边界见[本轮阶段](../reproducibility/depth-tiled-r2-stage-20261121.json)。完成回程后本轮重复RAM和host产物已原生回收，手机健康fastboot、无worker，失败包不复发。

@@ -8,7 +8,7 @@
 
 已验生产基线v730/f258dee9（20665112B、83实际源）、GLESd6d8fcfa（14765296B）、Metal5e94ab57／source-map7b5a083a、固定Mesa24.3.4/769e5146/FD540；自身CPU／GLES9、referenceCPU／native16／PNG6完整通过。灰色锁屏时间日期与单串口上滑后正常多彩主页有720×1280原扫描帧，壁纸、动态UI／FPS、睡眠、光学／背光、声音和无线仍active。
 
-原附件GLES21de6821自身CPU／GLES9实机通过；reference Metal8feea459／source-mapdb1605ef完整native21在D32／S8／Memoryless／MSAA首phase字节失败，GPU011e16b3／62fb2e55均REVISE，原presentation／PNG未执行。独立诊断保留12页原作者byte／hash／handle／fence，颜色和guard正确，depth／stencil非线性写入。新DepthTiledPlane.h仅用户态FDL5工作页及GPU raw-copy；GLES c617f2ee自身CPU122537a0／GLES9 16c49c82通过，reference CPU b2f3fc4f原controller PASS却被独立启动前缀字节核验拒绝，完整回程38.594秒；未发该GPU。不要生成native21 proof、提升基线或重发旧包。见STATUS、ATTACHMENT-HARDWARE及depth-tiled-r1-stage-20261121.json。
+原附件GLES21de6821和tiled r1 GLESc617f2ee自身CPU／GLES9通过；原reference GPU011e16b3／62fb2e55的D32／S8非线性字节失败及12原页面证据保持。b2f3fc4f CPU原启动前缀拒绝38.594秒回程保持。主机capture revision1先DTR低电平打开、xb建raw、一次loop／status连续读，无replay，d0c3a52c独立CPU38.844秒通过。最新tiled r2 GLES0c71a9f6（14784032B）自身CPU3c1d50d5／GLES9 c2ee83f7／reference CPU3fd7fdb3通过；native21 770f8d4a REVISE，40.000秒完整0x06回程。6工作页／2配对／6释放，depth导入／清屏成功，后续复制-45（Darwin ENOTSUP）、sequence0、COPY0。Metal8feea459／source-mapdb1605ef保持，observer48325a9f。原前序16局部成功不是完整proof，presentation／PNG未执行。手机健康fastboot／worker退出；下一步离线查copy入口context／generation与fd5_blitter拒绝，不改冻结底层、不生成native21 proof、不重发旧包。见STATUS、ATTACHMENT-HARDWARE及depth-tiled-r2-stage-20261121.json。
 
 原壁纸r3／3541e07940请求完整，共享queue／scene有效，但display／sync／tick／nextDrawable／pipeline0，灰字／黑壁纸，STOP保持。原Vista init本来paused=YES；模式／环境33方法observer只离线完成，不能强制取消paused或draw。r4 USB-open／r5 guard失败不复发。
 
@@ -44,6 +44,6 @@ gpu／xnu／tools／reproducibility进入正式Git；deps固定上游，build产
 
 禁止永久删除。Windows原生Recycle Bin；WSL废弃文件转Windows回收站；Mac NSWorkspace／Finder Trash；不清空Windows／Mac回收站。Ubuntu垃圾桶非空先转Windows回收站再恢复空目录。回收不等于释放磁盘。路径先确认在明确范围内，重复／父子回收路径整批拒绝。
 
-本周Mac1713项／34883文件／11,852,238,934B已原生Trash，build约14GiB→3.6GiB，系统仍约94%／62GiB可用；4条Finder .DS_Store哈希变化另记，用户内容复核。gl4／gl5／IPSW／基线／原failed包blob／固定deps／dxb保存。后续避免堆重复HFS容器、符号表、测试可执行文件和传输tar。
+本周主体Mac1713项／34883文件／11,852,238,934B及本轮15项／33文件／134,708,787B均原生Trash，合计1728项／34916文件／11.16GiB；当前build3.7GiB、系统94%／59GiB可用，垃圾桶未清空。4条历史Finder .DS_Store哈希变化另记，用户内容复核。Windows本轮传输／mock另3项／37文件／174,001,078B进回收站。gl4／gl5／IPSW／基线／原failed包blob和raw／固定deps／dxb保存。后续避免堆重复HFS容器、符号表、测试可执行文件和传输tar。
 
 文档只在STATUS汇总当前状态、BUILD放现行复现、OPERATIONS放规则、LAYOUT放恢复、INDEX串专题。旧里程碑／handover／handout原文和SHA先archive，专题技术证据保留，不把旧“当前in-flight”恢复。每轮更新一份原结果摘要和关键topic；不要在每个入口复制大段工作日志。原AGENTS／README等47份本周原文见docs/archive/20261121/weekly-integration/original-document-manifest.json。

@@ -4,7 +4,7 @@ Sony Xperia XZ1 Compact（Snapdragon835／Adreno540）的开源XNU、Mesa／GLES
 
 已验v730／CA矩阵基线可显示灰色锁屏时间日期，以及上滑后的正常颜色主页。CPU、launchd、F12触控、音量键、完整GLES9、native Metal16与六组PNG已验；壁纸仍黑，动态UI／FPS、睡眠、LCD光学、声音和无线未完成。
 
-最新tiled深度／模板候选已编译，自身CPU／GLES9通过。前一附件库的D32／S8／Memoryless／MSAA原页面字节失败；tiled reference CPU虽然完整回程，独立启动日志核验拒绝，完整native21未准入。当前手机健康fastboot、无worker；完整进度及精确SHA见[STATUS](docs/STATUS.md)。
+最新tiled r2深度／模板候选自身CPU／GLES9／reference CPU通过，串口单流捕获已实机恢复。完整native21仍在GPU布局复制路径返回-45，未准入附件／呈现／PNG；原页面字节失败和日志拒绝均保留。本周Mac整理及47份文档整合已完成。手机健康fastboot、无worker，精确SHA与后续入口见[STATUS](docs/STATUS.md)。
 
 | 入口 | 内容 |
 | --- | --- |

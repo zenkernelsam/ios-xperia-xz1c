@@ -1,0 +1,231 @@
+{
+  "date": "2026-11-21",
+  "items": 3,
+  "files": 37,
+  "logical_bytes": 174001078,
+  "records": [
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-depth-tiled-r2-stage-20261121",
+      "reason": "Completed one-time transfer/mock fixture staging; canonical sources, exact packages and original evidence retained",
+      "files": [
+        {
+          "relative": "gles-ram\\georead.dylib",
+          "bytes": 70944,
+          "sha256": "e65bdc7b70d098725918c637cc8cb1c25a8a544186d0f4468b399fda52024898"
+        },
+        {
+          "relative": "gles-ram\\glram.dmg",
+          "bytes": 33554432,
+          "sha256": "962c8c125686f3d366e88ee69ae7fba39c43400bdb7281716dec0c0a57f71d54"
+        },
+        {
+          "relative": "gles-ram\\glram.raw",
+          "bytes": 33554432,
+          "sha256": "962c8c125686f3d366e88ee69ae7fba39c43400bdb7281716dec0c0a57f71d54"
+        },
+        {
+          "relative": "gles-ram\\glram.zblob",
+          "bytes": 3905985,
+          "sha256": "edb7b7cc977f64ccf4b87ed701137dcf6b13c1d27de650d7e45b03678eb3e317"
+        },
+        {
+          "relative": "gles-ram\\libglapi.0.dylib",
+          "bytes": 344544,
+          "sha256": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3"
+        },
+        {
+          "relative": "gles-ram\\manifest.json",
+          "bytes": 21925,
+          "sha256": "306d2dd93142359100b7fd09cfe7b0630bed2ae1ae09df78ecfd8377df9dd20c"
+        },
+        {
+          "relative": "gles-ram\\sweetgl.dylib",
+          "bytes": 14784032,
+          "sha256": "0c71a9f6bb36c877acb1cf282a429b74ca68c0dcd88d717eeed67288dd57b158"
+        },
+        {
+          "relative": "reference-ram\\exception_observe.dylib",
+          "bytes": 256704,
+          "sha256": "48325a9f1784f403ecdcc7a0e406e209eb6bd2e546288affcf3b16ca926d8996"
+        },
+        {
+          "relative": "reference-ram\\georead.dylib",
+          "bytes": 70944,
+          "sha256": "e65bdc7b70d098725918c637cc8cb1c25a8a544186d0f4468b399fda52024898"
+        },
+        {
+          "relative": "reference-ram\\glram.dmg",
+          "bytes": 33554432,
+          "sha256": "860d28e70abe8990bdbf0568d519853922a2395ac39374a983194044a74c30b6"
+        },
+        {
+          "relative": "reference-ram\\glram.raw",
+          "bytes": 33554432,
+          "sha256": "860d28e70abe8990bdbf0568d519853922a2395ac39374a983194044a74c30b6"
+        },
+        {
+          "relative": "reference-ram\\glram.zblob",
+          "bytes": 4306733,
+          "sha256": "f948e429645ee241140934e2cc810eb58a7fa87ba44174552978515abc35f4c5"
+        },
+        {
+          "relative": "reference-ram\\libglapi.0.dylib",
+          "bytes": 344544,
+          "sha256": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3"
+        },
+        {
+          "relative": "reference-ram\\manifest.json",
+          "bytes": 79834,
+          "sha256": "25dd0f6c0f662ca6b06c08c064c8e53eb64eec8d8433d99ac520cb9671704ef1"
+        },
+        {
+          "relative": "reference-ram\\MetalResources.dylib",
+          "bytes": 810304,
+          "sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27"
+        },
+        {
+          "relative": "reference-ram\\sweetgl.dylib",
+          "bytes": 14784032,
+          "sha256": "0c71a9f6bb36c877acb1cf282a429b74ca68c0dcd88d717eeed67288dd57b158"
+        }
+      ],
+      "logical_bytes": 173998253,
+      "verified_native_recycle": true,
+      "time": "2026-11-21T08:53:53.0564482+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R0JKTUP",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-depth-tiled-r2-stage-20261121",
+      "all_content_hashes_verified": true
+    },
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-serial-capture-r1-host-20261121",
+      "reason": "Completed one-time transfer/mock fixture staging; canonical sources, exact packages and original evidence retained",
+      "files": [
+        {
+          "relative": "lilac-serial-worker-test-556sla4n\\test_changed_source_refused_before_enumeration\\serial-events.jsonl",
+          "bytes": 91,
+          "sha256": "a70f25ba281ed1de23d96e1a8e3cacb213722f4aa5483e506c00db634d56b78c"
+        },
+        {
+          "relative": "lilac-serial-worker-test-556sla4n\\test_existing_raw_is_not_truncated_and_port_closes\\serial-events.jsonl",
+          "bytes": 21,
+          "sha256": "7f66e6aeab7e6d389ad346409aca799114c14eeae8d281c1314f45cfca6848e6"
+        },
+        {
+          "relative": "lilac-serial-worker-test-556sla4n\\test_existing_raw_is_not_truncated_and_port_closes\\serial.raw.log",
+          "bytes": 17,
+          "sha256": "a3b9c446caf4f632cec3d39abd6197aba2a61e9b5ee6bfb1be6d8b63019fd7fd"
+        },
+        {
+          "relative": "lilac-serial-worker-test-556sla4n\\test_one_stream_preserves_prefix_and_returns_once\\serial-commands.jsonl",
+          "bytes": 42,
+          "sha256": "9decf84d02df55865511b262cc57edb1e17a382778e39b228378288efee1823d"
+        },
+        {
+          "relative": "lilac-serial-worker-test-556sla4n\\test_one_stream_preserves_prefix_and_returns_once\\serial-events.jsonl",
+          "bytes": 804,
+          "sha256": "7e43cee20d376d133e2971fbbd43790e1d026a7ef23ad0f4946c9987f9a5ab90"
+        },
+        {
+          "relative": "lilac-serial-worker-test-556sla4n\\test_one_stream_preserves_prefix_and_returns_once\\serial.raw.log",
+          "bytes": 291,
+          "sha256": "bac1ac876406a70604a77557a561bce038288615065c48256d1773b1d4bd7096"
+        },
+        {
+          "relative": "lilac-serial-worker-test-556sla4n\\test_queued_replay_or_second_loop_is_refused\\loop\\serial-commands.jsonl",
+          "bytes": 38,
+          "sha256": "0fe4d60ec9ddacaec36c8439941b6714d772c7ce3a526d2ad1ee48733399a87f"
+        },
+        {
+          "relative": "lilac-serial-worker-test-556sla4n\\test_queued_replay_or_second_loop_is_refused\\loop\\serial.raw.log",
+          "bytes": 37,
+          "sha256": "e3767e53f3d7ff6528aceab6122a1c8bc278c06896dad1320cb80ce3cff73baa"
+        },
+        {
+          "relative": "lilac-serial-worker-test-556sla4n\\test_queued_replay_or_second_loop_is_refused\\replay\\serial-commands.jsonl",
+          "bytes": 23,
+          "sha256": "839dcb216525a105eb027d9ec70723e3f2e7d3346d532c05b1aebe52dba70588"
+        },
+        {
+          "relative": "lilac-serial-worker-test-556sla4n\\test_queued_replay_or_second_loop_is_refused\\replay\\serial.raw.log",
+          "bytes": 37,
+          "sha256": "e3767e53f3d7ff6528aceab6122a1c8bc278c06896dad1320cb80ce3cff73baa"
+        },
+        {
+          "relative": "lilac-serial-worker-test-kkea9qir\\test_changed_source_refused_before_enumeration\\serial-events.jsonl",
+          "bytes": 91,
+          "sha256": "080555e2e9229c513aa4d5a3f853340b457eefe3ff3e9c1cc6b4e987834c72a0"
+        },
+        {
+          "relative": "lilac-serial-worker-test-kkea9qir\\test_existing_raw_is_not_truncated_and_port_closes\\serial-events.jsonl",
+          "bytes": 21,
+          "sha256": "7f66e6aeab7e6d389ad346409aca799114c14eeae8d281c1314f45cfca6848e6"
+        },
+        {
+          "relative": "lilac-serial-worker-test-kkea9qir\\test_existing_raw_is_not_truncated_and_port_closes\\serial.raw.log",
+          "bytes": 17,
+          "sha256": "a3b9c446caf4f632cec3d39abd6197aba2a61e9b5ee6bfb1be6d8b63019fd7fd"
+        },
+        {
+          "relative": "lilac-serial-worker-test-kkea9qir\\test_one_stream_preserves_prefix_and_returns_once\\serial-commands.jsonl",
+          "bytes": 42,
+          "sha256": "9decf84d02df55865511b262cc57edb1e17a382778e39b228378288efee1823d"
+        },
+        {
+          "relative": "lilac-serial-worker-test-kkea9qir\\test_one_stream_preserves_prefix_and_returns_once\\serial-events.jsonl",
+          "bytes": 804,
+          "sha256": "7e43cee20d376d133e2971fbbd43790e1d026a7ef23ad0f4946c9987f9a5ab90"
+        },
+        {
+          "relative": "lilac-serial-worker-test-kkea9qir\\test_one_stream_preserves_prefix_and_returns_once\\serial.raw.log",
+          "bytes": 291,
+          "sha256": "bac1ac876406a70604a77557a561bce038288615065c48256d1773b1d4bd7096"
+        },
+        {
+          "relative": "lilac-serial-worker-test-kkea9qir\\test_queued_replay_or_second_loop_is_refused\\loop\\serial-commands.jsonl",
+          "bytes": 38,
+          "sha256": "0fe4d60ec9ddacaec36c8439941b6714d772c7ce3a526d2ad1ee48733399a87f"
+        },
+        {
+          "relative": "lilac-serial-worker-test-kkea9qir\\test_queued_replay_or_second_loop_is_refused\\loop\\serial.raw.log",
+          "bytes": 37,
+          "sha256": "e3767e53f3d7ff6528aceab6122a1c8bc278c06896dad1320cb80ce3cff73baa"
+        },
+        {
+          "relative": "lilac-serial-worker-test-kkea9qir\\test_queued_replay_or_second_loop_is_refused\\replay\\serial-commands.jsonl",
+          "bytes": 23,
+          "sha256": "839dcb216525a105eb027d9ec70723e3f2e7d3346d532c05b1aebe52dba70588"
+        },
+        {
+          "relative": "lilac-serial-worker-test-kkea9qir\\test_queued_replay_or_second_loop_is_refused\\replay\\serial.raw.log",
+          "bytes": 37,
+          "sha256": "e3767e53f3d7ff6528aceab6122a1c8bc278c06896dad1320cb80ce3cff73baa"
+        }
+      ],
+      "logical_bytes": 2802,
+      "verified_native_recycle": true,
+      "time": "2026-11-21T08:53:55.7182664+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RLZDUU3",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-serial-capture-r1-host-20261121",
+      "all_content_hashes_verified": true
+    },
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-thread-sample-fixture-wdgjjlme",
+      "reason": "Completed one-time transfer/mock fixture staging; canonical sources, exact packages and original evidence retained",
+      "files": [
+        {
+          "relative": "serial-commands.jsonl",
+          "bytes": 23,
+          "sha256": "caba22db8eb636c6a88786e25dd8d211011e1a013c0762e0be62d9677f8dafcb"
+        }
+      ],
+      "logical_bytes": 23,
+      "verified_native_recycle": true,
+      "time": "2026-11-21T08:53:57.0972804+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R5Y2V4C",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-thread-sample-fixture-wdgjjlme",
+      "all_content_hashes_verified": true
+    }
+  ],
+  "trash_not_emptied": true,
+  "protected_evidence_and_inputs_not_moved": true
+}

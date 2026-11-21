@@ -1,6 +1,6 @@
 # 当前状态 — 2026-11-21
 
-Sony BH905ND69G 健康停在 fastboot；controller和串口worker已退出，无in-flight。本周清理和文档整合已完成。新主机捕获revision1的tiled reference CPU `d0c3a52cd3eb2841` 实机完整通过，一份READY／banner／LIVE及RAM读取、无replay；0x06四marker和健康30秒共38.844秒。旧 `b2f3fc4f69000ff2` 38.594秒回程后的独立启动前缀字节拒绝保持，不重发旧包。完整tiled native21／PNG仍未准入，先核对工作页／GPU copy和MSAA importer证据，见[新CPU原报告](../reproducibility/serial-capture-r1-reference-cpu-20261121.json)。
+Sony BH905ND69G 健康停在fastboot；controller和串口worker已退出，无in-flight。本周整理及本轮补充回收已完成。主机capture revision1实机恢复单份启动流，tiled r2新GLES0c71a9f6自身CPU／完整GLES9／reference CPU通过。最后native21 `770f8d4a8ae8676d` 为REVISE／DEPTH32_PROBE_FAILED，40.000秒完整0x06回程含健康30秒，失败包不复发。深度导入／清屏已完成，后续复制路径返回Darwin ENOTSUP=-45、sequence0、没有完成的COPY记录；完整附件／呈现／PNG未准入。生产CA基线保持，见[本轮四靴报告](../reproducibility/depth-tiled-r2-stage-20261121.json)。
 
 ## 已验基线和候选
 
@@ -13,9 +13,10 @@ Sony BH905ND69G 健康停在 fastboot；controller和串口worker已退出，无
 | 固定Mesa／GPU | 24.3.4／`769e51468b49b2a42f0a0eaf71cf9eed5ff4e5de`／FD540 GLES3.1 | 无Vulkan移植 |
 | 原附件候选GLES | `21de6821910c452f1bda70720f3573b81ac76483a10f1959ef95e7b0bc9447b4` | 11月20日自身CPU／GLES9通过 |
 | tiled附件候选GLES | `c617f2eec2c60dd1b925797f0295815e65e2d705b62817ca1d6053b2743de9aa` | 11月21日自身CPU／GLES9通过，附件未准入 |
+| tiled r2候选GLES | `0c71a9f6bb36c877acb1cf282a429b74ca68c0dcd88d717eeed67288dd57b158`，14784032B | 自身CPU／GLES9／reference CPU通过；完整native21复制路径-45拒绝 |
 | presentation候选Metal／source-map | `8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27`／`db1605ef8dae8f8ed0a29999dcb2cf7537457aba7ad428677c21e0e914771b78` | 完整native21未通过，生产基线保持 |
 
-新二进制的准入与源码可构建分别记录。旧native16／旧GLES成功不能准入附件候选；当前源中的Depth32、Stencil8、Memoryless、2×／4×MSAA和presentation需完整native21／PNG6。本轮证据见[附件真机报告](ATTACHMENT-HARDWARE.md)、[六靴原报告](../reproducibility/attachment-hardware-r1-20261120.json)、[tiled阶段](../reproducibility/depth-tiled-r1-stage-20261121.json)和[CPU软件拒绝](../reproducibility/depth-tiled-r1-reference-cpu-refused-20261121.json)。
+新二进制的准入与源码可构建分别记录。旧native16／旧GLES成功不能准入附件候选；Depth32、Stencil8、Memoryless、2×／4×MSAA和presentation需完整native21／PNG6。当前证据见[附件专题](ATTACHMENT-HARDWARE.md)及[本轮四靴报告](../reproducibility/depth-tiled-r2-stage-20261121.json)；原六靴、tiled r1及b2f3fc4f CPU拒绝作为历史原样保持。
 
 ## 实际里程碑
 
@@ -23,11 +24,11 @@ CPU／launchd、F12真实触控与音量键已验。GLES完整750×1624三角形
 
 CA基线native16包括资源、queue、AIR compute／render／constants、XR、IOSurface、mipmap、窄整数、half、MRT、sampler、program-cache、static-half、Clear-cache、IR3-cache；原字节／guard／fence／回收均完整。原token `4946e854d77fe213`／`46747c46785bf85c` 分别39.390／38.375秒完整回程，见[CA-MATRIX](CA-MATRIX.md)与[run-index](../reproducibility/v730-ca-matrix-r1-run-index.json)。
 
-串口已能取真实720×1280／BGR888／stride2160无损PNG。11月19日两张锁屏恢复灰色时间、日期，原 `881ce1c5d844e7ba` 单串口上滑后读到正常颜色主页、文字、小组件及Dock。11月20日 `929a353138003730` 150.047秒再次读到灰字锁屏、绿色电池和白homebar，背景仍黑。日期／捕获token分别保留；合成上滑不等于真人触控，扫描帧不等于LCD光学／背光或FPS。
+串口已能取真实720×1280／BGR888／stride2160无损PNG。11月19日两张锁屏恢复灰色时间、日期，原 `881ce1c5d844e7ba` 单串口上滑后读到正常颜色主页、文字、小组件及Dock。11月21日GLES9 `c2ee83f72bd0c04d` 150秒单帧再次为灰字锁屏／绿色电池／白homebar，背景黑，PNG90c83f11；同轮reference失败后提前frame为logo，PNGba36346e，不冒充150秒UI样本。合成上滑不等于真人触控，扫描帧不等于LCD光学／背光或FPS。
 
 ## 当前卡点
 
-1. **深度／模板布局。** 原附件候选reference GPU `011e16b3caf5b1a6` 与独立页面诊断 `62fb2e559abcbe3d` 均REVISE。颜色原sample与guard正确，D32／S8在非线性位置写入且部分逻辑guard改变；12个原作者页完整取回。固定Freedreno已说明A5xx sysmem深度不能采用线性布局。正式源码新增独立FDL5 tiled工作页及GPU raw-copy，原线性页／offset／stride保持。ARM64构建与其自身GLES通过，但reference CPU的软件日志门槛未通过，完整附件和resolve仍未验，详见[ATTACHMENT-HARDWARE](ATTACHMENT-HARDWARE.md)。
+1. **深度／模板GPU布局交接。** 原011e16b3／62fb2e55的非线性页面写入和12页证据保持。FDL5工作页r2新增原／work IOVA、真实sample／cpp、Load／Store copy fence、配对和释放核验；单清一方面时也同步并记录未改变的另一原页面。新reference CPU通过；native21 `770f8d4a` 创建了6个工作页、两条配对及6条释放，depth导入／清屏成功，后续复制返回-45、sequence0，COPY0。前序native16输出成功只是局部结果，presentation／PNG未执行，不生成native21 proof。下一步离线区分复制入口的context／generation与fd5_blitter准入条件，不能从拒绝推allocator故障或GPU复制已提交。见[ATTACHMENT-HARDWARE](ATTACHMENT-HARDWARE.md)。
 2. **原壁纸请求路由。** 最后实际原场景r3 `3541e07973fe676f` 有40条完整请求，共享设备／queue、NUNIQuad／NUNIScene有效，原paused=YES；display／sync／tick／nextDrawable／pipeline均未出现。原Vista初始化本来暂停，后续模式和环境触发待观察，不能强制解除或画一张替代原请求。33方法模式observer源码已完成，尚无成功实机模式记录，见[METAL-REQUEST-OBSERVATION](METAL-REQUEST-OBSERVATION.md)。
 3. **启动日志一致性已独立恢复。** 旧reference CPU READY重放在第3232B首次不同，原CPU拒绝保持。实际v730 USB源显示旧主机DTR提前开启和replay重置游标会交错尚未完成的IN；两段最初3232B完全一致，不是完整启动块一致的证明。新closed-DTR单流捕获及artifact／worker源码SHA绑定有7项模拟故障、10项原字节前缀、6项回程检查，独立CPU `d0c3a52c` 已取得实机准入；worker SHA b37f33c1、raw c638c960、一份READY／banner／LIVE及RAM读取，无replay，38.844秒完整回程。未重发旧包或放宽旧核验，见[捕获研究](../reproducibility/serial-capture-r1-research-20261121.json)。
 4. **原生显示比例。** 当前系统375×812点／750×1624像素／scale2，最后映射到720×1280，横纵比例不同。用户要求改720×1280、360×640点／scale2的原生16:9布局。ADT离线profile已补，真实UIScreen／MobileGestalt、状态栏／safe area、触控和原界面须同靴核验；未投递新geometry，见[DISPLAY-GEOMETRY](DISPLAY-GEOMETRY.md)。
@@ -37,6 +38,6 @@ CA基线native16包括资源、queue、AIR compute／render／constants、XR、I
 
 ## 整理与后续
 
-本周Mac1713项／34883文件、11,852,238,934逻辑字节已进原生垃圾桶并复核内容，build目录约14GiB降到3.6GiB；垃圾桶未清空，因此系统仍约94%使用／62GiB可用。当前blob／signed库、基线、gl4／gl5／IPSW、实际dxb源码和依赖保持。四条Finder元数据SHA变化单列，用户内容SHA通过。文档原文与SHA先归档，现行入口与回收报告见[LAYOUT](LAYOUT.md)、[ORGANIZATION](ORGANIZATION.md)和[文档索引](INDEX.md)。
+本周主体Mac1713项／34883文件／11.04GiB已原生垃圾桶，文档47份原文／SHA归档后整合。本轮新增重复RAM、已结束host和dSYM等另15项／33文件／134708787B进Mac垃圾桶；Windows一次性staging另3项／37文件／174001078B进回收站，内容SHA复核。垃圾桶未清空，最新Mac仍94%／59GiB可用，build约3.7GiB；同盘其它项目增长未改。当前blob／signed库、原失败日志、基线、gl4／gl5／IPSW、dxb和固定deps保持。现行入口和实际清单见[LAYOUT](LAYOUT.md)、[ORGANIZATION](ORGANIZATION.md)、[INDEX](INDEX.md)。
 
-整理结束后先解决reference CPU日志门槛，完成tiled附件native21／PNG6，再恢复原模式／壁纸观察；显示比例采用独立geometry试验。只BH905ND69G、COM≥10／VID1209-PID0001、单controller／worker、单download／boot、PON0x06、四marker／健康30秒／worker退出；内核GPU底层／allocator／SCM／PON／RPC／VM冻结。
+本轮收尾后先分析已明确的复制-45拒绝，完整tiled native21／PNG6通过后再恢复原模式／壁纸观察；原生比例用独立geometry试验。只BH905ND69G、COM≥10／VID1209-PID0001、单controller／worker、单download／boot、PON0x06、四marker／健康30秒／worker退出；内核GPU底层／allocator／SCM／PON／RPC／VM冻结。

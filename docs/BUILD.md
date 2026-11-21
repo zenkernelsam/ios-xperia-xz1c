@@ -54,7 +54,7 @@ python3 -B tools/build/package_glram.py --frontend build/my-gles/frontend --outp
 
 工具验证所有当前前端源和固定Mesa依赖，manifest保存实际source／archive／build-ID。已有Mesa归档不因用户态调整重编。32MiB HFS RAM包保持只读、m／g硬链接、签名／SHA／FNV；GLES包须先自身CPU再完整GLES9。CA矩阵安装必须准确20H392 UUID、两原空槽、原表达式与代码锚点全匹配，见[CA-MATRIX](CA-MATRIX.md)。
 
-最新用户态候选包含[Depth32／Stencil8](METAL-DEPTH-STENCIL.md)、[Memoryless](METAL-MEMORYLESS.md)、[MSAA](METAL-MULTISAMPLE.md)、[presentation](METAL-PRESENTATION.md)与[FDL5 tiled附件](ATTACHMENT-HARDWARE.md)。当前tiled GLES c617f2ee自身CPU／GLES9通过；reference CPU被独立日志核验拒绝，native21未投递。它不是生产基线替换，不能继续旧失败包。
+最新用户态候选包含[Depth32／Stencil8](METAL-DEPTH-STENCIL.md)、[Memoryless](METAL-MEMORYLESS.md)、[MSAA](METAL-MULTISAMPLE.md)、[presentation](METAL-PRESENTATION.md)与[FDL5 tiled附件](ATTACHMENT-HARDWARE.md)。r2 GLES0c71a9f6自身CPU／GLES9／reference CPU通过，完整native21在GPU布局复制-45拒绝。源码锁和实际frontend manifest绑定tiled revision2，要求work IOVA、原stride／offset／真实sample／cpp、配对、GPU copy fence及引用释放。原byte／guard检查保持；未替换生产基线，不复发旧失败包。
 
 ## AIR、Metal和完整作者probe
 
@@ -100,7 +100,7 @@ python -B -m unittest discover -s tools/build -p test_render_adt.py
 python -B -m unittest discover -s tools/device -p test_attachment_snapshot_evidence.py
 ```
 
-手机实际入口是package_trial.py／run_trial.py；缺精确private／owner／ready／RAMCPU／GLES／native／PNG先验即拒绝，完整步骤见[OPERATIONS](OPERATIONS.md)。run_trial默认offline，--live才单发。原controller PASS与独立原字节后处理同时通过才准入，tiled reference CPU日志不一致例外原样保存。
+手机实际入口是package_trial.py／run_trial.py；缺精确private／owner／ready／RAMCPU／GLES／native／PNG先验即拒绝，步骤见[OPERATIONS](OPERATIONS.md)。新包还绑定serial capture revision1／worker SHA，DTR低电平打开后建raw、一次单流读取，无replay；原失败核验保持。run_trial默认offline，--live才单发，controller及原字节后处理均通过才准入。
 
 ## 产物和历史手册
 
