@@ -4,7 +4,7 @@
 
 | 当前专题 | 内容 |
 | --- | --- |
-| [附件验收](ATTACHMENT-HARDWARE.md) | D32／S8／Memoryless／MSAA真机字节失败、12页取证、tiled候选 |
+| [附件验收](ATTACHMENT-HARDWARE.md) | D32／S8／Memoryless／MSAA原byte、模板Clear、作者page与tiled候选 |
 | [显示比例](DISPLAY-GEOMETRY.md) | 750×1624到720×1280、360×640点、ADT／MG／UIScreen核验 |
 | [原壁纸请求](METAL-REQUEST-OBSERVATION.md) | queue／scene有效、paused与mode／environment待观察 |
 | [串口截图](SCANOUT-SCREENSHOT.md) | 无损720×1280、CRC／FNV／保存像素、光学边界 |
@@ -24,3 +24,5 @@
 reproducibility保存原结果摘要、源码锁、精确proof和回收记录；原日志／镜像／作者失败page／光学媒体保持本地。任何host、局部byte、offscreen、seed或回程成功都不扩大为整机完成。
 
 过时handover／handout／工作日志和本周47份入口原文均归入[archive](archive/20261121/weekly-integration/original-document-manifest.json)，原字节与SHA保持。阶段专题保留复现信息，旧编号实验不再是当前执行入口。文档链接以正式仓库相对路径为准。
+
+本轮[四靴原结果](../reproducibility/stencil-sample-r7-stage-20261121.json)、[主机语义](../reproducibility/stencil-sample-r7-host-20261121.json)、[追加回收](ORGANIZATION.md#r6r7追加与当前汇总)及[10份修改前原文／SHA](archive/20261121/stencil-r7-integration/original-document-manifest.json)保持各自边界。

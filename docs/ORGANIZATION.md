@@ -35,3 +35,15 @@ gl4、gl5、IPSW、本机固件／SD／TA／XFL／校准／救砖及备份保持
 本轮Mac另15项／33文件／134708787B通过NSWorkspace进原生垃圾桶，包括两组可由保留blob精确重建的raw／dmg、已完成host程序／dSYM及未编译成功的旧CRLF-fixture观察器目录。所有用户内容SHA复核，当前signed库、blob／manifest、内核及SweetGPU指纹保持。实际记录见[Mac追加回收](../reproducibility/depth-tiled-r2-macos-native-trash-20261121.json)。主体和追加合计1728项／34916文件／11986947721B（11.16GiB），垃圾桶未清空；最新Mac94%使用／59GiB可用、build3.7GiB，其它项目未清理。
 
 Windows本轮传输及mock fixture3项／37文件／174001078B另进原生回收站，目标内容SHA通过，见[Windows追加回收](../reproducibility/serial-capture-r1-windows-recycle-20261121.json)。实际设备raw／失败、作者页面和少量必要扫描图受保护，临时传输已回收。现行文档已更新到r2真实边界；47份本周原始归档manifest保持逐字节一致。
+
+## r6／r7追加与当前汇总
+
+本轮四靴完整结束后，Mac又有21项／29文件／285078590B经NSWorkspace进原生Trash：r6／r7八份可由保留blob逐字节恢复的HFS raw／dmg、已完成observer host程序／dSYM、两个在编译前停止的空目录和一次性传输tar。目标内容SHA全部复核；当前signed库、blob／manifest、v730与SweetGPU指纹保持。见[本轮Mac原生记录](../reproducibility/stencil-r7-macos-native-trash-20261121.json)。
+
+前一批r3／r4重复容器及仅离线r5目录另9项／147文件／460725414B已经原生回收，记录现已提交，见[过程Mac回收](../reproducibility/round-progress-macos-native-trash-20261121.json)。主体1713项、旧追加15项、过程9项和本轮21项合计1758项／35092文件／12732751725B（约11.86GiB），保持原事件分别记录。
+
+Windows本轮两个完成传输目录、8个WSL在Windows挂载盘生成的ELF及4份重复CLI输出，共14项／38文件／96769680B进原生Recycle Bin，所有目标SHA复核。原四靴raw／commands／result／source audit／return proof和五个作者失败page保留，见[Windows本轮记录](../reproducibility/stencil-r7-windows-native-recycle-20261121.json)。此前3个stage传输目录98.71MB回收见[过程Windows记录](../reproducibility/round-progress-windows-native-recycle-20261121.json)。
+
+两个Ubuntu按实际passwd读取root及cisco的垃圾桶，均无files／info条目。Windows／Mac垃圾桶没有清空，仍占磁盘；最后Mac91%使用、91GiB可用，正式build4094896KiB（约3.91GiB），同盘其它项目未改。
+
+现行50份文档统一由STATUS给事实、BUILD给复现、OPERATIONS给规则、LAYOUT给恢复、INDEX给专题。修改前10份原文与SHA保存在[本轮归档manifest](archive/20261121/stencil-r7-integration/original-document-manifest.json)；本周47份原归档逐字节保持。过时handover／handout仍归入archive，原失败不重新分类。正文只维护现行入口，技术证据留专题／原报告；当前[GPU四靴](../reproducibility/stencil-sample-r7-stage-20261121.json)仍REVISE，整理没有改变验收结论。

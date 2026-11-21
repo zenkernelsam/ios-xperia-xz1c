@@ -1,10 +1,10 @@
 # iOS on Xperia XZ1 Compact — lilac / SO-02K
 
-Sony Xperia XZ1 Compact（Snapdragon835／Adreno540）的开源XNU、Mesa／GLES和Metal用户态移植。唯一正式源码与操作仓库是ios-xperia-xz1c；Patch/Xperia保存参考Git仓库和本地历史。固定Mesa24.3.4／Freedreno FD540 GLES3.1，尚未移植Vulkan。
+Sony Xperia XZ1 Compact（Snapdragon835／Adreno540）的开源XNU、Mesa／Freedreno GLES和Metal用户态移植。正式源码、操作规范与复现记录都在ios-xperia-xz1c；Patch/Xperia保存参考Git仓库和历史。固定Mesa24.3.4／FD540 GLES3.1，Vulkan尚未移植。
 
-已验v730／CA矩阵基线可显示灰色锁屏时间日期，以及上滑后的正常颜色主页。CPU、launchd、F12触控、音量键、完整GLES9、native Metal16与六组PNG已验；壁纸仍黑，动态UI／FPS、睡眠、LCD光学、声音和无线未完成。
+已验v730／CA基线可显示灰色锁屏文字与正常颜色主页。CPU、launchd、F12触控、音量键、完整GLES9、native Metal16及PNG6已验；壁纸、原生比例、动态UI／FPS、睡眠、光学／背光、声音和无线待完成。
 
-最新tiled r2深度／模板候选自身CPU／GLES9／reference CPU通过，串口单流捕获已实机恢复。完整native21仍在GPU布局复制路径返回-45，未准入附件／呈现／PNG；原页面字节失败和日志拒绝均保留。本周Mac整理及47份文档整合已完成。手机健康fastboot、无worker，精确SHA与后续入口见[STATUS](docs/STATUS.md)。
+HEAD包含当前GPU候选和严格验收工具。最新Stencil8 r7自身CPU／GLES9／reference CPU通过，完整native21仍失败，基线保持。手机健康fastboot、无worker；精确SHA、原页面和下一步见[STATUS](docs/STATUS.md)。本周原生回收与现行文档整合已完成。
 
 | 入口 | 内容 |
 | --- | --- |

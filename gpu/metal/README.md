@@ -1,6 +1,6 @@
 # 本机 Metal 前端
 
-2026-11-21：原附件库在D32／S8／Memoryless／MSAA首阶段真机字节失败；新tiled GLES自身CPU／GLES9通过，reference CPU的软件日志门槛拒绝，native21仍未准入。最新结果与原scope见[STATUS](../../docs/STATUS.md)／[ATTACHMENT-HARDWARE](../../docs/ATTACHMENT-HARDWARE.md)。
+现行基线、当前候选、原结果与后续统一在[STATUS](../../docs/STATUS.md)。本轮r7自身CPU／GLES9／reference CPU通过，完整native21仍S8／Memoryless失败，严格work日志也有长度截断；原失败页和回程见[附件专题](../../docs/ATTACHMENT-HARDWARE.md)。生产CA基线保持。
 
 当前已验基线是v730／CA矩阵r1：原资源、queue、MTLB／AIR、MRT／sampler、XR／IOSurface／mipmap与缓存已实机通过；锁屏文字及上滑主页有真实720×1280串口截图。完整壁纸／动态UI／FPS／睡眠／光学仍未完成。现行精确身份与所有阶段以[STATUS](../../docs/STATUS.md)为准。
 

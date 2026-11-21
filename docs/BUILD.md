@@ -54,7 +54,19 @@ python3 -B tools/build/package_glram.py --frontend build/my-gles/frontend --outp
 
 工具验证所有当前前端源和固定Mesa依赖，manifest保存实际source／archive／build-ID。已有Mesa归档不因用户态调整重编。32MiB HFS RAM包保持只读、m／g硬链接、签名／SHA／FNV；GLES包须先自身CPU再完整GLES9。CA矩阵安装必须准确20H392 UUID、两原空槽、原表达式与代码锚点全匹配，见[CA-MATRIX](CA-MATRIX.md)。
 
-最新用户态候选包含[Depth32／Stencil8](METAL-DEPTH-STENCIL.md)、[Memoryless](METAL-MEMORYLESS.md)、[MSAA](METAL-MULTISAMPLE.md)、[presentation](METAL-PRESENTATION.md)与[FDL5 tiled附件](ATTACHMENT-HARDWARE.md)。r2 GLES0c71a9f6自身CPU／GLES9／reference CPU通过，完整native21在GPU布局复制-45拒绝。源码锁和实际frontend manifest绑定tiled revision2，要求work IOVA、原stride／offset／真实sample／cpp、配对、GPU copy fence及引用释放。原byte／guard检查保持；未替换生产基线，不复发旧失败包。
+最新用户态包含Depth32／Stencil8、Memoryless、MSAA和presentation。FDL5附件work用固定fd5_tile_mode的sysmem TILE5_3；原linear offset／stride、真实样本、work IOVA、GPU copy fence和释放全部绑定manifest。depth MSAA用实际sample shader bitcast交接，stencil候选用GPU逐位Load／实际stencil纹理Store。完整native21／PNG6原字节门槛保持，当前实机结论只看STATUS。
+
+HEAD是当前候选源码。稳定基线按reproducibility/v730-ca-matrix-r1-run-index.json、对应manifest的source_files及准确Git版本复现；SDK／签名／UUID变化仍需新产物自己的准入。用户提供IPSW／固件输入保持本地，不能把HEAD新库视为已验基线。
+
+附件GL语义主机检查：
+
+```powershell
+python -B tools/build/check_stencil_sample_copy_gles.py --output build/my-stencil-sample-host
+python -B tools/build/check_depth_multisample_copy_gles.py --output build/my-depth-sample-host
+python -B tools/build/check_depth_stencil_gles.py --sanitizers undefined --output build/my-depth-stencil-host
+```
+
+这些检查直接调用生产helper并保留原字节／外围guard。llvmpipe可能把请求2×分配为4×，以manifest实际样本数为准；host不证明FD540导入器、原native或UI。帧缓冲清屏及BLIT／BOX日志必须在真机完整核对；单条日志的实际长度上限需从原源码确认，缺失／截断不补造。
 
 ## AIR、Metal和完整作者probe
 

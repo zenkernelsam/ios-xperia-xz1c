@@ -1,0 +1,385 @@
+{
+  "date": "2026-11-21",
+  "items": 14,
+  "files": 38,
+  "logical_bytes": 96769680,
+  "records": [
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-stencil-r7-stage-20261121",
+      "reason": "Completed one-time transfer; canonical signed packages/blob and original device evidence retained",
+      "files": [
+        {
+          "relative": "transfer-package.tar.gz",
+          "bytes": 16286054,
+          "sha256": "d2f78efdda161a4565495355135427df0629d5b6bc3b70a12c446088535fa098"
+        },
+        {
+          "relative": "transfer-SHA-manifest.json",
+          "bytes": 2216,
+          "sha256": "9d3b320382a77700e5ab7477277847b1ee576af046ede73d9c75543f0ac07f4f"
+        },
+        {
+          "relative": "gles-ram\\georead.dylib",
+          "bytes": 70944,
+          "sha256": "e65bdc7b70d098725918c637cc8cb1c25a8a544186d0f4468b399fda52024898"
+        },
+        {
+          "relative": "gles-ram\\glram.zblob",
+          "bytes": 3910525,
+          "sha256": "d7d41c7af24166ca3df1a681356b17073cde9d53ec2e00bc48927d4c4569dc7e"
+        },
+        {
+          "relative": "gles-ram\\libglapi.0.dylib",
+          "bytes": 344544,
+          "sha256": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3"
+        },
+        {
+          "relative": "gles-ram\\manifest.json",
+          "bytes": 23013,
+          "sha256": "848e2a60342f647db6a1e2ad68a3e9beb247c384250afe594714fb175686ad69"
+        },
+        {
+          "relative": "gles-ram\\sweetgl.dylib",
+          "bytes": 14800944,
+          "sha256": "681c4a8c409106443746d88f1b5f86c98e62b3e72d13b5707b70ecb18bb5b2c6"
+        },
+        {
+          "relative": "reference-ram\\exception_observe.dylib",
+          "bytes": 256704,
+          "sha256": "36cd01b34061be018346f16da7ca0b94805cbf0a39bd0b68839a01c1da397cca"
+        },
+        {
+          "relative": "reference-ram\\georead.dylib",
+          "bytes": 70944,
+          "sha256": "e65bdc7b70d098725918c637cc8cb1c25a8a544186d0f4468b399fda52024898"
+        },
+        {
+          "relative": "reference-ram\\glram.zblob",
+          "bytes": 4308434,
+          "sha256": "85b0fec8e7ac18d5fdbe366f2ba7c36143ac8f2c42ab65cd27a5015d7bc2cbfe"
+        },
+        {
+          "relative": "reference-ram\\libglapi.0.dylib",
+          "bytes": 344544,
+          "sha256": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3"
+        },
+        {
+          "relative": "reference-ram\\manifest.json",
+          "bytes": 80931,
+          "sha256": "d55d74734be516402c1e10cd5e5cf0bd2f795d62be2362ffbfba787e5eb75180"
+        },
+        {
+          "relative": "reference-ram\\MetalResources.dylib",
+          "bytes": 810304,
+          "sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27"
+        },
+        {
+          "relative": "reference-ram\\sweetgl.dylib",
+          "bytes": 14800944,
+          "sha256": "681c4a8c409106443746d88f1b5f86c98e62b3e72d13b5707b70ecb18bb5b2c6"
+        }
+      ],
+      "logical_bytes": 56111045,
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RZXJ0HW",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-stencil-r7-stage-20261121",
+      "time": "2026-11-21T17:07:19.7842680+08:00",
+      "verified_native_recycle": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-depth-msaa-r6-stage-20261121",
+      "reason": "Completed one-time transfer; canonical signed packages/blob and original device evidence retained",
+      "files": [
+        {
+          "relative": "georead.dylib",
+          "bytes": 70944,
+          "sha256": "e65bdc7b70d098725918c637cc8cb1c25a8a544186d0f4468b399fda52024898"
+        },
+        {
+          "relative": "glram.zblob",
+          "bytes": 3908965,
+          "sha256": "21bd3aed986751226f25cff49cff6e4a8e9c046c1b89b7d46407958a334e7245"
+        },
+        {
+          "relative": "libglapi.0.dylib",
+          "bytes": 344544,
+          "sha256": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3"
+        },
+        {
+          "relative": "manifest.json",
+          "bytes": 22680,
+          "sha256": "acb88bb625a980120eeeff4f7db7038eeac015700f8af1fcee7ed58c64e247fa"
+        },
+        {
+          "relative": "sweetgl.dylib",
+          "bytes": 14800816,
+          "sha256": "7918487706bf41c5493216301850e5205b50405037f80315fe801065b3fba877"
+        },
+        {
+          "relative": "reference\\exception_observe.dylib",
+          "bytes": 256704,
+          "sha256": "01802925198a2759dcf4abf12517cbd30cf81ab5444c167f2162b419ca7b2dfa"
+        },
+        {
+          "relative": "reference\\georead.dylib",
+          "bytes": 70944,
+          "sha256": "e65bdc7b70d098725918c637cc8cb1c25a8a544186d0f4468b399fda52024898"
+        },
+        {
+          "relative": "reference\\glram.zblob",
+          "bytes": 4308609,
+          "sha256": "91f5490942638512aff7296c57e1fe9912f64a0576f1d97e0ede58f32425bcd5"
+        },
+        {
+          "relative": "reference\\libglapi.0.dylib",
+          "bytes": 344544,
+          "sha256": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3"
+        },
+        {
+          "relative": "reference\\manifest.json",
+          "bytes": 80589,
+          "sha256": "d247c2e5bdb417970734a69122366d0533e058613dd7f652aeba40b7a91b48ec"
+        },
+        {
+          "relative": "reference\\MetalResources.dylib",
+          "bytes": 810304,
+          "sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27"
+        },
+        {
+          "relative": "reference\\sweetgl.dylib",
+          "bytes": 14800816,
+          "sha256": "7918487706bf41c5493216301850e5205b50405037f80315fe801065b3fba877"
+        }
+      ],
+      "logical_bytes": 39820459,
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R1473A4",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-depth-msaa-r6-stage-20261121",
+      "time": "2026-11-21T17:07:20.2961063+08:00",
+      "verified_native_recycle": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\depth-msaa-r7-host-regression-20261121\\test",
+      "reason": "Completed WSL host ELF on Windows-mounted build; manifests/logs/source retained",
+      "files": [
+        {
+          "relative": "test",
+          "bytes": 63520,
+          "sha256": "796a9186da58156b05a41e85d55ec538df4f3f4037bb7a264e1253b0a85990f9"
+        }
+      ],
+      "logical_bytes": 63520,
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RP3J2L3",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\depth-msaa-r7-host-regression-20261121\\test",
+      "time": "2026-11-21T17:07:20.5232422+08:00",
+      "verified_native_recycle": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\depth-stencil-r7-host-final-20261121\\test",
+      "reason": "Completed WSL host ELF on Windows-mounted build; manifests/logs/source retained",
+      "files": [
+        {
+          "relative": "test",
+          "bytes": 99448,
+          "sha256": "71deb204ce6c6b19a71416f0cfe78c8239b42af766c55210f11d35e31707467d"
+        }
+      ],
+      "logical_bytes": 99448,
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RZGP82D",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\depth-stencil-r7-host-final-20261121\\test",
+      "time": "2026-11-21T17:07:20.6267447+08:00",
+      "verified_native_recycle": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\depth-stencil-r7-host-final-20261121\\test-pair",
+      "reason": "Completed WSL host ELF on Windows-mounted build; manifests/logs/source retained",
+      "files": [
+        {
+          "relative": "test-pair",
+          "bytes": 54416,
+          "sha256": "03c5cc62d7cb3994dfe16f12400c911e6a94cd9b53481d654e02426adf1e3367"
+        }
+      ],
+      "logical_bytes": 54416,
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R4088O6",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\depth-stencil-r7-host-final-20261121\\test-pair",
+      "time": "2026-11-21T17:07:20.6734056+08:00",
+      "verified_native_recycle": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\depth-stencil-r7-host-regression-20261121\\test",
+      "reason": "Completed WSL host ELF on Windows-mounted build; manifests/logs/source retained",
+      "files": [
+        {
+          "relative": "test",
+          "bytes": 92216,
+          "sha256": "4b237229829548910f2ae139859c523aaca10f53cdc44d7e4a41f618833c6f16"
+        }
+      ],
+      "logical_bytes": 92216,
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RG7P1DU",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\depth-stencil-r7-host-regression-20261121\\test",
+      "time": "2026-11-21T17:07:20.6987952+08:00",
+      "verified_native_recycle": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-sample-r7-host-20261121\\test",
+      "reason": "Completed WSL host ELF on Windows-mounted build; manifests/logs/source retained",
+      "files": [
+        {
+          "relative": "test",
+          "bytes": 99904,
+          "sha256": "101d7a76c0d079bc8fc5ee3717ee1d4d3477e0c8ce6278e01aef463d222da254"
+        }
+      ],
+      "logical_bytes": 99904,
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RFQZGI9",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-sample-r7-host-20261121\\test",
+      "time": "2026-11-21T17:07:20.7263492+08:00",
+      "verified_native_recycle": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-sample-r7-host-debug-20261121\\test",
+      "reason": "Completed WSL host ELF on Windows-mounted build; manifests/logs/source retained",
+      "files": [
+        {
+          "relative": "test",
+          "bytes": 110192,
+          "sha256": "48fb71632b063bdbb5761495e1c3f15f513f53970668069de11abc9cfaee1b90"
+        }
+      ],
+      "logical_bytes": 110192,
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RGHN9X2",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-sample-r7-host-debug-20261121\\test",
+      "time": "2026-11-21T17:07:20.7525029+08:00",
+      "verified_native_recycle": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-sample-r7-host-final-20261121\\test",
+      "reason": "Completed WSL host ELF on Windows-mounted build; manifests/logs/source retained",
+      "files": [
+        {
+          "relative": "test",
+          "bytes": 110184,
+          "sha256": "3a17db63d16261c17f1f2b5ccba5e0593e1d9c861b21531246b600dc2430649b"
+        }
+      ],
+      "logical_bytes": 110184,
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RVOL31X",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-sample-r7-host-final-20261121\\test",
+      "time": "2026-11-21T17:07:20.7872957+08:00",
+      "verified_native_recycle": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-sample-r7-host-rect-20261121\\test",
+      "reason": "Completed WSL host ELF on Windows-mounted build; manifests/logs/source retained",
+      "files": [
+        {
+          "relative": "test",
+          "bytes": 110184,
+          "sha256": "3a17db63d16261c17f1f2b5ccba5e0593e1d9c861b21531246b600dc2430649b"
+        }
+      ],
+      "logical_bytes": 110184,
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R0AX247",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-sample-r7-host-rect-20261121\\test",
+      "time": "2026-11-21T17:07:20.8117797+08:00",
+      "verified_native_recycle": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r7-gles-cpu-cli-20261121.log",
+      "reason": "Redundant CLI output; original result/raw/commands/source-audit/return proof retained",
+      "files": [
+        {
+          "relative": "lilac-r7-gles-cpu-cli-20261121.log",
+          "bytes": 3075,
+          "sha256": "849e0071bbaa29e5ed7a6533e8bf83a5dc8540ebcf6f8b76bda904e4ca1cec9b"
+        }
+      ],
+      "logical_bytes": 3075,
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R0A6QS5.log",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r7-gles-cpu-cli-20261121.log",
+      "time": "2026-11-21T17:07:20.8393668+08:00",
+      "verified_native_recycle": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r7-gles-gpu-cli-20261121.log",
+      "reason": "Redundant CLI output; original result/raw/commands/source-audit/return proof retained",
+      "files": [
+        {
+          "relative": "lilac-r7-gles-gpu-cli-20261121.log",
+          "bytes": 19082,
+          "sha256": "20fbcae5a15b809c13a05dc08a960c2e5b7694ffa953b96cbe9483d0c0117c95"
+        }
+      ],
+      "logical_bytes": 19082,
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RUPIN3M.log",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r7-gles-gpu-cli-20261121.log",
+      "time": "2026-11-21T17:07:20.8859227+08:00",
+      "verified_native_recycle": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r7-reference-cpu-cli-20261121.log",
+      "reason": "Redundant CLI output; original result/raw/commands/source-audit/return proof retained",
+      "files": [
+        {
+          "relative": "lilac-r7-reference-cpu-cli-20261121.log",
+          "bytes": 3086,
+          "sha256": "dbf2d7ab83122579a4ab5f8efca19955ff1ee86f144970ea88e946d2ec9e9418"
+        }
+      ],
+      "logical_bytes": 3086,
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RHWKMZ4.log",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r7-reference-cpu-cli-20261121.log",
+      "time": "2026-11-21T17:07:20.9211298+08:00",
+      "verified_native_recycle": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r7-reference-gpu-cli-20261121.log",
+      "reason": "Redundant CLI output; original result/raw/commands/source-audit/return proof retained",
+      "files": [
+        {
+          "relative": "lilac-r7-reference-gpu-cli-20261121.log",
+          "bytes": 72869,
+          "sha256": "86876a201e3db851eeed2895190f8f7726d0ce330fb4c59ddeff1cbcb1e95fee"
+        }
+      ],
+      "logical_bytes": 72869,
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RAJ6MR9.log",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r7-reference-gpu-cli-20261121.log",
+      "time": "2026-11-21T17:07:20.9612229+08:00",
+      "verified_native_recycle": true,
+      "all_content_SHA_verified": true
+    }
+  ],
+  "protected_SHA_unchanged": {
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\surface-diag-v730\\kernel.v730.macho": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-sample-r7-20261121-r3\\reference-gpu\\trial.img": "86985c1c217a8d803c726c255f746eed9ba19281a876115c30696ab97ebfd8bb",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\depth-msaa-state-r6-20261121\\gles-ram\\sweetgl.dylib": "7918487706bf41c5493216301850e5205b50405037f80315fe801065b3fba877",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\depth-msaa-state-r6-20261121\\gles-ram\\glram.zblob": "21bd3aed986751226f25cff49cff6e4a8e9c046c1b89b7d46407958a334e7245",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\depth-msaa-state-r6-20261121\\gles-ram\\manifest.json": "acb88bb625a980120eeeff4f7db7038eeac015700f8af1fcee7ed58c64e247fa",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\depth-msaa-state-r6-20261121\\reference-ram\\sweetgl.dylib": "7918487706bf41c5493216301850e5205b50405037f80315fe801065b3fba877",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\depth-msaa-state-r6-20261121\\reference-ram\\glram.zblob": "91f5490942638512aff7296c57e1fe9912f64a0576f1d97e0ede58f32425bcd5",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\depth-msaa-state-r6-20261121\\reference-ram\\manifest.json": "d247c2e5bdb417970734a69122366d0533e058613dd7f652aeba40b7a91b48ec",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-sample-r7-20261121-r3\\gles-ram\\sweetgl.dylib": "681c4a8c409106443746d88f1b5f86c98e62b3e72d13b5707b70ecb18bb5b2c6",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-sample-r7-20261121-r3\\gles-ram\\glram.zblob": "d7d41c7af24166ca3df1a681356b17073cde9d53ec2e00bc48927d4c4569dc7e",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-sample-r7-20261121-r3\\gles-ram\\manifest.json": "848e2a60342f647db6a1e2ad68a3e9beb247c384250afe594714fb175686ad69",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-sample-r7-20261121-r3\\reference-ram\\sweetgl.dylib": "681c4a8c409106443746d88f1b5f86c98e62b3e72d13b5707b70ecb18bb5b2c6",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-sample-r7-20261121-r3\\reference-ram\\glram.zblob": "85b0fec8e7ac18d5fdbe366f2ba7c36143ac8f2c42ab65cd27a5015d7bc2cbfe",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-sample-r7-20261121-r3\\reference-ram\\manifest.json": "d55d74734be516402c1e10cd5e5cf0bd2f795d62be2362ffbfba787e5eb75180"
+  },
+  "trash_not_emptied": true,
+  "WSL_ELFs_on_Windows_mount_recycled_to_native_Windows_bin": 8,
+  "Ubuntu_and_Ubuntu2204_actual_root_and_cisco_Trash_empty": true
+}

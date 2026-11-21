@@ -82,14 +82,15 @@ static int sweet_depth_tiled_copy(struct st_context *context,SweetDepthTiledPlan
     // positional x,y,z,width,height,depth here: it makes width0 and z=height.
     copy.src.box=sweet_depth_tiled_copy_box(plane->original.width,plane->original.height);copy.dst.box=copy.src.box;
     copy.mask=util_format_get_mask(copy.src.format);copy.filter=PIPE_TEX_FILTER_NEAREST;
-    // Emit this pair in one frontend write. A previous raw retained its BOX
-    // but lost the preceding BLIT during concurrent SpringBoard console work.
-    // Missing or truncated pairs still refuse evidence; never replay records.
-    sweet_drm_log("SWEET DEPTH TILE BLIT original=%u work=%u direction=%s gen=%u src_fmt=%u dst_fmt=%u src_color=%u dst_color=%u src_samples=%u dst_samples=%u src_mask=%u dst_mask=%u mask=%u filter=%u src_tile=%u dst_tile=%u\nSWEET DEPTH TILE BOX original=%u work=%u src=%d,%d,%d,%d,%d,%d dst=%d,%d,%d,%d,%d,%d src_size=%u,%u,%u dst_size=%u,%u,%u src_pitch=%u dst_pitch=%u src_offset=%llu dst_offset=%llu",
+    // Pinned bsd/dev/mem.c tees each write as <=256-byte tagged chunks.
+    // Keep records independently bounded; a combined write splits BOX tokens.
+    // Missing/truncated original records still refuse evidence, without replay.
+    sweet_drm_log("SWEET DEPTH TILE BLIT original=%u work=%u direction=%s gen=%u src_fmt=%u dst_fmt=%u src_color=%u dst_color=%u src_samples=%u dst_samples=%u src_mask=%u dst_mask=%u mask=%u filter=%u src_tile=%u dst_tile=%u",
         plane->original.handle,plane->work.handle,to_original?"store":"load",native->screen->gen,copy.src.format,copy.dst.format,
         fd5_pipe2color(copy.src.format),fd5_pipe2color(copy.dst.format),copy.src.resource->nr_samples,copy.dst.resource->nr_samples,
         util_format_get_mask(copy.src.format),util_format_get_mask(copy.dst.format),copy.mask,copy.filter,
-        fd_resource(copy.src.resource)->layout.tile_mode,fd_resource(copy.dst.resource)->layout.tile_mode,
+        fd_resource(copy.src.resource)->layout.tile_mode,fd_resource(copy.dst.resource)->layout.tile_mode);
+    sweet_drm_log("SWEET DEPTH TILE BOX original=%u work=%u src=%d,%d,%d,%d,%d,%d dst=%d,%d,%d,%d,%d,%d src_size=%u,%u,%u dst_size=%u,%u,%u src_pitch=%u dst_pitch=%u src_offset=%llu dst_offset=%llu",
         plane->original.handle,plane->work.handle,copy.src.box.x,copy.src.box.y,copy.src.box.z,copy.src.box.width,copy.src.box.height,copy.src.box.depth,
         copy.dst.box.x,copy.dst.box.y,copy.dst.box.z,copy.dst.box.width,copy.dst.box.height,copy.dst.box.depth,
         copy.src.resource->width0,copy.src.resource->height0,copy.src.resource->depth0,copy.dst.resource->width0,copy.dst.resource->height0,copy.dst.resource->depth0,

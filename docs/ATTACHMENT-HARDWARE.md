@@ -85,3 +85,17 @@ r4 GLES `e1ed77e8b77a20329d2d56bbe17ced3bbdd347ba339eb6a3b486b5a3b86e68e7` 自�
 S8 phase2原color／depth／guard正确，153个模板值全0，应该仍为3。MSAA phase1仅depth34B不同，actual0.5／expected0.75出现在box外；原color／stencil、未请求的resolve目标及全部guard正确。8原作者page／handle／GPU／sequence严格绑定raw c9747676；完整S8／MSAA／presentation／PNG未通过。原阶段见[r4报告](../reproducibility/depth-tiled-r4-stage-20261121.json)。
 
 r5源码候选的Stencil8ClearGLES为combined Z32/S8图像显式绑定depth primary，depth test／write继续关闭。DepthMultisampleCopyGLES用原linear页的整数2D视图逐sample-mask写入真实depth MSAA，Store以实际sampler2DMS读每个样本并GPU bitcast回原integer页；不CPU转换、不平均，原offset／stride和作者样本／guard保持。GL helper在Depth-only及combined 2×／4×主机Mesa上60次Load／Store、53760整数词／外围像素、13770 stencil samples通过，shared scalar状态另2390draw／247860pixels通过UBSan。只是host语义证明，FD540 importer与整组native21需新候选自己的实机；见[r5主机报告](../reproducibility/depth-msaa-sample-r5-host-20261121.json)。
+
+## r6／r7模板Clear与证据长度边界 — 2026-11-21
+
+r6 GLES79184877自身CPU／GLES9／reference CPU通过，native21为REVISE。实际depth MSAA shader使phase1通过，phase2颜色、depth和guard正确，只有55个stencil字节错误：sample0 box正确为90，sample1 box由应有41退回17。Memoryless8通过；Depth29原byte／guard通过，但32COPY／BOX只有31BLIT，严格work协议拒绝，不能将旧摘要中的“完整局部证明”扩为全部元数据已验。原八page及回程见[r6原报告](../reproducibility/depth-msaa-state-r6-stage-20261121.json)。
+
+固定Mesa的fd_context_all_dirty把common FD_DIRTY_*全部置位，并将gen_dirty赋值gen_all_dirty；FD5未安装gen maps，实际0／0合法。核验器保留all_dirty／stencil_ref／sample_mask／scissor=1和gen相等，已补0／0与损坏值故障检查。此修正不补回缺失BLIT，也不提升旧失败。
+
+r7 GPU逐位StencilSampleCopyGLES Load／Store与native Clear在主机通过，实际源码b9afd391／GLES681c4a8c有独立CPU／GLES9／reference CPU准入。完整native21 71d9ff63仍STENCIL8_PROBE_FAILED，40.813秒完整回程。S8 phase2色／depth／guard正确，153值全0／expected3；Memoryless phase2的颜色正确，stencil为0／17而预期不符。五个作者page共5312B，逐块FNV／SHA与原raw严格一致，不CPU修补。见[r7阶段](../reproducibility/stencil-sample-r7-stage-20261121.json)和[真实helper主机检查](../reproducibility/stencil-sample-r7-host-20261121.json)。
+
+r7把BLIT／BOX合成一次frontend write，实机32个BLIT和COPY完整，但32个BOX均在src处被256B tee拆开。Depth29 byte／guard／getBytes仍通过，严格work协议拒绝。单条实际长度边界需要从已编译console源确认，下一版本恢复有界记录；原raw不编辑、不按BOX预期重建。MSAA／presentation在ACK前没有完整END，PNG6不准入。
+
+下一步查实际FBO／Mesa／FD5 stencil Clear状态和清屏前后页面，区分清屏、模板绘制与纹理Store。Memoryless局部出现17说明有实际模板写入，但不证明完整Clear／Load／Store。继续开源用户态路径，内核GPU底层／allocator／SCM／PON／RPC／VM冻结。手机健康fastboot，旧包不重发；最新事实统一[STATUS](STATUS.md)。
+
+本轮结束后已定位固定bsd/dev/mem.c的sweet_null_tee：单write按MIN(uio_curriovlen,256)分块，原raw有带进程前缀的后续字段，合并BOX被换行拆开。因此恢复BLIT／BOX独立write，仅改用户态诊断源码，不改冻结kernel、不补旧raw。新frontend编译与未来实机结果分别记录；原r7仍REVISE。

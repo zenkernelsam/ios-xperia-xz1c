@@ -1,18 +1,14 @@
 # AGENTS.md — Xperia XZ1 Compact / lilac
 
-唯一正式源码仓库D:/Desktop/Git/ios-xperia-xz1c；Patch/Xperia只作参考／历史入口。先读README.md、docs/STATUS.md、docs/BUILD.md、docs/OPERATIONS.md。当前进程和原结果优先于旧工作日志，专题入口见docs/INDEX.md。
+唯一正式源码与操作仓库D:/Desktop/Git/ios-xperia-xz1c；Mac为~/Desktop/ios-xperia-xz1c。Patch/Xperia只作参考／历史入口。先读README.md、docs/STATUS.md、docs/BUILD.md、docs/OPERATIONS.md；当前原结果与进程优先于历史工作日志，专题入口docs/INDEX.md。
 
-## 当前状态与授权
+## 当前授权与范围
 
-2026-11-21 Sony BH905ND69G 健康fastboot、无controller／串口worker／in-flight。用户已确认新蓝灯会话并授权无人值守；用户最新要求完成当前轮后先整理Mac和本周文档，当前设备轮及本周整理已收尾，后续依据新证据继续。不派子代理。
+用户授权BH905ND69G无人值守迭代，要求当前轮结束后先整理Mac和本周文档。本轮四靴、原生回收及文档整合已收尾；手机健康fastboot，无controller／串口worker／in-flight。不派子代理。精确基线、候选、原失败与下一步只在STATUS维护，不在各入口复制多轮工作日志。
 
-已验生产基线v730/f258dee9（20665112B、83实际源）、GLESd6d8fcfa（14765296B）、Metal5e94ab57／source-map7b5a083a、固定Mesa24.3.4/769e5146/FD540；自身CPU／GLES9、referenceCPU／native16／PNG6完整通过。灰色锁屏时间日期与单串口上滑后正常多彩主页有720×1280原扫描帧，壁纸、动态UI／FPS、睡眠、光学／背光、声音和无线仍active。
+继续免费开源Mesa／Freedreno GLES及Metal用户态移植，原UI／壁纸、FPS、睡眠、光学／背光、声音及无线保持active。当前HEAD是候选，生产基线不因host／局部byte／GPU Completed／回程成功而提升。原失败包、raw和proof不覆盖或重发；Vulkan尚未移植。
 
-原附件GLES21de6821和tiled r1 GLESc617f2ee自身CPU／GLES9通过；原reference GPU011e16b3／62fb2e55的D32／S8非线性字节失败及12原页面证据保持。b2f3fc4f CPU原启动前缀拒绝38.594秒回程保持。主机capture revision1先DTR低电平打开、xb建raw、一次loop／status连续读，无replay，d0c3a52c独立CPU38.844秒通过。最新tiled r2 GLES0c71a9f6（14784032B）自身CPU3c1d50d5／GLES9 c2ee83f7／reference CPU3fd7fdb3通过；native21 770f8d4a REVISE，40.000秒完整0x06回程。6工作页／2配对／6释放，depth导入／清屏成功，后续复制-45（Darwin ENOTSUP）、sequence0、COPY0。Metal8feea459／source-mapdb1605ef保持，observer48325a9f。原前序16局部成功不是完整proof，presentation／PNG未执行。手机健康fastboot／worker退出；下一步离线查copy入口context／generation与fd5_blitter拒绝，不改冻结底层、不生成native21 proof、不重发旧包。见STATUS、ATTACHMENT-HARDWARE及depth-tiled-r2-stage-20261121.json。
-
-原壁纸r3／3541e07940请求完整，共享queue／scene有效，但display／sync／tick／nextDrawable／pipeline0，灰字／黑壁纸，STOP保持。原Vista init本来paused=YES；模式／环境33方法observer只离线完成，不能强制取消paused或draw。r4 USB-open／r5 guard失败不复发。
-
-用户新增原生比例要求：未来720×1280像素／360×640点／scale2、取消750×1624横纵不等缩放。make_render_adt.py已支持xz1c-native-2x离线profile；设备geometry未变，需同靴UIScreen／MobileGestalt、ADT、状态栏／safe area及触控证据，见DISPLAY-GEOMETRY。只改MG不足以称完成。
+用户原生几何目标720×1280像素／360×640点／scale2；设备尚未改变。现有native1与sf2x1冲突，新ADT、MG／UIScreen、状态栏／safe area和触控需同靴一致，只改MG不足。原Vista paused／mode按原请求观察，不能强制解除或画替代帧冒充UI。
 
 ## 硬件、回程与冻结
 
@@ -44,6 +40,6 @@ gpu／xnu／tools／reproducibility进入正式Git；deps固定上游，build产
 
 禁止永久删除。Windows原生Recycle Bin；WSL废弃文件转Windows回收站；Mac NSWorkspace／Finder Trash；不清空Windows／Mac回收站。Ubuntu垃圾桶非空先转Windows回收站再恢复空目录。回收不等于释放磁盘。路径先确认在明确范围内，重复／父子回收路径整批拒绝。
 
-本周主体Mac1713项／34883文件／11,852,238,934B及本轮15项／33文件／134,708,787B均原生Trash，合计1728项／34916文件／11.16GiB；当前build3.7GiB、系统94%／59GiB可用，垃圾桶未清空。4条历史Finder .DS_Store哈希变化另记，用户内容复核。Windows本轮传输／mock另3项／37文件／174,001,078B进回收站。gl4／gl5／IPSW／基线／原failed包blob和raw／固定deps／dxb保存。后续避免堆重复HFS容器、符号表、测试可执行文件和传输tar。
+本周及本轮回收实际路径／SHA见docs/ORGANIZATION.md；所有原生回收站未清空。基线、当前失败所需原证据和固定deps／dxb保持受保护。
 
 文档只在STATUS汇总当前状态、BUILD放现行复现、OPERATIONS放规则、LAYOUT放恢复、INDEX串专题。旧里程碑／handover／handout原文和SHA先archive，专题技术证据保留，不把旧“当前in-flight”恢复。每轮更新一份原结果摘要和关键topic；不要在每个入口复制大段工作日志。原AGENTS／README等47份本周原文见docs/archive/20261121/weekly-integration/original-document-manifest.json。

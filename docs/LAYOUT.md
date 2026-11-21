@@ -55,3 +55,5 @@ for name, info in m["files"].items():
 原设备gl5不重刷。其sparse SHA e9bf1547、raw17179869184B／4c90d65a，完整指纹及`restore_gl5_raw.py`恢复见[ROOT-GL5](ROOT-GL5.md)。原raw可用回收站恢复，或从保留sparse重建新文件；任何重建不自动发送设备。全新gl5首次启动仍未独立验收。
 
 原日志保存证据本身，截图可由本token raw和artifact在新目录离线复解。原照片不再次旋转，capture日期和source明确。废弃host测试可由正式源重编，新库仍需自己的实机准入，不能用恢复旧二进制跳过源码锁。
+
+当前r6／r7重复raw／dmg、完成的host与传输包已原生回收，signed库／blob／manifest、失败trial／原raw／五作者page保持。[本轮Mac清单](../reproducibility/stencil-r7-macos-native-trash-20261121.json)和[Windows／WSL清单](../reproducibility/stencil-r7-windows-native-recycle-20261121.json)含原路径、垃圾桶目标及SHA；从原生回收站恢复，或按保留blob解码到新的build目录。其它项目不改，两个Ubuntu垃圾桶实际为空。

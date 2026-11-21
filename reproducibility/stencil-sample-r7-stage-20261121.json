@@ -1,0 +1,525 @@
+{
+  "date": "2026-11-21",
+  "tiled_revision": 7,
+  "source_commit": "b9afd391682a48591ef07c6a2e24aa88ffd684a4",
+  "runs": [
+    {
+      "result": "PASS",
+      "decision": "PASS",
+      "reason": "GOALS_STABLE",
+      "boot_dispatches": 1,
+      "reset_requests": 1,
+      "fastboot_returned": true,
+      "reset_to_fastboot_seconds": 38.85899999993853,
+      "return_log_complete": true,
+      "stage": "GLESCPU",
+      "token": "790ba0f8fd381508",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-stencil-r7-gles-cpu-live-20261121",
+      "image_sha256": "fa0e1876d7cf14a367223eac37fe6cd3032a5b9a08263f9e92f8911ff94def72",
+      "raw_sha256": "89f241a4e7fb94af2b287272de563398b020a9def6c05aa7160bf9ccb8827091",
+      "raw_bytes": 339691,
+      "original_results_sha256": "a54d26e06e3c6a5e19864b82fdb9723852b8aea49576f7e1f691ef5ef5611291",
+      "strict_return": {
+        "complete": true,
+        "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+        "current_token": "790ba0f8fd381508",
+        "checkpoint_bytes": 336496,
+        "log_bytes": 339691,
+        "log_sha256": "89f241a4e7fb94af2b287272de563398b020a9def6c05aa7160bf9ccb8827091",
+        "require_final_drain": true,
+        "marker_positions": [
+          3,
+          5,
+          59,
+          61
+        ],
+        "final_reset_marker_seen": true
+      },
+      "independent_complete_stage_verification_passed": true
+    },
+    {
+      "result": "PASS",
+      "decision": "PASS",
+      "reason": "GOALS_STABLE",
+      "boot_dispatches": 1,
+      "reset_requests": 1,
+      "fastboot_returned": true,
+      "reset_to_fastboot_seconds": 38.82799999997951,
+      "return_log_complete": true,
+      "stage": "GLES9",
+      "token": "6a7d1537e9ce3f33",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-stencil-r7-gles-gpu-live-20261121",
+      "image_sha256": "3dd558496c49df019fe621b340a7b464912b874b85b8d83d707c87316309214b",
+      "raw_sha256": "4b717aa958a98f998ebba4f294f92e8833d14fad3a1b9c0a3e5659fe425bda9d",
+      "raw_bytes": 1488317,
+      "original_results_sha256": "3dda56d7e9f32e34a40f33758e4492c3e5be4b34adaae2444636fdad2ae9981e",
+      "strict_return": {
+        "complete": true,
+        "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+        "current_token": "6a7d1537e9ce3f33",
+        "checkpoint_bytes": 1485003,
+        "log_bytes": 1488317,
+        "log_sha256": "4b717aa958a98f998ebba4f294f92e8833d14fad3a1b9c0a3e5659fe425bda9d",
+        "require_final_drain": true,
+        "marker_positions": [
+          3,
+          5,
+          57,
+          59
+        ],
+        "final_reset_marker_seen": true
+      },
+      "independent_complete_stage_verification_passed": true
+    },
+    {
+      "result": "PASS",
+      "decision": "PASS",
+      "reason": "GOALS_STABLE",
+      "boot_dispatches": 1,
+      "reset_requests": 1,
+      "fastboot_returned": true,
+      "reset_to_fastboot_seconds": 38.82799999997951,
+      "return_log_complete": true,
+      "stage": "referenceCPU",
+      "token": "da3da9d8d13b9192",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-stencil-r7-reference-cpu-live-20261121",
+      "image_sha256": "f8b9c3eb2a86897ae8654542408cae53df6aa0df1156fcace1ecaa47bd59cd24",
+      "raw_sha256": "b6c97e513eb13ef69ae1cd27ff678cac620b1231ffa9d82502eccf96120876ec",
+      "raw_bytes": 333468,
+      "original_results_sha256": "769eab6d75339731e057321f4cf344d69a30923555659dbde9613c3d359d2a65",
+      "strict_return": {
+        "complete": true,
+        "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+        "current_token": "da3da9d8d13b9192",
+        "checkpoint_bytes": 330207,
+        "log_bytes": 333468,
+        "log_sha256": "b6c97e513eb13ef69ae1cd27ff678cac620b1231ffa9d82502eccf96120876ec",
+        "require_final_drain": true,
+        "marker_positions": [
+          3,
+          5,
+          60,
+          62
+        ],
+        "final_reset_marker_seen": true
+      },
+      "independent_complete_stage_verification_passed": true
+    },
+    {
+      "result": "REVISE",
+      "decision": "REVISE",
+      "reason": "STENCIL8_PROBE_FAILED",
+      "boot_dispatches": 1,
+      "reset_requests": 1,
+      "fastboot_returned": true,
+      "reset_to_fastboot_seconds": 40.812999999849126,
+      "return_log_complete": true,
+      "stage": "native21",
+      "token": "71d9ff6329643ac7",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-stencil-r7-reference-gpu-live-20261121",
+      "image_sha256": "86985c1c217a8d803c726c255f746eed9ba19281a876115c30696ab97ebfd8bb",
+      "raw_sha256": "9e7406f8e1154eacbae051d31e64a62dc95ce81b004d1a63bb5fa586d9249b13",
+      "raw_bytes": 827876,
+      "original_results_sha256": "0ef2236dcbdb47b183cf640ac48a677e2eceba1146b52a93367fbb92ab89052a",
+      "strict_return": {
+        "complete": true,
+        "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+        "current_token": "71d9ff6329643ac7",
+        "checkpoint_bytes": 811656,
+        "log_bytes": 827876,
+        "log_sha256": "9e7406f8e1154eacbae051d31e64a62dc95ce81b004d1a63bb5fa586d9249b13",
+        "require_final_drain": true,
+        "marker_positions": [
+          8,
+          102,
+          226,
+          228
+        ],
+        "final_reset_marker_seen": true
+      },
+      "Depth32_original_bytes_and_guards_only": {
+        "complete_samples": 1,
+        "incomplete_samples": 0,
+        "phases": 29,
+        "checked_bytes": 74240,
+        "guard_bytes": 38744,
+        "read_bytes": 26100,
+        "records": [
+          {
+            "phase": 0,
+            "sequence": 902,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 1,
+            "sequence": 908,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 2,
+            "sequence": 914,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 3,
+            "sequence": 920,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 4,
+            "sequence": 926,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 5,
+            "sequence": 932,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 6,
+            "sequence": 938,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 7,
+            "sequence": 944,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 8,
+            "sequence": 950,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 9,
+            "sequence": 956,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 10,
+            "sequence": 962,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 11,
+            "sequence": 968,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 12,
+            "sequence": 974,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 13,
+            "sequence": 980,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 14,
+            "sequence": 986,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 15,
+            "sequence": 992,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 16,
+            "sequence": 998,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 17,
+            "sequence": 1004,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 18,
+            "sequence": 1010,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 19,
+            "sequence": 1016,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 20,
+            "sequence": 1022,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 21,
+            "sequence": 1028,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 22,
+            "sequence": 1034,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 23,
+            "sequence": 1040,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 24,
+            "sequence": 1046,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "326de098dfd22e4b"
+          },
+          {
+            "phase": 25,
+            "sequence": 1052,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "326de098dfd22e4b"
+          },
+          {
+            "phase": 26,
+            "sequence": 1058,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "326de098dfd22e4b"
+          },
+          {
+            "phase": 27,
+            "sequence": 1064,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "326de098dfd22e4b"
+          },
+          {
+            "phase": 28,
+            "sequence": 1067,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4c36570a90046120"
+          }
+        ],
+        "original_depth_handle": 70,
+        "original_GPU_address": "0x400ac000",
+        "original_GPU_offset": 64,
+        "original_depth32_pages_compare_load_clear_and_padding_verified": true,
+        "GPU_fences_strictly_increasing": true,
+        "final_allocated": 0,
+        "stencil_MSAA_and_full_UI_not_inferred": true
+      },
+      "strict_work_metadata_NOT_accepted": {
+        "BLIT_records": 32,
+        "BOX_occurrences": 32,
+        "valid_BOX_records": 0,
+        "COPY_records": 32,
+        "reason": "Pinned /dev/null tee divides combined write into 256B tagged chunks, splitting BOX tokens; strict original revision7 record parser rejects",
+        "original_truncated_examples": [
+          "SWEET DEPTH TILE BOX original=70 work=73 src=0,0,0,",
+          "SWEET DEPTH TILE BOX original=70 work=12 src=0,0,0,"
+        ],
+        "original_continuation_bytes_present_with_extra_process_prefix": true,
+        "old_raw_not_joined_or_rewritten": true
+      },
+      "original_author_pages": [
+        {
+          "suite": "stencil8",
+          "phase": 2,
+          "slot": 0,
+          "handle": 21,
+          "GPU": "0x4002c000",
+          "sequence": 1095,
+          "byte_count": 1280,
+          "pitch": 128,
+          "offset": 64,
+          "format": 80,
+          "samples": 1,
+          "fnv": "f6c90a96ef7f6194",
+          "sha256": "78ad38bdd5b8b9c7878ba08ea0eb4fe0276765a441ca3b111aa0a30904e3ad2d",
+          "file": "stencil8-phase2-slot0.bin",
+          "expected_original_FNV_matches": true
+        },
+        {
+          "suite": "stencil8",
+          "phase": 2,
+          "slot": 8,
+          "handle": 36,
+          "GPU": "0x4008c000",
+          "sequence": 1095,
+          "byte_count": 1280,
+          "pitch": 128,
+          "offset": 64,
+          "format": 252,
+          "samples": 1,
+          "fnv": "4741378f99cef880",
+          "sha256": "d29581ba790bd7dde6460fbb41545de863b419983907e5ddb31f4821929b20e8",
+          "file": "stencil8-phase2-slot8.bin",
+          "expected_original_FNV_matches": true
+        },
+        {
+          "suite": "stencil8",
+          "phase": 2,
+          "slot": 9,
+          "handle": 59,
+          "GPU": "0x40098000",
+          "sequence": 1095,
+          "byte_count": 768,
+          "pitch": 64,
+          "offset": 64,
+          "format": 253,
+          "samples": 1,
+          "fnv": "7c11b71758d0f732",
+          "sha256": "9d6b45f086754014404f39bb41c1744f99764e44dc00fc660c08f628983dfbd5",
+          "file": "stencil8-phase2-slot9.bin",
+          "expected_original_FNV_matches": false,
+          "logical_values": [
+            0
+          ]
+        },
+        {
+          "suite": "memoryless",
+          "phase": 2,
+          "slot": 0,
+          "handle": 11,
+          "GPU": "0x40024000",
+          "sequence": 1125,
+          "byte_count": 1280,
+          "pitch": 128,
+          "offset": 64,
+          "format": 80,
+          "samples": 1,
+          "fnv": "1f08c13b698af717",
+          "sha256": "e8485a1f89d9b5d258cc59117e7859b8931eca3b1e32b27519a59e6ce6e74404",
+          "file": "memoryless-phase2-slot0.bin",
+          "expected_original_FNV_matches": true
+        },
+        {
+          "suite": "memoryless",
+          "phase": 2,
+          "slot": 9,
+          "handle": 7,
+          "GPU": "0x40018000",
+          "sequence": 1125,
+          "byte_count": 704,
+          "pitch": 64,
+          "offset": 64,
+          "format": 253,
+          "samples": 1,
+          "fnv": "41c4dc0a76ec48cb",
+          "sha256": "e51c34c10799c2ca23df461a54eebb97dcff4795352ecec90a13b67d0c1422db",
+          "file": "memoryless-phase2-slot9.bin",
+          "expected_original_FNV_matches": false,
+          "logical_values": [
+            0,
+            17
+          ]
+        }
+      ],
+      "original_failure": {
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-stencil-r7-reference-gpu-live-20261121",
+        "version": 730,
+        "token": "71d9ff6329643ac7",
+        "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+        "image_sha256": "86985c1c217a8d803c726c255f746eed9ba19281a876115c30696ab97ebfd8bb",
+        "log_sha256": "9e7406f8e1154eacbae051d31e64a62dc95ce81b004d1a63bb5fa586d9249b13",
+        "original_result": "REVISE",
+        "original_reason": "STENCIL8_PROBE_FAILED",
+        "actual_failures": [],
+        "native_GPU_failure_results": [],
+        "attachment_failure_results": [
+          {
+            "suite": "STENCIL8",
+            "result": 1,
+            "completed_phases": 2,
+            "final_allocated": 0
+          },
+          {
+            "suite": "MEMORYLESS",
+            "result": 1,
+            "completed_phases": 2,
+            "final_allocated": 0
+          }
+        ],
+        "actual_program_cache_failures": [],
+        "registry_assertions": [],
+        "actual_AIR_render_failure_results": [],
+        "actual_MRT_context_capability_records": [
+          {
+            "targets": 8,
+            "fp32_rt": 1,
+            "fp32_blend": 0,
+            "fp32_image": 1,
+            "independent_enable": 1,
+            "independent_func": 1,
+            "float_blend": 0,
+            "fbfetch": 0,
+            "no_attachment": 1,
+            "fragment_images": 24,
+            "image_units": 192
+          }
+        ],
+        "actual_MRT_GL_errors": [],
+        "missing_device_API": [],
+        "original_exception_missing_API": [],
+        "original_extension_checkin_timeout_count": 0,
+        "actual_program_prime_incomplete": [],
+        "actual_program_cache_scope_errors": [],
+        "payload_audit": {
+          "image_sha256": "86985c1c217a8d803c726c255f746eed9ba19281a876115c30696ab97ebfd8bb",
+          "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+          "blob_count": 8,
+          "complete_payload_reconstructed_from_compiled_kernel": true
+        },
+        "strict_return": {
+          "complete": true,
+          "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+          "current_token": "71d9ff6329643ac7",
+          "checkpoint_bytes": 811656,
+          "log_bytes": 827876,
+          "log_sha256": "9e7406f8e1154eacbae051d31e64a62dc95ce81b004d1a63bb5fa586d9249b13",
+          "require_final_drain": true,
+          "marker_positions": [
+            8,
+            102,
+            226,
+            228
+          ],
+          "final_reset_marker_seen": true
+        },
+        "return_seconds_with_health": 40.812999999849126,
+        "failed_stage_not_accepted": true
+      },
+      "MSAA_and_presentation_NO_complete_END_before_ACK": true
+    }
+  ],
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "GLES_sha256": "681c4a8c409106443746d88f1b5f86c98e62b3e72d13b5707b70ecb18bb5b2c6",
+  "GLES_bytes": 14800944,
+  "Metal_sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27",
+  "Metal_source_map_sha256": "db1605ef8dae8f8ed0a29999dcb2cf7537457aba7ad428677c21e0e914771b78",
+  "failure_not_replayed": true,
+  "production_baseline_NOT_promoted": true,
+  "whole_native21_PNG_UI_geometry_peripherals_NOT_complete": true,
+  "final_device": "BH905ND69G healthy fastboot; all workers exited",
+  "next": "Read actual stencil clear framebuffer/driver state and fix bounded metadata before another distinct candidate"
+}
