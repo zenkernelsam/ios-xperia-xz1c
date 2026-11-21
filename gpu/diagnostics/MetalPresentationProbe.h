@@ -2,6 +2,7 @@
  * A successful GPU-to-drawable handoff still needs independent UI/optical proof. */
 #pragma once
 #import <QuartzCore/CAMetalLayer.h>
+#import <QuartzCore/CATransaction.h>
 #include <CommonCrypto/CommonDigest.h>
 #include <dlfcn.h>
 #include <mach-o/loader.h>
@@ -49,6 +50,11 @@ static bool metal_presentation_probe(MetalABIEmit emit)
     id<MTLRenderPipelineState> pipeline=[device newRenderPipelineStateWithDescriptor:pd error:&error];[pd release];id<MTLCommandQueue> queue=[device newCommandQueue];
     valid=valid && device && library && pipeline && queue;unsigned completed=0;uint32_t previous=0;
     for(unsigned phase=0;phase<5 && valid;++phase){@autoreleasepool{
+        // This probe creates its own native layers on a background thread.
+        // Close their CA transaction explicitly instead of relying on a UI
+        // run-loop boundary that this thread does not own. Presentation calls
+        // and original time/options are unchanged; no completion is fabricated.
+        [CATransaction begin];emit("SWEET PRESENT PROBE TX phase=%u begin=1",phase);
         CAMetalLayer *layer=[CAMetalLayer new];layer.device=device;layer.pixelFormat=MTLPixelFormatBGRA8Unorm;layer.framebufferOnly=YES;
         layer.drawableSize=CGSizeMake(17,9);layer.allowsNextDrawableTimeout=YES;layer.maximumDrawableCount=2;layer.presentsWithTransaction=NO;
         id<CAMetalDrawable> drawable=[[layer nextDrawable] retain];id<MTLTexture> texture=[drawable.texture retain];IOSurfaceRef surface=texture.iosurface;
@@ -89,7 +95,11 @@ static bool metal_presentation_probe(MetalABIEmit emit)
         double presented=drawable.presentedTime;uint64_t presentedBits=0;memcpy(&presentedBits,&presented,8);
         emit("SWEET PRESENT PROBE NATIVE phase=%u presented_time_bits=%016llx optical_unverified=1",phase,(unsigned long long)presentedBits);
         if(valid){++completed;previous=sequence;}[commands release];[texture release];[drawable release];[layer release];
-    }}
+        [CATransaction commit];[CATransaction flush];
+    }
+        NSUInteger remaining=device.currentAllocatedSize;
+        emit("SWEET PRESENT PROBE TX phase=%u commit=1 flush=1 pool_drained=1 allocated=%lu",phase,(unsigned long)remaining);
+    }
     [queue release];[pipeline release];[vertex release];[fragment release];[library release];NSUInteger final=device.currentAllocatedSize;valid=valid && completed==5 && !final;
     emit("SWEET PRESENT PROBE END result=%u phases=%u checked_pixels=765 final_allocated=%lu original_drawables=1 display_completion_unverified=1",valid?0:1,completed,(unsigned long)final);
     [device release];return valid;

@@ -54,3 +54,7 @@ r8 GPU清零draw＋八个bitplane覆盖draw使S8推进到phase96；剩下stencil
 本周及追加Mac累计1803项／35167文件／13185344737B（约12.28GiB）已原生Trash并逐用户内容SHA复核，未清空。最新Mac91%使用、92GiB可用，正式build约4.08GiB。续轮Windows已回收传输、重复CLI及WSL ELF，原签名库／blob／manifest／失败包／raw／所需少量页面保留，两个Ubuntu实际垃圾桶已复核为空。
 
 50份现行文档统一入口，修改前原文／SHA和过时handover／handout在docs/archive；[ORGANIZATION](ORGANIZATION.md)给实际回收与整合记录，[LAYOUT](LAYOUT.md)给恢复，[INDEX](INDEX.md)联专题。所有源码／工具／锁在正式仓库提交并同步Mac；HEAD是当前候选，生产基线按原source manifest与准确Git版本复现，新库需要自己的实机准入。
+
+## 当前离线候选：presentation lifecycle revision2
+
+重新读取r10原证据确认：queue在Completed前已移除own operation/presentation引用，五surface没有release错误，device残留11520B，native presentedTime0。新候选只给后台探针自己创建的native layer补显式CA begin／commit／flush及每phase autoreleasepool关闭后的实际分配日志；原present四mode／time／options、GPU像素／padding和最终零分配门槛保持，不能造completion。四项证据故障检查通过，ARM64构建／新RAM CPU和native21还未准入，见[离线记录](../reproducibility/presentation-lifecycle-r2-offline-20261121.json)。

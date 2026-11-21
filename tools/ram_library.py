@@ -228,6 +228,8 @@ def load(folder,expected=None):
                 fixture=observer['AIR_multisample_fixture'];assert fixture['fixture']=='multisample' and fixture['authored_semantic_fixture']
                 assert fixture['source']=='gpu/metal/air/fixtures/multisample.air.ll' and all(re.fullmatch('[0-9a-f]{64}',fixture[key]) for key in ('source_sha256','bitcode_sha256','header_sha256','library_sha256'))
             if observer.get('presentation_probe'):
+                if observer.get('presentation_probe_lifecycle_revision'):
+                    assert observer['presentation_probe_lifecycle_revision']==2 and observer['presentation_probe_owned_CA_transaction_and_pool_drain']
                 sources|={'gpu/diagnostics/MetalPresentationProbe.h','gpu/metal/NativePresentation16.h'}
                 assert observer.get('multisample_probe') and observer['target_process']=='backboardd' and observer['presentation_probe_phases']==5
                 assert observer['original_CAMetalLayer_drawable_IOSurface_pixels_guard_and_GPU_retirement_required'] and observer['metal_resources'].get('native_drawable_presentation')

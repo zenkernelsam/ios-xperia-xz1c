@@ -20,7 +20,8 @@ def expected(pitch):
             value=bytes((191,128,64,255) if 3<=x<14 and 2<=y<7 else (255,0,255,255));at=y*pitch+x*4;raw[at:at+4]=value;pixels+=value
     return fnv(raw),fnv(pixels),fnv(bytes([0xa5]*(pitch-68)*9))
 def f64(bits):return struct.unpack('<d',bytes.fromhex(bits)[::-1])[0]
-def verify(text,token,fixture):
+def verify(text,token,fixture,lifecycle_revision=1):
+    assert lifecycle_revision in (1,2)
     live='SWEET LOOP LIVE proto=1 token='+token;ack='SWEET LOOP ACK FASTBOOT token='+token
     assert text.count(live)==text.count(ack)==1;scope=text[text.index(live):text.index(ack)]
     assert scope.count(BEGIN)==scope.count('SWEET PRESENT PROBE BEGIN ')==1 and scope.count(END)==scope.count('SWEET PRESENT PROBE END ')==1
@@ -28,7 +29,14 @@ def verify(text,token,fixture):
     assert block.count(ABI)==1 and block.count('SWEET PRESENT PROBE INPUT fixture_sha256='+fixture['library_sha256'])==1
     pages=list(PAGE.finditer(block));requests=list(REQUEST.finditer(block));phases=list(PHASE.finditer(block));hashes=list(HASH.finditer(block));natives=list(NATIVE.finditer(block))
     assert len(pages)==len(requests)==len(phases)==len(hashes)==len(natives)==5
-    assert block.count('SWEET PRESENT PROBE ')==3+5*6+1,'Unknown, failed, duplicate or truncated original drawable record'
+    tx_begin=list(re.finditer(r'SWEET PRESENT PROBE TX phase=(\d+) begin=1',block))
+    tx_end=list(re.finditer(r'SWEET PRESENT PROBE TX phase=(\d+) commit=1 flush=1 pool_drained=1 allocated=(\d+)',block))
+    if lifecycle_revision==2:
+        assert len(tx_begin)==len(tx_end)==5
+        assert [int(m[1]) for m in tx_begin]==[int(m[1]) for m in tx_end]==list(range(5))
+        assert all(m[2]=='0' for m in tx_end),'Original native drawable resources remain after owned CA transaction/pool drain'
+    else:assert not tx_begin and not tx_end
+    assert block.count('SWEET PRESENT PROBE ')==3+5*6+1+(10 if lifecycle_revision==2 else 0),'Unknown, failed, duplicate or truncated original drawable record'
     assert [int(m[1]) for m in pages]==[int(m[1]) for m in requests]==[int(m[1]) for m in phases]==[int(m[1]) for m in hashes]==[int(m[1]) for m in natives]==list(range(5))
     records=[];previous=0
     for index,(page,request,phase,hash_,native) in enumerate(zip(pages,requests,phases,hashes,natives)):
@@ -37,6 +45,9 @@ def verify(text,token,fixture):
         assert bytes_==pitch*9 and usage in (0,4) and guards==(pitch-68)*9 and sequence>previous
         assert tuple(hash_.group(n) for n in (2,3,4))==expected(pitch),'Original drawable GPU pixels or padding differ'
         assert page.end()<request.start()<phase.start()<hash_.start()<native.start() and (index==4 or native.end()<pages[index+1].start())
+        if lifecycle_revision==2:
+            assert tx_begin[index].end()<page.start()<native.end()<tx_end[index].start()
+            if index<4:assert tx_end[index].end()<tx_begin[index+1].start()
         assert block.count(f'SWEET PRESENT PROBE CPU phase={index} framebuffer_read_rejected=1')==1
         mode=index if index<4 else 0;assert int(request[2])==mode and request[3]==('transaction_wait' if index==4 else 'command')
         time=f64(request[4]);assert math.isfinite(time) and time>=0
@@ -61,4 +72,5 @@ def verify(text,token,fixture):
     assert block.count('SWEET PRESENT BEGIN ')==block.count('SWEET PRESENT END ')==4
     return dict(complete_samples=1,incomplete_samples=0,phases=5,checked_pixels=765,records=records,
         original_CAMetalLayer_drawable_IOSurface_GPU_pixels_and_padding_verified=True,original_present_after_GPU_retirement_and_transaction_wait_path_verified=True,
-        native_display_completion_optical_and_original_UI_not_proven=True,final_allocated=0,raw_is_actual_device_evidence_only_when_called_from_verified_trial=True)
+        native_display_completion_optical_and_original_UI_not_proven=True,final_allocated=0,lifecycle_revision=lifecycle_revision,
+        original_CA_transaction_and_pool_drained=lifecycle_revision==2,raw_is_actual_device_evidence_only_when_called_from_verified_trial=True)

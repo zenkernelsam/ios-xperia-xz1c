@@ -45,4 +45,18 @@ class PresentationEvidence(unittest.TestCase):
         for bad in (wrong,text.replace('time_bits=3fb0000000000000','time_bits=3fc0000000000000'),text.replace('path=transaction_wait','path=command'),
                     text.replace(END+'\n','')+END+'\n',text.replace('original_wait_then_present=1','original_wait_then_present=0')):
             with self.assertRaises(AssertionError):verify(bad,self.token,self.fixture)
+    def test_owned_native_CA_transactions_require_real_zero_allocation(self):
+        rows=[]
+        for line in self.sample().splitlines():
+            if line.startswith('SWEET PRESENT PROBE PAGE '):
+                phase=int(line.split('phase=')[1].split()[0]);rows.append(f'SWEET PRESENT PROBE TX phase={phase} begin=1')
+            rows.append(line)
+            if line.startswith('SWEET PRESENT PROBE NATIVE '):
+                phase=int(line.split('phase=')[1].split()[0]);rows.append(f'SWEET PRESENT PROBE TX phase={phase} commit=1 flush=1 pool_drained=1 allocated=0')
+        text='\n'.join(rows)+'\n';result=verify(text,self.token,self.fixture,2)
+        self.assertTrue(result['original_CA_transaction_and_pool_drained']);self.assertEqual(result['final_allocated'],0)
+        for bad in (self.sample(),text.replace('allocated=0','allocated=1152',1),text.replace('pool_drained=1','pool_drained=0',1),
+                    text.replace('commit=1 flush=1','commit=0 flush=1',1),text.replace('TX phase=1 begin=1','TX phase=2 begin=1',1)):
+            with self.assertRaises(AssertionError):verify(bad,self.token,self.fixture,2)
+        with self.assertRaises(AssertionError):verify(text,self.token,self.fixture,1)
 if __name__=='__main__':unittest.main()

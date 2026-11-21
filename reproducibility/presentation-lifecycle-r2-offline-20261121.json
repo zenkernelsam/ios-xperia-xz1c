@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-21",
+  "presentation_probe_lifecycle_revision": 2,
+  "source_files": {
+    "gpu/diagnostics/MetalPresentationProbe.h": "4733b0fbfb257ddfbcd31fdb8fb86cb1b26c9721e062d0750e16de7c4be0322d",
+    "tools/build/build_exception_observer.py": "61587d553c941068bb17c42923a89055e92cd0f8f62f98f5fc69f61f93b24f22",
+    "tools/device/presentation_evidence.py": "696561ff3b68ff49b644589dc896b8f6c8e143297c53b95e9006d6e036d101e3",
+    "tools/device/trial_evidence.py": "de177e26f3d92a6c036b28bffc286261efaea68e4310ea1b3a79468f282f7fee",
+    "tools/device/test_presentation_evidence.py": "42eb8c799c4fdefb6cbf518984880c01d55f19a8d802570624b11a74f88bb634",
+    "tools/ram_library.py": "47c07826c3f5b2a628052b3299fbcc7280c7ff47c06c993fda806d72998707dc"
+  },
+  "four_evidence_fault_tests_passed": true,
+  "owned_native_CA_begin_commit_flush_and_pool_drain_observed": true,
+  "unchanged_original_present_modes_time_options_and_pixels": true,
+  "no_didPresentAtTime_or_fabricated_completion": true,
+  "kernel_GLES_Metal_binary_unchanged": true,
+  "device_operations": 0
+}
