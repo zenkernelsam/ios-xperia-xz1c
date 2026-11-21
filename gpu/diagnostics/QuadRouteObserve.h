@@ -201,14 +201,18 @@ static BOOL quad_route_sync(id receiver, SEL selector, double time, id group, BO
         quad_route_end(call, QR_SYNC, nil, returned); errno = outgoing;
     }
 }
+static bool quad_route_owner_name_matches(const char *actual,const char *expected)
+{
+    if(!actual || !expected)return false;
+    return !strcmp(actual,expected) || (!strcmp(expected,"_TtC11AegirPoster24AegirRenderingController") &&
+        !strcmp(actual,"AegirPoster.AegirRenderingController"));
+}
 static bool quad_route_install(Class owner, bool metaclass, const char *owner_name, const char *selector_name,
     unsigned api, IMP replacement, const char *result, const char *const *arguments, unsigned count)
 {
     int incoming = errno; SEL selector = sel_registerName(selector_name);
     const char *actual_owner=owner?class_getName(owner):"";
-    bool known_swift_owner=!strcmp(owner_name,"_TtC11AegirPoster24AegirRenderingController") &&
-        !strcmp(actual_owner,"AegirPoster.AegirRenderingController");
-    bool owner_valid = owner && class_isMetaClass(owner) == metaclass && (!strcmp(actual_owner,owner_name) || known_swift_owner);
+    bool owner_valid = owner && class_isMetaClass(owner) == metaclass && quad_route_owner_name_matches(actual_owner,owner_name);
     Method method = owner_valid ? class_getInstanceMethod(owner, selector) : NULL;
     unsigned total = 0; Method *list = owner_valid ? class_copyMethodList(owner, &total) : NULL; bool owned = false;
     for (unsigned i = 0; i < total; ++i) if (method_getName(list[i]) == selector) owned = true;
