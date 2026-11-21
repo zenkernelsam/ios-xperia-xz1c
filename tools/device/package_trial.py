@@ -9,6 +9,7 @@ from native_proof import validate as validate_native,digest as native_digest
 from controller import Artifact,SHIM_SHA,SCREEN_CAPTURE_TIMES,checked_screen_capture_after,swipe_once_binding
 from numeric_boot_args import add_sampler
 from serial_worker import capture_binding
+from display_geometry_binding import transform as display_transform,arguments as display_arguments,compact as display_compact
 def sha(data):return hashlib.sha256(data).hexdigest()
 def observer_environment(word,target):
     assert word.startswith('sweetenv=') and target in ('AegirPoster','backboardd')
@@ -42,6 +43,12 @@ def prove_payload(record):
         blobs=[(n,blob if n=='GL-RAM-Z' else data) for n,data in blobs]
     expected_blobs={name:{'bytes':len(data),'sha256':sha(data)} for name,data in blobs}
     assert expected_blobs==record['blobs'], 'Trial firmware/RAM inputs differ from tested baseline'
+    if 'display_geometry_binding' in record:
+        assert version>=730 and mode in ('ramcpu','gpu') and 'ram_library_binding' in record
+        reference,binding=display_transform(reference,record['display_geometry_binding']['profile'])
+        assert binding==record['display_geometry_binding'],'Native geometry ADT/binding differs from exact input'
+        from numeric_boot_args import numeric_options
+        options=numeric_options(record);assert options.get('sf2x')=='0' and options.get('sweetfb_native')=='1'
     payload,_=mkpayload.build(raw_kernel,reference,record['cmdline'],blobs=blobs)
     image=assemble_image(raw[:4096],shim,payload)
     actual=Path(record['image']).read_bytes()
@@ -74,7 +81,7 @@ def baseline(name,folder):
     reference=adt.serialize(tree)
     assert sha(reference)=='257076987411b50f037f70bf97524fae56ac2965e773c1bb8678d05d45480ba6'
     return raw,payload,reference,blob_data,payload[72:680].split(b'\0',1)[0].decode(),raw[4096:4096+ks]
-def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interval=None,screen_evidence=False,thread_sample=False,screen_after=None,idle_sample=False,swipe_once=False):
+def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interval=None,screen_evidence=False,thread_sample=False,screen_after=None,idle_sample=False,swipe_once=False,display_profile=None):
     assert not (thread_sample and idle_sample), 'Only one reviewed sample trigger can be selected'
     if swipe_once:
         assert mode=='gpu' and screen_evidence and version>=730 and ram_package and screen_after==150
@@ -90,6 +97,11 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
     # Prove extraction covers the complete tested baseline payload, not just the header.
     reproduced,_=mkpayload.build(str(folder/'kernel-v724-tested.macho'),reference,cmd,blobs=files)
     assert reproduced==payload,'Tested baseline reconstruction mismatch'
+    geometry=None
+    if display_profile is not None:
+        assert display_profile=='xz1c-native-2x' and version>=730 and mode in ('ramcpu','gpu') and ram_package
+        assert not thread_sample and not idle_sample,'Geometry and thread sampling are independent trials'
+        reference,geometry=display_transform(reference,display_profile)
     token=secrets.token_hex(8);words=cmd.split()
     words=[('sweetloop='+token if w.startswith('sweetloop=') else 'sweetutc='+str(int(time.time())) if w.startswith('sweetutc=') else w) for w in words]
     if mode=='owner':
@@ -129,6 +141,7 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
         words=[('sweetar=420' if w.startswith('sweetar=') else w) for w in words]
         words.append('sfscreen=1');watchdog=420
     compact_numeric_ones=[]
+    if geometry:words=display_arguments(words)
     if screen_evidence and len(' '.join(words).encode())>607:
         # The pinned XNU PE_parse_boot_argn/getval returns numeric 1 for a
         # present argument without '='. Keep both enabled features identical.
@@ -137,6 +150,7 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
             if explicit in words:
                 words=[name if w==explicit else w for w in words]
                 compact_numeric_ones.append(name)
+    if geometry:words=display_compact(words,compact_numeric_ones)
     sample_binding=None
     if thread_sample or idle_sample:
         assert mode=='gpu' and screen_evidence and version>=730 and ram_package
@@ -159,6 +173,7 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
         'serial_capture_binding':capture_binding(token),
        'blobs':{name:{'bytes':len(data),'sha256':sha(data)} for name,data in files}}
     if compact_numeric_ones:m['numeric_one_argument_compaction']=compact_numeric_ones
+    if geometry:m['display_geometry_binding']=geometry
     if sample_binding:m['thread_sample_observation']=sample_binding
     if swipe_once:m['swipe_observation']=swipe_once_binding()
     Artifact(m).validate()
@@ -317,6 +332,7 @@ if __name__=='__main__':
     p.add_argument('--thread-sample',action='store_true')
     p.add_argument('--idle-sample',action='store_true',help='Single original Aegir sample after a returned library at observation 180 seconds')
     p.add_argument('--swipe-once',action='store_true',help='One upward swipe after observed F12/LIVE at 120 seconds, then one 150-second scanout')
+    p.add_argument('--display-profile',choices=['xz1c-native-2x'],help='Exact four-property native ADT plus existing native1/sf2x0 framebuffer flags')
     a=p.parse_args();out=Path(a.output).resolve();assert out.is_relative_to(ROOT/'build') and not out.exists();out.mkdir(parents=True)
-    m=prepare(a.mode,Path(a.kernel),Path(a.baselines),out,a.version,a.ram_package,a.owner_interval,a.screen_evidence,a.thread_sample,a.screen_after,a.idle_sample,a.swipe_once)
+    m=prepare(a.mode,Path(a.kernel),Path(a.baselines),out,a.version,a.ram_package,a.owner_interval,a.screen_evidence,a.thread_sample,a.screen_after,a.idle_sample,a.swipe_once,a.display_profile)
     print(json.dumps({k:m[k] for k in ('trial_mode','token','kernel_sha256','sha256','cmdline_bytes')}))

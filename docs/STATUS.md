@@ -1,5 +1,6 @@
 # 当前状态 — 2026-11-22
 
+r13原UI观察已结束，33／33安装、一次上滑和150秒原home扫描帧均核验，原判定STOP／OBSERVATION_INCOMPLETE，39.750秒完整返回。手机健康fastboot、无worker；当前native2x打包器和离线CPU／GPU包就绪，尚未实机。
 r12原模式两靴已结束：CPU通过，GPU因QUAD_ROUTE_OBSERVER_INSTALL_INCOMPLETE为REVISE，39.468秒完整0x06回程／健康30秒，Sony健康fastboot无worker。当前r13仅known Swift owner查找／校验源码修补，尚未实机。
 当前r11新RAM CPU／native21与PNG6已独立通过并完成回程；最后66715b9659b47bc1健康返回38.656秒，Sony健康fastboot、无worker。下方r10为历史失败，当前下一步为原poster模式／界面与原生几何。
 Sony BH905ND69G健康fastboot。本轮四靴已结束，无controller／串口worker／in-flight；最后native21 c75b0e696cfee083为REVISE／BACKGROUND_METAL_SUITE_FAILED，40.812秒完成0x06四marker、连续健康30秒和worker退出。GPU四组附件和当前r11完整native21／PNG6已独立通过；当前下一步转为原poster模式／UI和原生显示比例，原失败不重发。
@@ -72,3 +73,9 @@ r8 GPU清零draw＋八个bitplane覆盖draw使S8推进到phase96；剩下stencil
 ## r12原模式安装拒绝
 
 原33方法只安装31；env_init／env_update present0／owner_checked0，但固定20H392静态元数据有原delegate方法。原系统已实际选择applyMode→deactiveMode，完整[原报告](../reproducibility/original-mode-native21-r12-stage-20261122.json)保留；一次swipe／150秒验收未完成。ACK后退出期kernel import／submit错误单列，不据此改冻结底层。r13只解析已知Swift mangled／module-qualified name，owned-method／完整ABI仍严格，33门槛不降低。
+
+## 当前原UI及原生比例离线包
+
+r13 runtime owner实为AegirPoster.AegirRenderingController，known-name matcher修正后33方法全部owned／ABI匹配；127条原route、20条原request完整，一次上滑150秒读取真实正常颜色home，黑壁纸保持STOP。8次global getter采样上限内preview／snapshot为true、unlock0／backlight1，原mode1 deactive；不能推整靴所有新环境，原[阶段](../reproducibility/original-mode-swift-owner-r13-stage-20261122.json)保留。
+
+正式package_trial新增--display-profile xz1c-native-2x：完整基线重建后只转四个ADT CFData显示值，native1／sf2x0和source/target SHA、已核numeric parser绑定。CPU607B／GPU602B命令区、整个payload和六个missing/mixed/flag fault已离线复算；内核／GLES／firmware/RAM blob不变，其他ADT字节保持，未投递，见[离线](../reproducibility/native2x-package-r1-offline-20261122.json)。真正完成仍需同靴UIScreen／MG／safe-area／触控／原画面；其它外设继续完整目标。

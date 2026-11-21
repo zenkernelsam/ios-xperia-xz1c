@@ -119,3 +119,5 @@ python -B -m unittest discover -s tools/device -p test_attachment_snapshot_evide
 本周Mac重复HFS容器／raw、符号表、旧展开库、主机产物、临时检出及传输tar已进入原生垃圾桶；留存压缩blob／manifest／signed库可按SHA重建原RAM。当前kernel／deps／dxb、gl4／gl5／IPSW和失败证据保持。[LAYOUT](LAYOUT.md)给恢复方法，[ORGANIZATION](ORGANIZATION.md)给实际清单。回收不清空，不把移入垃圾桶称为释放全部空间。
 
 旧BUILD原全文、编号版本复现和失败历史在[本周归档](archive/20261121/weekly-integration/original-document-manifest.json)及各能力专题；原source-lock／build-map／raw不重写。当前状态只写STATUS，不再在构建手册重复每轮工作日志。
+
+原生比例单独新包用package_trial.py --display-profile xz1c-native-2x，mode ramcpu或gpu／version730，必须精确RAM／kernel。完整ADT／flags/source绑定与payload复算保持；同靴MG／UIScreen及原UI验收见DISPLAY-GEOMETRY，缺少任何实机字段仍待完成。

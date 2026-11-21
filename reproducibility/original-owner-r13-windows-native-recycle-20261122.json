@@ -1,0 +1,104 @@
+{
+  "date": "2026-11-22",
+  "items": 3,
+  "files": 11,
+  "logical_bytes": 29022694,
+  "records": [
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-original-owner-r13-stage-20261122",
+      "reason": "Completed transfer/CLI; original owner runtime33/source/STOP/home scanout retained",
+      "files": [
+        {
+          "relative": "transfer-package.tar.gz",
+          "bytes": 8446511,
+          "sha256": "8488dd2b04d84ce2a1e65224ae15212947d991c64af17cece08fb88e2a2e542e"
+        },
+        {
+          "relative": "transfer-SHA-manifest.json",
+          "bytes": 1349,
+          "sha256": "7925f2574d173594315772fd7671677d459751991ba3b3574befc31d45030fa6"
+        },
+        {
+          "relative": "ram\\exception_observe.dylib",
+          "bytes": 150368,
+          "sha256": "ee3be620a27ba57dc7725274adc354dda7d5640ad7cf2c92842c0e3eadfaa342"
+        },
+        {
+          "relative": "ram\\georead.dylib",
+          "bytes": 70944,
+          "sha256": "e65bdc7b70d098725918c637cc8cb1c25a8a544186d0f4468b399fda52024898"
+        },
+        {
+          "relative": "ram\\glram.zblob",
+          "bytes": 4260471,
+          "sha256": "6f6a8658f8fc9943f38d63f6d7b77b2f7887044550b2f70c5a32252de4de380f"
+        },
+        {
+          "relative": "ram\\libglapi.0.dylib",
+          "bytes": 344544,
+          "sha256": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3"
+        },
+        {
+          "relative": "ram\\manifest.json",
+          "bytes": 71610,
+          "sha256": "2e4e3a90246f662f464cfdc7a940aa1da0e16fda4c770bafd196c6f4bd0da7e3"
+        },
+        {
+          "relative": "ram\\MetalResources.dylib",
+          "bytes": 810304,
+          "sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27"
+        },
+        {
+          "relative": "ram\\sweetgl.dylib",
+          "bytes": 14801120,
+          "sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607"
+        }
+      ],
+      "time": "2026-11-22T02:32:08.1726658+08:00",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-original-owner-r13-stage-20261122",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RR5011T",
+      "verified_native_recycle": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r13-original-cpu-cli-20261122.log",
+      "reason": "Completed transfer/CLI; original owner runtime33/source/STOP/home scanout retained",
+      "files": [
+        {
+          "relative": "lilac-r13-original-cpu-cli-20261122.log",
+          "bytes": 3071,
+          "sha256": "f0ab700f0722f57a5daed6801690f34c71ca567cf0756cec012e0d27609ed924"
+        }
+      ],
+      "time": "2026-11-22T02:32:08.5850863+08:00",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r13-original-cpu-cli-20261122.log",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RUBL3EW.log",
+      "verified_native_recycle": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r13-original-gpu-cli-20261122.log",
+      "reason": "Completed transfer/CLI; original owner runtime33/source/STOP/home scanout retained",
+      "files": [
+        {
+          "relative": "lilac-r13-original-gpu-cli-20261122.log",
+          "bytes": 62402,
+          "sha256": "109d76da6ff2e42684544df7990926333ea021d4ce8942035ae104d70fe4471e"
+        }
+      ],
+      "time": "2026-11-22T02:32:08.6241594+08:00",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r13-original-gpu-cli-20261122.log",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RSFO5AX.log",
+      "verified_native_recycle": true,
+      "all_content_SHA_verified": true
+    }
+  ],
+  "protected_SHA_unchanged": {
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\original-mode-swift-owner-r2b-20261122\\ram\\sweetgl.dylib": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\original-mode-swift-owner-r2b-20261122\\ram\\MetalResources.dylib": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\original-mode-swift-owner-r2b-20261122\\ram\\exception_observe.dylib": "ee3be620a27ba57dc7725274adc354dda7d5640ad7cf2c92842c0e3eadfaa342",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\original-mode-swift-owner-r2b-20261122\\ram\\glram.zblob": "6f6a8658f8fc9943f38d63f6d7b77b2f7887044550b2f70c5a32252de4de380f",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\original-mode-swift-owner-r2b-20261122\\ram\\manifest.json": "2e4e3a90246f662f464cfdc7a940aa1da0e16fda4c770bafd196c6f4bd0da7e3"
+  },
+  "trash_not_emptied": true
+}

@@ -1,0 +1,911 @@
+{
+  "date": "2026-11-22",
+  "items": 26,
+  "files": 132,
+  "logical_bytes": 78473846,
+  "records": [
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2b-20261122/ram/glram.raw",
+      "reason": "Completed duplicate HFS/transfer/host or offline-only failed fixture build; current original owner signed package/raw retained",
+      "files": [
+        {
+          "relative": "glram.raw",
+          "bytes": 33554432,
+          "sha256": "51528b92d0c4171c8ca5b8c4a159b515604caac3fff8ddad902333c16d585ee2"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/glram.raw 02-28-33-159.raw",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2b-20261122/ram/glram.dmg",
+      "reason": "Completed duplicate HFS/transfer/host or offline-only failed fixture build; current original owner signed package/raw retained",
+      "files": [
+        {
+          "relative": "glram.dmg",
+          "bytes": 33554432,
+          "sha256": "51528b92d0c4171c8ca5b8c4a159b515604caac3fff8ddad902333c16d585ee2"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/glram.dmg 02-28-33-233.dmg",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2b-20261122/transfer-package.tar.gz",
+      "reason": "Completed duplicate HFS/transfer/host or offline-only failed fixture build; current original owner signed package/raw retained",
+      "files": [
+        {
+          "relative": "transfer-package.tar.gz",
+          "bytes": 8446511,
+          "sha256": "8488dd2b04d84ce2a1e65224ae15212947d991c64af17cece08fb88e2a2e542e"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/transfer-package.tar.gz 02-28-33-284.gz",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2-20261122",
+      "reason": "Completed duplicate HFS/transfer/host or offline-only failed fixture build; current original owner signed package/raw retained",
+      "files": [
+        {
+          "relative": "observer.log",
+          "bytes": 520,
+          "sha256": "f490775a30225379d6cdde2d7e89657ca7e1569bda3e1168721330fca7102cf7"
+        },
+        {
+          "relative": "observer/NativeProof.h",
+          "bytes": 605,
+          "sha256": "fe087cb48ae5ca0b74450797f1210b99ccef93807ced5a26ed2ba0fe31ca9e01"
+        },
+        {
+          "relative": "observer/startup-host-test.log",
+          "bytes": 122,
+          "sha256": "4199da64e28274335e4847fa54bc736b8fb96a55bfa40564b1e59265be8150b5"
+        },
+        {
+          "relative": "observer/pipeline-host-compile.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "relative": "observer/MetalRequestObserve.h",
+          "bytes": 16195,
+          "sha256": "afc8ee2c02e2a1041a153a6a2e33df8d39146f3291775fca5f6ed1e790762213"
+        },
+        {
+          "relative": "observer/QuadRouteObserve.h",
+          "bytes": 24549,
+          "sha256": "b8bf2bb736430e3f2a58392f36108e799ae981a2718e37b8b9768bb908c81231"
+        },
+        {
+          "relative": "observer/snapshot-method-host-compile.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "relative": "observer/cache-scope-host-compile.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "relative": "observer/test_snapshot_method_observer",
+          "bytes": 98096,
+          "sha256": "98aca6330af7802d4404aa6e058628fcb82f070a933a1c6f21c2f450a041c2dd"
+        },
+        {
+          "relative": "observer/MetalRuntimeObserve.h",
+          "bytes": 4073,
+          "sha256": "1b7a8de73a2aec267a53bcb5a50acc1d55796f62d992da6d70e2402812a9386e"
+        },
+        {
+          "relative": "observer/test_postdraw_observer",
+          "bytes": 76096,
+          "sha256": "ba9262f79f83a219833500930f6b16c9d23947897199a78eddaa18d50fa1dc3e"
+        },
+        {
+          "relative": "observer/startup-host-compile.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "relative": "observer/request-host-compile.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "relative": "observer/postdraw-host-test.log",
+          "bytes": 42744,
+          "sha256": "f9409e26aa9f6781cd136ce2f5ea85221a53dc366db983f23a450334305854ea"
+        },
+        {
+          "relative": "observer/PostDrawObserve.h",
+          "bytes": 17356,
+          "sha256": "e293e701736657e5ad28850d6970b7a2ed5cd299b5f4d04ea4bfb926e6c7f963"
+        },
+        {
+          "relative": "observer/pipeline-host-test.log",
+          "bytes": 25152,
+          "sha256": "5854a5de031ad416d578b5977cd70944f66fa6536eabe725b9ddb42e474107e4"
+        },
+        {
+          "relative": "observer/quad-route-host-test.log",
+          "bytes": 88,
+          "sha256": "795acdb9e7695c03e8bb0c8be57837ea7afdd60a384485daec844b8dc106c8ed"
+        },
+        {
+          "relative": "observer/host-test.log",
+          "bytes": 17675,
+          "sha256": "2a0783e9816ee000f5b766cdf569a14d07ccb9695a98707472fd4bec76e830ef"
+        },
+        {
+          "relative": "observer/png-composition-host-compile.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "relative": "observer/postdraw-host-compile.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "relative": "observer/test_png_input_observer",
+          "bytes": 83672,
+          "sha256": "b1f7c5a301520d835168010ffcc889cd5eed7f86f720c330f5e4c3f3130d9e7a"
+        },
+        {
+          "relative": "observer/png-input-host-compile.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "relative": "observer/test_png_postdraw_encoder",
+          "bytes": 65744,
+          "sha256": "0a11d51636a36f43d7825cf6c067e208938f1d64f02de3334bd1cd320c0c675b"
+        },
+        {
+          "relative": "observer/ProgramCacheScope.h",
+          "bytes": 1562,
+          "sha256": "bb6546f8c148f71e54c058bcf2877e7de903942ae1934a9d933c76636513fc6a"
+        },
+        {
+          "relative": "observer/png-input-host-test.log",
+          "bytes": 201,
+          "sha256": "cb03e3a18591e7736a97fb2685860fcb03627190a0eb30ab3e914bac38ea1f3c"
+        },
+        {
+          "relative": "observer/ProgramCacheScopeIdentity.h",
+          "bytes": 255,
+          "sha256": "ef83f6b6d40b8398cf9a30ae1ebf4557dc38ea1f68537d65793ae502e1c29923"
+        },
+        {
+          "relative": "observer/png-composition-host-test.log",
+          "bytes": 164,
+          "sha256": "9e855cc834ed7baeb8b59fe85ca42026192526add1c174309ce7b98f3926c310"
+        },
+        {
+          "relative": "observer/snapshot-method-host-test.log",
+          "bytes": 27679,
+          "sha256": "09d9b8344187caa55f1f1455459bba3dc2fedee4db13ffdd45d1563854b37593"
+        },
+        {
+          "relative": "observer/MetalProbeStartup.h",
+          "bytes": 497,
+          "sha256": "7a99f308d807f01b6b1e02fdfa9655a83eaecdae29b0ccea785feb446a3936fb"
+        },
+        {
+          "relative": "observer/request-host-test.log",
+          "bytes": 127,
+          "sha256": "1d3b88aaad0d013564bd2db34c66d37eba3d75e356d18f9a0e7bcad5764acbab"
+        },
+        {
+          "relative": "observer/PNGEncoderProof.h",
+          "bytes": 363,
+          "sha256": "2d9da8c63d54479a5c9b400912cb0c6f4a1ed7cc93b89ee1938aa3526121c4ed"
+        },
+        {
+          "relative": "observer/test_quad_route_observer",
+          "bytes": 135920,
+          "sha256": "7cf69369db89fda0f10f7ce40ae4175bd1fbb0ca043b2ae942575e694db57e15"
+        },
+        {
+          "relative": "observer/png-dispatch-host-test.log",
+          "bytes": 198,
+          "sha256": "db0148c82d0d9408708c18464331ebb5842d6ed642a8fe27f95113ee9c32f4b5"
+        },
+        {
+          "relative": "observer/test_cache_scope",
+          "bytes": 28320,
+          "sha256": "d55bae9485104e5797efe533003a52f681efa4c3a115f6a62d7d51a80344898a"
+        },
+        {
+          "relative": "observer/quad-route-host-compile.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "relative": "observer/host-compile.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "relative": "observer/SnapshotMethodObserve.h",
+          "bytes": 10191,
+          "sha256": "10dded48c0cf90d28999f03624e9f1b9c84c46cc1ba4b69567867ee42e9d04a8"
+        },
+        {
+          "relative": "observer/program_cache_scope.py",
+          "bytes": 1037,
+          "sha256": "9fcd14133fa3e0531f5cc0a01fb6d8b84d62432df41f3d0e688df7e151c097e9"
+        },
+        {
+          "relative": "observer/png-dispatch-host-compile.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "relative": "observer/test_pipeline_observer",
+          "bytes": 48464,
+          "sha256": "67ed6d4b438fff7a0b7c5f1ca9e6c4b07e66bf3bb884219758dedc2cf7662cec"
+        },
+        {
+          "relative": "observer/source.m",
+          "bytes": 19401,
+          "sha256": "6238849a2a027d8edce5be0da3a0bc7d897b160ffb54e59e678dd2c3ad9e4580"
+        },
+        {
+          "relative": "observer/png_encoder_proof.py",
+          "bytes": 1528,
+          "sha256": "5ac2776ae74977ef2bc43bc92b65fc4f53bb6abafb23cf6402a9c8c8250b37f1"
+        },
+        {
+          "relative": "observer/MetalResources.h",
+          "bytes": 3018,
+          "sha256": "d5d165451738ef08c8eccd6a6d774d73f32902c4d3dc08961d450b53c88a7756"
+        },
+        {
+          "relative": "observer/cache-scope-host-test.log",
+          "bytes": 124,
+          "sha256": "9b626d12cc37011f803c71e0755edd710ba8d83bedad4b90528dfc7ab462e8e7"
+        },
+        {
+          "relative": "observer/test_startup",
+          "bytes": 20592,
+          "sha256": "e045619d68ad9015c2e2ab449badb710b163d5ab150f0caf7da9ff6b41605ff8"
+        },
+        {
+          "relative": "observer/test_observer",
+          "bytes": 65680,
+          "sha256": "e5f84c0d761c063ae6f2f3f3078db259a02d5ca6b460c4c084154d4c760cb088"
+        },
+        {
+          "relative": "observer/MetalDiscoveryProbe.h",
+          "bytes": 1234,
+          "sha256": "d497fbe096e7261ac177e302308712968824207d60dd84a4610015b297e6020c"
+        },
+        {
+          "relative": "observer/test_png_image_dispatch",
+          "bytes": 52288,
+          "sha256": "a838d691ef57953028642f455dc033b0d7e86c6a0c749391386604b60116acb6"
+        },
+        {
+          "relative": "observer/MetalPipelineObserve.h",
+          "bytes": 6508,
+          "sha256": "bbb1025ab5dabb340f508eccaaa6a5741149d9ea8e4a36562ed3eb45659224a9"
+        },
+        {
+          "relative": "observer/test_request_observer",
+          "bytes": 106928,
+          "sha256": "e1f38b13366ecd5f6851d74df8c83b5f9d0355cea7881a66b4a950542e30ed23"
+        },
+        {
+          "relative": "observer/PNGImageDispatch.h",
+          "bytes": 2734,
+          "sha256": "a0c30d97527b731571437a70e717e4dbe4b2dafe3f29e881bced604fe8bae5a7"
+        },
+        {
+          "relative": "observer/PNGImageIOEncoder.h",
+          "bytes": 2848,
+          "sha256": "61031999d4ff1d9a2c9c6a564cf229a82c3b9c49998d752ae0bd4d6fd18e1e92"
+        },
+        {
+          "relative": "observer/test_startup.dSYM/Contents/Info.plist",
+          "bytes": 641,
+          "sha256": "944829fa3c1a4d913161b503f6352fa20f7c101cdeefe97a15208dadbe4a587a"
+        },
+        {
+          "relative": "observer/test_startup.dSYM/Contents/Resources/Relocations/x86_64/test_startup.yml",
+          "bytes": 191,
+          "sha256": "d3b0a874704c52ec3e8958e5452a797d61b6894f56bb33defb87e5a786d487ba"
+        },
+        {
+          "relative": "observer/test_startup.dSYM/Contents/Resources/DWARF/test_startup",
+          "bytes": 14936,
+          "sha256": "0442ff45f9ca9cc7b916c2f8f4bdc2764b45feb3c45569d8100583e37b2a182b"
+        },
+        {
+          "relative": "observer/test_png_image_dispatch.dSYM/Contents/Info.plist",
+          "bytes": 652,
+          "sha256": "236aaeedc10009a032529be8c502cc8b58a5893578cf1d5354ab805ee898134f"
+        },
+        {
+          "relative": "observer/test_png_image_dispatch.dSYM/Contents/Resources/Relocations/x86_64/test_png_image_dispatch.yml",
+          "bytes": 202,
+          "sha256": "fa8f085a5c08d291fcee9ee0259f480c83ab49ace9295a052d6bcb6b39c85fc7"
+        },
+        {
+          "relative": "observer/test_png_image_dispatch.dSYM/Contents/Resources/DWARF/test_png_image_dispatch",
+          "bytes": 38656,
+          "sha256": "e9944b902a1dd1c1fc8368089e61e9cd072febc65edc6bfaf4d7b98ede9f070c"
+        },
+        {
+          "relative": "observer/test_snapshot_method_observer.dSYM/Contents/Info.plist",
+          "bytes": 658,
+          "sha256": "04e828e1d0fd7bec7384bf92308830a990c1237423b15ef3c49b301d6f9934dd"
+        },
+        {
+          "relative": "observer/test_snapshot_method_observer.dSYM/Contents/Resources/Relocations/x86_64/test_snapshot_method_observer.yml",
+          "bytes": 208,
+          "sha256": "e370370c62e4691fac4607f43c57e77460aec21fe4d4498e02a04874028230db"
+        },
+        {
+          "relative": "observer/test_snapshot_method_observer.dSYM/Contents/Resources/DWARF/test_snapshot_method_observer",
+          "bytes": 63316,
+          "sha256": "637d62006ba2d057df432d456117981ae731c623de3dd5094c910936f21b4161"
+        },
+        {
+          "relative": "observer/test_cache_scope.dSYM/Contents/Info.plist",
+          "bytes": 645,
+          "sha256": "2d56eca2217abc049f49309a8cb04e54f45a4ba11b0491143bbbb28280638af2"
+        },
+        {
+          "relative": "observer/test_cache_scope.dSYM/Contents/Resources/Relocations/x86_64/test_cache_scope.yml",
+          "bytes": 195,
+          "sha256": "a8cbb0570ea4cbba61a5853642255ef4d8026651ffd1b39495d99a1953b4cb41"
+        },
+        {
+          "relative": "observer/test_cache_scope.dSYM/Contents/Resources/DWARF/test_cache_scope",
+          "bytes": 18224,
+          "sha256": "7b099a6785d8699b04a9bdd1d72a1b269b5b6b520ff0648fc0bec09288c19025"
+        },
+        {
+          "relative": "observer/test_observer.dSYM/Contents/Info.plist",
+          "bytes": 642,
+          "sha256": "589d796cebc46abadfe0ec147d2a15f3b4f4f50d2c7edbebfc3cde26f51d66bf"
+        },
+        {
+          "relative": "observer/test_observer.dSYM/Contents/Resources/Relocations/x86_64/test_observer.yml",
+          "bytes": 192,
+          "sha256": "ae50ac2b675a8008bc0f690cac027f0635a34beeca96b4b53173232c9f9c1b74"
+        },
+        {
+          "relative": "observer/test_observer.dSYM/Contents/Resources/DWARF/test_observer",
+          "bytes": 41828,
+          "sha256": "a8ef4edab5d7770dceb9787752468b7d52a5e21e2bc6182e9af1b8ef67b69475"
+        },
+        {
+          "relative": "observer/test_quad_route_observer.dSYM/Contents/Info.plist",
+          "bytes": 653,
+          "sha256": "4f6b8139dc5258062c9b876109b20e58395628b715be1e0cfc2165f8e26edc03"
+        },
+        {
+          "relative": "observer/test_quad_route_observer.dSYM/Contents/Resources/Relocations/x86_64/test_quad_route_observer.yml",
+          "bytes": 203,
+          "sha256": "cbbff878d512525bba230266605c045397ac3bb0c23317348c5c1acb48f644a6"
+        },
+        {
+          "relative": "observer/test_quad_route_observer.dSYM/Contents/Resources/DWARF/test_quad_route_observer",
+          "bytes": 94164,
+          "sha256": "b369bb20663bbe713cd399d99d21b41e3ecf1e0d69c9ff32677ec57fa724d67a"
+        },
+        {
+          "relative": "observer/test_request_observer.dSYM/Contents/Info.plist",
+          "bytes": 650,
+          "sha256": "07d6a3dac727325515613215f20b7b2403bf20a2bba99d369d891dc11acc0c9d"
+        },
+        {
+          "relative": "observer/test_request_observer.dSYM/Contents/Resources/Relocations/x86_64/test_request_observer.yml",
+          "bytes": 200,
+          "sha256": "c1f835bf182fe85c0168e4bef6daa5720875cfca1b7a060bf1ef854fde8afd92"
+        },
+        {
+          "relative": "observer/test_request_observer.dSYM/Contents/Resources/DWARF/test_request_observer",
+          "bytes": 71316,
+          "sha256": "b2f2b5d88a4f2b14106214989de2f0a95db37ddfa4e525ff1048981c6bcfe384"
+        },
+        {
+          "relative": "observer/test_png_postdraw_encoder.dSYM/Contents/Info.plist",
+          "bytes": 654,
+          "sha256": "7dd79ab1dac553ea05bede2be726273fc5fd3b229c2068fc14aa7fc0d3d50003"
+        },
+        {
+          "relative": "observer/test_png_postdraw_encoder.dSYM/Contents/Resources/Relocations/x86_64/test_png_postdraw_encoder.yml",
+          "bytes": 204,
+          "sha256": "5b10cd4e765165c00199c32ce379e8d137347888e3c480626432112e31fdee5c"
+        },
+        {
+          "relative": "observer/test_png_postdraw_encoder.dSYM/Contents/Resources/DWARF/test_png_postdraw_encoder",
+          "bytes": 50704,
+          "sha256": "32ac5878b8aac691afa20ec79c1ac72d8aab37bd891b2b3d6ff65732b0ece40b"
+        },
+        {
+          "relative": "observer/test_postdraw_observer.dSYM/Contents/Info.plist",
+          "bytes": 651,
+          "sha256": "ba5e540d03716130925c52e316c17d80e78fd08101eb2aa21e1bf0abadadb191"
+        },
+        {
+          "relative": "observer/test_postdraw_observer.dSYM/Contents/Resources/Relocations/x86_64/test_postdraw_observer.yml",
+          "bytes": 201,
+          "sha256": "8f10092ad8cfdaa783d2f21928731ee23b0030ee01e7f4ff38d6ec12c893fa94"
+        },
+        {
+          "relative": "observer/test_postdraw_observer.dSYM/Contents/Resources/DWARF/test_postdraw_observer",
+          "bytes": 57684,
+          "sha256": "a24f533ff47a58e172c79f4332a2a287753d76ae93c2d7adbeaaf91f16705eaa"
+        },
+        {
+          "relative": "observer/test_pipeline_observer.dSYM/Contents/Info.plist",
+          "bytes": 651,
+          "sha256": "14a5e51d08a5bf0856f6e93830a9fde78a537ae439cf8dfa4bd0dc8268cf1dc6"
+        },
+        {
+          "relative": "observer/test_pipeline_observer.dSYM/Contents/Resources/Relocations/x86_64/test_pipeline_observer.yml",
+          "bytes": 201,
+          "sha256": "926a25229282a644a982eb68e433e257f81a31afc08ab20892951f5aea18ef81"
+        },
+        {
+          "relative": "observer/test_pipeline_observer.dSYM/Contents/Resources/DWARF/test_pipeline_observer",
+          "bytes": 45512,
+          "sha256": "b4f7d55189f68b9c08aaf937163fa591340c03675e41d4003e1655af3dfb9054"
+        },
+        {
+          "relative": "observer/test_png_input_observer.dSYM/Contents/Info.plist",
+          "bytes": 652,
+          "sha256": "4eea09a4e0f1cd19994e51f233c52e59224b7eceb46e1da9e1c6b4275173a70f"
+        },
+        {
+          "relative": "observer/test_png_input_observer.dSYM/Contents/Resources/Relocations/x86_64/test_png_input_observer.yml",
+          "bytes": 202,
+          "sha256": "ed1246629f33ed2632e78f194f9e791ef926acfe4f836eae4026199df6358ee2"
+        },
+        {
+          "relative": "observer/test_png_input_observer.dSYM/Contents/Resources/DWARF/test_png_input_observer",
+          "bytes": 58948,
+          "sha256": "e1befa9ca07d640d979c93c1060099f9cfaf195debd9bca5cb6376757abac47d"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/original-mode-swift-owner-r2-20261122",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2b-20261122/observer/test_startup.dSYM",
+      "reason": "Completed duplicate HFS/transfer/host or offline-only failed fixture build; current original owner signed package/raw retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 641,
+          "sha256": "944829fa3c1a4d913161b503f6352fa20f7c101cdeefe97a15208dadbe4a587a"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_startup.yml",
+          "bytes": 192,
+          "sha256": "3c3b8756f6073e97da9a7f5e50269cb2887d90bc2fb265743c25d0eb9d3be87b"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_startup",
+          "bytes": 14936,
+          "sha256": "ae13a32dd950a1de3603971b9891016407cd2e0f12e5355d01f87be712db4449"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_startup.dSYM 02-28-33-401.dSYM",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2b-20261122/observer/test_png_image_dispatch.dSYM",
+      "reason": "Completed duplicate HFS/transfer/host or offline-only failed fixture build; current original owner signed package/raw retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 652,
+          "sha256": "236aaeedc10009a032529be8c502cc8b58a5893578cf1d5354ab805ee898134f"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_png_image_dispatch.yml",
+          "bytes": 203,
+          "sha256": "b7fb9bcdd08f4856902e3f5424e924c4e09b195b1939e3ca16987f75b0951294"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_png_image_dispatch",
+          "bytes": 38656,
+          "sha256": "f7b99860a57b3c049b1ddcfdd3995cbbffa00c073f9b2518290f8c982b298764"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_png_image_dispatch.dSYM 02-28-33-452.dSYM",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2b-20261122/observer/test_snapshot_method_observer",
+      "reason": "Completed duplicate HFS/transfer/host or offline-only failed fixture build; current original owner signed package/raw retained",
+      "files": [
+        {
+          "relative": "test_snapshot_method_observer",
+          "bytes": 98096,
+          "sha256": "fe14976e58f67c327b71211e245d660669dc1c84c84a0733e4608fd07dd594b1"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_snapshot_method_observer 02-28-33-503",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2b-20261122/observer/test_snapshot_method_observer.dSYM",
+      "reason": "Completed duplicate HFS/transfer/host or offline-only failed fixture build; current original owner signed package/raw retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 658,
+          "sha256": "04e828e1d0fd7bec7384bf92308830a990c1237423b15ef3c49b301d6f9934dd"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_snapshot_method_observer.yml",
+          "bytes": 209,
+          "sha256": "a699ec66fb2f35b68e6a17d31c31e82fa15f5e870d789b72a5a6e5c5172fcd56"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_snapshot_method_observer",
+          "bytes": 63316,
+          "sha256": "490d05d77fd7e4c8b8409f077a9310328ec00a1a6df1c34445fc727f51635d85"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_snapshot_method_observer.dSYM 02-28-33-554.dSYM",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2b-20261122/observer/test_cache_scope.dSYM",
+      "reason": "Completed duplicate HFS/transfer/host or offline-only failed fixture build; current original owner signed package/raw retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 645,
+          "sha256": "2d56eca2217abc049f49309a8cb04e54f45a4ba11b0491143bbbb28280638af2"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_cache_scope.yml",
+          "bytes": 196,
+          "sha256": "c1f1443bc1ed6e53482f5f3f19852cb0396d1325442a25ae2a4e0b1c54fee452"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_cache_scope",
+          "bytes": 18224,
+          "sha256": "76d58fdf373adf379bcbf83fd42c9857c0a3eeb0ffba4c6b0c185a943253f89d"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_scope.dSYM 02-28-33-613.dSYM",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2b-20261122/observer/test_postdraw_observer",
+      "reason": "Completed duplicate HFS/transfer/host or offline-only failed fixture build; current original owner signed package/raw retained",
+      "files": [
+        {
+          "relative": "test_postdraw_observer",
+          "bytes": 76096,
+          "sha256": "cbd832af802e24045c55b7acf19d4a551aa4a4717ab654515e43cfae6d71b424"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_postdraw_observer 02-28-33-664",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2b-20261122/observer/test_observer.dSYM",
+      "reason": "Completed duplicate HFS/transfer/host or offline-only failed fixture build; current original owner signed package/raw retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 642,
+          "sha256": "589d796cebc46abadfe0ec147d2a15f3b4f4f50d2c7edbebfc3cde26f51d66bf"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_observer.yml",
+          "bytes": 193,
+          "sha256": "e760ab190d0aafbf3df25a38f20bc43009e49619bd9d87d9bcfdd153271a5995"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_observer",
+          "bytes": 41828,
+          "sha256": "cead3ee2a23dc5e59cb7e5f2128260a994bae689155439a157e8b59a2bc0a1ff"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_observer.dSYM 02-28-33-722.dSYM",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2b-20261122/observer/test_png_input_observer",
+      "reason": "Completed duplicate HFS/transfer/host or offline-only failed fixture build; current original owner signed package/raw retained",
+      "files": [
+        {
+          "relative": "test_png_input_observer",
+          "bytes": 83672,
+          "sha256": "d9d35d5fc6889cb4d879598946ec3b2d707a01f8e66639c2beffbbf509d3ecc8"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_png_input_observer 02-28-33-773",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2b-20261122/observer/test_png_postdraw_encoder",
+      "reason": "Completed duplicate HFS/transfer/host or offline-only failed fixture build; current original owner signed package/raw retained",
+      "files": [
+        {
+          "relative": "test_png_postdraw_encoder",
+          "bytes": 65744,
+          "sha256": "9332d99da6fd35c52584cbc0abdd886b29045428c41d0031d558b93708a95f5a"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_png_postdraw_encoder 02-28-33-825",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2b-20261122/observer/test_quad_route_observer",
+      "reason": "Completed duplicate HFS/transfer/host or offline-only failed fixture build; current original owner signed package/raw retained",
+      "files": [
+        {
+          "relative": "test_quad_route_observer",
+          "bytes": 134184,
+          "sha256": "fb7ba725822881defab10a9c4936f8cdcc5e304a363e3bae394c80af7a479834"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_quad_route_observer 02-28-33-876",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2b-20261122/observer/test_cache_scope",
+      "reason": "Completed duplicate HFS/transfer/host or offline-only failed fixture build; current original owner signed package/raw retained",
+      "files": [
+        {
+          "relative": "test_cache_scope",
+          "bytes": 28320,
+          "sha256": "5050423c73453bf3817685260cdbe879690864d3665859e20beeeccad8db68d5"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_scope 02-28-33-934",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2b-20261122/observer/test_quad_route_observer.dSYM",
+      "reason": "Completed duplicate HFS/transfer/host or offline-only failed fixture build; current original owner signed package/raw retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 653,
+          "sha256": "4f6b8139dc5258062c9b876109b20e58395628b715be1e0cfc2165f8e26edc03"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_quad_route_observer.yml",
+          "bytes": 204,
+          "sha256": "e8f05d8b63722332df3a808bc1ae330503a3b4d774b44ef484117bd9725fb901"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_quad_route_observer",
+          "bytes": 92740,
+          "sha256": "90ee97a34056757138b7d0630ae8901f72ae24e03132073b37635a7ab755027b"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_quad_route_observer.dSYM 02-28-33-985.dSYM",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2b-20261122/observer/test_request_observer.dSYM",
+      "reason": "Completed duplicate HFS/transfer/host or offline-only failed fixture build; current original owner signed package/raw retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 650,
+          "sha256": "07d6a3dac727325515613215f20b7b2403bf20a2bba99d369d891dc11acc0c9d"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_request_observer.yml",
+          "bytes": 201,
+          "sha256": "64a588d0be7902ad41f4c54933bc8bbc9aa343d8e19484fed485a93abb06001a"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_request_observer",
+          "bytes": 71316,
+          "sha256": "7b05c22fe6709ed5522e18723dd5aaf398a0bbc62cd98bf2267e512869d024fc"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_request_observer.dSYM 02-28-34-042.dSYM",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2b-20261122/observer/test_pipeline_observer",
+      "reason": "Completed duplicate HFS/transfer/host or offline-only failed fixture build; current original owner signed package/raw retained",
+      "files": [
+        {
+          "relative": "test_pipeline_observer",
+          "bytes": 48464,
+          "sha256": "da6adb4418de01c6779a618f9eda9aec5d075a70b680246fbe9f265404197c06"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_pipeline_observer 02-28-34-099",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2b-20261122/observer/test_png_postdraw_encoder.dSYM",
+      "reason": "Completed duplicate HFS/transfer/host or offline-only failed fixture build; current original owner signed package/raw retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 654,
+          "sha256": "7dd79ab1dac553ea05bede2be726273fc5fd3b229c2068fc14aa7fc0d3d50003"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_png_postdraw_encoder.yml",
+          "bytes": 205,
+          "sha256": "e4058c83e42ec730a5aee15090d9a6c33dda9d487478617b7ccde5877a3e028e"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_png_postdraw_encoder",
+          "bytes": 50704,
+          "sha256": "e7be52f99b921076223598c865f561f4b03cb0b65e46a22f3f5187d8dd5266b1"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_png_postdraw_encoder.dSYM 02-28-34-152.dSYM",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2b-20261122/observer/test_postdraw_observer.dSYM",
+      "reason": "Completed duplicate HFS/transfer/host or offline-only failed fixture build; current original owner signed package/raw retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 651,
+          "sha256": "ba5e540d03716130925c52e316c17d80e78fd08101eb2aa21e1bf0abadadb191"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_postdraw_observer.yml",
+          "bytes": 202,
+          "sha256": "75e46a7f4ea4178341cd3d1d51d905e055435b07e6b0d1a9aa557f328c3edfe0"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_postdraw_observer",
+          "bytes": 57684,
+          "sha256": "0add75aef65f0234845a62f63d9c2c5b74c80d482bf65ee81b03c7aa05512397"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_postdraw_observer.dSYM 02-28-34-204.dSYM",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2b-20261122/observer/test_pipeline_observer.dSYM",
+      "reason": "Completed duplicate HFS/transfer/host or offline-only failed fixture build; current original owner signed package/raw retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 651,
+          "sha256": "14a5e51d08a5bf0856f6e93830a9fde78a537ae439cf8dfa4bd0dc8268cf1dc6"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_pipeline_observer.yml",
+          "bytes": 202,
+          "sha256": "5e12a067207b3b36e4278ef1e46b664765dda96c595eed26d56c22507c16bfe6"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_pipeline_observer",
+          "bytes": 45512,
+          "sha256": "619ea1fd6720f753be9aa6713a54d465ac79b2897dc657f22b61d9c963372d57"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_pipeline_observer.dSYM 02-28-34-259.dSYM",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2b-20261122/observer/test_png_input_observer.dSYM",
+      "reason": "Completed duplicate HFS/transfer/host or offline-only failed fixture build; current original owner signed package/raw retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 652,
+          "sha256": "4eea09a4e0f1cd19994e51f233c52e59224b7eceb46e1da9e1c6b4275173a70f"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_png_input_observer.yml",
+          "bytes": 203,
+          "sha256": "859903bcf5b63c56140965841de92357802243daec0b220c3b3bbade87ae5025"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_png_input_observer",
+          "bytes": 58948,
+          "sha256": "c6c9700af93a142cf76b0a93c55a2cb11f28778b15263f2428c264162f432718"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_png_input_observer.dSYM 02-28-34-320.dSYM",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2b-20261122/observer/test_startup",
+      "reason": "Completed duplicate HFS/transfer/host or offline-only failed fixture build; current original owner signed package/raw retained",
+      "files": [
+        {
+          "relative": "test_startup",
+          "bytes": 20592,
+          "sha256": "472120ed350a899b24ee2cd7fef00120d2e6cc07df3761d21e9d42b2639631ad"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_startup 02-28-34-377",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2b-20261122/observer/test_observer",
+      "reason": "Completed duplicate HFS/transfer/host or offline-only failed fixture build; current original owner signed package/raw retained",
+      "files": [
+        {
+          "relative": "test_observer",
+          "bytes": 65680,
+          "sha256": "b919a72f4b12831b53c19d7efd16b689cdcd8366aa396c704e4d014a32aae2af"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_observer 02-28-34-431",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2b-20261122/observer/test_png_image_dispatch",
+      "reason": "Completed duplicate HFS/transfer/host or offline-only failed fixture build; current original owner signed package/raw retained",
+      "files": [
+        {
+          "relative": "test_png_image_dispatch",
+          "bytes": 52288,
+          "sha256": "f7a243e8f392d5dbcea6b481b6d580d2d1e4d2a66b623e5f8a896e1615d9f32f"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_png_image_dispatch 02-28-34-482",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2b-20261122/observer/test_request_observer",
+      "reason": "Completed duplicate HFS/transfer/host or offline-only failed fixture build; current original owner signed package/raw retained",
+      "files": [
+        {
+          "relative": "test_request_observer",
+          "bytes": 106928,
+          "sha256": "24beaa6523135732039a9a8dc38d861d4fbcc87fa1238ba96368ffdeaa67cdc8"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_request_observer 02-28-34-534",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    }
+  ],
+  "protected_SHA_unchanged": {
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/surface-diag-v730/kernel.v730.macho": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2b-20261122/ram/sweetgl.dylib": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2b-20261122/ram/MetalResources.dylib": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2b-20261122/ram/exception_observe.dylib": "ee3be620a27ba57dc7725274adc354dda7d5640ad7cf2c92842c0e3eadfaa342",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2b-20261122/ram/glram.zblob": "6f6a8658f8fc9943f38d63f6d7b77b2f7887044550b2f70c5a32252de4de380f",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-swift-owner-r2b-20261122/ram/manifest.json": "2e4e3a90246f662f464cfdc7a940aa1da0e16fda4c770bafd196c6f4bd0da7e3"
+  },
+  "trash_not_emptied": true
+}

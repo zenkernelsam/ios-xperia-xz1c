@@ -1,0 +1,93 @@
+{
+  "date": "2026-11-22",
+  "profile": "xz1c-native-2x",
+  "stages": [
+    {
+      "stage": "cpu",
+      "payload": {
+        "image_sha256": "52ee57ffa9b5463af8047b8cdbcc84b90b270311a4c3bea1c0e6c32574aed444",
+        "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+        "blob_count": 8,
+        "complete_payload_reconstructed_from_compiled_kernel": true
+      },
+      "token": "5a20e436669f59d8",
+      "cmdline_bytes": 607,
+      "compacted_numeric_ones": [
+        "sweetfb_native",
+        "sweetbattery",
+        "ufsrw",
+        "rootrw",
+        "cs_enforcement_disable",
+        "amfi_get_out_of_my_way"
+      ],
+      "geometry": {
+        "revision": 1,
+        "profile": "xz1c-native-2x",
+        "canvas_pixels": [
+          720,
+          1280
+        ],
+        "UIKit_points": [
+          360,
+          640
+        ],
+        "scale": 2,
+        "source_reference_sha256": "257076987411b50f037f70bf97524fae56ac2965e773c1bb8678d05d45480ba6",
+        "target_reference_sha256": "077aac63b2e5cd48e0e4fbd024a07cac3533eaea6a04a94376d2966dbef4d2e6",
+        "converter_sha256": "ad0b5cd47f32968fa95d13a00fe54bf619bb9909efb5e6c796d04adb17d274de",
+        "parser_sha256": "1431f1f8aacae240b87bd29cd91905784c968f8014784201b3ed862bdb1b4ed9",
+        "required_boot_arguments": {
+          "sweetfb_native": 1,
+          "sf2x": 0
+        },
+        "four_original_CFData_properties_only": true
+      }
+    },
+    {
+      "stage": "gpu",
+      "payload": {
+        "image_sha256": "3f6d920b73675da605d9b832b6c366c39f936500628058d31998d517987040d0",
+        "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+        "blob_count": 8,
+        "complete_payload_reconstructed_from_compiled_kernel": true
+      },
+      "token": "338a986e5379a5e1",
+      "cmdline_bytes": 602,
+      "compacted_numeric_ones": [],
+      "geometry": {
+        "revision": 1,
+        "profile": "xz1c-native-2x",
+        "canvas_pixels": [
+          720,
+          1280
+        ],
+        "UIKit_points": [
+          360,
+          640
+        ],
+        "scale": 2,
+        "source_reference_sha256": "257076987411b50f037f70bf97524fae56ac2965e773c1bb8678d05d45480ba6",
+        "target_reference_sha256": "077aac63b2e5cd48e0e4fbd024a07cac3533eaea6a04a94376d2966dbef4d2e6",
+        "converter_sha256": "ad0b5cd47f32968fa95d13a00fe54bf619bb9909efb5e6c796d04adb17d274de",
+        "parser_sha256": "1431f1f8aacae240b87bd29cd91905784c968f8014784201b3ed862bdb1b4ed9",
+        "required_boot_arguments": {
+          "sweetfb_native": 1,
+          "sf2x": 0
+        },
+        "four_original_CFData_properties_only": true
+      }
+    }
+  ],
+  "refused_faults": [
+    "cpu:missing_binding",
+    "cpu:wrong_target",
+    "cpu:wrong_sf2x",
+    "gpu:missing_binding",
+    "gpu:wrong_target",
+    "gpu:wrong_sf2x"
+  ],
+  "default_baseline_fields_preserved": true,
+  "geometry_only_four_CFData_and_native1_sf2x0": true,
+  "device_operations": 0,
+  "UI_MG_UIScreen_safe_area_touch_NOT_yet_verified": true
+}

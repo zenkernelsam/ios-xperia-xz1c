@@ -33,3 +33,5 @@ python -B tools/build/make_render_adt.py /path/to/verified/board.adt build/my-na
 新geometry实际要求：同靴UIScreen bounds360×640、nativeBounds720×1280、scale2；MG三个main-screen答案一致；真实scanout720×1280／2160、屏幕四角／圆形／文字／状态栏／homebar／锁屏／主页布局完整；F12全屏坐标和一次上滑实际正确；光学／背光另验。所有目标、pixel／source／token／四marker／健康30秒／worker退出完整，缺任一项保持未完成。
 
 正式source、离线计算和边界在[geometry proof](../reproducibility/display-native2x-offline-20261121.json)，当前事实在[STATUS](STATUS.md)，单发与UFS红线在[OPERATIONS](OPERATIONS.md)。
+
+2026-11-22正式打包集成已完成：--display-profile xz1c-native-2x强制四个CFData、native1/sf2x0及完整source/target绑定，不手工改artifact。输入固件／GL-RAM-Z不变，整个新payload投递前由prove_payload复算。CPU以固定numeric PE parser等值bare-one压至607B，GPU602B，旧profile维持原字节；四属性/missing/mixed/profile/parser/flag六类实际包故障拒绝。离线[原报告](../reproducibility/native2x-package-r1-offline-20261122.json)不作为手机比例验收。
