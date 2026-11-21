@@ -1,0 +1,164 @@
+{
+  "date": "2026-11-22",
+  "source_commit": "1e63042",
+  "runs": [
+    {
+      "result": "PASS",
+      "reason": "GOALS_STABLE",
+      "return_log_complete": true,
+      "reset_to_fastboot_seconds": 38.343000000109896,
+      "stage": "cpu",
+      "token": "078c1c6e613d1047",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-original-mode-r12-cpu-live-20261122",
+      "image_sha256": "2e7ab71acfd6c579a13384d0907cded30aa725ed67cf464a5142e6195886bc1b",
+      "raw_sha256": "c2a045d0debad97afabf6a848db2d4f5fd238031c6a0d3a976a5016cefae6de8",
+      "raw_bytes": 340535,
+      "original_results_sha256": "5cc1f1c6588bbfb05b70b551a41c3acf04f92e29cc9232aef13e89604877a0ba",
+      "strict_return": {
+        "complete": true,
+        "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+        "current_token": "078c1c6e613d1047",
+        "checkpoint_bytes": 336759,
+        "log_bytes": 340535,
+        "log_sha256": "c2a045d0debad97afabf6a848db2d4f5fd238031c6a0d3a976a5016cefae6de8",
+        "require_final_drain": true,
+        "marker_positions": [
+          4,
+          21,
+          69,
+          71
+        ],
+        "final_reset_marker_seen": true
+      },
+      "original_independent_CPU_proof_preserved": true
+    },
+    {
+      "result": "REVISE",
+      "reason": "QUAD_ROUTE_OBSERVER_INSTALL_INCOMPLETE",
+      "return_log_complete": true,
+      "reset_to_fastboot_seconds": 39.468000000109896,
+      "stage": "gpu",
+      "token": "aa13f2a43ef80ed8",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-original-mode-r12-gpu-live-20261122",
+      "image_sha256": "12f0b2b6020f6d5cd9fd6a7a384b1b09bc603b45c65dad2f4f8ce3ed08ad208a",
+      "raw_sha256": "475dad225b089752d3cc3d5f10bf14bd317b7cbcc7c02409cf2eb278ec70100f",
+      "raw_bytes": 1453554,
+      "original_results_sha256": "8c5eeedb5cdc62b472397baa2a988bb8bb25e95d1bae592b7d639ad672007235",
+      "strict_return": {
+        "complete": true,
+        "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+        "current_token": "aa13f2a43ef80ed8",
+        "checkpoint_bytes": 1437271,
+        "log_bytes": 1453554,
+        "log_sha256": "475dad225b089752d3cc3d5f10bf14bd317b7cbcc7c02409cf2eb278ec70100f",
+        "require_final_drain": true,
+        "marker_positions": [
+          3,
+          102,
+          190,
+          192
+        ],
+        "final_reset_marker_seen": true
+      },
+      "observer_install_config": [
+        [
+          "279",
+          "31"
+        ]
+      ],
+      "missing_owned_delegate_methods": [
+        "|AegirPoster| SWEET QUAD ROUTE METHOD pid=279 api=env_init present=0 owned=0 installed=0 arguments=0 owner_checked=0 meta=0",
+        "|AegirPoster| SWEET QUAD ROUTE METHOD pid=279 api=env_update present=0 owned=0 installed=0 arguments=0 owner_checked=0 meta=0"
+      ],
+      "actual_deactive_mode_calls": [
+        "|AegirPoster| SWEET QUAD ROUTE BEGIN pid=279 call=20 api=deactive_mode original_forwarded=1",
+        "|AegirPoster| SWEET QUAD ROUTE BEGIN pid=279 call=67 api=deactive_mode original_forwarded=1",
+        "|AegirPoster| SWEET QUAD ROUTE BEGIN pid=279 call=89 api=deactive_mode original_forwarded=1",
+        "|AegirPoster| SWEET QUAD ROUTE BEGIN pid=279 call=102 api=deactive_mode original_forwarded=1",
+        "|AegirPoster| SWEET QUAD ROUTE BEGIN pid=279 call=115 api=deactive_mode original_forwarded=1"
+      ],
+      "original_install_failure_NOT_GPU_failure": true,
+      "swipe_and_150s_sample_NOT_completed": true,
+      "early_failure_scanout": {
+        "protocol": 1,
+        "verified": true,
+        "frames": [
+          {
+            "id": 1,
+            "token": "aa13f2a43ef80ed8",
+            "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+            "image_sha256": "12f0b2b6020f6d5cd9fd6a7a384b1b09bc603b45c65dad2f4f8ce3ed08ad208a",
+            "binding": {
+              "protocol": 1,
+              "width": 720,
+              "height": 1280,
+              "stride": 2160,
+              "format": "BGR888",
+              "codec": "PRLE1",
+              "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+              "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+              "runtime_source_sha256": "a1f41eeb87b7cf70ea751884ee38d758191f3cc0a00d697acc363fbba3cd5f63"
+            },
+            "begin": {
+              "token": "aa13f2a43ef80ed8",
+              "id": "1",
+              "width": "720",
+              "height": "1280",
+              "stride": "2160",
+              "format": "BGR888",
+              "bytes": "2764800",
+              "codec": "PRLE1",
+              "encoded": "349599",
+              "raw_fnv": "38b308a7ac9839be",
+              "enc_crc": "841d4a8e",
+              "vsync": "4605",
+              "timestamp": "9896822646",
+              "copy_ticks": "9267463",
+              "power_off": "0",
+              "source_checked": "1",
+              "source_match": "1"
+            },
+            "scan": {
+              "token": "aa13f2a43ef80ed8",
+              "id": "1",
+              "pa": "0x9d400000",
+              "map_pa": "0x9d400000",
+              "map_bytes": "2764800",
+              "size": "0x50002d0",
+              "img": "0x50002d0",
+              "xy": "0",
+              "out": "0x50002d0",
+              "outxy": "0",
+              "fmt": "0x2243f",
+              "unpack": "0x20001",
+              "op": "0x80000000",
+              "qop": "0",
+              "ctl": "0x20020",
+              "start": "0",
+              "before_after": "1"
+            },
+            "blocks": 2732,
+            "raw_file": "scanout-00000001.bgr",
+            "png_file": "scanout-00000001.png",
+            "raw_sha256": "95898acedbca89817e23d3a11655c920d8e5a2e68eacb1bd822c7035547b98cb",
+            "png_sha256": "feeb25be6a995572c81fce2f927581bcb22521be6ea3db2ae3cb6829f1bcc877",
+            "pixel_values_preserved": true,
+            "verified": true,
+            "optical_panel_verified": false
+          }
+        ],
+        "optical_panel_verified": false,
+        "elapsed_seconds": 11.905999999959022
+      },
+      "ACK_exit_period_errors_separate": [
+        "|backboardd| sweetgl: attachImage: surface 110 BGRA 750x1624 pitch 3072 plane 0: kernel import failed",
+        "|backboardd| sweetgl: scatter submit (4 IBs, 25 bos) failed: 0xe00002d6 seq=0",
+        "|backboardd| MESA: error: flush_submit_list:135: submit failed: -60 (Operation timed out)",
+        "|backboardd| sweetgl: scatter bo new 32768 failed: 0xe00002bd ret=-12"
+      ]
+    }
+  ],
+  "old_failure_NOT_replayed": true,
+  "full_original_UI_geometry_FPS_peripherals_NOT_complete": true,
+  "final_device": "BH905ND69G healthy fastboot; workers exited"
+}

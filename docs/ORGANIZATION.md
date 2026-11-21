@@ -59,3 +59,5 @@ r10四靴完整返回后，15项／25文件／150868099B进Mac原生Trash；Wind
 主体及全部追加Mac共1803项／35167文件／13185344737B（12.28GiB）；回收站未清空，最新91%使用／92GiB可用、build4281044KiB（4.08GiB），其它项目未改。现行50份文档按STATUS／BUILD／OPERATIONS／LAYOUT／INDEX／专题职责整理；本轮编辑前STATUS／ORGANIZATION原文和SHA另归入[r10归档](archive/20261121/r10-close-out/original-document-manifest.json)。GPU完整附件证明和presentation拒绝分开保留，源修补只在正式仓库。
 
 2026-11-22 lifecycle-r2轮两靴完整结束后：Mac14项／28文件／95169204B及Windows3项／11文件／29514408B全部原生回收、目标SHA复核，保留完整native21／PNG6新包、proof和原raw。没有清空垃圾桶，旧R10失败与基线未删。[Mac记录](../reproducibility/presentation-lifecycle-r2-macos-native-trash-20261122.json)／[Windows记录](../reproducibility/presentation-lifecycle-r2-windows-native-recycle-20261122.json)。
+
+2026-11-22 原mode-r12轮结束后，Mac25项／47文件／76896058B与Windows3项／11文件／29021080B已原生回收；目标SHA验证、失败包／raw／native21 proof和冻结内核保留，未清空。[Mac](../reproducibility/original-mode-r12-macos-native-trash-20261122.json)／[Windows](../reproducibility/original-mode-r12-windows-native-recycle-20261122.json)。

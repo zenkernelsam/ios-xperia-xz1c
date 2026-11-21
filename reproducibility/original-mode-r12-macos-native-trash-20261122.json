@@ -1,0 +1,478 @@
+{
+  "date": "2026-11-22",
+  "items": 25,
+  "files": 47,
+  "logical_bytes": 76896058,
+  "records": [
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-native21-r1-20261122/ram/glram.raw",
+      "reason": "Completed duplicate container/transfer/host; current signed original-mode RAM and rejected raw retained",
+      "files": [
+        {
+          "relative": "glram.raw",
+          "bytes": 33554432,
+          "sha256": "6570a616ae20d5a9e7aaec3c7507c95dbb161b873376c29803190828beb21823"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/glram.raw 01-12-33-202.raw",
+      "all_content_SHA_verified": true,
+      "native_trash_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-native21-r1-20261122/ram/glram.dmg",
+      "reason": "Completed duplicate container/transfer/host; current signed original-mode RAM and rejected raw retained",
+      "files": [
+        {
+          "relative": "glram.dmg",
+          "bytes": 33554432,
+          "sha256": "6570a616ae20d5a9e7aaec3c7507c95dbb161b873376c29803190828beb21823"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/glram.dmg 01-12-33-275.dmg",
+      "all_content_SHA_verified": true,
+      "native_trash_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-native21-r1-20261122/transfer-package.tar.gz",
+      "reason": "Completed duplicate container/transfer/host; current signed original-mode RAM and rejected raw retained",
+      "files": [
+        {
+          "relative": "transfer-package.tar.gz",
+          "bytes": 8445215,
+          "sha256": "486d1f036416568816347ab40c8521997be52ef022dd9a88956a99b5f20e740e"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/transfer-package.tar.gz 01-12-33-334.gz",
+      "all_content_SHA_verified": true,
+      "native_trash_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-native21-r1-20261122/observer/test_startup.dSYM",
+      "reason": "Completed duplicate container/transfer/host; current signed original-mode RAM and rejected raw retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 641,
+          "sha256": "944829fa3c1a4d913161b503f6352fa20f7c101cdeefe97a15208dadbe4a587a"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_startup.yml",
+          "bytes": 188,
+          "sha256": "79605c200bdfce6d457e3fa2bce1d41f43a68c0c2aabed6a3dae512234382518"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_startup",
+          "bytes": 14936,
+          "sha256": "19f0eea86c223a7ab87866aede3d367ed1d13ac5342d134fbc72622d2eb46c72"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_startup.dSYM 01-12-33-384.dSYM",
+      "all_content_SHA_verified": true,
+      "native_trash_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-native21-r1-20261122/observer/test_png_image_dispatch.dSYM",
+      "reason": "Completed duplicate container/transfer/host; current signed original-mode RAM and rejected raw retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 652,
+          "sha256": "236aaeedc10009a032529be8c502cc8b58a5893578cf1d5354ab805ee898134f"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_png_image_dispatch.yml",
+          "bytes": 199,
+          "sha256": "cbba1c0b0274cf010a131cf4af36341b735f201785b64d9e190f2cdd7ea86351"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_png_image_dispatch",
+          "bytes": 38656,
+          "sha256": "4d087bc29203314eb614de7c24cc53d2014454343f1dce8fbb265ea142d642a3"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_png_image_dispatch.dSYM",
+      "all_content_SHA_verified": true,
+      "native_trash_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-native21-r1-20261122/observer/test_snapshot_method_observer",
+      "reason": "Completed duplicate container/transfer/host; current signed original-mode RAM and rejected raw retained",
+      "files": [
+        {
+          "relative": "test_snapshot_method_observer",
+          "bytes": 98096,
+          "sha256": "5725e1c59d77b286b7814a3e808d7fdd996d3ecbfc6b0d7d81885ab4a073badd"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_snapshot_method_observer",
+      "all_content_SHA_verified": true,
+      "native_trash_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-native21-r1-20261122/observer/test_snapshot_method_observer.dSYM",
+      "reason": "Completed duplicate container/transfer/host; current signed original-mode RAM and rejected raw retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 658,
+          "sha256": "04e828e1d0fd7bec7384bf92308830a990c1237423b15ef3c49b301d6f9934dd"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_snapshot_method_observer.yml",
+          "bytes": 205,
+          "sha256": "83f5a851398976631f0b4586688bc7e8e5749e4def0862a805a05cb82ef46a22"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_snapshot_method_observer",
+          "bytes": 63316,
+          "sha256": "80a4fb6ffd96d8c6a0780d371d2ceaf2b5c5fd952eed82041e6b65d7cbff1944"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_snapshot_method_observer.dSYM",
+      "all_content_SHA_verified": true,
+      "native_trash_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-native21-r1-20261122/observer/test_cache_scope.dSYM",
+      "reason": "Completed duplicate container/transfer/host; current signed original-mode RAM and rejected raw retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 645,
+          "sha256": "2d56eca2217abc049f49309a8cb04e54f45a4ba11b0491143bbbb28280638af2"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_cache_scope.yml",
+          "bytes": 192,
+          "sha256": "b50fdc3d5822c888e20e014ff6d74f1cd6c17f0ae2129704da9ea5786c794c58"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_cache_scope",
+          "bytes": 18224,
+          "sha256": "70a17a38aa1e0bd401ff5bb6e8f833d5f1ec11e56bb7837ff88d6232132917d8"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_scope.dSYM 01-12-33-598.dSYM",
+      "all_content_SHA_verified": true,
+      "native_trash_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-native21-r1-20261122/observer/test_postdraw_observer",
+      "reason": "Completed duplicate container/transfer/host; current signed original-mode RAM and rejected raw retained",
+      "files": [
+        {
+          "relative": "test_postdraw_observer",
+          "bytes": 76096,
+          "sha256": "2faa72ec36c4329632616f87f2b34740638690552ad33dabf62e4a638e5b2474"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_postdraw_observer",
+      "all_content_SHA_verified": true,
+      "native_trash_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-native21-r1-20261122/observer/test_observer.dSYM",
+      "reason": "Completed duplicate container/transfer/host; current signed original-mode RAM and rejected raw retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 642,
+          "sha256": "589d796cebc46abadfe0ec147d2a15f3b4f4f50d2c7edbebfc3cde26f51d66bf"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_observer.yml",
+          "bytes": 189,
+          "sha256": "5a03fe523f4e6baecb59ae64935d595b0f0c71586b8ca9c42c9a7487d934c542"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_observer",
+          "bytes": 41828,
+          "sha256": "61eb03c581b16ae3c2066e7ef490ad96a6cccd25b3845f55927262e4b3d3e8e8"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_observer.dSYM 01-12-33-707.dSYM",
+      "all_content_SHA_verified": true,
+      "native_trash_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-native21-r1-20261122/observer/test_png_input_observer",
+      "reason": "Completed duplicate container/transfer/host; current signed original-mode RAM and rejected raw retained",
+      "files": [
+        {
+          "relative": "test_png_input_observer",
+          "bytes": 83672,
+          "sha256": "9704565f80497a6f9fc5e003f9b38ac2011e9e507a88be8c214fd6fbf722847b"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_png_input_observer",
+      "all_content_SHA_verified": true,
+      "native_trash_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-native21-r1-20261122/observer/test_png_postdraw_encoder",
+      "reason": "Completed duplicate container/transfer/host; current signed original-mode RAM and rejected raw retained",
+      "files": [
+        {
+          "relative": "test_png_postdraw_encoder",
+          "bytes": 65744,
+          "sha256": "83a523354fde980e4b2ed1ab7fab6e501fc668ef6ee36e16b2956ed9ff942896"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_png_postdraw_encoder",
+      "all_content_SHA_verified": true,
+      "native_trash_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-native21-r1-20261122/observer/test_quad_route_observer",
+      "reason": "Completed duplicate container/transfer/host; current signed original-mode RAM and rejected raw retained",
+      "files": [
+        {
+          "relative": "test_quad_route_observer",
+          "bytes": 133656,
+          "sha256": "5fc1a4beeef8aaaac0dfa21128bb05a2ec5077cc668de9e879a67f9c55da3e15"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_quad_route_observer",
+      "all_content_SHA_verified": true,
+      "native_trash_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-native21-r1-20261122/observer/test_cache_scope",
+      "reason": "Completed duplicate container/transfer/host; current signed original-mode RAM and rejected raw retained",
+      "files": [
+        {
+          "relative": "test_cache_scope",
+          "bytes": 28320,
+          "sha256": "0234e4f26d25c79d2d1e44543e2c49d4cb3c57a2159e61f914f558c5a22bb663"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_scope 01-12-33-924",
+      "all_content_SHA_verified": true,
+      "native_trash_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-native21-r1-20261122/observer/test_quad_route_observer.dSYM",
+      "reason": "Completed duplicate container/transfer/host; current signed original-mode RAM and rejected raw retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 653,
+          "sha256": "4f6b8139dc5258062c9b876109b20e58395628b715be1e0cfc2165f8e26edc03"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_quad_route_observer.yml",
+          "bytes": 200,
+          "sha256": "37a8c5bee383b41b0063ab3b326bfc9d523400820a4c1184aade95361d0849df"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_quad_route_observer",
+          "bytes": 92004,
+          "sha256": "630298aa51fcfec64db49a58c398df5ecbb7f0ed302425318e4e147049cc1a86"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_quad_route_observer.dSYM",
+      "all_content_SHA_verified": true,
+      "native_trash_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-native21-r1-20261122/observer/test_request_observer.dSYM",
+      "reason": "Completed duplicate container/transfer/host; current signed original-mode RAM and rejected raw retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 650,
+          "sha256": "07d6a3dac727325515613215f20b7b2403bf20a2bba99d369d891dc11acc0c9d"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_request_observer.yml",
+          "bytes": 197,
+          "sha256": "3059621e8e1014ded98d388864cbe6eeae148e4029d7d3a24c332ab681af80e3"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_request_observer",
+          "bytes": 71316,
+          "sha256": "a5bbfb1740e4ec7e24d216f27f30f3224d99f47bf2ef1ad55826abce7562ba98"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_request_observer.dSYM",
+      "all_content_SHA_verified": true,
+      "native_trash_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-native21-r1-20261122/observer/test_pipeline_observer",
+      "reason": "Completed duplicate container/transfer/host; current signed original-mode RAM and rejected raw retained",
+      "files": [
+        {
+          "relative": "test_pipeline_observer",
+          "bytes": 48464,
+          "sha256": "d14463501d97a2cccdb580cc87618cda5cfd1b51f9d5136f2769bbeb34c6d4b1"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_pipeline_observer",
+      "all_content_SHA_verified": true,
+      "native_trash_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-native21-r1-20261122/observer/test_png_postdraw_encoder.dSYM",
+      "reason": "Completed duplicate container/transfer/host; current signed original-mode RAM and rejected raw retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 654,
+          "sha256": "7dd79ab1dac553ea05bede2be726273fc5fd3b229c2068fc14aa7fc0d3d50003"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_png_postdraw_encoder.yml",
+          "bytes": 201,
+          "sha256": "077552038f5e4cf93e92adc394c4833fc6d684fea3138d2aff4ed8d61d7dc3b6"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_png_postdraw_encoder",
+          "bytes": 50704,
+          "sha256": "c68b6b0c15f5e5d998a329f272a014bed083b074178733ddee0ec6b82b5e8a5a"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_png_postdraw_encoder.dSYM",
+      "all_content_SHA_verified": true,
+      "native_trash_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-native21-r1-20261122/observer/test_postdraw_observer.dSYM",
+      "reason": "Completed duplicate container/transfer/host; current signed original-mode RAM and rejected raw retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 651,
+          "sha256": "ba5e540d03716130925c52e316c17d80e78fd08101eb2aa21e1bf0abadadb191"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_postdraw_observer.yml",
+          "bytes": 198,
+          "sha256": "b546754a6a773709b278c57928fb8149e922562084d88965992f8b9dca4c35cd"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_postdraw_observer",
+          "bytes": 57684,
+          "sha256": "e29eb100c8199b1e7c296e55c60ab9bf72eff148516b1acb73951345a48fbd96"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_postdraw_observer.dSYM",
+      "all_content_SHA_verified": true,
+      "native_trash_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-native21-r1-20261122/observer/test_pipeline_observer.dSYM",
+      "reason": "Completed duplicate container/transfer/host; current signed original-mode RAM and rejected raw retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 651,
+          "sha256": "14a5e51d08a5bf0856f6e93830a9fde78a537ae439cf8dfa4bd0dc8268cf1dc6"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_pipeline_observer.yml",
+          "bytes": 198,
+          "sha256": "b4833bde3f279ea499069b45348d3f771169b948784e5a8f732489a3760f201f"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_pipeline_observer",
+          "bytes": 45512,
+          "sha256": "ea50206c7ed9f8f91e14b24324304ba1d7c4306d229f972be51e8da321f19073"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_pipeline_observer.dSYM",
+      "all_content_SHA_verified": true,
+      "native_trash_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-native21-r1-20261122/observer/test_png_input_observer.dSYM",
+      "reason": "Completed duplicate container/transfer/host; current signed original-mode RAM and rejected raw retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 652,
+          "sha256": "4eea09a4e0f1cd19994e51f233c52e59224b7eceb46e1da9e1c6b4275173a70f"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_png_input_observer.yml",
+          "bytes": 199,
+          "sha256": "f7b7894895504a5c588023707f719ee510beb60fb29bac60146553c21fcde6e3"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_png_input_observer",
+          "bytes": 58948,
+          "sha256": "6b7d542b5dc833446e6d9954f2ca0cb47f93ace4e87e797a15c84faf2aa26763"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_png_input_observer.dSYM",
+      "all_content_SHA_verified": true,
+      "native_trash_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-native21-r1-20261122/observer/test_startup",
+      "reason": "Completed duplicate container/transfer/host; current signed original-mode RAM and rejected raw retained",
+      "files": [
+        {
+          "relative": "test_startup",
+          "bytes": 20592,
+          "sha256": "a14b81bab2feb1eab3ef94ed8ba8c39511be1b5f5f08a52c0664a276d010e53a"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_startup 01-12-34-357",
+      "all_content_SHA_verified": true,
+      "native_trash_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-native21-r1-20261122/observer/test_observer",
+      "reason": "Completed duplicate container/transfer/host; current signed original-mode RAM and rejected raw retained",
+      "files": [
+        {
+          "relative": "test_observer",
+          "bytes": 65680,
+          "sha256": "cc697b6d8aab6e036defe0393b66c382ff1d47145fa170e7d157fbfa865d637a"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_observer 01-12-34-413",
+      "all_content_SHA_verified": true,
+      "native_trash_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-native21-r1-20261122/observer/test_png_image_dispatch",
+      "reason": "Completed duplicate container/transfer/host; current signed original-mode RAM and rejected raw retained",
+      "files": [
+        {
+          "relative": "test_png_image_dispatch",
+          "bytes": 52288,
+          "sha256": "ecd8537507b75e9544cff30f163069f1c291fa4bfb2d6df0e9ee732189d08a81"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_png_image_dispatch",
+      "all_content_SHA_verified": true,
+      "native_trash_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-native21-r1-20261122/observer/test_request_observer",
+      "reason": "Completed duplicate container/transfer/host; current signed original-mode RAM and rejected raw retained",
+      "files": [
+        {
+          "relative": "test_request_observer",
+          "bytes": 106928,
+          "sha256": "da89a95dcfa0055bf4a095d070405ce124731cc7bac0528cbd0f6ffb5f4f4c04"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_request_observer",
+      "all_content_SHA_verified": true,
+      "native_trash_verified": true
+    }
+  ],
+  "protected_SHA_unchanged": {
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/surface-diag-v730/kernel.v730.macho": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-native21-r1-20261122/ram/sweetgl.dylib": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-native21-r1-20261122/ram/MetalResources.dylib": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-native21-r1-20261122/ram/exception_observe.dylib": "499794eccb15af57985d1bc8e6696211201a6222dc0c6f88ab6d0670e9bd2f47",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-native21-r1-20261122/ram/glram.zblob": "bde78b1a3ab70dbc7ef82d1d8a3a111f409558be48694595815777a84a0d0ded",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/original-mode-native21-r1-20261122/ram/manifest.json": "7d9603e85214e78ca4505b8c51349126986e36bfefc5eda658672778c861ede9"
+  },
+  "trash_not_emptied": true,
+  "pause_preserved": true
+}

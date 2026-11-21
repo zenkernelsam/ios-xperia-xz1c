@@ -1,5 +1,6 @@
 # 当前状态 — 2026-11-22
 
+r12原模式两靴已结束：CPU通过，GPU因QUAD_ROUTE_OBSERVER_INSTALL_INCOMPLETE为REVISE，39.468秒完整0x06回程／健康30秒，Sony健康fastboot无worker。当前r13仅known Swift owner查找／校验源码修补，尚未实机。
 当前r11新RAM CPU／native21与PNG6已独立通过并完成回程；最后66715b9659b47bc1健康返回38.656秒，Sony健康fastboot、无worker。下方r10为历史失败，当前下一步为原poster模式／界面与原生几何。
 Sony BH905ND69G健康fastboot。本轮四靴已结束，无controller／串口worker／in-flight；最后native21 c75b0e696cfee083为REVISE／BACKGROUND_METAL_SUITE_FAILED，40.812秒完成0x06四marker、连续健康30秒和worker退出。GPU四组附件和当前r11完整native21／PNG6已独立通过；当前下一步转为原poster模式／UI和原生显示比例，原失败不重发。
 
@@ -67,3 +68,7 @@ r8 GPU清零draw＋八个bitplane覆盖draw使S8推进到phase96；剩下stencil
 ## r11最新下一步
 
 新包自身CPU 6dc5ffb5fd270602／完整native21与PNG6 66715b9659b47bc1均独立通过，GPU回程38.656秒含健康30秒，手机健康fastboot无worker。原R10_11520B失败保留；新probe只对自己创建的native layer闭合CA事务并在pool关闭后核对各phase0分配，原native presentedTime仍0，不能称LCD显示completion。下一包按新完整proof构建原poster33方法mode／environment观察、自己的CPU→GPU及150秒扫描帧，保持原策略，无额外draw或强制active。原生16:9、FPS、睡眠、光学、声音和无线保持完整目标。
+
+## r12原模式安装拒绝
+
+原33方法只安装31；env_init／env_update present0／owner_checked0，但固定20H392静态元数据有原delegate方法。原系统已实际选择applyMode→deactiveMode，完整[原报告](../reproducibility/original-mode-native21-r12-stage-20261122.json)保留；一次swipe／150秒验收未完成。ACK后退出期kernel import／submit错误单列，不据此改冻结底层。r13只解析已知Swift mangled／module-qualified name，owned-method／完整ABI仍严格，33门槛不降低。

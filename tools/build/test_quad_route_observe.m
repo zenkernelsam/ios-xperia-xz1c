@@ -235,6 +235,15 @@ int main(void) { @autoreleasepool {
         (IMP)quad_route_paused, @encode(void), (const char *const []){@encode(NSUInteger)}, 1));
     assert(!quad_route_install([NUNIAstronomyVistaController class], false, "NUNIAstronomyVistaController", "applyMode:", QR_APPLY_MODE,
         (IMP)quad_route_apply_mode, @encode(void), (const char *const []){@encode(NSUInteger)}, 1));
+    Class canonical=objc_allocateClassPair([NSObject class],"AegirPoster.AegirRenderingController",0);
+    assert(canonical);SEL envInit=sel_registerName("renderer:didInitializeWithEnvironment:"),envUpdate=sel_registerName("renderer:didUpdateEnvironment:withTransition:");
+    Method oldInit=class_getInstanceMethod([_TtC11AegirPoster24AegirRenderingController class],envInit),oldUpdate=class_getInstanceMethod([_TtC11AegirPoster24AegirRenderingController class],envUpdate);
+    assert(class_addMethod(canonical,envInit,quad_route_original[QR_ENV_INIT],method_getTypeEncoding(oldInit)));
+    assert(class_addMethod(canonical,envUpdate,quad_route_original[QR_ENV_UPDATE],method_getTypeEncoding(oldUpdate)));objc_registerClassPair(canonical);
+    const char *envPair[]={@encode(id),@encode(id)},*envTriple[]={@encode(id),@encode(id),@encode(id)};
+    assert(quad_route_install(canonical,false,"_TtC11AegirPoster24AegirRenderingController",sel_getName(envInit),QR_ENV_INIT,(IMP)quad_route_env_init,@encode(void),envPair,2));
+    assert(quad_route_install(canonical,false,"_TtC11AegirPoster24AegirRenderingController",sel_getName(envUpdate),QR_ENV_UPDATE,(IMP)quad_route_env_update,@encode(void),envTriple,3));
+    assert(!quad_route_install(canonical,false,"AnotherModule.AegirRenderingController",sel_getName(envInit),QR_ENV_INIT,(IMP)quad_route_env_init,@encode(void),envPair,2));
     [device release]; [base release]; [coordinator release]; [scene release]; [environment release]; [vista release]; [controller release]; [renderer release]; [modeController release]; [route_answer release];
     [route_argument release]; [route_completion release];
     puts("Quad route observer PASS: metaclass/owner/ABI rejection, original nil/throw/errno/BOOL/double/block forwarding, reason getter containment, per-API bounds");

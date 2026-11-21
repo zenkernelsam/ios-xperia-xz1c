@@ -205,7 +205,10 @@ static bool quad_route_install(Class owner, bool metaclass, const char *owner_na
     unsigned api, IMP replacement, const char *result, const char *const *arguments, unsigned count)
 {
     int incoming = errno; SEL selector = sel_registerName(selector_name);
-    bool owner_valid = owner && class_isMetaClass(owner) == metaclass && !strcmp(class_getName(owner), owner_name);
+    const char *actual_owner=owner?class_getName(owner):"";
+    bool known_swift_owner=!strcmp(owner_name,"_TtC11AegirPoster24AegirRenderingController") &&
+        !strcmp(actual_owner,"AegirPoster.AegirRenderingController");
+    bool owner_valid = owner && class_isMetaClass(owner) == metaclass && (!strcmp(actual_owner,owner_name) || known_swift_owner);
     Method method = owner_valid ? class_getInstanceMethod(owner, selector) : NULL;
     unsigned total = 0; Method *list = owner_valid ? class_copyMethodList(owner, &total) : NULL; bool owned = false;
     for (unsigned i = 0; i < total; ++i) if (method_getName(list[i]) == selector) owned = true;
@@ -231,6 +234,11 @@ static bool quad_route_install(Class owner, bool metaclass, const char *owner_na
 static unsigned quad_route_observe(Class device, Class manager, Class base, Class coordinator, Class scene, Class environment, Class vista, Class controller, Class renderer, Class vista_controller, SweetQuadRouteEmit emit)
 {
     int incoming = errno; quad_route_emit = emit; unsigned installed = 0;
+    Class mangled=controller,qualified=Nil;
+    if(!controller)controller=NSClassFromString(@"_TtC11AegirPoster24AegirRenderingController");
+    if(!controller){qualified=NSClassFromString(@"AegirPoster.AegirRenderingController");controller=qualified;}
+    quad_route_emit("SWEET POSTER OWNER mangled=%u qualified=%u selected_nil=%u name=%s",
+        mangled!=Nil,qualified!=Nil,controller==Nil,controller?class_getName(controller):"nil");
     const char *object[] = {@encode(id)}, *flag[] = {@encode(BOOL)};
     const char *sync[] = {@encode(double), @encode(id), @encode(BOOL), "@?"};
     Class meta = manager ? object_getClass(manager) : Nil;
