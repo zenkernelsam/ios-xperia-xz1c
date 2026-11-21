@@ -58,6 +58,16 @@ class TiledEvidence(unittest.TestCase):
         self.assertTrue(verify_groups(text,[group],3)['actual_designated_pipe_box_and_raw_copy_metadata_verified'])
         native=text.replace('tile=2','tile=3')
         self.assertTrue(verify_groups(native,[group],4)['actual_pinned_fd5_sysmem_tile_mode_verified'])
+        state_lines=[]
+        for line in native.splitlines():
+            state_lines.append(line)
+            if line.startswith('SWEET DEPTH TILE COPY '):
+                direction='store' if 'direction=store' in line else 'load'
+                state_lines.append(f'SWEET DEPTH TILE STATE original=1 work=101 direction={direction} all_dirty=1 stencil_ref=1 sample_mask=1 scissor=1 gen_dirty=15 gen_all=15')
+        replayed='\n'.join(state_lines)+'\n'
+        self.assertTrue(verify_groups(replayed,[group],6)['native_3D_state_marked_dirty_after_internal_2D_copy'])
+        for bad in (native,replayed.replace('stencil_ref=1','stencil_ref=0',1),replayed.replace('gen_dirty=15','gen_dirty=1',1)):
+            with self.assertRaises(AssertionError):verify_groups(bad,[group],6)
         with self.assertRaises(AssertionError):verify_groups(text,[group],4)
         with self.assertRaises(AssertionError):verify_groups(native,[group],3)
         cases=[original,text.replace('src=0,0,0,17,9,1','src=0,0,9,0,17,1',1),

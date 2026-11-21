@@ -98,13 +98,13 @@
     "test_quad_route_evidence.py": "2c4e62db3db4050d89bea76d11a1666e2b3eaba0b1a2fb1901810f98521e5044",
     "usb_open_observation.py": "3dcf63a562ebfce95df14712cf06e3d2be45df0b2679d2b11eb87bed5355c46d",
     "test_usb_open_observation.py": "ef5c9780ec4967ac606fb916e5078eebc5bb7ff8d2c74f2f72e14b19cccc2e25",
-    "depth32_evidence.py": "7fd5bf7bf1faa07f7c1bef0b76dbd3e8c60131343e54d4b7751a3d4129374f77",
+    "depth32_evidence.py": "3876b1ca7b0b55369fb7b9a5c4b172baf5f73b4dd8132045903ecce96861a35f",
     "test_depth32_evidence.py": "7cc68e7ae42c01f6fb7c1e33fd921e756f447d9b81d79d3033e24505adbe26de",
-    "stencil8_evidence.py": "35d57f21b50eaeb8520513256c91ff40e29160c0d02aa98367266f5c614e6821",
+    "stencil8_evidence.py": "e599f54228d3c2aa30a6f3847dfda896a45206a4bacd0e198b4d553d652503cb",
     "test_stencil8_evidence.py": "072620235d4f8fb15e9a56d43038a08c5862cbf68d0f0bf4d10eba79a05b3286",
-    "memoryless_evidence.py": "25b18d2fa1247e624430cb0d7ac64e3136788dabc09089e6f32986fc8f0232a2",
+    "memoryless_evidence.py": "299460fe212067c70c253a4e0c8e176d0a6514c85ed3ed42022783880f38472b",
     "test_memoryless_evidence.py": "21769b3180fac9b95faab8c385b6f3577c680b7767d9b5ea626d396026b7bb51",
-    "multisample_evidence.py": "3879819f95a937339bffc7b5a243c1b26a6d68aab76a74761467925e5659ee53",
+    "multisample_evidence.py": "3f1dc5acc0a5cebb19becd3eb151fc6117d12395c8de375a3eae93047d27c148",
     "test_multisample_evidence.py": "5b5e2d7883deea82083cc5fd3f3aa69033a3d5aaa0c49890eb62c48d88a3b3e2",
     "presentation_evidence.py": "79954eea07a0adf9ad88f29ca3a4ee6f6837745166754be0ebfbb7191266dfdc",
     "test_presentation_evidence.py": "7d4cb3fc9c45e27fb23e7b30845548a19d71583d7914e8b808c36c110b663916",
@@ -112,8 +112,8 @@
     "test_attachment_snapshot_evidence.py": "eb6154f75fca8ffff45d8980ac5315a680be523c345c49b9cd22bb21176a64df",
     "serial_capture_evidence.py": "e7c7b3cfeba8508d39c941e327c73b4810e7a9220b56bef424d4c200c7719fd9",
     "test_serial_worker.py": "ac5c7b55b6c6f445f03f4dc5a8f902651878ff24562e87ab5c559dcfeeb7fa76",
-    "depth_tiled_evidence.py": "8f97815f87bda9f2460232c4d250b00039922bd4777fb159a91833982c4ed231",
-    "test_depth_tiled_evidence.py": "4e3a72f46081b67c95927a490fd2cb0b2513aa9aeb4e3f00afa79682040dc4d4"
+    "depth_tiled_evidence.py": "387a2c65b32dd92e34e6be8e2f4d54d442991877f6c94fd11029b6e8cd77c3fe",
+    "test_depth_tiled_evidence.py": "1d3bd7606e8256e74d2a0b42f58c38a4452d2aa4503932a0ba84ee8ffce60150"
   },
   "supervisor_based_on_actual_tested_one_shot": true,
   "platform_tools_from_environment_or_PATH": true,
@@ -128,7 +128,7 @@
   "shared_sources": {
     "tools/diagnostic_candidate.py": "b53e89fdc0bf66a0b38bb4a4c7499ac2222e2704af83cebbd2ae0472a83783b3",
     "tools/mkpayload.py": "5c9a3dacbdf877ffded27971ad2e737e5ee4296fada247d14d5c6051ff1f47ff",
-    "tools/ram_library.py": "0e8aab490dc11f8f8ab266d0941b124bf33a47fd1047fe13876ef7437cfdd05d",
+    "tools/ram_library.py": "b2d2f7779fead916714f63d38a42cda3eb7a339c06d5bba781f2f86f11c735b8",
     "tools/native_proof.py": "409e67ccd2d8ebca21a3d2668c295e6e9231396f43f6e1690f380fef06321615"
   },
   "formal_v726_five_stages_actual_return": true,
@@ -196,7 +196,7 @@
     "tools/build/test_postdraw_observe.m": "144605ebf1d6baf35c69f3a332e0b5fb036a7fe12d0636a9da84330c40e1b4f1",
     "tools/program_cache_scope.py": "9fcd14133fa3e0531f5cc0a01fb6d8b84d62432df41f3d0e688df7e151c097e9",
     "tools/build/test_snapshot_method_observe.m": "76c919a8884d0dea06d8ec66f831ec029c060f0b4cb157cf15263b38116a917f",
-    "tools/build/build_frontend_trial.py": "bce6bf0a58ef05468fe6d0e86242dae24e0ac9559f27d7da32c80a7303291b5d",
+    "tools/build/build_frontend_trial.py": "1e262cbd0eca6834a1f1d74f9b58ad2e32d8db53e1bc8f98a1dcbb1dc26f17b0",
     "tools/build/test_png_input_observe.m": "71ec1a803770e24e342c275ee8fa17e86adc60655675d4c700665ca37047c171",
     "tools/build/test_cif10_png_reference.m": "8b814b5d031a5418eb4117934f21121212959a7179645ef6b519b28eed2a0871",
     "tools/build/profile_cif10_png.m": "c8daee07eafe5dc7c524041d1efe194c821318bb68481cea934e16862f42ab7e",
@@ -363,7 +363,7 @@
     "gpu/metal/MetalPresentation.inc": "371bbb97ddaaf1deda0cdc96decbab51122740621d4094912a78fc41ae228e99",
     "gpu/diagnostics/MetalPresentationProbe.h": "715ddce7c9b2a713f64ae4134ae399cef37bf29375a1a82e073ff7899b5b1591",
     "gpu/diagnostics/AttachmentPageSnapshot.h": "1f1c660e84209e062bccee9659405bfa33e6db04c96350bf926a312f5f351afa",
-    "gpu/sweetgl/DepthTiledPlane.h": "67a0719e1de568d918b9977957bc7930bb9f7932c11d0c6aade91e0be6b5bde3",
+    "gpu/sweetgl/DepthTiledPlane.h": "db854719daeecdd11268ef9381de9f86b769168e7ac30b64185d0e536ce0b781",
     "gpu/sweetgl/DepthTiledCopyBox.h": "14ba38286122d797451e9e93a207424c7997d0d2a3f320965584b0e9d1a61e69",
     "gpu/sweetgl/DepthMultisampleCopyGLES.h": "b8ea9bea99691657e982000ed3f51c778b5d13c210bd9230b7d270f2a524e5c6"
   },
@@ -438,6 +438,6 @@
   "serial_capture_host_regression_tests": 7,
   "serial_capture_device_accepted": true,
   "serial_capture_actual_cpu_evidence": "reproducibility/serial-capture-r1-reference-cpu-20261121.json",
-  "depth_tiled_backend_evidence_revision": 5,
+  "depth_tiled_backend_evidence_revision": 6,
   "depth_tiled_exact_copy_and_original_page_guard_checks_required": true
 }

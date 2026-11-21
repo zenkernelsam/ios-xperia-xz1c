@@ -96,7 +96,15 @@ static int sweet_depth_tiled_copy(struct st_context *context,SweetDepthTiledPlan
     // This exact hardware entry reports whether its format/layout was admitted.
     // Do not fall back through resource_copy_region to a possible CPU transfer.
     if(!fd5_blitter_blit(native,&copy)){sweet_drm_log("SWEET DEPTH TILE REJECT original=%u work=%u stage=fd5_blitter result=%d dispatched=0",plane->original.handle,plane->work.handle,-ENOTSUP);return -ENOTSUP;}
-    return sweet_depth_tiled_complete(context,plane,to_original);
+    int result=sweet_depth_tiled_complete(context,plane,to_original);
+    // This internal 2D batch changes hardware state outside Mesa's GL setters.
+    // Replay all native 3D state even when the next pass uses the same values.
+    fd_context_all_dirty(native);
+    sweet_drm_log("SWEET DEPTH TILE STATE original=%u work=%u direction=%s all_dirty=%u stencil_ref=%u sample_mask=%u scissor=%u gen_dirty=%llu gen_all=%llu",
+        plane->original.handle,plane->work.handle,to_original?"store":"load",native->last.dirty,
+        (native->dirty&FD_DIRTY_STENCIL_REF)!=0,(native->dirty&FD_DIRTY_SAMPLE_MASK)!=0,(native->dirty&FD_DIRTY_SCISSOR)!=0,
+        (unsigned long long)native->gen_dirty,(unsigned long long)native->gen_all_dirty);
+    return result;
 }
 static int sweet_depth_tiled_create(struct st_context *context,const SweetShaderTextureBinding *original,unsigned samples,
     unsigned load,SweetDepthTiledPlane *plane)
