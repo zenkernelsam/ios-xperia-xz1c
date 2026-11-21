@@ -26,7 +26,7 @@ def main():
     compile_entries=json.loads((build/'compile_commands.json').read_text())
     entry=next(x for x in compile_entries if x['file'].endswith('state_tracker/st_manager.c'))
     defines=[x for x in shlex.split(entry['command']) if x.startswith('-D') and x!='-DNDEBUG']
-    includes=[ROOT/'gpu/sweetgl',out,mesa/'include',mesa/'src',mesa/'src/gallium/include',mesa/'src/gallium/auxiliary',build/'src',build/'src/mesa',build/'src/mapi']
+    includes=[ROOT/'gpu/sweetgl',ROOT/'gpu/sweetgl/include',out,mesa/'include',mesa/'src',mesa/'src/gallium/include',mesa/'src/gallium/auxiliary',build/'src',build/'src/mesa',build/'src/mapi']
     command=['xcrun','clang','-O1','-g','-fsanitize=address,undefined','-std=c11',*defines]
     for directory in includes:command+=['-I',str(directory)]
     command += [str(ROOT/sources[1]),'-o',str(out/'test')]
