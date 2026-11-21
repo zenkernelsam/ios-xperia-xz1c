@@ -98,7 +98,13 @@ static int sweet_depth_tiled_create(struct st_context *context,const SweetShader
 {
     if(!context || !original || !plane || (original->format!=252 && original->format!=253) || load>2)return -EINVAL;
     SweetMetalBacking backing={0};if(!texture_layout_samples(original,samples,&backing))return -EINVAL;
-    struct fdl_layout layout={.tile_mode=TILE5_2,.tile_all=true,.mip_levels=1};enum pipe_format format=texture_format(original->format);
+    enum pipe_format format=texture_format(original->format);
+    struct pipe_resource description={.target=PIPE_TEXTURE_2D,.format=format,.width0=original->width,.height0=original->height,
+        .depth0=1,.array_size=1,.nr_samples=samples,.nr_storage_samples=samples};
+    // TILE5_2 is the on-chip GMEM layout. Use the pinned driver's native
+    // sysmem texture layout so raster storage and the 2D alias agree.
+    unsigned tile=fd5_tile_mode(&description);if(tile!=TILE5_3)return -ENOTSUP;
+    struct fdl_layout layout={.tile_mode=tile,.tile_all=true,.mip_levels=1};
     fdl5_layout(&layout,format,samples,original->width,original->height,1,1,1,false);
     if(!layout.size || layout.size>(UINT64_C(256)<<20) || !layout.pitch0 || layout.pitch0%64 || layout.cpp!=pixel_bytes(original->format)*samples)return -EINVAL;
     plane->original=*original;plane->samples=samples;int result=sweetgl_metal_buffer_allocate(layout.size,&plane->work);

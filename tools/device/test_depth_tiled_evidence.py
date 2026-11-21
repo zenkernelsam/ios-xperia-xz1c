@@ -40,6 +40,10 @@ class TiledEvidence(unittest.TestCase):
             rows.append(line)
         text='\n'.join(rows)+'\n'
         self.assertTrue(verify_groups(text,[group],3)['actual_designated_pipe_box_and_raw_copy_metadata_verified'])
+        native=text.replace('tile=2','tile=3')
+        self.assertTrue(verify_groups(native,[group],4)['actual_pinned_fd5_sysmem_tile_mode_verified'])
+        with self.assertRaises(AssertionError):verify_groups(text,[group],4)
+        with self.assertRaises(AssertionError):verify_groups(native,[group],3)
         cases=[original,text.replace('src=0,0,0,17,9,1','src=0,0,9,0,17,1',1),
                text.replace('mask=15 filter=0','mask=1 filter=0',1),text.replace('gen=5','gen=6',1),
                text.replace('src_samples=1','src_samples=4',1),text.replace('src_color=13','src_color=12',1),

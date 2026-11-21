@@ -32,7 +32,8 @@ def verify_groups(segment, groups,revision=2):
     Filtered segments for concurrent probes retain original handles explicitly;
     no unrelated plane is used as proof of this group's work or copy.
     """
-    assert revision in (2,3)
+    assert revision in (2,3,4)
+    tile_mode=3 if revision==4 else 2
     handles = {p['handle'] for group in groups for p in group}
     tables = [list(pattern.finditer(segment)) for pattern in (PAGE, MAP, COPY, PAIR, RETIRE)]
     pages, maps, copies, pairs, retired = tables
@@ -47,7 +48,7 @@ def verify_groups(segment, groups,revision=2):
     pairs = [m for m in pairs if int(m[1]) in handles or int(m[2]) in handles]
     blits = [m for m in BLIT.finditer(segment) if int(m[1]) in handles]
     boxes = [m for m in BOX.finditer(segment) if int(m[1]) in handles]
-    if revision==3:
+    if revision>=3:
         assert 'SWEET DEPTH TILE REJECT ' not in segment
         assert segment.count('SWEET DEPTH TILE BLIT ')==len(list(BLIT.finditer(segment)))
         assert segment.count('SWEET DEPTH TILE BOX ')==len(list(BOX.finditer(segment)))
@@ -66,7 +67,7 @@ def verify_groups(segment, groups,revision=2):
             original, handle, format_, samples, pitch, size, tile, original_pitch, offset = map(int, page.groups())
             cpp, expected_pitch, expected_size = layout_bytes(p['format'], p['samples'], p['width'], p['height'])
             assert (original, format_, samples, original_pitch, offset) == (p['handle'], p['format'], p['samples'], p['pitch'], p['offset'])
-            assert handle > 0 and handle not in handles and (pitch, size, tile) == (expected_pitch, expected_size, 2)
+            assert handle > 0 and handle not in handles and (pitch, size, tile) == (expected_pitch, expected_size, tile_mode)
             mapping = [m for m in maps if begin <= m.start() < end and (int(m[1]), int(m[2])) == (original, handle)]
             release = [m for m in retired if begin <= m.start() < end and (int(m[1]), int(m[2])) == (original, handle)]
             assert len(mapping) == len(release) == 1
@@ -83,7 +84,7 @@ def verify_groups(segment, groups,revision=2):
                 assert tuple(int(copy[i]) for i in (4,5,6)) == (p['samples'],p['width'],p['height'])
                 assert mapping.end() < copy.start() < release.start() and int(copy[7]) > 0
                 sequence.append(int(copy[7]))
-                if revision==3:
+                if revision>=3:
                     candidates=[m for m in blits if begin<=m.start()<copy.start() and (int(m[1]),int(m[2]),m[3])==(original,handle,copy[3])]
                     actual_boxes=[m for m in boxes if begin<=m.start()<copy.start() and (int(m[1]),int(m[2]))==(original,handle)]
                     assert len(candidates)==1 and actual_boxes
@@ -91,7 +92,7 @@ def verify_groups(segment, groups,revision=2):
                     assert mapping.end()<blit.start()<blit.end()<box.start()<box.end()<copy.start()
                     assert int(blit[4])==5 and blit[5]==blit[6] and blit[7]==blit[8] and int(blit[7])>0
                     assert tuple(int(blit[i]) for i in (9,10,11,12,13,14))==(1,1,15,15,15,0)
-                    assert tuple(int(blit[i]) for i in (15,16))==((0,2) if copy[3]=='load' else (2,0))
+                    assert tuple(int(blit[i]) for i in (15,16))==((0,tile_mode) if copy[3]=='load' else (tile_mode,0))
                     expected_box=(0,0,0,p['width'],p['height'],1)
                     assert tuple(map(int,box[3].split(',')))==tuple(map(int,box[4].split(',')))==expected_box
                     assert tuple(map(int,box[5].split(',')))==tuple(map(int,box[6].split(',')))==(p['width'],p['height'],1)
@@ -121,5 +122,6 @@ def verify_groups(segment, groups,revision=2):
         records.append(spans); index = following
     return dict(revision=revision, independent_FDL5_work_pages=True, GPU_copy_and_fence_verified=True,
                 original_stride_offset_and_IOVA_verified=True, work_reference_retirement_verified=True,
-                actual_designated_pipe_box_and_raw_copy_metadata_verified=revision==3,
+                actual_designated_pipe_box_and_raw_copy_metadata_verified=revision>=3,
+                actual_pinned_fd5_sysmem_tile_mode_verified=revision==4,
                 operations=len(groups), planes=len(expected), records=records)

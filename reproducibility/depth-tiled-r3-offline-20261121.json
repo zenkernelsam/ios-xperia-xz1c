@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-21",
+  "previous_trial_token": "770f8d4a8ae8676d",
+  "previous_trial_raw_sha256": "8fab5b22d3ca0b140dafb295c676a1a90e3b28ff0f464b2b5563ddf10325e5aa",
+  "old_verdict_preserved": "REVISE",
+  "new_hypothesis": "Pinned Mesa compact pipe_box field order was misinitialized by position. Named-field helper constructs full origin 17x9x1 box and actual BLIT/BOX metadata must pass independent revision3 checks.",
+  "old_initializer_X_Y_Z_width_height_depth": [
+    0,
+    0,
+    9,
+    0,
+    17,
+    1
+  ],
+  "new_designated_X_Y_Z_width_height_depth": [
+    0,
+    0,
+    0,
+    17,
+    9,
+    1
+  ],
+  "Mesa_box_header_sha256": "0d561ad6d8d75a8a3628fb9b512a7c61bb100855f04ab29a481822040d8c1b91",
+  "unmodified_fd5_ok_dims_sha256": "d86b3c4330929ff1dccba0a265cc9618b0f1b64b6e20714685538da8994c9445",
+  "actual_header_and_original_dimension_gate_host_passed": true,
+  "ASan_UBSan_passed": true,
+  "source_files": {
+    "gpu/sweetgl/DepthTiledCopyBox.h": "14ba38286122d797451e9e93a207424c7997d0d2a3f320965584b0e9d1a61e69",
+    "gpu/sweetgl/DepthTiledPlane.h": "e40c7cf17f2ffe62c76b87b55d02b9ed5c2dc4c898f0cf4192178b0fabd5ae96",
+    "tools/build/test_depth_tiled_copy_box.c": "c22509f37eef250b29485be482ceffda1055d50436c2f4f7728de5295218dc8d",
+    "tools/build/check_depth_tiled_copy_box.py": "b0a2de2548525eb60b8862255ba2bf25104b74d448270fe88e87660462b23452"
+  },
+  "new_tiled_revision": 3,
+  "device_accepted": false,
+  "frozen_kernel_allocator_scm_pon_rpc_vm_unchanged": true,
+  "old_failed_trial_not_replayed": true,
+  "geometry_not_changed": true
+}

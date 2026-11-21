@@ -74,7 +74,7 @@ def expected_bytes(phase,slot):
 def expected(phase):return tuple(fnv(expected_bytes(phase,slot)) for slot in SLOTS)
 
 def verify(text,token,fixture,tiled_revision=0):
-    assert tiled_revision in (0,2,3)
+    assert tiled_revision in (0,2,3,4)
     live='SWEET LOOP LIVE proto=1 token='+token;ack='SWEET LOOP ACK FASTBOOT token='+token
     assert text.count(live)==text.count(ack)==1
     scope=text[text.index(live):text.index(ack)]

@@ -1,0 +1,236 @@
+{
+  "date": "2026-11-21",
+  "GLES_sha256": "fdcb01f65ac3ff2d5355887112e5e6b5b484948f84a2d66180b7b31842774989",
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "tiled_revision": 3,
+  "old_copy_refusal_fixed_with_original_Mesa_box_field_evidence": true,
+  "actual_GPU_copy_completed_but_depth_bytes_not_accepted": true,
+  "production_baseline_unchanged": true,
+  "full_native21_PNG_UI_geometry_and_peripherals_not_complete": true,
+  "runs": [
+    {
+      "result": "PASS",
+      "decision": "PASS",
+      "reason": "GOALS_STABLE",
+      "boot_dispatches": 1,
+      "reset_requests": 1,
+      "reset_to_fastboot_seconds": 38.70299999997951,
+      "fastboot_returned": true,
+      "return_log_complete": true,
+      "stage": "GLESCPU",
+      "token": "3df033e4ce616b85",
+      "image_sha256": "3acfdc838c41addb51776f9c880121885fb550b402dfd1e41d1cf7e1d6723ddc",
+      "raw_sha256": "999278ce089117caf0b50b9b738b90f0de6de3d65928a73a7d592713e4ccf52f",
+      "raw_bytes": 336052,
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-depth-tiled-r3-gles-cpu-live-20261121",
+      "ram_library_binding": {
+        "library_sha256": "fdcb01f65ac3ff2d5355887112e5e6b5b484948f84a2d66180b7b31842774989",
+        "library_bytes": 14784032,
+        "library_fnv64": "7750d880ba8c293e",
+        "blob_sha256": "155a3d84d0167cf583e307672a76e8ffc7a196f87f2fcab4c953723ff5170b17",
+        "raw_sha256": "9041d140235e6e3ee5003802e1116240023ece3a45c558ad79ee9d71271bb570",
+        "manifest_sha256": "bafa1443afc6503369cba6bf7e00a5e4dcabcc4f74b365577d7d0d38f036875c"
+      },
+      "independent_postprocess_passed": true
+    },
+    {
+      "result": "PASS",
+      "decision": "PASS",
+      "reason": "GOALS_STABLE",
+      "boot_dispatches": 1,
+      "reset_requests": 1,
+      "reset_to_fastboot_seconds": 38.90599999995902,
+      "fastboot_returned": true,
+      "return_log_complete": true,
+      "stage": "GLES9",
+      "token": "3c5743d628efaf43",
+      "image_sha256": "fea11746e6da290b7560b6f8de16cbaffad420afd82cde910a9d1aa7df1ddba7",
+      "raw_sha256": "327c38ff70ef62de11cf907e889feec655166b3acd4ef7a6c09c889971fa685e",
+      "raw_bytes": 1490932,
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-depth-tiled-r3-gles-gpu-live-20261121",
+      "ram_library_binding": {
+        "library_sha256": "fdcb01f65ac3ff2d5355887112e5e6b5b484948f84a2d66180b7b31842774989",
+        "library_bytes": 14784032,
+        "library_fnv64": "7750d880ba8c293e",
+        "blob_sha256": "155a3d84d0167cf583e307672a76e8ffc7a196f87f2fcab4c953723ff5170b17",
+        "raw_sha256": "9041d140235e6e3ee5003802e1116240023ece3a45c558ad79ee9d71271bb570",
+        "manifest_sha256": "bafa1443afc6503369cba6bf7e00a5e4dcabcc4f74b365577d7d0d38f036875c"
+      },
+      "independent_postprocess_passed": true
+    },
+    {
+      "result": "PASS",
+      "decision": "PASS",
+      "reason": "GOALS_STABLE",
+      "boot_dispatches": 1,
+      "reset_requests": 1,
+      "reset_to_fastboot_seconds": 37.79700000002049,
+      "fastboot_returned": true,
+      "return_log_complete": true,
+      "stage": "referenceCPU",
+      "token": "79dcf92905c29f7a",
+      "image_sha256": "c471d4200a0b4f990f31ef91e1cce5cf36109d0d113fe5e2b7afd36c8f5dc079",
+      "raw_sha256": "56b050cb6c9801fcb15c2f225c04aaf6cc10654197f167d12863e740ed5f43a5",
+      "raw_bytes": 339312,
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-depth-tiled-r3-reference-cpu-live-20261121",
+      "ram_library_binding": {
+        "library_sha256": "fdcb01f65ac3ff2d5355887112e5e6b5b484948f84a2d66180b7b31842774989",
+        "library_bytes": 14784032,
+        "library_fnv64": "7750d880ba8c293e",
+        "blob_sha256": "b6b2b520cfd3970245b724db12b193437bdf9c6670aab24563107a2c9a4a0746",
+        "raw_sha256": "9f013e1253f189386c4fdff4e7a2876712aff96bea2da8ff89512f7bf0175f8e",
+        "manifest_sha256": "102c63bd82a4ba78b7c9c75d660018d7128eb09bef2761f225b5aa5635469513"
+      },
+      "independent_postprocess_passed": true
+    },
+    {
+      "result": "REVISE",
+      "decision": "REVISE",
+      "reason": "DEPTH32_PROBE_FAILED",
+      "boot_dispatches": 1,
+      "reset_requests": 1,
+      "reset_to_fastboot_seconds": 42.109999999869615,
+      "fastboot_returned": true,
+      "return_log_complete": true,
+      "stage": "native21",
+      "token": "06021b67f41604b7",
+      "image_sha256": "2d493465a2de9b38e7e54afdd8724f8527460dc46741c6d98135b6e754aa9cf6",
+      "raw_sha256": "cdb5ddb08d925ae0cb63c65db7549c67dfce67faca713eb70dee694c85021da7",
+      "raw_bytes": 707796,
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-depth-tiled-r3-reference-gpu-live-20261121",
+      "ram_library_binding": {
+        "library_sha256": "fdcb01f65ac3ff2d5355887112e5e6b5b484948f84a2d66180b7b31842774989",
+        "library_bytes": 14784032,
+        "library_fnv64": "7750d880ba8c293e",
+        "blob_sha256": "b6b2b520cfd3970245b724db12b193437bdf9c6670aab24563107a2c9a4a0746",
+        "raw_sha256": "9f013e1253f189386c4fdff4e7a2876712aff96bea2da8ff89512f7bf0175f8e",
+        "manifest_sha256": "102c63bd82a4ba78b7c9c75d660018d7128eb09bef2761f225b5aa5635469513"
+      },
+      "copy_records": [
+        "SWEET DEPTH TILE BLIT original=57 work=59 direction=store gen=5 src_fmt=104 dst_fmt=104 src_color=75 dst_color=75 src_samples=1 dst_samples=1 src_mask=15 dst_mask=15 mask=15 filter=0 src_tile=2 dst_tile=0",
+        "SWEET DEPTH TILE BOX original=57 work=59 src=0,0,0,17,9,1 dst=0,0,0,17,9,1 src_size=17,9,1 dst_size=17,9,1 src_pitch=256 dst_pitch=128 src_offset=0 dst_offset=64",
+        "SWEET DEPTH TILE COPY original=57 work=59 direction=store samples=1 width=17 height=9 result=0 sequence=901 GPU_only=1 fence=1",
+        "SWEET DEPTH TILE BLIT original=58 work=62 direction=store gen=5 src_fmt=104 dst_fmt=104 src_color=75 dst_color=75 src_samples=1 dst_samples=1 src_mask=15 dst_mask=15 mask=15 filter=0 src_tile=2 dst_tile=0",
+        "SWEET DEPTH TILE BOX original=58 work=62 src=0,0,0,17,9,1 dst=0,0,0,17,9,1 src_size=17,9,1 dst_size=17,9,1 src_pitch=256 dst_pitch=128 src_offset=0 dst_offset=64",
+        "SWEET DEPTH TILE COPY original=58 work=62 direction=store samples=1 width=17 height=9 result=0 sequence=908 GPU_only=1 fence=1",
+        "SWEET DEPTH TILE BLIT original=59 work=63 direction=store gen=5 src_fmt=84 dst_fmt=84 src_color=5 dst_color=5 src_samples=1 dst_samples=1 src_mask=15 dst_mask=15 mask=15 filter=0 src_tile=2 dst_tile=0",
+        "SWEET DEPTH TILE BOX original=59 work=63 src=0,0,0,17,9,1 dst=0,0,0,17,9,1 src_size=17,9,1 dst_size=17,9,1 src_pitch=128 dst_pitch=64 src_offset=0 dst_offset=64"
+      ],
+      "attachment_result": [
+        "SWEET DEPTH32 PHASE index=0 valid=0 sequence=902 operations=1 mismatches=84 read_mismatches=84",
+        "SWEET DEPTH32 HASH index=0 color=f6c90a96ef7f6194 depth=fbced1bfc4d58b90 original_pages=1",
+        "SWEET DEPTH32 END result=1 phases=0 checked_bytes=74240 guard_bytes=38744 read_bytes=26100 final_allocated=0 GPU_only=1"
+      ],
+      "failure": {
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-depth-tiled-r3-reference-gpu-live-20261121",
+        "version": 730,
+        "token": "06021b67f41604b7",
+        "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+        "image_sha256": "2d493465a2de9b38e7e54afdd8724f8527460dc46741c6d98135b6e754aa9cf6",
+        "log_sha256": "cdb5ddb08d925ae0cb63c65db7549c67dfce67faca713eb70dee694c85021da7",
+        "original_result": "REVISE",
+        "original_reason": "DEPTH32_PROBE_FAILED",
+        "actual_failures": [],
+        "native_GPU_failure_results": [],
+        "attachment_failure_results": [
+          {
+            "suite": "DEPTH32",
+            "result": 1,
+            "completed_phases": 0,
+            "final_allocated": 0
+          }
+        ],
+        "actual_program_cache_failures": [],
+        "registry_assertions": [],
+        "actual_AIR_render_failure_results": [],
+        "actual_MRT_context_capability_records": [
+          {
+            "targets": 8,
+            "fp32_rt": 1,
+            "fp32_blend": 0,
+            "fp32_image": 1,
+            "independent_enable": 1,
+            "independent_func": 1,
+            "float_blend": 0,
+            "fbfetch": 0,
+            "no_attachment": 1,
+            "fragment_images": 24,
+            "image_units": 192
+          }
+        ],
+        "actual_MRT_GL_errors": [],
+        "missing_device_API": [],
+        "original_exception_missing_API": [],
+        "original_extension_checkin_timeout_count": 0,
+        "actual_program_prime_incomplete": [],
+        "actual_program_cache_scope_errors": [],
+        "payload_audit": {
+          "image_sha256": "2d493465a2de9b38e7e54afdd8724f8527460dc46741c6d98135b6e754aa9cf6",
+          "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+          "blob_count": 8,
+          "complete_payload_reconstructed_from_compiled_kernel": true
+        },
+        "strict_return": {
+          "complete": true,
+          "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+          "current_token": "06021b67f41604b7",
+          "checkpoint_bytes": 681964,
+          "log_bytes": 707796,
+          "log_sha256": "cdb5ddb08d925ae0cb63c65db7549c67dfce67faca713eb70dee694c85021da7",
+          "require_final_drain": true,
+          "marker_positions": [
+            40,
+            205,
+            378,
+            380
+          ],
+          "final_reset_marker_seen": true
+        },
+        "return_seconds_with_health": 42.109999999869615,
+        "failed_stage_not_accepted": true
+      }
+    }
+  ],
+  "original_author_pages": [
+    {
+      "suite": "depth32",
+      "phase": 0,
+      "slot": 0,
+      "handle": 51,
+      "GPU": "0x4002c000",
+      "sequence": 902,
+      "byte_count": 1280,
+      "pitch": 128,
+      "offset": 64,
+      "format": 80,
+      "samples": 1,
+      "fnv": "f6c90a96ef7f6194",
+      "sha256": "78ad38bdd5b8b9c7878ba08ea0eb4fe0276765a441ca3b111aa0a30904e3ad2d",
+      "file": "depth32-phase0-slot0.bin",
+      "logical_guard_changed_bytes": 0
+    },
+    {
+      "suite": "depth32",
+      "phase": 0,
+      "slot": 8,
+      "handle": 57,
+      "GPU": "0x40090000",
+      "sequence": 902,
+      "byte_count": 1280,
+      "pitch": 128,
+      "offset": 64,
+      "format": 252,
+      "samples": 1,
+      "fnv": "fbced1bfc4d58b90",
+      "sha256": "a299ed33384494c523fdf3bf3e37c6fe072d1f700693b829c171a9f17518204d",
+      "file": "depth32-phase0-slot8.bin",
+      "logical_guard_changed_bytes": 0,
+      "depth_half_pixels": 69,
+      "depth_zero_pixels": 84,
+      "depth_total_pixels": 153
+    }
+  ],
+  "raw_manifest": "build\\depth-tiled-r3-20261121\\actual-pages\\manifest.json",
+  "failure_not_replayed": true,
+  "final_device": "BH905ND69G healthy fastboot; no worker"
+}

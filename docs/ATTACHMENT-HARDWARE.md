@@ -67,3 +67,13 @@ FDL5 r2新增原/work IOVA、真实sample／cpp、Load／Store copy fence、Z32/
 原raw695308B／SHA8fab5b22中创建6个工作页、两条Z/S配对、6条释放；depth原页导入和shader清屏成功，随后复制入口-45（Darwin ENOTSUP），sequence0／operations0／COPY0。D32／S8／Memoryless／MSAA完成phase均0，final_allocated0。没有已完成的FD5 copy，不能声称新字节布局已验，也不能由图像错误推allocator故障。下一步区分context／generation检查与fd5_blitter准入拒绝；当前Mesa编译defines／归档SHA和实际headers已核对，未直接改冻结组件。前序native16本靴输出成功只是局部记录；presentation／PNG没有完整执行，不能生成21组proof。
 
 GLES9的150秒单帧为灰字黑壁纸锁屏／绿色电池／白homebar，PNG90c83f11；reference提前失败帧为logo，PNGba36346e，单帧来源和原REVISE独立保留。完整原报告、精确输入和光学边界见[本轮阶段](../reproducibility/depth-tiled-r2-stage-20261121.json)。完成回程后本轮重复RAM和host产物已原生回收，手机健康fastboot、无worker，失败包不复发。
+
+## r3矩形修复与原depth字节 — 2026-11-21
+
+固定Mesa src/util/box.h的实际pipe_box为x,width,y,height,z,depth。旧位置初始化被解释为X/Y/Z/W/H/D=(0,0,9,0,17,1)，原fd5_blitter.ok_dims拒绝它。DepthTiledCopyBox.h明确字段生成(0,0,0,17,9,1)，Mac主机直接编译原头及未改写ok_dims，ASan／UBSan、边界拒绝通过；原3次host头文件适配失败没有手机操作。r3加入实际BLIT／BOX及context／generation／fd5拒绝记录，核验绑定本revision，不放宽原页字节。
+
+GLESfdcb01f6自身CPU3df033e4／38.703秒、GLES9 3c5743d6／38.906秒、reference CPU79dcf929／37.797秒均通过。native21 06021b67为REVISE／DEPTH32_PROBE_FAILED，42.110秒完整回程。深度原handle57／IOVA0x40090000、work59／0x400a0000、TILE5_2／pitch256；复制BOX17×9×1、mask15／src-dst sample1、gen5，Store fence901实际完成，draw902返回0，原页面1280B／FNVfbced1bfc4d58b90。
+
+颜色page153原像素与guard正确；深度guard也全部0xb6正确，但69像素float0.5、84像素0，phase0 mismatches84／read_mismatches84。两页原SHA／handle／sequence与原rawcdb5ddb0严格绑定，不能以copy Completed代替正确布局。完整S8／Memoryless／MSAA／presentation／PNG未通过；原失败不重发，报告见[r3阶段](../reproducibility/depth-tiled-r3-stage-20261121.json)与[原Mesa主机证据](../reproducibility/depth-tiled-r3-offline-20261121.json)。
+
+新r4离线候选调用固定Mesa fd5_tile_mode取得TILE5_3（sysmem纹理），代替TILE5_2（on-chip GMEM）；只改用户态独立附件work布局选择，不改原线性页、底层／allocator／SCM／PON／RPC／VM。原copy／fence／作者byte和guard门槛继续，尚未实机准入。
