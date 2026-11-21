@@ -1,0 +1,80 @@
+{
+  "source_sha256": {
+    "tools\\build\\check_hfs_sparse_reader.py": "a00b8759216ad7388879197fe0a21ff7da4ce476b2c3d8f401b127d5131a58d3",
+    "tools\\build\\hfs_sparse_reader.py": "a44a7514df5bf8b925e415d561641b7e8e5206ebb0e469e44bc7ffe477768173"
+  },
+  "original_ram_raw_sha256": "27ff15021c61779714303d9a1ca860d97f803bce68037cd7e48816e18e12205d",
+  "original_files_and_aliases": [
+    {
+      "reader": "RawImage",
+      "path": "sweetgl.dylib",
+      "bytes": 14801120,
+      "sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607"
+    },
+    {
+      "reader": "RawImage",
+      "path": "libglapi.0.dylib",
+      "bytes": 344544,
+      "sha256": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3"
+    },
+    {
+      "reader": "RawImage",
+      "path": "georead.dylib",
+      "bytes": 72096,
+      "sha256": "70ba50b67a3b9cf95f6f2e53df6516003970059b23b61ac9837224e3012d1e36"
+    },
+    {
+      "reader": "RawImage",
+      "path": "m",
+      "bytes": 14801120,
+      "sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607"
+    },
+    {
+      "reader": "RawImage",
+      "path": "g",
+      "bytes": 72096,
+      "sha256": "70ba50b67a3b9cf95f6f2e53df6516003970059b23b61ac9837224e3012d1e36"
+    },
+    {
+      "reader": "AndroidSparseImage",
+      "path": "sweetgl.dylib",
+      "bytes": 14801120,
+      "sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607"
+    },
+    {
+      "reader": "AndroidSparseImage",
+      "path": "libglapi.0.dylib",
+      "bytes": 344544,
+      "sha256": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3"
+    },
+    {
+      "reader": "AndroidSparseImage",
+      "path": "georead.dylib",
+      "bytes": 72096,
+      "sha256": "70ba50b67a3b9cf95f6f2e53df6516003970059b23b61ac9837224e3012d1e36"
+    },
+    {
+      "reader": "AndroidSparseImage",
+      "path": "m",
+      "bytes": 14801120,
+      "sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607"
+    },
+    {
+      "reader": "AndroidSparseImage",
+      "path": "g",
+      "bytes": 72096,
+      "sha256": "70ba50b67a3b9cf95f6f2e53df6516003970059b23b61ac9837224e3012d1e36"
+    }
+  ],
+  "virtual_cross_chunk_ranges": 6,
+  "faults_refused": {
+    "negative_range": true,
+    "overrun_range": true,
+    "truncated_sparse": true,
+    "invalid_header": true,
+    "invalid_HFS": true
+  },
+  "fixtures_only_in_memory": true,
+  "device_operations": 0,
+  "images_expanded_to_disk": 0
+}

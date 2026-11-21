@@ -254,7 +254,9 @@
     "tools/build/test_stencil_sample_copy_gles.c": "b8ba3823e11f1e553b1ffc33dbdc1eb841db626dc19975622f4db8b921abfcb3",
     "tools/build/test_log_write_remaining.c": "5c583d9658d8cdc2f720b2f980c5da6c24d45cf3a3d31aebffa86d7a327e6e04",
     "tools/build/check_log_write_remaining.py": "3a4e880969adeb6f3e65d3d05ed3d28fc39f6bed8af393dfc76821674d4ba2be",
-    "tools/build/build_geocompat_trial.py": "082fbef9e232d15b12411a7c286ad951ab9c74678d89a829a494a9c48b91b80d"
+    "tools/build/build_geocompat_trial.py": "082fbef9e232d15b12411a7c286ad951ab9c74678d89a829a494a9c48b91b80d",
+    "tools/build/hfs_sparse_reader.py": "a44a7514df5bf8b925e415d561641b7e8e5206ebb0e469e44bc7ffe477768173",
+    "tools/build/check_hfs_sparse_reader.py": "a00b8759216ad7388879197fe0a21ff7da4ce476b2c3d8f401b127d5131a58d3"
   },
   "gpu_sources": {
     "gpu/diagnostics/exception_observe.m": "6238849a2a027d8edce5be0da3a0bc7d897b160ffb54e59e678dd2c3ad9e4580",
