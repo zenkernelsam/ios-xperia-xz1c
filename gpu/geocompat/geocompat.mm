@@ -10,6 +10,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <math.h>
+#include <errno.h>
 
 static void emit(const char *line)
 {
@@ -149,6 +150,139 @@ static void inspect_geometry(void)
     }
     inspect_window_safe_area();
 }
+
+/* One main-thread, read-only view/grid snapshot. Never request a relayout. */
+static const char *geo_rect_type="{CGRect={CGPoint=dd}{CGSize=dd}}";
+static bool geo_method_type(id object,const char *name,const char *result,unsigned arguments=2,
+                            const char *arg2=NULL,const char *arg3=NULL)
+{
+    Method method=object?class_getInstanceMethod(object_getClass(object),sel_registerName(name)):NULL;
+    if(!method || method_getNumberOfArguments(method)!=arguments)return false;
+    char type[128]={0};method_getReturnType(method,type,sizeof(type));
+    if(strcmp(type,result))return false;
+    if(arg2){method_getArgumentType(method,2,type,sizeof(type));if(strcmp(type,arg2))return false;}
+    if(arg3){method_getArgumentType(method,3,type,sizeof(type));if(strcmp(type,arg3))return false;}
+    return true;
+}
+static bool geo_kind(id object,const char *name)
+{
+    Class wanted=objc_lookUpClass(name);if(!wanted || !object)return false;
+    for(Class type=object_getClass(object);type;type=class_getSuperclass(type))if(type==wanted)return true;
+    return false;
+}
+static id geo_object(id object,const char *name)
+{
+    if(!geo_method_type(object,name,"@"))return nil;
+    return ((id (*)(id,SEL))objc_msgSend)(object,sel_registerName(name));
+}
+static bool geo_rectangle(id object,const char *name,CGRect *value)
+{
+    if(!geo_method_type(object,name,geo_rect_type))return false;
+    *value=screen_rect(object,sel_registerName(name));
+    return isfinite(value->origin.x) && isfinite(value->origin.y) && isfinite(value->size.width) && isfinite(value->size.height) &&
+           fabs(value->origin.x)<=32768 && fabs(value->origin.y)<=32768 && fabs(value->size.width)<=32768 && fabs(value->size.height)<=32768;
+}
+static bool geo_window_rectangle(id object,CGRect frame,CGRect *value)
+{
+    if(!geo_method_type(object,"convertRect:toView:",geo_rect_type,4,geo_rect_type,"@"))return false;
+#if defined(__x86_64__)
+    ((void (*)(CGRect *,id,SEL,CGRect,id))objc_msgSend_stret)(value,object,sel_registerName("convertRect:toView:"),frame,nil);
+#else
+    *value=((CGRect (*)(id,SEL,CGRect,id))objc_msgSend)(object,sel_registerName("convertRect:toView:"),frame,nil);
+#endif
+    return isfinite(value->origin.x) && isfinite(value->origin.y) && isfinite(value->size.width) && isfinite(value->size.height) &&
+           fabs(value->origin.x)<=32768 && fabs(value->origin.y)<=32768 && fabs(value->size.width)<=32768 && fabs(value->size.height)<=32768;
+}
+static bool geo_size(id object,const char *name,CGSize *value)
+{
+    if(!geo_method_type(object,name,"{CGSize=dd}"))return false;
+    *value=((CGSize (*)(id,SEL))objc_msgSend)(object,sel_registerName(name));
+    return isfinite(value->width) && isfinite(value->height) && fabs(value->width)<=32768 && fabs(value->height)<=32768;
+}
+static bool geo_count(id object,const char *name,unsigned long long *value)
+{
+    SEL selector=sel_registerName(name);
+    if(geo_method_type(object,name,"Q"))*value=((unsigned long long (*)(id,SEL))objc_msgSend)(object,selector);
+    else if(geo_method_type(object,name,"q")){
+        long long number=((long long (*)(id,SEL))objc_msgSend)(object,selector);if(number<0)return false;*value=(unsigned long long)number;
+    }else return false;
+    return *value<=2048;
+}
+static bool geo_native_screen(void)
+{
+    id screen=geo_object((id)objc_lookUpClass("UIScreen"),"mainScreen");CGRect b,n;
+    if(!geo_rectangle(screen,"bounds",&b) || !geo_rectangle(screen,"nativeBounds",&n) || !geo_method_type(screen,"scale","d"))return false;
+    double s=((double (*)(id,SEL))objc_msgSend)(screen,sel_registerName("scale"));
+    return fabs(b.size.width-360)<0.01 && fabs(b.size.height-640)<0.01 && fabs(n.size.width-720)<0.01 && fabs(n.size.height-1280)<0.01 && fabs(s-2)<0.01;
+}
+struct SweetGeoLayoutResult {unsigned visited,recorded,grids,refused,truncated;};
+static bool geo_grid(id view,unsigned number)
+{
+    if(!geo_kind(view,"SBIconListView"))return false;
+    id layout=geo_object(view,"layout");
+    if(!geo_kind(layout,"SBIconListGridLayout"))return false;
+    id config=geo_object(layout,"layoutConfiguration");
+    if(!geo_kind(config,"SBIconListGridLayoutConfiguration"))return false;
+    unsigned long long rows=0,columns=0;CGSize spacing={0,0},list={0,0};
+    bool count=geo_count(config,"numberOfPortraitRows",&rows) && geo_count(config,"numberOfPortraitColumns",&columns);
+    bool sizes=geo_size(view,"iconSpacing",&spacing) && geo_size(config,"listSizeForIconSpacingCalculation",&list);
+    char line[190];snprintf(line,sizeof(line),"SWEET GLAYOUT GRID n=%u rows=%llu cols=%llu spacing=%.3f,%.3f list=%.3f,%.3f valid=%u\n",number,rows,columns,spacing.width,spacing.height,list.width,list.height,(unsigned)(count&&sizes));emit(line);
+    if(geo_method_type(config,"portraitLayoutInsets","{UIEdgeInsets=dddd}")){
+        SweetGeoInsets insets;
+#if defined(__x86_64__)
+        ((void (*)(SweetGeoInsets *,id,SEL))objc_msgSend_stret)(&insets,config,sel_registerName("portraitLayoutInsets"));
+#else
+        insets=((SweetGeoInsets (*)(id,SEL))objc_msgSend)(config,sel_registerName("portraitLayoutInsets"));
+#endif
+        snprintf(line,sizeof(line),"SWEET GLAYOUT INSETS n=%u portrait=%.3f,%.3f,%.3f,%.3f\n",number,insets.top,insets.left,insets.bottom,insets.right);emit(line);
+    }
+    return count&&sizes;
+}
+static SweetGeoLayoutResult inspect_native_layout(unsigned after_ctor_seconds)
+{
+    SweetGeoLayoutResult result={0,0,0,0,0};int saved_errno=errno;
+    const char *enabled=getenv("GEO_FIX");
+    if(!enabled || strcmp(enabled,"1") || !geo_native_screen()){errno=saved_errno;return result;}
+    char line[190];snprintf(line,sizeof(line),"SWEET GLAYOUT BEGIN rev=1 after_ctor=%u points=360,640 pixels=720,1280 scale=2\n",after_ctor_seconds);emit(line);
+    @try {
+        id app=geo_object((id)objc_lookUpClass("UIApplication"),"sharedApplication"),windows=geo_object(app,"windows");
+        struct Node {id object;unsigned parent,depth;} nodes[2048];unsigned queued=0;
+        if(!geo_kind(windows,"NSArray"))++result.refused;
+        else{
+            CFIndex count=CFArrayGetCount((CFArrayRef)windows);
+            if(count<0 || count>32)++result.refused;
+            else for(CFIndex i=0;i<count;++i)nodes[queued++]={(id)CFArrayGetValueAtIndex((CFArrayRef)windows,i),0,0};
+        }
+        for(unsigned i=0;i<queued;++i){
+            id view=nodes[i].object;++result.visited;if(!geo_kind(view,"UIView")){++result.refused;continue;}
+            const char *name=class_getName(object_getClass(view));
+            bool relevant=nodes[i].parent==0 || strstr(name,"Icon") || strstr(name,"Widget") || strstr(name,"Label") || strstr(name,"Dock");
+            if(relevant){
+                if(strlen(name)>64)result.truncated=1;
+                CGRect frame,bounds,window;
+                if(geo_rectangle(view,"frame",&frame) && geo_rectangle(view,"bounds",&bounds) && geo_window_rectangle(view,bounds,&window)){
+                    if(result.recorded>=384)result.truncated=1;
+                    else{
+                        ++result.recorded;snprintf(line,sizeof(line),"SWEET GLAYOUT VIEW n=%u parent=%u depth=%u class=%.64s\n",i+1,nodes[i].parent,nodes[i].depth,name);emit(line);
+                        snprintf(line,sizeof(line),"SWEET GLAYOUT RECT n=%u frame=%.3f,%.3f,%.3f,%.3f screen=%.3f,%.3f,%.3f,%.3f\n",i+1,frame.origin.x,frame.origin.y,frame.size.width,frame.size.height,window.origin.x,window.origin.y,window.size.width,window.size.height);emit(line);
+                    }
+                }else ++result.refused;
+                if(result.grids<8 && geo_grid(view,i+1))++result.grids;
+            }
+            id children=geo_object(view,"subviews");if(!geo_kind(children,"NSArray")){++result.refused;continue;}
+            CFIndex count=CFArrayGetCount((CFArrayRef)children);if(count<0 || count>2048){result.truncated=1;continue;}
+            for(CFIndex k=0;k<count;++k){
+                id child=(id)CFArrayGetValueAtIndex((CFArrayRef)children,k);bool seen=false;
+                for(unsigned j=0;j<queued;++j)if(nodes[j].object==child){seen=true;break;}
+                if(seen){++result.refused;continue;}
+                if(queued>=2048 || nodes[i].depth>=64){result.truncated=1;continue;}
+                nodes[queued++]={child,i+1,nodes[i].depth+1};
+            }
+        }
+    }@catch(id exception){(void)exception;++result.refused;emit("SWEET GLAYOUT REFUSE getter_exception\n");}
+    snprintf(line,sizeof(line),"SWEET GLAYOUT END rev=1 visited=%u recorded=%u grids=%u refused=%u truncated=%u\n",result.visited,result.recorded,result.grids,result.refused,result.truncated);emit(line);
+    errno=saved_errno;return result;
+}
 __attribute__((constructor)) static void start_geometry_reader(void)
 {
     install_provider_adapter();
@@ -157,5 +291,8 @@ __attribute__((constructor)) static void start_geometry_reader(void)
     });
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW,20*NSEC_PER_SEC),dispatch_get_main_queue(),^{
         @autoreleasepool { inspect_geometry(); }
+    });
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW,135*NSEC_PER_SEC),dispatch_get_main_queue(),^{
+        @autoreleasepool { (void)inspect_native_layout(135); }
     });
 }

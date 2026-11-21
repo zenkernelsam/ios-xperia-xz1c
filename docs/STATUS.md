@@ -2,6 +2,8 @@
 
 Sony BH905ND69G已完成r15两靴并健康返回fastboot；没有controller、串口worker、构建任务或in-flight boot。下一步查原生布局中小组件标签重叠和原壁纸模式。原生720×1280显示、平直状态栏已实机核对，完整UI、光学、FPS和其它外设继续验收。
 
+当前新增只读layout候选：仅精确native屏幕、主线程、constructor后135秒一次；记录原view CGRect／window坐标、grid rows／columns／spacing／insets，严格核对ABI并标记截断／拒绝，不调用relayout或setter。源码已准备，host／ARM64／新RAM CPU及GLES9尚未验，设备保持fastboot。
+
 ## 当前准确输入与验收范围
 
 | 输入 | 精确身份 | 已验范围 |

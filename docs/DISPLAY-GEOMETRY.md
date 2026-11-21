@@ -26,6 +26,8 @@ CPU命令区607B，GPU602B；CPU部分numeric-one压缩以准确PE parser等值�
 
 r15实际from=nil、to=LegacyPhone，串口真实scanout中“iPhone／时间／电池”平直状态栏显示，红色rdar占位消失。窗口0..7原safeAreaInsets均38／0／29／0；只读观察采用准确UIEdgeInsets64 ABI，没有修改其返回。Weather／Calendar标签与第一排图标重叠，下一步读取原SpringBoard布局和网格来源，不能靠任意机型或全局safe-area覆写猜修。
 
+只读layout诊断在精确native配置、main queue、constructor后135秒执行一次。原frame／bounds和convertRect:toView:使用准确CGRect64 ABI；grid仅已知SBIconListView／GridLayout／Configuration的原无参getter。每次最多2048节点、384个view记录、8组grid，循环／未知ABI／异常／截断照实标记；不读标签文字、不改frame／safe area／行列数，不请求重排。host fixture只测ABI、原值、边界及循环拒绝，不能当手机布局证据。
+
 [R14原阶段](../reproducibility/native2x-r14-stage-20261122.json)和[R15原阶段](../reproducibility/native2x-flat-r15-stage-20261122.json)保存各自token、image／raw／PNG SHA、MG／UIScreen、扫描寄存器／CRC／FNV及完整回程。r15扫描PNG是本靴150秒720×1280原图；GLES9作者probe的750×1624离屏canvas独立保留，不把两者混为一项。
 
 ## 复现与验收
