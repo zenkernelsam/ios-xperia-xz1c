@@ -101,3 +101,5 @@ r7把BLIT／BOX合成一次frontend write，实机32个BLIT和COPY完整，但32
 本轮结束后已定位固定bsd/dev/mem.c的sweet_null_tee：单write按MIN(uio_curriovlen,256)分块，原raw有带进程前缀的后续字段，合并BOX被换行拆开。因此恢复BLIT／BOX独立write，仅改用户态诊断源码，不改冻结kernel、不补旧raw。新frontend编译与未来实机结果分别记录；原r7仍REVISE。
 
 r8离线候选直接遵循固定u_blitter的每位writemask／REPLACE思想：清零使用GL_ZERO全覆盖draw，随后ref255／1<<bit／fragment discard逐位写回；Clear每次9draw，Load为1+8*samples。避免依赖FD5明确拒绝Z32的硬件快清及空fragment路径，不CPU重排、不改底层。详见r8主机报告，仍需新库完整native21和PNG。
+
+r8实机已将S8 phase2推进至phase96；独立核对前96个原byte／guard／getBytes阶段及严格D32全29。剩下Stencil8 phase96和Memoryless phase2均无caller depth，原临时primary强制linear／真实S8 work TILE5_3。r9恢复固定驱动原生tiled primary并强制记录实际layout；原r8失败和转储decoder拒绝不变。

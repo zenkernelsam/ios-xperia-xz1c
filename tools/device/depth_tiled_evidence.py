@@ -11,6 +11,7 @@ BOX = re.compile(r'SWEET DEPTH TILE BOX original=(\d+) work=(\d+) src=(-?\d+,-?\
 SAMPLE = re.compile(r'SWEET DEPTH TILE SAMPLE original=(\d+) work=(\d+) direction=(load|store) samples=(\d+) width=(\d+) height=(\d+) src_samples=(\d+) dst_samples=(\d+) passes=(\d+) masks=(\d+) bitcast=1 GPU_only=1')
 STATE = re.compile(r'SWEET DEPTH TILE STATE original=(\d+) work=(\d+) direction=(load|store) all_dirty=(\d+) stencil_ref=(\d+) sample_mask=(\d+) scissor=(\d+) gen_dirty=(\d+) gen_all=(\d+)')
 STENCIL_SAMPLE = re.compile(r'SWEET STENCIL TILE SAMPLE original=(\d+) work=(\d+) direction=(load|store) samples=(\d+) width=(\d+) height=(\d+) src_samples=(\d+) dst_samples=(\d+) passes=(\d+) masks=(\d+) bitplanes=8(?: zero_draw=([01]))? GPU_only=1')
+DUMMY = re.compile(r'SWEET DEPTH TILE DUMMY stencil=(\d+) samples=(\d+) width=(\d+) height=(\d+) tile=(\d+) cpp=(\d+) pitch=(\d+) bytes=(\d+) depth_test=0 depth_writes=0 caller_depth=0')
 
 
 def plane(handle, gpu, format_, samples, pitch, load, publish=True):
@@ -35,7 +36,7 @@ def verify_groups(segment, groups,revision=2):
     Filtered segments for concurrent probes retain original handles explicitly;
     no unrelated plane is used as proof of this group's work or copy.
     """
-    assert revision in (2,3,4,5,6,7,8)
+    assert revision in (2,3,4,5,6,7,8,9)
     tile_mode=3 if revision>=4 else 2
     handles = {p['handle'] for group in groups for p in group}
     tables = [list(pattern.finditer(segment)) for pattern in (PAGE, MAP, COPY, PAIR, RETIRE)]
@@ -54,6 +55,11 @@ def verify_groups(segment, groups,revision=2):
     sampled = [m for m in SAMPLE.finditer(segment) if int(m[1]) in handles]
     states = [m for m in STATE.finditer(segment) if int(m[1]) in handles]
     stencil_sampled = [m for m in STENCIL_SAMPLE.finditer(segment) if int(m[1]) in handles]
+    dummies=[m for m in DUMMY.finditer(segment) if int(m[1]) in handles]
+    if revision>=9:
+        assert segment.count('SWEET DEPTH TILE DUMMY ')==len(list(DUMMY.finditer(segment)))
+        assert len(dummies)==sum(any(p['format']==253 for p in g) and not any(p['format']==252 for p in g) for g in groups)
+    else:assert not dummies
     if revision>=3:
         assert 'SWEET DEPTH TILE REJECT ' not in segment
         assert segment.count('SWEET DEPTH TILE BLIT ')==len(list(BLIT.finditer(segment)))
@@ -156,6 +162,10 @@ def verify_groups(segment, groups,revision=2):
             p = paired[0]; depth = next((v for v in group if v['format']==252),None); stencil = next(v for v in group if v['format']==253)
             assert tuple(map(int,p.groups())) == (depth['handle'] if depth else 0,stencil['handle'],work.get(252,0),work[253],stencil['samples'])
             assert max(m.end() for m in own_pages) < p.start() < min(m.start() for m in retired if begin<=m.start()<end)
+            if revision>=9 and depth is None:
+                dummy=[m for m in dummies if begin<m.start()<m.end()<p.start()];assert len(dummy)==1
+                _,dummy_pitch,dummy_size=layout_bytes(252,stencil['samples'],stencil['width'],stencil['height'])
+                assert tuple(map(int,dummy[0].groups()))==(stencil['handle'],stencil['samples'],stencil['width'],stencil['height'],3,4*stencil['samples'],dummy_pitch,dummy_size)
         records.append(spans); index = following
     return dict(revision=revision, independent_FDL5_work_pages=True, GPU_copy_and_fence_verified=True,
                 original_stride_offset_and_IOVA_verified=True, work_reference_retirement_verified=True,
@@ -164,4 +174,5 @@ def verify_groups(segment, groups,revision=2):
                 actual_depth_MSAA_sample_shader_bitcast_verified=revision>=5 and bool(sampled),
                 native_3D_state_marked_dirty_after_internal_2D_copy=revision>=6 and bool(states),
                 actual_stencil_texture_GPU_bitplane_transfer_verified=revision>=7 and bool(stencil_sampled),
+                stencil_only_unused_depth_primary_native_tile_verified=revision>=9 and bool(dummies),
                 operations=len(groups), planes=len(expected), records=records)

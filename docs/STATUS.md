@@ -1,5 +1,6 @@
 # 当前状态 — 2026-11-21
 
+当前r8四靴已结束：CPU／GLES9／reference CPU通过，native21在Stencil8 phase96为REVISE，39.391秒完整0x06回程／健康30秒，Sony健康fastboot、无worker。r9仅离线源码／核验完成，尚未投递。
 Sony BH905ND69G健康fastboot；本轮四靴已结束，无controller／串口worker／in-flight。Stencil8 r7完整native21为REVISE／STENCIL8_PROBE_FAILED，40.813秒完成0x06四marker、连续健康30秒和worker退出。自身CPU、GLES9、reference CPU均独立通过；S8仍phase2失败，Memoryless新清屏路径也在phase2失败。MSAA／presentation在ACK前没有完整END，PNG6未准入。生产CA基线保持，原失败不重发。
 
 ## 已验生产基线
@@ -16,7 +17,7 @@ CPU／launchd、F12真实触控及音量键已验。GLES包括完整750×1624三
 
 串口能取真实720×1280／BGR888／stride2160扫描帧。基线有灰色锁屏时间日期与单串口上滑后的正常颜色主页；合成输入不替代真人触控。本轮GLES9的150秒原帧仍是灰字黑壁纸锁屏、绿色电池和白homebar，PNG SHA 4eb49f297fe8fcc0af02a6f0ea104f01382421754650cb9105d7cd9b765f0c97。扫描帧不证明LCD光学／背光、FPS或唤醒。
 
-## 最新候选与四靴结果
+## r7历史候选与四靴结果
 
 | r7身份／阶段 | 实际结果 |
 | --- | --- |
@@ -52,3 +53,9 @@ RPM历史txh=8／txt=0死锁及恢复失败保持；本轮GPU时钟正常。无L
 日志修补已在Mac离线编译：68份实际frontend源、24份未改Mesa输入，库SHA 172c7de2036f467ebb9432e795e9b3d0497a0f84a14ce2d14a8a5ce56f8ed9b1；kernel console实际源SHA 3c840194226099216d7b0177c97b87740f6f6ed889328cfb6b7e863fbf6bd22c。尚未打新RAM或实机，旧r7 proof不准入此新库，见[编译原报告](../reproducibility/stencil-logging-bounds-offline-20261121.json)。
 
 r8候选已完成离线验证：固定fd5_clear对Z32硬件快清返回false；改为一次GL_ZERO绘制加八个GPU bitplane绘制，Load清零也用GPU draw，原depth禁写。主机162次Load／Store、54次逐位清屏、深度／其它sample／外围guard通过，另2390scalar draw和60depth MSAA回归通过；25项证据故障测试通过。ARM64新库与实机准入尚未完成，r7原失败保持，见[r8主机与固定上游依据](../reproducibility/stencil-bitplane-r8-host-20261121.json)。
+
+## r8当前结果与r9候选
+
+r8 GLES dab61a49d275b2f4326f37fbec7f3360179e42e3304475e535f7f8400f87d743／Metal 8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27，Stencil8 phase0..95共96个阶段的color／depth／stencil原FNV与独立recipe、guard、getBytes全部一致；严格Depth32 29 work／copy／STATE与byte／guard通过。整体仍在phase96失败，Memoryless在phase2失败，两者都是stencil-only。原失败转储缺块／乱序被decoder拒绝，没有填补或重新分类，见[r8原报告](../reproducibility/stencil-bitplane-r8-stage-20261121.json)。
+
+prepare_depth_tiled在无caller depth时把unused primary显式强制DRM_LINEAR，实际S8 work为TILE5_3。r9改用固定Mesa原生resource_create，并要求actual dummy tile3／cpp／pitch／size和caller_depth0／禁depth test-write日志，未知布局明确拒绝。不新造或发布caller depth页，不改内核／allocator／SCM／PON／RPC／VM。新增dummy缺失／线性／depth写入故障核验通过，完整native21／PNG仍待新库。

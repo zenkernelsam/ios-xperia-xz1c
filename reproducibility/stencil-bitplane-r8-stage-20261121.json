@@ -1,0 +1,1568 @@
+{
+  "date": "2026-11-21",
+  "revision": 8,
+  "source_commit": "5a450c6",
+  "runs": [
+    {
+      "result": "PASS",
+      "reason": "GOALS_STABLE",
+      "reset_to_fastboot_seconds": 38.20299999997951,
+      "return_log_complete": true,
+      "boot_dispatches": 1,
+      "reset_requests": 1,
+      "stage": "GLESCPU",
+      "token": "3bf0813109083086",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-stencil-r8-gles-cpu-live-20261121",
+      "image_sha256": "7c4cb6b7905a427a903d52b669c211a16c943d12d5d00f3c7a384afe33deb8f1",
+      "raw_sha256": "e167f3ef674614c73bd467d2fb69c328fcd7fddd245171a1f8c637982b1432db",
+      "raw_bytes": 340965,
+      "original_results_sha256": "16bab1e81e9869989fffd056c65da5afda302a2cc90326f04624f3b0aa3e1901",
+      "strict_return": {
+        "complete": true,
+        "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+        "current_token": "3bf0813109083086",
+        "checkpoint_bytes": 337792,
+        "log_bytes": 340965,
+        "log_sha256": "e167f3ef674614c73bd467d2fb69c328fcd7fddd245171a1f8c637982b1432db",
+        "require_final_drain": true,
+        "marker_positions": [
+          5,
+          9,
+          59,
+          61
+        ],
+        "final_reset_marker_seen": true
+      },
+      "independent_complete_stage_verification_passed": true
+    },
+    {
+      "result": "PASS",
+      "reason": "GOALS_STABLE",
+      "reset_to_fastboot_seconds": 39.875,
+      "return_log_complete": true,
+      "boot_dispatches": 1,
+      "reset_requests": 1,
+      "stage": "GLES9",
+      "token": "035e128d340a76d4",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-stencil-r8-gles-gpu-live-20261121",
+      "image_sha256": "c2fb0355d6c7298954df4e55714ec5e57beef514a3f900269f024ed252e2d67d",
+      "raw_sha256": "d5b0812ddbf8dc74fff7b7b657534fe438d0dc65799f0b4fa6d383bbf31c8a82",
+      "raw_bytes": 1497650,
+      "original_results_sha256": "678f03a8562b513d922ce968e32710596e188ea03985f2df8c255b7744110c67",
+      "strict_return": {
+        "complete": true,
+        "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+        "current_token": "035e128d340a76d4",
+        "checkpoint_bytes": 1494870,
+        "log_bytes": 1497650,
+        "log_sha256": "d5b0812ddbf8dc74fff7b7b657534fe438d0dc65799f0b4fa6d383bbf31c8a82",
+        "require_final_drain": true,
+        "marker_positions": [
+          3,
+          5,
+          51,
+          53
+        ],
+        "final_reset_marker_seen": true
+      },
+      "independent_complete_stage_verification_passed": true
+    },
+    {
+      "result": "PASS",
+      "reason": "GOALS_STABLE",
+      "reset_to_fastboot_seconds": 39.062000000150874,
+      "return_log_complete": true,
+      "boot_dispatches": 1,
+      "reset_requests": 1,
+      "stage": "referenceCPU",
+      "token": "c426d6b850dfb59c",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-stencil-r8-reference-cpu-live-20261121",
+      "image_sha256": "00377881f10c104a534aca2e8b30d2e1236d7af64cc780eb2c90e8193dff60e0",
+      "raw_sha256": "d3c19134d91d26b441d27475e40e4639be23d47558df445082a4976a184ebe47",
+      "raw_bytes": 333818,
+      "original_results_sha256": "6a8e0bbec5fee654184b45db795545eb5ef06905f840e654d1ac73d92e0ae7a7",
+      "strict_return": {
+        "complete": true,
+        "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+        "current_token": "c426d6b850dfb59c",
+        "checkpoint_bytes": 330498,
+        "log_bytes": 333818,
+        "log_sha256": "d3c19134d91d26b441d27475e40e4639be23d47558df445082a4976a184ebe47",
+        "require_final_drain": true,
+        "marker_positions": [
+          3,
+          7,
+          61,
+          63
+        ],
+        "final_reset_marker_seen": true
+      },
+      "independent_complete_stage_verification_passed": true
+    },
+    {
+      "result": "REVISE",
+      "reason": "STENCIL8_PROBE_FAILED",
+      "reset_to_fastboot_seconds": 39.39099999982864,
+      "return_log_complete": true,
+      "boot_dispatches": 1,
+      "reset_requests": 1,
+      "stage": "native21",
+      "token": "9c29a2f5c6a952fa",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-stencil-r8-reference-gpu-live-20261121",
+      "image_sha256": "11ebe41ca1694447f7ac309193a3c1647566c2a7316f0407f6a923581343be28",
+      "raw_sha256": "87b22f9d870e183251c78093f15bbfd2a28a7522f921ba53f2b98bbf3bcd2cbd",
+      "raw_bytes": 1162996,
+      "original_results_sha256": "33727d2eb6194b6b0465cf8672270d388fa4016e781dd7949651fc29b3e01074",
+      "strict_return": {
+        "complete": true,
+        "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+        "current_token": "9c29a2f5c6a952fa",
+        "checkpoint_bytes": 1148694,
+        "log_bytes": 1162996,
+        "log_sha256": "87b22f9d870e183251c78093f15bbfd2a28a7522f921ba53f2b98bbf3bcd2cbd",
+        "require_final_drain": true,
+        "marker_positions": [
+          8,
+          61,
+          244,
+          246
+        ],
+        "final_reset_marker_seen": true
+      },
+      "independent_stencil_byte_guard_prefix_96": [
+        {
+          "phase": 0,
+          "sequence": 1077,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 1,
+          "sequence": 1086,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 2,
+          "sequence": 1095,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 3,
+          "sequence": 1104,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 4,
+          "sequence": 1113,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 5,
+          "sequence": 1122,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 6,
+          "sequence": 1131,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 7,
+          "sequence": 1140,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 8,
+          "sequence": 1149,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 9,
+          "sequence": 1158,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 10,
+          "sequence": 1167,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 11,
+          "sequence": 1176,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 12,
+          "sequence": 1185,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 13,
+          "sequence": 1194,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 14,
+          "sequence": 1203,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 15,
+          "sequence": 1212,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 16,
+          "sequence": 1221,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 17,
+          "sequence": 1230,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 18,
+          "sequence": 1239,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 19,
+          "sequence": 1248,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 20,
+          "sequence": 1257,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 21,
+          "sequence": 1266,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 22,
+          "sequence": 1275,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 23,
+          "sequence": 1284,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 24,
+          "sequence": 1293,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 25,
+          "sequence": 1302,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 26,
+          "sequence": 1311,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 27,
+          "sequence": 1320,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 28,
+          "sequence": 1329,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 29,
+          "sequence": 1338,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 30,
+          "sequence": 1347,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 31,
+          "sequence": 1356,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 32,
+          "sequence": 1365,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 33,
+          "sequence": 1374,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 34,
+          "sequence": 1383,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 35,
+          "sequence": 1392,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 36,
+          "sequence": 1401,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 37,
+          "sequence": 1410,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 38,
+          "sequence": 1419,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 39,
+          "sequence": 1428,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 40,
+          "sequence": 1437,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 41,
+          "sequence": 1446,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 42,
+          "sequence": 1455,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 43,
+          "sequence": 1464,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 44,
+          "sequence": 1473,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 45,
+          "sequence": 1482,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 46,
+          "sequence": 1491,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 47,
+          "sequence": 1500,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "06d4d3040a913c61"
+        },
+        {
+          "phase": 48,
+          "sequence": 1509,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "7c11b71758d0f732"
+        },
+        {
+          "phase": 49,
+          "sequence": 1518,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "87cae394cb23d34a"
+        },
+        {
+          "phase": 50,
+          "sequence": 1527,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "6356773b33fd096c"
+        },
+        {
+          "phase": 51,
+          "sequence": 1536,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "1e5646fe8b66fd1d"
+        },
+        {
+          "phase": 52,
+          "sequence": 1545,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "7c11b71758d0f732"
+        },
+        {
+          "phase": 53,
+          "sequence": 1554,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "20a6fd140c625d13"
+        },
+        {
+          "phase": 54,
+          "sequence": 1563,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "68a443de98c657ba"
+        },
+        {
+          "phase": 55,
+          "sequence": 1572,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "b10bb7ea37ece718"
+        },
+        {
+          "phase": 56,
+          "sequence": 1581,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "7c11b71758d0f732"
+        },
+        {
+          "phase": 57,
+          "sequence": 1590,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "87cae394cb23d34a"
+        },
+        {
+          "phase": 58,
+          "sequence": 1599,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "6356773b33fd096c"
+        },
+        {
+          "phase": 59,
+          "sequence": 1608,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "1e5646fe8b66fd1d"
+        },
+        {
+          "phase": 60,
+          "sequence": 1617,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "7c11b71758d0f732"
+        },
+        {
+          "phase": 61,
+          "sequence": 1626,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "20a6fd140c625d13"
+        },
+        {
+          "phase": 62,
+          "sequence": 1635,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "68a443de98c657ba"
+        },
+        {
+          "phase": 63,
+          "sequence": 1644,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "b10bb7ea37ece718"
+        },
+        {
+          "phase": 64,
+          "sequence": 1653,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "7c11b71758d0f732"
+        },
+        {
+          "phase": 65,
+          "sequence": 1662,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "87cae394cb23d34a"
+        },
+        {
+          "phase": 66,
+          "sequence": 1671,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "6356773b33fd096c"
+        },
+        {
+          "phase": 67,
+          "sequence": 1680,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "1e5646fe8b66fd1d"
+        },
+        {
+          "phase": 68,
+          "sequence": 1689,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "7c11b71758d0f732"
+        },
+        {
+          "phase": 69,
+          "sequence": 1698,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "20a6fd140c625d13"
+        },
+        {
+          "phase": 70,
+          "sequence": 1707,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "68a443de98c657ba"
+        },
+        {
+          "phase": 71,
+          "sequence": 1716,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "b10bb7ea37ece718"
+        },
+        {
+          "phase": 72,
+          "sequence": 1725,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "4bc830d5d566be63"
+        },
+        {
+          "phase": 73,
+          "sequence": 1734,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "2d4b3d083205e53a"
+        },
+        {
+          "phase": 74,
+          "sequence": 1743,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "89c8f47b127750ec"
+        },
+        {
+          "phase": 75,
+          "sequence": 1752,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "35266be240e6cdb7"
+        },
+        {
+          "phase": 76,
+          "sequence": 1761,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "87cae394cb23d34a"
+        },
+        {
+          "phase": 77,
+          "sequence": 1770,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "da2708853ffdbd0d"
+        },
+        {
+          "phase": 78,
+          "sequence": 1779,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "8e2368a10cdbe03a"
+        },
+        {
+          "phase": 79,
+          "sequence": 1788,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "f41bd196d2910e11"
+        },
+        {
+          "phase": 80,
+          "sequence": 1797,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "4bc830d5d566be63"
+        },
+        {
+          "phase": 81,
+          "sequence": 1806,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "2d4b3d083205e53a"
+        },
+        {
+          "phase": 82,
+          "sequence": 1815,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "89c8f47b127750ec"
+        },
+        {
+          "phase": 83,
+          "sequence": 1824,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "35266be240e6cdb7"
+        },
+        {
+          "phase": 84,
+          "sequence": 1833,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "87cae394cb23d34a"
+        },
+        {
+          "phase": 85,
+          "sequence": 1842,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "da2708853ffdbd0d"
+        },
+        {
+          "phase": 86,
+          "sequence": 1851,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "8e2368a10cdbe03a"
+        },
+        {
+          "phase": 87,
+          "sequence": 1860,
+          "color": "f6c90a96ef7f6194",
+          "depth": "4741378f99cef880",
+          "stencil": "f41bd196d2910e11"
+        },
+        {
+          "phase": 88,
+          "sequence": 1869,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "4bc830d5d566be63"
+        },
+        {
+          "phase": 89,
+          "sequence": 1878,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "2d4b3d083205e53a"
+        },
+        {
+          "phase": 90,
+          "sequence": 1887,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "89c8f47b127750ec"
+        },
+        {
+          "phase": 91,
+          "sequence": 1896,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "35266be240e6cdb7"
+        },
+        {
+          "phase": 92,
+          "sequence": 1905,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "87cae394cb23d34a"
+        },
+        {
+          "phase": 93,
+          "sequence": 1914,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "da2708853ffdbd0d"
+        },
+        {
+          "phase": 94,
+          "sequence": 1923,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "8e2368a10cdbe03a"
+        },
+        {
+          "phase": 95,
+          "sequence": 1932,
+          "color": "1f08c13b698af717",
+          "depth": "4741378f99cef880",
+          "stencil": "f41bd196d2910e11"
+        }
+      ],
+      "prefix_NOT_complete_native_proof": true,
+      "complete_Depth32_29_work_protocol_and_byte_guard": {
+        "complete_samples": 1,
+        "incomplete_samples": 0,
+        "phases": 29,
+        "checked_bytes": 74240,
+        "guard_bytes": 38744,
+        "read_bytes": 26100,
+        "records": [
+          {
+            "phase": 0,
+            "sequence": 902,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 1,
+            "sequence": 908,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 2,
+            "sequence": 914,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 3,
+            "sequence": 920,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 4,
+            "sequence": 926,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 5,
+            "sequence": 932,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 6,
+            "sequence": 938,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 7,
+            "sequence": 944,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 8,
+            "sequence": 950,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 9,
+            "sequence": 956,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 10,
+            "sequence": 962,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 11,
+            "sequence": 968,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 12,
+            "sequence": 974,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 13,
+            "sequence": 980,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 14,
+            "sequence": 986,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 15,
+            "sequence": 992,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 16,
+            "sequence": 998,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 17,
+            "sequence": 1004,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 18,
+            "sequence": 1010,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 19,
+            "sequence": 1016,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 20,
+            "sequence": 1022,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 21,
+            "sequence": 1028,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 22,
+            "sequence": 1034,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 23,
+            "sequence": 1040,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "4741378f99cef880"
+          },
+          {
+            "phase": 24,
+            "sequence": 1046,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "326de098dfd22e4b"
+          },
+          {
+            "phase": 25,
+            "sequence": 1052,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "326de098dfd22e4b"
+          },
+          {
+            "phase": 26,
+            "sequence": 1058,
+            "color_hash": "1f08c13b698af717",
+            "depth_hash": "326de098dfd22e4b"
+          },
+          {
+            "phase": 27,
+            "sequence": 1064,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "326de098dfd22e4b"
+          },
+          {
+            "phase": 28,
+            "sequence": 1067,
+            "color_hash": "f6c90a96ef7f6194",
+            "depth_hash": "4c36570a90046120"
+          }
+        ],
+        "original_depth_handle": 39,
+        "original_GPU_address": "0x4052c000",
+        "original_GPU_offset": 64,
+        "original_depth32_pages_compare_load_clear_and_padding_verified": true,
+        "GPU_fences_strictly_increasing": true,
+        "final_allocated": 0,
+        "stencil_MSAA_and_full_UI_not_inferred": true,
+        "tiled_work_planes": {
+          "revision": 8,
+          "independent_FDL5_work_pages": true,
+          "GPU_copy_and_fence_verified": true,
+          "original_stride_offset_and_IOVA_verified": true,
+          "work_reference_retirement_verified": true,
+          "actual_designated_pipe_box_and_raw_copy_metadata_verified": true,
+          "actual_pinned_fd5_sysmem_tile_mode_verified": true,
+          "actual_depth_MSAA_sample_shader_bitcast_verified": false,
+          "native_3D_state_marked_dirty_after_internal_2D_copy": true,
+          "actual_stencil_texture_GPU_bitplane_transfer_verified": false,
+          "operations": 29,
+          "planes": 29,
+          "records": [
+            [
+              {
+                "original": 39,
+                "work": 49,
+                "work_GPU": "0x40538000",
+                "format": 252,
+                "samples": 1,
+                "pitch": 256,
+                "bytes": 4096,
+                "load": 2,
+                "publish": true,
+                "copy_sequences": [
+                  901
+                ]
+              }
+            ],
+            [
+              {
+                "original": 39,
+                "work": 12,
+                "work_GPU": "0x40020000",
+                "format": 252,
+                "samples": 1,
+                "pitch": 256,
+                "bytes": 4096,
+                "load": 2,
+                "publish": true,
+                "copy_sequences": [
+                  907
+                ]
+              }
+            ],
+            [
+              {
+                "original": 39,
+                "work": 12,
+                "work_GPU": "0x40020000",
+                "format": 252,
+                "samples": 1,
+                "pitch": 256,
+                "bytes": 4096,
+                "load": 2,
+                "publish": true,
+                "copy_sequences": [
+                  913
+                ]
+              }
+            ],
+            [
+              {
+                "original": 39,
+                "work": 12,
+                "work_GPU": "0x40020000",
+                "format": 252,
+                "samples": 1,
+                "pitch": 256,
+                "bytes": 4096,
+                "load": 2,
+                "publish": true,
+                "copy_sequences": [
+                  919
+                ]
+              }
+            ],
+            [
+              {
+                "original": 39,
+                "work": 12,
+                "work_GPU": "0x40020000",
+                "format": 252,
+                "samples": 1,
+                "pitch": 256,
+                "bytes": 4096,
+                "load": 2,
+                "publish": true,
+                "copy_sequences": [
+                  925
+                ]
+              }
+            ],
+            [
+              {
+                "original": 39,
+                "work": 12,
+                "work_GPU": "0x40020000",
+                "format": 252,
+                "samples": 1,
+                "pitch": 256,
+                "bytes": 4096,
+                "load": 2,
+                "publish": true,
+                "copy_sequences": [
+                  931
+                ]
+              }
+            ],
+            [
+              {
+                "original": 39,
+                "work": 12,
+                "work_GPU": "0x40020000",
+                "format": 252,
+                "samples": 1,
+                "pitch": 256,
+                "bytes": 4096,
+                "load": 2,
+                "publish": true,
+                "copy_sequences": [
+                  937
+                ]
+              }
+            ],
+            [
+              {
+                "original": 39,
+                "work": 12,
+                "work_GPU": "0x40020000",
+                "format": 252,
+                "samples": 1,
+                "pitch": 256,
+                "bytes": 4096,
+                "load": 2,
+                "publish": true,
+                "copy_sequences": [
+                  943
+                ]
+              }
+            ],
+            [
+              {
+                "original": 39,
+                "work": 12,
+                "work_GPU": "0x40020000",
+                "format": 252,
+                "samples": 1,
+                "pitch": 256,
+                "bytes": 4096,
+                "load": 2,
+                "publish": true,
+                "copy_sequences": [
+                  949
+                ]
+              }
+            ],
+            [
+              {
+                "original": 39,
+                "work": 12,
+                "work_GPU": "0x40020000",
+                "format": 252,
+                "samples": 1,
+                "pitch": 256,
+                "bytes": 4096,
+                "load": 2,
+                "publish": true,
+                "copy_sequences": [
+                  955
+                ]
+              }
+            ],
+            [
+              {
+                "original": 39,
+                "work": 12,
+                "work_GPU": "0x40020000",
+                "format": 252,
+                "samples": 1,
+                "pitch": 256,
+                "bytes": 4096,
+                "load": 2,
+                "publish": true,
+                "copy_sequences": [
+                  961
+                ]
+              }
+            ],
+            [
+              {
+                "original": 39,
+                "work": 12,
+                "work_GPU": "0x40020000",
+                "format": 252,
+                "samples": 1,
+                "pitch": 256,
+                "bytes": 4096,
+                "load": 2,
+                "publish": true,
+                "copy_sequences": [
+                  967
+                ]
+              }
+            ],
+            [
+              {
+                "original": 39,
+                "work": 12,
+                "work_GPU": "0x40020000",
+                "format": 252,
+                "samples": 1,
+                "pitch": 256,
+                "bytes": 4096,
+                "load": 2,
+                "publish": true,
+                "copy_sequences": [
+                  973
+                ]
+              }
+            ],
+            [
+              {
+                "original": 39,
+                "work": 12,
+                "work_GPU": "0x40020000",
+                "format": 252,
+                "samples": 1,
+                "pitch": 256,
+                "bytes": 4096,
+                "load": 2,
+                "publish": true,
+                "copy_sequences": [
+                  979
+                ]
+              }
+            ],
+            [
+              {
+                "original": 39,
+                "work": 12,
+                "work_GPU": "0x40020000",
+                "format": 252,
+                "samples": 1,
+                "pitch": 256,
+                "bytes": 4096,
+                "load": 2,
+                "publish": true,
+                "copy_sequences": [
+                  985
+                ]
+              }
+            ],
+            [
+              {
+                "original": 39,
+                "work": 12,
+                "work_GPU": "0x40020000",
+                "format": 252,
+                "samples": 1,
+                "pitch": 256,
+                "bytes": 4096,
+                "load": 2,
+                "publish": true,
+                "copy_sequences": [
+                  991
+                ]
+              }
+            ],
+            [
+              {
+                "original": 39,
+                "work": 12,
+                "work_GPU": "0x40020000",
+                "format": 252,
+                "samples": 1,
+                "pitch": 256,
+                "bytes": 4096,
+                "load": 2,
+                "publish": true,
+                "copy_sequences": [
+                  997
+                ]
+              }
+            ],
+            [
+              {
+                "original": 39,
+                "work": 12,
+                "work_GPU": "0x40020000",
+                "format": 252,
+                "samples": 1,
+                "pitch": 256,
+                "bytes": 4096,
+                "load": 2,
+                "publish": true,
+                "copy_sequences": [
+                  1003
+                ]
+              }
+            ],
+            [
+              {
+                "original": 39,
+                "work": 12,
+                "work_GPU": "0x40020000",
+                "format": 252,
+                "samples": 1,
+                "pitch": 256,
+                "bytes": 4096,
+                "load": 2,
+                "publish": true,
+                "copy_sequences": [
+                  1009
+                ]
+              }
+            ],
+            [
+              {
+                "original": 39,
+                "work": 12,
+                "work_GPU": "0x40020000",
+                "format": 252,
+                "samples": 1,
+                "pitch": 256,
+                "bytes": 4096,
+                "load": 2,
+                "publish": true,
+                "copy_sequences": [
+                  1015
+                ]
+              }
+            ],
+            [
+              {
+                "original": 39,
+                "work": 12,
+                "work_GPU": "0x40020000",
+                "format": 252,
+                "samples": 1,
+                "pitch": 256,
+                "bytes": 4096,
+                "load": 2,
+                "publish": true,
+                "copy_sequences": [
+                  1021
+                ]
+              }
+            ],
+            [
+              {
+                "original": 39,
+                "work": 12,
+                "work_GPU": "0x40020000",
+                "format": 252,
+                "samples": 1,
+                "pitch": 256,
+                "bytes": 4096,
+                "load": 2,
+                "publish": true,
+                "copy_sequences": [
+                  1027
+                ]
+              }
+            ],
+            [
+              {
+                "original": 39,
+                "work": 12,
+                "work_GPU": "0x40020000",
+                "format": 252,
+                "samples": 1,
+                "pitch": 256,
+                "bytes": 4096,
+                "load": 2,
+                "publish": true,
+                "copy_sequences": [
+                  1033
+                ]
+              }
+            ],
+            [
+              {
+                "original": 39,
+                "work": 12,
+                "work_GPU": "0x40020000",
+                "format": 252,
+                "samples": 1,
+                "pitch": 256,
+                "bytes": 4096,
+                "load": 2,
+                "publish": true,
+                "copy_sequences": [
+                  1039
+                ]
+              }
+            ],
+            [
+              {
+                "original": 39,
+                "work": 12,
+                "work_GPU": "0x40020000",
+                "format": 252,
+                "samples": 1,
+                "pitch": 256,
+                "bytes": 4096,
+                "load": 2,
+                "publish": true,
+                "copy_sequences": [
+                  1045
+                ]
+              }
+            ],
+            [
+              {
+                "original": 39,
+                "work": 12,
+                "work_GPU": "0x40020000",
+                "format": 252,
+                "samples": 1,
+                "pitch": 256,
+                "bytes": 4096,
+                "load": 1,
+                "publish": true,
+                "copy_sequences": [
+                  1047,
+                  1051
+                ]
+              }
+            ],
+            [
+              {
+                "original": 39,
+                "work": 12,
+                "work_GPU": "0x40020000",
+                "format": 252,
+                "samples": 1,
+                "pitch": 256,
+                "bytes": 4096,
+                "load": 1,
+                "publish": true,
+                "copy_sequences": [
+                  1053,
+                  1057
+                ]
+              }
+            ],
+            [
+              {
+                "original": 39,
+                "work": 12,
+                "work_GPU": "0x40020000",
+                "format": 252,
+                "samples": 1,
+                "pitch": 256,
+                "bytes": 4096,
+                "load": 1,
+                "publish": true,
+                "copy_sequences": [
+                  1059,
+                  1063
+                ]
+              }
+            ],
+            [
+              {
+                "original": 39,
+                "work": 21,
+                "work_GPU": "0x40028000",
+                "format": 252,
+                "samples": 1,
+                "pitch": 256,
+                "bytes": 4096,
+                "load": 2,
+                "publish": true,
+                "copy_sequences": [
+                  1067
+                ]
+              }
+            ]
+          ]
+        }
+      },
+      "original_failure": {
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-stencil-r8-reference-gpu-live-20261121",
+        "version": 730,
+        "token": "9c29a2f5c6a952fa",
+        "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+        "image_sha256": "11ebe41ca1694447f7ac309193a3c1647566c2a7316f0407f6a923581343be28",
+        "log_sha256": "87b22f9d870e183251c78093f15bbfd2a28a7522f921ba53f2b98bbf3bcd2cbd",
+        "original_result": "REVISE",
+        "original_reason": "STENCIL8_PROBE_FAILED",
+        "actual_failures": [],
+        "native_GPU_failure_results": [],
+        "attachment_failure_results": [
+          {
+            "suite": "STENCIL8",
+            "result": 1,
+            "completed_phases": 96,
+            "final_allocated": 0
+          },
+          {
+            "suite": "MEMORYLESS",
+            "result": 1,
+            "completed_phases": 2,
+            "final_allocated": 0
+          }
+        ],
+        "actual_program_cache_failures": [],
+        "registry_assertions": [],
+        "actual_AIR_render_failure_results": [],
+        "actual_MRT_context_capability_records": [
+          {
+            "targets": 8,
+            "fp32_rt": 1,
+            "fp32_blend": 0,
+            "fp32_image": 1,
+            "independent_enable": 1,
+            "independent_func": 1,
+            "float_blend": 0,
+            "fbfetch": 0,
+            "no_attachment": 1,
+            "fragment_images": 24,
+            "image_units": 192
+          }
+        ],
+        "actual_MRT_GL_errors": [],
+        "missing_device_API": [],
+        "original_exception_missing_API": [],
+        "original_extension_checkin_timeout_count": 0,
+        "actual_program_prime_incomplete": [],
+        "actual_program_cache_scope_errors": [],
+        "payload_audit": {
+          "image_sha256": "11ebe41ca1694447f7ac309193a3c1647566c2a7316f0407f6a923581343be28",
+          "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+          "blob_count": 8,
+          "complete_payload_reconstructed_from_compiled_kernel": true
+        },
+        "strict_return": {
+          "complete": true,
+          "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+          "current_token": "9c29a2f5c6a952fa",
+          "checkpoint_bytes": 1148694,
+          "log_bytes": 1162996,
+          "log_sha256": "87b22f9d870e183251c78093f15bbfd2a28a7522f921ba53f2b98bbf3bcd2cbd",
+          "require_final_drain": true,
+          "marker_positions": [
+            8,
+            61,
+            244,
+            246
+          ],
+          "final_reset_marker_seen": true
+        },
+        "return_seconds_with_health": 39.39099999982864,
+        "failed_stage_not_accepted": true
+      },
+      "author_snapshot_decoder_refused_missing_or_misordered_chunk": true,
+      "raw_not_rewritten_missing_chunks_not_filled": true,
+      "common_remaining_trigger": "Stencil8 phase96 and Memoryless phase2 request stencil only: unused private depth primary is forced linear, actual S8 work is TILE5_3"
+    }
+  ],
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "GLES_sha256": "dab61a49d275b2f4326f37fbec7f3360179e42e3304475e535f7f8400f87d743",
+  "Metal_sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27",
+  "Metal_source_map_sha256": "db1605ef8dae8f8ed0a29999dcb2cf7537457aba7ad428677c21e0e914771b78",
+  "failure_not_replayed": true,
+  "production_baseline_NOT_promoted": true,
+  "whole_native21_PNG_geometry_UI_peripherals_NOT_complete": true,
+  "final_device": "BH905ND69G healthy fastboot; no worker"
+}

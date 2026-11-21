@@ -273,7 +273,7 @@ def load(folder,expected=None):
     assert m['files']['libglapi.0.dylib']['sha256']==API and m['files']['georead.dylib']['sha256']==HELPER
     source=m['frontend_build_binding']['source_files']
     if m['frontend_build_binding'].get('depth_tiled_backend_revision'):
-        assert m['frontend_build_binding']['depth_tiled_backend_revision'] in (2,3,4,5,6,7,8)
+        assert m['frontend_build_binding']['depth_tiled_backend_revision'] in (2,3,4,5,6,7,8,9)
         assert m['frontend_build_binding']['depth_tiled_independent_FDL5_work_pages']
         assert m['frontend_build_binding']['depth_tiled_GPU_copy_fences_and_retirement_required']
         assert all(path in source for path in ('DepthTiledPlane.h','StencilResourcePair.h','metal_render.c'))
@@ -296,6 +296,8 @@ def load(folder,expected=None):
             else:
                 assert m['frontend_build_binding']['stencil_Clear_GPU_zero_and_eight_bitplane_draws']
                 assert m['frontend_build_binding']['stencil_Load_GPU_zero_draw_required']
+            if m['frontend_build_binding']['depth_tiled_backend_revision']>=9:
+                assert m['frontend_build_binding']['stencil_only_unused_depth_primary_native_TILE5_3']
     if m['frontend_build_binding'].get('CA_matrix_revision'):
         assert m['frontend_build_binding']['CA_matrix_revision']==1 and m['frontend_build_binding']['GLES_suite_tests']==9
         assert all(path in source for path in ('ca_matrix_probe.c','CAMatrixProbeValues.h','CAMatrixShaders.h','QuartzCoreMatrixLayout.h'))

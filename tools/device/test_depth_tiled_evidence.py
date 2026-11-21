@@ -95,6 +95,14 @@ class TiledEvidence(unittest.TestCase):
             with self.assertRaises(AssertionError):stencil.verify(bad,fixture.token,fixture.fixture,8)
         with self.assertRaises(AssertionError):stencil.verify(raw,fixture.token,fixture.fixture,8)
         with self.assertRaises(AssertionError):stencil.verify(r8,fixture.token,fixture.fixture,7)
+        r9=[]
+        for line in r8.splitlines():
+            if line.startswith('SWEET DEPTH TILE PAIR depth=0 '):r9.append('SWEET DEPTH TILE DUMMY stencil=1 samples=1 width=17 height=9 tile=3 cpp=4 pitch=256 bytes=4096 depth_test=0 depth_writes=0 caller_depth=0')
+            r9.append(line)
+        r9='\n'.join(r9)+'\n';self.assertEqual(stencil.verify(r9,fixture.token,fixture.fixture,9)['phases'],99)
+        for bad in (r8,r9.replace('tile=3 cpp=4 pitch=256 bytes=4096 depth_test=0','tile=0 cpp=4 pitch=256 bytes=4096 depth_test=0',1),
+                    r9.replace('caller_depth=0','caller_depth=1',1),r9.replace('depth_writes=0 caller_depth=0','depth_writes=1 caller_depth=0',1)):
+            with self.assertRaises(AssertionError):stencil.verify(bad,fixture.token,fixture.fixture,9)
 
     def test_real_depth_msaa_shader_route_is_required(self):
         group=[plane(1,0x40004000,252,2,192,1)]

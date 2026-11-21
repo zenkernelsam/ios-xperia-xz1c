@@ -784,14 +784,21 @@ static int prepare_depth_tiled(struct st_context *context,const SweetRenderDepth
     else{unsigned width=stencil->target.width,height=stencil->target.height;
         struct pipe_resource description={.target=PIPE_TEXTURE_2D,.format=PIPE_FORMAT_Z32_FLOAT,.width0=width,.height0=height,
             .depth0=1,.array_size=1,.nr_samples=samples,.nr_storage_samples=samples,.bind=PIPE_BIND_DEPTH_STENCIL,.usage=PIPE_USAGE_DEFAULT};
-        uint64_t modifier=DRM_FORMAT_MOD_LINEAR;primary=context->screen->resource_create_with_modifiers(context->screen,&description,&modifier,1);
+        // The real separate S8 work plane is TILE5_3. FD5 programs this
+        // combined surface using its depth primary; a forced-linear unused
+        // primary makes stencil-only passes disagree with raster/texture layout.
+        primary=context->screen->resource_create(context->screen,&description);
         // This unused primary supplies only the original helper's paired format;
         // depth is disabled and has no caller page to read or publish.
     }
     if(!primary)return -ENOMEM;
+    if(!depth && fd_resource(primary)->layout.tile_mode!=TILE5_3){pipe_resource_reference(&primary,NULL);return -ENOTSUP;}
     if(stencil){result=sweet_depth_tiled_create(context,&stencil->target,samples,stencil->load_action,&targets->stencilPlane);
         if(result)goto done;pipe_resource_reference(&secondary,targets->stencilPlane.attachment);
-        if(!sweet_stencil_pair_take_samples(primary,&secondary,samples)){result=-EINVAL;goto done;}}
+        if(!sweet_stencil_pair_take_samples(primary,&secondary,samples)){result=-EINVAL;goto done;}
+        if(!depth){const struct fdl_layout *layout=&fd_resource(primary)->layout;
+            sweet_drm_log("SWEET DEPTH TILE DUMMY stencil=%u samples=%u width=%u height=%u tile=%u cpp=%u pitch=%u bytes=%llu depth_test=0 depth_writes=0 caller_depth=0",
+                stencil->target.handle,samples,stencil->target.width,stencil->target.height,layout->tile_mode,layout->cpp,layout->pitch0,(unsigned long long)layout->size);}}
     if(samples>1)result=describe_multisample_image(context,primary,samples,stencil?GL_DEPTH32F_STENCIL8:GL_DEPTH_COMPONENT32F,
         stencil?MESA_FORMAT_Z32_FLOAT_S8X24_UINT:MESA_FORMAT_Z_FLOAT32,&targets->depth);
     else{glGenTextures(1,&targets->depth);glBindTexture(GL_TEXTURE_2D,targets->depth);

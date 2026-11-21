@@ -4,7 +4,7 @@
 
 ## 当前授权与范围
 
-用户授权BH905ND69G无人值守迭代，要求当前轮结束后先整理Mac和本周文档。本轮四靴、原生回收及文档整合已收尾；手机健康fastboot，无controller／串口worker／in-flight。不派子代理。精确基线、候选、原失败与下一步只在STATUS维护，不在各入口复制多轮工作日志。
+用户授权BH905ND69G无人值守迭代，要求当前轮结束后先整理Mac和本周文档。本轮四靴、原生回收及文档整合已收尾；手机当前状态、controller／worker及in-flight统一以STATUS与实际进程为准。不派子代理。精确基线、候选、原失败与下一步只在STATUS维护，不在各入口复制多轮工作日志。
 
 继续免费开源Mesa／Freedreno GLES及Metal用户态移植，原UI／壁纸、FPS、睡眠、光学／背光、声音及无线保持active。当前HEAD是候选，生产基线不因host／局部byte／GPU Completed／回程成功而提升。原失败包、raw和proof不覆盖或重发；Vulkan尚未移植。
 

@@ -47,3 +47,5 @@ Windows本轮两个完成传输目录、8个WSL在Windows挂载盘生成的ELF�
 两个Ubuntu按实际passwd读取root及cisco的垃圾桶，均无files／info条目。Windows／Mac垃圾桶没有清空，仍占磁盘；最后Mac91%使用、91GiB可用，正式build4094896KiB（约3.91GiB），同盘其它项目未改。
 
 现行50份文档统一由STATUS给事实、BUILD给复现、OPERATIONS给规则、LAYOUT给恢复、INDEX给专题。修改前10份原文与SHA保存在[本轮归档manifest](archive/20261121/stencil-r7-integration/original-document-manifest.json)；本周47份原归档逐字节保持。过时handover／handout仍归入archive，原失败不重新分类。正文只维护现行入口，技术证据留专题／原报告；当前[GPU四靴](../reproducibility/stencil-sample-r7-stage-20261121.json)仍REVISE，整理没有改变验收结论。
+
+r8结束后另15项／25文件／150861981B入Mac原生Trash，9项／22文件／56556776B入Windows回收站，含4个WSL ELF；目标SHA与保护指纹通过，原四靴及拒绝转储raw保留。见[Mac r8](../reproducibility/stencil-r8-macos-native-trash-20261121.json)／[Windows r8](../reproducibility/stencil-r8-windows-native-recycle-20261121.json)。回收站未清空。

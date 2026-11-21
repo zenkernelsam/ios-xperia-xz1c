@@ -1,0 +1,238 @@
+{
+  "date": "2026-11-21",
+  "items": 9,
+  "files": 22,
+  "logical_bytes": 56556776,
+  "records": [
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-stencil-r8-stage-20261121",
+      "reason": "Completed SHA-verified transfer; canonical signed RAM and original runs retained",
+      "files": [
+        {
+          "relative": "transfer-package.tar.gz",
+          "bytes": 16287178,
+          "sha256": "d701609875e1e251a3280e6d1f874ad337bf7e80e31fddd857905cb661d7c064"
+        },
+        {
+          "relative": "transfer-SHA-manifest.json",
+          "bytes": 2215,
+          "sha256": "85c5848835f417b56f20109ccfacb2be64983709ead02b40ec83ef2153d06ff0"
+        },
+        {
+          "relative": "gles-ram\\georead.dylib",
+          "bytes": 70944,
+          "sha256": "e65bdc7b70d098725918c637cc8cb1c25a8a544186d0f4468b399fda52024898"
+        },
+        {
+          "relative": "gles-ram\\glram.zblob",
+          "bytes": 3910652,
+          "sha256": "61c72d426e9ac09c7c7b9e6d93c9083d2ce13aeb51c95953c0d9f2b837b9dce0"
+        },
+        {
+          "relative": "gles-ram\\libglapi.0.dylib",
+          "bytes": 344544,
+          "sha256": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3"
+        },
+        {
+          "relative": "gles-ram\\manifest.json",
+          "bytes": 23057,
+          "sha256": "699b6503db4fd9fafea15531d6513a9ea569a9605b52db1910c7646447ab28ad"
+        },
+        {
+          "relative": "gles-ram\\sweetgl.dylib",
+          "bytes": 14801040,
+          "sha256": "dab61a49d275b2f4326f37fbec7f3360179e42e3304475e535f7f8400f87d743"
+        },
+        {
+          "relative": "reference-ram\\exception_observe.dylib",
+          "bytes": 256704,
+          "sha256": "6ba70e4f0ee3a8344a1739fbd96d334a4f7bbee36e89197a3d3fc266dd61869a"
+        },
+        {
+          "relative": "reference-ram\\georead.dylib",
+          "bytes": 70944,
+          "sha256": "e65bdc7b70d098725918c637cc8cb1c25a8a544186d0f4468b399fda52024898"
+        },
+        {
+          "relative": "reference-ram\\glram.zblob",
+          "bytes": 4308596,
+          "sha256": "eb8cca4cd832031afd8031ebeee3c4ba3fb29ebed4b220b7b06efb79ed9be906"
+        },
+        {
+          "relative": "reference-ram\\libglapi.0.dylib",
+          "bytes": 344544,
+          "sha256": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3"
+        },
+        {
+          "relative": "reference-ram\\manifest.json",
+          "bytes": 80975,
+          "sha256": "5aec13145d6f79d28dddabfec223a71385f9abb250e10fdd05ed8149a5060fad"
+        },
+        {
+          "relative": "reference-ram\\MetalResources.dylib",
+          "bytes": 810304,
+          "sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27"
+        },
+        {
+          "relative": "reference-ram\\sweetgl.dylib",
+          "bytes": 14801040,
+          "sha256": "dab61a49d275b2f4326f37fbec7f3360179e42e3304475e535f7f8400f87d743"
+        }
+      ],
+      "logical_bytes": 56112737,
+      "time": "2026-11-21T19:25:05.4961432+08:00",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-stencil-r8-stage-20261121",
+      "verified_native_recycle": true,
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RLTRYPO",
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-bitplane-r8-host-20261121\\test",
+      "reason": "Completed WSL ELF on Windows mount; source, logs and manifests retained",
+      "files": [
+        {
+          "relative": "test",
+          "bytes": 113480,
+          "sha256": "95e100bcfeddaa9a26920c4068675b1995c1b61693eeb81936eaf4b2493b7576"
+        }
+      ],
+      "logical_bytes": 113480,
+      "time": "2026-11-21T19:25:05.9885782+08:00",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-bitplane-r8-host-20261121\\test",
+      "verified_native_recycle": true,
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RXRGYPK",
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\depth-stencil-r8-host-20261121\\test",
+      "reason": "Completed WSL ELF on Windows mount; source, logs and manifests retained",
+      "files": [
+        {
+          "relative": "test",
+          "bytes": 107160,
+          "sha256": "bf5bb9200aae34bd301cdc0249ba4dcf69d881413827efb452d1d1fb2ce572d0"
+        }
+      ],
+      "logical_bytes": 107160,
+      "time": "2026-11-21T19:25:06.0465589+08:00",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\depth-stencil-r8-host-20261121\\test",
+      "verified_native_recycle": true,
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RPJLBYP",
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\depth-stencil-r8-host-20261121\\test-pair",
+      "reason": "Completed WSL ELF on Windows mount; source, logs and manifests retained",
+      "files": [
+        {
+          "relative": "test-pair",
+          "bytes": 54416,
+          "sha256": "03c5cc62d7cb3994dfe16f12400c911e6a94cd9b53481d654e02426adf1e3367"
+        }
+      ],
+      "logical_bytes": 54416,
+      "time": "2026-11-21T19:25:06.2717682+08:00",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\depth-stencil-r8-host-20261121\\test-pair",
+      "verified_native_recycle": true,
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R8ZCU36",
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\depth-msaa-r8-host-20261121\\test",
+      "reason": "Completed WSL ELF on Windows mount; source, logs and manifests retained",
+      "files": [
+        {
+          "relative": "test",
+          "bytes": 70880,
+          "sha256": "b7fad75fe5756fc2492a29e03879f2955d269e53f29d6814f756de82e50510e5"
+        }
+      ],
+      "logical_bytes": 70880,
+      "time": "2026-11-21T19:25:06.3329845+08:00",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\depth-msaa-r8-host-20261121\\test",
+      "verified_native_recycle": true,
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RL2GOJJ",
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r8-gles-cpu-cli-20261121.log",
+      "reason": "Redundant CLI; original result/raw/return/source audit retained",
+      "files": [
+        {
+          "relative": "lilac-r8-gles-cpu-cli-20261121.log",
+          "bytes": 3076,
+          "sha256": "19dee621c624939c4df9a1f5abfa20654e260beb1ec58d563fddca64d478acff"
+        }
+      ],
+      "logical_bytes": 3076,
+      "time": "2026-11-21T19:25:06.3764537+08:00",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r8-gles-cpu-cli-20261121.log",
+      "verified_native_recycle": true,
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RLC6U0L.log",
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r8-gles-gpu-cli-20261121.log",
+      "reason": "Redundant CLI; original result/raw/return/source audit retained",
+      "files": [
+        {
+          "relative": "lilac-r8-gles-gpu-cli-20261121.log",
+          "bytes": 19070,
+          "sha256": "d9b499ba8c57e81f8d5f117781a3c49ef5053ed2897163a49b6fce0b5431ab3f"
+        }
+      ],
+      "logical_bytes": 19070,
+      "time": "2026-11-21T19:25:06.4280401+08:00",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r8-gles-gpu-cli-20261121.log",
+      "verified_native_recycle": true,
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RUSVI5E.log",
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r8-reference-cpu-cli-20261121.log",
+      "reason": "Redundant CLI; original result/raw/return/source audit retained",
+      "files": [
+        {
+          "relative": "lilac-r8-reference-cpu-cli-20261121.log",
+          "bytes": 3087,
+          "sha256": "8387cda9c9477f34a7f59ad93fccc645183c51828c38ac0aa4224aa08b928cc5"
+        }
+      ],
+      "logical_bytes": 3087,
+      "time": "2026-11-21T19:25:06.4677391+08:00",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r8-reference-cpu-cli-20261121.log",
+      "verified_native_recycle": true,
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R32NC1U.log",
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r8-reference-gpu-cli-20261121.log",
+      "reason": "Redundant CLI; original result/raw/return/source audit retained",
+      "files": [
+        {
+          "relative": "lilac-r8-reference-gpu-cli-20261121.log",
+          "bytes": 72870,
+          "sha256": "daf1dbb1f4930a6530ed7e5841c0098ce68a4dc660116159eb7133084ee2f739"
+        }
+      ],
+      "logical_bytes": 72870,
+      "time": "2026-11-21T19:25:06.5118570+08:00",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r8-reference-gpu-cli-20261121.log",
+      "verified_native_recycle": true,
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RN9NU9K.log",
+      "all_content_SHA_verified": true
+    }
+  ],
+  "protected_SHA_unchanged": {
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\surface-diag-v730\\kernel.v730.macho": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-bitplane-r8-20261121\\reference-gpu\\trial.img": "11ebe41ca1694447f7ac309193a3c1647566c2a7316f0407f6a923581343be28",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-bitplane-r8-20261121\\gles-ram\\sweetgl.dylib": "dab61a49d275b2f4326f37fbec7f3360179e42e3304475e535f7f8400f87d743",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-bitplane-r8-20261121\\gles-ram\\glram.zblob": "61c72d426e9ac09c7c7b9e6d93c9083d2ce13aeb51c95953c0d9f2b837b9dce0",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-bitplane-r8-20261121\\gles-ram\\manifest.json": "699b6503db4fd9fafea15531d6513a9ea569a9605b52db1910c7646447ab28ad",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-bitplane-r8-20261121\\reference-ram\\sweetgl.dylib": "dab61a49d275b2f4326f37fbec7f3360179e42e3304475e535f7f8400f87d743",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-bitplane-r8-20261121\\reference-ram\\glram.zblob": "eb8cca4cd832031afd8031ebeee3c4ba3fb29ebed4b220b7b06efb79ed9be906",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-bitplane-r8-20261121\\reference-ram\\manifest.json": "5aec13145d6f79d28dddabfec223a71385f9abb250e10fdd05ed8149a5060fad"
+  },
+  "trash_not_emptied": true,
+  "WSL_ELFs_to_Windows_bin": 4
+}
