@@ -234,7 +234,8 @@
       "MetalMultisampleAPI.h": "d91d5769eb8d15e1f4e1fd881271c2fcb22591536a76485b96df65d9b588384e",
       "MultisampleLayout.h": "8401b48a17b9ec55b5209a34389cc87aa8f374417e4d1e391f7958dc441f76ae",
       "MultisampleResolveGLES.h": "d2ee66bf5a9a900b3a3a26d85d4fcded09573f3d7d052afcbf69c4b7fd7ac8d4",
-      "DepthTiledPlane.h": "e96276b04dc13f303548af460ff8ce0b585892e345a2dc43a9c24ba50d08f7c5"
+      "DepthTiledPlane.h": "e40c7cf17f2ffe62c76b87b55d02b9ed5c2dc4c898f0cf4192178b0fabd5ae96",
+      "DepthTiledCopyBox.h": "14ba38286122d797451e9e93a207424c7997d0d2a3f320965584b0e9d1a61e69"
     },
     "tested_library_sha256": "9a59820c7e54b1626cacd49acb70a7d460be3c01c415a17429a2464bb5b11571",
     "build_script_updated_for_canonical_output": "956340e5f130698f8fc1e188009a2966c6a935b91caf5001d629b8a74d14a55c",

@@ -29,6 +29,24 @@ def records(group, work_base=101, sequence=1):
 
 
 class TiledEvidence(unittest.TestCase):
+    def test_designated_box_and_actual_blit_metadata_required(self):
+        group=[plane(1,0x40004000,252,1,128,1)]
+        original=records(group);rows=[]
+        for line in original.splitlines():
+            if line.startswith('SWEET DEPTH TILE COPY '):
+                to_original='direction=store' in line
+                rows += [f'SWEET DEPTH TILE BLIT original=1 work=101 direction={"store" if to_original else "load"} gen=5 src_fmt=11 dst_fmt=11 src_color=13 dst_color=13 src_samples=1 dst_samples=1 src_mask=15 dst_mask=15 mask=15 filter=0 src_tile={2 if to_original else 0} dst_tile={0 if to_original else 2}',
+                         f'SWEET DEPTH TILE BOX original=1 work=101 src=0,0,0,17,9,1 dst=0,0,0,17,9,1 src_size=17,9,1 dst_size=17,9,1 src_pitch={256 if to_original else 128} dst_pitch={128 if to_original else 256} src_offset={0 if to_original else 64} dst_offset={64 if to_original else 0}']
+            rows.append(line)
+        text='\n'.join(rows)+'\n'
+        self.assertTrue(verify_groups(text,[group],3)['actual_designated_pipe_box_and_raw_copy_metadata_verified'])
+        cases=[original,text.replace('src=0,0,0,17,9,1','src=0,0,9,0,17,1',1),
+               text.replace('mask=15 filter=0','mask=1 filter=0',1),text.replace('gen=5','gen=6',1),
+               text.replace('src_samples=1','src_samples=4',1),text.replace('src_color=13','src_color=12',1),
+               text.replace('dst_tile=2','dst_tile=0',1),text.replace('src_offset=64','src_offset=0',1)]
+        for changed in cases:
+            with self.assertRaises(AssertionError):verify_groups(changed,[group],3)
+
     def test_pinned_fd5_small_page_sizes(self):
         expected={(252,1):(4,256,4096),(252,2):(8,512,8192),(252,4):(16,1024,16384),
                   (253,1):(1,128,4096),(253,2):(2,256,4096),(253,4):(4,256,4096)}

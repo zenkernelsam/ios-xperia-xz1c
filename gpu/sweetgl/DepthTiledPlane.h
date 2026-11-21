@@ -10,6 +10,7 @@
 #include "fdl/freedreno_layout.h"
 #include "util/u_threaded_context.h"
 #include "pipe/p_context.h"
+#include "DepthTiledCopyBox.h"
 
 typedef struct SweetDepthTiledPlane {
     struct pipe_resource *attachment,*linear,*raw;
@@ -57,16 +58,32 @@ static struct pipe_resource *sweet_tiled_alias(struct st_context *context,uint32
 static int sweet_depth_tiled_copy(struct st_context *context,SweetDepthTiledPlane *plane,bool to_original)
 {
     if(!context || !plane || !plane->linear || !plane->raw || !plane->original.handle)return -EINVAL;
-    struct pipe_context *pipe=threaded_context_unwrap_sync(context->pipe);if(!pipe)return -ENOTSUP;
-    struct fd_context *native=fd_context(pipe);if(native->screen->gen!=5)return -ENOTSUP;
+    struct pipe_context *pipe=threaded_context_unwrap_sync(context->pipe);
+    if(!pipe){sweet_drm_log("SWEET DEPTH TILE REJECT original=%u work=%u stage=context result=%d dispatched=0",plane->original.handle,plane->work.handle,-ENOTSUP);return -ENOTSUP;}
+    struct fd_context *native=fd_context(pipe);
+    if(!native->screen || native->screen->gen!=5){sweet_drm_log("SWEET DEPTH TILE REJECT original=%u work=%u stage=generation gen=%u result=%d dispatched=0",
+        plane->original.handle,plane->work.handle,native->screen?native->screen->gen:0,-ENOTSUP);return -ENOTSUP;}
     struct pipe_blit_info copy={0};copy.src.resource=to_original?plane->raw:plane->linear;
     copy.dst.resource=to_original?plane->linear:plane->raw;
     copy.src.format=copy.dst.format=copy.src.resource->format;
-    copy.src.box=(struct pipe_box){0,0,0,(int)plane->original.width,(int)plane->original.height,1};copy.dst.box=copy.src.box;
+    // Mesa's compact pipe_box order is x,width,y,height,z,depth. Never use
+    // positional x,y,z,width,height,depth here: it makes width0 and z=height.
+    copy.src.box=sweet_depth_tiled_copy_box(plane->original.width,plane->original.height);copy.dst.box=copy.src.box;
     copy.mask=util_format_get_mask(copy.src.format);copy.filter=PIPE_TEX_FILTER_NEAREST;
+    sweet_drm_log("SWEET DEPTH TILE BLIT original=%u work=%u direction=%s gen=%u src_fmt=%u dst_fmt=%u src_color=%u dst_color=%u src_samples=%u dst_samples=%u src_mask=%u dst_mask=%u mask=%u filter=%u src_tile=%u dst_tile=%u",
+        plane->original.handle,plane->work.handle,to_original?"store":"load",native->screen->gen,copy.src.format,copy.dst.format,
+        fd5_pipe2color(copy.src.format),fd5_pipe2color(copy.dst.format),copy.src.resource->nr_samples,copy.dst.resource->nr_samples,
+        util_format_get_mask(copy.src.format),util_format_get_mask(copy.dst.format),copy.mask,copy.filter,
+        fd_resource(copy.src.resource)->layout.tile_mode,fd_resource(copy.dst.resource)->layout.tile_mode);
+    sweet_drm_log("SWEET DEPTH TILE BOX original=%u work=%u src=%d,%d,%d,%d,%d,%d dst=%d,%d,%d,%d,%d,%d src_size=%u,%u,%u dst_size=%u,%u,%u src_pitch=%u dst_pitch=%u src_offset=%llu dst_offset=%llu",
+        plane->original.handle,plane->work.handle,copy.src.box.x,copy.src.box.y,copy.src.box.z,copy.src.box.width,copy.src.box.height,copy.src.box.depth,
+        copy.dst.box.x,copy.dst.box.y,copy.dst.box.z,copy.dst.box.width,copy.dst.box.height,copy.dst.box.depth,
+        copy.src.resource->width0,copy.src.resource->height0,copy.src.resource->depth0,copy.dst.resource->width0,copy.dst.resource->height0,copy.dst.resource->depth0,
+        fd_resource_pitch(fd_resource(copy.src.resource),0),fd_resource_pitch(fd_resource(copy.dst.resource),0),
+        (unsigned long long)fd_resource_offset(fd_resource(copy.src.resource),0,0),(unsigned long long)fd_resource_offset(fd_resource(copy.dst.resource),0,0));
     // This exact hardware entry reports whether its format/layout was admitted.
     // Do not fall back through resource_copy_region to a possible CPU transfer.
-    if(!fd5_blitter_blit(native,&copy))return -ENOTSUP;
+    if(!fd5_blitter_blit(native,&copy)){sweet_drm_log("SWEET DEPTH TILE REJECT original=%u work=%u stage=fd5_blitter result=%d dispatched=0",plane->original.handle,plane->work.handle,-ENOTSUP);return -ENOTSUP;}
     struct pipe_fence_handle *fence=NULL;pipe->flush(pipe,&fence,0);
     bool completed=fence && context->screen->fence_finish(context->screen,pipe,fence,UINT64_C(5000000000));
     if(fence)context->screen->fence_reference(context->screen,&fence,NULL);

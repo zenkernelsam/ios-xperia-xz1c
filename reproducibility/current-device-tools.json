@@ -98,13 +98,13 @@
     "test_quad_route_evidence.py": "2c4e62db3db4050d89bea76d11a1666e2b3eaba0b1a2fb1901810f98521e5044",
     "usb_open_observation.py": "3dcf63a562ebfce95df14712cf06e3d2be45df0b2679d2b11eb87bed5355c46d",
     "test_usb_open_observation.py": "ef5c9780ec4967ac606fb916e5078eebc5bb7ff8d2c74f2f72e14b19cccc2e25",
-    "depth32_evidence.py": "3600f956b277263a6c74a1d2f6db8089c42c86fbb112a6b219a3826aa5937cd7",
+    "depth32_evidence.py": "c42b79ac658ac7ff92a0891205bc4c65473d078464065da1e0d016d0aba320d7",
     "test_depth32_evidence.py": "7cc68e7ae42c01f6fb7c1e33fd921e756f447d9b81d79d3033e24505adbe26de",
-    "stencil8_evidence.py": "eed85f03ac7b35d14fe204a7a015f925a8a801dd778dc810c4ef13a4231bf178",
+    "stencil8_evidence.py": "8c7989a4134faba0e27991dace04814a73f070e41d648d44381464ad1f6dda39",
     "test_stencil8_evidence.py": "072620235d4f8fb15e9a56d43038a08c5862cbf68d0f0bf4d10eba79a05b3286",
-    "memoryless_evidence.py": "68fcdac5b7d18e59b983490a58f738cc80ede54da57cad016cb77239ea599f74",
+    "memoryless_evidence.py": "fe604f32c299b2812869d424fc93fb5d881699d2d1722cf3733e2e37c64788f3",
     "test_memoryless_evidence.py": "21769b3180fac9b95faab8c385b6f3577c680b7767d9b5ea626d396026b7bb51",
-    "multisample_evidence.py": "8e9e03013a4e837591afd9a4fca3d80266a7d1de02c201d04c0f39143a687e23",
+    "multisample_evidence.py": "3ba6b4cf88e142ec4aac01b055c0740674a2fd5d5e846a3142ae341bb8360040",
     "test_multisample_evidence.py": "5b5e2d7883deea82083cc5fd3f3aa69033a3d5aaa0c49890eb62c48d88a3b3e2",
     "presentation_evidence.py": "79954eea07a0adf9ad88f29ca3a4ee6f6837745166754be0ebfbb7191266dfdc",
     "test_presentation_evidence.py": "7d4cb3fc9c45e27fb23e7b30845548a19d71583d7914e8b808c36c110b663916",
@@ -112,8 +112,8 @@
     "test_attachment_snapshot_evidence.py": "eb6154f75fca8ffff45d8980ac5315a680be523c345c49b9cd22bb21176a64df",
     "serial_capture_evidence.py": "e7c7b3cfeba8508d39c941e327c73b4810e7a9220b56bef424d4c200c7719fd9",
     "test_serial_worker.py": "ac5c7b55b6c6f445f03f4dc5a8f902651878ff24562e87ab5c559dcfeeb7fa76",
-    "depth_tiled_evidence.py": "a31ad1860c5ba62630095c6f2a23e39808d46a4821b947fdec5ff25e8ece67d6",
-    "test_depth_tiled_evidence.py": "82462d62f8bb74e7cb3fbfd9c421d566fab4f92de5b72933e124104f808b0636"
+    "depth_tiled_evidence.py": "3d6d258deec4130df0d587a92f33ad9f4ccad6567bc41c30d17999f4584056b4",
+    "test_depth_tiled_evidence.py": "27f1054274a67ceb5801932c3190ff53010ca617c1add9f6d7a2561d36a76a92"
   },
   "supervisor_based_on_actual_tested_one_shot": true,
   "platform_tools_from_environment_or_PATH": true,
@@ -128,7 +128,7 @@
   "shared_sources": {
     "tools/diagnostic_candidate.py": "b53e89fdc0bf66a0b38bb4a4c7499ac2222e2704af83cebbd2ae0472a83783b3",
     "tools/mkpayload.py": "5c9a3dacbdf877ffded27971ad2e737e5ee4296fada247d14d5c6051ff1f47ff",
-    "tools/ram_library.py": "db3e8a9777a463626b5d5eaf1212a9becdb062f3e8002764a38369be32f20fe5",
+    "tools/ram_library.py": "c468652bd40607aa06092ce2d5d2e128653a142602c59ebb36dcf7435f273ee2",
     "tools/native_proof.py": "409e67ccd2d8ebca21a3d2668c295e6e9231396f43f6e1690f380fef06321615"
   },
   "formal_v726_five_stages_actual_return": true,
@@ -196,7 +196,7 @@
     "tools/build/test_postdraw_observe.m": "144605ebf1d6baf35c69f3a332e0b5fb036a7fe12d0636a9da84330c40e1b4f1",
     "tools/program_cache_scope.py": "9fcd14133fa3e0531f5cc0a01fb6d8b84d62432df41f3d0e688df7e151c097e9",
     "tools/build/test_snapshot_method_observe.m": "76c919a8884d0dea06d8ec66f831ec029c060f0b4cb157cf15263b38116a917f",
-    "tools/build/build_frontend_trial.py": "4debe42d2c22692b36e6389a98f388a892a050ade38b05baeb5959b6acbf7d8f",
+    "tools/build/build_frontend_trial.py": "e3daaa08473d7581f70d6de2a7014440f00808d7975ea962ff6715cfc41fb88f",
     "tools/build/test_png_input_observe.m": "71ec1a803770e24e342c275ee8fa17e86adc60655675d4c700665ca37047c171",
     "tools/build/test_cif10_png_reference.m": "8b814b5d031a5418eb4117934f21121212959a7179645ef6b519b28eed2a0871",
     "tools/build/profile_cif10_png.m": "c8daee07eafe5dc7c524041d1efe194c821318bb68481cea934e16862f42ab7e",
@@ -243,7 +243,9 @@
     "tools/build/inspect_native_presentation.py": "521ea66818b2217199cae6b40f06f07b137ccea6a7a6c12a2818522af1305a97",
     "tools/build/test_attachment_page_snapshot.c": "b12e9b834ed4b4b6e76ee6b48ebaa916a89d6c1cfb9ad27c2149672ba96da120",
     "tools/build/make_render_adt.py": "ad0b5cd47f32968fa95d13a00fe54bf619bb9909efb5e6c796d04adb17d274de",
-    "tools/build/test_render_adt.py": "33a6afccb4b4e3317dbe5545afb4461e8c8433b964ca0755ef91e32072c8192a"
+    "tools/build/test_render_adt.py": "33a6afccb4b4e3317dbe5545afb4461e8c8433b964ca0755ef91e32072c8192a",
+    "tools/build/check_depth_tiled_copy_box.py": "731a8834e5b738d16fe00a9b8555a7b9e3c2031a3f1858c4f23b389c85e45c77",
+    "tools/build/test_depth_tiled_copy_box.c": "c22509f37eef250b29485be482ceffda1055d50436c2f4f7728de5295218dc8d"
   },
   "gpu_sources": {
     "gpu/diagnostics/exception_observe.m": "6238849a2a027d8edce5be0da3a0bc7d897b160ffb54e59e678dd2c3ad9e4580",
@@ -359,7 +361,8 @@
     "gpu/metal/MetalPresentation.inc": "371bbb97ddaaf1deda0cdc96decbab51122740621d4094912a78fc41ae228e99",
     "gpu/diagnostics/MetalPresentationProbe.h": "715ddce7c9b2a713f64ae4134ae399cef37bf29375a1a82e073ff7899b5b1591",
     "gpu/diagnostics/AttachmentPageSnapshot.h": "1f1c660e84209e062bccee9659405bfa33e6db04c96350bf926a312f5f351afa",
-    "gpu/sweetgl/DepthTiledPlane.h": "e96276b04dc13f303548af460ff8ce0b585892e345a2dc43a9c24ba50d08f7c5"
+    "gpu/sweetgl/DepthTiledPlane.h": "e40c7cf17f2ffe62c76b87b55d02b9ed5c2dc4c898f0cf4192178b0fabd5ae96",
+    "gpu/sweetgl/DepthTiledCopyBox.h": "14ba38286122d797451e9e93a207424c7997d0d2a3f320965584b0e9d1a61e69"
   },
   "tests_skipped_without_optional_old_evidence": 2,
   "sony_specific_multi_device_return_fault_replay_passed": true,
@@ -432,6 +435,6 @@
   "serial_capture_host_regression_tests": 7,
   "serial_capture_device_accepted": true,
   "serial_capture_actual_cpu_evidence": "reproducibility/serial-capture-r1-reference-cpu-20261121.json",
-  "depth_tiled_backend_evidence_revision": 2,
+  "depth_tiled_backend_evidence_revision": 3,
   "depth_tiled_exact_copy_and_original_page_guard_checks_required": true
 }

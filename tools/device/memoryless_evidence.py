@@ -38,7 +38,7 @@ def expected(phase):
 
 
 def verify(text, token, fixture,tiled_revision=0):
-    assert tiled_revision in (0,2)
+    assert tiled_revision in (0,2,3)
     live = 'SWEET LOOP LIVE proto=1 token=' + token
     ack = 'SWEET LOOP ACK FASTBOOT token=' + token
     assert text.count(live) == text.count(ack) == 1
@@ -96,7 +96,7 @@ def verify(text, token, fixture,tiled_revision=0):
             groups=[[plane(page_info[phase,slot]['handle'],page_info[phase,slot]['gpu_address'],
                            253 if slot==9 else 252,1,64 if slot==9 else 128,2 if operation==0 else 1)
                      for slot in slots if slot in (8,9)] for operation in range(OPERATIONS[phase])]
-            tiled.append(dict(phase=phase,**verify_groups(segment,groups)))
+            tiled.append(dict(phase=phase,**verify_groups(segment,groups,tiled_revision)))
         for slot, name in ((8, 'DEPTH'), (9, 'STENCIL')):
             if slot not in slots:
                 continue

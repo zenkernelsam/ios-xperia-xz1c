@@ -33,7 +33,7 @@ def expected(phase):
 
 
 def verify(text,token,fixture,tiled_revision=0):
-    assert tiled_revision in (0,2)
+    assert tiled_revision in (0,2,3)
     live='SWEET LOOP LIVE proto=1 token='+token;ack='SWEET LOOP ACK FASTBOOT token='+token
     assert text.count(live)==text.count(ack)==1
     scope=text[text.index(live):text.index(ack)]
@@ -64,7 +64,7 @@ def verify(text,token,fixture,tiled_revision=0):
     if tiled_revision:
         from depth_tiled_evidence import plane,verify_groups
         groups=[[plane(handle,imported[0][2],252,1,128,2 if phase<25 or phase==28 else 1)] for phase in range(29)]
-        tiled=verify_groups(block,groups)
+        tiled=verify_groups(block,groups,tiled_revision)
     result=dict(complete_samples=1,incomplete_samples=0,phases=29,checked_bytes=74240,guard_bytes=38744,read_bytes=26100,
                 records=rows,original_depth_handle=int(handle),original_GPU_address=imported[0][2],original_GPU_offset=64,
                 original_depth32_pages_compare_load_clear_and_padding_verified=True,

@@ -43,7 +43,7 @@ def expected(phase):
 
 
 def verify(text,token,fixture,tiled_revision=0):
-    assert tiled_revision in (0,2)
+    assert tiled_revision in (0,2,3)
     live='SWEET LOOP LIVE proto=1 token='+token;ack='SWEET LOOP ACK FASTBOOT token='+token
     assert text.count(live)==text.count(ack)==1
     scope=text[text.index(live):text.index(ack)];assert scope.count(BEGIN)==scope.count('SWEET STENCIL8 BEGIN ')==1
@@ -80,7 +80,7 @@ def verify(text,token,fixture,tiled_revision=0):
             if phase!=96:group.append(plane(depth_handle,depths[0][2],252,1,128,2 if phase<96 or phase==98 else 1,publish=phase!=97))
             group.append(plane(handle,imported[0][2],253,1,64,1 if phase==98 else 2,publish=phase!=98))
             groups.append(group)
-        tiled=verify_groups(block,groups)
+        tiled=verify_groups(block,groups,tiled_revision)
     result=dict(complete_samples=1,incomplete_samples=0,phases=99,checked_bytes=329472,guard_bytes=193149,read_bytes=118800,
                 records=records,original_stencil_handle=int(handle),original_depth_handle=int(depth_handle),original_GPU_offset=64,
                 original_stencil_GPU_address=imported[0][2],original_depth_GPU_address=depths[0][2],

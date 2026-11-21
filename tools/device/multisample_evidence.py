@@ -74,7 +74,7 @@ def expected_bytes(phase,slot):
 def expected(phase):return tuple(fnv(expected_bytes(phase,slot)) for slot in SLOTS)
 
 def verify(text,token,fixture,tiled_revision=0):
-    assert tiled_revision in (0,2)
+    assert tiled_revision in (0,2,3)
     live='SWEET LOOP LIVE proto=1 token='+token;ack='SWEET LOOP ACK FASTBOOT token='+token
     assert text.count(live)==text.count(ack)==1
     scope=text[text.index(live):text.index(ack)]
@@ -145,7 +145,7 @@ def verify(text,token,fixture,tiled_revision=0):
                            253 if slot==9 else 252,count,pitch(count,slot),2 if clears or phase>=14 and operation==0 else 1)
                      for slot in (8,9)] for operation in range(len(draws)+len(clears))]
             if should:groups.append([plane(rz,original[phase,11]['gpu_address'],252,1,pitch(count,11),0)])
-            tiled.append(dict(phase=phase,**verify_groups(segment,groups)))
+            tiled.append(dict(phase=phase,**verify_groups(segment,groups,tiled_revision)))
         if phase<14 and phase%7>0:
             for slot in SLOTS:assert original[phase,slot]==original[phase-1,slot],'A stored pass silently replaced its original source or resolve destination'
         if phase>=14:

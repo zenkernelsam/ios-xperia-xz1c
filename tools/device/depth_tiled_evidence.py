@@ -6,6 +6,8 @@ MAP = re.compile(r'SWEET DEPTH TILE MAP original=(\d+) work=(\d+) original_GPU=(
 COPY = re.compile(r'SWEET DEPTH TILE COPY original=(\d+) work=(\d+) direction=(load|store) samples=(\d+) width=(\d+) height=(\d+) result=0 sequence=(\d+) GPU_only=1 fence=1')
 PAIR = re.compile(r'SWEET DEPTH TILE PAIR depth=(\d+) stencil=(\d+) depth_work=(\d+) stencil_work=(\d+) samples=(\d+) result=0 separate_z32s8=1')
 RETIRE = re.compile(r'SWEET DEPTH TILE RETIRE original=(\d+) work=(\d+) result=0 references_retired=1')
+BLIT = re.compile(r'SWEET DEPTH TILE BLIT original=(\d+) work=(\d+) direction=(load|store) gen=(\d+) src_fmt=(\d+) dst_fmt=(\d+) src_color=(\d+) dst_color=(\d+) src_samples=(\d+) dst_samples=(\d+) src_mask=(\d+) dst_mask=(\d+) mask=(\d+) filter=(\d+) src_tile=(\d+) dst_tile=(\d+)')
+BOX = re.compile(r'SWEET DEPTH TILE BOX original=(\d+) work=(\d+) src=(-?\d+,-?\d+,-?\d+,-?\d+,-?\d+,-?\d+) dst=(-?\d+,-?\d+,-?\d+,-?\d+,-?\d+,-?\d+) src_size=(\d+,\d+,\d+) dst_size=(\d+,\d+,\d+) src_pitch=(\d+) dst_pitch=(\d+) src_offset=(\d+) dst_offset=(\d+)')
 
 
 def plane(handle, gpu, format_, samples, pitch, load, publish=True):
@@ -24,12 +26,13 @@ def layout_bytes(format_, samples, width=17, height=9):
     return cpp, pitch, ((pitch * rows + 4095) // 4096) * 4096
 
 
-def verify_groups(segment, groups):
+def verify_groups(segment, groups,revision=2):
     """Each group is one backend operation's ordered depth/stencil planes.
 
     Filtered segments for concurrent probes retain original handles explicitly;
     no unrelated plane is used as proof of this group's work or copy.
     """
+    assert revision in (2,3)
     handles = {p['handle'] for group in groups for p in group}
     tables = [list(pattern.finditer(segment)) for pattern in (PAGE, MAP, COPY, PAIR, RETIRE)]
     pages, maps, copies, pairs, retired = tables
@@ -42,6 +45,13 @@ def verify_groups(segment, groups):
     copies = [m for m in copies if int(m[1]) in handles]
     retired = [m for m in retired if int(m[1]) in handles]
     pairs = [m for m in pairs if int(m[1]) in handles or int(m[2]) in handles]
+    blits = [m for m in BLIT.finditer(segment) if int(m[1]) in handles]
+    boxes = [m for m in BOX.finditer(segment) if int(m[1]) in handles]
+    if revision==3:
+        assert 'SWEET DEPTH TILE REJECT ' not in segment
+        assert segment.count('SWEET DEPTH TILE BLIT ')==len(list(BLIT.finditer(segment)))
+        assert segment.count('SWEET DEPTH TILE BOX ')==len(list(BOX.finditer(segment)))
+        assert len(blits)==len(boxes)==len(copies), 'Original raw blit/box metadata missing'
     assert len(pages) == len(maps) == len(retired) == len(expected), 'Work page/map/retirement count differs'
     assert len(copies) == sum((p['load'] == 1) + p['publish'] for p in expected)
     assert len(pairs) == sum(any(p['format'] == 253 for p in group) for group in groups)
@@ -73,6 +83,20 @@ def verify_groups(segment, groups):
                 assert tuple(int(copy[i]) for i in (4,5,6)) == (p['samples'],p['width'],p['height'])
                 assert mapping.end() < copy.start() < release.start() and int(copy[7]) > 0
                 sequence.append(int(copy[7]))
+                if revision==3:
+                    candidates=[m for m in blits if begin<=m.start()<copy.start() and (int(m[1]),int(m[2]),m[3])==(original,handle,copy[3])]
+                    actual_boxes=[m for m in boxes if begin<=m.start()<copy.start() and (int(m[1]),int(m[2]))==(original,handle)]
+                    assert len(candidates)==1 and actual_boxes
+                    blit=candidates[0];box=actual_boxes[-1]
+                    assert mapping.end()<blit.start()<blit.end()<box.start()<box.end()<copy.start()
+                    assert int(blit[4])==5 and blit[5]==blit[6] and blit[7]==blit[8] and int(blit[7])>0
+                    assert tuple(int(blit[i]) for i in (9,10,11,12,13,14))==(1,1,15,15,15,0)
+                    assert tuple(int(blit[i]) for i in (15,16))==((0,2) if copy[3]=='load' else (2,0))
+                    expected_box=(0,0,0,p['width'],p['height'],1)
+                    assert tuple(map(int,box[3].split(',')))==tuple(map(int,box[4].split(',')))==expected_box
+                    assert tuple(map(int,box[5].split(',')))==tuple(map(int,box[6].split(',')))==(p['width'],p['height'],1)
+                    wanted=(p['pitch'],pitch,p['offset'],0) if copy[3]=='load' else (pitch,p['pitch'],0,p['offset'])
+                    assert tuple(int(box[i]) for i in (7,8,9,10))==wanted
             assert sequence == sorted(set(sequence)), 'Load/store must use actual ordered nonzero fences'
             name = 'DEPTH' if p['format'] == 252 else 'STENCIL'
             imports = list(re.finditer(r'SWEET METAL '+name+r' import handle='+str(original)+r' width='+str(p['width'])+r' height='+str(p['height'])+r' pitch='+str(p['pitch'])+r' offset='+str(p['offset'])+r' GPU='+hex(p['gpu'])+r' original_pages=1', segment[begin:end]))
@@ -95,6 +119,7 @@ def verify_groups(segment, groups):
             assert tuple(map(int,p.groups())) == (depth['handle'] if depth else 0,stencil['handle'],work.get(252,0),work[253],stencil['samples'])
             assert max(m.end() for m in own_pages) < p.start() < min(m.start() for m in retired if begin<=m.start()<end)
         records.append(spans); index = following
-    return dict(revision=2, independent_FDL5_work_pages=True, GPU_copy_and_fence_verified=True,
+    return dict(revision=revision, independent_FDL5_work_pages=True, GPU_copy_and_fence_verified=True,
                 original_stride_offset_and_IOVA_verified=True, work_reference_retirement_verified=True,
+                actual_designated_pipe_box_and_raw_copy_metadata_verified=revision==3,
                 operations=len(groups), planes=len(expected), records=records)
