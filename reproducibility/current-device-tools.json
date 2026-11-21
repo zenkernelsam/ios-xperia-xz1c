@@ -244,7 +244,7 @@
     "tools/build/test_attachment_page_snapshot.c": "b12e9b834ed4b4b6e76ee6b48ebaa916a89d6c1cfb9ad27c2149672ba96da120",
     "tools/build/make_render_adt.py": "ad0b5cd47f32968fa95d13a00fe54bf619bb9909efb5e6c796d04adb17d274de",
     "tools/build/test_render_adt.py": "33a6afccb4b4e3317dbe5545afb4461e8c8433b964ca0755ef91e32072c8192a",
-    "tools/build/check_depth_tiled_copy_box.py": "5cf89b577a80a1cd8d08be3d548efc49a66d2984a9a1fa851317a04548045eb6",
+    "tools/build/check_depth_tiled_copy_box.py": "b0a2de2548525eb60b8862255ba2bf25104b74d448270fe88e87660462b23452",
     "tools/build/test_depth_tiled_copy_box.c": "c22509f37eef250b29485be482ceffda1055d50436c2f4f7728de5295218dc8d"
   },
   "gpu_sources": {

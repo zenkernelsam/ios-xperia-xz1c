@@ -27,7 +27,9 @@ def main():
     entry=next(x for x in compile_entries if x['file'].endswith('state_tracker/st_manager.c'))
     defines=[x for x in shlex.split(entry['command']) if x.startswith('-D') and x!='-DNDEBUG']
     includes=[ROOT/'gpu/sweetgl',ROOT/'gpu/sweetgl/include',out,mesa/'include',mesa/'src',mesa/'src/gallium/include',mesa/'src/gallium/auxiliary',build/'src',build/'src/mesa',build/'src/mapi']
-    command=['xcrun','clang','-O1','-g','-fsanitize=address,undefined','-std=c11',*defines]
+    # The iPhone SDK advertises endian.h; the Mac SDK uses machine/endian.h.
+    # Select Mesa's original __APPLE__ branch for this host binary only.
+    command=['xcrun','clang','-O1','-g','-fsanitize=address,undefined','-std=c11',*defines,'-UHAVE_ENDIAN_H']
     for directory in includes:command+=['-I',str(directory)]
     command += [str(ROOT/sources[1]),'-o',str(out/'test')]
     result=subprocess.run(command,capture_output=True,text=True,timeout=45);(out/'compile.log').write_text(result.stdout+result.stderr);assert result.returncode==0,(result.stdout+result.stderr)[-3000:]
@@ -36,7 +38,7 @@ def main():
     assert before=={f:sha(ROOT/f) for f in sources} and pinned=={f:sha(mesa/f) for f in original}
     report=dict(source_files=before,pinned_Mesa_sources=pinned,actual_unmodified_fd5_ok_dims_source_sha256=hashlib.sha256(match[0].encode()).hexdigest(),
                 actual_pinned_pipe_box_header_used=True,old_positional_initializer_rejected=True,production_designated_box_admitted=True,
-                powers_of_two_and_one_past_dimensions_and_z_refused=True,ASan_UBSan_passed=True,device_operations=0,host_only_not_GPU_copy_evidence=True,
+                powers_of_two_and_one_past_dimensions_and_z_refused=True,ASan_UBSan_passed=True,host_endian_original_Mesa_Apple_branch=True,device_operations=0,host_only_not_GPU_copy_evidence=True,
                 result=result.stdout.strip())
     (out/'manifest.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))
 
