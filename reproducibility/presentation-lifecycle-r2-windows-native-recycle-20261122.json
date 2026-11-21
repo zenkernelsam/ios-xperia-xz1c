@@ -1,0 +1,105 @@
+{
+  "date": "2026-11-22",
+  "items": 3,
+  "files": 11,
+  "logical_bytes": 29514408,
+  "records": [
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-presentation-lifecycle-r2-stage-20261121",
+      "reason": "Completed one-time transfer/CLI; exact native21 signed package and original proof retained",
+      "files": [
+        {
+          "relative": "transfer-package.tar.gz",
+          "bytes": 8551535,
+          "sha256": "b75123155f6aec1b1e4ce39e9271afd09ac95f04991fccb8bf294ba71115f364"
+        },
+        {
+          "relative": "transfer-SHA-manifest.json",
+          "bytes": 1415,
+          "sha256": "49abd529d070184619026d313e26ce729cccb5b2c1df578ba870a8b59c3765c4"
+        },
+        {
+          "relative": "reference-ram\\exception_observe.dylib",
+          "bytes": 256848,
+          "sha256": "7d4bdb52f8d14eb26ac8e6ca4d24f65f09fef94367e0ac8037bdea814ed80d14"
+        },
+        {
+          "relative": "reference-ram\\georead.dylib",
+          "bytes": 70944,
+          "sha256": "e65bdc7b70d098725918c637cc8cb1c25a8a544186d0f4468b399fda52024898"
+        },
+        {
+          "relative": "reference-ram\\glram.zblob",
+          "bytes": 4309617,
+          "sha256": "6bd1f8eb41a95f282d8849ce99ed25d8ab874222814255c6b1680dca620888ac"
+        },
+        {
+          "relative": "reference-ram\\libglapi.0.dylib",
+          "bytes": 344544,
+          "sha256": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3"
+        },
+        {
+          "relative": "reference-ram\\manifest.json",
+          "bytes": 81412,
+          "sha256": "2dfa265767ce30daaab559bd2db11c192646b36e181766389ac7bc6a8e315341"
+        },
+        {
+          "relative": "reference-ram\\MetalResources.dylib",
+          "bytes": 810304,
+          "sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27"
+        },
+        {
+          "relative": "reference-ram\\sweetgl.dylib",
+          "bytes": 14801120,
+          "sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607"
+        }
+      ],
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RIGLMH6",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-presentation-lifecycle-r2-stage-20261121",
+      "time": "2026-11-22T00:10:24.3211628+08:00",
+      "verified_native_recycle": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r11-reference-cpu-cli-20261121.log",
+      "reason": "Completed one-time transfer/CLI; exact native21 signed package and original proof retained",
+      "files": [
+        {
+          "relative": "lilac-r11-reference-cpu-cli-20261121.log",
+          "bytes": 3098,
+          "sha256": "14e0368afe2b467e2bd5c01a92f008688524b85323c9c2039fce71df1caf3819"
+        }
+      ],
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RZ0H026.log",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r11-reference-cpu-cli-20261121.log",
+      "time": "2026-11-22T00:10:24.8225939+08:00",
+      "verified_native_recycle": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r11-reference-gpu-cli-20261121.log",
+      "reason": "Completed one-time transfer/CLI; exact native21 signed package and original proof retained",
+      "files": [
+        {
+          "relative": "lilac-r11-reference-gpu-cli-20261121.log",
+          "bytes": 283571,
+          "sha256": "43b17915c06c40f4018a118d9d17a0e39cca702ce6ef05214e545a6d8e02261d"
+        }
+      ],
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RXX9TGB.log",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r11-reference-gpu-cli-20261121.log",
+      "time": "2026-11-22T00:10:24.8659979+08:00",
+      "verified_native_recycle": true,
+      "all_content_SHA_verified": true
+    }
+  ],
+  "protected_SHA_unchanged": {
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\surface-diag-v730\\kernel.v730.macho": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\presentation-lifecycle-r2-20261121\\reference-ram\\sweetgl.dylib": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\presentation-lifecycle-r2-20261121\\reference-ram\\MetalResources.dylib": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\presentation-lifecycle-r2-20261121\\reference-ram\\exception_observe.dylib": "7d4bdb52f8d14eb26ac8e6ca4d24f65f09fef94367e0ac8037bdea814ed80d14",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\presentation-lifecycle-r2-20261121\\reference-ram\\glram.zblob": "6bd1f8eb41a95f282d8849ce99ed25d8ab874222814255c6b1680dca620888ac",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\presentation-lifecycle-r2-20261121\\reference-ram\\manifest.json": "2dfa265767ce30daaab559bd2db11c192646b36e181766389ac7bc6a8e315341"
+  },
+  "trash_not_emptied": true
+}

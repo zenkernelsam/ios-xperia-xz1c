@@ -1,0 +1,303 @@
+{
+  "date": "2026-11-22",
+  "items": 14,
+  "files": 28,
+  "logical_bytes": 95169204,
+  "records": [
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-lifecycle-r2-20261121/reference-ram/glram.raw",
+      "reason": "Completed exact duplicate HFS/input/transfer or host executable; native21 signed package and original proof retained",
+      "files": [
+        {
+          "relative": "glram.raw",
+          "bytes": 33554432,
+          "sha256": "907fccf65f718ee6a37eacb23e0f494aad9426feba693ff6b058e5ceb4d85ec8"
+        }
+      ],
+      "logical_bytes": 33554432,
+      "trash_path": "/Users/ciscohe/.Trash/glram.raw 00-07-41-970.raw",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-lifecycle-r2-20261121/reference-ram/glram.dmg",
+      "reason": "Completed exact duplicate HFS/input/transfer or host executable; native21 signed package and original proof retained",
+      "files": [
+        {
+          "relative": "glram.dmg",
+          "bytes": 33554432,
+          "sha256": "907fccf65f718ee6a37eacb23e0f494aad9426feba693ff6b058e5ceb4d85ec8"
+        }
+      ],
+      "logical_bytes": 33554432,
+      "trash_path": "/Users/ciscohe/.Trash/glram.dmg 00-07-41-984.dmg",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-lifecycle-r2-20261121/gles-ram",
+      "reason": "Completed exact duplicate HFS/input/transfer or host executable; native21 signed package and original proof retained",
+      "files": [
+        {
+          "relative": "sweetgl.dylib",
+          "bytes": 14801120,
+          "sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607"
+        },
+        {
+          "relative": "libglapi.0.dylib",
+          "bytes": 344544,
+          "sha256": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3"
+        },
+        {
+          "relative": "manifest.json",
+          "bytes": 23378,
+          "sha256": "5ece34276b14f47f284e7fb272158981527c974db656faa514272164f19659c8"
+        },
+        {
+          "relative": "glram.zblob",
+          "bytes": 3911714,
+          "sha256": "febbf27e2ed003dda2d9ba25c63278a8c61c1771991d29137d83f7ee26f2d2e8"
+        },
+        {
+          "relative": "georead.dylib",
+          "bytes": 70944,
+          "sha256": "e65bdc7b70d098725918c637cc8cb1c25a8a544186d0f4468b399fda52024898"
+        }
+      ],
+      "logical_bytes": 19151700,
+      "trash_path": "/Users/ciscohe/.Trash/gles-ram",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-lifecycle-r2-20261121/transfer-package.tar.gz",
+      "reason": "Completed exact duplicate HFS/input/transfer or host executable; native21 signed package and original proof retained",
+      "files": [
+        {
+          "relative": "transfer-package.tar.gz",
+          "bytes": 8551535,
+          "sha256": "b75123155f6aec1b1e4ce39e9271afd09ac95f04991fccb8bf294ba71115f364"
+        }
+      ],
+      "logical_bytes": 8551535,
+      "trash_path": "/Users/ciscohe/.Trash/transfer-package.tar.gz 00-07-42-088.gz",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-lifecycle-r2-20261121/reference-observer/test_startup.dSYM",
+      "reason": "Completed exact duplicate HFS/input/transfer or host executable; native21 signed package and original proof retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 641,
+          "sha256": "944829fa3c1a4d913161b503f6352fa20f7c101cdeefe97a15208dadbe4a587a"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_startup.yml",
+          "bytes": 198,
+          "sha256": "0142a4be86bac507ed041ec329f27f256783aca0195fc9da893dc46ba9878ad6"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_startup",
+          "bytes": 14936,
+          "sha256": "79fc4e9df618a1238f811c73bcdf765c22be7a4bd75edcff20b78fe540977ef8"
+        }
+      ],
+      "logical_bytes": 15775,
+      "trash_path": "/Users/ciscohe/.Trash/test_startup.dSYM 00-07-42-141.dSYM",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-lifecycle-r2-20261121/reference-observer/test_cache_scope.dSYM",
+      "reason": "Completed exact duplicate HFS/input/transfer or host executable; native21 signed package and original proof retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 645,
+          "sha256": "2d56eca2217abc049f49309a8cb04e54f45a4ba11b0491143bbbb28280638af2"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_cache_scope.yml",
+          "bytes": 202,
+          "sha256": "ba63a700b8f5a4ad9db0722c58659c91af59fb950cfa9c9bd872d40c922b36d6"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_cache_scope",
+          "bytes": 18224,
+          "sha256": "02d2d9c0a4a31a8236d3e56fc8285ad437ba1168c9785f0e1bd59c5bbcbdb067"
+        }
+      ],
+      "logical_bytes": 19071,
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_scope.dSYM 00-07-42-194.dSYM",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-lifecycle-r2-20261121/reference-observer/test_observer.dSYM",
+      "reason": "Completed exact duplicate HFS/input/transfer or host executable; native21 signed package and original proof retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 642,
+          "sha256": "589d796cebc46abadfe0ec147d2a15f3b4f4f50d2c7edbebfc3cde26f51d66bf"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_observer.yml",
+          "bytes": 199,
+          "sha256": "814746f5b766183201578213eb7048230679402121c26bd4b8013ff82d5cdd91"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_observer",
+          "bytes": 41828,
+          "sha256": "87010005b26ac85c0f1ae2f02c4da3a20d7980d0c70c5dd823ffe3d5e783f425"
+        }
+      ],
+      "logical_bytes": 42669,
+      "trash_path": "/Users/ciscohe/.Trash/test_observer.dSYM 00-07-42-247.dSYM",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-lifecycle-r2-20261121/reference-observer/test_attachment_snapshot",
+      "reason": "Completed exact duplicate HFS/input/transfer or host executable; native21 signed package and original proof retained",
+      "files": [
+        {
+          "relative": "test_attachment_snapshot",
+          "bytes": 27872,
+          "sha256": "9c76e6293e942cbaf8bdc88466bf977e8d3a894e0911c8945b8ff869fbd467a0"
+        }
+      ],
+      "logical_bytes": 27872,
+      "trash_path": "/Users/ciscohe/.Trash/test_attachment_snapshot 00-07-42-298",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-lifecycle-r2-20261121/reference-observer/test_cif10_png_reference.dSYM",
+      "reason": "Completed exact duplicate HFS/input/transfer or host executable; native21 signed package and original proof retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 653,
+          "sha256": "8e989f94a66cd0e1d9a42e7c8d6fd05eae260f619024f56a29676dfdceffdade"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_cif10_png_reference.yml",
+          "bytes": 210,
+          "sha256": "8310d92af57a46bcec3879db4e496d09738da142e788787693399423982268a4"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_cif10_png_reference",
+          "bytes": 55532,
+          "sha256": "85c111956ccf7da8458143f1cef313415618142238d911ff4cec4897991377c8"
+        }
+      ],
+      "logical_bytes": 56395,
+      "trash_path": "/Users/ciscohe/.Trash/test_cif10_png_reference.dSYM 00-07-42-353.dSYM",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-lifecycle-r2-20261121/reference-observer/test_cache_scope",
+      "reason": "Completed exact duplicate HFS/input/transfer or host executable; native21 signed package and original proof retained",
+      "files": [
+        {
+          "relative": "test_cache_scope",
+          "bytes": 28320,
+          "sha256": "e7495f38f1887a42e5650bbd74adcff53499a8dc12765583bc352d1db1f4b8ea"
+        }
+      ],
+      "logical_bytes": 28320,
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_scope 00-07-42-405",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-lifecycle-r2-20261121/reference-observer/test_startup",
+      "reason": "Completed exact duplicate HFS/input/transfer or host executable; native21 signed package and original proof retained",
+      "files": [
+        {
+          "relative": "test_startup",
+          "bytes": 20592,
+          "sha256": "23758ca24ae0709536cea33a6a7e93912cf574533d614b4a1e6623d6b745a3eb"
+        }
+      ],
+      "logical_bytes": 20592,
+      "trash_path": "/Users/ciscohe/.Trash/test_startup 00-07-42-461",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-lifecycle-r2-20261121/reference-observer/test_cif10_png_reference",
+      "reason": "Completed exact duplicate HFS/input/transfer or host executable; native21 signed package and original proof retained",
+      "files": [
+        {
+          "relative": "test_cif10_png_reference",
+          "bytes": 63872,
+          "sha256": "0f72099c9de31b328047a40655005ca79f5ecf89e95899ec4a788088da0aeec7"
+        }
+      ],
+      "logical_bytes": 63872,
+      "trash_path": "/Users/ciscohe/.Trash/test_cif10_png_reference 00-07-42-516",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-lifecycle-r2-20261121/reference-observer/test_observer",
+      "reason": "Completed exact duplicate HFS/input/transfer or host executable; native21 signed package and original proof retained",
+      "files": [
+        {
+          "relative": "test_observer",
+          "bytes": 65680,
+          "sha256": "4d34d67b791f861e34710ebf2730ecf017458bb123a8a2b55f6d914e9f3f2ef1"
+        }
+      ],
+      "logical_bytes": 65680,
+      "trash_path": "/Users/ciscohe/.Trash/test_observer 00-07-42-571",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-lifecycle-r2-20261121/reference-observer/test_attachment_snapshot.dSYM",
+      "reason": "Completed exact duplicate HFS/input/transfer or host executable; native21 signed package and original proof retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 653,
+          "sha256": "d5f0029ed8ca7a9036c2cab1990c35358da4fe52e5317a53347f17210346329e"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_attachment_snapshot.yml",
+          "bytes": 210,
+          "sha256": "8fb8327561a716a6ed27e885985c3b9b2b923c71653f563c47a570a08c178870"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_attachment_snapshot",
+          "bytes": 15996,
+          "sha256": "3156e7bb86ccbbc2a31b413cfea50c5af30e71ccfd5e66ffb702358085e51ec1"
+        }
+      ],
+      "logical_bytes": 16859,
+      "trash_path": "/Users/ciscohe/.Trash/test_attachment_snapshot.dSYM 00-07-42-623.dSYM",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    }
+  ],
+  "protected_SHA_unchanged": {
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/surface-diag-v730/kernel.v730.macho": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/dxb/xnu/iokit/Kernel/arm/SweetGPU.cpp": "aa2c36792a2298b060aa858eabdc039522fcdde3cfdbafd453c5fc6c0683c157",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-lifecycle-r2-20261121/reference-ram/sweetgl.dylib": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-lifecycle-r2-20261121/reference-ram/glram.zblob": "6bd1f8eb41a95f282d8849ce99ed25d8ab874222814255c6b1680dca620888ac",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-lifecycle-r2-20261121/reference-ram/manifest.json": "2dfa265767ce30daaab559bd2db11c192646b36e181766389ac7bc6a8e315341",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-lifecycle-r2-20261121/reference-ram/MetalResources.dylib": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/presentation-lifecycle-r2-20261121/reference-ram/exception_observe.dylib": "7d4bdb52f8d14eb26ac8e6ca4d24f65f09fef94367e0ac8037bdea814ed80d14",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/stencil-private-primary-r10-20261121/gles-ram/sweetgl.dylib": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/stencil-private-primary-r10-20261121/gles-ram/glram.zblob": "febbf27e2ed003dda2d9ba25c63278a8c61c1771991d29137d83f7ee26f2d2e8",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/stencil-private-primary-r10-20261121/gles-ram/manifest.json": "5ece34276b14f47f284e7fb272158981527c974db656faa514272164f19659c8"
+  },
+  "trash_not_emptied": true,
+  "pause_preserved": true,
+  "disk_after": "Filesystem      Size    Used   Avail Capacity iused ifree %iused  Mounted on\n/dev/disk2s1   954Gi   833Gi    91Gi    91%    3.8M  958M    0%   /System/Volumes/Data\n"
+}

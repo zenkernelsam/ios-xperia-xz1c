@@ -79,3 +79,5 @@ python3 -B tools/build/inspect_native_presentation.py --root build/my-readonly-r
 本轮实际回收Windows7项／12文件／34820404B、Mac21项／432文件／300997854B；全部原生回收核验，未清空。候选CPU包、raw／blob／库、原失败和20H392 ABI证据保留，两Ubuntu垃圾桶为空。[回收记录](../reproducibility/presentation-r1-native-recycle.json)。
 
 2026-11-21 r10已首次实际走完此前附件组并执行五次原生presentation：原drawable／IOSurface像素765、padding及present四种mode＋transaction_wait检查都成功，但final_allocated11520（五个2304B surface）未归零，native presentedTime0、LCD光学未验。原queue在Completed前已移除operation/presentation引用，未见surface release失败，后续查native layer/drawable pool及CA事务持有。不得扣账、伪造didPresentAtTime或把GPU写入当实际display completion；原[阶段](../reproducibility/stencil-private-r10-stage-20261121.json)保持REVISE。
+
+2026-11-22：lifecycle revision2新RAM CPU和完整native21／PNG6已实机通过。native原layer在后台probe显式CA begin／commit／flush、逐phase pool关闭后currentAllocatedSize均0，765pixel／padding及原mode/time/options不变；此处闭合probe自有事务，没有新增completion handler或didPresentAtTime。固定GPU／Metal库字节仍0766d5c7／8feea459；原r10失败不改，最新[阶段](../reproducibility/presentation-lifecycle-r2-stage-20261122.json)／[native21](../reproducibility/current-native21-proof.json)／[PNG6](../reproducibility/current-PNG6-proof.json)绑定同kernel/source-map。光学、原UI和FPS仍单独验。

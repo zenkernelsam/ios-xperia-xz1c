@@ -1,6 +1,7 @@
-# 当前状态 — 2026-11-21
+# 当前状态 — 2026-11-22
 
-Sony BH905ND69G健康fastboot。本轮四靴已结束，无controller／串口worker／in-flight；最后native21 c75b0e696cfee083为REVISE／BACKGROUND_METAL_SUITE_FAILED，40.812秒完成0x06四marker、连续健康30秒和worker退出。GPU四组附件完整通过，卡点已转为presentation资源生命周期；生产基线保持，原失败不重发。
+当前r11新RAM CPU／native21与PNG6已独立通过并完成回程；最后66715b9659b47bc1健康返回38.656秒，Sony健康fastboot、无worker。下方r10为历史失败，当前下一步为原poster模式／界面与原生几何。
+Sony BH905ND69G健康fastboot。本轮四靴已结束，无controller／串口worker／in-flight；最后native21 c75b0e696cfee083为REVISE／BACKGROUND_METAL_SUITE_FAILED，40.812秒完成0x06四marker、连续健康30秒和worker退出。GPU四组附件和当前r11完整native21／PNG6已独立通过；当前下一步转为原poster模式／UI和原生显示比例，原失败不重发。
 
 ## 已验基线与当前候选
 
@@ -12,7 +13,7 @@ Sony BH905ND69G健康fastboot。本轮四靴已结束，无controller／串口wo
 | 固定Mesa／GPU | 24.3.4／769e51468b49b2a42f0a0eaf71cf9eed5ff4e5de／FD540 GLES3.1 | 无Vulkan移植 |
 | 当前r10源码 | 35990ab，正式Windows／Mac同步 | 本次实际编译源 |
 | 当前r10 GLES | 0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607 | 自身CPU／GLES9／reference CPU及四组附件通过 |
-| 当前Metal／source-map | 8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27／db1605ef8dae8f8ed0a29999dcb2cf7537457aba7ad428677c21e0e914771b78 | 完整native21／PNG6未准入 |
+| 当前已验Metal／source-map | 8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27／db1605ef8dae8f8ed0a29999dcb2cf7537457aba7ad428677c21e0e914771b78 | r11完整native21＋PNG6已准入，原UI／光学另验 |
 
 CPU／launchd、F12真实触控和音量键已验。生产CA基线GLES9、Metal16与PNG6包括原资源／queue／AIR／XR／IOSurface／mip／MRT／sampler及缓存的原byte、guard、fence、释放；精确证据见[CA-MATRIX](CA-MATRIX.md)与[基线run-index](../reproducibility/v730-ca-matrix-r1-run-index.json)。
 
@@ -40,7 +41,7 @@ r8 GPU清零draw＋八个bitplane覆盖draw使S8推进到phase96；剩下stencil
 
 日志writer的有界EINTR／部分写处理、串行fd初始化及errno保存已通过10个真实helper故障测试。MSAA核验按原作者local0／1／6首操作Clear，并以真实独立resolve src/dst/samples/filter/fence绑定；旧缺失或坏记录不补造。原r7／r8／r9失败、r8缺块拒绝和r9缺退休日志拒绝保留。见[r10阶段与完整附件证明](../reproducibility/stencil-private-r10-stage-20261121.json)、[r8](../reproducibility/stencil-bitplane-r8-stage-20261121.json)／[r9](../reproducibility/stencil-only-r9-stage-20261121.json)及[附件专题](ATTACHMENT-HARDWARE.md)。
 
-## 当前卡点与后续
+## r10历史卡点与后续范围
 
 1. **Presentation资源生命周期。** 五个真实CAMetalDrawable阶段的原IOSurface像素、padding、fence与原present方法成功；END result1、final_allocated11520，等于五个2304B surface。native presentedTime仍0且光学未验；未出现IOSurface release_failed日志。原queue已在Completed前移除operation／presentation引用，下一步查原生layer／drawable pool和CoreAnimation事务持有及释放。不能忽略分配计数、注入didPresentAtTime或伪造completion。完整native21与PNG6尚未准入，见[METAL-PRESENTATION](METAL-PRESENTATION.md)。
 2. **原壁纸／动态UI。** 完整native21＋PNG6后恢复原poster mode／environment观察。原queue／scene有效而display／tick／pipeline未出现，原Vista paused=YES；不强制解除暂停或画替代帧，见[原请求专题](METAL-REQUEST-OBSERVATION.md)。
@@ -58,3 +59,11 @@ r8 GPU清零draw＋八个bitplane覆盖draw使S8推进到phase96；剩下stencil
 ## 当前离线候选：presentation lifecycle revision2
 
 重新读取r10原证据确认：queue在Completed前已移除own operation/presentation引用，五surface没有release错误，device残留11520B，native presentedTime0。新候选只给后台探针自己创建的native layer补显式CA begin／commit／flush及每phase autoreleasepool关闭后的实际分配日志；原present四mode／time／options、GPU像素／padding和最终零分配门槛保持，不能造completion。四项证据故障检查通过，ARM64构建／新RAM CPU和native21还未准入，见[离线记录](../reproducibility/presentation-lifecycle-r2-offline-20261121.json)。
+
+## r11完整native21／PNG6已准入
+
+新探针own native layers的显式CA begin／commit／flush和pool关闭后，五阶段各自actual allocated0，最终0；原765pixels／padding／四present modes／transaction_wait保持。完整21组和六PNG原byte／ICC／metadata均经原raw独立验证，原r10残留与probe线程CA事务边界有关，不重新分类旧失败。完整[阶段](../reproducibility/presentation-lifecycle-r2-stage-20261122.json)、[native21 proof](../reproducibility/current-native21-proof.json)和[PNG6 proof](../reproducibility/current-PNG6-proof.json)已保存，必须同kernel／GLES／Metal／source-map绑定。原始production UI／光学／wallpaper／FPS／geometry／其它外设未扩大为完成。
+
+## r11最新下一步
+
+新包自身CPU 6dc5ffb5fd270602／完整native21与PNG6 66715b9659b47bc1均独立通过，GPU回程38.656秒含健康30秒，手机健康fastboot无worker。原R10_11520B失败保留；新probe只对自己创建的native layer闭合CA事务并在pool关闭后核对各phase0分配，原native presentedTime仍0，不能称LCD显示completion。下一包按新完整proof构建原poster33方法mode／environment观察、自己的CPU→GPU及150秒扫描帧，保持原策略，无额外draw或强制active。原生16:9、FPS、睡眠、光学、声音和无线保持完整目标。

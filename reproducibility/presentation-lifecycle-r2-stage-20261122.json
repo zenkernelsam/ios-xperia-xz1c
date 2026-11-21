@@ -1,0 +1,1343 @@
+{
+  "date": "2026-11-22",
+  "source_commit": "e429f64",
+  "runs": [
+    {
+      "result": "PASS",
+      "reason": "GOALS_STABLE",
+      "return_log_complete": true,
+      "reset_to_fastboot_seconds": 38.95299999997951,
+      "stage": "ramcpu",
+      "token": "6dc5ffb5fd270602",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-presentation-r11-reference-cpu-live-20261121",
+      "raw_sha256": "b7819b401f8d8821b3a153e1ab1b31da554b5ad3dcc409c895a00a87add85e98",
+      "raw_bytes": 340637,
+      "image_sha256": "2900eb2d90937b600e263fda6ad1bf419686dcc705b583fcfff69857ebe61986",
+      "original_results_sha256": "79eca4525f22e09e3a31347016cb62a4dd5c646fe9f34a3e3113065699069ddf",
+      "proof_source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-presentation-r11-reference-cpu-live-20261121\\actual-evidence.json"
+    },
+    {
+      "result": "PASS",
+      "reason": "GOALS_STABLE",
+      "return_log_complete": true,
+      "reset_to_fastboot_seconds": 38.65599999995902,
+      "stage": "gpu",
+      "token": "66715b9659b47bc1",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-presentation-r11-reference-gpu-live-20261121",
+      "raw_sha256": "a326ca955d0f4cfce142019305fa0037b98c537ba14f550d6140db729f902fd4",
+      "raw_bytes": 2443656,
+      "image_sha256": "aefa1e6bee8d985605f120a04de51a839deaa2f9864438a14aefc4c289e9cd41",
+      "original_results_sha256": "46260e4f99933ff05cc2582c9b1f0142412976341fc3dc9db423e658aed79e55",
+      "proof_source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-presentation-r11-reference-gpu-live-20261121\\actual-evidence.json",
+      "presentation_lifecycle": {
+        "complete_samples": 1,
+        "incomplete_samples": 0,
+        "phases": 5,
+        "checked_pixels": 765,
+        "records": [
+          {
+            "phase": 0,
+            "mode": 0,
+            "path": "command",
+            "sequence": 2317,
+            "IOSurface_id": 20,
+            "handle": 38,
+            "GPU": "0x40070000",
+            "pitch": 256,
+            "checked_bytes": 2304,
+            "guard_bytes": 1692,
+            "pixels_hash": "8b960e5f8f5bea43",
+            "native_presented_time_bits": "0000000000000000"
+          },
+          {
+            "phase": 1,
+            "mode": 1,
+            "path": "command",
+            "sequence": 2319,
+            "IOSurface_id": 21,
+            "handle": 44,
+            "GPU": "0x40078000",
+            "pitch": 256,
+            "checked_bytes": 2304,
+            "guard_bytes": 1692,
+            "pixels_hash": "8b960e5f8f5bea43",
+            "native_presented_time_bits": "0000000000000000"
+          },
+          {
+            "phase": 2,
+            "mode": 2,
+            "path": "command",
+            "sequence": 2321,
+            "IOSurface_id": 22,
+            "handle": 35,
+            "GPU": "0x40068000",
+            "pitch": 256,
+            "checked_bytes": 2304,
+            "guard_bytes": 1692,
+            "pixels_hash": "8b960e5f8f5bea43",
+            "native_presented_time_bits": "0000000000000000"
+          },
+          {
+            "phase": 3,
+            "mode": 3,
+            "path": "command",
+            "sequence": 2323,
+            "IOSurface_id": 23,
+            "handle": 22,
+            "GPU": "0x40054000",
+            "pitch": 256,
+            "checked_bytes": 2304,
+            "guard_bytes": 1692,
+            "pixels_hash": "8b960e5f8f5bea43",
+            "native_presented_time_bits": "0000000000000000"
+          },
+          {
+            "phase": 4,
+            "mode": 0,
+            "path": "transaction_wait",
+            "sequence": 2325,
+            "IOSurface_id": 24,
+            "handle": 28,
+            "GPU": "0x40060000",
+            "pitch": 256,
+            "checked_bytes": 2304,
+            "guard_bytes": 1692,
+            "pixels_hash": "8b960e5f8f5bea43",
+            "native_presented_time_bits": "0000000000000000"
+          }
+        ],
+        "original_CAMetalLayer_drawable_IOSurface_GPU_pixels_and_padding_verified": true,
+        "original_present_after_GPU_retirement_and_transaction_wait_path_verified": true,
+        "native_display_completion_optical_and_original_UI_not_proven": true,
+        "final_allocated": 0,
+        "lifecycle_revision": 2,
+        "original_CA_transaction_and_pool_drained": true,
+        "raw_is_actual_device_evidence_only_when_called_from_verified_trial": true
+      },
+      "native_tests": [
+        "background_probe",
+        "runtime_Metal_ABI",
+        "Metal_resources",
+        "Metal_queue",
+        "AIR_compute",
+        "AIR_render",
+        "AIR_constants",
+        "AIR_XR",
+        "Metal_IOSurface",
+        "Metal_mipmaps",
+        "AIR_narrow",
+        "AIR_half",
+        "Metal_MRT",
+        "AIR_sampler",
+        "Program_cache",
+        "AIR_static_half",
+        "Clear_cache",
+        "IR3_cache",
+        "Metal_depth32",
+        "Metal_stencil8",
+        "Metal_memoryless",
+        "Metal_multisample",
+        "Metal_presentation",
+        "Program_cache_scope",
+        "CIF10_PNG_reference"
+      ],
+      "PNG6": {
+        "token": "66715b9659b47bc1",
+        "reference_revision": 3,
+        "cases": [
+          {
+            "case": 1,
+            "width": 1024,
+            "height": 1,
+            "input_fnv": "af373a6093bb6aa5",
+            "input_bitmap": "0x42000",
+            "top_bits": "0xc0000000",
+            "input_author_generated": true,
+            "original_UI_pixels_read": false,
+            "complete": true,
+            "PNG": {
+              "bytes": 1522,
+              "fnv": "9dc54de6c8003d69",
+              "wall_ns": 56904480,
+              "thread_cpu_ns": 49103125,
+              "cpu_valid": true,
+              "original_API": true,
+              "sha256": "759fea952ade2f43274dc54728c6ffb52a5193f78c41d9facd0f2656158253a4"
+            },
+            "decoded": {
+              "bits_per_component": 16,
+              "bits_per_pixel": 48,
+              "pitch": 6144,
+              "bitmap_info": "0x1000",
+              "alpha": 0,
+              "bytes": 6144,
+              "fnv": "29a84e0bc73e86e0"
+            },
+            "color": {
+              "model": 1,
+              "name": "kCGColorSpaceSRGB",
+              "icc_bytes": 3144,
+              "icc_fnv": "56d2cbfca6b54318"
+            },
+            "vImage": {
+              "default": {
+                "status": 0,
+                "bytes": 6144,
+                "fnv": "d13d780eb1f83a87",
+                "byte_mismatches": 6080,
+                "guard_valid": true,
+                "buffer_identity": true,
+                "pixels_match": false,
+                "wall_ns": 12982604,
+                "thread_cpu_ns": 11084531,
+                "cpu_valid": true
+              },
+              "direct": {
+                "status": 0,
+                "bytes": 6144,
+                "fnv": "d13d780eb1f83a87",
+                "byte_mismatches": 6080,
+                "guard_valid": true,
+                "buffer_identity": true,
+                "pixels_match": false,
+                "wall_ns": 2101667,
+                "thread_cpu_ns": 2065260,
+                "cpu_valid": true
+              }
+            },
+            "filters": {
+              "baseline": {
+                "result": 0,
+                "bytes": 376,
+                "fnv": "501e2fff2a55af24",
+                "pixels_equal": true,
+                "ICC_equal": true,
+                "metadata_equal": true,
+                "PNG_equal": false,
+                "wall_ns": 3174166,
+                "thread_cpu_ns": 3185208,
+                "cpu_valid": true,
+                "sha256": "48a22c3485c9b55da8d1aef5a6b98d657c652a6b2c40ae51170c13feb0929b75",
+                "container": {
+                  "chunks": [
+                    {
+                      "type": "IHDR",
+                      "bytes": 13,
+                      "payload_sha256": "b41220ec4417f0381bdf12c55844ec540dd4cf1771c163bc5784a14d392e46ef"
+                    },
+                    {
+                      "type": "sRGB",
+                      "bytes": 1,
+                      "payload_sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                    },
+                    {
+                      "type": "eXIf",
+                      "bytes": 108,
+                      "payload_sha256": "adf5008c3d86ff62d8512946e4561b1f2f77c288954f6fc50a1304d882f27a6b"
+                    },
+                    {
+                      "type": "pHYs",
+                      "bytes": 9,
+                      "payload_sha256": "2fb8fb780e4f77872628d88bb0ab3395f423c19aadc903c0352d6de0945f8d04"
+                    },
+                    {
+                      "type": "IDAT",
+                      "bytes": 165,
+                      "payload_sha256": "4da56643f3d4899ab3115f4c0fd53d2b43c591b545bb824c7f632c2e9cbd876c"
+                    },
+                    {
+                      "type": "IEND",
+                      "bytes": 0,
+                      "payload_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                    }
+                  ],
+                  "metadata_sha256": "258d8bca720c77fe171c52ccc3ede822b6f706c482dd2d2a9fca8b54c0c6c923",
+                  "IDAT_defiltered_pixels_match_original_CG_decode": true
+                }
+              },
+              "none": {
+                "result": 0,
+                "bytes": 1522,
+                "fnv": "9dc54de6c8003d69",
+                "pixels_equal": true,
+                "ICC_equal": true,
+                "metadata_equal": true,
+                "PNG_equal": true,
+                "wall_ns": 9372604,
+                "thread_cpu_ns": 9394844,
+                "cpu_valid": true,
+                "sha256": "759fea952ade2f43274dc54728c6ffb52a5193f78c41d9facd0f2656158253a4",
+                "container": {
+                  "chunks": [
+                    {
+                      "type": "IHDR",
+                      "bytes": 13,
+                      "payload_sha256": "b41220ec4417f0381bdf12c55844ec540dd4cf1771c163bc5784a14d392e46ef"
+                    },
+                    {
+                      "type": "sRGB",
+                      "bytes": 1,
+                      "payload_sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                    },
+                    {
+                      "type": "eXIf",
+                      "bytes": 108,
+                      "payload_sha256": "adf5008c3d86ff62d8512946e4561b1f2f77c288954f6fc50a1304d882f27a6b"
+                    },
+                    {
+                      "type": "pHYs",
+                      "bytes": 9,
+                      "payload_sha256": "2fb8fb780e4f77872628d88bb0ab3395f423c19aadc903c0352d6de0945f8d04"
+                    },
+                    {
+                      "type": "IDAT",
+                      "bytes": 1311,
+                      "payload_sha256": "177875df73c86045f763d2fcd300dd1c4c7724bbee76144921a16e7ab730dfc2"
+                    },
+                    {
+                      "type": "IEND",
+                      "bytes": 0,
+                      "payload_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                    }
+                  ],
+                  "metadata_sha256": "258d8bca720c77fe171c52ccc3ede822b6f706c482dd2d2a9fca8b54c0c6c923",
+                  "IDAT_defiltered_pixels_match_original_CG_decode": true
+                }
+              },
+              "up": {
+                "result": 0,
+                "bytes": 1522,
+                "fnv": "9dc54de6c8003d69",
+                "pixels_equal": true,
+                "ICC_equal": true,
+                "metadata_equal": true,
+                "PNG_equal": true,
+                "wall_ns": 4023229,
+                "thread_cpu_ns": 4033490,
+                "cpu_valid": true,
+                "sha256": "759fea952ade2f43274dc54728c6ffb52a5193f78c41d9facd0f2656158253a4",
+                "container": {
+                  "chunks": [
+                    {
+                      "type": "IHDR",
+                      "bytes": 13,
+                      "payload_sha256": "b41220ec4417f0381bdf12c55844ec540dd4cf1771c163bc5784a14d392e46ef"
+                    },
+                    {
+                      "type": "sRGB",
+                      "bytes": 1,
+                      "payload_sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                    },
+                    {
+                      "type": "eXIf",
+                      "bytes": 108,
+                      "payload_sha256": "adf5008c3d86ff62d8512946e4561b1f2f77c288954f6fc50a1304d882f27a6b"
+                    },
+                    {
+                      "type": "pHYs",
+                      "bytes": 9,
+                      "payload_sha256": "2fb8fb780e4f77872628d88bb0ab3395f423c19aadc903c0352d6de0945f8d04"
+                    },
+                    {
+                      "type": "IDAT",
+                      "bytes": 1311,
+                      "payload_sha256": "177875df73c86045f763d2fcd300dd1c4c7724bbee76144921a16e7ab730dfc2"
+                    },
+                    {
+                      "type": "IEND",
+                      "bytes": 0,
+                      "payload_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                    }
+                  ],
+                  "metadata_sha256": "258d8bca720c77fe171c52ccc3ede822b6f706c482dd2d2a9fca8b54c0c6c923",
+                  "IDAT_defiltered_pixels_match_original_CG_decode": true
+                }
+              }
+            },
+            "pixels_sha256": "f1c5297bf807feb32048e8d1d720b9d123d0656f8566ddf326b3d39ea98fe1ba",
+            "icc_sha256": "2b3aa1645779a9e634744faf9b01e9102b0c9b88fd6deced7934df86b949af7e",
+            "PNG_container": {
+              "chunks": [
+                {
+                  "type": "IHDR",
+                  "bytes": 13,
+                  "payload_sha256": "b41220ec4417f0381bdf12c55844ec540dd4cf1771c163bc5784a14d392e46ef"
+                },
+                {
+                  "type": "sRGB",
+                  "bytes": 1,
+                  "payload_sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                },
+                {
+                  "type": "eXIf",
+                  "bytes": 108,
+                  "payload_sha256": "adf5008c3d86ff62d8512946e4561b1f2f77c288954f6fc50a1304d882f27a6b"
+                },
+                {
+                  "type": "pHYs",
+                  "bytes": 9,
+                  "payload_sha256": "2fb8fb780e4f77872628d88bb0ab3395f423c19aadc903c0352d6de0945f8d04"
+                },
+                {
+                  "type": "IDAT",
+                  "bytes": 1311,
+                  "payload_sha256": "177875df73c86045f763d2fcd300dd1c4c7724bbee76144921a16e7ab730dfc2"
+                },
+                {
+                  "type": "IEND",
+                  "bytes": 0,
+                  "payload_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                }
+              ],
+              "metadata_sha256": "258d8bca720c77fe171c52ccc3ede822b6f706c482dd2d2a9fca8b54c0c6c923",
+              "IDAT_defiltered_pixels_match_original_CG_decode": true
+            },
+            "decoded_samples": [
+              {
+                "column": 0,
+                "raw_hex": "000000000000"
+              },
+              {
+                "column": 1,
+                "raw_hex": "000000000000"
+              },
+              {
+                "column": 383,
+                "raw_hex": "000000000000"
+              },
+              {
+                "column": 384,
+                "raw_hex": "000000000000"
+              },
+              {
+                "column": 385,
+                "raw_hex": "800080008000"
+              },
+              {
+                "column": 509,
+                "raw_hex": "a03ea03ea03e"
+              },
+              {
+                "column": 510,
+                "raw_hex": "203f203f203f"
+              },
+              {
+                "column": 511,
+                "raw_hex": "a03fa03fa03f"
+              },
+              {
+                "column": 893,
+                "raw_hex": "fffefffefffe"
+              },
+              {
+                "column": 894,
+                "raw_hex": "7fff7fff7fff"
+              },
+              {
+                "column": 895,
+                "raw_hex": "ffffffffffff"
+              },
+              {
+                "column": 1023,
+                "raw_hex": "ffffffffffff"
+              }
+            ]
+          },
+          {
+            "case": 2,
+            "width": 1024,
+            "height": 1,
+            "input_fnv": "1ada2b9c1ca97ea5",
+            "input_bitmap": "0x42000",
+            "top_bits": "0x0",
+            "input_author_generated": true,
+            "original_UI_pixels_read": false,
+            "complete": true,
+            "PNG": {
+              "bytes": 1522,
+              "fnv": "9dc54de6c8003d69",
+              "wall_ns": 9119219,
+              "thread_cpu_ns": 9141875,
+              "cpu_valid": true,
+              "original_API": true,
+              "sha256": "759fea952ade2f43274dc54728c6ffb52a5193f78c41d9facd0f2656158253a4"
+            },
+            "decoded": {
+              "bits_per_component": 16,
+              "bits_per_pixel": 48,
+              "pitch": 6144,
+              "bitmap_info": "0x1000",
+              "alpha": 0,
+              "bytes": 6144,
+              "fnv": "29a84e0bc73e86e0"
+            },
+            "color": {
+              "model": 1,
+              "name": "kCGColorSpaceSRGB",
+              "icc_bytes": 3144,
+              "icc_fnv": "56d2cbfca6b54318"
+            },
+            "vImage": {
+              "default": {
+                "status": 0,
+                "bytes": 6144,
+                "fnv": "4d2ac30b3ff55eae",
+                "byte_mismatches": 6018,
+                "guard_valid": true,
+                "buffer_identity": true,
+                "pixels_match": false,
+                "wall_ns": 2045365,
+                "thread_cpu_ns": 2065468,
+                "cpu_valid": true
+              },
+              "direct": {
+                "status": 0,
+                "bytes": 6144,
+                "fnv": "4d2ac30b3ff55eae",
+                "byte_mismatches": 6018,
+                "guard_valid": true,
+                "buffer_identity": true,
+                "pixels_match": false,
+                "wall_ns": 1898646,
+                "thread_cpu_ns": 1914583,
+                "cpu_valid": true
+              }
+            },
+            "filters": {
+              "baseline": {
+                "result": 0,
+                "bytes": 376,
+                "fnv": "501e2fff2a55af24",
+                "pixels_equal": true,
+                "ICC_equal": true,
+                "metadata_equal": true,
+                "PNG_equal": false,
+                "wall_ns": 7583385,
+                "thread_cpu_ns": 7622448,
+                "cpu_valid": true
+              },
+              "none": {
+                "result": 0,
+                "bytes": 1522,
+                "fnv": "9dc54de6c8003d69",
+                "pixels_equal": true,
+                "ICC_equal": true,
+                "metadata_equal": true,
+                "PNG_equal": true,
+                "wall_ns": 8734635,
+                "thread_cpu_ns": 8755521,
+                "cpu_valid": true
+              },
+              "up": {
+                "result": 0,
+                "bytes": 1522,
+                "fnv": "9dc54de6c8003d69",
+                "pixels_equal": true,
+                "ICC_equal": true,
+                "metadata_equal": true,
+                "PNG_equal": true,
+                "wall_ns": 9646354,
+                "thread_cpu_ns": 9669479,
+                "cpu_valid": true
+              }
+            },
+            "pixels_sha256": "f1c5297bf807feb32048e8d1d720b9d123d0656f8566ddf326b3d39ea98fe1ba",
+            "PNG_container": {
+              "chunks": [
+                {
+                  "type": "IHDR",
+                  "bytes": 13,
+                  "payload_sha256": "b41220ec4417f0381bdf12c55844ec540dd4cf1771c163bc5784a14d392e46ef"
+                },
+                {
+                  "type": "sRGB",
+                  "bytes": 1,
+                  "payload_sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                },
+                {
+                  "type": "eXIf",
+                  "bytes": 108,
+                  "payload_sha256": "adf5008c3d86ff62d8512946e4561b1f2f77c288954f6fc50a1304d882f27a6b"
+                },
+                {
+                  "type": "pHYs",
+                  "bytes": 9,
+                  "payload_sha256": "2fb8fb780e4f77872628d88bb0ab3395f423c19aadc903c0352d6de0945f8d04"
+                },
+                {
+                  "type": "IDAT",
+                  "bytes": 1311,
+                  "payload_sha256": "177875df73c86045f763d2fcd300dd1c4c7724bbee76144921a16e7ab730dfc2"
+                },
+                {
+                  "type": "IEND",
+                  "bytes": 0,
+                  "payload_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                }
+              ],
+              "metadata_sha256": "258d8bca720c77fe171c52ccc3ede822b6f706c482dd2d2a9fca8b54c0c6c923",
+              "IDAT_defiltered_pixels_match_original_CG_decode": true
+            },
+            "decoded_samples": [
+              {
+                "column": 0,
+                "raw_hex": "000000000000"
+              },
+              {
+                "column": 1,
+                "raw_hex": "000000000000"
+              },
+              {
+                "column": 383,
+                "raw_hex": "000000000000"
+              },
+              {
+                "column": 384,
+                "raw_hex": "000000000000"
+              },
+              {
+                "column": 385,
+                "raw_hex": "800080008000"
+              },
+              {
+                "column": 509,
+                "raw_hex": "a03ea03ea03e"
+              },
+              {
+                "column": 510,
+                "raw_hex": "203f203f203f"
+              },
+              {
+                "column": 511,
+                "raw_hex": "a03fa03fa03f"
+              },
+              {
+                "column": 893,
+                "raw_hex": "fffefffefffe"
+              },
+              {
+                "column": 894,
+                "raw_hex": "7fff7fff7fff"
+              },
+              {
+                "column": 895,
+                "raw_hex": "ffffffffffff"
+              },
+              {
+                "column": 1023,
+                "raw_hex": "ffffffffffff"
+              }
+            ]
+          },
+          {
+            "case": 3,
+            "width": 1024,
+            "height": 1,
+            "input_fnv": "00f589f952cb0f25",
+            "input_bitmap": "0x42000",
+            "top_bits": "0xc0000000",
+            "input_author_generated": true,
+            "original_UI_pixels_read": false,
+            "complete": true,
+            "PNG": {
+              "bytes": 3762,
+              "fnv": "52d96bd4e8028e10",
+              "wall_ns": 9448541,
+              "thread_cpu_ns": 9473437,
+              "cpu_valid": true,
+              "original_API": true,
+              "sha256": "8fb20560e865a3f8fc77f5984404d201d6b026965afcc07a890f98c602784528"
+            },
+            "decoded": {
+              "bits_per_component": 16,
+              "bits_per_pixel": 48,
+              "pitch": 6144,
+              "bitmap_info": "0x1000",
+              "alpha": 0,
+              "bytes": 6144,
+              "fnv": "37fcc172e97865c8"
+            },
+            "color": {
+              "model": 1,
+              "name": "kCGColorSpaceSRGB",
+              "icc_bytes": 3144,
+              "icc_fnv": "56d2cbfca6b54318"
+            },
+            "vImage": {
+              "default": {
+                "status": 0,
+                "bytes": 6144,
+                "fnv": "ab29e5ad163073db",
+                "byte_mismatches": 5711,
+                "guard_valid": true,
+                "buffer_identity": true,
+                "pixels_match": false,
+                "wall_ns": 2352240,
+                "thread_cpu_ns": 2373697,
+                "cpu_valid": true
+              },
+              "direct": {
+                "status": 0,
+                "bytes": 6144,
+                "fnv": "ab29e5ad163073db",
+                "byte_mismatches": 5711,
+                "guard_valid": true,
+                "buffer_identity": true,
+                "pixels_match": false,
+                "wall_ns": 1949010,
+                "thread_cpu_ns": 1966041,
+                "cpu_valid": true
+              }
+            },
+            "filters": {
+              "baseline": {
+                "result": 0,
+                "bytes": 1319,
+                "fnv": "5787312438c3ac9d",
+                "pixels_equal": true,
+                "ICC_equal": true,
+                "metadata_equal": true,
+                "PNG_equal": false,
+                "wall_ns": 7791511,
+                "thread_cpu_ns": 7813750,
+                "cpu_valid": true
+              },
+              "none": {
+                "result": 0,
+                "bytes": 3762,
+                "fnv": "52d96bd4e8028e10",
+                "pixels_equal": true,
+                "ICC_equal": true,
+                "metadata_equal": true,
+                "PNG_equal": true,
+                "wall_ns": 9155781,
+                "thread_cpu_ns": 9176041,
+                "cpu_valid": true
+              },
+              "up": {
+                "result": 0,
+                "bytes": 3762,
+                "fnv": "52d96bd4e8028e10",
+                "pixels_equal": true,
+                "ICC_equal": true,
+                "metadata_equal": true,
+                "PNG_equal": true,
+                "wall_ns": 9842083,
+                "thread_cpu_ns": 9864843,
+                "cpu_valid": true
+              }
+            },
+            "pixels_sha256": "765b29da2ae559f4bc147f6c413598716f81946eaf8d6b95a36ac25354bedca1",
+            "PNG_container": {
+              "chunks": [
+                {
+                  "type": "IHDR",
+                  "bytes": 13,
+                  "payload_sha256": "b41220ec4417f0381bdf12c55844ec540dd4cf1771c163bc5784a14d392e46ef"
+                },
+                {
+                  "type": "sRGB",
+                  "bytes": 1,
+                  "payload_sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                },
+                {
+                  "type": "eXIf",
+                  "bytes": 108,
+                  "payload_sha256": "adf5008c3d86ff62d8512946e4561b1f2f77c288954f6fc50a1304d882f27a6b"
+                },
+                {
+                  "type": "pHYs",
+                  "bytes": 9,
+                  "payload_sha256": "2fb8fb780e4f77872628d88bb0ab3395f423c19aadc903c0352d6de0945f8d04"
+                },
+                {
+                  "type": "IDAT",
+                  "bytes": 3551,
+                  "payload_sha256": "5dbf03229e3f8bb3ab9b14c8b7fc5e45c084ea863594e731a6dfd37faa5b42d1"
+                },
+                {
+                  "type": "IEND",
+                  "bytes": 0,
+                  "payload_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                }
+              ],
+              "metadata_sha256": "258d8bca720c77fe171c52ccc3ede822b6f706c482dd2d2a9fca8b54c0c6c923",
+              "IDAT_defiltered_pixels_match_original_CG_decode": true
+            },
+            "decoded_samples": [
+              {
+                "column": 0,
+                "raw_hex": "000000000000"
+              },
+              {
+                "column": 1,
+                "raw_hex": "000000000000"
+              },
+              {
+                "column": 383,
+                "raw_hex": "000000000000"
+              },
+              {
+                "column": 384,
+                "raw_hex": "000000000000"
+              },
+              {
+                "column": 385,
+                "raw_hex": "690004000200"
+              },
+              {
+                "column": 509,
+                "raw_hex": "a0385b05c102"
+              },
+              {
+                "column": 510,
+                "raw_hex": "18397105cc02"
+              },
+              {
+                "column": 511,
+                "raw_hex": "88398705d702"
+              },
+              {
+                "column": 893,
+                "raw_hex": "ffe910334823"
+              },
+              {
+                "column": 894,
+                "raw_hex": "5fea30336023"
+              },
+              {
+                "column": 895,
+                "raw_hex": "dfea48337823"
+              },
+              {
+                "column": 1023,
+                "raw_hex": "ffffe042402f"
+              }
+            ]
+          },
+          {
+            "case": 4,
+            "width": 1024,
+            "height": 1,
+            "input_fnv": "8fbea72e4b9bd675",
+            "input_bitmap": "0x42000",
+            "top_bits": "0xc0000000",
+            "input_author_generated": true,
+            "original_UI_pixels_read": false,
+            "complete": true,
+            "PNG": {
+              "bytes": 4355,
+              "fnv": "b040f3fea32731ab",
+              "wall_ns": 10834948,
+              "thread_cpu_ns": 10818333,
+              "cpu_valid": true,
+              "original_API": true,
+              "sha256": "181b4e6b2ecabd3c0cc272dbeeaa1b4dc5ad9d43fda9f4c029f5e35b4e920e85"
+            },
+            "decoded": {
+              "bits_per_component": 16,
+              "bits_per_pixel": 48,
+              "pitch": 6144,
+              "bitmap_info": "0x1000",
+              "alpha": 0,
+              "bytes": 6144,
+              "fnv": "2ed597aa8d13bb48"
+            },
+            "color": {
+              "model": 1,
+              "name": "kCGColorSpaceSRGB",
+              "icc_bytes": 3144,
+              "icc_fnv": "56d2cbfca6b54318"
+            },
+            "vImage": {
+              "default": {
+                "status": 0,
+                "bytes": 6144,
+                "fnv": "1feea7b0ef711b5d",
+                "byte_mismatches": 6107,
+                "guard_valid": true,
+                "buffer_identity": true,
+                "pixels_match": false,
+                "wall_ns": 2055208,
+                "thread_cpu_ns": 2074115,
+                "cpu_valid": true
+              },
+              "direct": {
+                "status": 0,
+                "bytes": 6144,
+                "fnv": "1feea7b0ef711b5d",
+                "byte_mismatches": 6107,
+                "guard_valid": true,
+                "buffer_identity": true,
+                "pixels_match": false,
+                "wall_ns": 1937812,
+                "thread_cpu_ns": 1978281,
+                "cpu_valid": true
+              }
+            },
+            "filters": {
+              "baseline": {
+                "result": 0,
+                "bytes": 3606,
+                "fnv": "a999edc10dc1d90c",
+                "pixels_equal": true,
+                "ICC_equal": true,
+                "metadata_equal": true,
+                "PNG_equal": false,
+                "wall_ns": 9963906,
+                "thread_cpu_ns": 9986979,
+                "cpu_valid": true
+              },
+              "none": {
+                "result": 0,
+                "bytes": 4355,
+                "fnv": "b040f3fea32731ab",
+                "pixels_equal": true,
+                "ICC_equal": true,
+                "metadata_equal": true,
+                "PNG_equal": true,
+                "wall_ns": 10604635,
+                "thread_cpu_ns": 10566927,
+                "cpu_valid": true
+              },
+              "up": {
+                "result": 0,
+                "bytes": 4355,
+                "fnv": "b040f3fea32731ab",
+                "pixels_equal": true,
+                "ICC_equal": true,
+                "metadata_equal": true,
+                "PNG_equal": true,
+                "wall_ns": 4950938,
+                "thread_cpu_ns": 4968438,
+                "cpu_valid": true
+              }
+            },
+            "pixels_sha256": "1b03c2d10bc109d06a473e9d93eb4531a0e56f72193fdc986fe90e1fe15ba6d9",
+            "PNG_container": {
+              "chunks": [
+                {
+                  "type": "IHDR",
+                  "bytes": 13,
+                  "payload_sha256": "b41220ec4417f0381bdf12c55844ec540dd4cf1771c163bc5784a14d392e46ef"
+                },
+                {
+                  "type": "sRGB",
+                  "bytes": 1,
+                  "payload_sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                },
+                {
+                  "type": "eXIf",
+                  "bytes": 108,
+                  "payload_sha256": "adf5008c3d86ff62d8512946e4561b1f2f77c288954f6fc50a1304d882f27a6b"
+                },
+                {
+                  "type": "pHYs",
+                  "bytes": 9,
+                  "payload_sha256": "2fb8fb780e4f77872628d88bb0ab3395f423c19aadc903c0352d6de0945f8d04"
+                },
+                {
+                  "type": "IDAT",
+                  "bytes": 4144,
+                  "payload_sha256": "f1b3cbb45a5e10e97580c12c86763ae9fa63aeaed491eeb169dfb5d7ded2f7fd"
+                },
+                {
+                  "type": "IEND",
+                  "bytes": 0,
+                  "payload_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                }
+              ],
+              "metadata_sha256": "258d8bca720c77fe171c52ccc3ede822b6f706c482dd2d2a9fca8b54c0c6c923",
+              "IDAT_defiltered_pixels_match_original_CG_decode": true
+            },
+            "decoded_samples": [
+              {
+                "column": 0,
+                "raw_hex": "000000000000"
+              },
+              {
+                "column": 1,
+                "raw_hex": "000000000000"
+              },
+              {
+                "column": 383,
+                "raw_hex": "000000000000"
+              },
+              {
+                "column": 384,
+                "raw_hex": "000000000000"
+              },
+              {
+                "column": 385,
+                "raw_hex": "ed014008d822"
+              },
+              {
+                "column": 509,
+                "raw_hex": "203ba0270000"
+              },
+              {
+                "column": 510,
+                "raw_hex": "a03cb82f5e01"
+              },
+              {
+                "column": 511,
+                "raw_hex": "483ee037641f"
+              },
+              {
+                "column": 893,
+                "raw_hex": "fffadfe77f9d"
+              },
+              {
+                "column": 894,
+                "raw_hex": "bffcffefbfbd"
+              },
+              {
+                "column": 895,
+                "raw_hex": "9ffe3ff8bfde"
+              },
+              {
+                "column": 1023,
+                "raw_hex": "ffffffffffff"
+              }
+            ]
+          },
+          {
+            "case": 5,
+            "width": 750,
+            "height": 1624,
+            "input_fnv": "a1e99af8cc4b8deb",
+            "input_bitmap": "0x42000",
+            "top_bits": "0xc0000000",
+            "input_author_generated": true,
+            "original_UI_pixels_read": false,
+            "complete": true,
+            "PNG": {
+              "bytes": 4805449,
+              "fnv": "452c35fb7a8e1973",
+              "wall_ns": 6418871615,
+              "thread_cpu_ns": 5657900729,
+              "cpu_valid": true,
+              "original_API": true
+            },
+            "decoded": {
+              "bits_per_component": 16,
+              "bits_per_pixel": 48,
+              "pitch": 4500,
+              "bitmap_info": "0x1000",
+              "alpha": 0,
+              "bytes": 7308000,
+              "fnv": "86b401ecc5addec1"
+            },
+            "color": {
+              "model": 1,
+              "name": "kCGColorSpaceSRGB",
+              "icc_bytes": 3144,
+              "icc_fnv": "56d2cbfca6b54318"
+            },
+            "vImage": {
+              "default": {
+                "status": 0,
+                "bytes": 7308000,
+                "fnv": "0b272d9a667e1f61",
+                "byte_mismatches": 7278386,
+                "guard_valid": true,
+                "buffer_identity": true,
+                "pixels_match": false,
+                "wall_ns": 439643958,
+                "thread_cpu_ns": 34397031,
+                "cpu_valid": true
+              },
+              "direct": {
+                "status": 0,
+                "bytes": 7308000,
+                "fnv": "0b272d9a667e1f61",
+                "byte_mismatches": 7278386,
+                "guard_valid": true,
+                "buffer_identity": true,
+                "pixels_match": false,
+                "wall_ns": 397399375,
+                "thread_cpu_ns": 193049792,
+                "cpu_valid": true
+              }
+            },
+            "filters": {
+              "baseline": {
+                "result": 0,
+                "bytes": 3546520,
+                "fnv": "aa4c6cba083dd603",
+                "pixels_equal": true,
+                "ICC_equal": true,
+                "metadata_equal": true,
+                "PNG_equal": false,
+                "wall_ns": 2956763177,
+                "thread_cpu_ns": 2851579167,
+                "cpu_valid": true
+              },
+              "none": {
+                "result": 0,
+                "bytes": 4805252,
+                "fnv": "d1ff010f2d5413b8",
+                "pixels_equal": true,
+                "ICC_equal": true,
+                "metadata_equal": true,
+                "PNG_equal": false,
+                "wall_ns": 2167751042,
+                "thread_cpu_ns": 2152640156,
+                "cpu_valid": true
+              },
+              "up": {
+                "result": 0,
+                "bytes": 3572583,
+                "fnv": "19bd7c94107eb234",
+                "pixels_equal": true,
+                "ICC_equal": true,
+                "metadata_equal": true,
+                "PNG_equal": false,
+                "wall_ns": 1931506615,
+                "thread_cpu_ns": 1919380833,
+                "cpu_valid": true
+              }
+            }
+          },
+          {
+            "case": 6,
+            "width": 750,
+            "height": 1624,
+            "input_fnv": "3e70d080d0e14f53",
+            "input_bitmap": "0x42000",
+            "top_bits": "0xc0000000",
+            "input_author_generated": true,
+            "original_UI_pixels_read": false,
+            "complete": true,
+            "PNG": {
+              "bytes": 2238834,
+              "fnv": "91842cc596d189b1",
+              "wall_ns": 7939732240,
+              "thread_cpu_ns": 5306821198,
+              "cpu_valid": true,
+              "original_API": true
+            },
+            "decoded": {
+              "bits_per_component": 16,
+              "bits_per_pixel": 48,
+              "pitch": 4500,
+              "bitmap_info": "0x1000",
+              "alpha": 0,
+              "bytes": 7308000,
+              "fnv": "b470fbd9e63071ff"
+            },
+            "color": {
+              "model": 1,
+              "name": "kCGColorSpaceSRGB",
+              "icc_bytes": 3144,
+              "icc_fnv": "56d2cbfca6b54318"
+            },
+            "vImage": {
+              "default": {
+                "status": 0,
+                "bytes": 7308000,
+                "fnv": "9cffa122d7673674",
+                "byte_mismatches": 7281131,
+                "guard_valid": true,
+                "buffer_identity": true,
+                "pixels_match": false,
+                "wall_ns": 70748959,
+                "thread_cpu_ns": 27246146,
+                "cpu_valid": true
+              },
+              "direct": {
+                "status": 0,
+                "bytes": 7308000,
+                "fnv": "9cffa122d7673674",
+                "byte_mismatches": 7281131,
+                "guard_valid": true,
+                "buffer_identity": true,
+                "pixels_match": false,
+                "wall_ns": 282233906,
+                "thread_cpu_ns": 198225625,
+                "cpu_valid": true
+              }
+            },
+            "filters": {
+              "baseline": {
+                "result": 0,
+                "bytes": 952050,
+                "fnv": "646f26e8cd092728",
+                "pixels_equal": true,
+                "ICC_equal": true,
+                "metadata_equal": true,
+                "PNG_equal": false,
+                "wall_ns": 1407827240,
+                "thread_cpu_ns": 1218509635,
+                "cpu_valid": true
+              },
+              "none": {
+                "result": 0,
+                "bytes": 2237993,
+                "fnv": "5d8dc74728f59c3e",
+                "pixels_equal": true,
+                "ICC_equal": true,
+                "metadata_equal": true,
+                "PNG_equal": false,
+                "wall_ns": 1621392605,
+                "thread_cpu_ns": 1437465052,
+                "cpu_valid": true
+              },
+              "up": {
+                "result": 0,
+                "bytes": 962748,
+                "fnv": "d308d3c42ce46f01",
+                "pixels_equal": true,
+                "ICC_equal": true,
+                "metadata_equal": true,
+                "PNG_equal": false,
+                "wall_ns": 1333525573,
+                "thread_cpu_ns": 1261976979,
+                "cpu_valid": true
+              }
+            }
+          }
+        ],
+        "original_UIImage_API_referenced": true,
+        "author_generated_inputs_only": true,
+        "encoder_source_sha256": "61031999d4ff1d9a2c9c6a564cf229a82c3b9c49998d752ae0bd4d6fd18e1e92",
+        "vImage_all_pixel_stages_match": false,
+        "filter_policies_match_original": {
+          "baseline": true,
+          "none": true,
+          "up": true
+        },
+        "installed_converter": false,
+        "does_not_admit_lossless_optimization": true,
+        "does_not_complete_original_UI": true,
+        "post_ACK_exit_period_excluded": true
+      },
+      "source_bound_single_scanout": {
+        "protocol": 1,
+        "verified": true,
+        "frames": [
+          {
+            "id": 1,
+            "token": "66715b9659b47bc1",
+            "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+            "image_sha256": "aefa1e6bee8d985605f120a04de51a839deaa2f9864438a14aefc4c289e9cd41",
+            "binding": {
+              "protocol": 1,
+              "width": 720,
+              "height": 1280,
+              "stride": 2160,
+              "format": "BGR888",
+              "codec": "PRLE1",
+              "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+              "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+              "runtime_source_sha256": "a1f41eeb87b7cf70ea751884ee38d758191f3cc0a00d697acc363fbba3cd5f63"
+            },
+            "begin": {
+              "token": "66715b9659b47bc1",
+              "id": "1",
+              "width": "720",
+              "height": "1280",
+              "stride": "2160",
+              "format": "BGR888",
+              "bytes": "2764800",
+              "codec": "PRLE1",
+              "encoded": "347198",
+              "raw_fnv": "8aa366bdb8969a28",
+              "enc_crc": "bbd76a61",
+              "vsync": "7875",
+              "timestamp": "12863973027",
+              "copy_ticks": "7796652",
+              "power_off": "0",
+              "source_checked": "1",
+              "source_match": "1"
+            },
+            "scan": {
+              "token": "66715b9659b47bc1",
+              "id": "1",
+              "pa": "0x9d400000",
+              "map_pa": "0x9d400000",
+              "map_bytes": "2764800",
+              "size": "0x50002d0",
+              "img": "0x50002d0",
+              "xy": "0",
+              "out": "0x50002d0",
+              "outxy": "0",
+              "fmt": "0x2243f",
+              "unpack": "0x20001",
+              "op": "0x80000000",
+              "qop": "0",
+              "ctl": "0x20020",
+              "start": "0",
+              "before_after": "1"
+            },
+            "blocks": 2713,
+            "raw_file": "scanout-00000001.bgr",
+            "png_file": "scanout-00000001.png",
+            "raw_sha256": "ec4907c8d353e85f80906ff1b73ab2d348b9cf477157e0eb2c08b6bd0c761758",
+            "png_sha256": "25ee9ca88e168cd7a0e5de8ac1527033ea0a8f6b9f19f15508828d4c96f8f64d",
+            "pixel_values_preserved": true,
+            "verified": true,
+            "optical_panel_verified": false
+          }
+        ],
+        "optical_panel_verified": false,
+        "elapsed_seconds": 11.813000000081956
+      }
+    }
+  ],
+  "native21_proof": {
+    "revision": 1,
+    "version": 730,
+    "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+    "gles_library_sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+    "metal_library_sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27",
+    "metal_source_files_sha256": "db1605ef8dae8f8ed0a29999dcb2cf7537457aba7ad428677c21e0e914771b78",
+    "native_run_token": "66715b9659b47bc1",
+    "native_run_image_sha256": "aefa1e6bee8d985605f120a04de51a839deaa2f9864438a14aefc4c289e9cd41",
+    "native_run_log_sha256": "a326ca955d0f4cfce142019305fa0037b98c537ba14f550d6140db729f902fd4",
+    "native_run_process": "backboardd",
+    "native_tests": [
+      "Metal_resources",
+      "Metal_queue",
+      "AIR_compute",
+      "AIR_render",
+      "AIR_constants",
+      "AIR_XR",
+      "Metal_IOSurface",
+      "Metal_mipmaps",
+      "AIR_narrow",
+      "AIR_half",
+      "Metal_MRT",
+      "AIR_sampler",
+      "Program_cache",
+      "AIR_static_half",
+      "Clear_cache",
+      "IR3_cache",
+      "Metal_depth32",
+      "Metal_stencil8",
+      "Metal_memoryless",
+      "Metal_multisample",
+      "Metal_presentation"
+    ]
+  },
+  "PNG6_proof": {
+    "revision": 1,
+    "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+    "GLES_sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+    "Metal_sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27",
+    "encoder_source_sha256": "61031999d4ff1d9a2c9c6a564cf229a82c3b9c49998d752ae0bd4d6fd18e1e92",
+    "reference_token": "66715b9659b47bc1",
+    "reference_image_sha256": "aefa1e6bee8d985605f120a04de51a839deaa2f9864438a14aefc4c289e9cd41",
+    "reference_raw_sha256": "a326ca955d0f4cfce142019305fa0037b98c537ba14f550d6140db729f902fd4",
+    "reference_cases": 6,
+    "filter": 32,
+    "pixels_ICC_metadata_equal": true
+  },
+  "GLES_sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+  "Metal_sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27",
+  "original_CA_layers_transactions_and_autorelease_pools_zero_each_phase": true,
+  "original_765_pixels_and_padding_and_native_present_preserved": true,
+  "display_optical_wallpaper_FPS_geometry_sleep_audio_wireless_NOT_completed": true,
+  "final_device": "BH905ND69G healthy fastboot; workers exited",
+  "old_r10_failure_not_replayed_or_reclassified": true
+}

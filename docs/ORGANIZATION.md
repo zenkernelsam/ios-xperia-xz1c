@@ -57,3 +57,5 @@ r9轮后15项／25文件／150862932B进入Mac原生Trash，5项／18文件／56
 r10四靴完整返回后，15项／25文件／150868099B进Mac原生Trash；Windows6项／19文件进原生回收站，含最后一个WSL日志writer ELF，目标SHA／保护指纹全部通过。[Mac r10](../reproducibility/stencil-r10-macos-native-trash-20261121.json)／[Windows r10](../reproducibility/stencil-r10-windows-native-recycle-20261121.json)保存路径和原内容SHA。
 
 主体及全部追加Mac共1803项／35167文件／13185344737B（12.28GiB）；回收站未清空，最新91%使用／92GiB可用、build4281044KiB（4.08GiB），其它项目未改。现行50份文档按STATUS／BUILD／OPERATIONS／LAYOUT／INDEX／专题职责整理；本轮编辑前STATUS／ORGANIZATION原文和SHA另归入[r10归档](archive/20261121/r10-close-out/original-document-manifest.json)。GPU完整附件证明和presentation拒绝分开保留，源修补只在正式仓库。
+
+2026-11-22 lifecycle-r2轮两靴完整结束后：Mac14项／28文件／95169204B及Windows3项／11文件／29514408B全部原生回收、目标SHA复核，保留完整native21／PNG6新包、proof和原raw。没有清空垃圾桶，旧R10失败与基线未删。[Mac记录](../reproducibility/presentation-lifecycle-r2-macos-native-trash-20261122.json)／[Windows记录](../reproducibility/presentation-lifecycle-r2-windows-native-recycle-20261122.json)。
