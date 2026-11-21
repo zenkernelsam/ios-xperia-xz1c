@@ -273,15 +273,19 @@ def load(folder,expected=None):
     assert m['files']['libglapi.0.dylib']['sha256']==API and m['files']['georead.dylib']['sha256']==HELPER
     source=m['frontend_build_binding']['source_files']
     if m['frontend_build_binding'].get('depth_tiled_backend_revision'):
-        assert m['frontend_build_binding']['depth_tiled_backend_revision'] in (2,3,4)
+        assert m['frontend_build_binding']['depth_tiled_backend_revision'] in (2,3,4,5)
         assert m['frontend_build_binding']['depth_tiled_independent_FDL5_work_pages']
         assert m['frontend_build_binding']['depth_tiled_GPU_copy_fences_and_retirement_required']
         assert all(path in source for path in ('DepthTiledPlane.h','StencilResourcePair.h','metal_render.c'))
         if m['frontend_build_binding']['depth_tiled_backend_revision']>=3:
             assert 'DepthTiledCopyBox.h' in source
             assert m['frontend_build_binding']['depth_tiled_designated_pipe_box_and_raw_copy_metadata_required']
-        if m['frontend_build_binding']['depth_tiled_backend_revision']==4:
+        if m['frontend_build_binding']['depth_tiled_backend_revision']>=4:
             assert m['frontend_build_binding']['depth_tiled_sysmem_mode_from_pinned_fd5_tile_mode']==3
+        if m['frontend_build_binding']['depth_tiled_backend_revision']==5:
+            assert 'DepthMultisampleCopyGLES.h' in source
+            assert m['frontend_build_binding']['depth_multisample_Load_Store_actual_sample_shader_bitcast']
+            assert m['frontend_build_binding']['stencil_clear_combined_depth_attachment_preserves_depth']
     if m['frontend_build_binding'].get('CA_matrix_revision'):
         assert m['frontend_build_binding']['CA_matrix_revision']==1 and m['frontend_build_binding']['GLES_suite_tests']==9
         assert all(path in source for path in ('ca_matrix_probe.c','CAMatrixProbeValues.h','CAMatrixShaders.h','QuartzCoreMatrixLayout.h'))

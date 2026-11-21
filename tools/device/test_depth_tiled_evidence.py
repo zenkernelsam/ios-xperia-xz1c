@@ -29,6 +29,22 @@ def records(group, work_base=101, sequence=1):
 
 
 class TiledEvidence(unittest.TestCase):
+    def test_real_depth_msaa_shader_route_is_required(self):
+        group=[plane(1,0x40004000,252,2,192,1)]
+        raw=records(group).replace('tile=2','tile=3');rows=[]
+        for line in raw.splitlines():
+            if line.startswith('SWEET DEPTH TILE COPY '):
+                store='direction=store' in line
+                rows.append('SWEET DEPTH TILE SAMPLE original=1 work=101 direction='+('store' if store else 'load')+
+                    ' samples=2 width=17 height=9 src_samples='+('2' if store else '1')+' dst_samples='+('1' if store else '2')+
+                    ' passes='+('1' if store else '2')+' masks='+('0' if store else '3')+' bitcast=1 GPU_only=1')
+            rows.append(line)
+        text='\n'.join(rows)+'\n'
+        self.assertTrue(verify_groups(text,[group],5)['actual_depth_MSAA_sample_shader_bitcast_verified'])
+        for bad in (raw,text.replace('passes=2 masks=3','passes=1 masks=1',1),text.replace('src_samples=2','src_samples=1',1),
+                    text.replace('bitcast=1','bitcast=0',1),text.replace('direction=load samples=2 width=17','direction=load samples=4 width=17',1)):
+            with self.assertRaises(AssertionError):verify_groups(bad,[group],5)
+
     def test_designated_box_and_actual_blit_metadata_required(self):
         group=[plane(1,0x40004000,252,1,128,1)]
         original=records(group);rows=[]

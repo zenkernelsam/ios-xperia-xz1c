@@ -1,0 +1,1474 @@
+{
+  "date": "2026-11-21",
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "GLES_sha256": "e1ed77e8b77a20329d2d56bbe17ced3bbdd347ba339eb6a3b486b5a3b86e68e7",
+  "tiled_revision": 4,
+  "runs": [
+    {
+      "result": "PASS",
+      "decision": "PASS",
+      "reason": "GOALS_STABLE",
+      "boot_dispatches": 1,
+      "reset_requests": 1,
+      "fastboot_returned": true,
+      "reset_to_fastboot_seconds": 39.438000000081956,
+      "return_log_complete": true,
+      "stage": "GLESCPU",
+      "token": "f95228e8c197e9d6",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-depth-tiled-r4-gles-cpu-live-20261121",
+      "image_sha256": "de2f210fda7b9831fbd45c864a7b3d881041b59fe1c51cc16e1e3310f6fdf9b9",
+      "raw_sha256": "02e467359d8ab3afcf690ad261ad222efbc9efbb10cb497d8f83407b4c41b6c8",
+      "raw_bytes": 336634,
+      "original_results_sha256": "2f71fd5b44110f9fd11083594e2dae2447a4b70724d788b3eb069653494ccb81",
+      "ram_library_binding": {
+        "library_sha256": "e1ed77e8b77a20329d2d56bbe17ced3bbdd347ba339eb6a3b486b5a3b86e68e7",
+        "library_bytes": 14784032,
+        "library_fnv64": "18232d33b651e8cf",
+        "blob_sha256": "23050fbb02e4c0265f832e8d1578686bd24b47d6e307c84aca32bd02758acf51",
+        "raw_sha256": "08b8cd7f4654b5778d9a1e6ccac92db79f8a206fdb6d9ee4a9e6a7d77728f039",
+        "manifest_sha256": "f514add681016872b2ae2cfed0779c7e0715cc0a8cdc34d9a7391cabfeae0df5"
+      },
+      "independent_complete_stage_verification_passed": true
+    },
+    {
+      "result": "PASS",
+      "decision": "PASS",
+      "reason": "GOALS_STABLE",
+      "boot_dispatches": 1,
+      "reset_requests": 1,
+      "fastboot_returned": true,
+      "reset_to_fastboot_seconds": 37.76600000006147,
+      "return_log_complete": true,
+      "stage": "GLES9",
+      "token": "c584111fce401d6e",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-depth-tiled-r4-gles-gpu-live-20261121",
+      "image_sha256": "6c8562caa1d15bd103eb16c7d617460939438e0b485b361577729e00adac6bfb",
+      "raw_sha256": "4fa3d2b7183ebbbecf39b674fb010579b9a65974fad44e66457bb4de994bf65a",
+      "raw_bytes": 1500671,
+      "original_results_sha256": "0e516565d3f77e0d24465b61304d2f0e05133a9166e95df725c21fa4534681cc",
+      "ram_library_binding": {
+        "library_sha256": "e1ed77e8b77a20329d2d56bbe17ced3bbdd347ba339eb6a3b486b5a3b86e68e7",
+        "library_bytes": 14784032,
+        "library_fnv64": "18232d33b651e8cf",
+        "blob_sha256": "23050fbb02e4c0265f832e8d1578686bd24b47d6e307c84aca32bd02758acf51",
+        "raw_sha256": "08b8cd7f4654b5778d9a1e6ccac92db79f8a206fdb6d9ee4a9e6a7d77728f039",
+        "manifest_sha256": "f514add681016872b2ae2cfed0779c7e0715cc0a8cdc34d9a7391cabfeae0df5"
+      },
+      "independent_complete_stage_verification_passed": true
+    },
+    {
+      "result": "PASS",
+      "decision": "PASS",
+      "reason": "GOALS_STABLE",
+      "boot_dispatches": 1,
+      "reset_requests": 1,
+      "fastboot_returned": true,
+      "reset_to_fastboot_seconds": 39.03100000019185,
+      "return_log_complete": true,
+      "stage": "referenceCPU",
+      "token": "27205e26606f688f",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-depth-tiled-r4-reference-cpu-live-20261121",
+      "image_sha256": "a8ee981eb74a8a28fb53d9d21d989dd258a9493bcb4ceaf0c242dd1c99da80c2",
+      "raw_sha256": "acaba4ad3679b19a76b95b25b8df1b7a3ecae8ed10c02ba05b2187c4016bde9b",
+      "raw_bytes": 338181,
+      "original_results_sha256": "c87addd1f48cc536917bfcf5c8f7584643ec8a66b8087993e0f8d9a2a8b75141",
+      "ram_library_binding": {
+        "library_sha256": "e1ed77e8b77a20329d2d56bbe17ced3bbdd347ba339eb6a3b486b5a3b86e68e7",
+        "library_bytes": 14784032,
+        "library_fnv64": "18232d33b651e8cf",
+        "blob_sha256": "3b6af4c007a9b7e646dcc192ac37e6e8f972bcb50fc217a1f538f0e937c66c8b",
+        "raw_sha256": "e360672f278bf51813b320be7d5a55b8cbc248048758e6d30de886ff831584b3",
+        "manifest_sha256": "30cc0f19659a5aecfc3efd6a38926a4191701dd8b6c512ee03753b4257fa4600"
+      },
+      "independent_complete_stage_verification_passed": true
+    },
+    {
+      "result": "REVISE",
+      "decision": "REVISE",
+      "reason": "STENCIL8_PROBE_FAILED",
+      "boot_dispatches": 1,
+      "reset_requests": 1,
+      "fastboot_returned": true,
+      "reset_to_fastboot_seconds": 39.57799999997951,
+      "return_log_complete": true,
+      "stage": "native21",
+      "token": "4ffc8fd7ed7bcb16",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-depth-tiled-r4-reference-gpu-live-20261121",
+      "image_sha256": "62fc2bafd5c93bc7e363be06d199d7261d3bf2f735b954278610d463e3efbe70",
+      "raw_sha256": "c97476769360702e927898ce302b66ae0c698c6ef550204a72829a507c6f8638",
+      "raw_bytes": 855767,
+      "original_results_sha256": "aa56d9c119fcf3221c3c7ab6277532ed2398c7284be74d4627b8434ea2126070",
+      "ram_library_binding": {
+        "library_sha256": "e1ed77e8b77a20329d2d56bbe17ced3bbdd347ba339eb6a3b486b5a3b86e68e7",
+        "library_bytes": 14784032,
+        "library_fnv64": "18232d33b651e8cf",
+        "blob_sha256": "3b6af4c007a9b7e646dcc192ac37e6e8f972bcb50fc217a1f538f0e937c66c8b",
+        "raw_sha256": "e360672f278bf51813b320be7d5a55b8cbc248048758e6d30de886ff831584b3",
+        "manifest_sha256": "30cc0f19659a5aecfc3efd6a38926a4191701dd8b6c512ee03753b4257fa4600"
+      },
+      "failure": {
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-depth-tiled-r4-reference-gpu-live-20261121",
+        "version": 730,
+        "token": "4ffc8fd7ed7bcb16",
+        "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+        "image_sha256": "62fc2bafd5c93bc7e363be06d199d7261d3bf2f735b954278610d463e3efbe70",
+        "log_sha256": "c97476769360702e927898ce302b66ae0c698c6ef550204a72829a507c6f8638",
+        "original_result": "REVISE",
+        "original_reason": "STENCIL8_PROBE_FAILED",
+        "actual_failures": [],
+        "native_GPU_failure_results": [],
+        "attachment_failure_results": [
+          {
+            "suite": "STENCIL8",
+            "result": 1,
+            "completed_phases": 2,
+            "final_allocated": 0
+          },
+          {
+            "suite": "MULTISAMPLE",
+            "result": 1,
+            "completed_phases": 1,
+            "final_allocated": 0
+          }
+        ],
+        "actual_program_cache_failures": [],
+        "registry_assertions": [],
+        "actual_AIR_render_failure_results": [],
+        "actual_MRT_context_capability_records": [
+          {
+            "targets": 8,
+            "fp32_rt": 1,
+            "fp32_blend": 0,
+            "fp32_image": 1,
+            "independent_enable": 1,
+            "independent_func": 1,
+            "float_blend": 0,
+            "fbfetch": 0,
+            "no_attachment": 1,
+            "fragment_images": 24,
+            "image_units": 192
+          }
+        ],
+        "actual_MRT_GL_errors": [],
+        "missing_device_API": [],
+        "original_exception_missing_API": [],
+        "original_extension_checkin_timeout_count": 0,
+        "actual_program_prime_incomplete": [],
+        "actual_program_cache_scope_errors": [],
+        "payload_audit": {
+          "image_sha256": "62fc2bafd5c93bc7e363be06d199d7261d3bf2f735b954278610d463e3efbe70",
+          "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+          "blob_count": 8,
+          "complete_payload_reconstructed_from_compiled_kernel": true
+        },
+        "strict_return": {
+          "complete": true,
+          "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+          "current_token": "4ffc8fd7ed7bcb16",
+          "checkpoint_bytes": 847396,
+          "log_bytes": 855767,
+          "log_sha256": "c97476769360702e927898ce302b66ae0c698c6ef550204a72829a507c6f8638",
+          "require_final_drain": true,
+          "marker_positions": [
+            3,
+            23,
+            141,
+            143
+          ],
+          "final_reset_marker_seen": true
+        },
+        "return_seconds_with_health": 39.57799999997951,
+        "failed_stage_not_accepted": true
+      },
+      "partial_stages": {
+        "depth32": {
+          "verified": true,
+          "evidence": {
+            "complete_samples": 1,
+            "incomplete_samples": 0,
+            "phases": 29,
+            "checked_bytes": 74240,
+            "guard_bytes": 38744,
+            "read_bytes": 26100,
+            "records": [
+              {
+                "phase": 0,
+                "sequence": 901,
+                "color_hash": "f6c90a96ef7f6194",
+                "depth_hash": "4741378f99cef880"
+              },
+              {
+                "phase": 1,
+                "sequence": 907,
+                "color_hash": "f6c90a96ef7f6194",
+                "depth_hash": "4741378f99cef880"
+              },
+              {
+                "phase": 2,
+                "sequence": 913,
+                "color_hash": "f6c90a96ef7f6194",
+                "depth_hash": "4741378f99cef880"
+              },
+              {
+                "phase": 3,
+                "sequence": 919,
+                "color_hash": "1f08c13b698af717",
+                "depth_hash": "4741378f99cef880"
+              },
+              {
+                "phase": 4,
+                "sequence": 925,
+                "color_hash": "f6c90a96ef7f6194",
+                "depth_hash": "4741378f99cef880"
+              },
+              {
+                "phase": 5,
+                "sequence": 931,
+                "color_hash": "f6c90a96ef7f6194",
+                "depth_hash": "4741378f99cef880"
+              },
+              {
+                "phase": 6,
+                "sequence": 937,
+                "color_hash": "f6c90a96ef7f6194",
+                "depth_hash": "4741378f99cef880"
+              },
+              {
+                "phase": 7,
+                "sequence": 943,
+                "color_hash": "1f08c13b698af717",
+                "depth_hash": "4741378f99cef880"
+              },
+              {
+                "phase": 8,
+                "sequence": 949,
+                "color_hash": "f6c90a96ef7f6194",
+                "depth_hash": "4741378f99cef880"
+              },
+              {
+                "phase": 9,
+                "sequence": 955,
+                "color_hash": "1f08c13b698af717",
+                "depth_hash": "4741378f99cef880"
+              },
+              {
+                "phase": 10,
+                "sequence": 961,
+                "color_hash": "1f08c13b698af717",
+                "depth_hash": "4741378f99cef880"
+              },
+              {
+                "phase": 11,
+                "sequence": 967,
+                "color_hash": "f6c90a96ef7f6194",
+                "depth_hash": "4741378f99cef880"
+              },
+              {
+                "phase": 12,
+                "sequence": 973,
+                "color_hash": "f6c90a96ef7f6194",
+                "depth_hash": "4741378f99cef880"
+              },
+              {
+                "phase": 13,
+                "sequence": 979,
+                "color_hash": "f6c90a96ef7f6194",
+                "depth_hash": "4741378f99cef880"
+              },
+              {
+                "phase": 14,
+                "sequence": 985,
+                "color_hash": "1f08c13b698af717",
+                "depth_hash": "4741378f99cef880"
+              },
+              {
+                "phase": 15,
+                "sequence": 991,
+                "color_hash": "1f08c13b698af717",
+                "depth_hash": "4741378f99cef880"
+              },
+              {
+                "phase": 16,
+                "sequence": 997,
+                "color_hash": "f6c90a96ef7f6194",
+                "depth_hash": "4741378f99cef880"
+              },
+              {
+                "phase": 17,
+                "sequence": 1003,
+                "color_hash": "1f08c13b698af717",
+                "depth_hash": "4741378f99cef880"
+              },
+              {
+                "phase": 18,
+                "sequence": 1009,
+                "color_hash": "f6c90a96ef7f6194",
+                "depth_hash": "4741378f99cef880"
+              },
+              {
+                "phase": 19,
+                "sequence": 1015,
+                "color_hash": "1f08c13b698af717",
+                "depth_hash": "4741378f99cef880"
+              },
+              {
+                "phase": 20,
+                "sequence": 1021,
+                "color_hash": "1f08c13b698af717",
+                "depth_hash": "4741378f99cef880"
+              },
+              {
+                "phase": 21,
+                "sequence": 1027,
+                "color_hash": "1f08c13b698af717",
+                "depth_hash": "4741378f99cef880"
+              },
+              {
+                "phase": 22,
+                "sequence": 1033,
+                "color_hash": "1f08c13b698af717",
+                "depth_hash": "4741378f99cef880"
+              },
+              {
+                "phase": 23,
+                "sequence": 1039,
+                "color_hash": "1f08c13b698af717",
+                "depth_hash": "4741378f99cef880"
+              },
+              {
+                "phase": 24,
+                "sequence": 1045,
+                "color_hash": "1f08c13b698af717",
+                "depth_hash": "326de098dfd22e4b"
+              },
+              {
+                "phase": 25,
+                "sequence": 1051,
+                "color_hash": "f6c90a96ef7f6194",
+                "depth_hash": "326de098dfd22e4b"
+              },
+              {
+                "phase": 26,
+                "sequence": 1057,
+                "color_hash": "1f08c13b698af717",
+                "depth_hash": "326de098dfd22e4b"
+              },
+              {
+                "phase": 27,
+                "sequence": 1063,
+                "color_hash": "f6c90a96ef7f6194",
+                "depth_hash": "326de098dfd22e4b"
+              },
+              {
+                "phase": 28,
+                "sequence": 1066,
+                "color_hash": "f6c90a96ef7f6194",
+                "depth_hash": "4c36570a90046120"
+              }
+            ],
+            "original_depth_handle": 60,
+            "original_GPU_address": "0x40564000",
+            "original_GPU_offset": 64,
+            "original_depth32_pages_compare_load_clear_and_padding_verified": true,
+            "GPU_fences_strictly_increasing": true,
+            "final_allocated": 0,
+            "stencil_MSAA_and_full_UI_not_inferred": true,
+            "tiled_work_planes": {
+              "revision": 4,
+              "independent_FDL5_work_pages": true,
+              "GPU_copy_and_fence_verified": true,
+              "original_stride_offset_and_IOVA_verified": true,
+              "work_reference_retirement_verified": true,
+              "actual_designated_pipe_box_and_raw_copy_metadata_verified": true,
+              "actual_pinned_fd5_sysmem_tile_mode_verified": true,
+              "operations": 29,
+              "planes": 29,
+              "records": [
+                [
+                  {
+                    "original": 60,
+                    "work": 85,
+                    "work_GPU": "0x40574000",
+                    "format": 252,
+                    "samples": 1,
+                    "pitch": 256,
+                    "bytes": 4096,
+                    "load": 2,
+                    "publish": true,
+                    "copy_sequences": [
+                      900
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "original": 60,
+                    "work": 47,
+                    "work_GPU": "0x4054c000",
+                    "format": 252,
+                    "samples": 1,
+                    "pitch": 256,
+                    "bytes": 4096,
+                    "load": 2,
+                    "publish": true,
+                    "copy_sequences": [
+                      906
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "original": 60,
+                    "work": 47,
+                    "work_GPU": "0x4054c000",
+                    "format": 252,
+                    "samples": 1,
+                    "pitch": 256,
+                    "bytes": 4096,
+                    "load": 2,
+                    "publish": true,
+                    "copy_sequences": [
+                      912
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "original": 60,
+                    "work": 47,
+                    "work_GPU": "0x4054c000",
+                    "format": 252,
+                    "samples": 1,
+                    "pitch": 256,
+                    "bytes": 4096,
+                    "load": 2,
+                    "publish": true,
+                    "copy_sequences": [
+                      918
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "original": 60,
+                    "work": 47,
+                    "work_GPU": "0x4054c000",
+                    "format": 252,
+                    "samples": 1,
+                    "pitch": 256,
+                    "bytes": 4096,
+                    "load": 2,
+                    "publish": true,
+                    "copy_sequences": [
+                      924
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "original": 60,
+                    "work": 47,
+                    "work_GPU": "0x4054c000",
+                    "format": 252,
+                    "samples": 1,
+                    "pitch": 256,
+                    "bytes": 4096,
+                    "load": 2,
+                    "publish": true,
+                    "copy_sequences": [
+                      930
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "original": 60,
+                    "work": 47,
+                    "work_GPU": "0x4054c000",
+                    "format": 252,
+                    "samples": 1,
+                    "pitch": 256,
+                    "bytes": 4096,
+                    "load": 2,
+                    "publish": true,
+                    "copy_sequences": [
+                      936
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "original": 60,
+                    "work": 47,
+                    "work_GPU": "0x4054c000",
+                    "format": 252,
+                    "samples": 1,
+                    "pitch": 256,
+                    "bytes": 4096,
+                    "load": 2,
+                    "publish": true,
+                    "copy_sequences": [
+                      942
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "original": 60,
+                    "work": 47,
+                    "work_GPU": "0x4054c000",
+                    "format": 252,
+                    "samples": 1,
+                    "pitch": 256,
+                    "bytes": 4096,
+                    "load": 2,
+                    "publish": true,
+                    "copy_sequences": [
+                      948
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "original": 60,
+                    "work": 47,
+                    "work_GPU": "0x4054c000",
+                    "format": 252,
+                    "samples": 1,
+                    "pitch": 256,
+                    "bytes": 4096,
+                    "load": 2,
+                    "publish": true,
+                    "copy_sequences": [
+                      954
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "original": 60,
+                    "work": 47,
+                    "work_GPU": "0x4054c000",
+                    "format": 252,
+                    "samples": 1,
+                    "pitch": 256,
+                    "bytes": 4096,
+                    "load": 2,
+                    "publish": true,
+                    "copy_sequences": [
+                      960
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "original": 60,
+                    "work": 47,
+                    "work_GPU": "0x4054c000",
+                    "format": 252,
+                    "samples": 1,
+                    "pitch": 256,
+                    "bytes": 4096,
+                    "load": 2,
+                    "publish": true,
+                    "copy_sequences": [
+                      966
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "original": 60,
+                    "work": 47,
+                    "work_GPU": "0x4054c000",
+                    "format": 252,
+                    "samples": 1,
+                    "pitch": 256,
+                    "bytes": 4096,
+                    "load": 2,
+                    "publish": true,
+                    "copy_sequences": [
+                      972
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "original": 60,
+                    "work": 47,
+                    "work_GPU": "0x4054c000",
+                    "format": 252,
+                    "samples": 1,
+                    "pitch": 256,
+                    "bytes": 4096,
+                    "load": 2,
+                    "publish": true,
+                    "copy_sequences": [
+                      978
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "original": 60,
+                    "work": 47,
+                    "work_GPU": "0x4054c000",
+                    "format": 252,
+                    "samples": 1,
+                    "pitch": 256,
+                    "bytes": 4096,
+                    "load": 2,
+                    "publish": true,
+                    "copy_sequences": [
+                      984
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "original": 60,
+                    "work": 47,
+                    "work_GPU": "0x4054c000",
+                    "format": 252,
+                    "samples": 1,
+                    "pitch": 256,
+                    "bytes": 4096,
+                    "load": 2,
+                    "publish": true,
+                    "copy_sequences": [
+                      990
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "original": 60,
+                    "work": 47,
+                    "work_GPU": "0x4054c000",
+                    "format": 252,
+                    "samples": 1,
+                    "pitch": 256,
+                    "bytes": 4096,
+                    "load": 2,
+                    "publish": true,
+                    "copy_sequences": [
+                      996
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "original": 60,
+                    "work": 47,
+                    "work_GPU": "0x4054c000",
+                    "format": 252,
+                    "samples": 1,
+                    "pitch": 256,
+                    "bytes": 4096,
+                    "load": 2,
+                    "publish": true,
+                    "copy_sequences": [
+                      1002
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "original": 60,
+                    "work": 47,
+                    "work_GPU": "0x4054c000",
+                    "format": 252,
+                    "samples": 1,
+                    "pitch": 256,
+                    "bytes": 4096,
+                    "load": 2,
+                    "publish": true,
+                    "copy_sequences": [
+                      1008
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "original": 60,
+                    "work": 47,
+                    "work_GPU": "0x4054c000",
+                    "format": 252,
+                    "samples": 1,
+                    "pitch": 256,
+                    "bytes": 4096,
+                    "load": 2,
+                    "publish": true,
+                    "copy_sequences": [
+                      1014
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "original": 60,
+                    "work": 47,
+                    "work_GPU": "0x4054c000",
+                    "format": 252,
+                    "samples": 1,
+                    "pitch": 256,
+                    "bytes": 4096,
+                    "load": 2,
+                    "publish": true,
+                    "copy_sequences": [
+                      1020
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "original": 60,
+                    "work": 47,
+                    "work_GPU": "0x4054c000",
+                    "format": 252,
+                    "samples": 1,
+                    "pitch": 256,
+                    "bytes": 4096,
+                    "load": 2,
+                    "publish": true,
+                    "copy_sequences": [
+                      1026
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "original": 60,
+                    "work": 47,
+                    "work_GPU": "0x4054c000",
+                    "format": 252,
+                    "samples": 1,
+                    "pitch": 256,
+                    "bytes": 4096,
+                    "load": 2,
+                    "publish": true,
+                    "copy_sequences": [
+                      1032
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "original": 60,
+                    "work": 47,
+                    "work_GPU": "0x4054c000",
+                    "format": 252,
+                    "samples": 1,
+                    "pitch": 256,
+                    "bytes": 4096,
+                    "load": 2,
+                    "publish": true,
+                    "copy_sequences": [
+                      1038
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "original": 60,
+                    "work": 47,
+                    "work_GPU": "0x4054c000",
+                    "format": 252,
+                    "samples": 1,
+                    "pitch": 256,
+                    "bytes": 4096,
+                    "load": 2,
+                    "publish": true,
+                    "copy_sequences": [
+                      1044
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "original": 60,
+                    "work": 47,
+                    "work_GPU": "0x4054c000",
+                    "format": 252,
+                    "samples": 1,
+                    "pitch": 256,
+                    "bytes": 4096,
+                    "load": 1,
+                    "publish": true,
+                    "copy_sequences": [
+                      1046,
+                      1050
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "original": 60,
+                    "work": 47,
+                    "work_GPU": "0x4054c000",
+                    "format": 252,
+                    "samples": 1,
+                    "pitch": 256,
+                    "bytes": 4096,
+                    "load": 1,
+                    "publish": true,
+                    "copy_sequences": [
+                      1052,
+                      1056
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "original": 60,
+                    "work": 47,
+                    "work_GPU": "0x4054c000",
+                    "format": 252,
+                    "samples": 1,
+                    "pitch": 256,
+                    "bytes": 4096,
+                    "load": 1,
+                    "publish": true,
+                    "copy_sequences": [
+                      1058,
+                      1062
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "original": 60,
+                    "work": 58,
+                    "work_GPU": "0x4055c000",
+                    "format": 252,
+                    "samples": 1,
+                    "pitch": 256,
+                    "bytes": 4096,
+                    "load": 2,
+                    "publish": true,
+                    "copy_sequences": [
+                      1066
+                    ]
+                  }
+                ]
+              ]
+            }
+          }
+        },
+        "memoryless": {
+          "verified": true,
+          "evidence": {
+            "complete_samples": 1,
+            "incomplete_samples": 0,
+            "phases": 8,
+            "checked_bytes": 19456,
+            "guard_bytes": 10888,
+            "records": [
+              {
+                "phase": 0,
+                "sequence": 1106,
+                "operations": 2,
+                "checked_bytes": 2560,
+                "color_hash": "1f08c13b698af717",
+                "depth_hash": "326de098dfd22e4b",
+                "stencil_hash": "0000000000000000"
+              },
+              {
+                "phase": 1,
+                "sequence": 1112,
+                "operations": 1,
+                "checked_bytes": 2560,
+                "color_hash": "f6c90a96ef7f6194",
+                "depth_hash": "ee6a99493d5cc79b",
+                "stencil_hash": "0000000000000000"
+              },
+              {
+                "phase": 2,
+                "sequence": 1124,
+                "operations": 2,
+                "checked_bytes": 1984,
+                "color_hash": "1f08c13b698af717",
+                "depth_hash": "0000000000000000",
+                "stencil_hash": "da1063780f0bbc44"
+              },
+              {
+                "phase": 3,
+                "sequence": 1143,
+                "operations": 2,
+                "checked_bytes": 3264,
+                "color_hash": "1f08c13b698af717",
+                "depth_hash": "326de098dfd22e4b",
+                "stencil_hash": "02e450fc938adea9"
+              },
+              {
+                "phase": 4,
+                "sequence": 1145,
+                "operations": 1,
+                "checked_bytes": 1280,
+                "color_hash": "1f08c13b698af717",
+                "depth_hash": "0000000000000000",
+                "stencil_hash": "0000000000000000"
+              },
+              {
+                "phase": 5,
+                "sequence": 1146,
+                "operations": 1,
+                "checked_bytes": 1280,
+                "color_hash": "ae58cb1e5ee24ae6",
+                "depth_hash": "0000000000000000",
+                "stencil_hash": "0000000000000000"
+              },
+              {
+                "phase": 6,
+                "sequence": 1155,
+                "operations": 1,
+                "checked_bytes": 3264,
+                "color_hash": "1f08c13b698af717",
+                "depth_hash": "326de098dfd22e4b",
+                "stencil_hash": "5b81eab704ddb3fc"
+              },
+              {
+                "phase": 7,
+                "sequence": 1164,
+                "operations": 1,
+                "checked_bytes": 3264,
+                "color_hash": "f6c90a96ef7f6194",
+                "depth_hash": "ee6a99493d5cc79b",
+                "stencil_hash": "3a95557d20d485a0"
+              }
+            ],
+            "original_pass_pages": [
+              {
+                "phase": 0,
+                "slot": 8,
+                "pass_id": 1,
+                "handle": 114,
+                "gpu_address": "0x406d0000",
+                "public_identity": "0000000103579c00"
+              },
+              {
+                "phase": 1,
+                "slot": 8,
+                "pass_id": 2,
+                "handle": 47,
+                "gpu_address": "0x4054c000",
+                "public_identity": "0000000103579c00"
+              },
+              {
+                "phase": 2,
+                "slot": 9,
+                "pass_id": 3,
+                "handle": 47,
+                "gpu_address": "0x4054c000",
+                "public_identity": "0000000103578590"
+              },
+              {
+                "phase": 3,
+                "slot": 8,
+                "pass_id": 4,
+                "handle": 42,
+                "gpu_address": "0x4054c000",
+                "public_identity": "0000000103579c00"
+              },
+              {
+                "phase": 3,
+                "slot": 9,
+                "pass_id": 4,
+                "handle": 47,
+                "gpu_address": "0x40678000",
+                "public_identity": "0000000103578590"
+              },
+              {
+                "phase": 4,
+                "slot": 0,
+                "pass_id": 5,
+                "handle": 42,
+                "gpu_address": "0x4054c000",
+                "public_identity": "00000001035beac0"
+              },
+              {
+                "phase": 5,
+                "slot": 0,
+                "pass_id": 6,
+                "handle": 139,
+                "gpu_address": "0x40970000",
+                "public_identity": "00000001035beac0"
+              },
+              {
+                "phase": 6,
+                "slot": 8,
+                "pass_id": 7,
+                "handle": 152,
+                "gpu_address": "0x409a4000",
+                "public_identity": "0000000103579c00"
+              },
+              {
+                "phase": 6,
+                "slot": 9,
+                "pass_id": 7,
+                "handle": 153,
+                "gpu_address": "0x409a8000",
+                "public_identity": "0000000103578590"
+              },
+              {
+                "phase": 7,
+                "slot": 8,
+                "pass_id": 8,
+                "handle": 154,
+                "gpu_address": "0x409ac000",
+                "public_identity": "0000000103579c00"
+              },
+              {
+                "phase": 7,
+                "slot": 9,
+                "pass_id": 8,
+                "handle": 155,
+                "gpu_address": "0x409b0000",
+                "public_identity": "0000000103578590"
+              }
+            ],
+            "exact_author_pixels_original_private_pass_storage_and_guards_verified": true,
+            "two_queue_pages_are_independent": true,
+            "public_CPU_buffer_not_exposed": true,
+            "final_allocated": 0,
+            "raw_is_actual_device_evidence_only_when_called_from_verified_trial": true,
+            "tiled_work_planes": [
+              {
+                "phase": 0,
+                "revision": 4,
+                "independent_FDL5_work_pages": true,
+                "GPU_copy_and_fence_verified": true,
+                "original_stride_offset_and_IOVA_verified": true,
+                "work_reference_retirement_verified": true,
+                "actual_designated_pipe_box_and_raw_copy_metadata_verified": true,
+                "actual_pinned_fd5_sysmem_tile_mode_verified": true,
+                "operations": 2,
+                "planes": 2,
+                "records": [
+                  [
+                    {
+                      "original": 114,
+                      "work": 116,
+                      "work_GPU": "0x40738000",
+                      "format": 252,
+                      "samples": 1,
+                      "pitch": 256,
+                      "bytes": 4096,
+                      "load": 2,
+                      "publish": true,
+                      "copy_sequences": [
+                        1099
+                      ]
+                    }
+                  ],
+                  [
+                    {
+                      "original": 114,
+                      "work": 117,
+                      "work_GPU": "0x407b4000",
+                      "format": 252,
+                      "samples": 1,
+                      "pitch": 256,
+                      "bytes": 4096,
+                      "load": 1,
+                      "publish": true,
+                      "copy_sequences": [
+                        1101,
+                        1105
+                      ]
+                    }
+                  ]
+                ]
+              },
+              {
+                "phase": 1,
+                "revision": 4,
+                "independent_FDL5_work_pages": true,
+                "GPU_copy_and_fence_verified": true,
+                "original_stride_offset_and_IOVA_verified": true,
+                "work_reference_retirement_verified": true,
+                "actual_designated_pipe_box_and_raw_copy_metadata_verified": true,
+                "actual_pinned_fd5_sysmem_tile_mode_verified": true,
+                "operations": 1,
+                "planes": 1,
+                "records": [
+                  [
+                    {
+                      "original": 47,
+                      "work": 114,
+                      "work_GPU": "0x406d0000",
+                      "format": 252,
+                      "samples": 1,
+                      "pitch": 256,
+                      "bytes": 4096,
+                      "load": 2,
+                      "publish": true,
+                      "copy_sequences": [
+                        1111
+                      ]
+                    }
+                  ]
+                ]
+              },
+              {
+                "phase": 2,
+                "revision": 4,
+                "independent_FDL5_work_pages": true,
+                "GPU_copy_and_fence_verified": true,
+                "original_stride_offset_and_IOVA_verified": true,
+                "work_reference_retirement_verified": true,
+                "actual_designated_pipe_box_and_raw_copy_metadata_verified": true,
+                "actual_pinned_fd5_sysmem_tile_mode_verified": true,
+                "operations": 2,
+                "planes": 2,
+                "records": [
+                  [
+                    {
+                      "original": 47,
+                      "work": 120,
+                      "work_GPU": "0x40800000",
+                      "format": 253,
+                      "samples": 1,
+                      "pitch": 128,
+                      "bytes": 4096,
+                      "load": 2,
+                      "publish": true,
+                      "copy_sequences": [
+                        1117
+                      ]
+                    }
+                  ],
+                  [
+                    {
+                      "original": 47,
+                      "work": 125,
+                      "work_GPU": "0x40814000",
+                      "format": 253,
+                      "samples": 1,
+                      "pitch": 128,
+                      "bytes": 4096,
+                      "load": 1,
+                      "publish": true,
+                      "copy_sequences": [
+                        1119,
+                        1123
+                      ]
+                    }
+                  ]
+                ]
+              },
+              {
+                "phase": 3,
+                "revision": 4,
+                "independent_FDL5_work_pages": true,
+                "GPU_copy_and_fence_verified": true,
+                "original_stride_offset_and_IOVA_verified": true,
+                "work_reference_retirement_verified": true,
+                "actual_designated_pipe_box_and_raw_copy_metadata_verified": true,
+                "actual_pinned_fd5_sysmem_tile_mode_verified": true,
+                "operations": 2,
+                "planes": 4,
+                "records": [
+                  [
+                    {
+                      "original": 42,
+                      "work": 129,
+                      "work_GPU": "0x4068c000",
+                      "format": 252,
+                      "samples": 1,
+                      "pitch": 256,
+                      "bytes": 4096,
+                      "load": 2,
+                      "publish": true,
+                      "copy_sequences": [
+                        1130
+                      ]
+                    },
+                    {
+                      "original": 47,
+                      "work": 130,
+                      "work_GPU": "0x40690000",
+                      "format": 253,
+                      "samples": 1,
+                      "pitch": 128,
+                      "bytes": 4096,
+                      "load": 2,
+                      "publish": true,
+                      "copy_sequences": [
+                        1132
+                      ]
+                    }
+                  ],
+                  [
+                    {
+                      "original": 42,
+                      "work": 137,
+                      "work_GPU": "0x40968000",
+                      "format": 252,
+                      "samples": 1,
+                      "pitch": 256,
+                      "bytes": 4096,
+                      "load": 1,
+                      "publish": true,
+                      "copy_sequences": [
+                        1134,
+                        1140
+                      ]
+                    },
+                    {
+                      "original": 47,
+                      "work": 138,
+                      "work_GPU": "0x4096c000",
+                      "format": 253,
+                      "samples": 1,
+                      "pitch": 128,
+                      "bytes": 4096,
+                      "load": 1,
+                      "publish": true,
+                      "copy_sequences": [
+                        1136,
+                        1142
+                      ]
+                    }
+                  ]
+                ]
+              },
+              {
+                "phase": 6,
+                "revision": 4,
+                "independent_FDL5_work_pages": true,
+                "GPU_copy_and_fence_verified": true,
+                "original_stride_offset_and_IOVA_verified": true,
+                "work_reference_retirement_verified": true,
+                "actual_designated_pipe_box_and_raw_copy_metadata_verified": true,
+                "actual_pinned_fd5_sysmem_tile_mode_verified": true,
+                "operations": 1,
+                "planes": 2,
+                "records": [
+                  [
+                    {
+                      "original": 152,
+                      "work": 137,
+                      "work_GPU": "0x40968000",
+                      "format": 252,
+                      "samples": 1,
+                      "pitch": 256,
+                      "bytes": 4096,
+                      "load": 2,
+                      "publish": true,
+                      "copy_sequences": [
+                        1152
+                      ]
+                    },
+                    {
+                      "original": 153,
+                      "work": 138,
+                      "work_GPU": "0x4096c000",
+                      "format": 253,
+                      "samples": 1,
+                      "pitch": 128,
+                      "bytes": 4096,
+                      "load": 2,
+                      "publish": true,
+                      "copy_sequences": [
+                        1154
+                      ]
+                    }
+                  ]
+                ]
+              },
+              {
+                "phase": 7,
+                "revision": 4,
+                "independent_FDL5_work_pages": true,
+                "GPU_copy_and_fence_verified": true,
+                "original_stride_offset_and_IOVA_verified": true,
+                "work_reference_retirement_verified": true,
+                "actual_designated_pipe_box_and_raw_copy_metadata_verified": true,
+                "actual_pinned_fd5_sysmem_tile_mode_verified": true,
+                "operations": 1,
+                "planes": 2,
+                "records": [
+                  [
+                    {
+                      "original": 154,
+                      "work": 120,
+                      "work_GPU": "0x4067c000",
+                      "format": 252,
+                      "samples": 1,
+                      "pitch": 256,
+                      "bytes": 4096,
+                      "load": 2,
+                      "publish": true,
+                      "copy_sequences": [
+                        1161
+                      ]
+                    },
+                    {
+                      "original": 155,
+                      "work": 137,
+                      "work_GPU": "0x40968000",
+                      "format": 253,
+                      "samples": 1,
+                      "pitch": 128,
+                      "bytes": 4096,
+                      "load": 2,
+                      "publish": true,
+                      "copy_sequences": [
+                        1163
+                      ]
+                    }
+                  ]
+                ]
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "original_author_pages": [
+    {
+      "suite": "stencil8",
+      "phase": 2,
+      "slot": 0,
+      "handle": 59,
+      "GPU": "0x40560000",
+      "sequence": 1094,
+      "byte_count": 1280,
+      "pitch": 128,
+      "offset": 64,
+      "format": 80,
+      "samples": 1,
+      "fnv": "f6c90a96ef7f6194",
+      "sha256": "78ad38bdd5b8b9c7878ba08ea0eb4fe0276765a441ca3b111aa0a30904e3ad2d",
+      "file": "stencil8-phase2-slot0.bin"
+    },
+    {
+      "suite": "stencil8",
+      "phase": 2,
+      "slot": 8,
+      "handle": 60,
+      "GPU": "0x40564000",
+      "sequence": 1094,
+      "byte_count": 1280,
+      "pitch": 128,
+      "offset": 64,
+      "format": 252,
+      "samples": 1,
+      "fnv": "4741378f99cef880",
+      "sha256": "d29581ba790bd7dde6460fbb41545de863b419983907e5ddb31f4821929b20e8",
+      "file": "stencil8-phase2-slot8.bin"
+    },
+    {
+      "suite": "stencil8",
+      "phase": 2,
+      "slot": 9,
+      "handle": 63,
+      "GPU": "0x4056c000",
+      "sequence": 1094,
+      "byte_count": 768,
+      "pitch": 64,
+      "offset": 64,
+      "format": 253,
+      "samples": 1,
+      "fnv": "7c11b71758d0f732",
+      "sha256": "9d6b45f086754014404f39bb41c1744f99764e44dc00fc660c08f628983dfbd5",
+      "file": "stencil8-phase2-slot9.bin",
+      "logical_zero_values": 153,
+      "logical_pixels": 153,
+      "expected_stencil_value": 3
+    },
+    {
+      "suite": "msaa",
+      "phase": 1,
+      "slot": 0,
+      "handle": 42,
+      "GPU": "0x4054c000",
+      "sequence": 1191,
+      "byte_count": 1856,
+      "pitch": 192,
+      "offset": 64,
+      "format": 80,
+      "samples": 2,
+      "fnv": "28c5847a1074f74d",
+      "sha256": "bf38424a8040025d6dce70d0a45bdb4f97356ab74d38c94ac21fdafd551c08f3",
+      "file": "msaa-phase1-slot0.bin"
+    },
+    {
+      "suite": "msaa",
+      "phase": 1,
+      "slot": 8,
+      "handle": 57,
+      "GPU": "0x40550000",
+      "sequence": 1191,
+      "byte_count": 1856,
+      "pitch": 192,
+      "offset": 64,
+      "format": 252,
+      "samples": 2,
+      "fnv": "61e667652384bbd2",
+      "sha256": "9da5acb1fd996d16d9c0667af6d6789a7b089b74e88a2827554cc477d11377e8",
+      "file": "msaa-phase1-slot8.bin"
+    },
+    {
+      "suite": "msaa",
+      "phase": 1,
+      "slot": 9,
+      "handle": 58,
+      "GPU": "0x4055c000",
+      "sequence": 1191,
+      "byte_count": 704,
+      "pitch": 64,
+      "offset": 64,
+      "format": 253,
+      "samples": 2,
+      "fnv": "cf632807c5e7a194",
+      "sha256": "d3f87b8e3fc54282ae1558fbe61352688a9e52cc02e54c4f971283600b04cbfa",
+      "file": "msaa-phase1-slot9.bin"
+    },
+    {
+      "suite": "msaa",
+      "phase": 1,
+      "slot": 10,
+      "handle": 59,
+      "GPU": "0x40560000",
+      "sequence": 1191,
+      "byte_count": 1280,
+      "pitch": 128,
+      "offset": 64,
+      "format": 80,
+      "samples": 1,
+      "fnv": "3052a32e73d2c725",
+      "sha256": "57e2b35a7061c12f09d836f1a4a65e119f22667036f430aac3a08fd23775e37f",
+      "file": "msaa-phase1-slot10.bin"
+    },
+    {
+      "suite": "msaa",
+      "phase": 1,
+      "slot": 11,
+      "handle": 60,
+      "GPU": "0x40564000",
+      "sequence": 1191,
+      "byte_count": 1280,
+      "pitch": 128,
+      "offset": 64,
+      "format": 252,
+      "samples": 1,
+      "fnv": "81fc98983e2d8c25",
+      "sha256": "3a4d4a2e4b0373cbe87467c591344bacd17487b5b8e34eee8f68834c54673017",
+      "file": "msaa-phase1-slot11.bin"
+    }
+  ],
+  "partial_Depth32_29_and_Memoryless_8_verified_with_exact_GPU_work_copy_fences": true,
+  "whole_native21_PNG_original_UI_geometry_peripherals_NOT_complete": true,
+  "failure_not_replayed": true,
+  "production_baseline_NOT_promoted": true,
+  "final_device": "BH905ND69G healthy fastboot; no worker",
+  "next_r5_hypotheses": [
+    "Combined Z32/S8 stencil clear explicitly attaches its depth primary with depth writes disabled.",
+    "Multisample depth uses real per-sample GLES Load/Store bitcasts instead of a vector-format tiled alias."
+  ],
+  "MSAA_phase1_depth_mismatch_bytes": 34,
+  "MSAA_phase1_color_stencil_and_all_guards_preserved": true
+}

@@ -55,6 +55,18 @@ static struct pipe_resource *sweet_tiled_alias(struct st_context *context,uint32
         actual->layout=*layout;actual->layout.format=format;actual->layout.nr_samples=samples;}
     return resource;
 }
+static int sweet_depth_tiled_complete(struct st_context *context,SweetDepthTiledPlane *plane,bool to_original)
+{
+    struct pipe_context *pipe=threaded_context_unwrap_sync(context->pipe);if(!pipe)return -ENOTSUP;
+    struct pipe_fence_handle *fence=NULL;pipe->flush(pipe,&fence,0);
+    bool completed=fence && context->screen->fence_finish(context->screen,pipe,fence,UINT64_C(5000000000));
+    if(fence)context->screen->fence_reference(context->screen,&fence,NULL);
+    uint32_t sequence=0;int result=completed?sweet_drm_metal_buffer_sequence(to_original?plane->original.handle:plane->work.handle,&sequence):-ETIMEDOUT;
+    if(!result)result=sweetgl_metal_buffer_synchronize(to_original?plane->original.handle:plane->work.handle);
+    sweet_drm_log("SWEET DEPTH TILE COPY original=%u work=%u direction=%s samples=%u width=%u height=%u result=%d sequence=%u GPU_only=1 fence=%u",
+        plane->original.handle,plane->work.handle,to_original?"store":"load",plane->samples,plane->original.width,plane->original.height,result,sequence,completed);
+    return result;
+}
 static int sweet_depth_tiled_copy(struct st_context *context,SweetDepthTiledPlane *plane,bool to_original)
 {
     if(!context || !plane || !plane->linear || !plane->raw || !plane->original.handle)return -EINVAL;
@@ -84,14 +96,7 @@ static int sweet_depth_tiled_copy(struct st_context *context,SweetDepthTiledPlan
     // This exact hardware entry reports whether its format/layout was admitted.
     // Do not fall back through resource_copy_region to a possible CPU transfer.
     if(!fd5_blitter_blit(native,&copy)){sweet_drm_log("SWEET DEPTH TILE REJECT original=%u work=%u stage=fd5_blitter result=%d dispatched=0",plane->original.handle,plane->work.handle,-ENOTSUP);return -ENOTSUP;}
-    struct pipe_fence_handle *fence=NULL;pipe->flush(pipe,&fence,0);
-    bool completed=fence && context->screen->fence_finish(context->screen,pipe,fence,UINT64_C(5000000000));
-    if(fence)context->screen->fence_reference(context->screen,&fence,NULL);
-    uint32_t sequence=0;int result=completed?sweet_drm_metal_buffer_sequence(to_original?plane->original.handle:plane->work.handle,&sequence):-ETIMEDOUT;
-    if(!result)result=sweetgl_metal_buffer_synchronize(to_original?plane->original.handle:plane->work.handle);
-    sweet_drm_log("SWEET DEPTH TILE COPY original=%u work=%u direction=%s samples=%u width=%u height=%u result=%d sequence=%u GPU_only=1 fence=%u",
-        plane->original.handle,plane->work.handle,to_original?"store":"load",plane->samples,plane->original.width,plane->original.height,result,sequence,completed);
-    return result;
+    return sweet_depth_tiled_complete(context,plane,to_original);
 }
 static int sweet_depth_tiled_create(struct st_context *context,const SweetShaderTextureBinding *original,unsigned samples,
     unsigned load,SweetDepthTiledPlane *plane)
@@ -120,7 +125,7 @@ static int sweet_depth_tiled_create(struct st_context *context,const SweetShader
     sweet_drm_log("SWEET DEPTH TILE MAP original=%u work=%u original_GPU=%#llx work_GPU=%#llx load=%u width=%u height=%u cpp=%u raw_cpp=%u alias_samples=1",
         original->handle,plane->work.handle,(unsigned long long)backing.gpu_address,(unsigned long long)plane->work.gpu_address,load,
         original->width,original->height,layout.cpp,fd_resource(plane->raw)->layout.cpp);
-    if(load==1){result=sweet_depth_tiled_copy(context,plane,false);if(result)goto failure;}
+    if(load==1 && !(original->format==252 && samples>1)){result=sweet_depth_tiled_copy(context,plane,false);if(result)goto failure;}
     return 0;
 failure:
     sweet_depth_tiled_retire(plane);return result;

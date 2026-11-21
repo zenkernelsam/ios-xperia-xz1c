@@ -14,7 +14,11 @@ static inline int sweet_stencil8_clear_samples(GLuint texture,unsigned width,uns
             glGetShaderiv(shaders[i],GL_COMPILE_STATUS,&ok);if(!ok)goto done;}
         program=glCreateProgram();for(unsigned i=0;i<2;++i)glAttachShader(program,shaders[i]);glLinkProgram(program);
         glGetProgramiv(program,GL_LINK_STATUS,&ok);if(!ok)goto done;*cache=program;}
-    glGenFramebuffers(1,&fbo);glBindFramebuffer(GL_FRAMEBUFFER,fbo);glFramebufferTexture2D(GL_FRAMEBUFFER,GL_STENCIL_ATTACHMENT,samples>1?GL_TEXTURE_2D_MULTISAMPLE:GL_TEXTURE_2D,texture,0);
+    glGenFramebuffers(1,&fbo);glBindFramebuffer(GL_FRAMEBUFFER,fbo);
+    // This is the combined Z32/S8 image backed by the original separate planes.
+    // Keep its primary depth attachment explicit; depth test/writes stay off.
+    glFramebufferTexture2D(GL_FRAMEBUFFER,GL_DEPTH_ATTACHMENT,samples>1?GL_TEXTURE_2D_MULTISAMPLE:GL_TEXTURE_2D,texture,0);
+    glFramebufferTexture2D(GL_FRAMEBUFFER,GL_STENCIL_ATTACHMENT,samples>1?GL_TEXTURE_2D_MULTISAMPLE:GL_TEXTURE_2D,texture,0);
     const GLenum no_color=GL_NONE;glDrawBuffers(1,&no_color);glReadBuffer(GL_NONE);
     if(glCheckFramebufferStatus(GL_FRAMEBUFFER)!=GL_FRAMEBUFFER_COMPLETE)goto done;
     glUseProgram(program);glViewport(0,0,width,height);glEnable(GL_SCISSOR_TEST);glScissor(0,0,width,height);

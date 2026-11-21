@@ -8,6 +8,7 @@ PAIR = re.compile(r'SWEET DEPTH TILE PAIR depth=(\d+) stencil=(\d+) depth_work=(
 RETIRE = re.compile(r'SWEET DEPTH TILE RETIRE original=(\d+) work=(\d+) result=0 references_retired=1')
 BLIT = re.compile(r'SWEET DEPTH TILE BLIT original=(\d+) work=(\d+) direction=(load|store) gen=(\d+) src_fmt=(\d+) dst_fmt=(\d+) src_color=(\d+) dst_color=(\d+) src_samples=(\d+) dst_samples=(\d+) src_mask=(\d+) dst_mask=(\d+) mask=(\d+) filter=(\d+) src_tile=(\d+) dst_tile=(\d+)')
 BOX = re.compile(r'SWEET DEPTH TILE BOX original=(\d+) work=(\d+) src=(-?\d+,-?\d+,-?\d+,-?\d+,-?\d+,-?\d+) dst=(-?\d+,-?\d+,-?\d+,-?\d+,-?\d+,-?\d+) src_size=(\d+,\d+,\d+) dst_size=(\d+,\d+,\d+) src_pitch=(\d+) dst_pitch=(\d+) src_offset=(\d+) dst_offset=(\d+)')
+SAMPLE = re.compile(r'SWEET DEPTH TILE SAMPLE original=(\d+) work=(\d+) direction=(load|store) samples=(\d+) width=(\d+) height=(\d+) src_samples=(\d+) dst_samples=(\d+) passes=(\d+) masks=(\d+) bitcast=1 GPU_only=1')
 
 
 def plane(handle, gpu, format_, samples, pitch, load, publish=True):
@@ -32,8 +33,8 @@ def verify_groups(segment, groups,revision=2):
     Filtered segments for concurrent probes retain original handles explicitly;
     no unrelated plane is used as proof of this group's work or copy.
     """
-    assert revision in (2,3,4)
-    tile_mode=3 if revision==4 else 2
+    assert revision in (2,3,4,5)
+    tile_mode=3 if revision>=4 else 2
     handles = {p['handle'] for group in groups for p in group}
     tables = [list(pattern.finditer(segment)) for pattern in (PAGE, MAP, COPY, PAIR, RETIRE)]
     pages, maps, copies, pairs, retired = tables
@@ -48,11 +49,14 @@ def verify_groups(segment, groups,revision=2):
     pairs = [m for m in pairs if int(m[1]) in handles or int(m[2]) in handles]
     blits = [m for m in BLIT.finditer(segment) if int(m[1]) in handles]
     boxes = [m for m in BOX.finditer(segment) if int(m[1]) in handles]
+    sampled = [m for m in SAMPLE.finditer(segment) if int(m[1]) in handles]
     if revision>=3:
         assert 'SWEET DEPTH TILE REJECT ' not in segment
         assert segment.count('SWEET DEPTH TILE BLIT ')==len(list(BLIT.finditer(segment)))
         assert segment.count('SWEET DEPTH TILE BOX ')==len(list(BOX.finditer(segment)))
-        assert len(blits)==len(boxes)==len(copies), 'Original raw blit/box metadata missing'
+        assert len(blits)==len(boxes) and len(blits)+len(sampled)==len(copies), 'Original GPU copy metadata missing'
+        assert segment.count('SWEET DEPTH TILE SAMPLE ')==len(list(SAMPLE.finditer(segment)))
+        if revision<5:assert not sampled
     assert len(pages) == len(maps) == len(retired) == len(expected), 'Work page/map/retirement count differs'
     assert len(copies) == sum((p['load'] == 1) + p['publish'] for p in expected)
     assert len(pairs) == sum(any(p['format'] == 253 for p in group) for group in groups)
@@ -84,7 +88,13 @@ def verify_groups(segment, groups,revision=2):
                 assert tuple(int(copy[i]) for i in (4,5,6)) == (p['samples'],p['width'],p['height'])
                 assert mapping.end() < copy.start() < release.start() and int(copy[7]) > 0
                 sequence.append(int(copy[7]))
-                if revision>=3:
+                if revision==5 and p['format']==252 and p['samples']>1:
+                    candidates=[m for m in sampled if begin<=m.start()<copy.start() and (int(m[1]),int(m[2]),m[3])==(original,handle,copy[3])]
+                    assert len(candidates)==1
+                    sample=candidates[0];count=p['samples'];wanted=(count,p['width'],p['height'],1,count,count,(1<<count)-1) if copy[3]=='load' else (count,p['width'],p['height'],count,1,1,0)
+                    assert tuple(int(sample[i]) for i in range(4,11))==wanted
+                    assert mapping.end()<sample.start()<sample.end()<copy.start()
+                elif revision>=3:
                     candidates=[m for m in blits if begin<=m.start()<copy.start() and (int(m[1]),int(m[2]),m[3])==(original,handle,copy[3])]
                     actual_boxes=[m for m in boxes if begin<=m.start()<copy.start() and (int(m[1]),int(m[2]))==(original,handle)]
                     assert len(candidates)==1 and actual_boxes
@@ -122,6 +132,7 @@ def verify_groups(segment, groups,revision=2):
         records.append(spans); index = following
     return dict(revision=revision, independent_FDL5_work_pages=True, GPU_copy_and_fence_verified=True,
                 original_stride_offset_and_IOVA_verified=True, work_reference_retirement_verified=True,
-                actual_designated_pipe_box_and_raw_copy_metadata_verified=revision>=3,
-                actual_pinned_fd5_sysmem_tile_mode_verified=revision==4,
+                actual_designated_pipe_box_and_raw_copy_metadata_verified=revision>=3 and bool(blits),
+                actual_pinned_fd5_sysmem_tile_mode_verified=revision>=4,
+                actual_depth_MSAA_sample_shader_bitcast_verified=revision==5 and bool(sampled),
                 operations=len(groups), planes=len(expected), records=records)

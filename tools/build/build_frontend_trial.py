@@ -38,11 +38,13 @@ if 'MetalStencilAttachment.h' in sources:
     binding['stencil8_original_separate_plane_import']=True
     binding['actual_stencil8_GPU_acceptance_pending']=True
 if 'DepthTiledPlane.h' in sources:
-    binding['depth_tiled_backend_revision']=4
+    binding['depth_tiled_backend_revision']=5
     binding['depth_tiled_independent_FDL5_work_pages']=True
     binding['depth_tiled_GPU_copy_fences_and_retirement_required']=True
     binding['depth_tiled_designated_pipe_box_and_raw_copy_metadata_required']=True
     binding['depth_tiled_sysmem_mode_from_pinned_fd5_tile_mode']=3
+    binding['depth_multisample_Load_Store_actual_sample_shader_bitcast']=True
+    binding['stencil_clear_combined_depth_attachment_preserves_depth']=True
     binding['actual_depth_tiled_GPU_acceptance_pending']=True
 if 'MetalMultisampleAPI.h' in sources:
     binding['multisample_backend_revision']=1

@@ -5,6 +5,7 @@
 #include "MetalMultisampleAPI.h"
 #include "MultisampleLayout.h"
 #include "MultisampleResolveGLES.h"
+#include "DepthMultisampleCopyGLES.h"
 #include "DepthStencilGLES.h"
 #include "Depth32ClearGLES.h"
 #include "Stencil8ClearGLES.h"
@@ -669,6 +670,21 @@ static void retire_targets(struct sweet_render_targets *targets)
     for(unsigned i=0;i<8;++i){if(targets->raw[i])glDeleteTextures(1,&targets->raw[i]);if(targets->old[i])glDeleteTextures(1,&targets->old[i]);if(targets->linear[i])glDeleteTextures(1,&targets->linear[i]);}
     memset(targets,0,sizeof(*targets));
 }
+static int copy_depth_multisample(struct st_context *context,SweetDepthTiledPlane *plane,GLuint depth,bool separate_stencil,bool to_original,SweetMetalShaderCache *cache)
+{
+    if(!context || !plane || !depth || !cache || plane->original.format!=252 || (plane->samples!=2 && plane->samples!=4) || !plane->linear)return -EINVAL;
+    GLuint linear=0;glActiveTexture(GL_TEXTURE0);glGenTextures(1,&linear);glBindTexture(GL_TEXTURE_2D,linear);
+    bool accepted=st_context_teximage(context,GL_TEXTURE_2D,0,plane->linear->format,plane->linear,false);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_BASE_LEVEL,0);glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAX_LEVEL,0);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+    int result=accepted?sweet_depth_multisample_copy_draw(linear,depth,plane->original.width,plane->original.height,plane->samples,to_original,separate_stencil,
+        to_original?&cache->depth_ms_store:&cache->depth_ms_load):-EIO;
+    if(!result){sweet_drm_log("SWEET DEPTH TILE SAMPLE original=%u work=%u direction=%s samples=%u width=%u height=%u src_samples=%u dst_samples=%u passes=%u masks=%u bitcast=1 GPU_only=1",
+        plane->original.handle,plane->work.handle,to_original?"store":"load",plane->samples,plane->original.width,plane->original.height,
+        to_original?plane->samples:1,to_original?1:plane->samples,to_original?1:plane->samples,to_original?0:(1u<<plane->samples)-1u);
+        result=sweet_depth_tiled_complete(context,plane,to_original);}
+    if(linear)glDeleteTextures(1,&linear);return result;
+}
 static int snapshot_raw_image(GLuint raw,const SweetShaderTextureBinding *binding,GLuint *copy)
 {
     GLuint fbo=0;GLint oldFBO=0;glGetIntegerv(GL_FRAMEBUFFER_BINDING,&oldFBO);glGenFramebuffers(1,&fbo);glBindFramebuffer(GL_FRAMEBUFFER,fbo);
@@ -744,7 +760,7 @@ static bool stencil_pass_valid_samples(const SweetRenderPass *pass,const SweetRe
     return true;
 }
 static int prepare_depth_tiled(struct st_context *context,const SweetRenderDepthPass *depth,const SweetRenderStencilPass *stencil,
-    unsigned samples,struct sweet_render_targets *targets)
+    unsigned samples,struct sweet_render_targets *targets,SweetMetalShaderCache *cache)
 {
     struct pipe_resource *primary=NULL,*secondary=NULL;int result=0;
     if(depth){result=sweet_depth_tiled_create(context,&depth->target,samples,depth->load_action,&targets->depthPlane);
@@ -774,6 +790,7 @@ static int prepare_depth_tiled(struct st_context *context,const SweetRenderDepth
         glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
         result=accepted && glGetError()==GL_NO_ERROR?0:-EIO;
     }
+    if(!result && depth && samples>1 && depth->load_action==1)result=copy_depth_multisample(context,&targets->depthPlane,targets->depth,stencil!=NULL,false,cache);
     if(!result){if(stencil)sweet_drm_log("SWEET DEPTH TILE PAIR depth=%u stencil=%u depth_work=%u stencil_work=%u samples=%u result=0 separate_z32s8=1",
             depth?depth->target.handle:0,stencil->target.handle,targets->depthPlane.work.handle,targets->stencilPlane.work.handle,samples);
         if(depth){SweetMetalBacking backing={0};(void)texture_layout_samples(&depth->target,samples,&backing);
@@ -809,7 +826,7 @@ static int prepare_targets(struct st_context *context,const SweetRenderPass *pas
             if(targets->linear[i])sweet_drm_log("SWEET METAL MRT clear_target index=%u format=%u handle=%u width=%u height=%u result=0 decode_skipped=1 original_code_snapshot=1 original_clear=1",
                 i,attachment.target.format,attachment.target.handle,attachment.target.width,attachment.target.height);}
     }
-    if(depth || stencil){targets->context=context;int result=prepare_depth_tiled(context,depth,stencil,samples,targets);if(result)return result;
+    if(depth || stencil){targets->context=context;int result=prepare_depth_tiled(context,depth,stencil,samples,targets,cache);if(result)return result;
         if(depth && depth->load_action==2){result=sweet_depth32_clear_samples(targets->depth,depth->target.width,depth->target.height,depth->clear_depth,samples,&cache->depth_clear);
             if(result)return result;sweet_drm_log("SWEET METAL DEPTH clear handle=%u width=%u height=%u shader_draw=1 result=0 original_pages=1",
                 depth->target.handle,depth->target.width,depth->target.height);}
@@ -851,7 +868,8 @@ done:
 static int finish_targets(const SweetRenderPass *pass,const SweetRenderDepthPass *depth,const SweetRenderStencilPass *stencil,const SweetRenderPipelineConfig *config,struct sweet_render_targets *targets,SweetMetalShaderCache *cache,uint32_t *sequence)
 {
     int result=0;
-    if(depth && (config || depth->load_action==2))result=sweet_depth_tiled_copy(targets->context,&targets->depthPlane,true);
+    if(depth && (config || depth->load_action==2))result=targets->depthPlane.samples>1?
+        copy_depth_multisample(targets->context,&targets->depthPlane,targets->depth,stencil!=NULL,true,cache):sweet_depth_tiled_copy(targets->context,&targets->depthPlane,true);
     if(!result && stencil && (config || stencil->load_action==2))result=sweet_depth_tiled_copy(targets->context,&targets->stencilPlane,true);
     for(unsigned i=0;i<8 && !result;++i)if(targets->mask&(1u<<i)){SweetRenderColorAttachment a=sweet_render_attachment(pass,i);
         if(!config && a.load_action!=2)continue;
@@ -1042,7 +1060,7 @@ int sweetgl_metal_multisample_resolve(const SweetMultisampleResolve *request,uin
     if(context && sweetgl_make_current(context)){
         result=bind_multisample_texture(sweetgl_internal_context(context),&request->source,request->samples,&source);
         if(!result && request->aspect){SweetRenderDepthPass pass={0};pass.target=request->target;pass.load_action=0;pass.store_action=1;
-            tiled.context=sweetgl_internal_context(context);result=prepare_depth_tiled(tiled.context,&pass,NULL,1,&tiled);target=tiled.depth;}
+            tiled.context=sweetgl_internal_context(context);result=prepare_depth_tiled(tiled.context,&pass,NULL,1,&tiled,NULL);target=tiled.depth;}
         else if(!result)result=bind_texture(sweetgl_internal_context(context),&request->target,&target);
         if(!result)result=sweet_multisample_resolve_draw(source,target,request->source.width,request->source.height,request->samples,request->aspect,request->filter);
         if(!result && request->aspect)result=sweet_depth_tiled_copy(tiled.context,&tiled.depthPlane,true);

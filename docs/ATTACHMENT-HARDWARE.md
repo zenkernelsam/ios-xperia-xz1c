@@ -77,3 +77,11 @@ GLESfdcb01f6自身CPU3df033e4／38.703秒、GLES9 3c5743d6／38.906秒、referen
 颜色page153原像素与guard正确；深度guard也全部0xb6正确，但69像素float0.5、84像素0，phase0 mismatches84／read_mismatches84。两页原SHA／handle／sequence与原rawcdb5ddb0严格绑定，不能以copy Completed代替正确布局。完整S8／Memoryless／MSAA／presentation／PNG未通过；原失败不重发，报告见[r3阶段](../reproducibility/depth-tiled-r3-stage-20261121.json)与[原Mesa主机证据](../reproducibility/depth-tiled-r3-offline-20261121.json)。
 
 新r4离线候选调用固定Mesa fd5_tile_mode取得TILE5_3（sysmem纹理），代替TILE5_2（on-chip GMEM）；只改用户态独立附件work布局选择，不改原线性页、底层／allocator／SCM／PON／RPC／VM。原copy／fence／作者byte和guard门槛继续，尚未实机准入。
+
+## r4独立Depth32／Memoryless及r5候选
+
+r4 GLES `e1ed77e8b77a20329d2d56bbe17ced3bbdd347ba339eb6a3b486b5a3b86e68e7` 自身CPU f95228e8／39.438秒、GLES9 c584111f／37.766秒、reference CPU27205e26／39.031秒通过。native21 4ffc8fd7 REVISE／STENCIL8_PROBE_FAILED，39.578秒四marker／健康30秒／worker退出完整。Depth32全部29阶段74240原byte＋38744guard＋26100getBytes，Memoryless全部8阶段19456原byte＋10888guard及双queue独立页，均已用独立Python及tiled revision4核对真实work IOVA／CPP／BOX／copy fence／引用释放；这些是整组失败靴中的完整局部证明，不能生成native21 proof或提升生产基线。
+
+S8 phase2原color／depth／guard正确，153个模板值全0，应该仍为3。MSAA phase1仅depth34B不同，actual0.5／expected0.75出现在box外；原color／stencil、未请求的resolve目标及全部guard正确。8原作者page／handle／GPU／sequence严格绑定raw c9747676；完整S8／MSAA／presentation／PNG未通过。原阶段见[r4报告](../reproducibility/depth-tiled-r4-stage-20261121.json)。
+
+r5源码候选的Stencil8ClearGLES为combined Z32/S8图像显式绑定depth primary，depth test／write继续关闭。DepthMultisampleCopyGLES用原linear页的整数2D视图逐sample-mask写入真实depth MSAA，Store以实际sampler2DMS读每个样本并GPU bitcast回原integer页；不CPU转换、不平均，原offset／stride和作者样本／guard保持。GL helper在Depth-only及combined 2×／4×主机Mesa上60次Load／Store、53760整数词／外围像素、13770 stencil samples通过，shared scalar状态另2390draw／247860pixels通过UBSan。只是host语义证明，FD540 importer与整组native21需新候选自己的实机；见[r5主机报告](../reproducibility/depth-msaa-sample-r5-host-20261121.json)。

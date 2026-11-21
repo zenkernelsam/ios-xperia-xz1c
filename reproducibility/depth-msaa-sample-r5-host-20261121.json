@@ -1,0 +1,52 @@
+{
+  "date": "2026-11-21",
+  "depth_copy_shader": {
+    "source_files": {
+      "tools/build/test_depth_multisample_copy_gles.c": "a8e5cefdb714a578c7de4e9e1e1b9f35e1fff2d04b290b45b28d41e916b434cc",
+      "tools/build/check_depth_multisample_copy_gles.py": "4ea936cd03a8f2698d1da8b2e38315fa284badcf14389492083a705a6129477e",
+      "gpu/sweetgl/DepthMultisampleCopyGLES.h": "b8ea9bea99691657e982000ed3f51c778b5d13c210bd9230b7d270f2a524e5c6",
+      "gpu/sweetgl/Stencil8ClearGLES.h": "5f175b4693da57b634c03fbc8c187f8bd8f2d91364115758788df583901e7957"
+    },
+    "copies": 60,
+    "checked_uint_words": 53760,
+    "stencil_samples": 13770,
+    "UBSan_passed": true,
+    "host_renderer": "Host renderer: llvmpipe (LLVM 15.0.7, 256 bits) / OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.2",
+    "actual_depth_MSAA_Load_Store_float_bits_shader_semantics": true,
+    "combined_stencil_clear_preserves_depth_and_depth_load_preserves_stencil": true,
+    "destination_outer_pixels_and_CPU_read_guards_preserved": true,
+    "host_only_NOT_FD540_original_page_or_full_native_proof": true,
+    "device_operations": 0
+  },
+  "depth_stencil_GL": {
+    "source_files": {
+      "gpu/sweetgl/MetalDepthStencilRules.h": "d1918e6cadf7a0dd9ad8c75e91d37a1a334f4940360ff7cad51162c833615af7",
+      "tools/build/test_depth_stencil_gles.c": "271ad62e2246339de9f273726e6bcd383e1cc197ba7971ad32dedca55dec3e9f",
+      "tools/build/check_depth_stencil_gles.py": "a0b7cef8afe64f3155f6b389ea49c4e6accfea376c537d94b351694f0927ebeb",
+      "gpu/sweetgl/DepthStencilGLES.h": "8d3998970300d6fc110189b3f1b3a700eb644dae4f9197710f35d5ced3853290",
+      "gpu/sweetgl/Depth32ClearGLES.h": "80473148126813eaecf68454bf3ea5873b25d3c84eeeede1ce3dbe4e0f2910bb",
+      "gpu/sweetgl/Stencil8ClearGLES.h": "5f175b4693da57b634c03fbc8c187f8bd8f2d91364115758788df583901e7957",
+      "gpu/sweetgl/StencilResourcePair.h": "b7027390133f8a239a7cbd8d72b728225e43ff96404f1655266b7c1658e65beb",
+      "tools/build/test_stencil_resource_pair.c": "366918f15e7e352f379a7bccb7ef3e5bcd950c78d22a87f73e92ee6ab4505b67"
+    },
+    "host_renderer": "Host renderer: llvmpipe (LLVM 15.0.7, 256 bits) / OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.2",
+    "draws": 2390,
+    "checked_pixels": 247860,
+    "actual_shared_GL_state_compares_and_stencil_ops_passed": true,
+    "ASan_UBSan_passed": false,
+    "selected_sanitizers": "undefined",
+    "UBSan_passed": true,
+    "ASan_recursive_SIGSEGV_handler_disabled": true,
+    "host_test_timeout_seconds": 45,
+    "host_test_log_byte_limit": 1048576,
+    "original_pair_ownership_fault_rollback_host_model_passed": true,
+    "host_leak_detection_disabled_for_Mesa": true,
+    "host_attachment_format": "GL_DEPTH32F_STENCIL8",
+    "host_test_does_not_execute_native_Metal_or_FD540_importer": true,
+    "device_operations": 0,
+    "original_GPU_wallpaper_and_peripheral_goal_not_achieved": true
+  },
+  "device_tested": false,
+  "full_native21_not_yet_accepted": true,
+  "kernel_gpu_allocator_scm_pon_rpc_vm_unchanged": true
+}

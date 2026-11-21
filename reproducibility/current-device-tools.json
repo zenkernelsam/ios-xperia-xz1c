@@ -98,13 +98,13 @@
     "test_quad_route_evidence.py": "2c4e62db3db4050d89bea76d11a1666e2b3eaba0b1a2fb1901810f98521e5044",
     "usb_open_observation.py": "3dcf63a562ebfce95df14712cf06e3d2be45df0b2679d2b11eb87bed5355c46d",
     "test_usb_open_observation.py": "ef5c9780ec4967ac606fb916e5078eebc5bb7ff8d2c74f2f72e14b19cccc2e25",
-    "depth32_evidence.py": "8b0ab0f6064313697faf7f57f9ffa72e519797e10c5cccf18439551e902788ef",
+    "depth32_evidence.py": "7fd5bf7bf1faa07f7c1bef0b76dbd3e8c60131343e54d4b7751a3d4129374f77",
     "test_depth32_evidence.py": "7cc68e7ae42c01f6fb7c1e33fd921e756f447d9b81d79d3033e24505adbe26de",
-    "stencil8_evidence.py": "43f1aa16c76c27beecfd50558e0891f7ae96cef4986436517c4b41fbfc81b0f4",
+    "stencil8_evidence.py": "35d57f21b50eaeb8520513256c91ff40e29160c0d02aa98367266f5c614e6821",
     "test_stencil8_evidence.py": "072620235d4f8fb15e9a56d43038a08c5862cbf68d0f0bf4d10eba79a05b3286",
-    "memoryless_evidence.py": "889ed5b3deff5864e1f0a20b86f6390cb1c6388f71d00ebfd7a28e2b9e4c47dc",
+    "memoryless_evidence.py": "25b18d2fa1247e624430cb0d7ac64e3136788dabc09089e6f32986fc8f0232a2",
     "test_memoryless_evidence.py": "21769b3180fac9b95faab8c385b6f3577c680b7767d9b5ea626d396026b7bb51",
-    "multisample_evidence.py": "6dfdc238e5fd8987c027a2240dc550e1985c388f284b7a9abaad77303548ed52",
+    "multisample_evidence.py": "3879819f95a937339bffc7b5a243c1b26a6d68aab76a74761467925e5659ee53",
     "test_multisample_evidence.py": "5b5e2d7883deea82083cc5fd3f3aa69033a3d5aaa0c49890eb62c48d88a3b3e2",
     "presentation_evidence.py": "79954eea07a0adf9ad88f29ca3a4ee6f6837745166754be0ebfbb7191266dfdc",
     "test_presentation_evidence.py": "7d4cb3fc9c45e27fb23e7b30845548a19d71583d7914e8b808c36c110b663916",
@@ -112,8 +112,8 @@
     "test_attachment_snapshot_evidence.py": "eb6154f75fca8ffff45d8980ac5315a680be523c345c49b9cd22bb21176a64df",
     "serial_capture_evidence.py": "e7c7b3cfeba8508d39c941e327c73b4810e7a9220b56bef424d4c200c7719fd9",
     "test_serial_worker.py": "ac5c7b55b6c6f445f03f4dc5a8f902651878ff24562e87ab5c559dcfeeb7fa76",
-    "depth_tiled_evidence.py": "d6c1bed25728a2c0703555b1d4be8152c00d6448e842381257fddcb92d400c7f",
-    "test_depth_tiled_evidence.py": "390844281f4e5b4e7fe0f95f0a8e97035580216c0b3aec3291f3821c3ab886b8"
+    "depth_tiled_evidence.py": "8f97815f87bda9f2460232c4d250b00039922bd4777fb159a91833982c4ed231",
+    "test_depth_tiled_evidence.py": "4e3a72f46081b67c95927a490fd2cb0b2513aa9aeb4e3f00afa79682040dc4d4"
   },
   "supervisor_based_on_actual_tested_one_shot": true,
   "platform_tools_from_environment_or_PATH": true,
@@ -128,7 +128,7 @@
   "shared_sources": {
     "tools/diagnostic_candidate.py": "b53e89fdc0bf66a0b38bb4a4c7499ac2222e2704af83cebbd2ae0472a83783b3",
     "tools/mkpayload.py": "5c9a3dacbdf877ffded27971ad2e737e5ee4296fada247d14d5c6051ff1f47ff",
-    "tools/ram_library.py": "0a1f38a7bb0462b2d105f7abe992783ade26bcd3cdd6e6d0bb8cadb5db057b15",
+    "tools/ram_library.py": "0e8aab490dc11f8f8ab266d0941b124bf33a47fd1047fe13876ef7437cfdd05d",
     "tools/native_proof.py": "409e67ccd2d8ebca21a3d2668c295e6e9231396f43f6e1690f380fef06321615"
   },
   "formal_v726_five_stages_actual_return": true,
@@ -196,7 +196,7 @@
     "tools/build/test_postdraw_observe.m": "144605ebf1d6baf35c69f3a332e0b5fb036a7fe12d0636a9da84330c40e1b4f1",
     "tools/program_cache_scope.py": "9fcd14133fa3e0531f5cc0a01fb6d8b84d62432df41f3d0e688df7e151c097e9",
     "tools/build/test_snapshot_method_observe.m": "76c919a8884d0dea06d8ec66f831ec029c060f0b4cb157cf15263b38116a917f",
-    "tools/build/build_frontend_trial.py": "578eb9cd65da54fa6ab5875b88cdc80373e3e4a10734dba7c538600da95a447d",
+    "tools/build/build_frontend_trial.py": "bce6bf0a58ef05468fe6d0e86242dae24e0ac9559f27d7da32c80a7303291b5d",
     "tools/build/test_png_input_observe.m": "71ec1a803770e24e342c275ee8fa17e86adc60655675d4c700665ca37047c171",
     "tools/build/test_cif10_png_reference.m": "8b814b5d031a5418eb4117934f21121212959a7179645ef6b519b28eed2a0871",
     "tools/build/profile_cif10_png.m": "c8daee07eafe5dc7c524041d1efe194c821318bb68481cea934e16862f42ab7e",
@@ -245,7 +245,9 @@
     "tools/build/make_render_adt.py": "ad0b5cd47f32968fa95d13a00fe54bf619bb9909efb5e6c796d04adb17d274de",
     "tools/build/test_render_adt.py": "33a6afccb4b4e3317dbe5545afb4461e8c8433b964ca0755ef91e32072c8192a",
     "tools/build/check_depth_tiled_copy_box.py": "b0a2de2548525eb60b8862255ba2bf25104b74d448270fe88e87660462b23452",
-    "tools/build/test_depth_tiled_copy_box.c": "c22509f37eef250b29485be482ceffda1055d50436c2f4f7728de5295218dc8d"
+    "tools/build/test_depth_tiled_copy_box.c": "c22509f37eef250b29485be482ceffda1055d50436c2f4f7728de5295218dc8d",
+    "tools/build/check_depth_multisample_copy_gles.py": "4ea936cd03a8f2698d1da8b2e38315fa284badcf14389492083a705a6129477e",
+    "tools/build/test_depth_multisample_copy_gles.c": "a8e5cefdb714a578c7de4e9e1e1b9f35e1fff2d04b290b45b28d41e916b434cc"
   },
   "gpu_sources": {
     "gpu/diagnostics/exception_observe.m": "6238849a2a027d8edce5be0da3a0bc7d897b160ffb54e59e678dd2c3ad9e4580",
@@ -315,13 +317,13 @@
     "gpu/diagnostics/PostDrawObserve.h": "e293e701736657e5ad28850d6970b7a2ed5cd299b5f4d04ea4bfb926e6c7f963",
     "gpu/diagnostics/ProgramCacheScope.h": "bb6546f8c148f71e54c058bcf2877e7de903942ae1934a9d933c76636513fc6a",
     "gpu/diagnostics/SnapshotMethodObserve.h": "10dded48c0cf90d28999f03624e9f1b9c84c46cc1ba4b69567867ee42e9d04a8",
-    "gpu/sweetgl/metal_render.c": "edda57195b6505e7f18465ac0ba02da06beafaab68041450995ad75ba82dce80",
+    "gpu/sweetgl/metal_render.c": "9f31290910b058dceea8ca86e7dabf65a7781ce43ef5e39aa89e3afeae3323bc",
     "gpu/diagnostics/CIF10PNGReferenceProbe.h": "0b3d2c6e8caacc4456c0d9e9fd797539d571eab4303fe9e30172787d2475e564",
     "gpu/diagnostics/CIF10VImageCompare.h": "60387397043d88ab01dadadfbadd21054b1476182c19e412f3bd30e384840079",
     "gpu/diagnostics/CIF10PNGFilterCompare.h": "8728f1a2de6daf58b2de87408b6483ebbf9831ca5cfda5cea47ba9b5dacf8028",
     "gpu/compat/PNGImageIOEncoder.h": "61031999d4ff1d9a2c9c6a564cf229a82c3b9c49998d752ae0bd4d6fd18e1e92",
     "gpu/compat/PNGImageDispatch.h": "a0c30d97527b731571437a70e717e4dbe4b2dafe3f29e881bced604fe8bae5a7",
-    "gpu/sweetgl/MetalShaderInternals.h": "3161513604b8d3643e37a42f4ceed7d742461a50bee365a0de2e2db0e93ee6df",
+    "gpu/sweetgl/MetalShaderInternals.h": "69ca7a1c18745e123f6073dcc24a6f87d228d00d63b94606dcd55cc53ec532fd",
     "gpu/diagnostics/MetalClearCacheProbe.h": "e8b11d9ba123708aaa8f672f4c71493092aec4c627c11c63a0bcec066567da27",
     "gpu/diagnostics/ClearCacheProbeValues.h": "5a49f7b8cdc86d67d8557f114c8e31801cee0238551ee4e7402938f92ee41e1b",
     "gpu/diagnostics/MetalIR3CacheProbe.h": "ca10edf8f56d01458f078d14a5bd7a73d7ac61318f223e7819dc501ace8581db",
@@ -345,7 +347,7 @@
     "gpu/sweetgl/build.sh": "956340e5f130698f8fc1e188009a2966c6a935b91caf5001d629b8a74d14a55c",
     "gpu/diagnostics/MetalDepth32Probe.h": "5f848a8a748ccafa28d509e858477578f0b37ac5e539121e974ab6927de252df",
     "gpu/sweetgl/MetalStencilAttachment.h": "3a8761f3bf18014a64127480e1eec65332d00aca65e74028b5fb52ea47ed7147",
-    "gpu/sweetgl/Stencil8ClearGLES.h": "9344c3e01d5a595c53d43ce9605ca3eb0ed6d79d6b8fe406e385615b6147c884",
+    "gpu/sweetgl/Stencil8ClearGLES.h": "5f175b4693da57b634c03fbc8c187f8bd8f2d91364115758788df583901e7957",
     "gpu/diagnostics/MetalStencil8Probe.h": "e57a5592b5dcd753179aa4a2d944d1a74509b8c27825ea5a9c179edc04032584",
     "gpu/sweetgl/StencilResourcePair.h": "b7027390133f8a239a7cbd8d72b728225e43ff96404f1655266b7c1658e65beb",
     "gpu/metal/MetalMemoryless.inc": "0593503e3e869e3f5b77427df0280f7972f14fb1e292777d21027cf9e160394e",
@@ -361,8 +363,9 @@
     "gpu/metal/MetalPresentation.inc": "371bbb97ddaaf1deda0cdc96decbab51122740621d4094912a78fc41ae228e99",
     "gpu/diagnostics/MetalPresentationProbe.h": "715ddce7c9b2a713f64ae4134ae399cef37bf29375a1a82e073ff7899b5b1591",
     "gpu/diagnostics/AttachmentPageSnapshot.h": "1f1c660e84209e062bccee9659405bfa33e6db04c96350bf926a312f5f351afa",
-    "gpu/sweetgl/DepthTiledPlane.h": "b69ab0d65f6ad037837480a5027cf693a33ed218fba7b90568f3b7b8bda8b48e",
-    "gpu/sweetgl/DepthTiledCopyBox.h": "14ba38286122d797451e9e93a207424c7997d0d2a3f320965584b0e9d1a61e69"
+    "gpu/sweetgl/DepthTiledPlane.h": "67a0719e1de568d918b9977957bc7930bb9f7932c11d0c6aade91e0be6b5bde3",
+    "gpu/sweetgl/DepthTiledCopyBox.h": "14ba38286122d797451e9e93a207424c7997d0d2a3f320965584b0e9d1a61e69",
+    "gpu/sweetgl/DepthMultisampleCopyGLES.h": "b8ea9bea99691657e982000ed3f51c778b5d13c210bd9230b7d270f2a524e5c6"
   },
   "tests_skipped_without_optional_old_evidence": 2,
   "sony_specific_multi_device_return_fault_replay_passed": true,
@@ -435,6 +438,6 @@
   "serial_capture_host_regression_tests": 7,
   "serial_capture_device_accepted": true,
   "serial_capture_actual_cpu_evidence": "reproducibility/serial-capture-r1-reference-cpu-20261121.json",
-  "depth_tiled_backend_evidence_revision": 4,
+  "depth_tiled_backend_evidence_revision": 5,
   "depth_tiled_exact_copy_and_original_page_guard_checks_required": true
 }
