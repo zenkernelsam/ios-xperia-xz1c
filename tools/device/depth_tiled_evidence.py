@@ -10,7 +10,7 @@ BLIT = re.compile(r'SWEET DEPTH TILE BLIT original=(\d+) work=(\d+) direction=(l
 BOX = re.compile(r'SWEET DEPTH TILE BOX original=(\d+) work=(\d+) src=(-?\d+,-?\d+,-?\d+,-?\d+,-?\d+,-?\d+) dst=(-?\d+,-?\d+,-?\d+,-?\d+,-?\d+,-?\d+) src_size=(\d+,\d+,\d+) dst_size=(\d+,\d+,\d+) src_pitch=(\d+) dst_pitch=(\d+) src_offset=(\d+) dst_offset=(\d+)')
 SAMPLE = re.compile(r'SWEET DEPTH TILE SAMPLE original=(\d+) work=(\d+) direction=(load|store) samples=(\d+) width=(\d+) height=(\d+) src_samples=(\d+) dst_samples=(\d+) passes=(\d+) masks=(\d+) bitcast=1 GPU_only=1')
 STATE = re.compile(r'SWEET DEPTH TILE STATE original=(\d+) work=(\d+) direction=(load|store) all_dirty=(\d+) stencil_ref=(\d+) sample_mask=(\d+) scissor=(\d+) gen_dirty=(\d+) gen_all=(\d+)')
-STENCIL_SAMPLE = re.compile(r'SWEET STENCIL TILE SAMPLE original=(\d+) work=(\d+) direction=(load|store) samples=(\d+) width=(\d+) height=(\d+) src_samples=(\d+) dst_samples=(\d+) passes=(\d+) masks=(\d+) bitplanes=8 GPU_only=1')
+STENCIL_SAMPLE = re.compile(r'SWEET STENCIL TILE SAMPLE original=(\d+) work=(\d+) direction=(load|store) samples=(\d+) width=(\d+) height=(\d+) src_samples=(\d+) dst_samples=(\d+) passes=(\d+) masks=(\d+) bitplanes=8(?: zero_draw=([01]))? GPU_only=1')
 
 
 def plane(handle, gpu, format_, samples, pitch, load, publish=True):
@@ -35,7 +35,7 @@ def verify_groups(segment, groups,revision=2):
     Filtered segments for concurrent probes retain original handles explicitly;
     no unrelated plane is used as proof of this group's work or copy.
     """
-    assert revision in (2,3,4,5,6,7)
+    assert revision in (2,3,4,5,6,7,8)
     tile_mode=3 if revision>=4 else 2
     handles = {p['handle'] for group in groups for p in group}
     tables = [list(pattern.finditer(segment)) for pattern in (PAGE, MAP, COPY, PAIR, RETIRE)]
@@ -102,6 +102,8 @@ def verify_groups(segment, groups,revision=2):
                     assert len(candidates)==1
                     sample=candidates[0];count=p['samples'];wanted=(count,p['width'],p['height'],1,count,1+8*count,(1<<count)-1) if copy[3]=='load' else (count,p['width'],p['height'],count,1,1,0)
                     assert tuple(int(sample[i]) for i in range(4,11))==wanted
+                    if revision>=8:assert sample[11]==('1' if copy[3]=='load' else '0'), 'Actual GPU stencil reset draw missing'
+                    else:assert sample[11] is None
                     assert mapping.end()<sample.start()<sample.end()<copy.start()
                 elif revision>=5 and p['format']==252 and p['samples']>1:
                     candidates=[m for m in sampled if begin<=m.start()<copy.start() and (int(m[1]),int(m[2]),m[3])==(original,handle,copy[3])]

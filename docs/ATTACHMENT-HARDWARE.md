@@ -99,3 +99,5 @@ r7把BLIT／BOX合成一次frontend write，实机32个BLIT和COPY完整，但32
 下一步查实际FBO／Mesa／FD5 stencil Clear状态和清屏前后页面，区分清屏、模板绘制与纹理Store。Memoryless局部出现17说明有实际模板写入，但不证明完整Clear／Load／Store。继续开源用户态路径，内核GPU底层／allocator／SCM／PON／RPC／VM冻结。手机健康fastboot，旧包不重发；最新事实统一[STATUS](STATUS.md)。
 
 本轮结束后已定位固定bsd/dev/mem.c的sweet_null_tee：单write按MIN(uio_curriovlen,256)分块，原raw有带进程前缀的后续字段，合并BOX被换行拆开。因此恢复BLIT／BOX独立write，仅改用户态诊断源码，不改冻结kernel、不补旧raw。新frontend编译与未来实机结果分别记录；原r7仍REVISE。
+
+r8离线候选直接遵循固定u_blitter的每位writemask／REPLACE思想：清零使用GL_ZERO全覆盖draw，随后ref255／1<<bit／fragment discard逐位写回；Clear每次9draw，Load为1+8*samples。避免依赖FD5明确拒绝Z32的硬件快清及空fragment路径，不CPU重排、不改底层。详见r8主机报告，仍需新库完整native21和PNG。

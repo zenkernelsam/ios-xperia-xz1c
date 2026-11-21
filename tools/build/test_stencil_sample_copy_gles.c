@@ -140,7 +140,7 @@ int main(void)
     scalar_depth_reader=program(scalar_depth_fragment);constant_stencil=program(constant_fragment);
     run_samples(1);run_samples(2);run_samples(4);assert(glGetError()==GL_NO_ERROR);
     glDeleteProgram(load);glDeleteProgram(store[0]);glDeleteProgram(store[1]);glDeleteProgram(depth_load);glDeleteProgram(depth_store);glDeleteProgram(depth_clear);
-    glDeleteProgram(scalar_depth_reader);glDeleteProgram(constant_stencil);assert(stencil_clear==0);
+    glDeleteProgram(scalar_depth_reader);glDeleteProgram(constant_stencil);assert(stencil_clear!=0);glDeleteProgram(stencil_clear);
     eglMakeCurrent(display,EGL_NO_SURFACE,EGL_NO_SURFACE,EGL_NO_CONTEXT);eglDestroyContext(display,context);eglTerminate(display);
-    printf("Stencil sample copy PASS copies=%u checked_uint_words=%u depth_uint_words=%u native_clears=%u masked_draws=%u bitpatterns=all256 samples=1,2,4 outer_pixels_and_CPU_guards=1 host_only=1\n",copies,checked,depth_checked,clears,masked_draws);return 0;
+    printf("Stencil sample copy PASS copies=%u checked_uint_words=%u depth_uint_words=%u GPU_bitplane_clears=%u masked_draws=%u bitpatterns=all256 samples=1,2,4 outer_pixels_and_CPU_guards=1 host_only=1\n",copies,checked,depth_checked,clears,masked_draws);return 0;
 }

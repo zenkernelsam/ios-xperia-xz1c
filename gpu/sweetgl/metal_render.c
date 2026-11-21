@@ -695,9 +695,9 @@ static int copy_stencil_samples(struct st_context *context,SweetDepthTiledPlane 
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
     int result=accepted?sweet_stencil_sample_copy_draw(linear,combined,plane->original.width,plane->original.height,plane->samples,to_original,
         to_original?&cache->stencil_store[plane->samples>1]:&cache->stencil_load):-EIO;
-    if(!result){sweet_drm_log("SWEET STENCIL TILE SAMPLE original=%u work=%u direction=%s samples=%u width=%u height=%u src_samples=%u dst_samples=%u passes=%u masks=%u bitplanes=8 GPU_only=1",
+    if(!result){sweet_drm_log("SWEET STENCIL TILE SAMPLE original=%u work=%u direction=%s samples=%u width=%u height=%u src_samples=%u dst_samples=%u passes=%u masks=%u bitplanes=8 zero_draw=%u GPU_only=1",
         plane->original.handle,plane->work.handle,to_original?"store":"load",plane->samples,plane->original.width,plane->original.height,
-        to_original?plane->samples:1,to_original?1:plane->samples,to_original?1:1+8*plane->samples,to_original?0:(1u<<plane->samples)-1u);
+        to_original?plane->samples:1,to_original?1:plane->samples,to_original?1:1+8*plane->samples,to_original?0:(1u<<plane->samples)-1u,to_original?0:1);
         result=sweet_depth_tiled_complete(context,plane,to_original);}
     if(linear)glDeleteTextures(1,&linear);return result;
 }
@@ -848,7 +848,7 @@ static int prepare_targets(struct st_context *context,const SweetRenderPass *pas
             if(result)return result;sweet_drm_log("SWEET METAL DEPTH clear handle=%u width=%u height=%u shader_draw=1 result=0 original_pages=1",
                 depth->target.handle,depth->target.width,depth->target.height);}
         if(stencil && stencil->load_action==2){result=sweet_stencil8_clear_samples(targets->depth,stencil->target.width,stencil->target.height,stencil->clear_stencil,samples,&cache->stencil_clear);
-            if(result)return result;sweet_drm_log("SWEET METAL STENCIL clear handle=%u width=%u height=%u native_clear=1 result=0 original_pages=1",
+            if(result)return result;sweet_drm_log("SWEET METAL STENCIL clear handle=%u width=%u height=%u bitplane_clear=1 passes=9 bitplanes=8 zero_op=1 depth_writes=0 result=0 original_pages=1",
                 stencil->target.handle,stencil->target.width,stencil->target.height);}}
     glGenFramebuffers(1,&targets->framebuffer);glBindFramebuffer(GL_FRAMEBUFFER,targets->framebuffer);GLenum buffers[8];unsigned count=0;
     if(depth)glFramebufferTexture2D(GL_FRAMEBUFFER,GL_DEPTH_ATTACHMENT,sample_target(samples),targets->depth,0);

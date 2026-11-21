@@ -205,7 +205,7 @@
       "MetalShaderAPI.h": "3eebe9013770eff5c1092c8ccc50b4cd6ad931986f109573f74905d16dd1c23b",
       "metal_compute.c": "c2780b5202cdc4ae4161b2359d6c694f4bd35e4af7c3d3d50286fed5d12b8376",
       "MetalShaderInternals.h": "fb53d4a20b3a6b577becc8e551eb932d2dfa5617a742fb33e510af7697679ead",
-      "metal_render.c": "f0221f407600498f71a071aedc0600a1465c7e788b337e704b747fbc00eb7216",
+      "metal_render.c": "48d3f4eb7d6c39a55c4d50cd2969c1617ddfcfeee206e4ff20119456123d7df1",
       "XRColourTables.h": "7564148cfcdb509061e1cebc76cd8afb59a292f4dea18086f2d7fa753bb723fa",
       "XRColourShader.h": "9a4e6514d9f203dac4fa95def0ec418777c8422125bfacfdbb0d1a7ea1c6d973",
       "MipColourShader.h": "15d9f983a7fd0d71604193262a19b7b6cad8f6900c6366f7e12b155db47c8ed1",
@@ -229,7 +229,7 @@
       "Depth32ClearGLES.h": "80473148126813eaecf68454bf3ea5873b25d3c84eeeede1ce3dbe4e0f2910bb",
       "MetalDepthAttachment.h": "45ab58140a76bb13ccb7156f40f4a3587752295250ac22bdaf8d4bbb3b8a9841",
       "MetalStencilAttachment.h": "3a8761f3bf18014a64127480e1eec65332d00aca65e74028b5fb52ea47ed7147",
-      "Stencil8ClearGLES.h": "9ccf943e1f75f41f82b0f65948de13bd40e7105aa42d10e9e739a82a99596752",
+      "Stencil8ClearGLES.h": "8897985f49397f3e023210eeb489d8e7e4fb0f4a0a98a6525218bf30fa7b7745",
       "StencilResourcePair.h": "b7027390133f8a239a7cbd8d72b728225e43ff96404f1655266b7c1658e65beb",
       "MetalMultisampleAPI.h": "d91d5769eb8d15e1f4e1fd881271c2fcb22591536a76485b96df65d9b588384e",
       "MultisampleLayout.h": "8401b48a17b9ec55b5209a34389cc87aa8f374417e4d1e391f7958dc441f76ae",
@@ -237,7 +237,7 @@
       "DepthTiledPlane.h": "af28e38f39df36e4369fdec6f92cc0a43e9bab09f81f7cb57e7fa4fa19fbbb49",
       "DepthTiledCopyBox.h": "14ba38286122d797451e9e93a207424c7997d0d2a3f320965584b0e9d1a61e69",
       "DepthMultisampleCopyGLES.h": "b8ea9bea99691657e982000ed3f51c778b5d13c210bd9230b7d270f2a524e5c6",
-      "StencilSampleCopyGLES.h": "aa9edf04def91e81f3618e1ad92287f931d20241ff25527217e32b24f533d4a0"
+      "StencilSampleCopyGLES.h": "39d4619e6fb3500f37efa2df5338bdb71a0d57a6128fbc203ea4d4dbf1d07c3d"
     },
     "tested_library_sha256": "9a59820c7e54b1626cacd49acb70a7d460be3c01c415a17429a2464bb5b11571",
     "build_script_updated_for_canonical_output": "956340e5f130698f8fc1e188009a2966c6a935b91caf5001d629b8a74d14a55c",
@@ -268,12 +268,13 @@
       "actual_max_matrix_difference_LSB": 0,
       "complete_UI_wallpaper_FPS_pending": true
     },
-    "depth_stencil_tiled_work_pages_revision": 7,
+    "depth_stencil_tiled_work_pages_revision": 8,
     "A5xx_depth_stencil_linear_sysmem_attachment_refused": true,
     "depth_stencil_work_page_GPU_raw_copy_no_CPU_conversion": true,
     "depth_stencil_tiled_work_actual_device_acceptance_pending": true,
     "stencil_GPU_bitplane_Load_Store_candidate": true,
-    "stencil_native_Clear_private_padded_work_page_candidate": true
+    "stencil_native_Clear_private_padded_work_page_candidate": false,
+    "stencil_GPU_ZERO_and_eight_bitplane_Clear_candidate": true
   },
   "audited_xnu_files": {
     "iokit/Kernel/arm/SweetFramebuffer.cpp": "ff93954b154cad38e620f6e3d07cfa208171b7ceeea0c5f60b5b20ae049c2ebc",

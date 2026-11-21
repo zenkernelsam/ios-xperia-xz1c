@@ -84,6 +84,17 @@ class TiledEvidence(unittest.TestCase):
         for bad in (raw.replace('native_clear=1','shader_draw=1',1),raw.replace('native_clear=1','native_clear=0',1),
                     raw.replace('bitplanes=8','bitplanes=1',1),raw.replace('mismatches=0','mismatches=1',1)):
             with self.assertRaises(AssertionError):stencil.verify(bad,fixture.token,fixture.fixture,7)
+        rows=[]
+        for line in raw.splitlines():
+            if line.startswith('SWEET STENCIL TILE SAMPLE '):line=line.replace('bitplanes=8 GPU_only=1','bitplanes=8 zero_draw='+('1' if 'direction=load' in line else '0')+' GPU_only=1')
+            line=line.replace('native_clear=1','bitplane_clear=1 passes=9 bitplanes=8 zero_op=1 depth_writes=0');rows.append(line)
+        r8='\n'.join(rows)+'\n';self.assertEqual(stencil.verify(r8,fixture.token,fixture.fixture,8)['phases'],99)
+        for bad in (r8.replace('zero_draw=1','zero_draw=0',1),r8.replace('zero_draw=0','zero_draw=1',1),
+                    r8.replace('passes=9 bitplanes=8 zero_op=1','passes=8 bitplanes=8 zero_op=1',1),
+                    r8.replace('zero_op=1','zero_op=0',1),r8.replace('depth_writes=0','depth_writes=1',1)):
+            with self.assertRaises(AssertionError):stencil.verify(bad,fixture.token,fixture.fixture,8)
+        with self.assertRaises(AssertionError):stencil.verify(raw,fixture.token,fixture.fixture,8)
+        with self.assertRaises(AssertionError):stencil.verify(r8,fixture.token,fixture.fixture,7)
 
     def test_real_depth_msaa_shader_route_is_required(self):
         group=[plane(1,0x40004000,252,2,192,1)]

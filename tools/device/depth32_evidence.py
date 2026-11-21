@@ -33,7 +33,7 @@ def expected(phase):
 
 
 def verify(text,token,fixture,tiled_revision=0):
-    assert tiled_revision in (0,2,3,4,5,6,7)
+    assert tiled_revision in (0,2,3,4,5,6,7,8)
     live='SWEET LOOP LIVE proto=1 token='+token;ack='SWEET LOOP ACK FASTBOOT token='+token
     assert text.count(live)==text.count(ack)==1
     scope=text[text.index(live):text.index(ack)]

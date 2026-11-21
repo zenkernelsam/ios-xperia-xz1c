@@ -136,7 +136,7 @@ static void stencil_clear_pixels(GLuint texture)
 {
     GLuint cache=0;const unsigned values[]={0,1,127,255};const uint8_t yes[]={0,255,0,255},no[]={255,0,255,255};
     for(unsigned i=0;i<4;++i){clear(values[i]^255,0.25f);
-        assert(!sweet_stencil8_clear(texture,WIDTH,HEIGHT,values[i],&cache) && !cache);
+        assert(!sweet_stencil8_clear(texture,WIDTH,HEIGHT,values[i],&cache) && cache);
         SweetDepthStencilState state=sweet_depth_stencil_default();state.front=state.back=face(2,0,0,0,255,0);state.front_reference=state.back_reference=values[i];
         assert(sweet_depth_stencil_apply(&state,true,true));draw(0.5f,false,green,true);check(true,false,yes,no);
         state.compare=1;assert(sweet_depth_stencil_apply(&state,true,true));

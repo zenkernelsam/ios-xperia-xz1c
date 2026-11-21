@@ -50,3 +50,5 @@ RPM历史txh=8／txt=0死锁及恢复失败保持；本轮GPU时钟正常。无L
 50份现行文档链接审计并统一入口；本周47份与本轮10份修改前原文／SHA分别archive。精确清单在[ORGANIZATION](ORGANIZATION.md)，目录与恢复在[LAYOUT](LAYOUT.md)，专题在[INDEX](INDEX.md)。源码／工具／锁只在正式仓库；HEAD是当前候选，已验基线按原manifest和对应源码版本复现，新产物仍需自己的准入。
 
 日志修补已在Mac离线编译：68份实际frontend源、24份未改Mesa输入，库SHA 172c7de2036f467ebb9432e795e9b3d0497a0f84a14ce2d14a8a5ce56f8ed9b1；kernel console实际源SHA 3c840194226099216d7b0177c97b87740f6f6ed889328cfb6b7e863fbf6bd22c。尚未打新RAM或实机，旧r7 proof不准入此新库，见[编译原报告](../reproducibility/stencil-logging-bounds-offline-20261121.json)。
+
+r8候选已完成离线验证：固定fd5_clear对Z32硬件快清返回false；改为一次GL_ZERO绘制加八个GPU bitplane绘制，Load清零也用GPU draw，原depth禁写。主机162次Load／Store、54次逐位清屏、深度／其它sample／外围guard通过，另2390scalar draw和60depth MSAA回归通过；25项证据故障测试通过。ARM64新库与实机准入尚未完成，r7原失败保持，见[r8主机与固定上游依据](../reproducibility/stencil-bitplane-r8-host-20261121.json)。

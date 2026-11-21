@@ -8,7 +8,7 @@
 #include <errno.h>
 
 static const char sweet_stencil_copy_vertex[]="#version 310 es\nvoid main(){vec2 p=gl_VertexID==0?vec2(-1,-1):gl_VertexID==1?vec2(3,-1):vec2(-1,3);gl_Position=vec4(p,0,1);}";
-static const char sweet_stencil_load_fragment[]="#version 310 es\nprecision highp float;precision highp int;uniform highp usampler2D source_image;uniform int sample_index;uniform int bit_index;void main(){uint v=texelFetch(source_image,ivec2(gl_FragCoord.xy),0)[sample_index];if(((v>>uint(bit_index))&1u)==0u)discard;}";
+static const char sweet_stencil_load_fragment[]="#version 310 es\nprecision highp float;precision highp int;uniform highp usampler2D source_image;uniform int sample_index;uniform int bit_index;void main(){if(bit_index<0)return;uint v=texelFetch(source_image,ivec2(gl_FragCoord.xy),0)[sample_index];if(((v>>uint(bit_index))&1u)==0u)discard;}";
 static const char sweet_stencil_store_fragment[]="#version 310 es\nprecision highp float;precision highp int;uniform highp usampler2D source_image;layout(location=0) out uvec4 value;void main(){value=uvec4(texelFetch(source_image,ivec2(gl_FragCoord.xy),0).r,0,0,0);}";
 static const char sweet_stencil_ms_store_fragment[]="#version 310 es\nprecision highp float;precision highp int;uniform highp usampler2DMS source_image;uniform int sample_count;layout(location=0) out uvec4 value;void main(){ivec2 p=ivec2(gl_FragCoord.xy);value=uvec4(0);for(int i=0;i<4;++i)if(i<sample_count)value[i]=texelFetch(source_image,p,i).r;}";
 
@@ -33,7 +33,8 @@ static inline int sweet_stencil_sample_copy_draw(GLuint linear,GLuint combined,u
     glGenVertexArrays(1,&vao);glBindVertexArray(vao);
     if(to_original){glDisable(GL_STENCIL_TEST);glStencilMask(0);glDrawArrays(GL_TRIANGLES,0,3);}
     else{
-        glStencilMask(255);glClearStencil(0);glClear(GL_STENCIL_BUFFER_BIT);glEnable(GL_STENCIL_TEST);glStencilFunc(GL_ALWAYS,255,255);glStencilOp(GL_REPLACE,GL_REPLACE,GL_REPLACE);
+        glEnable(GL_STENCIL_TEST);glStencilFunc(GL_ALWAYS,255,255);glStencilMask(255);glStencilOp(GL_ZERO,GL_ZERO,GL_ZERO);
+        glUniform1i(glGetUniformLocation(program,"bit_index"),-1);glDrawArrays(GL_TRIANGLES,0,3);glStencilOp(GL_REPLACE,GL_REPLACE,GL_REPLACE);
         if(samples>1)glEnable(GL_SAMPLE_MASK);
         for(unsigned sample=0;sample<samples;++sample){if(samples>1)glSampleMaski(0,1u<<sample);glUniform1i(glGetUniformLocation(program,"sample_index"),(GLint)sample);
             for(unsigned bit=0;bit<8;++bit){glStencilMask(1u<<bit);glUniform1i(glGetUniformLocation(program,"bit_index"),(GLint)bit);glDrawArrays(GL_TRIANGLES,0,3);}}

@@ -18,10 +18,11 @@ def main():
     result=subprocess.run(command,capture_output=True,timeout=55);(out/'compile.log').write_bytes(result.stdout+result.stderr)
     assert result.returncode==0,(result.stdout+result.stderr)[-3000:].decode(errors='replace')
     raw=bounded_linux_test(a.distribution,out,'test',['EGL_PLATFORM=surfaceless','LIBGL_ALWAYS_SOFTWARE=1','UBSAN_OPTIONS=halt_on_error=1'],out/'test')
-    match=re.search(rb'Stencil sample copy PASS copies=(\d+) checked_uint_words=(\d+) depth_uint_words=(\d+) native_clears=(\d+) masked_draws=(\d+) bitpatterns=all256 samples=1,2,4 outer_pixels_and_CPU_guards=1 host_only=1',raw);assert match
+    match=re.search(rb'Stencil sample copy PASS copies=(\d+) checked_uint_words=(\d+) depth_uint_words=(\d+) GPU_bitplane_clears=(\d+) masked_draws=(\d+) bitpatterns=all256 samples=1,2,4 outer_pixels_and_CPU_guards=1 host_only=1',raw);assert match
     assert sources=={f:hashlib.sha256((ROOT/f).read_bytes()).hexdigest() for f in files}
-    report=dict(source_files=sources,copies=int(match[1]),checked_uint_words=int(match[2]),depth_uint_words=int(match[3]),native_clears=int(match[4]),masked_draws=int(match[5]),
-                UBSan_passed=True,host_renderer=re.search(rb'^Host renderer: (.+)$',raw,re.M)[1].decode(),actual_production_stencil_Load_Store_and_native_Clear=True,
+    report=dict(source_files=sources,copies=int(match[1]),checked_uint_words=int(match[2]),depth_uint_words=int(match[3]),GPU_bitplane_clears=int(match[4]),masked_draws=int(match[5]),
+                UBSan_passed=True,host_renderer=re.search(rb'^Host renderer: (.+)$',raw,re.M)[1].decode(),actual_production_stencil_Load_Store_and_GPU_bitplane_Clear=True,
+                GPU_ZERO_reset_plus_eight_masks_and_no_native_GL_Clear=True,
                 variable_all_256_byte_patterns_and_logical_1_2_4_samples_verified=True,depth_bits_and_unselected_stencil_samples_preserved=True,
                 host_actual_texture_samples={m[1].decode():int(m[2]) for m in re.finditer(rb'test samples=(\d+) actual_samples=(\d+)',raw)},
                 masked_author_rectangle_uses_fragment_discard_and_GL_scissor=True,empty_fragment_host_scissor_outlier_NOT_driver_acceptance=True,
