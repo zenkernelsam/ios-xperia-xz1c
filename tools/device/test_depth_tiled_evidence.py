@@ -21,7 +21,7 @@ def records(group, work_base=101, sequence=1):
         imports.append(f'SWEET METAL {name} import handle={p["handle"]} width=17 height=9 pitch={p["pitch"]} offset=64 GPU={hex(p["gpu"])} original_pages=1'+(' separate_z32s8=1' if name=='STENCIL' else ''))
         if p['publish']:
             copies.append(f'SWEET DEPTH TILE COPY original={p["handle"]} work={handle} direction=store samples={p["samples"]} width=17 height=9 result=0 sequence={sequence+2+index} GPU_only=1 fence=1')
-            finishes.append(f'SWEET METAL {name} retired handle={p["handle"]} result=0 sequence={sequence+2+index} original_pages=1')
+            if not p.get('resolve'):finishes.append(f'SWEET METAL {name} retired handle={p["handle"]} result=0 sequence={sequence+2+index} original_pages=1')
         releases.append(f'SWEET DEPTH TILE RETIRE original={p["handle"]} work={handle} result=0 references_retired=1')
     if 253 in work:
         z=next((p['handle'] for p in group if p['format']==252),0);st=next(p for p in group if p['format']==253)
@@ -103,6 +103,15 @@ class TiledEvidence(unittest.TestCase):
         for bad in (r8,r9.replace('tile=3 cpp=4 pitch=256 bytes=4096 depth_test=0','tile=0 cpp=4 pitch=256 bytes=4096 depth_test=0',1),
                     r9.replace('caller_depth=0','caller_depth=1',1),r9.replace('depth_writes=0 caller_depth=0','depth_writes=1 caller_depth=0',1)):
             with self.assertRaises(AssertionError):stencil.verify(bad,fixture.token,fixture.fixture,9)
+        r10=[];active=False
+        for line in r9.splitlines():
+            if line.startswith('SWEET DEPTH TILE DUMMY '):line=line.replace(' depth_test=0',' work=501 work_GPU=0x70004000 depth_test=0');active=True
+            if active and line.startswith('SWEET DEPTH TILE RETIRE '):r10.append('SWEET DEPTH TILE DUMMY_RETIRE work=501 result=0 references_retired=1');active=False
+            r10.append(line)
+        r10='\n'.join(r10)+'\n';self.assertEqual(stencil.verify(r10,fixture.token,fixture.fixture,10)['phases'],99)
+        for bad in (r9,r10.replace('work=501 work_GPU=','work=101 work_GPU=',1),r10.replace('work_GPU=0x70004000','work_GPU=0x40004000',1),
+                    r10.replace('DUMMY_RETIRE work=501 result=0','DUMMY_RETIRE work=501 result=-1',1)):
+            with self.assertRaises(AssertionError):stencil.verify(bad,fixture.token,fixture.fixture,10)
 
     def test_real_depth_msaa_shader_route_is_required(self):
         group=[plane(1,0x40004000,252,2,192,1)]
@@ -222,14 +231,14 @@ class TiledEvidence(unittest.TestCase):
                 if fmt==80 and h==fixture.page(phase,0)['handle'] and operation < (1 if phase<14 and phase%7==0 else len(msaa.draw_masks(phase))):
                     count=msaa.samples(phase)
                     group=[plane(fixture.page(phase,slot)['handle'],fixture.page(phase,slot)['gpu'],252 if slot==8 else 253,
-                                 count,msaa.pitch(count,slot),2 if phase%7==0 and phase<14 or phase>=14 and operation==0 else 1)
+                                 count,msaa.pitch(count,slot),2 if operation==0 and (phase>=14 or phase%7 in (0,1,6)) else 1)
                            for slot in (8,9)]
                     out.extend(records(group,1000+phase*50+operation*2,100*phase+10+operation*5).splitlines())
                     out.append(line)
                 else:
                     out.append(line)
                     if fmt==252:
-                        info=fixture.page(phase,11);group=[plane(info['handle'],info['gpu'],252,1,128,0)]
+                        info=fixture.page(phase,11);group=[plane(info['handle'],info['gpu'],252,1,128,0,resolve=(fixture.page(phase,8)['handle'],msaa.samples(phase),msaa.filter_mode(phase)))]
                         out.extend(records(group,4000+phase,100*phase+95).splitlines())
             elif line.startswith(('SWEET MSAA stencil_import ','SWEET MSAA pair ','SWEET METAL DEPTH retired ','SWEET METAL STENCIL retired ')):continue
             elif line.startswith(('SWEET MSAA draw ','SWEET MSAA clear ')):

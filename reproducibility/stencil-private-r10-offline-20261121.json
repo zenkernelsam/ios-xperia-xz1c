@@ -1,0 +1,17 @@
+{
+  "source_files": {
+    "gpu/sweetgl/LogWriteAll.h": "caa86a1e6763dfc8039466aa432176d2d90fc4a55db60efeb02eb33c92bc0f88",
+    "tools/build/test_log_write_remaining.c": "5c583d9658d8cdc2f720b2f980c5da6c24d45cf3a3d31aebffa86d7a327e6e04",
+    "tools/build/check_log_write_remaining.py": "3a4e880969adeb6f3e65d3d05ed3d28fc39f6bed8af393dfc76821674d4ba2be"
+  },
+  "cases": 10,
+  "UBSan_passed": true,
+  "actual_write_remaining_helper_fault_test_passed": true,
+  "exact_once_bytes_with_EINTR_and_partial_writes": true,
+  "bounded_repeated_interruption": true,
+  "host_only_NOT_live_serial_return_or_GPU_proof": true,
+  "device_operations": 0,
+  "process_logger_serialized_fd_init_and_errno_preserved": true,
+  "old_missing_r9_record_NOT_replayed": true,
+  "tiled_dummy_IOVA_lifecycle_fault_tests_passed": true
+}

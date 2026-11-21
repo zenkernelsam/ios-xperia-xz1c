@@ -1,0 +1,169 @@
+{
+  "date": "2026-11-21",
+  "items": 5,
+  "files": 18,
+  "logical_bytes": 56212424,
+  "records": [
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-stencil-r9-stage-20261121",
+      "reason": "Completed one-time transfer/CLI; canonical package and original run evidence retained",
+      "files": [
+        {
+          "relative": "transfer-package.tar.gz",
+          "bytes": 16288114,
+          "sha256": "8fa0468d1ea6c178bc66d792af3369c3b6e63fd88b0c7db568371f30c7008b65"
+        },
+        {
+          "relative": "transfer-SHA-manifest.json",
+          "bytes": 2218,
+          "sha256": "44d85c341d7d4500bd9bec3ce837367e5ee8a573c459e66026bc968761fdad36"
+        },
+        {
+          "relative": "gles-ram\\georead.dylib",
+          "bytes": 70944,
+          "sha256": "e65bdc7b70d098725918c637cc8cb1c25a8a544186d0f4468b399fda52024898"
+        },
+        {
+          "relative": "gles-ram\\glram.zblob",
+          "bytes": 3910951,
+          "sha256": "24ad6436e92cd30c0838328d974e94c1a1571e264d5244b76ea915930c3e3c08"
+        },
+        {
+          "relative": "gles-ram\\libglapi.0.dylib",
+          "bytes": 344544,
+          "sha256": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3"
+        },
+        {
+          "relative": "gles-ram\\manifest.json",
+          "bytes": 23119,
+          "sha256": "b8afb012b3d9e904a1934e64c638793af67bc7fa924c56c9aead57cf18847e87"
+        },
+        {
+          "relative": "gles-ram\\sweetgl.dylib",
+          "bytes": 14801040,
+          "sha256": "472174b7a0dd7927401d5480fc0eac5fb8ced4dba57490a0fb19752cb27a02a7"
+        },
+        {
+          "relative": "reference-ram\\exception_observe.dylib",
+          "bytes": 256704,
+          "sha256": "c26e9f4d0ad75a9f7593d2446fd29aa603e2f09a02ac5cfad5764428fb9a90dd"
+        },
+        {
+          "relative": "reference-ram\\georead.dylib",
+          "bytes": 70944,
+          "sha256": "e65bdc7b70d098725918c637cc8cb1c25a8a544186d0f4468b399fda52024898"
+        },
+        {
+          "relative": "reference-ram\\glram.zblob",
+          "bytes": 4308809,
+          "sha256": "6c1af9af30afc5e501f916631cb05d4c98e3f178af4e5ce7c1ae62a993f321f2"
+        },
+        {
+          "relative": "reference-ram\\libglapi.0.dylib",
+          "bytes": 344544,
+          "sha256": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3"
+        },
+        {
+          "relative": "reference-ram\\manifest.json",
+          "bytes": 81037,
+          "sha256": "4e085a842003d83110aee1a7674c2be7ffb7111dfeb62731ce7d39506e040dd5"
+        },
+        {
+          "relative": "reference-ram\\MetalResources.dylib",
+          "bytes": 810304,
+          "sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27"
+        },
+        {
+          "relative": "reference-ram\\sweetgl.dylib",
+          "bytes": 14801040,
+          "sha256": "472174b7a0dd7927401d5480fc0eac5fb8ced4dba57490a0fb19752cb27a02a7"
+        }
+      ],
+      "logical_bytes": 56114312,
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RDZ4LTE",
+      "verified_native_recycle": true,
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-stencil-r9-stage-20261121",
+      "time": "2026-11-21T21:28:46.5602647+08:00",
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r9-gles-cpu-cli-20261121.log",
+      "reason": "Completed one-time transfer/CLI; canonical package and original run evidence retained",
+      "files": [
+        {
+          "relative": "lilac-r9-gles-cpu-cli-20261121.log",
+          "bytes": 3078,
+          "sha256": "5a5f8cf8077f424e0e1895ecbe811743f2b10f18b649a97cc753863ec7e9a9ed"
+        }
+      ],
+      "logical_bytes": 3078,
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RYQ6DLD.log",
+      "verified_native_recycle": true,
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r9-gles-cpu-cli-20261121.log",
+      "time": "2026-11-21T21:28:47.0057969+08:00",
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r9-gles-gpu-cli-20261121.log",
+      "reason": "Completed one-time transfer/CLI; canonical package and original run evidence retained",
+      "files": [
+        {
+          "relative": "lilac-r9-gles-gpu-cli-20261121.log",
+          "bytes": 19082,
+          "sha256": "db74a3a0433b185d7bc2b9f18785e7016f4f9aa3bdf0b8ecb32ab90d94706046"
+        }
+      ],
+      "logical_bytes": 19082,
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RG92NZK.log",
+      "verified_native_recycle": true,
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r9-gles-gpu-cli-20261121.log",
+      "time": "2026-11-21T21:28:47.0503139+08:00",
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r9-reference-cpu-cli-20261121.log",
+      "reason": "Completed one-time transfer/CLI; canonical package and original run evidence retained",
+      "files": [
+        {
+          "relative": "lilac-r9-reference-cpu-cli-20261121.log",
+          "bytes": 3087,
+          "sha256": "933579d063bf940fadfff2e7aa80bc73bdd64767988e4cb7219da8e53e6d4745"
+        }
+      ],
+      "logical_bytes": 3087,
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$ROXL1AR.log",
+      "verified_native_recycle": true,
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r9-reference-cpu-cli-20261121.log",
+      "time": "2026-11-21T21:28:47.0891492+08:00",
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r9-reference-gpu-cli-20261121.log",
+      "reason": "Completed one-time transfer/CLI; canonical package and original run evidence retained",
+      "files": [
+        {
+          "relative": "lilac-r9-reference-gpu-cli-20261121.log",
+          "bytes": 72865,
+          "sha256": "494596fec643ef1c6be35dac64908cdb4d9509ebfb8bb0ee740f544a53e0ab1c"
+        }
+      ],
+      "logical_bytes": 72865,
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RJ0MR22.log",
+      "verified_native_recycle": true,
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r9-reference-gpu-cli-20261121.log",
+      "time": "2026-11-21T21:28:47.1302575+08:00",
+      "all_content_SHA_verified": true
+    }
+  ],
+  "protected_SHA_unchanged": {
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\surface-diag-v730\\kernel.v730.macho": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-only-native-r9-20261121\\reference-gpu\\trial.img": "801285f6c0829d66ad8cb55a65711b1152aa3f49b09fd659fa0a1d66bdf022ee",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-only-native-r9-20261121\\gles-ram\\sweetgl.dylib": "472174b7a0dd7927401d5480fc0eac5fb8ced4dba57490a0fb19752cb27a02a7",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-only-native-r9-20261121\\gles-ram\\glram.zblob": "24ad6436e92cd30c0838328d974e94c1a1571e264d5244b76ea915930c3e3c08",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-only-native-r9-20261121\\gles-ram\\manifest.json": "b8afb012b3d9e904a1934e64c638793af67bc7fa924c56c9aead57cf18847e87",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-only-native-r9-20261121\\reference-ram\\sweetgl.dylib": "472174b7a0dd7927401d5480fc0eac5fb8ced4dba57490a0fb19752cb27a02a7",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-only-native-r9-20261121\\reference-ram\\glram.zblob": "6c1af9af30afc5e501f916631cb05d4c98e3f178af4e5ce7c1ae62a993f321f2",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\stencil-only-native-r9-20261121\\reference-ram\\manifest.json": "4e085a842003d83110aee1a7674c2be7ffb7111dfeb62731ce7d39506e040dd5"
+  },
+  "trash_not_emptied": true
+}

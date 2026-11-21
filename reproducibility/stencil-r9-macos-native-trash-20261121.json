@@ -1,0 +1,296 @@
+{
+  "date": "2026-11-21",
+  "items": 15,
+  "files": 25,
+  "logical_bytes": 150862932,
+  "records": [
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/stencil-only-native-r9-20261121/gles-ram/glram.raw",
+      "reason": "Exact duplicate HFS bytes reconstructible from protected signed blob/manifest",
+      "files": [
+        {
+          "relative": "glram.raw",
+          "bytes": 33554432,
+          "sha256": "238370941b3ad90eb2a7fb5e19565563fbe1581aa38c3bc8142f6d57341b0ef7"
+        }
+      ],
+      "logical_bytes": 33554432,
+      "trash_path": "/Users/ciscohe/.Trash/glram.raw 21-24-46-385.raw",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/stencil-only-native-r9-20261121/gles-ram/glram.dmg",
+      "reason": "Exact duplicate HFS bytes reconstructible from protected signed blob/manifest",
+      "files": [
+        {
+          "relative": "glram.dmg",
+          "bytes": 33554432,
+          "sha256": "238370941b3ad90eb2a7fb5e19565563fbe1581aa38c3bc8142f6d57341b0ef7"
+        }
+      ],
+      "logical_bytes": 33554432,
+      "trash_path": "/Users/ciscohe/.Trash/glram.dmg 21-24-46-463.dmg",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/stencil-only-native-r9-20261121/reference-ram/glram.raw",
+      "reason": "Exact duplicate HFS bytes reconstructible from protected signed blob/manifest",
+      "files": [
+        {
+          "relative": "glram.raw",
+          "bytes": 33554432,
+          "sha256": "0ac59cbc6e95da037121ccc58bde755ab1274ef209e4ac23307f09880057e332"
+        }
+      ],
+      "logical_bytes": 33554432,
+      "trash_path": "/Users/ciscohe/.Trash/glram.raw 21-24-46-517.raw",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/stencil-only-native-r9-20261121/reference-ram/glram.dmg",
+      "reason": "Exact duplicate HFS bytes reconstructible from protected signed blob/manifest",
+      "files": [
+        {
+          "relative": "glram.dmg",
+          "bytes": 33554432,
+          "sha256": "0ac59cbc6e95da037121ccc58bde755ab1274ef209e4ac23307f09880057e332"
+        }
+      ],
+      "logical_bytes": 33554432,
+      "trash_path": "/Users/ciscohe/.Trash/glram.dmg 21-24-46-575.dmg",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/stencil-only-native-r9-20261121/reference-observer/test_startup.dSYM",
+      "reason": "Completed observer host executable/symbols; source, logs and signed observer retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 641,
+          "sha256": "944829fa3c1a4d913161b503f6352fa20f7c101cdeefe97a15208dadbe4a587a"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_startup.yml",
+          "bytes": 195,
+          "sha256": "9851a0ed1f01971b964e661f98edaffc0b8b8efc86e696d86f7982846ef593ad"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_startup",
+          "bytes": 14936,
+          "sha256": "50d3ef8646f62f526acf4326c0f219f88e39620a8df048b8ad5e15b4c9171e8c"
+        }
+      ],
+      "logical_bytes": 15772,
+      "trash_path": "/Users/ciscohe/.Trash/test_startup.dSYM 21-24-46-627.dSYM",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/stencil-only-native-r9-20261121/reference-observer/test_cache_scope.dSYM",
+      "reason": "Completed observer host executable/symbols; source, logs and signed observer retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 645,
+          "sha256": "2d56eca2217abc049f49309a8cb04e54f45a4ba11b0491143bbbb28280638af2"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_cache_scope.yml",
+          "bytes": 199,
+          "sha256": "a621dc2bf560f6e0ba73664f6fc2fa92079abc9fe9335e0e0d2226404d0ad63b"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_cache_scope",
+          "bytes": 18224,
+          "sha256": "015efbfd236b7d391e482189e8604214602e02b32a57b2d1f432f28f326844d2"
+        }
+      ],
+      "logical_bytes": 19068,
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_scope.dSYM 21-24-46-683.dSYM",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/stencil-only-native-r9-20261121/reference-observer/test_observer.dSYM",
+      "reason": "Completed observer host executable/symbols; source, logs and signed observer retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 642,
+          "sha256": "589d796cebc46abadfe0ec147d2a15f3b4f4f50d2c7edbebfc3cde26f51d66bf"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_observer.yml",
+          "bytes": 196,
+          "sha256": "605be5e6c1d4ac024ed68c86728d77501214192ece7307d97a655a2eee4a0707"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_observer",
+          "bytes": 41828,
+          "sha256": "bcaa53e7ac4a9f7911dda41b06b03a609ff13ba5561dd392b3283c5f65b751f6"
+        }
+      ],
+      "logical_bytes": 42666,
+      "trash_path": "/Users/ciscohe/.Trash/test_observer.dSYM 21-24-46-741.dSYM",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/stencil-only-native-r9-20261121/reference-observer/test_attachment_snapshot",
+      "reason": "Completed observer host executable/symbols; source, logs and signed observer retained",
+      "files": [
+        {
+          "relative": "test_attachment_snapshot",
+          "bytes": 27872,
+          "sha256": "f8b248fb79b5d9b9aaeb15a4c217900f8a54fe976aee7b01416d72fed558d576"
+        }
+      ],
+      "logical_bytes": 27872,
+      "trash_path": "/Users/ciscohe/.Trash/test_attachment_snapshot 21-24-46-793",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/stencil-only-native-r9-20261121/reference-observer/test_cif10_png_reference.dSYM",
+      "reason": "Completed observer host executable/symbols; source, logs and signed observer retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 653,
+          "sha256": "8e989f94a66cd0e1d9a42e7c8d6fd05eae260f619024f56a29676dfdceffdade"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_cif10_png_reference.yml",
+          "bytes": 207,
+          "sha256": "eabbdc86a0becf6c875974a5d22e171ecc5b4487a070867664b62297db759496"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_cif10_png_reference",
+          "bytes": 55532,
+          "sha256": "93d7eb273063b277d23cc11b05e24662d4d533b26c42316d2e6ccb5a2447530f"
+        }
+      ],
+      "logical_bytes": 56392,
+      "trash_path": "/Users/ciscohe/.Trash/test_cif10_png_reference.dSYM 21-24-46-850.dSYM",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/stencil-only-native-r9-20261121/reference-observer/test_cache_scope",
+      "reason": "Completed observer host executable/symbols; source, logs and signed observer retained",
+      "files": [
+        {
+          "relative": "test_cache_scope",
+          "bytes": 28320,
+          "sha256": "e25ed77bc2457f5d65185944da8e528bd84b9083085365b15b4f45e126327a2b"
+        }
+      ],
+      "logical_bytes": 28320,
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_scope 21-24-46-908",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/stencil-only-native-r9-20261121/reference-observer/test_startup",
+      "reason": "Completed observer host executable/symbols; source, logs and signed observer retained",
+      "files": [
+        {
+          "relative": "test_startup",
+          "bytes": 20592,
+          "sha256": "2bfe4e15e5728c5e8967e7fddf423c5012c0845ab4334084be6250d70ced5c19"
+        }
+      ],
+      "logical_bytes": 20592,
+      "trash_path": "/Users/ciscohe/.Trash/test_startup 21-24-46-963",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/stencil-only-native-r9-20261121/reference-observer/test_cif10_png_reference",
+      "reason": "Completed observer host executable/symbols; source, logs and signed observer retained",
+      "files": [
+        {
+          "relative": "test_cif10_png_reference",
+          "bytes": 63872,
+          "sha256": "bc0eee2ab60c6d71f11b6914549365de29d93aabbdc16ba407fa2d622e118518"
+        }
+      ],
+      "logical_bytes": 63872,
+      "trash_path": "/Users/ciscohe/.Trash/test_cif10_png_reference 21-24-47-021",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/stencil-only-native-r9-20261121/reference-observer/test_observer",
+      "reason": "Completed observer host executable/symbols; source, logs and signed observer retained",
+      "files": [
+        {
+          "relative": "test_observer",
+          "bytes": 65680,
+          "sha256": "45979ff530d9710771dddbddced5e2d0627583b47d45dbcadc8ef388e829fd13"
+        }
+      ],
+      "logical_bytes": 65680,
+      "trash_path": "/Users/ciscohe/.Trash/test_observer 21-24-47-074",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/stencil-only-native-r9-20261121/reference-observer/test_attachment_snapshot.dSYM",
+      "reason": "Completed observer host executable/symbols; source, logs and signed observer retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 653,
+          "sha256": "d5f0029ed8ca7a9036c2cab1990c35358da4fe52e5317a53347f17210346329e"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_attachment_snapshot.yml",
+          "bytes": 207,
+          "sha256": "72dbcbec95c00c9d679d233570827187d24c979e6d6afe580bda5781a9b7c5fe"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_attachment_snapshot",
+          "bytes": 15996,
+          "sha256": "bbce942f19bba29a45cdc1484e92be72fd2cbe56096451663105faad6462e016"
+        }
+      ],
+      "logical_bytes": 16856,
+      "trash_path": "/Users/ciscohe/.Trash/test_attachment_snapshot.dSYM 21-24-47-129.dSYM",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/stencil-only-native-r9-20261121/transfer-package.tar.gz",
+      "reason": "Completed 12-file SHA-verified transfer",
+      "files": [
+        {
+          "relative": "transfer-package.tar.gz",
+          "bytes": 16288114,
+          "sha256": "8fa0468d1ea6c178bc66d792af3369c3b6e63fd88b0c7db568371f30c7008b65"
+        }
+      ],
+      "logical_bytes": 16288114,
+      "trash_path": "/Users/ciscohe/.Trash/transfer-package.tar.gz 21-24-47-183.gz",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    }
+  ],
+  "protected_SHA_unchanged": {
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/surface-diag-v730/kernel.v730.macho": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/dxb/xnu/iokit/Kernel/arm/SweetGPU.cpp": "aa2c36792a2298b060aa858eabdc039522fcdde3cfdbafd453c5fc6c0683c157",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/stencil-only-native-r9-20261121/gles-ram/sweetgl.dylib": "472174b7a0dd7927401d5480fc0eac5fb8ced4dba57490a0fb19752cb27a02a7",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/stencil-only-native-r9-20261121/gles-ram/glram.zblob": "24ad6436e92cd30c0838328d974e94c1a1571e264d5244b76ea915930c3e3c08",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/stencil-only-native-r9-20261121/gles-ram/manifest.json": "b8afb012b3d9e904a1934e64c638793af67bc7fa924c56c9aead57cf18847e87",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/stencil-only-native-r9-20261121/reference-ram/sweetgl.dylib": "472174b7a0dd7927401d5480fc0eac5fb8ced4dba57490a0fb19752cb27a02a7",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/stencil-only-native-r9-20261121/reference-ram/glram.zblob": "6c1af9af30afc5e501f916631cb05d4c98e3f178af4e5ce7c1ae62a993f321f2",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/stencil-only-native-r9-20261121/reference-ram/manifest.json": "4e085a842003d83110aee1a7674c2be7ffb7111dfeb62731ce7d39506e040dd5"
+  },
+  "trash_not_emptied": true,
+  "pause_preserved": true,
+  "disk_after": "Filesystem      Size    Used   Avail Capacity iused ifree %iused  Mounted on\n/dev/disk2s1   954Gi   848Gi    76Gi    92%    4.2M  797M    1%   /System/Volumes/Data\n"
+}

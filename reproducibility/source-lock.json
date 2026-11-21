@@ -191,7 +191,7 @@
       "CopyRefreshProbeUtils.h": "e9ec3e55e59b4e92e51818802dda982c05e33e86916809d0621a285151acff70",
       "eagl.c": "b5c7672cb0c7d919ff0b181c740396fc8b972dca17922efc8316c299fe1f5e5d",
       "caller_probe.c": "b93ff7e6f36da719786b7c915f7699a2872b047ae52f9568ba26216f8d408e1a",
-      "sweetgl.c": "08aa0196e66b9b27fec67f12f5d9edab977a7f663ff3f65ac31d3c9bcc5db41e",
+      "sweetgl.c": "353f3333397391fea015b39dcedd36b51cfdb86b0e3bc06ad51b88ce0a4dc732",
       "sweet_drm.c": "424d4246319dda2d80cd7607fb714580f5be583c3ff357fc9015b823b5c7280e",
       "surface_initial_copy.c": "6c0b23e39b2ff7ea4d11753edd6b06f46c38ff3bd59775be83b5027a2b1ebde0",
       "include/xf86drm.h": "f02b5292a999ccfd05c3705d57a1a8e28a308cbf533f59aeb1b80a6d7e3c1caa",
@@ -205,7 +205,7 @@
       "MetalShaderAPI.h": "3eebe9013770eff5c1092c8ccc50b4cd6ad931986f109573f74905d16dd1c23b",
       "metal_compute.c": "c2780b5202cdc4ae4161b2359d6c694f4bd35e4af7c3d3d50286fed5d12b8376",
       "MetalShaderInternals.h": "fb53d4a20b3a6b577becc8e551eb932d2dfa5617a742fb33e510af7697679ead",
-      "metal_render.c": "f112e70b0459f5828591e786b12efdf7c424b0a028052797d9ce445efe5170c6",
+      "metal_render.c": "0943246dcb95aacdbaf303afecc1a5a845422ee6576718c47294e348057c7e1a",
       "XRColourTables.h": "7564148cfcdb509061e1cebc76cd8afb59a292f4dea18086f2d7fa753bb723fa",
       "XRColourShader.h": "9a4e6514d9f203dac4fa95def0ec418777c8422125bfacfdbb0d1a7ea1c6d973",
       "MipColourShader.h": "15d9f983a7fd0d71604193262a19b7b6cad8f6900c6366f7e12b155db47c8ed1",
@@ -234,10 +234,11 @@
       "MetalMultisampleAPI.h": "d91d5769eb8d15e1f4e1fd881271c2fcb22591536a76485b96df65d9b588384e",
       "MultisampleLayout.h": "8401b48a17b9ec55b5209a34389cc87aa8f374417e4d1e391f7958dc441f76ae",
       "MultisampleResolveGLES.h": "d2ee66bf5a9a900b3a3a26d85d4fcded09573f3d7d052afcbf69c4b7fd7ac8d4",
-      "DepthTiledPlane.h": "af28e38f39df36e4369fdec6f92cc0a43e9bab09f81f7cb57e7fa4fa19fbbb49",
+      "DepthTiledPlane.h": "2116505a9e0351b8922964b14e6c6e4c114c704972cfc2c60c7ed53e97fa4c03",
       "DepthTiledCopyBox.h": "14ba38286122d797451e9e93a207424c7997d0d2a3f320965584b0e9d1a61e69",
       "DepthMultisampleCopyGLES.h": "b8ea9bea99691657e982000ed3f51c778b5d13c210bd9230b7d270f2a524e5c6",
-      "StencilSampleCopyGLES.h": "39d4619e6fb3500f37efa2df5338bdb71a0d57a6128fbc203ea4d4dbf1d07c3d"
+      "StencilSampleCopyGLES.h": "39d4619e6fb3500f37efa2df5338bdb71a0d57a6128fbc203ea4d4dbf1d07c3d",
+      "LogWriteAll.h": "caa86a1e6763dfc8039466aa432176d2d90fc4a55db60efeb02eb33c92bc0f88"
     },
     "tested_library_sha256": "9a59820c7e54b1626cacd49acb70a7d460be3c01c415a17429a2464bb5b11571",
     "build_script_updated_for_canonical_output": "956340e5f130698f8fc1e188009a2966c6a935b91caf5001d629b8a74d14a55c",
@@ -268,14 +269,15 @@
       "actual_max_matrix_difference_LSB": 0,
       "complete_UI_wallpaper_FPS_pending": true
     },
-    "depth_stencil_tiled_work_pages_revision": 9,
+    "depth_stencil_tiled_work_pages_revision": 10,
     "A5xx_depth_stencil_linear_sysmem_attachment_refused": true,
     "depth_stencil_work_page_GPU_raw_copy_no_CPU_conversion": true,
     "depth_stencil_tiled_work_actual_device_acceptance_pending": true,
     "stencil_GPU_bitplane_Load_Store_candidate": true,
     "stencil_native_Clear_private_padded_work_page_candidate": false,
     "stencil_GPU_ZERO_and_eight_bitplane_Clear_candidate": true,
-    "stencil_only_unused_depth_primary_native_TILE5_3_candidate": true
+    "stencil_only_unused_depth_primary_native_TILE5_3_candidate": true,
+    "unused_depth_private_FDL5_work_candidate": true
   },
   "audited_xnu_files": {
     "iokit/Kernel/arm/SweetFramebuffer.cpp": "ff93954b154cad38e620f6e3d07cfa208171b7ceeea0c5f60b5b20ae049c2ebc",

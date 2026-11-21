@@ -49,3 +49,5 @@ Windows本轮两个完成传输目录、8个WSL在Windows挂载盘生成的ELF�
 现行50份文档统一由STATUS给事实、BUILD给复现、OPERATIONS给规则、LAYOUT给恢复、INDEX给专题。修改前10份原文与SHA保存在[本轮归档manifest](archive/20261121/stencil-r7-integration/original-document-manifest.json)；本周47份原归档逐字节保持。过时handover／handout仍归入archive，原失败不重新分类。正文只维护现行入口，技术证据留专题／原报告；当前[GPU四靴](../reproducibility/stencil-sample-r7-stage-20261121.json)仍REVISE，整理没有改变验收结论。
 
 r8结束后另15项／25文件／150861981B入Mac原生Trash，9项／22文件／56556776B入Windows回收站，含4个WSL ELF；目标SHA与保护指纹通过，原四靴及拒绝转储raw保留。见[Mac r8](../reproducibility/stencil-r8-macos-native-trash-20261121.json)／[Windows r8](../reproducibility/stencil-r8-windows-native-recycle-20261121.json)。回收站未清空。
+
+r9轮后15项／25文件／150862932B进入Mac原生Trash，5项／18文件／56212424B进入Windows回收站；目标SHA和保护指纹复核，垃圾桶未清空。原四靴、拒绝和当前少量有效页面保留，见[Mac r9](../reproducibility/stencil-r9-macos-native-trash-20261121.json)／[Windows r9](../reproducibility/stencil-r9-windows-native-recycle-20261121.json)。

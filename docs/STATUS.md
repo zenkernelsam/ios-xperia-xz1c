@@ -1,5 +1,6 @@
 # 当前状态 — 2026-11-21
 
+r9四靴已结束，CPU／GLES9／reference CPU通过，native21为REVISE，40.016秒完整0x06回程／健康30秒，Sony健康fastboot、无worker。r10仅离线源码／核验就绪，尚未投递。
 当前r8四靴已结束：CPU／GLES9／reference CPU通过，native21在Stencil8 phase96为REVISE，39.391秒完整0x06回程／健康30秒，Sony健康fastboot、无worker。r9仅离线源码／核验完成，尚未投递。
 Sony BH905ND69G健康fastboot；本轮四靴已结束，无controller／串口worker／in-flight。Stencil8 r7完整native21为REVISE／STENCIL8_PROBE_FAILED，40.813秒完成0x06四marker、连续健康30秒和worker退出。自身CPU、GLES9、reference CPU均独立通过；S8仍phase2失败，Memoryless新清屏路径也在phase2失败。MSAA／presentation在ACK前没有完整END，PNG6未准入。生产CA基线保持，原失败不重发。
 
@@ -59,3 +60,7 @@ r8候选已完成离线验证：固定fd5_clear对Z32硬件快清返回false；�
 r8 GLES dab61a49d275b2f4326f37fbec7f3360179e42e3304475e535f7f8400f87d743／Metal 8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27，Stencil8 phase0..95共96个阶段的color／depth／stencil原FNV与独立recipe、guard、getBytes全部一致；严格Depth32 29 work／copy／STATE与byte／guard通过。整体仍在phase96失败，Memoryless在phase2失败，两者都是stencil-only。原失败转储缺块／乱序被decoder拒绝，没有填补或重新分类，见[r8原报告](../reproducibility/stencil-bitplane-r8-stage-20261121.json)。
 
 prepare_depth_tiled在无caller depth时把unused primary显式强制DRM_LINEAR，实际S8 work为TILE5_3。r9改用固定Mesa原生resource_create，并要求actual dummy tile3／cpp／pitch／size和caller_depth0／禁depth test-write日志，未知布局明确拒绝。不新造或发布caller depth页，不改内核／allocator／SCM／PON／RPC／VM。新增dummy缺失／线性／depth写入故障核验通过，完整native21／PNG仍待新库。
+
+r9原结果见[r9阶段](../reproducibility/stencil-only-r9-stage-20261121.json)：严格D32全29通过，MSAA18原byte／guard／FNV复算一致，但phase16／stencil206退休记录缺一条，完整work协议保持拒绝。核验同时按原作者encode纠正local0／1／6的首操作Clear，depth resolve按原独立src/dst/samples/filter/fence返回记录绑定，不构造不存在的通用retired日志。
+
+r10临时depth采用已验private FDL5 allocation＋原Z32 alias，不依赖返回linear的普通创建器；独立work／IOVA／tile／cpp／pitch／size／禁depth写及释放必须实际记录。无caller depth、无linear shadow或CPU seed、无depth发布。日志write剩余字节／EINTR和串行fd初始化／errno保存加入，10个真实helper故障测试通过；原缺块／缺失记录不补发，见[r10离线核验](../reproducibility/stencil-private-r10-offline-20261121.json)。

@@ -662,12 +662,12 @@ done:
     sweet_drm_log("SWEET AIR RENDER bounded_clear width=%u height=%u shader_draw=1 result=%d",pass->target.width,pass->target.height,result);return result;
 }
 struct sweet_render_targets {GLuint raw[8],old[8],linear[8],framebuffer,depth;uint32_t mask;
-    SweetDepthTiledPlane depthPlane,stencilPlane;struct st_context *context;};
+    SweetDepthTiledPlane depthPlane,stencilPlane;SweetDepthTiledDummy dummyDepth;struct st_context *context;};
 static void retire_targets(struct sweet_render_targets *targets)
 {
     if(targets->framebuffer)glDeleteFramebuffers(1,&targets->framebuffer);
     if(targets->depth)glDeleteTextures(1,&targets->depth);
-    sweet_depth_tiled_retire(&targets->depthPlane);sweet_depth_tiled_retire(&targets->stencilPlane);
+    sweet_depth_dummy_retire(&targets->dummyDepth);sweet_depth_tiled_retire(&targets->depthPlane);sweet_depth_tiled_retire(&targets->stencilPlane);
     for(unsigned i=0;i<8;++i){if(targets->raw[i])glDeleteTextures(1,&targets->raw[i]);if(targets->old[i])glDeleteTextures(1,&targets->old[i]);if(targets->linear[i])glDeleteTextures(1,&targets->linear[i]);}
     memset(targets,0,sizeof(*targets));
 }
@@ -781,24 +781,17 @@ static int prepare_depth_tiled(struct st_context *context,const SweetRenderDepth
     struct pipe_resource *primary=NULL,*secondary=NULL;int result=0;
     if(depth){result=sweet_depth_tiled_create(context,&depth->target,samples,depth->load_action,&targets->depthPlane);
         if(result)return result;pipe_resource_reference(&primary,targets->depthPlane.attachment);}
-    else{unsigned width=stencil->target.width,height=stencil->target.height;
-        struct pipe_resource description={.target=PIPE_TEXTURE_2D,.format=PIPE_FORMAT_Z32_FLOAT,.width0=width,.height0=height,
-            .depth0=1,.array_size=1,.nr_samples=samples,.nr_storage_samples=samples,.bind=PIPE_BIND_DEPTH_STENCIL,.usage=PIPE_USAGE_DEFAULT};
-        // The real separate S8 work plane is TILE5_3. FD5 programs this
-        // combined surface using its depth primary; a forced-linear unused
-        // primary makes stencil-only passes disagree with raster/texture layout.
-        primary=context->screen->resource_create(context->screen,&description);
-        // This unused primary supplies only the original helper's paired format;
-        // depth is disabled and has no caller page to read or publish.
-    }
+    else{result=sweet_depth_dummy_create(context,stencil->target.width,stencil->target.height,samples,&targets->dummyDepth);
+        if(result)return result;pipe_resource_reference(&primary,targets->dummyDepth.attachment);}
     if(!primary)return -ENOMEM;
     if(!depth && fd_resource(primary)->layout.tile_mode!=TILE5_3){pipe_resource_reference(&primary,NULL);return -ENOTSUP;}
     if(stencil){result=sweet_depth_tiled_create(context,&stencil->target,samples,stencil->load_action,&targets->stencilPlane);
         if(result)goto done;pipe_resource_reference(&secondary,targets->stencilPlane.attachment);
         if(!sweet_stencil_pair_take_samples(primary,&secondary,samples)){result=-EINVAL;goto done;}
         if(!depth){const struct fdl_layout *layout=&fd_resource(primary)->layout;
-            sweet_drm_log("SWEET DEPTH TILE DUMMY stencil=%u samples=%u width=%u height=%u tile=%u cpp=%u pitch=%u bytes=%llu depth_test=0 depth_writes=0 caller_depth=0",
-                stencil->target.handle,samples,stencil->target.width,stencil->target.height,layout->tile_mode,layout->cpp,layout->pitch0,(unsigned long long)layout->size);}}
+            sweet_drm_log("SWEET DEPTH TILE DUMMY stencil=%u samples=%u width=%u height=%u tile=%u cpp=%u pitch=%u bytes=%llu work=%u work_GPU=%#llx depth_test=0 depth_writes=0 caller_depth=0",
+                stencil->target.handle,samples,stencil->target.width,stencil->target.height,layout->tile_mode,layout->cpp,layout->pitch0,(unsigned long long)layout->size,
+                targets->dummyDepth.work.handle,(unsigned long long)targets->dummyDepth.work.gpu_address);}}
     if(samples>1)result=describe_multisample_image(context,primary,samples,stencil?GL_DEPTH32F_STENCIL8:GL_DEPTH_COMPONENT32F,
         stencil?MESA_FORMAT_Z32_FLOAT_S8X24_UINT:MESA_FORMAT_Z_FLOAT32,&targets->depth);
     else{glGenTextures(1,&targets->depth);glBindTexture(GL_TEXTURE_2D,targets->depth);

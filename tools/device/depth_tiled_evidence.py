@@ -11,13 +11,16 @@ BOX = re.compile(r'SWEET DEPTH TILE BOX original=(\d+) work=(\d+) src=(-?\d+,-?\
 SAMPLE = re.compile(r'SWEET DEPTH TILE SAMPLE original=(\d+) work=(\d+) direction=(load|store) samples=(\d+) width=(\d+) height=(\d+) src_samples=(\d+) dst_samples=(\d+) passes=(\d+) masks=(\d+) bitcast=1 GPU_only=1')
 STATE = re.compile(r'SWEET DEPTH TILE STATE original=(\d+) work=(\d+) direction=(load|store) all_dirty=(\d+) stencil_ref=(\d+) sample_mask=(\d+) scissor=(\d+) gen_dirty=(\d+) gen_all=(\d+)')
 STENCIL_SAMPLE = re.compile(r'SWEET STENCIL TILE SAMPLE original=(\d+) work=(\d+) direction=(load|store) samples=(\d+) width=(\d+) height=(\d+) src_samples=(\d+) dst_samples=(\d+) passes=(\d+) masks=(\d+) bitplanes=8(?: zero_draw=([01]))? GPU_only=1')
-DUMMY = re.compile(r'SWEET DEPTH TILE DUMMY stencil=(\d+) samples=(\d+) width=(\d+) height=(\d+) tile=(\d+) cpp=(\d+) pitch=(\d+) bytes=(\d+) depth_test=0 depth_writes=0 caller_depth=0')
+DUMMY = re.compile(r'SWEET DEPTH TILE DUMMY stencil=(\d+) samples=(\d+) width=(\d+) height=(\d+) tile=(\d+) cpp=(\d+) pitch=(\d+) bytes=(\d+)(?: work=(\d+) work_GPU=(0x[0-9a-f]+))? depth_test=0 depth_writes=0 caller_depth=0')
+DUMMY_RETIRE=re.compile(r'SWEET DEPTH TILE DUMMY_RETIRE work=(\d+) result=0 references_retired=1')
 
 
-def plane(handle, gpu, format_, samples, pitch, load, publish=True):
-    return dict(handle=int(handle), gpu=int(gpu, 16) if isinstance(gpu, str) else gpu,
+def plane(handle, gpu, format_, samples, pitch, load, publish=True,resolve=None):
+    value=dict(handle=int(handle), gpu=int(gpu, 16) if isinstance(gpu, str) else gpu,
                 format=format_, samples=samples, pitch=pitch, offset=64, width=17, height=9,
                 load=load, publish=publish)
+    if resolve is not None:value['resolve']=resolve
+    return value
 
 
 def layout_bytes(format_, samples, width=17, height=9):
@@ -36,7 +39,7 @@ def verify_groups(segment, groups,revision=2):
     Filtered segments for concurrent probes retain original handles explicitly;
     no unrelated plane is used as proof of this group's work or copy.
     """
-    assert revision in (2,3,4,5,6,7,8,9)
+    assert revision in (2,3,4,5,6,7,8,9,10)
     tile_mode=3 if revision>=4 else 2
     handles = {p['handle'] for group in groups for p in group}
     tables = [list(pattern.finditer(segment)) for pattern in (PAGE, MAP, COPY, PAIR, RETIRE)]
@@ -56,6 +59,8 @@ def verify_groups(segment, groups,revision=2):
     states = [m for m in STATE.finditer(segment) if int(m[1]) in handles]
     stencil_sampled = [m for m in STENCIL_SAMPLE.finditer(segment) if int(m[1]) in handles]
     dummies=[m for m in DUMMY.finditer(segment) if int(m[1]) in handles]
+    dummy_releases=list(DUMMY_RETIRE.finditer(segment))
+    if revision>=10:assert segment.count('SWEET DEPTH TILE DUMMY_RETIRE ')==len(dummy_releases)
     if revision>=9:
         assert segment.count('SWEET DEPTH TILE DUMMY ')==len(list(DUMMY.finditer(segment)))
         assert len(dummies)==sum(any(p['format']==253 for p in g) and not any(p['format']==252 for p in g) for g in groups)
@@ -150,8 +155,15 @@ def verify_groups(segment, groups,revision=2):
             if p['publish']:
                 assert import_at < copied[-1].start()
                 finishes = list(re.finditer(r'SWEET METAL '+name+r' retired handle='+str(original)+r' result=0 sequence=(\d+) original_pages=1',segment[begin:end]))
-                assert len(finishes)==1 and int(finishes[0][1])==sequence[-1]
-                assert copied[-1].end() < begin+finishes[0].start() < release.start()
+                if p.get('resolve') is not None:
+                    src,count,filter_=p['resolve'];assert p['format']==252 and p['samples']==1 and p['load']==0
+                    assert not finishes
+                    pattern=r'SWEET MSAA resolve src='+str(src)+r' dst='+str(original)+r' samples='+str(count)+r' aspect=1 filter='+str(filter_)+r' result=0 sequence=(\d+) original_pages=1 GPU_only=1'
+                    resolved=list(re.finditer(pattern,segment[begin:end]));assert len(resolved)==1 and int(resolved[0][1])==sequence[-1]
+                    assert copied[-1].end()<release.start()<begin+resolved[0].start()<end
+                else:
+                    assert len(finishes)==1 and int(finishes[0][1])==sequence[-1]
+                    assert copied[-1].end() < begin+finishes[0].start() < release.start()
             work[format_] = handle; work_gpus[format_] = work_gpu
             spans.append(dict(original=original, work=handle, work_GPU=hex(work_gpu), format=format_,
                               samples=samples, pitch=pitch, bytes=size, load=p['load'], publish=p['publish'], copy_sequences=sequence))
@@ -165,7 +177,17 @@ def verify_groups(segment, groups,revision=2):
             if revision>=9 and depth is None:
                 dummy=[m for m in dummies if begin<m.start()<m.end()<p.start()];assert len(dummy)==1
                 _,dummy_pitch,dummy_size=layout_bytes(252,stencil['samples'],stencil['width'],stencil['height'])
-                assert tuple(map(int,dummy[0].groups()))==(stencil['handle'],stencil['samples'],stencil['width'],stencil['height'],3,4*stencil['samples'],dummy_pitch,dummy_size)
+                dummy=dummy[0]
+                assert tuple(int(dummy[i]) for i in range(1,9))==(stencil['handle'],stencil['samples'],stencil['width'],stencil['height'],3,4*stencil['samples'],dummy_pitch,dummy_size)
+                if revision>=10:
+                    assert dummy[9] is not None and dummy[10] is not None
+                    dwork,dgpu=int(dummy[9]),int(dummy[10],16)
+                    assert dwork>0 and dwork not in handles|set(work.values())
+                    assert 0x40000000<=dgpu<0x80000000 and dgpu%16384==0 and dgpu not in set(work_gpus.values())|{x['gpu'] for x in expected}
+                    d_releases=[m for m in dummy_releases if begin<m.start()<m.end()<end and int(m[1])==dwork];assert len(d_releases)==1
+                    assert dummy.end()<d_releases[0].start()<min(m.start() for m in retired if begin<m.start()<end)
+                    if copied:assert max(m.end() for m in copied)<d_releases[0].start()
+                else:assert dummy[9] is dummy[10] is None
         records.append(spans); index = following
     return dict(revision=revision, independent_FDL5_work_pages=True, GPU_copy_and_fence_verified=True,
                 original_stride_offset_and_IOVA_verified=True, work_reference_retirement_verified=True,

@@ -18,6 +18,10 @@ typedef struct SweetDepthTiledPlane {
     SweetShaderTextureBinding original;
     unsigned samples;
 } SweetDepthTiledPlane;
+typedef struct SweetDepthTiledDummy {
+    struct pipe_resource *attachment;
+    SweetMetalBacking work;
+} SweetDepthTiledDummy;
 
 static enum pipe_format sweet_tiled_transfer_format(unsigned pixel,unsigned samples)
 {
@@ -54,6 +58,28 @@ static struct pipe_resource *sweet_tiled_alias(struct st_context *context,uint32
             pipe_resource_reference(&resource,NULL);return NULL;}
         actual->layout=*layout;actual->layout.format=format;actual->layout.nr_samples=samples;}
     return resource;
+}
+static void sweet_depth_dummy_retire(SweetDepthTiledDummy *dummy)
+{
+    uint32_t work=dummy->work.handle;pipe_resource_reference(&dummy->attachment,NULL);
+    if(work){int result=sweetgl_metal_buffer_release(work);sweet_drm_log("SWEET DEPTH TILE DUMMY_RETIRE work=%u result=%d references_retired=1",work,result);}
+    memset(dummy,0,sizeof(*dummy));
+}
+static int sweet_depth_dummy_create(struct st_context *context,unsigned width,unsigned height,unsigned samples,SweetDepthTiledDummy *dummy)
+{
+    if(!context || !width || !height || !dummy || (samples!=1 && samples!=2 && samples!=4))return -EINVAL;
+    // Use the already tested private FDL5 page path. There is no caller depth
+    // binding, linear shadow, CPU seed, depth Load or depth publication here.
+    struct pipe_resource description={.target=PIPE_TEXTURE_2D,.format=PIPE_FORMAT_Z32_FLOAT,.width0=width,.height0=height,
+        .depth0=1,.array_size=1,.nr_samples=samples,.nr_storage_samples=samples};
+    unsigned tile=fd5_tile_mode(&description);if(tile!=TILE5_3)return -ENOTSUP;
+    struct fdl_layout layout={.tile_mode=tile,.tile_all=true,.mip_levels=1};
+    fdl5_layout(&layout,PIPE_FORMAT_Z32_FLOAT,samples,width,height,1,1,1,false);
+    if(!layout.size || layout.size>(UINT64_C(256)<<20) || !layout.pitch0 || layout.pitch0%64 || layout.cpp!=4*samples)return -EINVAL;
+    int result=sweetgl_metal_buffer_allocate(layout.size,&dummy->work);if(result)return result;
+    dummy->attachment=sweet_tiled_alias(context,dummy->work.handle,PIPE_FORMAT_Z32_FLOAT,width,height,layout.pitch0,0,samples,&layout);
+    if(!dummy->attachment){sweet_depth_dummy_retire(dummy);return -ENOMEM;}
+    return 0;
 }
 static int sweet_depth_tiled_complete(struct st_context *context,SweetDepthTiledPlane *plane,bool to_original)
 {

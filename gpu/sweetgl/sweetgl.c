@@ -32,6 +32,7 @@
 
 #include "sweet_drm.h"
 #include "sweetgl.h"
+#include "LogWriteAll.h"
 #include "main/hash.h"
 
 static const driOptionDescription sweetgl_driconf[] = {
@@ -73,8 +74,10 @@ void
 sweet_drm_log(const char *fmt, ...)
 {
 	static int fd = -1;
+	static pthread_mutex_t log_lock=PTHREAD_MUTEX_INITIALIZER;
+	int saved_errno=errno;pthread_mutex_lock(&log_lock);
 	if (fd < 0) {
-		fd = open("/dev/null", O_WRONLY | O_CLOEXEC);
+		unsigned attempts=0;do {fd=open("/dev/null",O_WRONLY|O_CLOEXEC);} while(fd<0 && errno==EINTR && attempts++<64);
 	}
 	char line[512];
 	va_list ap;
@@ -82,13 +85,14 @@ sweet_drm_log(const char *fmt, ...)
 	int n = vsnprintf(line, sizeof(line) - 1, fmt, ap);
 	va_end(ap);
 	if (n < 0) {
-		return;
+		pthread_mutex_unlock(&log_lock);errno=saved_errno;return;
 	}
 	if (n > (int)sizeof(line) - 2) {
 		n = sizeof(line) - 2;
 	}
 	line[n++] = '\n';
-	(void)write(fd, line, n);
+	(void)sweet_log_write_remaining(fd,line,(size_t)n,write);
+	pthread_mutex_unlock(&log_lock);errno=saved_errno;
 }
 
 bool
