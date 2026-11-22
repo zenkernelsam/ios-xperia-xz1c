@@ -1,0 +1,100 @@
+{
+  "date": "2026-11-22",
+  "source_commit": "cf42104a699faa6f43635854eb15c1dcd45adee9",
+  "geocompat_build_binding": {
+    "revision": 1,
+    "source_files": {
+      "gpu/geocompat/geocompat.mm": "7b76247c7226dc56d4d178063bea44d97662dd335685276e5a47980945b06e99",
+      "gpu/geocompat/test_adapter.mm": "614ca237d664ab4521b3ebc9114caa6ce21ce123f4690475bbbfd3058a6c22d5",
+      "tools/build/build_geocompat_trial.py": "c34e35f6a293dc8029322158895409436649e9bf55fdbdf67b825ece26d2ad67"
+    },
+    "library_sha256": "d087d6f9cbeab7469979bcacfbce122f19d8d18930714edc8f4c0c63804302b0",
+    "library_bytes": 89584,
+    "host_ASan_UBSan_real_four_argument_provider_dispatch_passed": true,
+    "exact_native360x640_720x1280_scale2_flat_provider": true,
+    "opaque_visual_provider_info_forwarded": true,
+    "valid_other_screen_providers_preserved": true,
+    "read_only_window_safe_area_ABI_checked": true,
+    "read_only_layout_observer_revision": 1,
+    "host_ASan_UBSan_bounded_layout_and_CGRect_conversion_passed": true,
+    "original_frame_grid_values_preserved": false,
+    "read_only_layout_observer_preserves_current_values": true,
+    "layout_snapshot_once_after_constructor_seconds": 135,
+    "native_root_grid_density_revision": 1,
+    "native_root_grid_rows": 5,
+    "original_grid_factory_cache_ABI_and_setter_host_passed": true,
+    "original_icon_widget_font_and_insets_preserved": true,
+    "other_screen_or_nonroot_grid_configs_preserved": true,
+    "new_device_RAM_CPU_GLES_UI_NOT_verified": true,
+    "device_operations": 0
+  },
+  "RAM_blob_sha256": "816b6f5bae84cd11597326a636047ab3468ba50d69fda8788c2d6074ec069734",
+  "GLES_sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+  "packages": [
+    {
+      "stage": "cpu",
+      "token": "ed21f91a773875bc",
+      "image_sha256": "c278ec8b173705ce93b7d6d2bad4848f3212bed81d060d88bc594af1b336b1a9",
+      "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+      "cmdline_bytes": 607,
+      "geometry_binding": {
+        "revision": 1,
+        "profile": "xz1c-native-2x",
+        "canvas_pixels": [
+          720,
+          1280
+        ],
+        "UIKit_points": [
+          360,
+          640
+        ],
+        "scale": 2,
+        "source_reference_sha256": "257076987411b50f037f70bf97524fae56ac2965e773c1bb8678d05d45480ba6",
+        "target_reference_sha256": "077aac63b2e5cd48e0e4fbd024a07cac3533eaea6a04a94376d2966dbef4d2e6",
+        "converter_sha256": "ad0b5cd47f32968fa95d13a00fe54bf619bb9909efb5e6c796d04adb17d274de",
+        "parser_sha256": "1431f1f8aacae240b87bd29cd91905784c968f8014784201b3ed862bdb1b4ed9",
+        "required_boot_arguments": {
+          "sweetfb_native": 1,
+          "sf2x": 0
+        },
+        "four_original_CFData_properties_only": true
+      }
+    },
+    {
+      "stage": "gpu",
+      "token": "217bef7d784b1b5d",
+      "image_sha256": "037b216aedc7020de73af601e614f8b4da2de8f80a70c0f4fcedda12bab2c9f8",
+      "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+      "cmdline_bytes": 602,
+      "geometry_binding": {
+        "revision": 1,
+        "profile": "xz1c-native-2x",
+        "canvas_pixels": [
+          720,
+          1280
+        ],
+        "UIKit_points": [
+          360,
+          640
+        ],
+        "scale": 2,
+        "source_reference_sha256": "257076987411b50f037f70bf97524fae56ac2965e773c1bb8678d05d45480ba6",
+        "target_reference_sha256": "077aac63b2e5cd48e0e4fbd024a07cac3533eaea6a04a94376d2966dbef4d2e6",
+        "converter_sha256": "ad0b5cd47f32968fa95d13a00fe54bf619bb9909efb5e6c796d04adb17d274de",
+        "parser_sha256": "1431f1f8aacae240b87bd29cd91905784c968f8014784201b3ed862bdb1b4ed9",
+        "required_boot_arguments": {
+          "sweetfb_native": 1,
+          "sf2x": 0
+        },
+        "four_original_CFData_properties_only": true
+      }
+    }
+  ],
+  "original_widget_label_image_and_insets_used_for_native_profile": true,
+  "predicted_native_label_bbox_gap_points": 17.5,
+  "original_factory_and_cache_returns_and_original_setter_used": true,
+  "Mac_Windows_sources_and_signed_files_verified": true,
+  "CPU_GLES_UI_device_NOT_tested": true,
+  "device_operations": 0,
+  "full_wallpaper_FPS_peripheral_goal_NOT_complete": true
+}

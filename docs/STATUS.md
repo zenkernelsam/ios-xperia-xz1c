@@ -4,7 +4,7 @@ Sony BH905ND69G已完成r16两靴并健康返回fastboot；CPU 2cd8a244ad3a9533�
 
 r16只读layout观测在本LIVE→ACK内完整取得948节点／166相关view／3组grid，refused0、truncated0；没有改变原frame、行列数或safe area。原始[阶段与布局证据](../reproducibility/native-layout-r16-stage-20261122.json)及[decoder故障检查](../reproducibility/native-layout-r16-decoder-host-20261122.json)保留，旧r15及全部失败不重发。
 
-当前r17原生密度候选尚未投递：准确20H392原factory/cache入口@24@0:8@16和原行数setter v24@0:8Q16已核对；仅native360×640、原root六行四列／57,19,155,19／56×56 signature适配原配置为五行。按原widget141、label-origin143.5／height21计算最大可容行数，预期间距17.5点；系统原对象／分页继续使用，图标保留及真实UI必须实机验。Host／ARM64／新RAM CPU／GLES9尚未准入，v730／GLES／Metal保持。原ABI及8个独立范围SHA见[静态报告](../reproducibility/native-layout-20H392-static-r17.json)。
+当前r17原生密度包：准确20H392原factory/cache入口@24@0:8@16和原行数setter v24@0:8Q16已核对；仅native360×640、原root六行四列／57,19,155,19／56×56 signature适配原配置为五行。按原widget141、label-origin143.5／height21计算最大可容行数，预期间距17.5点；系统原对象／分页继续使用，图标保留及真实UI必须实机验。Host ASan／UBSan／ARM64签名已通过，helper d087d6f9／blob816b6f5b；独立健康31.204秒后自身CPU ed21f91a773875bc准备单发，GPU217bef7d784b1b5d待自身CPU／回程／worker退出。v730／GLES／Metal保持，原ABI及8个独立范围SHA见[静态报告](../reproducibility/native-layout-20H392-static-r17.json)，完整[离线包](../reproducibility/native-grid-density-r17-offline-20261122.json)。
 
 ## 当前准确输入与验收范围
 
