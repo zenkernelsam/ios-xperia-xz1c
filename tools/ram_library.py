@@ -21,9 +21,14 @@ def load(folder,expected=None):
     assert m['read_only_verified'] and m['aliases_m_g_verified']
     helper=HELPER
     if m.get('geocompat_build_binding'):
-        geo=m['geocompat_build_binding'];assert geo['revision']==1 and geo['host_ASan_UBSan_real_four_argument_provider_dispatch_passed']
+        geo=m['geocompat_build_binding'];assert geo['revision'] in (1,2) and geo['host_ASan_UBSan_real_four_argument_provider_dispatch_passed']
         assert geo['exact_native360x640_720x1280_scale2_flat_provider'] and geo['read_only_window_safe_area_ABI_checked']
-        assert set(geo['source_files'])=={'gpu/geocompat/geocompat.mm','gpu/geocompat/test_adapter.mm','tools/build/build_geocompat_trial.py'}
+        sources={'gpu/geocompat/geocompat.mm','gpu/geocompat/test_adapter.mm','tools/build/build_geocompat_trial.py'}
+        if geo['revision']==2:
+            sources|={'gpu/geocompat/log_write.c','gpu/sweetgl/LogWriteAll.h'}
+            assert geo['read_only_layout_observer_revision']==2 and geo['layout_snapshot_once_after_constructor_seconds']==120
+            assert geo['host_ASan_UBSan_shared_log_writer_EINTR_partial_errno_passed'] and geo['original_icon_model_identity_ABI_host_passed']
+        assert set(geo['source_files'])==sources
         assert re.fullmatch('[0-9a-f]{64}',geo['library_sha256']) and all(re.fullmatch('[0-9a-f]{64}',x) for x in geo['source_files'].values())
         helper=geo['library_sha256']
     assert m['api_sha256']==API and m['helper_sha256']==helper

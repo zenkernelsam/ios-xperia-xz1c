@@ -1,0 +1,25 @@
+{
+  "source_sha256": {
+    "tools/build/check_geometry_layout_schema.py": "f426ae114f3a7ed65add4eb18be5510ee113da413936a4e99a53e6b2fee5c899",
+    "tools/device/geometry_layout_evidence.py": "17058468744768be1914b58ed67415fb8888727ca862032e9ad4cbe517af5fbf"
+  },
+  "synthetic_revision2_protocol_accepted": true,
+  "faults_refused": {
+    "missing_icon": true,
+    "duplicate_slot": true,
+    "duplicate_identity": true,
+    "summary_count": true,
+    "unbound_time": true,
+    "missing_model": true
+  },
+  "original_R16_validated": true,
+  "original_R17_missing_pair_still_refused": true,
+  "writer_failure_prevents_complete_fields": true,
+  "original_raw_sha256": {
+    "r16": "673252a2a97ca42cf56c5a362fd60f90705f5924899fbf5ad7233cc6d43c23df",
+    "r17": "2575083c0fa6b7aa0ebb656d9ab7153e6228eed1930c436d41f0dae06039c65d"
+  },
+  "original_raw_unchanged": true,
+  "synthetic_fixture_not_UI_evidence": true,
+  "device_operations": 0
+}

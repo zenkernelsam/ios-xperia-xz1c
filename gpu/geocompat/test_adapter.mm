@@ -85,8 +85,25 @@ static id expected_location;
  errno=EDOM;return self.cachedLayout;
 }
 @end
+@interface SBLeafIcon:NSObject
+@property(retain) NSString *applicationBundleID;
+@property(retain) NSString *leafIdentifier;
+-(BOOL)leafIdentifierAndApplicationBundleIDMatches;
+@end
+@implementation SBLeafIcon
+-(BOOL)leafIdentifierAndApplicationBundleIDMatches {return self.applicationBundleID && [self.leafIdentifier isEqualToString:self.applicationBundleID];}
+@end
+@interface SBApplicationIcon:SBLeafIcon @end
+@implementation SBApplicationIcon @end
+@interface SBWidgetIcon:SBLeafIcon @end
+@implementation SBWidgetIcon @end
+@interface SBIconListModel:NSObject
+@property(retain) NSArray *icons;
+@end
+@implementation SBIconListModel @end
 @interface SBIconListView:UIView
 @property(retain) SBIconListGridLayout *layout;
+@property(retain) SBIconListModel *model;
 -(CGSize)iconSpacing;
 @end
 @implementation SBIconListView
@@ -109,7 +126,25 @@ static unsigned wrong_rectangle_calls,wrong_count_calls;
 -(double)numberOfPortraitRows {++wrong_count_calls;return 6;}
 @end
 #include "geocompat.mm"
+static unsigned char log_capture[64];static size_t log_used;static unsigned log_calls,log_mode;
+static ssize_t log_fault_writer(int fd,const void *bytes,size_t count)
+{
+ assert(fd==17);++log_calls;
+ if(log_mode==1 && log_calls<=3 || log_mode==2 && log_calls%2 || log_mode==5){errno=EINTR;return -1;}
+ if(log_mode==3)return 0;if(log_mode==4){errno=EACCES;return -1;}if(log_mode==6)return count+1;
+ size_t take=log_mode==2 && count>3?3:count;assert(log_used+take<=sizeof(log_capture));memcpy(log_capture+log_used,bytes,take);log_used+=take;return take;
+}
 int main(void){ @autoreleasepool {
+ unsigned char original_bytes[37];for(unsigned i=0;i<37;++i)original_bytes[i]=(unsigned char)(i*7);
+ for(log_mode=0;log_mode<3;++log_mode){log_used=log_calls=0;memset(log_capture,0xa5,sizeof(log_capture));errno=EDOM;
+  assert(!sweet_geo_log_write_remaining(17,original_bytes,37,log_fault_writer) && errno==EDOM && log_used==37 && !memcmp(original_bytes,log_capture,37));
+  for(unsigned i=37;i<sizeof(log_capture);++i)assert(log_capture[i]==0xa5);}
+ log_mode=3;errno=EDOM;assert(sweet_geo_log_write_remaining(17,original_bytes,37,log_fault_writer)==-EIO && errno==EDOM);
+ log_mode=4;assert(sweet_geo_log_write_remaining(17,original_bytes,37,log_fault_writer)==-EACCES && errno==EDOM);
+ log_mode=5;log_calls=0;assert(sweet_geo_log_write_remaining(17,original_bytes,37,log_fault_writer)==-EINTR && log_calls==65 && errno==EDOM);
+ log_mode=6;assert(sweet_geo_log_write_remaining(17,original_bytes,37,log_fault_writer)==-EIO);
+ assert(sweet_geo_log_write_remaining(17,NULL,1,log_fault_writer)==-EINVAL && sweet_geo_log_write_remaining(17,original_bytes,1,NULL)==-EINVAL);
+ puts("PASS: real shared C log writer; partial/EINTR/bounds/errno verified");
  UIScreen *s=[UIScreen mainScreen];s.bounds=CGRectMake(0,0,375,812);s.nativeBounds=CGRectMake(0,0,750,1624);s.scale=s.nativeScale=2;
  expected_info=[NSObject new];
  assert([_UIStatusBarVisualProvider_iOS visualProviderSubclassForScreen:s visualProviderInfo:expected_info]==[_UIStatusBarVisualProvider_Fallback class]);
@@ -128,21 +163,32 @@ int main(void){ @autoreleasepool {
  assert(!geo_rectangle([SweetGeoWrongRectangle new],"frame",&rect) && wrong_rectangle_calls==0);
  assert(!geo_count([SweetGeoWrongCount new],"numberOfPortraitRows",&number) && wrong_count_calls==0);
  UIWindow *window=[UIWindow new];window.frame=window.bounds=CGRectMake(0,0,360,640);window.subviews=@[];
- SBIconListView *list=[SBIconListView new];list.frame=CGRectMake(0,38,360,511);list.bounds=CGRectMake(0,0,360,511);list.mockWindowOrigin=CGPointMake(0,38);
+ SBIconListView *list=[SBIconListView new];list.frame=CGRectMake(0,0,360,640);list.bounds=CGRectMake(0,0,360,640);list.mockWindowOrigin=CGPointZero;
  SBIconListGridLayout *layout=[SBIconListGridLayout new];layout.layoutConfiguration=[SBIconListGridLayoutConfiguration new];list.layout=layout;
  UILabel *label=[UILabel new];label.frame=CGRectMake(0,148,60,14);label.bounds=CGRectMake(0,0,60,14);label.mockWindowOrigin=CGPointMake(34,200);label.subviews=@[];
  list.subviews=@[label];window.subviews=@[list];[UIApplication sharedApplication].windows=@[window];
+ SBApplicationIcon *app1=[SBApplicationIcon new],*app2=[SBApplicationIcon new];app1.applicationBundleID=@"com.apple.Preferences";app2.applicationBundleID=@"com.apple.AppStore";
+ app1.leafIdentifier=app1.applicationBundleID;app2.leafIdentifier=app2.applicationBundleID;
+ SBWidgetIcon *widget=[SBWidgetIcon new];widget.applicationBundleID=@"com.apple.Preferences";
+ widget.leafIdentifier=@"widget:original";
+ list.model=[SBIconListModel new];list.model.icons=@[app1,widget,app2];NSArray *original_icons=list.model.icons;
  assert(geo_window_rectangle(label,label.bounds,&rect) && CGRectEqualToRect(rect,CGRectMake(34,200,60,14)));
  SweetGeoLayoutResult empty=inspect_native_layout(0);assert(empty.visited==0);
  s.bounds=CGRectMake(0,0,360,640);s.nativeBounds=CGRectMake(0,0,720,1280);s.scale=2;
  int before=EDOM;errno=before;CGRect originalFrame=list.frame;
  SweetGeoLayoutResult observed=inspect_native_layout(0);
  assert(observed.visited==3 && observed.recorded==3 && observed.grids==1 && observed.refused==0 && observed.truncated==0);
+ assert(observed.model_pages==1 && observed.model_icons==3 && observed.applications==2 && observed.write_failures==0 && list.model.icons==original_icons);
  assert(errno==before && CGRectEqualToRect(originalFrame,list.frame));
  window.subviews=@[window];SweetGeoLayoutResult cycle=inspect_native_layout(0);assert(cycle.visited==1 && cycle.refused==1);
  NSMutableArray *many=[NSMutableArray array];for(unsigned i=0;i<2049;++i)[many addObject:label];window.subviews=many;
  SweetGeoLayoutResult bounded=inspect_native_layout(0);assert(bounded.visited==1 && bounded.truncated==1);
  puts("PASS: bounded original layout observer; CGRect window conversion, Q/q grid ABI, invalid getters refused, native gate, cycle and limit");
+ SweetGeoLayoutResult model_failure={};id original_model=list.model;list.model=(id)[NSObject new];
+ assert(!geo_model(list,1,&model_failure) && model_failure.refused==1);list.model=original_model;
+ NSMutableArray *model_limit=[NSMutableArray array];for(unsigned i=0;i<129;++i)[model_limit addObject:app1];list.model.icons=model_limit;SweetGeoLayoutResult limited={};
+ assert(!geo_model(list,1,&limited) && limited.truncated==1);list.model.icons=original_icons;
+ puts("PASS: original model identities; app/widget separation, unavailable model and icon-count bound");
  expected_location=[NSObject new];SBHDefaultIconListLayoutProvider *provider=[SBHDefaultIconListLayoutProvider new];
  SBIconListGridLayout *rootLayout=[SBIconListGridLayout new];SBIconListGridLayoutConfiguration *rootConfig=[SBIconListGridLayoutConfiguration new];
  rootConfig.nativeRootTest=YES;rootLayout.layoutConfiguration=rootConfig;provider.offeredLayout=rootLayout;

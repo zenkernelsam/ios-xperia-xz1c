@@ -32,7 +32,7 @@ WANTED = {
         'makeLayoutForIconLocation:', 'layoutForIconLocation:',
         'configureGridSizeClassSizes:forScreenType:numberOfColumns:iconLocation:layoutOptions:'},
     'SBIconListModel': {'icons'},
-    'SBLeafIcon': {'leafIdentifier', 'applicationBundleID'},
+    'SBLeafIcon': {'leafIdentifier', 'applicationBundleID', 'leafIdentifierAndApplicationBundleIDMatches'},
 }
 CLASS_WANTED = {'SBHDefaultIconListLayoutProvider': {'frameworkFallbackInstance', 'currentDeviceScreenType', 'defaultLayoutOptions'}}
 METHOD_TABLES = {'SBLeafIcon': '__OBJC_$_INSTANCE_METHODS_SBLeafIcon(SBHTableViewIconLibraryAddtions)'}

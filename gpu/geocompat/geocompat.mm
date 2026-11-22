@@ -12,9 +12,13 @@
 #include <math.h>
 #include <errno.h>
 
+typedef ssize_t (*SweetGeoLogWriter)(int,const void *,size_t);
+extern "C" int sweet_geo_log_write_remaining(int,const void *,size_t,SweetGeoLogWriter);
+static unsigned geo_write_failures;
 static void emit(const char *line)
 {
-    (void)write(STDERR_FILENO, line, strlen(line));
+    if(sweet_geo_log_write_remaining(STDERR_FILENO,line,strlen(line),write)<0)
+        __atomic_fetch_add(&geo_write_failures,1,__ATOMIC_RELAXED);
 }
 static CGRect screen_rect(id object,SEL selector)
 {
@@ -293,7 +297,47 @@ static void install_native_grid_adapter(void)
     if(!original_layout_cached && !install_native_layout_method("layoutForIconLocation:",&original_layout_cached,(IMP)native_cached_layout))
         emit("SWEET GEOGRID REFUSE original_cached_ABI_unavailable\n");
 }
-struct SweetGeoLayoutResult {unsigned visited,recorded,grids,refused,truncated;};
+struct SweetGeoLayoutResult {unsigned visited,recorded,grids,refused,truncated,model_pages,model_icons,applications,write_failures;};
+static bool geo_model(id view,unsigned number,SweetGeoLayoutResult *result)
+{
+    CGRect rectangle;
+    if(!geo_kind(view,"SBIconListView") || !geo_rectangle(view,"frame",&rectangle) ||
+       fabs(rectangle.size.width-360)>.01 || fabs(rectangle.size.height-640)>.01)return false;
+    id model=geo_object(view,"model");id icons=geo_kind(model,"SBIconListModel")?geo_object(model,"icons"):nil;
+    char line[190];
+    if(!geo_kind(icons,"NSArray")){
+        ++result->refused;snprintf(line,sizeof(line),"SWEET GLAYOUT REFUSE model_unavailable n=%u\n",number);emit(line);return false;
+    }
+    CFIndex count=CFArrayGetCount((CFArrayRef)icons);
+    if(count<0 || count>128 || result->model_pages>=8){result->truncated=1;return false;}
+    ++result->model_pages;snprintf(line,sizeof(line),"SWEET GLAYOUT MODEL n=%u count=%ld\n",number,(long)count);emit(line);
+    for(CFIndex i=0;i<count;++i){
+        id icon=(id)CFArrayGetValueAtIndex((CFArrayRef)icons,i);const char *name=icon?class_getName(object_getClass(icon)):"nil";
+        char identifier[65]="-";unsigned application=0;
+        if(strlen(name)>48)result->truncated=1;
+        if(geo_kind(icon,"SBLeafIcon")){
+            id bundle=geo_object(icon,"applicationBundleID");
+            if(bundle){
+                if(!geo_kind(bundle,"NSString") || !CFStringGetCString((CFStringRef)bundle,identifier,sizeof(identifier),kCFStringEncodingUTF8)){
+                    ++result->refused;strcpy(identifier,"-");
+                }else{
+                    bool valid=identifier[0]!=0;
+                    for(const unsigned char *p=(const unsigned char *)identifier;*p;++p)
+                        if(!((*p>='a' && *p<='z') || (*p>='A' && *p<='Z') || (*p>='0' && *p<='9') || *p=='.' || *p=='_' || *p=='-'))valid=false;
+                    if(valid){
+                        const char *selector="leafIdentifierAndApplicationBundleIDMatches";
+                        if(geo_method_type(icon,selector,"B"))application=((bool (*)(id,SEL))objc_msgSend)(icon,sel_registerName(selector))?1:0;
+                        else if(geo_method_type(icon,selector,"c"))application=((signed char (*)(id,SEL))objc_msgSend)(icon,sel_registerName(selector))?1:0;
+                        else ++result->refused;
+                    }else{++result->refused;strcpy(identifier,"-");}
+                }
+            }
+        }
+        ++result->model_icons;result->applications+=application;
+        snprintf(line,sizeof(line),"SWEET GLAYOUT ICON n=%u index=%ld class=%.48s application=%u id=%s\n",number,(long)i,name,application,identifier);emit(line);
+    }
+    return true;
+}
 static bool geo_grid(id view,unsigned number)
 {
     if(!geo_kind(view,"SBIconListView"))return false;
@@ -318,10 +362,10 @@ static bool geo_grid(id view,unsigned number)
 }
 static SweetGeoLayoutResult inspect_native_layout(unsigned after_ctor_seconds)
 {
-    SweetGeoLayoutResult result={0,0,0,0,0};int saved_errno=errno;
+    SweetGeoLayoutResult result={};int saved_errno=errno;unsigned writes_before=__atomic_load_n(&geo_write_failures,__ATOMIC_RELAXED);
     const char *enabled=getenv("GEO_FIX");
     if(!enabled || strcmp(enabled,"1") || !geo_native_screen()){errno=saved_errno;return result;}
-    char line[190];snprintf(line,sizeof(line),"SWEET GLAYOUT BEGIN rev=1 after_ctor=%u points=360,640 pixels=720,1280 scale=2\n",after_ctor_seconds);emit(line);
+    char line[190];snprintf(line,sizeof(line),"SWEET GLAYOUT BEGIN rev=2 after_ctor=%u points=360,640 pixels=720,1280 scale=2\n",after_ctor_seconds);emit(line);
     @try {
         id app=geo_object((id)objc_lookUpClass("UIApplication"),"sharedApplication"),windows=geo_object(app,"windows");
         struct Node {id object;unsigned parent,depth;} nodes[2048];unsigned queued=0;
@@ -346,6 +390,7 @@ static SweetGeoLayoutResult inspect_native_layout(unsigned after_ctor_seconds)
                     }
                 }else ++result.refused;
                 if(result.grids<8 && geo_grid(view,i+1))++result.grids;
+                (void)geo_model(view,i+1,&result);
             }
             id children=geo_object(view,"subviews");if(!geo_kind(children,"NSArray")){++result.refused;continue;}
             CFIndex count=CFArrayGetCount((CFArrayRef)children);if(count<0 || count>2048){result.truncated=1;continue;}
@@ -358,7 +403,9 @@ static SweetGeoLayoutResult inspect_native_layout(unsigned after_ctor_seconds)
             }
         }
     }@catch(id exception){(void)exception;++result.refused;emit("SWEET GLAYOUT REFUSE getter_exception\n");}
-    snprintf(line,sizeof(line),"SWEET GLAYOUT END rev=1 visited=%u recorded=%u grids=%u refused=%u truncated=%u\n",result.visited,result.recorded,result.grids,result.refused,result.truncated);emit(line);
+    snprintf(line,sizeof(line),"SWEET GLAYOUT MODELS pages=%u icons=%u applications=%u\n",result.model_pages,result.model_icons,result.applications);emit(line);
+    result.write_failures=__atomic_load_n(&geo_write_failures,__ATOMIC_RELAXED)-writes_before;
+    snprintf(line,sizeof(line),"SWEET GLAYOUT END rev=2 visited=%u recorded=%u grids=%u refused=%u truncated=%u write_failures=%u\n",result.visited,result.recorded,result.grids,result.refused,result.truncated,result.write_failures);emit(line);
     errno=saved_errno;return result;
 }
 __attribute__((constructor)) static void start_geometry_reader(void)
@@ -371,7 +418,7 @@ __attribute__((constructor)) static void start_geometry_reader(void)
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW,20*NSEC_PER_SEC),dispatch_get_main_queue(),^{
         @autoreleasepool { inspect_geometry(); }
     });
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW,135*NSEC_PER_SEC),dispatch_get_main_queue(),^{
-        @autoreleasepool { (void)inspect_native_layout(135); }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW,120*NSEC_PER_SEC),dispatch_get_main_queue(),^{
+        @autoreleasepool { (void)inspect_native_layout(120); }
     });
 }

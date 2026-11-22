@@ -5,6 +5,11 @@ from pathlib import Path
 
 from geometry_layout_evidence import inspect as inspect_layout
 
+REFERENCE_APPS = {'com.apple.facetime', 'com.apple.mobilecal', 'com.apple.mobileslideshow', 'com.apple.mobilemail',
+                  'com.apple.mobilenotes', 'com.apple.reminders', 'com.apple.mobiletimer', 'com.apple.news',
+                  'com.apple.tv', 'com.apple.podcasts', 'com.apple.AppStore', 'com.apple.Maps',
+                  'com.apple.Health', 'com.apple.Passbook', 'com.apple.Preferences'}
+
 
 def near(a, b):
     return abs(a - b) <= .02
@@ -28,7 +33,7 @@ def root_pages(report):
     return sorted(result, key=lambda p: p['rectangle'][0])
 
 
-def evaluate(current, baseline):
+def evaluate(current, baseline, expected_applications=None):
     pages, old = root_pages(current), root_pages(baseline)
     reasons = []
     if current['kernel_sha256'] != baseline['kernel_sha256']:
@@ -43,7 +48,29 @@ def evaluate(current, baseline):
         reasons.append('UNKNOWN_ORIGINAL_ROOT_CELL_SIZE')
     current_regular, old_regular = sum(len(p['regular']) for p in pages), sum(len(p['regular']) for p in old)
     current_widgets, old_widgets = sum(len(p['widgets']) for p in pages), sum(len(p['widgets']) for p in old)
-    if current_regular != old_regular:
+    identities_verified = False
+    model_page_counts = {}
+    if current['revision'] == 2:
+        if expected_applications is None or set(expected_applications) != REFERENCE_APPS:
+            raise ValueError('Missing exact original application identity reference')
+        model_ids = [x['identifier'] for p in current['models'].values() for x in p['icons'] if x['application']]
+        if set(model_ids) != set(expected_applications) or len(model_ids) != len(expected_applications) or old_regular != len(expected_applications):
+            reasons.append('ORIGINAL_APPLICATION_MODEL_IDENTITIES_CHANGED')
+        else:
+            identities_verified = True
+        if set(current['models']) != {p['node'] for p in pages}:
+            reasons.append('ORIGINAL_ROOT_MODEL_PAGE_INVENTORY_CHANGED')
+        for p in pages:
+            model = current['models'].get(p['node'])
+            if model:
+                app_count = sum(x['application'] for x in model['icons'])
+                model_page_counts[p['node']] = app_count
+                if near(p['rectangle'][0], 0) and len(p['regular']) != app_count:
+                    reasons.append('VISIBLE_PRIMARY_APPLICATION_VIEWS_DIFFER_FROM_MODEL')
+        model_widgets = sum(p['count'] for p in current['models'].values()) - len(model_ids)
+        if model_widgets != old_widgets:
+            reasons.append('ORIGINAL_WIDGET_MODEL_COUNT_CHANGED')
+    elif current_regular != old_regular:
         reasons.append('ORIGINAL_APPLICATION_VIEW_COUNT_CHANGED')
     if current_widgets != old_widgets:
         reasons.append('ORIGINAL_WIDGET_VIEW_COUNT_CHANGED')
@@ -79,7 +106,7 @@ def evaluate(current, baseline):
         x, y, width, height = cell['window_rectangle']
         if x < -.02 or y < -.02 or x + width > 360.02 or y + height > 640.02:
             reasons.append('ORIGINAL_PRIMARY_ICON_OUTSIDE_NATIVE_WINDOW')
-    if current['counts']['refused'] or current['counts']['truncated']:
+    if current['counts']['refused'] or current['counts']['truncated'] or current['counts'].get('write_failures', 0):
         reasons.append('ORIGINAL_LAYOUT_OBSERVER_INCOMPLETE')
     return dict(result='PASS' if not reasons else 'REVISE', reasons=sorted(set(reasons)),
                 token=current['token'], raw_sha256=current['raw_sha256'],
@@ -90,11 +117,14 @@ def evaluate(current, baseline):
                 current_regular_view_count=current_regular, original_regular_view_count=old_regular,
                 current_widget_view_count=current_widgets, original_widget_view_count=old_widgets,
                 original_label_clearances=clearances, native_points=[360,640], native_pixels=[720,1280],
-                original_application_identity_retention_NOT_verified=True,
+                original_application_model_identity_retention_verified=identities_verified,
+                original_application_identity_retention_NOT_verified=not identities_verified,
+                original_model_application_count_by_page=model_page_counts,
+                application_launch_functionality_NOT_verified=True,
                 physical_panel_optical_FPS_wallpaper_peripherals_NOT_inferred=True)
 
 
-def inspect(directory, baseline):
+def inspect(directory, baseline, reference=None):
     current = inspect_layout(directory)
     original = inspect_layout(baseline)
     binding = current['geocompat_build_binding']
@@ -103,7 +133,17 @@ def inspect(directory, baseline):
     actual = json.loads((Path(directory) / 'actual-evidence.json').read_text())
     if not actual['actual_stage_verified'] or not actual['screen']['verified']:
         raise ValueError('Original GLES/scanout not independently verified')
-    result = evaluate(current, original)
+    identities = None
+    if current['revision'] == 2:
+        if reference is None:
+            raise ValueError('New model capture requires the original gl5 identity proof')
+        proof = json.loads(Path(reference).read_text())
+        if proof.get('sparse_sha256') != 'e9bf1547b6a7e9a33b51c2749c643bc2eff0134c31cc3a63f9435e4cea1f9b29':
+            raise ValueError('Original application reference image differs')
+        identities = {x['bundle_identifier'] for x in proof['original_application_identity_references']}
+        if identities != REFERENCE_APPS:
+            raise ValueError('Incomplete original gl5 application reference')
+    result = evaluate(current, original, identities)
     result.update(source=str(Path(directory).resolve()), reference_source=str(Path(baseline).resolve()),
                   original_scanout=actual['screen'], geocompat_build_binding=binding,
                   independent_result_preserves_original_controller=True, device_operations=0)
@@ -115,8 +155,9 @@ if __name__ == '__main__':
     parser.add_argument('--directory', required=True)
     parser.add_argument('--baseline', required=True)
     parser.add_argument('--output', required=True)
+    parser.add_argument('--reference')
     args = parser.parse_args()
-    report = inspect(args.directory, args.baseline)
+    report = inspect(args.directory, args.baseline, args.reference)
     with Path(args.output).open('x', encoding='utf-8', newline='\n') as stream:
         json.dump(report, stream, ensure_ascii=False, indent=2)
         stream.write('\n')
