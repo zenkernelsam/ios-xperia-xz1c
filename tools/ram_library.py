@@ -21,14 +21,15 @@ def load(folder,expected=None):
     assert m['read_only_verified'] and m['aliases_m_g_verified']
     helper=HELPER
     if m.get('geocompat_build_binding'):
-        geo=m['geocompat_build_binding'];assert geo['revision'] in (1,2,3) and geo['host_ASan_UBSan_real_four_argument_provider_dispatch_passed']
+        geo=m['geocompat_build_binding'];assert geo['revision'] in (1,2,3,4) and geo['host_ASan_UBSan_real_four_argument_provider_dispatch_passed']
         assert geo['exact_native360x640_720x1280_scale2_flat_provider'] and geo['read_only_window_safe_area_ABI_checked']
         sources={'gpu/geocompat/geocompat.mm','gpu/geocompat/test_adapter.mm','tools/build/build_geocompat_trial.py'}
         if geo['revision']>=2:
             sources|={'gpu/geocompat/log_write.c','gpu/sweetgl/LogWriteAll.h'}
             assert geo['read_only_layout_observer_revision']==geo['revision'] and geo['layout_snapshot_once_after_constructor_seconds']==120
             assert geo['host_ASan_UBSan_shared_log_writer_EINTR_partial_errno_passed'] and geo['original_icon_model_identity_ABI_host_passed']
-            if geo['revision']==3:assert geo['native_root_grid_mode_control_revision']==1 and geo['original_full_folder_dock_model_ABI_host_passed']
+            if geo['revision'] in (3,4):assert geo['native_root_grid_mode_control_revision']==1 and geo['original_full_folder_dock_model_ABI_host_passed']
+            if geo['revision']==4:assert geo['label_ownership_capture_revision']==1 and geo['original_view_tree_ancestry_host_passed'] and geo['host_original_ancestry_wire_decoder_passed']
         assert set(geo['source_files'])==sources
         assert re.fullmatch('[0-9a-f]{64}',geo['library_sha256']) and all(re.fullmatch('[0-9a-f]{64}',x) for x in geo['source_files'].values())
         helper=geo['library_sha256']

@@ -132,7 +132,7 @@ python -B -m unittest discover -s tools/device -p test_attachment_snapshot_evide
 
 ## 原／拟合完整模型对照
 
-新helper revision3读取原Root、Dock及Folder.lists／uniqueIdentifier，main queue在constructor后120秒捕获一次。builder执行真实ObjC ABI、factory／cache／errno／opaque返回、完整model graph和GEO_GRID控制的ASan／UBSan，再编译ARM64、签名并绑定实际五源。guest库和RAM manifest不可在实机后改写为已验；实际准入另存原run报告。
+新helper revision3／4读取原Root、Dock及Folder.lists／uniqueIdentifier，main queue在constructor后120秒捕获一次。revision4另发完整TREE与label最近祖先，由独立decoder复算；builder还把真实C++ host捕获交给同一decoder，核对嵌套wrapper、同坐标外部标签及opaque子类。builder执行真实ObjC ABI、factory／cache／errno／opaque返回、完整model graph和GEO_GRID控制的ASan／UBSan，再编译ARM64、签名并绑定实际五个guest构建输入和三个host decoder源。guest库和RAM manifest不可在实机后改写为已验；实际准入另存原run报告。
 
 使用同一个精确新RAM准备自身CPU、original和fitted三包；各输出目录必须不存在。下面只打包，投递仍由OPERATIONS规定的run_trial先验控制：
 

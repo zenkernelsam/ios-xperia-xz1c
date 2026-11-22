@@ -1,0 +1,117 @@
+{
+  "date": "2026-11-22",
+  "scope": "R21 read-only ancestry source and host decoder candidate",
+  "ancestry_host": {
+    "source_files": {
+      "tools/build/check_native_label_ownership.py": "fae98549b07730a9827fb12af84c2a6ad87336e2984f43e7b8692187ff8a4928",
+      "tools/device/native_label_ownership.py": "9145cdaaaaeeb0c14e7b8653efbd779808388ad28c0c916eed9b17deb6121a82",
+      "tools/device/geometry_layout_evidence.py": "b64ea77501862204deb3c39b400bcf06c9c7a9b13d1afc7db773dc3a3727f32c",
+      "tools/device/native_grid_profile_evidence.py": "d235ca8e116c63f7d61d6c9fbb612ab3bc134d8f9379a0826ce626a2e15a0fd6",
+      "tools/device/native_model_graph.py": "24a62da63a86b8c3ad747e950a9f69ede5aac8097ed49c304d2e346d3208e71b"
+    },
+    "original_ancestry_and_exact_owner_verified": true,
+    "same_rectangle_foreign_label_excluded": true,
+    "original_class_hierarchy_including_opaque_subclasses_verified": true,
+    "duplicate_in_same_owner_still_REVISE": true,
+    "complete_root_dock_folder_models_preserved": true,
+    "faults_refused": {
+      "missing_tree": true,
+      "repeated_tree": true,
+      "self_parent": true,
+      "foreign_parent": true,
+      "wrong_depth": true,
+      "unknown_role": true,
+      "class_role_mismatch": true,
+      "wrong_owner": true,
+      "wrong_list": true,
+      "wrong_hops": true,
+      "unknown_owner": true,
+      "missing_owner": true,
+      "missing_owner_field": true,
+      "wrong_tree_count": true,
+      "wrong_owner_count": true,
+      "duplicate_within_exact_owner": true,
+      "owned_label_outside_native_window": true
+    },
+    "new_RAM_CPU_GPU_UI_NOT_verified": true,
+    "author_fixture_not_device_UI": true,
+    "device_operations": 0
+  },
+  "legacy_model_host": {
+    "source_sha256": {
+      "tools/build/check_native_model_graph.py": "fc4563903ee415c26b02e099053798afb4d7422e51f1a59576dd324e5a383bdc",
+      "tools/device/native_model_graph.py": "24a62da63a86b8c3ad747e950a9f69ede5aac8097ed49c304d2e346d3208e71b",
+      "tools/device/native_grid_control.py": "783c8393c0eadb0a831471b8b17ebd46b49aee4c0e010054085d5269a01f29a3"
+    },
+    "full_synthetic_model_identity_verified": true,
+    "revision3_wire_graph_accepted": true,
+    "root_page_reflow_preserves_containers": true,
+    "faults_refused": {
+      "root_application": true,
+      "folder_application": true,
+      "dock_application": true,
+      "folder_identity": true,
+      "missing_nested_model": true,
+      "boot_env_original": true,
+      "boot_env_fitted": true
+    },
+    "synthetic_fixture_not_device_UI_evidence": true,
+    "device_operations": 0
+  },
+  "registry_actual_source_hash_changes": [
+    {
+      "path": "tools/device/package_trial.py",
+      "before": "f520d05392e54a5309574e759fe95f85fe884314d4252240ed642088068caac0",
+      "after": "31ceed554b7146e116285174afa9ecc0a4ded139e12a3c9c55832e774f84f7e1"
+    },
+    {
+      "path": "tools/device/run_trial.py",
+      "before": "43ac8f8354cfbec6efac27439b01fa720d34dd2eb4a79013c8223261646837bd",
+      "after": "34e3fe91dfa86fb7f9e309cbffe244158c3fa95869c704f749d25662822844d5"
+    },
+    {
+      "path": "tools/device/geometry_layout_evidence.py",
+      "before": "01d5b24095800e8e53fcdc8a2afcc9b657f344929842e694af8f40fdde4f4690",
+      "after": "b64ea77501862204deb3c39b400bcf06c9c7a9b13d1afc7db773dc3a3727f32c"
+    },
+    {
+      "path": "tools/device/native_grid_profile_evidence.py",
+      "before": "ab60db7bf0787549ff9009f8303a4966ba06ff6905d6aa93d7972ec5ffbd6e30",
+      "after": "d235ca8e116c63f7d61d6c9fbb612ab3bc134d8f9379a0826ce626a2e15a0fd6"
+    },
+    {
+      "path": "tools/device/native_grid_control.py",
+      "before": "5eaa609b69c503c9fd4ebad15349c8079b05fb2c553d8b9565b285f12d7da0ab",
+      "after": "783c8393c0eadb0a831471b8b17ebd46b49aee4c0e010054085d5269a01f29a3"
+    },
+    {
+      "path": "tools/device/native_model_graph.py",
+      "before": "119053578236a7b6e4255806cb26ba3e15226e80d86c487bfed601933c677205",
+      "after": "24a62da63a86b8c3ad747e950a9f69ede5aac8097ed49c304d2e346d3208e71b"
+    },
+    {
+      "path": "tools/ram_library.py",
+      "before": "f7e46eb036ae7c3e260daecdead5b90d147fbb45615d182a2951f5739c2e4c1d",
+      "after": "de02c371d57ef80b154534ad9a266ad2154032a54554a9fb99af675332cc9010"
+    },
+    {
+      "path": "tools/build/package_glram.py",
+      "before": "fd428395c9c9818c15488eed16024c1b1235e3b8e58cd19686a382ca0f0874a4",
+      "after": "08c451e6e52110fb944b802ea8309e7340e36b1b1d6659c2978b0a7587c095a7"
+    },
+    {
+      "path": "tools/build/build_geocompat_trial.py",
+      "before": "daa21af942433afa85211a423551a87cfd1d34b3e97cb01770dbd4713d114db2",
+      "after": "b24c0d71133dcbbb8ed38481d55fcb45b13ea9f2f0e0ce2cf7aef11c9de53a5e"
+    }
+  ],
+  "guest_compile_sources": {
+    "gpu/geocompat/geocompat.mm": "9a67a77d1da071f24f6856f592a365f9ec7df17a754998ddbb3f28602a8d0091",
+    "gpu/geocompat/test_adapter.mm": "b43a8ecc57384f7d895b25cef701782fbf9ea66143b4eea705953a88dd51e6f7"
+  },
+  "cpp_ASan_UBSan_and_ARM64_signed_build_pending": true,
+  "new_RAM_own_CPU_GPU_UI_pending": true,
+  "old_R20_REVISE_not_promoted_or_replayed": true,
+  "kernel_GLES_Metal_not_changed": true,
+  "device_operations": 0
+}

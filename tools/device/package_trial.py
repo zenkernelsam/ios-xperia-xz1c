@@ -146,8 +146,8 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
         words.append('sfscreen=1');watchdog=420
     grid_control=None
     if native_grid_mode is not None:
-        assert mode=='gpu' and geometry and package['geocompat_build_binding']['revision']==3 and screen_evidence
-    if mode=='gpu' and geometry and package.get('geocompat_build_binding',{}).get('revision')==3:
+        assert mode=='gpu' and geometry and package['geocompat_build_binding']['revision'] in (3,4) and screen_evidence
+    if mode=='gpu' and geometry and package.get('geocompat_build_binding',{}).get('revision') in (3,4):
         words,grid_control=apply_grid_control(words,native_grid_mode or 'fitted')
     compact_numeric_ones=[]
     if geometry:words=display_arguments(words)
@@ -216,6 +216,8 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
     else:
         common+=['SWEET SCATTER READY END result=0 context=1 identity=1 idle=1 input_bits=36 output_bits=36 native_probe=0']
         if mode=='gpu':
+            if package.get('geocompat_build_binding',{}).get('revision')==4:
+                common+=['SWEET GLAYOUT END rev=4 visited=[0-9]+ recorded=[0-9]+ grids=[0-9]+ refused=0 truncated=0 write_failures=0 tree_nodes=[0-9]+ owners=[0-9]+']
             common+=['sweetgl: full selftest -> PASS','sweetgl: full surface selftest -> PASS',
                      'sweetgl: caller selftest -> PASS','sweetgl: copy refresh selftest -> PASS',
                      'sweetgl: copy context selftest -> PASS',
@@ -347,7 +349,7 @@ if __name__=='__main__':
     p.add_argument('--idle-sample',action='store_true',help='Single original Aegir sample after a returned library at observation 180 seconds')
     p.add_argument('--swipe-once',action='store_true',help='One upward swipe after observed F12/LIVE at 120 seconds, then one 150-second scanout')
     p.add_argument('--display-profile',choices=['xz1c-native-2x'],help='Exact four-property native ADT plus existing native1/sf2x0 framebuffer flags')
-    p.add_argument('--native-grid-mode',choices=['original','fitted'],help='Explicit original six-row or fitted native grid, using the exact revision3 helper')
+    p.add_argument('--native-grid-mode',choices=['original','fitted'],help='Explicit original six-row or fitted native grid, using the exact revision3/4 helper')
     a=p.parse_args();out=Path(a.output).resolve();assert out.is_relative_to(ROOT/'build') and not out.exists();out.mkdir(parents=True)
     m=prepare(a.mode,Path(a.kernel),Path(a.baselines),out,a.version,a.ram_package,a.owner_interval,a.screen_evidence,a.thread_sample,a.screen_after,a.idle_sample,a.swipe_once,a.display_profile,a.native_grid_mode)
     print(json.dumps({k:m[k] for k in ('trial_mode','token','kernel_sha256','sha256','cmdline_bytes')}))

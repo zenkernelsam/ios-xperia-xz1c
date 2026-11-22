@@ -47,6 +47,12 @@ typedef struct SBIconImageInfo {CGSize size;double field2,field3;} SBIconImageIn
  value.origin.y+=self.mockWindowOrigin.y-self.bounds.origin.y;return value;
 }
 @end
+@interface SBIconView:UIView @end
+@implementation SBIconView @end
+@interface SBIconLegibilityLabelView:UIView @end
+@implementation SBIconLegibilityLabelView @end
+@interface SweetGeoCaptionView:SBIconLegibilityLabelView @end
+@implementation SweetGeoCaptionView @end
 @interface UIWindow:UIView @end
 @implementation UIWindow @end
 @interface UILabel:UIView @end
@@ -199,6 +205,32 @@ int main(void){ @autoreleasepool {
  assert(observed.visited==4 && observed.recorded==4 && observed.grids==2 && observed.refused==0 && observed.truncated==0);
  assert(observed.model_pages==3 && observed.model_icons==6 && observed.applications==4 && observed.write_failures==0 && list.model.icons==original_icons);
  assert(errno==before && CGRectEqualToRect(originalFrame,list.frame));
+ SBIconView *owned_icon=[SBIconView new];owned_icon.frame=owned_icon.bounds=CGRectMake(0,0,141,155);owned_icon.mockWindowOrigin=CGPointMake(34,61);
+ UIView *middle=[UIView new];middle.frame=middle.bounds=CGRectMake(0,0,141,155);middle.mockWindowOrigin=owned_icon.mockWindowOrigin;
+ SBIconLegibilityLabelView *owned_label=[SweetGeoCaptionView new];owned_label.frame=CGRectMake(38.5,143.5,65,21);owned_label.bounds=CGRectMake(0,0,65,21);owned_label.mockWindowOrigin=CGPointMake(72.5,204.5);owned_label.subviews=@[];
+ UIView *foreign_parent=[UIView new];foreign_parent.frame=foreign_parent.bounds=CGRectMake(0,0,360,640);foreign_parent.mockWindowOrigin=CGPointZero;
+ SBIconLegibilityLabelView *foreign_label=[SBIconLegibilityLabelView new];foreign_label.frame=CGRectMake(-6,58.5,65,21);foreign_label.bounds=CGRectMake(0,0,65,21);foreign_label.mockWindowOrigin=owned_label.mockWindowOrigin;foreign_label.subviews=@[];
+ middle.subviews=@[owned_label];owned_icon.subviews=@[middle];foreign_parent.subviews=@[foreign_label];
+ assert(geo_role(owned_icon)==GeoIcon && geo_role(list)==GeoList && geo_role(owned_label)==GeoLabel && geo_role(middle)==GeoOther && geo_role([NSObject new])==GeoInvalid);
+ SweetGeoNode ancestry[7]={{window,0,0,GeoOther},{list,1,1,GeoList},{owned_icon,2,2,GeoIcon},{middle,3,3,GeoOther},{owned_label,4,4,GeoLabel},{foreign_parent,1,1,GeoOther},{foreign_label,6,2,GeoLabel}};
+ SweetGeoOwner real_owner=geo_label_owner(ancestry,7,4),foreign_owner=geo_label_owner(ancestry,7,6);
+ assert(real_owner.complete && real_owner.icon==3 && real_owner.list==2 && real_owner.hops==4);
+ assert(foreign_owner.complete && foreign_owner.icon==0 && foreign_owner.list==0 && foreign_owner.hops==2);
+ SBIconView *nested_icon=[SBIconView new];
+ SweetGeoNode nearest[5]={{window,0,0,GeoOther},{list,1,1,GeoList},{owned_icon,2,2,GeoIcon},{nested_icon,3,3,GeoIcon},{owned_label,4,4,GeoLabel}};
+ SweetGeoOwner closest=geo_label_owner(nearest,5,4);assert(closest.complete && closest.icon==4 && closest.list==2 && closest.hops==4);
+ ancestry[4].parent=5;assert(!geo_label_owner(ancestry,7,4).complete);ancestry[4].parent=8;assert(!geo_label_owner(ancestry,7,4).complete);ancestry[4].parent=4;
+ ancestry[3].depth=9;assert(!geo_label_owner(ancestry,7,4).complete);ancestry[3].depth=3;
+ ancestry[3].role=GeoInvalid;assert(!geo_label_owner(ancestry,7,4).complete);ancestry[3].role=GeoOther;
+ assert(!geo_label_owner(NULL,7,4).complete && !geo_label_owner(ancestry,2049,4).complete && !geo_label_owner(ancestry,7,7).complete);
+ SweetGeoNode deep[66];for(unsigned i=0;i<66;++i)deep[i]={middle,i,i,GeoOther};deep[65].role=GeoLabel;
+ assert(!geo_label_owner(deep,66,65).complete);
+ deep[64].role=GeoLabel;assert(geo_label_owner(deep,65,64).complete && geo_label_owner(deep,65,64).hops==64);
+ list.subviews=@[owned_icon];window.subviews=@[list,dock,foreign_parent];setenv("GEO_GRID","0",1);errno=before;
+ SweetGeoLayoutResult tree_observed=inspect_native_layout(120);
+ assert(tree_observed.visited==8 && tree_observed.tree_nodes==8 && tree_observed.recorded==6 && tree_observed.owners==2 && tree_observed.refused==0 && tree_observed.truncated==0 && tree_observed.write_failures==0);
+ assert(tree_observed.model_pages==3 && list.model.icons==original_icons && errno==before && CGRectEqualToRect(originalFrame,list.frame));unsetenv("GEO_GRID");
+ puts("PASS: original view-tree ancestry; actual nested wrapper/foreign tree, same rectangle, original class roles, unknown/cycle/depth/bounds rejected");
  window.subviews=@[window];SweetGeoLayoutResult cycle=inspect_native_layout(0);assert(cycle.visited==1 && cycle.refused==1);
  NSMutableArray *many=[NSMutableArray array];for(unsigned i=0;i<2049;++i)[many addObject:label];window.subviews=many;
  SweetGeoLayoutResult bounded=inspect_native_layout(0);assert(bounded.visited==1 && bounded.truncated==1);

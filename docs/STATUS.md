@@ -6,6 +6,8 @@ Sony BH905ND69G已完成R19 CPU、R19 original GPU和R20 fitted GPU三次独立�
 
 完整原结果见[R19／R20阶段](../reproducibility/native-full-model-r19-r20-stage-20261122.json)、[原模型基线](../reproducibility/native-full-model-r19-original-baseline-20261122.json)、[R20原REVISE与身份对照](../reproducibility/native-full-model-r20-original-profile-20261122.json)和[标签归属卡点](../reproducibility/native-label-ownership-r20-blocker-20261122.json)。原报告、raw、包及像素未覆盖或重发。
 
+R21只读祖先候选已在正式源码准备：revision4发出完整TREE父边／原Class层级角色，以及每个label的最近icon/list、hops和完整状态；独立decoder复算最近祖先，不按坐标／字号挑候选。17类故障拒绝、同坐标外部标签、opaque子类、同一owner内重复标签仍REVISE和旧revision3全模型核对已host通过，见[R21 host](../reproducibility/native-label-ownership-r21-host-20261122.json)。实际C++ ASan／UBSan、ARM64签名、新RAM自身CPU及新的original／fitted尚未准入，当前无新boot。
+
 ## 当前准确输入
 
 | 输入 | 精确身份 | 已验范围 |

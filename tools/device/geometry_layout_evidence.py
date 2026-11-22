@@ -6,6 +6,7 @@ import math
 from pathlib import Path
 import re
 from native_model_graph import decode as decode_model_graph
+from native_label_ownership import decode as decode_label_ownership
 
 
 def fields(payload):
@@ -44,15 +45,17 @@ def decode(raw, token):
         raise ValueError('Repeated layout snapshot')
     header, footer = fields(records[0][2]), fields(records[-1][2])
     revision = int(header.get('rev', 0))
-    after = {1: '135', 2: '120', 3: '120'}.get(revision)
+    after = {1: '135', 2: '120', 3: '120', 4: '120'}.get(revision)
     wanted_header = {'rev': str(revision), 'after_ctor': after, 'points': '360,640', 'pixels': '720,1280', 'scale': '2'}
-    if revision == 3:
+    if revision in (3, 4):
         if header.get('grid') not in ('0', '1'):
             raise ValueError('Unbound original grid control')
         wanted_header['grid'] = header['grid']
     if after is None or header != wanted_header:
         raise ValueError('Unbound layout profile or observation time')
     footer_keys = {'rev', 'visited', 'recorded', 'grids', 'refused', 'truncated'} | ({'write_failures'} if revision >= 2 else set())
+    if revision == 4:
+        footer_keys |= {'tree_nodes', 'owners'}
     if set(footer) != footer_keys or footer['rev'] != str(revision):
         raise ValueError('Incomplete layout summary')
     counts = {k: int(v) for k, v in footer.items() if k != 'rev'}
@@ -62,11 +65,15 @@ def decode(raw, token):
     views, rectangles, grids, insets, refusals = {}, {}, {}, {}, []
     models, model_icons, model_summary = {}, {}, None
     graph_records, graph_models, graph_links = [], None, {}
+    ancestry_records, view_tree, label_owners = [], {}, {}
     expected = {'VIEW': {'n', 'parent', 'depth', 'class'}, 'RECT': {'n', 'frame', 'screen'},
                 'GRID': {'n', 'rows', 'cols', 'spacing', 'list', 'valid'}, 'INSETS': {'n', 'portrait'}}
     for record in records[1:-1]:
         kind, payload = record[1], record[2]
-        if revision == 3 and kind in ('MODEL', 'ICON', 'MODELS', 'LINK'):
+        if revision == 4 and kind in ('TREE', 'OWNER'):
+            ancestry_records.append((kind, payload))
+            continue
+        if revision in (3, 4) and kind in ('MODEL', 'ICON', 'MODELS', 'LINK'):
             graph_records.append((kind, payload))
             continue
         if revision == 2 and kind in ('MODEL', 'ICON', 'MODELS'):
@@ -145,18 +152,22 @@ def decode(raw, token):
         applications = [v['identifier'] for v in model_icons.values() if v['application']]
         if len(set(applications)) != len(applications):
             raise ValueError('Repeated original application identity')
-    if revision == 3:
+    if revision in (3, 4):
         graph_models, model_summary, graph_links = decode_model_graph(graph_records, views, rectangles, counts)
+    if revision == 4:
+        view_tree, label_owners = decode_label_ownership(ancestry_records, views, counts)
     complete = (counts['grids'] > 0 and counts['refused'] == counts['truncated'] == 0 and
                 counts.get('write_failures', 0) == 0 and all(n in insets for n, x in grids.items() if x['valid']))
     return {'revision': revision, 'token': token, 'current_LIVE_to_ACK_only': True, 'capture_complete': True,
             'counts': counts, 'views': {str(n): dict(v, **rectangles[n]) for n, v in views.items()},
             'grids': {str(n): dict(v, portrait_insets=insets.get(n)) for n, v in grids.items()},
             'refusals': refusals, 'grid_fields_fully_observed': complete,
-            'models': graph_models if revision == 3 else {str(n): {'count': count, 'icons': [model_icons[n, i] for i in range(count)]} for n, count in models.items()},
+            'models': graph_models if revision in (3, 4) else {str(n): {'count': count, 'icons': [model_icons[n, i] for i in range(count)]} for n, count in models.items()},
             'model_summary': model_summary,
             'model_links': graph_links,
-            'native_grid_value': int(header['grid']) if revision == 3 else None,
+            'native_grid_value': int(header['grid']) if revision in (3, 4) else None,
+            'view_tree': view_tree, 'label_owners': label_owners,
+            'original_label_ownership_complete': revision == 4,
             'window_coordinates_from_original_convertRect_toView_nil': True,
             'original_UI_layout_success_or_optical_FPS_NOT_inferred': True}
 
@@ -177,12 +188,14 @@ def inspect(directory):
     manifest = json.loads((Path(artifact['ram_package']) / 'manifest.json').read_text())
     binding = manifest['geocompat_build_binding']
     revision = binding.get('read_only_layout_observer_revision')
-    if revision not in (1, 2, 3) or binding.get('layout_snapshot_once_after_constructor_seconds') != {1: 135, 2: 120, 3: 120}[revision]:
+    if revision not in (1, 2, 3, 4) or binding.get('layout_snapshot_once_after_constructor_seconds') != {1: 135, 2: 120, 3: 120, 4: 120}[revision]:
         raise ValueError('Missing original compiled layout binding')
+    if revision == 4 and (binding.get('label_ownership_capture_revision') != 1 or not binding.get('original_view_tree_ancestry_host_passed')):
+        raise ValueError('Missing original compiled view ancestry binding')
     report = decode(raw.decode('utf-8', errors='replace'), artifact['token'])
     if report['revision'] != revision:
         raise ValueError('Original capture differs from compiled observer revision')
-    if revision == 3:
+    if revision in (3, 4):
         control = artifact.get('native_grid_control')
         if control is None or control.get('value') != report['native_grid_value']:
             raise ValueError('Original model graph grid mode differs from actual payload')

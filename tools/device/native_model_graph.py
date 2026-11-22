@@ -119,8 +119,8 @@ def ledger(report):
 
 
 def compare(current, baseline):
-    if current['revision'] != 3 or baseline['revision'] != 3:
-        raise ValueError('Complete model identity comparison requires original revision3 captures')
+    if current['revision'] not in (3, 4) or current['revision'] != baseline['revision']:
+        raise ValueError('Complete model identity comparison requires matching original revision3/4 captures')
     if current['native_grid_value'] != 1 or baseline['native_grid_value'] != 0:
         raise ValueError('Qualified original/fitted model modes missing')
     for report in (current, baseline):

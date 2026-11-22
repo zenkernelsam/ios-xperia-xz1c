@@ -211,7 +211,7 @@ def main():
             if 'metal_resources' in ram:sources={**sources,**ram['metal_resources']['source_files']}
             remote="import hashlib;from pathlib import Path;r=Path('Desktop/ios-xperia-xz1c');s="+repr(sources)+";assert all(hashlib.sha256((r/p).read_bytes()).hexdigest()==h for p,h in s.items());"+remote
         if ram.get('geocompat_build_binding'):
-            geo=ram['geocompat_build_binding'];sources=geo['source_files']
+            geo=ram['geocompat_build_binding'];sources={**geo['source_files'],**geo.get('host_ancestry_decoder_sources',{})}
             helper=Path(relative).parent.as_posix()+'/georead.dylib'
             remote="import hashlib;from pathlib import Path;r=Path('Desktop/ios-xperia-xz1c');s="+repr(sources)+";assert all(hashlib.sha256((r/p).read_bytes()).hexdigest()==h for p,h in s.items());assert hashlib.sha256((r/"+repr(helper)+").read_bytes()).hexdigest()=="+repr(geo['library_sha256'])+";"+remote
         check=subprocess.run(['ssh','-o','BatchMode=yes','-o','ConnectTimeout=8','ciscohe@192.168.68.54','python3 -c '+__import__('shlex').quote(remote)],capture_output=True,text=True,timeout=25)

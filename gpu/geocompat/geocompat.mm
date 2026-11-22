@@ -305,7 +305,37 @@ static void install_native_grid_adapter(void)
     if(!original_layout_cached && !install_native_layout_method("layoutForIconLocation:",&original_layout_cached,(IMP)native_cached_layout))
         emit("SWEET GEOGRID REFUSE original_cached_ABI_unavailable\n");
 }
-struct SweetGeoLayoutResult {unsigned visited,recorded,grids,refused,truncated,model_pages,model_icons,applications,write_failures;};
+struct SweetGeoLayoutResult {unsigned visited,recorded,grids,refused,truncated,model_pages,model_icons,applications,write_failures,tree_nodes,owners;};
+enum SweetGeoRole {GeoOther=0,GeoIcon=1,GeoList=2,GeoLabel=3,GeoInvalid=4};
+struct SweetGeoNode {id object;unsigned parent,depth;SweetGeoRole role;};
+struct SweetGeoOwner {unsigned icon,list,hops;bool complete;};
+static SweetGeoRole geo_role(id object)
+{
+    if(!geo_kind(object,"UIView"))return GeoInvalid;
+    if(geo_kind(object,"SBIconLegibilityLabelView"))return GeoLabel;
+    if(geo_kind(object,"SBIconListView"))return GeoList;
+    if(geo_kind(object,"SBIconView"))return GeoIcon;
+    return GeoOther;
+}
+/* Parent IDs come from the original, bounded subviews traversal. Do not call
+ * superview or infer ownership from a rectangle, font or class-name substring. */
+static SweetGeoOwner geo_label_owner(const SweetGeoNode *nodes,unsigned count,unsigned index)
+{
+    SweetGeoOwner result={};
+    if(!nodes || count>2048 || index>=count || nodes[index].role!=GeoLabel)return result;
+    unsigned child=index+1,parent=nodes[index].parent;
+    while(parent){
+        if(parent>=child || parent>count || result.hops>=64)return result;
+        const SweetGeoNode &node=nodes[parent-1];
+        if(node.role==GeoInvalid || node.depth+1!=nodes[child-1].depth)return result;
+        ++result.hops;
+        if(!result.icon && node.role==GeoIcon)result.icon=parent;
+        if(!result.list && node.role==GeoList)result.list=parent;
+        child=parent;parent=node.parent;
+    }
+    if(nodes[child-1].depth!=0)return result;
+    result.complete=true;return result;
+}
 struct SweetGeoModelJob {id model,icons;unsigned number,parent,index,list,depth;const char *kind;char folder[65];};
 struct SweetGeoModels {SweetGeoModelJob jobs[32];unsigned count,next=2049;char folder_ids[16][65];unsigned folders;};
 static bool geo_ascii_identifier(id object,char *output,size_t capacity)
@@ -414,20 +444,28 @@ static SweetGeoLayoutResult inspect_native_layout(unsigned after_ctor_seconds)
     if(!enabled || strcmp(enabled,"1") || !geo_native_screen()){errno=saved_errno;return result;}
     int grid_mode=native_grid_mode();if(grid_mode<0){emit("SWEET GLAYOUT REFUSE grid_mode\n");return result;}
     SweetGeoModels models={};models.next=2049;
-    char line[190];snprintf(line,sizeof(line),"SWEET GLAYOUT BEGIN rev=3 after_ctor=%u points=360,640 pixels=720,1280 scale=2 grid=%d\n",after_ctor_seconds,grid_mode);emit(line);
+    char line[190];snprintf(line,sizeof(line),"SWEET GLAYOUT BEGIN rev=4 after_ctor=%u points=360,640 pixels=720,1280 scale=2 grid=%d\n",after_ctor_seconds,grid_mode);emit(line);
     @try {
         id app=geo_object((id)objc_lookUpClass("UIApplication"),"sharedApplication"),windows=geo_object(app,"windows");
-        struct Node {id object;unsigned parent,depth;} nodes[2048];unsigned queued=0;
+        SweetGeoNode nodes[2048];unsigned queued=0;
         if(!geo_kind(windows,"NSArray"))++result.refused;
         else{
             CFIndex count=CFArrayGetCount((CFArrayRef)windows);
             if(count<0 || count>32)++result.refused;
-            else for(CFIndex i=0;i<count;++i)nodes[queued++]={(id)CFArrayGetValueAtIndex((CFArrayRef)windows,i),0,0};
+            else for(CFIndex i=0;i<count;++i)nodes[queued++]={(id)CFArrayGetValueAtIndex((CFArrayRef)windows,i),0,0,GeoOther};
         }
         for(unsigned i=0;i<queued;++i){
-            id view=nodes[i].object;++result.visited;if(!geo_kind(view,"UIView")){++result.refused;continue;}
+            id view=nodes[i].object;++result.visited;nodes[i].role=geo_role(view);
+            if(nodes[i].role==GeoInvalid){++result.refused;continue;}
+            ++result.tree_nodes;
+            snprintf(line,sizeof(line),"SWEET GLAYOUT TREE n=%u parent=%u depth=%u role=%u\n",i+1,nodes[i].parent,nodes[i].depth,(unsigned)nodes[i].role);emit(line);
+            if(nodes[i].role==GeoLabel){
+                SweetGeoOwner owner=geo_label_owner(nodes,queued,i);++result.owners;
+                if(!owner.complete)++result.refused;
+                snprintf(line,sizeof(line),"SWEET GLAYOUT OWNER n=%u icon=%u list=%u hops=%u complete=%u\n",i+1,owner.icon,owner.list,owner.hops,(unsigned)owner.complete);emit(line);
+            }
             const char *name=class_getName(object_getClass(view));
-            bool relevant=nodes[i].parent==0 || strstr(name,"Icon") || strstr(name,"Widget") || strstr(name,"Label") || strstr(name,"Dock");
+            bool relevant=nodes[i].parent==0 || nodes[i].role!=GeoOther || strstr(name,"Icon") || strstr(name,"Widget") || strstr(name,"Label") || strstr(name,"Dock");
             if(relevant){
                 if(strlen(name)>64)result.truncated=1;
                 CGRect frame,bounds,window;
@@ -448,14 +486,14 @@ static SweetGeoLayoutResult inspect_native_layout(unsigned after_ctor_seconds)
                 for(unsigned j=0;j<queued;++j)if(nodes[j].object==child){seen=true;break;}
                 if(seen){++result.refused;continue;}
                 if(queued>=2048 || nodes[i].depth>=64){result.truncated=1;continue;}
-                nodes[queued++]={child,i+1,nodes[i].depth+1};
+                nodes[queued++]={child,i+1,nodes[i].depth+1,GeoOther};
             }
         }
         geo_models_capture(&models,&result);
     }@catch(id exception){(void)exception;++result.refused;emit("SWEET GLAYOUT REFUSE getter_exception\n");}
     snprintf(line,sizeof(line),"SWEET GLAYOUT MODELS pages=%u icons=%u applications=%u\n",result.model_pages,result.model_icons,result.applications);emit(line);
     result.write_failures=__atomic_load_n(&geo_write_failures,__ATOMIC_RELAXED)-writes_before;
-    snprintf(line,sizeof(line),"SWEET GLAYOUT END rev=3 visited=%u recorded=%u grids=%u refused=%u truncated=%u write_failures=%u\n",result.visited,result.recorded,result.grids,result.refused,result.truncated,result.write_failures);emit(line);
+    snprintf(line,sizeof(line),"SWEET GLAYOUT END rev=4 visited=%u recorded=%u grids=%u refused=%u truncated=%u write_failures=%u tree_nodes=%u owners=%u\n",result.visited,result.recorded,result.grids,result.refused,result.truncated,result.write_failures,result.tree_nodes,result.owners);emit(line);
     errno=saved_errno;return result;
 }
 __attribute__((constructor)) static void start_geometry_reader(void)

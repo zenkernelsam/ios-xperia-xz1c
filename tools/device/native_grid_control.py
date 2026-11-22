@@ -34,7 +34,7 @@ def apply(words, mode):
 
 def validate(record, package):
     geo = package.get('geocompat_build_binding', {})
-    required = (record['trial_mode'] == 'gpu' and geo.get('revision') == 3 and
+    required = (record['trial_mode'] == 'gpu' and geo.get('revision') in (3, 4) and
                 record.get('display_geometry_binding', {}).get('profile') == 'xz1c-native-2x')
     actual = record.get('native_grid_control')
     if not required:

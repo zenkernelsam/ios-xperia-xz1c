@@ -32,6 +32,8 @@ constructor后120秒仅一次main-queue只读捕获；VIEW／RECT成对，原con
 
 ## 标签归属卡点
 
+revision4候选在原只读遍历中发出每个节点的TREE父边、depth和原Class层级角色，再发每个label的最近icon／list、hops及完整状态。独立decoder验证全部父边、view对应关系及计数，并复算最近祖先；opaque命名的原label子类按真实Class层级识别。同一个owner仍有多标签就拒绝，选定唯一owner后再验标签位置与间距。当前host／新产物准入以STATUS为准，旧revision3结果保持原判定。
+
 [R19／R20原阶段](../reproducibility/native-full-model-r19-r20-stage-20261122.json)证实完整38应用身份；[R20原UI报告](../reproducibility/native-full-model-r20-original-profile-20261122.json)仍REVISE。两个widget按坐标各得到2／3个同名标签候选，部分来自其它view树；即时父节点未发出，旧raw不能严格还原祖先。
 
 下一capture须限界地发出每个label最近的真实SBIconView／root-list祖先及完整／未知状态，由独立decoder验证归属后测量间距。不能按局部frame／字号挑预期候选。原六行扫描图可见标题重叠，五行原图已明显分开；严格数值准入、真人触控、LCD光学／背光、FPS、壁纸和其它外设继续各自验收。

@@ -52,7 +52,7 @@ def evaluate(current, baseline, expected_applications=None):
     identities_verified = False
     complete_model_comparison = None
     model_page_counts = {}
-    if current['revision'] == 3:
+    if current['revision'] in (3, 4):
         complete_model_comparison = compare_complete_models(current, baseline)
         reasons += complete_model_comparison['reasons']
         identities_verified = complete_model_comparison['complete_original_model_identity_verified']
@@ -89,21 +89,34 @@ def evaluate(current, baseline, expected_applications=None):
             reasons.append('ORIGINAL_FOLDER_MODEL_NOT_OBSERVED')
     elif current_regular != old_regular:
         reasons.append('ORIGINAL_APPLICATION_VIEW_COUNT_CHANGED')
-    if current['revision'] != 3 and current_widgets != old_widgets:
+    if current['revision'] not in (3, 4) and current_widgets != old_widgets:
         reasons.append('ORIGINAL_WIDGET_VIEW_COUNT_CHANGED')
     first = pages[0]
     clearances = []
     for widget in first['widgets']:
         x, y, width, height = widget['window_rectangle']
-        labels = [dict(v, node=n) for n, v in current['views'].items()
-                  if v['class'] == 'SBIconLegibilityLabelView' and
-                  x <= v['window_rectangle'][0] + v['window_rectangle'][2] / 2 <= x + width and
-                  y + 133 <= v['window_rectangle'][1] <= y + 185]
+        if current['revision'] == 4:
+            if not current.get('original_label_ownership_complete') or not baseline.get('original_label_ownership_complete'):
+                raise ValueError('Original label ancestry incomplete')
+            labels = [dict(v, node=n) for n, v in current['views'].items()
+                      if current['view_tree'].get(n, {}).get('role') == 3 and
+                      current['label_owners'].get(n, {}).get('icon') == int(widget['node']) and
+                      current['label_owners'].get(n, {}).get('list') == int(first['node'])]
+        else:
+            labels = [dict(v, node=n) for n, v in current['views'].items()
+                      if v['class'] == 'SBIconLegibilityLabelView' and
+                      x <= v['window_rectangle'][0] + v['window_rectangle'][2] / 2 <= x + width and
+                      y + 133 <= v['window_rectangle'][1] <= y + 185]
         if len(labels) != 1:
             reasons.append('WIDGET_ORIGINAL_LABEL_AMBIGUOUS')
             continue
         label = labels[0]
         lx, ly, lw, lh = label['window_rectangle']
+        if current['revision'] == 4 and not (lw > 0 and lh > 0 and
+                x <= lx + lw / 2 <= x + width and y + 133 <= ly <= y + 185 and
+                lx >= -.02 and ly >= -.02 and lx + lw <= 360.02 and ly + lh <= 640.02):
+            reasons.append('ORIGINAL_OWNED_WIDGET_LABEL_GEOMETRY_INVALID')
+            continue
         following = [cell for cell in first['regular'] if
                      cell['window_rectangle'][1] >= y + 133 and
                      cell['window_rectangle'][0] < lx + lw and lx < cell['window_rectangle'][0] + cell['window_rectangle'][2]]
@@ -138,6 +151,7 @@ def evaluate(current, baseline, expected_applications=None):
                 original_application_identity_retention_NOT_verified=not identities_verified,
                 original_model_application_count_by_page=model_page_counts,
                 complete_original_model_comparison=complete_model_comparison,
+                original_label_ancestry_verified=current['revision'] == 4 and current.get('original_label_ownership_complete', False),
                 application_launch_functionality_NOT_verified=True,
                 physical_panel_optical_FPS_wallpaper_peripherals_NOT_inferred=True)
 
