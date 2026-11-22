@@ -1,0 +1,107 @@
+{
+  "date": "2026-11-22",
+  "source_commit": "2092b732e6f9d512bbcd4f164382ab80edcbbcde",
+  "geocompat_build_binding": {
+    "revision": 2,
+    "source_files": {
+      "gpu/geocompat/geocompat.mm": "a82de041167a8788c9c6c0bb6c54dce41e25d82506b8ae2e3878931348979427",
+      "gpu/geocompat/test_adapter.mm": "051c6b9bf5ed284602a02f2b7c021270f339d3ce9d849aa9b535d021c6ddaa0a",
+      "tools/build/build_geocompat_trial.py": "d913e02335e728ec73d159bb51923fdd12381edaae1b348f11fa4f5048a80299",
+      "gpu/geocompat/log_write.c": "e55ba6bfffde56fdc1a8fda20b0b88aa70a74b90af1bd5e6208c4cb8b270cbad",
+      "gpu/sweetgl/LogWriteAll.h": "caa86a1e6763dfc8039466aa432176d2d90fc4a55db60efeb02eb33c92bc0f88"
+    },
+    "library_sha256": "32fc1868932df48c8350d449963e11564d68d5e043de05a79012f228e19d9a13",
+    "library_bytes": 89776,
+    "host_ASan_UBSan_real_four_argument_provider_dispatch_passed": true,
+    "exact_native360x640_720x1280_scale2_flat_provider": true,
+    "opaque_visual_provider_info_forwarded": true,
+    "valid_other_screen_providers_preserved": true,
+    "read_only_window_safe_area_ABI_checked": true,
+    "read_only_layout_observer_revision": 2,
+    "host_ASan_UBSan_bounded_layout_and_CGRect_conversion_passed": true,
+    "original_frame_grid_values_preserved": false,
+    "read_only_layout_observer_preserves_current_values": true,
+    "layout_snapshot_once_after_constructor_seconds": 120,
+    "host_ASan_UBSan_shared_log_writer_EINTR_partial_errno_passed": true,
+    "original_icon_model_identity_ABI_host_passed": true,
+    "native_root_grid_density_revision": 1,
+    "native_root_grid_rows": 5,
+    "original_grid_factory_cache_ABI_and_setter_host_passed": true,
+    "original_icon_widget_font_and_insets_preserved": true,
+    "other_screen_or_nonroot_grid_configs_preserved": true,
+    "new_device_RAM_CPU_GLES_UI_NOT_verified": true,
+    "device_operations": 0
+  },
+  "RAM_blob_sha256": "81cb3ee681c9f1c7b990375a510a22f5f0ed747cc711a779f8b728d4d9dd2bc9",
+  "GLES_sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+  "packages": [
+    {
+      "stage": "cpu",
+      "token": "4d7848005c7b99f4",
+      "image_sha256": "a2c703050d4c9a51ddae3e986f99b99e137a1da31102c5892b8367f7cd46fb74",
+      "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+      "cmdline_bytes": 607,
+      "geometry_binding": {
+        "revision": 1,
+        "profile": "xz1c-native-2x",
+        "canvas_pixels": [
+          720,
+          1280
+        ],
+        "UIKit_points": [
+          360,
+          640
+        ],
+        "scale": 2,
+        "source_reference_sha256": "257076987411b50f037f70bf97524fae56ac2965e773c1bb8678d05d45480ba6",
+        "target_reference_sha256": "077aac63b2e5cd48e0e4fbd024a07cac3533eaea6a04a94376d2966dbef4d2e6",
+        "converter_sha256": "ad0b5cd47f32968fa95d13a00fe54bf619bb9909efb5e6c796d04adb17d274de",
+        "parser_sha256": "1431f1f8aacae240b87bd29cd91905784c968f8014784201b3ed862bdb1b4ed9",
+        "required_boot_arguments": {
+          "sweetfb_native": 1,
+          "sf2x": 0
+        },
+        "four_original_CFData_properties_only": true
+      }
+    },
+    {
+      "stage": "gpu",
+      "token": "4b02249c29856d10",
+      "image_sha256": "927ec82c76df9d8d9658735a05ccd0c65b3f458f4b1a56cc8f41274d0fa43fb6",
+      "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+      "cmdline_bytes": 602,
+      "geometry_binding": {
+        "revision": 1,
+        "profile": "xz1c-native-2x",
+        "canvas_pixels": [
+          720,
+          1280
+        ],
+        "UIKit_points": [
+          360,
+          640
+        ],
+        "scale": 2,
+        "source_reference_sha256": "257076987411b50f037f70bf97524fae56ac2965e773c1bb8678d05d45480ba6",
+        "target_reference_sha256": "077aac63b2e5cd48e0e4fbd024a07cac3533eaea6a04a94376d2966dbef4d2e6",
+        "converter_sha256": "ad0b5cd47f32968fa95d13a00fe54bf619bb9909efb5e6c796d04adb17d274de",
+        "parser_sha256": "1431f1f8aacae240b87bd29cd91905784c968f8014784201b3ed862bdb1b4ed9",
+        "required_boot_arguments": {
+          "sweetfb_native": 1,
+          "sf2x": 0
+        },
+        "four_original_CFData_properties_only": true
+      }
+    }
+  ],
+  "original_application_reference": "reproducibility/native-icon-model-20H392-static-r18.json",
+  "reference_sha256": "a4e11a86725bec56dfa4eb16a12a423f25bddf49c8c483ae64b5fbb882912c5e",
+  "original_application_identifiers": 15,
+  "exact_original_model_and_BOOL_ABI_verified": true,
+  "Mac_Windows_signed_sources_verified": true,
+  "shared_logger_C_source_header_unchanged": true,
+  "CPU_GLES_UI_model_device_NOT_tested": true,
+  "R17_failure_NOT_reclassified_or_replayed": true,
+  "device_operations": 0,
+  "full_wallpaper_FPS_peripheral_goal_NOT_complete": true
+}

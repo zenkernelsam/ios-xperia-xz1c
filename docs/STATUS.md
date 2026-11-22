@@ -6,7 +6,7 @@ r17原factory/cache及原setter已在实机两次把native root配置6→5；原
 
 下一轮先把layout采样从150秒SCREEN_DATA串流中错开，补有界EINTR／partial write并记录失败，再读取原icon-list model／application IDs验证15个原应用的分页保留。原VIEW缺失的归因未证明，R17旧bundle不重发。原始policy、壁纸／FPS／睡眠／光学／声音和无线保持全部目标；v730／GPU底层及GLES／Metal字节冻结。
 
-当前r18仅源码候选：helper revision2绑定5源（含原LogWriteAll.h及新C bridge），layout revision2在constructor后120秒一次，保留写入失败计数及完整MODEL/ICON库存；通过原SBIconListView.model、SBIconListModel.icons、SBLeafIcon.applicationBundleID／原匹配BOOL读取分页身份。6个schema故障已拒绝，原R16继续通过／R17缺VIEW仍拒绝；新host／ARM64／自己的CPU/GLES/模型／UI尚未准入，手机无在途boot。
+当前r18包：helper revision2绑定5源（含原LogWriteAll.h及新C bridge），layout revision2在constructor后120秒一次，保留写入失败计数及完整MODEL/ICON库存；原SBIconListView.model、SBIconListModel.icons、SBLeafIcon.applicationBundleID／原匹配BOOL及15个gl5参考身份已核对。6个schema故障拒绝，原R16通过／R17缺VIEW仍拒绝；Host ASan/UBSan及ARM64签名通过，helper32fc1868／blob81cb3ee6，独立健康30.422秒后CPU4d7848005c7b99f4准备单发，GPU4b02249c29856d10待自己的CPU／回程／worker退出。模型／完整UI未准入，源码／精确[离线包](../reproducibility/native-layout-model-r18-offline-20261122.json)与[原模型参考](../reproducibility/native-icon-model-20H392-static-r18.json)保留。
 
 ## 当前准确输入与验收范围
 
