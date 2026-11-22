@@ -21,9 +21,11 @@ def main():
         (out/(label+'.log')).write_bytes(result.stdout+result.stderr)
         assert result.returncode==0,(result.stdout+result.stderr)[-2500:].decode(errors='replace')
         return result.stdout
-    run(['clang','-O1','-g','-fsanitize=address,undefined','-c',ROOT/paths[3],'-o',out/'host-log-write.o'],'host-log-compile')
-    run(['clang++','-O1','-g','-fblocks','-fno-objc-arc','-fsanitize=address,undefined',ROOT/paths[1],out/'host-log-write.o','-framework','Foundation','-framework','CoreGraphics','-o',out/'test_adapter'],'host-compile')
-    host=run([out/'test_adapter'],'host-test')
+    run(['clang','-O1','-g','-fsanitize=address,undefined','-fno-sanitize-recover=all','-c',ROOT/paths[3],'-o',out/'host-log-write.o'],'host-log-compile')
+    run(['clang++','-O1','-g','-fblocks','-fno-objc-arc','-fsanitize=address,undefined','-fno-sanitize-recover=all',ROOT/paths[1],out/'host-log-write.o','-framework','Foundation','-framework','CoreGraphics','-o',out/'test_adapter'],'host-compile')
+    run([out/'test_adapter'],'host-test')
+    # Production records use stderr; keep both original streams for the decoder.
+    host=(out/'host-test.log').read_bytes()
     assert b'PASS: real 4-argument ObjC dispatch' in host and b'PASS: bounded original layout observer' in host and b'PASS: native root grid factory/cache' in host
     assert b'PASS: real shared C log writer' in host and b'PASS: original model identities' in host
     assert b'PASS: full root/folder/dock model graph' in host
