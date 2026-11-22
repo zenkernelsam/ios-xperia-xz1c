@@ -1,0 +1,114 @@
+{
+  "result": "PASS",
+  "scope": "Qualified complete actual original layout model baseline, not complete optical/UI success",
+  "token": "bfb3cb7b79e0cf96",
+  "raw_sha256": "07858bc38a7447cb4609829999590c1928d5fc9434ccc8b066d0d1897c7d48d5",
+  "return_seconds_with_health": 39.561999999918044,
+  "counts": {
+    "visited": 927,
+    "recorded": 158,
+    "grids": 3,
+    "refused": 0,
+    "truncated": 0,
+    "write_failures": 0
+  },
+  "model_summary": {
+    "pages": 4,
+    "icons": 41,
+    "applications": 38
+  },
+  "root_grid_rows": [
+    6,
+    6
+  ],
+  "models": [
+    {
+      "node": "178",
+      "parent": 0,
+      "index": 0,
+      "list": 0,
+      "count": 14,
+      "kind": "root",
+      "folder": "-",
+      "applications": [
+        "com.apple.facetime",
+        "com.apple.mobilecal",
+        "com.apple.mobileslideshow",
+        "com.apple.mobilemail",
+        "com.apple.mobilenotes",
+        "com.apple.reminders",
+        "com.apple.mobiletimer",
+        "com.apple.news",
+        "com.apple.tv",
+        "com.apple.podcasts",
+        "com.apple.AppStore",
+        "com.apple.Maps"
+      ]
+    },
+    {
+      "node": "179",
+      "parent": 0,
+      "index": 0,
+      "list": 0,
+      "count": 18,
+      "kind": "root",
+      "folder": "-",
+      "applications": [
+        "com.apple.weather",
+        "com.apple.stocks",
+        "com.apple.findmy",
+        "com.apple.Home",
+        "com.apple.iBooks",
+        "com.apple.MobileStore",
+        "com.apple.Fitness",
+        "com.apple.Bridge",
+        "com.apple.MobileAddressBook",
+        "com.apple.Translate",
+        "com.apple.DocumentsApp",
+        "com.apple.shortcuts",
+        "com.apple.Passbook",
+        "com.apple.Preferences",
+        "com.apple.Health",
+        "com.apple.freeform",
+        "com.apple.tips"
+      ]
+    },
+    {
+      "node": "183",
+      "parent": 0,
+      "index": 0,
+      "list": 0,
+      "count": 4,
+      "kind": "dock",
+      "folder": "-",
+      "applications": [
+        "com.apple.mobilephone",
+        "com.apple.mobilesafari",
+        "com.apple.MobileSMS",
+        "com.apple.Music"
+      ]
+    },
+    {
+      "node": "2049",
+      "parent": 179,
+      "index": 15,
+      "list": 0,
+      "count": 5,
+      "kind": "folder",
+      "folder": "B3601B63-58B4-4D2C-80CD-6E38D631201B",
+      "applications": [
+        "com.apple.VoiceMemos",
+        "com.apple.compass",
+        "com.apple.measure",
+        "com.apple.Magnifier",
+        "com.apple.calculator"
+      ]
+    }
+  ],
+  "full_application_entries": 38,
+  "distinct_application_ids": 38,
+  "complete_native_original_reference": true,
+  "single_download_boot_and_current_return_verified": true,
+  "controller_and_worker_exited": true,
+  "device_operations": 0
+}

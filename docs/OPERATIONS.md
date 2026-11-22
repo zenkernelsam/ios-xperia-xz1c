@@ -48,6 +48,14 @@ UI／文字／图标／颜色优先串口720×1280／BGR888／stride2160原扫�
 
 DroidCam只用于LCD光学／背光／物理错行，唯一流程override→AF(/cam/1/af)→等2秒→MJPEG(/video?1280x720)→每5帧抽1→rotate90。已旋转不再转，grab_cam.py禁用；frame.jpg只能视频失败单次兜底。日常UI取证不用等待相机服务。
 
+## 原／拟合原生布局对照
+
+同一个精确新helper／RAM先自身CPU，完整回程后单发original（GEO_GRID0），完整Root／Dock／Folder模型及原字节准入后才单发fitted（GEO_GRID1）。两靴均同kernel、同helper，120秒一次上滑、150秒一次原scanout，包和run目录各自新建；缺原完整基线、slot／LINK／child、实际mode或回程就停止。
+
+独立native_grid_profile_evidence同时检查完整应用multiset、Dock顺序、Folder身份／list内容、原生窗口及标签间距。未显示页从model读取，旧15个第一页reference及DefaultIconState不作为全基线。Root允许原system分页重排，不据view数量判应用丢失。
+
+原同名标签候选多于一个、祖先未观察或缺记录仍保留REVISE；不得按坐标／字号挑预期候选或补造旧raw。下一轮补限界只读归属capture后，新helper／RAM仍需自身CPU及新original基线。controller PASS和完整模型保留分别不提升原UI／光学。当前结果只看STATUS，旧失败包不重发。
+
 ## USB拒绝和保存
 
 独立usb_open_observation.py只查Sony身份、配置和bulk描述符；--claim-once只单次claim／release接口，无bulk读写／download／boot／reset，不set_configuration或detach驱动。输出新TEMP目录、单device lock；成功不解释前次竞态或授权重发旧失败。

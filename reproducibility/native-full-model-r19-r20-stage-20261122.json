@@ -1,0 +1,596 @@
+{
+  "date": "2026-11-22",
+  "target_serial": "BH905ND69G",
+  "source_git_head_during_device_trials": "6a9efe8202a1ef12474427d2cecd8b957313edc6",
+  "compiled_helper_source_head": "a8d32070b1f1e3d3345324451d462940e951cdbc",
+  "frozen_Mesa_GLES_Metal": true,
+  "geocompat_build_binding": {
+    "revision": 3,
+    "source_files": {
+      "gpu/geocompat/geocompat.mm": "b5e145caf6e1f22cf53feffd43c78e1b28db948f0e86a412d092b638254d3097",
+      "gpu/geocompat/test_adapter.mm": "303b982d98e6b8bde1a615657c2053c471191d9ca649a17ed655c296753a6521",
+      "tools/build/build_geocompat_trial.py": "daa21af942433afa85211a423551a87cfd1d34b3e97cb01770dbd4713d114db2",
+      "gpu/geocompat/log_write.c": "e55ba6bfffde56fdc1a8fda20b0b88aa70a74b90af1bd5e6208c4cb8b270cbad",
+      "gpu/sweetgl/LogWriteAll.h": "caa86a1e6763dfc8039466aa432176d2d90fc4a55db60efeb02eb33c92bc0f88"
+    },
+    "library_sha256": "38b282fea44db23c7ce0b4c66c37d1a83a68edf9bc75c36b553ceafd5918c08f",
+    "library_bytes": 106544,
+    "host_ASan_UBSan_real_four_argument_provider_dispatch_passed": true,
+    "exact_native360x640_720x1280_scale2_flat_provider": true,
+    "opaque_visual_provider_info_forwarded": true,
+    "valid_other_screen_providers_preserved": true,
+    "read_only_window_safe_area_ABI_checked": true,
+    "read_only_layout_observer_revision": 3,
+    "host_ASan_UBSan_bounded_layout_and_CGRect_conversion_passed": true,
+    "original_frame_grid_values_preserved": false,
+    "read_only_layout_observer_preserves_current_values": true,
+    "layout_snapshot_once_after_constructor_seconds": 120,
+    "host_ASan_UBSan_shared_log_writer_EINTR_partial_errno_passed": true,
+    "original_icon_model_identity_ABI_host_passed": true,
+    "native_root_grid_density_revision": 1,
+    "native_root_grid_rows": 5,
+    "original_grid_factory_cache_ABI_and_setter_host_passed": true,
+    "native_root_grid_mode_control_revision": 1,
+    "original_full_folder_dock_model_ABI_host_passed": true,
+    "original_icon_widget_font_and_insets_preserved": true,
+    "other_screen_or_nonroot_grid_configs_preserved": true,
+    "new_device_RAM_CPU_GLES_UI_NOT_verified": true,
+    "device_operations": 0
+  },
+  "RAM_blob_sha256": "c851d46882738c0de6f00c46b0c78cf796af5bd3171adb6386221b5c2e7a1900",
+  "health_observations": [
+    {
+      "serial": "BH905ND69G",
+      "usb_vid": "0fce",
+      "usb_pid": "0dde",
+      "download_commands": 0,
+      "boot_commands": 0,
+      "reset_commands": 0,
+      "independent_health_only": true,
+      "previous_trial_result_unchanged": true,
+      "result": "STOP_ERROR",
+      "error": "Command '['powershell', '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', 'D:\\\\Desktop\\\\Git\\\\ios-xperia-xz1c\\\\tools\\\\device\\\\preflight_processes.ps1']' timed out after 12 seconds",
+      "samples": []
+    },
+    {
+      "serial": "BH905ND69G",
+      "usb_vid": "0fce",
+      "usb_pid": "0dde",
+      "download_commands": 0,
+      "boot_commands": 0,
+      "reset_commands": 0,
+      "independent_health_only": true,
+      "previous_trial_result_unchanged": true,
+      "result": "PASS",
+      "continuous_health_seconds": 31.562000000150874,
+      "samples": [
+        {
+          "elapsed_seconds": 2.202999999979511,
+          "healthy": true
+        },
+        {
+          "elapsed_seconds": 5.0,
+          "healthy": true
+        },
+        {
+          "elapsed_seconds": 7.844000000040978,
+          "healthy": true
+        },
+        {
+          "elapsed_seconds": 11.125,
+          "healthy": true
+        },
+        {
+          "elapsed_seconds": 13.858999999938533,
+          "healthy": true
+        },
+        {
+          "elapsed_seconds": 16.733999999938533,
+          "healthy": true
+        },
+        {
+          "elapsed_seconds": 19.687000000150874,
+          "healthy": true
+        },
+        {
+          "elapsed_seconds": 22.469000000040978,
+          "healthy": true
+        },
+        {
+          "elapsed_seconds": 25.375,
+          "healthy": true
+        },
+        {
+          "elapsed_seconds": 28.17200000002049,
+          "healthy": true
+        },
+        {
+          "elapsed_seconds": 30.969000000040978,
+          "healthy": true
+        },
+        {
+          "elapsed_seconds": 33.765000000130385,
+          "healthy": true
+        }
+      ]
+    }
+  ],
+  "all_device_rounds_terminal": true,
+  "rounds": [
+    {
+      "stage": "CPU",
+      "mode": "ramcpu",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-full-model-r19-cpu-live-20261122",
+      "token": "6632d7b8b96d863d",
+      "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+      "image_sha256": "4e991adef390a0291bd77b122ed5724b621a5ef1ab93b24905942b1afde7d315",
+      "raw_sha256": "21a72fac06a80b24e7efdcdab896df8441b373d205facc9bd68eabe933b2fc1b",
+      "raw_bytes": 346785,
+      "result": "PASS",
+      "actual_evidence_sha256": "3378ea947f88427c6e8861c6039646376ba593768fa6c4a5181138d8e32e52ee",
+      "results_sha256": "8e1df1e0acdf6539a7a59a5ddee5da76925d05169e840d8ec707947958d9f114",
+      "return_seconds_with_health": 38.828,
+      "return_marker_positions": [
+        3,
+        14,
+        70,
+        72
+      ],
+      "current_return_verified": true,
+      "continuous_health30_verified": true,
+      "controller_and_worker_exited": true,
+      "serial_port": "COM17",
+      "serial_capture_binding": {
+        "revision": 1,
+        "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+        "event_log_sha256": "b924f67d116e9505e37cbc3432c6a6c97be545fed7d406812c9a0b2e14559f0a",
+        "raw_sha256": "21a72fac06a80b24e7efdcdab896df8441b373d205facc9bd68eabe933b2fc1b",
+        "serial_port": "COM17",
+        "dtr_low_through_open": true,
+        "raw_log_before_stream": true,
+        "one_continuous_current_boot_stream": true,
+        "replay_commands": 0,
+        "old_failure_not_reclassified": true
+      },
+      "single_download": 1,
+      "single_boot": 1,
+      "replays": 0
+    },
+    {
+      "stage": "original",
+      "mode": "gpu",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-full-model-r19-original-live-20261122",
+      "token": "bfb3cb7b79e0cf96",
+      "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+      "image_sha256": "ca5709ae7d99cb023e0dcc0dca5c7d7fda49bd287b728ed254bc1977b735794e",
+      "raw_sha256": "07858bc38a7447cb4609829999590c1928d5fc9434ccc8b066d0d1897c7d48d5",
+      "raw_bytes": 3443065,
+      "result": "PASS",
+      "actual_evidence_sha256": "6b6c202c8f5a95ab26790fd44716964fc0855ae8d53afb0937653d1caf865eec",
+      "results_sha256": "17954d422ea08c29ef1b04cf2dc958454fb1d2179a5365db5cfd1db57ba6f7b8",
+      "return_seconds_with_health": 39.562,
+      "return_marker_positions": [
+        4,
+        72,
+        145,
+        147
+      ],
+      "current_return_verified": true,
+      "continuous_health30_verified": true,
+      "controller_and_worker_exited": true,
+      "serial_port": "COM17",
+      "serial_capture_binding": {
+        "revision": 1,
+        "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+        "event_log_sha256": "e651747b17c578cec562bab19648267cb690599ab172b9ef0ddbfb73150c869d",
+        "raw_sha256": "07858bc38a7447cb4609829999590c1928d5fc9434ccc8b066d0d1897c7d48d5",
+        "serial_port": "COM17",
+        "dtr_low_through_open": true,
+        "raw_log_before_stream": true,
+        "one_continuous_current_boot_stream": true,
+        "replay_commands": 0,
+        "old_failure_not_reclassified": true
+      },
+      "single_download": 1,
+      "single_boot": 1,
+      "replays": 0,
+      "geometry_counts": {
+        "visited": 927,
+        "recorded": 158,
+        "grids": 3,
+        "refused": 0,
+        "truncated": 0,
+        "write_failures": 0
+      },
+      "model_summary": {
+        "pages": 4,
+        "icons": 41,
+        "applications": 38
+      },
+      "native_grid_value": 0,
+      "native_root_rows": [
+        6,
+        6
+      ],
+      "screen": {
+        "protocol": 1,
+        "frames": [
+          {
+            "id": 1,
+            "token": "bfb3cb7b79e0cf96",
+            "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+            "image_sha256": "ca5709ae7d99cb023e0dcc0dca5c7d7fda49bd287b728ed254bc1977b735794e",
+            "binding": {
+              "protocol": 1,
+              "width": 720,
+              "height": 1280,
+              "stride": 2160,
+              "format": "BGR888",
+              "codec": "PRLE1",
+              "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+              "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+              "runtime_source_sha256": "a1f41eeb87b7cf70ea751884ee38d758191f3cc0a00d697acc363fbba3cd5f63"
+            },
+            "begin": {
+              "token": "bfb3cb7b79e0cf96",
+              "id": "1",
+              "width": "720",
+              "height": "1280",
+              "stride": "2160",
+              "format": "BGR888",
+              "bytes": "2764800",
+              "codec": "PRLE1",
+              "encoded": "998306",
+              "raw_fnv": "590733dba75d4edb",
+              "enc_crc": "81ff9074",
+              "vsync": "7646",
+              "timestamp": "10121072155",
+              "copy_ticks": "7999398",
+              "power_off": "0",
+              "source_checked": "1",
+              "source_match": "1"
+            },
+            "scan": {
+              "token": "bfb3cb7b79e0cf96",
+              "id": "1",
+              "pa": "0x9d400000",
+              "map_pa": "0x9d400000",
+              "map_bytes": "2764800",
+              "size": "0x50002d0",
+              "img": "0x50002d0",
+              "xy": "0",
+              "out": "0x50002d0",
+              "outxy": "0",
+              "fmt": "0x2243f",
+              "unpack": "0x20001",
+              "op": "0x80000000",
+              "qop": "0",
+              "ctl": "0x20020",
+              "start": "0",
+              "before_after": "1"
+            },
+            "blocks": 7800,
+            "raw_file": "scanout-00000001.bgr",
+            "png_file": "scanout-00000001.png",
+            "raw_sha256": "8e038d3153a570209e626c514ee1dc658fad042500c1aebe7849c003beab1768",
+            "png_sha256": "e08dab8f9161aba166d32ab9900be710755077f9e4e883637f3c0e4bdb34f918",
+            "pixel_values_preserved": true,
+            "verified": true,
+            "optical_panel_verified": false
+          }
+        ],
+        "verified": true,
+        "optical_panel_verified": false,
+        "current_boot_source_and_payload_checked": true,
+        "format": "BGR888",
+        "width": 720,
+        "height": 1280
+      },
+      "full_GLES9_verified": true
+    },
+    {
+      "stage": "fitted",
+      "mode": "gpu",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-full-model-r20-fitted-live-20261122",
+      "token": "8ca68102298d865b",
+      "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+      "image_sha256": "0418e1fee843d56c27ac0de487780fd3ebca159a69d7b266ab63cdbeb4c4d627",
+      "raw_sha256": "5d2a8040ac56717a15f63fb28ee8d4e6cf2bbe66d6ea38991bfb0e0673dec56d",
+      "raw_bytes": 3829524,
+      "result": "PASS",
+      "actual_evidence_sha256": "0557ea1f8f9355d24033078d2e1d7825220391da4be83a9fe30db08b153db56a",
+      "results_sha256": "604fbfc6189c0af466c1e7d4b4e38cbaeab249c5e7ae23f2652d3ddaf9806df8",
+      "return_seconds_with_health": 38.546,
+      "return_marker_positions": [
+        4,
+        251,
+        341,
+        343
+      ],
+      "current_return_verified": true,
+      "continuous_health30_verified": true,
+      "controller_and_worker_exited": true,
+      "serial_port": "COM17",
+      "serial_capture_binding": {
+        "revision": 1,
+        "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+        "event_log_sha256": "d78b0cb2d13492962eb6ae844e1254108a5bee5495e781cbebcff9be23f6e281",
+        "raw_sha256": "5d2a8040ac56717a15f63fb28ee8d4e6cf2bbe66d6ea38991bfb0e0673dec56d",
+        "serial_port": "COM17",
+        "dtr_low_through_open": true,
+        "raw_log_before_stream": true,
+        "one_continuous_current_boot_stream": true,
+        "replay_commands": 0,
+        "old_failure_not_reclassified": true
+      },
+      "single_download": 1,
+      "single_boot": 1,
+      "replays": 0,
+      "geometry_counts": {
+        "visited": 1085,
+        "recorded": 204,
+        "grids": 3,
+        "refused": 0,
+        "truncated": 0,
+        "write_failures": 0
+      },
+      "model_summary": {
+        "pages": 4,
+        "icons": 41,
+        "applications": 38
+      },
+      "native_grid_value": 1,
+      "native_root_rows": [
+        5,
+        5
+      ],
+      "screen": {
+        "protocol": 1,
+        "frames": [
+          {
+            "id": 1,
+            "token": "8ca68102298d865b",
+            "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+            "image_sha256": "0418e1fee843d56c27ac0de487780fd3ebca159a69d7b266ab63cdbeb4c4d627",
+            "binding": {
+              "protocol": 1,
+              "width": 720,
+              "height": 1280,
+              "stride": 2160,
+              "format": "BGR888",
+              "codec": "PRLE1",
+              "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+              "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+              "runtime_source_sha256": "a1f41eeb87b7cf70ea751884ee38d758191f3cc0a00d697acc363fbba3cd5f63"
+            },
+            "begin": {
+              "token": "8ca68102298d865b",
+              "id": "1",
+              "width": "720",
+              "height": "1280",
+              "stride": "2160",
+              "format": "BGR888",
+              "bytes": "2764800",
+              "codec": "PRLE1",
+              "encoded": "1021078",
+              "raw_fnv": "7ff4f21f1c1322b1",
+              "enc_crc": "bd3396f6",
+              "vsync": "7374",
+              "timestamp": "12547923736",
+              "copy_ticks": "8367123",
+              "power_off": "0",
+              "source_checked": "1",
+              "source_match": "1"
+            },
+            "scan": {
+              "token": "8ca68102298d865b",
+              "id": "1",
+              "pa": "0x9d400000",
+              "map_pa": "0x9d400000",
+              "map_bytes": "2764800",
+              "size": "0x50002d0",
+              "img": "0x50002d0",
+              "xy": "0",
+              "out": "0x50002d0",
+              "outxy": "0",
+              "fmt": "0x2243f",
+              "unpack": "0x20001",
+              "op": "0x80000000",
+              "qop": "0",
+              "ctl": "0x20020",
+              "start": "0",
+              "before_after": "1"
+            },
+            "blocks": 7978,
+            "raw_file": "scanout-00000001.bgr",
+            "png_file": "scanout-00000001.png",
+            "raw_sha256": "67d1219c868a431e04fddb8ca90dd072a0d85d197142af8d0eb33c9cbf64056a",
+            "png_sha256": "307ce784f15dd6d515ca3d878479e479f18372cb633e03319c1ce383f8aa6224",
+            "pixel_values_preserved": true,
+            "verified": true,
+            "optical_panel_verified": false
+          }
+        ],
+        "verified": true,
+        "optical_panel_verified": false,
+        "current_boot_source_and_payload_checked": true,
+        "format": "BGR888",
+        "width": 720,
+        "height": 1280
+      },
+      "full_GLES9_verified": true
+    }
+  ],
+  "complete_original_model_comparison": {
+    "complete_original_model_identity_verified": true,
+    "reasons": [],
+    "original_full_application_entries": 38,
+    "fitted_full_application_entries": 38,
+    "original_root_application_entries": 29,
+    "fitted_root_application_entries": 29,
+    "original_dock_model_count": 1,
+    "fitted_dock_model_count": 1,
+    "original_folder_list_count": 1,
+    "fitted_folder_list_count": 1,
+    "original_full_application_multiset": {
+      "com.apple.facetime": 1,
+      "com.apple.mobilecal": 1,
+      "com.apple.mobileslideshow": 1,
+      "com.apple.mobilemail": 1,
+      "com.apple.mobilenotes": 1,
+      "com.apple.reminders": 1,
+      "com.apple.mobiletimer": 1,
+      "com.apple.news": 1,
+      "com.apple.tv": 1,
+      "com.apple.podcasts": 1,
+      "com.apple.AppStore": 1,
+      "com.apple.Maps": 1,
+      "com.apple.weather": 1,
+      "com.apple.stocks": 1,
+      "com.apple.findmy": 1,
+      "com.apple.Home": 1,
+      "com.apple.iBooks": 1,
+      "com.apple.MobileStore": 1,
+      "com.apple.Fitness": 1,
+      "com.apple.Bridge": 1,
+      "com.apple.MobileAddressBook": 1,
+      "com.apple.Translate": 1,
+      "com.apple.DocumentsApp": 1,
+      "com.apple.shortcuts": 1,
+      "com.apple.Passbook": 1,
+      "com.apple.Preferences": 1,
+      "com.apple.Health": 1,
+      "com.apple.freeform": 1,
+      "com.apple.tips": 1,
+      "com.apple.mobilephone": 1,
+      "com.apple.mobilesafari": 1,
+      "com.apple.MobileSMS": 1,
+      "com.apple.Music": 1,
+      "com.apple.VoiceMemos": 1,
+      "com.apple.compass": 1,
+      "com.apple.measure": 1,
+      "com.apple.Magnifier": 1,
+      "com.apple.calculator": 1
+    },
+    "fitted_full_application_multiset": {
+      "com.apple.facetime": 1,
+      "com.apple.mobilecal": 1,
+      "com.apple.mobileslideshow": 1,
+      "com.apple.mobilemail": 1,
+      "com.apple.mobilenotes": 1,
+      "com.apple.reminders": 1,
+      "com.apple.mobiletimer": 1,
+      "com.apple.news": 1,
+      "com.apple.tv": 1,
+      "com.apple.podcasts": 1,
+      "com.apple.AppStore": 1,
+      "com.apple.Maps": 1,
+      "com.apple.weather": 1,
+      "com.apple.stocks": 1,
+      "com.apple.findmy": 1,
+      "com.apple.Home": 1,
+      "com.apple.iBooks": 1,
+      "com.apple.MobileStore": 1,
+      "com.apple.Fitness": 1,
+      "com.apple.Bridge": 1,
+      "com.apple.MobileAddressBook": 1,
+      "com.apple.Translate": 1,
+      "com.apple.DocumentsApp": 1,
+      "com.apple.shortcuts": 1,
+      "com.apple.Passbook": 1,
+      "com.apple.Preferences": 1,
+      "com.apple.Health": 1,
+      "com.apple.freeform": 1,
+      "com.apple.tips": 1,
+      "com.apple.mobilephone": 1,
+      "com.apple.mobilesafari": 1,
+      "com.apple.MobileSMS": 1,
+      "com.apple.Music": 1,
+      "com.apple.VoiceMemos": 1,
+      "com.apple.compass": 1,
+      "com.apple.measure": 1,
+      "com.apple.Magnifier": 1,
+      "com.apple.calculator": 1
+    },
+    "original_root_widget_classes": {
+      "SBWidgetIcon": 2
+    },
+    "fitted_root_widget_classes": {
+      "SBWidgetIcon": 2
+    },
+    "original_folder_identities": {
+      "B3601B63-58B4-4D2C-80CD-6E38D631201B": 1
+    },
+    "fitted_folder_identities": {
+      "B3601B63-58B4-4D2C-80CD-6E38D631201B": 1
+    },
+    "original_dock_entries": [
+      [
+        [
+          "SBApplicationIcon",
+          true,
+          "com.apple.mobilephone"
+        ],
+        [
+          "SBApplicationIcon",
+          true,
+          "com.apple.mobilesafari"
+        ],
+        [
+          "SBApplicationIcon",
+          true,
+          "com.apple.MobileSMS"
+        ],
+        [
+          "SBApplicationIcon",
+          true,
+          "com.apple.Music"
+        ]
+      ]
+    ],
+    "fitted_dock_entries": [
+      [
+        [
+          "SBApplicationIcon",
+          true,
+          "com.apple.mobilephone"
+        ],
+        [
+          "SBApplicationIcon",
+          true,
+          "com.apple.mobilesafari"
+        ],
+        [
+          "SBApplicationIcon",
+          true,
+          "com.apple.MobileSMS"
+        ],
+        [
+          "SBApplicationIcon",
+          true,
+          "com.apple.Music"
+        ]
+      ]
+    ],
+    "original_baseline_token": "bfb3cb7b79e0cf96",
+    "original_baseline_raw_sha256": "07858bc38a7447cb4609829999590c1928d5fc9434ccc8b066d0d1897c7d48d5",
+    "root_page_reflow_allowed": true,
+    "containers_and_full_identity_preserved": true
+  },
+  "original_application_model_identity_retention_verified": true,
+  "full_layout_identity_baseline_complete": true,
+  "original_UI_result": "REVISE",
+  "original_UI_reasons": [
+    "ORIGINAL_WIDGET_LABEL_INVENTORY_INCOMPLETE",
+    "WIDGET_ORIGINAL_LABEL_AMBIGUOUS"
+  ],
+  "original_profile_file": "reproducibility/native-full-model-r20-original-profile-20261122.json",
+  "original_model_baseline_file": "reproducibility/native-full-model-r19-original-baseline-20261122.json",
+  "label_ownership_blocker_file": "reproducibility/native-label-ownership-r20-blocker-20261122.json",
+  "raw_or_old_failed_reports_not_overwritten_or_replayed": true,
+  "screen_visual_note": "Original six-row scanout shows widget-label overlap; fitted five-row scanout visibly separates labels. R20 numeric owner/clearance qualification remains REVISE because parent ancestry was not captured",
+  "application_launch_safe_area_human_touch_optical_FPS_wallpaper_sleep_audio_wireless_NOT_verified_in_this_round": true,
+  "kernel_GPU_allocator_SCM_PON_RPC_VM_not_modified": true,
+  "phone_returned_healthy_fastboot": true,
+  "next": "Finish this round native recycling and documentation first; then add bounded read-only label-owner ancestry capture, host validation and new RAM own CPU before a new original/fitted pair"
+}

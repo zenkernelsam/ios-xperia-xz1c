@@ -1,0 +1,327 @@
+{
+  "result": "REVISE",
+  "reasons": [
+    "ORIGINAL_WIDGET_LABEL_INVENTORY_INCOMPLETE",
+    "WIDGET_ORIGINAL_LABEL_AMBIGUOUS"
+  ],
+  "token": "8ca68102298d865b",
+  "raw_sha256": "5d2a8040ac56717a15f63fb28ee8d4e6cf2bbe66d6ea38991bfb0e0673dec56d",
+  "reference_token": "bfb3cb7b79e0cf96",
+  "reference_raw_sha256": "07858bc38a7447cb4609829999590c1928d5fc9434ccc8b066d0d1897c7d48d5",
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "original_current_controller_result": "PASS",
+  "root_pages": [
+    {
+      "node": "306",
+      "rectangle": [
+        0.0,
+        0.0,
+        360.0,
+        640.0
+      ],
+      "rows": 5,
+      "regular_icons": 12,
+      "widgets": 2
+    },
+    {
+      "node": "307",
+      "rectangle": [
+        360.0,
+        0.0,
+        360.0,
+        640.0
+      ],
+      "rows": 5,
+      "regular_icons": 0,
+      "widgets": 0
+    }
+  ],
+  "current_regular_view_count": 12,
+  "original_regular_view_count": 12,
+  "current_widget_view_count": 2,
+  "original_widget_view_count": 2,
+  "original_label_clearances": [],
+  "native_points": [
+    360,
+    640
+  ],
+  "native_pixels": [
+    720,
+    1280
+  ],
+  "original_application_model_identity_retention_verified": true,
+  "original_application_identity_retention_NOT_verified": false,
+  "original_model_application_count_by_page": {
+    "306": 12,
+    "307": 17
+  },
+  "complete_original_model_comparison": {
+    "complete_original_model_identity_verified": true,
+    "reasons": [],
+    "original_full_application_entries": 38,
+    "fitted_full_application_entries": 38,
+    "original_root_application_entries": 29,
+    "fitted_root_application_entries": 29,
+    "original_dock_model_count": 1,
+    "fitted_dock_model_count": 1,
+    "original_folder_list_count": 1,
+    "fitted_folder_list_count": 1,
+    "original_full_application_multiset": {
+      "com.apple.facetime": 1,
+      "com.apple.mobilecal": 1,
+      "com.apple.mobileslideshow": 1,
+      "com.apple.mobilemail": 1,
+      "com.apple.mobilenotes": 1,
+      "com.apple.reminders": 1,
+      "com.apple.mobiletimer": 1,
+      "com.apple.news": 1,
+      "com.apple.tv": 1,
+      "com.apple.podcasts": 1,
+      "com.apple.AppStore": 1,
+      "com.apple.Maps": 1,
+      "com.apple.weather": 1,
+      "com.apple.stocks": 1,
+      "com.apple.findmy": 1,
+      "com.apple.Home": 1,
+      "com.apple.iBooks": 1,
+      "com.apple.MobileStore": 1,
+      "com.apple.Fitness": 1,
+      "com.apple.Bridge": 1,
+      "com.apple.MobileAddressBook": 1,
+      "com.apple.Translate": 1,
+      "com.apple.DocumentsApp": 1,
+      "com.apple.shortcuts": 1,
+      "com.apple.Passbook": 1,
+      "com.apple.Preferences": 1,
+      "com.apple.Health": 1,
+      "com.apple.freeform": 1,
+      "com.apple.tips": 1,
+      "com.apple.mobilephone": 1,
+      "com.apple.mobilesafari": 1,
+      "com.apple.MobileSMS": 1,
+      "com.apple.Music": 1,
+      "com.apple.VoiceMemos": 1,
+      "com.apple.compass": 1,
+      "com.apple.measure": 1,
+      "com.apple.Magnifier": 1,
+      "com.apple.calculator": 1
+    },
+    "fitted_full_application_multiset": {
+      "com.apple.facetime": 1,
+      "com.apple.mobilecal": 1,
+      "com.apple.mobileslideshow": 1,
+      "com.apple.mobilemail": 1,
+      "com.apple.mobilenotes": 1,
+      "com.apple.reminders": 1,
+      "com.apple.mobiletimer": 1,
+      "com.apple.news": 1,
+      "com.apple.tv": 1,
+      "com.apple.podcasts": 1,
+      "com.apple.AppStore": 1,
+      "com.apple.Maps": 1,
+      "com.apple.weather": 1,
+      "com.apple.stocks": 1,
+      "com.apple.findmy": 1,
+      "com.apple.Home": 1,
+      "com.apple.iBooks": 1,
+      "com.apple.MobileStore": 1,
+      "com.apple.Fitness": 1,
+      "com.apple.Bridge": 1,
+      "com.apple.MobileAddressBook": 1,
+      "com.apple.Translate": 1,
+      "com.apple.DocumentsApp": 1,
+      "com.apple.shortcuts": 1,
+      "com.apple.Passbook": 1,
+      "com.apple.Preferences": 1,
+      "com.apple.Health": 1,
+      "com.apple.freeform": 1,
+      "com.apple.tips": 1,
+      "com.apple.mobilephone": 1,
+      "com.apple.mobilesafari": 1,
+      "com.apple.MobileSMS": 1,
+      "com.apple.Music": 1,
+      "com.apple.VoiceMemos": 1,
+      "com.apple.compass": 1,
+      "com.apple.measure": 1,
+      "com.apple.Magnifier": 1,
+      "com.apple.calculator": 1
+    },
+    "original_root_widget_classes": {
+      "SBWidgetIcon": 2
+    },
+    "fitted_root_widget_classes": {
+      "SBWidgetIcon": 2
+    },
+    "original_folder_identities": {
+      "B3601B63-58B4-4D2C-80CD-6E38D631201B": 1
+    },
+    "fitted_folder_identities": {
+      "B3601B63-58B4-4D2C-80CD-6E38D631201B": 1
+    },
+    "original_dock_entries": [
+      [
+        [
+          "SBApplicationIcon",
+          true,
+          "com.apple.mobilephone"
+        ],
+        [
+          "SBApplicationIcon",
+          true,
+          "com.apple.mobilesafari"
+        ],
+        [
+          "SBApplicationIcon",
+          true,
+          "com.apple.MobileSMS"
+        ],
+        [
+          "SBApplicationIcon",
+          true,
+          "com.apple.Music"
+        ]
+      ]
+    ],
+    "fitted_dock_entries": [
+      [
+        [
+          "SBApplicationIcon",
+          true,
+          "com.apple.mobilephone"
+        ],
+        [
+          "SBApplicationIcon",
+          true,
+          "com.apple.mobilesafari"
+        ],
+        [
+          "SBApplicationIcon",
+          true,
+          "com.apple.MobileSMS"
+        ],
+        [
+          "SBApplicationIcon",
+          true,
+          "com.apple.Music"
+        ]
+      ]
+    ],
+    "original_baseline_token": "bfb3cb7b79e0cf96",
+    "original_baseline_raw_sha256": "07858bc38a7447cb4609829999590c1928d5fc9434ccc8b066d0d1897c7d48d5",
+    "root_page_reflow_allowed": true,
+    "containers_and_full_identity_preserved": true
+  },
+  "application_launch_functionality_NOT_verified": true,
+  "physical_panel_optical_FPS_wallpaper_peripherals_NOT_inferred": true,
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-full-model-r20-fitted-live-20261122",
+  "reference_source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-full-model-r19-original-live-20261122",
+  "original_scanout": {
+    "protocol": 1,
+    "frames": [
+      {
+        "id": 1,
+        "token": "8ca68102298d865b",
+        "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+        "image_sha256": "0418e1fee843d56c27ac0de487780fd3ebca159a69d7b266ab63cdbeb4c4d627",
+        "binding": {
+          "protocol": 1,
+          "width": 720,
+          "height": 1280,
+          "stride": 2160,
+          "format": "BGR888",
+          "codec": "PRLE1",
+          "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+          "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+          "runtime_source_sha256": "a1f41eeb87b7cf70ea751884ee38d758191f3cc0a00d697acc363fbba3cd5f63"
+        },
+        "begin": {
+          "token": "8ca68102298d865b",
+          "id": "1",
+          "width": "720",
+          "height": "1280",
+          "stride": "2160",
+          "format": "BGR888",
+          "bytes": "2764800",
+          "codec": "PRLE1",
+          "encoded": "1021078",
+          "raw_fnv": "7ff4f21f1c1322b1",
+          "enc_crc": "bd3396f6",
+          "vsync": "7374",
+          "timestamp": "12547923736",
+          "copy_ticks": "8367123",
+          "power_off": "0",
+          "source_checked": "1",
+          "source_match": "1"
+        },
+        "scan": {
+          "token": "8ca68102298d865b",
+          "id": "1",
+          "pa": "0x9d400000",
+          "map_pa": "0x9d400000",
+          "map_bytes": "2764800",
+          "size": "0x50002d0",
+          "img": "0x50002d0",
+          "xy": "0",
+          "out": "0x50002d0",
+          "outxy": "0",
+          "fmt": "0x2243f",
+          "unpack": "0x20001",
+          "op": "0x80000000",
+          "qop": "0",
+          "ctl": "0x20020",
+          "start": "0",
+          "before_after": "1"
+        },
+        "blocks": 7978,
+        "raw_file": "scanout-00000001.bgr",
+        "png_file": "scanout-00000001.png",
+        "raw_sha256": "67d1219c868a431e04fddb8ca90dd072a0d85d197142af8d0eb33c9cbf64056a",
+        "png_sha256": "307ce784f15dd6d515ca3d878479e479f18372cb633e03319c1ce383f8aa6224",
+        "pixel_values_preserved": true,
+        "verified": true,
+        "optical_panel_verified": false
+      }
+    ],
+    "verified": true,
+    "optical_panel_verified": false,
+    "current_boot_source_and_payload_checked": true,
+    "format": "BGR888",
+    "width": 720,
+    "height": 1280
+  },
+  "geocompat_build_binding": {
+    "revision": 3,
+    "source_files": {
+      "gpu/geocompat/geocompat.mm": "b5e145caf6e1f22cf53feffd43c78e1b28db948f0e86a412d092b638254d3097",
+      "gpu/geocompat/test_adapter.mm": "303b982d98e6b8bde1a615657c2053c471191d9ca649a17ed655c296753a6521",
+      "tools/build/build_geocompat_trial.py": "daa21af942433afa85211a423551a87cfd1d34b3e97cb01770dbd4713d114db2",
+      "gpu/geocompat/log_write.c": "e55ba6bfffde56fdc1a8fda20b0b88aa70a74b90af1bd5e6208c4cb8b270cbad",
+      "gpu/sweetgl/LogWriteAll.h": "caa86a1e6763dfc8039466aa432176d2d90fc4a55db60efeb02eb33c92bc0f88"
+    },
+    "library_sha256": "38b282fea44db23c7ce0b4c66c37d1a83a68edf9bc75c36b553ceafd5918c08f",
+    "library_bytes": 106544,
+    "host_ASan_UBSan_real_four_argument_provider_dispatch_passed": true,
+    "exact_native360x640_720x1280_scale2_flat_provider": true,
+    "opaque_visual_provider_info_forwarded": true,
+    "valid_other_screen_providers_preserved": true,
+    "read_only_window_safe_area_ABI_checked": true,
+    "read_only_layout_observer_revision": 3,
+    "host_ASan_UBSan_bounded_layout_and_CGRect_conversion_passed": true,
+    "original_frame_grid_values_preserved": false,
+    "read_only_layout_observer_preserves_current_values": true,
+    "layout_snapshot_once_after_constructor_seconds": 120,
+    "host_ASan_UBSan_shared_log_writer_EINTR_partial_errno_passed": true,
+    "original_icon_model_identity_ABI_host_passed": true,
+    "native_root_grid_density_revision": 1,
+    "native_root_grid_rows": 5,
+    "original_grid_factory_cache_ABI_and_setter_host_passed": true,
+    "native_root_grid_mode_control_revision": 1,
+    "original_full_folder_dock_model_ABI_host_passed": true,
+    "original_icon_widget_font_and_insets_preserved": true,
+    "other_screen_or_nonroot_grid_configs_preserved": true,
+    "new_device_RAM_CPU_GLES_UI_NOT_verified": true,
+    "device_operations": 0
+  },
+  "independent_result_preserves_original_controller": true,
+  "device_operations": 0
+}

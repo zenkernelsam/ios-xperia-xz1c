@@ -1,5 +1,7 @@
 # gl5 用户镜像配方与输入
 
+本页保存受保护输入的配方与恢复方法；当前设备、准确基线及操作状态以[STATUS](STATUS.md)为准，单发规则见[OPERATIONS](OPERATIONS.md)。
+
 设备当前 gl5 不需要重刷。这里记录复现当前用户镜像的必要变更；镜像本身不进入 Git。
 
 输入为 iPhone X iOS16.7.16/20H392 的 OS、SystemOS、AppOS；使用者从 Apple 提供的 IPSW 中按 BuildManifest 获取。旧 gl4/5 本地基线的 sparse 镜像分别约12.2GB，完整gl5 SHA256见下文。具体原文件保留在 assets/root-build/，勿用其它机型镜像替代。

@@ -1,0 +1,139 @@
+{
+  "date": "2026-11-22",
+  "stage": "R20 original native label ownership observation",
+  "result": "REVISE",
+  "original_reasons": [
+    "ORIGINAL_WIDGET_LABEL_INVENTORY_INCOMPLETE",
+    "WIDGET_ORIGINAL_LABEL_AMBIGUOUS"
+  ],
+  "raw_sha256": "5d2a8040ac56717a15f63fb28ee8d4e6cf2bbe66d6ea38991bfb0e0673dec56d",
+  "token": "8ca68102298d865b",
+  "profile_file_sha256": "df8d9679efd7cbd9c9e1a4e555bb3921597c37375c9803c4fa7cb14e3a54d37e",
+  "counts": {
+    "visited": 1085,
+    "recorded": 204,
+    "grids": 3,
+    "refused": 0,
+    "truncated": 0,
+    "write_failures": 0
+  },
+  "complete_original_models_retained": true,
+  "widget_associations": [
+    {
+      "widget_node": "352",
+      "widget_rectangle": [
+        185.0,
+        61.0,
+        141.0,
+        155.0
+      ],
+      "coordinate_only_label_candidates": [
+        {
+          "node": "123",
+          "parent": 82,
+          "local_frame": [
+            -0.5,
+            58.5,
+            58.0,
+            21.0
+          ],
+          "window_rectangle": [
+            195.833,
+            208.5,
+            58.0,
+            21.0
+          ],
+          "immediate_parent_recorded": false
+        },
+        {
+          "node": "464",
+          "parent": 411,
+          "local_frame": [
+            37.0,
+            143.5,
+            68.0,
+            21.0
+          ],
+          "window_rectangle": [
+            222.0,
+            204.5,
+            68.0,
+            21.0
+          ],
+          "immediate_parent_recorded": false
+        }
+      ],
+      "exact_owner_NOT_inferred": true
+    },
+    {
+      "widget_node": "359",
+      "widget_rectangle": [
+        34.0,
+        61.0,
+        141.0,
+        155.0
+      ],
+      "coordinate_only_label_candidates": [
+        {
+          "node": "121",
+          "parent": 81,
+          "local_frame": [
+            -15.0,
+            55.5,
+            87.0,
+            26.0
+          ],
+          "window_rectangle": [
+            92.667,
+            205.5,
+            87.0,
+            26.0
+          ],
+          "immediate_parent_recorded": false
+        },
+        {
+          "node": "137",
+          "parent": 89,
+          "local_frame": [
+            2.5,
+            58.5,
+            51.5,
+            21.0
+          ],
+          "window_rectangle": [
+            21.5,
+            208.5,
+            51.5,
+            21.0
+          ],
+          "immediate_parent_recorded": false
+        },
+        {
+          "node": "478",
+          "parent": 418,
+          "local_frame": [
+            38.5,
+            143.5,
+            65.0,
+            21.0
+          ],
+          "window_rectangle": [
+            72.5,
+            204.5,
+            65.0,
+            21.0
+          ],
+          "immediate_parent_recorded": false
+        }
+      ],
+      "exact_owner_NOT_inferred": true
+    }
+  ],
+  "observed_explanation": "Coordinate-only selection includes legibility labels from other UIView trees; the immediate non-relevant parent nodes were not emitted, so exact ancestry cannot be established from this raw capture",
+  "next_read_only_capture_requirement": "Emit bounded nearest real SBIconView and root-list ownership for each legibility-label node, with complete/unknown state; validate exact owner ancestry before choosing a label",
+  "no_filter_for_convenient_frame_or_font": true,
+  "raw_failure_not_overwritten_or_replayed": true,
+  "new_helper_requires_new_RAM_own_CPU_and_complete_original_fitted_baseline": true,
+  "kernel_and_GLES_Metal_frozen": true,
+  "device_operations": 0
+}

@@ -1,5 +1,7 @@
 # 附件真机验收与布局卡点 — 2026-11-20
 
+本页保留该专题的实现与分阶段原证据；旧“当前／下一步”只指原实验日期。准确候选、生产基线和准入统一看[STATUS](STATUS.md)，现行构建与单发见[BUILD](BUILD.md)、[OPERATIONS](OPERATIONS.md)。
+
 用户确认重新按音量上插线并亮蓝灯后，Sony BH905ND69G 的新会话先通过独立健康31.281秒。已备好的新GLES自身CPU、GLES9及presentation reference自身CPU均实机通过；完整reference GPU被深度／模板／Memoryless／MSAA的真实字节检查拒绝。所有轮次单download／boot，四marker／PON0x06／健康30秒及worker退出均完整；失败包不重发。完整UI、壁纸、FPS、光学和其它外设目标保持。
 
 | 试验 | token | 实际结果 | 回程含健康 |

@@ -1,5 +1,7 @@
 # 参考仓库索引
 
+表中的上游与SHA按标注的检查日期保留，作为固定OSS参考；当前移植、准确基线和下一步以[STATUS](STATUS.md)为准。
+
 这些是外部参考仓库，不是本项目的正式修补主线。实际代码在本仓库 gpu/sweetgl、gpu/metal 与 xnu/lilac-current.patch。
 
 2026-11-15 核对官方 Device List 全部 MSM8998 条目及相关 GPU 源码，见[同行调查](MSM8998-PEER-SURVEY-2026-11-15.md)与[远端提交／逐文件哈希](../reproducibility/unixnu-msm8998-survey-20261115.json)。research 当前只有 89 个参考 Git 仓库；本轮新加一加 5T、ilertnost 的 Mi6 启动仓库和 Adrenoline。既有仓库只 fetch 远端，保留原固定检出；下表 HEAD 是本地检出版本，不代表最新上游进度。

@@ -1,0 +1,104 @@
+{
+  "date": "2026-11-22",
+  "geocompat_build_binding": {
+    "revision": 3,
+    "source_files": {
+      "gpu/geocompat/geocompat.mm": "b5e145caf6e1f22cf53feffd43c78e1b28db948f0e86a412d092b638254d3097",
+      "gpu/geocompat/test_adapter.mm": "303b982d98e6b8bde1a615657c2053c471191d9ca649a17ed655c296753a6521",
+      "tools/build/build_geocompat_trial.py": "daa21af942433afa85211a423551a87cfd1d34b3e97cb01770dbd4713d114db2",
+      "gpu/geocompat/log_write.c": "e55ba6bfffde56fdc1a8fda20b0b88aa70a74b90af1bd5e6208c4cb8b270cbad",
+      "gpu/sweetgl/LogWriteAll.h": "caa86a1e6763dfc8039466aa432176d2d90fc4a55db60efeb02eb33c92bc0f88"
+    },
+    "library_sha256": "38b282fea44db23c7ce0b4c66c37d1a83a68edf9bc75c36b553ceafd5918c08f",
+    "library_bytes": 106544,
+    "host_ASan_UBSan_real_four_argument_provider_dispatch_passed": true,
+    "exact_native360x640_720x1280_scale2_flat_provider": true,
+    "opaque_visual_provider_info_forwarded": true,
+    "valid_other_screen_providers_preserved": true,
+    "read_only_window_safe_area_ABI_checked": true,
+    "read_only_layout_observer_revision": 3,
+    "host_ASan_UBSan_bounded_layout_and_CGRect_conversion_passed": true,
+    "original_frame_grid_values_preserved": false,
+    "read_only_layout_observer_preserves_current_values": true,
+    "layout_snapshot_once_after_constructor_seconds": 120,
+    "host_ASan_UBSan_shared_log_writer_EINTR_partial_errno_passed": true,
+    "original_icon_model_identity_ABI_host_passed": true,
+    "native_root_grid_density_revision": 1,
+    "native_root_grid_rows": 5,
+    "original_grid_factory_cache_ABI_and_setter_host_passed": true,
+    "native_root_grid_mode_control_revision": 1,
+    "original_full_folder_dock_model_ABI_host_passed": true,
+    "original_icon_widget_font_and_insets_preserved": true,
+    "other_screen_or_nonroot_grid_configs_preserved": true,
+    "new_device_RAM_CPU_GLES_UI_NOT_verified": true,
+    "device_operations": 0
+  },
+  "RAM_blob_sha256": "c851d46882738c0de6f00c46b0c78cf796af5bd3171adb6386221b5c2e7a1900",
+  "GLES_sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+  "packages": [
+    {
+      "stage": "cpu",
+      "token": "6632d7b8b96d863d",
+      "image_sha256": "4e991adef390a0291bd77b122ed5724b621a5ef1ab93b24905942b1afde7d315",
+      "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+      "cmdline_bytes": 607,
+      "native_grid_control": null,
+      "payload_proof": {
+        "image_sha256": "4e991adef390a0291bd77b122ed5724b621a5ef1ab93b24905942b1afde7d315",
+        "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+        "blob_count": 8,
+        "complete_payload_reconstructed_from_compiled_kernel": true
+      }
+    },
+    {
+      "stage": "original",
+      "token": "bfb3cb7b79e0cf96",
+      "image_sha256": "ca5709ae7d99cb023e0dcc0dca5c7d7fda49bd287b728ed254bc1977b735794e",
+      "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+      "cmdline_bytes": 607,
+      "native_grid_control": {
+        "revision": 1,
+        "mode": "original",
+        "value": 0,
+        "source_sha256": "5eaa609b69c503c9fd4ebad15349c8079b05fb2c553d8b9565b285f12d7da0ab"
+      },
+      "payload_proof": {
+        "image_sha256": "ca5709ae7d99cb023e0dcc0dca5c7d7fda49bd287b728ed254bc1977b735794e",
+        "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+        "blob_count": 8,
+        "complete_payload_reconstructed_from_compiled_kernel": true
+      }
+    },
+    {
+      "stage": "fitted",
+      "token": "8ca68102298d865b",
+      "image_sha256": "0418e1fee843d56c27ac0de487780fd3ebca159a69d7b266ab63cdbeb4c4d627",
+      "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+      "cmdline_bytes": 607,
+      "native_grid_control": {
+        "revision": 1,
+        "mode": "fitted",
+        "value": 1,
+        "source_sha256": "5eaa609b69c503c9fd4ebad15349c8079b05fb2c553d8b9565b285f12d7da0ab"
+      },
+      "payload_proof": {
+        "image_sha256": "0418e1fee843d56c27ac0de487780fd3ebca159a69d7b266ab63cdbeb4c4d627",
+        "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+        "blob_count": 8,
+        "complete_payload_reconstructed_from_compiled_kernel": true
+      }
+    }
+  ],
+  "actual_control_payload_faults_refused": {
+    "missing_control": true,
+    "wrong_bound_value": true,
+    "wrong_actual_env": true,
+    "wrong_control_source": true,
+    "missing_actual_env": true
+  },
+  "cmdline_limit_and_complete_payload_verified": true,
+  "Mac_Windows_actual_source_signed_files_equal": true,
+  "new_device_CPU_GLES_full_model_identity_UI_NOT_verified": true,
+  "device_operations": 0,
+  "old_R17_R18_failures_NOT_replayed_or_reclassified": true
+}

@@ -1,37 +1,40 @@
 # 目录与恢复
 
-唯一正式源码D:/Desktop/Git/ios-xperia-xz1c，Mac~/Desktop/ios-xperia-xz1c；Patch/Xperia只作参考和历史入口。源码／工具／锁／复现进入正式Git，镜像／备份／原private帧不提交。当前设备与准入见[STATUS](STATUS.md)，文档入口见[INDEX](INDEX.md)。
+唯一正式源码D:/Desktop/Git/ios-xperia-xz1c，Mac为~/Desktop/ios-xperia-xz1c。Patch/Xperia只作参考和历史入口。现行设备与准入看[STATUS](STATUS.md)，构建看[BUILD](BUILD.md)，专题与历史由[INDEX](INDEX.md)串联。
 
 | 目录 | 唯一用途 |
 | --- | --- |
-| gpu/sweetgl、gpu/metal、gpu/geocompat、xnu | 前端／固定引用／完整内核修补 |
-| tools、reproducibility | 构建／单发／核验／回收工具、源码锁、原结果摘要 |
-| docs | 现行手册和技术专题；当前状态只在STATUS |
-| docs/archive | 过时handover／handout／日志手册原文及SHA |
-| deps | 固定上游构建源码，不混作实验 |
-| build | 新输出和当轮输入；可重建重复容器／程序及时回收 |
-| assets | 用户提供原镜像、固件、备份／救砖、符号表及当前基线 |
-| archive/experiments、archive/evidence | 历史实验、小量必要原证据，原结果不可覆盖 |
-| archive/artifacts | 少量受保护恢复参考或尚需复现的产物；废弃镜像进回收站 |
-| organization | 完整本地盘点／迁移／原生回收journal |
-| Patch/research | 89个参考Git仓库，只有repo；实验不放这里 |
-| Windows TEMP | 一次性运行、staging／传输，不在桌面堆放 |
+| gpu/sweetgl、gpu/metal、gpu/geocompat、xnu | 前端、固定引用及完整内核修补 |
+| tools、reproducibility | 构建、单发、核验、回收工具、源码锁与原结果摘要 |
+| docs | 现行手册及技术专题，当前状态只在STATUS |
+| docs/archive | 过时handover／handout、工作日志和手册原文／SHA |
+| deps | 固定上游构建源 |
+| build | 新输出、当轮产物；完成后的重复容器、host与object及时回收 |
+| assets | 用户提供原镜像、固件、救砖／校准／备份、符号及基线 |
+| archive/experiments、archive/evidence | 历史实验与少量必要原证据 |
+| archive/artifacts | 尚需恢复／复现的少量产物；废弃镜像进回收站 |
+| organization | 完整本地盘点、迁移、原生回收journal |
+| Patch/research | 实查89个参考Git仓库，只放repo |
+| Windows TEMP | 一次性run、staging／传输，不在桌面堆放 |
 
-## 回收与保护
+## 回收与受保护输入
 
-禁止永久删除。Windows原生Recycle Bin；WSL废弃内容转Windows回收站；Mac NSWorkspace／Finder Trash。不清空Windows／Mac回收站；Ubuntu垃圾桶非空先转Windows回收站再恢复空目录。所有递归移动／回收先核对绝对范围、符号链接和父子路径，重复或嵌套整批拒绝。flash/fw、unlock、XFL、救砖、SD／TA／校准和备份受保护，备份不去重。
+Windows原生Recycle Bin，Mac NSWorkspace／Finder Trash；WSL废弃内容先移至Windows TEMP再进Windows原生回收站。禁止永久删除或清空Windows／Mac回收站。Ubuntu垃圾桶非空先转Windows回收站，再恢复空目录；本轮两套Ubuntu均无内容。
 
-本周主体和本轮追加Mac共1728项／34916文件／11.16GiB已原生垃圾桶，当前build约3.7GiB；垃圾桶仍占空间，系统仍约94%。原路径／Trash位置／内容SHA及实际可用空间见[ORGANIZATION](ORGANIZATION.md)。之前Windows旧回收条目有部分在最终复核时已缺失，原因未证明；保留原移入记录，不保证仍可恢复。每次原生移入和最终目标复核分别记录。
+回收前核对绝对范围、符号链接、重复／父子路径、全部文件SHA与保护指纹；回收后独立核对真实原生目标和内容。原路径、Trash／Recycle Bin路径及最新空间快照只在[ORGANIZATION](ORGANIZATION.md)和各原receipt维护。历史移入记录与当前目标复核不同，旧条目是否后来消失按原报告保留原因未知。
 
-当前Mac保留gl4／gl5和IPSW，符号表assets/symbols/ios16-20H392-root.a2s，v730 build/surface-diag-v730/kernel.v730.macho、dxb实际源码、deps固定源／Mesa IR3归档、AIR输入及CA／当前tiled／原失败包精确blob／manifest／必要signed库。Windowsassets/baselines的v724 private／ready／tested-panel、kernel／shim和恢复资料保持，作为完整payload重建输入。
+gl4／gl5、IPSW、Sony固件、SD／TA／XFL、校准、救砖／flash/fw／unlock及备份不去重或回收。Mac保持准确A2S、v730内核、dxb实际83源、固定deps／Mesa归档、AIR输入、全部当前signed库／observer、精确RAM blob／manifest、失败包／raw／proof和必要页面；~/xnu-autobuild.pause保持。
 
-## 恢复可重建RAM与raw
+Windows assets/baselines的v724 private／ready／tested-panel、kernel／shim及恢复资料作为完整payload输入保持。本轮Root／Dock／Folder原模型、UI的REVISE、三靴原raw和原扫描像素全部保留。回收后恢复旧产物不会自动取得新库准入或授权重发旧失败。
 
-过时RAM的builder `.dmg`、重复`.raw`和部分signed库展开副本已进垃圾桶，保留`glram.zblob`与manifest。SGLZ0001为40B头加zlib流，raw32MiB／HFS+；manifest锁raw／blob SHA和每个文件raw_offset／length／SHA。需要时输出新build或TEMP目录，逐SHA恢复，原blob／manifest不改。
+## 从保留blob恢复RAM
+
+重复.dmg／.raw已进垃圾桶，glram.zblob和manifest保留。SGLZ0001是40B头及zlib流，原raw32MiB／HFS+；manifest锁raw／blob SHA、文件raw_offset／bytes／SHA。输出须新build或TEMP目录，原blob／manifest保持。
 
 ```python
 import hashlib, json, struct, zlib
 from pathlib import Path
+
 package = Path("/path/to/retained/ram-package")
 output = Path("/path/to/new/output")
 assert not output.exists()
@@ -52,8 +55,10 @@ for name, info in m["files"].items():
     (output / name).write_bytes(data)
 ```
 
-原设备gl5不重刷。其sparse SHA e9bf1547、raw17179869184B／4c90d65a，完整指纹及`restore_gl5_raw.py`恢复见[ROOT-GL5](ROOT-GL5.md)。原raw可用回收站恢复，或从保留sparse重建新文件；任何重建不自动发送设备。全新gl5首次启动仍未独立验收。
+设备gl5不重刷。保留sparse的精确SHA、原17179869184B HFSX及恢复工具见[ROOT-GL5](ROOT-GL5.md)。静态范围研究使用hfs_sparse_reader.py直接读稀疏extents，不为分析展开16GiB raw或挂载输入；全新gl5首次启动仍未独立验收。
 
-原日志保存证据本身，截图可由本token raw和artifact在新目录离线复解。原照片不再次旋转，capture日期和source明确。废弃host测试可由正式源重编，新库仍需自己的实机准入，不能用恢复旧二进制跳过源码锁。
+原照片不再次旋转；原扫描图可由对应token／artifact／raw离线解到新目录，日期与来源明确。host／object按正式源重编，新二进制仍需自己的实机证据。
 
-当前r6／r7重复raw／dmg、完成的host与传输包已原生回收，signed库／blob／manifest、失败trial／原raw／五作者page保持。[本轮Mac清单](../reproducibility/stencil-r7-macos-native-trash-20261121.json)和[Windows／WSL清单](../reproducibility/stencil-r7-windows-native-recycle-20261121.json)含原路径、垃圾桶目标及SHA；从原生回收站恢复，或按保留blob解码到新的build目录。其它项目不改，两个Ubuntu垃圾桶实际为空。
+## 文档原文恢复
+
+本轮50份整合前原字节、原路径和SHA见[manifest](archive/20261122/native-full-model-r19-close-out/original-document-manifest.json)。每份originals按原目录保存；恢复到其原路径后使用相对链接，历史“当前／in-flight”不成为执行状态。现行构建与操作以BUILD／OPERATIONS为准。

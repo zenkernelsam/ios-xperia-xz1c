@@ -130,4 +130,18 @@ python -B -m unittest discover -s tools/device -p test_attachment_snapshot_evide
 
 旧BUILD原全文、编号版本复现和失败历史在[本周归档](archive/20261121/weekly-integration/original-document-manifest.json)及各能力专题；原source-lock／build-map／raw不重写。当前状态只写STATUS，不再在构建手册重复每轮工作日志。
 
-原生比例单独新包用package_trial.py --display-profile xz1c-native-2x，mode ramcpu或gpu／version730，必须精确RAM／kernel。完整ADT／flags/source绑定与payload复算保持；同靴MG／UIScreen及原UI验收见DISPLAY-GEOMETRY，缺少任何实机字段仍待完成。
+## 原／拟合完整模型对照
+
+新helper revision3读取原Root、Dock及Folder.lists／uniqueIdentifier，main queue在constructor后120秒捕获一次。builder执行真实ObjC ABI、factory／cache／errno／opaque返回、完整model graph和GEO_GRID控制的ASan／UBSan，再编译ARM64、签名并绑定实际五源。guest库和RAM manifest不可在实机后改写为已验；实际准入另存原run报告。
+
+使用同一个精确新RAM准备自身CPU、original和fitted三包；各输出目录必须不存在。下面只打包，投递仍由OPERATIONS规定的run_trial先验控制：
+
+```powershell
+python -B tools/device/package_trial.py --mode ramcpu --version 730 --kernel build/surface-diag-v730/kernel.v730.macho --ram-package build/my-native/ram --display-profile xz1c-native-2x --output build/my-native/cpu
+python -B tools/device/package_trial.py --mode gpu --version 730 --kernel build/surface-diag-v730/kernel.v730.macho --ram-package build/my-native/ram --display-profile xz1c-native-2x --native-grid-mode original --screen-evidence --screen-after 150 --swipe-once --output build/my-native/original
+python -B tools/device/package_trial.py --mode gpu --version 730 --kernel build/surface-diag-v730/kernel.v730.macho --ram-package build/my-native/ram --display-profile xz1c-native-2x --native-grid-mode fitted --screen-evidence --screen-after 150 --swipe-once --output build/my-native/fitted
+```
+
+original绑定GEO_GRID0，fitted绑定1；整个SpringBoard env、control源／值、plan和完整payload独立复算。当前三包均607B，具体看新artifact；shim参数不压缩。先新RAM自身CPU，再合格的原完整模型baseline，完整回程后才投递fitted。
+
+独立后处理入口为geometry_layout_evidence.py --directory <原run> --output <新文件>及native_grid_profile_evidence.py --directory <fitted原run> --baseline <original原run> --output <新文件>。完整应用multiset、Dock顺序及Folder内容由原model比较，Root允许原系统分页重排。原标签归属不明仍REVISE；下一只读capture和新helper须再走host／新RAM自身CPU及新的原／拟合对照。详见[DISPLAY-GEOMETRY](DISPLAY-GEOMETRY.md)。

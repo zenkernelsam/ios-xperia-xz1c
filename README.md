@@ -1,21 +1,20 @@
 # iOS on Xperia XZ1 Compact — lilac / SO-02K
 
-Sony Xperia XZ1 Compact（Snapdragon835／Adreno540）的开源XNU、Mesa／Freedreno GLES和Metal用户态移植。正式源码、操作规范与复现记录都在ios-xperia-xz1c；Patch/Xperia保存参考Git仓库和历史。固定Mesa24.3.4／FD540 GLES3.1，Vulkan尚未移植。
+Sony Xperia XZ1 Compact（Snapdragon835／Adreno540）的开源 XNU、Mesa／Freedreno GLES 和 Metal 用户态移植。唯一正式源码与复现入口是本仓库；Patch/Xperia 保存参考 Git 仓库和历史。固定 Mesa24.3.4／FD540 GLES3.1，Vulkan 尚未移植。
 
-已验v730／CA基线可显示灰色锁屏文字与正常颜色主页。CPU、launchd、F12触控、音量键、完整GLES9、native Metal21及PNG6已验；原生720×1280／360×640点／scale2和平直状态栏已有同靴证据。小组件布局、壁纸、动态UI／FPS、睡眠、光学／背光、声音和无线待完成。
+CPU、launchd、F12 触控、音量键、完整 GLES9、native Metal21 及 PNG6 已有真机证据。原生720×1280像素／360×640点／scale2和平直状态栏已验；原六行与拟合五行的全部38个应用、Dock顺序及Folder内容已完成独立对照。小组件标签归属的严格取证、黑壁纸、动态UI／FPS、睡眠唤醒、光学／背光、声音和无线继续推进。
 
-HEAD包含当前GPU候选和严格验收工具。最新GLES／Metal及四组附件完整通过；lifecycle revision2原生呈现每阶段分配归零，完整native21与PNG6已实机准入。原UI／壁纸、完整原生布局、FPS及其它外设继续独立验收。手机健康fastboot、无worker；精确SHA、原页面和下一步见[STATUS](docs/STATUS.md)。本周原生回收与50份现行文档整合已完成，垃圾桶未清空。
+当前候选和生产基线分开验收。每个新产物按实际编译源、签名、完整payload及自己的CPU／GLES／native／PNG原字节准入；功能probe通过不会自动提升为完整原UI。精确SHA、设备状态、原失败和下一步只在[STATUS](docs/STATUS.md)维护。
 
 | 入口 | 内容 |
 | --- | --- |
-| [文档索引](docs/INDEX.md) | 当前手册、能力专题、历史证据 |
+| [文档索引](docs/INDEX.md) | 现行手册、技术专题与历史原文 |
 | [构建](docs/BUILD.md) | 固定OSS源、Mac／WSL、RAM与新产物准入 |
 | [操作](docs/OPERATIONS.md) | 单发、串口截图、0x06返回、相机 |
-| [附件验收](docs/ATTACHMENT-HARDWARE.md) | 真机错误、原页面、tiled候选边界 |
-| [显示比例](docs/DISPLAY-GEOMETRY.md) | 原生720×1280／360×640计划与离线ADT |
-| [目录与恢复](docs/LAYOUT.md) | 输入／基线／archive、回收与复原 |
-| [本周整理](docs/ORGANIZATION.md) | Mac垃圾桶实际记录与文档归档 |
+| [显示比例与模型](docs/DISPLAY-GEOMETRY.md) | 原生尺寸、六行／五行对照与标签归属 |
+| [目录与恢复](docs/LAYOUT.md) | 受保护输入、归档、回收与复原 |
+| [本周整理](docs/ORGANIZATION.md) | 原生回收路径／SHA和文档整合 |
 
-所有新源码、工具和锁只在本仓库提交；SDK和构建时间可改变产物SHA，新库必须自己的实际CPU／GLES／完整native／PNG证明。iPhoneX iOS16.7.16／20H392与Sony固件、镜像、备份由使用者提供，不进入Git；从零重建gl5首次启动尚未独立验收。
+源修补、工具、许可来源及源码锁均进入本仓库。Apple SDK、iPhoneX iOS16.7.16／20H392与Sony固件、镜像、校准和备份由使用者提供，二进制与原帧保持本地。SDK／签名变化可能改变新产物SHA；从零重建gl5首次启动尚未独立验收。
 
-只操作BH905ND69G，fastboot必须-s；COM≥10且VID1209/PID0001、单worker、单download／boot、失败不重发、PON仅0x06。四回程marker、健康30秒和worker退出后才下一轮。gl5／userdata／SD／TA／XFL及救砖输入受保护；废弃文件进原生回收站，不永久删除或清空。
+只操作BH905ND69G；fastboot设备命令必须-s，COM≥10且VID1209/PID0001、一个worker、单download／boot、失败不重发、PON只0x06。四回程marker、连续健康30秒及worker退出后才下一轮。gl5／userdata／SD／TA／XFL及救砖输入受保护。废弃内容进入原生回收站，不永久删除或清空。

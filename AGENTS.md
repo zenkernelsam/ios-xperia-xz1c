@@ -4,11 +4,11 @@
 
 ## 当前授权与范围
 
-用户授权BH905ND69G无人值守迭代，要求当前轮结束后先整理Mac和本周文档。r15两靴、原生回收及50份文档整合已收尾；手机当前状态、controller／worker及in-flight统一以STATUS与实际进程为准。不派子代理。精确基线、候选、原失败与下一步只在STATUS维护，不在各入口复制多轮工作日志。
+用户授权BH905ND69G无人值守迭代，要求当前轮结束后先整理Mac和本周文档。本轮原生回收与整合按ORGANIZATION及原receipt记录；手机当前状态、controller／worker及in-flight统一以STATUS与实际进程为准。不派子代理。精确基线、候选、原失败与下一步只在STATUS维护，不在各入口复制多轮工作日志。
 
 继续免费开源Mesa／Freedreno GLES及Metal用户态移植，原UI／壁纸、FPS、睡眠、光学／背光、声音及无线保持active。当前HEAD是候选，生产基线不因host／局部byte／GPU Completed／回程成功而提升。原失败包、raw和proof不覆盖或重发；Vulkan尚未移植。
 
-用户原生几何目标720×1280像素／360×640点／scale2已在r14／r15同靴核对，平直状态栏已验，小组件标签重叠与完整safe area／真人触控／光学尚未完成。现有native1与sf2x1冲突，新ADT、MG／UIScreen、状态栏／safe area和触控需同靴一致，只改MG不足。原Vista paused／mode按原请求观察，不能强制解除或画替代帧冒充UI。
+用户原生几何目标720×1280像素／360×640点／scale2已同靴核对，平直状态栏及完整原／拟合应用模型保留已验；标签祖先归属、完整safe area／真人触控／光学尚未完成。现有native1与sf2x1冲突，新ADT、MG／UIScreen、状态栏／safe area和触控需同靴一致，只改MG不足。原Vista paused／mode按原请求观察，不能强制解除或画替代帧冒充UI。
 
 ## 硬件、回程与冻结
 
@@ -42,4 +42,4 @@ gpu／xnu／tools／reproducibility进入正式Git；deps固定上游，build产
 
 本周及本轮回收实际路径／SHA见docs/ORGANIZATION.md；所有原生回收站未清空。基线、当前失败所需原证据和固定deps／dxb保持受保护。
 
-文档只在STATUS汇总当前状态、BUILD放现行复现、OPERATIONS放规则、LAYOUT放恢复、INDEX串专题。旧里程碑／handover／handout原文和SHA先archive，专题技术证据保留，不把旧“当前in-flight”恢复。每轮更新一份原结果摘要和关键topic；不要在每个入口复制大段工作日志。本周47份原文及r15整合前50份原文分别见docs/archive/20261121/weekly-integration和docs/archive/20261122/native-r15-close-out的original-document-manifest.json。
+文档只在STATUS汇总当前状态、BUILD放现行复现、OPERATIONS放规则、LAYOUT放恢复、INDEX串专题。旧里程碑／handover／handout原文和SHA先archive，专题技术证据保留，不把旧“当前in-flight”恢复。每轮更新一份原结果摘要和关键topic；不要在每个入口复制大段工作日志。原文manifest由INDEX／ORGANIZATION索引，本轮整合前50份在docs/archive/20261122/native-full-model-r19-close-out。

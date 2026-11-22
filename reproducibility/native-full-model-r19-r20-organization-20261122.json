@@ -1,0 +1,240 @@
+{
+  "date": "2026-11-22",
+  "canonical_workspace": "D:\\Desktop\\Git\\ios-xperia-xz1c",
+  "Mac_workspace": "/Users/ciscohe/Desktop/ios-xperia-xz1c",
+  "scope": "R19/R20 round close-out, weekly native recycling and document consolidation",
+  "original_document_source_git_head": "6a9efe8202a1ef12474427d2cecd8b957313edc6",
+  "original_documents_preserved": 50,
+  "archive_manifest": "docs/archive/20261122/native-full-model-r19-close-out/original-document-manifest.json",
+  "all_original_document_SHA_verified": true,
+  "current_documents_audited": 50,
+  "updated_documents": [
+    {
+      "file": "README.md",
+      "before_sha256": "625673f38930676eda827e9725e855ae88d4ce85d6cc8c5d17056dac0a08af65",
+      "after_sha256": "9687901b5342ec142dff99909686924e77374936516cac32c8ce72d5fe5f6730"
+    },
+    {
+      "file": "AGENTS.md",
+      "before_sha256": "39655a9cfcdf4ec6d4638d41423dfc0bde19103cfaf5ada7620ae7158d0e22b3",
+      "after_sha256": "df1d297e92b20b1f0d62c14a8ec671092b0d4400279c7c4ca740637f1032c181"
+    },
+    {
+      "file": "gpu/metal/README.md",
+      "before_sha256": "94fe0009c2c806be28a4a7c0bac41a4d9a45e919e846edb2d61739bcbdbe4121",
+      "after_sha256": "9596898772aed606314683ba51b4b4ef04ee53395ce917830bf6c08811652f50"
+    },
+    {
+      "file": "docs/ATTACHMENT-HARDWARE.md",
+      "before_sha256": "7de452bc7c060a2e1d10af7edbb6bba643a5e7f3402d7db19fe3387626dc7c6e",
+      "after_sha256": "05ebb322244b3be28397ccf61752618f9cba6c61fbd62576027d6f40e700bcea"
+    },
+    {
+      "file": "docs/BUILD.md",
+      "before_sha256": "78f90c0201a2d35e9d8547cb37c44573364023de841bd93f984eae32d7e16b83",
+      "after_sha256": "0967d526b8f33fd80e60739d8d0b76c67f662595436259bf210060cf4e44df16"
+    },
+    {
+      "file": "docs/CA-MATRIX.md",
+      "before_sha256": "e2d5a80d9ccda02543cabdaa65a66ff65d520d78c7ebaff9bd1aa92e715cf56a",
+      "after_sha256": "42510cc458bf9d9f79464125a6def8c53c2ef1a9e92af181e189c266585b5cb3"
+    },
+    {
+      "file": "docs/DISPLAY-GEOMETRY.md",
+      "before_sha256": "245f49706e8af14c373b69c8afb8e918397168b73d6407671fc8a274bc5837d4",
+      "after_sha256": "ba0139fdc5e24d26e5394ebee8539d403965ff87001adf177db79f936abd98ce"
+    },
+    {
+      "file": "docs/INDEX.md",
+      "before_sha256": "379780b3afa32e2a86a266abe77cac8760fb2f31ac3bf2cf5044219645b1bd64",
+      "after_sha256": "c435c2ae9edc79f944f9a327a485a628507c764fc3fd651c55cfe62262523f8f"
+    },
+    {
+      "file": "docs/LAYOUT.md",
+      "before_sha256": "431562a0a1b74fbd60eca95701921a858283b30422f1a0eb6caaf4808375af48",
+      "after_sha256": "9f78df5ec83b4c102eee72f08a98143fb7a92c0ba23fa577fd20d27d76321b57"
+    },
+    {
+      "file": "docs/METAL-BACKBOARD.md",
+      "before_sha256": "b506866bc7e29dd356289c411977f985d8e500e2d86f80bef06cd5ece4af7adf",
+      "after_sha256": "4c2eb5613c6d01c631b1769c277fdd517fab040c6c82b8d19c257312a89d9439"
+    },
+    {
+      "file": "docs/OPERATIONS.md",
+      "before_sha256": "92efaecb5afeb688916c0a698113a23067666e39f2bd8b71f726163205ee0648",
+      "after_sha256": "116fd0caf5585abd11d76797c5a6fdbe2040e62d6b00ccdc4eadaa3d4fcebb81"
+    },
+    {
+      "file": "docs/ORGANIZATION-2026-11-12.md",
+      "before_sha256": "e72236d5ab581e51cc8e453a8c8d91b685c874ecf1564ee167b9731419dda6be",
+      "after_sha256": "defe60ee5b7577fa64e203d28a88427d5b23f731173b06bb0d2d4e670e002bf7"
+    },
+    {
+      "file": "docs/ORGANIZATION-2026-11-13.md",
+      "before_sha256": "8daa6330bf7783a077f420d6f68960ae149b054d288ccae022fdcfcad016a33a",
+      "after_sha256": "0ae880f5f8955a30106c4351c3429d9fbe8e8343a92aba79b2e6521d29f0d64d"
+    },
+    {
+      "file": "docs/ORGANIZATION-2026-11-15.md",
+      "before_sha256": "51ff8d9abbbbc8c7eb6949952798d34e6b6ffa0efecda8a2b72f0a1de35d53bb",
+      "after_sha256": "027ff1f8871c45ea7cdfb79725c0427e2e6113fadc10b5bbf50ce4afbbd19353"
+    },
+    {
+      "file": "docs/ORGANIZATION.md",
+      "before_sha256": "179450996687a0c992be553dbb4cd7a7ce6722ed8bdc09e5615f2413fe81c547",
+      "after_sha256": "03804e62b7b03cf812794e64b07ca5fadafd53967531216c1ba4ae9121a64c25"
+    },
+    {
+      "file": "docs/REFERENCE-REPOSITORIES.md",
+      "before_sha256": "a0b89fe842b9a543fceea5c8dfd1d43b1b10b679d2adba6d493ae49fa2d61510",
+      "after_sha256": "cdc8bfc210a9ff154802daafaf65364afad978551ed2226ecbb7ef13b6bec9f7"
+    },
+    {
+      "file": "docs/ROOT-GL5.md",
+      "before_sha256": "ecb74488524644ad568177f7d5534d6055e01d9ed562ce96355a8d7a09a8cbeb",
+      "after_sha256": "c4e0af4d811db3a375efa490603797682c15a5a548b79c953653e3bc4373b79b"
+    },
+    {
+      "file": "docs/SCANOUT-SCREENSHOT.md",
+      "before_sha256": "efbd64c0e1ae0c4db02192239fa426dfb78c94614e8636be349b84b55dc1a7d2",
+      "after_sha256": "c0b448861bdf0256b0f2ffceb3e82264baa484ac108ba9dbbfa62a8b753dde44"
+    },
+    {
+      "file": "docs/STATUS.md",
+      "before_sha256": "6086bef6864edb783b5c084721b3381e632545f0b00be498cd4a3622de52638a",
+      "after_sha256": "9ceee2ba51643ff5742bb9a644bc8d3b7b9a998346e951e6882f11ee96e3f9df"
+    }
+  ],
+  "current_document_fingerprints": {
+    "README.md": "9687901b5342ec142dff99909686924e77374936516cac32c8ce72d5fe5f6730",
+    "AGENTS.md": "df1d297e92b20b1f0d62c14a8ec671092b0d4400279c7c4ca740637f1032c181",
+    "gpu/metal/README.md": "9596898772aed606314683ba51b4b4ef04ee53395ce917830bf6c08811652f50",
+    "docs/AEGIR-RENDERING.md": "883a1d21e0a7320ef8f2f16c22245bd0f1e6e3eddbdc56fd313d6ebc60279476",
+    "docs/AIR-COMPUTE.md": "476aad9a345008676b7792ffb5c4c143e03b90c13e5df85b71b665abf5ad1624",
+    "docs/AIR-HALF.md": "5d87b6b5d54c518c1c8e7f11c488fb23b1cfb300296178637c62b54e4318c205",
+    "docs/AIR-NARROW.md": "40bf33ad70639ca68dc9748ba387c50c4325fdc65846c818ace5f43a4a3b6ae7",
+    "docs/AIR-STATIC-HALF.md": "2e2c11389bee4883c348eaaac06712dcee76922f8504300671218837d3fb573e",
+    "docs/ATTACHMENT-HARDWARE.md": "05ebb322244b3be28397ccf61752618f9cba6c61fbd62576027d6f40e700bcea",
+    "docs/BUILD.md": "0967d526b8f33fd80e60739d8d0b76c67f662595436259bf210060cf4e44df16",
+    "docs/CA-MATRIX.md": "42510cc458bf9d9f79464125a6def8c53c2ef1a9e92af181e189c266585b5cb3",
+    "docs/CLEAR-CACHE.md": "3e5da60bf331c4ea86b7809b2b5b1bf89a41d89146f798e653af025fbb88bf26",
+    "docs/DISPLAY-GEOMETRY.md": "ba0139fdc5e24d26e5394ebee8539d403965ff87001adf177db79f936abd98ce",
+    "docs/HALF-SELECTION.md": "b7beed40ea37e612c948990c8c96d3140694ec1bc9bb84e57547a5749a4faecc",
+    "docs/INDEX.md": "c435c2ae9edc79f944f9a327a485a628507c764fc3fd651c55cfe62262523f8f",
+    "docs/IR3-VARIANT-CACHE.md": "4268497c1fde8af5f3b3dae013716f6a551d99853b0547da107f657b732acf4b",
+    "docs/LAYOUT.md": "9f78df5ec83b4c102eee72f08a98143fb7a92c0ba23fa577fd20d27d76321b57",
+    "docs/METAL-BACKBOARD.md": "4c2eb5613c6d01c631b1769c277fdd517fab040c6c82b8d19c257312a89d9439",
+    "docs/METAL-CONSTANTS.md": "7183d8edc75cea96a5ebdd433fdbad4a990adb5d2f64e0bd2b714dbe11c2d3bd",
+    "docs/METAL-DEPTH-STENCIL.md": "fd383a57e908bdfeff3c53af19f127d05737b13bbae3483c978d7b46d526027e",
+    "docs/METAL-DISCOVERY.md": "f2d321c96e0c95d14c8741bffa206e0e7e761bd98174f16e45402be51acff59d",
+    "docs/METAL-IOSURFACE.md": "1956b1f121ba2c14b8ffb01ff68d6e8f1045a1e893ffe7634421c7c7a0fd035e",
+    "docs/METAL-MEMORYLESS.md": "b6123fb202fc441cf1a5182d83b3cf66e0ace472ddeaa64a4588b2729c62ac93",
+    "docs/METAL-MIPMAPS.md": "6833046a1f9f919b227258f514ed9a7c14bd806ae69adc046a1c12773dd16d5e",
+    "docs/METAL-MRT.md": "b7b2331eb9787c6c64314cb4e5cc49bbb09dcd3d9837e5bf169b89f7ebe7e098",
+    "docs/METAL-MULTISAMPLE.md": "f9563048fc96aef5fbc6e2e4758c45cbcea7c9f50fac25a8248fc6e1673b29b5",
+    "docs/METAL-PRESENTATION.md": "56515b41003767800d19e6f924693c7050d6055fa45b4c1bda9f146a5dee83fa",
+    "docs/METAL-QUEUES.md": "e3214bddd0827b1ce09e227411167f174cf973a95d90de54d036b8294deabf17",
+    "docs/METAL-REGISTRY-SHORT.md": "24424a5685d80041b1268060b164e4b51059456c90d16a0e3bf85cc4247ea148",
+    "docs/METAL-RENDER.md": "aa0322635b1801c7e38fc0cb152f0c6a1f0edca452895fe3c2a8035b44e19b5a",
+    "docs/METAL-REQUEST-OBSERVATION.md": "b8b31a7e5c02565faa4bcb5d3443a68912cfa8bf43e77ded7940394b9040f01e",
+    "docs/METAL-RESOURCES.md": "e22d2906eb4559d8e1cbc9c540a67449d8aac77620f6b6e2b5c30e5ce7741b94",
+    "docs/METAL-SAMPLERS.md": "295d817413e97a5fd457fa02925c6db662e967ce71bd875405d4c901ecf16389",
+    "docs/METAL-XR.md": "5b96ee62738651c7d36ea15c37f9867057c22d4e65e1c0a9a5a62e59eb6e453d",
+    "docs/MSM8998-PEER-SURVEY-2026-11-15.md": "98c48ca3c4a6f1cd754377dec413610ac9b48fcbdc16dc624cdb4c0ad3c4fd33",
+    "docs/OPERATIONS.md": "116fd0caf5585abd11d76797c5a6fdbe2040e62d6b00ccdc4eadaa3d4fcebb81",
+    "docs/ORGANIZATION-2026-11-12.md": "defe60ee5b7577fa64e203d28a88427d5b23f731173b06bb0d2d4e670e002bf7",
+    "docs/ORGANIZATION-2026-11-13.md": "0ae880f5f8955a30106c4351c3429d9fbe8e8343a92aba79b2e6521d29f0d64d",
+    "docs/ORGANIZATION-2026-11-15.md": "027ff1f8871c45ea7cdfb79725c0427e2e6113fadc10b5bbf50ce4afbbd19353",
+    "docs/ORGANIZATION.md": "03804e62b7b03cf812794e64b07ca5fadafd53967531216c1ba4ae9121a64c25",
+    "docs/POSTDRAW-OBSERVATION.md": "21c0f4615a2aeebe3d8557993a17636f37c1953303b751db4ade418812ca2dcc",
+    "docs/PROGRAM-CACHE.md": "5ad0432af648c038c16c70e8dfe0dbf6541215eb2c65b37c067fe054b05b4d5c",
+    "docs/REFERENCE-REPOSITORIES.md": "cdc8bfc210a9ff154802daafaf65364afad978551ed2226ecbb7ef13b6bec9f7",
+    "docs/RENDER-STAGES.md": "c790322b51fd6bf86322411dafeb6044a94d9ed36a19cf88a19176af26a257d4",
+    "docs/ROOT-GL5.md": "c4e0af4d811db3a375efa490603797682c15a5a548b79c953653e3bc4373b79b",
+    "docs/SCANOUT-SCREENSHOT.md": "c0b448861bdf0256b0f2ffceb3e82264baa484ac108ba9dbbfa62a8b753dde44",
+    "docs/STATUS.md": "9ceee2ba51643ff5742bb9a644bc8d3b7b9a998346e951e6882f11ee96e3f9df",
+    "docs/SURFACE-DIAGNOSTICS.md": "a5b948cd77404782bbb0da44112f9d906aaca42cf4dd4f3effa226b2fcd65690",
+    "docs/SURFACE-READONLY.md": "3d0cf408b8ec44276107aaa67807b4632b2d96e8434e70a612e0f8713328f4f3",
+    "docs/XR-CLEAR.md": "fa9fa08998042dac1c2bb6be423b9a06674122287f713c2823c2fc49f2de59d8",
+    "docs/archive/20261122/native-full-model-r19-close-out/README.md": "b93f97aa363929072616ee54d765c7a197163abbb577e823773bf6e0b4d0b438"
+  },
+  "current_relative_links_checked": 345,
+  "all_current_relative_links_valid": true,
+  "old_organization_reports_archived_with_stable_entries": [
+    "docs/ORGANIZATION-2026-11-12.md",
+    "docs/ORGANIZATION-2026-11-13.md",
+    "docs/ORGANIZATION-2026-11-15.md"
+  ],
+  "Mac_native_trash_receipt": "reproducibility/native-full-model-r19-r20-macos-native-trash-20261122.json",
+  "Mac_native_trash_receipt_SHA": "76fb1c7be1bbcacac1300658d9db5bd36d12f2d29e53aed8309412a57c4974f6",
+  "Mac_new_native_trash_items": 813,
+  "Mac_new_native_trash_files": 815,
+  "Mac_new_native_trash_logical_bytes": 552748850,
+  "Mac_week_native_trash_items": 2843,
+  "Mac_week_native_trash_files": 36359,
+  "Mac_week_native_trash_logical_bytes": 14289537269,
+  "Mac_disk_free_snapshot_bytes": 93958021120,
+  "Mac_project_build_KiB": 3973140,
+  "Windows_native_recycle_receipt": "reproducibility/native-full-model-r19-r20-windows-native-recycle-20261122.json",
+  "Windows_native_recycle_receipt_SHA": "10e3024643f1f9a82210ee8e9a51aeeaa46b273ae55e9142947f2abdce480757",
+  "Windows_new_native_recycle_items": 4,
+  "Windows_new_native_recycle_files": 10,
+  "Windows_new_native_recycle_logical_bytes": 27009609,
+  "all_recycled_content_and_protected_fingerprints_SHA_verified": true,
+  "source_validation": {
+    "canonical_xnu_patch_paths": 404,
+    "audited_xnu_sources": 78,
+    "python_scripts_syntax_checked": 233,
+    "canonical_sources_match_current_lock": true,
+    "device_operations": 0
+  },
+  "Mac_actual_kernel_audit_after_recycle": {
+    "audited_sources": 83,
+    "actual_sources_match": true,
+    "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+    "diagnostic_markers_linked": true
+  },
+  "post_recycle_offline_admission_PASS": true,
+  "post_recycle_offline_admission_log_sha256": "aaf3cd37562ca718dd8168af6b5875f8356c4db5483503e833f38af8cff7dcb1",
+  "post_recycle_admission_device_operations": 0,
+  "research_repositories": 89,
+  "research_non_repositories": [],
+  "WSL_trash_observation": {
+    "Ubuntu": {
+      "/root/.local/share/Trash/files": {
+        "exists": false,
+        "entries": []
+      },
+      "/root/.local/share/Trash/info": {
+        "exists": false,
+        "entries": []
+      },
+      "/home/cisco/.local/share/Trash/files": {
+        "exists": false,
+        "entries": []
+      },
+      "/home/cisco/.local/share/Trash/info": {
+        "exists": false,
+        "entries": []
+      }
+    },
+    "Ubuntu-22.04": {
+      "/root/.local/share/Trash/files": {
+        "exists": false,
+        "entries": []
+      },
+      "/root/.local/share/Trash/info": {
+        "exists": false,
+        "entries": []
+      }
+    }
+  },
+  "all_Ubuntu_trash_locations_empty_or_absent": true,
+  "permanent_deletions": 0,
+  "trash_bins_emptied": false,
+  "other_device_projects_not_modified": true,
+  "all_new_sources_in_formal_repository": true,
+  "phone_healthy_fastboot_no_inflight_controller_or_serial_worker": true,
+  "original_UI_REVISE_and_all_original_failures_preserved": true,
+  "full_GPU_panel_and_peripheral_goal_remains_active": true
+}

@@ -1,5 +1,7 @@
 # CA矩阵补全与原界面 — 2026-11-19
 
+本页保留该专题的实现与分阶段原证据；旧“当前／下一步”只指原实验日期。准确候选、生产基线和准入统一看[STATUS](STATUS.md)，现行构建与单发见[BUILD](BUILD.md)、[OPERATIONS](OPERATIONS.md)。
+
 当前GLES `d6d8fcfa…` 在Sony FD540实机补回锁屏时间、日期；一次串口上滑后的完整720×1280主页有正常应用图标、文字、widgets和Dock。壁纸仍黑，原Aegir在这几靴没有pipeline请求，GPU登记窗口STOP如实保留。真实图片仅在TEMP；原raw、输入SHA、完整回程和限制见 `v730-ca-matrix-r1-run-index.json` 和STATUS。
 
 ## 具体变更
