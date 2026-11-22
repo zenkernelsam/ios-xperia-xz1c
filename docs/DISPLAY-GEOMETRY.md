@@ -55,3 +55,9 @@ r15实际from=nil、to=LegacyPhone，串口真实scanout中“iPhone／时间／
 原factory/cache两入口安装、两页原setter6→5均实际出现；完整GLES9、单次scanout及39.579秒0x06回程／健康／worker退出通过。原实图里widget标题已有清楚间隔，第一屏可见12个常规应用；其它页的模型身份尚未读取，不能以视图未创建判应用丢失或保留。
 
 layout原END声称158记录，实际157个VIEW／158个RECT、缺VIEW653，RECT附近是150秒SCREEN_DATA串流；原独立decoder保持REVISE，缺失原因未证明、不补记录、不重发旧bundle。[原阶段](../reproducibility/native-grid-density-r17-stage-20261122.json)与[拒绝路径检查](../reproducibility/native-grid-profile-r17-rejection-host-20261122.json)保留。下一revision需错开采样／截图、可靠写完记录并读取原icon-list model／应用IDs，完整验证分页和框间距。
+
+## r18完整捕获与参考范围
+
+5个实际source绑定helper revision2；原LogWriteAll.h通过新C bridge完整写入并保存errno，layout revision2提前至constructor后120秒。GLES／kernel不变，新RAM自己的CPU与GLES9通过，两靴分别38.641／38.890秒完整回程。927节点／158个VIEW与RECT／3grid全配对，写入失败0，原两处标题框到下一排图标真实间距17.5点。原R17缺失的拒绝不变。
+
+原模型两页有32icon／29根层应用、2widget及1folder；第二页尚无application view却有17个application model。之前15个参考只来自第一页，不能作全应用保留准入；folder内部／Dock及原布局全模型基线待验。当前已证明native标题间距，整体UI／应用身份、壁纸、光学及其它外设仍未扩大为完成。[完整原阶段](../reproducibility/native-layout-model-r18-stage-20261122.json)／[schema拒绝](../reproducibility/native-layout-model-r18-schema-host-20261122.json)／[参考范围及故障检查](../reproducibility/native-layout-model-r18-reference-host-20261122.json)。

@@ -1,0 +1,124 @@
+{
+  "date": "2026-11-22",
+  "items": 4,
+  "files": 10,
+  "logical_bytes": 26970280,
+  "records": [
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-native-model-r18-stage-20261122",
+      "reason": "R18 complete return; duplicate signed transfer and CLI only; exact original model/raw/UI/reference rejection retained",
+      "files": [
+        {
+          "relative": "ram\\georead.dylib",
+          "bytes": 89776,
+          "sha256": "32fc1868932df48c8350d449963e11564d68d5e043de05a79012f228e19d9a13"
+        },
+        {
+          "relative": "ram\\glram.zblob",
+          "bytes": 3918587,
+          "sha256": "81cb3ee681c9f1c7b990375a510a22f5f0ed747cc711a779f8b728d4d9dd2bc9"
+        },
+        {
+          "relative": "ram\\libglapi.0.dylib",
+          "bytes": 344544,
+          "sha256": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3"
+        },
+        {
+          "relative": "ram\\manifest.json",
+          "bytes": 25169,
+          "sha256": "3555e8b38769e9d7ee9fac89790117a064d39ee5ab499c941d99060796345a0b"
+        },
+        {
+          "relative": "ram\\sweetgl.dylib",
+          "bytes": 14801120,
+          "sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607"
+        },
+        {
+          "relative": "transfer-package.tar.gz",
+          "bytes": 7767184,
+          "sha256": "120dd1326e292c7bc105726c595275f5d05c9eb772198b99e63c38857dc854e7"
+        },
+        {
+          "relative": "transfer-SHA-manifest.json",
+          "bytes": 846,
+          "sha256": "99ede7e95ab10b6695b4b8e282a68aebd763afb83759228b45fed2c9ad00e2ec"
+        }
+      ],
+      "verified_native_recycle": true,
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RVGIE0E",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-native-model-r18-stage-20261122",
+      "time": "2026-11-22T12:25:50.3965865+08:00",
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-native-model-r18-cpu-cli-20261122.log",
+      "reason": "R18 complete return; duplicate signed transfer and CLI only; exact original model/raw/UI/reference rejection retained",
+      "files": [
+        {
+          "relative": "lilac-native-model-r18-cpu-cli-20261122.log",
+          "bytes": 3078,
+          "sha256": "da5a404cfa6a895e4f2238f54f4de132de01ff6b165b29d2e8604d35bd1af5fd"
+        }
+      ],
+      "verified_native_recycle": true,
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RJORVXK.log",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-native-model-r18-cpu-cli-20261122.log",
+      "time": "2026-11-22T12:25:50.8356053+08:00",
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-native-model-r18-gpu-cli-20261122.log",
+      "reason": "R18 complete return; duplicate signed transfer and CLI only; exact original model/raw/UI/reference rejection retained",
+      "files": [
+        {
+          "relative": "lilac-native-model-r18-gpu-cli-20261122.log",
+          "bytes": 19089,
+          "sha256": "28840b19655ed98109de9550147563f8e0f47edd2c587fa8f9f2949536c1c237"
+        }
+      ],
+      "verified_native_recycle": true,
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RG1PALL.log",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-native-model-r18-gpu-cli-20261122.log",
+      "time": "2026-11-22T12:25:50.8842289+08:00",
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-native-model-r18-health-cli-20261122.log",
+      "reason": "R18 complete return; duplicate signed transfer and CLI only; exact original model/raw/UI/reference rejection retained",
+      "files": [
+        {
+          "relative": "lilac-native-model-r18-health-cli-20261122.log",
+          "bytes": 887,
+          "sha256": "e0bc8e9e00ffb8f85d2c1ab1f9906903de474c5c807bbd5773b04c24d297ecab"
+        }
+      ],
+      "verified_native_recycle": true,
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RKGM4PO.log",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-native-model-r18-health-cli-20261122.log",
+      "time": "2026-11-22T12:25:50.9214897+08:00",
+      "all_content_SHA_verified": true
+    }
+  ],
+  "protected_fingerprints": {
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\native-layout-model-r18-20261122\\ram\\glram.zblob": "81cb3ee681c9f1c7b990375a510a22f5f0ed747cc711a779f8b728d4d9dd2bc9",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\native-layout-model-r18-20261122\\ram\\manifest.json": "3555e8b38769e9d7ee9fac89790117a064d39ee5ab499c941d99060796345a0b",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\native-layout-model-r18-20261122\\ram\\georead.dylib": "32fc1868932df48c8350d449963e11564d68d5e043de05a79012f228e19d9a13",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\native-layout-model-r18-20261122\\original-layout.json": "6bacbf638e8c14576f8b1aaa8ab105c47b4b6ecdc50722cdb91789585fdac89e",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\native-layout-model-r18-20261122\\original-model-profile-evidence.json": "fda6d3699538b6925227d147f854bc48c50e036f3d3d5ffa0df7f37ca45337cf",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\native-layout-model-r18-20261122\\original-reference-scope-evidence.json": "f838d5bbf43ed973bf359c291bac33309388486fdd0373bed08b714e49f7ad51",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\reproducibility\\native-layout-model-r18-stage-20261122.json": "2cb28089d9a5a41ae547ff6845a167ef338264255554d22bc3571284c1fd21b4",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\reproducibility\\current-native21-proof.json": "0befb9e3d3afd08cdb3b32e16441af271f36de02ba662a953606a3b7dfe0f50d",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\reproducibility\\current-PNG6-proof.json": "719e10e82f20d1ec32680a826f51516e380aa8ea10960d6535c987277cc50cc1",
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-native-model-r18-health-20261122\\health.json": "416986234f7108d47d7156d3a802ff63a45748a64c5d185b670050392148c344",
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-model-r18-cpu-live-20261122\\results.json": "c9b2bae1029ff3256c87dd26a4d37085b574d4456709992fed38e03f4c2448eb",
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-model-r18-cpu-live-20261122\\actual-evidence.json": "0a48bb86a8707eb2262dfd701d868d33e59f038e74e8f328cf7dd6295d278695",
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-model-r18-cpu-live-20261122\\cycle-01\\serial.raw.log": "0907d2f178054d937068087cd8f48031802770937b1f64abb5ab052a0cac9043",
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-model-r18-gpu-live-20261122\\results.json": "4fada34b442b9142a10d69d69fac0fd35b5be6cafaaa94ca7508cbaafc103f6e",
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-model-r18-gpu-live-20261122\\actual-evidence.json": "3c524cd0d91a6543e27a8fbd32907b0e77fdb73cf26c8d9f5d25c092f9b1eeb7",
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-model-r18-gpu-live-20261122\\cycle-01\\serial.raw.log": "310c50cee99d9ece414fd40194dfce49f4ec8bd947cd4bd3bfd50f6f20651463",
+    "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-model-r18-gpu-live-20261122\\cycle-01\\screens\\scanout-00000001.png": "c8d709f3c5499d94be09fb473adf8cab3dbffb9e28ac19895615e30548389116"
+  },
+  "all_protected_fingerprints_unchanged": true,
+  "trash_not_emptied": true,
+  "original_model_UI_reference_rejections_retained": true
+}

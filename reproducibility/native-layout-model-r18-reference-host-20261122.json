@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-22",
+  "source_sha256": "c008e8999d722cc9dc0ec02b9e80a09054e0591016ee7fa530cf9bd65c99d5dd",
+  "actual_complete_R18_capture_used": true,
+  "actual_native_widget_label_gap_points": 17.5,
+  "reference_scope_remains_REVISE": true,
+  "folder_not_observed_remains_REVISE": true,
+  "faults_refused": [
+    "changed_application_identity",
+    "writer_failure",
+    "widget_label_overlap"
+  ],
+  "source_data_mutations_only_in_memory": true,
+  "original_R18_profile_rejection_file_unchanged": true,
+  "device_operations": 0
+}

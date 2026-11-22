@@ -4,13 +4,13 @@
 
 | Mac累计 | 实际数量 |
 | --- | ---: |
-| 原生Trash项 | 1929 |
-| 文件 | 35441 |
-| 逻辑字节 | 13661217198（约12.72GiB） |
-| 最新正式build | 4400788KiB（约4.20GiB） |
-| 最新系统可用空间 | 96747692032B（约90.1GiB） |
+| 原生Trash项 | 2030 |
+| 文件 | 35544 |
+| 逻辑字节 | 13736788419（约12.79GiB） |
+| 最新正式build | 4420712KiB（约4.22GiB） |
+| 最新系统可用空间 | 94187044864B（约87.7GiB） |
 
-垃圾桶仍占磁盘；这些数字表示从工作目录移入垃圾桶的内容量，不表示释放量。旧报告中的94%／62GiB等是当时快照，当前值来自r17收尾实测。Mac范围仅`~/Desktop/ios-xperia-xz1c`，`~/xnu-autobuild.pause`保持。
+垃圾桶仍占磁盘；这些数字表示从工作目录移入垃圾桶的内容量，不表示释放量。旧报告中的94%／62GiB等是当时快照，当前值来自r18收尾实测。Mac范围仅`~/Desktop/ios-xperia-xz1c`，`~/xnu-autobuild.pause`保持。
 
 ## 原生回收记录
 
@@ -29,6 +29,7 @@
 | native-flat r15 | 5／7／74951630 | [记录](../reproducibility/native2x-flat-r15-macos-native-trash-20261122.json) |
 | native-layout r16 | 5／7／75067648 | [记录](../reproducibility/native-layout-r16-macos-native-trash-20261122.json) |
 | native-density r17与分析包装 | 51／53／75314075 | [记录](../reproducibility/native-grid-density-r17-macos-native-trash-20261122.json) |
+| native-model r18与包装／object | 101／103／75571221 | [记录](../reproducibility/native-layout-model-r18-macos-native-trash-20261122.json) |
 
 回收包括可由保留SGLZ0001 blob逐字节恢复的HFS raw／dmg、重复765MB符号表、已结束OSS checkout、旧库展开副本、host／dSYM、一次性tar和日志。原失败raw／包／proof及当前需要的少量页面保留。主体四项Finder元数据变化及旧partial journal原样保留，未当用户内容SHA或整批成功；正式Mac工具在首个移动前拒绝重复／父子嵌套路径。
 
@@ -49,3 +50,5 @@ gl4／gl5、IPSW、Sony固件、SD／TA／XFL／校准／救砖与备份、当�
 r16两靴完整回程后追加Mac5项／7文件／75067648B和Windows4项／10文件／26943333B，原生目标SHA及保护指纹全部通过；原layout／raw／scanout／helper／RAM／proof保留，两个回收站未清空。[Mac原路径](../reproducibility/native-layout-r16-macos-native-trash-20261122.json)／[Windows原路径](../reproducibility/native-layout-r16-windows-native-recycle-20261122.json)。新源码及只读decoder仅在正式仓库维护。
 
 r17两靴完整结束后，Mac51项／53文件／75314075B与Windows4项／10文件／26966582B进入各自原生回收站，SHA及保护指纹全部核对；没有清空。包括重复HFS、transfer、host/dSYM及46个一次性Macho分析包装。原需要的代码范围／ABI／文本、R17缺记录的raw／controller／frame／bundle／signed库保留。gl5 HFSX读取直接通过Android sparse extents，16GiB raw未展开，输入未挂载。[Mac](../reproducibility/native-grid-density-r17-macos-native-trash-20261122.json)／[Windows](../reproducibility/native-grid-density-r17-windows-native-recycle-20261122.json)。
+
+r18完整返回后，Mac101项／103文件／75571221B及Windows4项／10文件／26970280B进入原生回收站，用户内容SHA与保护指纹全核对，未清空。包括重复HFS、transfer、host/dSYM、两份C object和94个分析-only wrapper。原32方法／gl5应用参考／失败参考检查／完整raw与UI/model／signed包保留，16GiB raw未展开。最新空间下降主要来自本项目外增长；未改其它项目。[Mac](../reproducibility/native-layout-model-r18-macos-native-trash-20261122.json)／[Windows](../reproducibility/native-layout-model-r18-windows-native-recycle-20261122.json)。

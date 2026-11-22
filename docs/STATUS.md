@@ -1,12 +1,12 @@
 # 当前状态 — 2026-11-22
 
-Sony BH905ND69G已完成r17两靴并健康返回fastboot；CPU ed21f91a773875bc独立PASS／38.968秒，GPU217bef7d784b1b5d原controller及GLES9／scanout PASS／39.579秒。没有controller、串口worker、构建任务或in-flight boot。原UI取证独立REVISE：缺VIEW节点653，158个RECT只有157个VIEW；原字节、失败及bundle保留，不重发。
+Sony BH905ND69G已完成r18两靴并健康返回fastboot；CPU4d7848005c7b99f4独立PASS／38.641秒，GPU4b02249c29856d10原controller、GLES9、scanout及完整layout捕获PASS／38.890秒。没有controller／串口worker／构建任务或in-flight boot。
 
-r17原factory/cache及原setter已在实机两次把native root配置6→5；原scanout中Weather／Calendar标题与下一排图标已有清晰间隔，native比例／平直状态栏保持，壁纸仍黑。当前只能确认该实图；完整布局／应用模型身份未通过，不能因END计数／controller PASS补造缺记录。[原阶段](../reproducibility/native-grid-density-r17-stage-20261122.json)保存CPU／GLES成功与UI独立拒绝。
+r18 revision2原raw有927节点／158对VIEW-RECT／3grid，refused0／truncated0／write_failures0；两处原widget标题框到下一排图标间距均17.5点，原scanout保持native比例、平直状态栏和正常标题间距。原R17缺VIEW653仍为REVISE，未补造或重发。
 
-下一轮先把layout采样从150秒SCREEN_DATA串流中错开，补有界EINTR／partial write并记录失败，再读取原icon-list model／application IDs验证15个原应用的分页保留。原VIEW缺失的归因未证明，R17旧bundle不重发。原始policy、壁纸／FPS／睡眠／光学／声音和无线保持全部目标；v730／GPU底层及GLES／Metal字节冻结。
+应用模型已完整读到根层两页32个icon（29应用、2widget、1folder），第一屏12个应用view、第二屏0个view但17个应用model，说明view数量不能证明未显示页的应用数量。旧15个参考只覆盖之前第一页；原profile拒绝文件保留，解释为REFERENCE_INCOMPLETE，不据此宣布应用丢失或全部保留。folder内部／Dock及合格的全模型原基线尚未取证，原UI整体仍REVISE，见[本轮原阶段](../reproducibility/native-layout-model-r18-stage-20261122.json)。
 
-当前r18包：helper revision2绑定5源（含原LogWriteAll.h及新C bridge），layout revision2在constructor后120秒一次，保留写入失败计数及完整MODEL/ICON库存；原SBIconListView.model、SBIconListModel.icons、SBLeafIcon.applicationBundleID／原匹配BOOL及15个gl5参考身份已核对。6个schema故障拒绝，原R16通过／R17缺VIEW仍拒绝；Host ASan/UBSan及ARM64签名通过，helper32fc1868／blob81cb3ee6，独立健康30.422秒后CPU4d7848005c7b99f4准备单发，GPU4b02249c29856d10待自己的CPU／回程／worker退出。模型／完整UI未准入，源码／精确[离线包](../reproducibility/native-layout-model-r18-offline-20261122.json)与[原模型参考](../reproducibility/native-icon-model-20H392-static-r18.json)保留。
+下一轮补原folder／Dock模型及合格的原布局全身份基线，再与native五行的完整身份比较；不能拿DefaultIconState静态模板或未创建view当本机全基线。壁纸仍黑，原策略不强制active/unpause；GPU原UI、FPS／睡眠／光学／声音／无线全部目标保留。v730／GPU底层及GLES／Metal字节冻结。
 
 ## 当前准确输入与验收范围
 
@@ -14,11 +14,11 @@ r17原factory/cache及原setter已在实机两次把native root配置6→5；原
 | --- | --- | --- |
 | v730 kernel／83源 | `f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d`，20665112B | private／owner／ready、CPU、真实scanout及0x06回程 |
 | 固定Mesa／GPU | 24.3.4／`769e51468b49b2a42f0a0eaf71cf9eed5ff4e5de`／FD540 GLES3.1 | Mesa／Freedreno GLES；Vulkan未移植 |
-| 当前GLES | `0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607` | 自身CPU／完整GLES9，最新r17独立复验 |
+| 当前GLES | `0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607` | 自身CPU／完整GLES9，最新r18独立复验 |
 | 当前Metal／source-map | `8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27`／`db1605ef8dae8f8ed0a29999dcb2cf7537457aba7ad428677c21e0e914771b78` | r11完整native21＋PNG6；原UI／光学另验 |
-| r17 geocompat | `d087d6f9cbeab7469979bcacfbce122f19d8d18930714edc8f4c0c63804302b0` | 原factory/cache／setter的native五行及原采样；自身CPU／GLES9通过，UI取证独立REVISE |
-| r17 RAM blob | `816b6f5bae84cd11597326a636047ab3468ba50d69fda8788c2d6074ec069734` | 新helper源／库／manifest绑定，完整payload和Mac实际源复算 |
-| r17实际源码 | `cf42104a699faa6f43635854eb15c1dcd45adee9` | 正式Windows／Mac一致；产物必须按各manifest重建 |
+| r18 geocompat | `32fc1868932df48c8350d449963e11564d68d5e043de05a79012f228e19d9a13` | 原native五行、C完整writer、模型与revision2采样；CPU/GLES9及完整捕获通过，全应用基线未准入 |
+| r18 RAM blob | `81cb3ee681c9f1c7b990375a510a22f5f0ed747cc711a779f8b728d4d9dd2bc9` | 5源／signed helper／manifest／完整payload和Mac实际源绑定 |
+| r18实际源码 | `2092b732e6f9d512bbcd4f164382ab80edcbbcde` | 正式Windows／Mac一致；实际产物按各manifest复现 |
 
 生产CA基线仍由[run-index](../reproducibility/v730-ca-matrix-r1-run-index.json)及准确source manifest复现。当前候选完整probe通过不会自动提升为完整原UI基线。CPU／launchd、真人F12触控与音量键已有原证据；本轮串口合成上滑不代替真人验收。
 
@@ -32,6 +32,8 @@ r17原factory/cache及原setter已在实机两次把native root配置6→5；原
 | r16新RAM GLES9／布局／原UI扫描 | `226d56831b80e600` | PASS，38.484秒 |
 | r17新RAM CPU | `ed21f91a773875bc` | PASS，38.968秒 |
 | r17新RAM GLES9／原UI扫描 | `217bef7d784b1b5d` | 原controller PASS，39.579秒；UI VIEW/RECT独立REVISE |
+| r18新RAM CPU | `4d7848005c7b99f4` | PASS，38.641秒 |
+| r18新RAM GLES9／layout/model／scanout | `4b02249c29856d10` | PASS捕获／17.5点间距，38.890秒；全应用身份reference incomplete |
 
 同靴UIScreen为360×640点、nativeBounds720×1280、scale2；MobileGestalt三个main-screen答案为720／1280／2，ADT四属性与native1／sf2x0绑定。150秒真实720×1280／BGR888／stride2160扫描图显示正常比例图标和Clock圆形；LegacyPhone平直状态栏替换原nil／unsupported fallback，红色rdar占位消失。r15原raw SHA为`91e5ab29c4d2d1e9217f283592e6a33aa1f8cf5f814f58a1053f236ed624fa68`。
 
@@ -55,6 +57,7 @@ r13修正known Swift owner名字后33／33方法安装；127条原route、20条r
 | [r15](../reproducibility/native2x-flat-r15-stage-20261122.json) | 平直状态栏通过，标签重叠／黑壁纸未解决 |
 | [r16](../reproducibility/native-layout-r16-stage-20261122.json) | 原布局948节点／166view／3grid完整，标签bbox重叠10.5点已定位 |
 | [r17](../reproducibility/native-grid-density-r17-stage-20261122.json) | 五行原setter／正常间距实图；缺VIEW653，UI取证REVISE，应用身份待验 |
+| [r18](../reproducibility/native-layout-model-r18-stage-20261122.json) | 158对完整捕获／真实间距17.5；根层29应用，原全身份／folder/Dock未验证 |
 
 ## 下一步与操作边界
 
@@ -66,6 +69,6 @@ r13修正known Swift owner名字后33／33方法安装；127条原route、20条r
 
 ## 整理与文档
 
-本周及追加Mac累计1929项／35441文件／13661217198B（约12.72GiB）已进原生Trash，全部用户内容SHA复核，垃圾桶未清空。最新Mac约90.1GiB可用，正式build约4.20GiB；移入垃圾桶仍占磁盘。r17另有Windows4项／10文件／26966582B进原生回收站，原signed库／blob／manifest／raw／proof／失败和少量当前页面保留。
+本周及追加Mac累计2030项／35544文件／13736788419B（约12.79GiB）已进原生Trash，全部用户内容SHA复核，垃圾桶未清空。最新Mac约87.7GiB可用，正式build约4.22GiB；移入垃圾桶仍占磁盘。r18另有Windows4项／10文件／26970280B进原生回收站，原signed库／blob／manifest／raw／proof／失败和少量当前页面保留。
 
 现行文档只由本页给状态、BUILD给复现、OPERATIONS给规则、LAYOUT给恢复、INDEX联专题。此次整合前50份原文／SHA已归入[归档manifest](archive/20261122/native-r15-close-out/original-document-manifest.json)；旧in-flight只保留为历史。实际回收清单及本周汇总见[ORGANIZATION](ORGANIZATION.md)。所有源修补、工具和锁只在正式ios-xperia-xz1c维护。

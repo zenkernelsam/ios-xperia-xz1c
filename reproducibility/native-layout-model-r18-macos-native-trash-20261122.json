@@ -1,0 +1,1453 @@
+{
+  "date": "2026-11-22",
+  "items": 101,
+  "files": 103,
+  "logical_bytes": 75571221,
+  "records": [
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-layout-model-r18-20261122/ram/glram.raw",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "glram.raw",
+          "bytes": 33554432,
+          "sha256": "24df4ab0e6115c16653de32e8f127fb44ce1e31c36956f21f81761104191edc0"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/glram.raw 12-19-59-186.raw",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-layout-model-r18-20261122/ram/glram.dmg",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "glram.dmg",
+          "bytes": 33554432,
+          "sha256": "24df4ab0e6115c16653de32e8f127fb44ce1e31c36956f21f81761104191edc0"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/glram.dmg 12-19-59-253.dmg",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-layout-model-r18-20261122/transfer-package.tar.gz",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "transfer-package.tar.gz",
+          "bytes": 7767184,
+          "sha256": "120dd1326e292c7bc105726c595275f5d05c9eb772198b99e63c38857dc854e7"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/transfer-package.tar.gz 12-19-59-311.gz",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-layout-model-r18-20261122/helper/test_adapter",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "test_adapter",
+          "bytes": 167360,
+          "sha256": "e06ccbac1f1e598d6494152549c8335659c4c7ede1f323aa88bf9774a5a6cb25"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_adapter 12-19-59-365",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-layout-model-r18-20261122/helper/test_adapter.dSYM",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 641,
+          "sha256": "cea0518f4e35a1d3f4fcf451b344352534f6e5def2a6ee609c6ae10897aa57c1"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_adapter",
+          "bytes": 123616,
+          "sha256": "b3e950e4d6dbc1cf5a2b4d445fd4ee0bd099db9a23da5ec95a6e51c35e64749f"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_adapter.yml",
+          "bytes": 184,
+          "sha256": "991a95c91d21fd6fecfa7b2958437f5b82c058c75318db077abb1a92577efb0c"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_adapter.dSYM 12-19-59-419.dSYM",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-layout-model-r18-20261122/helper/host-log-write.o",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "host-log-write.o",
+          "bytes": 8064,
+          "sha256": "43b1bcd455d6268847adade12d6f95cbe82e74fe87b3c01e0793951086bb8127"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/host-log-write.o",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-layout-model-r18-20261122/helper/arm64-log-write.o",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "arm64-log-write.o",
+          "bytes": 912,
+          "sha256": "7fc9109e285d6af06f0c4f5844b4cb2d4ddb5e0c7abf8dfb40ab5b445d3bdd9d"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/arm64-log-write.o",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBHDefaultIconListLayoutProvider-class-currentDeviceScreenType.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBHDefaultIconListLayoutProvider-class-currentDeviceScreenType.macho",
+          "bytes": 4100,
+          "sha256": "bfcf190c939e53ebb1546dd6a4a6bb9c963744c02993153cff835a6b072ad48c"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBHDefaultIconListLayoutProvider-class-currentDeviceScreenType.macho 12-19-59-586.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBHDefaultIconListLayoutProvider-class-defaultLayoutOptions.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBHDefaultIconListLayoutProvider-class-defaultLayoutOptions.macho",
+          "bytes": 4104,
+          "sha256": "7da28730dc6181504d9719510c1d016f404b0b02fd9436b7d64780efd80a7938"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBHDefaultIconListLayoutProvider-class-defaultLayoutOptions.macho 12-19-59-636.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBHDefaultIconListLayoutProvider-class-frameworkFallbackInstance.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBHDefaultIconListLayoutProvider-class-frameworkFallbackInstance.macho",
+          "bytes": 4160,
+          "sha256": "a05f7b343d326ad3ef9c1c5eaf915ffdcd98e15194efaed470f1e55226244812"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBHDefaultIconListLayoutProvider-class-frameworkFallbackInstance.macho 12-19-59-688.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBHDefaultIconListLayoutProvider-configureGridSizeClassSizes_forScreenType_numberOfColumns_iconLocation_layoutOptions_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBHDefaultIconListLayoutProvider-configureGridSizeClassSizes_forScreenType_numberOfColumns_iconLocation_layoutOptions_.macho",
+          "bytes": 4168,
+          "sha256": "1c60ea16b4d2688cd8c035de95831a2b6182be938d3089b66225ef479ebb5058"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBHDefaultIconListLayoutProvider-configureGridSizeClassSizes_forScreenType_numberOfColumns_iconLocation_layoutOptions_.macho 12-19-59-742.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBHDefaultIconListLayoutProvider-init.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBHDefaultIconListLayoutProvider-init.macho",
+          "bytes": 4160,
+          "sha256": "a9c5e66653f684c3072355ee797b10028542f83a3ea658f4cac964f9800e9208"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBHDefaultIconListLayoutProvider-init.macho 12-19-59-799.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBHDefaultIconListLayoutProvider-initWithScreenType_layoutOptions_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBHDefaultIconListLayoutProvider-initWithScreenType_layoutOptions_.macho",
+          "bytes": 4172,
+          "sha256": "d364e9a19880e5993666665ff5378d3a1a126cc5d470e0b4b23d52f794db1069"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBHDefaultIconListLayoutProvider-initWithScreenType_layoutOptions_.macho 12-19-59-856.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBHDefaultIconListLayoutProvider-layoutForIconLocation_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBHDefaultIconListLayoutProvider-layoutForIconLocation_.macho",
+          "bytes": 4240,
+          "sha256": "ec092fbbcd16194d66c00617e0b1ac031121e46bb8ad01f174baa28a7ece0440"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBHDefaultIconListLayoutProvider-layoutForIconLocation_.macho 12-19-59-907.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBHDefaultIconListLayoutProvider-makeLayoutForIconLocation_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBHDefaultIconListLayoutProvider-makeLayoutForIconLocation_.macho",
+          "bytes": 5120,
+          "sha256": "178eed03a069d47d055618416172d04462acbd7895f3a1ac71a05060ef8d57d6"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBHDefaultIconListLayoutProvider-makeLayoutForIconLocation_.macho 12-19-59-960.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBHDefaultIconListLayoutProvider-screenType.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBHDefaultIconListLayoutProvider-screenType.macho",
+          "bytes": 4104,
+          "sha256": "0f63a64510fa9e6c0293eb68441116e51794d27acbb2244c1e1ba5f4a3ae8cd1"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBHDefaultIconListLayoutProvider-screenType.macho 12-20-00-011.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBIconListGridLayout-initWithLayoutConfiguration_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayout-initWithLayoutConfiguration_.macho",
+          "bytes": 4228,
+          "sha256": "1149fc83229ca31dc8eb37d756b26c93bc2059ea59de405cc75f91145e5c8f3f"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayout-initWithLayoutConfiguration_.macho 12-20-00-064.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBIconListGridLayout-layoutConfiguration.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayout-layoutConfiguration.macho",
+          "bytes": 4104,
+          "sha256": "b59f22cda121ddad65eea9adc246c04387d02cea89f8928784dc3fade75ff903"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayout-layoutConfiguration.macho 12-20-00-117.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBIconListGridLayout-numberOfColumnsForOrientation_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayout-numberOfColumnsForOrientation_.macho",
+          "bytes": 4176,
+          "sha256": "13c8fba08255f63cb2e63e2fb8bd0bbdf9e741e96c64a3d1feb87ce15daf1787"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayout-numberOfColumnsForOrientation_.macho 12-20-00-169.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBIconListGridLayout-numberOfRowsForOrientation_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayout-numberOfRowsForOrientation_.macho",
+          "bytes": 4176,
+          "sha256": "ac7c1390cee0530019ed6afe5124588a060874ced8c07c70cf8ad99a579bf99a"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayout-numberOfRowsForOrientation_.macho 12-20-00-228.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBIconListGridLayoutConfiguration-iconImageInfo.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayoutConfiguration-iconImageInfo.macho",
+          "bytes": 4104,
+          "sha256": "74456de3bce157ac496e08a40d56e56ca2283ef5ef9c828ff0dcf7c73ca5d512"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayoutConfiguration-iconImageInfo.macho 12-20-00-286.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBIconListGridLayoutConfiguration-init.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayoutConfiguration-init.macho",
+          "bytes": 4456,
+          "sha256": "87a6dbedbfc6c64e0e634ad17d686aef664837bea14e9a7db54ad599d6d9c5d7"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayoutConfiguration-init.macho 12-20-00-339.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBIconListGridLayoutConfiguration-listSizeForIconSpacingCalculation.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayoutConfiguration-listSizeForIconSpacingCalculation.macho",
+          "bytes": 4104,
+          "sha256": "4031753730548e7d7cdf2c0faff059f99a2748d1f3bc885f0406a5bf0cfd07e1"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayoutConfiguration-listSizeForIconSpacingCalculation.macho 12-20-00-390.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBIconListGridLayoutConfiguration-numberOfPortraitColumns.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayoutConfiguration-numberOfPortraitColumns.macho",
+          "bytes": 4104,
+          "sha256": "d36824f2d5d701bedbd883ee61cefba4d33e5d42dc31a84b0213a720b446166a"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayoutConfiguration-numberOfPortraitColumns.macho 12-20-00-444.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBIconListGridLayoutConfiguration-numberOfPortraitRows.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayoutConfiguration-numberOfPortraitRows.macho",
+          "bytes": 4104,
+          "sha256": "ccd879ae83c2f682d060fc2422bd1fe650c220f2a6d8b8219d6b4dc9963e8313"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayoutConfiguration-numberOfPortraitRows.macho 12-20-00-496.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBIconListGridLayoutConfiguration-portraitLayoutInsets.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayoutConfiguration-portraitLayoutInsets.macho",
+          "bytes": 4108,
+          "sha256": "269f2e7a9b131e6019939775e812a652e6075747591a2a1dd77329a816d25099"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayoutConfiguration-portraitLayoutInsets.macho 12-20-00-547.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBIconListGridLayoutConfiguration-setListSizeForIconSpacingCalculation_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayoutConfiguration-setListSizeForIconSpacingCalculation_.macho",
+          "bytes": 4104,
+          "sha256": "17653a03ee0ea30fd0670615c6578f5ee2923e0155252fdc0e1cace0f4fb6f16"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayoutConfiguration-setListSizeForIconSpacingCalculation_.macho 12-20-00-608.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBIconListGridLayoutConfiguration-setNumberOfPortraitRows_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayoutConfiguration-setNumberOfPortraitRows_.macho",
+          "bytes": 4104,
+          "sha256": "89cdb6905ecd790050a40e8a555acd525a59f730fc424cecbe87cfacdaafc0b4"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayoutConfiguration-setNumberOfPortraitRows_.macho 12-20-00-659.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBIconListModel-icons.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListModel-icons.macho",
+          "bytes": 4104,
+          "sha256": "cab7dc7ff19e66c8d036e6302e82c4591e0073cda0f487a3fdd89eee56279eeb"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListModel-icons.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBIconListView-gridCellInfo.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListView-gridCellInfo.macho",
+          "bytes": 4152,
+          "sha256": "888d90ad005144982d6360559f0a9003de77cb02d888fd3c0fbf029a45c7c92a"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListView-gridCellInfo.macho 12-20-00-768.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBIconListView-iconSpacing.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListView-iconSpacing.macho",
+          "bytes": 4116,
+          "sha256": "e14ca4d6241baa2674ee8f73637f254bef12559d369fd609be0223e204ecf25c"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListView-iconSpacing.macho 12-20-00-820.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBIconListView-layout.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListView-layout.macho",
+          "bytes": 4192,
+          "sha256": "8770cf0d0f3645907cb47d7b6f604af7548691fd228ad7be06752bc765e63161"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListView-layout.macho 12-20-00-877.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBIconListView-layoutInsetsForOrientation_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListView-layoutInsetsForOrientation_.macho",
+          "bytes": 4488,
+          "sha256": "7607c005908790dbeee4c33c5dbd815f3b9f6a0e1820ab9c90eaac0254b4b611"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListView-layoutInsetsForOrientation_.macho 12-20-00-929.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBIconListView-layoutMetrics.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListView-layoutMetrics.macho",
+          "bytes": 4260,
+          "sha256": "37ad6a382a8601d487954ec117a72404dc7409f2550dc031eb114374fdb2fb0d"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListView-layoutMetrics.macho 12-20-00-988.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBIconListView-layoutMetricsForOrientation_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListView-layoutMetricsForOrientation_.macho",
+          "bytes": 4236,
+          "sha256": "3ddc175ed4bdcfaec5901e891683b828ae36373f14d23d20bc2936d43c257192"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListView-layoutMetricsForOrientation_.macho 12-20-01-044.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBIconListView-model.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListView-model.macho",
+          "bytes": 4112,
+          "sha256": "36342b562eb21f7e94d148e1588e6cb61e428b40a2afd81c156625ab092ab192"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListView-model.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBLeafIcon-applicationBundleID.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBLeafIcon-applicationBundleID.macho",
+          "bytes": 4112,
+          "sha256": "81985c0996820720790fcad96804b15e63f2f474276a7e6aee71c372a8aed630"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBLeafIcon-applicationBundleID.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original/SBLeafIcon-leafIdentifier.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBLeafIcon-leafIdentifier.macho",
+          "bytes": 4112,
+          "sha256": "9e57b2e793cb852e55fa4de61ed03c83899fcaee13f7b46cf3a9bb75fcb17bd2"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBLeafIcon-leafIdentifier.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBHDefaultIconListLayoutProvider-class-currentDeviceScreenType.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBHDefaultIconListLayoutProvider-class-currentDeviceScreenType.macho",
+          "bytes": 4100,
+          "sha256": "bfcf190c939e53ebb1546dd6a4a6bb9c963744c02993153cff835a6b072ad48c"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBHDefaultIconListLayoutProvider-class-currentDeviceScreenType.macho 12-20-01-253.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBHDefaultIconListLayoutProvider-class-defaultLayoutOptions.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBHDefaultIconListLayoutProvider-class-defaultLayoutOptions.macho",
+          "bytes": 4104,
+          "sha256": "7da28730dc6181504d9719510c1d016f404b0b02fd9436b7d64780efd80a7938"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBHDefaultIconListLayoutProvider-class-defaultLayoutOptions.macho 12-20-01-306.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBHDefaultIconListLayoutProvider-class-frameworkFallbackInstance.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBHDefaultIconListLayoutProvider-class-frameworkFallbackInstance.macho",
+          "bytes": 4160,
+          "sha256": "a05f7b343d326ad3ef9c1c5eaf915ffdcd98e15194efaed470f1e55226244812"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBHDefaultIconListLayoutProvider-class-frameworkFallbackInstance.macho 12-20-01-357.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBHDefaultIconListLayoutProvider-configureGridSizeClassSizes_forScreenType_numberOfColumns_iconLocation_layoutOptions_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBHDefaultIconListLayoutProvider-configureGridSizeClassSizes_forScreenType_numberOfColumns_iconLocation_layoutOptions_.macho",
+          "bytes": 4168,
+          "sha256": "1c60ea16b4d2688cd8c035de95831a2b6182be938d3089b66225ef479ebb5058"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBHDefaultIconListLayoutProvider-configureGridSizeClassSizes_forScreenType_numberOfColumns_iconLocation_layoutOptions_.macho 12-20-01-409.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBHDefaultIconListLayoutProvider-init.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBHDefaultIconListLayoutProvider-init.macho",
+          "bytes": 4160,
+          "sha256": "a9c5e66653f684c3072355ee797b10028542f83a3ea658f4cac964f9800e9208"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBHDefaultIconListLayoutProvider-init.macho 12-20-01-465.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBHDefaultIconListLayoutProvider-initWithScreenType_layoutOptions_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBHDefaultIconListLayoutProvider-initWithScreenType_layoutOptions_.macho",
+          "bytes": 4172,
+          "sha256": "d364e9a19880e5993666665ff5378d3a1a126cc5d470e0b4b23d52f794db1069"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBHDefaultIconListLayoutProvider-initWithScreenType_layoutOptions_.macho 12-20-01-522.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBHDefaultIconListLayoutProvider-layoutForIconLocation_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBHDefaultIconListLayoutProvider-layoutForIconLocation_.macho",
+          "bytes": 4240,
+          "sha256": "ec092fbbcd16194d66c00617e0b1ac031121e46bb8ad01f174baa28a7ece0440"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBHDefaultIconListLayoutProvider-layoutForIconLocation_.macho 12-20-01-576.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBHDefaultIconListLayoutProvider-makeLayoutForIconLocation_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBHDefaultIconListLayoutProvider-makeLayoutForIconLocation_.macho",
+          "bytes": 5120,
+          "sha256": "178eed03a069d47d055618416172d04462acbd7895f3a1ac71a05060ef8d57d6"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBHDefaultIconListLayoutProvider-makeLayoutForIconLocation_.macho 12-20-01-636.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBHDefaultIconListLayoutProvider-screenType.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBHDefaultIconListLayoutProvider-screenType.macho",
+          "bytes": 4104,
+          "sha256": "0f63a64510fa9e6c0293eb68441116e51794d27acbb2244c1e1ba5f4a3ae8cd1"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBHDefaultIconListLayoutProvider-screenType.macho 12-20-01-690.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBIconListGridLayout-initWithLayoutConfiguration_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayout-initWithLayoutConfiguration_.macho",
+          "bytes": 4228,
+          "sha256": "1149fc83229ca31dc8eb37d756b26c93bc2059ea59de405cc75f91145e5c8f3f"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayout-initWithLayoutConfiguration_.macho 12-20-01-744.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBIconListGridLayout-layoutConfiguration.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayout-layoutConfiguration.macho",
+          "bytes": 4104,
+          "sha256": "b59f22cda121ddad65eea9adc246c04387d02cea89f8928784dc3fade75ff903"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayout-layoutConfiguration.macho 12-20-01-796.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBIconListGridLayout-numberOfColumnsForOrientation_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayout-numberOfColumnsForOrientation_.macho",
+          "bytes": 4176,
+          "sha256": "13c8fba08255f63cb2e63e2fb8bd0bbdf9e741e96c64a3d1feb87ce15daf1787"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayout-numberOfColumnsForOrientation_.macho 12-20-01-847.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBIconListGridLayout-numberOfRowsForOrientation_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayout-numberOfRowsForOrientation_.macho",
+          "bytes": 4176,
+          "sha256": "ac7c1390cee0530019ed6afe5124588a060874ced8c07c70cf8ad99a579bf99a"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayout-numberOfRowsForOrientation_.macho 12-20-01-898.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBIconListGridLayoutConfiguration-iconImageInfo.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayoutConfiguration-iconImageInfo.macho",
+          "bytes": 4104,
+          "sha256": "74456de3bce157ac496e08a40d56e56ca2283ef5ef9c828ff0dcf7c73ca5d512"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayoutConfiguration-iconImageInfo.macho 12-20-01-952.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBIconListGridLayoutConfiguration-init.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayoutConfiguration-init.macho",
+          "bytes": 4456,
+          "sha256": "87a6dbedbfc6c64e0e634ad17d686aef664837bea14e9a7db54ad599d6d9c5d7"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayoutConfiguration-init.macho 12-20-02-003.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBIconListGridLayoutConfiguration-listSizeForIconSpacingCalculation.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayoutConfiguration-listSizeForIconSpacingCalculation.macho",
+          "bytes": 4104,
+          "sha256": "4031753730548e7d7cdf2c0faff059f99a2748d1f3bc885f0406a5bf0cfd07e1"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayoutConfiguration-listSizeForIconSpacingCalculation.macho 12-20-02-059.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBIconListGridLayoutConfiguration-numberOfPortraitColumns.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayoutConfiguration-numberOfPortraitColumns.macho",
+          "bytes": 4104,
+          "sha256": "d36824f2d5d701bedbd883ee61cefba4d33e5d42dc31a84b0213a720b446166a"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayoutConfiguration-numberOfPortraitColumns.macho 12-20-02-110.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBIconListGridLayoutConfiguration-numberOfPortraitRows.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayoutConfiguration-numberOfPortraitRows.macho",
+          "bytes": 4104,
+          "sha256": "ccd879ae83c2f682d060fc2422bd1fe650c220f2a6d8b8219d6b4dc9963e8313"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayoutConfiguration-numberOfPortraitRows.macho 12-20-02-165.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBIconListGridLayoutConfiguration-portraitLayoutInsets.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayoutConfiguration-portraitLayoutInsets.macho",
+          "bytes": 4108,
+          "sha256": "269f2e7a9b131e6019939775e812a652e6075747591a2a1dd77329a816d25099"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayoutConfiguration-portraitLayoutInsets.macho 12-20-02-216.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBIconListGridLayoutConfiguration-setListSizeForIconSpacingCalculation_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayoutConfiguration-setListSizeForIconSpacingCalculation_.macho",
+          "bytes": 4104,
+          "sha256": "17653a03ee0ea30fd0670615c6578f5ee2923e0155252fdc0e1cace0f4fb6f16"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayoutConfiguration-setListSizeForIconSpacingCalculation_.macho 12-20-02-269.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBIconListGridLayoutConfiguration-setNumberOfPortraitRows_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayoutConfiguration-setNumberOfPortraitRows_.macho",
+          "bytes": 4104,
+          "sha256": "89cdb6905ecd790050a40e8a555acd525a59f730fc424cecbe87cfacdaafc0b4"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayoutConfiguration-setNumberOfPortraitRows_.macho 12-20-02-328.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBIconListModel-icons.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListModel-icons.macho",
+          "bytes": 4104,
+          "sha256": "cab7dc7ff19e66c8d036e6302e82c4591e0073cda0f487a3fdd89eee56279eeb"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListModel-icons.macho 12-20-02-388.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBIconListView-gridCellInfo.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListView-gridCellInfo.macho",
+          "bytes": 4152,
+          "sha256": "888d90ad005144982d6360559f0a9003de77cb02d888fd3c0fbf029a45c7c92a"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListView-gridCellInfo.macho 12-20-02-439.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBIconListView-iconSpacing.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListView-iconSpacing.macho",
+          "bytes": 4116,
+          "sha256": "e14ca4d6241baa2674ee8f73637f254bef12559d369fd609be0223e204ecf25c"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListView-iconSpacing.macho 12-20-02-497.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBIconListView-layout.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListView-layout.macho",
+          "bytes": 4192,
+          "sha256": "8770cf0d0f3645907cb47d7b6f604af7548691fd228ad7be06752bc765e63161"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListView-layout.macho 12-20-02-548.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBIconListView-layoutInsetsForOrientation_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListView-layoutInsetsForOrientation_.macho",
+          "bytes": 4488,
+          "sha256": "7607c005908790dbeee4c33c5dbd815f3b9f6a0e1820ab9c90eaac0254b4b611"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListView-layoutInsetsForOrientation_.macho 12-20-02-599.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBIconListView-layoutMetrics.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListView-layoutMetrics.macho",
+          "bytes": 4260,
+          "sha256": "37ad6a382a8601d487954ec117a72404dc7409f2550dc031eb114374fdb2fb0d"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListView-layoutMetrics.macho 12-20-02-650.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBIconListView-layoutMetricsForOrientation_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListView-layoutMetricsForOrientation_.macho",
+          "bytes": 4236,
+          "sha256": "3ddc175ed4bdcfaec5901e891683b828ae36373f14d23d20bc2936d43c257192"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListView-layoutMetricsForOrientation_.macho 12-20-02-702.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBIconListView-model.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListView-model.macho",
+          "bytes": 4112,
+          "sha256": "36342b562eb21f7e94d148e1588e6cb61e428b40a2afd81c156625ab092ab192"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListView-model.macho 12-20-02-755.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBLeafIcon-applicationBundleID.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBLeafIcon-applicationBundleID.macho",
+          "bytes": 4112,
+          "sha256": "81985c0996820720790fcad96804b15e63f2f474276a7e6aee71c372a8aed630"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBLeafIcon-applicationBundleID.macho 12-20-02-807.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r2/SBLeafIcon-leafIdentifier.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBLeafIcon-leafIdentifier.macho",
+          "bytes": 4112,
+          "sha256": "9e57b2e793cb852e55fa4de61ed03c83899fcaee13f7b46cf3a9bb75fcb17bd2"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBLeafIcon-leafIdentifier.macho 12-20-02-859.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBHDefaultIconListLayoutProvider-class-currentDeviceScreenType.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBHDefaultIconListLayoutProvider-class-currentDeviceScreenType.macho",
+          "bytes": 4100,
+          "sha256": "bfcf190c939e53ebb1546dd6a4a6bb9c963744c02993153cff835a6b072ad48c"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBHDefaultIconListLayoutProvider-class-currentDeviceScreenType.macho 12-20-02-910.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBHDefaultIconListLayoutProvider-class-defaultLayoutOptions.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBHDefaultIconListLayoutProvider-class-defaultLayoutOptions.macho",
+          "bytes": 4104,
+          "sha256": "7da28730dc6181504d9719510c1d016f404b0b02fd9436b7d64780efd80a7938"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBHDefaultIconListLayoutProvider-class-defaultLayoutOptions.macho 12-20-02-962.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBHDefaultIconListLayoutProvider-class-frameworkFallbackInstance.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBHDefaultIconListLayoutProvider-class-frameworkFallbackInstance.macho",
+          "bytes": 4160,
+          "sha256": "a05f7b343d326ad3ef9c1c5eaf915ffdcd98e15194efaed470f1e55226244812"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBHDefaultIconListLayoutProvider-class-frameworkFallbackInstance.macho 12-20-03-015.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBHDefaultIconListLayoutProvider-configureGridSizeClassSizes_forScreenType_numberOfColumns_iconLocation_layoutOptions_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBHDefaultIconListLayoutProvider-configureGridSizeClassSizes_forScreenType_numberOfColumns_iconLocation_layoutOptions_.macho",
+          "bytes": 4168,
+          "sha256": "1c60ea16b4d2688cd8c035de95831a2b6182be938d3089b66225ef479ebb5058"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBHDefaultIconListLayoutProvider-configureGridSizeClassSizes_forScreenType_numberOfColumns_iconLocation_layoutOptions_.macho 12-20-03-067.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBHDefaultIconListLayoutProvider-init.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBHDefaultIconListLayoutProvider-init.macho",
+          "bytes": 4160,
+          "sha256": "a9c5e66653f684c3072355ee797b10028542f83a3ea658f4cac964f9800e9208"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBHDefaultIconListLayoutProvider-init.macho 12-20-03-122.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBHDefaultIconListLayoutProvider-initWithScreenType_layoutOptions_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBHDefaultIconListLayoutProvider-initWithScreenType_layoutOptions_.macho",
+          "bytes": 4172,
+          "sha256": "d364e9a19880e5993666665ff5378d3a1a126cc5d470e0b4b23d52f794db1069"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBHDefaultIconListLayoutProvider-initWithScreenType_layoutOptions_.macho 12-20-03-178.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBHDefaultIconListLayoutProvider-layoutForIconLocation_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBHDefaultIconListLayoutProvider-layoutForIconLocation_.macho",
+          "bytes": 4240,
+          "sha256": "ec092fbbcd16194d66c00617e0b1ac031121e46bb8ad01f174baa28a7ece0440"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBHDefaultIconListLayoutProvider-layoutForIconLocation_.macho 12-20-03-230.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBHDefaultIconListLayoutProvider-makeLayoutForIconLocation_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBHDefaultIconListLayoutProvider-makeLayoutForIconLocation_.macho",
+          "bytes": 5120,
+          "sha256": "178eed03a069d47d055618416172d04462acbd7895f3a1ac71a05060ef8d57d6"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBHDefaultIconListLayoutProvider-makeLayoutForIconLocation_.macho 12-20-03-286.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBHDefaultIconListLayoutProvider-screenType.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBHDefaultIconListLayoutProvider-screenType.macho",
+          "bytes": 4104,
+          "sha256": "0f63a64510fa9e6c0293eb68441116e51794d27acbb2244c1e1ba5f4a3ae8cd1"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBHDefaultIconListLayoutProvider-screenType.macho 12-20-03-338.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBIconListGridLayout-initWithLayoutConfiguration_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayout-initWithLayoutConfiguration_.macho",
+          "bytes": 4228,
+          "sha256": "1149fc83229ca31dc8eb37d756b26c93bc2059ea59de405cc75f91145e5c8f3f"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayout-initWithLayoutConfiguration_.macho 12-20-03-399.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBIconListGridLayout-layoutConfiguration.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayout-layoutConfiguration.macho",
+          "bytes": 4104,
+          "sha256": "b59f22cda121ddad65eea9adc246c04387d02cea89f8928784dc3fade75ff903"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayout-layoutConfiguration.macho 12-20-03-450.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBIconListGridLayout-numberOfColumnsForOrientation_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayout-numberOfColumnsForOrientation_.macho",
+          "bytes": 4176,
+          "sha256": "13c8fba08255f63cb2e63e2fb8bd0bbdf9e741e96c64a3d1feb87ce15daf1787"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayout-numberOfColumnsForOrientation_.macho 12-20-03-501.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBIconListGridLayout-numberOfRowsForOrientation_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayout-numberOfRowsForOrientation_.macho",
+          "bytes": 4176,
+          "sha256": "ac7c1390cee0530019ed6afe5124588a060874ced8c07c70cf8ad99a579bf99a"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayout-numberOfRowsForOrientation_.macho 12-20-03-553.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBIconListGridLayoutConfiguration-iconImageInfo.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayoutConfiguration-iconImageInfo.macho",
+          "bytes": 4104,
+          "sha256": "74456de3bce157ac496e08a40d56e56ca2283ef5ef9c828ff0dcf7c73ca5d512"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayoutConfiguration-iconImageInfo.macho 12-20-03-611.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBIconListGridLayoutConfiguration-init.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayoutConfiguration-init.macho",
+          "bytes": 4456,
+          "sha256": "87a6dbedbfc6c64e0e634ad17d686aef664837bea14e9a7db54ad599d6d9c5d7"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayoutConfiguration-init.macho 12-20-03-666.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBIconListGridLayoutConfiguration-listSizeForIconSpacingCalculation.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayoutConfiguration-listSizeForIconSpacingCalculation.macho",
+          "bytes": 4104,
+          "sha256": "4031753730548e7d7cdf2c0faff059f99a2748d1f3bc885f0406a5bf0cfd07e1"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayoutConfiguration-listSizeForIconSpacingCalculation.macho 12-20-03-723.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBIconListGridLayoutConfiguration-numberOfPortraitColumns.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayoutConfiguration-numberOfPortraitColumns.macho",
+          "bytes": 4104,
+          "sha256": "d36824f2d5d701bedbd883ee61cefba4d33e5d42dc31a84b0213a720b446166a"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayoutConfiguration-numberOfPortraitColumns.macho 12-20-03-776.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBIconListGridLayoutConfiguration-numberOfPortraitRows.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayoutConfiguration-numberOfPortraitRows.macho",
+          "bytes": 4104,
+          "sha256": "ccd879ae83c2f682d060fc2422bd1fe650c220f2a6d8b8219d6b4dc9963e8313"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayoutConfiguration-numberOfPortraitRows.macho 12-20-03-828.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBIconListGridLayoutConfiguration-portraitLayoutInsets.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayoutConfiguration-portraitLayoutInsets.macho",
+          "bytes": 4108,
+          "sha256": "269f2e7a9b131e6019939775e812a652e6075747591a2a1dd77329a816d25099"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayoutConfiguration-portraitLayoutInsets.macho 12-20-03-883.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBIconListGridLayoutConfiguration-setListSizeForIconSpacingCalculation_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayoutConfiguration-setListSizeForIconSpacingCalculation_.macho",
+          "bytes": 4104,
+          "sha256": "17653a03ee0ea30fd0670615c6578f5ee2923e0155252fdc0e1cace0f4fb6f16"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayoutConfiguration-setListSizeForIconSpacingCalculation_.macho 12-20-03-934.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBIconListGridLayoutConfiguration-setNumberOfPortraitRows_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListGridLayoutConfiguration-setNumberOfPortraitRows_.macho",
+          "bytes": 4104,
+          "sha256": "89cdb6905ecd790050a40e8a555acd525a59f730fc424cecbe87cfacdaafc0b4"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListGridLayoutConfiguration-setNumberOfPortraitRows_.macho 12-20-03-986.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBIconListModel-icons.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListModel-icons.macho",
+          "bytes": 4104,
+          "sha256": "cab7dc7ff19e66c8d036e6302e82c4591e0073cda0f487a3fdd89eee56279eeb"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListModel-icons.macho 12-20-04-041.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBIconListView-gridCellInfo.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListView-gridCellInfo.macho",
+          "bytes": 4152,
+          "sha256": "888d90ad005144982d6360559f0a9003de77cb02d888fd3c0fbf029a45c7c92a"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListView-gridCellInfo.macho 12-20-04-097.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBIconListView-iconSpacing.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListView-iconSpacing.macho",
+          "bytes": 4116,
+          "sha256": "e14ca4d6241baa2674ee8f73637f254bef12559d369fd609be0223e204ecf25c"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListView-iconSpacing.macho 12-20-04-149.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBIconListView-layout.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListView-layout.macho",
+          "bytes": 4192,
+          "sha256": "8770cf0d0f3645907cb47d7b6f604af7548691fd228ad7be06752bc765e63161"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListView-layout.macho 12-20-04-200.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBIconListView-layoutInsetsForOrientation_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListView-layoutInsetsForOrientation_.macho",
+          "bytes": 4488,
+          "sha256": "7607c005908790dbeee4c33c5dbd815f3b9f6a0e1820ab9c90eaac0254b4b611"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListView-layoutInsetsForOrientation_.macho 12-20-04-252.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBIconListView-layoutMetrics.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListView-layoutMetrics.macho",
+          "bytes": 4260,
+          "sha256": "37ad6a382a8601d487954ec117a72404dc7409f2550dc031eb114374fdb2fb0d"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListView-layoutMetrics.macho 12-20-04-303.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBIconListView-layoutMetricsForOrientation_.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListView-layoutMetricsForOrientation_.macho",
+          "bytes": 4236,
+          "sha256": "3ddc175ed4bdcfaec5901e891683b828ae36373f14d23d20bc2936d43c257192"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListView-layoutMetricsForOrientation_.macho 12-20-04-355.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBIconListView-model.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBIconListView-model.macho",
+          "bytes": 4112,
+          "sha256": "36342b562eb21f7e94d148e1588e6cb61e428b40a2afd81c156625ab092ab192"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBIconListView-model.macho 12-20-04-407.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBLeafIcon-applicationBundleID.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBLeafIcon-applicationBundleID.macho",
+          "bytes": 4112,
+          "sha256": "81985c0996820720790fcad96804b15e63f2f474276a7e6aee71c372a8aed630"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBLeafIcon-applicationBundleID.macho 12-20-04-459.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBLeafIcon-leafIdentifier.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBLeafIcon-leafIdentifier.macho",
+          "bytes": 4112,
+          "sha256": "9e57b2e793cb852e55fa4de61ed03c83899fcaee13f7b46cf3a9bb75fcb17bd2"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBLeafIcon-leafIdentifier.macho 12-20-04-510.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/SBLeafIcon-leafIdentifierAndApplicationBundleIDMatches.macho",
+      "reason": "R18 completed return; reconstructible HFS, duplicate transfer, host/object or analysis-only wrapper; original model/UI/rejection/ABI proof retained",
+      "files": [
+        {
+          "relative": "SBLeafIcon-leafIdentifierAndApplicationBundleIDMatches.macho",
+          "bytes": 4144,
+          "sha256": "13e7f4b37f9970a5c29551d777257f238289ccbd3f0aa263f0384d04cd07da4d"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/SBLeafIcon-leafIdentifierAndApplicationBundleIDMatches.macho",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    }
+  ],
+  "protected_fingerprints": {
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-layout-model-r18-20261122/ram/glram.zblob": "81cb3ee681c9f1c7b990375a510a22f5f0ed747cc711a779f8b728d4d9dd2bc9",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-layout-model-r18-20261122/ram/manifest.json": "3555e8b38769e9d7ee9fac89790117a064d39ee5ab499c941d99060796345a0b",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-layout-model-r18-20261122/ram/sweetgl.dylib": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-layout-model-r18-20261122/ram/georead.dylib": "32fc1868932df48c8350d449963e11564d68d5e043de05a79012f228e19d9a13",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-layout-model-r18-20261122/helper/georead.dylib": "32fc1868932df48c8350d449963e11564d68d5e043de05a79012f228e19d9a13",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-layout-model-r18-20261122/helper/manifest.json": "86d8c972139df915c2ec2c21e64efd725c7d002d2a2a29927aa3649ee4f075d7",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/surface-diag-v730/kernel.v730.macho": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/dxb/xnu/iokit/Kernel/arm/SweetGPU.cpp": "aa2c36792a2298b060aa858eabdc039522fcdde3cfdbafd453c5fc6c0683c157",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/assets/symbols/ios16-20H392-root.a2s": "5bf04681af1819e2379319942a97be635100d6ca3844c5a22e372ce78a83b83d",
+    "/Users/ciscohe/xnu-autobuild.pause": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/report.json": "a4e11a86725bec56dfa4eb16a12a423f25bddf49c8c483ae64b5fbb882912c5e",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/inspection-cli.log": "791f7d6f630f67fe1f0dfa8890d10a94a96579cb5a2e64c0d3110323994fc56b"
+  },
+  "all_protected_fingerprints_unchanged": true,
+  "raw_exactly_reconstructed_from_retained_blob": true,
+  "trash_not_emptied": true,
+  "original_model_capture_UI_rejections_and_ABI_retained": true,
+  "disk_free_bytes": 94187044864,
+  "disk_total_bytes": 1023999787008,
+  "project_build_KiB": 4420712
+}

@@ -54,7 +54,9 @@ def evaluate(current, baseline, expected_applications=None):
         if expected_applications is None or set(expected_applications) != REFERENCE_APPS:
             raise ValueError('Missing exact original application identity reference')
         model_ids = [x['identifier'] for p in current['models'].values() for x in p['icons'] if x['application']]
-        if set(model_ids) != set(expected_applications) or len(model_ids) != len(expected_applications) or old_regular != len(expected_applications):
+        if set(model_ids) > set(expected_applications) and old_regular == len(expected_applications):
+            reasons.append('ORIGINAL_REFERENCE_ONLY_COVERS_PRIMARY_PAGE')
+        elif set(model_ids) != set(expected_applications) or len(model_ids) != len(expected_applications) or old_regular != len(expected_applications):
             reasons.append('ORIGINAL_APPLICATION_MODEL_IDENTITIES_CHANGED')
         else:
             identities_verified = True
@@ -67,9 +69,11 @@ def evaluate(current, baseline, expected_applications=None):
                 model_page_counts[p['node']] = app_count
                 if near(p['rectangle'][0], 0) and len(p['regular']) != app_count:
                     reasons.append('VISIBLE_PRIMARY_APPLICATION_VIEWS_DIFFER_FROM_MODEL')
-        model_widgets = sum(p['count'] for p in current['models'].values()) - len(model_ids)
+        model_widgets = sum(x['class'] == 'SBWidgetIcon' for p in current['models'].values() for x in p['icons'])
         if model_widgets != old_widgets:
             reasons.append('ORIGINAL_WIDGET_MODEL_COUNT_CHANGED')
+        if any(x['class'] == 'SBFolderIcon' for p in current['models'].values() for x in p['icons']):
+            reasons.append('ORIGINAL_FOLDER_MODEL_NOT_OBSERVED')
     elif current_regular != old_regular:
         reasons.append('ORIGINAL_APPLICATION_VIEW_COUNT_CHANGED')
     if current_widgets != old_widgets:

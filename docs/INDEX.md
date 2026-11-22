@@ -32,3 +32,5 @@ reproducibility保存原结果摘要、源码锁、精确proof和回收记录；
 [r16原布局取证](../reproducibility/native-layout-r16-stage-20261122.json)定位小组件label bbox与下一排图标重叠；窗口／grid配置差异仍待追查，GLES9通过不扩大为完整原UI成功。
 
 [r17原生密度／独立UI拒绝](../reproducibility/native-grid-density-r17-stage-20261122.json)保留原setter与实图，以及缺VIEW653的拒绝；[原27方法及cache范围](../reproducibility/native-layout-20H392-static-r17.json)由直接HFS/sparse reader取得，不展开大镜像。
+
+[r18完整原模型／UI取证](../reproducibility/native-layout-model-r18-stage-20261122.json)已证明完整记录和17.5点标题间距；根层29应用说明原15参考范围不足，全folder/Dock及原基线仍待验。

@@ -1,0 +1,3407 @@
+{
+  "date": "2026-11-22",
+  "source_commit": "2092b732e6f9d512bbcd4f164382ab80edcbbcde",
+  "profile": "xz1c-native-2x",
+  "runs": [
+    {
+      "stage": "cpu",
+      "original_controller_result": "PASS",
+      "reason": "GOALS_STABLE",
+      "token": "4d7848005c7b99f4",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-native-model-r18-cpu-live-20261122",
+      "image_sha256": "a2c703050d4c9a51ddae3e986f99b99e137a1da31102c5892b8367f7cd46fb74",
+      "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+      "raw_sha256": "0907d2f178054d937068087cd8f48031802770937b1f64abb5ab052a0cac9043",
+      "raw_bytes": 348813,
+      "original_result_sha256": "c9b2bae1029ff3256c87dd26a4d37085b574d4456709992fed38e03f4c2448eb",
+      "actual_evidence_sha256": "0a48bb86a8707eb2262dfd701d868d33e59f038e74e8f328cf7dd6295d278695",
+      "reset_to_fastboot_seconds": 38.64099999982864,
+      "return_evidence": {
+        "complete": true,
+        "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+        "current_token": "4d7848005c7b99f4",
+        "checkpoint_bytes": 345612,
+        "log_bytes": 348813,
+        "log_sha256": "0907d2f178054d937068087cd8f48031802770937b1f64abb5ab052a0cac9043",
+        "require_final_drain": true,
+        "marker_positions": [
+          3,
+          5,
+          59,
+          61
+        ],
+        "final_reset_marker_seen": true
+      },
+      "serial_capture": {
+        "revision": 1,
+        "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+        "event_log_sha256": "67323d0b78825295a02b66d5cbf987d04efb64f6a20359c108f3b043e4ce144d",
+        "raw_sha256": "0907d2f178054d937068087cd8f48031802770937b1f64abb5ab052a0cac9043",
+        "serial_port": "COM17",
+        "dtr_low_through_open": true,
+        "raw_log_before_stream": true,
+        "one_continuous_current_boot_stream": true,
+        "replay_commands": 0,
+        "old_failure_not_reclassified": true
+      },
+      "ram_library_binding": {
+        "library_sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+        "library_bytes": 14801120,
+        "library_fnv64": "9929cfe79edd5bce",
+        "blob_sha256": "81cb3ee681c9f1c7b990375a510a22f5f0ed747cc711a779f8b728d4d9dd2bc9",
+        "raw_sha256": "24df4ab0e6115c16653de32e8f127fb44ce1e31c36956f21f81761104191edc0",
+        "manifest_sha256": "3555e8b38769e9d7ee9fac89790117a064d39ee5ab499c941d99060796345a0b"
+      }
+    },
+    {
+      "stage": "gpu",
+      "original_controller_result": "PASS",
+      "reason": "GOALS_STABLE",
+      "token": "4b02249c29856d10",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-native-model-r18-gpu-live-20261122",
+      "image_sha256": "927ec82c76df9d8d9658735a05ccd0c65b3f458f4b1a56cc8f41274d0fa43fb6",
+      "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+      "raw_sha256": "310c50cee99d9ece414fd40194dfce49f4ec8bd947cd4bd3bfd50f6f20651463",
+      "raw_bytes": 3522875,
+      "original_result_sha256": "4fada34b442b9142a10d69d69fac0fd35b5be6cafaaa94ca7508cbaafc103f6e",
+      "actual_evidence_sha256": "3c524cd0d91a6543e27a8fbd32907b0e77fdb73cf26c8d9f5d25c092f9b1eeb7",
+      "reset_to_fastboot_seconds": 38.890000000130385,
+      "return_evidence": {
+        "complete": true,
+        "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+        "current_token": "4b02249c29856d10",
+        "checkpoint_bytes": 3512797,
+        "log_bytes": 3522875,
+        "log_sha256": "310c50cee99d9ece414fd40194dfce49f4ec8bd947cd4bd3bfd50f6f20651463",
+        "require_final_drain": true,
+        "marker_positions": [
+          5,
+          99,
+          142,
+          144
+        ],
+        "final_reset_marker_seen": true
+      },
+      "serial_capture": {
+        "revision": 1,
+        "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+        "event_log_sha256": "a0e851f6b04acd857237f5232cc6262db355b9ce4e930bcc936e81b319c1e6b3",
+        "raw_sha256": "310c50cee99d9ece414fd40194dfce49f4ec8bd947cd4bd3bfd50f6f20651463",
+        "serial_port": "COM17",
+        "dtr_low_through_open": true,
+        "raw_log_before_stream": true,
+        "one_continuous_current_boot_stream": true,
+        "replay_commands": 0,
+        "old_failure_not_reclassified": true
+      },
+      "ram_library_binding": {
+        "library_sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+        "library_bytes": 14801120,
+        "library_fnv64": "9929cfe79edd5bce",
+        "blob_sha256": "81cb3ee681c9f1c7b990375a510a22f5f0ed747cc711a779f8b728d4d9dd2bc9",
+        "raw_sha256": "24df4ab0e6115c16653de32e8f127fb44ce1e31c36956f21f81761104191edc0",
+        "manifest_sha256": "3555e8b38769e9d7ee9fac89790117a064d39ee5ab499c941d99060796345a0b"
+      },
+      "source_checked_scanout": {
+        "protocol": 1,
+        "frames": [
+          {
+            "id": 1,
+            "token": "4b02249c29856d10",
+            "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+            "image_sha256": "927ec82c76df9d8d9658735a05ccd0c65b3f458f4b1a56cc8f41274d0fa43fb6",
+            "binding": {
+              "protocol": 1,
+              "width": 720,
+              "height": 1280,
+              "stride": 2160,
+              "format": "BGR888",
+              "codec": "PRLE1",
+              "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+              "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+              "runtime_source_sha256": "a1f41eeb87b7cf70ea751884ee38d758191f3cc0a00d697acc363fbba3cd5f63"
+            },
+            "begin": {
+              "token": "4b02249c29856d10",
+              "id": "1",
+              "width": "720",
+              "height": "1280",
+              "stride": "2160",
+              "format": "BGR888",
+              "bytes": "2764800",
+              "codec": "PRLE1",
+              "encoded": "1021139",
+              "raw_fnv": "8d62fa67a31c741d",
+              "enc_crc": "479e608a",
+              "vsync": "7639",
+              "timestamp": "8782220124",
+              "copy_ticks": "4765740",
+              "power_off": "0",
+              "source_checked": "1",
+              "source_match": "1"
+            },
+            "scan": {
+              "token": "4b02249c29856d10",
+              "id": "1",
+              "pa": "0x9d400000",
+              "map_pa": "0x9d400000",
+              "map_bytes": "2764800",
+              "size": "0x50002d0",
+              "img": "0x50002d0",
+              "xy": "0",
+              "out": "0x50002d0",
+              "outxy": "0",
+              "fmt": "0x2243f",
+              "unpack": "0x20001",
+              "op": "0x80000000",
+              "qop": "0",
+              "ctl": "0x20020",
+              "start": "0",
+              "before_after": "1"
+            },
+            "blocks": 7978,
+            "raw_file": "scanout-00000001.bgr",
+            "png_file": "scanout-00000001.png",
+            "raw_sha256": "7f663b3f94af2dacdf5f23debf9763866a60496b61dd862c9fa413bfc513fb35",
+            "png_sha256": "c8d709f3c5499d94be09fb473adf8cab3dbffb9e28ac19895615e30548389116",
+            "pixel_values_preserved": true,
+            "verified": true,
+            "optical_panel_verified": false
+          }
+        ],
+        "verified": true,
+        "optical_panel_verified": false,
+        "current_boot_source_and_payload_checked": true,
+        "format": "BGR888",
+        "width": 720,
+        "height": 1280
+      },
+      "single_swipe_actual": {
+        "command": "swipe",
+        "max_commands": 1,
+        "after_seconds": 120,
+        "requires_current_LIVE": true,
+        "requires_F12_ready": true,
+        "screen_after_seconds": 150
+      },
+      "complete_original_layout": {
+        "revision": 2,
+        "token": "4b02249c29856d10",
+        "current_LIVE_to_ACK_only": true,
+        "capture_complete": true,
+        "counts": {
+          "visited": 927,
+          "recorded": 158,
+          "grids": 3,
+          "refused": 0,
+          "truncated": 0,
+          "write_failures": 0
+        },
+        "views": {
+          "1": {
+            "parent": 0,
+            "depth": 0,
+            "class": "_SBWallpaperSecureWindow",
+            "frame": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ],
+            "window_rectangle": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ]
+          },
+          "2": {
+            "parent": 0,
+            "depth": 0,
+            "class": "SBHomeScreenWindow",
+            "frame": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ],
+            "window_rectangle": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ]
+          },
+          "3": {
+            "parent": 0,
+            "depth": 0,
+            "class": "SBWindow",
+            "frame": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ],
+            "window_rectangle": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ]
+          },
+          "4": {
+            "parent": 0,
+            "depth": 0,
+            "class": "SBStatusBarReusePoolWindow",
+            "frame": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ],
+            "window_rectangle": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ]
+          },
+          "5": {
+            "parent": 0,
+            "depth": 0,
+            "class": "SBRootSceneWindow",
+            "frame": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ],
+            "window_rectangle": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ]
+          },
+          "6": {
+            "parent": 0,
+            "depth": 0,
+            "class": "SBMainSwitcherWindow",
+            "frame": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ],
+            "window_rectangle": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ]
+          },
+          "7": {
+            "parent": 0,
+            "depth": 0,
+            "class": "UITextEffectsWindow",
+            "frame": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ],
+            "window_rectangle": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ]
+          },
+          "8": {
+            "parent": 0,
+            "depth": 0,
+            "class": "UITextEffectsWindow",
+            "frame": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ],
+            "window_rectangle": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ]
+          },
+          "9": {
+            "parent": 0,
+            "depth": 0,
+            "class": "UITextEffectsWindow",
+            "frame": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ],
+            "window_rectangle": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ]
+          },
+          "10": {
+            "parent": 0,
+            "depth": 0,
+            "class": "SBMedusaHostedKeyboardWindow",
+            "frame": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ],
+            "window_rectangle": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ]
+          },
+          "11": {
+            "parent": 0,
+            "depth": 0,
+            "class": "SBCoverSheetWindow",
+            "frame": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ],
+            "window_rectangle": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ]
+          },
+          "12": {
+            "parent": 0,
+            "depth": 0,
+            "class": "SBControlCenterWindow",
+            "frame": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ],
+            "window_rectangle": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ]
+          },
+          "13": {
+            "parent": 0,
+            "depth": 0,
+            "class": "SSScreenshotsWindow",
+            "frame": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ],
+            "window_rectangle": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ]
+          },
+          "14": {
+            "parent": 0,
+            "depth": 0,
+            "class": "SBRecordingIndicatorWindow",
+            "frame": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ],
+            "window_rectangle": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ]
+          },
+          "15": {
+            "parent": 0,
+            "depth": 0,
+            "class": "SBAlertItemWindow",
+            "frame": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ],
+            "window_rectangle": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ]
+          },
+          "33": {
+            "parent": 18,
+            "depth": 2,
+            "class": "SBIconContentView",
+            "frame": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ],
+            "window_rectangle": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ]
+          },
+          "35": {
+            "parent": 19,
+            "depth": 2,
+            "class": "SBIconBadgeView",
+            "frame": [
+              41.0,
+              -11.0,
+              26.0,
+              26.0
+            ],
+            "window_rectangle": [
+              41.0,
+              -11.0,
+              26.0,
+              26.0
+            ]
+          },
+          "60": {
+            "parent": 39,
+            "depth": 3,
+            "class": "UIKeyboardDockView",
+            "frame": [
+              0.0,
+              0.0,
+              150.0,
+              75.0
+            ],
+            "window_rectangle": [
+              0.0,
+              640.0,
+              150.0,
+              75.0
+            ]
+          },
+          "81": {
+            "parent": 60,
+            "depth": 4,
+            "class": "UIKeyboardDockItemButton",
+            "frame": [
+              12.661,
+              -14.667,
+              101.684,
+              102.654
+            ],
+            "window_rectangle": [
+              12.661,
+              625.333,
+              101.684,
+              102.654
+            ]
+          },
+          "82": {
+            "parent": 60,
+            "depth": 4,
+            "class": "UIKeyboardDockItemButton",
+            "frame": [
+              35.655,
+              -15.167,
+              101.684,
+              102.654
+            ],
+            "window_rectangle": [
+              35.655,
+              624.833,
+              101.684,
+              102.654
+            ]
+          },
+          "105": {
+            "parent": 81,
+            "depth": 5,
+            "class": "UIButtonLabel",
+            "frame": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "window_rectangle": [
+              12.661,
+              625.333,
+              0.0,
+              0.0
+            ]
+          },
+          "107": {
+            "parent": 82,
+            "depth": 5,
+            "class": "UIButtonLabel",
+            "frame": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "window_rectangle": [
+              35.655,
+              624.833,
+              0.0,
+              0.0
+            ]
+          },
+          "123": {
+            "parent": 92,
+            "depth": 5,
+            "class": "CCUIStatusLabel",
+            "frame": [
+              0.0,
+              0.0,
+              360.0,
+              0.0
+            ],
+            "window_rectangle": [
+              0.0,
+              114.0,
+              360.0,
+              0.0
+            ]
+          },
+          "124": {
+            "parent": 92,
+            "depth": 5,
+            "class": "CCUIStatusLabel",
+            "frame": [
+              0.0,
+              0.0,
+              360.0,
+              0.0
+            ],
+            "window_rectangle": [
+              0.0,
+              114.0,
+              360.0,
+              0.0
+            ]
+          },
+          "129": {
+            "parent": 95,
+            "depth": 6,
+            "class": "SBIconScrollView",
+            "frame": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ],
+            "window_rectangle": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ]
+          },
+          "131": {
+            "parent": 95,
+            "depth": 6,
+            "class": "SBDockView",
+            "frame": [
+              0.0,
+              553.0,
+              360.0,
+              87.0
+            ],
+            "window_rectangle": [
+              0.0,
+              553.0,
+              360.0,
+              87.0
+            ]
+          },
+          "163": {
+            "parent": 118,
+            "depth": 6,
+            "class": "UILabel",
+            "frame": [
+              0.0,
+              0.0,
+              0.0,
+              22.5
+            ],
+            "window_rectangle": [
+              180.0,
+              66.25,
+              0.0,
+              0.0
+            ]
+          },
+          "178": {
+            "parent": 129,
+            "depth": 7,
+            "class": "SBIconListView",
+            "frame": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ],
+            "window_rectangle": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ]
+          },
+          "179": {
+            "parent": 129,
+            "depth": 7,
+            "class": "SBIconListView",
+            "frame": [
+              360.0,
+              0.0,
+              360.0,
+              640.0
+            ],
+            "window_rectangle": [
+              360.0,
+              0.0,
+              360.0,
+              640.0
+            ]
+          },
+          "180": {
+            "parent": 130,
+            "depth": 7,
+            "class": "SBIconListPageControl",
+            "frame": [
+              0.0,
+              0.0,
+              157.0,
+              35.0
+            ],
+            "window_rectangle": [
+              101.5,
+              510.0,
+              157.0,
+              35.0
+            ]
+          },
+          "183": {
+            "parent": 131,
+            "depth": 7,
+            "class": "SBDockIconListView",
+            "frame": [
+              0.0,
+              0.0,
+              360.0,
+              80.0
+            ],
+            "window_rectangle": [
+              0.0,
+              553.0,
+              360.0,
+              80.0
+            ]
+          },
+          "221": {
+            "parent": 178,
+            "depth": 8,
+            "class": "SBIconView",
+            "frame": [
+              34.0,
+              61.0,
+              141.0,
+              155.0
+            ],
+            "window_rectangle": [
+              34.0,
+              61.0,
+              141.0,
+              155.0
+            ]
+          },
+          "222": {
+            "parent": 178,
+            "depth": 8,
+            "class": "SBIconView",
+            "frame": [
+              185.0,
+              61.0,
+              141.0,
+              155.0
+            ],
+            "window_rectangle": [
+              185.0,
+              61.0,
+              141.0,
+              155.0
+            ]
+          },
+          "223": {
+            "parent": 178,
+            "depth": 8,
+            "class": "SBIconView",
+            "frame": [
+              19.0,
+              243.0,
+              56.0,
+              70.0
+            ],
+            "window_rectangle": [
+              19.0,
+              243.0,
+              56.0,
+              70.0
+            ]
+          },
+          "224": {
+            "parent": 178,
+            "depth": 8,
+            "class": "SBIconView",
+            "frame": [
+              107.667,
+              243.0,
+              56.0,
+              70.0
+            ],
+            "window_rectangle": [
+              107.667,
+              243.0,
+              56.0,
+              70.0
+            ]
+          },
+          "225": {
+            "parent": 178,
+            "depth": 8,
+            "class": "SBIconView",
+            "frame": [
+              196.333,
+              243.0,
+              56.0,
+              70.0
+            ],
+            "window_rectangle": [
+              196.333,
+              243.0,
+              56.0,
+              70.0
+            ]
+          },
+          "226": {
+            "parent": 178,
+            "depth": 8,
+            "class": "SBIconView",
+            "frame": [
+              285.0,
+              243.0,
+              56.0,
+              70.0
+            ],
+            "window_rectangle": [
+              285.0,
+              243.0,
+              56.0,
+              70.0
+            ]
+          },
+          "227": {
+            "parent": 178,
+            "depth": 8,
+            "class": "SBIconView",
+            "frame": [
+              19.0,
+              336.0,
+              56.0,
+              70.0
+            ],
+            "window_rectangle": [
+              19.0,
+              336.0,
+              56.0,
+              70.0
+            ]
+          },
+          "228": {
+            "parent": 178,
+            "depth": 8,
+            "class": "SBIconView",
+            "frame": [
+              107.667,
+              336.0,
+              56.0,
+              70.0
+            ],
+            "window_rectangle": [
+              107.667,
+              336.0,
+              56.0,
+              70.0
+            ]
+          },
+          "229": {
+            "parent": 178,
+            "depth": 8,
+            "class": "SBIconView",
+            "frame": [
+              196.333,
+              336.0,
+              56.0,
+              70.0
+            ],
+            "window_rectangle": [
+              196.333,
+              336.0,
+              56.0,
+              70.0
+            ]
+          },
+          "230": {
+            "parent": 178,
+            "depth": 8,
+            "class": "SBIconView",
+            "frame": [
+              285.0,
+              336.0,
+              56.0,
+              70.0
+            ],
+            "window_rectangle": [
+              285.0,
+              336.0,
+              56.0,
+              70.0
+            ]
+          },
+          "231": {
+            "parent": 178,
+            "depth": 8,
+            "class": "SBIconView",
+            "frame": [
+              19.0,
+              429.0,
+              56.0,
+              70.0
+            ],
+            "window_rectangle": [
+              19.0,
+              429.0,
+              56.0,
+              70.0
+            ]
+          },
+          "232": {
+            "parent": 178,
+            "depth": 8,
+            "class": "SBIconView",
+            "frame": [
+              107.667,
+              429.0,
+              56.0,
+              70.0
+            ],
+            "window_rectangle": [
+              107.667,
+              429.0,
+              56.0,
+              70.0
+            ]
+          },
+          "233": {
+            "parent": 178,
+            "depth": 8,
+            "class": "SBIconView",
+            "frame": [
+              196.333,
+              429.0,
+              56.0,
+              70.0
+            ],
+            "window_rectangle": [
+              196.333,
+              429.0,
+              56.0,
+              70.0
+            ]
+          },
+          "234": {
+            "parent": 178,
+            "depth": 8,
+            "class": "SBIconView",
+            "frame": [
+              285.0,
+              429.0,
+              56.0,
+              70.0
+            ],
+            "window_rectangle": [
+              285.0,
+              429.0,
+              56.0,
+              70.0
+            ]
+          },
+          "237": {
+            "parent": 183,
+            "depth": 8,
+            "class": "SBIconView",
+            "frame": [
+              39.0,
+              12.0,
+              56.0,
+              56.0
+            ],
+            "window_rectangle": [
+              39.0,
+              565.0,
+              56.0,
+              56.0
+            ]
+          },
+          "238": {
+            "parent": 183,
+            "depth": 8,
+            "class": "SBIconView",
+            "frame": [
+              114.333,
+              12.0,
+              56.0,
+              56.0
+            ],
+            "window_rectangle": [
+              114.333,
+              565.0,
+              56.0,
+              56.0
+            ]
+          },
+          "239": {
+            "parent": 183,
+            "depth": 8,
+            "class": "SBIconView",
+            "frame": [
+              189.667,
+              12.0,
+              56.0,
+              56.0
+            ],
+            "window_rectangle": [
+              189.667,
+              565.0,
+              56.0,
+              56.0
+            ]
+          },
+          "240": {
+            "parent": 183,
+            "depth": 8,
+            "class": "SBIconView",
+            "frame": [
+              265.0,
+              12.0,
+              56.0,
+              56.0
+            ],
+            "window_rectangle": [
+              265.0,
+              565.0,
+              56.0,
+              56.0
+            ]
+          },
+          "250": {
+            "parent": 195,
+            "depth": 8,
+            "class": "SBUILegibilityLabel",
+            "frame": [
+              104.75,
+              608.5,
+              150.5,
+              20.5
+            ],
+            "window_rectangle": [
+              104.75,
+              -31.5,
+              150.5,
+              20.5
+            ]
+          },
+          "267": {
+            "parent": 211,
+            "depth": 8,
+            "class": "UILabel",
+            "frame": [
+              28.0,
+              0.0,
+              59.0,
+              20.5
+            ],
+            "window_rectangle": [
+              41.0,
+              80.0,
+              59.0,
+              20.5
+            ]
+          },
+          "294": {
+            "parent": 236,
+            "depth": 9,
+            "class": "UILabel",
+            "frame": [
+              26.0,
+              7.5,
+              40.5,
+              14.5
+            ],
+            "window_rectangle": [
+              167.0,
+              520.0,
+              40.5,
+              14.5
+            ]
+          },
+          "300": {
+            "parent": 245,
+            "depth": 9,
+            "class": "UILabel",
+            "frame": [
+              26.0,
+              7.5,
+              40.5,
+              14.5
+            ],
+            "window_rectangle": [
+              -13.0,
+              -7.5,
+              40.5,
+              14.5
+            ]
+          },
+          "306": {
+            "parent": 250,
+            "depth": 9,
+            "class": "UILabel",
+            "frame": [
+              0.0,
+              0.0,
+              150.5,
+              20.5
+            ],
+            "window_rectangle": [
+              104.75,
+              -31.5,
+              150.5,
+              20.5
+            ]
+          },
+          "327": {
+            "parent": 277,
+            "depth": 10,
+            "class": "SBIconLegibilityLabelView",
+            "frame": [
+              38.5,
+              143.5,
+              65.0,
+              21.0
+            ],
+            "window_rectangle": [
+              72.5,
+              204.5,
+              65.0,
+              21.0
+            ]
+          },
+          "329": {
+            "parent": 278,
+            "depth": 10,
+            "class": "SBIconLegibilityLabelView",
+            "frame": [
+              37.0,
+              143.5,
+              68.0,
+              21.0
+            ],
+            "window_rectangle": [
+              222.0,
+              204.5,
+              68.0,
+              21.0
+            ]
+          },
+          "331": {
+            "parent": 279,
+            "depth": 10,
+            "class": "SBIconLegibilityLabelView",
+            "frame": [
+              -7.0,
+              58.5,
+              70.5,
+              21.0
+            ],
+            "window_rectangle": [
+              12.0,
+              301.5,
+              70.5,
+              21.0
+            ]
+          },
+          "332": {
+            "parent": 279,
+            "depth": 10,
+            "class": "SBIconImageView",
+            "frame": [
+              0.0,
+              0.0,
+              56.0,
+              56.0
+            ],
+            "window_rectangle": [
+              19.0,
+              243.0,
+              56.0,
+              56.0
+            ]
+          },
+          "333": {
+            "parent": 280,
+            "depth": 10,
+            "class": "SBIconLegibilityLabelView",
+            "frame": [
+              -5.5,
+              58.5,
+              68.0,
+              21.0
+            ],
+            "window_rectangle": [
+              102.167,
+              301.5,
+              68.0,
+              21.0
+            ]
+          },
+          "334": {
+            "parent": 280,
+            "depth": 10,
+            "class": "SBIconImageView",
+            "frame": [
+              0.0,
+              0.0,
+              56.0,
+              56.0
+            ],
+            "window_rectangle": [
+              107.667,
+              243.0,
+              56.0,
+              56.0
+            ]
+          },
+          "335": {
+            "parent": 281,
+            "depth": 10,
+            "class": "SBIconLegibilityLabelView",
+            "frame": [
+              0.0,
+              58.5,
+              56.5,
+              21.0
+            ],
+            "window_rectangle": [
+              196.333,
+              301.5,
+              56.5,
+              21.0
+            ]
+          },
+          "336": {
+            "parent": 281,
+            "depth": 10,
+            "class": "SBIconImageView",
+            "frame": [
+              0.0,
+              0.0,
+              56.0,
+              56.0
+            ],
+            "window_rectangle": [
+              196.333,
+              243.0,
+              56.0,
+              56.0
+            ]
+          },
+          "337": {
+            "parent": 282,
+            "depth": 10,
+            "class": "SBIconLegibilityLabelView",
+            "frame": [
+              8.5,
+              58.5,
+              40.0,
+              21.0
+            ],
+            "window_rectangle": [
+              293.5,
+              301.5,
+              40.0,
+              21.0
+            ]
+          },
+          "338": {
+            "parent": 282,
+            "depth": 10,
+            "class": "SBIconImageView",
+            "frame": [
+              0.0,
+              0.0,
+              56.0,
+              56.0
+            ],
+            "window_rectangle": [
+              285.0,
+              243.0,
+              56.0,
+              56.0
+            ]
+          },
+          "339": {
+            "parent": 283,
+            "depth": 10,
+            "class": "SBIconLegibilityLabelView",
+            "frame": [
+              3.0,
+              58.5,
+              50.5,
+              21.0
+            ],
+            "window_rectangle": [
+              22.0,
+              394.5,
+              50.5,
+              21.0
+            ]
+          },
+          "340": {
+            "parent": 283,
+            "depth": 10,
+            "class": "SBIconImageView",
+            "frame": [
+              0.0,
+              0.0,
+              56.0,
+              56.0
+            ],
+            "window_rectangle": [
+              19.0,
+              336.0,
+              56.0,
+              56.0
+            ]
+          },
+          "341": {
+            "parent": 284,
+            "depth": 10,
+            "class": "SBIconLegibilityLabelView",
+            "frame": [
+              -10.5,
+              58.5,
+              77.5,
+              21.0
+            ],
+            "window_rectangle": [
+              97.167,
+              394.5,
+              77.5,
+              21.0
+            ]
+          },
+          "342": {
+            "parent": 284,
+            "depth": 10,
+            "class": "SBIconImageView",
+            "frame": [
+              0.0,
+              0.0,
+              56.0,
+              56.0
+            ],
+            "window_rectangle": [
+              107.667,
+              336.0,
+              56.0,
+              56.0
+            ]
+          },
+          "343": {
+            "parent": 285,
+            "depth": 10,
+            "class": "SBIconLegibilityLabelView",
+            "frame": [
+              4.0,
+              58.5,
+              49.0,
+              21.0
+            ],
+            "window_rectangle": [
+              200.333,
+              394.5,
+              49.0,
+              21.0
+            ]
+          },
+          "344": {
+            "parent": 285,
+            "depth": 10,
+            "class": "SBHClockApplicationIconImageView",
+            "frame": [
+              0.0,
+              0.0,
+              56.0,
+              56.0
+            ],
+            "window_rectangle": [
+              196.333,
+              336.0,
+              56.0,
+              56.0
+            ]
+          },
+          "345": {
+            "parent": 286,
+            "depth": 10,
+            "class": "SBIconLegibilityLabelView",
+            "frame": [
+              4.5,
+              58.5,
+              48.0,
+              21.0
+            ],
+            "window_rectangle": [
+              289.5,
+              394.5,
+              48.0,
+              21.0
+            ]
+          },
+          "346": {
+            "parent": 286,
+            "depth": 10,
+            "class": "SBIconImageView",
+            "frame": [
+              0.0,
+              0.0,
+              56.0,
+              56.0
+            ],
+            "window_rectangle": [
+              285.0,
+              336.0,
+              56.0,
+              56.0
+            ]
+          },
+          "347": {
+            "parent": 287,
+            "depth": 10,
+            "class": "SBIconLegibilityLabelView",
+            "frame": [
+              12.5,
+              58.5,
+              32.0,
+              21.0
+            ],
+            "window_rectangle": [
+              31.5,
+              487.5,
+              32.0,
+              21.0
+            ]
+          },
+          "348": {
+            "parent": 287,
+            "depth": 10,
+            "class": "SBIconImageView",
+            "frame": [
+              0.0,
+              0.0,
+              56.0,
+              56.0
+            ],
+            "window_rectangle": [
+              19.0,
+              429.0,
+              56.0,
+              56.0
+            ]
+          },
+          "349": {
+            "parent": 288,
+            "depth": 10,
+            "class": "SBIconLegibilityLabelView",
+            "frame": [
+              -6.5,
+              58.5,
+              69.5,
+              21.0
+            ],
+            "window_rectangle": [
+              101.167,
+              487.5,
+              69.5,
+              21.0
+            ]
+          },
+          "350": {
+            "parent": 288,
+            "depth": 10,
+            "class": "SBIconImageView",
+            "frame": [
+              0.0,
+              0.0,
+              56.0,
+              56.0
+            ],
+            "window_rectangle": [
+              107.667,
+              429.0,
+              56.0,
+              56.0
+            ]
+          },
+          "351": {
+            "parent": 289,
+            "depth": 10,
+            "class": "SBIconLegibilityLabelView",
+            "frame": [
+              -8.5,
+              58.5,
+              74.0,
+              21.0
+            ],
+            "window_rectangle": [
+              187.833,
+              487.5,
+              74.0,
+              21.0
+            ]
+          },
+          "352": {
+            "parent": 289,
+            "depth": 10,
+            "class": "SBIconImageView",
+            "frame": [
+              0.0,
+              0.0,
+              56.0,
+              56.0
+            ],
+            "window_rectangle": [
+              196.333,
+              429.0,
+              56.0,
+              56.0
+            ]
+          },
+          "353": {
+            "parent": 290,
+            "depth": 10,
+            "class": "SBIconLegibilityLabelView",
+            "frame": [
+              4.5,
+              58.5,
+              47.5,
+              21.0
+            ],
+            "window_rectangle": [
+              289.5,
+              487.5,
+              47.5,
+              21.0
+            ]
+          },
+          "354": {
+            "parent": 290,
+            "depth": 10,
+            "class": "SBIconImageView",
+            "frame": [
+              0.0,
+              0.0,
+              56.0,
+              56.0
+            ],
+            "window_rectangle": [
+              285.0,
+              429.0,
+              56.0,
+              56.0
+            ]
+          },
+          "357": {
+            "parent": 295,
+            "depth": 10,
+            "class": "SBIconImageView",
+            "frame": [
+              0.0,
+              0.0,
+              56.0,
+              56.0
+            ],
+            "window_rectangle": [
+              39.0,
+              565.0,
+              56.0,
+              56.0
+            ]
+          },
+          "358": {
+            "parent": 296,
+            "depth": 10,
+            "class": "SBIconImageView",
+            "frame": [
+              0.0,
+              0.0,
+              56.0,
+              56.0
+            ],
+            "window_rectangle": [
+              114.333,
+              565.0,
+              56.0,
+              56.0
+            ]
+          },
+          "359": {
+            "parent": 297,
+            "depth": 10,
+            "class": "SBIconImageView",
+            "frame": [
+              0.0,
+              0.0,
+              56.0,
+              56.0
+            ],
+            "window_rectangle": [
+              189.667,
+              565.0,
+              56.0,
+              56.0
+            ]
+          },
+          "360": {
+            "parent": 298,
+            "depth": 10,
+            "class": "SBIconImageView",
+            "frame": [
+              0.0,
+              0.0,
+              56.0,
+              56.0
+            ],
+            "window_rectangle": [
+              265.0,
+              565.0,
+              56.0,
+              56.0
+            ]
+          },
+          "414": {
+            "parent": 359,
+            "depth": 11,
+            "class": "SBIconBadgeView",
+            "frame": [
+              41.0,
+              -11.0,
+              26.0,
+              26.0
+            ],
+            "window_rectangle": [
+              230.667,
+              554.0,
+              26.0,
+              26.0
+            ]
+          },
+          "481": {
+            "parent": 415,
+            "depth": 12,
+            "class": "_UIAnimatingLabel",
+            "frame": [
+              106.5,
+              0.0,
+              147.048,
+              100.242
+            ],
+            "window_rectangle": [
+              106.5,
+              -556.0,
+              147.048,
+              100.242
+            ]
+          },
+          "482": {
+            "parent": 416,
+            "depth": 12,
+            "class": "_UIAnimatingLabel",
+            "frame": [
+              67.0,
+              5.0,
+              226.0,
+              26.5
+            ],
+            "window_rectangle": [
+              67.0,
+              -556.0,
+              226.0,
+              26.5
+            ]
+          },
+          "506": {
+            "parent": 450,
+            "depth": 13,
+            "class": "SBHWidgetContainerView",
+            "frame": [
+              0.0,
+              141.0,
+              141.0,
+              141.0
+            ],
+            "window_rectangle": [
+              34.0,
+              61.0,
+              141.0,
+              141.0
+            ]
+          },
+          "510": {
+            "parent": 454,
+            "depth": 13,
+            "class": "SBHWidgetContainerView",
+            "frame": [
+              0.0,
+              141.0,
+              141.0,
+              141.0
+            ],
+            "window_rectangle": [
+              185.0,
+              61.0,
+              141.0,
+              141.0
+            ]
+          },
+          "558": {
+            "parent": 517,
+            "depth": 14,
+            "class": "CCUILabeledRoundButton",
+            "frame": [
+              12.0,
+              12.0,
+              52.0,
+              52.0
+            ],
+            "window_rectangle": [
+              28.0,
+              130.0,
+              52.0,
+              52.0
+            ]
+          },
+          "559": {
+            "parent": 517,
+            "depth": 14,
+            "class": "CCUILabeledRoundButton",
+            "frame": [
+              76.0,
+              12.0,
+              52.0,
+              52.0
+            ],
+            "window_rectangle": [
+              92.0,
+              130.0,
+              52.0,
+              52.0
+            ]
+          },
+          "560": {
+            "parent": 517,
+            "depth": 14,
+            "class": "CCUILabeledRoundButton",
+            "frame": [
+              12.0,
+              76.0,
+              52.0,
+              52.0
+            ],
+            "window_rectangle": [
+              28.0,
+              194.0,
+              52.0,
+              52.0
+            ]
+          },
+          "561": {
+            "parent": 517,
+            "depth": 14,
+            "class": "CCUILabeledRoundButton",
+            "frame": [
+              76.0,
+              76.0,
+              52.0,
+              52.0
+            ],
+            "window_rectangle": [
+              92.0,
+              194.0,
+              52.0,
+              52.0
+            ]
+          },
+          "562": {
+            "parent": 517,
+            "depth": 14,
+            "class": "CCUILabeledRoundButton",
+            "frame": [
+              12.0,
+              140.0,
+              52.0,
+              52.0
+            ],
+            "window_rectangle": [
+              28.0,
+              258.0,
+              52.0,
+              52.0
+            ]
+          },
+          "564": {
+            "parent": 518,
+            "depth": 14,
+            "class": "UILabel",
+            "frame": [
+              0.0,
+              60.0,
+              328.0,
+              20.5
+            ],
+            "window_rectangle": [
+              16.0,
+              528.825,
+              66.0,
+              13.948
+            ]
+          },
+          "565": {
+            "parent": 518,
+            "depth": 14,
+            "class": "UILabel",
+            "frame": [
+              0.0,
+              85.5,
+              328.0,
+              0.0
+            ],
+            "window_rectangle": [
+              16.0,
+              546.175,
+              66.0,
+              0.0
+            ]
+          },
+          "571": {
+            "parent": 520,
+            "depth": 14,
+            "class": "UILabel",
+            "frame": [
+              0.0,
+              60.0,
+              328.0,
+              20.5
+            ],
+            "window_rectangle": [
+              238.0,
+              454.825,
+              66.0,
+              13.948
+            ]
+          },
+          "572": {
+            "parent": 520,
+            "depth": 14,
+            "class": "UILabel",
+            "frame": [
+              0.0,
+              85.5,
+              328.0,
+              0.0
+            ],
+            "window_rectangle": [
+              238.0,
+              472.175,
+              66.0,
+              0.0
+            ]
+          },
+          "581": {
+            "parent": 524,
+            "depth": 14,
+            "class": "UILabel",
+            "frame": [
+              0.0,
+              60.0,
+              328.0,
+              20.5
+            ],
+            "window_rectangle": [
+              90.0,
+              280.194,
+              66.0,
+              4.849
+            ]
+          },
+          "582": {
+            "parent": 524,
+            "depth": 14,
+            "class": "UILabel",
+            "frame": [
+              0.0,
+              85.5,
+              328.0,
+              0.0
+            ],
+            "window_rectangle": [
+              90.0,
+              286.226,
+              66.0,
+              0.0
+            ]
+          },
+          "619": {
+            "parent": 530,
+            "depth": 14,
+            "class": "UILabel",
+            "frame": [
+              0.0,
+              64.0,
+              95.5,
+              29.0
+            ],
+            "window_rectangle": [
+              186.0,
+              338.0,
+              95.5,
+              29.0
+            ]
+          },
+          "629": {
+            "parent": 536,
+            "depth": 14,
+            "class": "UILabel",
+            "frame": [
+              0.0,
+              60.0,
+              328.0,
+              20.5
+            ],
+            "window_rectangle": [
+              164.0,
+              454.825,
+              66.0,
+              13.948
+            ]
+          },
+          "630": {
+            "parent": 536,
+            "depth": 14,
+            "class": "UILabel",
+            "frame": [
+              0.0,
+              85.5,
+              328.0,
+              0.0
+            ],
+            "window_rectangle": [
+              164.0,
+              472.175,
+              66.0,
+              0.0
+            ]
+          },
+          "636": {
+            "parent": 539,
+            "depth": 15,
+            "class": "CHUISWidgetHostViewControllerView",
+            "frame": [
+              0.0,
+              0.0,
+              141.0,
+              141.0
+            ],
+            "window_rectangle": [
+              34.0,
+              61.0,
+              141.0,
+              141.0
+            ]
+          },
+          "637": {
+            "parent": 545,
+            "depth": 15,
+            "class": "CHUISWidgetHostViewControllerView",
+            "frame": [
+              0.0,
+              0.0,
+              141.0,
+              141.0
+            ],
+            "window_rectangle": [
+              185.0,
+              61.0,
+              141.0,
+              141.0
+            ]
+          },
+          "644": {
+            "parent": 558,
+            "depth": 15,
+            "class": "UILabel",
+            "frame": [
+              26.0,
+              60.0,
+              0.0,
+              0.0
+            ],
+            "window_rectangle": [
+              54.0,
+              190.0,
+              0.0,
+              0.0
+            ]
+          },
+          "645": {
+            "parent": 558,
+            "depth": 15,
+            "class": "UILabel",
+            "frame": [
+              26.0,
+              61.5,
+              0.0,
+              0.0
+            ],
+            "window_rectangle": [
+              54.0,
+              191.5,
+              0.0,
+              0.0
+            ]
+          },
+          "647": {
+            "parent": 559,
+            "depth": 15,
+            "class": "UILabel",
+            "frame": [
+              26.0,
+              60.0,
+              0.0,
+              0.0
+            ],
+            "window_rectangle": [
+              118.0,
+              190.0,
+              0.0,
+              0.0
+            ]
+          },
+          "648": {
+            "parent": 559,
+            "depth": 15,
+            "class": "UILabel",
+            "frame": [
+              26.0,
+              61.5,
+              0.0,
+              0.0
+            ],
+            "window_rectangle": [
+              118.0,
+              191.5,
+              0.0,
+              0.0
+            ]
+          },
+          "650": {
+            "parent": 560,
+            "depth": 15,
+            "class": "UILabel",
+            "frame": [
+              26.0,
+              60.0,
+              0.0,
+              0.0
+            ],
+            "window_rectangle": [
+              54.0,
+              254.0,
+              0.0,
+              0.0
+            ]
+          },
+          "651": {
+            "parent": 560,
+            "depth": 15,
+            "class": "UILabel",
+            "frame": [
+              26.0,
+              61.5,
+              0.0,
+              0.0
+            ],
+            "window_rectangle": [
+              54.0,
+              255.5,
+              0.0,
+              0.0
+            ]
+          },
+          "653": {
+            "parent": 561,
+            "depth": 15,
+            "class": "UILabel",
+            "frame": [
+              26.0,
+              60.0,
+              0.0,
+              0.0
+            ],
+            "window_rectangle": [
+              118.0,
+              254.0,
+              0.0,
+              0.0
+            ]
+          },
+          "654": {
+            "parent": 561,
+            "depth": 15,
+            "class": "UILabel",
+            "frame": [
+              26.0,
+              61.5,
+              0.0,
+              0.0
+            ],
+            "window_rectangle": [
+              118.0,
+              255.5,
+              0.0,
+              0.0
+            ]
+          },
+          "656": {
+            "parent": 562,
+            "depth": 15,
+            "class": "UILabel",
+            "frame": [
+              26.0,
+              60.0,
+              0.0,
+              0.0
+            ],
+            "window_rectangle": [
+              54.0,
+              318.0,
+              0.0,
+              0.0
+            ]
+          },
+          "657": {
+            "parent": 562,
+            "depth": 15,
+            "class": "UILabel",
+            "frame": [
+              26.0,
+              61.5,
+              0.0,
+              0.0
+            ],
+            "window_rectangle": [
+              54.0,
+              319.5,
+              0.0,
+              0.0
+            ]
+          },
+          "665": {
+            "parent": 579,
+            "depth": 15,
+            "class": "UILabel",
+            "frame": [
+              71.0,
+              24.0,
+              57.0,
+              18.0
+            ],
+            "window_rectangle": [
+              87.0,
+              364.0,
+              57.0,
+              18.0
+            ]
+          },
+          "666": {
+            "parent": 579,
+            "depth": 15,
+            "class": "UILabel",
+            "frame": [
+              71.0,
+              24.0,
+              57.0,
+              18.0
+            ],
+            "window_rectangle": [
+              87.0,
+              364.0,
+              57.0,
+              18.0
+            ]
+          },
+          "736": {
+            "parent": 671,
+            "depth": 16,
+            "class": "UILabel",
+            "frame": [
+              24.0,
+              72.5,
+              312.0,
+              25.0
+            ],
+            "window_rectangle": [
+              40.0,
+              463.0,
+              312.0,
+              25.0
+            ]
+          },
+          "737": {
+            "parent": 671,
+            "depth": 16,
+            "class": "UILabel",
+            "frame": [
+              24.0,
+              102.0,
+              312.0,
+              60.0
+            ],
+            "window_rectangle": [
+              40.0,
+              492.5,
+              312.0,
+              60.0
+            ]
+          },
+          "742": {
+            "parent": 680,
+            "depth": 16,
+            "class": "MRUNowPlayingLabelView",
+            "frame": [
+              13.0,
+              0.0,
+              114.0,
+              41.0
+            ],
+            "window_rectangle": [
+              177.0,
+              146.083,
+              114.0,
+              41.0
+            ]
+          },
+          "746": {
+            "parent": 681,
+            "depth": 16,
+            "class": "UILabel",
+            "frame": [
+              0.0,
+              15.5,
+              24.0,
+              13.5
+            ],
+            "window_rectangle": [
+              164.0,
+              202.583,
+              24.0,
+              13.5
+            ]
+          },
+          "747": {
+            "parent": 681,
+            "depth": 16,
+            "class": "UILabel",
+            "frame": [
+              109.0,
+              15.5,
+              31.0,
+              13.5
+            ],
+            "window_rectangle": [
+              273.0,
+              202.583,
+              31.0,
+              13.5
+            ]
+          },
+          "748": {
+            "parent": 681,
+            "depth": 16,
+            "class": "UILabel",
+            "frame": [
+              58.0,
+              15.5,
+              24.5,
+              13.5
+            ],
+            "window_rectangle": [
+              222.0,
+              202.583,
+              24.5,
+              13.5
+            ]
+          },
+          "778": {
+            "parent": 730,
+            "depth": 17,
+            "class": "UILabel",
+            "frame": [
+              68.0,
+              27.0,
+              224.0,
+              20.0
+            ],
+            "window_rectangle": [
+              84.0,
+              624.5,
+              224.0,
+              20.0
+            ]
+          },
+          "783": {
+            "parent": 731,
+            "depth": 17,
+            "class": "UILabel",
+            "frame": [
+              68.0,
+              20.0,
+              224.0,
+              20.0
+            ],
+            "window_rectangle": [
+              84.0,
+              703.5,
+              224.0,
+              20.0
+            ]
+          },
+          "784": {
+            "parent": 731,
+            "depth": 17,
+            "class": "UILabel",
+            "frame": [
+              68.0,
+              39.0,
+              224.0,
+              13.0
+            ],
+            "window_rectangle": [
+              84.0,
+              722.5,
+              224.0,
+              13.0
+            ]
+          },
+          "787": {
+            "parent": 732,
+            "depth": 17,
+            "class": "UILabel",
+            "frame": [
+              68.0,
+              20.0,
+              224.0,
+              20.0
+            ],
+            "window_rectangle": [
+              84.0,
+              789.5,
+              224.0,
+              20.0
+            ]
+          },
+          "788": {
+            "parent": 732,
+            "depth": 17,
+            "class": "UILabel",
+            "frame": [
+              68.0,
+              39.0,
+              224.0,
+              13.0
+            ],
+            "window_rectangle": [
+              84.0,
+              808.5,
+              224.0,
+              13.0
+            ]
+          },
+          "791": {
+            "parent": 733,
+            "depth": 17,
+            "class": "UILabel",
+            "frame": [
+              68.0,
+              20.0,
+              224.0,
+              20.0
+            ],
+            "window_rectangle": [
+              84.0,
+              875.5,
+              224.0,
+              20.0
+            ]
+          },
+          "792": {
+            "parent": 733,
+            "depth": 17,
+            "class": "UILabel",
+            "frame": [
+              68.0,
+              39.0,
+              224.0,
+              13.0
+            ],
+            "window_rectangle": [
+              84.0,
+              894.5,
+              224.0,
+              13.0
+            ]
+          },
+          "852": {
+            "parent": 801,
+            "depth": 18,
+            "class": "MPRouteLabel",
+            "frame": [
+              0.0,
+              0.0,
+              114.0,
+              0.0
+            ],
+            "window_rectangle": [
+              177.0,
+              146.083,
+              114.0,
+              0.0
+            ]
+          },
+          "853": {
+            "parent": 801,
+            "depth": 18,
+            "class": "MRUMarqueeLabel",
+            "frame": [
+              0.0,
+              0.0,
+              114.0,
+              20.5
+            ],
+            "window_rectangle": [
+              177.0,
+              146.083,
+              114.0,
+              20.5
+            ]
+          },
+          "854": {
+            "parent": 801,
+            "depth": 18,
+            "class": "MRUMarqueeLabel",
+            "frame": [
+              0.0,
+              20.5,
+              114.0,
+              20.5
+            ],
+            "window_rectangle": [
+              177.0,
+              166.583,
+              114.0,
+              20.5
+            ]
+          },
+          "855": {
+            "parent": 801,
+            "depth": 18,
+            "class": "MRUMarqueeLabel",
+            "frame": [
+              0.0,
+              0.0,
+              114.0,
+              20.5
+            ],
+            "window_rectangle": [
+              177.0,
+              146.083,
+              114.0,
+              20.5
+            ]
+          },
+          "873": {
+            "parent": 843,
+            "depth": 19,
+            "class": "UILabel",
+            "frame": [
+              -16.0,
+              16.0,
+              32.0,
+              17.9
+            ],
+            "window_rectangle": [
+              0.0,
+              613.5,
+              32.0,
+              17.9
+            ]
+          },
+          "878": {
+            "parent": 851,
+            "depth": 19,
+            "class": "MRUNowPlayingLabelView",
+            "frame": [
+              0.0,
+              0.0,
+              208.0,
+              41.0
+            ],
+            "window_rectangle": [
+              166.0,
+              168.0,
+              208.0,
+              41.0
+            ]
+          },
+          "881": {
+            "parent": 852,
+            "depth": 19,
+            "class": "BSUIEmojiLabelView",
+            "frame": [
+              0.0,
+              0.0,
+              114.0,
+              0.0
+            ],
+            "window_rectangle": [
+              177.0,
+              146.083,
+              114.0,
+              0.0
+            ]
+          },
+          "882": {
+            "parent": 852,
+            "depth": 19,
+            "class": "UILabel",
+            "frame": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "window_rectangle": [
+              177.0,
+              146.083,
+              0.0,
+              0.0
+            ]
+          },
+          "897": {
+            "parent": 881,
+            "depth": 20,
+            "class": "UILabel",
+            "frame": [
+              0.0,
+              0.0,
+              114.0,
+              0.0
+            ],
+            "window_rectangle": [
+              177.0,
+              146.083,
+              114.0,
+              0.0
+            ]
+          },
+          "903": {
+            "parent": 890,
+            "depth": 21,
+            "class": "MPRouteLabel",
+            "frame": [
+              0.0,
+              10.25,
+              0.0,
+              0.0
+            ],
+            "window_rectangle": [
+              166.0,
+              178.25,
+              0.0,
+              0.0
+            ]
+          },
+          "904": {
+            "parent": 890,
+            "depth": 21,
+            "class": "MRUMarqueeLabel",
+            "frame": [
+              0.0,
+              10.25,
+              208.0,
+              20.5
+            ],
+            "window_rectangle": [
+              166.0,
+              178.25,
+              208.0,
+              20.5
+            ]
+          },
+          "905": {
+            "parent": 890,
+            "depth": 21,
+            "class": "MRUMarqueeLabel",
+            "frame": [
+              0.0,
+              10.25,
+              208.0,
+              20.5
+            ],
+            "window_rectangle": [
+              166.0,
+              178.25,
+              208.0,
+              20.5
+            ]
+          },
+          "906": {
+            "parent": 890,
+            "depth": 21,
+            "class": "MRUMarqueeLabel",
+            "frame": [
+              0.0,
+              10.25,
+              208.0,
+              20.5
+            ],
+            "window_rectangle": [
+              166.0,
+              178.25,
+              208.0,
+              20.5
+            ]
+          },
+          "907": {
+            "parent": 898,
+            "depth": 21,
+            "class": "BSUIEmojiLabelView",
+            "frame": [
+              57.0,
+              0.0,
+              0.0,
+              20.5
+            ],
+            "window_rectangle": [
+              234.0,
+              146.083,
+              0.0,
+              20.5
+            ]
+          },
+          "908": {
+            "parent": 899,
+            "depth": 21,
+            "class": "BSUIEmojiLabelView",
+            "frame": [
+              57.0,
+              0.0,
+              0.0,
+              20.5
+            ],
+            "window_rectangle": [
+              234.0,
+              166.583,
+              0.0,
+              20.5
+            ]
+          },
+          "909": {
+            "parent": 900,
+            "depth": 21,
+            "class": "BSUIEmojiLabelView",
+            "frame": [
+              18.0,
+              0.0,
+              78.5,
+              20.5
+            ],
+            "window_rectangle": [
+              195.0,
+              146.083,
+              78.5,
+              20.5
+            ]
+          },
+          "910": {
+            "parent": 903,
+            "depth": 22,
+            "class": "BSUIEmojiLabelView",
+            "frame": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "window_rectangle": [
+              166.0,
+              178.25,
+              0.0,
+              0.0
+            ]
+          },
+          "911": {
+            "parent": 903,
+            "depth": 22,
+            "class": "UILabel",
+            "frame": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "window_rectangle": [
+              166.0,
+              178.25,
+              0.0,
+              0.0
+            ]
+          },
+          "915": {
+            "parent": 907,
+            "depth": 22,
+            "class": "UILabel",
+            "frame": [
+              0.0,
+              0.0,
+              0.0,
+              20.5
+            ],
+            "window_rectangle": [
+              234.0,
+              146.083,
+              0.0,
+              20.5
+            ]
+          },
+          "916": {
+            "parent": 908,
+            "depth": 22,
+            "class": "UILabel",
+            "frame": [
+              0.0,
+              0.0,
+              0.0,
+              20.5
+            ],
+            "window_rectangle": [
+              234.0,
+              166.583,
+              0.0,
+              20.5
+            ]
+          },
+          "917": {
+            "parent": 909,
+            "depth": 22,
+            "class": "UILabel",
+            "frame": [
+              0.0,
+              0.0,
+              78.5,
+              20.5
+            ],
+            "window_rectangle": [
+              195.0,
+              146.083,
+              78.5,
+              20.5
+            ]
+          },
+          "918": {
+            "parent": 910,
+            "depth": 23,
+            "class": "UILabel",
+            "frame": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "window_rectangle": [
+              166.0,
+              178.25,
+              0.0,
+              0.0
+            ]
+          },
+          "922": {
+            "parent": 919,
+            "depth": 24,
+            "class": "BSUIEmojiLabelView",
+            "frame": [
+              0.0,
+              0.0,
+              0.0,
+              20.5
+            ],
+            "window_rectangle": [
+              166.0,
+              178.25,
+              0.0,
+              20.5
+            ]
+          },
+          "923": {
+            "parent": 920,
+            "depth": 24,
+            "class": "BSUIEmojiLabelView",
+            "frame": [
+              0.0,
+              0.0,
+              0.0,
+              20.5
+            ],
+            "window_rectangle": [
+              166.0,
+              178.25,
+              0.0,
+              20.5
+            ]
+          },
+          "924": {
+            "parent": 921,
+            "depth": 24,
+            "class": "BSUIEmojiLabelView",
+            "frame": [
+              0.0,
+              0.0,
+              78.5,
+              20.5
+            ],
+            "window_rectangle": [
+              166.0,
+              178.25,
+              78.5,
+              20.5
+            ]
+          },
+          "925": {
+            "parent": 922,
+            "depth": 25,
+            "class": "UILabel",
+            "frame": [
+              0.0,
+              0.0,
+              0.0,
+              20.5
+            ],
+            "window_rectangle": [
+              166.0,
+              178.25,
+              0.0,
+              20.5
+            ]
+          },
+          "926": {
+            "parent": 923,
+            "depth": 25,
+            "class": "UILabel",
+            "frame": [
+              0.0,
+              0.0,
+              0.0,
+              20.5
+            ],
+            "window_rectangle": [
+              166.0,
+              178.25,
+              0.0,
+              20.5
+            ]
+          },
+          "927": {
+            "parent": 924,
+            "depth": 25,
+            "class": "UILabel",
+            "frame": [
+              0.0,
+              0.0,
+              78.5,
+              20.5
+            ],
+            "window_rectangle": [
+              166.0,
+              178.25,
+              78.5,
+              20.5
+            ]
+          }
+        },
+        "grids": {
+          "178": {
+            "rows": 5,
+            "columns": 4,
+            "spacing": [
+              -123.0,
+              -123.0
+            ],
+            "list_size": [
+              320.0,
+              693.0
+            ],
+            "valid": true,
+            "portrait_insets": [
+              57.0,
+              19.0,
+              155.0,
+              19.0
+            ]
+          },
+          "179": {
+            "rows": 5,
+            "columns": 4,
+            "spacing": [
+              -123.0,
+              -123.0
+            ],
+            "list_size": [
+              320.0,
+              693.0
+            ],
+            "valid": true,
+            "portrait_insets": [
+              57.0,
+              19.0,
+              155.0,
+              19.0
+            ]
+          },
+          "183": {
+            "rows": 1,
+            "columns": 4,
+            "spacing": [
+              19.333,
+              19.333
+            ],
+            "list_size": [
+              320.0,
+              693.0
+            ],
+            "valid": true,
+            "portrait_insets": [
+              0.0,
+              19.0,
+              0.0,
+              19.0
+            ]
+          }
+        },
+        "refusals": [],
+        "grid_fields_fully_observed": true,
+        "models": {
+          "178": {
+            "count": 14,
+            "icons": [
+              {
+                "class": "SBWidgetIcon",
+                "application": false,
+                "identifier": "-"
+              },
+              {
+                "class": "SBWidgetIcon",
+                "application": false,
+                "identifier": "-"
+              },
+              {
+                "class": "SBApplicationIcon",
+                "application": true,
+                "identifier": "com.apple.facetime"
+              },
+              {
+                "class": "SBHCalendarApplicationIcon",
+                "application": true,
+                "identifier": "com.apple.mobilecal"
+              },
+              {
+                "class": "SBApplicationIcon",
+                "application": true,
+                "identifier": "com.apple.mobileslideshow"
+              },
+              {
+                "class": "SBApplicationIcon",
+                "application": true,
+                "identifier": "com.apple.mobilemail"
+              },
+              {
+                "class": "SBApplicationIcon",
+                "application": true,
+                "identifier": "com.apple.mobilenotes"
+              },
+              {
+                "class": "SBApplicationIcon",
+                "application": true,
+                "identifier": "com.apple.reminders"
+              },
+              {
+                "class": "SBHClockApplicationIcon",
+                "application": true,
+                "identifier": "com.apple.mobiletimer"
+              },
+              {
+                "class": "SBApplicationIcon",
+                "application": true,
+                "identifier": "com.apple.news"
+              },
+              {
+                "class": "SBApplicationIcon",
+                "application": true,
+                "identifier": "com.apple.tv"
+              },
+              {
+                "class": "SBApplicationIcon",
+                "application": true,
+                "identifier": "com.apple.podcasts"
+              },
+              {
+                "class": "SBApplicationIcon",
+                "application": true,
+                "identifier": "com.apple.AppStore"
+              },
+              {
+                "class": "SBApplicationIcon",
+                "application": true,
+                "identifier": "com.apple.Maps"
+              }
+            ]
+          },
+          "179": {
+            "count": 18,
+            "icons": [
+              {
+                "class": "SBApplicationIcon",
+                "application": true,
+                "identifier": "com.apple.weather"
+              },
+              {
+                "class": "SBApplicationIcon",
+                "application": true,
+                "identifier": "com.apple.stocks"
+              },
+              {
+                "class": "SBApplicationIcon",
+                "application": true,
+                "identifier": "com.apple.findmy"
+              },
+              {
+                "class": "SBApplicationIcon",
+                "application": true,
+                "identifier": "com.apple.Home"
+              },
+              {
+                "class": "SBApplicationIcon",
+                "application": true,
+                "identifier": "com.apple.iBooks"
+              },
+              {
+                "class": "SBApplicationIcon",
+                "application": true,
+                "identifier": "com.apple.MobileStore"
+              },
+              {
+                "class": "SBApplicationIcon",
+                "application": true,
+                "identifier": "com.apple.Fitness"
+              },
+              {
+                "class": "SBApplicationIcon",
+                "application": true,
+                "identifier": "com.apple.Bridge"
+              },
+              {
+                "class": "SBApplicationIcon",
+                "application": true,
+                "identifier": "com.apple.MobileAddressBook"
+              },
+              {
+                "class": "SBApplicationIcon",
+                "application": true,
+                "identifier": "com.apple.Translate"
+              },
+              {
+                "class": "SBApplicationIcon",
+                "application": true,
+                "identifier": "com.apple.DocumentsApp"
+              },
+              {
+                "class": "SBApplicationIcon",
+                "application": true,
+                "identifier": "com.apple.shortcuts"
+              },
+              {
+                "class": "SBApplicationIcon",
+                "application": true,
+                "identifier": "com.apple.Passbook"
+              },
+              {
+                "class": "SBApplicationIcon",
+                "application": true,
+                "identifier": "com.apple.Preferences"
+              },
+              {
+                "class": "SBApplicationIcon",
+                "application": true,
+                "identifier": "com.apple.Health"
+              },
+              {
+                "class": "SBFolderIcon",
+                "application": false,
+                "identifier": "-"
+              },
+              {
+                "class": "SBApplicationIcon",
+                "application": true,
+                "identifier": "com.apple.freeform"
+              },
+              {
+                "class": "SBApplicationIcon",
+                "application": true,
+                "identifier": "com.apple.tips"
+              }
+            ]
+          }
+        },
+        "model_summary": {
+          "pages": 2,
+          "icons": 32,
+          "applications": 29
+        },
+        "window_coordinates_from_original_convertRect_toView_nil": true,
+        "original_UI_layout_success_or_optical_FPS_NOT_inferred": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-model-r18-gpu-live-20261122",
+        "raw_sha256": "310c50cee99d9ece414fd40194dfce49f4ec8bd947cd4bd3bfd50f6f20651463",
+        "raw_bytes": 3522875,
+        "image_sha256": "927ec82c76df9d8d9658735a05ccd0c65b3f458f4b1a56cc8f41274d0fa43fb6",
+        "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+        "geocompat_build_binding": {
+          "revision": 2,
+          "source_files": {
+            "gpu/geocompat/geocompat.mm": "a82de041167a8788c9c6c0bb6c54dce41e25d82506b8ae2e3878931348979427",
+            "gpu/geocompat/test_adapter.mm": "051c6b9bf5ed284602a02f2b7c021270f339d3ce9d849aa9b535d021c6ddaa0a",
+            "tools/build/build_geocompat_trial.py": "d913e02335e728ec73d159bb51923fdd12381edaae1b348f11fa4f5048a80299",
+            "gpu/geocompat/log_write.c": "e55ba6bfffde56fdc1a8fda20b0b88aa70a74b90af1bd5e6208c4cb8b270cbad",
+            "gpu/sweetgl/LogWriteAll.h": "caa86a1e6763dfc8039466aa432176d2d90fc4a55db60efeb02eb33c92bc0f88"
+          },
+          "library_sha256": "32fc1868932df48c8350d449963e11564d68d5e043de05a79012f228e19d9a13",
+          "library_bytes": 89776,
+          "host_ASan_UBSan_real_four_argument_provider_dispatch_passed": true,
+          "exact_native360x640_720x1280_scale2_flat_provider": true,
+          "opaque_visual_provider_info_forwarded": true,
+          "valid_other_screen_providers_preserved": true,
+          "read_only_window_safe_area_ABI_checked": true,
+          "read_only_layout_observer_revision": 2,
+          "host_ASan_UBSan_bounded_layout_and_CGRect_conversion_passed": true,
+          "original_frame_grid_values_preserved": false,
+          "read_only_layout_observer_preserves_current_values": true,
+          "layout_snapshot_once_after_constructor_seconds": 120,
+          "host_ASan_UBSan_shared_log_writer_EINTR_partial_errno_passed": true,
+          "original_icon_model_identity_ABI_host_passed": true,
+          "native_root_grid_density_revision": 1,
+          "native_root_grid_rows": 5,
+          "original_grid_factory_cache_ABI_and_setter_host_passed": true,
+          "original_icon_widget_font_and_insets_preserved": true,
+          "other_screen_or_nonroot_grid_configs_preserved": true,
+          "new_device_RAM_CPU_GLES_UI_NOT_verified": true,
+          "device_operations": 0
+        },
+        "original_controller_result": "PASS"
+      },
+      "original_profile_verifier_rejection": {
+        "result": "REVISE",
+        "reasons": [
+          "ORIGINAL_APPLICATION_MODEL_IDENTITIES_CHANGED",
+          "ORIGINAL_WIDGET_MODEL_COUNT_CHANGED"
+        ],
+        "token": "4b02249c29856d10",
+        "raw_sha256": "310c50cee99d9ece414fd40194dfce49f4ec8bd947cd4bd3bfd50f6f20651463",
+        "reference_token": "226d56831b80e600",
+        "reference_raw_sha256": "673252a2a97ca42cf56c5a362fd60f90705f5924899fbf5ad7233cc6d43c23df",
+        "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+        "original_current_controller_result": "PASS",
+        "root_pages": [
+          {
+            "node": "178",
+            "rectangle": [
+              0.0,
+              0.0,
+              360.0,
+              640.0
+            ],
+            "rows": 5,
+            "regular_icons": 12,
+            "widgets": 2
+          },
+          {
+            "node": "179",
+            "rectangle": [
+              360.0,
+              0.0,
+              360.0,
+              640.0
+            ],
+            "rows": 5,
+            "regular_icons": 0,
+            "widgets": 0
+          }
+        ],
+        "current_regular_view_count": 12,
+        "original_regular_view_count": 15,
+        "current_widget_view_count": 2,
+        "original_widget_view_count": 2,
+        "original_label_clearances": [
+          {
+            "widget_node": "221",
+            "label_node": "327",
+            "next_icon_node": "223",
+            "label_rectangle": [
+              72.5,
+              204.5,
+              65.0,
+              21.0
+            ],
+            "next_icon_rectangle": [
+              19.0,
+              243.0,
+              56.0,
+              70.0
+            ],
+            "clearance_points": 17.5
+          },
+          {
+            "widget_node": "222",
+            "label_node": "329",
+            "next_icon_node": "225",
+            "label_rectangle": [
+              222.0,
+              204.5,
+              68.0,
+              21.0
+            ],
+            "next_icon_rectangle": [
+              196.333,
+              243.0,
+              56.0,
+              70.0
+            ],
+            "clearance_points": 17.5
+          }
+        ],
+        "native_points": [
+          360,
+          640
+        ],
+        "native_pixels": [
+          720,
+          1280
+        ],
+        "original_application_model_identity_retention_verified": false,
+        "original_application_identity_retention_NOT_verified": true,
+        "original_model_application_count_by_page": {
+          "178": 12,
+          "179": 17
+        },
+        "application_launch_functionality_NOT_verified": true,
+        "physical_panel_optical_FPS_wallpaper_peripherals_NOT_inferred": true,
+        "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-model-r18-gpu-live-20261122",
+        "reference_source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-layout-r16-gpu-live-20261122",
+        "original_scanout": {
+          "protocol": 1,
+          "frames": [
+            {
+              "id": 1,
+              "token": "4b02249c29856d10",
+              "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+              "image_sha256": "927ec82c76df9d8d9658735a05ccd0c65b3f458f4b1a56cc8f41274d0fa43fb6",
+              "binding": {
+                "protocol": 1,
+                "width": 720,
+                "height": 1280,
+                "stride": 2160,
+                "format": "BGR888",
+                "codec": "PRLE1",
+                "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+                "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+                "runtime_source_sha256": "a1f41eeb87b7cf70ea751884ee38d758191f3cc0a00d697acc363fbba3cd5f63"
+              },
+              "begin": {
+                "token": "4b02249c29856d10",
+                "id": "1",
+                "width": "720",
+                "height": "1280",
+                "stride": "2160",
+                "format": "BGR888",
+                "bytes": "2764800",
+                "codec": "PRLE1",
+                "encoded": "1021139",
+                "raw_fnv": "8d62fa67a31c741d",
+                "enc_crc": "479e608a",
+                "vsync": "7639",
+                "timestamp": "8782220124",
+                "copy_ticks": "4765740",
+                "power_off": "0",
+                "source_checked": "1",
+                "source_match": "1"
+              },
+              "scan": {
+                "token": "4b02249c29856d10",
+                "id": "1",
+                "pa": "0x9d400000",
+                "map_pa": "0x9d400000",
+                "map_bytes": "2764800",
+                "size": "0x50002d0",
+                "img": "0x50002d0",
+                "xy": "0",
+                "out": "0x50002d0",
+                "outxy": "0",
+                "fmt": "0x2243f",
+                "unpack": "0x20001",
+                "op": "0x80000000",
+                "qop": "0",
+                "ctl": "0x20020",
+                "start": "0",
+                "before_after": "1"
+              },
+              "blocks": 7978,
+              "raw_file": "scanout-00000001.bgr",
+              "png_file": "scanout-00000001.png",
+              "raw_sha256": "7f663b3f94af2dacdf5f23debf9763866a60496b61dd862c9fa413bfc513fb35",
+              "png_sha256": "c8d709f3c5499d94be09fb473adf8cab3dbffb9e28ac19895615e30548389116",
+              "pixel_values_preserved": true,
+              "verified": true,
+              "optical_panel_verified": false
+            }
+          ],
+          "verified": true,
+          "optical_panel_verified": false,
+          "current_boot_source_and_payload_checked": true,
+          "format": "BGR888",
+          "width": 720,
+          "height": 1280
+        },
+        "geocompat_build_binding": {
+          "revision": 2,
+          "source_files": {
+            "gpu/geocompat/geocompat.mm": "a82de041167a8788c9c6c0bb6c54dce41e25d82506b8ae2e3878931348979427",
+            "gpu/geocompat/test_adapter.mm": "051c6b9bf5ed284602a02f2b7c021270f339d3ce9d849aa9b535d021c6ddaa0a",
+            "tools/build/build_geocompat_trial.py": "d913e02335e728ec73d159bb51923fdd12381edaae1b348f11fa4f5048a80299",
+            "gpu/geocompat/log_write.c": "e55ba6bfffde56fdc1a8fda20b0b88aa70a74b90af1bd5e6208c4cb8b270cbad",
+            "gpu/sweetgl/LogWriteAll.h": "caa86a1e6763dfc8039466aa432176d2d90fc4a55db60efeb02eb33c92bc0f88"
+          },
+          "library_sha256": "32fc1868932df48c8350d449963e11564d68d5e043de05a79012f228e19d9a13",
+          "library_bytes": 89776,
+          "host_ASan_UBSan_real_four_argument_provider_dispatch_passed": true,
+          "exact_native360x640_720x1280_scale2_flat_provider": true,
+          "opaque_visual_provider_info_forwarded": true,
+          "valid_other_screen_providers_preserved": true,
+          "read_only_window_safe_area_ABI_checked": true,
+          "read_only_layout_observer_revision": 2,
+          "host_ASan_UBSan_bounded_layout_and_CGRect_conversion_passed": true,
+          "original_frame_grid_values_preserved": false,
+          "read_only_layout_observer_preserves_current_values": true,
+          "layout_snapshot_once_after_constructor_seconds": 120,
+          "host_ASan_UBSan_shared_log_writer_EINTR_partial_errno_passed": true,
+          "original_icon_model_identity_ABI_host_passed": true,
+          "native_root_grid_density_revision": 1,
+          "native_root_grid_rows": 5,
+          "original_grid_factory_cache_ABI_and_setter_host_passed": true,
+          "original_icon_widget_font_and_insets_preserved": true,
+          "other_screen_or_nonroot_grid_configs_preserved": true,
+          "new_device_RAM_CPU_GLES_UI_NOT_verified": true,
+          "device_operations": 0
+        },
+        "independent_result_preserves_original_controller": true,
+        "device_operations": 0
+      }
+    }
+  ],
+  "layout_capture_result": "PASS",
+  "native_widget_label_clearance_result": "PASS",
+  "original_application_retention_result": "REFERENCE_INCOMPLETE",
+  "overall_original_UI_result": "REVISE",
+  "original_layout_view_rect_pairs": 158,
+  "original_model_root_pages": 2,
+  "original_model_root_icons": 32,
+  "original_model_root_application_ids": 29,
+  "original_model_widgets": 2,
+  "original_model_folders": 1,
+  "original_widget_label_clearance_points": [
+    17.5,
+    17.5
+  ],
+  "original_primary_page_app_views": 12,
+  "original_second_page_app_views": 0,
+  "observed_root_model_first_page_apps": 12,
+  "observed_root_model_second_page_apps": 17,
+  "original_reference_15_apps_were_primary_page_only": true,
+  "original_application_loss_NOT_inferred_from_reference_mismatch": true,
+  "folder_children_and_complete_original_baseline_NOT_verified": true,
+  "original_R17_missing_pair_NOT_reclassified": true,
+  "new_revision2_capture_complete_without_record_repair": true,
+  "exact_kernel_GLES_Metal_bytes_unchanged": true,
+  "wallpaper_black": true,
+  "optical_FPS_sleep_audio_wireless_NOT_complete": true,
+  "next_required_work": [
+    "capture qualified original full app baseline including folder/dock models",
+    "verify all baseline identities under fitted native profile",
+    "continue original wallpaper policy and peripherals"
+  ],
+  "final_device": "BH905ND69G returned healthy fastboot; workers exited",
+  "no_in_flight_boot": true
+}
