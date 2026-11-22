@@ -212,7 +212,7 @@ def inspect(sparse, symbols, tool, output):
                 raise ValueError('Incomplete original ABI inventory: ' + owner + ': ' + str(selectors - seen))
         references = []
         for path in fs.files:
-            if '/Applications/' not in path or not path.endswith('.app/Info.plist'):
+            if not path.endswith('.app/Info.plist') or not path.startswith(('/Applications/', '/System/Library/AppPlaceholders/', '/private/var/staged_system_apps/')):
                 continue
             fork = fs.open(path)
             if not 0 < fork.size < 1 << 20:
