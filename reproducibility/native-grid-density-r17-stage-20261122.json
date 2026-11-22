@@ -1,0 +1,228 @@
+{
+  "date": "2026-11-22",
+  "source_commit": "cf42104a699faa6f43635854eb15c1dcd45adee9",
+  "profile": "xz1c-native-2x",
+  "runs": [
+    {
+      "stage": "cpu",
+      "original_controller_result": "PASS",
+      "reason": "GOALS_STABLE",
+      "token": "ed21f91a773875bc",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-native-density-r17-cpu-live-20261122",
+      "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+      "image_sha256": "c278ec8b173705ce93b7d6d2bad4848f3212bed81d060d88bc594af1b336b1a9",
+      "raw_sha256": "fa5ce9a1233fbf1fe322c6f20a72fac9edfa21e380d71f3370c9ef3ab16fde44",
+      "raw_bytes": 347749,
+      "original_result_sha256": "cb33c564164ab055f0549d9799002f0443d7ec4448ebe6bd754c481efc29a723",
+      "actual_evidence_sha256": "93d8bfd7062983ee74b6351e0fa8fb58ac4c34dfe55fc64f91a209d449a1d26e",
+      "reset_to_fastboot_seconds": 38.968000000109896,
+      "return_evidence": {
+        "complete": true,
+        "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+        "current_token": "ed21f91a773875bc",
+        "checkpoint_bytes": 344547,
+        "log_bytes": 347749,
+        "log_sha256": "fa5ce9a1233fbf1fe322c6f20a72fac9edfa21e380d71f3370c9ef3ab16fde44",
+        "require_final_drain": true,
+        "marker_positions": [
+          3,
+          5,
+          59,
+          61
+        ],
+        "final_reset_marker_seen": true
+      },
+      "serial_capture": {
+        "revision": 1,
+        "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+        "event_log_sha256": "54036b0d0ca9515282ee85247e864d7ff33ff4defcd354f9fc1714f5e29e6134",
+        "raw_sha256": "fa5ce9a1233fbf1fe322c6f20a72fac9edfa21e380d71f3370c9ef3ab16fde44",
+        "serial_port": "COM17",
+        "dtr_low_through_open": true,
+        "raw_log_before_stream": true,
+        "one_continuous_current_boot_stream": true,
+        "replay_commands": 0,
+        "old_failure_not_reclassified": true
+      },
+      "ram_library_binding": {
+        "library_sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+        "library_bytes": 14801120,
+        "library_fnv64": "9929cfe79edd5bce",
+        "blob_sha256": "816b6f5bae84cd11597326a636047ab3468ba50d69fda8788c2d6074ec069734",
+        "raw_sha256": "fef73d9f24295336fd03bda1672cc1e66fe2fff2fc51575aea06b10c6b0f0194",
+        "manifest_sha256": "8d486da4c6fba15cdb20677df37aae777f94e3c24347c1465a1a043edea03a96"
+      }
+    },
+    {
+      "stage": "gpu",
+      "original_controller_result": "PASS",
+      "reason": "GOALS_STABLE",
+      "token": "217bef7d784b1b5d",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-native-density-r17-gpu-live-20261122",
+      "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+      "image_sha256": "037b216aedc7020de73af601e614f8b4da2de8f80a70c0f4fcedda12bab2c9f8",
+      "raw_sha256": "2575083c0fa6b7aa0ebb656d9ab7153e6228eed1930c436d41f0dae06039c65d",
+      "raw_bytes": 3496300,
+      "original_result_sha256": "df0e8f0d4a5ef5fd9bfc30dec115e218894e1564f0374c824032cd15a3d3877f",
+      "actual_evidence_sha256": "f407b8449651d97d96bcf153f008d27809b8c685dc165244c53574673d8e9c31",
+      "reset_to_fastboot_seconds": 39.57899999991059,
+      "return_evidence": {
+        "complete": true,
+        "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+        "current_token": "217bef7d784b1b5d",
+        "checkpoint_bytes": 3486137,
+        "log_bytes": 3496300,
+        "log_sha256": "2575083c0fa6b7aa0ebb656d9ab7153e6228eed1930c436d41f0dae06039c65d",
+        "require_final_drain": true,
+        "marker_positions": [
+          4,
+          101,
+          143,
+          145
+        ],
+        "final_reset_marker_seen": true
+      },
+      "serial_capture": {
+        "revision": 1,
+        "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+        "event_log_sha256": "7aa851ff1f0a4f51efff2d73174923af466e15f899cd7b83d0c28830aa8490fc",
+        "raw_sha256": "2575083c0fa6b7aa0ebb656d9ab7153e6228eed1930c436d41f0dae06039c65d",
+        "serial_port": "COM17",
+        "dtr_low_through_open": true,
+        "raw_log_before_stream": true,
+        "one_continuous_current_boot_stream": true,
+        "replay_commands": 0,
+        "old_failure_not_reclassified": true
+      },
+      "ram_library_binding": {
+        "library_sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+        "library_bytes": 14801120,
+        "library_fnv64": "9929cfe79edd5bce",
+        "blob_sha256": "816b6f5bae84cd11597326a636047ab3468ba50d69fda8788c2d6074ec069734",
+        "raw_sha256": "fef73d9f24295336fd03bda1672cc1e66fe2fff2fc51575aea06b10c6b0f0194",
+        "manifest_sha256": "8d486da4c6fba15cdb20677df37aae777f94e3c24347c1465a1a043edea03a96"
+      },
+      "source_checked_scanout": {
+        "protocol": 1,
+        "frames": [
+          {
+            "id": 1,
+            "token": "217bef7d784b1b5d",
+            "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+            "image_sha256": "037b216aedc7020de73af601e614f8b4da2de8f80a70c0f4fcedda12bab2c9f8",
+            "binding": {
+              "protocol": 1,
+              "width": 720,
+              "height": 1280,
+              "stride": 2160,
+              "format": "BGR888",
+              "codec": "PRLE1",
+              "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+              "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+              "runtime_source_sha256": "a1f41eeb87b7cf70ea751884ee38d758191f3cc0a00d697acc363fbba3cd5f63"
+            },
+            "begin": {
+              "token": "217bef7d784b1b5d",
+              "id": "1",
+              "width": "720",
+              "height": "1280",
+              "stride": "2160",
+              "format": "BGR888",
+              "bytes": "2764800",
+              "codec": "PRLE1",
+              "encoded": "1021283",
+              "raw_fnv": "86e0172d3bb0ade1",
+              "enc_crc": "b3a093fd",
+              "vsync": "7654",
+              "timestamp": "9827626609",
+              "copy_ticks": "7796935",
+              "power_off": "0",
+              "source_checked": "1",
+              "source_match": "1"
+            },
+            "scan": {
+              "token": "217bef7d784b1b5d",
+              "id": "1",
+              "pa": "0x9d400000",
+              "map_pa": "0x9d400000",
+              "map_bytes": "2764800",
+              "size": "0x50002d0",
+              "img": "0x50002d0",
+              "xy": "0",
+              "out": "0x50002d0",
+              "outxy": "0",
+              "fmt": "0x2243f",
+              "unpack": "0x20001",
+              "op": "0x80000000",
+              "qop": "0",
+              "ctl": "0x20020",
+              "start": "0",
+              "before_after": "1"
+            },
+            "blocks": 7979,
+            "raw_file": "scanout-00000001.bgr",
+            "png_file": "scanout-00000001.png",
+            "raw_sha256": "7f80189942b42fe393599e4d6cf4a72599082657856d6ab2938b5eafc7f23283",
+            "png_sha256": "e5d4c9c2b9ea13fd8397fd65a28409b3fd225645e06ca5a1fb77536c6ce8aba4",
+            "pixel_values_preserved": true,
+            "verified": true,
+            "optical_panel_verified": false
+          }
+        ],
+        "verified": true,
+        "optical_panel_verified": false,
+        "current_boot_source_and_payload_checked": true,
+        "format": "BGR888",
+        "width": 720,
+        "height": 1280
+      },
+      "single_swipe_actual": {
+        "command": "swipe",
+        "max_commands": 1,
+        "after_seconds": 120,
+        "requires_current_LIVE": true,
+        "requires_F12_ready": true,
+        "screen_after_seconds": 150
+      },
+      "original_geogrid_rows_setter_records": [
+        "|SpringBoard| SWEET GEOGRID INSTALL selector=makeLayoutForIconLocation: owned=1 ABI=@24@0:8@16",
+        "|SpringBoard| SWEET GEOGRID INSTALL selector=layoutForIconLocation: owned=1 ABI=@24@0:8@16",
+        "|SpringBoard| SWEET GEOGRID APPLY native=360x640 old=6 rows=5 cols=4 image=56x56 spacing=37.000 bbox_gap=17.500 original_setter=1",
+        "|SpringBoard| SWEET GEOGRID APPLY native=360x640 old=6 rows=5 cols=4 image=56x56 spacing=37.000 bbox_gap=17.500 original_setter=1"
+      ],
+      "original_grid_records": [
+        "|SpringBoard| SWEET GLAYOUT GRID n=178 rows=5 cols=4 spacing=-123.000,-123.000 list=320.000,693.000 valid=1",
+        "|SpringBoard| SWEET GLAYOUT GRID n=179 rows=5 cols=4 spacing=-123.000,-123.000 list=320.000,693.000 valid=1",
+        "|SpringBoard| SWEET GLAYOUT GRID n=183 rows=1 cols=4 spacing=19.333,19.333 list=320.000,693.000 valid=1",
+        "|SpringBoard| SWEET GLAYOUT END rev=1 visited=927 recorded=158 grids=3 refused=0 truncated=0"
+      ],
+      "VIEW_records": 157,
+      "RECT_records": 158,
+      "missing_VIEW_nodes": [
+        653
+      ],
+      "missing_original_record_NOT_reconstructed": true,
+      "decoder_rejection": "ValueError: Missing original view/rectangle pair",
+      "rejection_happened_during_original_150s_SCREEN_DATA_stream": true,
+      "visual_observed_native_five_row_home_label_gap": true,
+      "visual_observed_no_rdar_banner": true,
+      "visual_observed_black_wallpaper": true,
+      "application_model_identity_and_full_layout_NOT_verified": true,
+      "physical_optical_FPS_NOT_verified": true
+    }
+  ],
+  "UI_result": "REVISE",
+  "UI_reason": "ORIGINAL_LAYOUT_VIEW_RECT_PAIR_MISSING",
+  "GLES9_independently_verified": true,
+  "native_geometry_UIScreen_MG_profile_unchanged": true,
+  "exact_kernel_GLES_Metal_bytes_unchanged": true,
+  "failed_UI_capture_bundle_NOT_to_be_replayed": true,
+  "next_required_work": [
+    "bind earlier layout capture outside SCREEN_DATA streaming",
+    "read original icon list model and application identities",
+    "complete original raw pair/model inventory and real UI verification"
+  ],
+  "final_device": "BH905ND69G returned healthy fastboot; all workers exited",
+  "no_in_flight_boot": true,
+  "full_original_GPU_UI_wallpaper_peripherals_goal_NOT_complete": true
+}

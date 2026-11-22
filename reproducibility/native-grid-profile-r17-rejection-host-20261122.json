@@ -1,0 +1,9 @@
+{
+  "date": "2026-11-22",
+  "source_sha256": "075c43d20ff0525a7cec6d24891830c3278934aeeadac50fb41af508241e8e48",
+  "actual_R16_overlap_rejected": true,
+  "actual_R17_missing_original_pair_rejected": true,
+  "checks_only_rejection_paths_not_positive_UI_acceptance": true,
+  "raw_or_results_unchanged": true,
+  "device_operations": 0
+}

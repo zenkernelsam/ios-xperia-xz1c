@@ -1,6 +1,6 @@
 # 原生显示比例与布局 — 2026-11-22
 
-XZ1C原生**720×1280像素、360×640点、scale2**已在r14／r15同靴核对：ADT、MobileGestalt、UIScreen和真实面板扫描尺寸一致，Clock圆形／应用图标保持比例。r15已移除红色rdar状态栏占位；小组件标签重叠、safe-area完整配置、真人全屏触控与光学仍待验。当前设备和结果统一看[STATUS](STATUS.md)。
+XZ1C原生**720×1280像素、360×640点、scale2**已在r14／r15同靴核对：ADT、MobileGestalt、UIScreen和真实面板扫描尺寸一致，Clock圆形／应用图标保持比例。r15已移除红色rdar状态栏占位，r17原五行实图的widget标题间距已改善；该靴缺VIEW653使UI独立取证仍REVISE，完整布局／分页应用身份、safe-area、真人全屏触控与光学待验。当前设备和结果统一看[STATUS](STATUS.md)。
 
 | 层 | 历史750×1624配置 | r14／r15实际native配置 |
 | --- | --- | --- |
@@ -49,3 +49,9 @@ r15实际from=nil、to=LegacyPhone，串口真实scanout中“iPhone／时间／
 从gl5原HFSX稀疏输入按范围读取，未展开16GiB raw、未挂载。27个原方法／ABI、factory及cache路径已核对；8个之前独立验证的原call范围SHA再次一致。原iconSpacing只是缓存字段读取，原layoutMetrics才获取有效布局对象。证据见[20H392原数据](../reproducibility/native-layout-20H392-static-r17.json)，源码见tools/build/inspect_native_layout.py和hfs_sparse_reader.py。
 
 新候选仅在精确native屏幕和已验root配置signature，使用原setNumberOfPortraitRows:更改真实配置：以原image56、widget141、label-origin143.5／height21和原insets57／19／155／19计算最大可容行数，六行约-10.4点bbox间距，五行17.5点，要求至少8点。factory与cache两原入口保证原对象在调用者使用前一致；字号／图标／widget及原system分页继续使用。其它配置／屏幕不参与该profile。源码已准备，host与真实图标保留／layout／光学仍待验，不能据计算宣布修好。
+
+## r17实机与独立拒绝
+
+原factory/cache两入口安装、两页原setter6→5均实际出现；完整GLES9、单次scanout及39.579秒0x06回程／健康／worker退出通过。原实图里widget标题已有清楚间隔，第一屏可见12个常规应用；其它页的模型身份尚未读取，不能以视图未创建判应用丢失或保留。
+
+layout原END声称158记录，实际157个VIEW／158个RECT、缺VIEW653，RECT附近是150秒SCREEN_DATA串流；原独立decoder保持REVISE，缺失原因未证明、不补记录、不重发旧bundle。[原阶段](../reproducibility/native-grid-density-r17-stage-20261122.json)与[拒绝路径检查](../reproducibility/native-grid-profile-r17-rejection-host-20261122.json)保留。下一revision需错开采样／截图、可靠写完记录并读取原icon-list model／应用IDs，完整验证分页和框间距。

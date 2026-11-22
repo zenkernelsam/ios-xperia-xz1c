@@ -30,3 +30,5 @@ reproducibility保存原结果摘要、源码锁、精确proof和回收记录；
 此次[50份修改前原文／SHA](archive/20261122/native-r15-close-out/original-document-manifest.json)保留旧in-flight和重复工作日志，现行入口已收敛。实际回收与所有阶段记录由[ORGANIZATION](ORGANIZATION.md)汇总。
 
 [r16原布局取证](../reproducibility/native-layout-r16-stage-20261122.json)定位小组件label bbox与下一排图标重叠；窗口／grid配置差异仍待追查，GLES9通过不扩大为完整原UI成功。
+
+[r17原生密度／独立UI拒绝](../reproducibility/native-grid-density-r17-stage-20261122.json)保留原setter与实图，以及缺VIEW653的拒绝；[原27方法及cache范围](../reproducibility/native-layout-20H392-static-r17.json)由直接HFS/sparse reader取得，不展开大镜像。
