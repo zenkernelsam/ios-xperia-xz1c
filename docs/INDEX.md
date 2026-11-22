@@ -40,6 +40,7 @@ reproducibility保存原结果摘要、源码锁、精确proof和回收记录；
 | 原生尺寸／平直状态栏 | [R14](../reproducibility/native2x-r14-stage-20261122.json)、[R15](../reproducibility/native2x-flat-r15-stage-20261122.json) |
 | 布局重叠、缺记录与旧参考范围 | [R16](../reproducibility/native-layout-r16-stage-20261122.json)、[R17](../reproducibility/native-grid-density-r17-stage-20261122.json)、[R18](../reproducibility/native-layout-model-r18-stage-20261122.json) |
 | 完整38应用／Dock／Folder对照，标签归属REVISE | [R19／R20](../reproducibility/native-full-model-r19-r20-stage-20261122.json)、[归属卡点](../reproducibility/native-label-ownership-r20-blocker-20261122.json) |
+| 完整原Class祖先／38应用及两处17.5点间距PASS | [R21](../reproducibility/native-label-ownership-r21-stage-20261122.json)、[新original](../reproducibility/native-label-ownership-r21-original-baseline-20261122.json)、[新fitted profile](../reproducibility/native-label-ownership-r21-profile-20261122.json) |
 
 ## 历史原文
 

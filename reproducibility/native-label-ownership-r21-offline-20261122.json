@@ -1,0 +1,102 @@
+{
+  "date": "2026-11-22",
+  "source_git_head": "91f81a29526f8a58cfbae4cd0705b289db6344d2",
+  "geocompat_build_binding": {
+    "revision": 4,
+    "source_files": {
+      "gpu/geocompat/geocompat.mm": "9a67a77d1da071f24f6856f592a365f9ec7df17a754998ddbb3f28602a8d0091",
+      "gpu/geocompat/test_adapter.mm": "b43a8ecc57384f7d895b25cef701782fbf9ea66143b4eea705953a88dd51e6f7",
+      "tools/build/build_geocompat_trial.py": "71f2c2fc8a46b73a890c2570069e89b93d397ca4516ad2c9580c3aa226a45800",
+      "gpu/geocompat/log_write.c": "e55ba6bfffde56fdc1a8fda20b0b88aa70a74b90af1bd5e6208c4cb8b270cbad",
+      "gpu/sweetgl/LogWriteAll.h": "caa86a1e6763dfc8039466aa432176d2d90fc4a55db60efeb02eb33c92bc0f88"
+    },
+    "library_sha256": "ee7a3207f26af5e9106cbd98c74392153b11a2d345386964db131110a2a6153c",
+    "library_bytes": 106544,
+    "host_ASan_UBSan_real_four_argument_provider_dispatch_passed": true,
+    "exact_native360x640_720x1280_scale2_flat_provider": true,
+    "opaque_visual_provider_info_forwarded": true,
+    "valid_other_screen_providers_preserved": true,
+    "read_only_window_safe_area_ABI_checked": true,
+    "read_only_layout_observer_revision": 4,
+    "host_ASan_UBSan_bounded_layout_and_CGRect_conversion_passed": true,
+    "original_frame_grid_values_preserved": false,
+    "read_only_layout_observer_preserves_current_values": true,
+    "layout_snapshot_once_after_constructor_seconds": 120,
+    "host_ASan_UBSan_shared_log_writer_EINTR_partial_errno_passed": true,
+    "original_icon_model_identity_ABI_host_passed": true,
+    "native_root_grid_density_revision": 1,
+    "native_root_grid_rows": 5,
+    "original_grid_factory_cache_ABI_and_setter_host_passed": true,
+    "native_root_grid_mode_control_revision": 1,
+    "original_full_folder_dock_model_ABI_host_passed": true,
+    "label_ownership_capture_revision": 1,
+    "original_view_tree_ancestry_host_passed": true,
+    "host_original_ancestry_wire_decoder_passed": true,
+    "host_ancestry_decoder_sources": {
+      "tools/device/geometry_layout_evidence.py": "b64ea77501862204deb3c39b400bcf06c9c7a9b13d1afc7db773dc3a3727f32c",
+      "tools/device/native_model_graph.py": "24a62da63a86b8c3ad747e950a9f69ede5aac8097ed49c304d2e346d3208e71b",
+      "tools/device/native_label_ownership.py": "9145cdaaaaeeb0c14e7b8653efbd779808388ad28c0c916eed9b17deb6121a82"
+    },
+    "original_icon_widget_font_and_insets_preserved": true,
+    "other_screen_or_nonroot_grid_configs_preserved": true,
+    "new_device_RAM_CPU_GLES_UI_NOT_verified": true,
+    "device_operations": 0
+  },
+  "RAM_binding": {
+    "library_sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+    "library_bytes": 14801120,
+    "library_fnv64": "9929cfe79edd5bce",
+    "blob_sha256": "4277931a612742a2eb2e02f67af8c2083116a13686c7594e7d0a3b5e87f0cf27",
+    "raw_sha256": "7d7ecf400b5e6240fcf55494225d8110dc7c827771d93f01553b2f453ea10e21",
+    "manifest_sha256": "7c5da6c1025885e8e2c4c988475c138ec2a43d135987b88a316020f26c27cf46"
+  },
+  "packages": [
+    {
+      "stage": "cpu",
+      "token": "960521e563270307",
+      "image_sha256": "a183201e0b7b14e9a69cc0d944b8466e9cbb512cd799ad4de97e6bf86daefbb7",
+      "cmdline_bytes": 607,
+      "native_grid_control": null
+    },
+    {
+      "stage": "original",
+      "token": "3e28639a5012be41",
+      "image_sha256": "c6f80408afa4bda145b9ad591abe8e76be59ede24cdd6e59e06e1a1ca96d3098",
+      "cmdline_bytes": 607,
+      "native_grid_control": {
+        "revision": 1,
+        "mode": "original",
+        "value": 0,
+        "source_sha256": "783c8393c0eadb0a831471b8b17ebd46b49aee4c0e010054085d5269a01f29a3"
+      }
+    },
+    {
+      "stage": "fitted",
+      "token": "41797ddbf4c8b947",
+      "image_sha256": "44d13e422e4e3d2b8f8ac62e84f30d10c517c422ce65495a1bd15deb0a06add0",
+      "cmdline_bytes": 607,
+      "native_grid_control": {
+        "revision": 1,
+        "mode": "fitted",
+        "value": 1,
+        "source_sha256": "783c8393c0eadb0a831471b8b17ebd46b49aee4c0e010054085d5269a01f29a3"
+      }
+    }
+  ],
+  "Mac_Windows_actual_signed_sources_equal": true,
+  "Mac_Cpp_ASan_UBSan_and_real_original_ancestry_decoder_passed": true,
+  "ARM64_signed_library_built": true,
+  "original_host_stdout_extraction_failure_retained": {
+    "source_git_head": "6a6e2b4a18ea6d54a085c2f2804c5838538a1d6c",
+    "phase": "Builder extracted stdout only, while original ancestry records were on stderr",
+    "host_log_sha256": "bcab15b52c1c6ef101cc9ff59b927e7f63c35b2ddb12e5ff1ca683892f416fd3",
+    "build_cli_sha256": "d2705c0526926be1d1e138c5029f0a30f621a021e8a61d215b1bdcd356a8a8a1",
+    "original_Cpp_ASan_UBSan_host_exit_0": true,
+    "ARM64_and_RAM_not_generated": true,
+    "device_operations": 0,
+    "failure_preserved": true
+  },
+  "old_R20_REVISE_preserved": true,
+  "new_own_CPU_original_fitted_GPU_UI_NOT_admitted": true,
+  "device_operations": 0
+}

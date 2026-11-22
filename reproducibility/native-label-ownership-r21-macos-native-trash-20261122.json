@@ -1,0 +1,310 @@
+{
+  "date": "2026-11-22",
+  "items": 10,
+  "files": 14,
+  "logical_bytes": 75595606,
+  "records": [
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/ram/glram.raw",
+      "reason": "R21 finished-round cleanup after complete return only; reproducible HFS/host/object or duplicate transfer; original failure, signed library, raw/proof and ABI kept",
+      "files": [
+        {
+          "relative": "glram.raw",
+          "bytes": 33554432,
+          "sha256": "7d7ecf400b5e6240fcf55494225d8110dc7c827771d93f01553b2f453ea10e21"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/glram.raw 20-11-19-915.raw",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/ram/glram.dmg",
+      "reason": "R21 finished-round cleanup after complete return only; reproducible HFS/host/object or duplicate transfer; original failure, signed library, raw/proof and ABI kept",
+      "files": [
+        {
+          "relative": "glram.dmg",
+          "bytes": 33554432,
+          "sha256": "7d7ecf400b5e6240fcf55494225d8110dc7c827771d93f01553b2f453ea10e21"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/glram.dmg 20-11-19-983.dmg",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/transfer-package.tar.gz",
+      "reason": "R21 finished-round cleanup after complete return only; reproducible HFS/host/object or duplicate transfer; original failure, signed library, raw/proof and ABI kept",
+      "files": [
+        {
+          "relative": "transfer-package.tar.gz",
+          "bytes": 7764403,
+          "sha256": "02c4297880bd1c0d31781bcd5081649e876e9df278e58124f1e3b4ca81dfacef"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/transfer-package.tar.gz 20-11-20-034.gz",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/helper/test_adapter",
+      "reason": "R21 finished-round cleanup after complete return only; reproducible HFS/host/object or duplicate transfer; original failure, signed library, raw/proof and ABI kept",
+      "files": [
+        {
+          "relative": "test_adapter",
+          "bytes": 209032,
+          "sha256": "6d6f427e6fa8d99183c4ee87b2f949bf27477fef7c8384676c2b7c2faece6a2d"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_adapter 20-11-20-086",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/helper/test_adapter.dSYM",
+      "reason": "R21 finished-round cleanup after complete return only; reproducible HFS/host/object or duplicate transfer; original failure, signed library, raw/proof and ABI kept",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 641,
+          "sha256": "cea0518f4e35a1d3f4fcf451b344352534f6e5def2a6ee609c6ae10897aa57c1"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_adapter",
+          "bytes": 152144,
+          "sha256": "36ebbe9700356ff4df45d4058fae21fb072d3d9c3a16e9aea5d945650c9c7928"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_adapter.yml",
+          "bytes": 187,
+          "sha256": "bf8dddca79cbe2ea88283273559b31f76f9235849ec9d98b38402b08b1c03ed4"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_adapter.dSYM 20-11-20-143.dSYM",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/helper/host-log-write.o",
+      "reason": "R21 finished-round cleanup after complete return only; reproducible HFS/host/object or duplicate transfer; original failure, signed library, raw/proof and ABI kept",
+      "files": [
+        {
+          "relative": "host-log-write.o",
+          "bytes": 8064,
+          "sha256": "43b1bcd455d6268847adade12d6f95cbe82e74fe87b3c01e0793951086bb8127"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/host-log-write.o 20-11-20-194.o",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/helper-r2/test_adapter",
+      "reason": "R21 finished-round cleanup after complete return only; reproducible HFS/host/object or duplicate transfer; original failure, signed library, raw/proof and ABI kept",
+      "files": [
+        {
+          "relative": "test_adapter",
+          "bytes": 192720,
+          "sha256": "f2bd681a75e0d823a204986eb990d33394447b068c762d565c96b517630a6815"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_adapter 20-11-20-245",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/helper-r2/test_adapter.dSYM",
+      "reason": "R21 finished-round cleanup after complete return only; reproducible HFS/host/object or duplicate transfer; original failure, signed library, raw/proof and ABI kept",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 641,
+          "sha256": "cea0518f4e35a1d3f4fcf451b344352534f6e5def2a6ee609c6ae10897aa57c1"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_adapter",
+          "bytes": 149928,
+          "sha256": "f4e994e22f767aed5bf5ff08e132b72cf97512a5d7be1b936ca117641c33e7c6"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_adapter.yml",
+          "bytes": 190,
+          "sha256": "df9c16417ed89de3cd7d0503fa791d864e059eda04e6830ee812227430a51147"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_adapter.dSYM 20-11-20-296.dSYM",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/helper-r2/host-log-write.o",
+      "reason": "R21 finished-round cleanup after complete return only; reproducible HFS/host/object or duplicate transfer; original failure, signed library, raw/proof and ABI kept",
+      "files": [
+        {
+          "relative": "host-log-write.o",
+          "bytes": 7880,
+          "sha256": "5953c86702759c96de505db4ae65a3036adda547e07a0b84b7fd0950bc96b75f"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/host-log-write.o 20-11-20-349.o",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/helper-r2/arm64-log-write.o",
+      "reason": "R21 finished-round cleanup after complete return only; reproducible HFS/host/object or duplicate transfer; original failure, signed library, raw/proof and ABI kept",
+      "files": [
+        {
+          "relative": "arm64-log-write.o",
+          "bytes": 912,
+          "sha256": "7fc9109e285d6af06f0c4f5844b4cb2d4ddb5e0c7abf8dfb40ab5b445d3bdd9d"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/arm64-log-write.o 20-11-20-404.o",
+      "native_trash_verified": true,
+      "all_content_SHA_verified": true
+    }
+  ],
+  "protected_fingerprints": {
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/assets/root-build/rootwork/ios16-root-lilac-gl5.simg": "e9bf1547b6a7e9a33b51c2749c643bc2eff0134c31cc3a63f9435e4cea1f9b29",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/assets/symbols/ios16-20H392-root.a2s": "5bf04681af1819e2379319942a97be635100d6ca3844c5a22e372ce78a83b83d",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/dxb/xnu/iokit/Kernel/arm/SweetGPU.cpp": "aa2c36792a2298b060aa858eabdc039522fcdde3cfdbafd453c5fc6c0683c157",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/inspection-cli.log": "d1a7186d7f6c54ce35ceb6958746fd3113f0c583b818b7ce0724e696259bd06b",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBFolder-lists.bin": "f9e55c183a33c9b75e7a7ad72b369bbfdde0d1e2d2c4ab8acda2e647bb28dbb6",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBFolder-lists.txt": "d80f3529d8510555a43bef34d2bc3bf7cea658847c229062f66546fce9dbab37",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBFolder-uniqueIdentifier.bin": "f637e07b3820a82a5634a0174c92391b8ec5194fafa5b124fa3a73d3007ae512",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBFolder-uniqueIdentifier.txt": "7f4f469c5ab46653e51cec8d7121c00b191bef3d297a781f560c21ed5289ed9e",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBFolderIcon-folder.bin": "dba88bcc4bdcfb9fd3e87b0ad748960b49623bccbb2f8e762d6f916813b0acff",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBFolderIcon-folder.txt": "cba4cde690834e531fe4df18ae2ad988837c5645707616f0d57529bb126c1282",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBHDefaultIconListLayoutProvider-class-currentDeviceScreenType.bin": "d9ae4d0f1c6632c5acff41083bf960c8e01b78770038d8249a08105a8d81f2be",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBHDefaultIconListLayoutProvider-class-currentDeviceScreenType.txt": "3cb593664748b4b6dda4ed8ea8de4945ab9c066e576cbff5cdd87bab3fa87082",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBHDefaultIconListLayoutProvider-class-defaultLayoutOptions.bin": "d3c844a0173107453aa9896cdb7276470625501e7ff067cd764c7a160ece5ca3",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBHDefaultIconListLayoutProvider-class-defaultLayoutOptions.txt": "a83c7e8c4c0f113a39c8508989651072aac010d8ca2a15323e2b00f9a5b64441",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBHDefaultIconListLayoutProvider-class-frameworkFallbackInstance.bin": "ffb4f0235c7be2433b1f080a2ef99a4c781d5f6a86e23cbb900e66db4aa2878f",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBHDefaultIconListLayoutProvider-class-frameworkFallbackInstance.txt": "8c388292005c77df576de32d99155cf22fcb33fbdae1fe2de0ebf2a4cbc3106a",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBHDefaultIconListLayoutProvider-configureGridSizeClassSizes_forScreenType_numberOfColumns_iconLocation_layoutOptions_.bin": "f38e5e0858ea41d7493453e1c934c7e0bf7c5db58232cd7b6b203a2328172842",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBHDefaultIconListLayoutProvider-configureGridSizeClassSizes_forScreenType_numberOfColumns_iconLocation_layoutOptions_.txt": "9431944bd22a9c63ec568fdd13145afb71f2c34c0a70f469e6f27021d913ba78",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBHDefaultIconListLayoutProvider-init.bin": "b334b47fd9680bfa679f23faef8243736ba7e7d01fefe37965115042494ad2f4",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBHDefaultIconListLayoutProvider-init.txt": "343a98bba163077a84c342fd42d77bf88696456761834bdbf3c4d7f30dc8bed4",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBHDefaultIconListLayoutProvider-initWithScreenType_layoutOptions_.bin": "19267d8563fc6fad2055b9a7f34ba9832dae4bdad5ce4ce4bfa90509343c3b06",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBHDefaultIconListLayoutProvider-initWithScreenType_layoutOptions_.txt": "6939b31ee57e2a8559200df06253c6765930dec3c157796ab3c42efa32b38736",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBHDefaultIconListLayoutProvider-layoutForIconLocation_.bin": "b27f87431995d4a3a90c21680b996684059187c82cba061afecfe70fae0ae189",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBHDefaultIconListLayoutProvider-layoutForIconLocation_.txt": "bdd2c79e81ff49b2c0d71b7ddf7889bd504ea1e1d37091e5e0df76f9d94779a1",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBHDefaultIconListLayoutProvider-makeLayoutForIconLocation_.bin": "07dd96b062e311b2199a9e83b2ba6a525cbc173cc8a9fe4ee9c43357be141cb3",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBHDefaultIconListLayoutProvider-makeLayoutForIconLocation_.txt": "e26ce1333955943a8a45b875ce7d1afa54c1cf42e0efba47c31fb227bd0910aa",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBHDefaultIconListLayoutProvider-screenType.bin": "dfb556a413c8bda5332942d0202e8d5f1e52f45158aec3676294cf11ad5909cb",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBHDefaultIconListLayoutProvider-screenType.txt": "47b844fc03cb726af2f27d6dcc714cb636120b2b982fb6ec9b2d48da585fc205",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListGridLayout-initWithLayoutConfiguration_.bin": "b0ffc664516d313e8512cc8ee616cc5c64409407970a30ad647db1788fab060d",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListGridLayout-initWithLayoutConfiguration_.txt": "8dd38496fbb3b20dcb692706a5ba659c9001fc52dfdcad56201b9a225ec83bcb",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListGridLayout-layoutConfiguration.bin": "f289023bfc90be5c90aa1a98a40c5b356af639e69af0399f5914b2202364955c",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListGridLayout-layoutConfiguration.txt": "d0e016fcb8cfb874dc9cd3d1902e01c40e8978a03c7698eb1b7cf0e8b5e30ea6",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListGridLayout-numberOfColumnsForOrientation_.bin": "1a4b395769b093ddab46860b54b5a7cc90d00c8405ab0c4bdc8aca80e5ac6b97",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListGridLayout-numberOfColumnsForOrientation_.txt": "9934ed208ba8aae08dccdf8fd22f9b970cf6509d663b34d96880c1a8d5e7ad68",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListGridLayout-numberOfRowsForOrientation_.bin": "bdb16ea308ace519317b34e0c02348e4ddc4fdc1bac0c502c6efa66189459a06",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListGridLayout-numberOfRowsForOrientation_.txt": "adc53ae47d5a6ab7ad41b96b79f11449eda38079e58341d89cbbc17ce6a953e9",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListGridLayoutConfiguration-iconImageInfo.bin": "2be9f0841cc1f642b1b828decc1ed41c1998230da5848e7afe363a73cdc9f060",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListGridLayoutConfiguration-iconImageInfo.txt": "80860c9b7c180e3e627b23e2969947c4e70b21c1c8af9889d53ec4f128bd068e",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListGridLayoutConfiguration-init.bin": "bc3def10c9a72675c8d80735de107fb3fea1b4b29204423bae81856fefb0fa26",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListGridLayoutConfiguration-init.txt": "d4065029ff454bdec978969553813d14044d71fa458f2e723e04eb0af14dac3c",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListGridLayoutConfiguration-listSizeForIconSpacingCalculation.bin": "db7f38519feb74365b46c47bc385f3a95ab9b77bcf62f7a1fed79c27e3361636",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListGridLayoutConfiguration-listSizeForIconSpacingCalculation.txt": "79e0432582d53f5924bc6e10ae4ae8d93f6d9996a5d813032101bc1ff60e882b",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListGridLayoutConfiguration-numberOfPortraitColumns.bin": "888f9cf38c658ba6677f84e11ca73155613e88dcdb916650d2a0352dface8fa1",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListGridLayoutConfiguration-numberOfPortraitColumns.txt": "2f7b35ae7fd6534ac9a0a5880737b0d577fd93f50d3c857fa879066358a806c8",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListGridLayoutConfiguration-numberOfPortraitRows.bin": "ede0a1721ccfac82e21b1cce350873068e49ce71fbb47b023d86a0232ec6e3fc",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListGridLayoutConfiguration-numberOfPortraitRows.txt": "1a942044c3d005bf95c850ebc6e7e362e22aac8c106260c75a1af369558b6a3c",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListGridLayoutConfiguration-portraitLayoutInsets.bin": "dcb0a0e2270a86e74ef775b971e6d6b2125ee52c62d822863d51f8cc71d0e785",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListGridLayoutConfiguration-portraitLayoutInsets.txt": "cd19e0fd78ea65457ae2658a7444b3035fe8e79f9c9e2aed615ef63093e6349c",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListGridLayoutConfiguration-setListSizeForIconSpacingCalculation_.bin": "aa6b37b5b822383580ca595c973d3e001279411436a67e7a7bbb7e061760bf57",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListGridLayoutConfiguration-setListSizeForIconSpacingCalculation_.txt": "031c73336c78e71d12af76e9825362ca7a04e0eb89dee1ef18432cf09ee2f830",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListGridLayoutConfiguration-setNumberOfPortraitRows_.bin": "f2f12536f10bbd8cf0fc8920a2f08d554d567445f667fb9fa053de9d1b1077ea",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListGridLayoutConfiguration-setNumberOfPortraitRows_.txt": "d7dce6eeeaf40b4f36e0a2286c107e7df2d4a3816da31735c7102651b1d3f726",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListModel-icons.bin": "13f6fe1ba3d7bbb1f19d1ed745b6438c3bb1824071586853bdac97818df3e8f0",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListModel-icons.txt": "9098983f11b4dbcacdec3482c5575debec63afa6a3b8bbd00eaccd665a53885f",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListView-gridCellInfo.bin": "a9425fc246f61805330953c60c694a70a5f44b382aff54b78b10c84371ade48f",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListView-gridCellInfo.txt": "53b7192cf1c313c692cd5d23cde4ab2314c98189a8e7209553670b18199e3d22",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListView-iconSpacing.bin": "09656dfe8544e6b5d5c6f5ec870e05fade45ca76e00a341ea81d965c15e264b9",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListView-iconSpacing.txt": "b449affd38872e54e04a7a2559821687c25a73343ce8a04c7a09290ae20c6358",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListView-layout.bin": "2fa77e4fd15df55f9bbd66f9f9e4ec419fef31257b9bb35238c64fc47b21be51",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListView-layout.txt": "290180f306c10a8bee804bf16c39b3a0a442d1041b96c528bd63a44755080061",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListView-layoutInsetsForOrientation_.bin": "87b7f2701cf0e6ddcf14b9203af9c8097faa214e78123be280ca92841b278bb2",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListView-layoutInsetsForOrientation_.txt": "9ab4a60b01290f1f9717846141e1afb03f025a9c18a3926a3397ad0a0911fdbb",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListView-layoutMetrics.bin": "f9af96333561be9fc16581c471234b8bf8ccdb35e822a4aa2f86f94cb54a1add",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListView-layoutMetrics.txt": "17ab92f318214940e638b9bbc71a7d870109a0ed400d02411b51179cd101043e",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListView-layoutMetricsForOrientation_.bin": "bc183ee6116fc405031a67a4c0fa87c60ec38ef504a0fc324d68a554d4478f78",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListView-layoutMetricsForOrientation_.txt": "e59001d15949ae838c5155c54c952f52cd4154ef011f22834cfa1c5ebe1d9672",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListView-model.bin": "fd1996a0de4bc01da72a75b48c953e1d8432e98afcf8bd35022be0cdb6626ccf",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBIconListView-model.txt": "e8001eb4e116fc99e796887664ec0e44161fd2287474b09911d41169e54baf22",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBLeafIcon-applicationBundleID.bin": "c91d4a1e0c7edf59d83789194feefddad420fff7a37e0995d18ac6ee2853b0a4",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBLeafIcon-applicationBundleID.txt": "cf881b94f0d12554e21351a4fc3420aed6f57be6aa08ca541c7e6415c37e218f",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBLeafIcon-leafIdentifier.bin": "b118956649248c6cb1674836b46006934211cd5e4c254bfc9d7139c965efaa39",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBLeafIcon-leafIdentifier.txt": "42a77ef8f1d243884f511018d5c6ee74cbc9bac3bf4684285d724e6d54c5b930",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBLeafIcon-leafIdentifierAndApplicationBundleIDMatches.bin": "fb533bf6c2ecbdbe8819e6485916f0e40c835425e4fc9ddfd09993c627ad2de1",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/SBLeafIcon-leafIdentifierAndApplicationBundleIDMatches.txt": "709e80706ae8a77978c1b26355ca48f67ab9d873745e726c79590b04904d61e5",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-folder-source-r19-20261122/original/report.json": "11d1d88644de7924bd7b6f3e0d7130943eb455cd80e14209562dd9468cd065b6",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/close-out/macos-plan.json": "7a9e1cd1b17dead707095c290f77be802dc9e2eb3eba7e4c2585d55694c7c795",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/helper/host-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/helper/host-log-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/helper/host-test.log": "bcab15b52c1c6ef101cc9ff59b927e7f63c35b2ddb12e5ff1ca683892f416fd3",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/helper-build-cli.log": "d2705c0526926be1d1e138c5029f0a30f621a021e8a61d215b1bdcd356a8a8a1",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/helper-first-result.json": "ed3665eb56eab6f8efbc114fabd2d4acd56c773440ea129fd4a269031527b1a2",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/helper-r2/codesign.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/helper-r2/georead.dylib": "ee7a3207f26af5e9106cbd98c74392153b11a2d345386964db131110a2a6153c",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/helper-r2/host-ancestry-decoded.json": "9b9d0294dd907a97ed4c05d1743b96fbf40a6def7ece03290b7a5451893710fc",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/helper-r2/host-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/helper-r2/host-log-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/helper-r2/host-test.log": "bcab15b52c1c6ef101cc9ff59b927e7f63c35b2ddb12e5ff1ca683892f416fd3",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/helper-r2/ios-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/helper-r2/ios-log-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/helper-r2/manifest.json": "1d61a6c044455c37684afe8feed688dac44eac357226879be99ebf31ea7a8bdd",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/helper-r2/signature.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/helper-r2-build-cli.log": "76c757c96a377b47b9d497efefac2811137d841bd5728b15ccb79659dc273523",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/ram/georead.dylib": "ee7a3207f26af5e9106cbd98c74392153b11a2d345386964db131110a2a6153c",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/ram/glram.zblob": "4277931a612742a2eb2e02f67af8c2083116a13686c7594e7d0a3b5e87f0cf27",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/ram/libglapi.0.dylib": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/ram/manifest.json": "7c5da6c1025885e8e2c4c988475c138ec2a43d135987b88a316020f26c27cf46",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/ram/sweetgl.dylib": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/ram-build-cli.log": "b7a9cff1e5e8cb147d4de6066e236f3a645c3ed81268afeebdd7035e4cffe429",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-label-ownership-r21-20261122/transfer-SHA-manifest.json": "26195191138840583945eeb3cef541eb441dd07d52d2889f433326aa3648936c",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-layout-model-r18-20261122/helper/georead.dylib": "32fc1868932df48c8350d449963e11564d68d5e043de05a79012f228e19d9a13",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-layout-model-r18-20261122/helper/manifest.json": "86d8c972139df915c2ec2c21e64efd725c7d002d2a2a29927aa3649ee4f075d7",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-layout-model-r18-20261122/ram/georead.dylib": "32fc1868932df48c8350d449963e11564d68d5e043de05a79012f228e19d9a13",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-layout-model-r18-20261122/ram/glram.zblob": "81cb3ee681c9f1c7b990375a510a22f5f0ed747cc711a779f8b728d4d9dd2bc9",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-layout-model-r18-20261122/ram/manifest.json": "3555e8b38769e9d7ee9fac89790117a064d39ee5ab499c941d99060796345a0b",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-layout-model-r18-20261122/ram/sweetgl.dylib": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-graph-r19-20261122/helper/codesign.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-graph-r19-20261122/helper/georead.dylib": "38b282fea44db23c7ce0b4c66c37d1a83a68edf9bc75c36b553ceafd5918c08f",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-graph-r19-20261122/helper/host-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-graph-r19-20261122/helper/host-log-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-graph-r19-20261122/helper/host-test.log": "dac09396c456b49cd61b7d599f38d3dfb53bb576c1e16a03fdfcb4a0d28429bb",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-graph-r19-20261122/helper/ios-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-graph-r19-20261122/helper/ios-log-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-graph-r19-20261122/helper/manifest.json": "4a2a800d23a43e9e198018564cb2ebf0e982ecfa3ee41d0a89ef860219163be2",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-graph-r19-20261122/helper/signature.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-graph-r19-20261122/ram/georead.dylib": "38b282fea44db23c7ce0b4c66c37d1a83a68edf9bc75c36b553ceafd5918c08f",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-graph-r19-20261122/ram/glram.zblob": "c851d46882738c0de6f00c46b0c78cf796af5bd3171adb6386221b5c2e7a1900",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-graph-r19-20261122/ram/libglapi.0.dylib": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-graph-r19-20261122/ram/manifest.json": "9609d27231c89c73125f5a1075a930a468232a6f809775a72a77ba9e4ddeaeec",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-graph-r19-20261122/ram/sweetgl.dylib": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/inspection-cli.log": "791f7d6f630f67fe1f0dfa8890d10a94a96579cb5a2e64c0d3110323994fc56b",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/native-model-source-r18-20261122/original-r3/report.json": "a4e11a86725bec56dfa4eb16a12a423f25bddf49c8c483ae64b5fbb882912c5e",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/surface-diag-v730/kernel.v730.macho": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/gpu/geocompat/geocompat.mm": "9a67a77d1da071f24f6856f592a365f9ec7df17a754998ddbb3f28602a8d0091",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/gpu/geocompat/log_write.c": "e55ba6bfffde56fdc1a8fda20b0b88aa70a74b90af1bd5e6208c4cb8b270cbad",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/gpu/geocompat/test_adapter.mm": "b43a8ecc57384f7d895b25cef701782fbf9ea66143b4eea705953a88dd51e6f7",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/gpu/sweetgl/LogWriteAll.h": "caa86a1e6763dfc8039466aa432176d2d90fc4a55db60efeb02eb33c92bc0f88",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/tools/build/build_geocompat_trial.py": "71f2c2fc8a46b73a890c2570069e89b93d397ca4516ad2c9580c3aa226a45800",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/tools/device/geometry_layout_evidence.py": "b64ea77501862204deb3c39b400bcf06c9c7a9b13d1afc7db773dc3a3727f32c",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/tools/device/native_label_ownership.py": "9145cdaaaaeeb0c14e7b8653efbd779808388ad28c0c916eed9b17deb6121a82",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/tools/device/native_model_graph.py": "24a62da63a86b8c3ad747e950a9f69ede5aac8097ed49c304d2e346d3208e71b",
+    "/Users/ciscohe/xnu-autobuild.pause": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "all_protected_fingerprints_unchanged": true,
+  "raw_exactly_reconstructed_from_retained_blob": true,
+  "native_ancestry_UI_model_proofs_host_failure_and_signed_libraries_retained": true,
+  "all_three_device_returns_complete_before_recycle": true,
+  "trash_not_emptied": true,
+  "permanent_deletions": 0,
+  "disk_free_bytes": 93230075904,
+  "disk_total_bytes": 1023999787008,
+  "project_build_KiB": 3992596
+}

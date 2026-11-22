@@ -1,6 +1,6 @@
 # 原生显示比例、布局与模型
 
-XZ1C已在同靴核对720×1280像素／360×640点／scale2：ADT、MobileGestalt、UIScreen、原扫描与F12范围一致，Clock圆形／图标保持比例。平直LegacyPhone状态栏已验。原六行与拟合五行的全部38个应用、Dock顺序及Folder内容通过独立对照；R20标签归属后处理仍REVISE。精确设备、产物与结果只看[STATUS](STATUS.md)。
+XZ1C已在同靴核对720×1280像素／360×640点／scale2：ADT、MobileGestalt、UIScreen、原扫描与F12范围一致，Clock圆形／图标保持比例。平直LegacyPhone状态栏已验。R21原六行与拟合五行的全部38个应用、Dock顺序及Folder内容通过独立对照；标签原祖先与两处17.5点间距也通过。原R20 REVISE保留。精确设备、产物与结果只看[STATUS](STATUS.md)。
 
 | 层 | 历史750×1624配置 | 原生配置 |
 | --- | --- | --- |
@@ -33,6 +33,8 @@ constructor后120秒仅一次main-queue只读捕获；VIEW／RECT成对，原con
 ## 标签归属卡点
 
 revision4候选在原只读遍历中发出每个节点的TREE父边、depth和原Class层级角色，再发每个label的最近icon／list、hops及完整状态。独立decoder验证全部父边、view对应关系及计数，并复算最近祖先；opaque命名的原label子类按真实Class层级识别。同一个owner仍有多标签就拒绝，选定唯一owner后再验标签位置与间距。当前host／新产物准入以STATUS为准，旧revision3结果保持原判定。
+
+R21自身CPU、original及fitted全部独立通过并完整返回。两靴各927 TREE／158对VIEW-RECT／14 OWNER、38应用，所有父边与最近祖先可复算，写失败／refused／truncated0；fitted原widget标题与下一排图标的两处间距都17.5点。完整[新stage](../reproducibility/native-label-ownership-r21-stage-20261122.json)与[原profile](../reproducibility/native-label-ownership-r21-profile-20261122.json)保持本token和原字节。旧段落描述R20当时的缺口，不改变旧REVISE。
 
 [R19／R20原阶段](../reproducibility/native-full-model-r19-r20-stage-20261122.json)证实完整38应用身份；[R20原UI报告](../reproducibility/native-full-model-r20-original-profile-20261122.json)仍REVISE。两个widget按坐标各得到2／3个同名标签候选，部分来自其它view树；即时父节点未发出，旧raw不能严格还原祖先。
 

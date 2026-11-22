@@ -2,7 +2,7 @@
 
 Sony Xperia XZ1 Compact（Snapdragon835／Adreno540）的开源 XNU、Mesa／Freedreno GLES 和 Metal 用户态移植。唯一正式源码与复现入口是本仓库；Patch/Xperia 保存参考 Git 仓库和历史。固定 Mesa24.3.4／FD540 GLES3.1，Vulkan 尚未移植。
 
-CPU、launchd、F12 触控、音量键、完整 GLES9、native Metal21 及 PNG6 已有真机证据。原生720×1280像素／360×640点／scale2和平直状态栏已验；原六行与拟合五行的全部38个应用、Dock顺序及Folder内容已完成独立对照。小组件标签归属的严格取证、黑壁纸、动态UI／FPS、睡眠唤醒、光学／背光、声音和无线继续推进。
+CPU、launchd、F12 触控、音量键、完整 GLES9、native Metal21 及 PNG6 已有真机证据。原生720×1280像素／360×640点／scale2和平直状态栏已验；原六行与拟合五行的全部38个应用、Dock顺序及Folder内容已完成独立对照。小组件标签的真实祖先和两处17.5点间距已实机验收。完整safe-area、黑壁纸、动态UI／FPS、睡眠唤醒、光学／背光、声音和无线继续推进。
 
 当前候选和生产基线分开验收。每个新产物按实际编译源、签名、完整payload及自己的CPU／GLES／native／PNG原字节准入；功能probe通过不会自动提升为完整原UI。精确SHA、设备状态、原失败和下一步只在[STATUS](docs/STATUS.md)维护。
 

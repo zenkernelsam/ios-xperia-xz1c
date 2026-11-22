@@ -1,0 +1,370 @@
+{
+  "result": "PASS",
+  "reasons": [],
+  "token": "41797ddbf4c8b947",
+  "raw_sha256": "d2393da6343cc64cb12e5f6cfaad881e7f813ecc3f80e55fe499da6dabdbe4b0",
+  "reference_token": "3e28639a5012be41",
+  "reference_raw_sha256": "dc608bac9926dea9b840b9c50d94df6dd983bb782f327c548b43ab7cff02370c",
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "original_current_controller_result": "PASS",
+  "root_pages": [
+    {
+      "node": "178",
+      "rectangle": [
+        0.0,
+        0.0,
+        360.0,
+        640.0
+      ],
+      "rows": 5,
+      "regular_icons": 12,
+      "widgets": 2
+    },
+    {
+      "node": "179",
+      "rectangle": [
+        360.0,
+        0.0,
+        360.0,
+        640.0
+      ],
+      "rows": 5,
+      "regular_icons": 0,
+      "widgets": 0
+    }
+  ],
+  "current_regular_view_count": 12,
+  "original_regular_view_count": 12,
+  "current_widget_view_count": 2,
+  "original_widget_view_count": 2,
+  "original_label_clearances": [
+    {
+      "widget_node": "221",
+      "label_node": "327",
+      "next_icon_node": "223",
+      "label_rectangle": [
+        72.5,
+        204.5,
+        65.0,
+        21.0
+      ],
+      "next_icon_rectangle": [
+        19.0,
+        243.0,
+        56.0,
+        70.0
+      ],
+      "clearance_points": 17.5
+    },
+    {
+      "widget_node": "222",
+      "label_node": "329",
+      "next_icon_node": "225",
+      "label_rectangle": [
+        222.0,
+        204.5,
+        68.0,
+        21.0
+      ],
+      "next_icon_rectangle": [
+        196.333,
+        243.0,
+        56.0,
+        70.0
+      ],
+      "clearance_points": 17.5
+    }
+  ],
+  "native_points": [
+    360,
+    640
+  ],
+  "native_pixels": [
+    720,
+    1280
+  ],
+  "original_application_model_identity_retention_verified": true,
+  "original_application_identity_retention_NOT_verified": false,
+  "original_model_application_count_by_page": {
+    "178": 12,
+    "179": 17
+  },
+  "complete_original_model_comparison": {
+    "complete_original_model_identity_verified": true,
+    "reasons": [],
+    "original_full_application_entries": 38,
+    "fitted_full_application_entries": 38,
+    "original_root_application_entries": 29,
+    "fitted_root_application_entries": 29,
+    "original_dock_model_count": 1,
+    "fitted_dock_model_count": 1,
+    "original_folder_list_count": 1,
+    "fitted_folder_list_count": 1,
+    "original_full_application_multiset": {
+      "com.apple.facetime": 1,
+      "com.apple.mobilecal": 1,
+      "com.apple.mobileslideshow": 1,
+      "com.apple.mobilemail": 1,
+      "com.apple.mobilenotes": 1,
+      "com.apple.reminders": 1,
+      "com.apple.mobiletimer": 1,
+      "com.apple.news": 1,
+      "com.apple.tv": 1,
+      "com.apple.podcasts": 1,
+      "com.apple.AppStore": 1,
+      "com.apple.Maps": 1,
+      "com.apple.weather": 1,
+      "com.apple.stocks": 1,
+      "com.apple.findmy": 1,
+      "com.apple.Home": 1,
+      "com.apple.iBooks": 1,
+      "com.apple.MobileStore": 1,
+      "com.apple.Fitness": 1,
+      "com.apple.Bridge": 1,
+      "com.apple.MobileAddressBook": 1,
+      "com.apple.Translate": 1,
+      "com.apple.DocumentsApp": 1,
+      "com.apple.shortcuts": 1,
+      "com.apple.Passbook": 1,
+      "com.apple.Preferences": 1,
+      "com.apple.Health": 1,
+      "com.apple.freeform": 1,
+      "com.apple.tips": 1,
+      "com.apple.mobilephone": 1,
+      "com.apple.mobilesafari": 1,
+      "com.apple.MobileSMS": 1,
+      "com.apple.Music": 1,
+      "com.apple.VoiceMemos": 1,
+      "com.apple.compass": 1,
+      "com.apple.measure": 1,
+      "com.apple.Magnifier": 1,
+      "com.apple.calculator": 1
+    },
+    "fitted_full_application_multiset": {
+      "com.apple.facetime": 1,
+      "com.apple.mobilecal": 1,
+      "com.apple.mobileslideshow": 1,
+      "com.apple.mobilemail": 1,
+      "com.apple.mobilenotes": 1,
+      "com.apple.reminders": 1,
+      "com.apple.mobiletimer": 1,
+      "com.apple.news": 1,
+      "com.apple.tv": 1,
+      "com.apple.podcasts": 1,
+      "com.apple.AppStore": 1,
+      "com.apple.Maps": 1,
+      "com.apple.weather": 1,
+      "com.apple.stocks": 1,
+      "com.apple.findmy": 1,
+      "com.apple.Home": 1,
+      "com.apple.iBooks": 1,
+      "com.apple.MobileStore": 1,
+      "com.apple.Fitness": 1,
+      "com.apple.Bridge": 1,
+      "com.apple.MobileAddressBook": 1,
+      "com.apple.Translate": 1,
+      "com.apple.DocumentsApp": 1,
+      "com.apple.shortcuts": 1,
+      "com.apple.Passbook": 1,
+      "com.apple.Preferences": 1,
+      "com.apple.Health": 1,
+      "com.apple.freeform": 1,
+      "com.apple.tips": 1,
+      "com.apple.mobilephone": 1,
+      "com.apple.mobilesafari": 1,
+      "com.apple.MobileSMS": 1,
+      "com.apple.Music": 1,
+      "com.apple.VoiceMemos": 1,
+      "com.apple.compass": 1,
+      "com.apple.measure": 1,
+      "com.apple.Magnifier": 1,
+      "com.apple.calculator": 1
+    },
+    "original_root_widget_classes": {
+      "SBWidgetIcon": 2
+    },
+    "fitted_root_widget_classes": {
+      "SBWidgetIcon": 2
+    },
+    "original_folder_identities": {
+      "B3601B63-58B4-4D2C-80CD-6E38D631201B": 1
+    },
+    "fitted_folder_identities": {
+      "B3601B63-58B4-4D2C-80CD-6E38D631201B": 1
+    },
+    "original_dock_entries": [
+      [
+        [
+          "SBApplicationIcon",
+          true,
+          "com.apple.mobilephone"
+        ],
+        [
+          "SBApplicationIcon",
+          true,
+          "com.apple.mobilesafari"
+        ],
+        [
+          "SBApplicationIcon",
+          true,
+          "com.apple.MobileSMS"
+        ],
+        [
+          "SBApplicationIcon",
+          true,
+          "com.apple.Music"
+        ]
+      ]
+    ],
+    "fitted_dock_entries": [
+      [
+        [
+          "SBApplicationIcon",
+          true,
+          "com.apple.mobilephone"
+        ],
+        [
+          "SBApplicationIcon",
+          true,
+          "com.apple.mobilesafari"
+        ],
+        [
+          "SBApplicationIcon",
+          true,
+          "com.apple.MobileSMS"
+        ],
+        [
+          "SBApplicationIcon",
+          true,
+          "com.apple.Music"
+        ]
+      ]
+    ],
+    "original_baseline_token": "3e28639a5012be41",
+    "original_baseline_raw_sha256": "dc608bac9926dea9b840b9c50d94df6dd983bb782f327c548b43ab7cff02370c",
+    "root_page_reflow_allowed": true,
+    "containers_and_full_identity_preserved": true
+  },
+  "original_label_ancestry_verified": true,
+  "application_launch_functionality_NOT_verified": true,
+  "physical_panel_optical_FPS_wallpaper_peripherals_NOT_inferred": true,
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-label-ownership-r21-fitted-live-20261122",
+  "reference_source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-native-label-ownership-r21-original-live-20261122",
+  "original_scanout": {
+    "protocol": 1,
+    "frames": [
+      {
+        "id": 1,
+        "token": "41797ddbf4c8b947",
+        "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+        "image_sha256": "44d13e422e4e3d2b8f8ac62e84f30d10c517c422ce65495a1bd15deb0a06add0",
+        "binding": {
+          "protocol": 1,
+          "width": 720,
+          "height": 1280,
+          "stride": 2160,
+          "format": "BGR888",
+          "codec": "PRLE1",
+          "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+          "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+          "runtime_source_sha256": "a1f41eeb87b7cf70ea751884ee38d758191f3cc0a00d697acc363fbba3cd5f63"
+        },
+        "begin": {
+          "token": "41797ddbf4c8b947",
+          "id": "1",
+          "width": "720",
+          "height": "1280",
+          "stride": "2160",
+          "format": "BGR888",
+          "bytes": "2764800",
+          "codec": "PRLE1",
+          "encoded": "1021523",
+          "raw_fnv": "d9286b60fd10362e",
+          "enc_crc": "faf22785",
+          "vsync": "7637",
+          "timestamp": "13066150159",
+          "copy_ticks": "4666314",
+          "power_off": "0",
+          "source_checked": "1",
+          "source_match": "1"
+        },
+        "scan": {
+          "token": "41797ddbf4c8b947",
+          "id": "1",
+          "pa": "0x9d400000",
+          "map_pa": "0x9d400000",
+          "map_bytes": "2764800",
+          "size": "0x50002d0",
+          "img": "0x50002d0",
+          "xy": "0",
+          "out": "0x50002d0",
+          "outxy": "0",
+          "fmt": "0x2243f",
+          "unpack": "0x20001",
+          "op": "0x80000000",
+          "qop": "0",
+          "ctl": "0x20020",
+          "start": "0",
+          "before_after": "1"
+        },
+        "blocks": 7981,
+        "raw_file": "scanout-00000001.bgr",
+        "png_file": "scanout-00000001.png",
+        "raw_sha256": "0cd533d1adca96b4aa2c9aacfa20442dbbd937e3567aae94deabf9aa8b50634e",
+        "png_sha256": "88d1327bb7e979154583885447c0b5246ba547165f51fca9298aadb596afca48",
+        "pixel_values_preserved": true,
+        "verified": true,
+        "optical_panel_verified": false
+      }
+    ],
+    "verified": true,
+    "optical_panel_verified": false,
+    "current_boot_source_and_payload_checked": true,
+    "format": "BGR888",
+    "width": 720,
+    "height": 1280
+  },
+  "geocompat_build_binding": {
+    "revision": 4,
+    "source_files": {
+      "gpu/geocompat/geocompat.mm": "9a67a77d1da071f24f6856f592a365f9ec7df17a754998ddbb3f28602a8d0091",
+      "gpu/geocompat/test_adapter.mm": "b43a8ecc57384f7d895b25cef701782fbf9ea66143b4eea705953a88dd51e6f7",
+      "tools/build/build_geocompat_trial.py": "71f2c2fc8a46b73a890c2570069e89b93d397ca4516ad2c9580c3aa226a45800",
+      "gpu/geocompat/log_write.c": "e55ba6bfffde56fdc1a8fda20b0b88aa70a74b90af1bd5e6208c4cb8b270cbad",
+      "gpu/sweetgl/LogWriteAll.h": "caa86a1e6763dfc8039466aa432176d2d90fc4a55db60efeb02eb33c92bc0f88"
+    },
+    "library_sha256": "ee7a3207f26af5e9106cbd98c74392153b11a2d345386964db131110a2a6153c",
+    "library_bytes": 106544,
+    "host_ASan_UBSan_real_four_argument_provider_dispatch_passed": true,
+    "exact_native360x640_720x1280_scale2_flat_provider": true,
+    "opaque_visual_provider_info_forwarded": true,
+    "valid_other_screen_providers_preserved": true,
+    "read_only_window_safe_area_ABI_checked": true,
+    "read_only_layout_observer_revision": 4,
+    "host_ASan_UBSan_bounded_layout_and_CGRect_conversion_passed": true,
+    "original_frame_grid_values_preserved": false,
+    "read_only_layout_observer_preserves_current_values": true,
+    "layout_snapshot_once_after_constructor_seconds": 120,
+    "host_ASan_UBSan_shared_log_writer_EINTR_partial_errno_passed": true,
+    "original_icon_model_identity_ABI_host_passed": true,
+    "native_root_grid_density_revision": 1,
+    "native_root_grid_rows": 5,
+    "original_grid_factory_cache_ABI_and_setter_host_passed": true,
+    "native_root_grid_mode_control_revision": 1,
+    "original_full_folder_dock_model_ABI_host_passed": true,
+    "label_ownership_capture_revision": 1,
+    "original_view_tree_ancestry_host_passed": true,
+    "host_original_ancestry_wire_decoder_passed": true,
+    "host_ancestry_decoder_sources": {
+      "tools/device/geometry_layout_evidence.py": "b64ea77501862204deb3c39b400bcf06c9c7a9b13d1afc7db773dc3a3727f32c",
+      "tools/device/native_model_graph.py": "24a62da63a86b8c3ad747e950a9f69ede5aac8097ed49c304d2e346d3208e71b",
+      "tools/device/native_label_ownership.py": "9145cdaaaaeeb0c14e7b8653efbd779808388ad28c0c916eed9b17deb6121a82"
+    },
+    "original_icon_widget_font_and_insets_preserved": true,
+    "other_screen_or_nonroot_grid_configs_preserved": true,
+    "new_device_RAM_CPU_GLES_UI_NOT_verified": true,
+    "device_operations": 0
+  },
+  "independent_result_preserves_original_controller": true,
+  "device_operations": 0
+}

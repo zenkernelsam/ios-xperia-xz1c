@@ -4,11 +4,11 @@
 
 | Mac本周累计／最新快照 | 数量 |
 | --- | ---: |
-| 原生Trash历史移入项 | 2843 |
-| 文件 | 36359 |
-| 逻辑字节 | 14289537269（约13.31GiB） |
-| 最新正式build | 3973140KiB（约3.79GiB） |
-| 最新系统可用空间 | 93958021120B（约87.51GiB） |
+| 原生Trash历史移入项 | 2853 |
+| 文件 | 36373 |
+| 逻辑字节 | 14365132875（约13.38GiB） |
+| 最新正式build | 3992596KiB（约3.81GiB） |
+| 最新系统可用空间 | 93230075904B（约86.83GiB） |
 
 移入垃圾桶仍占磁盘；历史累计是各次原生回收记录的数量，不表示释放量，也不保证用户之后未自行回收的旧条目仍存在。本轮813项的垃圾桶目标已逐文件复核。系统可用空间为本轮收尾快照，旧94%等数字只在原历史报告中保留。
 
@@ -21,6 +21,10 @@ Mac回收两份可由精确SGLZ0001 blob恢复的32MiB HFS容器、重复传输t
 [本轮Mac原路径／Trash路径／SHA](../reproducibility/native-full-model-r19-r20-macos-native-trash-20261122.json)和[Windows原路径／Recycle Bin路径／SHA](../reproducibility/native-full-model-r19-r20-windows-native-recycle-20261122.json)用于查找或复原；恢复办法见[LAYOUT](LAYOUT.md)。
 
 research实查仅89个参考Git仓库、非仓库0；Ubuntu的root／cisco和Ubuntu-22.04的root垃圾桶均无内容。WSL如有废弃内容须先移至Windows TEMP再进Windows原生回收站；不会永久删除或直接清空Ubuntu垃圾桶。[整合审计](../reproducibility/native-full-model-r19-r20-organization-20261122.json)记录原文、SHA、链接与本地盘点。
+
+## R21追加收尾
+
+R21自身CPU／original／fitted三靴完整返回后，追加Mac10项／14文件／75595606B和Windows4项／14文件／27021937B进入原生回收站；131个Mac和366个Windows保护文件及全部回收用户内容SHA一致。两份HFS可由保留blob逐字节恢复，host程序／dSYM／object和重复transfer／CLI回收；原源码、signed库／manifest、raw／原扫描、完整祖先／38应用／17.5点间距及首个host提取失败全部保留。[Mac原路径／Trash路径](../reproducibility/native-label-ownership-r21-macos-native-trash-20261122.json)／[Windows原路径／Recycle Bin路径](../reproducibility/native-label-ownership-r21-windows-native-recycle-20261122.json)。回收后完整payload、signed源／依赖和Mac实际83源离线准入复验通过，未操作手机；[本轮收尾](../reproducibility/native-label-ownership-r21-close-out-20261122.json)保留文档快照及范围。
 
 ## 原生回收历史索引
 
@@ -41,6 +45,7 @@ research实查仅89个参考Git仓库、非仓库0；Ubuntu的root／cisco和Ubu
 | native-density r17 | 51／53／75314075 | [记录](../reproducibility/native-grid-density-r17-macos-native-trash-20261122.json) |
 | native-model r18 | 101／103／75571221 | [记录](../reproducibility/native-layout-model-r18-macos-native-trash-20261122.json) |
 | full-model r19／r20 | 813／815／552748850 | [记录](../reproducibility/native-full-model-r19-r20-macos-native-trash-20261122.json) |
+| ancestry r21 | 10／14／75595606 | [记录](../reproducibility/native-label-ownership-r21-macos-native-trash-20261122.json) |
 
 主体四项Finder元数据差异与partial journal按原记录保存；不算用户内容SHA一致或整批成功。其它Windows／WSL历史回收记录仍在各阶段reproducibility。每轮新回收的最终目标核验与旧历史记录分开保留。
 

@@ -1,0 +1,36 @@
+{
+  "result": "PASS",
+  "scope": "Qualified actual revision4 original full ancestry/model baseline",
+  "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-native-label-ownership-r21-original-live-20261122",
+  "token": "3e28639a5012be41",
+  "raw_sha256": "dc608bac9926dea9b840b9c50d94df6dd983bb782f327c548b43ab7cff02370c",
+  "counts": {
+    "visited": 927,
+    "recorded": 158,
+    "grids": 3,
+    "refused": 0,
+    "truncated": 0,
+    "write_failures": 0,
+    "tree_nodes": 927,
+    "owners": 14
+  },
+  "model_summary": {
+    "pages": 4,
+    "icons": 41,
+    "applications": 38
+  },
+  "full_application_entries": 38,
+  "original_label_ownership_complete": true,
+  "same_helper_new_RAM_CPU_PASS": true,
+  "return_seconds_with_health": 39.438000000081956,
+  "four_return_markers": [
+    5,
+    163,
+    204,
+    206
+  ],
+  "single_download_boot_verified": true,
+  "controller_and_worker_exited": true,
+  "full_UI_optical_FPS_and_peripherals_NOT_inferred": true,
+  "device_operations": 0
+}

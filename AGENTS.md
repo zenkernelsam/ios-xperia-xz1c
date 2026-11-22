@@ -8,7 +8,7 @@
 
 继续免费开源Mesa／Freedreno GLES及Metal用户态移植，原UI／壁纸、FPS、睡眠、光学／背光、声音及无线保持active。当前HEAD是候选，生产基线不因host／局部byte／GPU Completed／回程成功而提升。原失败包、raw和proof不覆盖或重发；Vulkan尚未移植。
 
-用户原生几何目标720×1280像素／360×640点／scale2已同靴核对，平直状态栏及完整原／拟合应用模型保留已验；标签祖先归属、完整safe area／真人触控／光学尚未完成。现有native1与sf2x1冲突，新ADT、MG／UIScreen、状态栏／safe area和触控需同靴一致，只改MG不足。原Vista paused／mode按原请求观察，不能强制解除或画替代帧冒充UI。
+用户原生几何目标720×1280像素／360×640点／scale2已同靴核对，平直状态栏、完整原／拟合应用模型保留及标签真实祖先／17.5点间距已验；完整safe area／真人触控／光学尚未完成。现有native1与sf2x1冲突，新ADT、MG／UIScreen、状态栏／safe area和触控需同靴一致，只改MG不足。原Vista paused／mode按原请求观察，不能强制解除或画替代帧冒充UI。
 
 ## 硬件、回程与冻结
 
