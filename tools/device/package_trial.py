@@ -10,6 +10,7 @@ from controller import Artifact,SHIM_SHA,SCREEN_CAPTURE_TIMES,checked_screen_cap
 from numeric_boot_args import add_sampler
 from serial_worker import capture_binding
 from display_geometry_binding import transform as display_transform,arguments as display_arguments,compact as display_compact
+from native_grid_control import apply as apply_grid_control,validate as validate_grid_control
 def sha(data):return hashlib.sha256(data).hexdigest()
 def observer_environment(word,target):
     assert word.startswith('sweetenv=') and target in ('AegirPoster','backboardd')
@@ -39,8 +40,11 @@ def prove_payload(record):
     if mode=='ramcpu':blobs.append(baseline('gpu',ROOT/'assets/baselines')[3][-1])
     if 'ram_library_binding' in record:
         assert mode in ('ramcpu','gpu')
-        blob,_,_=load_ram(record['ram_package'],record['ram_library_binding'])
+        blob,_,ram_package=load_ram(record['ram_package'],record['ram_library_binding'])
+        validate_grid_control(record,ram_package)
         blobs=[(n,blob if n=='GL-RAM-Z' else data) for n,data in blobs]
+    elif 'native_grid_control' in record:
+        raise ValueError('Native grid control requires its exact RAM package')
     expected_blobs={name:{'bytes':len(data),'sha256':sha(data)} for name,data in blobs}
     assert expected_blobs==record['blobs'], 'Trial firmware/RAM inputs differ from tested baseline'
     if 'display_geometry_binding' in record:
@@ -81,7 +85,7 @@ def baseline(name,folder):
     reference=adt.serialize(tree)
     assert sha(reference)=='257076987411b50f037f70bf97524fae56ac2965e773c1bb8678d05d45480ba6'
     return raw,payload,reference,blob_data,payload[72:680].split(b'\0',1)[0].decode(),raw[4096:4096+ks]
-def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interval=None,screen_evidence=False,thread_sample=False,screen_after=None,idle_sample=False,swipe_once=False,display_profile=None):
+def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interval=None,screen_evidence=False,thread_sample=False,screen_after=None,idle_sample=False,swipe_once=False,display_profile=None,native_grid_mode=None):
     assert not (thread_sample and idle_sample), 'Only one reviewed sample trigger can be selected'
     if swipe_once:
         assert mode=='gpu' and screen_evidence and version>=730 and ram_package and screen_after==150
@@ -140,6 +144,11 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
         words=[('sweetfb_noconsole=1' if w.startswith('sweetfb_noconsole=') else w) for w in words]
         words=[('sweetar=420' if w.startswith('sweetar=') else w) for w in words]
         words.append('sfscreen=1');watchdog=420
+    grid_control=None
+    if native_grid_mode is not None:
+        assert mode=='gpu' and geometry and package['geocompat_build_binding']['revision']==3 and screen_evidence
+    if mode=='gpu' and geometry and package.get('geocompat_build_binding',{}).get('revision')==3:
+        words,grid_control=apply_grid_control(words,native_grid_mode or 'fitted')
     compact_numeric_ones=[]
     if geometry:words=display_arguments(words)
     if screen_evidence and len(' '.join(words).encode())>607:
@@ -174,6 +183,7 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
        'blobs':{name:{'bytes':len(data),'sha256':sha(data)} for name,data in files}}
     if compact_numeric_ones:m['numeric_one_argument_compaction']=compact_numeric_ones
     if geometry:m['display_geometry_binding']=geometry
+    if grid_control:m['native_grid_control']=grid_control
     if sample_binding:m['thread_sample_observation']=sample_binding
     if swipe_once:m['swipe_observation']=swipe_once_binding()
     Artifact(m).validate()
@@ -190,6 +200,9 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
         if mode=='gpu':m['screen_capture_after_seconds']=capture_after
     (output/'artifacts.json').write_text(json.dumps({'target_serial':'BH905ND69G','pon_route':6,'artifacts':[m]},indent=2)+'\n')
     common=['SWEET LOOP LIVE proto=1 token='+token,'SWEET RMI4: F12 page=']
+    if grid_control:
+        common+=['SWEET GEOGRID MODE value='+str(grid_control['value'])]
+        if grid_control['value']:common+=['SWEET GEOGRID APPLY native=360x640 old=6 rows=5 cols=4']
     if swipe_once:common+=['SWEET RMI4: swipe up injected']
     if mode in ('private','ramcpu'):
         common+=['SWEET VM RO END snap=2 valid=1 .*writes=0 complete=1',
@@ -316,6 +329,7 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
                     'return_evidence':'final-drain','on_pass':'stop','on_failure':'stop'}]}
     if screen_evidence:plan.update(screen_required=True,screen_timeout_seconds=100)
     if mode=='gpu' and screen_evidence:plan['screen_capture_after_seconds']=capture_after
+    if grid_control:plan['native_grid_control']=grid_control
     (output/'plan.json').write_text(json.dumps(plan,indent=2)+'\n')
     (output/'package-proof.json').write_text(json.dumps({'baseline':selected,'baseline_sha256':BASE_HASHES[selected],
        'baseline_payload_exact':True,'kernel_sha256':m['kernel_sha256'],'image_sha256':m['sha256'],'cmdline_bytes':len(cmd),
@@ -333,6 +347,7 @@ if __name__=='__main__':
     p.add_argument('--idle-sample',action='store_true',help='Single original Aegir sample after a returned library at observation 180 seconds')
     p.add_argument('--swipe-once',action='store_true',help='One upward swipe after observed F12/LIVE at 120 seconds, then one 150-second scanout')
     p.add_argument('--display-profile',choices=['xz1c-native-2x'],help='Exact four-property native ADT plus existing native1/sf2x0 framebuffer flags')
+    p.add_argument('--native-grid-mode',choices=['original','fitted'],help='Explicit original six-row or fitted native grid, using the exact revision3 helper')
     a=p.parse_args();out=Path(a.output).resolve();assert out.is_relative_to(ROOT/'build') and not out.exists();out.mkdir(parents=True)
-    m=prepare(a.mode,Path(a.kernel),Path(a.baselines),out,a.version,a.ram_package,a.owner_interval,a.screen_evidence,a.thread_sample,a.screen_after,a.idle_sample,a.swipe_once,a.display_profile)
+    m=prepare(a.mode,Path(a.kernel),Path(a.baselines),out,a.version,a.ram_package,a.owner_interval,a.screen_evidence,a.thread_sample,a.screen_after,a.idle_sample,a.swipe_once,a.display_profile,a.native_grid_mode)
     print(json.dumps({k:m[k] for k in ('trial_mode','token','kernel_sha256','sha256','cmdline_bytes')}))

@@ -1,0 +1,950 @@
+{
+  "system": "iOS16.7.16/20H392",
+  "sparse_sha256": "e9bf1547b6a7e9a33b51c2749c643bc2eff0134c31cc3a63f9435e4cea1f9b29",
+  "A2S_sha256": "5bf04681af1819e2379319942a97be635100d6ca3844c5a22e372ce78a83b83d",
+  "cache_header_sha256": "76874e8375252ee643011ff8063f0cce12355f05cf5f9897a34e5679667a65aa",
+  "ipsw_tool_sha256": "e90ac1e07e8dd74f533513e61088afc27c4e995c82902be80aab9618cb868c47",
+  "original_methods": [
+    {
+      "owner": "SBIconListGridLayoutConfiguration",
+      "selector": "portraitLayoutInsets",
+      "types": "{UIEdgeInsets=dddd}16@0:8",
+      "IMP": "0x1c52a264c",
+      "method_list": "0x1c54a7580",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 12,
+      "code_sha256": "dcb0a0e2270a86e74ef775b971e6d6b2125ee52c62d822863d51f8cc71d0e785",
+      "local_file": "SBIconListGridLayoutConfiguration-portraitLayoutInsets.txt"
+    },
+    {
+      "owner": "SBIconListGridLayoutConfiguration",
+      "selector": "setNumberOfPortraitRows:",
+      "types": "v24@0:8Q16",
+      "IMP": "0x1c53faf44",
+      "method_list": "0x1c54a7580",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 8,
+      "code_sha256": "f2f12536f10bbd8cf0fc8920a2f08d554d567445f667fb9fa053de9d1b1077ea",
+      "local_file": "SBIconListGridLayoutConfiguration-setNumberOfPortraitRows_.txt"
+    },
+    {
+      "owner": "SBIconListGridLayoutConfiguration",
+      "selector": "listSizeForIconSpacingCalculation",
+      "types": "{CGSize=dd}16@0:8",
+      "IMP": "0x1c5317a10",
+      "method_list": "0x1c54a7580",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 8,
+      "code_sha256": "db7f38519feb74365b46c47bc385f3a95ab9b77bcf62f7a1fed79c27e3361636",
+      "local_file": "SBIconListGridLayoutConfiguration-listSizeForIconSpacingCalculation.txt"
+    },
+    {
+      "owner": "SBIconListGridLayoutConfiguration",
+      "selector": "setListSizeForIconSpacingCalculation:",
+      "types": "v32@0:8{CGSize=dd}16",
+      "IMP": "0x1c53fafb0",
+      "method_list": "0x1c54a7580",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 8,
+      "code_sha256": "aa6b37b5b822383580ca595c973d3e001279411436a67e7a7bbb7e061760bf57",
+      "local_file": "SBIconListGridLayoutConfiguration-setListSizeForIconSpacingCalculation_.txt"
+    },
+    {
+      "owner": "SBIconListGridLayoutConfiguration",
+      "selector": "init",
+      "types": "@16@0:8",
+      "IMP": "0x1c531f44c",
+      "method_list": "0x1c54a7580",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 360,
+      "code_sha256": "bc3def10c9a72675c8d80735de107fb3fea1b4b29204423bae81856fefb0fa26",
+      "local_file": "SBIconListGridLayoutConfiguration-init.txt"
+    },
+    {
+      "owner": "SBIconListGridLayoutConfiguration",
+      "selector": "numberOfPortraitRows",
+      "types": "Q16@0:8",
+      "IMP": "0x1c52b6224",
+      "method_list": "0x1c54a7580",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 8,
+      "code_sha256": "ede0a1721ccfac82e21b1cce350873068e49ce71fbb47b023d86a0232ec6e3fc",
+      "local_file": "SBIconListGridLayoutConfiguration-numberOfPortraitRows.txt"
+    },
+    {
+      "owner": "SBIconListGridLayoutConfiguration",
+      "selector": "numberOfPortraitColumns",
+      "types": "Q16@0:8",
+      "IMP": "0x1c530f1b8",
+      "method_list": "0x1c54a7580",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 8,
+      "code_sha256": "888f9cf38c658ba6677f84e11ca73155613e88dcdb916650d2a0352dface8fa1",
+      "local_file": "SBIconListGridLayoutConfiguration-numberOfPortraitColumns.txt"
+    },
+    {
+      "owner": "SBIconListGridLayoutConfiguration",
+      "selector": "iconImageInfo",
+      "types": "{SBIconImageInfo={CGSize=dd}dd}16@0:8",
+      "IMP": "0x1c5308648",
+      "method_list": "0x1c54a7580",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 8,
+      "code_sha256": "2be9f0841cc1f642b1b828decc1ed41c1998230da5848e7afe363a73cdc9f060",
+      "local_file": "SBIconListGridLayoutConfiguration-iconImageInfo.txt"
+    },
+    {
+      "owner": "SBIconListView",
+      "selector": "iconSpacing",
+      "types": "{CGSize=dd}16@0:8",
+      "IMP": "0x1c52ce5b0",
+      "method_list": "0x1c54ad520",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 20,
+      "code_sha256": "09656dfe8544e6b5d5c6f5ec870e05fade45ca76e00a341ea81d965c15e264b9",
+      "local_file": "SBIconListView-iconSpacing.txt"
+    },
+    {
+      "owner": "SBIconListView",
+      "selector": "gridCellInfo",
+      "types": "@16@0:8",
+      "IMP": "0x1c52f870c",
+      "method_list": "0x1c54ad520",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 56,
+      "code_sha256": "a9425fc246f61805330953c60c694a70a5f44b382aff54b78b10c84371ade48f",
+      "local_file": "SBIconListView-gridCellInfo.txt"
+    },
+    {
+      "owner": "SBIconListView",
+      "selector": "layoutMetrics",
+      "types": "@16@0:8",
+      "IMP": "0x1c5312a3c",
+      "method_list": "0x1c54ad520",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 164,
+      "code_sha256": "f9af96333561be9fc16581c471234b8bf8ccdb35e822a4aa2f86f94cb54a1add",
+      "local_file": "SBIconListView-layoutMetrics.txt"
+    },
+    {
+      "owner": "SBIconListView",
+      "selector": "layoutInsetsForOrientation:",
+      "types": "{UIEdgeInsets=dddd}24@0:8q16",
+      "IMP": "0x1c52bb640",
+      "method_list": "0x1c54ad520",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 392,
+      "code_sha256": "87b7f2701cf0e6ddcf14b9203af9c8097faa214e78123be280ca92841b278bb2",
+      "local_file": "SBIconListView-layoutInsetsForOrientation_.txt"
+    },
+    {
+      "owner": "SBIconListView",
+      "selector": "layoutMetricsForOrientation:",
+      "types": "@24@0:8q16",
+      "IMP": "0x1c54406d4",
+      "method_list": "0x1c54ad520",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 140,
+      "code_sha256": "bc183ee6116fc405031a67a4c0fa87c60ec38ef504a0fc324d68a554d4478f78",
+      "local_file": "SBIconListView-layoutMetricsForOrientation_.txt"
+    },
+    {
+      "owner": "SBIconListView",
+      "selector": "model",
+      "types": "@16@0:8",
+      "IMP": "0x1c5297040",
+      "method_list": "0x1c54ad520",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 16,
+      "code_sha256": "fd1996a0de4bc01da72a75b48c953e1d8432e98afcf8bd35022be0cdb6626ccf",
+      "local_file": "SBIconListView-model.txt"
+    },
+    {
+      "owner": "SBIconListView",
+      "selector": "layout",
+      "types": "@16@0:8",
+      "IMP": "0x1c52c864c",
+      "method_list": "0x1c54ad520",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 96,
+      "code_sha256": "2fa77e4fd15df55f9bbd66f9f9e4ec419fef31257b9bb35238c64fc47b21be51",
+      "local_file": "SBIconListView-layout.txt"
+    },
+    {
+      "owner": "SBIconListGridLayout",
+      "selector": "initWithLayoutConfiguration:",
+      "types": "@24@0:8@16",
+      "IMP": "0x1c546975c",
+      "method_list": "0x1c54b33a8",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 132,
+      "code_sha256": "b0ffc664516d313e8512cc8ee616cc5c64409407970a30ad647db1788fab060d",
+      "local_file": "SBIconListGridLayout-initWithLayoutConfiguration_.txt"
+    },
+    {
+      "owner": "SBIconListGridLayout",
+      "selector": "layoutConfiguration",
+      "types": "@16@0:8",
+      "IMP": "0x1c52a9164",
+      "method_list": "0x1c54b33a8",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 8,
+      "code_sha256": "f289023bfc90be5c90aa1a98a40c5b356af639e69af0399f5914b2202364955c",
+      "local_file": "SBIconListGridLayout-layoutConfiguration.txt"
+    },
+    {
+      "owner": "SBIconListGridLayout",
+      "selector": "numberOfColumnsForOrientation:",
+      "types": "Q24@0:8q16",
+      "IMP": "0x1c52d8bb0",
+      "method_list": "0x1c54b33a8",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 80,
+      "code_sha256": "1a4b395769b093ddab46860b54b5a7cc90d00c8405ab0c4bdc8aca80e5ac6b97",
+      "local_file": "SBIconListGridLayout-numberOfColumnsForOrientation_.txt"
+    },
+    {
+      "owner": "SBIconListGridLayout",
+      "selector": "numberOfRowsForOrientation:",
+      "types": "Q24@0:8q16",
+      "IMP": "0x1c52c2980",
+      "method_list": "0x1c54b33a8",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 80,
+      "code_sha256": "bdb16ea308ace519317b34e0c02348e4ddc4fdc1bac0c502c6efa66189459a06",
+      "local_file": "SBIconListGridLayout-numberOfRowsForOrientation_.txt"
+    },
+    {
+      "owner": "SBHDefaultIconListLayoutProvider",
+      "selector": "layoutForIconLocation:",
+      "types": "@24@0:8@16",
+      "IMP": "0x1c52a4c3c",
+      "method_list": "0x1c54952d0",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 144,
+      "code_sha256": "b27f87431995d4a3a90c21680b996684059187c82cba061afecfe70fae0ae189",
+      "local_file": "SBHDefaultIconListLayoutProvider-layoutForIconLocation_.txt"
+    },
+    {
+      "owner": "SBHDefaultIconListLayoutProvider",
+      "selector": "makeLayoutForIconLocation:",
+      "types": "@24@0:8@16",
+      "IMP": "0x1c5302588",
+      "method_list": "0x1c54952d0",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 1024,
+      "code_sha256": "07dd96b062e311b2199a9e83b2ba6a525cbc173cc8a9fe4ee9c43357be141cb3",
+      "local_file": "SBHDefaultIconListLayoutProvider-makeLayoutForIconLocation_.txt"
+    },
+    {
+      "owner": "SBHDefaultIconListLayoutProvider",
+      "selector": "initWithScreenType:layoutOptions:",
+      "types": "@32@0:8Q16Q24",
+      "IMP": "0x1c531e37c",
+      "method_list": "0x1c54952d0",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 76,
+      "code_sha256": "19267d8563fc6fad2055b9a7f34ba9832dae4bdad5ce4ce4bfa90509343c3b06",
+      "local_file": "SBHDefaultIconListLayoutProvider-initWithScreenType_layoutOptions_.txt"
+    },
+    {
+      "owner": "SBHDefaultIconListLayoutProvider",
+      "selector": "screenType",
+      "types": "Q16@0:8",
+      "IMP": "0x1c531f9f0",
+      "method_list": "0x1c54952d0",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 8,
+      "code_sha256": "dfb556a413c8bda5332942d0202e8d5f1e52f45158aec3676294cf11ad5909cb",
+      "local_file": "SBHDefaultIconListLayoutProvider-screenType.txt"
+    },
+    {
+      "owner": "SBHDefaultIconListLayoutProvider",
+      "selector": "configureGridSizeClassSizes:forScreenType:numberOfColumns:iconLocation:layoutOptions:",
+      "types": "v56@0:8^{SBHIconGridSizeClassSizes={SBHIconGridSize=SS}{SBHIconGridSize=SS}{SBHIconGridSize=SS}{SBHIconGridSize=SS}{SBHIconGridSize=SS}}16Q24Q32@40Q48",
+      "IMP": "0x1c53543c8",
+      "method_list": "0x1c54952d0",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 72,
+      "code_sha256": "f38e5e0858ea41d7493453e1c934c7e0bf7c5db58232cd7b6b203a2328172842",
+      "local_file": "SBHDefaultIconListLayoutProvider-configureGridSizeClassSizes_forScreenType_numberOfColumns_iconLocation_layoutOptions_.txt"
+    },
+    {
+      "owner": "SBHDefaultIconListLayoutProvider",
+      "selector": "init",
+      "types": "@16@0:8",
+      "IMP": "0x1c5311fc8",
+      "method_list": "0x1c54952d0",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 64,
+      "code_sha256": "b334b47fd9680bfa679f23faef8243736ba7e7d01fefe37965115042494ad2f4",
+      "local_file": "SBHDefaultIconListLayoutProvider-init.txt"
+    },
+    {
+      "owner": "SBIconListModel",
+      "selector": "icons",
+      "types": "@16@0:8",
+      "IMP": "0x1c52bb4e8",
+      "method_list": "0x1c54b39a8",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 8,
+      "code_sha256": "13f6fe1ba3d7bbb1f19d1ed745b6438c3bb1824071586853bdac97818df3e8f0",
+      "local_file": "SBIconListModel-icons.txt"
+    },
+    {
+      "owner": "SBLeafIcon",
+      "selector": "applicationBundleID",
+      "types": "@16@0:8",
+      "IMP": "0x1c52b7220",
+      "method_list": "0x1c54a8bf8",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 16,
+      "code_sha256": "c91d4a1e0c7edf59d83789194feefddad420fff7a37e0995d18ac6ee2853b0a4",
+      "local_file": "SBLeafIcon-applicationBundleID.txt"
+    },
+    {
+      "owner": "SBLeafIcon",
+      "selector": "leafIdentifier",
+      "types": "@16@0:8",
+      "IMP": "0x1c52c59f8",
+      "method_list": "0x1c54a8bf8",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 16,
+      "code_sha256": "b118956649248c6cb1674836b46006934211cd5e4c254bfc9d7139c965efaa39",
+      "local_file": "SBLeafIcon-leafIdentifier.txt"
+    },
+    {
+      "owner": "SBLeafIcon",
+      "selector": "leafIdentifierAndApplicationBundleIDMatches",
+      "types": "B16@0:8",
+      "IMP": "0x1c52c6668",
+      "method_list": "0x1c54a8bf8",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 48,
+      "code_sha256": "fb533bf6c2ecbdbe8819e6485916f0e40c835425e4fc9ddfd09993c627ad2de1",
+      "local_file": "SBLeafIcon-leafIdentifierAndApplicationBundleIDMatches.txt"
+    },
+    {
+      "owner": "SBFolder",
+      "selector": "uniqueIdentifier",
+      "types": "@16@0:8",
+      "IMP": "0x1c52bb4f0",
+      "method_list": "0x1c54a4fe8",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 8,
+      "code_sha256": "f637e07b3820a82a5634a0174c92391b8ec5194fafa5b124fa3a73d3007ae512",
+      "local_file": "SBFolder-uniqueIdentifier.txt"
+    },
+    {
+      "owner": "SBFolder",
+      "selector": "lists",
+      "types": "@16@0:8",
+      "IMP": "0x1c52ccd88",
+      "method_list": "0x1c54a4fe8",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 8,
+      "code_sha256": "f9e55c183a33c9b75e7a7ad72b369bbfdde0d1e2d2c4ab8acda2e647bb28dbb6",
+      "local_file": "SBFolder-lists.txt"
+    },
+    {
+      "owner": "SBFolderIcon",
+      "selector": "folder",
+      "types": "@16@0:8",
+      "IMP": "0x1c52c3e30",
+      "method_list": "0x1c54aa7e0",
+      "exact_A2S_IMP_start": true,
+      "class_method": false,
+      "code_bytes": 16,
+      "code_sha256": "dba88bcc4bdcfb9fd3e87b0ad748960b49623bccbb2f8e762d6f916813b0acff",
+      "local_file": "SBFolderIcon-folder.txt"
+    },
+    {
+      "owner": "SBHDefaultIconListLayoutProvider",
+      "selector": "currentDeviceScreenType",
+      "types": "Q16@0:8",
+      "IMP": "0x1c5301518",
+      "method_list": "0x1c5495298",
+      "exact_A2S_IMP_start": true,
+      "class_method": true,
+      "code_bytes": 4,
+      "code_sha256": "d9ae4d0f1c6632c5acff41083bf960c8e01b78770038d8249a08105a8d81f2be",
+      "local_file": "SBHDefaultIconListLayoutProvider-class-currentDeviceScreenType.txt"
+    },
+    {
+      "owner": "SBHDefaultIconListLayoutProvider",
+      "selector": "defaultLayoutOptions",
+      "types": "Q16@0:8",
+      "IMP": "0x1c52f97c0",
+      "method_list": "0x1c5495298",
+      "exact_A2S_IMP_start": true,
+      "class_method": true,
+      "code_bytes": 8,
+      "code_sha256": "d3c844a0173107453aa9896cdb7276470625501e7ff067cd764c7a160ece5ca3",
+      "local_file": "SBHDefaultIconListLayoutProvider-class-defaultLayoutOptions.txt"
+    },
+    {
+      "owner": "SBHDefaultIconListLayoutProvider",
+      "selector": "frameworkFallbackInstance",
+      "types": "@16@0:8",
+      "IMP": "0x1c52cbea0",
+      "method_list": "0x1c5495298",
+      "exact_A2S_IMP_start": true,
+      "class_method": true,
+      "code_bytes": 64,
+      "code_sha256": "ffb4f0235c7be2433b1f080a2ef99a4c781d5f6a86e23cbb900e66db4aa2878f",
+      "local_file": "SBHDefaultIconListLayoutProvider-class-frameworkFallbackInstance.txt"
+    }
+  ],
+  "provider_symbols": {
+    "-[PRWidgetMetricsProvider lockScreenWidgetMetricsSpecifications]": "0x18eedbd90",
+    "_objc_msgSend$lockScreenWidgetMetricsSpecifications": "0x1c578d7c0",
+    "-[CHSWidgetMetricsSpecification metricsByFamily]": "0x19211f2c0",
+    "-[CHSWidgetMetricsSpecification initWithMetricsSpecification:]": "0x19212061c",
+    "+[CHSWidgetMetricsSpecification supportsSecureCoding]": "0x192121408",
+    "-[CHSWidgetMetricsSpecification initWithCoder:]": "0x192122004",
+    "-[CHSWidgetMetricsSpecification copyWithZone:]": "0x192122684",
+    "-[CHSWidgetMetricsSpecification encodeWithCoder:]": "0x1921236f0",
+    "-[CHSWidgetMetricsSpecification isEqual:]": "0x192123b6c",
+    "-[CHSWidgetMetricsSpecification init]": "0x192138e78",
+    "-[CHSWidgetMetricsSpecification _initWithMetricsByFamily:alternates:]": "0x192138f10",
+    "-[CHSWidgetMetricsSpecification families]": "0x192138fb8",
+    "-[CHSWidgetMetricsSpecification metricsForFamily:]": "0x1921390e8",
+    "-[CHSWidgetMetricsSpecification alternateMetricsForFamily:]": "0x19213916c",
+    "-[CHSWidgetMetricsSpecification description]": "0x1921391f0",
+    "-[CHSWidgetMetricsSpecification succinctDescription]": "0x1921391f8",
+    "-[CHSWidgetMetricsSpecification succinctDescriptionBuilder]": "0x192139240",
+    "___59-[CHSWidgetMetricsSpecification succinctDescriptionBuilder]_block_invoke": "0x1921392f0",
+    "-[CHSWidgetMetricsSpecification descriptionWithMultilinePrefix:]": "0x192139350",
+    "-[CHSWidgetMetricsSpecification descriptionBuilderWithMultilinePrefix:]": "0x192139398",
+    "___71-[CHSWidgetMetricsSpecification descriptionBuilderWithMultilinePrefix:]_block_invoke": "0x192139470",
+    "___71-[CHSWidgetMetricsSpecification descriptionBuilderWithMultilinePrefix:]_block_invoke_2": "0x1921394f0",
+    "-[CHSWidgetMetricsSpecification mutableCopyWithZone:]": "0x192139598",
+    "-[CHSWidgetMetricsSpecification alternatesByFamily]": "0x1921395c4",
+    "-[CHSWidgetMetricsSpecification .cxx_destruct]": "0x1921395cc",
+    "-[CHSMutableWidgetMetricsSpecification _initWithMetricsByFamily:alternates:]": "0x1921395fc",
+    "-[CHSMutableWidgetMetricsSpecification setMetrics:forFamily:]": "0x1921396b8",
+    "-[CHSMutableWidgetMetricsSpecification setAlternateMetrics:forFamily:]": "0x1921397a4",
+    "-[CHSMutableWidgetMetricsSpecification copyWithZone:]": "0x192139890",
+    "-[CHSMutableWidgetMetricsSpecification metricsByFamily]": "0x1921398bc",
+    "-[CHSMutableWidgetMetricsSpecification alternatesByFamily]": "0x192139908",
+    "_$s11PosterBoard0A28RackCollectionViewControllerC55$__lazy_storage_$_lockScreenWidgetMetricsSpecifications33_D5DF376170FC49163D52DD3549B6CC17LLSo09CHSWidgetL13SpecificationCSgvpfi": "0x1c17e8144",
+    "_symbolic So29CHSWidgetMetricsSpecificationCSg": "0x1c187f5b2",
+    "-[SBHDefaultIconListLayoutProvider layoutForIconLocation:]": "0x1c52a4c3c",
+    "_SBHWidgetMetricsForFamilyWithLayoutProviderAndScreenType": "0x1c52b0bfc",
+    "+[SBHDefaultIconListLayoutProvider frameworkFallbackInstance]": "0x1c52cbea0",
+    "+[SBHDefaultIconListLayoutProvider defaultLayoutOptions]": "0x1c52f97c0",
+    "-[SBHDefaultIconListLayoutProvider layoutOptions]": "0x1c52fc144",
+    "+[SBHDefaultIconListLayoutProvider currentDeviceScreenType]": "0x1c5301518",
+    "-[SBHDefaultIconListLayoutProvider makeLayoutForIconLocation:]": "0x1c5302588",
+    "-[SBHDefaultIconListLayoutProvider init]": "0x1c5311fc8",
+    "-[SBHDefaultIconListLayoutProvider initWithScreenType:layoutOptions:]": "0x1c531e37c",
+    "-[SBHDefaultIconListLayoutProvider screenType]": "0x1c531f9f0",
+    "_SBHWidgetMetricsSpecificationWithLayoutProviderAndScreenType": "0x1c53505e0",
+    "-[SBHMappedIconListLayoutProvider initWithTargetListLayoutProvider:]": "0x1c5350f44",
+    "-[SBHMappedIconListLayoutProvider mapIconLocation:toIconLocation:]": "0x1c5350fb4",
+    "-[SBHMappedIconListLayoutProvider layoutForIconLocation:]": "0x1c5351024",
+    "-[SBHMappedIconListLayoutProvider targetListLayoutProvider]": "0x1c53510a0",
+    "-[SBHMappedIconListLayoutProvider .cxx_destruct]": "0x1c53510a8",
+    "-[SBHDefaultIconListLayoutProvider initWithScreenType:]": "0x1c5354284",
+    "-[SBHDefaultIconListLayoutProvider initWithLayoutOptions:]": "0x1c53542b8",
+    "___62-[SBHDefaultIconListLayoutProvider makeLayoutForIconLocation:]_block_invoke": "0x1c53542ec",
+    "___62-[SBHDefaultIconListLayoutProvider makeLayoutForIconLocation:]_block_invoke_2": "0x1c53543b0",
+    "-[SBHDefaultIconListLayoutProvider configureGridSizeClassSizes:forScreenType:numberOfColumns:iconLocation:layoutOptions:]": "0x1c53543c8",
+    "-[SBHDefaultIconListLayoutProvider configureSupportedIconGridSizeClasses:forScreenType:iconLocation:layoutOptions:]": "0x1c5354410",
+    "-[SBHDefaultIconListLayoutProvider configureLabelConfigurations:forScreenType:]": "0x1c53544a4",
+    "-[SBHDefaultIconListLayoutProvider configureIconAccessoryConfiguration:forScreenType:layoutOptions:]": "0x1c5354718",
+    "-[SBHDefaultIconListLayoutProvider configureAppLibraryConfiguration:forScreenType:layoutOptions:]": "0x1c53547fc",
+    "-[SBHDefaultIconListLayoutProvider configureFloatyFolderConfiguration:forScreenType:layoutOptions:]": "0x1c5354d50",
+    "-[SBHDefaultIconListLayoutProvider configureFolderIconConfiguration:forScreenType:numberOfRows:layoutOptions:]": "0x1c5354eb4",
+    "-[SBHDefaultIconListLayoutProvider configureSidebarConfiguration:forScreenType:layoutOptions:]": "0x1c5355050",
+    "-[SBHDefaultIconListLayoutProvider configureRootFolderConfiguration:forScreenType:layoutOptions:]": "0x1c5355238",
+    "-[SBHDefaultIconListLayoutProvider configureFloatingDockConfiguration:forScreenType:layoutOptions:]": "0x1c5355c64",
+    "+[SBHDefaultIconListLayoutProvider extendedFloatingDockCapacityIconCount]": "0x1c5355ca4",
+    "___61+[SBHDefaultIconListLayoutProvider frameworkFallbackInstance]_block_invoke": "0x1c5355cac",
+    "-[SBHDefaultIconListLayoutProvider homeScreenSearchOverlayInsetsForScreenType:layoutOptions:forAppLibrary:]": "0x1c5355cd4",
+    "-[SBHDefaultIconListLayoutProvider layoutOptionsForIconLocation:]": "0x1c5355df4",
+    "-[SBHDefaultIconListLayoutProvider description]": "0x1c5355e90",
+    "-[SBHDefaultIconListLayoutProvider succinctDescription]": "0x1c5355e98",
+    "-[SBHDefaultIconListLayoutProvider succinctDescriptionBuilder]": "0x1c5355ed0",
+    "-[SBHDefaultIconListLayoutProvider descriptionWithMultilinePrefix:]": "0x1c5355ee0",
+    "-[SBHDefaultIconListLayoutProvider descriptionBuilderWithMultilinePrefix:]": "0x1c5355f18",
+    "-[SBHDefaultIconListLayoutProvider .cxx_destruct]": "0x1c5355fac",
+    "-[SBHCustomIconListLayoutProvider initWithListLayouts:defaultLayout:]": "0x1c53b93a0",
+    "-[SBHCustomIconListLayoutProvider initWithListLayouts:]": "0x1c53b9430",
+    "-[SBHCustomIconListLayoutProvider init]": "0x1c53b9438",
+    "-[SBHCustomIconListLayoutProvider layoutForIconLocation:]": "0x1c53b9448",
+    "-[SBHCustomIconListLayoutProvider listLayouts]": "0x1c53b94b4",
+    "-[SBHCustomIconListLayoutProvider defaultLayout]": "0x1c53b94bc",
+    "-[SBHCustomIconListLayoutProvider .cxx_destruct]": "0x1c53b94c4",
+    "-[SBHAdjustableRootIconListLayoutProvider layoutForIconLocation:]": "0x1c547eae4",
+    "_symbolic So29CHSWidgetMetricsSpecificationC": "0x1c71f4154",
+    "___block_descriptor_40_ea8_32s_e36_\u0001\"CHSWidgetMetricsSpecification\"8\u0001?0ls32l8": "0x1d677c8c8",
+    "_OBJC_IVAR_$_CHSWidgetMetricsSpecification._metricsByFamily": "0x1dd17b760",
+    "_OBJC_IVAR_$_CHSWidgetMetricsSpecification._alternatesByFamily": "0x1dd17b764",
+    "_OBJC_CLASS_$_CHSMutableWidgetMetricsSpecification": "0x1dd17bc40",
+    "_OBJC_METACLASS_$_CHSMutableWidgetMetricsSpecification": "0x1dd17bc68",
+    "_OBJC_IVAR_$_SBHMappedIconListLayoutProvider._mappedIconLocations": "0x1de671c58",
+    "_OBJC_IVAR_$_SBHMappedIconListLayoutProvider._targetListLayoutProvider": "0x1de671c5c",
+    "_OBJC_IVAR_$_SBHDefaultIconListLayoutProvider._cachedListLayouts": "0x1de671cf0",
+    "_OBJC_IVAR_$_SBHDefaultIconListLayoutProvider._screenType": "0x1de671cf4",
+    "_OBJC_IVAR_$_SBHDefaultIconListLayoutProvider._layoutOptions": "0x1de671cf8",
+    "_OBJC_IVAR_$_SBHCustomIconListLayoutProvider._listLayouts": "0x1de672994",
+    "_OBJC_IVAR_$_SBHCustomIconListLayoutProvider._defaultLayout": "0x1de672998",
+    "_OBJC_CLASS_$_SBHMappedIconListLayoutProvider": "0x1de6778a0",
+    "_OBJC_METACLASS_$_SBHMappedIconListLayoutProvider": "0x1de6778c8",
+    "_OBJC_CLASS_$_SBHCustomIconListLayoutProvider": "0x1de6788e0",
+    "_OBJC_METACLASS_$_SBHCustomIconListLayoutProvider": "0x1de678908",
+    "_OBJC_CLASS_$_SBHAdjustableRootIconListLayoutProvider": "0x1de679dd0",
+    "_OBJC_METACLASS_$_SBHAdjustableRootIconListLayoutProvider": "0x1de679df8",
+    "_OBJC_CLASS_$_CHSWidgetMetricsSpecification": "0x1e1dd4300",
+    "_OBJC_METACLASS_$_CHSWidgetMetricsSpecification": "0x1e1dd4350",
+    "_OBJC_CLASS_$_SBHDefaultIconListLayoutProvider": "0x1e238f968",
+    "_OBJC_METACLASS_$_SBHDefaultIconListLayoutProvider": "0x1e238fd50",
+    "___getSBHDefaultIconListLayoutProviderClass_block_invoke": "0x1f5267948",
+    "___getSBHDefaultIconListLayoutProviderClass_block_invoke.cold.1": "0x1f5272a68",
+    "-[_DBIconListLayoutProvider initWithEnvironment:]": "0x1faf50cc4",
+    "-[_DBIconListLayoutProvider layoutForIconLocation:]": "0x1faf50e40",
+    "-[_DBIconListLayoutProvider layout]": "0x1faf50e44",
+    "-[_DBIconListLayoutProvider setLayout:]": "0x1faf50e4c",
+    "-[_DBIconListLayoutProvider .cxx_destruct]": "0x1faf50e58",
+    "_getSBHDefaultIconListLayoutProviderClass.softClass": "0x21253ef90",
+    "_OBJC_IVAR_$__DBIconListLayoutProvider._layout": "0x212b1bbdc",
+    "_OBJC_CLASS_$__DBIconListLayoutProvider": "0x212b1e818",
+    "_OBJC_METACLASS_$__DBIconListLayoutProvider": "0x212b1e840"
+  },
+  "cache_files": [
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64",
+      "bytes": 393216,
+      "header_sha256": "e31549b8573a08260a44ceb4a241aab1ff3931d7c8fbeb5f000aef2c0152cbce"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.01",
+      "bytes": 114638848,
+      "header_sha256": "99e7f775311d9076a397c08b3c7aac5df215ccf461dd8542e0fc66106da9c207"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.02",
+      "bytes": 98304,
+      "header_sha256": "c89c9f5e2ce99b9b78045a8d2455315e760a80ae2825782cb2d21997230b98c7"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.03",
+      "bytes": 115769344,
+      "header_sha256": "f3f7712b0719be91768bf45790bf6006ad8b9f6eeebe405ab3aacb55b2ab5400"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.04",
+      "bytes": 180224,
+      "header_sha256": "64b120c41f683b44df6c75e0a0610fa067a879ccfd950ca1e241c8242a5ada8c"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.05",
+      "bytes": 114540544,
+      "header_sha256": "5b9a0026f610da62a83fbba4fdaa3cb78af25ccbf7df0c234d9a437ed543531c"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.06",
+      "bytes": 376832,
+      "header_sha256": "32d5f339b0f243378087f0d09b9db4795f9c1b22a08cfc0b99028327e4c94023"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.07",
+      "bytes": 115408896,
+      "header_sha256": "f422aba8cc196a00e60103296a48d30c9902f1b70600ce9b085b927dd2342ed0"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.08",
+      "bytes": 278528,
+      "header_sha256": "9c33849289dcb5dd7aa266735c5fd568df2737d444acbe4cc3ef78796a29fa40"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.09",
+      "bytes": 115752960,
+      "header_sha256": "528bf0bdc00a54d6a467d88aaa327f450b8c45601aa04069e6af561aa8e7c3f3"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.10",
+      "bytes": 409600,
+      "header_sha256": "b3f15aaf09d1492b976d4666bd3389432a1c8babb090555f1dcf3a088a8a607c"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.11",
+      "bytes": 115818496,
+      "header_sha256": "c05e4ca9b946244fc7447b0e0131f4f23bffb3fc6f73ae60666fd8206c466899"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.12",
+      "bytes": 393216,
+      "header_sha256": "8c28af0faee8e8ab2a83b7ed3a6b21c17db0a2195d9b646d370d7605b2df42e2"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.13",
+      "bytes": 107970560,
+      "header_sha256": "9237b501b34af438106994c95226874d7405c647dd56220fe177a89b59e44adf"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.14",
+      "bytes": 409600,
+      "header_sha256": "555f55085500045bf7751fdff58109c528404ff51d1f97e10f7db419d85215b1"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.15",
+      "bytes": 115097600,
+      "header_sha256": "c03b2db55f6b3d58a508b852b87b313fcc5a6ed0094f4df5a177356e8453eda4"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.16",
+      "bytes": 458752,
+      "header_sha256": "23d4ab8e26d23420af95529eee3c485ff1849862fa583aca2ae5d3466796796f"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.17",
+      "bytes": 97419264,
+      "header_sha256": "8d3481aa14bb979b39695d2ca9b3c2a684269f1d06c777a4a1b4fb26359e3575"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.18",
+      "bytes": 376832,
+      "header_sha256": "669dd60a0e2ab3f44a069964c58a94e7bc3fe8ed9f48d9f2d81194b8a8d524e6"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.19",
+      "bytes": 107610112,
+      "header_sha256": "5a2abfdcc30d8d435f12562b685c5dfaf98f4cb440bb8acc96be75414aa4f713"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.20",
+      "bytes": 262144,
+      "header_sha256": "31abfd0921492cb0a90b2ccab064d11d7da9ea1c15b7d5412963df0a8f34ff22"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.21",
+      "bytes": 115130368,
+      "header_sha256": "d211b976258872cb86f962ebcd4fb3bd0e538bc68fb015645de95a6d93aaf6ef"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.22",
+      "bytes": 442368,
+      "header_sha256": "bc06a723e0fc394906886b2e56ecd2e224e82b41ba3c5a92f4ee2df70abe1d32"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.23",
+      "bytes": 115015680,
+      "header_sha256": "01291ad3aca59abd49973c63f2ab7afc2e118c3f30a96309c4eaad1e14e39f96"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.24",
+      "bytes": 507904,
+      "header_sha256": "a86e5b56be9dccd6b6ad5203c7aaefb278f4be4823ab5da08db5ec22bc94f4fa"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.25",
+      "bytes": 83607552,
+      "header_sha256": "23a24116a4d5e5447d94cf20afd62711deb6b7d0643b601f7be6c5e9d9341300"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.26",
+      "bytes": 245760,
+      "header_sha256": "1fa3094baa5d2193ff72f1d7c62a04402fe9c79deb2c290b7c718e7111692cb9"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.27.dylddata",
+      "bytes": 187105280,
+      "header_sha256": "52779b4f919808bf726f3b29088e615410131454d3de3130bccc321bf005b352"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.28.dyldlinkedit",
+      "bytes": 19922944,
+      "header_sha256": "0ec15382dbd3183696d816b2fc72c2ece49bd0d2e0d150844ac194bf1885d96d"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.29",
+      "bytes": 115539968,
+      "header_sha256": "98e8bc588dbcf29ebe675c495db4cdfe9ede2add3f5757c0e5de89dfdf28a248"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.30",
+      "bytes": 507904,
+      "header_sha256": "24d426bfdb60f467af83548c40f315ac34ac8976c7be83342c19c889c2e8f5c0"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.31",
+      "bytes": 103677952,
+      "header_sha256": "52960f801292e62610dbaeaf5d7624e46f28c48e636aed73e51ecfff7863db78"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.32",
+      "bytes": 573440,
+      "header_sha256": "9523b5275b93ebd1cce14bb9cea5d2e5dcf8f73b7b0998371c25870ad699c64d"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.33",
+      "bytes": 115785728,
+      "header_sha256": "1bd5e2aaa155c76e25951d9d6d222d585ba0a44491669b67b78220be01fef0cf"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.34",
+      "bytes": 638976,
+      "header_sha256": "e0f9b9572bf6207bd9575fcb0a9e7feb5ed4afe79a073da9cbf9cbcc0690847e"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.35",
+      "bytes": 115769344,
+      "header_sha256": "6221c0f624efbc6cdb87f751668284f60efc1ebc9d47c0ac45c5400df4b1d032"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.36",
+      "bytes": 491520,
+      "header_sha256": "c26d70ec84712f417e05a47451a700dcb6d1d6835ad3bedfe73de6e491ef832f"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.37",
+      "bytes": 114917376,
+      "header_sha256": "ac3fb1231183989593960c23aa6361691e1b78a82adaff2f529fb8c3a4567d97"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.38",
+      "bytes": 573440,
+      "header_sha256": "8dcefac0b5cec67bcb3803f63126afd17a32815ef0ce1da7c209ae59efc40df6"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.39",
+      "bytes": 86933504,
+      "header_sha256": "484d9ed88c05b1ad2062c3aa16c1b5dadb09d338b52b29055fa9f24202f7ee61"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.40",
+      "bytes": 557056,
+      "header_sha256": "07fc6fe63b20d24a86c38a7388fe62c612bd37ab7578e722782786391e26ce88"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.41.dylddata",
+      "bytes": 102547456,
+      "header_sha256": "2924fee52780426cd2caf30a889912a29b8f8f117ead1bab8c48efaeff4b3945"
+    },
+    {
+      "path": "/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64.42.dyldlinkedit",
+      "bytes": 334102528,
+      "header_sha256": "0786b300bcbdc2f0fd817e0a011fa429bde369f97a8abe4ed94b5de50a96d44c"
+    }
+  ],
+  "catalog_files": 184173,
+  "decoded_image_bytes": 17179869184,
+  "independently_verified_original_ranges": {
+    "allocate-texture": {
+      "address": "0x1884bc2cc",
+      "bytes": 340,
+      "sha256": "ebe38249fdb0c40ec606eee530e7f4796d1c27b0632da3c5e2122deabe81c679"
+    },
+    "queue-present": {
+      "address": "0x181a29fd4",
+      "bytes": 384,
+      "sha256": "d8f9cc24a79c492a254042bd8ecbe748de1d8711430644fae73f502d1f3588d5"
+    },
+    "queue-present-block": {
+      "address": "0x181a31874",
+      "bytes": 120,
+      "sha256": "f58d095056656885e4ccdead210d393f41eed3107d75af2cb85ec8ba22dfe0f7"
+    },
+    "queue-options": {
+      "address": "0x181b20db4",
+      "bytes": 376,
+      "sha256": "09fb32c39f68297789f5e4ca8bd218e61bc8493c56d166f8a6491d2c894b5e12"
+    },
+    "queue-options-block": {
+      "address": "0x181b20f88",
+      "bytes": 104,
+      "sha256": "b4c301cdc1f516d43e36af0b891a649669fb4a468e1fdfb9ce30001f43396923"
+    },
+    "drawable-options": {
+      "address": "0x1884bc174",
+      "bytes": 176,
+      "sha256": "6f97daced3c3f9d663371de9d6709ec399ee9d71b0f2fc4e843e2d701b38a78c"
+    },
+    "canvas-present-commit": {
+      "address": "0x1c1737740",
+      "bytes": 32,
+      "sha256": "49a913f1c7f4324fe3d5f7827019913d7a938e7fc45d7611a191f05a20efd747"
+    },
+    "canvas-transaction-wait": {
+      "address": "0x1c17379d4",
+      "bytes": 68,
+      "sha256": "909ae4e274d19108156b120b20c18c311d4a6214398235e019570fd1e845d7f4"
+    }
+  },
+  "source_sha256": "1391f8965ec600673ab63a320b37d68cc0f9b5e22025712f54bc74fde4c163ce",
+  "images_expanded_to_disk": 0,
+  "image_mounts": 0,
+  "original_application_identity_references": [
+    {
+      "path": "/Applications/AppStore.app/Info.plist",
+      "bundle_identifier": "com.apple.AppStore",
+      "Info_plist_sha256": "e3271fb987a2a9ff45ee21162518038122f44f5ce02a23478a6b9c682e3b22bd"
+    },
+    {
+      "path": "/Applications/MobileSlideShow.app/Info.plist",
+      "bundle_identifier": "com.apple.mobileslideshow",
+      "Info_plist_sha256": "8f1fbc490dcc33aa3a67d9b8275bde5c2f40676da8d0b72b0c6f0e797c58f228"
+    },
+    {
+      "path": "/Applications/Preferences.app/Info.plist",
+      "bundle_identifier": "com.apple.Preferences",
+      "Info_plist_sha256": "3f96ed0b7644825cbe21543727312ce82d3237d1eb30467152c1edd7b217d71b"
+    },
+    {
+      "path": "/System/Library/AppPlaceholders/AppleTV.app/Info.plist",
+      "bundle_identifier": "com.apple.tv",
+      "Info_plist_sha256": "15bb7be9ba550596b4987dc69a3a4a4517f432c3aa4958da0d0f1d045096fe28"
+    },
+    {
+      "path": "/System/Library/AppPlaceholders/FaceTime.app/Info.plist",
+      "bundle_identifier": "com.apple.facetime",
+      "Info_plist_sha256": "d860db0fd888782e469973d236c397fbd93be6d21eafe32797d262d91f0d71cd"
+    },
+    {
+      "path": "/System/Library/AppPlaceholders/Health.app/Info.plist",
+      "bundle_identifier": "com.apple.Health",
+      "Info_plist_sha256": "28475c8b85b5be589343787bae71b8a419999719ecb6d56262c50e22b975d5e0"
+    },
+    {
+      "path": "/System/Library/AppPlaceholders/Maps.app/Info.plist",
+      "bundle_identifier": "com.apple.Maps",
+      "Info_plist_sha256": "c7f31c01670befa4f3c26dd232db402b4e9b053350a1ddbd566ca1576703cb5a"
+    },
+    {
+      "path": "/System/Library/AppPlaceholders/MobileCal.app/Info.plist",
+      "bundle_identifier": "com.apple.mobilecal",
+      "Info_plist_sha256": "066308f8079a8cdc4b622144193c8f1b1fb911438a6879445505d71ee01ee755"
+    },
+    {
+      "path": "/System/Library/AppPlaceholders/MobileMail.app/Info.plist",
+      "bundle_identifier": "com.apple.mobilemail",
+      "Info_plist_sha256": "da0c96b601f0cdcfe0224c12137e89b460181dfa133a203af86e99bba702e2ce"
+    },
+    {
+      "path": "/System/Library/AppPlaceholders/MobileNotes.app/Info.plist",
+      "bundle_identifier": "com.apple.mobilenotes",
+      "Info_plist_sha256": "597e897135f7bdb098a013dc68b7f9cdb8e4b508d1c4e4f93d5982992194286f"
+    },
+    {
+      "path": "/System/Library/AppPlaceholders/MobileTimer.app/Info.plist",
+      "bundle_identifier": "com.apple.mobiletimer",
+      "Info_plist_sha256": "002918f6ecc7f4f7d370ff61486adcc1ac018c5874fadc9d47bbc5453dac36a8"
+    },
+    {
+      "path": "/System/Library/AppPlaceholders/News.app/Info.plist",
+      "bundle_identifier": "com.apple.news",
+      "Info_plist_sha256": "f64cc7f023a54f5f14e60ceff26345a20e62ee0540bdab74c34b1e51452600df"
+    },
+    {
+      "path": "/System/Library/AppPlaceholders/Passbook.app/Info.plist",
+      "bundle_identifier": "com.apple.Passbook",
+      "Info_plist_sha256": "5bc321851705a63c71516d2dfb345e95211bf731872efd8b82286648ca0e3b47"
+    },
+    {
+      "path": "/System/Library/AppPlaceholders/Podcasts.app/Info.plist",
+      "bundle_identifier": "com.apple.podcasts",
+      "Info_plist_sha256": "4cbe62c25c9a467ead6de9134cfe8b897effb1cfbf13af86c2164776f2a52ba1"
+    },
+    {
+      "path": "/System/Library/AppPlaceholders/Reminders.app/Info.plist",
+      "bundle_identifier": "com.apple.reminders",
+      "Info_plist_sha256": "813ad8ee4bbd9e2cd2b26c1bbfc73ec8ad8e6c9a852c5a429053df6254a86454"
+    },
+    {
+      "path": "/private/var/staged_system_apps/AppleTV.app/Info.plist",
+      "bundle_identifier": "com.apple.tv",
+      "Info_plist_sha256": "15bb7be9ba550596b4987dc69a3a4a4517f432c3aa4958da0d0f1d045096fe28"
+    },
+    {
+      "path": "/private/var/staged_system_apps/FaceTime.app/Info.plist",
+      "bundle_identifier": "com.apple.facetime",
+      "Info_plist_sha256": "d860db0fd888782e469973d236c397fbd93be6d21eafe32797d262d91f0d71cd"
+    },
+    {
+      "path": "/private/var/staged_system_apps/Health.app/Info.plist",
+      "bundle_identifier": "com.apple.Health",
+      "Info_plist_sha256": "28475c8b85b5be589343787bae71b8a419999719ecb6d56262c50e22b975d5e0"
+    },
+    {
+      "path": "/private/var/staged_system_apps/Maps.app/Info.plist",
+      "bundle_identifier": "com.apple.Maps",
+      "Info_plist_sha256": "c7f31c01670befa4f3c26dd232db402b4e9b053350a1ddbd566ca1576703cb5a"
+    },
+    {
+      "path": "/private/var/staged_system_apps/MobileCal.app/Info.plist",
+      "bundle_identifier": "com.apple.mobilecal",
+      "Info_plist_sha256": "066308f8079a8cdc4b622144193c8f1b1fb911438a6879445505d71ee01ee755"
+    },
+    {
+      "path": "/private/var/staged_system_apps/MobileMail.app/Info.plist",
+      "bundle_identifier": "com.apple.mobilemail",
+      "Info_plist_sha256": "da0c96b601f0cdcfe0224c12137e89b460181dfa133a203af86e99bba702e2ce"
+    },
+    {
+      "path": "/private/var/staged_system_apps/MobileNotes.app/Info.plist",
+      "bundle_identifier": "com.apple.mobilenotes",
+      "Info_plist_sha256": "597e897135f7bdb098a013dc68b7f9cdb8e4b508d1c4e4f93d5982992194286f"
+    },
+    {
+      "path": "/private/var/staged_system_apps/MobileTimer.app/Info.plist",
+      "bundle_identifier": "com.apple.mobiletimer",
+      "Info_plist_sha256": "002918f6ecc7f4f7d370ff61486adcc1ac018c5874fadc9d47bbc5453dac36a8"
+    },
+    {
+      "path": "/private/var/staged_system_apps/News.app/Info.plist",
+      "bundle_identifier": "com.apple.news",
+      "Info_plist_sha256": "f64cc7f023a54f5f14e60ceff26345a20e62ee0540bdab74c34b1e51452600df"
+    },
+    {
+      "path": "/private/var/staged_system_apps/Passbook.app/Info.plist",
+      "bundle_identifier": "com.apple.Passbook",
+      "Info_plist_sha256": "5bc321851705a63c71516d2dfb345e95211bf731872efd8b82286648ca0e3b47"
+    },
+    {
+      "path": "/private/var/staged_system_apps/Podcasts.app/Info.plist",
+      "bundle_identifier": "com.apple.podcasts",
+      "Info_plist_sha256": "4cbe62c25c9a467ead6de9134cfe8b897effb1cfbf13af86c2164776f2a52ba1"
+    },
+    {
+      "path": "/private/var/staged_system_apps/Reminders.app/Info.plist",
+      "bundle_identifier": "com.apple.reminders",
+      "Info_plist_sha256": "813ad8ee4bbd9e2cd2b26c1bbfc73ec8ad8e6c9a852c5a429053df6254a86454"
+    }
+  ],
+  "device_operations": 0,
+  "original_Apple_bytes_not_for_Git": true,
+  "static_methods_are_not_device_UI_acceptance": true
+}

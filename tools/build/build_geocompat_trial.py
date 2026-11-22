@@ -23,20 +23,22 @@ def main():
     host=run([out/'test_adapter'],'host-test')
     assert b'PASS: real 4-argument ObjC dispatch' in host and b'PASS: bounded original layout observer' in host and b'PASS: native root grid factory/cache' in host
     assert b'PASS: real shared C log writer' in host and b'PASS: original model identities' in host
+    assert b'PASS: full root/folder/dock model graph' in host
     sdk=subprocess.check_output(['xcrun','--sdk','iphoneos','--show-sdk-path'],text=True).strip()
     library=out/'georead.dylib'
     run(['xcrun','--sdk','iphoneos','clang','-target','arm64-apple-ios16.0','-isysroot',sdk,'-O1','-c',ROOT/paths[3],'-o',out/'arm64-log-write.o'],'ios-log-compile')
     run(['xcrun','--sdk','iphoneos','clang++','-target','arm64-apple-ios16.0','-isysroot',sdk,'-O1','-fblocks','-fno-objc-arc','-dynamiclib',ROOT/paths[0],out/'arm64-log-write.o','-framework','CoreFoundation','-framework','CoreGraphics','-lobjc','-Wl,-install_name,/dev/sglram/georead.dylib','-o',library],'ios-compile')
     run(['codesign','-f','-s','-',library],'codesign');run(['codesign','--verify',library],'signature')
     assert sources=={name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in paths}
-    report=dict(revision=2,source_files=sources,library_sha256=hashlib.sha256(library.read_bytes()).hexdigest(),library_bytes=library.stat().st_size,
+    report=dict(revision=3,source_files=sources,library_sha256=hashlib.sha256(library.read_bytes()).hexdigest(),library_bytes=library.stat().st_size,
                 host_ASan_UBSan_real_four_argument_provider_dispatch_passed=True,exact_native360x640_720x1280_scale2_flat_provider=True,
                 opaque_visual_provider_info_forwarded=True,valid_other_screen_providers_preserved=True,read_only_window_safe_area_ABI_checked=True,
-                read_only_layout_observer_revision=2,host_ASan_UBSan_bounded_layout_and_CGRect_conversion_passed=True,
+                read_only_layout_observer_revision=3,host_ASan_UBSan_bounded_layout_and_CGRect_conversion_passed=True,
                 original_frame_grid_values_preserved=False,read_only_layout_observer_preserves_current_values=True,
                 layout_snapshot_once_after_constructor_seconds=120,
                 host_ASan_UBSan_shared_log_writer_EINTR_partial_errno_passed=True,original_icon_model_identity_ABI_host_passed=True,
                 native_root_grid_density_revision=1,native_root_grid_rows=5,original_grid_factory_cache_ABI_and_setter_host_passed=True,
+                native_root_grid_mode_control_revision=1,original_full_folder_dock_model_ABI_host_passed=True,
                 original_icon_widget_font_and_insets_preserved=True,other_screen_or_nonroot_grid_configs_preserved=True,
                 new_device_RAM_CPU_GLES_UI_NOT_verified=True,device_operations=0)
     (out/'manifest.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print(json.dumps(report))

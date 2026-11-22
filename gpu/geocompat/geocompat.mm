@@ -225,8 +225,16 @@ typedef id (*SweetLayoutFactory)(id,SEL,id);
 static SweetLayoutFactory original_layout_factory,original_layout_cached;
 static unsigned native_grid_traces;
 static __thread bool native_grid_checking;
+static int native_grid_mode(void)
+{
+    const char *value=getenv("GEO_GRID");
+    if(!value || !strcmp(value,"1"))return 1;
+    if(!strcmp(value,"0"))return 0;
+    return -1;
+}
 static bool native_root_grid(id layout)
 {
+    if(native_grid_mode()!=1)return false;
     if(!geo_kind(layout,"SBIconListGridLayout"))return false;
     id config=geo_object(layout,"layoutConfiguration");unsigned long long rows=0,columns=0;
     if(!geo_kind(config,"SBIconListGridLayoutConfiguration") || !geo_count(config,"numberOfPortraitRows",&rows) || rows!=6 ||
@@ -298,45 +306,84 @@ static void install_native_grid_adapter(void)
         emit("SWEET GEOGRID REFUSE original_cached_ABI_unavailable\n");
 }
 struct SweetGeoLayoutResult {unsigned visited,recorded,grids,refused,truncated,model_pages,model_icons,applications,write_failures;};
-static bool geo_model(id view,unsigned number,SweetGeoLayoutResult *result)
+struct SweetGeoModelJob {id model,icons;unsigned number,parent,index,list,depth;const char *kind;char folder[65];};
+struct SweetGeoModels {SweetGeoModelJob jobs[32];unsigned count,next=2049;char folder_ids[16][65];unsigned folders;};
+static bool geo_ascii_identifier(id object,char *output,size_t capacity)
+{
+    id text=geo_kind(object,"NSString")?object:geo_kind(object,"NSUUID")?geo_object(object,"UUIDString"):nil;
+    if(!text || !CFStringGetCString((CFStringRef)text,output,capacity,kCFStringEncodingUTF8) || !output[0])return false;
+    for(const unsigned char *p=(const unsigned char *)output;*p;++p)
+        if(!((*p>='a' && *p<='z') || (*p>='A' && *p<='Z') || (*p>='0' && *p<='9') || *p=='.' || *p=='_' || *p=='-'))return false;
+    return true;
+}
+static bool geo_model_add(id model,unsigned number,const char *kind,unsigned parent,unsigned index,unsigned list,
+                          const char *folder,unsigned depth,SweetGeoModels *models,SweetGeoLayoutResult *result)
+{
+    id icons=geo_kind(model,"SBIconListModel")?geo_object(model,"icons"):nil;
+    if(!geo_kind(icons,"NSArray")){++result->refused;return false;}
+    CFIndex count=CFArrayGetCount((CFArrayRef)icons);
+    if(count<0 || count>128 || models->count>=32 || depth>8){result->truncated=1;return false;}
+    for(unsigned i=0;i<models->count;++i)if(models->jobs[i].model==model){++result->refused;return false;}
+    SweetGeoModelJob &job=models->jobs[models->count++];
+    job.model=model;job.icons=icons;job.number=number;job.kind=kind;job.parent=parent;job.index=index;job.list=list;job.depth=depth;
+    snprintf(job.folder,sizeof(job.folder),"%s",folder);return true;
+}
+static bool geo_model(id view,unsigned number,SweetGeoLayoutResult *result,SweetGeoModels *models)
 {
     CGRect rectangle;
-    if(!geo_kind(view,"SBIconListView") || !geo_rectangle(view,"frame",&rectangle) ||
-       fabs(rectangle.size.width-360)>.01 || fabs(rectangle.size.height-640)>.01)return false;
-    id model=geo_object(view,"model");id icons=geo_kind(model,"SBIconListModel")?geo_object(model,"icons"):nil;
-    char line[190];
-    if(!geo_kind(icons,"NSArray")){
-        ++result->refused;snprintf(line,sizeof(line),"SWEET GLAYOUT REFUSE model_unavailable n=%u\n",number);emit(line);return false;
+    if(!geo_kind(view,"SBIconListView") || !geo_rectangle(view,"frame",&rectangle) || fabs(rectangle.size.width-360)>.01)return false;
+    const char *kind=fabs(rectangle.size.height-640)<.01?"root":geo_kind(view,"SBDockIconListView")?"dock":NULL;
+    if(!kind)return false;
+    if(!geo_model_add(geo_object(view,"model"),number,kind,0,0,0,"-",0,models,result)){
+        char line[190];snprintf(line,sizeof(line),"SWEET GLAYOUT REFUSE model_unavailable n=%u\n",number);emit(line);return false;
     }
-    CFIndex count=CFArrayGetCount((CFArrayRef)icons);
-    if(count<0 || count>128 || result->model_pages>=8){result->truncated=1;return false;}
-    ++result->model_pages;snprintf(line,sizeof(line),"SWEET GLAYOUT MODEL n=%u count=%ld\n",number,(long)count);emit(line);
-    for(CFIndex i=0;i<count;++i){
-        id icon=(id)CFArrayGetValueAtIndex((CFArrayRef)icons,i);const char *name=icon?class_getName(object_getClass(icon)):"nil";
-        char identifier[65]="-";unsigned application=0;
-        if(strlen(name)>48)result->truncated=1;
-        if(geo_kind(icon,"SBLeafIcon")){
-            id bundle=geo_object(icon,"applicationBundleID");
-            if(bundle){
-                if(!geo_kind(bundle,"NSString") || !CFStringGetCString((CFStringRef)bundle,identifier,sizeof(identifier),kCFStringEncodingUTF8)){
-                    ++result->refused;strcpy(identifier,"-");
-                }else{
-                    bool valid=identifier[0]!=0;
-                    for(const unsigned char *p=(const unsigned char *)identifier;*p;++p)
-                        if(!((*p>='a' && *p<='z') || (*p>='A' && *p<='Z') || (*p>='0' && *p<='9') || *p=='.' || *p=='_' || *p=='-'))valid=false;
-                    if(valid){
+    return true;
+}
+static void geo_models_capture(SweetGeoModels *models,SweetGeoLayoutResult *result)
+{
+    char line[190];
+    for(unsigned j=0;j<models->count;++j){
+        SweetGeoModelJob &job=models->jobs[j];CFIndex count=CFArrayGetCount((CFArrayRef)job.icons);++result->model_pages;
+        snprintf(line,sizeof(line),"SWEET GLAYOUT MODEL n=%u kind=%s parent=%u index=%u list=%u folder=%s count=%ld\n",job.number,job.kind,job.parent,job.index,job.list,job.folder,(long)count);emit(line);
+        for(CFIndex i=0;i<count;++i){
+            id icon=(id)CFArrayGetValueAtIndex((CFArrayRef)job.icons,i);const char *name=icon?class_getName(object_getClass(icon)):"nil";
+            char identifier[65]="-",folder_id[65]="-";unsigned application=0,folder_lists=0;
+            if(strlen(name)>48)result->truncated=1;
+            if(geo_kind(icon,"SBLeafIcon")){
+                id bundle=geo_object(icon,"applicationBundleID");
+                if(bundle){
+                    if(!geo_ascii_identifier(bundle,identifier,sizeof(identifier))){++result->refused;strcpy(identifier,"-");}
+                    else{
                         const char *selector="leafIdentifierAndApplicationBundleIDMatches";
                         if(geo_method_type(icon,selector,"B"))application=((bool (*)(id,SEL))objc_msgSend)(icon,sel_registerName(selector))?1:0;
                         else if(geo_method_type(icon,selector,"c"))application=((signed char (*)(id,SEL))objc_msgSend)(icon,sel_registerName(selector))?1:0;
                         else ++result->refused;
-                    }else{++result->refused;strcpy(identifier,"-");}
+                    }
                 }
             }
+            if(geo_kind(icon,"SBFolderIcon")){
+                id folder=geo_object(icon,"folder"),lists=geo_kind(folder,"SBFolder")?geo_object(folder,"lists"):nil;
+                if(!geo_kind(lists,"NSArray") || !geo_ascii_identifier(geo_object(folder,"uniqueIdentifier"),folder_id,sizeof(folder_id))){
+                    ++result->refused;
+                }else{
+                    CFIndex length=CFArrayGetCount((CFArrayRef)lists);bool repeated=false;
+                    for(unsigned k=0;k<models->folders;++k)if(!strcmp(folder_id,models->folder_ids[k]))repeated=true;
+                    if(length<0 || length>8 || models->folders>=16 || repeated){++result->refused;}
+                    else{
+                        strcpy(models->folder_ids[models->folders++],folder_id);folder_lists=(unsigned)length;
+                        for(CFIndex k=0;k<length;++k)
+                            if(!geo_model_add((id)CFArrayGetValueAtIndex((CFArrayRef)lists,k),models->next++,"folder",job.number,(unsigned)i,(unsigned)k,folder_id,job.depth+1,models,result))++result->refused;
+                    }
+                }
+            }
+            ++result->model_icons;result->applications+=application;
+            int written=snprintf(line,sizeof(line),"SWEET GLAYOUT ICON n=%u index=%ld class=%.48s application=%u id=%s\n",job.number,(long)i,name,application,identifier);
+            if(written<0 || (size_t)written>=sizeof(line))result->truncated=1;emit(line);
+            if(geo_kind(icon,"SBFolderIcon")){
+                snprintf(line,sizeof(line),"SWEET GLAYOUT LINK n=%u index=%ld folder=%s lists=%u\n",job.number,(long)i,folder_id,folder_lists);emit(line);
+            }
         }
-        ++result->model_icons;result->applications+=application;
-        snprintf(line,sizeof(line),"SWEET GLAYOUT ICON n=%u index=%ld class=%.48s application=%u id=%s\n",number,(long)i,name,application,identifier);emit(line);
     }
-    return true;
 }
 static bool geo_grid(id view,unsigned number)
 {
@@ -365,7 +412,9 @@ static SweetGeoLayoutResult inspect_native_layout(unsigned after_ctor_seconds)
     SweetGeoLayoutResult result={};int saved_errno=errno;unsigned writes_before=__atomic_load_n(&geo_write_failures,__ATOMIC_RELAXED);
     const char *enabled=getenv("GEO_FIX");
     if(!enabled || strcmp(enabled,"1") || !geo_native_screen()){errno=saved_errno;return result;}
-    char line[190];snprintf(line,sizeof(line),"SWEET GLAYOUT BEGIN rev=2 after_ctor=%u points=360,640 pixels=720,1280 scale=2\n",after_ctor_seconds);emit(line);
+    int grid_mode=native_grid_mode();if(grid_mode<0){emit("SWEET GLAYOUT REFUSE grid_mode\n");return result;}
+    SweetGeoModels models={};models.next=2049;
+    char line[190];snprintf(line,sizeof(line),"SWEET GLAYOUT BEGIN rev=3 after_ctor=%u points=360,640 pixels=720,1280 scale=2 grid=%d\n",after_ctor_seconds,grid_mode);emit(line);
     @try {
         id app=geo_object((id)objc_lookUpClass("UIApplication"),"sharedApplication"),windows=geo_object(app,"windows");
         struct Node {id object;unsigned parent,depth;} nodes[2048];unsigned queued=0;
@@ -390,7 +439,7 @@ static SweetGeoLayoutResult inspect_native_layout(unsigned after_ctor_seconds)
                     }
                 }else ++result.refused;
                 if(result.grids<8 && geo_grid(view,i+1))++result.grids;
-                (void)geo_model(view,i+1,&result);
+                (void)geo_model(view,i+1,&result,&models);
             }
             id children=geo_object(view,"subviews");if(!geo_kind(children,"NSArray")){++result.refused;continue;}
             CFIndex count=CFArrayGetCount((CFArrayRef)children);if(count<0 || count>2048){result.truncated=1;continue;}
@@ -402,16 +451,18 @@ static SweetGeoLayoutResult inspect_native_layout(unsigned after_ctor_seconds)
                 nodes[queued++]={child,i+1,nodes[i].depth+1};
             }
         }
+        geo_models_capture(&models,&result);
     }@catch(id exception){(void)exception;++result.refused;emit("SWEET GLAYOUT REFUSE getter_exception\n");}
     snprintf(line,sizeof(line),"SWEET GLAYOUT MODELS pages=%u icons=%u applications=%u\n",result.model_pages,result.model_icons,result.applications);emit(line);
     result.write_failures=__atomic_load_n(&geo_write_failures,__ATOMIC_RELAXED)-writes_before;
-    snprintf(line,sizeof(line),"SWEET GLAYOUT END rev=2 visited=%u recorded=%u grids=%u refused=%u truncated=%u write_failures=%u\n",result.visited,result.recorded,result.grids,result.refused,result.truncated,result.write_failures);emit(line);
+    snprintf(line,sizeof(line),"SWEET GLAYOUT END rev=3 visited=%u recorded=%u grids=%u refused=%u truncated=%u write_failures=%u\n",result.visited,result.recorded,result.grids,result.refused,result.truncated,result.write_failures);emit(line);
     errno=saved_errno;return result;
 }
 __attribute__((constructor)) static void start_geometry_reader(void)
 {
     install_provider_adapter();
     install_native_grid_adapter();
+    {char line[96];snprintf(line,sizeof(line),"SWEET GEOGRID MODE value=%d\n",native_grid_mode());emit(line);}
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW,5*NSEC_PER_SEC),dispatch_get_main_queue(),^{
         @autoreleasepool { inspect_geometry(); }
     });

@@ -101,6 +101,15 @@ static id expected_location;
 @property(retain) NSArray *icons;
 @end
 @implementation SBIconListModel @end
+@interface SBFolder:NSObject
+@property(retain) NSArray *lists;
+@property(retain) NSString *uniqueIdentifier;
+@end
+@implementation SBFolder @end
+@interface SBFolderIcon:NSObject
+@property(retain) SBFolder *folder;
+@end
+@implementation SBFolderIcon @end
 @interface SBIconListView:UIView
 @property(retain) SBIconListGridLayout *layout;
 @property(retain) SBIconListModel *model;
@@ -109,6 +118,8 @@ static id expected_location;
 @implementation SBIconListView
 -(CGSize)iconSpacing {return CGSizeMake(88.5,74.5);}
 @end
+@interface SBDockIconListView:SBIconListView @end
+@implementation SBDockIconListView @end
 @interface UIApplication:NSObject
 @property(retain) NSArray *windows;
 +(UIApplication *)sharedApplication;
@@ -171,23 +182,33 @@ int main(void){ @autoreleasepool {
  app1.leafIdentifier=app1.applicationBundleID;app2.leafIdentifier=app2.applicationBundleID;
  SBWidgetIcon *widget=[SBWidgetIcon new];widget.applicationBundleID=@"com.apple.Preferences";
  widget.leafIdentifier=@"widget:original";
- list.model=[SBIconListModel new];list.model.icons=@[app1,widget,app2];NSArray *original_icons=list.model.icons;
+ SBApplicationIcon *folder_app=[SBApplicationIcon new];folder_app.applicationBundleID=@"com.apple.mobiletimer";folder_app.leafIdentifier=folder_app.applicationBundleID;
+ SBFolder *folder_model=[SBFolder new];folder_model.uniqueIdentifier=@"original-folder";
+ SBIconListModel *folder_list=[SBIconListModel new];folder_list.icons=@[folder_app];folder_model.lists=@[folder_list];
+ SBFolderIcon *folder_icon=[SBFolderIcon new];folder_icon.folder=folder_model;
+ list.model=[SBIconListModel new];list.model.icons=@[app1,widget,app2,folder_icon];NSArray *original_icons=list.model.icons;
+ SBDockIconListView *dock=[SBDockIconListView new];dock.frame=dock.bounds=CGRectMake(0,0,360,80);dock.subviews=@[];
+ dock.layout=[SBIconListGridLayout new];dock.layout.layoutConfiguration=[SBIconListGridLayoutConfiguration new];dock.layout.layoutConfiguration.rows=1;
+ SBApplicationIcon *dock_app=[SBApplicationIcon new];dock_app.applicationBundleID=@"com.apple.mobilephone";dock_app.leafIdentifier=dock_app.applicationBundleID;
+ dock.model=[SBIconListModel new];dock.model.icons=@[dock_app];window.subviews=@[list,dock];
  assert(geo_window_rectangle(label,label.bounds,&rect) && CGRectEqualToRect(rect,CGRectMake(34,200,60,14)));
  SweetGeoLayoutResult empty=inspect_native_layout(0);assert(empty.visited==0);
  s.bounds=CGRectMake(0,0,360,640);s.nativeBounds=CGRectMake(0,0,720,1280);s.scale=2;
  int before=EDOM;errno=before;CGRect originalFrame=list.frame;
  SweetGeoLayoutResult observed=inspect_native_layout(0);
- assert(observed.visited==3 && observed.recorded==3 && observed.grids==1 && observed.refused==0 && observed.truncated==0);
- assert(observed.model_pages==1 && observed.model_icons==3 && observed.applications==2 && observed.write_failures==0 && list.model.icons==original_icons);
+ assert(observed.visited==4 && observed.recorded==4 && observed.grids==2 && observed.refused==0 && observed.truncated==0);
+ assert(observed.model_pages==3 && observed.model_icons==6 && observed.applications==4 && observed.write_failures==0 && list.model.icons==original_icons);
  assert(errno==before && CGRectEqualToRect(originalFrame,list.frame));
  window.subviews=@[window];SweetGeoLayoutResult cycle=inspect_native_layout(0);assert(cycle.visited==1 && cycle.refused==1);
  NSMutableArray *many=[NSMutableArray array];for(unsigned i=0;i<2049;++i)[many addObject:label];window.subviews=many;
  SweetGeoLayoutResult bounded=inspect_native_layout(0);assert(bounded.visited==1 && bounded.truncated==1);
  puts("PASS: bounded original layout observer; CGRect window conversion, Q/q grid ABI, invalid getters refused, native gate, cycle and limit");
- SweetGeoLayoutResult model_failure={};id original_model=list.model;list.model=(id)[NSObject new];
- assert(!geo_model(list,1,&model_failure) && model_failure.refused==1);list.model=original_model;
+ SweetGeoLayoutResult model_failure={};SweetGeoModels failed_models={};id original_model=list.model;list.model=(id)[NSObject new];
+ assert(!geo_model(list,1,&model_failure,&failed_models) && model_failure.refused==1);list.model=original_model;
  NSMutableArray *model_limit=[NSMutableArray array];for(unsigned i=0;i<129;++i)[model_limit addObject:app1];list.model.icons=model_limit;SweetGeoLayoutResult limited={};
- assert(!geo_model(list,1,&limited) && limited.truncated==1);list.model.icons=original_icons;
+ SweetGeoModels limited_models={};assert(!geo_model(list,1,&limited,&limited_models) && limited.truncated==1);list.model.icons=original_icons;
+ SweetGeoModels cycle_models={};SweetGeoLayoutResult folder_cycle={};folder_model.lists=@[list.model];
+ assert(geo_model(list,1,&folder_cycle,&cycle_models));geo_models_capture(&cycle_models,&folder_cycle);assert(folder_cycle.refused>0);folder_model.lists=@[folder_list];
  puts("PASS: original model identities; app/widget separation, unavailable model and icon-count bound");
  expected_location=[NSObject new];SBHDefaultIconListLayoutProvider *provider=[SBHDefaultIconListLayoutProvider new];
  SBIconListGridLayout *rootLayout=[SBIconListGridLayout new];SBIconListGridLayoutConfiguration *rootConfig=[SBIconListGridLayoutConfiguration new];
@@ -205,9 +226,13 @@ int main(void){ @autoreleasepool {
  assert([provider makeLayoutForIconLocation:expected_location]==rootLayout && [fresh numberOfPortraitRows]==1);
  fresh.rows=6;fresh.nativeRootTest=NO;
  assert([provider makeLayoutForIconLocation:expected_location]==rootLayout && [fresh numberOfPortraitRows]==6);
+ fresh.nativeRootTest=YES;fresh.rows=6;setenv("GEO_GRID","0",1);
+ assert([provider makeLayoutForIconLocation:expected_location]==rootLayout && [fresh numberOfPortraitRows]==6);
+ setenv("GEO_GRID","1",1);assert([provider makeLayoutForIconLocation:expected_location]==rootLayout && [fresh numberOfPortraitRows]==5);unsetenv("GEO_GRID");
  provider.offeredLayout=nil;assert([provider makeLayoutForIconLocation:expected_location]==nil);
  provider.throwOriginal=YES;BOOL thrown=NO;@try{(void)[provider makeLayoutForIconLocation:expected_location];}@catch(NSException *exception){thrown=[exception.name isEqualToString:@"original"];}
  assert(thrown);
  puts("PASS: native root grid factory/cache real ObjC ABI; original setter, capacity, opaque location, errno/exception and other profiles preserved");
+ puts("PASS: full root/folder/dock model graph; original identity, nested lists, cycles and density control");
  puts("PASS: real 4-argument ObjC dispatch; opaque info forwarded; other screens unchanged");
 } }

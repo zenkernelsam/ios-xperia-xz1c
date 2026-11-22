@@ -17,10 +17,11 @@ if a.geocompat_package:
     assert a.presigned,'New geocompat keeps exact tested GPU/frontend signed bytes'
     geocompat=Path(a.geocompat_package).resolve();assert geocompat.is_relative_to(root/'build')
     geocompat_manifest=json.loads((geocompat/'manifest.json').read_bytes())
-    assert geocompat_manifest['revision'] in (1,2) and geocompat_manifest['host_ASan_UBSan_real_four_argument_provider_dispatch_passed']
-    if geocompat_manifest['revision']==2:
+    assert geocompat_manifest['revision'] in (1,2,3) and geocompat_manifest['host_ASan_UBSan_real_four_argument_provider_dispatch_passed']
+    if geocompat_manifest['revision']>=2:
         assert geocompat_manifest['host_ASan_UBSan_shared_log_writer_EINTR_partial_errno_passed'] and geocompat_manifest['original_icon_model_identity_ABI_host_passed']
-        assert geocompat_manifest['read_only_layout_observer_revision']==2 and geocompat_manifest['layout_snapshot_once_after_constructor_seconds']==120
+        assert geocompat_manifest['read_only_layout_observer_revision']==geocompat_manifest['revision'] and geocompat_manifest['layout_snapshot_once_after_constructor_seconds']==120
+        if geocompat_manifest['revision']==3:assert geocompat_manifest['native_root_grid_mode_control_revision']==1 and geocompat_manifest['original_full_folder_dock_model_ABI_host_passed']
     assert geocompat_manifest['exact_native360x640_720x1280_scale2_flat_provider']
     assert hashlib.sha256((geocompat/'georead.dylib').read_bytes()).hexdigest()==geocompat_manifest['library_sha256']
     assert all(hashlib.sha256((root/p).read_bytes()).hexdigest()==sha for p,sha in geocompat_manifest['source_files'].items())

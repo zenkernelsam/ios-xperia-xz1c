@@ -1,0 +1,21 @@
+{
+  "source_sha256": {
+    "tools/build/check_native_model_graph.py": "fc4563903ee415c26b02e099053798afb4d7422e51f1a59576dd324e5a383bdc",
+    "tools/device/native_model_graph.py": "119053578236a7b6e4255806cb26ba3e15226e80d86c487bfed601933c677205",
+    "tools/device/native_grid_control.py": "5eaa609b69c503c9fd4ebad15349c8079b05fb2c553d8b9565b285f12d7da0ab"
+  },
+  "full_synthetic_model_identity_verified": true,
+  "revision3_wire_graph_accepted": true,
+  "root_page_reflow_preserves_containers": true,
+  "faults_refused": {
+    "root_application": true,
+    "folder_application": true,
+    "dock_application": true,
+    "folder_identity": true,
+    "missing_nested_model": true,
+    "boot_env_original": true,
+    "boot_env_fitted": true
+  },
+  "synthetic_fixture_not_device_UI_evidence": true,
+  "device_operations": 0
+}

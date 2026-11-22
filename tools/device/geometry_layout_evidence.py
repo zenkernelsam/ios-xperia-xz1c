@@ -5,6 +5,7 @@ import json
 import math
 from pathlib import Path
 import re
+from native_model_graph import decode as decode_model_graph
 
 
 def fields(payload):
@@ -43,10 +44,15 @@ def decode(raw, token):
         raise ValueError('Repeated layout snapshot')
     header, footer = fields(records[0][2]), fields(records[-1][2])
     revision = int(header.get('rev', 0))
-    after = {1: '135', 2: '120'}.get(revision)
-    if after is None or header != {'rev': str(revision), 'after_ctor': after, 'points': '360,640', 'pixels': '720,1280', 'scale': '2'}:
+    after = {1: '135', 2: '120', 3: '120'}.get(revision)
+    wanted_header = {'rev': str(revision), 'after_ctor': after, 'points': '360,640', 'pixels': '720,1280', 'scale': '2'}
+    if revision == 3:
+        if header.get('grid') not in ('0', '1'):
+            raise ValueError('Unbound original grid control')
+        wanted_header['grid'] = header['grid']
+    if after is None or header != wanted_header:
         raise ValueError('Unbound layout profile or observation time')
-    footer_keys = {'rev', 'visited', 'recorded', 'grids', 'refused', 'truncated'} | ({'write_failures'} if revision == 2 else set())
+    footer_keys = {'rev', 'visited', 'recorded', 'grids', 'refused', 'truncated'} | ({'write_failures'} if revision >= 2 else set())
     if set(footer) != footer_keys or footer['rev'] != str(revision):
         raise ValueError('Incomplete layout summary')
     counts = {k: int(v) for k, v in footer.items() if k != 'rev'}
@@ -55,10 +61,14 @@ def decode(raw, token):
         raise ValueError('Invalid layout counts')
     views, rectangles, grids, insets, refusals = {}, {}, {}, {}, []
     models, model_icons, model_summary = {}, {}, None
+    graph_records, graph_models, graph_links = [], None, {}
     expected = {'VIEW': {'n', 'parent', 'depth', 'class'}, 'RECT': {'n', 'frame', 'screen'},
                 'GRID': {'n', 'rows', 'cols', 'spacing', 'list', 'valid'}, 'INSETS': {'n', 'portrait'}}
     for record in records[1:-1]:
         kind, payload = record[1], record[2]
+        if revision == 3 and kind in ('MODEL', 'ICON', 'MODELS', 'LINK'):
+            graph_records.append((kind, payload))
+            continue
         if revision == 2 and kind in ('MODEL', 'ICON', 'MODELS'):
             value = fields(payload)
             if kind == 'MODEL':
@@ -87,7 +97,7 @@ def decode(raw, token):
                 model_summary = {k: int(v) for k, v in value.items()}
             continue
         if kind == 'REFUSE':
-            if payload != 'getter_exception' and not (revision == 2 and re.fullmatch(r'model_unavailable n=\d+', payload)):
+            if payload != 'getter_exception' and not (revision >= 2 and re.fullmatch(r'model_unavailable n=\d+', payload)):
                 raise ValueError('Unknown layout refusal')
             refusals.append(payload)
             continue
@@ -135,14 +145,18 @@ def decode(raw, token):
         applications = [v['identifier'] for v in model_icons.values() if v['application']]
         if len(set(applications)) != len(applications):
             raise ValueError('Repeated original application identity')
+    if revision == 3:
+        graph_models, model_summary, graph_links = decode_model_graph(graph_records, views, rectangles, counts)
     complete = (counts['grids'] > 0 and counts['refused'] == counts['truncated'] == 0 and
                 counts.get('write_failures', 0) == 0 and all(n in insets for n, x in grids.items() if x['valid']))
     return {'revision': revision, 'token': token, 'current_LIVE_to_ACK_only': True, 'capture_complete': True,
             'counts': counts, 'views': {str(n): dict(v, **rectangles[n]) for n, v in views.items()},
             'grids': {str(n): dict(v, portrait_insets=insets.get(n)) for n, v in grids.items()},
             'refusals': refusals, 'grid_fields_fully_observed': complete,
-            'models': {str(n): {'count': count, 'icons': [model_icons[n, i] for i in range(count)]} for n, count in models.items()},
+            'models': graph_models if revision == 3 else {str(n): {'count': count, 'icons': [model_icons[n, i] for i in range(count)]} for n, count in models.items()},
             'model_summary': model_summary,
+            'model_links': graph_links,
+            'native_grid_value': int(header['grid']) if revision == 3 else None,
             'window_coordinates_from_original_convertRect_toView_nil': True,
             'original_UI_layout_success_or_optical_FPS_NOT_inferred': True}
 
@@ -163,11 +177,16 @@ def inspect(directory):
     manifest = json.loads((Path(artifact['ram_package']) / 'manifest.json').read_text())
     binding = manifest['geocompat_build_binding']
     revision = binding.get('read_only_layout_observer_revision')
-    if revision not in (1, 2) or binding.get('layout_snapshot_once_after_constructor_seconds') != {1: 135, 2: 120}[revision]:
+    if revision not in (1, 2, 3) or binding.get('layout_snapshot_once_after_constructor_seconds') != {1: 135, 2: 120, 3: 120}[revision]:
         raise ValueError('Missing original compiled layout binding')
     report = decode(raw.decode('utf-8', errors='replace'), artifact['token'])
     if report['revision'] != revision:
         raise ValueError('Original capture differs from compiled observer revision')
+    if revision == 3:
+        control = artifact.get('native_grid_control')
+        if control is None or control.get('value') != report['native_grid_value']:
+            raise ValueError('Original model graph grid mode differs from actual payload')
+        report['native_grid_control'] = control
     report.update(source=str(directory), raw_sha256=digest, raw_bytes=len(raw),
                   image_sha256=artifact['sha256'], kernel_sha256=artifact['kernel_sha256'],
                   geocompat_build_binding=binding, original_controller_result=row['result'])

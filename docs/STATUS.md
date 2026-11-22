@@ -8,6 +8,8 @@ r18 revision2原raw有927节点／158对VIEW-RECT／3grid，refused0／truncated
 
 下一轮补原folder／Dock模型及合格的原布局全身份基线，再与native五行的完整身份比较；不能拿DefaultIconState静态模板或未创建view当本机全基线。壁纸仍黑，原策略不强制active/unpause；GPU原UI、FPS／睡眠／光学／声音／无线全部目标保留。v730／GPU底层及GLES／Metal字节冻结。
 
+当前r19源码候选：model revision3读取Root、Dock及原Folder.lists／uniqueIdentifier，记录parent/slot/list和原folder LINK；原35方法／ABI已核对。原布局GEO_GRID0与fitted1由新--native-grid-mode和完整payload/env/source binding区分，合格全模型baseline后再拟合模式比较全应用multiset、Dock顺序、folder身份与内容。7个graph/control故障host拒绝、旧schema维持；新host／ARM64／CPU／GPU尚未准入，当前无在途boot，原R17/R18拒绝及full baseline缺口保留。
+
 ## 当前准确输入与验收范围
 
 | 输入 | 精确身份 | 已验范围 |

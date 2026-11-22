@@ -180,6 +180,7 @@ def main():
     plan=json.loads((bundle/'plan.json').read_bytes())
     assert plan.get('screen_required',False)==('screen_snapshot_binding' in record), 'Plan screenshot requirement differs from the actual artifact'
     assert plan.get('screen_capture_after_seconds')==record.get('screen_capture_after_seconds'), 'Screenshot observation time differs'
+    assert plan.get('native_grid_control')==record.get('native_grid_control'), 'Plan native grid control differs from the actual boot env'
     if 'swipe_observation' in record:
         assert mode=='gpu' and record['swipe_observation']==swipe_once_binding()
         assert record.get('screen_capture_after_seconds')==150 and not record.get('thread_sample_observation')
