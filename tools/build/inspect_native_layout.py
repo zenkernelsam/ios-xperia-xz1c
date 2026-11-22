@@ -27,7 +27,11 @@ WANTED = {
         'layoutInsetsForOrientation:', 'layout', 'gridCellInfo'},
     'SBIconListGridLayout': {'initWithLayoutConfiguration:', 'numberOfRowsForOrientation:',
         'numberOfColumnsForOrientation:', 'layoutConfiguration'},
+    'SBHDefaultIconListLayoutProvider': {'init', 'initWithScreenType:layoutOptions:', 'screenType',
+        'makeLayoutForIconLocation:', 'layoutForIconLocation:',
+        'configureGridSizeClassSizes:forScreenType:numberOfColumns:iconLocation:layoutOptions:'},
 }
+CLASS_WANTED = {'SBHDefaultIconListLayoutProvider': {'frameworkFallbackInstance', 'currentDeviceScreenType', 'defaultLayoutOptions'}}
 
 
 def digest(path):
@@ -151,10 +155,12 @@ def inspect(sparse, symbols, tool, output):
                 raise ValueError('Virtual cache range differs from original independent proof: ' + name)
             verified_ranges[name] = dict(address=hex(address), bytes=length, sha256=actual)
         names = symbols_matching(mapping, ['__OBJC_$_INSTANCE_METHODS_' + x for x in WANTED] +
+                                 ['__OBJC_$_CLASS_METHODS_' + x for x in CLASS_WANTED] +
                                  ['IconListLayoutProvider', 'WidgetMetricsForFamily', 'WidgetMetricsSpecification'])
         methods = []
-        for owner, selectors in WANTED.items():
-            table_at = names['__OBJC_$_INSTANCE_METHODS_' + owner]
+        groups = [(owner, selectors, False) for owner, selectors in WANTED.items()] + [(owner, selectors, True) for owner, selectors in CLASS_WANTED.items()]
+        for owner, selectors, class_method in groups:
+            table_at = names[('__OBJC_$_CLASS_METHODS_' if class_method else '__OBJC_$_INSTANCE_METHODS_') + owner]
             flags, count = struct.unpack('<II', cache.read_at(table_at, 8))
             if flags != 0xc000000f or not 0 < count <= 4096:
                 raise ValueError('Unexpected original layout method list')
@@ -165,7 +171,7 @@ def inspect(sparse, symbols, tool, output):
                 _, type_delta, imp_delta = struct.unpack_from('<iii', table, index * 12)
                 imp = entry + 8 + imp_delta
                 info = mapping.lookup(imp)
-                if not info or info['symbol_offset'] != '0x0' or not info['symbol'].startswith('-[' + owner + ' '):
+                if not info or info['symbol_offset'] != '0x0' or not info['symbol'].startswith(('+[' if class_method else '-[') + owner + ' '):
                     continue
                 selector = info['symbol'].split(' ', 1)[1][:-1]
                 if selector not in selectors:
@@ -178,7 +184,7 @@ def inspect(sparse, symbols, tool, output):
                 if length <= 0:
                     raise ValueError('Missing original method range')
                 code = cache.read_at(imp, length)
-                name = owner + '-' + re_safe(selector)
+                name = owner + ('-class-' if class_method else '-') + re_safe(selector)
                 (output / (name + '.bin')).open('xb').write(code)
                 wrapper = output / (name + '.macho')
                 wrapper.open('xb').write(code_wrapper(imp, code))
@@ -190,6 +196,7 @@ def inspect(sparse, symbols, tool, output):
                     raise ValueError('Local native disassembly failed: ' + result.stderr[-2000:].decode(errors='replace'))
                 methods.append(dict(owner=owner, selector=selector, types=cache.string(entry + 4 + type_delta),
                                     IMP=hex(imp), method_list=hex(table_at), exact_A2S_IMP_start=True,
+                                    class_method=class_method,
                                     code_bytes=length, code_sha256=hashlib.sha256(code).hexdigest(),
                                     local_file=name + '.txt'))
             if seen != selectors:
