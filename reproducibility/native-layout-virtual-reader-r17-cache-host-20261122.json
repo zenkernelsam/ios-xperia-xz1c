@@ -1,0 +1,16 @@
+{
+  "source_sha256": {
+    "tools/build/check_native_layout_reader.py": "df6645d59c87d9c0387c71ad5a29c2ccbeec89e60e299090066ec186f793a85a",
+    "tools/build/inspect_native_layout.py": "a12820790dc25b4fd7f5de7054d60f1674b556719581fbbdbb7ce237e76fd2d5"
+  },
+  "original_cross_mapping_bytes_checked": 8,
+  "faults_refused": {
+    "gap": true,
+    "negative": true,
+    "overlap": true
+  },
+  "wrapper_original_bytes_unchanged": true,
+  "native_ipsw_disassembly_verified": false,
+  "fixture_is_synthetic_analysis_only": true,
+  "device_operations": 0
+}
