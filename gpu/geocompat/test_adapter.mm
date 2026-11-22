@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
 #include <assert.h>
+#include <errno.h>
 @interface UIScreen:NSObject
 @property CGRect bounds; @property CGRect nativeBounds;
 @property CGFloat scale; @property CGFloat nativeScale;
@@ -34,6 +35,7 @@ static id expected_info;
 }
 @end
 typedef struct UIEdgeInsets {double top,left,bottom,right;} UIEdgeInsets;
+typedef struct SBIconImageInfo {CGSize size;double field2,field3;} SBIconImageInfo;
 @interface UIView:NSObject
 @property CGRect frame; @property CGRect bounds; @property CGPoint mockWindowOrigin;
 @property(retain) NSArray *subviews;
@@ -50,19 +52,39 @@ typedef struct UIEdgeInsets {double top,left,bottom,right;} UIEdgeInsets;
 @interface UILabel:UIView @end
 @implementation UILabel @end
 @interface SBIconListGridLayoutConfiguration:NSObject
+@property BOOL nativeRootTest;
+@property unsigned long long rows;
 -(unsigned long long)numberOfPortraitRows;-(long long)numberOfPortraitColumns;
 -(CGSize)listSizeForIconSpacingCalculation;-(UIEdgeInsets)portraitLayoutInsets;
+-(SBIconImageInfo)iconImageInfo;-(void)setNumberOfPortraitRows:(unsigned long long)rows;
 @end
 @implementation SBIconListGridLayoutConfiguration
--(unsigned long long)numberOfPortraitRows {return 6;}
+-(unsigned long long)numberOfPortraitRows {return self.rows?self.rows:6;}
+-(void)setNumberOfPortraitRows:(unsigned long long)rows {self.rows=rows;}
 -(long long)numberOfPortraitColumns {return 4;}
--(CGSize)listSizeForIconSpacingCalculation {return CGSizeMake(360,511);}
--(UIEdgeInsets)portraitLayoutInsets {return (UIEdgeInsets){14,19,47,19};}
+-(CGSize)listSizeForIconSpacingCalculation {return self.nativeRootTest?CGSizeMake(320,693):CGSizeMake(360,511);}
+-(UIEdgeInsets)portraitLayoutInsets {return self.nativeRootTest?(UIEdgeInsets){57,19,155,19}:(UIEdgeInsets){14,19,47,19};}
+-(SBIconImageInfo)iconImageInfo {return (SBIconImageInfo){CGSizeMake(56,56),0,0};}
 @end
 @interface SBIconListGridLayout:NSObject
 @property(retain) SBIconListGridLayoutConfiguration *layoutConfiguration;
 @end
 @implementation SBIconListGridLayout @end
+static id expected_location;
+@interface SBHDefaultIconListLayoutProvider:NSObject
+@property(retain) id offeredLayout;@property(retain) id cachedLayout;@property BOOL throwOriginal;
+-(id)makeLayoutForIconLocation:(id)location;-(id)layoutForIconLocation:(id)location;
+@end
+@implementation SBHDefaultIconListLayoutProvider
+-(id)makeLayoutForIconLocation:(id)location {
+ assert(location==expected_location);if(self.throwOriginal)@throw [NSException exceptionWithName:@"original" reason:@"original" userInfo:nil];
+ errno=EDOM;return self.offeredLayout;
+}
+-(id)layoutForIconLocation:(id)location {
+ assert(location==expected_location);if(!self.cachedLayout)self.cachedLayout=[self makeLayoutForIconLocation:location];
+ errno=EDOM;return self.cachedLayout;
+}
+@end
 @interface SBIconListView:UIView
 @property(retain) SBIconListGridLayout *layout;
 -(CGSize)iconSpacing;
@@ -121,5 +143,25 @@ int main(void){ @autoreleasepool {
  NSMutableArray *many=[NSMutableArray array];for(unsigned i=0;i<2049;++i)[many addObject:label];window.subviews=many;
  SweetGeoLayoutResult bounded=inspect_native_layout(0);assert(bounded.visited==1 && bounded.truncated==1);
  puts("PASS: bounded original layout observer; CGRect window conversion, Q/q grid ABI, invalid getters refused, native gate, cycle and limit");
+ expected_location=[NSObject new];SBHDefaultIconListLayoutProvider *provider=[SBHDefaultIconListLayoutProvider new];
+ SBIconListGridLayout *rootLayout=[SBIconListGridLayout new];SBIconListGridLayoutConfiguration *rootConfig=[SBIconListGridLayoutConfiguration new];
+ rootConfig.nativeRootTest=YES;rootLayout.layoutConfiguration=rootConfig;provider.offeredLayout=rootLayout;
+ assert([provider layoutForIconLocation:expected_location]==rootLayout && [rootConfig numberOfPortraitRows]*[rootConfig numberOfPortraitColumns]==24);
+ install_native_grid_adapter();
+ assert([provider layoutForIconLocation:expected_location]==rootLayout && [rootConfig numberOfPortraitRows]*[rootConfig numberOfPortraitColumns]==20 && errno==EDOM);
+ assert([rootConfig numberOfPortraitColumns]==4 && [rootConfig portraitLayoutInsets].top==57 && [rootConfig listSizeForIconSpacingCalculation].height==693);
+ assert([provider layoutForIconLocation:expected_location]==rootLayout && [rootConfig numberOfPortraitRows]==5);
+ SBIconListGridLayoutConfiguration *fresh=[SBIconListGridLayoutConfiguration new];fresh.nativeRootTest=YES;rootLayout.layoutConfiguration=fresh;
+ assert([provider makeLayoutForIconLocation:expected_location]==rootLayout && [fresh numberOfPortraitRows]==5);
+ fresh.rows=6;s.bounds=CGRectMake(0,0,375,812);s.nativeBounds=CGRectMake(0,0,750,1624);
+ assert([provider makeLayoutForIconLocation:expected_location]==rootLayout && [fresh numberOfPortraitRows]==6);
+ s.bounds=CGRectMake(0,0,360,640);s.nativeBounds=CGRectMake(0,0,720,1280);fresh.rows=1;
+ assert([provider makeLayoutForIconLocation:expected_location]==rootLayout && [fresh numberOfPortraitRows]==1);
+ fresh.rows=6;fresh.nativeRootTest=NO;
+ assert([provider makeLayoutForIconLocation:expected_location]==rootLayout && [fresh numberOfPortraitRows]==6);
+ provider.offeredLayout=nil;assert([provider makeLayoutForIconLocation:expected_location]==nil);
+ provider.throwOriginal=YES;BOOL thrown=NO;@try{(void)[provider makeLayoutForIconLocation:expected_location];}@catch(NSException *exception){thrown=[exception.name isEqualToString:@"original"];}
+ assert(thrown);
+ puts("PASS: native root grid factory/cache real ObjC ABI; original setter, capacity, opaque location, errno/exception and other profiles preserved");
  puts("PASS: real 4-argument ObjC dispatch; opaque info forwarded; other screens unchanged");
 } }

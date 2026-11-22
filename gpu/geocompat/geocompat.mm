@@ -1,4 +1,4 @@
-/* Read-only display answers, deferred until SpringBoard has initialized. */
+/* Native display compatibility and bounded original-layout diagnostics. */
 #include <CoreFoundation/CoreFoundation.h>
 #include <CoreGraphics/CGGeometry.h>
 #include <dispatch/dispatch.h>
@@ -215,6 +215,84 @@ static bool geo_native_screen(void)
     double s=((double (*)(id,SEL))objc_msgSend)(screen,sel_registerName("scale"));
     return fabs(b.size.width-360)<0.01 && fabs(b.size.height-640)<0.01 && fabs(n.size.width-720)<0.01 && fabs(n.size.height-1280)<0.01 && fabs(s-2)<0.01;
 }
+
+typedef struct SweetIconImageInfo {CGSize size;double field2,field3;} SweetIconImageInfo;
+typedef id (*SweetLayoutFactory)(id,SEL,id);
+static SweetLayoutFactory original_layout_factory,original_layout_cached;
+static unsigned native_grid_traces;
+static __thread bool native_grid_checking;
+static bool native_root_grid(id layout)
+{
+    if(!geo_kind(layout,"SBIconListGridLayout"))return false;
+    id config=geo_object(layout,"layoutConfiguration");unsigned long long rows=0,columns=0;
+    if(!geo_kind(config,"SBIconListGridLayoutConfiguration") || !geo_count(config,"numberOfPortraitRows",&rows) || rows!=6 ||
+       !geo_count(config,"numberOfPortraitColumns",&columns) || columns!=4 || !geo_native_screen())return false;
+    CGSize reference;
+    if(!geo_size(config,"listSizeForIconSpacingCalculation",&reference) || fabs(reference.width-320)>0.01 || fabs(reference.height-693)>0.01 ||
+       !geo_method_type(config,"portraitLayoutInsets","{UIEdgeInsets=dddd}") ||
+       !geo_method_type(config,"iconImageInfo","{SBIconImageInfo={CGSize=dd}dd}") ||
+       !geo_method_type(config,"setNumberOfPortraitRows:","v",3,"Q"))return false;
+    SweetGeoInsets insets;SweetIconImageInfo info;
+#if defined(__x86_64__)
+    ((void (*)(SweetGeoInsets *,id,SEL))objc_msgSend_stret)(&insets,config,sel_registerName("portraitLayoutInsets"));
+    ((void (*)(SweetIconImageInfo *,id,SEL))objc_msgSend_stret)(&info,config,sel_registerName("iconImageInfo"));
+#else
+    insets=((SweetGeoInsets (*)(id,SEL))objc_msgSend)(config,sel_registerName("portraitLayoutInsets"));
+    info=((SweetIconImageInfo (*)(id,SEL))objc_msgSend)(config,sel_registerName("iconImageInfo"));
+#endif
+    if(!(fabs(insets.top-57)<=0.01 && fabs(insets.left-19)<=0.01 && fabs(insets.bottom-155)<=0.01 && fabs(insets.right-19)<=0.01 &&
+         fabs(info.size.width-56)<=0.01 && fabs(info.size.height-56)<=0.01))return false;
+    /* R16 original widget image141 / label-origin143.5 / label-height21.
+       Keep native objects and text; choose the largest row count that leaves
+       8pt between the original two-row widget label and the following icon. */
+    const double available=640-insets.top-insets.bottom,widget=141,label_end=143.5+21;
+    unsigned long long chosen=rows;double spacing=0,clearance=0;
+    for(;chosen>=3;--chosen){
+        spacing=(available-chosen*info.size.height)/(chosen-1);
+        clearance=2*(info.size.height+spacing)-((2*info.size.height+spacing-widget)/2+label_end);
+        if(spacing>=0 && clearance>=8)break;
+    }
+    if(chosen>=rows || chosen<3)return false;
+    ((void (*)(id,SEL,unsigned long long))objc_msgSend)(config,sel_registerName("setNumberOfPortraitRows:"),chosen);
+    unsigned long long actual=0;if(!geo_count(config,"numberOfPortraitRows",&actual) || actual!=chosen)return false;
+    unsigned trace=__atomic_fetch_add(&native_grid_traces,1,__ATOMIC_RELAXED);
+    if(trace<8){char line[190];snprintf(line,sizeof(line),"SWEET GEOGRID APPLY native=360x640 old=%llu rows=%llu cols=4 image=56x56 spacing=%.3f bbox_gap=%.3f original_setter=1\n",rows,chosen,spacing,clearance);emit(line);}
+    return true;
+}
+static id native_layout_return(SweetLayoutFactory original,id receiver,SEL selector,id location)
+{
+    id result=original(receiver,selector,location);int saved_errno=errno;
+    if(!native_grid_checking){
+        native_grid_checking=true;
+        @try {(void)native_root_grid(result);}
+        @catch(id exception){(void)exception;emit("SWEET GEOGRID REFUSE compatibility_getter_exception\n");}
+        native_grid_checking=false;
+    }
+    errno=saved_errno;return result;
+}
+static id native_make_layout(id receiver,SEL selector,id location){return native_layout_return(original_layout_factory,receiver,selector,location);}
+static id native_cached_layout(id receiver,SEL selector,id location){return native_layout_return(original_layout_cached,receiver,selector,location);}
+static bool install_native_layout_method(const char *name,SweetLayoutFactory *original,IMP replacement)
+{
+    Class owner=objc_lookUpClass("SBHDefaultIconListLayoutProvider");if(!owner)return false;
+    SEL selector=sel_registerName(name);unsigned count=0;Method *methods=class_copyMethodList(owner,&count);Method found=NULL;
+    for(unsigned i=0;i<count;++i)if(method_getName(methods[i])==selector){found=methods[i];break;}
+    free(methods);char result[32]={0},arg[32]={0};
+    if(!found || method_getNumberOfArguments(found)!=3)return false;
+    method_getReturnType(found,result,sizeof(result));method_getArgumentType(found,2,arg,sizeof(arg));
+    if(strcmp(result,"@") || strcmp(arg,"@"))return false;
+    *original=(SweetLayoutFactory)method_getImplementation(found);if(!*original)return false;
+    method_setImplementation(found,replacement);
+    char line[190];snprintf(line,sizeof(line),"SWEET GEOGRID INSTALL selector=%s owned=1 ABI=@24@0:8@16\n",name);emit(line);return true;
+}
+static void install_native_grid_adapter(void)
+{
+    const char *enabled=getenv("GEO_FIX");if(!enabled || strcmp(enabled,"1"))return;
+    if(!original_layout_factory && !install_native_layout_method("makeLayoutForIconLocation:",&original_layout_factory,(IMP)native_make_layout))
+        emit("SWEET GEOGRID REFUSE original_factory_ABI_unavailable\n");
+    if(!original_layout_cached && !install_native_layout_method("layoutForIconLocation:",&original_layout_cached,(IMP)native_cached_layout))
+        emit("SWEET GEOGRID REFUSE original_cached_ABI_unavailable\n");
+}
 struct SweetGeoLayoutResult {unsigned visited,recorded,grids,refused,truncated;};
 static bool geo_grid(id view,unsigned number)
 {
@@ -286,6 +364,7 @@ static SweetGeoLayoutResult inspect_native_layout(unsigned after_ctor_seconds)
 __attribute__((constructor)) static void start_geometry_reader(void)
 {
     install_provider_adapter();
+    install_native_grid_adapter();
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW,5*NSEC_PER_SEC),dispatch_get_main_queue(),^{
         @autoreleasepool { inspect_geometry(); }
     });

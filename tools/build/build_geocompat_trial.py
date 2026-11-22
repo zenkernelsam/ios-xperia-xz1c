@@ -19,7 +19,7 @@ def main():
         return result.stdout
     run(['clang++','-O1','-g','-fblocks','-fno-objc-arc','-fsanitize=address,undefined',ROOT/paths[1],'-framework','Foundation','-framework','CoreGraphics','-o',out/'test_adapter'],'host-compile')
     host=run([out/'test_adapter'],'host-test')
-    assert b'PASS: real 4-argument ObjC dispatch' in host and b'PASS: bounded original layout observer' in host
+    assert b'PASS: real 4-argument ObjC dispatch' in host and b'PASS: bounded original layout observer' in host and b'PASS: native root grid factory/cache' in host
     sdk=subprocess.check_output(['xcrun','--sdk','iphoneos','--show-sdk-path'],text=True).strip()
     library=out/'georead.dylib'
     run(['xcrun','--sdk','iphoneos','clang++','-target','arm64-apple-ios16.0','-isysroot',sdk,'-O1','-fblocks','-fno-objc-arc','-dynamiclib',ROOT/paths[0],'-framework','CoreFoundation','-framework','CoreGraphics','-lobjc','-Wl,-install_name,/dev/sglram/georead.dylib','-o',library],'ios-compile')
@@ -29,7 +29,10 @@ def main():
                 host_ASan_UBSan_real_four_argument_provider_dispatch_passed=True,exact_native360x640_720x1280_scale2_flat_provider=True,
                 opaque_visual_provider_info_forwarded=True,valid_other_screen_providers_preserved=True,read_only_window_safe_area_ABI_checked=True,
                 read_only_layout_observer_revision=1,host_ASan_UBSan_bounded_layout_and_CGRect_conversion_passed=True,
-                original_frame_grid_values_preserved=True,layout_snapshot_once_after_constructor_seconds=135,
+                original_frame_grid_values_preserved=False,read_only_layout_observer_preserves_current_values=True,
+                layout_snapshot_once_after_constructor_seconds=135,
+                native_root_grid_density_revision=1,native_root_grid_rows=5,original_grid_factory_cache_ABI_and_setter_host_passed=True,
+                original_icon_widget_font_and_insets_preserved=True,other_screen_or_nonroot_grid_configs_preserved=True,
                 new_device_RAM_CPU_GLES_UI_NOT_verified=True,device_operations=0)
     (out/'manifest.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print(json.dumps(report))
 if __name__=='__main__':main()
