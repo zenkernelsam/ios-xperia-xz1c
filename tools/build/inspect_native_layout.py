@@ -9,6 +9,7 @@ import hashlib
 import json
 import struct
 import subprocess
+import plistlib
 from pathlib import Path
 
 from a2s_lookup import A2S
@@ -24,14 +25,21 @@ WANTED = {
         'portraitLayoutInsets', 'listSizeForIconSpacingCalculation', 'iconImageInfo',
         'setNumberOfPortraitRows:', 'setListSizeForIconSpacingCalculation:'},
     'SBIconListView': {'iconSpacing', 'layoutMetrics', 'layoutMetricsForOrientation:',
-        'layoutInsetsForOrientation:', 'layout', 'gridCellInfo'},
+        'layoutInsetsForOrientation:', 'layout', 'gridCellInfo', 'model'},
     'SBIconListGridLayout': {'initWithLayoutConfiguration:', 'numberOfRowsForOrientation:',
         'numberOfColumnsForOrientation:', 'layoutConfiguration'},
     'SBHDefaultIconListLayoutProvider': {'init', 'initWithScreenType:layoutOptions:', 'screenType',
         'makeLayoutForIconLocation:', 'layoutForIconLocation:',
         'configureGridSizeClassSizes:forScreenType:numberOfColumns:iconLocation:layoutOptions:'},
+    'SBIconListModel': {'icons'},
+    'SBLeafIcon': {'leafIdentifier', 'applicationBundleID'},
 }
 CLASS_WANTED = {'SBHDefaultIconListLayoutProvider': {'frameworkFallbackInstance', 'currentDeviceScreenType', 'defaultLayoutOptions'}}
+METHOD_TABLES = {'SBLeafIcon': '__OBJC_$_INSTANCE_METHODS_SBLeafIcon(SBHTableViewIconLibraryAddtions)'}
+REFERENCE_APPS = {'com.apple.facetime', 'com.apple.mobilecal', 'com.apple.mobileslideshow', 'com.apple.mobilemail',
+                  'com.apple.mobilenotes', 'com.apple.reminders', 'com.apple.mobiletimer', 'com.apple.news',
+                  'com.apple.tv', 'com.apple.podcasts', 'com.apple.AppStore', 'com.apple.Maps',
+                  'com.apple.Health', 'com.apple.Passbook', 'com.apple.Preferences'}
 
 
 def digest(path):
@@ -154,13 +162,14 @@ def inspect(sparse, symbols, tool, output):
             if actual != wanted:
                 raise ValueError('Virtual cache range differs from original independent proof: ' + name)
             verified_ranges[name] = dict(address=hex(address), bytes=length, sha256=actual)
-        names = symbols_matching(mapping, ['__OBJC_$_INSTANCE_METHODS_' + x for x in WANTED] +
+        names = symbols_matching(mapping, [METHOD_TABLES.get(x, '__OBJC_$_INSTANCE_METHODS_' + x) for x in WANTED] +
                                  ['__OBJC_$_CLASS_METHODS_' + x for x in CLASS_WANTED] +
                                  ['IconListLayoutProvider', 'WidgetMetricsForFamily', 'WidgetMetricsSpecification'])
         methods = []
         groups = [(owner, selectors, False) for owner, selectors in WANTED.items()] + [(owner, selectors, True) for owner, selectors in CLASS_WANTED.items()]
         for owner, selectors, class_method in groups:
-            table_at = names[('__OBJC_$_CLASS_METHODS_' if class_method else '__OBJC_$_INSTANCE_METHODS_') + owner]
+            table_name = '__OBJC_$_CLASS_METHODS_' + owner if class_method else METHOD_TABLES.get(owner, '__OBJC_$_INSTANCE_METHODS_' + owner)
+            table_at = names[table_name]
             flags, count = struct.unpack('<II', cache.read_at(table_at, 8))
             if flags != 0xc000000f or not 0 < count <= 4096:
                 raise ValueError('Unexpected original layout method list')
@@ -201,6 +210,21 @@ def inspect(sparse, symbols, tool, output):
                                     local_file=name + '.txt'))
             if seen != selectors:
                 raise ValueError('Incomplete original ABI inventory: ' + owner + ': ' + str(selectors - seen))
+        references = []
+        for path in fs.files:
+            if '/Applications/' not in path or not path.endswith('.app/Info.plist'):
+                continue
+            fork = fs.open(path)
+            if not 0 < fork.size < 1 << 20:
+                continue
+            data = fork.read_at(0, fork.size)
+            info = plistlib.loads(data)
+            identifier = info.get('CFBundleIdentifier')
+            if identifier in REFERENCE_APPS:
+                references.append(dict(path=path, bundle_identifier=identifier,
+                                       Info_plist_sha256=hashlib.sha256(data).hexdigest()))
+        if {x['bundle_identifier'] for x in references} != REFERENCE_APPS:
+            raise ValueError('Incomplete original application identity reference')
         current = sparse.stat()
         if (current.st_size, current.st_mtime_ns, current.st_ino) != (before.st_size, before.st_mtime_ns, before.st_ino):
             raise ValueError('Original input changed during observation')
@@ -211,6 +235,7 @@ def inspect(sparse, symbols, tool, output):
                       cache_files=cache.files, catalog_files=len(fs.files), decoded_image_bytes=image.size,
                       independently_verified_original_ranges=verified_ranges,
                       source_sha256=digest(Path(__file__)), images_expanded_to_disk=0, image_mounts=0,
+                      original_application_identity_references=references,
                       device_operations=0, original_Apple_bytes_not_for_Git=True,
                       static_methods_are_not_device_UI_acceptance=True)
         (output / 'report.json').open('x').write(json.dumps(report, indent=2) + '\n')
