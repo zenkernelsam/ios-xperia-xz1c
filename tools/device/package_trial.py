@@ -159,7 +159,13 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
             if explicit in words:
                 words=[name if w==explicit else w for w in words]
                 compact_numeric_ones.append(name)
-    if geometry:words=display_compact(words,compact_numeric_ones)
+    zero_omissions=[]
+    if geometry:words=display_compact(words,compact_numeric_ones,zero_omissions=zero_omissions)
+    zero_binding=None
+    if zero_omissions:
+        from numeric_boot_args import native_zero_binding
+        zero_binding=native_zero_binding()
+        assert zero_omissions==['sf2x'] and version==730 and sha(kernel.read_bytes())==zero_binding['kernel_sha256']
     sample_binding=None
     if thread_sample or idle_sample:
         assert mode=='gpu' and screen_evidence and version>=730 and ram_package
@@ -182,6 +188,7 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
         'serial_capture_binding':capture_binding(token),
        'blobs':{name:{'bytes':len(data),'sha256':sha(data)} for name,data in files}}
     if compact_numeric_ones:m['numeric_one_argument_compaction']=compact_numeric_ones
+    if zero_binding:m['numeric_zero_argument_omission']=zero_binding
     if geometry:m['display_geometry_binding']=geometry
     if grid_control:m['native_grid_control']=grid_control
     if sample_binding:m['thread_sample_observation']=sample_binding
@@ -194,6 +201,7 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
     if owner_interval is not None:
         m['owner_observation_interval_seconds']=owner_interval
     if compact_numeric_ones:m['numeric_one_argument_compaction']=compact_numeric_ones
+    if zero_binding:m['numeric_zero_argument_omission']=zero_binding
     if screen_evidence:
         from scanout_snapshot import binding as screen_binding
         m['screen_snapshot_binding']=screen_binding(m)

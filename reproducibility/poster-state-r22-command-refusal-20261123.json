@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-23",
+  "failure_phase": "Host GPU package command area exceeds fixed607B; no download or boot",
+  "original_packaging_refusal_log_SHA": "a55dc7883480a4e180049dda6724824054c03400983fbf12cf3134286ef13cc5",
+  "original_command_diagnosis": {
+    "before_bytes": 637,
+    "after_existing_compaction_bytes": 617,
+    "compacted_cmdline": "serial=3 cpus=8 rd=ufsroot0 ufsrw rootrw cs_enforcement_disable amfi_get_out_of_my_way launchd_unsecure_cache=1 sweetfb_noconsole lilac_usbdbg shimponly=1 sweetrmi4 sweetrmi4delay=60 sweetfb_xf=8 sweetfb_hz=10 sweetfb_bootscan=1 sweetar=420 sweetloop=f40ea3804e79f28f sweetfptimeout=2000 sweetutc=1795358646 sweetbattery sweetgpuplan=1 sweetenv=backboardd:DYLD_INSERT_LIBRARIES=/dev/sglram/m,SWEETGL_TEST=1;SpringBoard:DYLD_INSERT_LIBRARIES=/dev/sglram/g,GEO_FIX=1,GEO_GRID=1;AegirPoster:DYLD_INSERT_LIBRARIES=/dev/sglram/e sweetloopdrain svmro=7 ssca sweetnull=backboardd,AegirPoster sfscreen=1 sf2x=0 sweetfb_native",
+    "remaining_explicit_ones": [
+      "launchd_unsecure_cache=1",
+      "shimponly=1",
+      "sweetfb_bootscan=1",
+      "sweetgpuplan=1",
+      "sfscreen=1"
+    ],
+    "device_operations": 0
+  },
+  "fixed_kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "actual_fixed_SweetFramebuffer_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+  "original_default_sf2x": 0,
+  "original_source_default_and_PE_parse_call_read": true,
+  "native_flags_kernel_source_not_modified": true,
+  "numeric_zero_missing_explicit_wrong_kernel_consumer_and_override_fault_tests_passed": true,
+  "device_operations": 0
+}

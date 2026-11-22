@@ -1,6 +1,6 @@
 """Sampler command space is reclaimed only from verified numeric-one options."""
 import unittest
-from numeric_boot_args import add_sampler,numeric_options,SAMPLER_ONES,PARSER_SHA
+from numeric_boot_args import add_sampler,numeric_options,SAMPLER_ONES,PARSER_SHA,native_zero_binding,NATIVE_DEFAULT_KERNEL
 
 
 class NumericBootArgs(unittest.TestCase):
@@ -37,6 +37,18 @@ class NumericBootArgs(unittest.TestCase):
         result=numeric_options(value);self.assertEqual(result['rootrw'],'1');self.assertEqual(result['sweetfb_native'],'1');self.assertEqual(result['sf2x'],'0')
         for bad in (dict(value,display_geometry_binding=None),dict(value,cmdline=value['cmdline'].replace('sf2x=0','sf2x=1')),
                     dict(value,display_geometry_binding=dict(geometry,parser_sha256='0'*64)),dict(value,numeric_one_argument_compaction=['shimponly'])):
+            with self.assertRaises(AssertionError):numeric_options(bad)
+    def test_native_zero_omission_requires_exact_v730_consumer_and_absent_argument(self):
+        geometry={'profile':'xz1c-native-2x','parser_sha256':PARSER_SHA,'required_boot_arguments':{'sweetfb_native':1,'sf2x':0}}
+        record={'cmdline':'sweetfb_native shimponly=1','numeric_one_argument_compaction':['sweetfb_native'],
+                'display_geometry_binding':geometry,'version':730,'kernel_sha256':NATIVE_DEFAULT_KERNEL,
+                'numeric_zero_argument_omission':native_zero_binding()}
+        self.assertEqual(numeric_options(record)['sf2x'],'0')
+        for bad in [dict(record,numeric_zero_argument_omission=None),dict(record,kernel_sha256='0'*64),
+                    dict(record,version=729),dict(record,cmdline=record['cmdline']+' sf2x=1'),
+                    dict(record,cmdline=record['cmdline']+' sf2x=0'),dict(record,cmdline=record['cmdline']+' sf2x'),
+                    dict(record,numeric_zero_argument_omission=dict(native_zero_binding(),consumer_sha256='0'*64)),
+                    dict(record,numeric_zero_argument_omission=dict(native_zero_binding(),values={'sf2x':1}))]:
             with self.assertRaises(AssertionError):numeric_options(bad)
 
 
