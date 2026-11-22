@@ -263,6 +263,9 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
                     common+=['SWEET METAL REQUEST CONFIG pid=[0-9]+ installed=13 expected=13 limit=64 revision=2 original_behavior=1 no_extra_GPU_work=1' if m['exception_observer']['request_observer_revision']==2 else 'SWEET METAL REQUEST CONFIG pid=[0-9]+ installed=6 expected=6 limit=64 arguments_returns_errors_errno=1 no_GPU_work=1']
                 if m['exception_observer'].get('quad_route_observer'):
                     q=m['exception_observer'];common+=[f"SWEET QUAD ROUTE CONFIG pid=[0-9]+ installed={q['quad_route_methods']} expected={q['quad_route_methods']} per_api=8 max={q['quad_route_max_records']} revision={q['quad_route_revision']} original_behavior=1 no_extra_GPU_work=1"]
+                    if q['quad_route_revision']==5:
+                        common+=['SWEET PST CONFIG pid=[0-9]+ revision=1 apis=11 slots=256 max=512 original_returns=1 getter_calls=0 GPU_work=0',
+                                 'SWEET PST VALUE pid=[0-9]+ sample=[0-9]+ api=(preview|snapshot|backlight|unlock|env_init|env_update)']
                 if 'runtime_Metal_ABI_methods' in m['exception_observer']:
                     common+=['SWEET METAL ABI begin class=_MTLDevice present=1 limits_bytes=264 limits_alignment=8 limits_bounded=1',
                         'SWEET METAL ABI end methods=22 metadata_only=1 instances_created=0 gpu_operations=0']
