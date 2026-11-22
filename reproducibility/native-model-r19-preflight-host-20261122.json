@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-22",
+  "original_health_source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-native-full-model-r19-health-20261122",
+  "original_health_sha256": "29fa10fe72e71a6b46c5a21ab1794b8a742c6719fd9d062e76c6bac4f55072a8",
+  "original_preflight_timeout_seconds": 12,
+  "device_commands_issued": 0,
+  "original_timeout_NOT_reclassified": true,
+  "filtered_preflight_result": [],
+  "filtered_preflight_observed_seconds": 10.219142,
+  "same_legacy_executable_and_pattern_coverage": true,
+  "preflight_source_sha256": "aef1704d2c8dc11091881258daef218e57cd08a1d69be637d404e6458a7c5d56"
+}

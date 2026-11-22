@@ -19,7 +19,7 @@
     "owner_metadata.py": "e0f4e4fa2d54381d63128a39fbcabfe6c3ab9468a99f44cd44c37d86af84d564",
     "package_trial.py": "f520d05392e54a5309574e759fe95f85fe884314d4252240ed642088068caac0",
     "policy.py": "788151bcae524eb1dbb58e21743e957cf4ff2e819247dcf74db05e173cf00365",
-    "preflight_processes.ps1": "6586345710fe618415ce2ddd8b53d230c14c280c93f34c5fb1a190fcc7e1f91f",
+    "preflight_processes.ps1": "aef1704d2c8dc11091881258daef218e57cd08a1d69be637d404e6458a7c5d56",
     "procguard.py": "7cc150c13ca8d6fce28ec9784af8886eaaa4cdd8fad9cb3ff6befa9fd67d116d",
     "readonly_pixels.py": "bd1c86eddff0c7ca30d74b63cf2c5ac200a4691360f78f121e4cced5cd86fb5f",
     "return_evidence.py": "5142d3a90e89f64f796f2ce70227b28703afbca5be582ef25b6d638b09ae7e8d",
