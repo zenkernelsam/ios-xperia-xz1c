@@ -33,9 +33,13 @@ WANTED = {
         'configureGridSizeClassSizes:forScreenType:numberOfColumns:iconLocation:layoutOptions:'},
     'SBIconListModel': {'icons'},
     'SBLeafIcon': {'leafIdentifier', 'applicationBundleID', 'leafIdentifierAndApplicationBundleIDMatches'},
+    'SBFolder': {'lists', 'uniqueIdentifier'},
+    'SBFolderIcon': {'folder'},
 }
 CLASS_WANTED = {'SBHDefaultIconListLayoutProvider': {'frameworkFallbackInstance', 'currentDeviceScreenType', 'defaultLayoutOptions'}}
-METHOD_TABLES = {'SBLeafIcon': '__OBJC_$_INSTANCE_METHODS_SBLeafIcon(SBHTableViewIconLibraryAddtions)'}
+METHOD_TABLES = {'SBLeafIcon': '__OBJC_$_INSTANCE_METHODS_SBLeafIcon(SBHTableViewIconLibraryAddtions)',
+                 'SBFolder': '__OBJC_$_INSTANCE_METHODS_SBFolder(LibraryCategories|SBRootFolder)',
+                 'SBFolderIcon': '__OBJC_$_INSTANCE_METHODS_SBFolderIcon(SBIconViewClass)'}
 REFERENCE_APPS = {'com.apple.facetime', 'com.apple.mobilecal', 'com.apple.mobileslideshow', 'com.apple.mobilemail',
                   'com.apple.mobilenotes', 'com.apple.reminders', 'com.apple.mobiletimer', 'com.apple.news',
                   'com.apple.tv', 'com.apple.podcasts', 'com.apple.AppStore', 'com.apple.Maps',

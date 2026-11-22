@@ -258,7 +258,7 @@
     "tools/build/build_geocompat_trial.py": "d913e02335e728ec73d159bb51923fdd12381edaae1b348f11fa4f5048a80299",
     "tools/build/hfs_sparse_reader.py": "a44a7514df5bf8b925e415d561641b7e8e5206ebb0e469e44bc7ffe477768173",
     "tools/build/check_hfs_sparse_reader.py": "a00b8759216ad7388879197fe0a21ff7da4ce476b2c3d8f401b127d5131a58d3",
-    "tools/build/inspect_native_layout.py": "22da28964e03784660b77c52560c096637112a0d99615891d4eff576c1af9c3b",
+    "tools/build/inspect_native_layout.py": "1391f8965ec600673ab63a320b37d68cc0f9b5e22025712f54bc74fde4c163ce",
     "tools/build/check_native_layout_reader.py": "df6645d59c87d9c0387c71ad5a29c2ccbeec89e60e299090066ec186f793a85a",
     "tools/build/check_geometry_layout_schema.py": "f426ae114f3a7ed65add4eb18be5510ee113da413936a4e99a53e6b2fee5c899"
   },
