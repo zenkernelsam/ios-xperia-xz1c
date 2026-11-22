@@ -39,7 +39,7 @@ if a.pipeline_observe:headers+=['gpu/diagnostics/MetalPipelineObserve.h']
 if a.postdraw_observe:headers+=['gpu/diagnostics/PostDrawObserve.h']
 if a.snapshot_observe:headers+=['gpu/diagnostics/SnapshotMethodObserve.h']
 if a.request_observe:headers+=['gpu/diagnostics/MetalRequestObserve.h']
-if a.quad_route_observe:headers+=['gpu/diagnostics/QuadRouteObserve.h']
+if a.quad_route_observe:headers+=['gpu/diagnostics/QuadRouteObserve.h','gpu/diagnostics/PosterStateObserve.h']
 if a.png_filter_encoder:headers+=['gpu/compat/PNGImageIOEncoder.h','gpu/compat/PNGImageDispatch.h','tools/png_encoder_proof.py']
 if a.cif10_png_reference:
     headers+=['gpu/diagnostics/CIF10PNGReferenceProbe.h','gpu/diagnostics/CIF10VImageCompare.h','gpu/diagnostics/CIF10PNGFilterCompare.h','gpu/compat/PNGImageIOEncoder.h']
@@ -288,9 +288,12 @@ if a.request_observe:
         '-framework','Foundation','-framework','QuartzCore','-o',out/'test_request_observer'],'request-host-compile')
     assert 'Metal request observer PASS:' in run([out/'test_request_observer'],'request-host-test')
 if a.quad_route_observe:
-    run(['clang','-fblocks','-fobjc-exceptions','-O1','-g','-fsanitize=address,undefined',root/'tools/build/test_quad_route_observe.m',
+    run(['clang','-fblocks','-fobjc-exceptions','-O1','-g','-fsanitize=address,undefined','-fno-sanitize-recover=all',root/'tools/build/test_quad_route_observe.m',
         '-framework','Foundation','-framework','CoreGraphics','-o',out/'test_quad_route_observer'],'quad-route-host-compile')
     assert 'Quad route observer PASS:' in run([out/'test_quad_route_observer'],'quad-route-host-test')
+    run(['clang','-fobjc-exceptions','-O1','-g','-fsanitize=address,undefined','-fno-sanitize-recover=all',root/'tools/build/test_poster_state_observe.m',
+        '-framework','Foundation','-o',out/'test_poster_state_observer'],'poster-state-host-compile')
+    assert 'Poster state observer PASS:' in run([out/'test_poster_state_observer'],'poster-state-host-test')
 library=out/'exception_observe.dylib'
 extra=[resources/'MetalResources.dylib'] if resource_manifest else []
 if resource_manifest and not a.registration_only:extra+=['-DSWEET_METAL_RESOURCE_PROBE=1']
@@ -411,13 +414,16 @@ if a.request_observe:manifest.update(original_request_observer=True,request_obse
     request_owned_ABI_and_repeat_rejection_host_passed=True,
     request_record_max_bytes=190,request_short_framing=True,
     request_host_test_source_sha256=hashlib.sha256((root/'tools/build/test_metal_request_observe.m').read_bytes()).hexdigest())
-if a.quad_route_observe:manifest.update(quad_route_observer=True,quad_route_revision=4,quad_route_methods=33,
+if a.quad_route_observe:manifest.update(quad_route_observer=True,quad_route_revision=5,quad_route_methods=33,
     quad_route_per_API_samples=8,quad_route_max_records=264,quad_route_record_max_bytes=190,
     quad_route_metaclass_owner_and_exact_ABI_host_passed=True,quad_route_original_nil_throws_errno_BOOL_double_block_host_passed=True,
     quad_route_reason_getter_exception_containment_host_passed=True,quad_route_no_additional_GPU_or_scene_calls=True,
     quad_route_original_scalar_and_size_bits_preserved_host_passed=True,quad_route_environment_identity_metadata=True,
     quad_route_original_renderer_environment_and_return_identity=True,
     quad_route_original_signed_mode_arguments_and_branch_calls=True,
+    poster_state_observer_revision=1,poster_state_cache_slots=256,poster_state_records_max=512,
+    poster_state_original_returns_no_getters_or_GPU_work=True,poster_state_coalescing_original_bits_errno_limits_host_passed=True,
+    poster_state_host_test_source_sha256=hashlib.sha256((root/'tools/build/test_poster_state_observe.m').read_bytes()).hexdigest(),
     quad_route_host_test_source_sha256=hashlib.sha256((root/'tools/build/test_quad_route_observe.m').read_bytes()).hexdigest())
 assert all(hashlib.sha256((root/name).read_bytes()).hexdigest()==digest for name,digest in source_files.items())
 (out/'manifest.json').write_bytes((json.dumps(manifest,indent=2)+'\n').encode())

@@ -43,6 +43,8 @@ R11原生呈现五个阶段在各自pool关闭后allocated均0、最终0；完�
 
 下一步继续原壁纸environment／mode路由、safe-area和真实应用、动态UI／FPS、睡眠唤醒、LCD光学／背光、声音及Wi-Fi／蓝牙。原snapshot、GPU Completed、presentedTime、power_off和合成输入分别保持证据范围；完整目标仍active。
 
+R22候选新增有界原environment返回状态记录：旧33个route／每API8次仍保留，新stream按api／receiver及原始返回位值合并重复，新environment或值变化继续记录，最多256个key／512条状态。不调用额外getter、scene或GPU。解码器9个故障及旧route单元检查已通过，见[R22 host](../reproducibility/poster-state-r22-host-20261122.json)。真实C++ ASan／UBSan、ARM64签名和新RAM自身CPU／GPU尚未准入；当前无新boot。R13 applyMode1→deactive保持原STOP，初始化代码本来会请求1，不能把它本身判为故障。
+
 ## 操作与整理
 
 仅BH905ND69G；所有fastboot设备命令-s，COM≥10且VID1209/PID0001、一个worker、单download／boot、失败不重发、PON只0x06。四回程marker、连续健康30秒及worker退出后才下一轮。内核GPU底层／allocator／SCM／PON／RPC／VM、SweetGPU、当前GLES／Metal保持冻结。无本token LIVE的早期E1F4仍可能需物理恢复；gl5／userdata／SD／TA／XFL／救砖、校准和备份受保护。

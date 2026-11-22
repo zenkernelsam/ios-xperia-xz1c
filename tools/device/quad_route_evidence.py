@@ -45,6 +45,7 @@ ENV = re.compile(r'SWEET QUAD ROUTE ENV pid=(\d+) call=(\d+) renderer=([0-9a-f]{
 CONFIG3 = re.compile(r'SWEET QUAD ROUTE CONFIG pid=(\d+) installed=(\d+) expected=27 per_api=8 max=216 revision=3 original_behavior=1 no_extra_GPU_work=1')
 RETURN_ID = re.compile(r'SWEET QUAD ROUTE RETURN_ID pid=(\d+) call=(\d+) value=([0-9a-f]{16})')
 CONFIG4 = re.compile(r'SWEET QUAD ROUTE CONFIG pid=(\d+) installed=(\d+) expected=33 per_api=8 max=264 revision=4 original_behavior=1 no_extra_GPU_work=1')
+CONFIG5 = re.compile(r'SWEET QUAD ROUTE CONFIG pid=(\d+) installed=(\d+) expected=33 per_api=8 max=264 revision=5 original_behavior=1 no_extra_GPU_work=1')
 INTEGER = re.compile(r'SWEET QUAD ROUTE INTEGER pid=(\d+) call=(\d+) bits=([0-9a-f]{16})')
 
 
@@ -52,15 +53,15 @@ def inspect(text, token):
     live, ack = 'SWEET LOOP LIVE proto=1 token='+token, 'SWEET LOOP ACK FASTBOOT token='+token
     assert text.count(live) == text.count(ack) == 1
     scope = text[text.index(live):text.index(ack)]
-    revision = 4 if 'expected=33 per_api=8 max=264 revision=4' in scope else 3 if 'expected=27 per_api=8 max=216 revision=3' in scope else 2 if 'expected=26 per_api=8 max=208 revision=2' in scope else 1
+    revision = 5 if 'expected=33 per_api=8 max=264 revision=5' in scope else 4 if 'expected=33 per_api=8 max=264 revision=4' in scope else 3 if 'expected=27 per_api=8 max=216 revision=3' in scope else 2 if 'expected=26 per_api=8 max=208 revision=2' in scope else 1
     apis = APIS+EXTRA_APIS if revision>=2 else APIS
     if revision>=3: apis += ('renderer_env',)
-    if revision==4: apis += MODE_APIS
+    if revision>=4: apis += MODE_APIS
     arguments = {**ARGUMENTS, **EXTRA_ARGUMENTS, **MODE_ARGUMENTS, 'renderer_env':2}; types = {**TYPES, **EXTRA_TYPES, **MODE_TYPES, 'renderer_env':'@16@0:8'}; maximum = len(apis)*8
-    patterns = (METHOD, ABI, ABI_DATA, ABI_END, (CONFIG,CONFIG2,CONFIG3,CONFIG4)[revision-1], BEGIN, OBJECT, RETURN, END, FLAG, SYNC, BOOL, REASON, REASON_DATA, LIMIT)
+    patterns = (METHOD, ABI, ABI_DATA, ABI_END, (CONFIG,CONFIG2,CONFIG3,CONFIG4,CONFIG5)[revision-1], BEGIN, OBJECT, RETURN, END, FLAG, SYNC, BOOL, REASON, REASON_DATA, LIMIT)
     if revision>=2: patterns += (IDENTITY, DOUBLE, SIZE, ENV)
     if revision>=3: patterns += (RETURN_ID,)
-    if revision==4: patterns += (INTEGER,)
+    if revision>=4: patterns += (INTEGER,)
     matches = sorted((m.start(), i, m) for i, p in enumerate(patterns) for m in p.finditer(scope))
     assert len(matches) == scope.count('SWEET QUAD ROUTE '), 'Truncated or unknown original route record'
     methods, inventory, configured, records, limits = {}, {}, {}, {}, set()
@@ -190,11 +191,11 @@ def verify(directory):
     from scanout_trial_evidence import verify as verify_screen
     root = Path(directory); screen = verify_screen(root); row = json.loads((root/'results.json').read_bytes())[0]
     artifact = row['artifact']; observer = artifact['exception_observer']
-    assert observer['quad_route_observer'] and observer['quad_route_revision'] in (1,2,3,4)
+    assert observer['quad_route_observer'] and observer['quad_route_revision'] in (1,2,3,4,5)
     raw = (root/'cycle-01/serial.raw.log').read_bytes(); assert hashlib.sha256(raw).hexdigest()==screen['raw_sha256']
     result = inspect(raw.decode('ascii', 'replace'), artifact['token'])
     assert result['revision']==observer['quad_route_revision']
-    assert all(p['installed']==observer['quad_route_methods']==(12,26,27,33)[result['revision']-1] for p in result['process_configurations'])
+    assert all(p['installed']==observer['quad_route_methods']==(12,26,27,33,33)[result['revision']-1] for p in result['process_configurations'])
     result.update(token=artifact['token'], kernel_sha256=artifact['kernel_sha256'], GLES_sha256=artifact['ram_library_binding']['library_sha256'],
                   raw_sha256=screen['raw_sha256'], original_result=row['result'], original_reason=row['reason'], stage_not_promoted=True,
                   source=str(root.resolve()), return_seconds_with_health=screen['return_seconds_with_health'], screen=screen['screen'],

@@ -1,0 +1,49 @@
+{
+  "date": "2026-11-22",
+  "scope": "R22 bounded original environment return-state observer candidate",
+  "decoder_host": {
+    "source_files": {
+      "tools/build/check_poster_state_evidence.py": "de489ca78331a1b58a85a440d49e1aded8799e21f13c6faef6c80b717aa9d3bb",
+      "tools/device/poster_state_evidence.py": "eb66d448624630329bdcfb6f3c60c810d412d704093546e7a47c1cc30cfb015c"
+    },
+    "same_original_receiver_and_changed_environment_values_checked": true,
+    "raw_scalar_NaN_and_size_bits_preserved": true,
+    "post_ACK_excluded": true,
+    "faults_refused": {
+      "missing_bits": true,
+      "duplicate_header": true,
+      "foreign_pid": true,
+      "wrong_kind": true,
+      "missing_sample": true,
+      "invalid_bool": true,
+      "unknown_record": true,
+      "scalar_padding": true,
+      "wrong_token": true
+    },
+    "synthetic_fixture_not_device_environment_or_UI": true,
+    "device_operations": 0
+  },
+  "original_r13_token": "f5f654a3b8f48a8e",
+  "original_r13_raw_sha256": "429c613ccc6ca03f4f6032b672c343e99cf320a435a2f87752cc38c368a718fa",
+  "original_r13_controller_result": "STOP",
+  "original_r13_apply_modes": [
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "static_exact_mode_dispatch": {
+    "0": "activeMode",
+    "1": "deactiveMode",
+    "2": "interactiveMode",
+    "3": "supplementalMode"
+  },
+  "original_r13_state_limits_do_not_cover_all_later_environments": true,
+  "new_state_observer_cache_keys": 256,
+  "new_state_records_max": 512,
+  "new_state_observer_invokes_getters_or_draws": false,
+  "Cpp_ASan_UBSan_ARM64_new_RAM_CPU_GPU_pending": true,
+  "kernel_GLES_Metal_frozen": true,
+  "device_operations": 0
+}

@@ -74,14 +74,19 @@ def load(folder,expected=None):
                 sources.add('gpu/diagnostics/QuadRouteObserve.h')
                 assert observer.get('original_request_observer') and observer.get('snapshot_method_observer')
                 assert observer['target_process']=='AegirPoster' and observer.get('registration_only')
-                assert observer['quad_route_revision'] in (1,2,3,4) and observer['quad_route_methods']==(12,26,27,33)[observer['quad_route_revision']-1]
+                assert observer['quad_route_revision'] in (1,2,3,4,5) and observer['quad_route_methods']==(12,26,27,33,33)[observer['quad_route_revision']-1]
                 assert observer['quad_route_per_API_samples']==8 and observer['quad_route_max_records']==observer['quad_route_methods']*8 and observer['quad_route_record_max_bytes']==190
                 assert observer['quad_route_metaclass_owner_and_exact_ABI_host_passed'] and observer['quad_route_original_nil_throws_errno_BOOL_double_block_host_passed']
                 assert observer['quad_route_reason_getter_exception_containment_host_passed'] and observer['quad_route_no_additional_GPU_or_scene_calls']
                 if observer['quad_route_revision']>=2:
                     assert observer['quad_route_original_scalar_and_size_bits_preserved_host_passed'] and observer['quad_route_environment_identity_metadata']
                 if observer['quad_route_revision']>=3: assert observer['quad_route_original_renderer_environment_and_return_identity']
-                if observer['quad_route_revision']==4: assert observer['quad_route_original_signed_mode_arguments_and_branch_calls']
+                if observer['quad_route_revision']>=4: assert observer['quad_route_original_signed_mode_arguments_and_branch_calls']
+                if observer['quad_route_revision']==5:
+                    sources.add('gpu/diagnostics/PosterStateObserve.h')
+                    assert observer['poster_state_observer_revision']==1 and observer['poster_state_cache_slots']==256 and observer['poster_state_records_max']==512
+                    assert observer['poster_state_original_returns_no_getters_or_GPU_work'] and observer['poster_state_coalescing_original_bits_errno_limits_host_passed']
+                    assert re.fullmatch('[0-9a-f]{64}',observer['poster_state_host_test_source_sha256'])
                 assert re.fullmatch('[0-9a-f]{64}',observer['quad_route_host_test_source_sha256'])
             if observer.get('original_postdraw_observer'):
                 sources.add('gpu/diagnostics/PostDrawObserve.h')
