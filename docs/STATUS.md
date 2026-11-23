@@ -1,6 +1,6 @@
 # 当前状态 — 2026-11-23
 
-R24日志通道修正版1b837e2f3d7f71cc已结束：原控制器PASS，但独立PNG6解码发生原payload偏移拒绝，actual-evidence未生成，整轮不准入／不重发。原SpringBoard GEO_GRID1与936节点／14owner布局记录出现；跨靴缓存58文件／29请求／29bin保持，missing0，真实action=skip且无primer调用。手机完整0x06回程已结束，待独立回程／worker复核；当前无in-flight。R23原STOP、成功写入3个原R22缓存及CPU自身PASS保留，冻结kernel／GLES／Metal保持。
+R25诊断导出节流候选已在Mac构建／ASan／UBSan／ARM64签名及只读RAM校验通过，observer fb63d69a／RAM blob cb196021；每48B原范围只发一次、间隔1000us，尚待Windows转运及新RAM自身CPU／GPU准入。当前Sony最后实机状态为健康fastboot，无in-flight。R24原控制器PASS／PNG独立解码拒绝与38.093秒完整0x06回程、worker退出保留；原缺块48B不补造。R23真实3个bin已保存、R24跨靴58缓存／missing0与实际skip独立通过；原STOP及全部失败包不重发，冻结kernel／GLES／Metal保持。
 
 R22已结束：新RAM自身CPU通过，原GPU为REVISE／EXTENSION_CHECKIN_TIMEOUT；单download／boot、PON0x06、四回程marker、连续健康30秒及worker退出通过。手机最后实机状态为健康fastboot，无in-flight。失败包不重发。Mac本轮回收与文档整合已执行，CPU／GPU完整payload、signed先验及Mac实际83源的收尾离线复验已通过；完整GPU／UI／外设目标仍active。
 

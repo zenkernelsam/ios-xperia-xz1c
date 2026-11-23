@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-23",
+  "source_HEAD": "1b2f4ad",
+  "Mac_output": "build/cache-export-paced-r25-20261123",
+  "observer_sha256": "fb63d69a32b74269917bf4afefd385499318c40fef55a48561081775db091e9d",
+  "observer_bytes": 258032,
+  "actual_compiled_sources": 48,
+  "RAM_blob_sha256": "cb1960218b50b7d908eda964fad198a9394941c0db5b1af9cee7e84471837b0a",
+  "RAM_manifest_sha256": "27c39aa515bbfd247012b887a163558421f21bbe38ffce54ce2182be422ad459",
+  "transfer_sha256": "182fc07afb5f46f07beff64ecb0abf49114f45a0782ebc2858780ded0ae13999",
+  "transfer_bytes": 8597190,
+  "transfer_members": 9,
+  "paced_diagnostic_export_us": 1000,
+  "each_range_emitted_once": true,
+  "Mac_host_ASan_UBSan_and_ARM64_signed_passed": true,
+  "kernel_GLES_Metal_unchanged": true,
+  "Windows_transfer_own_CPU_and_GPU_NOT_admitted": true,
+  "original_R23_STOP_and_R24_POSTPROCESSOR_REJECTED_preserved": true,
+  "device_operations": 0
+}

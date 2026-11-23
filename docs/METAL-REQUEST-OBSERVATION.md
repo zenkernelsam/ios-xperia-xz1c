@@ -35,6 +35,14 @@ QuadRouteObserve只包装原owner与准确ABI的方法，保持原参数、返�
 
 下一轮先读取本build／source-map生成的scope，核对实际.req身份、SHA、参数和对应bin是否存在；随后使用现有最多8项的背景primer，仅处理实际缺bin请求。新observer／RAM须自己的CPU与相应先验，保持冻结kernel／GLES／Metal字节；原policy保持，不在扩展constructor里重复长probe。单download／boot和完整回程后再独立观察原壁纸／UI。
 
+## 已验证缓存与原字节卡点
+
+R23后台在完整21组与PNG6成功后读取同来源55文件／29请求／26bin，确认3个缺失。三项原R22 wrapper长度／FNV均匹配，实际链接11.501／15.216／38.674秒，成功保存227981／375861／747773B的标准0x875f bin；A清单58文件／29请求／29bin、missing0，全部原请求与已有bin SHA保持。[R23原阶段](../reproducibility/cache-inventory-r23-stage-20261123.json)仍STOP：原tee漏SpringBoard日志，未提升为native准入。
+
+R24修正tee后GEO_GRID1与936节点布局记录出现，跨重启缓存仍58文件／missing0、实际action=skip，无空primer。原控制器PASS，但独立PNG6丢失case1/pixels offset4272的一块48B，夹在原SpringBoard CA警告之间；[原拒绝](../reproducibility/cache-inventory-r24-original-PNG-rejection-20261123.json)与[原阶段](../reproducibility/cache-inventory-r24-stage-20261123.json)保留，原字节不补造，整轮不准入／不重发。
+
+R25仅给作者诊断导出逐48B范围加1000us节流，范围仍各发一次；kernel／GLES／Metal及原渲染／UI策略不改。Mac新observer／RAM已签名与校验，Windows转运、自身CPU及完整原字节仍待验：[候选](../reproducibility/cache-export-paced-r25-prepared-20261123.json)。原UI、FPS、光学及其它外设目标继续独立验收。
+
 ## 只读复验
 
 以下只解已有本轮raw，输出必须新建，不打开COM或启动手机：
