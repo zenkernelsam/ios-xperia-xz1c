@@ -1,0 +1,68 @@
+{
+  "date": "2026-11-23",
+  "observer_sha256": "38661848f4f4101dfbf721f378cd7950111c2f28a3b50be97b6f5ce76e07b024",
+  "RAM_blob_sha256": "8f04e7fd6a9858c3e6d3f07cd807e749f8403f39c3bb40916480a0cf4e26b78a",
+  "RAM_manifest_sha256": "2675742a69be5e718181980514991907219f9ec4c4aee5f68b59b30dd18d349e",
+  "actual_signed_observer_sources": 48,
+  "Mac_host_ASan_UBSan_real_C_and_decoder_passed": true,
+  "first_RAM_host_missing_helper_manifest_refusal_preserved": true,
+  "correct_helper_r2_used": true,
+  "initial_artifact_context_tamper_acceptance_exposed_host_gate_gap": true,
+  "artifact_observer_now_equal_exact_signed_RAM_manifest": true,
+  "actual_payload_checks": {
+    "proofs": [
+      {
+        "image_sha256": "34535a77ef9a7421e318fccc9d6b704edac306e574291f7faf331b184ebd87e2",
+        "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+        "blob_count": 8,
+        "complete_payload_reconstructed_from_compiled_kernel": true
+      },
+      {
+        "image_sha256": "1cc802c89428275a71b197ee05534987b92974d7a3668752055d21eef3413dc5",
+        "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+        "blob_count": 8,
+        "complete_payload_reconstructed_from_compiled_kernel": true
+      }
+    ],
+    "tampered_actual_artifact_inventory_refusals": [
+      {
+        "fault": "context",
+        "refused": true,
+        "error": "Inventory observer metadata differs from the exact signed RAM manifest"
+      },
+      {
+        "fault": "scope",
+        "refused": true,
+        "error": "Inventory observer metadata differs from the exact signed RAM manifest"
+      },
+      {
+        "fault": "native",
+        "refused": true,
+        "error": "Inventory observer metadata differs from the exact signed RAM manifest"
+      },
+      {
+        "fault": "png",
+        "refused": true,
+        "error": "Inventory observer metadata differs from the exact signed RAM manifest"
+      },
+      {
+        "fault": "header",
+        "refused": true,
+        "error": "Inventory observer metadata differs from the exact signed RAM manifest"
+      },
+      {
+        "fault": "removed_inventory",
+        "refused": true,
+        "error": "Inventory observer metadata differs from the exact signed RAM manifest"
+      },
+      {
+        "fault": "disabled_prime",
+        "refused": true,
+        "error": "Inventory observer metadata differs from the exact signed RAM manifest"
+      }
+    ],
+    "device_operations": 0
+  },
+  "own_CPU_GPU_not_yet_admitted": true,
+  "device_operations": 0
+}

@@ -41,6 +41,8 @@ def prove_payload(record):
     if 'ram_library_binding' in record:
         assert mode in ('ramcpu','gpu')
         blob,_,ram_package=load_ram(record['ram_package'],record['ram_library_binding'])
+        if record.get('exception_observer',{}).get('program_cache_inventory') or ram_package.get('exception_observer',{}).get('program_cache_inventory'):
+            assert record.get('exception_observer')==ram_package.get('exception_observer'), 'Inventory observer metadata differs from the exact signed RAM manifest'
         validate_grid_control(record,ram_package)
         blobs=[(n,blob if n=='GL-RAM-Z' else data) for n,data in blobs]
     elif 'native_grid_control' in record:

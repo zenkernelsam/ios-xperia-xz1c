@@ -17,7 +17,7 @@
     "metal_resource_evidence.py": "e3737afff830f8d7466fddf67f4980d33dc9cf54fe89079828aa603fa9ddd35c",
     "observe_fastboot.py": "7c82964e346fa9166bdbaee1b8d74905f8cf1b53d151b42ba68909dc2e82100b",
     "owner_metadata.py": "e0f4e4fa2d54381d63128a39fbcabfe6c3ab9468a99f44cd44c37d86af84d564",
-    "package_trial.py": "9ae4737a0fe86eaa57de82f70735420a4f71385d81c47ba6081437cd7711231e",
+    "package_trial.py": "49876dc3314b1c84b31533c9c210e6c21eadb9b533272e4ef24879c04d9cb2e2",
     "policy.py": "788151bcae524eb1dbb58e21743e957cf4ff2e819247dcf74db05e173cf00365",
     "preflight_processes.ps1": "aef1704d2c8dc11091881258daef218e57cd08a1d69be637d404e6458a7c5d56",
     "procguard.py": "7cc150c13ca8d6fce28ec9784af8886eaaa4cdd8fad9cb3ff6befa9fd67d116d",
