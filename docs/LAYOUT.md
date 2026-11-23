@@ -10,11 +10,11 @@
 | docs/archive | 过时handover／handout、工作日志和手册原文／SHA |
 | deps | 固定上游构建源 |
 | build | 新输出、当轮产物；完成后的重复容器、host与object及时回收 |
-| assets | 用户提供原镜像、固件、救砖／校准／备份、符号及基线 |
+| assets | 用户提供原镜像、固件、救砖／校准／备份、符号及基线；Mac旧恢复输入在legacy-macos-patch-inputs-20261123 |
 | archive/experiments、archive/evidence | 历史实验与少量必要原证据 |
 | archive/artifacts | 尚需恢复／复现的少量产物；废弃镜像进回收站 |
 | organization | 完整本地盘点、迁移、原生回收journal |
-| Patch/research | 实查89个参考Git仓库，只放repo |
+| Patch/research | Windows实查89个参考Git仓库；Mac正式research3个，旧Patch/research非Git内容已移出 |
 | Windows TEMP | 一次性run、staging／传输，不在桌面堆放 |
 
 ## 回收与受保护输入
@@ -61,4 +61,4 @@ for name, info in m["files"].items():
 
 ## 文档原文恢复
 
-本轮50份整合前原字节、原路径和SHA见[manifest](archive/20261122/native-full-model-r19-close-out/original-document-manifest.json)。每份originals按原目录保存；恢复到其原路径后使用相对链接，历史“当前／in-flight”不成为执行状态。现行构建与操作以BUILD／OPERATIONS为准。
+本轮53份整合前原文分别见[50份主manifest](archive/20261123/poster-state-r22-close-out/original-document-manifest.json)与[3份补充入口](archive/20261123/project-entry-supplement/original-document-manifest.json)；Mac旧38份文档／源文件见[旧入口manifest](archive/20261123/macos-patch-entry/original-document-manifest.json)。每份originals按原目录保存；恢复到其原路径后使用相对链接，历史“当前／in-flight”不成为执行状态。现行构建与操作以BUILD／OPERATIONS为准。

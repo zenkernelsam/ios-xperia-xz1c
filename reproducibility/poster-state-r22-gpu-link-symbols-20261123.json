@@ -1,0 +1,192 @@
+{
+  "date": "2026-11-23",
+  "token": "68f6a0c0d6068c37",
+  "raw_sha256": "7491cb2e6ad9292b562f4d9646ce3ca1627c3276a4da968107c025fa2ce45263",
+  "library_sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+  "glLinkProgram_return_offset": "0xa8a8",
+  "callsite_sha256": "4fa8c9b431f9b16069db88a6c9cd9607ccf3aeafbc7dfa108f967f1baf761d57",
+  "crashes": [
+    {
+      "pid": 294,
+      "reason": "ns 7 code 0x3: extension check-in timeout",
+      "frames": [
+        {
+          "frame": 0,
+          "relative_pc": "0x6c3e20",
+          "symbol": "__mesa_hash_table_search",
+          "symbol_offset": "0xa0",
+          "is_actual_link_return_anchor": false
+        },
+        {
+          "frame": 1,
+          "relative_pc": "0x6c3db0",
+          "symbol": "__mesa_hash_table_search",
+          "symbol_offset": "0x30",
+          "is_actual_link_return_anchor": false
+        },
+        {
+          "frame": 2,
+          "relative_pc": "0x602358",
+          "symbol": "_lookup_entry_and_kill_aliases",
+          "symbol_offset": "0x154",
+          "is_actual_link_return_anchor": false
+        },
+        {
+          "frame": 3,
+          "relative_pc": "0x600440",
+          "symbol": "_copy_prop_vars_cf_node",
+          "symbol_offset": "0xc7c",
+          "is_actual_link_return_anchor": false
+        },
+        {
+          "frame": 4,
+          "relative_pc": "0x6008dc",
+          "symbol": "_copy_prop_vars_cf_node",
+          "symbol_offset": "0x1118",
+          "is_actual_link_return_anchor": false
+        },
+        {
+          "frame": 5,
+          "relative_pc": "0x5ff200",
+          "symbol": "_nir_opt_copy_prop_vars",
+          "symbol_offset": "0xa8",
+          "is_actual_link_return_anchor": false
+        },
+        {
+          "frame": 6,
+          "relative_pc": "0x51a674",
+          "symbol": "_prelink_lowering",
+          "symbol_offset": "0x53c",
+          "is_actual_link_return_anchor": false
+        },
+        {
+          "frame": 7,
+          "relative_pc": "0x51c9f8",
+          "symbol": "_gl_nir_link_glsl",
+          "symbol_offset": "0x1da8",
+          "is_actual_link_return_anchor": false
+        },
+        {
+          "frame": 8,
+          "relative_pc": "0x245914",
+          "symbol": "_st_link_shader",
+          "symbol_offset": "0x1b0",
+          "is_actual_link_return_anchor": false
+        },
+        {
+          "frame": 9,
+          "relative_pc": "0x195608",
+          "symbol": "_link_program_error",
+          "symbol_offset": "0x144",
+          "is_actual_link_return_anchor": false
+        },
+        {
+          "frame": 10,
+          "relative_pc": "0xa8a8",
+          "symbol": "_render_create_samples",
+          "symbol_offset": "0xb4c",
+          "is_actual_link_return_anchor": true
+        }
+      ],
+      "unique_16K_aligned_actual_glLinkProgram_return_anchor": true
+    },
+    {
+      "pid": 300,
+      "reason": "ns 7 code 0x3: extension check-in timeout",
+      "frames": [
+        {
+          "frame": 0,
+          "relative_pc": "0x592274",
+          "symbol": "_split_block_cursor",
+          "symbol_offset": "0xb0",
+          "is_actual_link_return_anchor": false
+        },
+        {
+          "frame": 1,
+          "relative_pc": "0x59220c",
+          "symbol": "_split_block_cursor",
+          "symbol_offset": "0x48",
+          "is_actual_link_return_anchor": false
+        },
+        {
+          "frame": 2,
+          "relative_pc": "0x59286c",
+          "symbol": "_nir_cf_reinsert",
+          "symbol_offset": "0x94",
+          "is_actual_link_return_anchor": false
+        },
+        {
+          "frame": 3,
+          "relative_pc": "0x59fccc",
+          "symbol": "_nir_inline_function_impl",
+          "symbol_offset": "0x43c",
+          "is_actual_link_return_anchor": false
+        },
+        {
+          "frame": 4,
+          "relative_pc": "0x5a02e8",
+          "symbol": "_inline_functions_pass",
+          "symbol_offset": "0x1cc",
+          "is_actual_link_return_anchor": false
+        },
+        {
+          "frame": 5,
+          "relative_pc": "0x59ff38",
+          "symbol": "_nir_inline_functions",
+          "symbol_offset": "0x10c",
+          "is_actual_link_return_anchor": false
+        },
+        {
+          "frame": 6,
+          "relative_pc": "0x51849c",
+          "symbol": "_gl_nir_inline_functions",
+          "symbol_offset": "0x3c",
+          "is_actual_link_return_anchor": false
+        },
+        {
+          "frame": 7,
+          "relative_pc": "0x51c584",
+          "symbol": "_gl_nir_link_glsl",
+          "symbol_offset": "0x1934",
+          "is_actual_link_return_anchor": false
+        },
+        {
+          "frame": 8,
+          "relative_pc": "0x245914",
+          "symbol": "_st_link_shader",
+          "symbol_offset": "0x1b0",
+          "is_actual_link_return_anchor": false
+        },
+        {
+          "frame": 9,
+          "relative_pc": "0x195608",
+          "symbol": "_link_program_error",
+          "symbol_offset": "0x144",
+          "is_actual_link_return_anchor": false
+        },
+        {
+          "frame": 10,
+          "relative_pc": "0xa8a8",
+          "symbol": "_render_create_samples",
+          "symbol_offset": "0xb4c",
+          "is_actual_link_return_anchor": true
+        }
+      ],
+      "unique_16K_aligned_actual_glLinkProgram_return_anchor": true
+    },
+    {
+      "pid": 302,
+      "reason": "ns 7 code 0x3: extension check-in timeout",
+      "symbolication_refused": true,
+      "reason_for_refusal": "NO_UNIQUE_ACTUAL_LINK_RETURN_IN_TRUNCATED_STACK",
+      "candidate_bases": 0,
+      "frames_not_invented": true
+    }
+  ],
+  "post_ACK_excluded": true,
+  "original_result": "REVISE",
+  "original_reason": "EXTENSION_CHECKIN_TIMEOUT",
+  "sample_locations_not_entire_duration_or_root_cause_proof": true,
+  "kernel_GLES_Metal_unmodified": true,
+  "device_operations": 0
+}

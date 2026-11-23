@@ -1,5 +1,7 @@
 # 固定Freedreno IR3硬件变体缓存
 
+> 历史技术记录：下文的版本、结果、“当前”和“下一步”对应原实验日期。现行产物及设备状态见[STATUS](STATUS.md)，构建与单发规则见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。原文与SHA见[本轮归档](archive/20261123/poster-state-r22-close-out/original-document-manifest.json)。
+
 此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。历史阶段结果保留其准确边界，完整原UI／光学需独立验收。
 
 2026-11-19现行GLES为CA矩阵d6d8fcfa，IR3/Mesa原源码和归档保持但build-ID变化；它已自身GLES原8＋CA1组／完整native16与PNG6组重新通过，proof token46747c46。当前锁屏时间日期／上滑主页有完整scanout证据，壁纸黑／原Aegir无pipeline请求的STOP保持，详见 [CA-MATRIX](CA-MATRIX.md) 和STATUS。下方166c08a3／87397739等是原适用库的保留比较，不能准入当前库。

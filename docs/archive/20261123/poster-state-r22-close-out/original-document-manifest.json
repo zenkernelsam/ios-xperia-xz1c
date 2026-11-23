@@ -1,0 +1,309 @@
+{
+  "revision": 1,
+  "date": "2026-11-23",
+  "source_HEAD": "0f59e907d1ed7f673b5da63128aa95c88c9be6f1",
+  "uncommitted_STATUS_snapshot_preserved": true,
+  "original_bytes_unmodified": true,
+  "files": [
+    {
+      "original_path": "docs/AEGIR-RENDERING.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/AEGIR-RENDERING.md",
+      "bytes": 5570,
+      "sha256": "883a1d21e0a7320ef8f2f16c22245bd0f1e6e3eddbdc56fd313d6ebc60279476"
+    },
+    {
+      "original_path": "docs/AIR-COMPUTE.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/AIR-COMPUTE.md",
+      "bytes": 4371,
+      "sha256": "476aad9a345008676b7792ffb5c4c143e03b90c13e5df85b71b665abf5ad1624"
+    },
+    {
+      "original_path": "docs/AIR-HALF.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/AIR-HALF.md",
+      "bytes": 5110,
+      "sha256": "5d87b6b5d54c518c1c8e7f11c488fb23b1cfb300296178637c62b54e4318c205"
+    },
+    {
+      "original_path": "docs/AIR-NARROW.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/AIR-NARROW.md",
+      "bytes": 3323,
+      "sha256": "40bf33ad70639ca68dc9748ba387c50c4325fdc65846c818ace5f43a4a3b6ae7"
+    },
+    {
+      "original_path": "docs/AIR-STATIC-HALF.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/AIR-STATIC-HALF.md",
+      "bytes": 3406,
+      "sha256": "2e2c11389bee4883c348eaaac06712dcee76922f8504300671218837d3fb573e"
+    },
+    {
+      "original_path": "docs/ATTACHMENT-HARDWARE.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/ATTACHMENT-HARDWARE.md",
+      "bytes": 17198,
+      "sha256": "05ebb322244b3be28397ccf61752618f9cba6c61fbd62576027d6f40e700bcea"
+    },
+    {
+      "original_path": "docs/BUILD.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/BUILD.md",
+      "bytes": 13260,
+      "sha256": "6c794477d0ad7beea5c2ac999cbb018bb0470cc968cd5b47370e3fe30f007c1a"
+    },
+    {
+      "original_path": "docs/CA-MATRIX.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/CA-MATRIX.md",
+      "bytes": 6199,
+      "sha256": "42510cc458bf9d9f79464125a6def8c53c2ef1a9e92af181e189c266585b5cb3"
+    },
+    {
+      "original_path": "docs/CLEAR-CACHE.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/CLEAR-CACHE.md",
+      "bytes": 6920,
+      "sha256": "3e5da60bf331c4ea86b7809b2b5b1bf89a41d89146f798e653af025fbb88bf26"
+    },
+    {
+      "original_path": "docs/DISPLAY-GEOMETRY.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/DISPLAY-GEOMETRY.md",
+      "bytes": 5687,
+      "sha256": "675ed979fa5e9ca82bb856b9019922af9c9b93bf93f1a993806dd06704bb802f"
+    },
+    {
+      "original_path": "docs/HALF-SELECTION.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/HALF-SELECTION.md",
+      "bytes": 3715,
+      "sha256": "b7beed40ea37e612c948990c8c96d3140694ec1bc9bb84e57547a5749a4faecc"
+    },
+    {
+      "original_path": "docs/INDEX.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/INDEX.md",
+      "bytes": 4896,
+      "sha256": "988a84485e3e94ec2c9185d29a73a61cf74223651bf3e5349606344e49c6d7b7"
+    },
+    {
+      "original_path": "docs/IR3-VARIANT-CACHE.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/IR3-VARIANT-CACHE.md",
+      "bytes": 6597,
+      "sha256": "4268497c1fde8af5f3b3dae013716f6a551d99853b0547da107f657b732acf4b"
+    },
+    {
+      "original_path": "docs/LAYOUT.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/LAYOUT.md",
+      "bytes": 4666,
+      "sha256": "9f78df5ec83b4c102eee72f08a98143fb7a92c0ba23fa577fd20d27d76321b57"
+    },
+    {
+      "original_path": "docs/METAL-BACKBOARD.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/METAL-BACKBOARD.md",
+      "bytes": 3999,
+      "sha256": "4c2eb5613c6d01c631b1769c277fdd517fab040c6c82b8d19c257312a89d9439"
+    },
+    {
+      "original_path": "docs/METAL-CONSTANTS.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/METAL-CONSTANTS.md",
+      "bytes": 4128,
+      "sha256": "7183d8edc75cea96a5ebdd433fdbad4a990adb5d2f64e0bd2b714dbe11c2d3bd"
+    },
+    {
+      "original_path": "docs/METAL-DEPTH-STENCIL.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/METAL-DEPTH-STENCIL.md",
+      "bytes": 11537,
+      "sha256": "fd383a57e908bdfeff3c53af19f127d05737b13bbae3483c978d7b46d526027e"
+    },
+    {
+      "original_path": "docs/METAL-DISCOVERY.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/METAL-DISCOVERY.md",
+      "bytes": 3551,
+      "sha256": "f2d321c96e0c95d14c8741bffa206e0e7e761bd98174f16e45402be51acff59d"
+    },
+    {
+      "original_path": "docs/METAL-IOSURFACE.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/METAL-IOSURFACE.md",
+      "bytes": 4692,
+      "sha256": "1956b1f121ba2c14b8ffb01ff68d6e8f1045a1e893ffe7634421c7c7a0fd035e"
+    },
+    {
+      "original_path": "docs/METAL-MEMORYLESS.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/METAL-MEMORYLESS.md",
+      "bytes": 7921,
+      "sha256": "b6123fb202fc441cf1a5182d83b3cf66e0ace472ddeaa64a4588b2729c62ac93"
+    },
+    {
+      "original_path": "docs/METAL-MIPMAPS.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/METAL-MIPMAPS.md",
+      "bytes": 4879,
+      "sha256": "6833046a1f9f919b227258f514ed9a7c14bd806ae69adc046a1c12773dd16d5e"
+    },
+    {
+      "original_path": "docs/METAL-MRT.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/METAL-MRT.md",
+      "bytes": 5322,
+      "sha256": "b7b2331eb9787c6c64314cb4e5cc49bbb09dcd3d9837e5bf169b89f7ebe7e098"
+    },
+    {
+      "original_path": "docs/METAL-MULTISAMPLE.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/METAL-MULTISAMPLE.md",
+      "bytes": 11496,
+      "sha256": "f9563048fc96aef5fbc6e2e4758c45cbcea7c9f50fac25a8248fc6e1673b29b5"
+    },
+    {
+      "original_path": "docs/METAL-PRESENTATION.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/METAL-PRESENTATION.md",
+      "bytes": 10536,
+      "sha256": "56515b41003767800d19e6f924693c7050d6055fa45b4c1bda9f146a5dee83fa"
+    },
+    {
+      "original_path": "docs/METAL-QUEUES.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/METAL-QUEUES.md",
+      "bytes": 4259,
+      "sha256": "e3214bddd0827b1ce09e227411167f174cf973a95d90de54d036b8294deabf17"
+    },
+    {
+      "original_path": "docs/METAL-REGISTRY-SHORT.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/METAL-REGISTRY-SHORT.md",
+      "bytes": 3570,
+      "sha256": "24424a5685d80041b1268060b164e4b51059456c90d16a0e3bf85cc4247ea148"
+    },
+    {
+      "original_path": "docs/METAL-RENDER.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/METAL-RENDER.md",
+      "bytes": 5840,
+      "sha256": "aa0322635b1801c7e38fc0cb152f0c6a1f0edca452895fe3c2a8035b44e19b5a"
+    },
+    {
+      "original_path": "docs/METAL-REQUEST-OBSERVATION.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/METAL-REQUEST-OBSERVATION.md",
+      "bytes": 16281,
+      "sha256": "b8b31a7e5c02565faa4bcb5d3443a68912cfa8bf43e77ded7940394b9040f01e"
+    },
+    {
+      "original_path": "docs/METAL-RESOURCES.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/METAL-RESOURCES.md",
+      "bytes": 4954,
+      "sha256": "e22d2906eb4559d8e1cbc9c540a67449d8aac77620f6b6e2b5c30e5ce7741b94"
+    },
+    {
+      "original_path": "docs/METAL-SAMPLERS.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/METAL-SAMPLERS.md",
+      "bytes": 4869,
+      "sha256": "295d817413e97a5fd457fa02925c6db662e967ce71bd875405d4c901ecf16389"
+    },
+    {
+      "original_path": "docs/METAL-XR.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/METAL-XR.md",
+      "bytes": 3582,
+      "sha256": "5b96ee62738651c7d36ea15c37f9867057c22d4e65e1c0a9a5a62e59eb6e453d"
+    },
+    {
+      "original_path": "docs/MSM8998-PEER-SURVEY-2026-11-15.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/MSM8998-PEER-SURVEY-2026-11-15.md",
+      "bytes": 14530,
+      "sha256": "98c48ca3c4a6f1cd754377dec413610ac9b48fcbdc16dc624cdb4c0ad3c4fd33"
+    },
+    {
+      "original_path": "docs/OPERATIONS.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/OPERATIONS.md",
+      "bytes": 7570,
+      "sha256": "116fd0caf5585abd11d76797c5a6fdbe2040e62d6b00ccdc4eadaa3d4fcebb81"
+    },
+    {
+      "original_path": "docs/ORGANIZATION-2026-11-12.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/ORGANIZATION-2026-11-12.md",
+      "bytes": 637,
+      "sha256": "defe60ee5b7577fa64e203d28a88427d5b23f731173b06bb0d2d4e670e002bf7"
+    },
+    {
+      "original_path": "docs/ORGANIZATION-2026-11-13.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/ORGANIZATION-2026-11-13.md",
+      "bytes": 637,
+      "sha256": "0ae880f5f8955a30106c4351c3429d9fbe8e8343a92aba79b2e6521d29f0d64d"
+    },
+    {
+      "original_path": "docs/ORGANIZATION-2026-11-15.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/ORGANIZATION-2026-11-15.md",
+      "bytes": 637,
+      "sha256": "027ff1f8871c45ea7cdfb79725c0427e2e6113fadc10b5bbf50ce4afbbd19353"
+    },
+    {
+      "original_path": "docs/ORGANIZATION.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/ORGANIZATION.md",
+      "bytes": 7088,
+      "sha256": "86976de9946aff6f16775af11529a1caadf5557035d4143ed70bde48453d3695"
+    },
+    {
+      "original_path": "docs/POSTDRAW-OBSERVATION.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/POSTDRAW-OBSERVATION.md",
+      "bytes": 19444,
+      "sha256": "21c0f4615a2aeebe3d8557993a17636f37c1953303b751db4ade418812ca2dcc"
+    },
+    {
+      "original_path": "docs/PROGRAM-CACHE.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/PROGRAM-CACHE.md",
+      "bytes": 7482,
+      "sha256": "5ad0432af648c038c16c70e8dfe0dbf6541215eb2c65b37c067fe054b05b4d5c"
+    },
+    {
+      "original_path": "docs/REFERENCE-REPOSITORIES.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/REFERENCE-REPOSITORIES.md",
+      "bytes": 10541,
+      "sha256": "cdc8bfc210a9ff154802daafaf65364afad978551ed2226ecbb7ef13b6bec9f7"
+    },
+    {
+      "original_path": "docs/RENDER-STAGES.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/RENDER-STAGES.md",
+      "bytes": 7186,
+      "sha256": "c790322b51fd6bf86322411dafeb6044a94d9ed36a19cf88a19176af26a257d4"
+    },
+    {
+      "original_path": "docs/ROOT-GL5.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/ROOT-GL5.md",
+      "bytes": 3435,
+      "sha256": "c4e0af4d811db3a375efa490603797682c15a5a548b79c953653e3bc4373b79b"
+    },
+    {
+      "original_path": "docs/SCANOUT-SCREENSHOT.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/SCANOUT-SCREENSHOT.md",
+      "bytes": 10891,
+      "sha256": "c0b448861bdf0256b0f2ffceb3e82264baa484ac108ba9dbbfa62a8b753dde44"
+    },
+    {
+      "original_path": "docs/STATUS.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/STATUS.md",
+      "bytes": 8258,
+      "sha256": "8df7dfee23e59e131901ea630de4d03fef8265e84e71ac9b5a886f68a165dc9c"
+    },
+    {
+      "original_path": "docs/SURFACE-DIAGNOSTICS.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/SURFACE-DIAGNOSTICS.md",
+      "bytes": 5683,
+      "sha256": "a5b948cd77404782bbb0da44112f9d906aaca42cf4dd4f3effa226b2fcd65690"
+    },
+    {
+      "original_path": "docs/SURFACE-READONLY.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/SURFACE-READONLY.md",
+      "bytes": 6892,
+      "sha256": "3d0cf408b8ec44276107aaa67807b4632b2d96e8434e70a612e0f8713328f4f3"
+    },
+    {
+      "original_path": "docs/XR-CLEAR.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/docs/XR-CLEAR.md",
+      "bytes": 3396,
+      "sha256": "fa9fa08998042dac1c2bb6be423b9a06674122287f713c2823c2fc49f2de59d8"
+    },
+    {
+      "original_path": "README.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/README.md",
+      "bytes": 2248,
+      "sha256": "169495d67773bffa618f996f282555f9e9368494b46f992573df4c582c70ddd2"
+    },
+    {
+      "original_path": "AGENTS.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/AGENTS.md",
+      "bytes": 5786,
+      "sha256": "2cd3dbcb6919526b7509be54ac0f9c360bace2c4e1ebafb5250ef0de4170a714"
+    },
+    {
+      "original_path": "gpu/metal/README.md",
+      "archive_path": "docs/archive/20261123/poster-state-r22-close-out/originals/gpu/metal/README.md",
+      "bytes": 1855,
+      "sha256": "91f480e51db9e4108a8309d8b8191a98b30412e9758b5b4846dd70f2c3b9fb6c"
+    }
+  ]
+}

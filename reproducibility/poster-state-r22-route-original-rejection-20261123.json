@@ -1,0 +1,11 @@
+{
+  "independent_decoder_rejected": true,
+  "decoder": "quad-route",
+  "original_result": "REVISE",
+  "original_reason": "EXTENSION_CHECKIN_TIMEOUT",
+  "exception_type": "AssertionError",
+  "message": "",
+  "traceback": "Traceback (most recent call last):\n  File \"<string>\", line 16, in <module>\n  File \"D:\\Desktop\\Git\\ios-xperia-xz1c\\tools\\device\\quad_route_evidence.py\", line 196, in verify\n    result = inspect(raw.decode('ascii', 'replace'), artifact['token'])\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Desktop\\Git\\ios-xperia-xz1c\\tools\\device\\quad_route_evidence.py\", line 122, in inspect\n    if revision>=2: assert 'receiver_identity' in record\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+  "original_raw_unchanged": true,
+  "device_operations": 0
+}

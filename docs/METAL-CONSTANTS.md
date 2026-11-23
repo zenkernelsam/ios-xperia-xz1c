@@ -1,5 +1,7 @@
 # Native Metal function constants — 2026-11-14
 
+> 历史技术记录：下文的版本、结果、“当前”和“下一步”对应原实验日期。现行产物及设备状态见[STATUS](STATUS.md)，构建与单发规则见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。原文与SHA见[本轮归档](archive/20261123/poster-state-r22-close-out/original-document-manifest.json)。
+
 此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。历史阶段结果保留其准确边界，完整原UI／光学需独立验收。
 
 v729/774b5efd、原GLES render-r4/7944112d与新Metal79eb8207已实际完成原生MTLFunctionConstantValues→不可变快照→AIR specialization→ESSL/Mesa→FD540→原buffer计算。14完整/0缺项样本，每份3phase×64invocation，240word全部结果与48保护word零差异。按名称step=13、索引7=29、range7..9首值37创建函数；每次创建后reset并设step=99，真正GPU仍分别计算累计13/42/79。所有phase使用同一原CPU地址/IOVA，独立重算hash174f4dc1714c892a/493ed3b863ba5caf/213b3193a6d2e556全部一致。

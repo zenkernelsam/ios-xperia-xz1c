@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-23",
+  "source_HEAD": "59183a544dc0987b1e7e0acf3d052181f1f11a3f",
+  "files": [
+    {
+      "original_path": "NOTES.md",
+      "archive_path": "docs/archive/20261123/project-entry-supplement/originals/NOTES.md",
+      "bytes": 213,
+      "sha256": "4e5365b5ea38fe5d7cf21c4a7a5e0ac1c749556d03ea3afd05578419eeb37e47"
+    },
+    {
+      "original_path": "xnu/README.md",
+      "archive_path": "docs/archive/20261123/project-entry-supplement/originals/xnu/README.md",
+      "bytes": 604,
+      "sha256": "fcb887d7f6f3cc4db766638ca1c8495be8a9bb16adf462ffb1ca168e3207b68c"
+    },
+    {
+      "original_path": "gpu/metal/air/README.md",
+      "archive_path": "docs/archive/20261123/project-entry-supplement/originals/gpu/metal/air/README.md",
+      "bytes": 2082,
+      "sha256": "82da7ae6bdaf2e28c13e08d9ddf57b3508f661737d65fb3f74ce22776979aae7"
+    }
+  ],
+  "original_bytes_unmodified": true
+}

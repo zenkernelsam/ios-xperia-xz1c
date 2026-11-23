@@ -1,5 +1,7 @@
 # MSM8998 同行进度与可复用代码 — 2026-11-15
 
+> 历史技术记录：下文的版本、结果、“当前”和“下一步”对应原实验日期。现行产物及设备状态见[STATUS](STATUS.md)，构建与单发规则见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。原文与SHA见[本轮归档](archive/20261123/poster-state-r22-close-out/original-document-manifest.json)。
+
 这是2026-11-15的固定调查快照；后续实际借用sampler／MSAA／presentation实现与本机真机结果见[STATUS](STATUS.md)和各能力专题。下文旧行号／待实现描述适用于当时源，不代表最新代码或已验硬件。
 
 最值得借用的是 MC-XiaoXiao 的 `ios_sagit`：同为 Adreno 540，公开了原生 Metal、AIR→NIR→IR3、IOSurface 与显示交接代码。我们已使用其 2026-10-23 的部分前端；最新远端增加了 42 个提交，包含系统合成、反馈采样和锁屏／唤醒修复。建议恢复工作后先补原系统 shader 的常量 sampler 与首次管线编译，再核对显示交接；直连 NIR 作为后续编译性能方向。

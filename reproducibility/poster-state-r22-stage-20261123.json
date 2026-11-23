@@ -1,0 +1,212 @@
+{
+  "date": "2026-11-23",
+  "observer_build_source_HEAD": "03c1c4d9170b0877e9e529521231177cf85e6457",
+  "package_source_HEAD": "0f59e907d1ed7f673b5da63128aa95c88c9be6f1",
+  "original_device_round_terminal": true,
+  "phone_last_original_result_healthy_fastboot": true,
+  "worker_exit_verified_by_trusted_preflight": true,
+  "CPU": {
+    "version": 730,
+    "mode": "ramcpu",
+    "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-poster-state-r22-cpu-live-20261123",
+    "token": "61e1bcd69b12bd13",
+    "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+    "image_sha256": "881532d36b283bd6c54dd588d19c456f881261b3be4923aefcb06b40d980cf07",
+    "log_sha256": "a669c4cc870acf4c464366c8ff681f5670e3a9cb17917b9a66a00846103aac71",
+    "return_complete": {
+      "complete": true,
+      "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+      "current_token": "61e1bcd69b12bd13",
+      "checkpoint_bytes": 345483,
+      "log_bytes": 348409,
+      "log_sha256": "a669c4cc870acf4c464366c8ff681f5670e3a9cb17917b9a66a00846103aac71",
+      "require_final_drain": true,
+      "marker_positions": [
+        3,
+        5,
+        55,
+        57
+      ],
+      "final_reset_marker_seen": true
+    },
+    "return_seconds_with_health": 38.07800000021234,
+    "single_download_boot_verified": true,
+    "actual_stage_verified": true,
+    "complete_panel_and_peripheral_goal_not_achieved": true,
+    "payload_audit": {
+      "image_sha256": "881532d36b283bd6c54dd588d19c456f881261b3be4923aefcb06b40d980cf07",
+      "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+      "blob_count": 8,
+      "complete_payload_reconstructed_from_compiled_kernel": true
+    },
+    "ram_library_binding": {
+      "library_sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+      "library_bytes": 14801120,
+      "library_fnv64": "9929cfe79edd5bce",
+      "blob_sha256": "84994aed23f0c460c68babb2eb5d83ebf5c215a654b5c4931ba011763ff08e97",
+      "raw_sha256": "92034971e68f0bfac860d967c7977082f3739060249c29e17c396b8e52e4cc2c",
+      "manifest_sha256": "e197b0d1a601a06cdc2c86573d1099469fa5403ea409e0c5ee05901c940eaaa5"
+    },
+    "library_loaded_before_current_live": false,
+    "ram_library_prefix": {
+      "logical_library_reads": 1,
+      "raw_library_reads": 1,
+      "ready_positions": [
+        8861
+      ],
+      "read_positions": [
+        12357
+      ],
+      "startup_block_sha256": "e6511abd86a09991311190355400e5eb123780da37305fea1fa8deadb1d6b8bd",
+      "explicit_exact_prefix_replay": false,
+      "raw_log_unchanged": true
+    },
+    "serial_capture": {
+      "revision": 1,
+      "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+      "event_log_sha256": "67985b1c351429917f7a86210b935663326a44300db0b97f3f4ab2f7a0270b27",
+      "raw_sha256": "a669c4cc870acf4c464366c8ff681f5670e3a9cb17917b9a66a00846103aac71",
+      "serial_port": "COM17",
+      "dtr_low_through_open": true,
+      "raw_log_before_stream": true,
+      "one_continuous_current_boot_stream": true,
+      "replay_commands": 0,
+      "old_failure_not_reclassified": true
+    }
+  },
+  "GPU": {
+    "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-poster-state-r22-gpu-live-20261123",
+    "token": "68f6a0c0d6068c37",
+    "image_sha256": "c20d6e5db81e60367910b8fef76b19d67fdfe5c916e197ee8b87ce5d9f2f0d43",
+    "raw_sha256": "7491cb2e6ad9292b562f4d9646ce3ca1627c3276a4da968107c025fa2ce45263",
+    "raw_bytes": 1905932,
+    "results_sha256": "83d28eab0ba946cf1fdda16f328cd79d7f4636472440b6df20f59530c925c2e1",
+    "original_result": "REVISE",
+    "original_reason": "EXTENSION_CHECKIN_TIMEOUT",
+    "single_download_boot": true,
+    "boot_retries": 0,
+    "strict_return": {
+      "complete": true,
+      "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+      "current_token": "68f6a0c0d6068c37",
+      "checkpoint_bytes": 1900176,
+      "log_bytes": 1905932,
+      "log_sha256": "7491cb2e6ad9292b562f4d9646ce3ca1627c3276a4da968107c025fa2ce45263",
+      "require_final_drain": true,
+      "marker_positions": [
+        3,
+        17,
+        97,
+        99
+      ],
+      "final_reset_marker_seen": true
+    },
+    "return_seconds_with_health": 39.90599999995902,
+    "GLES9_success_marker_observed": 1,
+    "same_frozen_native21_PNG6_prerequisite_not_new_UI_proof": true,
+    "state_processes": [
+      294,
+      300,
+      302,
+      307
+    ],
+    "changed_state_samples": 24,
+    "state_limits": [],
+    "checkin_crashes_before_ACK": 3,
+    "checkin_crashes_after_ACK_excluded": 1,
+    "original_state_all_four_processes_preview_snapshot_true_unlock0_backlight1": true,
+    "environment_init_return_not_observed": true,
+    "original_route_decoder_rejection_preserved": true,
+    "route_missing_ID_records": [
+      {
+        "pid": 300,
+        "call": 14,
+        "api": "manager_device"
+      },
+      {
+        "pid": 302,
+        "call": 31,
+        "api": "linear_backlight"
+      }
+    ],
+    "missing_route_IDs_overlap_original_failure_frame_stream": true,
+    "original_raw_missing_records_not_repaired": true,
+    "actual_link_return_symbolicated_pids": [
+      294,
+      300
+    ],
+    "third_truncated_stack_not_invented": true,
+    "original_requests": [
+      {
+        "vertex_bytes": 4840,
+        "fragment_bytes": 12006,
+        "immutable_original_request_write_observed": true
+      },
+      {
+        "vertex_bytes": 15521,
+        "fragment_bytes": 5005,
+        "immutable_original_request_write_observed": true
+      },
+      {
+        "vertex_bytes": 4840,
+        "fragment_bytes": 38924,
+        "immutable_original_request_write_observed": true
+      },
+      {
+        "vertex_bytes": 4840,
+        "fragment_bytes": 73444,
+        "immutable_original_request_write_observed": true
+      },
+      {
+        "vertex_bytes": 4840,
+        "fragment_bytes": 26549,
+        "immutable_original_request_write_observed": true
+      }
+    ],
+    "original_request_bin_absence_not_claimed_from_missing_log": true,
+    "scheduled_frame_seconds": 150,
+    "frame_taken_at_scheduled_observation": false,
+    "failure_frame_capture_elapsed_seconds": 14.780999999959022,
+    "screen_png_sha256": "9ad8891e733c6ac2d2f95a51e3b87a0df2cf43114cfbc3781450c6fc558208c2",
+    "original_PST_values_not_UI_or_optical_proof": true
+  },
+  "protected_baseline": {
+    "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+    "GLES_sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+    "Metal_sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27",
+    "source_map_sha256": "db1605ef8dae8f8ed0a29999dcb2cf7537457aba7ad428677c21e0e914771b78",
+    "observer_sha256": "e501c4be6e75658ae2ccb32513e39be641c8dd15dd04b466bc6f777cf658f019",
+    "RAM_blob_sha256": "84994aed23f0c460c68babb2eb5d83ebf5c215a654b5c4931ba011763ff08e97"
+  },
+  "next_step": "Finish weekly native Trash and document integration first; then verify actual current source-scope missing request files and prepare a fresh bounded background primer with its own RAMCPU and unchanged frozen libraries. Do not replay R22 or alter original mode/paused.",
+  "stage_not_promoted": true,
+  "failed_bundle_not_replayed": true,
+  "continued_full_GPU_UI_FPS_sleep_optical_audio_wireless_goal_active": true,
+  "offline_closeout_device_operations": 0,
+  "reports": [
+    {
+      "path": "poster-state-r22-cpu-actual-20261123.json",
+      "sha256": "8ddd83699b61d2f9a9aeb7333eec8ff2ce4d008bbd241d38d3f93e570d5cb460"
+    },
+    {
+      "path": "poster-state-r22-gpu-original-state-20261123.json",
+      "sha256": "69fe295a70df4110c956e6305e0c88c52b95b1feaf5b5cecfd3840762d94f70f"
+    },
+    {
+      "path": "poster-state-r22-gpu-failure-20261123.json",
+      "sha256": "6d75ada17891586e08b8f00c88ab29955bbfbe45677239d358138662185017d6"
+    },
+    {
+      "path": "poster-state-r22-gpu-scanout-20261123.json",
+      "sha256": "357346c6071af67d31266d596a1d10212105a6dbb184ddd40811e1d1a6fcb5dc"
+    },
+    {
+      "path": "poster-state-r22-gpu-link-symbols-20261123.json",
+      "sha256": "5154d0d36919ed996ecaf9366fc711dfd22087d4f051c6c8413ab51561d6ca27"
+    },
+    {
+      "path": "poster-state-r22-route-original-rejection-20261123.json",
+      "sha256": "e0dd30391606f82542d82f3e5b688a627d8552f79c5d2b6bb8dc42abe9c11335"
+    }
+  ]
+}

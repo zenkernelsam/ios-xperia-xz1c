@@ -1,5 +1,7 @@
 # Metal 2×／4× MSAA候选 — 2026-11-20
 
+> 历史技术记录：下文的版本、结果、“当前”和“下一步”对应原实验日期。现行产物及设备状态见[STATUS](STATUS.md)，构建与单发规则见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。原文与SHA见[本轮归档](archive/20261123/poster-state-r22-close-out/original-document-manifest.json)。
+
 最新tiled GLES c617f2ee已通过自身CPU／GLES9，reference CPU b2f3fc4f因独立启动日志字节不一致拒绝，native21未投递；本页此前离线及失败记录保持，准入以[STATUS](STATUS.md)为准。详见[ATTACHMENT-HARDWARE](ATTACHMENT-HARDWARE.md)。
 
 2026-11-20恢复新蓝灯会话后的最新实际验收与12个失败页面见[ATTACHMENT-HARDWARE](ATTACHMENT-HARDWARE.md)。当前GLES21de自身CPU／GLES9已通过；完整Metal21的深度／模板／Memoryless／MSAA首阶段原字节失败，原presentation／PNG未执行，不能提升此页旧离线结果为整组通过。全部0x06回程／健康／worker退出完整，失败包保留不重发。

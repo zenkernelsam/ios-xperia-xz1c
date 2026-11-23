@@ -1,5 +1,7 @@
 # Aegir 壁纸与 Metal — 2026-11-13
 
+> 历史技术记录：下文的版本、结果、“当前”和“下一步”对应原实验日期。现行产物及设备状态见[STATUS](STATUS.md)，构建与单发规则见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。原文与SHA见[本轮归档](archive/20261123/poster-state-r22-close-out/original-document-manifest.json)。
+
 此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。历史阶段结果保留其准确边界，完整原UI／光学需独立验收。
 
 第二版实际入口观测已消除歧义：20次均 `_device=nil` / `new_buffer_method=0`，真实方法ABI的index=Q，原方法原异常继续。17条完整异常栈，3条丢帧不补猜。CPU两次VM/SMEM与37.188秒完整回程通过；GPU原全尺寸/Surface/caller/动态纹理/CA/lifecycle与960000只读像素仍通过，308对象全部released/unmapped，无orphan/active/root残留，37.641秒含健康30秒完整回程。多台fastboot同时连接下新Sony判定已实际通过；暂无device/COM/camera/in-flight。相机80帧MJPEG，照片仍无时间/日期/壁纸。新观察器SHA2354ed0888e33497b3dddf37d9e6f67b61dcd456f2c98db913909c9f2402971a，仅增加元数据，GLES仍原r4全部字节。

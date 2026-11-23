@@ -1,5 +1,7 @@
 # AIR 常量内存 binary16 按位访问
 
+> 历史技术记录：下文的版本、结果、“当前”和“下一步”对应原实验日期。现行产物及设备状态见[STATUS](STATUS.md)，构建与单发规则见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。原文与SHA见[本轮归档](archive/20261123/poster-state-r22-close-out/original-document-manifest.json)。
+
 此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。历史阶段结果保留其准确边界，完整原UI／光学需独立验收。
 
 原Aegir在cache-r2/r2已实际恢复星空89,821B、云层84,333B和threshold18,929B的程序，原pipeline返回nonnull；完整UI仍因earth/post管线nil而失败。39.516秒完整0x06回程，原REVISE/raw保留。实际错误为AIR specialization: static initializer memory type mismatch。

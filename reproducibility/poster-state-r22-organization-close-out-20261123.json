@@ -1,0 +1,404 @@
+{
+  "date": "2026-11-23",
+  "source_HEAD_at_audit": "59183a544dc0987b1e7e0acf3d052181f1f11a3f",
+  "current_documents": [
+    {
+      "path": "README.md",
+      "role": "current_entry_or_topic",
+      "bytes": 2248,
+      "sha256": "169495d67773bffa618f996f282555f9e9368494b46f992573df4c582c70ddd2"
+    },
+    {
+      "path": "AGENTS.md",
+      "role": "current_entry_or_topic",
+      "bytes": 5929,
+      "sha256": "231e659a639fb4ed478cc268de2cc76e6543f00baa3a43c015cdadeaae29d0f4"
+    },
+    {
+      "path": "NOTES.md",
+      "role": "current_entry_or_topic",
+      "bytes": 478,
+      "sha256": "c403c8b29b2b4e6a42d272d1cc8cd3b08a1047c854d46a7999c54761103a9547"
+    },
+    {
+      "path": "xnu/README.md",
+      "role": "current_entry_or_topic",
+      "bytes": 991,
+      "sha256": "476776efe86835a8f6185937635481fd3611b03367843ec29f878bc04021a64c"
+    },
+    {
+      "path": "gpu/metal/README.md",
+      "role": "current_entry_or_topic",
+      "bytes": 2071,
+      "sha256": "a5df4d0bad1913d6f9275ae1d009bce1e7c9aa1e380f917c62a71d0fc7f8e5e9"
+    },
+    {
+      "path": "gpu/metal/air/README.md",
+      "role": "current_entry_or_topic",
+      "bytes": 1632,
+      "sha256": "c918132f62fe9308a381f2accdabd8786d7dfab91223288504ac848983053cf2"
+    },
+    {
+      "path": "docs/AEGIR-RENDERING.md",
+      "role": "history_capability",
+      "bytes": 5911,
+      "sha256": "8ab0d98ef88002c0e9bc1ecbbb6f2527f30fae81f38a0a357826f03fc98a245f"
+    },
+    {
+      "path": "docs/AIR-COMPUTE.md",
+      "role": "history_capability",
+      "bytes": 4712,
+      "sha256": "319036beaf2ba468541706e21e0715ada6885846eadb039696666e32a2ea6b52"
+    },
+    {
+      "path": "docs/AIR-HALF.md",
+      "role": "history_capability",
+      "bytes": 5451,
+      "sha256": "b7e042ea0dde406679b5f8afa75d78eeac5862ab107a4beaaf5281a79139c324"
+    },
+    {
+      "path": "docs/AIR-NARROW.md",
+      "role": "history_capability",
+      "bytes": 3664,
+      "sha256": "0dd5fcad25cef2d67e69a48b9721afaaf82ea8012501584d6e39ee0c3bddfd84"
+    },
+    {
+      "path": "docs/AIR-STATIC-HALF.md",
+      "role": "history_capability",
+      "bytes": 3747,
+      "sha256": "92115d37e4caecc89a3ac08e67e53eedddd1d4faa851345777b2dd655d03b923"
+    },
+    {
+      "path": "docs/ATTACHMENT-HARDWARE.md",
+      "role": "current_entry_or_topic",
+      "bytes": 17198,
+      "sha256": "05ebb322244b3be28397ccf61752618f9cba6c61fbd62576027d6f40e700bcea"
+    },
+    {
+      "path": "docs/BUILD.md",
+      "role": "current_entry_or_topic",
+      "bytes": 14705,
+      "sha256": "f4f22a2eab5aac7535cd21c268f4a22cc04bc5370b3894ebe6be024ba2682628"
+    },
+    {
+      "path": "docs/CA-MATRIX.md",
+      "role": "current_entry_or_topic",
+      "bytes": 6199,
+      "sha256": "42510cc458bf9d9f79464125a6def8c53c2ef1a9e92af181e189c266585b5cb3"
+    },
+    {
+      "path": "docs/CLEAR-CACHE.md",
+      "role": "history_capability",
+      "bytes": 7261,
+      "sha256": "ad7a64dfd8d4d84e72c70ae52cf2b1523b8a90efce7b1b491e5bfe205e3b6b36"
+    },
+    {
+      "path": "docs/DISPLAY-GEOMETRY.md",
+      "role": "current_entry_or_topic",
+      "bytes": 5730,
+      "sha256": "2f4630f2720d4e2b98cbcf775a22d0ba9c84ccc0004a305eb7e1e6ed59964f62"
+    },
+    {
+      "path": "docs/HALF-SELECTION.md",
+      "role": "history_capability",
+      "bytes": 4056,
+      "sha256": "fbdcf09d710a26b51a8d432591c2c87a40fbf930e5c14b1a1d0aae65c3e3297d"
+    },
+    {
+      "path": "docs/INDEX.md",
+      "role": "current_entry_or_topic",
+      "bytes": 5862,
+      "sha256": "4dfd912d5edda2fff8d1074dbbeb8a9fdd34142662e1bf9082a83cd1961406c4"
+    },
+    {
+      "path": "docs/IR3-VARIANT-CACHE.md",
+      "role": "history_capability",
+      "bytes": 6938,
+      "sha256": "7be0717621507a71537f4394abe1f16c78c5d6ecccf937bc28917f8bc9901acb"
+    },
+    {
+      "path": "docs/LAYOUT.md",
+      "role": "current_entry_or_topic",
+      "bytes": 4989,
+      "sha256": "46c1361b42ba234779fec52db678dbaa98cd809f7977aa9122c47e8311140a84"
+    },
+    {
+      "path": "docs/METAL-BACKBOARD.md",
+      "role": "history_capability",
+      "bytes": 4340,
+      "sha256": "7ae4e8e116e6f5abb2429ac593a944ea4aaaee0423a779c709b07cb55409e596"
+    },
+    {
+      "path": "docs/METAL-CONSTANTS.md",
+      "role": "history_capability",
+      "bytes": 4469,
+      "sha256": "ffd7c82bc34cb46144310d620684affbeab8520a70e85b160acf780d6f32edde"
+    },
+    {
+      "path": "docs/METAL-DEPTH-STENCIL.md",
+      "role": "history_capability",
+      "bytes": 11878,
+      "sha256": "57d55e8ee4049c324d9db76b18f175f658f77f3f47d3139047bbfb993f798e3a"
+    },
+    {
+      "path": "docs/METAL-DISCOVERY.md",
+      "role": "history_capability",
+      "bytes": 3892,
+      "sha256": "0b9de08b47d3e324a73e4e5cfd4be55b437954f8421e1eae205c6a772668afe7"
+    },
+    {
+      "path": "docs/METAL-IOSURFACE.md",
+      "role": "history_capability",
+      "bytes": 5033,
+      "sha256": "7e90908daaacdb2effd291fd3b30a0f1bbb74312581ab5dbfc36044a7d96606c"
+    },
+    {
+      "path": "docs/METAL-MEMORYLESS.md",
+      "role": "history_capability",
+      "bytes": 8262,
+      "sha256": "64f1fb9660655845f650d513046d15f8e1f6547cbd0d7808f58ee02d126ab509"
+    },
+    {
+      "path": "docs/METAL-MIPMAPS.md",
+      "role": "history_capability",
+      "bytes": 5220,
+      "sha256": "788126991f9fe84447e380443d86a464f7f81a0a1f88059faa0829db1f40cd0b"
+    },
+    {
+      "path": "docs/METAL-MRT.md",
+      "role": "history_capability",
+      "bytes": 5663,
+      "sha256": "2bb9ed2636be09e95d3e43142f9a4389a53db252bdad93fe7ebeeed48805253e"
+    },
+    {
+      "path": "docs/METAL-MULTISAMPLE.md",
+      "role": "history_capability",
+      "bytes": 11837,
+      "sha256": "0846005718c88afd91497623911fe12988e1a1e9b61a3a10b47d01768f0893a2"
+    },
+    {
+      "path": "docs/METAL-PRESENTATION.md",
+      "role": "current_entry_or_topic",
+      "bytes": 10536,
+      "sha256": "56515b41003767800d19e6f924693c7050d6055fa45b4c1bda9f146a5dee83fa"
+    },
+    {
+      "path": "docs/METAL-QUEUES.md",
+      "role": "history_capability",
+      "bytes": 4600,
+      "sha256": "d65e31adc8ef793a92559dd8fe4f2969932f4f7be1fdf76d082d3bc0fa117fc0"
+    },
+    {
+      "path": "docs/METAL-REGISTRY-SHORT.md",
+      "role": "history_capability",
+      "bytes": 3911,
+      "sha256": "6d2431510055d7ae8af64a1120d1596c45560af670540b47fb19f2f8895df5d9"
+    },
+    {
+      "path": "docs/METAL-RENDER.md",
+      "role": "history_capability",
+      "bytes": 6181,
+      "sha256": "b1a46f3c44ca861e8ad2788cbb709101cb0cff1874bf9cdf218d5e0f8ccd3397"
+    },
+    {
+      "path": "docs/METAL-REQUEST-OBSERVATION.md",
+      "role": "current_entry_or_topic",
+      "bytes": 5769,
+      "sha256": "1cd1d76e75ab08d0392e38b05b6389473dbdf88a3d280b1dc30a8b88deb0dd07"
+    },
+    {
+      "path": "docs/METAL-RESOURCES.md",
+      "role": "history_capability",
+      "bytes": 5295,
+      "sha256": "602bd8ccfca79cf900b24302a5acbddb60cd8a6ecb0f58628b394a6d2951a9d5"
+    },
+    {
+      "path": "docs/METAL-SAMPLERS.md",
+      "role": "history_capability",
+      "bytes": 5210,
+      "sha256": "621b673c2df1e441c384b23d38bcb27fd54192851ba4bdfe225a8e77fcf948df"
+    },
+    {
+      "path": "docs/METAL-XR.md",
+      "role": "history_capability",
+      "bytes": 3923,
+      "sha256": "2aea5abe7cb407fd96f36dcedfba717b903471e3acafb34fd223aecd9e29c929"
+    },
+    {
+      "path": "docs/MSM8998-PEER-SURVEY-2026-11-15.md",
+      "role": "history_capability",
+      "bytes": 14871,
+      "sha256": "fa49f287d01c8028d1bf8370fa6823f760ef511763eab628fc0d8f103ced9f1a"
+    },
+    {
+      "path": "docs/OPERATIONS.md",
+      "role": "current_entry_or_topic",
+      "bytes": 7708,
+      "sha256": "51b5b84245947358a74a7d2b13747a32a9ca68f91ff3800b3e454ba7b1ecb8d7"
+    },
+    {
+      "path": "docs/ORGANIZATION-2026-11-12.md",
+      "role": "current_entry_or_topic",
+      "bytes": 637,
+      "sha256": "defe60ee5b7577fa64e203d28a88427d5b23f731173b06bb0d2d4e670e002bf7"
+    },
+    {
+      "path": "docs/ORGANIZATION-2026-11-13.md",
+      "role": "current_entry_or_topic",
+      "bytes": 637,
+      "sha256": "0ae880f5f8955a30106c4351c3429d9fbe8e8343a92aba79b2e6521d29f0d64d"
+    },
+    {
+      "path": "docs/ORGANIZATION-2026-11-15.md",
+      "role": "current_entry_or_topic",
+      "bytes": 637,
+      "sha256": "027ff1f8871c45ea7cdfb79725c0427e2e6113fadc10b5bbf50ce4afbbd19353"
+    },
+    {
+      "path": "docs/ORGANIZATION.md",
+      "role": "current_entry_or_topic",
+      "bytes": 8417,
+      "sha256": "2b92832865525e9ce60ecc138314f964a3cf9f3af3695d74c512af19dc9ae85b"
+    },
+    {
+      "path": "docs/POSTDRAW-OBSERVATION.md",
+      "role": "history_capability",
+      "bytes": 19785,
+      "sha256": "49efb0d6d9846a5881ff111e106b3737fe2175a6a733549382a8bc7ce3b01044"
+    },
+    {
+      "path": "docs/PROGRAM-CACHE.md",
+      "role": "history_capability",
+      "bytes": 7823,
+      "sha256": "c922de0bdad6614bd05474404e51a609ded4782f5a0f018e040449864d3937e3"
+    },
+    {
+      "path": "docs/REFERENCE-REPOSITORIES.md",
+      "role": "current_entry_or_topic",
+      "bytes": 10541,
+      "sha256": "cdc8bfc210a9ff154802daafaf65364afad978551ed2226ecbb7ef13b6bec9f7"
+    },
+    {
+      "path": "docs/RENDER-STAGES.md",
+      "role": "history_capability",
+      "bytes": 7527,
+      "sha256": "b310202d94c9744e71145e3dc36321e883b7821895566e321421ba913682fae2"
+    },
+    {
+      "path": "docs/ROOT-GL5.md",
+      "role": "current_entry_or_topic",
+      "bytes": 3435,
+      "sha256": "c4e0af4d811db3a375efa490603797682c15a5a548b79c953653e3bc4373b79b"
+    },
+    {
+      "path": "docs/SCANOUT-SCREENSHOT.md",
+      "role": "current_entry_or_topic",
+      "bytes": 10891,
+      "sha256": "c0b448861bdf0256b0f2ffceb3e82264baa484ac108ba9dbbfa62a8b753dde44"
+    },
+    {
+      "path": "docs/STATUS.md",
+      "role": "current_entry_or_topic",
+      "bytes": 7491,
+      "sha256": "d9a11704fb06761b1154a37532acc1ba886771edadb8d5f2c9087dbcd7748fd6"
+    },
+    {
+      "path": "docs/SURFACE-DIAGNOSTICS.md",
+      "role": "history_capability",
+      "bytes": 6024,
+      "sha256": "64b0af2ad0b9cbbf5c61955580649cd86799c10690a7cbb0fd5f9ec8484227f5"
+    },
+    {
+      "path": "docs/SURFACE-READONLY.md",
+      "role": "history_capability",
+      "bytes": 7233,
+      "sha256": "48bbbaa1cbbb802189adf2a46e4874cd0186d3a970578482ab61c6b36ce1c3cd"
+    },
+    {
+      "path": "docs/XR-CLEAR.md",
+      "role": "history_capability",
+      "bytes": 3737,
+      "sha256": "80d6fc0e398967485d8dd3470ed2bf9452b0036293f8ba384f58adb47e64a131"
+    }
+  ],
+  "current_document_count": 53,
+  "relative_links_checked": 503,
+  "broken_relative_links": [],
+  "archive_manifests": [
+    {
+      "manifest": "docs\\archive\\20261120\\multisample-r1\\original-document-manifest.json",
+      "checked": 7,
+      "mismatches": [],
+      "Git_blob_mismatches": []
+    },
+    {
+      "manifest": "docs\\archive\\20261121\\r10-close-out\\original-document-manifest.json",
+      "checked": 2,
+      "mismatches": [],
+      "Git_blob_mismatches": []
+    },
+    {
+      "manifest": "docs\\archive\\20261121\\stencil-r7-integration\\original-document-manifest.json",
+      "checked": 10,
+      "mismatches": [],
+      "Git_blob_mismatches": []
+    },
+    {
+      "manifest": "docs\\archive\\20261121\\weekly-integration\\original-document-manifest.json",
+      "checked": 47,
+      "mismatches": [],
+      "Git_blob_mismatches": []
+    },
+    {
+      "manifest": "docs\\archive\\20261122\\native-full-model-r19-close-out\\original-document-manifest.json",
+      "checked": 50,
+      "mismatches": [],
+      "Git_blob_mismatches": []
+    },
+    {
+      "manifest": "docs\\archive\\20261122\\native-r15-close-out\\original-document-manifest.json",
+      "checked": 50,
+      "mismatches": [],
+      "Git_blob_mismatches": []
+    },
+    {
+      "manifest": "docs\\archive\\20261123\\macos-patch-entry\\original-document-manifest.json",
+      "checked": 38,
+      "mismatches": [],
+      "Git_blob_mismatches": []
+    },
+    {
+      "manifest": "docs\\archive\\20261123\\poster-state-r22-close-out\\original-document-manifest.json",
+      "checked": 50,
+      "mismatches": [],
+      "Git_blob_mismatches": []
+    },
+    {
+      "manifest": "docs\\archive\\20261123\\project-entry-supplement\\original-document-manifest.json",
+      "checked": 3,
+      "mismatches": [],
+      "Git_blob_mismatches": []
+    }
+  ],
+  "archive_originals_checked": 257,
+  "all_archive_original_SHA_match": true,
+  "history_capability_pages_explicitly_bounded": 30,
+  "frozen_sampler_fixture_matches_HEAD_and_left_unstaged": true,
+  "current_source_lock_Python237_and_post_recycle_CPU_GPU_complete_payload_and_Mac83_actual_sources_passed": true,
+  "Mac_native_recycle": {
+    "items": 178,
+    "files": 4097,
+    "logical_bytes": 179699518,
+    "protected_fingerprints": 1282
+  },
+  "Windows_native_recycle": {
+    "items": 4,
+    "files": 16,
+    "logical_bytes": 29061727,
+    "protected_fingerprints": 447
+  },
+  "permanent_deletions": 0,
+  "bins_not_emptied": true,
+  "device_operations": 0,
+  "full_GPU_UI_peripheral_goal_active": true
+}

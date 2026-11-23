@@ -42,4 +42,4 @@ gpu／xnu／tools／reproducibility进入正式Git；deps固定上游，build产
 
 本周及本轮回收实际路径／SHA见docs/ORGANIZATION.md；所有原生回收站未清空。基线、当前失败所需原证据和固定deps／dxb保持受保护。
 
-文档只在STATUS汇总当前状态、BUILD放现行复现、OPERATIONS放规则、LAYOUT放恢复、INDEX串专题。旧里程碑／handover／handout原文和SHA先archive，专题技术证据保留，不把旧“当前in-flight”恢复。每轮更新一份原结果摘要和关键topic；不要在每个入口复制大段工作日志。原文manifest由INDEX／ORGANIZATION索引，本轮整合前50份在docs/archive/20261122/native-full-model-r19-close-out。
+文档只在STATUS汇总当前状态、BUILD放现行复现、OPERATIONS放规则、LAYOUT放恢复、INDEX串专题。旧里程碑／handover／handout原文和SHA先archive，专题技术证据保留，不把旧“当前in-flight”恢复。每轮更新一份原结果摘要和关键topic；不要在每个入口复制大段工作日志。原文manifest由INDEX／ORGANIZATION索引；本轮53份现行入口原文在docs/archive/20261123/poster-state-r22-close-out及project-entry-supplement，Mac旧38份文档／源文件在macos-patch-entry。原文不改字节，旧脚本不作为现行执行入口。

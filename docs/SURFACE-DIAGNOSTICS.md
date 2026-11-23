@@ -1,5 +1,7 @@
 # v725 Surface 诊断与单次准入
 
+> 历史技术记录：下文的版本、结果、“当前”和“下一步”对应原实验日期。现行产物及设备状态见[STATUS](STATUS.md)，构建与单发规则见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。原文与SHA见[本轮归档](archive/20261123/poster-state-r22-close-out/original-document-manifest.json)。
+
 此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。历史阶段结果保留其准确边界，完整原UI／光学需独立验收。
 
 v725 只在 SweetSurface.cpp 增加有界日志：request、allocate、prepare、kernel_map、acquire。成功最多8条、失败最多24条；分配、pin、map、complete/release 的原操作保持。成功额度可能被启动探针用完，不能用缺少成功日志推断失败。

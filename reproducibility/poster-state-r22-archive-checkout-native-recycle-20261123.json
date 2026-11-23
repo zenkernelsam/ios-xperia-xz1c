@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-23",
+  "items": 1,
+  "files": 2,
+  "logical_bytes": 950,
+  "records": [
+    {
+      "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r22-archive-checkout-backups-20261123",
+      "reason": "One-time mechanical Windows checkout line-conversion copies; exact archived originals restored from verified Git blobs and preserved on Mac",
+      "files": [
+        {
+          "relative": "install-usbctl-task.bat",
+          "bytes": 581,
+          "sha256": "e7eedd5e7195679fc909a2f11ea047c5900d2259f45cfbc0ab87564fd49daad6"
+        },
+        {
+          "relative": "start-usbctl.bat",
+          "bytes": 369,
+          "sha256": "ce415dd721561ca71fb8e02913b983a0db61478df314456d8ae49c86245d073c"
+        }
+      ],
+      "verified_native_recycle": true,
+      "time": "2026-11-23T10:23:13.8832175+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R1PNNZ1",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r22-archive-checkout-backups-20261123",
+      "all_original_content_SHA_verified": true
+    }
+  ],
+  "archive_originals_restored_from_verified_original_Git_bytes": [
+    {
+      "archive_path": "docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/unattend/install-usbctl-task.bat",
+      "expected_original_sha256": "fdea8a3001a3fef4e0a5d78fc5fb6452ef42fdbe6edbc9baf13c00a237be0b7b",
+      "converted_checkout_sha256": "e7eedd5e7195679fc909a2f11ea047c5900d2259f45cfbc0ab87564fd49daad6",
+      "source_Git_blob_exactly_matches_retained_Mac_original": true,
+      "original_immutable_bytes_restored": true,
+      "converted_copy": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r22-archive-checkout-backups-20261123\\install-usbctl-task.bat"
+    },
+    {
+      "archive_path": "docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/unattend/start-usbctl.bat",
+      "expected_original_sha256": "28e56f3945838aa47178ce49e7a0bbfbd009a45b8c72f5ac171666293a926c64",
+      "converted_checkout_sha256": "ce415dd721561ca71fb8e02913b983a0db61478df314456d8ae49c86245d073c",
+      "source_Git_blob_exactly_matches_retained_Mac_original": true,
+      "original_immutable_bytes_restored": true,
+      "converted_copy": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-r22-archive-checkout-backups-20261123\\start-usbctl.bat"
+    }
+  ],
+  "gitattributes_protect_all_future_originals_as_bytes": true,
+  "recycle_bin_not_emptied": true,
+  "permanent_deletions": 0,
+  "device_operations": 0
+}

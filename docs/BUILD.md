@@ -102,7 +102,7 @@ python3 -B tools/build/package_glram.py --presigned --frontend build/my-gles/ram
 
 ## 显示比例和现行验证
 
-现行native几何包已实机核对720×1280像素／360×640点／scale2、MG／UIScreen和真实扫描尺寸；小组件布局、safe-area和光学未完成，见[DISPLAY-GEOMETRY](DISPLAY-GEOMETRY.md)。make_render_adt.py的xz1c-native-2x只改四个CFData属性，原node、内存映射和其它输入保持字节一致。package_trial.py --display-profile xz1c-native-2x绑定native1／sf2x0和整个payload；旧750×1624配置按原manifest保留。
+现行native几何包已实机核对720×1280像素／360×640点／scale2、MG／UIScreen和真实扫描尺寸；完整模型、标签祖先及两处17.5点间距已验，完整safe-area、真实应用与光学继续验收，见[DISPLAY-GEOMETRY](DISPLAY-GEOMETRY.md)。make_render_adt.py的xz1c-native-2x只改四个CFData属性，原node、内存映射和其它输入保持字节一致。package_trial.py --display-profile xz1c-native-2x绑定native1／sf2x0和整个payload；旧750×1624配置按原manifest保留。
 
 原生状态栏helper必须单独构建并绑定实际source／signed library，不能把临时修改的库放进RAM：
 
@@ -124,6 +124,23 @@ python -B -m unittest discover -s tools/device -p test_attachment_snapshot_evide
 
 手机实际入口是package_trial.py／run_trial.py；缺精确private／owner／ready／RAMCPU／GLES／native／PNG先验即拒绝，步骤见[OPERATIONS](OPERATIONS.md)。新包还绑定serial capture revision1／worker SHA，DTR低电平打开后建raw、一次单流读取，无replay；原失败核验保持。run_trial默认offline，--live才单发，controller及原字节后处理均通过才准入。
 
+## 原壁纸返回状态观察包
+
+在同kernel／GLES／Metal／source-map的完整native21与PNG6原字节准入后，构建只观察原请求的包。下面的my-*须替换为自己已验的对应产物；short registration不重复长probe，quad-route-observe同时编译有界PosterStateObserve：
+
+```sh
+python3 -B tools/build/build_exception_observer.py --output build/my-poster/observer \
+  --metal-resources build/my-metal/library --gles-ram-package build/my-gles/ram \
+  --registration-only --register-device --native-proof build/my-native21/proof.json \
+  --pipeline-observe --postdraw-observe --snapshot-observe --request-observe --quad-route-observe \
+  --png-filter-encoder --png-proof build/my-png/proof.json
+python3 -B tools/build/package_glram.py --presigned --frontend build/my-gles/ram \
+  --observer build/my-poster/observer --metal-resources build/my-metal/library \
+  --geocompat-package build/my-native/helper --output build/my-poster/ram
+```
+
+builder执行真实ObjC转发、原位值缓存／errno的ASan／UBSan和ARM64签名；manifest绑定全部实际源、库及先验。新RAM先自身CPU，完整回程后才准入新的GPU包。R22原失败及本轮捕获范围见[壁纸专题](METAL-REQUEST-OBSERVATION.md)，不用旧失败包继续投递。
+
 ## 产物和历史手册
 
 本周Mac重复HFS容器／raw、符号表、旧展开库、主机产物、临时检出及传输tar已进入原生垃圾桶；留存压缩blob／manifest／signed库可按SHA重建原RAM。当前kernel／deps／dxb、gl4／gl5／IPSW和失败证据保持。[LAYOUT](LAYOUT.md)给恢复方法，[ORGANIZATION](ORGANIZATION.md)给实际清单。回收不清空，不把移入垃圾桶称为释放全部空间。
@@ -142,6 +159,6 @@ python -B tools/device/package_trial.py --mode gpu --version 730 --kernel build/
 python -B tools/device/package_trial.py --mode gpu --version 730 --kernel build/surface-diag-v730/kernel.v730.macho --ram-package build/my-native/ram --display-profile xz1c-native-2x --native-grid-mode fitted --screen-evidence --screen-after 150 --swipe-once --output build/my-native/fitted
 ```
 
-original绑定GEO_GRID0，fitted绑定1；整个SpringBoard env、control源／值、plan和完整payload独立复算。当前三包均607B，具体看新artifact；shim参数不压缩。先新RAM自身CPU，再合格的原完整模型baseline，完整回程后才投递fitted。
+original绑定GEO_GRID0，fitted绑定1；整个SpringBoard env、control源／值、plan和完整payload独立复算。R21三包命令区均607B，R22 CPU607B／GPU604B，具体以新artifact为准；限定本v730实际consumer的sf2x默认0省略保持原语义，shim参数不压缩。先新RAM自身CPU，再合格的原完整模型baseline，完整回程后才投递fitted。
 
 独立后处理入口为geometry_layout_evidence.py --directory <原run> --output <新文件>及native_grid_profile_evidence.py --directory <fitted原run> --baseline <original原run> --output <新文件>。完整应用multiset、Dock顺序及Folder内容由原model比较，Root允许原系统分页重排。原标签归属不明仍REVISE；下一只读capture和新helper须再走host／新RAM自身CPU及新的原／拟合对照。详见[DISPLAY-GEOMETRY](DISPLAY-GEOMETRY.md)。

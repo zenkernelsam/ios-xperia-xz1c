@@ -1,34 +1,59 @@
-# 本周整理与文档整合 — 2026-11-22
+# 本周整理与文档整合 — 2026-11-23
 
-本轮在R19／R20三靴完整0x06回程、连续健康30秒及worker退出后执行。Mac813项／815文件／552748850B和Windows4项／10文件／27009609B实际进入各自原生回收站，所有用户内容SHA、原路径／目标路径及保护指纹通过。未永久删除或清空回收站，未修改其它手机项目。
+本轮在R22新RAM CPU与原GPU均完成0x06回程、连续健康30秒及worker退出后执行。Mac178项／4097文件／179699518B及Windows4项／16文件／29061727B实际进入各自原生回收站；全部原内容SHA和1282个Mac／447个Windows保护文件一致。没有永久删除或清空回收站，R22原REVISE与少量必要证据保持。
 
-| Mac本周累计／最新快照 | 数量 |
+## 本轮原生回收
+
+| 范围 | 项／文件／逻辑字节 | 原路径、原生目标及SHA |
+| --- | --- | --- |
+| Mac HFS、传输、host、Mesa object、一次性cache fixture与Finder元数据 | 177／4096／179624318 | [主记录](../reproducibility/poster-state-r22-macos-native-trash-20261123.json) |
+| Mac已退出的一次性回收可执行文件 | 1／1／75200 | [helper记录](../reproducibility/poster-state-r22-macos-helper-native-trash-20261123.json) |
+| Windows重复staging与成功CPU／health CLI | 3／14／29060777 | [Recycle Bin记录](../reproducibility/poster-state-r22-windows-native-recycle-20261123.json) |
+| Windows两份Git行尾转换的一次性副本 | 1／2／950 | [原件恢复与回收](../reproducibility/poster-state-r22-archive-checkout-native-recycle-20261123.json) |
+
+Mac只回收已结束构建的object-only目录、host程序／dSYM、可从保留blob逐字节重建的两份32MiB HFS及重复tar。46个host fixture内的测试符号链接随父目录移入Trash，逐一核对原link target、未跟随；Swift原生URL使用/tmp别名的记录与/private/tmp计划按实际规范路径核对，两种原路径都保留。
+
+固定deps、Mesa归档／生成header、dxb实际83源、v730内核、signed库／observer、RAM blob／manifest、所有原失败包／raw／proof、gl4／gl5／IPSW、A2S、校准／救砖／XFL／备份及xnu-autobuild.pause保持。Windows原GPU失败CLI及所有本轮原结果、字节和像素也保持。回收后CPU／GPU的完整payload、signed先验和Mac实际83源离线复验均通过：[原离线记录](../reproducibility/poster-state-r22-post-recycle-offline-20261123.json)。设备操作0，原GPU失败判定保持。
+
+## 磁盘快照与历史数量
+
+| Mac本周历史移入累计／本轮快照 | 数量 |
 | --- | ---: |
-| 原生Trash历史移入项 | 2853 |
-| 文件 | 36373 |
-| 逻辑字节 | 14365132875（约13.38GiB） |
-| 最新正式build | 3992596KiB（约3.81GiB） |
-| 最新系统可用空间 | 93230075904B（约86.83GiB） |
+| 历史原生Trash移入项 | 3031 |
+| 历史文件 | 40470 |
+| 历史逻辑字节 | 14544832393（约13.55GiB） |
+| 本轮正式build | 3905268KiB（约3.72GiB） |
+| 本轮系统可用空间 | 99122552832B（约92.32GiB） |
+| 本轮主回收后实际Trash | 184936KiB；随后追加helper75200B |
 
-移入垃圾桶仍占磁盘；历史累计是各次原生回收记录的数量，不表示释放量，也不保证用户之后未自行回收的旧条目仍存在。本轮813项的垃圾桶目标已逐文件复核。系统可用空间为本轮收尾快照，旧94%等数字只在原历史报告中保留。
+移动到垃圾桶仍占磁盘，不能把历史累计当释放量。上述可用空间是主回收核验时快照；系统其它活动会改变数字。本次开始时Trash只有约1MiB，历史各次移入内容是否后来由用户回收不作推断。当前新目标均已逐文件核验，Windows／Mac垃圾桶本轮都没有清空。正式Sony build约3.72GiB，系统整体占用约90%；其它手机和应用项目不属于本轮移动清单。
 
-## 本轮与保护范围
+## Mac旧入口与参考目录
 
-Mac回收两份可由精确SGLZ0001 blob恢复的32MiB HFS容器、重复传输tar、host程序／dSYM、35个一次性Mach-O包装及已结束构建的.o中间文件。固定deps／Mesa归档／dxb实际83源、v730内核、所有signed库／observer、RAM blob／manifest、原失败包／raw／proof、gl4／gl5／IPSW、准确A2S、校准／救砖／XFL／备份及pause保持。
+Mac旧~/Desktop/Patch/Xperia的18项非Git research内容已移出；38份历史文档／源文件按原路径与SHA归档到正式docs/archive/20261123/macos-patch-entry，包含旧AGENTS、handover、unattend及原实验脚本。旧脚本只作历史，不恢复旧in-flight。全部38份历史文本已进入正式Git，目录中被research ignore规则过滤的21份已按准确文件清单纳入。
 
-104个Mac保护文件已在回收前后SHA核对，包括12.2GB gl5原sparse输入；HFS没有挂载，保留原bin／txt／地址范围和Folder静态报告。Windows只回收重复staging和三份重复CLI，358个保护文件核验一致，完整三靴原run目录、像素及REVISE报告保留。
+Magisk APK、magisk-patched-lilac.img和hfsplus.ko三份本地恢复／构建输入移至正式assets/legacy-macos-patch-inputs-20261123并逐SHA验证，保留保护身份。Mac旧AGENTS现在只指向正式README、STATUS、BUILD与OPERATIONS；旧research为空，正式research只剩3个参考Git仓库。[完整原路径与目标](../reproducibility/macos-legacy-patch-integration-20261123.json)／[历史原文manifest](archive/20261123/macos-patch-entry/original-document-manifest.json)。
 
-[本轮Mac原路径／Trash路径／SHA](../reproducibility/native-full-model-r19-r20-macos-native-trash-20261122.json)和[Windows原路径／Recycle Bin路径／SHA](../reproducibility/native-full-model-r19-r20-windows-native-recycle-20261122.json)用于查找或复原；恢复办法见[LAYOUT](LAYOUT.md)。
+Windows Patch/Xperia/research实查仍为89个参考Git仓库、非仓库0。Ubuntu及Ubuntu-22.04的root／cisco Trash均空或不存在：[本次只读审计](../reproducibility/poster-state-r22-wsl-trash-audit-20261123.json)。若以后出现废弃WSL内容，先移至Windows TEMP再进Windows原生回收站；不直接永久清空。
 
-research实查仅89个参考Git仓库、非仓库0；Ubuntu的root／cisco和Ubuntu-22.04的root垃圾桶均无内容。WSL如有废弃内容须先移至Windows TEMP再进Windows原生回收站；不会永久删除或直接清空Ubuntu垃圾桶。[整合审计](../reproducibility/native-full-model-r19-r20-organization-20261122.json)记录原文、SHA、链接与本地盘点。
+## 文档职责与复现
 
-## R21追加收尾
+现行设备、准确SHA、候选、原结果和下一步只在[STATUS](STATUS.md)汇总；[BUILD](BUILD.md)放固定源与现行复现，[OPERATIONS](OPERATIONS.md)放单发／回程／串口／相机，[LAYOUT](LAYOUT.md)放目录与恢复，[INDEX](INDEX.md)串技术与历史。本轮原environment与链接耗时整合到[壁纸专题](METAL-REQUEST-OBSERVATION.md)，原REVISE及缺route ID拒绝保持。
 
-R21自身CPU／original／fitted三靴完整返回后，追加Mac10项／14文件／75595606B和Windows4项／14文件／27021937B进入原生回收站；131个Mac和366个Windows保护文件及全部回收用户内容SHA一致。两份HFS可由保留blob逐字节恢复，host程序／dSYM／object和重复transfer／CLI回收；原源码、signed库／manifest、raw／原扫描、完整祖先／38应用／17.5点间距及首个host提取失败全部保留。[Mac原路径／Trash路径](../reproducibility/native-label-ownership-r21-macos-native-trash-20261122.json)／[Windows原路径／Recycle Bin路径](../reproducibility/native-label-ownership-r21-windows-native-recycle-20261122.json)。回收后完整payload、signed源／依赖和Mac实际83源离线准入复验通过，未操作手机；[本轮收尾](../reproducibility/native-label-ownership-r21-close-out-20261122.json)保留文档快照及范围。
+| 整合前原文 | 数量 | 原字节与SHA |
+| --- | ---: | --- |
+| 本周最初手册 | 47 | [20261121](archive/20261121/weekly-integration/original-document-manifest.json) |
+| R15入口原文 | 50 | [native-r15](archive/20261122/native-r15-close-out/original-document-manifest.json) |
+| R19整合前／6a9efe8 | 50 | [native-full-model-r19](archive/20261122/native-full-model-r19-close-out/original-document-manifest.json) |
+| R22本轮手册与入口 | 50 | [本轮主manifest](archive/20261123/poster-state-r22-close-out/original-document-manifest.json) |
+| NOTES／XNU／AIR补充入口 | 3 | [补充manifest](archive/20261123/project-entry-supplement/original-document-manifest.json) |
+| Mac旧文档与源文件 | 38 | [Mac旧入口](archive/20261123/macos-patch-entry/original-document-manifest.json) |
+
+53份现行入口和技术文档均审核；历史能力页标明原实验边界，过时的XNU远程artifact指令与AIR旧进度已整合到现行入口。原文先按SHA保存，原失败与历史内容没有重写为通过。Git已对所有originals禁用行尾转换；Windows两份.bat检出转换已从与Mac留存原件SHA一致的原Git blob恢复，转换副本进入原生回收站。Apple输入／shader／原帧、signed二进制与救砖资料保持本地；正式Git保留免费开源源码、修补、锁、构建与验证方法。
 
 ## 原生回收历史索引
 
-| 阶段 | Mac项／文件／逻辑字节 | 原路径、Trash路径及SHA |
+| 阶段 | Mac项／文件／逻辑字节 | 原记录 |
 | --- | --- | --- |
 | 本周主体 | 1713／34883／11852238934 | [记录](../reproducibility/weekly-macos-native-trash-20261121-final-host.json) |
 | depth-tiled r2 | 15／33／134708787 | [记录](../reproducibility/depth-tiled-r2-macos-native-trash-20261121.json) |
@@ -46,19 +71,6 @@ R21自身CPU／original／fitted三靴完整返回后，追加Mac10项／14文�
 | native-model r18 | 101／103／75571221 | [记录](../reproducibility/native-layout-model-r18-macos-native-trash-20261122.json) |
 | full-model r19／r20 | 813／815／552748850 | [记录](../reproducibility/native-full-model-r19-r20-macos-native-trash-20261122.json) |
 | ancestry r21 | 10／14／75595606 | [记录](../reproducibility/native-label-ownership-r21-macos-native-trash-20261122.json) |
+| environment r22 | 178／4097／179699518 | 本页主记录与helper记录 |
 
-主体四项Finder元数据差异与partial journal按原记录保存；不算用户内容SHA一致或整批成功。其它Windows／WSL历史回收记录仍在各阶段reproducibility。每轮新回收的最终目标核验与旧历史记录分开保留。
-
-## 文档整合与正式源码
-
-现行状态只由[STATUS](STATUS.md)维护；[BUILD](BUILD.md)放现行复现，[OPERATIONS](OPERATIONS.md)放单发／回程／截图／相机，[LAYOUT](LAYOUT.md)放目录与恢复，[INDEX](INDEX.md)串联技术专题及历史。R19／R20完整应用身份的通过与标签归属REVISE分别保留，没有提升旧GPU失败。
-
-| 整合前原文 | 数量 | 原字节与SHA |
-| --- | ---: | --- |
-| 本周最初手册 | 47 | [manifest](archive/20261121/weekly-integration/original-document-manifest.json) |
-| r15入口整合前 | 50 | [manifest](archive/20261122/native-r15-close-out/original-document-manifest.json) |
-| 本轮整合前／6a9efe8 | 50 | [manifest](archive/20261122/native-full-model-r19-close-out/original-document-manifest.json) |
-
-本轮审核47个docs页面及README／AGENTS／Metal入口，过时的2026-11-12／13／15整理报告原文归档，旧链接保留历史指引。旧handover／handout、编号实验、in-flight与失败只作历史；技术证据保留，入口不再复制多轮工作日志。原文快照不改字节，恢复到原路径后使用其相对链接。
-
-所有新源修补、工具、许可来源与源码锁仅在正式ios-xperia-xz1c提交并同步Mac；Patch/Xperia只作参考和历史。Apple输入、signed二进制、原帧和救砖资料保持本地，Git保存免费开源方案、构建和独立验证方法。
+主体四项Finder元数据差异与partial journal仍按原记录保存，不提升为整批SHA通过。复原方法见LAYOUT；当前新回收目标的复核与历史累计保持各自范围。

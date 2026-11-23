@@ -1,5 +1,7 @@
 # 只读 LayerKit 背板
 
+> 历史技术记录：下文的版本、结果、“当前”和“下一步”对应原实验日期。现行产物及设备状态见[STATUS](STATUS.md)，构建与单发规则见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。原文与SHA见[本轮归档](archive/20261123/poster-state-r22-close-out/original-document-manifest.json)。
+
 此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。历史阶段结果保留其准确边界，完整原UI／光学需独立验收。
 
 v726/region-r1实机在原样转发initWithProperties之前读取VM元数据。12次400×400请求的IOSurfaceAddress指向LayerKit（tag51）映射，当前权限和最大权限均VM_PROT_READ=1，raw640000、地址偏移32B、16KiB页覆盖655360。原kIODirectionInOut的memoryReferenceCreate请求VM_PROT_READ|WRITE，全部拒绝KERN_PROTECTION_FAILURE=2。69×69也复现相同冲突；可写共享自检的源区域为prot3/max7。

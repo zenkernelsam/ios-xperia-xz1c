@@ -1,0 +1,80 @@
+{
+  "date": "2026-11-23",
+  "distributions": [
+    {
+      "distribution": "Ubuntu",
+      "readonly_user": "root",
+      "trash_roots": [
+        {
+          "path": "/root/.local/share/Trash",
+          "exists": false,
+          "files": 0,
+          "bytes": 0,
+          "links": 0
+        },
+        {
+          "path": "/root/.Trash",
+          "exists": false,
+          "files": 0,
+          "bytes": 0,
+          "links": 0
+        },
+        {
+          "path": "/home/cisco/.local/share/Trash",
+          "exists": false,
+          "files": 0,
+          "bytes": 0,
+          "links": 0
+        },
+        {
+          "path": "/home/cisco/.Trash",
+          "exists": false,
+          "files": 0,
+          "bytes": 0,
+          "links": 0
+        }
+      ],
+      "actual_files_bytes_links_all_zero": true
+    },
+    {
+      "distribution": "Ubuntu-22.04",
+      "readonly_user": "root",
+      "trash_roots": [
+        {
+          "path": "/root/.local/share/Trash",
+          "exists": false,
+          "files": 0,
+          "bytes": 0,
+          "links": 0
+        },
+        {
+          "path": "/root/.Trash",
+          "exists": false,
+          "files": 0,
+          "bytes": 0,
+          "links": 0
+        },
+        {
+          "path": "/home/cisco/.local/share/Trash",
+          "exists": false,
+          "files": 0,
+          "bytes": 0,
+          "links": 0
+        },
+        {
+          "path": "/home/cisco/.Trash",
+          "exists": false,
+          "files": 0,
+          "bytes": 0,
+          "links": 0
+        }
+      ],
+      "actual_files_bytes_links_all_zero": true
+    }
+  ],
+  "device_operations": 0,
+  "filesystem_mutations": 0,
+  "no_bin_emptied": true,
+  "WSL_discarded_files_policy": "Move to Windows TEMP and native Recycle Bin; no permanent removal",
+  "initial_default_Ubuntu_user_could_not_read_root_trash": "PermissionError; followed by an explicit read-only root inventory"
+}

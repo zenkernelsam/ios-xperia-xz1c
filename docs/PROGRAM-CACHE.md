@@ -1,5 +1,7 @@
 # FD540 程序二进制与后台预热
 
+> 历史技术记录：下文的版本、结果、“当前”和“下一步”对应原实验日期。现行产物及设备状态见[STATUS](STATUS.md)，构建与单发规则见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。原文与SHA见[本轮归档](archive/20261123/poster-state-r22-close-out/original-document-manifest.json)。
+
 此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。历史阶段结果保留其准确边界，完整原UI／光学需独立验收。
 
 本轮沿固定 Mesa 24.3.4 的 GLES 后端实现程序缓存，参考已固定的 UniXNU AdrenoMetal shader priming 思路。原 AIR→ESSL 翻译及真实GPU绘制仍执行；缓存仅保存标准 glGetProgramBinary 输出，并在相同构建/上下文/原始source/config下通过 glProgramBinary 导入。

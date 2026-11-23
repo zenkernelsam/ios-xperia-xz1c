@@ -40,7 +40,7 @@ UI／文字／图标／颜色优先串口720×1280／BGR888／stride2160原扫�
 
 --swipe-once仅本LIVE／F12实际就绪后120秒一次固定上滑，150秒frame；和sampling独立。核对本靴command／tx／一次注入，合成输入不替代真人触控。--idle-sample仅原Aegir library返回后180秒单sample，与--thread-sample原first-clear触发互斥。原90秒周期样本另列，不能从一次CPU栈推全部耗时或改冻结组件。
 
-扫描帧证明缓冲区内容，不能证明LCD发帧、光学色偏、物理错行、背光／睡眠或FPS；power_off是系统请求，也不是背光实测。原失败提前frame记录其真实时机，不冒充150秒UI图。
+扫描帧证明缓冲区内容，不能证明LCD发帧、光学色偏、物理错行、背光／睡眠或FPS；power_off是系统请求，也不是背光实测。原失败提前frame记录其真实时机，不冒充150秒UI图。screen.elapsed_seconds计量请求后单帧捕获、解码与保存耗时，观察时点须以本token的SCREEN_OBSERVATION_POINT核对。
 
 ## 附件失败页面和相机
 

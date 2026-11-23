@@ -1,0 +1,131 @@
+{
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-poster-state-r22-gpu-live-20261123",
+  "token": "68f6a0c0d6068c37",
+  "version": 730,
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "image_sha256": "c20d6e5db81e60367910b8fef76b19d67fdfe5c916e197ee8b87ce5d9f2f0d43",
+  "original_result": "REVISE",
+  "original_reason": "EXTENSION_CHECKIN_TIMEOUT",
+  "original_results_sha256": "83d28eab0ba946cf1fdda16f328cd79d7f4636472440b6df20f59530c925c2e1",
+  "raw_sha256": "7491cb2e6ad9292b562f4d9646ce3ca1627c3276a4da968107c025fa2ce45263",
+  "raw_bytes": 1905932,
+  "scheduled_capture_after_seconds": 150,
+  "captured_at_observation_point": false,
+  "actual_observation_elapsed_seconds": null,
+  "original_recorded_goal_patterns_not_observed": [
+    "SWEET GEOGRID MODE value=1",
+    "SWEET GEOGRID APPLY native=360x640 old=6 rows=5 cols=4",
+    "SWEET RMI4: swipe up injected",
+    "SWEET GLAYOUT END rev=4 visited=[0-9]+ recorded=[0-9]+ grids=[0-9]+ refused=0 truncated=0 write_failures=0 tree_nodes=[0-9]+ owners=[0-9]+"
+  ],
+  "stage_decision_not_promoted": true,
+  "single_frame_and_return_command_verified": true,
+  "synthetic_swipe_command_observed": false,
+  "screenshot_verified_independently_of_trial_result": true,
+  "screen": {
+    "protocol": 1,
+    "frames": [
+      {
+        "id": 1,
+        "token": "68f6a0c0d6068c37",
+        "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+        "image_sha256": "c20d6e5db81e60367910b8fef76b19d67fdfe5c916e197ee8b87ce5d9f2f0d43",
+        "binding": {
+          "protocol": 1,
+          "width": 720,
+          "height": 1280,
+          "stride": 2160,
+          "format": "BGR888",
+          "codec": "PRLE1",
+          "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+          "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+          "runtime_source_sha256": "a1f41eeb87b7cf70ea751884ee38d758191f3cc0a00d697acc363fbba3cd5f63"
+        },
+        "begin": {
+          "token": "68f6a0c0d6068c37",
+          "id": "1",
+          "width": "720",
+          "height": "1280",
+          "stride": "2160",
+          "format": "BGR888",
+          "bytes": "2764800",
+          "codec": "PRLE1",
+          "encoded": "439131",
+          "raw_fnv": "ad55a38a16df256d",
+          "enc_crc": "cac51694",
+          "vsync": "5436",
+          "timestamp": "246974227473",
+          "copy_ticks": "7874465",
+          "power_off": "0",
+          "source_checked": "1",
+          "source_match": "1"
+        },
+        "scan": {
+          "token": "68f6a0c0d6068c37",
+          "id": "1",
+          "pa": "0x9d400000",
+          "map_pa": "0x9d400000",
+          "map_bytes": "2764800",
+          "size": "0x50002d0",
+          "img": "0x50002d0",
+          "xy": "0",
+          "out": "0x50002d0",
+          "outxy": "0",
+          "fmt": "0x2243f",
+          "unpack": "0x20001",
+          "op": "0x80000000",
+          "qop": "0",
+          "ctl": "0x20020",
+          "start": "0",
+          "before_after": "1"
+        },
+        "blocks": 3431,
+        "raw_file": "scanout-00000001.bgr",
+        "png_file": "scanout-00000001.png",
+        "raw_sha256": "48c2b148ba9a1b954a39aef3e3bce17fa543c54a5b92641e3ef4730d578425a6",
+        "png_sha256": "9ad8891e733c6ac2d2f95a51e3b87a0df2cf43114cfbc3781450c6fc558208c2",
+        "pixel_values_preserved": true,
+        "verified": true,
+        "optical_panel_verified": false
+      }
+    ],
+    "verified": true,
+    "optical_panel_verified": false,
+    "current_boot_source_and_payload_checked": true,
+    "format": "BGR888",
+    "width": 720,
+    "height": 1280
+  },
+  "payload_audit": {
+    "image_sha256": "c20d6e5db81e60367910b8fef76b19d67fdfe5c916e197ee8b87ce5d9f2f0d43",
+    "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+    "blob_count": 8,
+    "complete_payload_reconstructed_from_compiled_kernel": true
+  },
+  "strict_return": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "68f6a0c0d6068c37",
+    "checkpoint_bytes": 1900176,
+    "log_bytes": 1905932,
+    "log_sha256": "7491cb2e6ad9292b562f4d9646ce3ca1627c3276a4da968107c025fa2ce45263",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      17,
+      97,
+      99
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 39.90599999995902,
+  "optical_panel_backlight_UI_FPS_not_inferred": true,
+  "evidence_tools": {
+    "tools/device/scanout_trial_evidence.py": "bec2ec52d0c29cff0fd1b2267bb547aa17260f851193436c10f7dd6d38357c8b",
+    "tools/device/scanout_snapshot.py": "0a30b84e983a33a880c726a6ff90cc3ca105250326e292345aa58dfd70e512d2",
+    "tools/device/controller.py": "b947afc42b30fb10321141badd78626cef7323abdd03a7fd36f0be866af987d5",
+    "tools/device/return_evidence.py": "5142d3a90e89f64f796f2ce70227b28703afbca5be582ef25b6d638b09ae7e8d",
+    "tools/device/package_trial.py": "03d28cf82e3ee0b05aefc493b73be74881551bcdd76cb52fbcceae431367abbb",
+    "tools/diagnostic_candidate.py": "b53e89fdc0bf66a0b38bb4a4c7499ac2222e2704af83cebbd2ae0472a83783b3"
+  }
+}

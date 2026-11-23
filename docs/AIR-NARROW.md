@@ -1,5 +1,7 @@
 # Dynamic packed integer AIR conversion — 2026-11-15
 
+> 历史技术记录：下文的版本、结果、“当前”和“下一步”对应原实验日期。现行产物及设备状态见[STATUS](STATUS.md)，构建与单发规则见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。原文与SHA见[本轮归档](archive/20261123/poster-state-r22-close-out/original-document-manifest.json)。
+
 此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。历史阶段结果保留其准确边界，完整原UI／光学需独立验收。
 
 原NanoUniverse/aegir_pass_vsh在动态short2顶点输入调用air.convert.f.f32.s.i16，开源前端仅允许常量8/16位conversion，因而实际返回nil pipeline。本机原库拆出的AIR 4928B SHA22b2b082c18cdf49a02bdbd4aa19702ae3e07b4cb4da5c7f8b9d795102ce796e，旧编译器和真实手机均复现同一错误。原库从使用者镜像只读挂载后提取，/dev/disk12正常detach，无镜像修改；不上传原系统库。

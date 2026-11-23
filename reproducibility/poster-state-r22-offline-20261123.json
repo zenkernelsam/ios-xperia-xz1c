@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-23",
+  "observer_build_source_head": "03c1c4d9170b0877e9e529521231177cf85e6457",
+  "package_source_head": "0f59e907d1ed7f673b5da63128aa95c88c9be6f1",
+  "CPU": {
+    "token": "61e1bcd69b12bd13",
+    "image_sha256": "881532d36b283bd6c54dd588d19c456f881261b3be4923aefcb06b40d980cf07",
+    "cmdline_bytes": 607
+  },
+  "GPU": {
+    "token": "68f6a0c0d6068c37",
+    "image_sha256": "c20d6e5db81e60367910b8fef76b19d67fdfe5c916e197ee8b87ce5d9f2f0d43",
+    "cmdline_bytes": 604,
+    "native_zero_binding": {
+      "revision": 1,
+      "values": {
+        "sf2x": 0
+      },
+      "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+      "consumer": "iokit/Kernel/arm/SweetFramebuffer.cpp",
+      "consumer_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+      "parser_sha256": "1431f1f8aacae240b87bd29cd91905784c968f8014784201b3ed862bdb1b4ed9"
+    }
+  },
+  "complete_payload_proofs": [
+    {
+      "image_sha256": "881532d36b283bd6c54dd588d19c456f881261b3be4923aefcb06b40d980cf07",
+      "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+      "blob_count": 8,
+      "complete_payload_reconstructed_from_compiled_kernel": true
+    },
+    {
+      "image_sha256": "c20d6e5db81e60367910b8fef76b19d67fdfe5c916e197ee8b87ce5d9f2f0d43",
+      "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+      "blob_count": 8,
+      "complete_payload_reconstructed_from_compiled_kernel": true
+    }
+  ],
+  "actual_payload_faults_refused": {
+    "missing_zero_binding": true,
+    "wrong_zero_consumer": true,
+    "wrong_zero_value": true,
+    "explicit_zero_alias": true,
+    "explicit_one_alias": true,
+    "unbound_native_grid": true
+  },
+  "GLES_Metal_signed_bytes_frozen": true,
+  "new_RAM_own_CPU_GPU_and_environment_NOT_admitted": true,
+  "original_host_607B_packaging_refusal_preserved": true,
+  "device_operations": 0
+}

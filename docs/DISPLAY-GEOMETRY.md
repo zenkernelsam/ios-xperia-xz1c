@@ -16,7 +16,7 @@ XZ1C已在同靴核对720×1280像素／360×640点／scale2：ADT、MobileGesta
 
 make_render_adt.py的xz1c-native-2x只转换chosen.display-scale、product.artwork-scale-factor、disp0.canvas-width／height四个CFData。接受1125×2436／scale3、750×1624／scale2或原生720×1280／scale2的一致输入；恢复四属性后与整份原ADT逐字节相同。缺失、重复、混合或未知尺寸拒绝。
 
-package_trial.py绑定完整输入／目标／converter／PE parser SHA，并独立重建整个payload，使用native1／sf2x0。原GPU／ADSP／RAM及其它ADT属性保持；shim参数不压缩。最新三个包命令区均607B，具体以各artifact为准。新RAM先自身CPU，内核保持v730。
+package_trial.py绑定完整输入／目标／converter／PE parser SHA，并独立重建整个payload，使用native1／sf2x0。原GPU／ADSP／RAM及其它ADT属性保持；shim参数不压缩。R21三个包命令区均607B，R22原GPU604B；限定同v730实际consumer／parser的默认0省略保持sf2x0语义，具体以各artifact为准。新RAM先自身CPU，内核保持v730。
 
 精确native屏幕的原provider为nil／Unsupported／Fallback时，geocompat返回准确20H392已有的_UIStatusBarVisualProvider_LegacyPhone，原info及其它有效返回保持。四参数ObjC转发、opaque返回、errno经host ASan／UBSan及ARM64核验。safeAreaInsets只读，未全局覆写；完整safe-area仍需验收。
 
@@ -38,6 +38,6 @@ R21自身CPU、original及fitted全部独立通过并完整返回。两靴各927
 
 [R19／R20原阶段](../reproducibility/native-full-model-r19-r20-stage-20261122.json)证实完整38应用身份；[R20原UI报告](../reproducibility/native-full-model-r20-original-profile-20261122.json)仍REVISE。两个widget按坐标各得到2／3个同名标签候选，部分来自其它view树；即时父节点未发出，旧raw不能严格还原祖先。
 
-下一capture须限界地发出每个label最近的真实SBIconView／root-list祖先及完整／未知状态，由独立decoder验证归属后测量间距。不能按局部frame／字号挑预期候选。原六行扫描图可见标题重叠，五行原图已明显分开；严格数值准入、真人触控、LCD光学／背光、FPS、壁纸和其它外设继续各自验收。
+R21已完成该归属capture，并由独立decoder复算最近真实SBIconView／root-list祖先和17.5点间距。后续新capture继续按原祖先与完整状态验收，不按局部frame／字号挑选标签。真人触控、完整safe-area、实际应用功能、LCD光学／背光、FPS、壁纸和其它外设继续各自验收。
 
 历史[R16布局](../reproducibility/native-layout-r16-stage-20261122.json)、[R17缺VIEW653](../reproducibility/native-grid-density-r17-stage-20261122.json)、[R18完整捕获与旧参考范围](../reproducibility/native-layout-model-r18-stage-20261122.json)保留原判定。整合前全文／SHA见[原文manifest](archive/20261122/native-full-model-r19-close-out/original-document-manifest.json)。旧失败包不重发，原750×1624基线及manifest保留。

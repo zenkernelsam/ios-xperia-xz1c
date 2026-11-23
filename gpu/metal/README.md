@@ -8,4 +8,4 @@
 
 GPU对象与呈现契约参考固定[ios_sagit](https://github.com/MC-XiaoXiao/ios_sagit/tree/898998cf1b74ea103e0c16d6dc0016822d8d644b)的BSD-2-Clause方案，Mesa／Freedreno为固定24.3.4；iOS16 ABI用用户提供的准确20H392输入只读核验。Vulkan尚未移植。新库须自身CPU／完整GLES／与能力相符的native／PNG准入，旧proof拒绝新功能。Apple二进制／shader／原帧保持本地，Git保存原创修补、工具和许可来源。
 
-r15整合前原README与50份文档的准确字节／SHA在[归档manifest](../../docs/archive/20261122/native-r15-close-out/original-document-manifest.json)。
+本轮原README与50份手册的准确字节／SHA在[主归档manifest](../../docs/archive/20261123/poster-state-r22-close-out/original-document-manifest.json)，另外三份入口见[补充manifest](../../docs/archive/20261123/project-entry-supplement/original-document-manifest.json)。本周回收路径与文档职责由[ORGANIZATION](../../docs/ORGANIZATION.md)维护。

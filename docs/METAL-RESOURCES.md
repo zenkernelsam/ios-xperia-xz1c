@@ -1,5 +1,7 @@
 # 原生 Metal 前端与资源 — 2026-11-13
 
+> 历史技术记录：下文的版本、结果、“当前”和“下一步”对应原实验日期。现行产物及设备状态见[STATUS](STATUS.md)，构建与单发规则见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。原文与SHA见[本轮归档](archive/20261123/poster-state-r22-close-out/original-document-manifest.json)。
+
 此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。历史阶段结果保留其准确边界，完整原UI／光学需独立验收。
 
 更新：v729/r7已完成原生Metal copy/fill command queue实机全链，20组FIFO/80次chunk提交等待/完整字节/回调与38.454秒回程通过，详见METAL-QUEUES.md。以下保留资源阶段结论；AIR、system Metal和texture/render尚未接入。

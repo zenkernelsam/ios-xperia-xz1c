@@ -1,5 +1,7 @@
 # XR Clear 旧颜色解码优化 — 2026-11-17
 
+> 历史技术记录：下文的版本、结果、“当前”和“下一步”对应原实验日期。现行产物及设备状态见[STATUS](STATUS.md)，构建与单发规则见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。原文与SHA见[本轮归档](archive/20261123/poster-state-r22-close-out/original-document-manifest.json)。
+
 此页保留该能力的原版本实现与实机证据；每个旧“当前”仅指当次日期。现行精确基线／候选／设备只见[STATUS](STATUS.md)，复现与单发分别见[BUILD](BUILD.md)／[OPERATIONS](OPERATIONS.md)。历史阶段结果保留其准确边界，完整原UI／光学需独立验收。
 
 原snapshot-r1实际快照约3.307秒，其中队列等待2.807秒，随后PNG/ICC约3.911秒。等待包含驱动准备、绘制及同步，不能全部当成GPU硬件时间。检查固定Mesa24.3.4/FD540与现行GLES源码时发现：XR附件在loadAction=Clear时仍先将旧XR颜色解码到FP32，再由原Clear整块覆盖。

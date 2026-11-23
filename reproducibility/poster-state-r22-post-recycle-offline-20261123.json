@@ -1,0 +1,57 @@
+{
+  "date": "2026-11-23",
+  "checks": [
+    {
+      "stage": "cpu",
+      "args": [
+        "--bundle",
+        "build/poster-state-r22-20261122/cpu",
+        "--directory",
+        "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-r22-post-recycle-cpu-offline-20261123",
+        "--private-evidence",
+        "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-screen-v730-private-r1-20261118"
+      ],
+      "returncode": 0,
+      "original_bundle_checked_without_device_dispatch": true,
+      "Mac_actual_sources": 83,
+      "log_path": "build/poster-state-r22-close-out-20261123/post-recycle-cpu-offline.log",
+      "log_sha256": "aaf3cd37562ca718dd8168af6b5875f8356c4db5483503e833f38af8cff7dcb1",
+      "device_operations": 0
+    },
+    {
+      "stage": "gpu",
+      "args": [
+        "--bundle",
+        "build/poster-state-r22-20261122/gpu-r2",
+        "--directory",
+        "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-r22-post-recycle-gpu-offline-20261123",
+        "--private-evidence",
+        "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-screen-v730-private-r1-20261118",
+        "--owner-evidence",
+        "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-screen-v730-owner-r1-20261118",
+        "--ready-evidence",
+        "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-screen-v730-ready-r1-20261119",
+        "--cpu-evidence",
+        "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-poster-state-r22-cpu-live-20261123",
+        "--rpm-evidence",
+        "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v676-clock-20261107-2354",
+        "--gles-evidence",
+        "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-native-label-ownership-r21-fitted-live-20261122",
+        "--native-evidence",
+        "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-presentation-r11-reference-gpu-live-20261121",
+        "--png-evidence",
+        "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-presentation-r11-reference-gpu-live-20261121"
+      ],
+      "returncode": 0,
+      "original_bundle_checked_without_device_dispatch": true,
+      "Mac_actual_sources": 83,
+      "log_path": "build/poster-state-r22-close-out-20261123/post-recycle-gpu-offline.log",
+      "log_sha256": "aaf3cd37562ca718dd8168af6b5875f8356c4db5483503e833f38af8cff7dcb1",
+      "device_operations": 0
+    }
+  ],
+  "original_CPU_GPU_results_not_modified": true,
+  "original_GPU_failed_package_not_replayed": true,
+  "complete_original_payload_and_signed_RAM_prerequisites_and_Mac_sources_verified_after_native_recycle": true,
+  "device_operations": 0
+}
