@@ -1,5 +1,7 @@
 # 当前状态 — 2026-11-23
 
+R23有界缓存清单／条件primer候选已完成真实C文件测试和12项独立解码故障拒绝，准备Mac完整native21／PNG6签名包及自身CPU。当前无in-flight；新的Sony只读健康观察连续30秒通过并退出，设备download／boot／reset均0。现有kernel／GLES／Metal保持准确字节，R22原失败保留。
+
 R22已结束：新RAM自身CPU通过，原GPU为REVISE／EXTENSION_CHECKIN_TIMEOUT；单download／boot、PON0x06、四回程marker、连续健康30秒及worker退出通过。手机最后实机状态为健康fastboot，无in-flight。失败包不重发。Mac本轮回收与文档整合已执行，CPU／GPU完整payload、signed先验及Mac实际83源的收尾离线复验已通过；完整GPU／UI／外设目标仍active。
 
 R22在四个原AegirPoster进程解出24条完整environment状态；两份check-in超时栈定位到Mesa的GLSL→NIR链接优化，第三份栈截断，未补造。原route有两条ID缺失，严格decoder拒绝保留。下一轮先核对本来源scope的实际请求／缺失bin，再准备有界背景primer的新RAM自身CPU；不复发本轮、不强制原mode或paused。见[本轮原阶段](../reproducibility/poster-state-r22-stage-20261123.json)、[壁纸专题](METAL-REQUEST-OBSERVATION.md)。

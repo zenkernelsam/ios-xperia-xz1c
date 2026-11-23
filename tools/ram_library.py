@@ -4,6 +4,7 @@ from pathlib import Path
 from native_proof import validate as validate_native,header as native_header
 from program_request import specification as request_specification,header as request_header
 from program_cache_scope import specification as cache_scope_specification,header as cache_scope_header
+from program_cache_inventory import specification as inventory_specification,header as inventory_header
 from png_encoder_proof import validate as validate_png,header as png_header
 ROOT=Path(__file__).resolve().parents[1]
 API='a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3'
@@ -193,6 +194,15 @@ def load(folder,expected=None):
                 assert observer.get('AIR_sampler_probe') and observer['metal_resources'].get('native_program_binary_cache')
             if observer.get('program_cache_prime'):
                 assert observer.get('program_cache_probe') and observer.get('target_process')=='backboardd'
+            if observer.get('program_cache_inventory'):
+                sources|={'gpu/diagnostics/ProgramCacheInventory.h','gpu/sweetgl/ProgramCacheCodec.h','gpu/sweetgl/MetalShaderAPI.h','tools/program_cache_inventory.py','tools/program_request.py',
+                    'tools/build/test_program_cache_inventory.c','tools/build/check_program_cache_inventory.py','tools/device/program_cache_inventory_evidence.py'}
+                assert observer.get('presentation_probe') and observer.get('cif10_PNG_reference') and observer['cif10_reference_cases']==6
+                assert observer.get('target_process')=='backboardd' and observer.get('cache_inventory_after_complete_native21_PNG6') and observer.get('empty_primer_not_dispatched')
+                assert observer.get('cache_inventory_host_asan_ubsan_and_actual_C_decoder_passed')
+                spec=inventory_specification(m,observer['metal_resources'],prime=bool(observer.get('program_cache_prime')))
+                spec['identity_header_sha256']=sha(inventory_header(spec))
+                assert observer['program_cache_inventory']==spec
             if observer.get('program_cache_scope'):
                 sources|={'gpu/diagnostics/ProgramCacheScope.h','tools/program_cache_scope.py'}
                 assert observer['metal_resources'].get('requires_source_scoped_cache') and observer['metal_resources'].get('native_program_binary_cache')

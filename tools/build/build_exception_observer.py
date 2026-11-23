@@ -6,7 +6,9 @@ sys.path.insert(0,str(root/'tools'));from native_proof import validate as valida
 from program_request import specification as request_specification,header as request_header
 from program_cache_scope import specification as cache_scope_specification,header as cache_scope_header
 from png_encoder_proof import validate as validate_png,header as png_header
+from program_cache_inventory import specification as inventory_specification,header as inventory_header
 p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--metal-resources');p.add_argument('--air-fixture');p.add_argument('--render-fixture');p.add_argument('--constants-fixture');p.add_argument('--register-device',action='store_true');p.add_argument('--xr-probe',action='store_true');p.add_argument('--surface-probe',action='store_true');p.add_argument('--mip-probe',action='store_true');p.add_argument('--target-process',choices=['AegirPoster','backboardd'],default='AegirPoster');p.add_argument('--gles-ram-package');p.add_argument('--registration-only',action='store_true');p.add_argument('--native-proof');p.add_argument('--pipeline-observe',action='store_true');p.add_argument('--narrow-fixture');p.add_argument('--half-fixture');p.add_argument('--mrt-fixture');p.add_argument('--sampler-fixture');p.add_argument('--program-cache-prime',action='store_true');p.add_argument('--static-half-fixture');p.add_argument('--program-cache-export',action='store_true')
+p.add_argument('--program-cache-inventory',action='store_true')
 p.add_argument('--postdraw-observe',action='store_true');p.add_argument('--snapshot-observe',action='store_true');p.add_argument('--cif10-png-reference',action='store_true');p.add_argument('--png-filter-encoder',action='store_true');p.add_argument('--png-proof');p.add_argument('--clear-cache-probe',action='store_true');p.add_argument('--ir3-cache-probe',action='store_true');p.add_argument('--request-observe',action='store_true');p.add_argument('--quad-route-observe',action='store_true');p.add_argument('--depth32-probe',action='store_true');p.add_argument('--stencil8-probe',action='store_true');p.add_argument('--memoryless-probe',action='store_true');p.add_argument('--multisample-fixture');p.add_argument('--presentation-probe',action='store_true');a=p.parse_args()
 if a.memoryless_probe:assert a.stencil8_probe and a.target_process=='backboardd' and not a.registration_only
 if a.presentation_probe:assert a.multisample_fixture and a.target_process=='backboardd' and not a.registration_only
@@ -19,10 +21,11 @@ if a.postdraw_observe:assert a.registration_only and a.pipeline_observe and a.ta
 if a.snapshot_observe:assert a.postdraw_observe
 if a.request_observe:assert a.registration_only and a.postdraw_observe and a.target_process=='AegirPoster'
 if a.quad_route_observe:assert a.request_observe and a.snapshot_observe
-if a.cif10_png_reference:assert a.target_process=='backboardd' and a.static_half_fixture and not a.registration_only and not a.program_cache_prime and not a.program_cache_export
+if a.cif10_png_reference:assert a.target_process=='backboardd' and a.static_half_fixture and not a.registration_only and not a.program_cache_export and (not a.program_cache_prime or a.program_cache_inventory)
 if a.png_filter_encoder:assert a.registration_only and a.postdraw_observe and a.png_proof and not a.cif10_png_reference
 else:assert not a.png_proof
-if a.program_cache_prime:assert a.target_process=='backboardd' and a.sampler_fixture and not a.registration_only
+if a.program_cache_prime:assert a.target_process=='backboardd' and a.sampler_fixture and not a.registration_only and a.program_cache_inventory,'New primers require actual before/after cache inventory'
+if a.program_cache_inventory:assert a.target_process=='backboardd' and a.presentation_probe and a.cif10_png_reference and not a.registration_only,'Inventory follows complete native21 and PNG6'
 if a.program_cache_export:assert a.target_process=='backboardd' and a.static_half_fixture and not a.registration_only and not a.program_cache_prime
 if a.registration_only:
     assert a.target_process=='AegirPoster' and a.metal_resources and a.register_device and a.native_proof
@@ -206,6 +209,9 @@ if resource_manifest and resource_manifest.get('native_static_half_bits') and no
     assert static_half_fixture_manifest,'New static-half library needs its own complete hardware probe'
 if a.clear_cache_probe:headers+=['gpu/diagnostics/MetalClearCacheProbe.h','gpu/diagnostics/ClearCacheProbeValues.h']
 if a.ir3_cache_probe:headers+=['gpu/diagnostics/MetalIR3CacheProbe.h']
+if a.program_cache_inventory:
+    headers+=['gpu/diagnostics/ProgramCacheInventory.h','gpu/sweetgl/ProgramCacheCodec.h','gpu/sweetgl/MetalShaderAPI.h','tools/program_cache_inventory.py','tools/program_request.py',
+        'tools/build/test_program_cache_inventory.c','tools/build/check_program_cache_inventory.py','tools/device/program_cache_inventory_evidence.py']
 headers=list(dict.fromkeys(headers))
 request_export=None
 if a.program_cache_export:
@@ -214,6 +220,13 @@ if a.program_cache_export:
     request_identity=request_header(request_export)
     (out/'ProgramRequestIdentity.h').write_bytes(request_identity)
     request_export['identity_header_sha256']=hashlib.sha256(request_identity).hexdigest()
+cache_inventory=None
+if a.program_cache_inventory:
+    inventory_ram=json.loads((Path(a.gles_ram_package)/'manifest.json').read_bytes())
+    cache_inventory=inventory_specification(inventory_ram,resource_manifest,prime=a.program_cache_prime)
+    identity=inventory_header(cache_inventory)
+    (out/'ProgramCacheInventoryIdentity.h').write_bytes(identity)
+    cache_inventory['identity_header_sha256']=hashlib.sha256(identity).hexdigest()
 source_files={str(source.relative_to(root)):hashlib.sha256(before).hexdigest()}
 for name in headers:
     data=(root/name).read_bytes();(out/Path(name).name).write_bytes(data)
@@ -251,6 +264,13 @@ if a.depth32_probe:
 if a.program_cache_export:
     run(['clang','-O1','-g','-fsanitize=address,undefined',root/'tools/build/test_program_request_export.c','-o',out/'test_request_export'],'request-export-host-compile')
     assert 'PASS' in run([out/'test_request_export'],'request-export-host-test')
+if a.program_cache_inventory:
+    run(['clang','-O1','-g','-fsanitize=address,undefined','-fno-sanitize-recover=all',root/'tools/build/test_program_cache_inventory.c',
+        '-o',out/'test_cache_inventory'],'cache-inventory-host-compile')
+    inventory_test=run([out/'test_cache_inventory',out/'cache-inventory-host-fixtures'],'cache-inventory-host-test')
+    assert 'Cache inventory host PASS:' in inventory_test
+    run([sys.executable,'-B',root/'tools/build/check_program_cache_inventory.py','--transcript',out/'cache-inventory-host-test.log',
+        '--output',out/'cache-inventory-host-evidence.json'],'cache-inventory-decoder-host-test')
 if a.pipeline_observe:
     run(['clang','-O1','-g','-fsanitize=address,undefined',root/'tools/build/test_metal_pipeline_observe.m','-framework','Foundation','-framework','Metal','-o',out/'test_pipeline_observer'],'pipeline-host-compile')
     assert 'PASS' in run([out/'test_pipeline_observer'],'pipeline-host-test')
@@ -328,6 +348,7 @@ if multisample_fixture_manifest:extra+=['-DSWEET_METAL_MULTISAMPLE_PROBE=1','-I'
 if a.presentation_probe:extra+=['-DSWEET_METAL_PRESENTATION_PROBE=1','-framework','QuartzCore']
 if a.program_cache_prime:extra+=['-DSWEET_PROGRAM_CACHE_PRIME=1']
 if a.program_cache_export:extra+=['-DSWEET_PROGRAM_CACHE_EXPORT=1','-I',out]
+if a.program_cache_inventory:extra+=['-DSWEET_PROGRAM_CACHE_INVENTORY=1','-I',out]
 if cache_scope:extra+=['-DSWEET_PROGRAM_CACHE_SCOPE=1','-I',out]
 if a.target_process=='backboardd':
     gles=Path(a.gles_ram_package).resolve();assert gles.is_relative_to(root/'build')
@@ -346,6 +367,11 @@ manifest=dict(source='gpu/diagnostics/exception_observe.m',source_sha256=hashlib
 if a.target_process=='AegirPoster':manifest.update(renderer_abi_and_device_observer_test_passed=True,renderer_observations_max=32,
     metadata_only_no_buffer_allocation=True,original_renderer_return_and_exception_preserved=True)
 manifest.update(source_files=source_files,runtime_Metal_ABI_methods=22,metadata_observer_no_device_calls_test_passed=True)
+if cache_inventory:manifest.update(program_cache_inventory=cache_inventory,
+    cache_inventory_host_asan_ubsan_and_actual_C_decoder_passed=True,
+    cache_inventory_host_test_source_sha256=hashlib.sha256((root/'tools/build/test_program_cache_inventory.c').read_bytes()).hexdigest(),
+    cache_inventory_decoder_source_sha256=hashlib.sha256((root/'tools/device/program_cache_inventory_evidence.py').read_bytes()).hexdigest(),
+    cache_inventory_after_complete_native21_PNG6=True,empty_primer_not_dispatched=True)
 if a.depth32_probe:manifest.update(attachment_failure_snapshot_revision=1,attachment_failure_snapshot_chunk_bytes=24,
     attachment_failure_snapshot_max_page_bytes=4096,attachment_failure_snapshot_author_pages_only=True,
     attachment_failure_snapshot_retired_pages_readonly=True,attachment_failure_snapshot_does_not_change_verdict=True)

@@ -248,7 +248,8 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
                     if m['exception_observer'].get('program_cache_probe'):
                         common+=['SWEET PROGRAM CACHE roundtrip phase=2 first_state=[12] restored_state=1 fresh_pipeline=1 valid=1']
                     if m['exception_observer'].get('program_cache_prime'):
-                        common+=['SWEET PROGRAM CACHE PRIME END result=0 compiled=[0-9]+ failed=0 max_entries=8 original_requests=1']
+                        if not m['exception_observer'].get('program_cache_inventory'):
+                            common+=['SWEET PROGRAM CACHE PRIME END result=0 compiled=[0-9]+ failed=0 max_entries=8 original_requests=1']
                 else:
                     common+=['SWEET EXCEPTION observer installed process=AegirPoster limit=16 original_chain=1']
                     if not m['exception_observer'].get('registration_only'):
@@ -326,6 +327,12 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
         common+=['SWEET PRESENT PROBE END result=0 phases=5 checked_pixels=765 final_allocated=0 original_drawables=1 display_completion_unverified=1']
     if mode=='gpu' and m.get('exception_observer',{}).get('program_request_export'):
         common+=['SWEET PROGRAM REQUEST EXPORT END result=0 records=2 bytes=[0-9]+ limit=262144 read_only=1 no_compile=1']
+    if mode=='gpu' and m.get('exception_observer',{}).get('program_cache_inventory'):
+        common+=['SWEET PCINV BEGIN pid=[0-9]+ phase=B revision=1 max_files=64 max_bytes=33554432 read_only=1 no_compile=1',
+                 'SWEET PCINV COMPLETE pid=[0-9]+ result=0 verified_before_after=1']
+        if m['exception_observer']['program_cache_inventory']['conditional_prime']:
+            common+=['SWEET PCINV ACTION pid=[0-9]+ action=(prime|skip) missing=[0-9]+ max_entries=8 actual_files_checked=1',
+                     'SWEET PCINV END pid=[0-9]+ phase=A result=0 files=[0-9]+ records=[0-9]+ requests=[0-9]+ bins=[0-9]+ present=[0-9]+ missing=0']
     if mode=='gpu' and m.get('exception_observer',{}).get('cif10_PNG_reference'):
         ref=m['exception_observer'];cases=ref['cif10_reference_cases']
         common+=['SWEET CIF10 REFERENCE END result=0 cases='+str(cases)+' original_API=1 author_generated=1 original_UI_pixels_read=0 converter_installed=0']

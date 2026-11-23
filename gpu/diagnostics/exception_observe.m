@@ -20,6 +20,10 @@
 #include "ProgramRequestExport.h"
 #include "ProgramRequestIdentity.h"
 #endif
+#if defined(SWEET_PROGRAM_CACHE_INVENTORY)
+#include "ProgramCacheInventory.h"
+#include "ProgramCacheInventoryIdentity.h"
+#endif
 #if defined(SWEET_METAL_BACKGROUND_PROBE)
 #include "../sweetgl/sweetgl.h"
 #endif
@@ -313,7 +317,7 @@ static bool run_native_probes(void)
 #if defined(SWEET_METAL_PRESENTATION_PROBE)
     if(native_probes_valid)native_probes_valid=metal_presentation_probe(diagnostic);
 #endif
-#if defined(SWEET_PROGRAM_CACHE_PRIME)
+#if defined(SWEET_PROGRAM_CACHE_PRIME) && !defined(SWEET_PROGRAM_CACHE_INVENTORY)
     if(native_probes_valid){uint32_t completed=0,failed=0;int result=sweetgl_metal_program_cache_prime(&completed,&failed);
         diagnostic("SWEET PROGRAM CACHE PRIME caller result=%d compiled=%u failed=%u full_native_preverified=1",result,completed,failed);
         native_probes_valid=(result==0) && native_probes_valid;}
@@ -324,6 +328,25 @@ static bool run_native_probes(void)
 #endif
 #if defined(SWEET_CIF10_PNG_REFERENCE)
     if(native_probes_valid)native_probes_valid=cif10_png_reference_probe(diagnostic);
+#endif
+#if defined(SWEET_PROGRAM_CACHE_INVENTORY)
+    if(native_probes_valid){
+        const char *root=getenv("SWEETGL_PROGRAM_CACHE_DIR");
+        if(!root || !*root)root="/private/var/tmp";
+        struct SweetCacheInventorySummary before={0},after={0};
+        int result=sweet_cache_inventory_at(root,sweet_inventory_identity,'B',diagnostic,&before);
+#if defined(SWEET_PROGRAM_CACHE_PRIME)
+        if(!result)result=sweet_cache_prime_if_missing(&before,sweetgl_metal_program_cache_prime,diagnostic);
+        if(!result && before.missing)
+            diagnostic("SWEET PROGRAM CACHE PRIME caller result=0 compiled=%u failed=0 full_native_preverified=1",before.missing);
+        if(!result)result=sweet_cache_inventory_at(root,sweet_inventory_identity,'A',diagnostic,&after);
+        if(!result && (!after.verified || after.missing || after.requests!=before.requests ||
+            after.binaries!=before.binaries+before.missing || after.pending!=before.pending ||
+            after.files!=before.files+before.missing))result=-EIO;
+#endif
+        diagnostic("SWEET PCINV COMPLETE pid=%d result=%d verified_before_after=%u",getpid(),result,result==0);
+        native_probes_valid=result==0;
+    }
 #endif
 #if defined(SWEET_METAL_DISCOVERY_PROBE)
     if(native_probes_valid)(void)metal_discovery_probe(diagnostic);

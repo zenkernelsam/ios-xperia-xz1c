@@ -157,6 +157,9 @@ def verify(directory,mode,kernel_sha=None,version=None):
                 if a['exception_observer'].get('program_request_export'):exceptions['Program_request_export']=verify_program_request(text,a['token'],a['exception_observer']['program_request_export'])
                 if a['exception_observer'].get('program_cache_scope'):exceptions['Program_cache_scope']=verify_cache_scope(text,a['token'],a['exception_observer']['program_cache_scope'])
                 if a['exception_observer'].get('cif10_PNG_reference'):exceptions['CIF10_PNG_reference']=inspect_cif10_reference(text,a['token'],a['exception_observer']['cif10_reference_revision'],a['exception_observer'].get('png_imageio_encoder_source_sha256'))
+                if a['exception_observer'].get('program_cache_inventory'):
+                    from program_cache_inventory_evidence import inspect as inspect_inventory
+                    exceptions['Program_cache_inventory']=inspect_inventory(text,a['token'],a['exception_observer']['program_cache_inventory'])
     boundary='serialized=1' if mode in ('ready','gpu') else 'serialized=0'
     assert re.search(r'SWEET LOOP MAP_BOUNDARY token='+a['token']+' '+boundary+r' claimed=1',scope)
     report={'version':a['version'],'mode':mode,'source':str(root.resolve()),'token':a['token'],'kernel_sha256':a['kernel_sha256'],

@@ -17,13 +17,13 @@
     "metal_resource_evidence.py": "e3737afff830f8d7466fddf67f4980d33dc9cf54fe89079828aa603fa9ddd35c",
     "observe_fastboot.py": "7c82964e346fa9166bdbaee1b8d74905f8cf1b53d151b42ba68909dc2e82100b",
     "owner_metadata.py": "e0f4e4fa2d54381d63128a39fbcabfe6c3ab9468a99f44cd44c37d86af84d564",
-    "package_trial.py": "03d28cf82e3ee0b05aefc493b73be74881551bcdd76cb52fbcceae431367abbb",
+    "package_trial.py": "9ae4737a0fe86eaa57de82f70735420a4f71385d81c47ba6081437cd7711231e",
     "policy.py": "788151bcae524eb1dbb58e21743e957cf4ff2e819247dcf74db05e173cf00365",
     "preflight_processes.ps1": "aef1704d2c8dc11091881258daef218e57cd08a1d69be637d404e6458a7c5d56",
     "procguard.py": "7cc150c13ca8d6fce28ec9784af8886eaaa4cdd8fad9cb3ff6befa9fd67d116d",
     "readonly_pixels.py": "bd1c86eddff0c7ca30d74b63cf2c5ac200a4691360f78f121e4cced5cd86fb5f",
     "return_evidence.py": "5142d3a90e89f64f796f2ce70227b28703afbca5be582ef25b6d638b09ae7e8d",
-    "run_trial.py": "34e3fe91dfa86fb7f9e309cbffe244158c3fa95869c704f749d25662822844d5",
+    "run_trial.py": "299accb2efd05500c1eff39d77b91c5cad6ef8230ac6a36e06a9d08f26a99ee1",
     "serial_worker.py": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
     "sony_usb_guard.py": "e1f636a6327530f28ef407732d58f0e7310494c4660010f793f4dcbe2ebdc4c6",
     "source_region_evidence.py": "748edd1bd5e5783e12a925524876a36e7d2538ad18700ba1af55b6b940ac5b2f",
@@ -35,9 +35,9 @@
     "test_metal_abi.py": "c9c3e37c494ee0940726f8357b4e3c8e5a823a367d9f900f5cabe252f51fae3f",
     "test_metal_queue.py": "256875e78c1275f04f2d24abbc1b9283782f11c0846fb421e8db77ca9db3ab5a",
     "test_metal_resources.py": "703326750212def783aa6aa95dc55f78028eb4f7149171aecb34797e15815f99",
-    "test_trial_gates.py": "9a28d0469ae541b21f45ccca64c6fef97c332c872c713d5b58d8df76865d5951",
+    "test_trial_gates.py": "6ebb5a7b0e5c964ae9b6de18e9e94d369029367d3e3eee29da59d2c3e9785cc0",
     "texture_offset_evidence.py": "73e50f64af52491a94464d13268c44a8d917175926bdd92caf260eced329f230",
-    "trial_evidence.py": "de177e26f3d92a6c036b28bffc286261efaea68e4310ea1b3a79468f282f7fee",
+    "trial_evidence.py": "c8013e3854d36b5c157beed09b247c159e30ba15e688c3b1c529d3cf253539e0",
     "air_render_evidence.py": "75f984119f1d9b1b76c52aec3729b9e2255748941d51d2e1c03cb994f1779e2c",
     "test_air_render.py": "ec4b80934ace27763ae2ee48cce8e7b7bbf8ff45f3928df745b3ebcd0d3e9913",
     "air_constants_evidence.py": "dccd155a957d1e8c8290c6e140ed42b33da21ba8f4017dbcf6bebbba5335e5e2",
@@ -120,7 +120,8 @@
     "native_grid_control.py": "783c8393c0eadb0a831471b8b17ebd46b49aee4c0e010054085d5269a01f29a3",
     "native_model_graph.py": "24a62da63a86b8c3ad747e950a9f69ede5aac8097ed49c304d2e346d3208e71b",
     "native_label_ownership.py": "9145cdaaaaeeb0c14e7b8653efbd779808388ad28c0c916eed9b17deb6121a82",
-    "poster_state_evidence.py": "eb66d448624630329bdcfb6f3c60c810d412d704093546e7a47c1cc30cfb015c"
+    "poster_state_evidence.py": "eb66d448624630329bdcfb6f3c60c810d412d704093546e7a47c1cc30cfb015c",
+    "program_cache_inventory_evidence.py": "d12a1f7a85c39dd825f3689fab6ebb4a6b55054e9ca7ed64bc82cff1c92bf9d2"
   },
   "supervisor_based_on_actual_tested_one_shot": true,
   "platform_tools_from_environment_or_PATH": true,
@@ -135,7 +136,7 @@
   "shared_sources": {
     "tools/diagnostic_candidate.py": "b53e89fdc0bf66a0b38bb4a4c7499ac2222e2704af83cebbd2ae0472a83783b3",
     "tools/mkpayload.py": "5c9a3dacbdf877ffded27971ad2e737e5ee4296fada247d14d5c6051ff1f47ff",
-    "tools/ram_library.py": "3ab2b8aed64715a2f4083fc861b9e26f60892b550a858f2f9ba1e2d18801eeaf",
+    "tools/ram_library.py": "bb8023556eb6b590f0add7665acd4a4ae23dbcae56407598f8254ce376699479",
     "tools/native_proof.py": "409e67ccd2d8ebca21a3d2668c295e6e9231396f43f6e1690f380fef06321615"
   },
   "formal_v726_five_stages_actual_return": true,
@@ -146,7 +147,7 @@
     "tools/build/build_air_frontend.py": "a21f6e3f977e13549eb3fe5371d3a9402e271d84c6df189c05bd5f569e30f00b",
     "tools/build/build_diagnostic_kernel.py": "d6f86fb55f36d1b0dd971973e7cc6d05c25f90004af712c90bb307e325ac09d7",
     "tools/build/build_diagnostics.sh": "ec361280b6f23ea3f114b762df5f22def9b94d7d1105d39bcd5684bd43214118",
-    "tools/build/build_exception_observer.py": "6f520946d5771665f2e6d2326730c4eeb685f15e2de3cbbdcd019900a46a5139",
+    "tools/build/build_exception_observer.py": "d7e94c4f869a0b8bca6371932df9f338b7aededf3c13403819fa0d656ae2d310",
     "tools/build/build_metal_library.py": "f493b2a4ad452cfcb92475eda40b8c6d3f46b4b04e90184f9a5fe66de05a8521",
     "tools/build/check_console_snapshot.py": "fa9bf2299cf0beec9894df9bc47ec2902262dfaab2396776f0bc422c7fe5f9b2",
     "tools/build/check_metal16_projection.py": "9ab528a51bd5bb6fc58ad243410c488304261622baccfa054d101935f8d27e82",
@@ -268,10 +269,12 @@
     "tools/build/check_native_model_graph.py": "fc4563903ee415c26b02e099053798afb4d7422e51f1a59576dd324e5a383bdc",
     "tools/build/check_native_label_ownership.py": "fae98549b07730a9827fb12af84c2a6ad87336e2984f43e7b8692187ff8a4928",
     "tools/build/check_poster_state_evidence.py": "de489ca78331a1b58a85a440d49e1aded8799e21f13c6faef6c80b717aa9d3bb",
-    "tools/build/test_poster_state_observe.m": "dc6c4da835ffe39008a664ae7daeba8bdebe991958106971a7b60244b6b7fc76"
+    "tools/build/test_poster_state_observe.m": "dc6c4da835ffe39008a664ae7daeba8bdebe991958106971a7b60244b6b7fc76",
+    "tools/build/check_program_cache_inventory.py": "4d2a4609790c6bac5484dd28c52ac89c15277a230bc52a0fb7511b28025ce4ed",
+    "tools/build/test_program_cache_inventory.c": "412786bd04c18cff676e3b3c00cdee81605101477561d5c61d14ffa666d6704d"
   },
   "gpu_sources": {
-    "gpu/diagnostics/exception_observe.m": "6238849a2a027d8edce5be0da3a0bc7d897b160ffb54e59e678dd2c3ad9e4580",
+    "gpu/diagnostics/exception_observe.m": "c1dfdcd95bd85fd5a5f3486ab34188f8b1324124f6d9ede0daba503e70f82862",
     "gpu/diagnostics/MetalComputeProbe.h": "836c4cdc513c5d2827f4b5cab3d10d944d3487d1d5245e45e964f70dee5299d7",
     "gpu/diagnostics/MetalQueueProbe.h": "1866ff8605bf68f40ae0b83e58c7b95e07fdda1f18c0efc0357d194ef0068d54",
     "gpu/diagnostics/MetalResourceProbe.h": "5f57f18df728f3027cc3c5ae3b316b1b5a23be8ac161d2c390597f735d8d7b17",
@@ -390,7 +393,8 @@
     "gpu/sweetgl/StencilSampleCopyGLES.h": "39d4619e6fb3500f37efa2df5338bdb71a0d57a6128fbc203ea4d4dbf1d07c3d",
     "gpu/sweetgl/LogWriteAll.h": "caa86a1e6763dfc8039466aa432176d2d90fc4a55db60efeb02eb33c92bc0f88",
     "gpu/geocompat/log_write.c": "e55ba6bfffde56fdc1a8fda20b0b88aa70a74b90af1bd5e6208c4cb8b270cbad",
-    "gpu/diagnostics/PosterStateObserve.h": "baa4692abee81a942960ac10ff0a780bd30d39009a030449e37dc4b666bec613"
+    "gpu/diagnostics/PosterStateObserve.h": "baa4692abee81a942960ac10ff0a780bd30d39009a030449e37dc4b666bec613",
+    "gpu/diagnostics/ProgramCacheInventory.h": "84235fe06405378dfeb61f8b38cd677072cfa8e4275fd097d379828a8a388217"
   },
   "tests_skipped_without_optional_old_evidence": 2,
   "sony_specific_multi_device_return_fault_replay_passed": true,
@@ -402,7 +406,8 @@
     "tools/baseline_source_inputs.py": "5816a8eb5da88cd569bd0261c82fbd52bb6a9f03b68b3565a603d373a202a2ac",
     "xnu/support/SweetFramebufferScreen.h": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
     "xnu/support/SweetFramebufferScreenRuntime.h": "a1f41eeb87b7cf70ea751884ee38d758191f3cc0a00d697acc363fbba3cd5f63",
-    "tools/maintenance/recycle_macos.swift": "912027443190d69d9f72ccd43388d5e571feb1571fd986b405859aeb07596915"
+    "tools/maintenance/recycle_macos.swift": "912027443190d69d9f72ccd43388d5e571feb1571fd986b405859aeb07596915",
+    "tools/program_cache_inventory.py": "aea5136cb9014ffd72788b365f04ebc8ff2b995a1b7c0b2ac6ca691268e983aa"
   },
   "v729_private_actual_return_passed": true,
   "v729_private_owner_ready_actual_return_passed": true,
@@ -464,5 +469,7 @@
   "serial_capture_device_accepted": true,
   "serial_capture_actual_cpu_evidence": "reproducibility/serial-capture-r1-reference-cpu-20261121.json",
   "depth_tiled_backend_evidence_revision": 10,
-  "depth_tiled_exact_copy_and_original_page_guard_checks_required": true
+  "depth_tiled_exact_copy_and_original_page_guard_checks_required": true,
+  "cache_inventory_revision": 1,
+  "current_primer_requires_complete_native21_PNG6_and_actual_missing_files": true
 }

@@ -93,6 +93,7 @@ class DiagnosticPolicy(LogPolicy):
             if re.search(r'SWEET QUAD ROUTE CONFIG pid=\d+ installed=(?:[0-9]|[12][0-9]|3[0-2]) expected=33',line):self.recoverable='QUAD_ROUTE_OBSERVER_INSTALL_INCOMPLETE'
             if re.search(r'SWEET CIF10 REFERENCE END result=[1-9]',line):self.recoverable='CIF10_PNG_REFERENCE_FAILED'
             if 'CRASH AegirPoster reason ns 7 code 0x3: extension check-in timeout' in line:self.recoverable='EXTENSION_CHECKIN_TIMEOUT'
+            if re.search(r'SWEET PCINV (?:END pid=\d+ phase=[BA]|COMPLETE pid=\d+) result=-?[1-9]\d*',line):self.recoverable='PROGRAM_CACHE_INVENTORY_FAILED'
     def decision(self,now):
         result=super().decision(now)
         if result.kind=='PASS' and getattr(self,'minimum',0)>now:return Decision('WAIT','DIAGNOSTIC_WINDOW')

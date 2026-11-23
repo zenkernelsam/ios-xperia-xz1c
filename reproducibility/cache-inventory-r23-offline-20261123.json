@@ -1,0 +1,31 @@
+{
+  "date": "2026-11-23",
+  "source_HEAD_before_candidate": "6f98ca5007178d8bd4eed991fbe70d700b03ad21",
+  "actual_C_filesystem_ASan_UBSan_and_two_independent_decodes_passed": true,
+  "decoder_fault_rejections": 12,
+  "initial_WSL_ASan_pre_main_signal11_preserved": true,
+  "later_ordinary_ASan_with_leak_detection_disabled_passed": true,
+  "Mac_signed_build_and_new_RAM_CPU_and_GPU_NOT_admitted": true,
+  "inventory_after_complete_native21_and_PNG6": true,
+  "actual_missing_bin_conditional_dispatch_not_empty_primer": true,
+  "kernel_GLES_Metal_frozen": true,
+  "checks": [
+    {
+      "path": "build/cache-inventory-r23-host-20261123/host-ubsan-test.log",
+      "sha256": "6115e42a184eb4362e7d914db02e010a65be19581876b99d83c718ec3e209318"
+    },
+    {
+      "path": "build/cache-inventory-r23-host-20261123/host-asan-r2.log",
+      "sha256": "a47af342ccd887e85eaf7cd13ceb7089ce27ca626b09af6e7cb19f86f4f68f6e"
+    },
+    {
+      "path": "build/cache-inventory-r23-host-20261123/host-ubsan-decoder-evidence.json",
+      "sha256": "fc8afd0d2719338615a3fba506648c75d970d90d7380f969cd8b29bd160bf5b0"
+    },
+    {
+      "path": "build/cache-inventory-r23-host-20261123/host-asan-r2-evidence.json",
+      "sha256": "b88dde9b2d172aea0cb8ea6ff1045bc0c2e4f840075f516007057cc8a7b6448f"
+    }
+  ],
+  "device_operations": 0
+}
