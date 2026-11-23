@@ -1,0 +1,69 @@
+{
+  "version": 730,
+  "mode": "ramcpu",
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-cache-inventory-r23-cpu-live-20261123",
+  "token": "84ca44b0591cffa8",
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "image_sha256": "34535a77ef9a7421e318fccc9d6b704edac306e574291f7faf331b184ebd87e2",
+  "log_sha256": "e3353545d00d09459ff9e24974de9f3c2b4be8b8101ad78f7ebad8f6c49c08f6",
+  "return_complete": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "84ca44b0591cffa8",
+    "checkpoint_bytes": 346953,
+    "log_bytes": 352404,
+    "log_sha256": "e3353545d00d09459ff9e24974de9f3c2b4be8b8101ad78f7ebad8f6c49c08f6",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      7,
+      95,
+      97
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 38.656999999890104,
+  "single_download_boot_verified": true,
+  "actual_stage_verified": true,
+  "complete_panel_and_peripheral_goal_not_achieved": true,
+  "payload_audit": {
+    "image_sha256": "34535a77ef9a7421e318fccc9d6b704edac306e574291f7faf331b184ebd87e2",
+    "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+    "blob_count": 8,
+    "complete_payload_reconstructed_from_compiled_kernel": true
+  },
+  "ram_library_binding": {
+    "library_sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+    "library_bytes": 14801120,
+    "library_fnv64": "9929cfe79edd5bce",
+    "blob_sha256": "8f04e7fd6a9858c3e6d3f07cd807e749f8403f39c3bb40916480a0cf4e26b78a",
+    "raw_sha256": "10ef3b3fe67e62474c00f5d641feb959cc6ff12cbbaebc35c8958088c6dfbc0f",
+    "manifest_sha256": "2675742a69be5e718181980514991907219f9ec4c4aee5f68b59b30dd18d349e"
+  },
+  "library_loaded_before_current_live": true,
+  "ram_library_prefix": {
+    "logical_library_reads": 1,
+    "raw_library_reads": 1,
+    "ready_positions": [
+      8849
+    ],
+    "read_positions": [
+      11719
+    ],
+    "startup_block_sha256": "d64fe152f921e8bfe8c86b46d51d92ea9e01b800b4047930a85b65783cb8e912",
+    "explicit_exact_prefix_replay": false,
+    "raw_log_unchanged": true
+  },
+  "serial_capture": {
+    "revision": 1,
+    "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+    "event_log_sha256": "a85a575f0133ebb874c349e38d53fc50ad53e4630117b2220ad77e241541fc65",
+    "raw_sha256": "e3353545d00d09459ff9e24974de9f3c2b4be8b8101ad78f7ebad8f6c49c08f6",
+    "serial_port": "COM17",
+    "dtr_low_through_open": true,
+    "raw_log_before_stream": true,
+    "one_continuous_current_boot_stream": true,
+    "replay_commands": 0,
+    "old_failure_not_reclassified": true
+  }
+}

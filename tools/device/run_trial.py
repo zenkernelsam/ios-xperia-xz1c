@@ -176,6 +176,8 @@ def main():
         from serial_worker import capture_binding
         assert record.get('serial_capture_binding')==capture_binding(record['token']), \
             'New live trial requires current serial capture binding before device operations'
+        if mode=='gpu' and record.get('exception_observer'):
+            assert record.get('process_log_binding',{}).get('revision')==1,'New GPU observer requires its source-bound process logging before device operations'
     config=verify_record(record)
     payload_proof=prove_payload(record)
     plan=json.loads((bundle/'plan.json').read_bytes())

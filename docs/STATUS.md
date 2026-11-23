@@ -1,6 +1,6 @@
 # 当前状态 — 2026-11-23
 
-R23有界缓存清单／条件primer候选已完成真实C文件测试和12项独立解码故障拒绝，准备Mac完整native21／PNG6签名包及自身CPU。当前无in-flight；新的Sony只读健康观察连续30秒通过并退出，设备download／boot／reset均0。现有kernel／GLES／Metal保持准确字节，R22原失败保留。
+R23 GPU82d0024f6b0f7345已结束，原STOP／OBSERVATION_INCOMPLETE及39.266秒完整0x06回程保留，worker退出已复核。21组原生测试、PNG6和实际缓存清单独立复算通过，3个原R22请求的wrapper长度／FNV匹配、标准0x875f bin已保存，B/A清单55→58文件、missing3→0，全部原29请求及26已有bin SHA保持。缺失目标仅SpringBoard GEO日志：原sweetnull漏SpringBoard，锁屏原帧不提升为UI／几何通过；修正日志通道需新包，不重发本轮。CPU84ca44b0591cffa8独立PASS／38.657秒、当前健康fastboot无in-flight，冻结kernel／GLES／Metal保持。
 
 R22已结束：新RAM自身CPU通过，原GPU为REVISE／EXTENSION_CHECKIN_TIMEOUT；单download／boot、PON0x06、四回程marker、连续健康30秒及worker退出通过。手机最后实机状态为健康fastboot，无in-flight。失败包不重发。Mac本轮回收与文档整合已执行，CPU／GPU完整payload、signed先验及Mac实际83源的收尾离线复验已通过；完整GPU／UI／外设目标仍active。
 

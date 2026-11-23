@@ -19,6 +19,15 @@ def observer_environment(word,target):
     original='backboardd:DYLD_INSERT_LIBRARIES=/dev/sglram/m'
     assert word.count(original)==1 and 'AegirPoster:' not in word
     return word.replace(original,original+':/dev/sglram/e')
+
+def observer_log_binding(package):
+    observer=package.get('exception_observer')
+    if not observer:return None
+    target=observer['target_process'];assert target in ('backboardd','AegirPoster')
+    processes=['backboardd']
+    if target=='AegirPoster':processes.append('AegirPoster')
+    if package.get('geocompat_build_binding'):processes.append('SpringBoard')
+    return {'revision':1,'observer_target':target,'processes':processes,'geometry_producer_required':bool(package.get('geocompat_build_binding'))}
 BASE_HASHES={'private':'b958bd29a457cae61be27a53e1237ccdc4c1247d4cbcff238afbe34d88615162',
              'ready':'2eb112563f920669e2e932799c56b6af03e79e09a1c8e73833855a4ac1f93af1',
              'gpu':'ee284994e2ac7e280f0a3b727ce1ebb4796e3813bbd98b524fa16e6c3d5f9082'}
@@ -43,6 +52,11 @@ def prove_payload(record):
         blob,_,ram_package=load_ram(record['ram_package'],record['ram_library_binding'])
         if record.get('exception_observer',{}).get('program_cache_inventory') or ram_package.get('exception_observer',{}).get('program_cache_inventory'):
             assert record.get('exception_observer')==ram_package.get('exception_observer'), 'Inventory observer metadata differs from the exact signed RAM manifest'
+        if 'process_log_binding' in record:
+            binding=observer_log_binding(ram_package)
+            assert record['trial_mode']=='gpu' and binding and record['process_log_binding']==binding,'Process log binding differs from actual RAM producers'
+            tee=[word.split('=',1)[1] for word in record['cmdline'].split() if word.startswith('sweetnull=')]
+            assert tee==[','.join(binding['processes'])],'Required process records are excluded from the console tee'
         validate_grid_control(record,ram_package)
         blobs=[(n,blob if n=='GL-RAM-Z' else data) for n,data in blobs]
     elif 'native_grid_control' in record:
@@ -134,7 +148,9 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
             # svmro7 owns/defer-starts GPU independently of sweetgpuasync.
             # Keep runtime/display/touch settings; make room for explicit tee.
             words=[w for w in words if w not in ('sweetgpuasync=1','-noprogress','keepsyms=1')]
-            words.append('sweetnull=backboardd,AegirPoster')
+            # Include the process that produces required geometry records.
+            # A background native probe does not observe original Aegir calls.
+            words.append('sweetnull='+','.join(observer_log_binding(package)['processes']))
     if screen_evidence:
         assert version>=730, 'Full screenshots require the separately audited v730 reader'
         # Replace periodic diagnostic dumps with an explicit full snapshot; keep
@@ -200,6 +216,7 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
         m.update(ram_package=str(Path(ram_package).resolve()),ram_library_binding=library_binding)
         if 'exception_observer' in package:m['exception_observer']=package['exception_observer']
         if 'metal_resources' in package:m['metal_resources']=package['metal_resources']
+        if mode=='gpu' and package.get('exception_observer'):m['process_log_binding']=observer_log_binding(package)
     if owner_interval is not None:
         m['owner_observation_interval_seconds']=owner_interval
     if compact_numeric_ones:m['numeric_one_argument_compaction']=compact_numeric_ones

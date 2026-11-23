@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-23",
+  "prior_failed_token": "82d0024f6b0f7345",
+  "new_token": "1b837e2f3d7f71cc",
+  "prior_failed_image_sha256": "1cc802c89428275a71b197ee05534987b92974d7a3668752055d21eef3413dc5",
+  "new_image_sha256": "fb6a20f52090dee1f5d1978536ecc09cf8389df76ab05cd08b63dfcb5cd685cd",
+  "only_semantic_cmdline_change": {
+    "removed": [
+      "sweetnull=backboardd,AegirPoster"
+    ],
+    "added": [
+      "sweetnull=backboardd,SpringBoard"
+    ]
+  },
+  "same_own_CPU_passed_RAM": true,
+  "whole_payload": {
+    "image_sha256": "fb6a20f52090dee1f5d1978536ecc09cf8389df76ab05cd08b63dfcb5cd685cd",
+    "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+    "blob_count": 8,
+    "complete_payload_reconstructed_from_compiled_kernel": true
+  },
+  "process_log_binding": {
+    "revision": 1,
+    "observer_target": "backboardd",
+    "processes": [
+      "backboardd",
+      "SpringBoard"
+    ],
+    "geometry_producer_required": true
+  },
+  "actual_tamper_refusals": [
+    {
+      "kind": "omit_geometry_producer",
+      "rejected": true,
+      "reason": "Process log binding differs from actual RAM producers"
+    },
+    {
+      "kind": "wrong_observer_target",
+      "rejected": true,
+      "reason": "Process log binding differs from actual RAM producers"
+    }
+  ],
+  "original_R23_STOP_not_changed_or_replayed": true,
+  "new_kernel_downloads_or_boots": 0
+}

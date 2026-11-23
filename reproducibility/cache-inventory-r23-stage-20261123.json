@@ -1,0 +1,86 @@
+{
+  "date": "2026-11-23",
+  "CPU_token": "84ca44b0591cffa8",
+  "GPU_token": "82d0024f6b0f7345",
+  "GPU_original_result": "STOP",
+  "GPU_original_reason": "OBSERVATION_INCOMPLETE",
+  "raw_sha256": "123d203e53f5b6d7c5889eefebd56e0e3f025e88ca03e84d302e2c2bd38aa062",
+  "raw_bytes": 2848721,
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "GLES_sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+  "Metal_sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27",
+  "inventory_before": {
+    "files": 55,
+    "records": 55,
+    "requests": 29,
+    "bins": 26,
+    "present": 26,
+    "missing": 3
+  },
+  "inventory_after": {
+    "files": 58,
+    "records": 58,
+    "requests": 29,
+    "bins": 29,
+    "present": 29,
+    "missing": 0
+  },
+  "action": {
+    "action": "prime",
+    "missing": 3
+  },
+  "all_existing_request_and_bin_SHAs_preserved": true,
+  "actual_R22_requests_primed": [
+    {
+      "request_vertex_bytes": 4840,
+      "request_fragment_bytes": 26549,
+      "actual_wrapper": [
+        4879,
+        "f2eef44db6a198a7",
+        29974,
+        "c468e323bae54fd4"
+      ],
+      "link_wall_us": 11500548,
+      "link_cpu_us": 8754968,
+      "binary_bytes": 227981,
+      "binary_format": "0x875f"
+    },
+    {
+      "request_vertex_bytes": 4840,
+      "request_fragment_bytes": 38924,
+      "actual_wrapper": [
+        4879,
+        "f2eef44db6a198a7",
+        42349,
+        "cc4b567fe88836ae"
+      ],
+      "link_wall_us": 15216089,
+      "link_cpu_us": 14869572,
+      "binary_bytes": 375861,
+      "binary_format": "0x875f"
+    },
+    {
+      "request_vertex_bytes": 4840,
+      "request_fragment_bytes": 73444,
+      "actual_wrapper": [
+        4879,
+        "f2eef44db6a198a7",
+        76869,
+        "27c2d57438bf46fe"
+      ],
+      "link_wall_us": 38673930,
+      "link_cpu_us": 35432854,
+      "binary_bytes": 747773,
+      "binary_format": "0x875f"
+    }
+  ],
+  "native21_PNG6_observed_and_independently_reverified": true,
+  "NOT_native_admission_proof": true,
+  "missing_goals_only_SpringBoard_GEO_records": true,
+  "cause_original_tee_excluded_SpringBoard": true,
+  "scanout_is_actual_lockscreen_black_wallpaper": true,
+  "return_seconds_with_health": 39.266,
+  "worker_exit_verified": true,
+  "original_result_not_promoted": true,
+  "full_GPU_UI_peripheral_goal_active": true
+}
