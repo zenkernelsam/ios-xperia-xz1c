@@ -1,0 +1,424 @@
+{
+  "date": "2026-11-23",
+  "history_files": 38,
+  "protected_input_files": 3,
+  "records": [
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/AGENTS.md",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/AGENTS.md",
+      "relative": "AGENTS.md",
+      "bytes": 311798,
+      "sha256": "f73a396b739c7ea52e3efa7ef76d6ef2ef64a2085e5d5f810071b110445871d5",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/AGENTS.md",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/DISK-CLEANUP.md",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/DISK-CLEANUP.md",
+      "relative": "DISK-CLEANUP.md",
+      "bytes": 2540,
+      "sha256": "39b7c1eea0bfbfe80ab5878f2e394c4cde87ac35dbfb10411246390079920f47",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/DISK-CLEANUP.md",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/HANDOVER-USB-CDC.md",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/HANDOVER-USB-CDC.md",
+      "relative": "HANDOVER-USB-CDC.md",
+      "bytes": 4518,
+      "sha256": "969982a0adacbd16076905baaa52e9a0304c3b3e9da021ae04b60f43f165e13b",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/HANDOVER-USB-CDC.md",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/METHOD-DEBUG-PORTABLE.md",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/METHOD-DEBUG-PORTABLE.md",
+      "relative": "METHOD-DEBUG-PORTABLE.md",
+      "bytes": 17824,
+      "sha256": "cf6b95d85f11a51c2f6e988964a7595203c4d34a3c0bde79a029cfbc1188df93",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/METHOD-DEBUG-PORTABLE.md",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/PORTING-BIBLE.md",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/PORTING-BIBLE.md",
+      "relative": "PORTING-BIBLE.md",
+      "bytes": 6202,
+      "sha256": "40b9d27f181fba9821daac92ea8865448e63cfa7022e0aee3b203bebdb2b0c78",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/PORTING-BIBLE.md",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/RESEARCH-FRONTIER.md",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/RESEARCH-FRONTIER.md",
+      "relative": "RESEARCH-FRONTIER.md",
+      "bytes": 51509,
+      "sha256": "15690d9f856b39618c3ce0e5705dbdc9f41bcfb54037bbd59e2ffecd7007810d",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/RESEARCH-FRONTIER.md",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/SUBAGENTS.md",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/SUBAGENTS.md",
+      "relative": "SUBAGENTS.md",
+      "bytes": 12138,
+      "sha256": "f7783acf44eab1e30de51eb0c086057116158a0ef20b6643ea8dd96abeba7097",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/SUBAGENTS.md",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/WORKFLOW-EXPLORATION.md",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/WORKFLOW-EXPLORATION.md",
+      "relative": "WORKFLOW-EXPLORATION.md",
+      "bytes": 11171,
+      "sha256": "6885fc63eb2f761452a4e591979589e57e294802f87e81c95980d4bd2631fef8",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/WORKFLOW-EXPLORATION.md",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/unattend/arm-pon-fastboot.sh",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/unattend",
+      "relative": "unattend/arm-pon-fastboot.sh",
+      "bytes": 849,
+      "sha256": "847ee9376e29fbcdcecd4a38931bb66b5b8fb14f19d60da2a11b814d3e87f60b",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/unattend/arm-pon-fastboot.sh",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/unattend/arm-xnu10.sh",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/unattend",
+      "relative": "unattend/arm-xnu10.sh",
+      "bytes": 6526,
+      "sha256": "fbd2d7db73cc8d502d164cb5ebb4b819de00e442b439102a3a92c207b84161fc",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/unattend/arm-xnu10.sh",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/unattend/arm-xnu9.sh",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/unattend",
+      "relative": "unattend/arm-xnu9.sh",
+      "bytes": 3405,
+      "sha256": "806174de92fa190094dbf951988c1ad461a189837fbbaced9e3590631def2278",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/unattend/arm-xnu9.sh",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/unattend/harvest-pon.sh",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/unattend",
+      "relative": "unattend/harvest-pon.sh",
+      "bytes": 2916,
+      "sha256": "7a1830cb7853267f91e3cc572f9d48548da36ddcaabbd60010ca7a9a1bd1f6b8",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/unattend/harvest-pon.sh",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/unattend/harvest.sh",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/unattend",
+      "relative": "unattend/harvest.sh",
+      "bytes": 2440,
+      "sha256": "0c3f9a3d1f919a741841087f15984a909b826184ae444ae0ee0b9e1149a2f17d",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/unattend/harvest.sh",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/unattend/install-usbctl-task.bat",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/unattend",
+      "relative": "unattend/install-usbctl-task.bat",
+      "bytes": 573,
+      "sha256": "fdea8a3001a3fef4e0a5d78fc5fb6452ef42fdbe6edbc9baf13c00a237be0b7b",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/unattend/install-usbctl-task.bat",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/unattend/morning-sequence.sh",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/unattend",
+      "relative": "unattend/morning-sequence.sh",
+      "bytes": 2760,
+      "sha256": "e376fad04616bbfbb024a9c9463cb3a1830d47688cbc2192e4f84089ddbd8cd3",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/unattend/morning-sequence.sh",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/unattend/start-usbctl.bat",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/unattend",
+      "relative": "unattend/start-usbctl.bat",
+      "bytes": 360,
+      "sha256": "28e56f3945838aa47178ce49e7a0bbfbd009a45b8c72f5ac171666293a926c64",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/unattend/start-usbctl.bat",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/unattend/unattended-loop.sh",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/unattend",
+      "relative": "unattend/unattended-loop.sh",
+      "bytes": 4073,
+      "sha256": "5f3126b80bb1316660d668f652586a83c06e7b3b67d81eece053a939c98e0a85",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/unattend/unattended-loop.sh",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/research/boot_v193.sh",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/research/boot_v193.sh",
+      "relative": "research/boot_v193.sh",
+      "bytes": 1200,
+      "sha256": "9c41c6f63d6c99a8a1a7d0585f9fb0caec1060cacdbbf70650eeb85a91be5146",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/research/boot_v193.sh",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/research/grab_stream.sh",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/research/grab_stream.sh",
+      "relative": "research/grab_stream.sh",
+      "bytes": 1402,
+      "sha256": "d52e315da9a5a86b3938b4ff87eb847295096d6bd63f79c623655a54aa4e1d0e",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/research/grab_stream.sh",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/research/patch_v191_a540_start.py",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/research/patch_v191_a540_start.py",
+      "relative": "research/patch_v191_a540_start.py",
+      "bytes": 8044,
+      "sha256": "00cacbf508c24068c8c7c48e51ed812ede1d053fcdbf1363d05ad20e362ebda8",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/research/patch_v191_a540_start.py",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/research/patch_v191c_contig_ring.py",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/research/patch_v191c_contig_ring.py",
+      "relative": "research/patch_v191c_contig_ring.py",
+      "bytes": 1691,
+      "sha256": "8a2b451577a3f1d796907ec1b4428c738781f1e9923b8a48db4c8be1ec94192c",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/research/patch_v191c_contig_ring.py",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/research/patch_v192_a540_aligned.py",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/research/patch_v192_a540_aligned.py",
+      "relative": "research/patch_v192_a540_aligned.py",
+      "bytes": 1820,
+      "sha256": "3b22e785af98c5b4b4a2ad01ee729b24110d44590244d575eba65baf0ba5d84b",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/research/patch_v192_a540_aligned.py",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/research/patch_v193_secure_cb.py",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/research/patch_v193_secure_cb.py",
+      "relative": "research/patch_v193_secure_cb.py",
+      "bytes": 1715,
+      "sha256": "853f556b5de32cd7f74717cb9a03a329eb58ce710bcfa1cf801be67a13dceb52",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/research/patch_v193_secure_cb.py",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/research/patch_v194_trust0.py",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/research/patch_v194_trust0.py",
+      "relative": "research/patch_v194_trust0.py",
+      "bytes": 661,
+      "sha256": "cae3ec2aad828e90dc8c4557461a9fa6e9230cd1bcc89f0974e54c5076f244ae",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/research/patch_v194_trust0.py",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/research/patch_v195_hwcg.py",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/research/patch_v195_hwcg.py",
+      "relative": "research/patch_v195_hwcg.py",
+      "bytes": 4347,
+      "sha256": "9feb438531a7adcc603d36e66c2251e8695822f712f9e64a5daeafe0a58c349d",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/research/patch_v195_hwcg.py",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/research/patch_v196_prezap.py",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/research/patch_v196_prezap.py",
+      "relative": "research/patch_v196_prezap.py",
+      "bytes": 1405,
+      "sha256": "2fc00bf019a01be324d2b16b12233f40f7e35550cb4b29379c5aa57eaea3afe8",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/research/patch_v196_prezap.py",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/research/patch_v197_gpmu.py",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/research/patch_v197_gpmu.py",
+      "relative": "research/patch_v197_gpmu.py",
+      "bytes": 5541,
+      "sha256": "1dcbe78852468030ccfd51bbc72df0e2f3b24f2bb39f3c230d55684f2caf1be6",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/research/patch_v197_gpmu.py",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/research/patch_v198_nosec.py",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/research/patch_v198_nosec.py",
+      "relative": "research/patch_v198_nosec.py",
+      "bytes": 1665,
+      "sha256": "5c2ab7f4d29a202ab6831a7f0ac751c3aa08a5abc39e8a6f85d882a306dd7865",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/research/patch_v198_nosec.py",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/research/read_com.ps1",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/research/read_com.ps1",
+      "relative": "research/read_com.ps1",
+      "bytes": 1017,
+      "sha256": "9241fa1f836faa7a381b8bb9c3f5db668a3a4856680f637c863ff6640db09a38",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/research/read_com.ps1",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/research/repack_boot.py",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/research/repack_boot.py",
+      "relative": "research/repack_boot.py",
+      "bytes": 1622,
+      "sha256": "d633fb479ad009b83e8f2b044efd19c84abbe2ed54fa831ed7e24235bfa3945d",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/research/repack_boot.py",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/research/run_gpu_test.sh",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/research/run_gpu_test.sh",
+      "relative": "research/run_gpu_test.sh",
+      "bytes": 1748,
+      "sha256": "d3c5661cd17c0b96652c47f9da6c2749a383ad5684efe441af0800e4730dd1e6",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/research/run_gpu_test.sh",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/research/usbdbg-msm8998/PORTING-NOTES-MSM8998.md",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/research/usbdbg-msm8998",
+      "relative": "research/usbdbg-msm8998/PORTING-NOTES-MSM8998.md",
+      "bytes": 4939,
+      "sha256": "57c20ce69e352ed7238bb827cd5417ec131dd0dc76cf9c26e83161d106c6b105",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/research/usbdbg-msm8998/PORTING-NOTES-MSM8998.md",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/research/usbdbg-msm8998/Sm8998.h",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/research/usbdbg-msm8998",
+      "relative": "research/usbdbg-msm8998/Sm8998.h",
+      "bytes": 2499,
+      "sha256": "00203aeb552112440e003270e72f7758ff76fd2a547ca446e788a3c279afc325",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/research/usbdbg-msm8998/Sm8998.h",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/research/wsl-tools/gensymvers_final.py",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/research/wsl-tools",
+      "relative": "research/wsl-tools/gensymvers_final.py",
+      "bytes": 1463,
+      "sha256": "2e5c28e4d221a1d1aa29f64da300e3aef4e76c2064f0284218879cbda5058510",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/research/wsl-tools/gensymvers_final.py",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/research/wsl-tools/harvest.py",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/research/wsl-tools",
+      "relative": "research/wsl-tools/harvest.py",
+      "bytes": 923,
+      "sha256": "dc3274ec0b721e1b6f2bfbd11864ebabd890ea08db879f194bd90c054d7c6ef8",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/research/wsl-tools/harvest.py",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/research/wsl-tools/harvest2.py",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/research/wsl-tools",
+      "relative": "research/wsl-tools/harvest2.py",
+      "bytes": 887,
+      "sha256": "22c601fd2fe62d93e9e666811818d5fffba8aacc0a5bd690f53e432f92ec356b",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/research/wsl-tools/harvest2.py",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/research/wsl-tools/mkiosroot.sh",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/research/wsl-tools",
+      "relative": "research/wsl-tools/mkiosroot.sh",
+      "bytes": 5594,
+      "sha256": "b1b28a8ca69e572452872e0622f441c0cee170ddf94e51f6a8709adcb53e8655",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/research/wsl-tools/mkiosroot.sh",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/research/wsl-tools/ramp_origin.py",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/research/wsl-tools",
+      "relative": "research/wsl-tools/ramp_origin.py",
+      "bytes": 579,
+      "sha256": "0a273745c1fe6cf3ffb2879e62199c4f11c81d7e9ad8192356ef33f5476af787",
+      "kind": "historical_document_or_script",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/docs/archive/20261123/macos-patch-entry/originals/Patch/Xperia/research/wsl-tools/ramp_origin.py",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/Magisk-v30.7.apk",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/Magisk-v30.7.apk",
+      "relative": "Magisk-v30.7.apk",
+      "bytes": 11613864,
+      "sha256": "e0d32d2123532860f97123d927b1bb86c4e08e6fd8a48bfc6b5bee0afae9ebd5",
+      "kind": "protected_input",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/assets/legacy-macos-patch-inputs-20261123/Magisk-v30.7.apk",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/research/hfsplus.ko",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/research/hfsplus.ko",
+      "relative": "research/hfsplus.ko",
+      "bytes": 7089672,
+      "sha256": "45d1135d2948aefa81ac1c506f5116ff17dd3c3f03b77a10e3eab019ad3472d5",
+      "kind": "protected_input",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/assets/legacy-macos-patch-inputs-20261123/hfsplus.ko",
+      "all_original_bytes_preserved": true
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/Patch/Xperia/research/magisk-patched-lilac.img",
+      "source_root": "/Users/ciscohe/Desktop/Patch/Xperia/research/magisk-patched-lilac.img",
+      "relative": "research/magisk-patched-lilac.img",
+      "bytes": 19746816,
+      "sha256": "6595be2221df77d49382201bab498437496cf90aedf71832ce081caa44e5d9e0",
+      "kind": "protected_input",
+      "destination": "/Users/ciscohe/Desktop/ios-xperia-xz1c/assets/legacy-macos-patch-inputs-20261123/magisk-patched-lilac.img",
+      "all_original_bytes_preserved": true
+    }
+  ],
+  "current_source_only_canonical": true,
+  "non_Git_reference_entries_moved": 18,
+  "old_research_remaining": 0,
+  "canonical_research_Git_repos": 3,
+  "permanent_deletions": 0,
+  "device_operations": 0,
+  "pause_preserved": true
+}

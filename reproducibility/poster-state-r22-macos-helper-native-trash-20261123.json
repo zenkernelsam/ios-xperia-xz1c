@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-23",
+  "items": 1,
+  "files": 1,
+  "logical_bytes": 75200,
+  "records": [
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/organization/poster-state-r22-weekly-20261123/recycle_macos",
+      "reason": "One-time native maintenance executable exited; canonical Swift source and verified journal retained",
+      "files": [
+        {
+          "relative": "recycle_macos",
+          "bytes": 75200,
+          "sha256": "6caf43edab71bc0989f727d8c9c51c9fb328879cba9a3f88700b750a7dc4bdce"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/recycle_macos",
+      "native_trash_verified": true,
+      "all_original_content_SHA_verified": true
+    }
+  ],
+  "original_maintenance_completed_before_recycle": true,
+  "canonical_Swift_source_and_primary_journal_retained": true,
+  "permanent_deletions": 0,
+  "device_operations": 0,
+  "trash_not_emptied": true
+}
