@@ -124,6 +124,8 @@ def load(folder,expected=None):
                 assert observer['cif10_reference_cases']==(6 if observer['cif10_reference_revision']==3 else 5)
                 assert observer['cif10_reference_author_pixels_only'] and observer['cif10_reference_original_UIImage_API']
                 assert observer['cif10_reference_converter_not_installed'] and observer['cif10_reference_host_fixture_bounds_nil_throw_input_passed']
+                if observer.get('cif10_export_pacing_revision'):
+                    assert observer['cif10_export_pacing_revision']==1 and observer['cif10_export_pacing_microseconds']==1000 and observer['cif10_export_ranges_emitted_once']
                 assert re.fullmatch('[0-9a-f]{64}',observer['cif10_reference_host_test_source_sha256'])
                 if observer['cif10_reference_revision']>=2:
                     sources.add('gpu/diagnostics/CIF10VImageCompare.h')

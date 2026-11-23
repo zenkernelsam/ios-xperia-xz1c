@@ -1,6 +1,6 @@
 # 当前状态 — 2026-11-23
 
-R23 GPU82d0024f6b0f7345已结束，原STOP／OBSERVATION_INCOMPLETE及39.266秒完整0x06回程保留，worker退出已复核。21组原生测试、PNG6和实际缓存清单独立复算通过，3个原R22请求的wrapper长度／FNV匹配、标准0x875f bin已保存，B/A清单55→58文件、missing3→0，全部原29请求及26已有bin SHA保持。缺失目标仅SpringBoard GEO日志：原sweetnull漏SpringBoard，锁屏原帧不提升为UI／几何通过；修正日志通道需新包，不重发本轮。CPU84ca44b0591cffa8独立PASS／38.657秒、当前健康fastboot无in-flight，冻结kernel／GLES／Metal保持。
+R24日志通道修正版1b837e2f3d7f71cc已结束：原控制器PASS，但独立PNG6解码发生原payload偏移拒绝，actual-evidence未生成，整轮不准入／不重发。原SpringBoard GEO_GRID1与936节点／14owner布局记录出现；跨靴缓存58文件／29请求／29bin保持，missing0，真实action=skip且无primer调用。手机完整0x06回程已结束，待独立回程／worker复核；当前无in-flight。R23原STOP、成功写入3个原R22缓存及CPU自身PASS保留，冻结kernel／GLES／Metal保持。
 
 R22已结束：新RAM自身CPU通过，原GPU为REVISE／EXTENSION_CHECKIN_TIMEOUT；单download／boot、PON0x06、四回程marker、连续健康30秒及worker退出通过。手机最后实机状态为健康fastboot，无in-flight。失败包不重发。Mac本轮回收与文档整合已执行，CPU／GPU完整payload、signed先验及Mac实际83源的收尾离线复验已通过；完整GPU／UI／外设目标仍active。
 

@@ -1,0 +1,20 @@
+{
+  "original_raw_source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v730-cache-inventory-tee-r24-gpu-live-20261123",
+  "original_result": "PASS",
+  "postprocessor_rejected": true,
+  "reason": "MISSING_ORIGINAL_CIF10_DATA",
+  "gaps": [
+    {
+      "line": 11158,
+      "case": "1",
+      "kind": "pixels",
+      "expected": 4272,
+      "actual": 4320,
+      "gap": 48,
+      "raw_line": "|backboardd| SWEET CIF10 DATA case=1 kind=pixels offset=4320 bytes=48 hex=5fa85fa85fa8dfa8dfa8dfa85fa95fa95fa9dfa9dfa9dfa95faa5faa5faadfaadfaadfaa5fab5fab5fabdfabdfabdfab"
+    }
+  ],
+  "missing_bytes_not_repaired": true,
+  "stage_not_admitted": true,
+  "device_operations": 0
+}

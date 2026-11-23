@@ -8,6 +8,8 @@
 #include <time.h>
 #include <stdint.h>
 #include <string.h>
+#include <unistd.h>
+#include <errno.h>
 
 #if TARGET_OS_IOS
 #import <UIKit/UIKit.h>
@@ -42,6 +44,9 @@ static void cif10_reference_export(CIF10ReferenceEmit emit,unsigned index,const 
         static const char digits[]="0123456789abcdef";
         for(size_t i=0;i<count;++i){hex[i*2]=digits[bytes[at+i]>>4];hex[i*2+1]=digits[bytes[at+i]&15];}hex[count*2]=0;
         emit("SWEET CIF10 DATA case=%u kind=%s offset=%zu bytes=%zu hex=%s",index,kind,at,count,hex);
+        /* Give other process logs a bounded slot instead of flooding the tee.
+         * Each authored byte range is still emitted exactly once. */
+        int saved=errno;(void)usleep(1000);errno=saved;
     }
 }
 #include "CIF10PNGFilterCompare.h"

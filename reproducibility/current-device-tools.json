@@ -136,7 +136,7 @@
   "shared_sources": {
     "tools/diagnostic_candidate.py": "b53e89fdc0bf66a0b38bb4a4c7499ac2222e2704af83cebbd2ae0472a83783b3",
     "tools/mkpayload.py": "5c9a3dacbdf877ffded27971ad2e737e5ee4296fada247d14d5c6051ff1f47ff",
-    "tools/ram_library.py": "bb8023556eb6b590f0add7665acd4a4ae23dbcae56407598f8254ce376699479",
+    "tools/ram_library.py": "5a08017790d067b7df2efca1019e84356a8725d10ca2cad58d3240acc4e0a345",
     "tools/native_proof.py": "409e67ccd2d8ebca21a3d2668c295e6e9231396f43f6e1690f380fef06321615"
   },
   "formal_v726_five_stages_actual_return": true,
@@ -147,7 +147,7 @@
     "tools/build/build_air_frontend.py": "a21f6e3f977e13549eb3fe5371d3a9402e271d84c6df189c05bd5f569e30f00b",
     "tools/build/build_diagnostic_kernel.py": "d6f86fb55f36d1b0dd971973e7cc6d05c25f90004af712c90bb307e325ac09d7",
     "tools/build/build_diagnostics.sh": "ec361280b6f23ea3f114b762df5f22def9b94d7d1105d39bcd5684bd43214118",
-    "tools/build/build_exception_observer.py": "d7e94c4f869a0b8bca6371932df9f338b7aededf3c13403819fa0d656ae2d310",
+    "tools/build/build_exception_observer.py": "ac241d2c325fd6aa8958bf0fc1b32ba9eb329d248099161fefe97b948a7f0bd7",
     "tools/build/build_metal_library.py": "f493b2a4ad452cfcb92475eda40b8c6d3f46b4b04e90184f9a5fe66de05a8521",
     "tools/build/check_console_snapshot.py": "fa9bf2299cf0beec9894df9bc47ec2902262dfaab2396776f0bc422c7fe5f9b2",
     "tools/build/check_metal16_projection.py": "9ab528a51bd5bb6fc58ad243410c488304261622baccfa054d101935f8d27e82",
@@ -342,7 +342,7 @@
     "gpu/diagnostics/ProgramCacheScope.h": "bb6546f8c148f71e54c058bcf2877e7de903942ae1934a9d933c76636513fc6a",
     "gpu/diagnostics/SnapshotMethodObserve.h": "10dded48c0cf90d28999f03624e9f1b9c84c46cc1ba4b69567867ee42e9d04a8",
     "gpu/sweetgl/metal_render.c": "0943246dcb95aacdbaf303afecc1a5a845422ee6576718c47294e348057c7e1a",
-    "gpu/diagnostics/CIF10PNGReferenceProbe.h": "0b3d2c6e8caacc4456c0d9e9fd797539d571eab4303fe9e30172787d2475e564",
+    "gpu/diagnostics/CIF10PNGReferenceProbe.h": "f4c1786d2985ca1ffeb083485ea2c8102ae128dd9f62de224bf7576680423ab4",
     "gpu/diagnostics/CIF10VImageCompare.h": "60387397043d88ab01dadadfbadd21054b1476182c19e412f3bd30e384840079",
     "gpu/diagnostics/CIF10PNGFilterCompare.h": "8728f1a2de6daf58b2de87408b6483ebbf9831ca5cfda5cea47ba9b5dacf8028",
     "gpu/compat/PNGImageIOEncoder.h": "61031999d4ff1d9a2c9c6a564cf229a82c3b9c49998d752ae0bd4d6fd18e1e92",

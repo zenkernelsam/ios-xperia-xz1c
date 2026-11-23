@@ -378,6 +378,7 @@ if a.depth32_probe:manifest.update(attachment_failure_snapshot_revision=1,attach
 manifest.update(probe_startup_revision=1,actual_startup_readiness_host_asan_ubsan_passed=True,startup_host_source_sha256=hashlib.sha256((root/'tools/build/test_metal_startup.c').read_bytes()).hexdigest())
 if a.target_process=='backboardd':manifest.update(background_full_suite=True,waits_for_same_process_GLES_suite=True,original_Aegir_not_modified_or_registered=True)
 if a.cif10_png_reference:manifest.update(cif10_PNG_reference=True,cif10_reference_revision=3,cif10_reference_cases=6,
+    cif10_export_pacing_revision=1,cif10_export_pacing_microseconds=1000,cif10_export_ranges_emitted_once=True,
     cif10_reference_author_pixels_only=True,cif10_reference_original_UIImage_API=True,cif10_reference_converter_not_installed=True,
     cif10_reference_host_fixture_bounds_nil_throw_input_passed=True,cif10_reference_PNG_exports=True,
     cif10_reference_vImage_modes=2,cif10_reference_vImage_guard_buffer_host_passed=True,
