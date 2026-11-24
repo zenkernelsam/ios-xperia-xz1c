@@ -2,6 +2,10 @@
 
 本轮在R22新RAM CPU与原GPU均完成0x06回程、连续健康30秒及worker退出后执行。Mac178项／4097文件／179699518B及Windows4项／16文件／29061727B实际进入各自原生回收站；全部原内容SHA和1282个Mac／447个Windows保护文件一致。没有永久删除或清空回收站，R22原REVISE与少量必要证据保持。
 
+2026-11-24，R26 回程后追加 [Mac 原生回收凭据](../reproducibility/poster-cache-r26-macos-native-trash-20261124.json)：28 项、52 文件、135635716 B。R25／R26 的四份重复 RAM 容器均从保留的 blob、manifest 和库范围逐字节复算；另移入已结束的 R26 主机测试可执行文件与 dSYM。候选内核、签名库、构建源、原结果及暂停标志保留。目标逐文件复核，未清空垃圾桶。
+
+2026-11-24 缓存库验收收尾追加 [54 项／238 文件／287602294 B 的 Mac 原生 Trash 记录](../reproducibility/cache-budget-macos-native-trash-20261124.json)。六份 HFS 重复容器、已结束的 frontend object 和 host fixture／dSYM 已回收；233 个保护文件复算一致。首次调用旧 helper 因计划 schema 不同在任何移动前拒绝，随后从正式 Swift 源码编译当前 helper 并逐项目标验证。签名库、原失败包、raw／proof、manifest、固定 Mesa 输入和 AIR 重建材料均保留；新 [9 份入口原文快照](archive/20261124/cache-budget-close-out/original-document-manifest.json) 保存整合前字节。两套 Ubuntu Trash 实查无内容，Windows 和 Mac Trash 未清空；回收的内容仍占磁盘。
+
 ## 本轮原生回收
 
 | 范围 | 项／文件／逻辑字节 | 原路径、原生目标及SHA |

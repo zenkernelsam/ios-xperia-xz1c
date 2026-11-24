@@ -33,21 +33,39 @@ static inline int sweet_cache_read_file(const char *path,unsigned char **bytes,s
     unsigned char extra;if(read(fd,&extra,1)!=0){free(data);close(fd);return -EINVAL;}
     close(fd);*bytes=data;*count=n;return 0;
 }
-static inline int sweet_cache_budget(const char *root,const unsigned char identity[32],size_t incoming)
+static inline int sweet_cache_budget(const char *root,const unsigned char identity[32],size_t incoming,unsigned slots)
 {
+    if(!slots || slots>SWEET_CACHE_MAX_FILES)return -EINVAL;
     DIR *dir=opendir(root);if(!dir)return -errno;char id[33],prefix[40];sweet_cache_hex(identity,16,id);snprintf(prefix,sizeof(prefix),"sgpc-%s-",id);
     unsigned files=0;uint64_t bytes=0;struct dirent *entry;
     while((entry=readdir(dir))){if(strncmp(entry->d_name,prefix,strlen(prefix)))continue;char path[1024];
         int n=snprintf(path,sizeof(path),"%s/%s",root,entry->d_name);struct stat st;
         if(n<=0 || n>=(int)sizeof(path) || lstat(path,&st) || !S_ISREG(st.st_mode) || st.st_size<0){closedir(dir);return -EINVAL;}
         ++files;bytes+=(uint64_t)st.st_size;if(files>=SWEET_CACHE_MAX_FILES || bytes>SWEET_CACHE_MAX_BYTES){closedir(dir);return -ENOSPC;}}
-    closedir(dir);return files+2<=SWEET_CACHE_MAX_FILES && incoming<=SWEET_CACHE_MAX_BYTES-bytes?0:-ENOSPC;
+    closedir(dir);return files<=SWEET_CACHE_MAX_FILES-slots && incoming<=SWEET_CACHE_MAX_BYTES-bytes?0:-ENOSPC;
 }
-static inline int sweet_cache_write_file(const char *root,const char *path,const unsigned char identity[32],const unsigned char *bytes,size_t count)
+static inline int sweet_cache_write_file(const char *root,const unsigned char identity[32],const unsigned char key[32],
+    unsigned kind,const unsigned char *bytes,size_t count)
 {
-    if(count>SWEET_PROGRAM_CACHE_HEADER+SWEET_PROGRAM_CACHE_MAX)return -EINVAL;
+    if(count>SWEET_PROGRAM_CACHE_HEADER+SWEET_PROGRAM_CACHE_MAX ||
+        (kind!=SWEET_PROGRAM_CACHE_REQUEST && kind!=SWEET_PROGRAM_CACHE_BINARY))return -EINVAL;
+    char path[1024];int result=sweet_cache_path(root,identity,key,kind,path);if(result)return result;
     struct stat old;if(!lstat(path,&old))return -EEXIST;
-    if(errno!=ENOENT)return -errno;int budget=sweet_cache_budget(root,identity,count);if(budget)return budget;
+    if(errno!=ENOENT)return -errno;
+#ifdef __APPLE__
+    const unsigned publication_slots=1; // Exclusive rename replaces the staging name.
+#else
+    const unsigned publication_slots=2; // The portable hardlink retains its staging name.
+#endif
+    unsigned slots=publication_slots;
+    if(kind==SWEET_PROGRAM_CACHE_REQUEST){
+        char binary[1024];result=sweet_cache_path(root,identity,key,SWEET_PROGRAM_CACHE_BINARY,binary);if(result)return result;
+        if(lstat(binary,&old)){
+            if(errno!=ENOENT)return -errno;
+            slots+=publication_slots;
+        }else if(!S_ISREG(old.st_mode))return -EINVAL;
+    }
+    int budget=sweet_cache_budget(root,identity,count,slots);if(budget)return budget;
     static _Atomic unsigned sequence;char pending[1100];int n=snprintf(pending,sizeof(pending),"%s.part-%ld-%u",path,(long)getpid(),atomic_fetch_add(&sequence,1));
     if(n<=0 || n>=(int)sizeof(pending))return -EINVAL;
     int fd=open(pending,O_CREAT|O_EXCL|O_WRONLY|O_NOFOLLOW,0644);if(fd<0)return -errno;

@@ -1,0 +1,23 @@
+{
+  "wire_reference": "reproducibility/lilac-asm-pcm-offline-20261124.json",
+  "sources": {
+    "xnu/support/LilacAsmPcmQueue.h": "3fb9ab59d7ccf0688ecf8974bb1423df4cebe8aa661aa8e56222d0fcb4ac094d",
+    "tools/build/test_lilac_asm_pcm_queue.c": "f218ca5743436210735e3527fb118c40e898ec4df16f7882d61c17e36519a203"
+  },
+  "host_asan_ubsan_passed": true,
+  "arm64_macho_object_sha256": "0e2a87b49d0647bb513938a475dacdece6add387d806ef92d8ae05283f619af9",
+  "arm64_undefined_symbols": [],
+  "max_pending": 4,
+  "checked_cases": [
+    "full queue and overlapping DSP address range",
+    "out of order completion and duplicate completion after range reuse",
+    "foreign connection epoch and wrong map handle",
+    "DSP error or timeout retains pending buffer ownership",
+    "token exhaustion refuses new reservations without invalidating existing completions"
+  ],
+  "requires_serialized_caller_and_verified_apr_route": true,
+  "opaque_token_echo_behavior_verified_on_device": false,
+  "transport_connected": false,
+  "physical_playback_verified": false,
+  "device_operations": 0
+}

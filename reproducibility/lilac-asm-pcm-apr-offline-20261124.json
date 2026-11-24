@@ -1,0 +1,29 @@
+{
+  "queue_reference": "reproducibility/lilac-asm-pcm-queue-offline-20261124.json",
+  "audited_xnu_headers": {
+    "iokit/Kernel/arm/LilacAPRProtocol.h": "78e293cf87f0e636aea1f3ee6a0c5a9caf92cf710010b3b4149a42464f9a026e",
+    "iokit/Kernel/arm/LilacAPRBasebandProtocol.h": "3a23a81bcefe65f14c797e1bd4b51505aebf64eca44016a28abcae055cd77420"
+  },
+  "sources": {
+    "xnu/support/LilacAsmPcmApr.h": "a07282f0f0b323faaf26b4d9d0c79cb49939ccada5c7f1e9993b3e61ec5e4b3d",
+    "tools/build/test_lilac_asm_pcm_apr.cpp": "503ef370ed554b00b4b0cd7f9e47b720b33f1570e091fe4d034316cdd80e3332"
+  },
+  "write_packet_bytes": 52,
+  "completion_packet_bytes": 36,
+  "host_asan_ubsan_passed": true,
+  "truncated_packet_lengths_exercised": 36,
+  "host_cases": [
+    "failed output capacity does not reserve a token",
+    "exact outbound bytes with untouched guards",
+    "foreign domain, service, port, token, epoch and mapping do not release buffers",
+    "command acceptance is not completion",
+    "duplicate completion after reuse is stale",
+    "DSP error retains the pending buffer"
+  ],
+  "arm64_macho_object_sha256": "e747905722f48f72f4af027b67cdfaed26853429d0907296b7902913000f5014",
+  "arm64_undefined_symbols": [],
+  "requires_verified_transport_epoch_and_owned_dsp_mapping": true,
+  "transport_connected": false,
+  "dsp_playback_verified": false,
+  "device_operations": 0
+}

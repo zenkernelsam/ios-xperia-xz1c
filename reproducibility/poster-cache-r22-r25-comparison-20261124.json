@@ -1,0 +1,24 @@
+{
+  "inspector": "tools/device/poster_cache_comparison.py",
+  "inspector_sha256": "e43930c600cc300c1ddffe9c56332d4759ebbb8be7ee9d15edf435ae790783a0",
+  "full_report_sha256": "2f8fe7c490a378a51e11d1256545421391f05bf8cf3c54ce73269c98a9c0d5e4",
+  "observation_token": "68f6a0c0d6068c37",
+  "observation_raw_sha256": "7491cb2e6ad9292b562f4d9646ce3ca1627c3276a4da968107c025fa2ce45263",
+  "original_result": "REVISE",
+  "original_reason": "EXTENSION_CHECKIN_TIMEOUT",
+  "inventory_token": "63168a33181e8a4f",
+  "inventory_raw_sha256": "bcbf6bbad24acb5a18480180bbd78b66b961f9de2d2ae26a5ff6ac94ccf664d8",
+  "scope_identity": "0106a801a3d9b6c261554e1a00cbdfcd7ca1aaf064b025ed09db91ade061a58d",
+  "current_live_checked": {
+    "aegir_execs_with_cache_scope": 4,
+    "observed_request_records": 5,
+    "each_request_has_one_length_match_with_paired_bin_in_later_inventory": true,
+    "observed_import_hit_records": 5,
+    "each_hit_has_one_size_and_format_match_in_later_inventory": true,
+    "checkin_timeouts": 3
+  },
+  "post_ack_checkin_timeouts_excluded": 1,
+  "runtime_keys_not_observed": true,
+  "cross_boot_metadata_matches_are_not_import_or_wallpaper_proof": true,
+  "device_operations": 0
+}

@@ -1,0 +1,27 @@
+{
+  "prior_stream_record": "reproducibility/lilac-asm-pcm-stream-offline-20261124.json",
+  "reference_repository": "sony-msm8998/android_kernel_sony_msm8998",
+  "reference_commit": "33dc678e7692f04ecc1eeddeb1cca8a809bc1727",
+  "reference_blobs": {
+    "include/sound/apr_audio-v2.h": "89e05abfd74b5f3a5c68d0eed4d6edb685a17243",
+    "sound/soc/msm/qdsp6v2/q6adm.c": "dc7165263316cc6352dfc63105da9374f03a0e3c",
+    "sound/soc/msm/qdsp6v2/msm-pcm-routing-v2.c": "ed3ee03553b31ddaa5db08b39b20c35ea0e7d762",
+    "drivers/soc/qcom/qdsp6v2/apr.c": "8215674f111b573008bc3718d3df68922543084b"
+  },
+  "sources": {
+    "xnu/support/LilacAdmPlaybackRoute.h": "d83669f5b15daa9f827e4d89d013d64255b50a525dbdcb01aed582fa65add96c",
+    "xnu/support/LilacAsmPcmStream.h": "c922efd43e1d80edf657f60d9d0ca4d98b68eaafb9adcb77b3a74c618c1e4610",
+    "tools/build/test_lilac_asm_pcm_stream.cpp": "c5279d526799b647838f90b791aa5c5b606ec738594e430ae1dac2cbf9ebdcce"
+  },
+  "scope": "One Audio RX matrix route from an ASM session to an already-open COPP",
+  "packet_bytes": 36,
+  "host_asan_ubsan_passed": true,
+  "arm64_macho_object_sha256": "f881e1dc0f8daa765c34004e590f427d7bdcdbe0229a597cf36514f322fcc0a4",
+  "arm64_undefined_symbols": [],
+  "route_confirmation_bound_to_connection_epoch_session_and_request_token": true,
+  "requires_caller_owned_open_copp_unique_control_token_and_serialized_transport": true,
+  "adm_ack_verified_on_device": false,
+  "afe_codec_path_configured": false,
+  "physical_playback_verified": false,
+  "device_operations": 0
+}

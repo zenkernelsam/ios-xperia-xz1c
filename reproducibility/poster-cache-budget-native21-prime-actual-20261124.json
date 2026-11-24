@@ -1,0 +1,160 @@
+{
+  "version": 731,
+  "mode": "gpu",
+  "token": "2d1794b225c1a6c1",
+  "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+  "image_sha256": "814ff302bb11c49f0d8bacae472aafdf19d53fafa7c5fdaae3852c18814eb4e0",
+  "log_sha256": "abd6cd25ee3a5a7c7bc974150a32dbb78b2c7ed0c73cd58290a888f0c8e0229b",
+  "return_complete": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "2d1794b225c1a6c1",
+    "checkpoint_bytes": 2914696,
+    "log_bytes": 2917448,
+    "log_sha256": "abd6cd25ee3a5a7c7bc974150a32dbb78b2c7ed0c73cd58290a888f0c8e0229b",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      5,
+      51,
+      53
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 39.235000000102445,
+  "ram_library_binding": {
+    "library_sha256": "6efabfc0627a8818a8c4c45665459cd33d8ee814f2e50a3f3cdc4813bb254325",
+    "library_bytes": 14801120,
+    "library_fnv64": "2181c45c9f21ee6c",
+    "blob_sha256": "be99855aa1663151815501cb9e5dfac5c960f3457a4611d9d055c4dbb80ae010",
+    "raw_sha256": "4bea0fc5b132802791bf1bd1c32cb26605728432fef58d2c36ddbbd59ee8e6ab",
+    "manifest_sha256": "b0c57520ca89071822ac73be41008bc8b78023c898abf0cce882e61e8d486245"
+  },
+  "serial_capture": {
+    "revision": 1,
+    "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+    "event_log_sha256": "92383e370222d9f8ee0358b47ced0db0514b7b8737acda65a97d32f966a62f1e",
+    "raw_sha256": "abd6cd25ee3a5a7c7bc974150a32dbb78b2c7ed0c73cd58290a888f0c8e0229b",
+    "serial_port": "COM17",
+    "dtr_low_through_open": true,
+    "raw_log_before_stream": true,
+    "one_continuous_current_boot_stream": true,
+    "replay_commands": 0,
+    "old_failure_not_reclassified": true
+  },
+  "source": "Windows TEMP/lilac-v731-cache-budget-native21-prime-gpu-live-20261124",
+  "original_result": "PASS",
+  "actual_evidence_sha256": "4cf99076d3f8038e17b56ae0e6b7c439c09115eadb316a970bdd7907a275fde8",
+  "native_groups": 21,
+  "png_cases": 6,
+  "scanout": {
+    "id": 1,
+    "token": "2d1794b225c1a6c1",
+    "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+    "image_sha256": "814ff302bb11c49f0d8bacae472aafdf19d53fafa7c5fdaae3852c18814eb4e0",
+    "binding": {
+      "protocol": 1,
+      "width": 720,
+      "height": 1280,
+      "stride": 2160,
+      "format": "BGR888",
+      "codec": "PRLE1",
+      "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+      "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+      "runtime_source_sha256": "2c566a962d61e7b8aebfc88be54d496878821a4c0f5bb439f505198b16adfba2"
+    },
+    "begin": {
+      "token": "2d1794b225c1a6c1",
+      "id": "1",
+      "width": "720",
+      "height": "1280",
+      "stride": "2160",
+      "format": "BGR888",
+      "bytes": "2764800",
+      "codec": "PRLE1",
+      "encoded": "438015",
+      "raw_fnv": "c2ae70549c20f9d8",
+      "enc_crc": "11c978a2",
+      "vsync": "7901",
+      "timestamp": "5665364521",
+      "copy_ticks": "7585865",
+      "power_off": "0",
+      "source_checked": "1",
+      "source_match": "1"
+    },
+    "scan": {
+      "token": "2d1794b225c1a6c1",
+      "id": "1",
+      "pa": "0x9d400000",
+      "map_pa": "0x9d400000",
+      "map_bytes": "2764800",
+      "size": "0x50002d0",
+      "img": "0x50002d0",
+      "xy": "0",
+      "out": "0x50002d0",
+      "outxy": "0",
+      "fmt": "0x2243f",
+      "unpack": "0x20001",
+      "op": "0x80000000",
+      "qop": "0",
+      "ctl": "0x20020",
+      "start": "0",
+      "before_after": "1"
+    },
+    "blocks": 3422,
+    "raw_file": "scanout-00000001.bgr",
+    "png_file": "scanout-00000001.png",
+    "raw_sha256": "aabae11e93511e7aac4e1370e1bca6df1970a1deb3516ff6322e0fb0e2ed1974",
+    "png_sha256": "32ceea0ac03043e2dc095a1ab94cb999d014be76daad9ba5ac97c4ede38cb68a",
+    "pixel_values_preserved": true,
+    "verified": true,
+    "optical_panel_verified": false
+  },
+  "screen_observation_seconds": 150,
+  "cache_counts": {
+    "files": 48,
+    "records": 48,
+    "requests": 24,
+    "bins": 24,
+    "present": 24,
+    "missing": 0
+  },
+  "cache_totals": {
+    "bytes": 332666,
+    "pending": 0,
+    "orphans": 0
+  },
+  "cache_action": {
+    "action": "skip",
+    "missing": 0
+  },
+  "cache_records_before_after_preserved": true,
+  "wled": {
+    "token": "2d1794b225c1a6c1",
+    "image_sha256": "814ff302bb11c49f0d8bacae472aafdf19d53fafa7c5fdaae3852c18814eb4e0",
+    "scanout_raw_sha256": "abd6cd25ee3a5a7c7bc974150a32dbb78b2c7ed0c73cd58290a888f0c8e0229b",
+    "sample": {
+      "token": "2d1794b225c1a6c1",
+      "frame_id": 1,
+      "state": 6,
+      "state_name": "CONFIGURED",
+      "faults": 0,
+      "module_enabled": 1,
+      "sink_mask": 3,
+      "modulator_mask": 3,
+      "duty": [
+        1989,
+        1989
+      ]
+    },
+    "same_live_as_complete_scanout": true,
+    "original_trial_result": "PASS",
+    "pwm_current_luminosity_verified": false,
+    "optical_panel_verified": false,
+    "device_operations": 0
+  },
+  "worker_closed": true,
+  "prior_failed_package_not_replayed": true,
+  "original_wallpaper_verified": false,
+  "optical_panel_verified": false
+}

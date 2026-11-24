@@ -1,0 +1,28 @@
+{
+  "interface_reference": "reproducibility/backlight-brightness-20H392-offline-20261124.json",
+  "sources": {
+    "xnu/support/AppleARMBacklight.cpp": "ef29b0243207dee09180c0e5041513b7aecd63e8baebe8221242378c2de9cf32",
+    "xnu/support/LilacBacklightProperties.h": "40c94bae4d7ba5d7c1ce8f9652b793975d6d2315069639cc26888381f3dbc9d6",
+    "tools/build/test_lilac_backlight_properties.cpp": "e94b53fa97443fe9ae47dfb0884094552fc425244a70ae839054755e4dff9a53"
+  },
+  "mac_compile": {
+    "output": "build/lilac-backlight-service-host-r2-20261124",
+    "base_recipe": "build/lilac-wled-isolated-link-r3-20261124/wled-compile.argv.json",
+    "base_recipe_sha256": "588f3866e133bccfb849337f6e5676e965c5765316e5ae37b835f589cd80e60a",
+    "object_sha256": "5aa0681a85d249212c9673fde48366c1674fa43b780c4ede37a227dcf07ec513",
+    "object_format": "Mach-O ARM64 relocatable",
+    "no_spmi_wled_or_mmio_imports": true
+  },
+  "host_bounds_asan_ubsan_passed": true,
+  "properties": {
+    "match": "backlight-control",
+    "initial_brightness": "IODisplayParameters/brightness/{value,min,max}",
+    "request_allowlist": ["brightness", "FadePeriod", "backlight-level"],
+    "valid_request_without_hardware": "kIOReturnNotReady",
+    "invalid_request": "kIOReturnBadArgument"
+  },
+  "linked_into_kernel": false,
+  "registered_on_device": false,
+  "hardware_brightness_verified": false,
+  "device_operations": 0
+}

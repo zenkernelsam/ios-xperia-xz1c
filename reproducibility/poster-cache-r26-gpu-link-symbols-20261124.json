@@ -1,0 +1,77 @@
+{
+  "token": "bba76b81fd62df75",
+  "raw_sha256": "f2609cd517bc6d0c39ac0c65ef91fd16476ac7c8243f234792aad59ce80c9bc1",
+  "library_sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+  "link_callsite_disassembly_sha256": "d4eeb2f51f3aa357b3ed084ddf9594736dfe59b3427552ee0be4f6089f85c9fa",
+  "glLinkProgram_return_offset": "0xa8a8",
+  "crashes": [
+    {
+      "pid": 299,
+      "anchored": true,
+      "frames": [
+        {
+          "kind": "pc",
+          "offset": "0x58ab38",
+          "symbol": "_nir_def_components_read",
+          "symbol_offset": "0x60"
+        },
+        {
+          "kind": "lr",
+          "offset": "0x5955d4",
+          "symbol": "_nir_opt_deref_impl",
+          "symbol_offset": "0x354"
+        },
+        {
+          "kind": "bt",
+          "offset": "0x5955d4",
+          "symbol": "_nir_opt_deref_impl",
+          "symbol_offset": "0x354"
+        },
+        {
+          "kind": "bt",
+          "offset": "0x5967f8",
+          "symbol": "_nir_opt_deref",
+          "symbol_offset": "0x8c"
+        },
+        {
+          "kind": "bt",
+          "offset": "0x5184a4",
+          "symbol": "_gl_nir_inline_functions",
+          "symbol_offset": "0x44"
+        },
+        {
+          "kind": "bt",
+          "offset": "0x51c584",
+          "symbol": "_gl_nir_link_glsl",
+          "symbol_offset": "0x1934"
+        },
+        {
+          "kind": "bt",
+          "offset": "0x245914",
+          "symbol": "_st_link_shader",
+          "symbol_offset": "0x1b0"
+        },
+        {
+          "kind": "bt",
+          "offset": "0x195608",
+          "symbol": "_link_program_error",
+          "symbol_offset": "0x144"
+        },
+        {
+          "kind": "bt",
+          "offset": "0xa8a8",
+          "symbol": "_render_create_samples",
+          "symbol_offset": "0xb4c"
+        }
+      ]
+    },
+    {
+      "pid": 303,
+      "anchored": false,
+      "reason": "no_unique_verified_glLinkProgram_return_anchor"
+    }
+  ],
+  "post_ACK_excluded": true,
+  "unanchored_stack_symbolization_not_inferred": true,
+  "wall_time_cause_not_inferred": true
+}

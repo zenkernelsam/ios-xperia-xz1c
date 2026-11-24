@@ -8,7 +8,7 @@ from procguard import LiveLock
 from startup_watch import StartupObservation
 from trial_evidence import verify
 from clock_evidence import verify as verify_clock
-from diagnostic_candidate import verify_record
+from diagnostic_candidate import WLED_VERSION, verify_record
 from ram_library import load as load_ram,require_same_library
 from owner_metadata import verify as verify_owner_metadata
 from native_prerequisite import verify as verify_native_prerequisite
@@ -192,7 +192,11 @@ def main():
         checked_screen_capture_after(record['screen_capture_after_seconds'])
     if 'screen_snapshot_binding' in record:
         assert plan.get('camera_required') is False and plan.get('screen_timeout_seconds')==100
+    if record.get('poster_startup_serial_only'):
+        assert record['version']==WLED_VERSION and mode=='gpu' and plan.get('camera_required') is False
     proof=prerequisites(record,a)
+    if record['version']==WLED_VERSION and mode=='private':
+        assert plan.get('screen_required') is True, 'v731 private requires the single scanout and WLED observation'
     # Audit actual Mac compile inputs before any phone/COM/camera command.
     assert re.fullmatch('[0-9a-f]{64}',kernel)
     remote="import sys,json;sys.path.insert(0,'Desktop/ios-xperia-xz1c/tools');from diagnostic_candidate import audit;print(json.dumps(audit("+str(record['version'])+",kernel_sha='"+kernel+"')))"
@@ -236,6 +240,11 @@ def main():
     if rows and rows[-1]['result']=='PASS':
         proof=verify(directory,mode,kernel,record['version'])
         write_json(directory/'actual-evidence.json',proof)
+        if record['version']==WLED_VERSION and mode=='private':
+            from lilac_wled_evidence import inspect as inspect_wled
+            wled=inspect_wled(directory,record['sha256'])
+            write_json(Path(directory)/'wled-evidence.json',wled)
+            print(json.dumps({'wled_sample':wled['sample'],'optical_panel_verified':False},indent=2),flush=True)
         print(json.dumps(proof,indent=2),flush=True);return 0
     print(json.dumps(rows,indent=2),flush=True);return 1
 if __name__=='__main__':raise SystemExit(main())

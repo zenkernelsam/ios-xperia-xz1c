@@ -53,8 +53,8 @@ static int save_record(SweetMetalProgram *program,unsigned kind,unsigned format,
     if(!count || count>SWEET_PROGRAM_CACHE_MAX)return -EINVAL;
     unsigned char *record=malloc(SWEET_PROGRAM_CACHE_HEADER+count);if(!record)return -ENOMEM;
     if(!sweet_cache_header(record,kind,format,program->cache_identity,program->cache_key,payload,count,vs,fs)){free(record);return -EINVAL;}
-    memcpy(record+SWEET_PROGRAM_CACHE_HEADER,payload,count);char path[1024];int result=sweet_cache_path(cache_root(),program->cache_identity,program->cache_key,kind,path);
-    if(!result)result=sweet_cache_write_file(cache_root(),path,program->cache_identity,record,SWEET_PROGRAM_CACHE_HEADER+count);
+    memcpy(record+SWEET_PROGRAM_CACHE_HEADER,payload,count);
+    int result=sweet_cache_write_file(cache_root(),program->cache_identity,program->cache_key,kind,record,SWEET_PROGRAM_CACHE_HEADER+count);
     free(record);return result;
 }
 void sweet_metal_program_request(SweetMetalProgram *program,const char *vertex,const char *fragment,const SweetRenderPipelineConfig *config)

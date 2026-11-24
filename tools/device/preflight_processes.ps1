@@ -5,7 +5,7 @@ $processNames = @('fastboot.exe','xperable.exe','bash.exe','python.exe','python3
 $processFilter = ($processNames | ForEach-Object { "Name='$_'" }) -join ' OR '
 # Query only the same relevant executable names and columns on the CIM server;
 # enumerating every desktop process can exceed the controller's bounded wait.
-$found = @(Get-CimInstance Win32_Process -Filter $processFilter -Property ProcessId,Name,CommandLine | Where-Object {
+$found = @(Get-CimInstance Win32_Process -Filter $processFilter -Property ProcessId,Name,CommandLine -OperationTimeoutSec 20 | Where-Object {
     $_.ProcessId -ne $PID -and (
         $_.Name -match '^(fastboot|xperable)\.exe$' -or
         ($_.Name -match '^(bash|python|python3|powershell|pwsh)\.exe$' -and $_.CommandLine -match $legacy)

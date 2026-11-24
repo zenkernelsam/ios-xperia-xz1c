@@ -1,0 +1,49 @@
+{
+  "version": 731,
+  "mode": "ramcpu",
+  "token": "1fdd166cf693cf15",
+  "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+  "image_sha256": "a28fc58c314521140554d05f15effdd7bc6a220e73367252670d4df116574f59",
+  "log_sha256": "44a3a232e96565e60272fc72b227ee58fa58c94c3760f1bee3f40bc5b8169e37",
+  "return_complete": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "1fdd166cf693cf15",
+    "checkpoint_bytes": 336894,
+    "log_bytes": 339874,
+    "log_sha256": "44a3a232e96565e60272fc72b227ee58fa58c94c3760f1bee3f40bc5b8169e37",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      5,
+      56,
+      58
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 39.375,
+  "ram_library_binding": {
+    "library_sha256": "6efabfc0627a8818a8c4c45665459cd33d8ee814f2e50a3f3cdc4813bb254325",
+    "library_bytes": 14801120,
+    "library_fnv64": "2181c45c9f21ee6c",
+    "blob_sha256": "be99855aa1663151815501cb9e5dfac5c960f3457a4611d9d055c4dbb80ae010",
+    "raw_sha256": "4bea0fc5b132802791bf1bd1c32cb26605728432fef58d2c36ddbbd59ee8e6ab",
+    "manifest_sha256": "b0c57520ca89071822ac73be41008bc8b78023c898abf0cce882e61e8d486245"
+  },
+  "serial_capture": {
+    "revision": 1,
+    "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+    "event_log_sha256": "6e366832a636013bcfae9772bf709232d2c76aa33aabe95f0cbd8543d4c53d1e",
+    "raw_sha256": "44a3a232e96565e60272fc72b227ee58fa58c94c3760f1bee3f40bc5b8169e37",
+    "serial_port": "COM17",
+    "dtr_low_through_open": true,
+    "raw_log_before_stream": true,
+    "one_continuous_current_boot_stream": true,
+    "replay_commands": 0,
+    "old_failure_not_reclassified": true
+  },
+  "source": "Windows TEMP/lilac-v731-cache-budget-native21-prime-cpu-live-20261124",
+  "actual_evidence_sha256": "c3fdef654c8ee086fabff0c3bd38a979ff0656310e54d278ff8e911e88121604",
+  "original_result": "PASS",
+  "worker_closed": true
+}

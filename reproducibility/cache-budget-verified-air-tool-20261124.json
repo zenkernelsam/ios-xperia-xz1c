@@ -1,0 +1,62 @@
+{
+  "reference_manifest": "reproducibility/air-static-half-object-reference-20261124.json",
+  "reference_manifest_sha256": "29e024138f44e84ef32e89b1d872521f88130e8cab413843975865f56b6790e0",
+  "builder_sha256": "b0eb88dce9d14bfacf531dce4573193cdd505207307e2e01daefd46999a371b8",
+  "canonical_source_files_verified": 22,
+  "materialized_source_binding": {
+    "reference_revision": "898998cf1b74ea103e0c16d6dc0016822d8d644b",
+    "sources": {
+      "FunctionConstants.h": "086220f53bfa1ca611182342964b2f1351a8c2dd64b38be19856fef99a216b97",
+      "GPUShaderProtocol.h": "7d7f2096a4adee19f02c561a988f7a1ad9bc3b077f6cadb40573a28464d5629e",
+      "Semantic.h": "08957b8cf9793c62453d3718003452258aa8662c03dda85a1ea76745e6b188aa",
+      "Frontend.cpp": "405fb05569929e4cf6e567f3d8b0bd2b66563f3ab0b7076bb6eb9953f07be95a",
+      "Compiler.h": "2064efcd7867bd45cccb0499bd40cc37fa378228de9a1fc4df2b631b5baee9f7",
+      "GPUUserProtocol.h": "9ea3cd722394a504fa3f5346f402c67bd593c304e58f13d4bd79b66584b4c510",
+      "StaticHalfBits.h": "f78d78cc0e41b67ffdd1ba32359dd2a45d9e0036b96d50fbdd27b50cc4121bf4",
+      "LLVM16Compat.h": "7827793f6653d2526206612308fbf2e38e3f6f00c42de271805317b2137a8966",
+      "NOTICE.txt": "b042d07d533ceaeafdee25b6c808dc69ae51fb8315a2e91ad45c757d955ae234",
+      "GPUJITProtocol.h": "2e56fcafb5c80375c915e3a8d8e582df32ce9857f94856f947db388e12202c1d",
+      "AIRRuntime.cpp": "ccebb2d8adfac12aef797d5153a6d1e2693151c10a77c6e0484e6ad9dff51426",
+      "AIRControlFlow.h": "f034bc1d2e0c6b1b6cfa9f5d1659dbe6af320aa92d58b6c97d2448f80c9f7ab8",
+      "LibraryArchive.h": "0958f5c5fb0fbc9aef17045d5e49aae405cb4db7daca144de0f97db45fb26b1c",
+      "Compiler.upstream.h": "a9a41964b192b18bb29ea4a46b351ca4f21c7991546dbfd513f0037c57516848",
+      "AIRSpecialization.h": "21b65b67d6e44a421db1cbb7671ea6091c6a64b15bc3ee9b9a96a4e00f3cedce",
+      "GPUShaderInterface.h": "3f542bcfffb27099c09c9cef28f311a48298ef79230339ba5701d250b19e4998"
+    },
+    "upstream_source_preserved": true,
+    "no_private_kernel_JIT_protocol_used": true,
+    "device_operations": 0,
+    "local_adaptation_patches": {
+      "lilac-air-conversion.patch": "e3981d4666f852530b7b933e677bcb74f6ae0e8f288d7e717609dbc8761ea796",
+      "lilac-air-half-storage.patch": "db01b10a413d085ac039d2bf5988029e65bd4731f6019fdf6cbf7a11b8c12ee8",
+      "lilac-air-static-half-bits.patch": "ede245d9c575e3789e10182de7ecf8454beb8aeaf983b9abcd282806831067bf"
+    }
+  },
+  "compile_command": [
+    "xcrun",
+    "--sdk",
+    "iphoneos",
+    "clang++",
+    "-arch",
+    "arm64",
+    "-miphoneos-version-min=16.0",
+    "-std=c++17",
+    "-DSWEET_LLVM_PRE23=1",
+    "-I",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cache-budget-verified-air-tool-20261124/sources",
+    "-I",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/deps/llvm-c-14",
+    "-O2",
+    "-c",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cache-budget-verified-air-tool-20261124/sources/Frontend.cpp",
+    "-o",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cache-budget-verified-air-tool-20261124/AIRFrontend.ios.o"
+  ],
+  "object_sha256": "10df4bf090e6b7fa76e56b98aea62e9e2f8d80f0fafe786f10a0297100b9231a",
+  "original_object_bytes_identical": true,
+  "original_audited_LLVM_imports": 168,
+  "original_target_exports_sha256": "496680745336d59e8428d0d9a431713e625e844e32705a9ca672208b9323ca0b",
+  "original_target_audit_preserved_without_rereading_exports": true,
+  "different_object_or_new_target_not_admitted": true,
+  "device_operations": 0
+}

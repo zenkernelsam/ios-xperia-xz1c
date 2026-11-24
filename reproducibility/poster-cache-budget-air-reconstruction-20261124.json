@@ -1,0 +1,16 @@
+{
+  "source": "Mac build/poster-cache-budget-metal-20261124/air-recovered",
+  "original_package": "build/static-initializer-r1/frontend",
+  "original_manifest_sha256": "29e024138f44e84ef32e89b1d872521f88130e8cab413843975865f56b6790e0",
+  "canonical_sources_verified": 22,
+  "materialized_sources_verified": 16,
+  "canonical_materialization_equal_to_original": true,
+  "canonical_compile_equal_to_original": true,
+  "object_sha256": "10df4bf090e6b7fa76e56b98aea62e9e2f8d80f0fafe786f10a0297100b9231a",
+  "exact_original_audited_LLVM_imports": 168,
+  "target_symbols_original_sha256": "496680745336d59e8428d0d9a431713e625e844e32705a9ca672208b9323ca0b",
+  "target_symbols_file_recovered": false,
+  "original_import_audit_preserved": true,
+  "new_target_or_new_imports_not_admitted": true,
+  "device_operations": 0
+}

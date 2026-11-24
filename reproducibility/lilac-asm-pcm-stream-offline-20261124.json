@@ -1,0 +1,25 @@
+{
+  "mapping_reference": "reproducibility/lilac-asm-pcm-map-offline-20261124.json",
+  "stock_wire_reference": "reproducibility/lilac-asm-pcm-offline-20261124.json",
+  "sources": {
+    "xnu/support/LilacAsmPcmStream.h": "01fceea7a45632e06905517b0a520aec5510066e616e062f2b588474d3dd1c7f",
+    "tools/build/test_lilac_asm_pcm_stream.cpp": "c44235eeec1770c5f4c92813f14ccd81d585663fbb4d05d167d5d2f5d5819c46"
+  },
+  "scope": "Legacy ASM stereo S16 PCM at 48 kHz, with caller-supplied topology and route confirmation",
+  "host_asan_ubsan_passed": true,
+  "arm64_macho_object_sha256": "363f1594c7c01fa8a6fa36fe2df5cb9ffc7ded3ee3adfb0d023ca73868ca38da",
+  "arm64_undefined_symbols": ["___stack_chk_fail", "___stack_chk_guard"],
+  "simulated_checks": [
+    "exact open and format payloads",
+    "acceptance and stale replies do not advance stream state",
+    "PCM write blocked until matched Run response",
+    "close blocked while PCM is pending",
+    "mapped region retained until matched Close and Unmap responses",
+    "DSP error retains ownership despite late success"
+  ],
+  "requires_exclusive_serialized_caller_and_verified_transport": true,
+  "codec_route_implemented": false,
+  "hardware_transport_connected": false,
+  "dsp_playback_verified": false,
+  "device_operations": 0
+}

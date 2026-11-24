@@ -25,6 +25,20 @@ class ScopeEvidence(unittest.TestCase):
             with self.subTest(), self.assertRaises(AssertionError):
                 verify(bad, self.token, self.spec)
 
+    def test_aegir_relaunch_reinitializes_scope(self):
+        scope_lines = self.capture().splitlines()
+        epoch = ['exec AegirPoster', *['|AegirPoster| ' + line for line in scope_lines[1:3]],
+                 '|AegirPoster| SWEET METAL REGISTRY proof_sha=example']
+        crash = 'CRASH AegirPoster[301] sig 9'
+        verify_epoch = lambda rows: verify('\n'.join([scope_lines[0], *rows, scope_lines[-1]]),
+                                          self.token, self.spec, 'AegirPoster')
+        self.assertEqual(verify_epoch([*epoch, crash, *epoch])['complete_samples'], 2)
+        for rows in ([*epoch, *epoch[1:3]], [*epoch, 'exec AegirPoster', epoch[-1]],
+                     [*epoch, crash, epoch[-1]], [*epoch, 'exec AegirPoster', epoch[1]],
+                     [epoch[0], epoch[1], epoch[2].replace('result=0', 'result=-1')]):
+            with self.subTest(rows=rows), self.assertRaises(AssertionError):
+                verify_epoch(rows)
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

@@ -1,0 +1,88 @@
+{
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v730-cache-export-paced-r25-gpu-live-20261123",
+  "token": "63168a33181e8a4f",
+  "raw_sha256": "bcbf6bbad24acb5a18480180bbd78b66b961f9de2d2ae26a5ff6ac94ccf664d8",
+  "original_result": "PASS",
+  "scope": "current LIVE to ACK, exclusively",
+  "observations": {
+    "display_power_requests": [
+      {
+        "line": 2405,
+        "requested": "on"
+      },
+      {
+        "line": 2893,
+        "requested": "off"
+      },
+      {
+        "line": 9935,
+        "requested": "on"
+      }
+    ],
+    "backlight_lookup_misses": [
+      {
+        "line": 1615,
+        "caller": "backboardd",
+        "query": "service_match",
+        "result": "none"
+      },
+      {
+        "line": 1622,
+        "caller": "backboardd",
+        "query": "device_tree_path"
+      },
+      {
+        "line": 2385,
+        "caller": "backboardd",
+        "query": "service_match",
+        "result": "0 found"
+      },
+      {
+        "line": 3250,
+        "caller": "SpringBoard",
+        "query": "service_match",
+        "result": "none"
+      },
+      {
+        "line": 9653,
+        "caller": "SpringBoard",
+        "query": "service_match",
+        "result": "none"
+      }
+    ],
+    "wlan_lookup_misses": [
+      {
+        "line": 3423,
+        "caller": "SpringBoard",
+        "query": "service_match",
+        "result": "none"
+      }
+    ],
+    "daemon_exec_lines": {
+      "mediaserverd": [
+        744
+      ],
+      "bluetoothd": [
+        792,
+        1574,
+        2999,
+        4969,
+        8209,
+        12316,
+        12852,
+        12983,
+        14061,
+        14672,
+        14807,
+        14927,
+        15152,
+        19275,
+        23498,
+        23633
+      ],
+      "wifid": []
+    }
+  },
+  "hardware_function_verified": false,
+  "device_operations": 0
+}

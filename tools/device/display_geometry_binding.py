@@ -11,6 +11,9 @@ NATIVE_ONES=('sweetfb_native','sweetbattery','ufsrw','rootrw','cs_enforcement_di
              'amfi_get_out_of_my_way','sweetfb_noconsole','lilac_usbdbg','sweetrmi4','sweetloopdrain','ssca',
              'sweetfb_bootscan','sweetgpuplan','sfscreen')
 
+class CommandTooLong(ValueError):
+    pass
+
 def transform(reference,profile):
     assert profile==PROFILE
     data,proof=convert(reference,profile)
@@ -34,5 +37,6 @@ def compact(words,names,limit=607,zero_omissions=None):
     if len(' '.join(words).encode())>limit and zero_omissions is not None:
         assert words.count('sf2x=0')==1
         words=[w for w in words if w!='sf2x=0'];zero_omissions.append('sf2x')
-    assert len(' '.join(words).encode())<=limit,'Native geometry command exceeds the fixed payload area'
+    size=len(' '.join(words).encode())
+    if size>limit:raise CommandTooLong(f'Native geometry command uses {size} bytes; limit is {limit}')
     return words

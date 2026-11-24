@@ -24,6 +24,9 @@ from sony_usb_guard import target_fastboot_lines
 HERE = Path(__file__).resolve().parent
 PATCH = HERE.parent.parent
 IOS = PATCH
+sys.path.insert(0, str(IOS / "tools"))
+from diagnostic_candidate import WLED_MARKER, WLED_VERSION, verify_record
+
 SHIM_SHA = "e1369bff6498d6f03f4ae29559bb99ebc7f3f9a7eee71a0f0d6a9e68ff73d7c3"
 SCREEN_CAPTURE_TIMES = (45, 150)
 
@@ -67,6 +70,10 @@ class Artifact:
         if hashlib.sha256(raw[4096:4096 + ks]).hexdigest() != SHIM_SHA:
             raise Refuse("Shim differs from the verified PON06 v648 shim")
         if payload[:8] != b"SWEETXNU" or len(payload) != rs: raise Refuse("Incomplete payload")
+        if self.data.get('version') == WLED_VERSION or WLED_MARKER in payload:
+            if self.data.get('version') != WLED_VERSION or WLED_MARKER not in payload:
+                raise Refuse('WLED payload and diagnostic version differ')
+            verify_record(self.data)
         cmd = payload[72:680].split(b"\0", 1)[0].decode("ascii")
         if cmd != self.data["cmdline"]: raise Refuse("Embedded command differs from manifest")
         words = cmd.split(); options = {}
@@ -197,7 +204,7 @@ class LiveOps:
         from sony_usb_guard import validate_inputs
         validate_inputs(PATCH / "assets/device-tools")
         if active_tool_processes(): raise Refuse("Another fastboot/xperable process is running")
-        text = self.command(["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", HERE / "preflight_processes.ps1"], 12, "host_process_preflight")
+        text = self.command(["powershell", "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass", "-File", HERE / "preflight_processes.ps1"], 30, "host_process_preflight")
         if json.loads(text): raise Refuse("A legacy boot/capture loop is running; refusing to interleave")
         # The task authorizes a targeted Sony operation while other phones may
         # remain attached. This mode still requires exactly one Sony USB device,
@@ -295,6 +302,7 @@ class LiveOps:
         self.screen_attempted = True; self.screen_token = artifact.token
         raw = self.directory / 'serial.raw.log'
         cursor = raw.stat().st_size
+        initial_cursor = cursor
         decoder = ScreenDecoder(artifact.token)
         with (self.directory / 'serial-commands.jsonl').open('a', encoding='utf-8') as file:
             file.write(json.dumps({'command': 'frame'}) + '\n'); file.flush(); os.fsync(file.fileno())
@@ -302,15 +310,26 @@ class LiveOps:
         start = time.monotonic()
         while time.monotonic() - start < seconds:
             self.check_stop()
+            chunk_start = cursor
             with raw.open('rb') as file:
                 file.seek(cursor); added = file.read(256 * 1024); cursor = file.tell()
             if added: decoder.feed(added)
             if decoder.frames:
                 frames = decoder.finish()
                 if len(frames) != 1: raise Refuse('Expected exactly one requested screenshot')
+                if artifact.data.get('version') == WLED_VERSION:
+                    from lilac_wled_evidence import wait_for_sample
+                    with raw.open('rb') as file:
+                        file.seek(max(initial_cursor, chunk_start - 512))
+                        sample_status = wait_for_sample(
+                            lambda: file.read(256 * 1024), lambda: self.capture_process.process.poll() is None,
+                            self.check_stop, artifact.token, min(start + seconds, time.monotonic() + 2),
+                            time.monotonic, time.sleep)
                 metadata = write_frame(directory, frames[0], artifact.data)
                 result = dict(protocol=1, verified=True, frames=[metadata], optical_panel_verified=False,
                               elapsed_seconds=time.monotonic() - start)
+                if artifact.data.get('version') == WLED_VERSION:
+                    result['wled_capture_status'] = sample_status
                 write_json(Path(directory) / 'capture.json', result)
                 self.journal.event('SCREEN_VERIFIED', token=artifact.token, frame_id=metadata['id'],
                                    png_sha256=metadata['png_sha256'], optical_panel_verified=False)
@@ -562,6 +581,9 @@ def main():
     validate_plan(plan)
     if catalog.get("target_serial") != SERIAL or catalog.get("pon_route") != 6: raise Refuse("Artifact catalog policy mismatch")
     artifacts = {a["id"]: a for a in catalog["artifacts"]}
+    if args.live:
+        if any(artifacts[step["artifact_id"]].get("version") == WLED_VERSION for step in plan["steps"]):
+            raise Refuse("WLED trials require the source audit and prerequisites in run_trial.py")
     for step in plan["steps"]: Artifact(artifacts[step["artifact_id"]]).validate()
     if not args.live and not args.replay:
         print("OFFLINE VALIDATION OK. No ports, camera, fastboot, or boot commands opened."); return 0

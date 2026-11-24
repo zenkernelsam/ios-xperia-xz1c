@@ -1,0 +1,22 @@
+{
+  "source_overlay": "reproducibility/lilac-wled-observer-overlay-20261124.json",
+  "build_directory": "build/lilac-wled-isolated-link-r3-20261124",
+  "link_proof_sha256": "933c7d0bd9ece16e86f26992a8df13cc95c9e91d0c72fdf6fb8e0a8409a319ad",
+  "builder_sha256": "3e73c9ab8c33139a21065420601c4be75f2dd6e2d2c58ccf5512272b7606927d",
+  "base_kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "baseline_relink_sha256": "5e0c1f937eda73e21848a4bd4f94ac3a614ffe2b3da0fc5ca9088538a7d6427f",
+  "baseline_uuid_byte_range_end_exclusive": [5360, 5376],
+  "baseline_all_other_bytes_exact": true,
+  "audited_v730_sources": 83,
+  "original_link_inputs_unchanged": 1116,
+  "only_link_object_replaced": "SweetFramebuffer.cpo",
+  "candidate_framebuffer_object_sha256": "71c72a7eb73c793a18298e8bf1bbb39fb363569143f5faf852d8f76da9f08e01",
+  "candidate_framebuffer_spmi_undefined_symbols": ["_sweet_spmi_read_ppid"],
+  "candidate_kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+  "candidate_kernel_bytes": 20681752,
+  "windows_candidate_object_and_proof_hashes_match_mac": true,
+  "original_v730_and_r26_image_hashes_preserved": true,
+  "device_operations": 0,
+  "live_admission": false,
+  "hardware_wled_read_verified": false
+}

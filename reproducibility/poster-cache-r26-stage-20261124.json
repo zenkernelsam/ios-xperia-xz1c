@@ -1,0 +1,53 @@
+{
+  "offline_build_record": "reproducibility/poster-cache-r26-offline-20261123.json",
+  "cpu": {
+    "source": "Windows TEMP/lilac-poster-cache-r26-ramcpu-20261124",
+    "token": "38e5e7e0a91b3fbd",
+    "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+    "image_sha256": "ce3506c68a35eee3b5df5e1e862f1aad6c99fbb081c66d829665a86061b9ed32",
+    "ram_blob_sha256": "294751d67dbeeee7a8729448b0f69cf813ff4fdb24685750dfd3511523d585b3",
+    "ram_manifest_sha256": "1e8206e9b71c236f3dda0e13c49eb230fd3009c415e3054dbf87eedd1c75d577",
+    "raw_sha256": "caf81544a6178b0c3486f89a3a21c1eb1d027b508363abc2f2a82e67c0ecccb9",
+    "raw_bytes": 355765,
+    "serial_events_sha256": "ad201137afea7ce6b19d7c0fe605ee4ed575c0536eb18a88181efeea528af5e9",
+    "serial_port": "COM17",
+    "one_continuous_current_boot_stream": true,
+    "return_route": "0x06",
+    "return_markers": ["ACK", "DRAIN", "RESET", "FINAL_DRAIN"],
+    "return_seconds_with_health": 38.078,
+    "download_attempts": 1,
+    "boot_attempts": 1,
+    "actual_stage_reverified": true,
+    "result": "PASS"
+  },
+  "gpu": {
+    "state": "OFFLINE_PACKAGE_REFUSED",
+    "output_directory": "build/poster-cache-r26-20261123/gpu",
+    "error": "Native geometry command exceeds the fixed payload area",
+    "command_bytes_before_native_compaction": 649,
+    "command_bytes_after_compaction": 616,
+    "command_limit_bytes": 607,
+    "native_grid_mode": "fitted",
+    "required_console_producers": ["backboardd", "AegirPoster", "SpringBoard"],
+    "package_trial_source_sha256": "72c5b78483222b1cda31cf1e083173f5d4805b017fed2478934f655d734d02d6",
+    "display_geometry_binding_source_sha256": "8b9d9530243d9b542b85ea738a34aac072a906370273589f708643f2ab0673d7",
+    "image_created": false,
+    "device_operations": 0,
+    "r25_native21_and_png6_proofs_recomputed_and_byte_identical": true
+  },
+  "gpu_followup_in_memory_only": {
+    "omitted_argument": "GEO_GRID=1",
+    "geocompat_helper_sha256": "ee7a3207f26af5e9106cbd98c74392153b11a2d345386964db131110a2a6153c",
+    "geocompat_source_sha256": "9a67a77d1da071f24f6856f592a365f9ec7df17a754998ddbb3f28602a8d0091",
+    "source_defaults_to_fitted_when_argument_absent": true,
+    "command_bytes_after_compaction": 605,
+    "required_console_producers_preserved": true,
+    "native_geometry_numeric_options_preserved": true,
+    "packager_and_validator_updated": false,
+    "image_created": false,
+    "device_operations": 0
+  },
+  "last_observed_device_state": "healthy fastboot after R26 CPU, no active trial",
+  "original_wallpaper_verified": false,
+  "peripheral_hardware_verified": false
+}

@@ -1,0 +1,24 @@
+{
+  "reference": "reproducibility/lilac-wled-snapshot-offline-20261124.json",
+  "stock_dtb_sha256": "06f4c3493aad91d2240508b0c5788d4799c9c2a58357462507b3bc5e28bf6669",
+  "stock_driver_blob": "461693ef9d279e97a4757f0d2db87a9932473c37",
+  "sources": {
+    "xnu/support/LilacWledDutyPlan.h": "450d1a9e409f3807c0bf38d3a26c850327ed07af6e3947d2d9a63cb77c9fe3ed",
+    "tools/build/test_lilac_wled_duty_plan.c": "34afa9b49afeb651dbb9da4f562fffea625f43fada215377c01c691d08aefb5f"
+  },
+  "reference_behavior": {
+    "sink_ppid": "0x3d9",
+    "nonzero_duty_floor": 16,
+    "duty_max": 4095,
+    "sync_delay_us": 1000,
+    "scope": "already enabled and coherent two-string duty adjustment only"
+  },
+  "host_asan_ubsan_passed": true,
+  "nonzero_request_levels_exercised": 4095,
+  "arm64_cpp_test_object_sha256": "a50d066bb7ac5beb190138e054e3d137a6b40a58c1bc031834e86947c8dad0a6",
+  "applies_hardware_writes": false,
+  "module_enable_blank_and_resume_supported": false,
+  "apple_brightness_to_duty_calibration_verified": false,
+  "linked_into_device_candidate": false,
+  "device_operations": 0
+}

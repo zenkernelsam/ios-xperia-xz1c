@@ -1,0 +1,40 @@
+{
+  "prior_stage": "reproducibility/poster-cache-r26-stage-20261124.json",
+  "bundle": "build/poster-cache-r26-20261123/gpu-fitted-default-r2",
+  "token": "bba76b81fd62df75",
+  "kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "ram_blob_sha256": "294751d67dbeeee7a8729448b0f69cf813ff4fdb24685750dfd3511523d585b3",
+  "image_sha256": "6219764e38b0383184af1df00eabbc8c12622a717655dbde9608c1cc0f9c44ef",
+  "file_sha256": {
+    "artifacts.json": "6aa5df93c63d19580063f7befd02849202ad891f364ee74efd8e5a71f30166df",
+    "plan.json": "c70addc734fbb28782a97538f55902a3c635724967a2fadff73e7d09cd9cb4ea",
+    "package-proof.json": "a77752ec22310eb2d740c4e4aadde2595840f1330b5ae4bb7797f739d73e4a75"
+  },
+  "original_command_bytes_after_compaction": 616,
+  "command_bytes": 605,
+  "command_limit_bytes": 607,
+  "native_grid_control": {
+    "revision": 2,
+    "mode": "fitted",
+    "value": 1,
+    "source_sha256": "75abf93a47e5d0ec2772f0d6ab71c8c7a945056d3e7a70276050e36c03be43f9",
+    "env": "helper-default",
+    "helper_sha256": "ee7a3207f26af5e9106cbd98c74392153b11a2d345386964db131110a2a6153c",
+    "helper_source_sha256": "9a67a77d1da071f24f6856f592a365f9ec7df17a754998ddbb3f28602a8d0091"
+  },
+  "console_producers": ["backboardd", "AegirPoster", "SpringBoard"],
+  "scanout_after_seconds": 150,
+  "max_cycles": 1,
+  "pon_route": "0x06",
+  "offline_admission": {
+    "payload_reconstructed": true,
+    "own_cpu_token": "38e5e7e0a91b3fbd",
+    "native21_and_png6_token": "63168a33181e8a4f",
+    "mac_actual_kernel_sources": 83,
+    "mac_mesa_and_userspace_inputs_audited": true,
+    "faults_refused": ["missing_process_log_binding", "missing_springboard_tee", "wrong_helper_injection"]
+  },
+  "requires_original_springboard_fitted_marker_during_live_to_ack": true,
+  "device_operations": 0,
+  "gpu_or_original_wallpaper_verified": false
+}

@@ -78,6 +78,18 @@ python3 -B tools/build/check_metal_compute.py --llvm-headers deps/llvm-c-14 --ou
 python3 -B tools/build/build_metal_library.py --ram-package build/my-gles/ram --air-package build/my-air/frontend --output build/my-metal/library
 ```
 
+旧 AIR 目标文件已经回收、但完整原构建记录仍保留时，可按 [本次重建核验](../reproducibility/poster-cache-budget-air-reconstruction-20261124.json) 从正式源码重新 materialize，再以同 LLVM14 header 和 ARM64 参数编译。只有新 object SHA 与 [原完整 AIR manifest](../reproducibility/air-static-half-object-reference-20261124.json) 完全相同，且 `nm -u` 的 168 个 LLVM 导入逐项一致，才可复用原导入审计；该路径不准入新导入或不同目标系统。20H392 原 exports 文件未在现存目录找到，重新审计不同 object 前仍需重新提取并核对它。
+
+同一完整参考已进入 Git，可用正式工具复现已回收的 object（仅准入固定原 manifest／原目标／相同 object）：
+
+```sh
+python3 -B tools/build/rebuild_verified_air_object.py \
+  --reference-manifest reproducibility/air-static-half-object-reference-20261124.json \
+  --llvm-headers deps/llvm-c-14 --output build/my-air/identical-object
+```
+
+[工具实编译记录](../reproducibility/cache-budget-verified-air-tool-20261124.json)验证正式 materialize 后 object SHA `10df4bf0…`、168 原导入全部一致。任何 source／object／manifest 差异均拒绝，改动后的库仍须自己的完整 GPU 验收。
+
 作者MTLB／AIR fixture均由正式源和LLVM14生成，不提交原Apple shader。basic使用`--fixture basic`，render／constants／narrow／half／mrt／sampler／static-half／multisample使用对应参数；具体choices以make_air_fixture.py为准：
 
 ```powershell
@@ -160,5 +172,11 @@ python -B tools/device/package_trial.py --mode gpu --version 730 --kernel build/
 ```
 
 original绑定GEO_GRID0，fitted绑定1；整个SpringBoard env、control源／值、plan和完整payload独立复算。R21三包命令区均607B，R22 CPU607B／GPU604B，具体以新artifact为准；限定本v730实际consumer的sf2x默认0省略保持原语义，shim参数不压缩。先新RAM自身CPU，再合格的原完整模型baseline，完整回程后才投递fitted。
+
+若壁纸观察包保留全部进程日志后超长，打包器只对已核验的 revision 4 helper 使用拟合默认值，记录 helper 二进制和源码 SHA，并在独立复验中要求本靴 SpringBoard 实际报告 `value=1`。原始六行模式仍须显式传 `GEO_GRID=0`。复现 R26 主机打包（输出目录须新建）：
+
+```powershell
+python -B tools/device/package_trial.py --mode gpu --version 730 --kernel build/surface-diag-v730/kernel.v730.macho --ram-package build/poster-cache-r26-20261123/ram --display-profile xz1c-native-2x --screen-evidence --screen-after 150 --output build/新的R26目录
+```
 
 独立后处理入口为geometry_layout_evidence.py --directory <原run> --output <新文件>及native_grid_profile_evidence.py --directory <fitted原run> --baseline <original原run> --output <新文件>。完整应用multiset、Dock顺序及Folder内容由原model比较，Root允许原系统分页重排。原标签归属不明仍REVISE；下一只读capture和新helper须再走host／新RAM自身CPU及新的原／拟合对照。详见[DISPLAY-GEOMETRY](DISPLAY-GEOMETRY.md)。

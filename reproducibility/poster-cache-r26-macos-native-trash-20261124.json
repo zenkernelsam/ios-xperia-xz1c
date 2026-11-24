@@ -1,0 +1,563 @@
+{
+  "date": "2026-11-24",
+  "items": 28,
+  "files": 52,
+  "logical_bytes": 135635716,
+  "native_trash_journal": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-mac-trash-20261124/native-trash.json",
+  "protected_files_sha256": {
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cache-export-paced-r25-20261123/ram/sweetgl.dylib": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cache-export-paced-r25-20261123/ram/libglapi.0.dylib": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cache-export-paced-r25-20261123/ram/georead.dylib": "ee7a3207f26af5e9106cbd98c74392153b11a2d345386964db131110a2a6153c",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cache-export-paced-r25-20261123/ram/exception_observe.dylib": "fb63d69a32b74269917bf4afefd385499318c40fef55a48561081775db091e9d",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cache-export-paced-r25-20261123/ram/MetalResources.dylib": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cache-export-paced-r25-20261123/ram/manifest.json": "27c39aa515bbfd247012b887a163558421f21bbe38ffce54ce2182be422ad459",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cache-export-paced-r25-20261123/ram/glram.zblob": "cb1960218b50b7d908eda964fad198a9394941c0db5b1af9cee7e84471837b0a",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/ram/sweetgl.dylib": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/ram/libglapi.0.dylib": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/ram/georead.dylib": "ee7a3207f26af5e9106cbd98c74392153b11a2d345386964db131110a2a6153c",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/ram/exception_observe.dylib": "b15493a9f11f03827d1f3d379aa346142acd14b3c4c720aa316a250863809df7",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/ram/MetalResources.dylib": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/ram/manifest.json": "1e8206e9b71c236f3dda0e13c49eb230fd3009c415e3054dbf87eedd1c75d577",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/ram/glram.zblob": "294751d67dbeeee7a8729448b0f69cf813ff4fdb24685750dfd3511523d585b3",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/surface-diag-v730/kernel.v730.macho": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-wled-isolated-link-r3-20261124/kernel.wled-observer.macho": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-wled-isolated-link-r3-20261124/link-proof.json": "933c7d0bd9ece16e86f26992a8df13cc95c9e91d0c72fdf6fb8e0a8409a319ad",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-backlight-service-linkcheck-20261124/service-link-proof.json": "d0ad8470b584d7d55a131ee7aef042a60488d6f4dedb3951fb619c86e389ee0e",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/NativeProof.h": "46acdb00766f2c5e364b414e861061c8f8ee9c214c52f5eea22dc2950ec453df",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/startup-host-test.log": "4199da64e28274335e4847fa54bc736b8fb96a55bfa40564b1e59265be8150b5",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/pipeline-host-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/MetalRequestObserve.h": "afc8ee2c02e2a1041a153a6a2e33df8d39146f3291775fca5f6ed1e790762213",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/QuadRouteObserve.h": "6e4af8cd7793ac7d664b6955ebbe5a5ed6601fb89688128afc85d4d9e075f63d",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/ios-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/snapshot-method-host-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/cache-scope-host-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/PosterStateObserve.h": "baa4692abee81a942960ac10ff0a780bd30d39009a030449e37dc4b666bec613",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/poster-state-host-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/MetalRuntimeObserve.h": "1b7a8de73a2aec267a53bcb5a50acc1d55796f62d992da6d70e2402812a9386e",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/startup-host-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/request-host-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/postdraw-host-test.log": "b7407b265f66509c570fc43b50cda7efaf91e722a33c5aa6ddc2b9d30323877d",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/PostDrawObserve.h": "e293e701736657e5ad28850d6970b7a2ed5cd299b5f4d04ea4bfb926e6c7f963",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/pipeline-host-test.log": "26948253911018b1754b115cfa303ef0a3031ec1f3e4c0e42fc6aab6a718b2fd",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/quad-route-host-test.log": "266b1382c28a66ef5a6f9d2fd39f45f7c68e5b74f3df17482787bc54a8138af7",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/host-test.log": "ac80a90738641a7df540f30da7faa44c7e5237ef3600018fbc486d26c7404bb1",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/png-composition-host-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/postdraw-host-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/png-input-host-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/ProgramCacheScope.h": "bb6546f8c148f71e54c058bcf2877e7de903942ae1934a9d933c76636513fc6a",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/png-input-host-test.log": "cb03e3a18591e7736a97fb2685860fcb03627190a0eb30ab3e914bac38ea1f3c",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/ProgramCacheScopeIdentity.h": "ef83f6b6d40b8398cf9a30ae1ebf4557dc38ea1f68537d65793ae502e1c29923",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/png-composition-host-test.log": "9e855cc834ed7baeb8b59fe85ca42026192526add1c174309ce7b98f3926c310",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/snapshot-method-host-test.log": "f458f64abc3cea91723efaaec557129a65ba7082df7cc0cebe9a874c9ee05016",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/MetalProbeStartup.h": "7a99f308d807f01b6b1e02fdfa9655a83eaecdae29b0ccea785feb446a3936fb",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/request-host-test.log": "1d3b88aaad0d013564bd2db34c66d37eba3d75e356d18f9a0e7bcad5764acbab",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/PNGEncoderProof.h": "dabbd7eb6f20213d64d22dc892b49da5931c2d1159627286d120d6b6411194a5",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/poster-state-host-test.log": "c077578c6d262f1caeffe70e05303255a5ee153824cb464bddaa0d09e543f5cc",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/png-dispatch-host-test.log": "db0148c82d0d9408708c18464331ebb5842d6ed642a8fe27f95113ee9c32f4b5",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/quad-route-host-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/host-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/SnapshotMethodObserve.h": "10dded48c0cf90d28999f03624e9f1b9c84c46cc1ba4b69567867ee42e9d04a8",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/manifest.json": "23087242f5894ca5ce0fc58153ff6eec7645cd5a0d6fe7b4b66685ae1430b578",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/program_cache_scope.py": "9fcd14133fa3e0531f5cc0a01fb6d8b84d62432df41f3d0e688df7e151c097e9",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/png-dispatch-host-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/exception_observe.dylib": "b15493a9f11f03827d1f3d379aa346142acd14b3c4c720aa316a250863809df7",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/source.m": "c1dfdcd95bd85fd5a5f3486ab34188f8b1324124f6d9ede0daba503e70f82862",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/codesign.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/png_encoder_proof.py": "5ac2776ae74977ef2bc43bc92b65fc4f53bb6abafb23cf6402a9c8c8250b37f1",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/MetalResources.h": "d5d165451738ef08c8eccd6a6d774d73f32902c4d3dc08961d450b53c88a7756",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/cache-scope-host-test.log": "9b626d12cc37011f803c71e0755edd710ba8d83bedad4b90528dfc7ab462e8e7",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/MetalDiscoveryProbe.h": "d497fbe096e7261ac177e302308712968824207d60dd84a4610015b297e6020c",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/verify-signature.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/MetalPipelineObserve.h": "bbb1025ab5dabb340f508eccaaa6a5741149d9ea8e4a36562ed3eb45659224a9",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/PNGImageDispatch.h": "a0c30d97527b731571437a70e717e4dbe4b2dafe3f29e881bced604fe8bae5a7",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/PNGImageIOEncoder.h": "61031999d4ff1d9a2c9c6a564cf229a82c3b9c49998d752ae0bd4d6fd18e1e92"
+  },
+  "records": [
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cache-export-paced-r25-20261123/ram/glram.raw",
+      "reason": "Duplicate RAM container, byte-identical recreation verified from retained zblob and manifest",
+      "files": [
+        {
+          "relative": ".",
+          "bytes": 33554432,
+          "sha256": "eabc928b3a9dfa3158a3bfddd60b3476de61fe220b909ce97b5abbc38542a4d4"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/glram.raw 19-33-36-541.raw",
+      "all_original_content_sha_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cache-export-paced-r25-20261123/ram/glram.dmg",
+      "reason": "Duplicate RAM container, byte-identical recreation verified from retained zblob and manifest",
+      "files": [
+        {
+          "relative": ".",
+          "bytes": 33554432,
+          "sha256": "eabc928b3a9dfa3158a3bfddd60b3476de61fe220b909ce97b5abbc38542a4d4"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/glram.dmg 19-33-36-625.dmg",
+      "all_original_content_sha_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/ram/glram.raw",
+      "reason": "Duplicate RAM container, byte-identical recreation verified from retained zblob and manifest",
+      "files": [
+        {
+          "relative": ".",
+          "bytes": 33554432,
+          "sha256": "fbc36be929e5a39276735978321bf553729d04c819d07e9bebcd4ae657a57a97"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/glram.raw 19-33-36-677.raw",
+      "all_original_content_sha_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/ram/glram.dmg",
+      "reason": "Duplicate RAM container, byte-identical recreation verified from retained zblob and manifest",
+      "files": [
+        {
+          "relative": ".",
+          "bytes": 33554432,
+          "sha256": "fbc36be929e5a39276735978321bf553729d04c819d07e9bebcd4ae657a57a97"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/glram.dmg 19-33-36-736.dmg",
+      "all_original_content_sha_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/test_cache_scope",
+      "reason": "Completed reproducible host test executable or its debug bundle; source, manifest, test log and signed guest retained",
+      "files": [
+        {
+          "relative": ".",
+          "bytes": 28320,
+          "sha256": "ce1c0d6008aacf819f46f541bfa8be5d0944af38acb63e59b3c3f4080ccf5be6"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_scope 19-33-36-787",
+      "all_original_content_sha_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/test_cache_scope.dSYM",
+      "reason": "Completed reproducible host test executable or its debug bundle; source, manifest, test log and signed guest retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 645,
+          "sha256": "2d56eca2217abc049f49309a8cb04e54f45a4ba11b0491143bbbb28280638af2"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_cache_scope",
+          "bytes": 18224,
+          "sha256": "3081f024521a71acf861fce758bc00f448d019ada5884e59deab15bce185e627"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_cache_scope.yml",
+          "bytes": 183,
+          "sha256": "ef9698067cada13cb2c89f497dd302be0c71dfd5b76c26bff593a118bf19c106"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_scope.dSYM 19-33-36-839.dSYM",
+      "all_original_content_sha_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/test_observer",
+      "reason": "Completed reproducible host test executable or its debug bundle; source, manifest, test log and signed guest retained",
+      "files": [
+        {
+          "relative": ".",
+          "bytes": 65680,
+          "sha256": "31c2616c447ea4cf876b717a16f781fb994f95497cf7148c815bdd1ece44ee58"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_observer 19-33-36-895",
+      "all_original_content_sha_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/test_observer.dSYM",
+      "reason": "Completed reproducible host test executable or its debug bundle; source, manifest, test log and signed guest retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 642,
+          "sha256": "589d796cebc46abadfe0ec147d2a15f3b4f4f50d2c7edbebfc3cde26f51d66bf"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_observer",
+          "bytes": 41828,
+          "sha256": "8fe48f1550540cc367111bf5e53b0a1abe630b91b4d781701b648566b6fdfa6b"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_observer.yml",
+          "bytes": 180,
+          "sha256": "3be39beeac1ccd173e17068bab6a68312640fe0ac451d698aa4c12d9b8113910"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_observer.dSYM 19-33-36-946.dSYM",
+      "all_original_content_sha_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/test_pipeline_observer",
+      "reason": "Completed reproducible host test executable or its debug bundle; source, manifest, test log and signed guest retained",
+      "files": [
+        {
+          "relative": ".",
+          "bytes": 48464,
+          "sha256": "30197209656766961fb38178b36f8d4a46049cf8207747ece54a5fa98caa3961"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_pipeline_observer 19-33-36-997",
+      "all_original_content_sha_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/test_pipeline_observer.dSYM",
+      "reason": "Completed reproducible host test executable or its debug bundle; source, manifest, test log and signed guest retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 651,
+          "sha256": "14a5e51d08a5bf0856f6e93830a9fde78a537ae439cf8dfa4bd0dc8268cf1dc6"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_pipeline_observer",
+          "bytes": 45512,
+          "sha256": "31ceeb1a682684baf32277ee805c3e398361d2df85aabcf019f572bfbfcb4839"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_pipeline_observer.yml",
+          "bytes": 189,
+          "sha256": "db12b9815d0d64877702313dabe9a74b3640fec24ee9d93e5bb664adf9fa46ea"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_pipeline_observer.dSYM 19-33-37-048.dSYM",
+      "all_original_content_sha_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/test_png_image_dispatch",
+      "reason": "Completed reproducible host test executable or its debug bundle; source, manifest, test log and signed guest retained",
+      "files": [
+        {
+          "relative": ".",
+          "bytes": 52288,
+          "sha256": "73a6a99e232b96a0da89127304d5e63f92890c73947618c867dcf6801455f019"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_png_image_dispatch 19-33-37-100",
+      "all_original_content_sha_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/test_png_image_dispatch.dSYM",
+      "reason": "Completed reproducible host test executable or its debug bundle; source, manifest, test log and signed guest retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 652,
+          "sha256": "236aaeedc10009a032529be8c502cc8b58a5893578cf1d5354ab805ee898134f"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_png_image_dispatch",
+          "bytes": 38656,
+          "sha256": "cfe952c491e6c676f0aad1fff4bd860747de54b17b035b73b71857ab9a10bc12"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_png_image_dispatch.yml",
+          "bytes": 190,
+          "sha256": "4f7a98c9b567251c46dc89586575159a70193ee47786e95dc22b77676cbd0965"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_png_image_dispatch.dSYM 19-33-37-153.dSYM",
+      "all_original_content_sha_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/test_png_input_observer",
+      "reason": "Completed reproducible host test executable or its debug bundle; source, manifest, test log and signed guest retained",
+      "files": [
+        {
+          "relative": ".",
+          "bytes": 83672,
+          "sha256": "c0c55189241e0a0c6fc0f81b8afced243abc2aec32ee2027581b2877a010bdbb"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_png_input_observer 19-33-37-212",
+      "all_original_content_sha_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/test_png_input_observer.dSYM",
+      "reason": "Completed reproducible host test executable or its debug bundle; source, manifest, test log and signed guest retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 652,
+          "sha256": "4eea09a4e0f1cd19994e51f233c52e59224b7eceb46e1da9e1c6b4275173a70f"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_png_input_observer",
+          "bytes": 58948,
+          "sha256": "14b5b6e608c1ffcdc549194c4c5e1ae09740a6a7737e1f769c66d5acb3be4a6a"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_png_input_observer.yml",
+          "bytes": 190,
+          "sha256": "fe758e772dcfc375dcfde9996cefe13d9ac61b0104f46aa788fe7c026c182ec3"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_png_input_observer.dSYM 19-33-37-263.dSYM",
+      "all_original_content_sha_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/test_png_postdraw_encoder",
+      "reason": "Completed reproducible host test executable or its debug bundle; source, manifest, test log and signed guest retained",
+      "files": [
+        {
+          "relative": ".",
+          "bytes": 65744,
+          "sha256": "39d813b0d6a023c9b08a374b9e0890b063d2323de3bb2f090293ef4f0b9e7a49"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_png_postdraw_encoder 19-33-37-316",
+      "all_original_content_sha_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/test_png_postdraw_encoder.dSYM",
+      "reason": "Completed reproducible host test executable or its debug bundle; source, manifest, test log and signed guest retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 654,
+          "sha256": "7dd79ab1dac553ea05bede2be726273fc5fd3b229c2068fc14aa7fc0d3d50003"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_png_postdraw_encoder",
+          "bytes": 50704,
+          "sha256": "479c7f4ce285c2f1d94103d3891d553c65493efba0ea831e986c13babf129b04"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_png_postdraw_encoder.yml",
+          "bytes": 192,
+          "sha256": "27d1087efc42cf8f354a940cab3aa76477feedd4007d910b796d556229d43008"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_png_postdraw_encoder.dSYM 19-33-37-375.dSYM",
+      "all_original_content_sha_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/test_postdraw_observer",
+      "reason": "Completed reproducible host test executable or its debug bundle; source, manifest, test log and signed guest retained",
+      "files": [
+        {
+          "relative": ".",
+          "bytes": 76096,
+          "sha256": "0aab3da01f4900474ea57d93933ef97392c9b3db3bf03cc3bf52c1d04728c579"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_postdraw_observer 19-33-37-425",
+      "all_original_content_sha_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/test_postdraw_observer.dSYM",
+      "reason": "Completed reproducible host test executable or its debug bundle; source, manifest, test log and signed guest retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 651,
+          "sha256": "ba5e540d03716130925c52e316c17d80e78fd08101eb2aa21e1bf0abadadb191"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_postdraw_observer",
+          "bytes": 57684,
+          "sha256": "39d899511e94e69e20d6f6075c9cb79bdf0f9f9880823bca872a1f58b84202a7"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_postdraw_observer.yml",
+          "bytes": 189,
+          "sha256": "a4696328c172419c7857e90ffedaf1cb164d701de2432686704df11a1d977070"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_postdraw_observer.dSYM 19-33-37-485.dSYM",
+      "all_original_content_sha_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/test_poster_state_observer",
+      "reason": "Completed reproducible host test executable or its debug bundle; source, manifest, test log and signed guest retained",
+      "files": [
+        {
+          "relative": ".",
+          "bytes": 40520,
+          "sha256": "b9960039f090b11300d6ecd97927b3898ccee7c85e6562dbe130cc32be111703"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_poster_state_observer 19-33-37-537",
+      "all_original_content_sha_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/test_poster_state_observer.dSYM",
+      "reason": "Completed reproducible host test executable or its debug bundle; source, manifest, test log and signed guest retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 655,
+          "sha256": "7782c714f3162be1cbf4010a84afa709648aa9fc7b1ffc64ac0ef7a99972d7a5"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_poster_state_observer",
+          "bytes": 24080,
+          "sha256": "e38ce130aa1d35adef513217baa52c196508217df9387dccf92b17b6a717aee1"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_poster_state_observer.yml",
+          "bytes": 193,
+          "sha256": "4d7ffed17a5d51237a0a1fecf320a0c53c4a4cf6acf5ada6c68c0c6e8f247748"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_poster_state_observer.dSYM 19-33-37-595.dSYM",
+      "all_original_content_sha_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/test_quad_route_observer",
+      "reason": "Completed reproducible host test executable or its debug bundle; source, manifest, test log and signed guest retained",
+      "files": [
+        {
+          "relative": ".",
+          "bytes": 140896,
+          "sha256": "6a8fe5404bce6f6410299ba99ac27c70d24385fd7c860ab1ef7ff6c2190d92ed"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_quad_route_observer 19-33-37-652",
+      "all_original_content_sha_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/test_quad_route_observer.dSYM",
+      "reason": "Completed reproducible host test executable or its debug bundle; source, manifest, test log and signed guest retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 653,
+          "sha256": "4f6b8139dc5258062c9b876109b20e58395628b715be1e0cfc2165f8e26edc03"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_quad_route_observer",
+          "bytes": 95424,
+          "sha256": "a47f6cd99879aace644c2764753ea9a3acf28835e6a4942aea79beec9ba4feb2"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_quad_route_observer.yml",
+          "bytes": 191,
+          "sha256": "9d8c004554e16f13a30e8ec58b07b7d1ac93f7567b0bdfa35fb5f6dea52a5a10"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_quad_route_observer.dSYM 19-33-37-706.dSYM",
+      "all_original_content_sha_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/test_request_observer",
+      "reason": "Completed reproducible host test executable or its debug bundle; source, manifest, test log and signed guest retained",
+      "files": [
+        {
+          "relative": ".",
+          "bytes": 106928,
+          "sha256": "4996da3a2813db64c3d47f8362b27c5f9a48a6093dc675de385a029a188bf36a"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_request_observer 19-33-37-756",
+      "all_original_content_sha_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/test_request_observer.dSYM",
+      "reason": "Completed reproducible host test executable or its debug bundle; source, manifest, test log and signed guest retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 650,
+          "sha256": "07d6a3dac727325515613215f20b7b2403bf20a2bba99d369d891dc11acc0c9d"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_request_observer",
+          "bytes": 71316,
+          "sha256": "1ec59e05cbce8e12f4dd310e2f471e911e419937a12d3b838fc46287b2dcbbbb"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_request_observer.yml",
+          "bytes": 188,
+          "sha256": "780c7a289b7afd5077e58074117c0f07d680c9ce38c5e9de039a6b8a6963b762"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_request_observer.dSYM 19-33-37-817.dSYM",
+      "all_original_content_sha_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/test_snapshot_method_observer",
+      "reason": "Completed reproducible host test executable or its debug bundle; source, manifest, test log and signed guest retained",
+      "files": [
+        {
+          "relative": ".",
+          "bytes": 98096,
+          "sha256": "045fc27ad40cd98acaf2560b67059181f3dd1d3e840c20487bfa4dda516c7d6e"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_snapshot_method_observer 19-33-37-870",
+      "all_original_content_sha_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/test_snapshot_method_observer.dSYM",
+      "reason": "Completed reproducible host test executable or its debug bundle; source, manifest, test log and signed guest retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 658,
+          "sha256": "04e828e1d0fd7bec7384bf92308830a990c1237423b15ef3c49b301d6f9934dd"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_snapshot_method_observer",
+          "bytes": 63316,
+          "sha256": "998db49258458b63c0731d390280704e27bfeb01f41e29c97a3ad662432ff6e0"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_snapshot_method_observer.yml",
+          "bytes": 196,
+          "sha256": "82148385b5b10a6b0deaebabb88a0ca2e8a82505025e9fcfbcb11b3e5bd77775"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_snapshot_method_observer.dSYM 19-33-37-925.dSYM",
+      "all_original_content_sha_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/test_startup",
+      "reason": "Completed reproducible host test executable or its debug bundle; source, manifest, test log and signed guest retained",
+      "files": [
+        {
+          "relative": ".",
+          "bytes": 20592,
+          "sha256": "d642ccce01ff4f3c4f341bfd345f686dfc4ccc03db49bb4e06d756f22774a5cf"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_startup 19-33-37-976",
+      "all_original_content_sha_verified": true
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-r26-20261123/observer/test_startup.dSYM",
+      "reason": "Completed reproducible host test executable or its debug bundle; source, manifest, test log and signed guest retained",
+      "files": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 641,
+          "sha256": "944829fa3c1a4d913161b503f6352fa20f7c101cdeefe97a15208dadbe4a587a"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_startup",
+          "bytes": 14936,
+          "sha256": "07dcc9d338e0c1f89e37831da53c009c7eeb08ffb8ea8f7881ff12dfdee09bd3"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_startup.yml",
+          "bytes": 179,
+          "sha256": "5a74e19551858f608690f8cd0351ab66250030e44f6ae29e912a6787873ebd25"
+        }
+      ],
+      "trash_path": "/Users/ciscohe/.Trash/test_startup.dSYM 19-33-38-028.dSYM",
+      "all_original_content_sha_verified": true
+    }
+  ],
+  "trash_emptied": false,
+  "pause_preserved": true
+}

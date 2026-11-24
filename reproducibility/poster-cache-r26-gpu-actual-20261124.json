@@ -1,0 +1,145 @@
+{
+  "token": "bba76b81fd62df75",
+  "image_sha256": "6219764e38b0383184af1df00eabbc8c12622a717655dbde9608c1cc0f9c44ef",
+  "raw_sha256": "f2609cd517bc6d0c39ac0c65ef91fd16476ac7c8243f234792aad59ce80c9bc1",
+  "raw_bytes": 1768016,
+  "source": "Windows TEMP/lilac-v730-poster-cache-r26-gpu-live-20261124",
+  "original_result": "STOP",
+  "original_reason": "SCREEN_EVIDENCE_MISSING",
+  "intermediate_reason": "EXTENSION_CHECKIN_TIMEOUT",
+  "return_seconds_with_health": 38.937000000150874,
+  "return_evidence": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "bba76b81fd62df75",
+    "checkpoint_bytes": 1751119,
+    "log_bytes": 1768016,
+    "log_sha256": "f2609cd517bc6d0c39ac0c65ef91fd16476ac7c8243f234792aad59ce80c9bc1",
+    "require_final_drain": true,
+    "marker_positions": [
+      36,
+      136,
+      178,
+      180
+    ],
+    "final_reset_marker_seen": true
+  },
+  "serial": {
+    "revision": 1,
+    "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+    "event_log_sha256": "941a6113e5003354b98853ba2442797c0a099d28975f689d8463ff916df241d0",
+    "raw_sha256": "f2609cd517bc6d0c39ac0c65ef91fd16476ac7c8243f234792aad59ce80c9bc1",
+    "serial_port": "COM17",
+    "dtr_low_through_open": true,
+    "raw_log_before_stream": true,
+    "one_continuous_current_boot_stream": true,
+    "replay_commands": 0,
+    "old_failure_not_reclassified": true
+  },
+  "download_commands": 1,
+  "boot_commands": 1,
+  "original_results_sha256": "3984315f91f08113b36e03e07679a6d1a99f74bde36fd35c45261dc645a09d5f",
+  "springboard_fitted_observed": true,
+  "wallpaper_verified": false,
+  "optical_verified": false,
+  "scanout_verified": false,
+  "cache": {
+    "complete_samples": 3,
+    "incomplete_samples": 0,
+    "observed_launches": 3,
+    "directory": "/private/var/tmp/sgm-0106a801a3d9b6c261554e1a00cbdfcd",
+    "source_scope_identity": "0106a801a3d9b6c261554e1a00cbdfcd7ca1aaf064b025ed09db91ade061a58d",
+    "old_files_preserved": true,
+    "hits": [
+      64421,
+      64317,
+      747773,
+      64421,
+      64317,
+      375861,
+      17437,
+      64421,
+      64317,
+      747773,
+      17437,
+      44221,
+      64421,
+      64317,
+      227981,
+      17437,
+      44221
+    ],
+    "requests": [
+      [
+        4840,
+        7830
+      ],
+      [
+        4840,
+        9711
+      ]
+    ],
+    "successful_stores": [
+      17437,
+      44221
+    ],
+    "cache_key_not_logged": true
+  },
+  "check_in_timeouts": {
+    "during_live": 2,
+    "after_ack": 0
+  },
+  "scanout_failure": {
+    "expected_next_offset": 355968,
+    "observed_offset": 356096,
+    "first_gap_bytes": 128,
+    "expected_encoded_bytes": 440552,
+    "actual_prefailure_capture": true,
+    "planned_150_second_capture_executed": false,
+    "complete_end_records": 0,
+    "exact_error": "Missing, duplicated or reordered scanout chunk"
+  },
+  "poster_state": {
+    "complete_samples": 38,
+    "limits": []
+  },
+  "quad_route": {
+    "complete_samples": 206,
+    "incomplete_samples": 2,
+    "observed_API_calls": {
+      "manager_device": 24,
+      "manager_queue": 8,
+      "device_queue": 3,
+      "add_quad": 8,
+      "add_quads": 0,
+      "window": 5,
+      "paused": 8,
+      "disable": 0,
+      "enable": 0,
+      "sync": 0,
+      "tick": 0,
+      "scene": 8,
+      "preview": 24,
+      "snapshot": 14,
+      "low_light": 0,
+      "backlight": 14,
+      "linear_backlight": 8,
+      "unlock": 20,
+      "min_size": 0,
+      "desired_size": 0,
+      "start": 0,
+      "stop": 9,
+      "update": 9,
+      "snapshot_image": 0,
+      "env_init": 4,
+      "env_update": 2,
+      "renderer_env": 24,
+      "apply_mode": 8,
+      "transition_mode": 0,
+      "active_mode": 0,
+      "deactive_mode": 8,
+      "interactive_mode": 0,
+      "supplemental_mode": 0
+    }
+  }
+}

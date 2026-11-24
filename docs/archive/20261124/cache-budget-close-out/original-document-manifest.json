@@ -1,0 +1,62 @@
+{
+  "date": "2026-11-24",
+  "reason": "Preserve entry documents before cache-budget native acceptance and housekeeping integration",
+  "git_HEAD_before_integration": "2f11cfa0b42e28e84baae256c091384f3398ac65",
+  "original_bytes_preserved": true,
+  "documents": [
+    {
+      "original_path": "AGENTS.md",
+      "archive_path": "docs/archive/20261124/cache-budget-close-out/AGENTS.md",
+      "sha256": "231e659a639fb4ed478cc268de2cc76e6543f00baa3a43c015cdadeaae29d0f4",
+      "bytes": 5929
+    },
+    {
+      "original_path": "README.md",
+      "archive_path": "docs/archive/20261124/cache-budget-close-out/README.md",
+      "sha256": "169495d67773bffa618f996f282555f9e9368494b46f992573df4c582c70ddd2",
+      "bytes": 2248
+    },
+    {
+      "original_path": "docs/STATUS.md",
+      "archive_path": "docs/archive/20261124/cache-budget-close-out/docs/STATUS.md",
+      "sha256": "f5d8c28ccdf995a7f24d44f4dc0930e741789e8b8a9586a095b8f942d1dde556",
+      "bytes": 15104
+    },
+    {
+      "original_path": "docs/BUILD.md",
+      "archive_path": "docs/archive/20261124/cache-budget-close-out/docs/BUILD.md",
+      "sha256": "0cda6bbc3e92556ca3ced38b65a2d2dad8bffb20ed17ec35d035ca695a1582e9",
+      "bytes": 15968
+    },
+    {
+      "original_path": "docs/OPERATIONS.md",
+      "archive_path": "docs/archive/20261124/cache-budget-close-out/docs/OPERATIONS.md",
+      "sha256": "c7d9df8d0db9c72c9a17644ea748a4c1366bb1ce7c81a6631f28c8ea059d1627",
+      "bytes": 8072
+    },
+    {
+      "original_path": "docs/INDEX.md",
+      "archive_path": "docs/archive/20261124/cache-budget-close-out/docs/INDEX.md",
+      "sha256": "3fc3885a73c63415f9dde4c16f56564bda680b0758f039223e30ae61084222ef",
+      "bytes": 5980
+    },
+    {
+      "original_path": "docs/METAL-REQUEST-OBSERVATION.md",
+      "archive_path": "docs/archive/20261124/cache-budget-close-out/docs/METAL-REQUEST-OBSERVATION.md",
+      "sha256": "6c705aa9f5d0e7639099bc1154d85b15b10b8bf0bc669c931488a85e6915a734",
+      "bytes": 12372
+    },
+    {
+      "original_path": "docs/ORGANIZATION.md",
+      "archive_path": "docs/archive/20261124/cache-budget-close-out/docs/ORGANIZATION.md",
+      "sha256": "6eb9f5710a60df7f701119902d35ecc8f1d662979f97f42b0cfac09d91f5144b",
+      "bytes": 8863
+    },
+    {
+      "original_path": "docs/LILAC-PERIPHERALS.md",
+      "archive_path": "docs/archive/20261124/cache-budget-close-out/docs/LILAC-PERIPHERALS.md",
+      "sha256": "774c1fa9fa2d7347af6b04f84646fb8ff4f1e671240e01f68576ca03b2563bcf",
+      "bytes": 16741
+    }
+  ]
+}

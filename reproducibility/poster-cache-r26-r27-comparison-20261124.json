@@ -1,0 +1,200 @@
+{
+  "observation_token": "bba76b81fd62df75",
+  "observation_raw_sha256": "f2609cd517bc6d0c39ac0c65ef91fd16476ac7c8243f234792aad59ce80c9bc1",
+  "original_result": "STOP",
+  "original_reason": "SCREEN_EVIDENCE_MISSING",
+  "inventory_token": "74d17a254c08c57c",
+  "inventory_raw_sha256": "ceb209dd7d8bf24e7fc74c600eef97068ba493d0dbd721e1028255f3b05b55bf",
+  "scope_identity": "0106a801a3d9b6c261554e1a00cbdfcd7ca1aaf064b025ed09db91ade061a58d",
+  "inventory_counts": {
+    "files": 62,
+    "records": 62,
+    "requests": 31,
+    "bins": 31,
+    "present": 31,
+    "missing": 0
+  },
+  "independent_scanout_verified": false,
+  "confirmed_scope_pairs": 3,
+  "recorded_requests": [
+    {
+      "line": 6036,
+      "source_lengths": [
+        4840,
+        7830
+      ],
+      "request_keys_by_length": [
+        "157601d8938194a9f72feb9e2b95b8855f4cc339699d7bd351b2a534504268a3"
+      ],
+      "paired_binary_keys": [
+        "157601d8938194a9f72feb9e2b95b8855f4cc339699d7bd351b2a534504268a3"
+      ]
+    },
+    {
+      "line": 6142,
+      "source_lengths": [
+        4840,
+        9711
+      ],
+      "request_keys_by_length": [
+        "1abcbb92563f262add5d204c8caa3df4de5aff143393960c4ab1bc58ad347ebb"
+      ],
+      "paired_binary_keys": [
+        "1abcbb92563f262add5d204c8caa3df4de5aff143393960c4ab1bc58ad347ebb"
+      ]
+    }
+  ],
+  "recorded_import_hits": [
+    {
+      "line": 5861,
+      "binary_payload_bytes": 64421,
+      "format": 34655,
+      "binary_keys_by_size_and_format": [
+        "12ffe8b743bfd08231aba9a5df47876046459b3d2f59f011203be4943e5970e6"
+      ]
+    },
+    {
+      "line": 5891,
+      "binary_payload_bytes": 64317,
+      "format": 34655,
+      "binary_keys_by_size_and_format": [
+        "eec441c6c49f1663a3425bce2167c22ab5ae6be69bd49a3746d10a1514a9713f"
+      ]
+    },
+    {
+      "line": 5984,
+      "binary_payload_bytes": 747773,
+      "format": 34655,
+      "binary_keys_by_size_and_format": [
+        "af8f71c643a70a9ed99878d119a94e35ac54287df09fab17d575d1769046a32f"
+      ]
+    },
+    {
+      "line": 7690,
+      "binary_payload_bytes": 64421,
+      "format": 34655,
+      "binary_keys_by_size_and_format": [
+        "12ffe8b743bfd08231aba9a5df47876046459b3d2f59f011203be4943e5970e6"
+      ]
+    },
+    {
+      "line": 7731,
+      "binary_payload_bytes": 64317,
+      "format": 34655,
+      "binary_keys_by_size_and_format": [
+        "eec441c6c49f1663a3425bce2167c22ab5ae6be69bd49a3746d10a1514a9713f"
+      ]
+    },
+    {
+      "line": 7947,
+      "binary_payload_bytes": 375861,
+      "format": 34655,
+      "binary_keys_by_size_and_format": [
+        "6ac190dafb76a5d696e5aaf595b0f3ab6de17a9c7bf72b1253b278edcb3d3f78"
+      ]
+    },
+    {
+      "line": 8010,
+      "binary_payload_bytes": 17437,
+      "format": 34655,
+      "binary_keys_by_size_and_format": [
+        "157601d8938194a9f72feb9e2b95b8855f4cc339699d7bd351b2a534504268a3"
+      ]
+    },
+    {
+      "line": 11497,
+      "binary_payload_bytes": 64421,
+      "format": 34655,
+      "binary_keys_by_size_and_format": [
+        "12ffe8b743bfd08231aba9a5df47876046459b3d2f59f011203be4943e5970e6"
+      ]
+    },
+    {
+      "line": 11531,
+      "binary_payload_bytes": 64317,
+      "format": 34655,
+      "binary_keys_by_size_and_format": [
+        "eec441c6c49f1663a3425bce2167c22ab5ae6be69bd49a3746d10a1514a9713f"
+      ]
+    },
+    {
+      "line": 11804,
+      "binary_payload_bytes": 747773,
+      "format": 34655,
+      "binary_keys_by_size_and_format": [
+        "af8f71c643a70a9ed99878d119a94e35ac54287df09fab17d575d1769046a32f"
+      ]
+    },
+    {
+      "line": 11908,
+      "binary_payload_bytes": 17437,
+      "format": 34655,
+      "binary_keys_by_size_and_format": [
+        "157601d8938194a9f72feb9e2b95b8855f4cc339699d7bd351b2a534504268a3"
+      ]
+    },
+    {
+      "line": 11945,
+      "binary_payload_bytes": 44221,
+      "format": 34655,
+      "binary_keys_by_size_and_format": [
+        "1abcbb92563f262add5d204c8caa3df4de5aff143393960c4ab1bc58ad347ebb"
+      ]
+    },
+    {
+      "line": 14160,
+      "binary_payload_bytes": 64421,
+      "format": 34655,
+      "binary_keys_by_size_and_format": [
+        "12ffe8b743bfd08231aba9a5df47876046459b3d2f59f011203be4943e5970e6"
+      ]
+    },
+    {
+      "line": 14230,
+      "binary_payload_bytes": 64317,
+      "format": 34655,
+      "binary_keys_by_size_and_format": [
+        "eec441c6c49f1663a3425bce2167c22ab5ae6be69bd49a3746d10a1514a9713f"
+      ]
+    },
+    {
+      "line": 14394,
+      "binary_payload_bytes": 227981,
+      "format": 34655,
+      "binary_keys_by_size_and_format": [
+        "5e0b26e0603b2ef3943486994f348af84c5077e2c9bff118e463cf1d94f42a97"
+      ]
+    },
+    {
+      "line": 14460,
+      "binary_payload_bytes": 17437,
+      "format": 34655,
+      "binary_keys_by_size_and_format": [
+        "157601d8938194a9f72feb9e2b95b8855f4cc339699d7bd351b2a534504268a3"
+      ]
+    },
+    {
+      "line": 14528,
+      "binary_payload_bytes": 44221,
+      "format": 34655,
+      "binary_keys_by_size_and_format": [
+        "1abcbb92563f262add5d204c8caa3df4de5aff143393960c4ab1bc58ad347ebb"
+      ]
+    }
+  ],
+  "store_lines": [
+    6104,
+    9173
+  ],
+  "reject_lines": [],
+  "checkin_timeout_lines": [
+    6197,
+    9960
+  ],
+  "post_ack_checkin_timeout_count": 0,
+  "inventory_candidates_are_metadata_matches_only": true,
+  "runtime_keys_not_observed": true,
+  "cross_boot_inventory_does_not_prove_runtime_import": true,
+  "original_wallpaper_verified": false,
+  "device_operations": 0
+}

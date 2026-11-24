@@ -1,0 +1,33 @@
+{
+  "base_kernel_sha256": "f258dee9c6d142b90a573f796eeec5e92b39dd65feed6a21b2542d90fb66a88d",
+  "output": "build/lilac-wled-observer-overlay-r4-20261124",
+  "overlay_manifest_sha256": "ac01002ebf980bad04b9367ffe93198359b1325efe327d372cd5447845b56d6e",
+  "base_sources": {
+    "iokit/Kernel/arm/SweetFramebuffer.cpp": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+    "iokit/Kernel/arm/SweetFramebufferScreenRuntime.h": "a1f41eeb87b7cf70ea751884ee38d758191f3cc0a00d697acc363fbba3cd5f63",
+    "bsd/dev/sweet_spmi.c": "78e81f5826347e3589691e3cedfa71d78dab716ca66753f0830c35def74ce334"
+  },
+  "generated_runtime_sha256": "2c566a962d61e7b8aebfc88be54d496878821a4c0f5bb439f505198b16adfba2",
+  "host_checks": {
+    "asan_ubsan_with_generated_overlay_headers": true,
+    "refused_foreign_registers_and_null_output": true,
+    "loss_of_live_after_each_of_18_reads_suppresses_sample": true,
+    "observer_read_failure_reports_unavailable": true,
+    "evidence_parser_tests_passed": 3,
+    "arm64_probe_object_sha256": "f02bb189cccf3e75ed9ebe882ef4b45a8257ca91b73239b2fc3e122635116d7f",
+    "arm64_probe_undefined_symbols": [
+      "___stack_chk_fail",
+      "___stack_chk_guard",
+      "_sweet_screen_record",
+      "_sweet_spmi_read_ppid",
+      "_vermeer_loop_live_ready"
+    ]
+  },
+  "sample_after_first_successful_frame_end_record": true,
+  "uses_existing_spmi_observer_only": true,
+  "kernel_and_ram_artifacts_unchanged": true,
+  "full_xnu_linked": false,
+  "hardware_read_verified": false,
+  "physical_backlight_verified": false,
+  "device_operations": 0
+}

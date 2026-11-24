@@ -1,0 +1,27 @@
+{
+  "apr_reference": "reproducibility/lilac-asm-pcm-apr-offline-20261124.json",
+  "stock_reference": "reproducibility/lilac-asm-pcm-offline-20261124.json",
+  "sources": {
+    "xnu/support/LilacAsmPcmMap.h": "703ba5e8bc0c2fb8c93a4625d01f0bcfa829b145c7a5f8847254a963bcffdace",
+    "tools/build/test_lilac_asm_pcm_map.cpp": "2eee81110dfcfb12f50991666070c741aed2b17fe38cae2350623d3076e6defc"
+  },
+  "scope": "One caller-owned contiguous physical region per mapping, 4 KiB aligned, within a 36-bit DSP address range",
+  "map_packet_bytes": 40,
+  "unmap_packet_bytes": 24,
+  "host_asan_ubsan_passed": true,
+  "checked_cases": [
+    "exact mapping bytes and address bounds",
+    "acceptance and basic success do not supply a mapping handle",
+    "foreign domain and epoch and truncated replies",
+    "writes confined to a confirmed region",
+    "unmap refused while buffers are pending",
+    "uncertain mapping or failed unmap retains ownership despite late success"
+  ],
+  "arm64_macho_object_sha256": "f552f02094c21f1dcd0c39a4ee702c2a15937a8e30c4224a0008765d9bd8ba0d",
+  "arm64_undefined_symbols": ["___stack_chk_fail", "___stack_chk_guard"],
+  "requires_exclusive_mapping_owner_serialized_calls_and_verified_transport": true,
+  "allocates_or_maps_memory_on_device": false,
+  "firmware_reply_semantics_verified_on_device": false,
+  "dsp_playback_verified": false,
+  "device_operations": 0
+}

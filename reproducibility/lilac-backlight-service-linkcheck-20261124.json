@@ -1,0 +1,23 @@
+{
+  "prior_properties_object": "reproducibility/lilac-backlight-service-properties-20261124.json",
+  "mac_build_directory": "build/lilac-backlight-service-linkcheck-20261124",
+  "mac_build_receipt_sha256": "d0ad8470b584d7d55a131ee7aef042a60488d6f4dedb3951fb619c86e389ee0e",
+  "builder_sha256": "abc4d65a0fd13e76c16bb1b51faa201bb1625545397f97678d835a3e2afc3464",
+  "base_kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+  "base_bytes_match_except_lc_uuid": true,
+  "v731_link_inputs_unchanged": 1117,
+  "compiled_sources_sha256": {
+    "AppleARMBacklight.cpp": "4d9f500f4e56c54e80fdac518c7e715095e24a7d31f7bb45e190c9f43e78a778",
+    "LilacBacklightService.h": "d6a99809b6da988bf2e1cb055756d6298051b632a660934b75797c15d16d2985",
+    "LilacBacklightProperties.h": "40c94bae4d7ba5d7c1ce8f9652b793975d6d2315069639cc26888381f3dbc9d6"
+  },
+  "appended_object_sha256": "bdb35e8f22c51a0488b8ad0eddccea88ed6d941c9d635e19e7342707409db68f",
+  "linked_kernel_sha256": "e092012998a8f50b56e0f59e619d55f66705840ebf33f7417888b1126449f057",
+  "linked_kernel_bytes": 20687184,
+  "service_and_factory_symbols_found": true,
+  "spmi_wled_or_mmio_imports": false,
+  "publication_hook_present": false,
+  "registered_on_device": false,
+  "live_admission": false,
+  "device_operations": 0
+}

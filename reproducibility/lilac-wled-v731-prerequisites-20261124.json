@@ -1,0 +1,38 @@
+{
+  "version": 731,
+  "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+  "link_record": "reproducibility/lilac-wled-isolated-link-20261124.json",
+  "bundle_root": "build/lilac-wled-v731-prerequisites-20261124",
+  "bundles": {
+    "private-r2": {
+      "token": "96cae1a14529df8e",
+      "image_sha256": "658568741cca9bbf788f7decae3c070bb97d740708e117f3da2c587293ddcc8c",
+      "command_bytes": 564,
+      "full_offline_preflight_passed": true,
+      "mac_actual_sources_audited": 85
+    },
+    "owner": {
+      "token": "ee903b2b8fc2af54",
+      "image_sha256": "f6a22fe73b8b6f1b49a0b0dd1b0327c72f63158ee8ce1555ac393b96542f707a",
+      "command_bytes": 605
+    },
+    "ready": {
+      "token": "f8b8c6f3e1badb8a",
+      "image_sha256": "e38b1ca56faf548df005f991728915a280a62122df7b387c390f4fdd23b36665",
+      "command_bytes": 598
+    },
+    "ramcpu": {
+      "token": "3b2765450f618aaf",
+      "image_sha256": "394efbca72b0e2879372fb378ff87a566a0770c260f76160c533d5550838a9e4",
+      "command_bytes": 607
+    }
+  },
+  "all_bundle_payloads_reconstructed": true,
+  "v730_private_proof_refused_for_v731": true,
+  "v730_r26_payload_reconstructed_after_changes": true,
+  "device_test_cases": 220,
+  "device_test_cases_skipped": 2,
+  "phone_boots": 0,
+  "own_hardware_admission_verified": false,
+  "wled_hardware_reads_verified": false
+}

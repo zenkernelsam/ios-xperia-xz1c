@@ -1,0 +1,140 @@
+{
+  "system": "iOS16.7.16/20H392",
+  "sparse_sha256": "e9bf1547b6a7e9a33b51c2749c643bc2eff0134c31cc3a63f9435e4cea1f9b29",
+  "symbols_sha256": "5bf04681af1819e2379319942a97be635100d6ca3844c5a22e372ce78a83b83d",
+  "cache_sha256": "76874e8375252ee643011ff8063f0cce12355f05cf5f9897a34e5679667a65aa",
+  "owner": "CBDisplayContaineriOS",
+  "method_list": "0x1af13ff50",
+  "methods": {
+    "findBacklight": {
+      "implementation": "0x1af0cb224",
+      "type_encoding": "B16@0:8",
+      "code_bytes": 608,
+      "code_sha256": "2c78922ab7ef2480d4a0f609180d0464706aa5c0c1bb55c6818f4d19efe7e414",
+      "verified_calls": [
+        {
+          "offset": 136,
+          "symbol": "_CFDictionaryCreate_stub"
+        },
+        {
+          "offset": 200,
+          "symbol": "_CFDictionaryCreate_stub"
+        },
+        {
+          "offset": 252,
+          "symbol": "_IOServiceGetMatchingServices_stub"
+        },
+        {
+          "offset": 304,
+          "symbol": "_IOIteratorNext_stub"
+        },
+        {
+          "offset": 372,
+          "symbol": "_IOObjectConformsTo_stub",
+          "class_argument": "AppleARMBacklight"
+        },
+        {
+          "offset": 508,
+          "symbol": "_objc_msgSend$handleDisplayArrival:"
+        }
+      ],
+      "matching_dictionary": {
+        "IOPropertyMatch": {
+          "backlight-control": true
+        }
+      }
+    },
+    "initWithBacklightService:": {
+      "implementation": "0x1af0c9f20",
+      "type_encoding": "@20@0:8I16",
+      "code_bytes": 1940,
+      "code_sha256": "4c4f189cb4634f7255d667e040e9118bca451375601d49b76664c096a88e37c0",
+      "verified_calls": [
+        {
+          "offset": 432,
+          "symbol": "_IORegistryEntryGetRegistryEntryID_stub"
+        },
+        {
+          "offset": 1036,
+          "symbol": "_IOObjectConformsTo_stub",
+          "class_argument": "AppleARMBacklight"
+        },
+        {
+          "offset": 1164,
+          "symbol": "_IORegistryEntrySearchCFProperty_stub",
+          "arguments_and_result_use": {
+            "plane": "IOService",
+            "key": "kUSBContainerID",
+            "options": 3,
+            "result_class_checked": "NSString",
+            "uuid_initializer_observed": true
+          }
+        },
+        {
+          "offset": 1188,
+          "symbol": "_objc_opt_class_stub"
+        },
+        {
+          "offset": 1200,
+          "symbol": "_objc_opt_isKindOfClass_stub"
+        },
+        {
+          "offset": 1232,
+          "symbol": "_objc_msgSend$initWithUUIDString:"
+        }
+      ]
+    },
+    "handleDisplayArrival:": {
+      "implementation": "0x1af0cba00",
+      "type_encoding": "B20@0:8I16",
+      "code_bytes": 1892,
+      "code_sha256": "dcb60c08046789488357291cd666fb1e38d7b3f5aa9fb743bf15a2794752f4f7",
+      "verified_calls": [
+        {
+          "offset": 156,
+          "symbol": "_IORegistryEntryGetRegistryEntryID_stub"
+        },
+        {
+          "offset": 184,
+          "symbol": "_IOObjectCopyClass_stub"
+        },
+        {
+          "offset": 1044,
+          "symbol": "_IOObjectConformsTo_stub",
+          "class_argument": "AppleARMBacklight"
+        },
+        {
+          "offset": 1128,
+          "symbol": "_IOObjectConformsTo_stub",
+          "class_argument": "AppleARMBacklight"
+        },
+        {
+          "offset": 1224,
+          "symbol": "_IORegistryEntrySearchCFProperty_stub",
+          "arguments_and_result_use": {
+            "plane": "IOService",
+            "key": "kUSBContainerID",
+            "options": 3,
+            "result_class_checked": "NSString",
+            "uuid_initializer_observed": true
+          }
+        },
+        {
+          "offset": 1248,
+          "symbol": "_objc_opt_class_stub"
+        },
+        {
+          "offset": 1260,
+          "symbol": "_objc_opt_isKindOfClass_stub"
+        },
+        {
+          "offset": 1292,
+          "symbol": "_objc_msgSend$initWithUUIDString:"
+        }
+      ]
+    }
+  },
+  "brightness_write_abi_verified": false,
+  "hardware_function_verified": false,
+  "device_operations": 0
+}

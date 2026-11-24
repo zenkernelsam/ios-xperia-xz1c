@@ -1,5 +1,6 @@
 """Fault replay for prerequisites and live diagnostic failures; no device access."""
 import hashlib
+import copy
 import json
 import os
 import tempfile
@@ -11,7 +12,8 @@ from clock_evidence import verify as verify_clock
 from owner_metadata import verify as verify_owner
 from gpu_pixels import verify as verify_gpu
 from run_trial import DiagnosticPolicy, prerequisites
-from diagnostic_candidate import configuration, verify_record
+from package_trial import validate_wled_gpu_ram
+from diagnostic_candidate import WLED_KERNEL_SHA, WLED_MARKER, WLED_VERSION, configuration, verify_record, verify_wled_kernel
 from ram_library import require_same_library,load as load_ram
 from readonly_pixels import verify as verify_readonly,expected_hash as readonly_hash
 from exception_evidence import inspect_scope,verify_renderer
@@ -126,7 +128,149 @@ class Gates(unittest.TestCase):
         self.assertEqual(screen['manifest']['base_version'],729)
         self.assertEqual(len(screen['source_hashes']),83)
         self.assertEqual(screen['source_hashes']['iokit/Kernel/arm/SweetGPU.cpp'],configuration(729)['source_hashes']['iokit/Kernel/arm/SweetGPU.cpp'])
-        with self.assertRaises(AssertionError):configuration(731)
+        with self.assertRaises(AssertionError):configuration(732)
+
+    def test_wled_has_its_own_kernel_and_scanout_source_identity(self):
+        baseline = configuration(730)
+        candidate = configuration(WLED_VERSION)
+        record = dict(version=WLED_VERSION, diagnostic_binding=candidate['binding'], kernel_sha256=WLED_KERNEL_SHA,
+                      source_revision=candidate['binding']['manifest_sha256'])
+        self.assertEqual(verify_record(record)['kernel_sha256'], WLED_KERNEL_SHA)
+        self.assertEqual(len(candidate['source_hashes']), len(baseline['source_hashes']) + 2)
+        self.assertEqual({name for name, digest in candidate['source_hashes'].items()
+                          if baseline['source_hashes'].get(name) != digest}, set(candidate['changed_sources']))
+        with self.assertRaises(AssertionError):
+            verify_record(dict(record, diagnostic_binding=baseline['binding']))
+        with self.assertRaises(AssertionError):
+            verify_record(dict(record, kernel_sha256='0'*64))
+        with self.assertRaises(AssertionError):
+            verify_record(dict(record, source_revision=baseline['binding']['manifest_sha256']))
+        with self.assertRaisesRegex(ValueError, 'own diagnostic version'):
+            verify_wled_kernel(730, WLED_MARKER)
+
+    def test_wled_gpu_admits_only_pinned_gles9_ram(self):
+        package = {'frontend_build_binding': {'CA_matrix_revision': 1, 'GLES_suite_tests': 9}}
+        binding = {
+            'library_sha256': '0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607',
+            'blob_sha256': '4277931a612742a2eb2e02f67af8c2083116a13686c7594e7d0a3b5e87f0cf27',
+            'manifest_sha256': '7c5da6c1025885e8e2c4c988475c138ec2a43d135987b88a316020f26c27cf46',
+        }
+        self.assertEqual(validate_wled_gpu_ram(package, binding), 'gles')
+        new_binding = dict(
+            library_sha256='6efabfc0627a8818a8c4c45665459cd33d8ee814f2e50a3f3cdc4813bb254325',
+            blob_sha256='25a417018c2febc28f1c72fc14cb0d0a9ab0c4a3ec28536cbcb13406f01b6543',
+            manifest_sha256='60680d669f037146a85b0a50e3353c0a2f991ff8be9ff9eedf4f734ef4191281')
+        self.assertEqual(validate_wled_gpu_ram(package, new_binding), 'gles')
+        with self.assertRaises(AssertionError):
+            validate_wled_gpu_ram(package, dict(new_binding, library_sha256=binding['library_sha256']))
+        for bad in (dict(package, exception_observer={}), dict(package, metal_resources={}),
+                    {'frontend_build_binding': {'CA_matrix_revision': 1, 'GLES_suite_tests': 8}}):
+            with self.subTest(package=bad), self.assertRaises(AssertionError):
+                validate_wled_gpu_ram(bad, binding)
+        with self.assertRaises(AssertionError):
+            validate_wled_gpu_ram(package, dict(binding, blob_sha256='0'*64))
+
+    def test_wled_metal_requires_pinned_background_suite(self):
+        binding = {
+            'blob_sha256': 'cb1960218b50b7d908eda964fad198a9394941c0db5b1af9cee7e84471837b0a',
+            'manifest_sha256': '27c39aa515bbfd247012b887a163558421f21bbe38ffce54ce2182be422ad459',
+        }
+        observer = dict(target_process='backboardd', background_full_suite=True, presentation_probe=True,
+                        cif10_reference_cases=6, cif10_reference_shared_encoder=True)
+        resources = {'native_presentation_required_tests': 21}
+        package = dict(exception_observer=observer, metal_resources=resources)
+        self.assertEqual(validate_wled_gpu_ram(package, binding), 'native')
+        for bad in (dict(observer, registration_only=True), dict(observer, target_process='AegirPoster'),
+                    dict(observer, cif10_reference_cases=5)):
+            with self.subTest(observer=bad), self.assertRaises(AssertionError):
+                validate_wled_gpu_ram(dict(package, exception_observer=bad), binding)
+        with self.assertRaises(AssertionError):
+            validate_wled_gpu_ram(package, dict(binding, manifest_sha256='0'*64))
+
+    def test_wled_poster_requires_its_own_native_proof(self):
+        binding = {
+            'blob_sha256': 'ab1990dfdaef042c06588d21c78fea999195efeff62b62916d95060879e78f3d',
+            'manifest_sha256': '1e346d62937f85b21ae807f0164aad7e97c9bb2d94cb79f7e8b05cfc3cd6a4a1',
+        }
+        observer = dict(target_process='AegirPoster', registration_only=True,
+                        prior_native_hardware_proof={'version': WLED_VERSION},
+                        png_filter_encoder=True, snapshot_method_observer=True)
+        self.assertEqual(validate_wled_gpu_ram({'exception_observer': observer}, binding), 'poster')
+        for bad in (dict(observer, prior_native_hardware_proof={'version': 730}),
+                    dict(observer, registration_only=False), dict(observer, png_filter_encoder=False)):
+            with self.subTest(observer=bad), self.assertRaises(AssertionError):
+                validate_wled_gpu_ram({'exception_observer': bad}, binding)
+
+    def test_cache_budget_native_rejects_old_or_mixed_payloads(self):
+        manifest = Path(__file__).resolve().parents[2] / 'build/poster-cache-budget-metal-20261124/reference-ram/manifest.json'
+        if not manifest.is_file():
+            self.skipTest('Local signed cache-budget native RAM is unavailable')
+        package = json.loads(manifest.read_bytes())
+        binding = dict(library_sha256=package['library_sha256'], blob_sha256=package['blob_sha256'],
+                       manifest_sha256=hashlib.sha256(manifest.read_bytes()).hexdigest())
+        self.assertEqual(validate_wled_gpu_ram(package, binding), 'native')
+        for field in ('library_sha256', 'blob_sha256', 'manifest_sha256'):
+            with self.subTest(binding=field), self.assertRaises(AssertionError):
+                validate_wled_gpu_ram(package, dict(binding, **{field: '0'*64}))
+        mutations = [
+            ('metal_resources', 'gles_library_sha256', '0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607'),
+            ('metal_resources', 'library_sha256', '0'*64),
+            ('metal_resources', 'source_files', {}),
+            ('metal_resources', 'immutable_program_cache_identity', '0'*64),
+            ('exception_observer', 'library_sha256', '0'*64),
+            ('exception_observer', 'registration_only', True),
+            ('exception_observer', 'cif10_reference_cases', 5),
+            ('exception_observer', 'program_cache_inventory', dict(package['exception_observer']['program_cache_inventory'], conditional_prime=True)),
+        ]
+        for owner, field, value in mutations:
+            changed = copy.deepcopy(package)
+            changed[owner][field] = value
+            with self.subTest(owner=owner, field=field), self.assertRaises(AssertionError):
+                validate_wled_gpu_ram(changed, binding)
+        changed = copy.deepcopy(package)
+        changed['frontend_build_binding']['program_cache_build_identity']['build_identity'] = '0'*64
+        with self.assertRaises(AssertionError):
+            validate_wled_gpu_ram(changed, binding)
+
+    def test_cache_budget_primer_is_bound_to_distinct_reviewed_ram(self):
+        manifest = Path(__file__).resolve().parents[2] / 'build/poster-cache-budget-metal-prime-20261124/reference-ram/manifest.json'
+        if not manifest.is_file():
+            self.skipTest('Local signed cache-budget conditional primer RAM is unavailable')
+        package = json.loads(manifest.read_bytes())
+        binding = dict(library_sha256=package['library_sha256'], blob_sha256=package['blob_sha256'],
+                       manifest_sha256=hashlib.sha256(manifest.read_bytes()).hexdigest())
+        self.assertEqual(validate_wled_gpu_ram(package, binding), 'native')
+        changed = copy.deepcopy(package)
+        changed['exception_observer']['program_cache_inventory']['conditional_prime'] = False
+        with self.assertRaises(AssertionError):
+            validate_wled_gpu_ram(changed, binding)
+        changed = copy.deepcopy(package)
+        changed['exception_observer']['program_cache_prime'] = False
+        with self.assertRaises(AssertionError):
+            validate_wled_gpu_ram(changed, binding)
+        with self.assertRaises(AssertionError):
+            validate_wled_gpu_ram(package, dict(binding, blob_sha256='a8821cead75c078861eed21733c6366b594c8de4a631c3848b8bfd55d3cb66bf'))
+
+    def test_new_poster_refuses_old_gles_native_and_png_proofs(self):
+        manifest = Path(__file__).resolve().parents[2] / 'build/poster-cache-budget-wallpaper-20261124/ram/manifest.json'
+        if not manifest.is_file():
+            self.skipTest('Local signed cache-budget original poster RAM is unavailable')
+        package = json.loads(manifest.read_bytes())
+        binding = dict(library_sha256=package['library_sha256'], blob_sha256=package['blob_sha256'],
+                       manifest_sha256=hashlib.sha256(manifest.read_bytes()).hexdigest())
+        self.assertEqual(validate_wled_gpu_ram(package, binding), 'poster')
+        mutations = [
+            ('prior_native_hardware_proof', 'gles_library_sha256', '0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607'),
+            ('prior_native_hardware_proof', 'native_run_token', '97fa008727dbc047'),
+            ('prior_native_hardware_proof', 'native_tests', package['exception_observer']['prior_native_hardware_proof']['native_tests'][:20]),
+            ('png_encoder_prior_proof', 'GLES_sha256', '0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607'),
+            ('png_encoder_prior_proof', 'reference_token', '97fa008727dbc047'),
+        ]
+        for proof, field, value in mutations:
+            changed = copy.deepcopy(package)
+            changed['exception_observer'][proof][field] = value
+            with self.subTest(proof=proof, field=field), self.assertRaises(AssertionError):
+                validate_wled_gpu_ram(changed, binding)
 
     def test_audit_includes_upstream_memory_descriptor(self):
         first=configuration(725);next_=configuration(726)

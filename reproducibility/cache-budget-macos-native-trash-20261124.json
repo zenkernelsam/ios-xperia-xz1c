@@ -1,0 +1,1791 @@
+{
+  "scope": "2026-11-24 cache budget close-out",
+  "native_trash_items": 54,
+  "native_trash_files": 238,
+  "logical_bytes": 287602294,
+  "protected_files_verified": 233,
+  "protected_source_and_signed_inputs_unchanged": true,
+  "raw_HFS_reconstructable_from_retained_blob": true,
+  "failed_packages_manifests_raw_logs_and_proofs_preserved": true,
+  "Trash_not_emptied": true,
+  "device_operations": 0,
+  "source_helper_sha256": "912027443190d69d9f72ccd43388d5e571feb1571fd986b405859aeb07596915",
+  "compiled_helper_sha256": "805c8fc0762a74b719dead62db500bc25d42c134a0eea24c4c9217327e235ddb",
+  "plan_sha256": "139356caff256dd70508265ad4ca97074c68904cd1ef8c4c8cd3a32de5b9dad5",
+  "journal_sha256": "3d953ae6e2ed253797942ff68173cb77ebbbc3cbb2d5afc3696d98d6ceba4afc",
+  "old_helper_schema_failure_before_any_move": true,
+  "items": [
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-ios-20261124/ram/glram.dmg",
+      "trash_path": "/Users/ciscohe/.Trash/glram.dmg 23-20-46-519.dmg",
+      "entries": [
+        {
+          "relative": "glram.dmg",
+          "type": "file",
+          "bytes": 33554432,
+          "sha256": "1d56456670c053815dfe75aa01295411e336ea958f802434942d9e255cb047e2"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-ios-20261124/ram/glram.raw",
+      "trash_path": "/Users/ciscohe/.Trash/glram.raw 23-20-46-586.raw",
+      "entries": [
+        {
+          "relative": "glram.raw",
+          "type": "file",
+          "bytes": 33554432,
+          "sha256": "1d56456670c053815dfe75aa01295411e336ea958f802434942d9e255cb047e2"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-ios-20261124/frontend/program_lifecycle_probe.o",
+      "trash_path": "/Users/ciscohe/.Trash/program_lifecycle_probe.o",
+      "entries": [
+        {
+          "relative": "program_lifecycle_probe.o",
+          "type": "file",
+          "bytes": 12648,
+          "sha256": "52ac27f95682555004c0ab8bc5963a5099403ff2d2acc7b217a369968780c4b9"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-ios-20261124/frontend/bridge_state_probe.o",
+      "trash_path": "/Users/ciscohe/.Trash/bridge_state_probe.o",
+      "entries": [
+        {
+          "relative": "bridge_state_probe.o",
+          "type": "file",
+          "bytes": 8928,
+          "sha256": "b45a9d0b19d0f02240f2681c5c3b05d7ea78a8dcd1ebc183889cd5e4a8a0a3fb"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-ios-20261124/frontend/program_cache.o",
+      "trash_path": "/Users/ciscohe/.Trash/program_cache.o",
+      "entries": [
+        {
+          "relative": "program_cache.o",
+          "type": "file",
+          "bytes": 15816,
+          "sha256": "f392b6c1143481ca50fb6b673f19f7689736ece14decd311bc012761cf8cfbf2"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-ios-20261124/frontend/sweetgl.o",
+      "trash_path": "/Users/ciscohe/.Trash/sweetgl.o",
+      "entries": [
+        {
+          "relative": "sweetgl.o",
+          "type": "file",
+          "bytes": 35192,
+          "sha256": "2b174e17b92911d87570916021b20d4e38cdc0df55956ec86cf23f43ca1896c1"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-ios-20261124/frontend/sweet_drm.o",
+      "trash_path": "/Users/ciscohe/.Trash/sweet_drm.o",
+      "entries": [
+        {
+          "relative": "sweet_drm.o",
+          "type": "file",
+          "bytes": 21464,
+          "sha256": "40fbc77249b6ed73d771319f4ed0e682b061f6d0050bb9167ff10354a4ab5e24"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-ios-20261124/frontend/caller_probe.o",
+      "trash_path": "/Users/ciscohe/.Trash/caller_probe.o",
+      "entries": [
+        {
+          "relative": "caller_probe.o",
+          "type": "file",
+          "bytes": 12672,
+          "sha256": "b72af0511f7e7971a1593e7ec2d1b25c9ab83a263e48426b08536cb0cb2ba347"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-ios-20261124/frontend/eagl.o",
+      "trash_path": "/Users/ciscohe/.Trash/eagl.o",
+      "entries": [
+        {
+          "relative": "eagl.o",
+          "type": "file",
+          "bytes": 91376,
+          "sha256": "395210678842296b281d15205febcd6448bb9a7e6e0d474522d788420d95b36c"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-ios-20261124/frontend/metal_render.o",
+      "trash_path": "/Users/ciscohe/.Trash/metal_render.o",
+      "entries": [
+        {
+          "relative": "metal_render.o",
+          "type": "file",
+          "bytes": 108784,
+          "sha256": "1a778991035ea81d99abc4744987af1d8704ad4ff93012c7fc42068929cb722b"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-ios-20261124/frontend/surface_initial_copy.o",
+      "trash_path": "/Users/ciscohe/.Trash/surface_initial_copy.o",
+      "entries": [
+        {
+          "relative": "surface_initial_copy.o",
+          "type": "file",
+          "bytes": 6928,
+          "sha256": "bdf2074f0d9c78e9729e6cdb350c3f6f79fa29fbc957fb7671deff18a4030fde"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-ios-20261124/frontend/layerdump.o",
+      "trash_path": "/Users/ciscohe/.Trash/layerdump.o",
+      "entries": [
+        {
+          "relative": "layerdump.o",
+          "type": "file",
+          "bytes": 12184,
+          "sha256": "2a65ea4e54364f6241d0c66b6dc1aee6daf31956c39f995daca700a23231df24"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-ios-20261124/frontend/ca_matrix_probe.o",
+      "trash_path": "/Users/ciscohe/.Trash/ca_matrix_probe.o",
+      "entries": [
+        {
+          "relative": "ca_matrix_probe.o",
+          "type": "file",
+          "bytes": 7776,
+          "sha256": "815a2bbc2801f39e7bdd162459a1450696b4ab4840c88faa1efacfafb818bf31"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-ios-20261124/frontend/surface_observe.o",
+      "trash_path": "/Users/ciscohe/.Trash/surface_observe.o",
+      "entries": [
+        {
+          "relative": "surface_observe.o",
+          "type": "file",
+          "bytes": 7880,
+          "sha256": "5e9149c9c80735b235971fc592828f34e179188049de4308141ce3214e96609e"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-ios-20261124/frontend/surface_region_observe.o",
+      "trash_path": "/Users/ciscohe/.Trash/surface_region_observe.o",
+      "entries": [
+        {
+          "relative": "surface_region_observe.o",
+          "type": "file",
+          "bytes": 5264,
+          "sha256": "a5d5767b6629e75a3b4ec41256e7f0762889533316171a4f47d369bb13afd711"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-ios-20261124/frontend/compat.o",
+      "trash_path": "/Users/ciscohe/.Trash/compat.o",
+      "entries": [
+        {
+          "relative": "compat.o",
+          "type": "file",
+          "bytes": 560,
+          "sha256": "2ea99532d84dfcd3cf420c3c3f3063f8788e81d9df432293a9d454ec443bb119"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-ios-20261124/frontend/dispatch.o",
+      "trash_path": "/Users/ciscohe/.Trash/dispatch.o",
+      "entries": [
+        {
+          "relative": "dispatch.o",
+          "type": "file",
+          "bytes": 249312,
+          "sha256": "704648cf1dcf4b69894c5a5f4c99b7252e869526ba8be137da883411806a2137"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-ios-20261124/frontend/readonly_probe.o",
+      "trash_path": "/Users/ciscohe/.Trash/readonly_probe.o",
+      "entries": [
+        {
+          "relative": "readonly_probe.o",
+          "type": "file",
+          "bytes": 9744,
+          "sha256": "f043178488c3367b9e8504b3e277c721bb6d29ae73ced4a6e644f0689673d61a"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-ios-20261124/frontend/metal_compute.o",
+      "trash_path": "/Users/ciscohe/.Trash/metal_compute.o",
+      "entries": [
+        {
+          "relative": "metal_compute.o",
+          "type": "file",
+          "bytes": 8872,
+          "sha256": "13b2161b808ca29f82d6aeb2be13ee4e2cc7d37974bc436ae2bfd1c4bb1ae00b"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-ios-20261124/frontend/copy_refresh_probe.o",
+      "trash_path": "/Users/ciscohe/.Trash/copy_refresh_probe.o",
+      "entries": [
+        {
+          "relative": "copy_refresh_probe.o",
+          "type": "file",
+          "bytes": 11640,
+          "sha256": "ee34cc29409c7a7015c08000b66b28378c550bb036ffb476a213b66f27b99227"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-ios-20261124/frontend/copy_context_probe.o",
+      "trash_path": "/Users/ciscohe/.Trash/copy_context_probe.o",
+      "entries": [
+        {
+          "relative": "copy_context_probe.o",
+          "type": "file",
+          "bytes": 6568,
+          "sha256": "da8290fb2fae4f462cedaf09e04de2e6edd14801706591bd4bd71879aef28f0e"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-ios-20261124/frontend/surface_probe.o",
+      "trash_path": "/Users/ciscohe/.Trash/surface_probe.o",
+      "entries": [
+        {
+          "relative": "surface_probe.o",
+          "type": "file",
+          "bytes": 11752,
+          "sha256": "df85e9c5d57eb84c3a8aac5f049c31c07dbf0150b565fcb0b126cea745ce4005"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-ios-20261124/frontend/ir3_cache.o",
+      "trash_path": "/Users/ciscohe/.Trash/ir3_cache.o",
+      "entries": [
+        {
+          "relative": "ir3_cache.o",
+          "type": "file",
+          "bytes": 9496,
+          "sha256": "bf6a55f3573b81cdaff3b1973d45d74186f8b69fbd2c46e95efdc3636a094719"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-20261124/reference-ram/glram.dmg",
+      "trash_path": "/Users/ciscohe/.Trash/glram.dmg 23-20-47-760.dmg",
+      "entries": [
+        {
+          "relative": "glram.dmg",
+          "type": "file",
+          "bytes": 33554432,
+          "sha256": "1265dc937ddb22237377a1d0996d7b838429945ad8bb274b1dc008c1122812e9"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-20261124/reference-ram/glram.raw",
+      "trash_path": "/Users/ciscohe/.Trash/glram.raw 23-20-47-811.raw",
+      "entries": [
+        {
+          "relative": "glram.raw",
+          "type": "file",
+          "bytes": 33554432,
+          "sha256": "1265dc937ddb22237377a1d0996d7b838429945ad8bb274b1dc008c1122812e9"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-20261124/reference-observer/test_startup.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_startup.dSYM 23-20-47-866.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 641,
+          "sha256": "944829fa3c1a4d913161b503f6352fa20f7c101cdeefe97a15208dadbe4a587a"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_startup",
+          "type": "file",
+          "bytes": 14936,
+          "sha256": "d48337e1566f58bf0a5e1781ca00da2f7ae8f7df68cf95f05e6bc7cac1f1459e"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_startup.yml",
+          "type": "file",
+          "bytes": 198,
+          "sha256": "b994ab9936c417bf3ad1f583fc55703245729a8fda331bc4ce16b039374191a0"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-20261124/reference-observer/cache-inventory-host-fixtures",
+      "trash_path": "/Users/ciscohe/.Trash/cache-inventory-host-fixtures",
+      "entries": [
+        {
+          "relative": "bad-name/sgpc-031425364758697a8b9cadbecfe0f102-not-a-key.req",
+          "type": "file",
+          "bytes": 8,
+          "sha256": "a1ff022ae4fc631a21f7b7b2b05853efa7ae600d4804e57cab10ee3c90f1482d"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-007657d2ec4e4fa9ed9b7a4322d421375a51398f942759cb9627d0368d4cb882.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "d9152088188a064b05a5920d8676ff7ce6be3f012c78291abcfa64c47aa92a8f"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-028831f06909c47f75b41a9c09bf3ac8282205e93cbce56687dad524be02ce98.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "d09de26b8acd351104d8afc04bc58cf0720b1dfadb4a4bd8fabac09e4f0bc347"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-07eaefa5167622339e98b90a11ed7d18c33080dc7915fff4fe1334aa5f8bd77f.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "7acd5e85413c454d37c25a00aba32dc4fce976a97866df144af90b62786b7570"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-1cb30d1de960905f680406b1ce03bd2380c42649223e2021d0bda8fb3c8832a4.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "d587bbcd7546608b497afa67e27e35bb642b923026cea9f0321446d546da8b19"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-20e85e6fd1fdcb23e66d57607ee831883da254c5453e15724a7196dd6f9f9a7e.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "94eba77847c7f3f8aa9d9f8e04f284f35662e523212d3d38c7fb2117186d7b01"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-246bba86faaa70815aeea875c3a1bd32250f89fe66aaf4e000917b0dfa33ed08.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "073c76de69b1173fdb128c1e2a5497935469e87aef606e0dd00e16a6f4203166"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-280e017c3c7cf3efde84f5f9329e1a8bf5fad8108ac9c88c3e3bb7c5667e7431.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "624df4e1b0725a37c2c77f7a5024dca1e38e0b81d2bb8abc94f4bfc007631348"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-2acc96720988070220d08f239e9566aa1d2b1acb85e8879a9914e420acf23412.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "a5953f6196d432d13adaecf9a6f3150a661131cffbb34d00b4578082d306e33f"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-31b96935385c4e78682b64a3788eb259a67392a73fc6377e6344c13834d55271.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "84c717a24517fcd9c8af2075c1c59bbcd723115bb9a6c071a6808e2ffdf71002"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-337db680bdbc174998fb67df75eb6c4e847ffc82d6fbd60e1cbdeec66e9f993c.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "82cfac1d541225c1d37cc326d2da1f34ed9830b1bd11ada8e0af860392e261f0"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-3389fb1225b668d7d3e917716509aa5b83911ddb03c7f85cd68c7f41cc9d8a2b.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "73b85499e42b8a76242bf1ad8cb486a0a6af122860e90592d6098f6769e9f5c3"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-387cf2785e719aad0836b611e45ff657c7b8310389775a86b0c5ac0e196ed058.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "a6d6465a30a15d4fbc01282243692bb8db09776bb51df6c256cd5c68c1b94eb3"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-3948fa303c69f018ad70524a76fac26dface07b8fe2640afc835c3653d8b0aa3.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "1b7c3994dbdf31a533535677fba0d99c741e6473965b3c4fe0cdcc128e1c99bc"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-39f40b64a05b926f2cc511849795c2c8fde5f255981008a72311c416009796ee.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "da5fc7596994755cc64b2130fdd9cdcfd7768e81858ddfcc8f97685dcb0873c8"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-40dd33aa9e97205cc1ae49c843b41db65fd03509fc7ad5653f1d3e31f459417e.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "1e214949091c2d377cd21d8e7ecedf084e4647a9505a0401dc39ea76cd1697a9"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-40fdd298830bc1bdcd4ed914a1a1e0a953b821188dfc93e63ef747f409a8c048.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "2a964652c9da34f2ef444e64058de7bc27ac740aa24c09fd4a6e85374a00c530"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-4610981bab6c74d8a483e4c1c96b9079929f16e4f5a9a24171aa9bc2bac5f705.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "82b7eee6bc299c475a7fd3e810c02f1a2fb832c7e4ecf1d53ac3a6ecb7844c6d"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-4fc49f17418a42ae2356c36854198e202eefdc31f3afa9e6bd2d88061c76d4e4.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "a3465952865fe3fd9a3a896532ed38c07bb88fb32e6b6641847813e3fa820618"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-571a380c78bb1c2fdef06b2b95dde913a0b57db47ee972a3889bf62498533f26.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "0683696446bf816d360242d7aadf87c1390d9d8d5252caeef668be10aa9b3666"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-574b825777533c92fd66d3c56b313e3f00da49b76b9b7706b9cb3c4e995ca69f.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "8766f31dcf71273936debb22f5a42d2cb9eeef67ed14f40f8ced0495ee092024"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-59ccc40367b2a73de0977ad60d740aa206e025183066a63ea0ea1c9dfa12a3d3.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "e0ebd8b7773b9400031181b8164f8af52627dd0e4d65f9314ecbbec84fb6db2c"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-5ba61116e14d982e1d4960c80214bdeba7966ebb9bc6b4a1bf782360e6e43542.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "3fd5e43c089267ff7a223b316f8d0f9d21db7ad4b6ab3d9265298208a81dacce"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-62abd6966f1a7e5918ecc6a757581a70bb7f8ee2ad479dd54b5fbaff6678753b.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "3baada261b9704aac67c89f12234a080682297c1aad6b8e052b11b92d7f984df"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-6309f777ca74e909bd978ba871930d0a8756fc4507d52a63ed86430e0233c6e1.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "b627926f6609d13d023c08d625d44edce538a577b0f48f455b70fa894dc157e5"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-66b013ba540c837d93532f01046e77f0a434c2a1cf4cbd9a502181b68802251a.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "36afd1c2b68af40bea4683adff19abe2440d9087f2ef20f04c965f70d774ee84"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-6802d250c1ae27d080df5aaea5341c8ac6ba15b08f63d4ebda0bc927c59103cc.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "1caaff488ac0b3370a6082b2f634c23ccdadfa290b29249e741bc6ff8e40fe6d"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-69dee44c9323d7d18e1964e6a007e960d21c5145acca118dea6672e4f551a175.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "6bab4266604f3e96a06bb446dc3f8b8b818ed7d75578b6a6009088eee59b4b3d"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-6e5878d2b9704dccfd0a137dce0510c95d023811c0d77ffb993a1dba4bee0a69.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "107b8e4d7fb6a87c42c254700db111c91f9abdbfad66c25024bcf62111068605"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-6f6b719dcd89b46f2f8ae32b62ed59956c7d797098103f723b1a02d972c5ae77.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "fbe61078046ffa7ab0e56f18d8ceb09d5a7b56fd081dcb1a9b3fd5e68ee2e05c"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-7302d945ee95ea3235352938fb7840b612bcd7d6961de998dd98af5543b274af.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "157d1bb1219dba37259b5b26868bfb1c5749b07e50b2f8ad3a13cb759a603548"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-7394130b24bc723cb5fa081d1e3fe2688686f13198e3dd14dcc2acf0fab4bb1c.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "90a3ffe92999de79c89e740d93bc2af75a392d4ab30747a8ee0affddd10a6762"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-77ee302c3971d83850c29e1f302ab3d8b641cab5203aeca0009ccc9be2f0af76.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "5989480b6d46f00c2aaee496f8a2f2e8ad6c07435638e6635c0adb611d0e48e8"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-79cc1de84b72c493402ab2e97355bfdb55c3f786f68f70350dd27bbba018d599.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "91d5971387b91aa7134bd527d138a01ca06630f63b878d36fa8ddfded34c8a87"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-7ec85ba3713c773ef734e16fe7dd3a90c76c73f3a95b5e21f98ad763cc62ff43.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "fcf941ac672ea75fec7920b528aa1f230501f9670e9a7a2952040939cd8f18be"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-7ef38e0df6ab44f22775b18938cd6bbb4a5ee9128c8722b900498e7e4ffb9abd.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "0042ae82e60d5544c6a276e29e4c029eb3a848f022e1a7fdab232951d08be7fe"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-81fd7c7b838115d8cd19c6f028994566979640dd66fdb6e05f1df4e628634be8.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "7e06009997f4906bf710dc3eee64a729366d6a80d73579ed082136477dea262c"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-830bf3d1ba91fa5cff5e54c1ebf7df0e6eb635013483b486a974a2215a2d6714.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "b4d80050d9e91302d6666ae44ca3b77d6870aefa0f16f2817f574ed02eed0934"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-86dc9f3b8a726fb96f7d85b34cd47a54c42b33de1e2b82cb8f6bc17bdcd6b056.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "f986b47fa78de0711e22c6fc263faa1ea909bf76d85528fd06e1d39fd18ee6f4"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-8f9458845b59ae55e6c895c9df5ac6b250af07fd129d0b066bf681be5096ffe2.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "94acb66bd373907671d50f5e2061656fefbb584d1cd90b720597f18ec42a4882"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-911678e652ec3e4ea0aa7a21b928006b49f22048814a7d4f96c6077ada5f52a6.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "3ef210b1e170dab8ea7407897bf0aa4172ddb3b965b63a5827e2c64db55c34d8"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-97166c30fb41062536bdfbd1728594c46faaa872c37e8aed46e77e3208db57aa.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "6fb6b3f2585a9f10d6aed33418372b47e141e79022d8ddc40440bb041ad4222e"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-98bdf55f988f21b0e2a14a4c7f1d89c6239e4aa86a28a99c1b08dd41188fa2f1.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "b3406ac64af3e4844ff14929da8bcfa669097247fa043e9045c120e9db05e713"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-99486dece13387a76f2200a783873ce0be4ac2042fd2c4e85db452cb91553d7a.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "820250d38fa51bccfdbfbd0b761d1c9b9b7ece93db49578135271364727a67f9"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-9c6e2b4b430a4a40891356b1d2c6824382c2ade9a5fcef41d89d0be8095b9bf3.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "2ec6b0f03c1ee4668bdb143052ed57094578cd9c7e02a896f246375547645214"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-9f85d3f72c816696df884818805c9f45300337c7765edbf27419544a33c65edf.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "cd7530fc32a9a72ef7e341366918f2ef36399a42c8cbc719c2c45846514b9803"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-a2f1880049e66b342a2b488b3db09735ac894302e6fc101b04d09245d89dc81d.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "5f73802e8e1ed0d1d0ec90051009a8c90184ad24b4105cf9bf646b158746775f"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-a308616109045a42d1b70f983893a303814a71255ab21b27ae6b67384e0b1ad3.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "f126fed85f8a075eec804e48bb07e29e36824e05cd38aca89c5646567dd00010"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-a6d247cd128acab56b4a36f050258b7f46e0ac83aac6355449341cc122e2767a.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "db9e1100c85df1699f45188fbf0e9a41940e89d30d7c6c81431c8b14538f797e"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-a9f59ced1ccc05e1aaae40aab6a9c188f0b9eb5cfb263b09150b8a62cd3b623b.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "b7d1d57f7f4244b6d9ca9e5911afcdce720dbd9e335fc189a12a8bc1d33fa61d"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-b56203c1f645397e565a1f45b3168dc1018d6925ce02006012e41b2e55d579b7.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "bac545c1b47f55586965ff4a8f83e38da21c524b39db2ffaa9c3ed654e797f64"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-b58c0b6860fbb21e99996d0107b6b59e71a35fd09e57eb9e8b86994c62475e95.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "3ff77c0b228394a587499af4d02bda0fe90fafabe6d29da97e9dd14970cbff44"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-bf9b7bbebec08608bf2a2ddb292f11a81d5f8f94a9810d4fa11fea8d42ce9016.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "c6d8f0ed80e38edcb42f5ea4a1b2651320b776ab27b18e1aaa6e85fad2825dd1"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-c0cd002e05f02514c3ec419fe0254726b49969715d13a6b0c3d869c959b31495.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "b361ffad000e94193e04c5c693349b4925f703dfd9fb240b484da7d2231ee5aa"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-c1c4cd5a8d65d3d98439019116419e5e08a7bcf5ec77e8fb39f8ac6fdb727eaa.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "299b9b0a6ad1819e79a0614ffe8a646305cb0ca6f4424d039bcb89481a12aa46"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-c2281abeb31d5dcb1d15990480e679173e57e2b35f1f2a4fd8a67a493af5add2.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "e9303e433a34a2bb4f7d937cfdb251d3f2635fffb3c44c94619478ff316e20d7"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-c97804700fbc227e39321af4e866f2bd5fbe97d9c026667a88367e54e3ecf215.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "32d1142cf5ad9590f307ea9de1cb3668e7f910e77dc49df82b9ff6fab478654c"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-cf64f3cb8a23fb19adc2dde64b3acb0d5537a14c5a79bc7dddb3de2d4ec15181.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "6ec761f725a4b49ee001f2a2458892275b7424aebd40c9f89a49d46b2a01c4c8"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-d3bc45edec0ad9b707990712c9a3cb874f73c989821ca38bb5e5ded0b1bbf373.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "c0ff3c00b36c44c298d7c357a88e7c38ca4ac87752917ca984e9b1f748ea8cc4"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-dd35556ef83ebd30e30dbb4910fc8d4c4c0abb9aa050949aeb61187b677fe535.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "faa3223cba8a675087bcd9c0df5ad4afb476243ceadb6e907f83895775c674e6"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-de93d50f24ac39d591bbf72d25c850336f3ef249728cadf5c02c9a0ed2a612c0.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "aef7511c0921cb53e0839f865ac3617331d35fb962d615594b2c3707519490cb"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-f0a34fa45ffeb1391bea3ae04d428dd0d79dc03122a926ad8e7ee1392a40d30a.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "16f22b3f9ed63464b052d9b931769246f65c3bcf0913c336a539f6a43aef418b"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-f8287ff66435f91096dd2a37b17e1c7bdc5e2cefcaedac3a502bfed69dfb5038.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "68337651907753cfe2e74710be533032185b37417d0b0c7c6c1098ea0868f62e"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-f914964600aebc3064f8e4f167e83b1ece5095ed978ec370645ffd99f71daf6d.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "4948dec59af85a0126f249e4b5538b81fa9eac1d45ebbd20776f3d10c7c3e456"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-f93556985ee32934318e7cd187d5cb745d6a1cb6dcf066210b1ca2ea89d37511.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "099c4c6c91f01c62b08d74da20a51cd16fbc552fc27d5539125fb7a5777af52c"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-ff8788b9ac8f85b7f380b7b7a24014b871ad682747ca434cff6ccc86e4e8c433.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "88c9fbde13e1c4b7b491521e0009723711b5fe59bfb29e8e82f59d43bd868bc9"
+        },
+        {
+          "relative": "byte-bound/sgpc-031425364758697a8b9cadbecfe0f102-0000000000000000000000000000000000000000000000000000000000000000.bin.part-123-0",
+          "type": "file",
+          "bytes": 8388744,
+          "sha256": "6d0a6422158ace8f972f6211236b7bc2e28c351cf4704bbda6e3678e7556f8ab"
+        },
+        {
+          "relative": "byte-bound/sgpc-031425364758697a8b9cadbecfe0f102-0100000000000000000000000000000000000000000000000000000000000000.bin.part-123-0",
+          "type": "file",
+          "bytes": 8388744,
+          "sha256": "6d0a6422158ace8f972f6211236b7bc2e28c351cf4704bbda6e3678e7556f8ab"
+        },
+        {
+          "relative": "byte-bound/sgpc-031425364758697a8b9cadbecfe0f102-0200000000000000000000000000000000000000000000000000000000000000.bin.part-123-0",
+          "type": "file",
+          "bytes": 8388744,
+          "sha256": "6d0a6422158ace8f972f6211236b7bc2e28c351cf4704bbda6e3678e7556f8ab"
+        },
+        {
+          "relative": "byte-bound/sgpc-031425364758697a8b9cadbecfe0f102-0300000000000000000000000000000000000000000000000000000000000000.bin.part-123-0",
+          "type": "file",
+          "bytes": 8388744,
+          "sha256": "6d0a6422158ace8f972f6211236b7bc2e28c351cf4704bbda6e3678e7556f8ab"
+        },
+        {
+          "relative": "byte-bound/sgpc-031425364758697a8b9cadbecfe0f102-0400000000000000000000000000000000000000000000000000000000000000.bin.part-123-0",
+          "type": "file",
+          "bytes": 8388744,
+          "sha256": "6d0a6422158ace8f972f6211236b7bc2e28c351cf4704bbda6e3678e7556f8ab"
+        },
+        {
+          "relative": "digest/sgpc-031425364758697a8b9cadbecfe0f102-28b60a25dffd33cfb2ce3332be8daa7755de10499206aad369fb624426bac72a.req",
+          "type": "file",
+          "bytes": 484,
+          "sha256": "3a73c3a0cd034cf220e29775dccd1fe965c0e7d703e0e656612b7aa9d610b12f"
+        },
+        {
+          "relative": "empty/unrelated-prefix.bin",
+          "type": "file",
+          "bytes": 9,
+          "sha256": "aaa8d3c8d74ad3e8f6b1772aa9c7e0eaa528cb42fc93599ce2f125b00d4c424c"
+        },
+        {
+          "relative": "false-completed/sgpc-031425364758697a8b9cadbecfe0f102-27f41d16f240b15502d128bb52da60f38b205c002db3d5834a000e9da2b627c4.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "821f8b164079b52f8c0b9980a9f09b61f1a4a088bbb272cdba9b51996b3d2a31"
+        },
+        {
+          "relative": "key/sgpc-031425364758697a8b9cadbecfe0f102-a07d6fd81b8dea08adcd222e63ef5ea2ef6402e343a0e770f57b3ccbb54a2ee0.req",
+          "type": "file",
+          "bytes": 484,
+          "sha256": "7f5b8fd16afc3e42fbb7e4b0496d004c698f4966b43fd3905875dc2a9e4c6032"
+        },
+        {
+          "relative": "lengths/sgpc-031425364758697a8b9cadbecfe0f102-d332df7e9dd99497fd95325274bbc4ac052710ed4b5cf29150c92186c3e6b1dc.bin",
+          "type": "file",
+          "bytes": 190,
+          "sha256": "dcbfd16a9c74f7059b9f31eea194e460c897107705bdd23c228ad18a584441ea"
+        },
+        {
+          "relative": "lengths/sgpc-031425364758697a8b9cadbecfe0f102-d332df7e9dd99497fd95325274bbc4ac052710ed4b5cf29150c92186c3e6b1dc.req",
+          "type": "file",
+          "bytes": 484,
+          "sha256": "1930d16b564eefdb961e33e610320d1d54bdeffcc16110bf82c4527ec4bdf966"
+        },
+        {
+          "relative": "missing/sgpc-031425364758697a8b9cadbecfe0f102-34c9fd0f815bfe6d981932fb3808f3b0857ee03d82155ca87d1a762c5dd996f9.bin",
+          "type": "file",
+          "bytes": 190,
+          "sha256": "497643d8362eb6db1c1ed6311c24f8300a12b4b9d0ac0fc30e25ff525823d22f"
+        },
+        {
+          "relative": "missing/sgpc-031425364758697a8b9cadbecfe0f102-34c9fd0f815bfe6d981932fb3808f3b0857ee03d82155ca87d1a762c5dd996f9.req",
+          "type": "file",
+          "bytes": 484,
+          "sha256": "dd6d27470ff543ca6d44e3f4b5fa174b311dcbc1f636438b2ca5402ba14f234b"
+        },
+        {
+          "relative": "pending/sgpc-031425364758697a8b9cadbecfe0f102-c5ff7cc5bc8f673a4668683b821292a6fb0a8b796d408d031288f211cafbce9a.req",
+          "type": "file",
+          "bytes": 484,
+          "sha256": "779634220ec995c08cfde16e1ec7c90070cc69bd5a85f23a3f2d0634c692d832"
+        },
+        {
+          "relative": "pending/sgpc-031425364758697a8b9cadbecfe0f102-c5ff7cc5bc8f673a4668683b821292a6fb0a8b796d408d031288f211cafbce9a.req.part-123-0",
+          "type": "file",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "relative": "root-link",
+          "type": "symlink",
+          "link_target": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-20261124/reference-observer/cache-inventory-host-fixtures/missing"
+        },
+        {
+          "relative": "symlink/sgpc-031425364758697a8b9cadbecfe0f102-34c9fd0f815bfe6d981932fb3808f3b0857ee03d82155ca87d1a762c5dd996f9.req",
+          "type": "symlink",
+          "link_target": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-20261124/reference-observer/cache-inventory-host-fixtures/missing/sgpc-031425364758697a8b9cadbecfe0f102-34c9fd0f815bfe6d981932fb3808f3b0857ee03d82155ca87d1a762c5dd996f9.req"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-20261124/reference-observer/test_cache_scope.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_scope.dSYM 23-20-47-968.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 645,
+          "sha256": "2d56eca2217abc049f49309a8cb04e54f45a4ba11b0491143bbbb28280638af2"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_cache_scope",
+          "type": "file",
+          "bytes": 18224,
+          "sha256": "9063129cc9005cc0b422e945ade2c76525180c975fc46461f5f643530cc59193"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_cache_scope.yml",
+          "type": "file",
+          "bytes": 202,
+          "sha256": "c21a02e37f8d8ee0a8f71ea63b24dd63f663d3116fa4cd277453ca19fc3875ca"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-20261124/reference-observer/test_observer.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_observer.dSYM 23-20-48-019.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 642,
+          "sha256": "589d796cebc46abadfe0ec147d2a15f3b4f4f50d2c7edbebfc3cde26f51d66bf"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_observer",
+          "type": "file",
+          "bytes": 41828,
+          "sha256": "a56cd28c570b3e1133e5f22f6e53b97a723c4418ca416776a7782043c4156dbb"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_observer.yml",
+          "type": "file",
+          "bytes": 199,
+          "sha256": "cb49f6892be607c0cf708e530f2e581ee3becfddf62f169e8ee9990d791fe8a8"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-20261124/reference-observer/test_attachment_snapshot",
+      "trash_path": "/Users/ciscohe/.Trash/test_attachment_snapshot",
+      "entries": [
+        {
+          "relative": "test_attachment_snapshot",
+          "type": "file",
+          "bytes": 27872,
+          "sha256": "7a9c19a4bdf039ca78f09cfd28841b1f56e706de0d81876fde69e1adc14d012f"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-20261124/reference-observer/test_cif10_png_reference.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_cif10_png_reference.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 653,
+          "sha256": "8e989f94a66cd0e1d9a42e7c8d6fd05eae260f619024f56a29676dfdceffdade"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_cif10_png_reference",
+          "type": "file",
+          "bytes": 56040,
+          "sha256": "1a007d235b3e2dc486465713c44d4cc7db698e1948382951fff0b66d2f3bddb5"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_cif10_png_reference.yml",
+          "type": "file",
+          "bytes": 210,
+          "sha256": "ca5b398206ffbae1f48e2832932ef09fd84805462c4aba8de04f19f6d38af4c0"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-20261124/reference-observer/test_cache_scope",
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_scope 23-20-48-184",
+      "entries": [
+        {
+          "relative": "test_cache_scope",
+          "type": "file",
+          "bytes": 28320,
+          "sha256": "3a2d2280e2b2e278585604dad92c6898545db20fe14264f7d1ee922bfb6b6661"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-20261124/reference-observer/test_cache_inventory.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_inventory.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 649,
+          "sha256": "041737e57c3fa25995fcd3e9a627f228fdd89939dfeae236ec80f786f3ab93e1"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_cache_inventory",
+          "type": "file",
+          "bytes": 61712,
+          "sha256": "8e77d2e4a1bd2fc65fe523882d7a54e0d04718eef10893cb5032d1f15406c921"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_cache_inventory.yml",
+          "type": "file",
+          "bytes": 206,
+          "sha256": "28f0a24d36e41436edcc315936da233feeeb7ad38363990f54eb944220639cea"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-20261124/reference-observer/test_startup",
+      "trash_path": "/Users/ciscohe/.Trash/test_startup 23-20-48-287",
+      "entries": [
+        {
+          "relative": "test_startup",
+          "type": "file",
+          "bytes": 20592,
+          "sha256": "14bdd015016d401c062222dc7192524a3a21b21e50068a534adf104da98d80f9"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-20261124/reference-observer/test_cif10_png_reference",
+      "trash_path": "/Users/ciscohe/.Trash/test_cif10_png_reference",
+      "entries": [
+        {
+          "relative": "test_cif10_png_reference",
+          "type": "file",
+          "bytes": 64104,
+          "sha256": "6bfbbb8f061f784f908a3a959981b5a06657a67036660b7dbaa9ab2c783441fe"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-20261124/reference-observer/test_observer",
+      "trash_path": "/Users/ciscohe/.Trash/test_observer 23-20-48-390",
+      "entries": [
+        {
+          "relative": "test_observer",
+          "type": "file",
+          "bytes": 65680,
+          "sha256": "0a2138d1b68151b2d43c4807d9da1515f78ed1368fe46074128346360bfa48cf"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-20261124/reference-observer/test_cache_inventory",
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_inventory",
+      "entries": [
+        {
+          "relative": "test_cache_inventory",
+          "type": "file",
+          "bytes": 93688,
+          "sha256": "3a501df0c801c91f33b53e8b89e0d3efeb5df858328cc6e6745910cb0bacc6e6"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-20261124/reference-observer/test_attachment_snapshot.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_attachment_snapshot.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 653,
+          "sha256": "d5f0029ed8ca7a9036c2cab1990c35358da4fe52e5317a53347f17210346329e"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_attachment_snapshot",
+          "type": "file",
+          "bytes": 15996,
+          "sha256": "02400407b3fddb2c38a2fddc21b3720c09734d56209eaed2119ad4f335012e87"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_attachment_snapshot.yml",
+          "type": "file",
+          "bytes": 210,
+          "sha256": "5be00287bda6606e0d2450da5344b7f86673a747c7725adc6d6a8affa7b6a3e7"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-prime-20261124/reference-ram/glram.dmg",
+      "trash_path": "/Users/ciscohe/.Trash/glram.dmg 23-20-48-559.dmg",
+      "entries": [
+        {
+          "relative": "glram.dmg",
+          "type": "file",
+          "bytes": 33554432,
+          "sha256": "4bea0fc5b132802791bf1bd1c32cb26605728432fef58d2c36ddbbd59ee8e6ab"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-prime-20261124/reference-ram/glram.raw",
+      "trash_path": "/Users/ciscohe/.Trash/glram.raw 23-20-48-611.raw",
+      "entries": [
+        {
+          "relative": "glram.raw",
+          "type": "file",
+          "bytes": 33554432,
+          "sha256": "4bea0fc5b132802791bf1bd1c32cb26605728432fef58d2c36ddbbd59ee8e6ab"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-prime-20261124/reference-observer/test_startup.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_startup.dSYM 23-20-48-665.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 641,
+          "sha256": "944829fa3c1a4d913161b503f6352fa20f7c101cdeefe97a15208dadbe4a587a"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_startup",
+          "type": "file",
+          "bytes": 14936,
+          "sha256": "b6263cbe2bbf43d68a42e1499c3ec102563cb3f3fcda02b0bf6e87287b99b5e7"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_startup.yml",
+          "type": "file",
+          "bytes": 204,
+          "sha256": "e6e216db2752cf9f1269ddcc0caff5943a77feb3840c5e1eb284e3033751d715"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-prime-20261124/reference-observer/cache-inventory-host-fixtures",
+      "trash_path": "/Users/ciscohe/.Trash/cache-inventory-host-fixtures 23-20-48-716",
+      "entries": [
+        {
+          "relative": "bad-name/sgpc-031425364758697a8b9cadbecfe0f102-not-a-key.req",
+          "type": "file",
+          "bytes": 8,
+          "sha256": "a1ff022ae4fc631a21f7b7b2b05853efa7ae600d4804e57cab10ee3c90f1482d"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-007657d2ec4e4fa9ed9b7a4322d421375a51398f942759cb9627d0368d4cb882.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "d9152088188a064b05a5920d8676ff7ce6be3f012c78291abcfa64c47aa92a8f"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-028831f06909c47f75b41a9c09bf3ac8282205e93cbce56687dad524be02ce98.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "d09de26b8acd351104d8afc04bc58cf0720b1dfadb4a4bd8fabac09e4f0bc347"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-07eaefa5167622339e98b90a11ed7d18c33080dc7915fff4fe1334aa5f8bd77f.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "7acd5e85413c454d37c25a00aba32dc4fce976a97866df144af90b62786b7570"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-1cb30d1de960905f680406b1ce03bd2380c42649223e2021d0bda8fb3c8832a4.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "d587bbcd7546608b497afa67e27e35bb642b923026cea9f0321446d546da8b19"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-20e85e6fd1fdcb23e66d57607ee831883da254c5453e15724a7196dd6f9f9a7e.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "94eba77847c7f3f8aa9d9f8e04f284f35662e523212d3d38c7fb2117186d7b01"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-246bba86faaa70815aeea875c3a1bd32250f89fe66aaf4e000917b0dfa33ed08.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "073c76de69b1173fdb128c1e2a5497935469e87aef606e0dd00e16a6f4203166"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-280e017c3c7cf3efde84f5f9329e1a8bf5fad8108ac9c88c3e3bb7c5667e7431.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "624df4e1b0725a37c2c77f7a5024dca1e38e0b81d2bb8abc94f4bfc007631348"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-2acc96720988070220d08f239e9566aa1d2b1acb85e8879a9914e420acf23412.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "a5953f6196d432d13adaecf9a6f3150a661131cffbb34d00b4578082d306e33f"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-31b96935385c4e78682b64a3788eb259a67392a73fc6377e6344c13834d55271.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "84c717a24517fcd9c8af2075c1c59bbcd723115bb9a6c071a6808e2ffdf71002"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-337db680bdbc174998fb67df75eb6c4e847ffc82d6fbd60e1cbdeec66e9f993c.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "82cfac1d541225c1d37cc326d2da1f34ed9830b1bd11ada8e0af860392e261f0"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-3389fb1225b668d7d3e917716509aa5b83911ddb03c7f85cd68c7f41cc9d8a2b.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "73b85499e42b8a76242bf1ad8cb486a0a6af122860e90592d6098f6769e9f5c3"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-387cf2785e719aad0836b611e45ff657c7b8310389775a86b0c5ac0e196ed058.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "a6d6465a30a15d4fbc01282243692bb8db09776bb51df6c256cd5c68c1b94eb3"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-3948fa303c69f018ad70524a76fac26dface07b8fe2640afc835c3653d8b0aa3.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "1b7c3994dbdf31a533535677fba0d99c741e6473965b3c4fe0cdcc128e1c99bc"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-39f40b64a05b926f2cc511849795c2c8fde5f255981008a72311c416009796ee.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "da5fc7596994755cc64b2130fdd9cdcfd7768e81858ddfcc8f97685dcb0873c8"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-40dd33aa9e97205cc1ae49c843b41db65fd03509fc7ad5653f1d3e31f459417e.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "1e214949091c2d377cd21d8e7ecedf084e4647a9505a0401dc39ea76cd1697a9"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-40fdd298830bc1bdcd4ed914a1a1e0a953b821188dfc93e63ef747f409a8c048.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "2a964652c9da34f2ef444e64058de7bc27ac740aa24c09fd4a6e85374a00c530"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-4610981bab6c74d8a483e4c1c96b9079929f16e4f5a9a24171aa9bc2bac5f705.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "82b7eee6bc299c475a7fd3e810c02f1a2fb832c7e4ecf1d53ac3a6ecb7844c6d"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-4fc49f17418a42ae2356c36854198e202eefdc31f3afa9e6bd2d88061c76d4e4.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "a3465952865fe3fd9a3a896532ed38c07bb88fb32e6b6641847813e3fa820618"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-571a380c78bb1c2fdef06b2b95dde913a0b57db47ee972a3889bf62498533f26.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "0683696446bf816d360242d7aadf87c1390d9d8d5252caeef668be10aa9b3666"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-574b825777533c92fd66d3c56b313e3f00da49b76b9b7706b9cb3c4e995ca69f.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "8766f31dcf71273936debb22f5a42d2cb9eeef67ed14f40f8ced0495ee092024"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-59ccc40367b2a73de0977ad60d740aa206e025183066a63ea0ea1c9dfa12a3d3.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "e0ebd8b7773b9400031181b8164f8af52627dd0e4d65f9314ecbbec84fb6db2c"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-5ba61116e14d982e1d4960c80214bdeba7966ebb9bc6b4a1bf782360e6e43542.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "3fd5e43c089267ff7a223b316f8d0f9d21db7ad4b6ab3d9265298208a81dacce"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-62abd6966f1a7e5918ecc6a757581a70bb7f8ee2ad479dd54b5fbaff6678753b.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "3baada261b9704aac67c89f12234a080682297c1aad6b8e052b11b92d7f984df"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-6309f777ca74e909bd978ba871930d0a8756fc4507d52a63ed86430e0233c6e1.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "b627926f6609d13d023c08d625d44edce538a577b0f48f455b70fa894dc157e5"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-66b013ba540c837d93532f01046e77f0a434c2a1cf4cbd9a502181b68802251a.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "36afd1c2b68af40bea4683adff19abe2440d9087f2ef20f04c965f70d774ee84"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-6802d250c1ae27d080df5aaea5341c8ac6ba15b08f63d4ebda0bc927c59103cc.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "1caaff488ac0b3370a6082b2f634c23ccdadfa290b29249e741bc6ff8e40fe6d"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-69dee44c9323d7d18e1964e6a007e960d21c5145acca118dea6672e4f551a175.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "6bab4266604f3e96a06bb446dc3f8b8b818ed7d75578b6a6009088eee59b4b3d"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-6e5878d2b9704dccfd0a137dce0510c95d023811c0d77ffb993a1dba4bee0a69.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "107b8e4d7fb6a87c42c254700db111c91f9abdbfad66c25024bcf62111068605"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-6f6b719dcd89b46f2f8ae32b62ed59956c7d797098103f723b1a02d972c5ae77.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "fbe61078046ffa7ab0e56f18d8ceb09d5a7b56fd081dcb1a9b3fd5e68ee2e05c"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-7302d945ee95ea3235352938fb7840b612bcd7d6961de998dd98af5543b274af.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "157d1bb1219dba37259b5b26868bfb1c5749b07e50b2f8ad3a13cb759a603548"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-7394130b24bc723cb5fa081d1e3fe2688686f13198e3dd14dcc2acf0fab4bb1c.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "90a3ffe92999de79c89e740d93bc2af75a392d4ab30747a8ee0affddd10a6762"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-77ee302c3971d83850c29e1f302ab3d8b641cab5203aeca0009ccc9be2f0af76.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "5989480b6d46f00c2aaee496f8a2f2e8ad6c07435638e6635c0adb611d0e48e8"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-79cc1de84b72c493402ab2e97355bfdb55c3f786f68f70350dd27bbba018d599.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "91d5971387b91aa7134bd527d138a01ca06630f63b878d36fa8ddfded34c8a87"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-7ec85ba3713c773ef734e16fe7dd3a90c76c73f3a95b5e21f98ad763cc62ff43.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "fcf941ac672ea75fec7920b528aa1f230501f9670e9a7a2952040939cd8f18be"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-7ef38e0df6ab44f22775b18938cd6bbb4a5ee9128c8722b900498e7e4ffb9abd.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "0042ae82e60d5544c6a276e29e4c029eb3a848f022e1a7fdab232951d08be7fe"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-81fd7c7b838115d8cd19c6f028994566979640dd66fdb6e05f1df4e628634be8.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "7e06009997f4906bf710dc3eee64a729366d6a80d73579ed082136477dea262c"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-830bf3d1ba91fa5cff5e54c1ebf7df0e6eb635013483b486a974a2215a2d6714.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "b4d80050d9e91302d6666ae44ca3b77d6870aefa0f16f2817f574ed02eed0934"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-86dc9f3b8a726fb96f7d85b34cd47a54c42b33de1e2b82cb8f6bc17bdcd6b056.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "f986b47fa78de0711e22c6fc263faa1ea909bf76d85528fd06e1d39fd18ee6f4"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-8f9458845b59ae55e6c895c9df5ac6b250af07fd129d0b066bf681be5096ffe2.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "94acb66bd373907671d50f5e2061656fefbb584d1cd90b720597f18ec42a4882"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-911678e652ec3e4ea0aa7a21b928006b49f22048814a7d4f96c6077ada5f52a6.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "3ef210b1e170dab8ea7407897bf0aa4172ddb3b965b63a5827e2c64db55c34d8"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-97166c30fb41062536bdfbd1728594c46faaa872c37e8aed46e77e3208db57aa.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "6fb6b3f2585a9f10d6aed33418372b47e141e79022d8ddc40440bb041ad4222e"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-98bdf55f988f21b0e2a14a4c7f1d89c6239e4aa86a28a99c1b08dd41188fa2f1.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "b3406ac64af3e4844ff14929da8bcfa669097247fa043e9045c120e9db05e713"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-99486dece13387a76f2200a783873ce0be4ac2042fd2c4e85db452cb91553d7a.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "820250d38fa51bccfdbfbd0b761d1c9b9b7ece93db49578135271364727a67f9"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-9c6e2b4b430a4a40891356b1d2c6824382c2ade9a5fcef41d89d0be8095b9bf3.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "2ec6b0f03c1ee4668bdb143052ed57094578cd9c7e02a896f246375547645214"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-9f85d3f72c816696df884818805c9f45300337c7765edbf27419544a33c65edf.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "cd7530fc32a9a72ef7e341366918f2ef36399a42c8cbc719c2c45846514b9803"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-a2f1880049e66b342a2b488b3db09735ac894302e6fc101b04d09245d89dc81d.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "5f73802e8e1ed0d1d0ec90051009a8c90184ad24b4105cf9bf646b158746775f"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-a308616109045a42d1b70f983893a303814a71255ab21b27ae6b67384e0b1ad3.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "f126fed85f8a075eec804e48bb07e29e36824e05cd38aca89c5646567dd00010"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-a6d247cd128acab56b4a36f050258b7f46e0ac83aac6355449341cc122e2767a.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "db9e1100c85df1699f45188fbf0e9a41940e89d30d7c6c81431c8b14538f797e"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-a9f59ced1ccc05e1aaae40aab6a9c188f0b9eb5cfb263b09150b8a62cd3b623b.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "b7d1d57f7f4244b6d9ca9e5911afcdce720dbd9e335fc189a12a8bc1d33fa61d"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-b56203c1f645397e565a1f45b3168dc1018d6925ce02006012e41b2e55d579b7.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "bac545c1b47f55586965ff4a8f83e38da21c524b39db2ffaa9c3ed654e797f64"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-b58c0b6860fbb21e99996d0107b6b59e71a35fd09e57eb9e8b86994c62475e95.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "3ff77c0b228394a587499af4d02bda0fe90fafabe6d29da97e9dd14970cbff44"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-bf9b7bbebec08608bf2a2ddb292f11a81d5f8f94a9810d4fa11fea8d42ce9016.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "c6d8f0ed80e38edcb42f5ea4a1b2651320b776ab27b18e1aaa6e85fad2825dd1"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-c0cd002e05f02514c3ec419fe0254726b49969715d13a6b0c3d869c959b31495.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "b361ffad000e94193e04c5c693349b4925f703dfd9fb240b484da7d2231ee5aa"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-c1c4cd5a8d65d3d98439019116419e5e08a7bcf5ec77e8fb39f8ac6fdb727eaa.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "299b9b0a6ad1819e79a0614ffe8a646305cb0ca6f4424d039bcb89481a12aa46"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-c2281abeb31d5dcb1d15990480e679173e57e2b35f1f2a4fd8a67a493af5add2.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "e9303e433a34a2bb4f7d937cfdb251d3f2635fffb3c44c94619478ff316e20d7"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-c97804700fbc227e39321af4e866f2bd5fbe97d9c026667a88367e54e3ecf215.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "32d1142cf5ad9590f307ea9de1cb3668e7f910e77dc49df82b9ff6fab478654c"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-cf64f3cb8a23fb19adc2dde64b3acb0d5537a14c5a79bc7dddb3de2d4ec15181.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "6ec761f725a4b49ee001f2a2458892275b7424aebd40c9f89a49d46b2a01c4c8"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-d3bc45edec0ad9b707990712c9a3cb874f73c989821ca38bb5e5ded0b1bbf373.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "c0ff3c00b36c44c298d7c357a88e7c38ca4ac87752917ca984e9b1f748ea8cc4"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-dd35556ef83ebd30e30dbb4910fc8d4c4c0abb9aa050949aeb61187b677fe535.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "faa3223cba8a675087bcd9c0df5ad4afb476243ceadb6e907f83895775c674e6"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-de93d50f24ac39d591bbf72d25c850336f3ef249728cadf5c02c9a0ed2a612c0.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "aef7511c0921cb53e0839f865ac3617331d35fb962d615594b2c3707519490cb"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-f0a34fa45ffeb1391bea3ae04d428dd0d79dc03122a926ad8e7ee1392a40d30a.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "16f22b3f9ed63464b052d9b931769246f65c3bcf0913c336a539f6a43aef418b"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-f8287ff66435f91096dd2a37b17e1c7bdc5e2cefcaedac3a502bfed69dfb5038.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "68337651907753cfe2e74710be533032185b37417d0b0c7c6c1098ea0868f62e"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-f914964600aebc3064f8e4f167e83b1ece5095ed978ec370645ffd99f71daf6d.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "4948dec59af85a0126f249e4b5538b81fa9eac1d45ebbd20776f3d10c7c3e456"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-f93556985ee32934318e7cd187d5cb745d6a1cb6dcf066210b1ca2ea89d37511.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "099c4c6c91f01c62b08d74da20a51cd16fbc552fc27d5539125fb7a5777af52c"
+        },
+        {
+          "relative": "bound/sgpc-031425364758697a8b9cadbecfe0f102-ff8788b9ac8f85b7f380b7b7a24014b871ad682747ca434cff6ccc86e4e8c433.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "88c9fbde13e1c4b7b491521e0009723711b5fe59bfb29e8e82f59d43bd868bc9"
+        },
+        {
+          "relative": "byte-bound/sgpc-031425364758697a8b9cadbecfe0f102-0000000000000000000000000000000000000000000000000000000000000000.bin.part-123-0",
+          "type": "file",
+          "bytes": 8388744,
+          "sha256": "6d0a6422158ace8f972f6211236b7bc2e28c351cf4704bbda6e3678e7556f8ab"
+        },
+        {
+          "relative": "byte-bound/sgpc-031425364758697a8b9cadbecfe0f102-0100000000000000000000000000000000000000000000000000000000000000.bin.part-123-0",
+          "type": "file",
+          "bytes": 8388744,
+          "sha256": "6d0a6422158ace8f972f6211236b7bc2e28c351cf4704bbda6e3678e7556f8ab"
+        },
+        {
+          "relative": "byte-bound/sgpc-031425364758697a8b9cadbecfe0f102-0200000000000000000000000000000000000000000000000000000000000000.bin.part-123-0",
+          "type": "file",
+          "bytes": 8388744,
+          "sha256": "6d0a6422158ace8f972f6211236b7bc2e28c351cf4704bbda6e3678e7556f8ab"
+        },
+        {
+          "relative": "byte-bound/sgpc-031425364758697a8b9cadbecfe0f102-0300000000000000000000000000000000000000000000000000000000000000.bin.part-123-0",
+          "type": "file",
+          "bytes": 8388744,
+          "sha256": "6d0a6422158ace8f972f6211236b7bc2e28c351cf4704bbda6e3678e7556f8ab"
+        },
+        {
+          "relative": "byte-bound/sgpc-031425364758697a8b9cadbecfe0f102-0400000000000000000000000000000000000000000000000000000000000000.bin.part-123-0",
+          "type": "file",
+          "bytes": 8388744,
+          "sha256": "6d0a6422158ace8f972f6211236b7bc2e28c351cf4704bbda6e3678e7556f8ab"
+        },
+        {
+          "relative": "digest/sgpc-031425364758697a8b9cadbecfe0f102-28b60a25dffd33cfb2ce3332be8daa7755de10499206aad369fb624426bac72a.req",
+          "type": "file",
+          "bytes": 484,
+          "sha256": "3a73c3a0cd034cf220e29775dccd1fe965c0e7d703e0e656612b7aa9d610b12f"
+        },
+        {
+          "relative": "empty/unrelated-prefix.bin",
+          "type": "file",
+          "bytes": 9,
+          "sha256": "aaa8d3c8d74ad3e8f6b1772aa9c7e0eaa528cb42fc93599ce2f125b00d4c424c"
+        },
+        {
+          "relative": "false-completed/sgpc-031425364758697a8b9cadbecfe0f102-27f41d16f240b15502d128bb52da60f38b205c002db3d5834a000e9da2b627c4.req",
+          "type": "file",
+          "bytes": 488,
+          "sha256": "821f8b164079b52f8c0b9980a9f09b61f1a4a088bbb272cdba9b51996b3d2a31"
+        },
+        {
+          "relative": "key/sgpc-031425364758697a8b9cadbecfe0f102-a07d6fd81b8dea08adcd222e63ef5ea2ef6402e343a0e770f57b3ccbb54a2ee0.req",
+          "type": "file",
+          "bytes": 484,
+          "sha256": "7f5b8fd16afc3e42fbb7e4b0496d004c698f4966b43fd3905875dc2a9e4c6032"
+        },
+        {
+          "relative": "lengths/sgpc-031425364758697a8b9cadbecfe0f102-d332df7e9dd99497fd95325274bbc4ac052710ed4b5cf29150c92186c3e6b1dc.bin",
+          "type": "file",
+          "bytes": 190,
+          "sha256": "dcbfd16a9c74f7059b9f31eea194e460c897107705bdd23c228ad18a584441ea"
+        },
+        {
+          "relative": "lengths/sgpc-031425364758697a8b9cadbecfe0f102-d332df7e9dd99497fd95325274bbc4ac052710ed4b5cf29150c92186c3e6b1dc.req",
+          "type": "file",
+          "bytes": 484,
+          "sha256": "1930d16b564eefdb961e33e610320d1d54bdeffcc16110bf82c4527ec4bdf966"
+        },
+        {
+          "relative": "missing/sgpc-031425364758697a8b9cadbecfe0f102-34c9fd0f815bfe6d981932fb3808f3b0857ee03d82155ca87d1a762c5dd996f9.bin",
+          "type": "file",
+          "bytes": 190,
+          "sha256": "497643d8362eb6db1c1ed6311c24f8300a12b4b9d0ac0fc30e25ff525823d22f"
+        },
+        {
+          "relative": "missing/sgpc-031425364758697a8b9cadbecfe0f102-34c9fd0f815bfe6d981932fb3808f3b0857ee03d82155ca87d1a762c5dd996f9.req",
+          "type": "file",
+          "bytes": 484,
+          "sha256": "dd6d27470ff543ca6d44e3f4b5fa174b311dcbc1f636438b2ca5402ba14f234b"
+        },
+        {
+          "relative": "pending/sgpc-031425364758697a8b9cadbecfe0f102-c5ff7cc5bc8f673a4668683b821292a6fb0a8b796d408d031288f211cafbce9a.req",
+          "type": "file",
+          "bytes": 484,
+          "sha256": "779634220ec995c08cfde16e1ec7c90070cc69bd5a85f23a3f2d0634c692d832"
+        },
+        {
+          "relative": "pending/sgpc-031425364758697a8b9cadbecfe0f102-c5ff7cc5bc8f673a4668683b821292a6fb0a8b796d408d031288f211cafbce9a.req.part-123-0",
+          "type": "file",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "relative": "root-link",
+          "type": "symlink",
+          "link_target": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-prime-20261124/reference-observer/cache-inventory-host-fixtures/missing"
+        },
+        {
+          "relative": "symlink/sgpc-031425364758697a8b9cadbecfe0f102-34c9fd0f815bfe6d981932fb3808f3b0857ee03d82155ca87d1a762c5dd996f9.req",
+          "type": "symlink",
+          "link_target": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-prime-20261124/reference-observer/cache-inventory-host-fixtures/missing/sgpc-031425364758697a8b9cadbecfe0f102-34c9fd0f815bfe6d981932fb3808f3b0857ee03d82155ca87d1a762c5dd996f9.req"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-prime-20261124/reference-observer/test_cache_scope.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_scope.dSYM 23-20-48-776.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 645,
+          "sha256": "2d56eca2217abc049f49309a8cb04e54f45a4ba11b0491143bbbb28280638af2"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_cache_scope",
+          "type": "file",
+          "bytes": 18224,
+          "sha256": "8d215acdd6f70bc5a01a5379314c562e49ac24cb02307ac75b00f2fe4a26f2d5"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_cache_scope.yml",
+          "type": "file",
+          "bytes": 208,
+          "sha256": "188ca4ea3d4e6e2ba284e4b21b1a60aef729e37a81206b0be360f2c3f43d92e8"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-prime-20261124/reference-observer/test_observer.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_observer.dSYM 23-20-48-827.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 642,
+          "sha256": "589d796cebc46abadfe0ec147d2a15f3b4f4f50d2c7edbebfc3cde26f51d66bf"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_observer",
+          "type": "file",
+          "bytes": 41828,
+          "sha256": "db7fa48dfef6dd0cf0f4100c9d6a62abf35d8e32f02622c7a9bd541d08a0c3d7"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_observer.yml",
+          "type": "file",
+          "bytes": 205,
+          "sha256": "92c925217829d542247719faf8c61a9f047b46310f51a50bb67a0cc147d163ed"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-prime-20261124/reference-observer/test_attachment_snapshot",
+      "trash_path": "/Users/ciscohe/.Trash/test_attachment_snapshot 23-20-48-883",
+      "entries": [
+        {
+          "relative": "test_attachment_snapshot",
+          "type": "file",
+          "bytes": 27872,
+          "sha256": "124f63cd304b290742cafe3551d3e667827db56c0be1ae0072bd679a5ad446d2"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-prime-20261124/reference-observer/test_cif10_png_reference.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_cif10_png_reference.dSYM 23-20-48-935.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 653,
+          "sha256": "8e989f94a66cd0e1d9a42e7c8d6fd05eae260f619024f56a29676dfdceffdade"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_cif10_png_reference",
+          "type": "file",
+          "bytes": 56040,
+          "sha256": "8702234882295e2f9994d0659a2be0d5baeaaea4a378dfc9cacdb792c5399b95"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_cif10_png_reference.yml",
+          "type": "file",
+          "bytes": 216,
+          "sha256": "755ba97309cbb2a701d9c3d4c2b9ebdd14efd9cdbd403bfb2c15f879a39ff9dd"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-prime-20261124/reference-observer/test_cache_scope",
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_scope 23-20-48-986",
+      "entries": [
+        {
+          "relative": "test_cache_scope",
+          "type": "file",
+          "bytes": 28320,
+          "sha256": "c20f06dfae4dc89a5e8119f219862cf00b0f1cada9edd3654c540000ae000b2d"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-prime-20261124/reference-observer/test_cache_inventory.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_inventory.dSYM 23-20-49-047.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 649,
+          "sha256": "041737e57c3fa25995fcd3e9a627f228fdd89939dfeae236ec80f786f3ab93e1"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_cache_inventory",
+          "type": "file",
+          "bytes": 61712,
+          "sha256": "b8162d40935da7adc31b3620a70b24639da193e1943b62b4bbd4645aacacf06d"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_cache_inventory.yml",
+          "type": "file",
+          "bytes": 212,
+          "sha256": "82ebdc8cbe8b203445e2c85565b0a3a2df485afb09499107e9252c84d32d4280"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-prime-20261124/reference-observer/test_startup",
+      "trash_path": "/Users/ciscohe/.Trash/test_startup 23-20-49-098",
+      "entries": [
+        {
+          "relative": "test_startup",
+          "type": "file",
+          "bytes": 20592,
+          "sha256": "0c3b3f763bcfb82b1f99100357d588e5cae48612b5089dca91da5efdb3939d01"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-prime-20261124/reference-observer/test_cif10_png_reference",
+      "trash_path": "/Users/ciscohe/.Trash/test_cif10_png_reference 23-20-49-149",
+      "entries": [
+        {
+          "relative": "test_cif10_png_reference",
+          "type": "file",
+          "bytes": 64104,
+          "sha256": "407788c1fbc24ff36cdfb569d1ece9873a01f8600042e7d31c4bd734ee4cf37c"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-prime-20261124/reference-observer/test_observer",
+      "trash_path": "/Users/ciscohe/.Trash/test_observer 23-20-49-201",
+      "entries": [
+        {
+          "relative": "test_observer",
+          "type": "file",
+          "bytes": 65680,
+          "sha256": "2d23225e39970bcd3bd7534915bf99e5637406528cc98f5e6f9aefa7ff123234"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-prime-20261124/reference-observer/test_cache_inventory",
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_inventory 23-20-49-259",
+      "entries": [
+        {
+          "relative": "test_cache_inventory",
+          "type": "file",
+          "bytes": 93688,
+          "sha256": "145f9c9e4329828d3fd3d8e30b5e31f513f73a47fad7870819a2898aac90c321"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-prime-20261124/reference-observer/test_attachment_snapshot.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_attachment_snapshot.dSYM 23-20-49-313.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 653,
+          "sha256": "d5f0029ed8ca7a9036c2cab1990c35358da4fe52e5317a53347f17210346329e"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_attachment_snapshot",
+          "type": "file",
+          "bytes": 15996,
+          "sha256": "81327558797ecbd977524e39490040f0da2dee357074c0e78d953f2684be3c32"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_attachment_snapshot.yml",
+          "type": "file",
+          "bytes": 216,
+          "sha256": "69f6d06fbdd193f4784ef455140049e4ec50c24d16b484a3f6785d0ccf489f8d"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-metal-20261124/air-recovered/AIRFrontend.canonical.ios.o",
+      "trash_path": "/Users/ciscohe/.Trash/AIRFrontend.canonical.ios.o",
+      "entries": [
+        {
+          "relative": "AIRFrontend.canonical.ios.o",
+          "type": "file",
+          "bytes": 635120,
+          "sha256": "10df4bf090e6b7fa76e56b98aea62e9e2f8d80f0fafe786f10a0297100b9231a"
+        }
+      ]
+    }
+  ]
+}

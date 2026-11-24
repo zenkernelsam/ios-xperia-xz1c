@@ -1,0 +1,164 @@
+{
+  "date": "2026-11-25",
+  "version": 731,
+  "source": "Windows TEMP/lilac-v731-cache-budget-wallpaper-gpu-live-20261125",
+  "token": "a4ef7f6bb4537a5e",
+  "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+  "image_sha256": "fce889fcd3dff2573bf9ec4bf6261b450717bf8ae4b456aa648bfd50cf796ee7",
+  "raw_sha256": "c338c9b3e9f94f679965aa5d694bdc4edff19bb004eb19f5b4a2098c52b7e2a3",
+  "raw_bytes": 702521,
+  "original_result": "STOP",
+  "original_reason": "OBSERVATION_INCOMPLETE",
+  "missing_original_goals": [
+    "SWEET METAL PIPELINE END call=1 returned_nil=[01] error_pointer=[01] error_code=-?[0-9]+ original_return=1"
+  ],
+  "payload_audit": {
+    "image_sha256": "fce889fcd3dff2573bf9ec4bf6261b450717bf8ae4b456aa648bfd50cf796ee7",
+    "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+    "blob_count": 8,
+    "complete_payload_reconstructed_from_compiled_kernel": true
+  },
+  "serial_capture": {
+    "revision": 1,
+    "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+    "event_log_sha256": "036782f63e46617c87d994a755032f6b720e65c90fc6915f6d2bcb38e064d508",
+    "raw_sha256": "c338c9b3e9f94f679965aa5d694bdc4edff19bb004eb19f5b4a2098c52b7e2a3",
+    "serial_port": "COM17",
+    "dtr_low_through_open": true,
+    "raw_log_before_stream": true,
+    "one_continuous_current_boot_stream": true,
+    "replay_commands": 0,
+    "old_failure_not_reclassified": true
+  },
+  "strict_return": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "a4ef7f6bb4537a5e",
+    "checkpoint_bytes": 698900,
+    "log_bytes": 702521,
+    "log_sha256": "c338c9b3e9f94f679965aa5d694bdc4edff19bb004eb19f5b4a2098c52b7e2a3",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      5,
+      64,
+      66
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 39.437999999849126,
+  "worker_closed": true,
+  "registration": {
+    "exact_prior_native_hardware_proof_logged": true,
+    "proof_sha256": "301c9e969c310ce966e8771633450b88511c7ad959abd19e279cc8704fa9da9e",
+    "prior_native_token": "2d1794b225c1a6c1",
+    "constructor_no_long_diagnostic_probes": true,
+    "current_original_UI_still_requires_separate_evidence": true
+  },
+  "cache_scope": {
+    "complete_samples": 1,
+    "incomplete_samples": 0,
+    "observed_launches": 1,
+    "directory": "/private/var/tmp/sgm-9f43d3e226e901f609eeba4b9f348e20",
+    "source_scope_identity": "9f43d3e226e901f609eeba4b9f348e2050ed7e1bd790ef8f7b422dc31eec892a",
+    "old_files_preserved": true
+  },
+  "original_request_complete_samples": 20,
+  "original_request_incomplete_samples": 0,
+  "original_request_API_calls": {
+    "function": 0,
+    "function_constants": 0,
+    "function_names": 0,
+    "next_drawable": 0,
+    "set_device": 5,
+    "set_drawable_size": 0,
+    "quad_init": 5,
+    "quad_init_async": 5,
+    "quad_layout": 5,
+    "quad_display": 0,
+    "quad_prewarm": 0,
+    "quad_drawable_size": 0,
+    "quad_update_size": 0
+  },
+  "original_routes_complete_samples": 128,
+  "original_routes_incomplete_samples": 0,
+  "original_route_API_calls": {
+    "manager_device": 8,
+    "manager_queue": 5,
+    "device_queue": 5,
+    "add_quad": 5,
+    "add_quads": 0,
+    "window": 8,
+    "paused": 5,
+    "disable": 0,
+    "enable": 0,
+    "sync": 0,
+    "tick": 0,
+    "scene": 5,
+    "preview": 8,
+    "snapshot": 8,
+    "low_light": 0,
+    "backlight": 8,
+    "linear_backlight": 8,
+    "unlock": 8,
+    "min_size": 0,
+    "desired_size": 0,
+    "start": 0,
+    "stop": 8,
+    "update": 8,
+    "snapshot_image": 0,
+    "env_init": 5,
+    "env_update": 8,
+    "renderer_env": 8,
+    "apply_mode": 5,
+    "transition_mode": 0,
+    "active_mode": 0,
+    "deactive_mode": 5,
+    "interactive_mode": 0,
+    "supplemental_mode": 0
+  },
+  "original_environment_complete_samples": 99,
+  "original_environment_values": {
+    "preview": {
+      "samples": 15,
+      "values": [
+        true
+      ]
+    },
+    "snapshot": {
+      "samples": 15,
+      "values": [
+        true
+      ]
+    },
+    "backlight": {
+      "samples": 15,
+      "values": [
+        1.0
+      ]
+    },
+    "linear_backlight": {
+      "samples": 15,
+      "values": [
+        1.0
+      ]
+    },
+    "unlock": {
+      "samples": 9,
+      "values": [
+        0.0
+      ]
+    }
+  },
+  "original_environment_limits": [],
+  "Aegir_checkin_timeout_count": 0,
+  "original_pipeline_begin_records": 0,
+  "original_snapshot_method_calls": 0,
+  "original_PNG_returns": 0,
+  "original_draw_API_calls": 0,
+  "original_request_modes_and_paused_not_forced": true,
+  "scanout_or_optical_frame_not_captured": true,
+  "original_STOP_not_promoted": true,
+  "failed_package_not_replayed": true,
+  "wallpaper_or_GPU_root_cause_not_inferred_from_absent_calls": true
+}

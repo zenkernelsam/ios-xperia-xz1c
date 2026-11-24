@@ -1,0 +1,24 @@
+{
+  "system": "iOS16.7.16/20H392",
+  "discovery_record": "reproducibility/backlight-discovery-20H392.json",
+  "inspector": "tools/build/inspect_backlight_brightness.py",
+  "inspector_sha256": "311ba97e3346cccafa47c478c5fa38c01a35694b9b1c9914358bca626a77c64b",
+  "generated_report_sha256": "950ef6db3c5f9118995a5daba67c3dc975019afabc6b76c39d97c249e866d018",
+  "original_function_ranges_verified": 10,
+  "legacy_brightness_service_contract": {
+    "initial_dictionary": "IODisplayParameters",
+    "initial_brightness_numbers": ["value", "min", "max"],
+    "brightness_base_conversion": "ceil(normalized * (max - min)) + min",
+    "separate_architecture_query": "new-backlight-architecture",
+    "legacy_setter": "IORegistryEntrySetCFProperties",
+    "setter_number_keys": ["brightness", "FadePeriod"],
+    "setter_conditional_number_key": "backlight-level",
+    "setter_number_width_bits": 32,
+    "fade_integer_multiplier": 65536,
+    "legacy_getter_reads_cached_float": true
+  },
+  "service_implemented": false,
+  "pmi8998_duty_mapping_verified": false,
+  "physical_backlight_verified": false,
+  "device_operations": 0
+}

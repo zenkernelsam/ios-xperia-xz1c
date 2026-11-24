@@ -60,4 +60,6 @@ DroidCam只用于LCD光学／背光／物理错行，唯一流程override→AF(/
 
 独立usb_open_observation.py只查Sony身份、配置和bulk描述符；--claim-once只单次claim／release接口，无bulk读写／download／boot／reset，不set_configuration或detach驱动。输出新TEMP目录、单device lock；成功不解释前次竞态或授权重发旧失败。
 
+Windows 进程预检使用 CIM 内部 20 秒、受控子进程外层 30 秒上限，保持原冲突进程筛选；超时、失败或非空结果都在 ABL guard 前停止。本次 [原拒绝](../reproducibility/poster-cache-budget-native21-host-refusal-20261124.json) 未到 download／boot，原结果和失败包仍保留，不因主机健康恢复而重发。
+
 原失败／raw／退出期记录不覆盖；one-time staging在TEMP、Mac build。所有废弃文件进原生回收站，WSL废弃内容转Windows回收站，Windows／Mac都不清空，路径先核对。救砖／XFL／flash/fw／unlock／备份和当前基线证据受保护。回收／恢复见[LAYOUT](LAYOUT.md)，旧操作手册原文与SHA见[本周归档](archive/20261121/weekly-integration/original-document-manifest.json)。

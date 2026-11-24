@@ -1,0 +1,20 @@
+{
+  "plan_reference": "reproducibility/lilac-wled-duty-plan-20261124.json",
+  "sources": {
+    "xnu/support/LilacWledDutyTransaction.h": "9341c44209379284dc1dbb68e907b5028f94fcfa76948d0868dd0e4ceaa983dd",
+    "tools/build/test_lilac_wled_duty_transaction.c": "26447ce119229f937d630eaedb2ac1bda17a9adfa125b17cd90edc89911103ae"
+  },
+  "host_model": {
+    "asan_ubsan_passed": true,
+    "read_failure_positions": 38,
+    "write_failure_positions": 6,
+    "additional_cases": ["sync_busy_before_write", "delay_failure", "duty_readback_mismatch", "new_fault", "sync_not_cleared", "unchanged_duty"],
+    "no_further_io_after_uncertain_write": true
+  },
+  "arm64_macho_object_sha256": "67d5436936b457f58273989ebb29555515b5432c8259fa33ec6a7d20ba87ec96",
+  "arm64_undefined_symbols": ["___stack_chk_fail", "___stack_chk_guard"],
+  "requires_caller_serialization_and_validated_backend": true,
+  "physical_duty_latch_or_luminance_verified": false,
+  "hardware_backend_connected": false,
+  "device_operations": 0
+}

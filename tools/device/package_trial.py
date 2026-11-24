@@ -3,14 +3,14 @@ import argparse,hashlib,json,re,secrets,struct,sys,time
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT/'tools'));import adt,mkpayload
-from diagnostic_candidate import configuration
+from diagnostic_candidate import WLED_VERSION, configuration, kernel_path, verify_record, verify_wled_kernel
 from ram_library import load as load_ram
 from native_proof import validate as validate_native,digest as native_digest
 from controller import Artifact,SHIM_SHA,SCREEN_CAPTURE_TIMES,checked_screen_capture_after,swipe_once_binding
 from numeric_boot_args import add_sampler
 from serial_worker import capture_binding
-from display_geometry_binding import transform as display_transform,arguments as display_arguments,compact as display_compact
-from native_grid_control import apply as apply_grid_control,validate as validate_grid_control
+from display_geometry_binding import CommandTooLong,transform as display_transform,arguments as display_arguments,compact as display_compact
+from native_grid_control import apply as apply_grid_control,compact_fitted,validate as validate_grid_control
 def sha(data):return hashlib.sha256(data).hexdigest()
 def observer_environment(word,target):
     assert word.startswith('sweetenv=') and target in ('AegirPoster','backboardd')
@@ -33,6 +33,111 @@ BASE_HASHES={'private':'b958bd29a457cae61be27a53e1237ccdc4c1247d4cbcff238afbe34d
              'gpu':'ee284994e2ac7e280f0a3b727ce1ebb4796e3813bbd98b524fa16e6c3d5f9082'}
 BASE_KERNEL='da6ddc44fc074eb393f135e1395798483fe2a52eb420dfecea883e0833136c9a'
 
+def validate_wled_gles_ram(package, binding):
+    """Admit only the reviewed GLES/geometry payloads on v731."""
+    assert 'exception_observer' not in package and 'metal_resources' not in package, 'v731 GLES9 does not admit Metal or an exception observer'
+    frontend=package['frontend_build_binding']
+    assert frontend.get('CA_matrix_revision')==1 and frontend.get('GLES_suite_tests')==9
+    assert (binding['library_sha256'],binding['blob_sha256'],binding['manifest_sha256']) in (
+        ('0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607',
+         '4277931a612742a2eb2e02f67af8c2083116a13686c7594e7d0a3b5e87f0cf27',
+         '7c5da6c1025885e8e2c4c988475c138ec2a43d135987b88a316020f26c27cf46'),
+        ('6efabfc0627a8818a8c4c45665459cd33d8ee814f2e50a3f3cdc4813bb254325',
+         '25a417018c2febc28f1c72fc14cb0d0a9ab0c4a3ec28536cbcb13406f01b6543',
+         '60680d669f037146a85b0a50e3353c0a2f991ff8be9ff9eedf4f734ef4191281'),
+    ), 'v731 GLES9 RAM identity is not admitted'
+
+def validate_wled_gpu_ram(package, binding):
+    if 'exception_observer' not in package and 'metal_resources' not in package:
+        validate_wled_gles_ram(package,binding)
+        return 'gles'
+    poster_packages={
+        'ab1990dfdaef042c06588d21c78fea999195efeff62b62916d95060879e78f3d':
+            '1e346d62937f85b21ae807f0164aad7e97c9bb2d94cb79f7e8b05cfc3cd6a4a1',
+        'e98ed2cd62595b2b414ef2d04ce1cfa93af34041a99fd6b38691f004314eb83b':
+            '55eee7cb15985a1e27c939ae4601ceb104d9d43ae760edb7c6191f450899ec98',
+    }
+    if binding['blob_sha256'] in poster_packages:
+        assert binding['manifest_sha256']==poster_packages[binding['blob_sha256']]
+        observer=package['exception_observer']
+        assert observer['target_process']=='AegirPoster' and observer['registration_only']
+        assert observer['prior_native_hardware_proof']['version']==WLED_VERSION
+        assert observer['png_filter_encoder'] and observer['snapshot_method_observer']
+        if binding['blob_sha256']=='e98ed2cd62595b2b414ef2d04ce1cfa93af34041a99fd6b38691f004314eb83b':
+            gles='6efabfc0627a8818a8c4c45665459cd33d8ee814f2e50a3f3cdc4813bb254325'
+            assert binding['library_sha256']==gles and package['metal_resources']['gles_library_sha256']==gles
+            assert observer['library_sha256']=='af1c42dc51fbccab4f6d42461044c14c9913ffa7eaa4b1a480c1b213b24cddd2'
+            prior=validate_native(observer['prior_native_hardware_proof'],package['metal_resources'])
+            assert len(prior['native_tests'])==21 and prior['native_run_token']=='2d1794b225c1a6c1'
+            png=observer['png_encoder_prior_proof']
+            assert png['GLES_sha256']==gles and png['reference_token']==prior['native_run_token'] and png['reference_cases']==6
+            assert observer['original_request_observer'] and observer['quad_route_observer'] and observer['poster_state_observer_revision']==1
+        return 'poster'
+    budget_native={
+        'a8821cead75c078861eed21733c6366b594c8de4a631c3848b8bfd55d3cb66bf':
+            ('f86dd5f209f54996f393a7071526eecd7db2daf33d27fb788056c5562b6c61cd',
+             'f4c0f0329f0d746063ac6123e5e81b7cb3e3c84fe251e6e5b0545ad8ae2f2e56',False),
+        'be99855aa1663151815501cb9e5dfac5c960f3457a4611d9d055c4dbb80ae010':
+            ('b0c57520ca89071822ac73be41008bc8b78023c898abf0cce882e61e8d486245',
+             'c59fa4c83325f4029e99e799e3edb358a8e9fd897f2231071c284c4aae505bb9',True),
+    }
+    if binding['blob_sha256'] in budget_native:
+        manifest_sha,observer_sha,conditional_prime=budget_native[binding['blob_sha256']]
+        assert binding['manifest_sha256']==manifest_sha, 'Cache-budget native RAM manifest differs'
+        gles='6efabfc0627a8818a8c4c45665459cd33d8ee814f2e50a3f3cdc4813bb254325'
+        identity='16722b126d14e64954fc349d20626f9e639cc726ed1c24856a889b2249efd236'
+        assert binding['library_sha256']==gles, 'Cache-budget native GLES differs'
+        resources=package['metal_resources']
+        assert resources['gles_library_sha256']==gles
+        assert resources['library_sha256']=='8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27'
+        assert native_digest(resources['source_files'])=='db1605ef8dae8f8ed0a29999dcb2cf7537457aba7ad428677c21e0e914771b78'
+        assert resources['immutable_program_cache_identity']==identity
+        assert package['frontend_build_binding']['program_cache_build_identity']['build_identity']==identity
+        observer=package['exception_observer']
+        assert observer['library_sha256']==observer_sha
+        inventory=observer['program_cache_inventory']
+        assert inventory['build_identity']==identity and inventory['read_only'] and inventory['conditional_prime'] is conditional_prime
+        assert bool(observer.get('program_cache_prime')) is conditional_prime
+        assert inventory['native_groups_before_inventory']==21 and inventory['PNG_cases_before_inventory']==6
+    else:
+        assert binding['blob_sha256']=='cb1960218b50b7d908eda964fad198a9394941c0db5b1af9cee7e84471837b0a', 'v731 native RAM identity is not admitted'
+        assert binding['manifest_sha256']=='27c39aa515bbfd247012b887a163558421f21bbe38ffce54ce2182be422ad459'
+    observer=package['exception_observer']
+    assert observer['target_process']=='backboardd' and observer['background_full_suite']
+    assert not observer.get('registration_only') and observer['presentation_probe']
+    assert observer['cif10_reference_cases']==6 and observer['cif10_reference_shared_encoder']
+    assert package['metal_resources']['native_presentation_required_tests']==21
+    return 'native'
+
+def validate_wled_gpu_record(record, package, binding):
+    stage=validate_wled_gpu_ram(package,binding)
+    assert not {'swipe_observation','thread_sample_observation'} & record.keys(), 'v731 GPU trials exclude synthetic input and thread sampling'
+    if stage!='gles':
+        assert record['exception_observer']==package['exception_observer'] and record['metal_resources']==package['metal_resources']
+        assert record['process_log_binding']==observer_log_binding(package)
+        backboard='DYLD_INSERT_LIBRARIES=/dev/sglram/m:/dev/sglram/e,SWEETGL_TEST=1'
+        if stage=='poster':
+            backboard='DYLD_INSERT_LIBRARIES=/dev/sglram/m,SWEETGL_TEST=1'
+    else:
+        assert not {'exception_observer','metal_resources','process_log_binding'} & record.keys()
+        backboard='DYLD_INSERT_LIBRARIES=/dev/sglram/m,SWEETGL_TRACE=1,SWEETGL_TEST=1'
+    assert record.get('display_geometry_binding',{}).get('profile')=='xz1c-native-2x'
+    assert record.get('native_grid_control',{}).get('mode')=='fitted'
+    if stage=='poster':
+        assert record.get('poster_startup_serial_only') is True
+        assert not {'screen_snapshot_binding','screen_capture_after_seconds'} & record.keys()
+        assert not any(word.split('=',1)[0]=='sfscreen' for word in record['cmdline'].split())
+    else:
+        assert 'poster_startup_serial_only' not in record
+        from scanout_snapshot import binding as screen_binding
+        assert record.get('screen_snapshot_binding')==screen_binding(record) and record.get('screen_capture_after_seconds')==150
+    env=[w for w in record['cmdline'].split() if w.startswith('sweetenv=')]
+    grid=record['native_grid_control']
+    spring=';SpringBoard:DYLD_INSERT_LIBRARIES=/dev/sglram/g,GEO_FIX=1'
+    spring+=',GEO_GRID=1' if grid.get('revision')!=2 else ''
+    aegir=';AegirPoster:DYLD_INSERT_LIBRARIES=/dev/sglram/e' if stage=='poster' else ''
+    assert env==['sweetenv=backboardd:'+backboard+spring+aegir], 'v731 GPU needs exact probe and geometry environment'
+
 def assemble_image(header,shim,payload):
     result=bytearray(header);struct.pack_into('<I',result,16,len(payload))
     result+=shim+b'\0'*(-len(shim)%4096);result+=payload+b'\0'*(-len(payload)%4096)
@@ -41,15 +146,22 @@ def assemble_image(header,shim,payload):
 def prove_payload(record):
     """Bind the entire embedded image to the compiled kernel and exact tested input blobs."""
     mode=record['trial_mode'];version=record['version']
-    kernel=ROOT/f'build/surface-diag-v{version}/kernel.v{version}.macho'
+    if version==WLED_VERSION:
+        verify_record(record)
+        if mode=='gpu':
+            assert 'ram_library_binding' in record, 'v731 GPU requires an exact RAM binding'
+    kernel=kernel_path(version)
     raw_kernel=kernel.read_bytes()
+    verify_wled_kernel(version,raw_kernel)
     assert sha(raw_kernel)==record['kernel_sha256'], 'Compiled kernel differs from image record'
     selected='gpu' if mode=='gpu' else 'ready' if mode in ('owner','ready') else 'private'
     raw,_,reference,blobs,_,shim=baseline(selected,ROOT/'assets/baselines')
     if mode=='ramcpu':blobs.append(baseline('gpu',ROOT/'assets/baselines')[3][-1])
     if 'ram_library_binding' in record:
         assert mode in ('ramcpu','gpu')
-        blob,_,ram_package=load_ram(record['ram_package'],record['ram_library_binding'])
+        blob,ram_binding,ram_package=load_ram(record['ram_package'],record['ram_library_binding'])
+        if version==WLED_VERSION and mode=='gpu':
+            validate_wled_gpu_record(record,ram_package,ram_binding)
         if record.get('exception_observer',{}).get('program_cache_inventory') or ram_package.get('exception_observer',{}).get('program_cache_inventory'):
             assert record.get('exception_observer')==ram_package.get('exception_observer'), 'Inventory observer metadata differs from the exact signed RAM manifest'
         if 'process_log_binding' in record:
@@ -57,7 +169,9 @@ def prove_payload(record):
             assert record['trial_mode']=='gpu' and binding and record['process_log_binding']==binding,'Process log binding differs from actual RAM producers'
             tee=[word.split('=',1)[1] for word in record['cmdline'].split() if word.startswith('sweetnull=')]
             assert tee==[','.join(binding['processes'])],'Required process records are excluded from the console tee'
-        validate_grid_control(record,ram_package)
+        grid=validate_grid_control(record,ram_package)
+        if grid and grid['revision']==2:
+            assert record.get('process_log_binding')==observer_log_binding(ram_package) and record.get('process_log_binding'), 'Default grid mode needs current SpringBoard evidence'
         blobs=[(n,blob if n=='GL-RAM-Z' else data) for n,data in blobs]
     elif 'native_grid_control' in record:
         raise ValueError('Native grid control requires its exact RAM package')
@@ -111,6 +225,13 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
         checked_screen_capture_after(screen_after)
     capture_after=(45 if screen_after is None else screen_after) if mode=='gpu' and screen_evidence else None
     config=configuration(version)
+    verify_wled_kernel(version,kernel.read_bytes())
+    if version==WLED_VERSION:
+        if mode!='gpu':
+            assert screen_evidence == (mode=='private'), 'v731 private requires a scanout'
+        if mode=='gpu':
+            assert ram_package and display_profile=='xz1c-native-2x'
+            assert native_grid_mode in (None,'fitted') and not (thread_sample or idle_sample or swipe_once)
     selected='gpu' if mode=='gpu' else 'ready' if mode in ('owner','ready') else 'private'
     raw,payload,reference,blobs,cmd,shim=baseline(selected,folder)
     files=list(blobs)
@@ -135,9 +256,16 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
         _,_,_,ramblobs,_,_=baseline('gpu',folder)
         files.append(ramblobs[-1])
     library_binding=None
+    serial_only=False
     if ram_package:
         assert mode in ('ramcpu','gpu')
         blob,library_binding,package=load_ram(ram_package)
+        if version==WLED_VERSION and mode=='gpu':
+            serial_only=validate_wled_gpu_ram(package,library_binding)=='poster'
+            if serial_only:
+                assert not screen_evidence, 'Poster startup requires serial evidence without a frame'
+            else:
+                assert screen_evidence and capture_after==150, 'v731 graphics suites require the 150-second frame'
         if version>=727:assert 'readonly_probe.c' in package['frontend_build_binding']['source_files']
         files=[(n,blob if n=='GL-RAM-Z' else data) for n,data in files]
         if mode=='gpu' and 'exception_observer' in package:
@@ -178,7 +306,20 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
                 words=[name if w==explicit else w for w in words]
                 compact_numeric_ones.append(name)
     zero_omissions=[]
-    if geometry:words=display_compact(words,compact_numeric_ones,zero_omissions=zero_omissions)
+    if geometry:
+        original_ones=compact_numeric_ones.copy()
+        if serial_only:
+            fitted=compact_fitted(words,grid_control,package)
+            assert fitted is not None
+            words,grid_control=fitted
+        try:
+            words=display_compact(words,compact_numeric_ones,zero_omissions=zero_omissions)
+        except CommandTooLong:
+            fitted=compact_fitted(words,grid_control,package) if grid_control and observer_log_binding(package) else None
+            if fitted is None:raise
+            words,grid_control=fitted
+            compact_numeric_ones=original_ones;zero_omissions=[]
+            words=display_compact(words,compact_numeric_ones,zero_omissions=zero_omissions)
     zero_binding=None
     if zero_omissions:
         from numeric_boot_args import native_zero_binding
@@ -225,6 +366,9 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
         from scanout_snapshot import binding as screen_binding
         m['screen_snapshot_binding']=screen_binding(m)
         if mode=='gpu':m['screen_capture_after_seconds']=capture_after
+    if serial_only:m['poster_startup_serial_only']=True
+    if version==WLED_VERSION and mode=='gpu':
+        validate_wled_gpu_record(m,package,library_binding)
     (output/'artifacts.json').write_text(json.dumps({'target_serial':'BH905ND69G','pon_route':6,'artifacts':[m]},indent=2)+'\n')
     common=['SWEET LOOP LIVE proto=1 token='+token,'SWEET RMI4: F12 page=']
     if grid_control:
@@ -363,7 +507,7 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
         scope=m['exception_observer']['program_cache_scope']
         common+=['SWEET PROGRAM CACHE SCOPE identity='+scope['identity'],
                  'SWEET PROGRAM CACHE SCOPE result=0 inherited=[01] directory='+re.escape(scope['directory'])+' mode=1777 old_files_preserved=1']
-    plan={'target_serial':'BH905ND69G','pon_route':6,'max_cycles':1,'budget_seconds':600 if screen_evidence else 480,'camera_required':mode=='gpu' and not screen_evidence,
+    plan={'target_serial':'BH905ND69G','pon_route':6,'max_cycles':1,'budget_seconds':600 if screen_evidence else 480,'camera_required':mode=='gpu' and not screen_evidence and not serial_only,
           'steps':[{'artifact_id':m['id'],'observe_seconds':observe,'stable_seconds':30,'return_seconds':120,'goals':common,
                     'return_evidence':'final-drain','on_pass':'stop','on_failure':'stop'}]}
     if screen_evidence:plan.update(screen_required=True,screen_timeout_seconds=100)
@@ -377,7 +521,7 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--mode',choices=['private','owner','ready','ramcpu','gpu'],required=True)
     p.add_argument('--kernel',required=True);p.add_argument('--baselines',default=str(ROOT/'assets/baselines'));p.add_argument('--output',required=True)
-    p.add_argument('--version',type=int,choices=[725,726,727,728,729,730],default=725)
+    p.add_argument('--version',type=int,choices=[725,726,727,728,729,730,WLED_VERSION],default=725)
     p.add_argument('--ram-package')
     p.add_argument('--owner-interval',type=int,choices=[90])
     p.add_argument('--screen-evidence',action='store_true')

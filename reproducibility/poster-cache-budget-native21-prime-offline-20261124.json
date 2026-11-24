@@ -1,0 +1,50 @@
+{
+  "version": 731,
+  "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+  "ram_blob_sha256": "be99855aa1663151815501cb9e5dfac5c960f3457a4611d9d055c4dbb80ae010",
+  "ram_manifest_sha256": "b0c57520ca89071822ac73be41008bc8b78023c898abf0cce882e61e8d486245",
+  "GLES_sha256": "6efabfc0627a8818a8c4c45665459cd33d8ee814f2e50a3f3cdc4813bb254325",
+  "Metal_sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27",
+  "observer_sha256": "c59fa4c83325f4029e99e799e3edb358a8e9fd897f2231071c284c4aae505bb9",
+  "cache_build_identity": "16722b126d14e64954fc349d20626f9e639cc726ed1c24856a889b2249efd236",
+  "program_cache_inventory": {
+    "revision": 1,
+    "context_identity": "477c265eff83f7a885c3cf4938b33482b78c906f7ba3d5d5c086eb61f0dca27b",
+    "build_identity": "16722b126d14e64954fc349d20626f9e639cc726ed1c24856a889b2249efd236",
+    "scope_identity": "9f43d3e226e901f609eeba4b9f348e2050ed7e1bd790ef8f7b422dc31eec892a",
+    "directory": "/private/var/tmp/sgm-9f43d3e226e901f609eeba4b9f348e20",
+    "max_files": 64,
+    "max_seen": 4096,
+    "max_bytes": 33554432,
+    "max_payload": 8388608,
+    "max_line_bytes": 160,
+    "max_prime_entries": 8,
+    "read_only": true,
+    "bin_import_performed": false,
+    "conditional_prime": true,
+    "native_groups_before_inventory": 21,
+    "PNG_cases_before_inventory": 6,
+    "identity_header_sha256": "95b7a1e47cea6de11d6eabb28adcfa00375d05f896c2e18bd4ea4c7932215c31"
+  },
+  "artifacts": {
+    "cpu": {
+      "token": "1fdd166cf693cf15",
+      "sha256": "a28fc58c314521140554d05f15effdd7bc6a220e73367252670d4df116574f59",
+      "trial_mode": "ramcpu"
+    },
+    "gpu": {
+      "token": "2d1794b225c1a6c1",
+      "sha256": "814ff302bb11c49f0d8bacae472aafdf19d53fafa7c5fdaae3852c18814eb4e0",
+      "trial_mode": "gpu"
+    }
+  },
+  "native_required_tests": 21,
+  "shared_PNG_required_cases": 6,
+  "prior_package": "build/poster-cache-budget-metal-20261124/gpu",
+  "prior_host_failure_record": "reproducibility/poster-cache-budget-native21-host-refusal-20261124.json",
+  "material_change": "Current-scope inventory followed by bounded conditional primer for actual missing requests only",
+  "prior_failed_package_not_replayed": true,
+  "device_operations": 0,
+  "native_acceptance": false,
+  "original_wallpaper_acceptance": false
+}

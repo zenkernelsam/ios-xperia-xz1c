@@ -1,0 +1,70 @@
+{
+  "source": "Windows TEMP/lilac-v731-wled-private-r2-live-20261124",
+  "actual_result": "PASS",
+  "token": "96cae1a14529df8e",
+  "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+  "image_sha256": "658568741cca9bbf788f7decae3c070bb97d740708e117f3da2c587293ddcc8c",
+  "raw_sha256": "4e4f8d7f82e2e22c289644d5341d4c061a11fa94695e545793c69eb2f8315b9b",
+  "raw_bytes": 532473,
+  "serial_port": "COM17",
+  "raw_results_sha256": "648a04e7f4aa70654202618e32fbbbde4beaf77818b99c308817a0e903a812fd",
+  "actual_evidence_sha256": "16c40b0cd96ba8dfbfce821881f3e69518b692f1d8346938f48a938fd535e402",
+  "wled_evidence_sha256": "d068cd31c7aaa26f6fab6ed29224b41845515e639e1d4369abd37c39b6c07371",
+  "screen": {
+    "width": 720,
+    "height": 1280,
+    "format": "BGR888",
+    "stride": 2160,
+    "blocks": 535,
+    "png_sha256": "f631a124ed2e6c2fb4c9d407a309780fcd735a18e2badf681dc13e9384b815fd",
+    "pixel_sha256": "f496b0f7217b4f23e7efd1e1ad56ce6a787dbdbab3e68cffa0478df0159082bd",
+    "complete_original_frame": true
+  },
+  "wled": {
+    "token": "96cae1a14529df8e",
+    "image_sha256": "658568741cca9bbf788f7decae3c070bb97d740708e117f3da2c587293ddcc8c",
+    "scanout_raw_sha256": "4e4f8d7f82e2e22c289644d5341d4c061a11fa94695e545793c69eb2f8315b9b",
+    "sample": {
+      "token": "96cae1a14529df8e",
+      "frame_id": 1,
+      "state": 6,
+      "state_name": "CONFIGURED",
+      "faults": 0,
+      "module_enabled": 1,
+      "sink_mask": 3,
+      "modulator_mask": 3,
+      "duty": [
+        1989,
+        1989
+      ]
+    },
+    "same_live_as_complete_scanout": true,
+    "original_trial_result": "PASS",
+    "pwm_current_luminosity_verified": false,
+    "optical_panel_verified": false,
+    "device_operations": 0
+  },
+  "return_evidence": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "96cae1a14529df8e",
+    "checkpoint_bytes": 529293,
+    "log_bytes": 532473,
+    "log_sha256": "4e4f8d7f82e2e22c289644d5341d4c061a11fa94695e545793c69eb2f8315b9b",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      5,
+      58,
+      60
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 38.85899999993853,
+  "worker_closed": true,
+  "download_commands": 1,
+  "boot_commands": 1,
+  "other_v731_prerequisites_run": false,
+  "physical_brightness_verified": false,
+  "sleep_wake_verified": false
+}

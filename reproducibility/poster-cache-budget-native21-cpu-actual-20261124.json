@@ -1,0 +1,50 @@
+{
+  "version": 731,
+  "mode": "ramcpu",
+  "token": "8078d5413d8da5c4",
+  "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+  "image_sha256": "aa226156399b2779aa8fa879485c916277c87c85cc1f3d0f19bf0de78836b3a7",
+  "log_sha256": "cc16ff0760ee34f8eff0a1ded7dd65f404707404d536bb931aa69ce66d6bf82c",
+  "return_complete": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "8078d5413d8da5c4",
+    "checkpoint_bytes": 334302,
+    "log_bytes": 337298,
+    "log_sha256": "cc16ff0760ee34f8eff0a1ded7dd65f404707404d536bb931aa69ce66d6bf82c",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      5,
+      56,
+      58
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 39.07799999997951,
+  "ram_library_binding": {
+    "library_sha256": "6efabfc0627a8818a8c4c45665459cd33d8ee814f2e50a3f3cdc4813bb254325",
+    "library_bytes": 14801120,
+    "library_fnv64": "2181c45c9f21ee6c",
+    "blob_sha256": "a8821cead75c078861eed21733c6366b594c8de4a631c3848b8bfd55d3cb66bf",
+    "raw_sha256": "1265dc937ddb22237377a1d0996d7b838429945ad8bb274b1dc008c1122812e9",
+    "manifest_sha256": "f86dd5f209f54996f393a7071526eecd7db2daf33d27fb788056c5562b6c61cd"
+  },
+  "serial_capture": {
+    "revision": 1,
+    "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+    "event_log_sha256": "c0f8da2c591c11d27cf79652c65103ebe88b432a860a127de7124e4fa5f2c29b",
+    "raw_sha256": "cc16ff0760ee34f8eff0a1ded7dd65f404707404d536bb931aa69ce66d6bf82c",
+    "serial_port": "COM17",
+    "dtr_low_through_open": true,
+    "raw_log_before_stream": true,
+    "one_continuous_current_boot_stream": true,
+    "replay_commands": 0,
+    "old_failure_not_reclassified": true
+  },
+  "source": "Windows TEMP/lilac-v731-cache-budget-native21-cpu-live-20261124",
+  "actual_evidence_sha256": "bf6cc3c5b6d16dee46b7b04d8b4262092e6fb66d83dd674c55b975b6423222e4",
+  "original_result": "PASS",
+  "worker_closed": true,
+  "native_GPU_acceptance": false
+}

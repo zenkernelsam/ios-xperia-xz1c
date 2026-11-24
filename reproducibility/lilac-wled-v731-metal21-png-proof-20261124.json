@@ -1,0 +1,13 @@
+{
+  "revision": 1,
+  "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+  "GLES_sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+  "Metal_sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27",
+  "encoder_source_sha256": "61031999d4ff1d9a2c9c6a564cf229a82c3b9c49998d752ae0bd4d6fd18e1e92",
+  "reference_token": "97fa008727dbc047",
+  "reference_image_sha256": "e6edb5164f4ddfcaf0e6e77714b5d4c5f35ca7cd69fb548905502a17c1661a9f",
+  "reference_raw_sha256": "dd76f02b899b0d8cacb1775fe12156af36a35c0fcddefcc21cd47b210b80c22d",
+  "reference_cases": 6,
+  "filter": 32,
+  "pixels_ICC_metadata_equal": true
+}

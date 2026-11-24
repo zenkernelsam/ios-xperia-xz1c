@@ -1,0 +1,23 @@
+{
+  "reference_repository": "sony-msm8998/android_kernel_sony_msm8998",
+  "reference_commit": "33dc678e7692f04ecc1eeddeb1cca8a809bc1727",
+  "reference_blobs": {
+    "include/sound/apr_audio-v2.h": "89e05abfd74b5f3a5c68d0eed4d6edb685a17243",
+    "include/linux/qdsp6v2/apr.h": "d80320e7466198d173a1e72b96a5638b0e6bf689",
+    "sound/soc/msm/qdsp6v2/q6asm.c": "eb3b42f47974abe76f489433e8a914737eac0af4"
+  },
+  "source_sha256": {
+    "xnu/support/LilacAsmPcm.h": "1534d94b8e0ae268edc75f3515af5b6b47dbb0b00ef5266688b2ea635a49fccc",
+    "tools/build/test_lilac_asm_pcm.c": "a20be121a882ec19f3dd139d879c91a38f9140e9ce2f0b1b873d2964967eb864"
+  },
+  "scope": "Untimestamped stereo S16 PCM WRITE_V2 payload and matching WRITE_DONE_V2 event",
+  "host_asan_ubsan_passed": true,
+  "arm64_macho_object_sha256": "ae260ac8759f1e7c623ab4c7513168fb16349ef1e3278660a0dd4123e4e01650",
+  "arm64_undefined_symbols": [],
+  "requires_owned_dsp_mapping_and_separate_pending_submission_tracking": true,
+  "transport_connected": false,
+  "linked_into_device_kernel": false,
+  "dsp_playback_verified": false,
+  "physical_audio_verified": false,
+  "device_operations": 0
+}

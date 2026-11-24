@@ -1,0 +1,87 @@
+{
+  "source": "Windows TEMP/lilac-v730-poster-cache-r27-inventory-live-20261124",
+  "actual_result": "PASS",
+  "token": "74d17a254c08c57c",
+  "image_sha256": "a45c739e62b0e478b22fa3428d8862f0114f55a1e7d3fe215e9a32333a5ec15c",
+  "raw_sha256": "ceb209dd7d8bf24e7fc74c600eef97068ba493d0dbd721e1028255f3b05b55bf",
+  "raw_bytes": 2937810,
+  "original_results_sha256": "962c9f7452bea841819ce9db6f52fc17c07702d37df7b6367fef9dd12ed2fd15",
+  "proof_sha256": "5b5059b568af6644511357008aaeb0d6477af7c15fca257f4ef1b0ee0378682e",
+  "return_seconds_with_health": 38.79700000002049,
+  "return_evidence": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "74d17a254c08c57c",
+    "checkpoint_bytes": 2934898,
+    "log_bytes": 2937810,
+    "log_sha256": "ceb209dd7d8bf24e7fc74c600eef97068ba493d0dbd721e1028255f3b05b55bf",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      5,
+      55,
+      57
+    ],
+    "final_reset_marker_seen": true
+  },
+  "serial_capture": {
+    "revision": 1,
+    "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+    "event_log_sha256": "4aa1d6f278847042c5edd3dd754bc061dc0289aea5780c5af8e6614c4e617e48",
+    "raw_sha256": "ceb209dd7d8bf24e7fc74c600eef97068ba493d0dbd721e1028255f3b05b55bf",
+    "serial_port": "COM17",
+    "dtr_low_through_open": true,
+    "raw_log_before_stream": true,
+    "one_continuous_current_boot_stream": true,
+    "replay_commands": 0,
+    "old_failure_not_reclassified": true
+  },
+  "worker_closed": true,
+  "native21_and_PNG6_independently_verified": true,
+  "scanout_png_sha256": "0b5131a6620788de0a9f4de8005ad9034b0529302b2693efd4b6d19792f5c0c0",
+  "inventory": {
+    "files": 58,
+    "records": 58,
+    "requests": 29,
+    "bins": 29,
+    "present": 29,
+    "missing": 0
+  },
+  "inventory_r27": {
+    "files": 62,
+    "records": 62,
+    "requests": 31,
+    "bins": 31,
+    "present": 31,
+    "missing": 0
+  },
+  "prior_58_files_preserved": true,
+  "added_pairs": [
+    {
+      "key": "157601d8938194a9f72feb9e2b95b8855f4cc339699d7bd351b2a534504268a3",
+      "request_sha256": "92fd92fde460024559e43c9fc01c388f09e765eb4445fd9494c773ca0b27dca2",
+      "binary_sha256": "2acef21457a844b6291a8bcfa1ffa6fa810c2e820f07f5cd87d6ec2c90824cb5",
+      "source_lengths": [
+        4840,
+        7830
+      ],
+      "binary_payload_bytes": 17437
+    },
+    {
+      "key": "1abcbb92563f262add5d204c8caa3df4de5aff143393960c4ab1bc58ad347ebb",
+      "request_sha256": "e3bb194ca7570e9952402a556453fc47a808bbe451cc529ed58a03d4b07710b7",
+      "binary_sha256": "b8747b9106a2a49e37fe29fe276f9e66c13b1d9214674176d26ba1acece3d1f7",
+      "source_lengths": [
+        4840,
+        9711
+      ],
+      "binary_payload_bytes": 44221
+    }
+  ],
+  "conditional_action": {
+    "action": "skip",
+    "missing": 0
+  },
+  "runtime_key_attribution_not_proven": true,
+  "original_wallpaper_not_verified": true
+}

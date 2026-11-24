@@ -1,0 +1,29 @@
+{
+  "inspector": "tools/device/adsp_prepare_evidence.py",
+  "inspector_sha256": "f6718a3ffe1c91c62941bab8d3941ce3555b4e5469185c41abef9d4909c71bb0",
+  "verified_runs": [
+    {
+      "token": "38e5e7e0a91b3fbd",
+      "raw_sha256": "caf81544a6178b0c3486f89a3a21c1eb1d027b508363abc2f2a82e67c0ecccb9",
+      "report_sha256": "0f33091814316888ef1445db368966b7d51abec35903e8a2a70f7b1a83240e55"
+    },
+    {
+      "token": "84d6d2af0f2f72f9",
+      "raw_sha256": "fb8e538a47a55aca13cb19791fcfd036a8c52b0481a6fe12b5e5bc06e5baaa2d",
+      "report_sha256": "be0999be388bec58a561cfb2e14864db3273660ecc81d527432f51030fe33da0"
+    }
+  ],
+  "reference_repository": "sony-msm8998/android_kernel_sony_msm8998",
+  "reference_commit": "33dc678e7692f04ecc1eeddeb1cca8a809bc1727",
+  "reference_blobs": {
+    "sound/soc/msm/msm8998.c": "1c1f65fb3f5c5bb962d33d0b11434fd2e480f52e",
+    "sound/soc/msm/qdsp6v2/q6afe.c": "7ee774ddccf7e7fefcb57fdd5612f044400ce95c",
+    "sound/soc/msm/qdsp6v2/q6asm.c": "eb3b42f47974abe76f489433e8a914737eac0af4"
+  },
+  "current_stage": "firmware validation, API availability, AP-side setup",
+  "adsp_started_in_verified_runs": false,
+  "apr_transaction_verified": false,
+  "active_codec_verified": false,
+  "audio_output_verified": false,
+  "device_operations": 0
+}

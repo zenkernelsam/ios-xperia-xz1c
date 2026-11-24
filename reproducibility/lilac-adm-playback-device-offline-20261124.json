@@ -1,0 +1,31 @@
+{
+  "prior_route_record": "reproducibility/lilac-adm-playback-route-offline-20261124.json",
+  "reference_commit": "33dc678e7692f04ecc1eeddeb1cca8a809bc1727",
+  "reference_blobs": {
+    "include/sound/apr_audio-v2.h": "89e05abfd74b5f3a5c68d0eed4d6edb685a17243",
+    "sound/soc/msm/qdsp6v2/q6adm.c": "dc7165263316cc6352dfc63105da9374f03a0e3c"
+  },
+  "sources": {
+    "xnu/support/LilacAdmPlaybackDevice.h": "059e9693798b2605bf9ed5bf2941358e21231982ccfa83810db51832ae74cf5c",
+    "xnu/support/LilacAdmPlaybackRoute.h": "8cbba82b1a98755331a3ca297e26ec1d687eb03d8ed841c230d77af317f54c4e",
+    "tools/build/test_lilac_asm_pcm_stream.cpp": "15ca4071d8d925606d162257f7e6e97672356c2c84b64bbdcccb7dd19a1340c1"
+  },
+  "scope": "One legacy stereo S16 48 kHz Audio RX COPP on a caller-verified AFE port and topology",
+  "open_packet_bytes": 48,
+  "close_packet_bytes": 20,
+  "host_asan_ubsan_passed": true,
+  "arm64_macho_object_sha256": "28a21f95d113d0dadfc55515acad2faa9cb74e43c655072fb1426a6b21ec611f",
+  "arm64_undefined_symbols": [],
+  "simulated_checks": [
+    "exact open bytes and no state transition on insufficient capacity",
+    "basic acknowledgement alone does not yield a COPP",
+    "stale epoch, truncated reply, invalid COPP and late success rejected",
+    "matrix routing uses the returned COPP and stops trusting a closed output",
+    "close uses AFE source port and returned COPP destination"
+  ],
+  "requires_verified_afe_configuration_and_caller_confirmed_playback_detach": true,
+  "firmware_reply_port_assumptions_verified_on_device": false,
+  "hardware_transport_connected": false,
+  "physical_playback_verified": false,
+  "device_operations": 0
+}

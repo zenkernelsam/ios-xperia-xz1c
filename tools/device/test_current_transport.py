@@ -1,5 +1,5 @@
 """Offline fault replay for migrated transport and strict current one-shot planning."""
-import importlib.util,sys,unittest
+import importlib.util,sys,unittest,subprocess
 from pathlib import Path
 sys.dont_write_bytecode=True
 here=Path(__file__).resolve().parent
@@ -71,4 +71,21 @@ class PlanTests(unittest.TestCase):
             wrong=prefix+('\n'.join(tail[:i]+tail[i+1:])+'\n').encode()
             self.assertFalse(inspect_return(wrong,token,len(prefix),require_drain=True)['complete'])
         self.assertFalse(inspect_return(data,'1111111111111111',len(prefix),require_drain=True)['complete'])
+    def test_process_preflight_failure_never_reaches_patch(self):
+        errors = (subprocess.TimeoutExpired('preflight', 30),
+                  Refuse('process_preflight failed'),
+                  Refuse('Operator stop requested'))
+        with patch('sony_usb_guard.validate_inputs'), patch('controller.active_tool_processes', return_value=[]):
+            for error in errors:
+                ops = LiveOps(Mock())
+                ops.command = Mock(side_effect=error)
+                with self.subTest(error=type(error).__name__), self.assertRaises(type(error)):
+                    ops.patch()
+                self.assertEqual(ops.command.call_count, 1)
+                self.assertEqual(ops.command.call_args.args[2], 'host_process_preflight')
+            ops = LiveOps(Mock())
+            ops.command = Mock(return_value='[{"pid":123,"reason":"conflicting_test_or_capture_process"}]')
+            with self.assertRaises(Refuse):
+                ops.patch()
+            self.assertEqual(ops.command.call_count, 1)
 if __name__=='__main__':unittest.main(verbosity=2)

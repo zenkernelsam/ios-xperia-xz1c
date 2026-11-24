@@ -1,0 +1,237 @@
+{
+  "version": 731,
+  "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+  "private_record": "reproducibility/lilac-wled-v731-private-actual-20261124.json",
+  "stages": {
+    "owner": {
+      "token": "ee903b2b8fc2af54",
+      "image_sha256": "f6a22fe73b8b6f1b49a0b0dd1b0327c72f63158ee8ce1555ac393b96542f707a",
+      "log_sha256": "463d4e23d728a7201c24397ea03412b34d4cbe5f2db13ad4e422650c727e1e0a",
+      "return_complete": {
+        "complete": true,
+        "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+        "current_token": "ee903b2b8fc2af54",
+        "checkpoint_bytes": 331849,
+        "log_bytes": 335573,
+        "log_sha256": "463d4e23d728a7201c24397ea03412b34d4cbe5f2db13ad4e422650c727e1e0a",
+        "require_final_drain": true,
+        "marker_positions": [
+          3,
+          14,
+          70,
+          72
+        ],
+        "final_reset_marker_seen": true
+      },
+      "return_seconds_with_health": 41.45299999997951,
+      "serial_capture": {
+        "revision": 1,
+        "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+        "event_log_sha256": "b62fef7667bb30664b2eb09d4cbc56a879b3ed8f30f415e630c47aa284e76a69",
+        "raw_sha256": "463d4e23d728a7201c24397ea03412b34d4cbe5f2db13ad4e422650c727e1e0a",
+        "serial_port": "COM17",
+        "dtr_low_through_open": true,
+        "raw_log_before_stream": true,
+        "one_continuous_current_boot_stream": true,
+        "replay_commands": 0,
+        "old_failure_not_reclassified": true
+      },
+      "single_download_boot_verified": true,
+      "actual_stage_verified": true,
+      "source": "Windows TEMP/lilac-v731-wled-owner-live-20261124",
+      "raw_proof_sha256": "00ddcd91bac5bf491806cf4c18ea83abcc84d75dad08527f4beaeaff484e367b",
+      "worker_closed": true,
+      "snapshots": [
+        {
+          "snapshot": 1,
+          "root_pa": 2709565440,
+          "root_hash": "64ba183dab0947d9",
+          "root_words": [
+            0,
+            0,
+            2147485249,
+            3221227073,
+            4294968897,
+            5368710721,
+            6442452545,
+            7516194369
+          ],
+          "root_hash_independently_recomputed": true,
+          "streams": [
+            {
+              "slot": 0,
+              "smr": 2147483648,
+              "s2cr": 0
+            },
+            {
+              "slot": 1,
+              "smr": 0,
+              "s2cr": 0
+            },
+            {
+              "slot": 2,
+              "smr": 2147483650,
+              "s2cr": 131327
+            },
+            {
+              "slot": 3,
+              "smr": 2147483651,
+              "s2cr": 805306373
+            }
+          ],
+          "raw_tcr2": 229393,
+          "sequence": 1,
+          "completed": 1,
+          "observed_fsr": 1024,
+          "observer_root_updates": 0,
+          "alias_gpu_work": 0
+        },
+        {
+          "snapshot": 2,
+          "root_pa": 2709565440,
+          "root_hash": "64ba183dab0947d9",
+          "root_words": [
+            0,
+            0,
+            2147485249,
+            3221227073,
+            4294968897,
+            5368710721,
+            6442452545,
+            7516194369
+          ],
+          "root_hash_independently_recomputed": true,
+          "streams": [
+            {
+              "slot": 0,
+              "smr": 2147483648,
+              "s2cr": 0
+            },
+            {
+              "slot": 1,
+              "smr": 0,
+              "s2cr": 0
+            },
+            {
+              "slot": 2,
+              "smr": 2147483650,
+              "s2cr": 131327
+            },
+            {
+              "slot": 3,
+              "smr": 2147483651,
+              "s2cr": 805306373
+            }
+          ],
+          "raw_tcr2": 229393,
+          "sequence": 1,
+          "completed": 1,
+          "observed_fsr": 1024,
+          "observer_root_updates": 0,
+          "alias_gpu_work": 0
+        }
+      ]
+    },
+    "ready": {
+      "token": "f8b8c6f3e1badb8a",
+      "image_sha256": "e38b1ca56faf548df005f991728915a280a62122df7b387c390f4fdd23b36665",
+      "log_sha256": "5ebc6742388dd02c7a2cd6394e700bc0a4dfaf4ede8abdc9b06d46c9dcf9f3d6",
+      "return_complete": {
+        "complete": true,
+        "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+        "current_token": "f8b8c6f3e1badb8a",
+        "checkpoint_bytes": 261210,
+        "log_bytes": 263884,
+        "log_sha256": "5ebc6742388dd02c7a2cd6394e700bc0a4dfaf4ede8abdc9b06d46c9dcf9f3d6",
+        "require_final_drain": true,
+        "marker_positions": [
+          3,
+          10,
+          54,
+          56
+        ],
+        "final_reset_marker_seen": true
+      },
+      "return_seconds_with_health": 40.23400000017136,
+      "serial_capture": {
+        "revision": 1,
+        "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+        "event_log_sha256": "d6551c2d6cd10f4b4837cc70e009accecbdfa9c33bcbbf4748d26a1f3d969689",
+        "raw_sha256": "5ebc6742388dd02c7a2cd6394e700bc0a4dfaf4ede8abdc9b06d46c9dcf9f3d6",
+        "serial_port": "COM17",
+        "dtr_low_through_open": true,
+        "raw_log_before_stream": true,
+        "one_continuous_current_boot_stream": true,
+        "replay_commands": 0,
+        "old_failure_not_reclassified": true
+      },
+      "single_download_boot_verified": true,
+      "actual_stage_verified": true,
+      "source": "Windows TEMP/lilac-v731-wled-ready-live-20261124",
+      "raw_proof_sha256": "6d7f3eca897ac78920cdceafb62ce67a58cf192b772918c7ec9f05c259b2c809",
+      "worker_closed": true
+    },
+    "ramcpu": {
+      "token": "3b2765450f618aaf",
+      "image_sha256": "394efbca72b0e2879372fb378ff87a566a0770c260f76160c533d5550838a9e4",
+      "log_sha256": "0ac2214ec53c20ebcbbe1fe55d589c17a77896de8b2d226a3d19402d8bbdcccf",
+      "return_complete": {
+        "complete": true,
+        "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+        "current_token": "3b2765450f618aaf",
+        "checkpoint_bytes": 318275,
+        "log_bytes": 321306,
+        "log_sha256": "0ac2214ec53c20ebcbbe1fe55d589c17a77896de8b2d226a3d19402d8bbdcccf",
+        "require_final_drain": true,
+        "marker_positions": [
+          3,
+          5,
+          57,
+          59
+        ],
+        "final_reset_marker_seen": true
+      },
+      "return_seconds_with_health": 38.59400000004098,
+      "serial_capture": {
+        "revision": 1,
+        "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+        "event_log_sha256": "7521c12b29a62be2354ac08052c027992ef629bbdebcd34e47fda73ff4ec619d",
+        "raw_sha256": "0ac2214ec53c20ebcbbe1fe55d589c17a77896de8b2d226a3d19402d8bbdcccf",
+        "serial_port": "COM17",
+        "dtr_low_through_open": true,
+        "raw_log_before_stream": true,
+        "one_continuous_current_boot_stream": true,
+        "replay_commands": 0,
+        "old_failure_not_reclassified": true
+      },
+      "single_download_boot_verified": true,
+      "actual_stage_verified": true,
+      "source": "Windows TEMP/lilac-v731-wled-ramcpu-live-20261124",
+      "raw_proof_sha256": "8f27088d279d059beae513218547dbe4243995349a4ea1c4518c95d99deb077c",
+      "worker_closed": true,
+      "ram_library_binding": {
+        "library_sha256": "0766d5c713a883426e801e6d162bbdc46df79c5bc094ca77a7b6d6462599d607",
+        "library_bytes": 14801120,
+        "library_fnv64": "9929cfe79edd5bce",
+        "blob_sha256": "294751d67dbeeee7a8729448b0f69cf813ff4fdb24685750dfd3511523d585b3",
+        "raw_sha256": "fbc36be929e5a39276735978321bf553729d04c819d07e9bebcd4ae657a57a97",
+        "manifest_sha256": "1e8206e9b71c236f3dda0e13c49eb230fd3009c415e3054dbf87eedd1c75d577"
+      },
+      "ram_library_prefix": {
+        "logical_library_reads": 1,
+        "raw_library_reads": 1,
+        "ready_positions": [
+          8792
+        ],
+        "read_positions": [
+          12409
+        ],
+        "startup_block_sha256": "bcd8de2339da0b78e36b20f89d67b9f584651b27d84eba4ab81f41beb9931b0b",
+        "explicit_exact_prefix_replay": false,
+        "raw_log_unchanged": true
+      }
+    }
+  },
+  "GLES9_not_run": true,
+  "physical_backlight_control_not_tested": true
+}

@@ -1,0 +1,155 @@
+{
+  "revision": 1,
+  "firmware_binding": {
+    "firmware": "SO-02K 47.1.F.1.105",
+    "kernel_sin_sha256": "d12b57e8f1e628d400051750c320c0c4671f9e06f4642e16b882376f966efe63",
+    "boot_member_sha256": "e05e143d116249b763e65bb8d20214197100175f44c10b8c2af3cbc4dd1a29ca",
+    "dtb_sha256": "06f4c3493aad91d2240508b0c5788d4799c9c2a58357462507b3bc5e28bf6669",
+    "dtb_bytes": 478430,
+    "dtb_offset_in_boot_member": 13087373
+  },
+  "model": "SoMC Lilac-DCM(MSM8998 v2.1)",
+  "compatible": [
+    "somc,lilac-dcm",
+    "qcom,msm8998"
+  ],
+  "wled": {
+    "path": "/soc/qcom,spmi@800f000/qcom,pmi8998@3/qcom,leds@d800",
+    "compatible": [
+      "qcom,qpnp-wled"
+    ],
+    "status": "okay",
+    "resource_names": [
+      "qpnp-wled-ctrl-base",
+      "qpnp-wled-sink-base"
+    ],
+    "led_strings": [
+      0,
+      1
+    ],
+    "brightness_area_table": [
+      0,
+      137,
+      273,
+      410,
+      546,
+      683,
+      819,
+      956,
+      1092,
+      1229,
+      1365,
+      1638,
+      1911,
+      2184,
+      2457,
+      2730,
+      3003,
+      3276,
+      3549,
+      3822,
+      4095
+    ],
+    "full_scale_current_microamps": 17500,
+    "initial_current_microamps": 8500
+  },
+  "panel_candidates": {
+    "somc,5_panel": {
+      "pixels": [
+        720,
+        1280
+      ],
+      "nonzero_level_range": [
+        1,
+        4095
+      ],
+      "control": "bl_ctrl_wled"
+    },
+    "somc,6_panel": {
+      "pixels": [
+        720,
+        1280
+      ],
+      "nonzero_level_range": [
+        1,
+        4095
+      ],
+      "control": "bl_ctrl_wled"
+    },
+    "somc,8_panel": {
+      "pixels": [
+        720,
+        1280
+      ],
+      "nonzero_level_range": [
+        1,
+        4095
+      ],
+      "control": "bl_ctrl_wled"
+    },
+    "somc,9_panel": {
+      "pixels": [
+        720,
+        1280
+      ],
+      "nonzero_level_range": [
+        1,
+        4095
+      ],
+      "control": "bl_ctrl_wled"
+    },
+    "somc,default_cmd_panel": {
+      "pixels": [
+        720,
+        1280
+      ],
+      "nonzero_level_range": [
+        1,
+        4095
+      ],
+      "control": "bl_ctrl_wled"
+    }
+  },
+  "active_panel_verified": false,
+  "other_peripheral_nodes": {
+    "wlan": {
+      "path": "/soc/qcom,icnss@18800000",
+      "compatible": [
+        "qcom,icnss"
+      ],
+      "status": "unspecified"
+    },
+    "wlan_alternative": {
+      "path": "/soc/qcom,msm_ath10k_wlan",
+      "compatible": [
+        "qcom,wcn3990-wifi"
+      ],
+      "status": "disabled"
+    },
+    "bluetooth": {
+      "path": "/vendor/bt_wcn3990",
+      "compatible": [
+        "qca,wcn3990"
+      ],
+      "status": "unspecified"
+    },
+    "audio_tasha": {
+      "path": "/soc/sound-9335",
+      "compatible": [
+        "qcom,msm8998-asoc-snd-tasha"
+      ],
+      "status": "unspecified",
+      "model": "msm8998-tasha-snd-card"
+    },
+    "audio_tavil": {
+      "path": "/soc/sound-tavil",
+      "compatible": [
+        "qcom,msm8998-asoc-snd-tavil"
+      ],
+      "status": "unspecified",
+      "model": "msm8998-tavil-snd-card"
+    }
+  },
+  "hardware_function_verified": false,
+  "device_operations": 0
+}

@@ -20,8 +20,8 @@ def observe(output, seconds=30):
                   independent_health_only=True, previous_trial_result_unchanged=True)
     lock = LiveLock(output / 'device.lock')
     try:
-        inventory = ops.command(['powershell', '-NoProfile', '-ExecutionPolicy', 'Bypass',
-                                 '-File', HERE / 'preflight_processes.ps1'], 12, 'process_preflight')
+        inventory = ops.command(['powershell', '-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'Bypass',
+                                 '-File', HERE / 'preflight_processes.ps1'], 30, 'process_preflight')
         if json.loads(inventory):
             raise Refuse('Another boot/capture worker is running')
         stability = FastbootStability(seconds)

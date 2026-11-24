@@ -1,0 +1,36 @@
+{
+  "stock_dtb_report": "reproducibility/lilac-dcm-stock-peripherals-47.1.F.1.105.json",
+  "stock_dtb_sha256": "06f4c3493aad91d2240508b0c5788d4799c9c2a58357462507b3bc5e28bf6669",
+  "reference": {
+    "repository": "sony-msm8998/android_kernel_sony_msm8998",
+    "commit": "33dc678e7692f04ecc1eeddeb1cca8a809bc1727",
+    "driver": "drivers/leds/leds-qpnp-wled.c",
+    "driver_blob": "461693ef9d279e97a4757f0d2db87a9932473c37",
+    "binding": "Documentation/devicetree/bindings/leds/leds-qpnp-wled.txt",
+    "binding_blob": "c7268ef07f592a58af2b10eb4c37e18383fea064"
+  },
+  "stock_binding": {
+    "compatible": "qcom,qpnp-wled",
+    "sid": 3,
+    "control_base": "0xd800",
+    "sink_base": "0xd900",
+    "strings": [0, 1]
+  },
+  "sources": {
+    "xnu/support/LilacWledSnapshot.h": "77c51e06bd55d6752c215f36a4e5346840ea631d662fdf199b9f03a82799fd0d",
+    "tools/build/test_lilac_wled_snapshot.c": "e0a45b19165f0c691369e2e2fe85a57c71932956ddbaf92f9a31f0876f10a0b2"
+  },
+  "host_verification": {
+    "asan_ubsan": true,
+    "read_failure_points_tested": 18,
+    "moving_register_points_tested": 9,
+    "arm64_elf_test_object_compiled": true,
+    "arm64_macho_freestanding_capture_compiled": true,
+    "arm64_macho_has_no_undefined_symbols": true
+  },
+  "linked_into_current_xnu": false,
+  "device_operations": 0,
+  "hardware_reads_verified": false,
+  "brightness_control_verified": false,
+  "optical_backlight_verified": false
+}

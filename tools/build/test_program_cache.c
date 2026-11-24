@@ -34,8 +34,9 @@ int main(int argc,char **argv)
     sweet_cache_key(identity,&config,vs,strlen(vs),fs,strlen(fs),key);GLsizei actual=0;GLenum format=0;glGetProgramBinary(program,bytes,&actual,&format,binary);CHECK(actual>0 && actual<=bytes && glGetError()==GL_NO_ERROR);
     size_t count=SWEET_PROGRAM_CACHE_HEADER+(size_t)actual;unsigned char *record=malloc(count);CHECK(sweet_cache_header(record,SWEET_PROGRAM_CACHE_BINARY,format,identity,key,binary,(size_t)actual,strlen(vs),strlen(fs)));
     memcpy(record+SWEET_PROGRAM_CACHE_HEADER,binary,(size_t)actual);CHECK(sweet_cache_validate(record,count,SWEET_PROGRAM_CACHE_BINARY,identity,key));
-    char path[1024];CHECK(sweet_cache_path(argv[1],identity,key,SWEET_PROGRAM_CACHE_BINARY,path)==0);CHECK(sweet_cache_write_file(argv[1],path,identity,record,count)==0);
-    CHECK(sweet_cache_write_file(argv[1],path,identity,record,count)==-EEXIST);
+    char path[1024];CHECK(sweet_cache_path(argv[1],identity,key,SWEET_PROGRAM_CACHE_BINARY,path)==0);
+    CHECK(sweet_cache_write_file(argv[1],identity,key,SWEET_PROGRAM_CACHE_BINARY,record,count)==0);
+    CHECK(sweet_cache_write_file(argv[1],identity,key,SWEET_PROGRAM_CACHE_BINARY,record,count)==-EEXIST);
     glDeleteProgram(program);glDeleteShader(vert);glDeleteShader(frag);CHECK(eglMakeCurrent(d,EGL_NO_SURFACE,EGL_NO_SURFACE,EGL_NO_CONTEXT));eglDestroyContext(d,context);
     context=eglCreateContext(d,cfg,EGL_NO_CONTEXT,version);CHECK(eglMakeCurrent(d,surface,surface,context));unsigned char *loaded=NULL;size_t length=0;
     CHECK(sweet_cache_read_file(path,&loaded,&length)==0 && length==count && sweet_cache_validate(loaded,length,SWEET_PROGRAM_CACHE_BINARY,identity,key));

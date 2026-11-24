@@ -1,0 +1,26 @@
+{
+  "version": 731,
+  "GLES_sha256": "6efabfc0627a8818a8c4c45665459cd33d8ee814f2e50a3f3cdc4813bb254325",
+  "Metal_sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27",
+  "ram_blob_sha256": "e98ed2cd62595b2b414ef2d04ce1cfa93af34041a99fd6b38691f004314eb83b",
+  "ram_manifest_sha256": "55eee7cb15985a1e27c939ae4601ceb104d9d43ae760edb7c6191f450899ec98",
+  "observer_sha256": "af1c42dc51fbccab4f6d42461044c14c9913ffa7eaa4b1a480c1b213b24cddd2",
+  "native_proof_token": "2d1794b225c1a6c1",
+  "PNG_proof_token": "2d1794b225c1a6c1",
+  "original_request_policy_unchanged": true,
+  "prior_failed_package_not_replayed": true,
+  "device_operations": 0,
+  "original_wallpaper_acceptance": false,
+  "artifacts": {
+    "cpu": {
+      "trial_mode": "ramcpu",
+      "token": "48d8ab64336f5abf",
+      "sha256": "fe5b43b434f2ac2408578ddefdb80e6b0d24e240bc5b597490a45e7507265296"
+    },
+    "gpu": {
+      "trial_mode": "gpu",
+      "token": "a4ef7f6bb4537a5e",
+      "sha256": "fce889fcd3dff2573bf9ec4bf6261b450717bf8ae4b456aa648bfd50cf796ee7"
+    }
+  }
+}

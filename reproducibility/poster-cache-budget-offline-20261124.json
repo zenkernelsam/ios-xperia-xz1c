@@ -1,0 +1,44 @@
+{
+  "prior_observation": "reproducibility/lilac-wled-v731-poster-startup-actual-20261124.json",
+  "source_sha256": {
+    "gpu/sweetgl/ProgramCacheStore.h": "398af846fd61b4397647bbec06e38e50277d2c4cda00835e58d3f829793cc38f",
+    "gpu/sweetgl/program_cache.c": "dd5f2c52e032cfec3e5215f4bbdfc4be4577c78a65a42b74e3f2a670ea09e24b",
+    "tools/build/test_program_cache_budget.c": "891992a718a1bd985c8914b5d8f55babce1656b098e5cde14c344ea9302daba5",
+    "tools/build/test_program_cache.c": "9c7ef4f60c5d2c817aed7a9485504b8bd40c0f82859411d0ba5590f1a6cdc082"
+  },
+  "host_validation": {
+    "macos_asan_ubsan_published_pairs_at_64_names": 32,
+    "wsl_asan_ubsan_published_pairs_at_64_names_with_staging_links": 16,
+    "both_refused_further_publication_and_preserved_existing_record": true,
+    "wsl_gles_original_and_fresh_context_pixels": 128,
+    "wsl_gles_guarded_bytes": 576
+  },
+  "ios_build": {
+    "directory": "build/poster-cache-budget-ios-20261124",
+    "arm64_frontend_source_files": 69,
+    "existing_mesa_build_inputs": 24,
+    "cache_build_identity": "16722b126d14e64954fc349d20626f9e639cc726ed1c24856a889b2249efd236",
+    "signed_runtime_library_sha256": "6efabfc0627a8818a8c4c45665459cd33d8ee814f2e50a3f3cdc4813bb254325",
+    "ram_manifest_sha256": "60680d669f037146a85b0a50e3353c0a2f991ff8be9ff9eedf4f734ef4191281",
+    "ram_blob_sha256": "25a417018c2febc28f1c72fc14cb0d0a9ab0c4a3ec28536cbcb13406f01b6543"
+  },
+  "v731_candidates": {
+    "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+    "cpu": {
+      "token": "77f81204d559eb64",
+      "image_sha256": "22bc66809d4c166c9dbfb1025c1ecab861ab93a84fb2af937f315c9b386698f3",
+      "payload_rebuilt": true,
+      "full_offline_preflight_mac_kernel_sources": 85
+    },
+    "gles9": {
+      "token": "ce5c76be554da1aa",
+      "image_sha256": "7ad0b6c061fbc1b6e3b3d13e8e5c3eaeeffbef99232cea7d3ae9385565c993e9",
+      "payload_rebuilt": true,
+      "requires_own_successful_cpu_before_live": true
+    }
+  },
+  "device_operations": 0,
+  "previous_trial_reclassified": false,
+  "previous_device_cache_inventory_rechecked": false,
+  "new_gles_metal_or_wallpaper_device_acceptance": false
+}
