@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-25",
+  "RAM_blob_sha256": "0d4076fd78bc5f9ceae6f3386fcefc16b3f7b5bc20bf93680e8cf8d207f29a04",
+  "RAM_manifest_sha256": "82ea4046016e6b136712d905508c4628376acca41bf238ec1ddf967069688d14",
+  "GLES_sha256": "6efabfc0627a8818a8c4c45665459cd33d8ee814f2e50a3f3cdc4813bb254325",
+  "Metal_sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27",
+  "observer_sha256": "3c442f3085c1106d9de233d56fdbed801ea87345a0ec1ea536d0df355ec5ca22",
+  "native_proof_token": "2d1794b225c1a6c1",
+  "PNG_proof_token": "2d1794b225c1a6c1",
+  "reason": "Compare a smaller original observer with the full request/route observer that showed no pipeline call",
+  "original_request_and_route_observers_not_compiled": true,
+  "original_pipeline_snapshot_PNG_observers_kept": true,
+  "original_UI_policy_unchanged": true,
+  "screen_after_seconds": 150,
+  "failed_prior_packages_not_replayed": true,
+  "device_operations": 0,
+  "own_CPU_GPU_not_admitted_at_packaging": true,
+  "artifacts": {
+    "cpu": {
+      "token": "445e94deb747f6f7",
+      "sha256": "df1992702ac7ca1a087cb7c942a68193d557be8f28ecef8b41fabe38c3dae058",
+      "trial_mode": "ramcpu"
+    },
+    "gpu": {
+      "token": "502518c1cac3a3a4",
+      "sha256": "abee4d13494d48ba3d045a2849a7e1da4cf4a6c2e65b13bfc41f0a79584a0363",
+      "trial_mode": "gpu"
+    }
+  }
+}

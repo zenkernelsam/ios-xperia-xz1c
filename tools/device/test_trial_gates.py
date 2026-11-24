@@ -12,7 +12,7 @@ from clock_evidence import verify as verify_clock
 from owner_metadata import verify as verify_owner
 from gpu_pixels import verify as verify_gpu
 from run_trial import DiagnosticPolicy, prerequisites
-from package_trial import validate_wled_gpu_ram
+from package_trial import validate_wled_gpu_ram,validate_wled_gpu_record
 from diagnostic_candidate import WLED_KERNEL_SHA, WLED_MARKER, WLED_VERSION, configuration, verify_record, verify_wled_kernel
 from ram_library import require_same_library,load as load_ram
 from readonly_pixels import verify as verify_readonly,expected_hash as readonly_hash
@@ -271,6 +271,50 @@ class Gates(unittest.TestCase):
             changed['exception_observer'][proof][field] = value
             with self.subTest(proof=proof, field=field), self.assertRaises(AssertionError):
                 validate_wled_gpu_ram(changed, binding)
+
+    def test_minimal_poster_keeps_full_proofs_without_extra_observers(self):
+        manifest = Path(__file__).resolve().parents[2] / 'build/poster-cache-budget-minimal-20261125/ram/manifest.json'
+        if not manifest.is_file():
+            self.skipTest('Local signed minimal original poster RAM is unavailable')
+        package = json.loads(manifest.read_bytes())
+        binding = dict(library_sha256=package['library_sha256'], blob_sha256=package['blob_sha256'],
+                       manifest_sha256=hashlib.sha256(manifest.read_bytes()).hexdigest())
+        self.assertEqual(validate_wled_gpu_ram(package, binding), 'poster')
+        for key in ('original_request_observer','quad_route_observer','poster_state_observer_revision'):
+            changed = copy.deepcopy(package)
+            changed['exception_observer'][key] = True
+            with self.subTest(key=key), self.assertRaises(AssertionError):
+                validate_wled_gpu_ram(changed, binding)
+        changed = copy.deepcopy(package)
+        changed['exception_observer']['prior_native_hardware_proof']['native_tests'] = changed['exception_observer']['prior_native_hardware_proof']['native_tests'][:20]
+        with self.assertRaises(AssertionError):
+            validate_wled_gpu_ram(changed, binding)
+
+    def test_poster_scanout_rejects_mixed_timing_sources_and_control(self):
+        root = Path(__file__).resolve().parents[2]
+        manifest = root / 'build/poster-cache-budget-minimal-20261125/ram/manifest.json'
+        artifact = root / 'build/poster-cache-budget-minimal-20261125/gpu/artifacts.json'
+        if not manifest.is_file() or not artifact.is_file():
+            self.skipTest('Local exact original poster scanout package is unavailable')
+        package = json.loads(manifest.read_bytes())
+        record = json.loads(artifact.read_bytes())['artifacts'][0]
+        binding = record['ram_library_binding']
+        validate_wled_gpu_record(record, package, binding)
+        mutations = [
+            ('screen_capture_after_seconds', 45),
+            ('poster_startup_serial_only', True),
+            ('swipe_observation', {}),
+            ('thread_sample_observation', {}),
+            ('screen_snapshot_binding', dict(record['screen_snapshot_binding'], width=750)),
+            ('process_log_binding', dict(record['process_log_binding'], processes=['backboardd'])),
+        ]
+        for field, value in mutations:
+            changed = copy.deepcopy(record)
+            changed[field] = value
+            with self.subTest(field=field), self.assertRaises((AssertionError,ValueError)):
+                validate_wled_gpu_record(changed, package, binding)
+        with self.assertRaises(AssertionError):
+            validate_wled_gpu_record(record, package, dict(binding, blob_sha256='0'*64))
 
     def test_audit_includes_upstream_memory_descriptor(self):
         first=configuration(725);next_=configuration(726)

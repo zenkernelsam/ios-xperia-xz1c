@@ -1,0 +1,821 @@
+{
+  "date": "2026-11-25",
+  "scope": "original poster observation close-out",
+  "items_count": 46,
+  "files_count": 88,
+  "logical_bytes": 136572265,
+  "protected_files_verified": 111,
+  "raw_HFS_recoverable_from_retained_blob": true,
+  "signed_libraries_source_MANIFEST_and_failed_runs_preserved": true,
+  "native_Trash_verified": true,
+  "Trash_not_emptied": true,
+  "device_operations": 0,
+  "plan_sha256": "ee5533129c056e6c4c6fc4578ff25494b623f98df0c28c3061b3f734a96a9ae7",
+  "journal_sha256": "daddb55335bdd5c9970274334442adbe68ad79e13746ef20d2e9902fc4a09173",
+  "items": [
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-wallpaper-20261124/ram/glram.dmg",
+      "trash_path": "/Users/ciscohe/.Trash/glram.dmg 01-48-15-968.dmg",
+      "entries": [
+        {
+          "relative": "glram.dmg",
+          "type": "file",
+          "bytes": 33554432,
+          "sha256": "560146b6eeaedf003a0e206a4f4051011313d2252cb56a1c44c0d10e85f39039"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-wallpaper-20261124/ram/glram.raw",
+      "trash_path": "/Users/ciscohe/.Trash/glram.raw 01-48-16-044.raw",
+      "entries": [
+        {
+          "relative": "glram.raw",
+          "type": "file",
+          "bytes": 33554432,
+          "sha256": "560146b6eeaedf003a0e206a4f4051011313d2252cb56a1c44c0d10e85f39039"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-wallpaper-20261124/observer/test_startup.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_startup.dSYM 01-48-16-100.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 641,
+          "sha256": "944829fa3c1a4d913161b503f6352fa20f7c101cdeefe97a15208dadbe4a587a"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_startup",
+          "type": "file",
+          "bytes": 14936,
+          "sha256": "fc0a29716a29075b50c0e20c46655f3caaa55cdd264dba5e8bc45460e6d7d628"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_startup.yml",
+          "type": "file",
+          "bytes": 192,
+          "sha256": "9a7f2bf1fd86116da4d115d1873eb55c96c2d0f41cb52095864fe53fb4b3d033"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-wallpaper-20261124/observer/test_png_image_dispatch.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_png_image_dispatch.dSYM 01-48-16-151.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 652,
+          "sha256": "236aaeedc10009a032529be8c502cc8b58a5893578cf1d5354ab805ee898134f"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_png_image_dispatch",
+          "type": "file",
+          "bytes": 38656,
+          "sha256": "78aeade768553b42366aa6dd3a1d4e566600cf7fb1b8ca37038268bcbb4a23e0"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_png_image_dispatch.yml",
+          "type": "file",
+          "bytes": 203,
+          "sha256": "6c5417fc077f44d9463ed336e325e5cca16527ac721d0d8744172e48b493b8b3"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-wallpaper-20261124/observer/test_snapshot_method_observer",
+      "trash_path": "/Users/ciscohe/.Trash/test_snapshot_method_observer 01-48-16-208",
+      "entries": [
+        {
+          "relative": "test_snapshot_method_observer",
+          "type": "file",
+          "bytes": 98096,
+          "sha256": "0bcc44d40aadd214e695fe1375020676ca60cb31251709cebced8eff58fcf9c3"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-wallpaper-20261124/observer/test_snapshot_method_observer.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_snapshot_method_observer.dSYM 01-48-16-265.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 658,
+          "sha256": "04e828e1d0fd7bec7384bf92308830a990c1237423b15ef3c49b301d6f9934dd"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_snapshot_method_observer",
+          "type": "file",
+          "bytes": 63316,
+          "sha256": "119f1dcab3caa9b614fb677ccf2a117b7bdd5e5b939d9205dc6095a76a91beb6"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_snapshot_method_observer.yml",
+          "type": "file",
+          "bytes": 209,
+          "sha256": "1b60f16c1e9e05fd45ce40a5e6b331e2129d68e0ff08f11fcfea40edb648a3a7"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-wallpaper-20261124/observer/test_cache_scope.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_scope.dSYM 01-48-16-316.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 645,
+          "sha256": "2d56eca2217abc049f49309a8cb04e54f45a4ba11b0491143bbbb28280638af2"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_cache_scope",
+          "type": "file",
+          "bytes": 18224,
+          "sha256": "ba025199ae4447454b8264a905063a816aed2fe3a4db5a25854f60ae6b7036c3"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_cache_scope.yml",
+          "type": "file",
+          "bytes": 196,
+          "sha256": "f22b2aac3920c5fb49fb63b5d3697ad263514bc22ae0b633308eacc7d9de583d"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-wallpaper-20261124/observer/test_postdraw_observer",
+      "trash_path": "/Users/ciscohe/.Trash/test_postdraw_observer 01-48-16-372",
+      "entries": [
+        {
+          "relative": "test_postdraw_observer",
+          "type": "file",
+          "bytes": 76096,
+          "sha256": "f6a10d518f0468a9ea10120716edda9f8cae79fcd891de58522ae03dfc17fd67"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-wallpaper-20261124/observer/test_observer.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_observer.dSYM 01-48-16-423.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 642,
+          "sha256": "589d796cebc46abadfe0ec147d2a15f3b4f4f50d2c7edbebfc3cde26f51d66bf"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_observer",
+          "type": "file",
+          "bytes": 41828,
+          "sha256": "0a50dcb50c76e940ec846bcfad71a049d9f542f91ecb1a2a9da7a9d8376df672"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_observer.yml",
+          "type": "file",
+          "bytes": 193,
+          "sha256": "349083e0b6976c58f2d893a0d39b53f5e678f534b9f526273f0a033feeb0194f"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-wallpaper-20261124/observer/test_png_input_observer",
+      "trash_path": "/Users/ciscohe/.Trash/test_png_input_observer 01-48-16-476",
+      "entries": [
+        {
+          "relative": "test_png_input_observer",
+          "type": "file",
+          "bytes": 83672,
+          "sha256": "6bf270d03373b919e329f44e57dd03df4765af8bbab24fe4547ec6e3981ae331"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-wallpaper-20261124/observer/test_png_postdraw_encoder",
+      "trash_path": "/Users/ciscohe/.Trash/test_png_postdraw_encoder 01-48-16-534",
+      "entries": [
+        {
+          "relative": "test_png_postdraw_encoder",
+          "type": "file",
+          "bytes": 65744,
+          "sha256": "19c5ff840e3ea7915e4a2ae804ba611f9f509352080e5a6acc6ea2bc8565a423"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-wallpaper-20261124/observer/test_quad_route_observer",
+      "trash_path": "/Users/ciscohe/.Trash/test_quad_route_observer 01-48-16-592",
+      "entries": [
+        {
+          "relative": "test_quad_route_observer",
+          "type": "file",
+          "bytes": 140896,
+          "sha256": "3352950104b20762cca11a62d613e67d0a42bfc55a208529bc1d44eff6064517"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-wallpaper-20261124/observer/test_cache_scope",
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_scope 01-48-16-643",
+      "entries": [
+        {
+          "relative": "test_cache_scope",
+          "type": "file",
+          "bytes": 28320,
+          "sha256": "c8972019b31515652112801b1aafcacd961d0ec9ab4996a8ef279e889870dbe4"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-wallpaper-20261124/observer/test_quad_route_observer.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_quad_route_observer.dSYM 01-48-16-701.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 653,
+          "sha256": "4f6b8139dc5258062c9b876109b20e58395628b715be1e0cfc2165f8e26edc03"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_quad_route_observer",
+          "type": "file",
+          "bytes": 95424,
+          "sha256": "62878be04785aa11f4d486c2e40932e9a2b9b5b2e471349714b08efd861e19e9"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_quad_route_observer.yml",
+          "type": "file",
+          "bytes": 204,
+          "sha256": "2a4016b5c847d36b3bbee75ab6aa88ff6be4822b3e021d9744d33683699abe8f"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-wallpaper-20261124/observer/test_request_observer.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_request_observer.dSYM 01-48-16-752.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 650,
+          "sha256": "07d6a3dac727325515613215f20b7b2403bf20a2bba99d369d891dc11acc0c9d"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_request_observer",
+          "type": "file",
+          "bytes": 71316,
+          "sha256": "70b80fb0a8f0fee5ab6924dd4f8076f6b66607f6b7cede4eb805dd5e510c3382"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_request_observer.yml",
+          "type": "file",
+          "bytes": 201,
+          "sha256": "50ee828bdda22eff4aee2c1f02fd26cf1ed5443ee56455a0a3b73d8662410a21"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-wallpaper-20261124/observer/test_pipeline_observer",
+      "trash_path": "/Users/ciscohe/.Trash/test_pipeline_observer 01-48-16-804",
+      "entries": [
+        {
+          "relative": "test_pipeline_observer",
+          "type": "file",
+          "bytes": 48464,
+          "sha256": "37468e2175d348862955b31c2dbed86e956337ab9036747c73a6b09780c54ea9"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-wallpaper-20261124/observer/test_png_postdraw_encoder.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_png_postdraw_encoder.dSYM 01-48-16-855.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 654,
+          "sha256": "7dd79ab1dac553ea05bede2be726273fc5fd3b229c2068fc14aa7fc0d3d50003"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_png_postdraw_encoder",
+          "type": "file",
+          "bytes": 50704,
+          "sha256": "0e019bcc58efd406756390f631db77e00985124850f5b7596e41b730d25599cd"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_png_postdraw_encoder.yml",
+          "type": "file",
+          "bytes": 205,
+          "sha256": "399839880a14550ff725a1f9031653c595b164acb52e3b44fc96ea11e2e26a4d"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-wallpaper-20261124/observer/test_poster_state_observer.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_poster_state_observer.dSYM 01-48-16-906.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 655,
+          "sha256": "7782c714f3162be1cbf4010a84afa709648aa9fc7b1ffc64ac0ef7a99972d7a5"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_poster_state_observer",
+          "type": "file",
+          "bytes": 24080,
+          "sha256": "b7645377d17f26d06194daa414b38e9f7a6d7d0defffa5db2119582e368870c4"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_poster_state_observer.yml",
+          "type": "file",
+          "bytes": 206,
+          "sha256": "0640b3a4384cbfbe684023b0e51cea9c45ec5b9b8dea1439ad2723c79d3a7f0b"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-wallpaper-20261124/observer/test_postdraw_observer.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_postdraw_observer.dSYM 01-48-16-957.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 651,
+          "sha256": "ba5e540d03716130925c52e316c17d80e78fd08101eb2aa21e1bf0abadadb191"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_postdraw_observer",
+          "type": "file",
+          "bytes": 57684,
+          "sha256": "a64bc014d8604643f661526b1c38d5f66d6b24e2e0c7c679187c2a7f1015b5f5"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_postdraw_observer.yml",
+          "type": "file",
+          "bytes": 202,
+          "sha256": "b14e758bf4ea44f3625f253c513c11af2c8d90f61a00517efd94bc346d6754cf"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-wallpaper-20261124/observer/test_pipeline_observer.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_pipeline_observer.dSYM 01-48-17-008.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 651,
+          "sha256": "14a5e51d08a5bf0856f6e93830a9fde78a537ae439cf8dfa4bd0dc8268cf1dc6"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_pipeline_observer",
+          "type": "file",
+          "bytes": 45512,
+          "sha256": "2b33be8f3fcf649f678312dbb742cc92f17a37518a236def1ef91c24b284b015"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_pipeline_observer.yml",
+          "type": "file",
+          "bytes": 202,
+          "sha256": "82e53eae76c37e10d0d30d34550eb10903ad7f6db430e538167fbe9f1738bab8"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-wallpaper-20261124/observer/test_poster_state_observer",
+      "trash_path": "/Users/ciscohe/.Trash/test_poster_state_observer 01-48-17-060",
+      "entries": [
+        {
+          "relative": "test_poster_state_observer",
+          "type": "file",
+          "bytes": 40520,
+          "sha256": "bfdb2a848e53c4aa8fba4dc5f888eabc20eecb405ec20b6c418466f12a54bad7"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-wallpaper-20261124/observer/test_png_input_observer.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_png_input_observer.dSYM 01-48-17-118.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 652,
+          "sha256": "4eea09a4e0f1cd19994e51f233c52e59224b7eceb46e1da9e1c6b4275173a70f"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_png_input_observer",
+          "type": "file",
+          "bytes": 58948,
+          "sha256": "a4e21b173975e676a6bb6f8d26450568a06f2f9f3d2128c5a65701a34719fdff"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_png_input_observer.yml",
+          "type": "file",
+          "bytes": 203,
+          "sha256": "1d8b4c9e8ecbd139e3e97f485b9e2701fc79ec96a4c56ec370c4370e6dc5c064"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-wallpaper-20261124/observer/test_startup",
+      "trash_path": "/Users/ciscohe/.Trash/test_startup 01-48-17-174",
+      "entries": [
+        {
+          "relative": "test_startup",
+          "type": "file",
+          "bytes": 20592,
+          "sha256": "534c5442f6199d9d1c987590edeaefc857e25fa8cb973a4be498a61de114dd0c"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-wallpaper-20261124/observer/test_observer",
+      "trash_path": "/Users/ciscohe/.Trash/test_observer 01-48-17-225",
+      "entries": [
+        {
+          "relative": "test_observer",
+          "type": "file",
+          "bytes": 65680,
+          "sha256": "ca9778ec1c083efba470cd41f4bcf115a6f31be2675e502c6225f595ebcdf47c"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-wallpaper-20261124/observer/test_png_image_dispatch",
+      "trash_path": "/Users/ciscohe/.Trash/test_png_image_dispatch 01-48-17-282",
+      "entries": [
+        {
+          "relative": "test_png_image_dispatch",
+          "type": "file",
+          "bytes": 52288,
+          "sha256": "a1f240399e8feedea278dc56e1cdd12a25375bbf901aa26fc61d986552c7113b"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-wallpaper-20261124/observer/test_request_observer",
+      "trash_path": "/Users/ciscohe/.Trash/test_request_observer 01-48-17-333",
+      "entries": [
+        {
+          "relative": "test_request_observer",
+          "type": "file",
+          "bytes": 106928,
+          "sha256": "5dc3c2e66b92f725afb7196bace6a8ef66520104c5f4dc08a03a0f20cf01b761"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-minimal-20261125/ram/glram.dmg",
+      "trash_path": "/Users/ciscohe/.Trash/glram.dmg 01-48-17-390.dmg",
+      "entries": [
+        {
+          "relative": "glram.dmg",
+          "type": "file",
+          "bytes": 33554432,
+          "sha256": "d534c28d3aef857d646ee146c4671dfe0ddf8cb20d71eb8ed13cdb2189c8b99b"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-minimal-20261125/ram/glram.raw",
+      "trash_path": "/Users/ciscohe/.Trash/glram.raw 01-48-17-441.raw",
+      "entries": [
+        {
+          "relative": "glram.raw",
+          "type": "file",
+          "bytes": 33554432,
+          "sha256": "d534c28d3aef857d646ee146c4671dfe0ddf8cb20d71eb8ed13cdb2189c8b99b"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-minimal-20261125/observer/test_startup.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_startup.dSYM 01-48-17-494.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 641,
+          "sha256": "944829fa3c1a4d913161b503f6352fa20f7c101cdeefe97a15208dadbe4a587a"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_startup",
+          "type": "file",
+          "bytes": 14936,
+          "sha256": "f6457bd7a4a080189ff7195689af4f03544fd83bd41c30bfcaf52e4576f6baee"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_startup.yml",
+          "type": "file",
+          "bytes": 190,
+          "sha256": "e41aa3817ab5ac3d187551ccba0ec7a3939fa979c1233234be7732bb9b1e73f8"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-minimal-20261125/observer/test_png_image_dispatch.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_png_image_dispatch.dSYM 01-48-17-549.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 652,
+          "sha256": "236aaeedc10009a032529be8c502cc8b58a5893578cf1d5354ab805ee898134f"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_png_image_dispatch",
+          "type": "file",
+          "bytes": 38656,
+          "sha256": "01b68dbf7474cfada2421ae32fae9c61b54811491ca43f20de7a0620108363dd"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_png_image_dispatch.yml",
+          "type": "file",
+          "bytes": 201,
+          "sha256": "5def877ccb7d9ad80c6db58fc39cf4848ba91c4606d6d5a3e5a722bd9e3c88fd"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-minimal-20261125/observer/test_snapshot_method_observer",
+      "trash_path": "/Users/ciscohe/.Trash/test_snapshot_method_observer 01-48-17-602",
+      "entries": [
+        {
+          "relative": "test_snapshot_method_observer",
+          "type": "file",
+          "bytes": 98096,
+          "sha256": "f2fb5b863d4c39676500a20e8bb6e11c5d922b0ca1095e756a3fc3b06856ef40"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-minimal-20261125/observer/test_snapshot_method_observer.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_snapshot_method_observer.dSYM 01-48-17-659.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 658,
+          "sha256": "04e828e1d0fd7bec7384bf92308830a990c1237423b15ef3c49b301d6f9934dd"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_snapshot_method_observer",
+          "type": "file",
+          "bytes": 63316,
+          "sha256": "e55e6cd20d514951d8121a193bf75c5f29e8c85df795137c7db9db9068c21af7"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_snapshot_method_observer.yml",
+          "type": "file",
+          "bytes": 207,
+          "sha256": "fa1c5a09cf25cbc23b79cace7b3d6b9ca602b3eb11f687d5c5b85661fbb86aea"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-minimal-20261125/observer/test_cache_scope.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_scope.dSYM 01-48-17-713.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 645,
+          "sha256": "2d56eca2217abc049f49309a8cb04e54f45a4ba11b0491143bbbb28280638af2"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_cache_scope",
+          "type": "file",
+          "bytes": 18224,
+          "sha256": "48c0d3f0a508f4ce713ff9630bec67c668eb10cf35b664dba9c9685e274ea18b"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_cache_scope.yml",
+          "type": "file",
+          "bytes": 194,
+          "sha256": "06e5e4def5c1c830045defc1ff5f6c05a483f07e893d90261370113d0bdc6871"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-minimal-20261125/observer/test_postdraw_observer",
+      "trash_path": "/Users/ciscohe/.Trash/test_postdraw_observer 01-48-17-764",
+      "entries": [
+        {
+          "relative": "test_postdraw_observer",
+          "type": "file",
+          "bytes": 76096,
+          "sha256": "6022e945dcfa685836d7f98b49f021d3b7a79f7cd9038ef964dfc16ca8f6b677"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-minimal-20261125/observer/test_observer.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_observer.dSYM 01-48-17-816.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 642,
+          "sha256": "589d796cebc46abadfe0ec147d2a15f3b4f4f50d2c7edbebfc3cde26f51d66bf"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_observer",
+          "type": "file",
+          "bytes": 41828,
+          "sha256": "e9af01ccb31744d2357ca69f242b41c7313b4302fb56c3fd7c1cafa4177180a4"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_observer.yml",
+          "type": "file",
+          "bytes": 191,
+          "sha256": "45dee172f22bcbff8440f302bd2cfe820d165f75bef58ddcd1f5cf8037cce611"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-minimal-20261125/observer/test_png_input_observer",
+      "trash_path": "/Users/ciscohe/.Trash/test_png_input_observer 01-48-17-874",
+      "entries": [
+        {
+          "relative": "test_png_input_observer",
+          "type": "file",
+          "bytes": 83672,
+          "sha256": "fe1e2c2078ad61db92bab72662f94eca80240abfcd055f0d238e18f22d2d85f7"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-minimal-20261125/observer/test_png_postdraw_encoder",
+      "trash_path": "/Users/ciscohe/.Trash/test_png_postdraw_encoder 01-48-17-925",
+      "entries": [
+        {
+          "relative": "test_png_postdraw_encoder",
+          "type": "file",
+          "bytes": 65744,
+          "sha256": "36b9ac507d54ab7024da31a496e65172fca1c6e0487951d27afb0427e0083d2f"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-minimal-20261125/observer/test_cache_scope",
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_scope 01-48-17-976",
+      "entries": [
+        {
+          "relative": "test_cache_scope",
+          "type": "file",
+          "bytes": 28320,
+          "sha256": "bb8ba47d223da2c10fa1aa9515e5a2dff35346a3bbfd060d980fd101b798d436"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-minimal-20261125/observer/test_pipeline_observer",
+      "trash_path": "/Users/ciscohe/.Trash/test_pipeline_observer 01-48-18-030",
+      "entries": [
+        {
+          "relative": "test_pipeline_observer",
+          "type": "file",
+          "bytes": 48464,
+          "sha256": "e2663ff92fcb6c5cdc359b17aa3e7c0e8701c07c109185ee27dfe0d0895eedae"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-minimal-20261125/observer/test_png_postdraw_encoder.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_png_postdraw_encoder.dSYM 01-48-18-083.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 654,
+          "sha256": "7dd79ab1dac553ea05bede2be726273fc5fd3b229c2068fc14aa7fc0d3d50003"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_png_postdraw_encoder",
+          "type": "file",
+          "bytes": 50704,
+          "sha256": "77111dd2ea0ccd2f12dfe5e5e92b6fe0cde2a269a9967e95930a5aaca5f856ed"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_png_postdraw_encoder.yml",
+          "type": "file",
+          "bytes": 203,
+          "sha256": "e76bda826dbbba10b4e89c3902cf16b8a94cdf30c116c41bc2cf0466f2a24f43"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-minimal-20261125/observer/test_postdraw_observer.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_postdraw_observer.dSYM 01-48-18-135.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 651,
+          "sha256": "ba5e540d03716130925c52e316c17d80e78fd08101eb2aa21e1bf0abadadb191"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_postdraw_observer",
+          "type": "file",
+          "bytes": 57684,
+          "sha256": "53dd95fd0284b531a4b58151a1f86b1d0d74e56a93683e3eb385c2f56a894268"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_postdraw_observer.yml",
+          "type": "file",
+          "bytes": 200,
+          "sha256": "f7440e31c3b2511eecb6b606a17f1fcfc356c8474691ad2501a406bcdf858748"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-minimal-20261125/observer/test_pipeline_observer.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_pipeline_observer.dSYM 01-48-18-190.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 651,
+          "sha256": "14a5e51d08a5bf0856f6e93830a9fde78a537ae439cf8dfa4bd0dc8268cf1dc6"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_pipeline_observer",
+          "type": "file",
+          "bytes": 45512,
+          "sha256": "37cdce3715feea13f5bf30d731af1a4e23efbe1cef7611da22800f9ef1039602"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_pipeline_observer.yml",
+          "type": "file",
+          "bytes": 200,
+          "sha256": "d70edacf9811c063214c40f5faa11d4807d94537fcfeabce192eed79127c1dac"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-minimal-20261125/observer/test_png_input_observer.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_png_input_observer.dSYM 01-48-18-242.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "type": "file",
+          "bytes": 652,
+          "sha256": "4eea09a4e0f1cd19994e51f233c52e59224b7eceb46e1da9e1c6b4275173a70f"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_png_input_observer",
+          "type": "file",
+          "bytes": 58948,
+          "sha256": "90c7c26a0c2263818f6899c802608a7352e6e04090919852744854bcac94a824"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_png_input_observer.yml",
+          "type": "file",
+          "bytes": 201,
+          "sha256": "257cfae428b35672d04356020ba2b4e91fa63b4ab6afd48172231640690616ac"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-minimal-20261125/observer/test_startup",
+      "trash_path": "/Users/ciscohe/.Trash/test_startup 01-48-18-300",
+      "entries": [
+        {
+          "relative": "test_startup",
+          "type": "file",
+          "bytes": 20592,
+          "sha256": "bb3ec15c6ac60459ba08e7e42eae2eee3b95f86bbbdf1409a1e44bbc28e9e452"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-minimal-20261125/observer/test_observer",
+      "trash_path": "/Users/ciscohe/.Trash/test_observer 01-48-18-351",
+      "entries": [
+        {
+          "relative": "test_observer",
+          "type": "file",
+          "bytes": 65680,
+          "sha256": "5294ca4a224831a405c21c9a656ef1f21c4f112d59ce062fb1a4ba0ea8f1ca7e"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/poster-cache-budget-minimal-20261125/observer/test_png_image_dispatch",
+      "trash_path": "/Users/ciscohe/.Trash/test_png_image_dispatch 01-48-18-407",
+      "entries": [
+        {
+          "relative": "test_png_image_dispatch",
+          "type": "file",
+          "bytes": 52288,
+          "sha256": "b460bf75ed76d3c1724b8f2754419f39b61fd8a04c64cc057c90098e29583ddc"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,606 @@
+{
+  "date": "2026-11-25",
+  "formal_repository": "/Users/ciscohe/Desktop/ios-xperia-xz1c",
+  "before_HEAD": "2f11cfa0b42e28e84baae256c091384f3398ac65",
+  "after_HEAD": "7c02219cf9bf6ec2a9506afe064f1412d386e975",
+  "local_dirty_sources_snapshotted": [
+    {
+      "path": "gpu/sweetgl/ProgramCacheStore.h",
+      "sha256": "398af846fd61b4397647bbec06e38e50277d2c4cda00835e58d3f829793cc38f",
+      "bytes": 4868,
+      "exact_in_new_commit": true
+    },
+    {
+      "path": "gpu/sweetgl/program_cache.c",
+      "sha256": "dd5f2c52e032cfec3e5215f4bbdfc4be4577c78a65a42b74e3f2a670ea09e24b",
+      "bytes": 9363,
+      "exact_in_new_commit": true
+    },
+    {
+      "path": "reproducibility/source-lock.json",
+      "sha256": "fc85f4cc9c07557c7a91bb488880988cd3affd701a843d7e9dd768242c6197e0",
+      "bytes": 26680,
+      "exact_in_new_commit": true
+    },
+    {
+      "path": "tools/diagnostic_candidate.py",
+      "sha256": "529fe3bf2d726e6374cc6742afc8178974e0f0c59dabaceded1049548b4cfb76",
+      "bytes": 9770,
+      "exact_in_new_commit": true
+    },
+    {
+      "path": "reproducibility/air-static-half-object-reference-20261124.json",
+      "sha256": "29e024138f44e84ef32e89b1d872521f88130e8cab413843975865f56b6790e0",
+      "bytes": 8410,
+      "exact_in_new_commit": true
+    },
+    {
+      "path": "reproducibility/lilac-wled-isolated-link-20261124.json",
+      "sha256": "181aa99db43394ebc7208728bf3b33ce9d3cdc0ee07c1094ccdad13c020b411f",
+      "bytes": 1278,
+      "exact_in_new_commit": true
+    },
+    {
+      "path": "tools/build/rebuild_verified_air_object.py",
+      "sha256": "b0eb88dce9d14bfacf531dce4573193cdd505207307e2e01daefd46999a371b8",
+      "bytes": 5902,
+      "exact_in_new_commit": true
+    },
+    {
+      "path": "tools/build/test_verified_air_object.py",
+      "sha256": "8174ce6a14bc080d896ce535dedca87d546e5a9a0e3f3787640aa19ee227ac02",
+      "bytes": 3452,
+      "exact_in_new_commit": false
+    }
+  ],
+  "recoverable_pre_sync_stash": "c60380d5a508660faf1e1f361e53ddc261db6048",
+  "stash_not_dropped": true,
+  "one_known_host_test_precleanup_version_preserved_in_stash": true,
+  "fast_forward_verified": true,
+  "changed_files_byte_equal_to_commit": 135,
+  "source_validation_passed": true,
+  "xnu_autobuild_pause_preserved": true,
+  "phone_operations": 0,
+  "files": [
+    {
+      "path": ".gitattributes",
+      "sha256": "d5849eab754f6afd2002afac32a77a1d965ea95879500f278ba0de20f6ffb60b"
+    },
+    {
+      "path": "docs/BUILD.md",
+      "sha256": "49893a864c3ce9c86cdd688187717fb92138800fa4ab36b4577c70db6d86dde4"
+    },
+    {
+      "path": "docs/INDEX.md",
+      "sha256": "e0d55ef90a13c7b09b0ed693c64757226c3f3e48c2b949e65e8c422c8c064cb2"
+    },
+    {
+      "path": "docs/LILAC-PERIPHERALS.md",
+      "sha256": "3cb2fa3691a6270c6dca758644de325080f1ad2e5ca2162be9bfa0754f297950"
+    },
+    {
+      "path": "docs/METAL-REQUEST-OBSERVATION.md",
+      "sha256": "a9970753459f5d5bd2f2f9dd138275387a59b8fe22bd19c42bbe7e6d1a980e62"
+    },
+    {
+      "path": "docs/OPERATIONS.md",
+      "sha256": "c7d9df8d0db9c72c9a17644ea748a4c1366bb1ce7c81a6631f28c8ea059d1627"
+    },
+    {
+      "path": "docs/ORGANIZATION.md",
+      "sha256": "0273bda1af39cb982959256cda57f78de7f3ed6863c928362608ae18ef0a6636"
+    },
+    {
+      "path": "docs/STATUS.md",
+      "sha256": "fa4cfccbe11f8654da602164c2939acecc922ea8f48c39b486c208d4ee7ec74c"
+    },
+    {
+      "path": "docs/archive/20261124/cache-budget-close-out/AGENTS.md",
+      "sha256": "231e659a639fb4ed478cc268de2cc76e6543f00baa3a43c015cdadeaae29d0f4"
+    },
+    {
+      "path": "docs/archive/20261124/cache-budget-close-out/README.md",
+      "sha256": "169495d67773bffa618f996f282555f9e9368494b46f992573df4c582c70ddd2"
+    },
+    {
+      "path": "docs/archive/20261124/cache-budget-close-out/docs/BUILD.md",
+      "sha256": "0cda6bbc3e92556ca3ced38b65a2d2dad8bffb20ed17ec35d035ca695a1582e9"
+    },
+    {
+      "path": "docs/archive/20261124/cache-budget-close-out/docs/INDEX.md",
+      "sha256": "3fc3885a73c63415f9dde4c16f56564bda680b0758f039223e30ae61084222ef"
+    },
+    {
+      "path": "docs/archive/20261124/cache-budget-close-out/docs/LILAC-PERIPHERALS.md",
+      "sha256": "774c1fa9fa2d7347af6b04f84646fb8ff4f1e671240e01f68576ca03b2563bcf"
+    },
+    {
+      "path": "docs/archive/20261124/cache-budget-close-out/docs/METAL-REQUEST-OBSERVATION.md",
+      "sha256": "6c705aa9f5d0e7639099bc1154d85b15b10b8bf0bc669c931488a85e6915a734"
+    },
+    {
+      "path": "docs/archive/20261124/cache-budget-close-out/docs/OPERATIONS.md",
+      "sha256": "c7d9df8d0db9c72c9a17644ea748a4c1366bb1ce7c81a6631f28c8ea059d1627"
+    },
+    {
+      "path": "docs/archive/20261124/cache-budget-close-out/docs/ORGANIZATION.md",
+      "sha256": "6eb9f5710a60df7f701119902d35ecc8f1d662979f97f42b0cfac09d91f5144b"
+    },
+    {
+      "path": "docs/archive/20261124/cache-budget-close-out/docs/STATUS.md",
+      "sha256": "f5d8c28ccdf995a7f24d44f4dc0930e741789e8b8a9586a095b8f942d1dde556"
+    },
+    {
+      "path": "docs/archive/20261124/cache-budget-close-out/original-document-manifest.json",
+      "sha256": "56b763b03c504fe36eb95fe5dd59e5759d0d71998c46f82c04ad8c7887e815d1"
+    },
+    {
+      "path": "gpu/sweetgl/ProgramCacheStore.h",
+      "sha256": "398af846fd61b4397647bbec06e38e50277d2c4cda00835e58d3f829793cc38f"
+    },
+    {
+      "path": "gpu/sweetgl/program_cache.c",
+      "sha256": "dd5f2c52e032cfec3e5215f4bbdfc4be4577c78a65a42b74e3f2a670ea09e24b"
+    },
+    {
+      "path": "reproducibility/air-static-half-object-reference-20261124.json",
+      "sha256": "29e024138f44e84ef32e89b1d872521f88130e8cab413843975865f56b6790e0"
+    },
+    {
+      "path": "reproducibility/backlight-brightness-20H392-offline-20261124.json",
+      "sha256": "31af447f6d83f42787c15f92fdfb973ef42ba8ff5e04c724b92db623c5e08bdc"
+    },
+    {
+      "path": "reproducibility/backlight-discovery-20H392.json",
+      "sha256": "9c8b636837ad3023cf0c969fb9963ff6c93f44abcb865b39589db000902c62f3"
+    },
+    {
+      "path": "reproducibility/cache-budget-macos-native-trash-20261124.json",
+      "sha256": "139522ceb7a147bfc6150b438f70aac272c3899a4abd9cd227f3cf787f0ffd0b"
+    },
+    {
+      "path": "reproducibility/cache-budget-peripheral-host-validation-20261125.json",
+      "sha256": "330a5e8ded6bf8ed4cb3572868efd3e9bd6760e1f11c3111a05be71242ee626d"
+    },
+    {
+      "path": "reproducibility/cache-budget-verified-air-tool-20261124.json",
+      "sha256": "f742544103a889bb61e0df5153bc1e3bb78674a578925424f094d343a5e9f77b"
+    },
+    {
+      "path": "reproducibility/cache-export-paced-r25-cpu-actual-20261123.json",
+      "sha256": "8bbef184bc10b35aa6606f1ff42f3e01c87874fcc63f8bd5482a7e14921bfd9b"
+    },
+    {
+      "path": "reproducibility/cache-export-paced-r25-gpu-actual-20261123.json",
+      "sha256": "52b2c0f61736938395e061ddf08520863c6ed08697c2c560bf021a5e83d673f2"
+    },
+    {
+      "path": "reproducibility/cache-export-paced-r25-native21-proof-20261123.json",
+      "sha256": "109bf28749a545712bfe55305a3c0d6d50be04f60ce5c11c266779756858732e"
+    },
+    {
+      "path": "reproducibility/cache-export-paced-r25-png6-proof-20261123.json",
+      "sha256": "5e069e2b477bf0e3ea69d2f8361929721c5654a33db4df51f65fcf41bc3855a6"
+    },
+    {
+      "path": "reproducibility/current-device-tools.json",
+      "sha256": "791cf57fc657f330aad2c3cdd052aad807cf259226d97f735c1b0312fd934634"
+    },
+    {
+      "path": "reproducibility/lilac-adm-playback-device-offline-20261124.json",
+      "sha256": "5984ea92c24093749002c16df2b2536eac0a46a6b9f5b7b2d332dff3349be806"
+    },
+    {
+      "path": "reproducibility/lilac-adm-playback-route-offline-20261124.json",
+      "sha256": "3af72453c236196e17db757a9f5d74cabb5c34d365dd4b2aba6756b1930a2006"
+    },
+    {
+      "path": "reproducibility/lilac-adsp-prepare-20261124.json",
+      "sha256": "9b3b418db346adbbba7a73b6aed9358af5f0cd30e26fe3584965a992d71a73fc"
+    },
+    {
+      "path": "reproducibility/lilac-asm-pcm-apr-offline-20261124.json",
+      "sha256": "c7ed5747273d95638bd90e44d5313324864555a940642cfc417cd559b8cfbeeb"
+    },
+    {
+      "path": "reproducibility/lilac-asm-pcm-map-offline-20261124.json",
+      "sha256": "0a3c260bde83e01be906115a35b7fe0db68a234daef2e1808d2258c3d9e9e095"
+    },
+    {
+      "path": "reproducibility/lilac-asm-pcm-offline-20261124.json",
+      "sha256": "67e912b4e3fdd09b23873e59ba47bd4c2747b7e9a5b9436028ffafcbe78fd1ed"
+    },
+    {
+      "path": "reproducibility/lilac-asm-pcm-queue-offline-20261124.json",
+      "sha256": "9f004a047535d0bf4489b67d98d565266657e6e39b43832206ef8e3918ad5fb7"
+    },
+    {
+      "path": "reproducibility/lilac-asm-pcm-stream-offline-20261124.json",
+      "sha256": "78bbe790f8a4cf5d745aaa9fd0f639f5841a7387b200e7eda445f391edc0e238"
+    },
+    {
+      "path": "reproducibility/lilac-backlight-service-linkcheck-20261124.json",
+      "sha256": "6a64c1b196ee2ef260a46d323a2a9b82a5336c35e95527ed45838ddb46aa670c"
+    },
+    {
+      "path": "reproducibility/lilac-backlight-service-properties-20261124.json",
+      "sha256": "59e83388ba367d869842e3f8ec6c292916e551f38c3ff03f60377556552b4f9f"
+    },
+    {
+      "path": "reproducibility/lilac-dcm-stock-peripherals-47.1.F.1.105.json",
+      "sha256": "ce02f12af8bef2de6434114006171a14e47380673514cb728ea09ff61be547ba"
+    },
+    {
+      "path": "reproducibility/lilac-wled-duty-plan-20261124.json",
+      "sha256": "545623e7776f93340b6709c46963abb3bc4cb0e7cf6cf4d016b2adfebd037480"
+    },
+    {
+      "path": "reproducibility/lilac-wled-duty-transaction-20261124.json",
+      "sha256": "fc3002f837d82b43611ef794f62c2b28334af560e194ea09c942334dd759d0fe"
+    },
+    {
+      "path": "reproducibility/lilac-wled-isolated-link-20261124.json",
+      "sha256": "181aa99db43394ebc7208728bf3b33ce9d3cdc0ee07c1094ccdad13c020b411f"
+    },
+    {
+      "path": "reproducibility/lilac-wled-observer-overlay-20261124.json",
+      "sha256": "eedad40a1c41ba110a6a1d35db25e8e75245335b3dd601d146dd7421c3b07bdc"
+    },
+    {
+      "path": "reproducibility/lilac-wled-snapshot-offline-20261124.json",
+      "sha256": "9b8441130fdcaa70201fe282b775b09b02e80cb13d86d1000d0c1efc061a854c"
+    },
+    {
+      "path": "reproducibility/lilac-wled-v731-admission-actual-20261124.json",
+      "sha256": "5f9697bcdd1a2fdb1f9d83bb8e4887dc5a442499bf00ef2b1fc4dac887bd0f5a"
+    },
+    {
+      "path": "reproducibility/lilac-wled-v731-gles9-actual-20261124.json",
+      "sha256": "554989d018e221379372058d71e1dc04e88dabd5d67855c8eb3197c55c6ca93b"
+    },
+    {
+      "path": "reproducibility/lilac-wled-v731-metal21-actual-20261124.json",
+      "sha256": "f008a714caaf99ca9080aaa6fa406b0b17beb53b6aeb0b9b7862eb6f58aba8ff"
+    },
+    {
+      "path": "reproducibility/lilac-wled-v731-metal21-native-proof-20261124.json",
+      "sha256": "6997cb1dba26d83df536c0ec7d466fe75397c100df3e72f7799ddbfd8851fbdf"
+    },
+    {
+      "path": "reproducibility/lilac-wled-v731-metal21-png-proof-20261124.json",
+      "sha256": "e703361dd4862c32cb3e0a7678d7ae61962d32641b66c26f3520e8ccccd16dd0"
+    },
+    {
+      "path": "reproducibility/lilac-wled-v731-poster-startup-actual-20261124.json",
+      "sha256": "d495af6437bbd51c03f2d9fcf01324ed62a8ae5133cdbc3b0c57301cba03fa25"
+    },
+    {
+      "path": "reproducibility/lilac-wled-v731-prerequisites-20261124.json",
+      "sha256": "abd0ef1bb5e3b9928fc823216d8e2bc120370bb01b634c55cbeb21d998eb7f4c"
+    },
+    {
+      "path": "reproducibility/lilac-wled-v731-private-actual-20261124.json",
+      "sha256": "7d88059d816ee00cd5e094c8c588a996ffa591d81588f985240fdf47c11e25fe"
+    },
+    {
+      "path": "reproducibility/poster-cache-budget-air-reconstruction-20261124.json",
+      "sha256": "5a8cb10d15c82ef01f202527b73401ca3d3a44013927a5f91cd10ae886ee77d1"
+    },
+    {
+      "path": "reproducibility/poster-cache-budget-gles9-actual-20261124.json",
+      "sha256": "6c07816cb99d8f4af84fbe5185bb9876c26133e69496b7b3cdc75187e761c44f"
+    },
+    {
+      "path": "reproducibility/poster-cache-budget-native21-cpu-actual-20261124.json",
+      "sha256": "ec96f86ccc4537292de647c2cf9654103e38a2f38f0672e1e339ce40f191f1b1"
+    },
+    {
+      "path": "reproducibility/poster-cache-budget-native21-host-refusal-20261124.json",
+      "sha256": "730c5b657accb64ac630a1b8526c6834bb02bf00df034e297b9e7cfce8516ffc"
+    },
+    {
+      "path": "reproducibility/poster-cache-budget-native21-prime-actual-20261124.json",
+      "sha256": "fcf2a1dfd7f339b22c5c8e67d07bb91a0f415bf4bb2656351b4d175a1d2291ba"
+    },
+    {
+      "path": "reproducibility/poster-cache-budget-native21-prime-cpu-actual-20261124.json",
+      "sha256": "951690c8b924d0a5b68581084d110728ca90c0c32466ab31394c69280254974d"
+    },
+    {
+      "path": "reproducibility/poster-cache-budget-native21-prime-offline-20261124.json",
+      "sha256": "7907d8810673731e21a3ca0481718245dc7e11f12d8992bce405efc814214a0a"
+    },
+    {
+      "path": "reproducibility/poster-cache-budget-native21-proof-20261124.json",
+      "sha256": "08e1fb4a06e6c71f28a43487010f7d13fbea6bc47275013bd3a02508b61d7364"
+    },
+    {
+      "path": "reproducibility/poster-cache-budget-offline-20261124.json",
+      "sha256": "b3684d20a628aa70b219e9d3cdf98164fe7342c3c257cd8d5687d3cc72cfcf25"
+    },
+    {
+      "path": "reproducibility/poster-cache-budget-png6-proof-20261124.json",
+      "sha256": "351ddd72e7ee2df2f46a3cb6dcecca290a314118041d8f93518722577b1e5de1"
+    },
+    {
+      "path": "reproducibility/poster-cache-budget-wallpaper-cpu-actual-20261125.json",
+      "sha256": "570e642d2f91cfd2cb0a93e27e418027560d62ae1e0cf46466fb63210f4cac3d"
+    },
+    {
+      "path": "reproducibility/poster-cache-budget-wallpaper-observation-20261125.json",
+      "sha256": "e8b092817a8dbeaf7ce72012683c0fc123c6a39b2790a5443e04b85047f3a01d"
+    },
+    {
+      "path": "reproducibility/poster-cache-budget-wallpaper-offline-20261124.json",
+      "sha256": "8aed418ea2a6fe3b18145ead89830bad60627007d26a095c519782c6aacdf60e"
+    },
+    {
+      "path": "reproducibility/poster-cache-r22-r25-comparison-20261124.json",
+      "sha256": "a64463ed7e14e0cc1260569b58694fcd7cc966620b5ba88c3562e3537956ca77"
+    },
+    {
+      "path": "reproducibility/poster-cache-r26-fitted-default-offline-20261124.json",
+      "sha256": "ec2473a3679a7dbb76fa5b60f911a1993bc3e507ffac242e905888e5c248eef9"
+    },
+    {
+      "path": "reproducibility/poster-cache-r26-gpu-actual-20261124.json",
+      "sha256": "71f3586bfb815d8faf96bc7b1ca2fa2f62a85cd67e8d3c797bf38cfc67d0d0e2"
+    },
+    {
+      "path": "reproducibility/poster-cache-r26-gpu-link-symbols-20261124.json",
+      "sha256": "bb7329ad9a65f2a134d1f143847e5a976006f2ff7532f0475deba4e93e51137b"
+    },
+    {
+      "path": "reproducibility/poster-cache-r26-macos-native-trash-20261124.json",
+      "sha256": "946610ca5339bb4246b980adc1f7333e662241efcaa84a5e73d7578f0b13d6a8"
+    },
+    {
+      "path": "reproducibility/poster-cache-r26-offline-20261123.json",
+      "sha256": "e020fef98f608abda554c3f8a6340d7b5b4d4be112954245878ff623c80ea71f"
+    },
+    {
+      "path": "reproducibility/poster-cache-r26-r25-comparison-20261124.json",
+      "sha256": "e157392cc84304c1e528c8424ae9271091df168325b4657dde1c504b0c1982dd"
+    },
+    {
+      "path": "reproducibility/poster-cache-r26-r27-comparison-20261124.json",
+      "sha256": "824adae142e6607d0b766bbb893b19b8dc589cf7d48325b5710403e03cf2c22e"
+    },
+    {
+      "path": "reproducibility/poster-cache-r26-stage-20261124.json",
+      "sha256": "6df330684408ae9595aab0328e77512a294e22fd0d4da869722223b72f4c0672"
+    },
+    {
+      "path": "reproducibility/poster-cache-r27-inventory-actual-20261124.json",
+      "sha256": "b0121aa5a95141a2812124ceecd11ebca83cbc43a6862c7fec66da4ba3ba8843"
+    },
+    {
+      "path": "reproducibility/r25-peripheral-observations-20261123.json",
+      "sha256": "8c8c19e09375a0352967c61fcbb112b55d0c54432da0716cb81ee963496a18c1"
+    },
+    {
+      "path": "reproducibility/source-lock.json",
+      "sha256": "fc85f4cc9c07557c7a91bb488880988cd3affd701a843d7e9dd768242c6197e0"
+    },
+    {
+      "path": "tools/build/inspect_backlight_brightness.py",
+      "sha256": "311ba97e3346cccafa47c478c5fa38c01a35694b9b1c9914358bca626a77c64b"
+    },
+    {
+      "path": "tools/build/inspect_backlight_contract.py",
+      "sha256": "acf62c64130ae06c7de49e877b3906cd7421aca279fb189fc8748fb4505808c6"
+    },
+    {
+      "path": "tools/build/inspect_lilac_stock_dtb.py",
+      "sha256": "39595473df633640c938d857d14d8ff35ca661105d3780379748279989297048"
+    },
+    {
+      "path": "tools/build/link_lilac_backlight_service.py",
+      "sha256": "abc4d65a0fd13e76c16bb1b51faa201bb1625545397f97678d835a3e2afc3464"
+    },
+    {
+      "path": "tools/build/link_lilac_wled_candidate.py",
+      "sha256": "3e73c9ab8c33139a21065420601c4be75f2dd6e2d2c58ccf5512272b7606927d"
+    },
+    {
+      "path": "tools/build/prepare_lilac_wled_observer.py",
+      "sha256": "a887ccdd9188db452b0fb519cda02c951314a65da061ece2ed55a1dbbc963f32"
+    },
+    {
+      "path": "tools/build/rebuild_verified_air_object.py",
+      "sha256": "b0eb88dce9d14bfacf531dce4573193cdd505207307e2e01daefd46999a371b8"
+    },
+    {
+      "path": "tools/build/test_lilac_asm_pcm.c",
+      "sha256": "a20be121a882ec19f3dd139d879c91a38f9140e9ce2f0b1b873d2964967eb864"
+    },
+    {
+      "path": "tools/build/test_lilac_asm_pcm_apr.cpp",
+      "sha256": "503ef370ed554b00b4b0cd7f9e47b720b33f1570e091fe4d034316cdd80e3332"
+    },
+    {
+      "path": "tools/build/test_lilac_asm_pcm_map.cpp",
+      "sha256": "2eee81110dfcfb12f50991666070c741aed2b17fe38cae2350623d3076e6defc"
+    },
+    {
+      "path": "tools/build/test_lilac_asm_pcm_queue.c",
+      "sha256": "f218ca5743436210735e3527fb118c40e898ec4df16f7882d61c17e36519a203"
+    },
+    {
+      "path": "tools/build/test_lilac_asm_pcm_stream.cpp",
+      "sha256": "15ca4071d8d925606d162257f7e6e97672356c2c84b64bbdcccb7dd19a1340c1"
+    },
+    {
+      "path": "tools/build/test_lilac_backlight_properties.cpp",
+      "sha256": "e94b53fa97443fe9ae47dfb0884094552fc425244a70ae839054755e4dff9a53"
+    },
+    {
+      "path": "tools/build/test_lilac_wled_duty_plan.c",
+      "sha256": "34afa9b49afeb651dbb9da4f562fffea625f43fada215377c01c691d08aefb5f"
+    },
+    {
+      "path": "tools/build/test_lilac_wled_duty_transaction.c",
+      "sha256": "26447ce119229f937d630eaedb2ac1bda17a9adfa125b17cd90edc89911103ae"
+    },
+    {
+      "path": "tools/build/test_lilac_wled_screen_probe.cpp",
+      "sha256": "cfc466a64192069d92bc6fec8ffb705695fe5dfeacbb53ed609e255c2248a821"
+    },
+    {
+      "path": "tools/build/test_lilac_wled_snapshot.c",
+      "sha256": "e0a45b19165f0c691369e2e2fe85a57c71932956ddbaf92f9a31f0876f10a0b2"
+    },
+    {
+      "path": "tools/build/test_program_cache.c",
+      "sha256": "9c7ef4f60c5d2c817aed7a9485504b8bd40c0f82859411d0ba5590f1a6cdc082"
+    },
+    {
+      "path": "tools/build/test_program_cache_budget.c",
+      "sha256": "891992a718a1bd985c8914b5d8f55babce1656b098e5cde14c344ea9302daba5"
+    },
+    {
+      "path": "tools/build/test_verified_air_object.py",
+      "sha256": "503fdb3018a1b6d5670aff2db7459df2cc7b6ce53fce9d8c1f331163d22c5344"
+    },
+    {
+      "path": "tools/device/adsp_prepare_evidence.py",
+      "sha256": "f6718a3ffe1c91c62941bab8d3941ce3555b4e5469185c41abef9d4909c71bb0"
+    },
+    {
+      "path": "tools/device/controller.py",
+      "sha256": "d1e9d81d7a67eeb0ed3bb7a1ebc91162284758d8be28335a4cd03e3678020534"
+    },
+    {
+      "path": "tools/device/display_geometry_binding.py",
+      "sha256": "5209c4fbd13beb1185e1332740e3f85872208e144bc910cb3e1459618eedbc9a"
+    },
+    {
+      "path": "tools/device/lilac_wled_evidence.py",
+      "sha256": "b562e4bf8b508834effd593982ec26cef2f797c6e0fbb2e607657a7d06d9d1e4"
+    },
+    {
+      "path": "tools/device/native_grid_control.py",
+      "sha256": "75abf93a47e5d0ec2772f0d6ab71c8c7a945056d3e7a70276050e36c03be43f9"
+    },
+    {
+      "path": "tools/device/observe_fastboot.py",
+      "sha256": "6ec4ad97b40dbc377a1168d5931449030405dbe52c05ca1fdb3c81a53c0a6b3c"
+    },
+    {
+      "path": "tools/device/package_trial.py",
+      "sha256": "e11ab6e891f29559a31e60a81a5d6f95bb03be7c423323ebb0c2f363b10da946"
+    },
+    {
+      "path": "tools/device/peripheral_log_evidence.py",
+      "sha256": "3008f1299e542a30ed2bbfc85619d50541a6fbee1968f2067511c0aeb722f32d"
+    },
+    {
+      "path": "tools/device/poster_cache_comparison.py",
+      "sha256": "47e83d80769819510ec1484a22ea620152bc89ac58ef4c6b966fac0df82225c7"
+    },
+    {
+      "path": "tools/device/preflight_processes.ps1",
+      "sha256": "695f84b442a3408c0081401380b18d0f4e80dcfa80cda7f401d88653b987a617"
+    },
+    {
+      "path": "tools/device/program_cache_scope_evidence.py",
+      "sha256": "a7c90c41d0ac0031db80e6e40c1ef53115264de21f5eebd9646f56a0462de0b5"
+    },
+    {
+      "path": "tools/device/run_trial.py",
+      "sha256": "85f0b3d66618c8b573448a10ba87435656ee3e53060787a7c68152e3a1dee0d0"
+    },
+    {
+      "path": "tools/device/test_adsp_prepare_evidence.py",
+      "sha256": "4969ab9c3996c9b5405ac3dac2f4ed1ec525cd1fd83426734e249d0185f152e8"
+    },
+    {
+      "path": "tools/device/test_current_transport.py",
+      "sha256": "88c160a4f3e524182c4225ce1c78a6bd09796da5aa10ead96388ba895287b10d"
+    },
+    {
+      "path": "tools/device/test_lilac_wled_evidence.py",
+      "sha256": "48c9322216eb5c8014c1a03bed24724b11554b28b54d3afe3e8255c34ef702a7"
+    },
+    {
+      "path": "tools/device/test_native_grid_control.py",
+      "sha256": "7200c2fa83a67617f4116056c3975cff968ed5b9322f5e5760d6e61a53373b77"
+    },
+    {
+      "path": "tools/device/test_peripheral_log_evidence.py",
+      "sha256": "cf9ccebf3725c3b9d8e073ed41109ecb7ef229f1c446c77bf445a6f62573e311"
+    },
+    {
+      "path": "tools/device/test_program_cache_scope_evidence.py",
+      "sha256": "8f7290bce94a230ca9cf1e077dc300e933c28e8fd4946e18ced3a0ade13b6635"
+    },
+    {
+      "path": "tools/device/test_trial_gates.py",
+      "sha256": "2dede63a304f3d84af1f5d52c3f7f56dbdeb1f3268e2f7fb1bac680e26777a4a"
+    },
+    {
+      "path": "tools/device/trial_evidence.py",
+      "sha256": "3541b486749d639ff3ebc46b1de77a05319afdc01f49a6cec939794bcc7e4147"
+    },
+    {
+      "path": "tools/diagnostic_candidate.py",
+      "sha256": "529fe3bf2d726e6374cc6742afc8178974e0f0c59dabaceded1049548b4cfb76"
+    },
+    {
+      "path": "xnu/support/AppleARMBacklight.cpp",
+      "sha256": "4d9f500f4e56c54e80fdac518c7e715095e24a7d31f7bb45e190c9f43e78a778"
+    },
+    {
+      "path": "xnu/support/LilacAdmPlaybackDevice.h",
+      "sha256": "059e9693798b2605bf9ed5bf2941358e21231982ccfa83810db51832ae74cf5c"
+    },
+    {
+      "path": "xnu/support/LilacAdmPlaybackRoute.h",
+      "sha256": "8cbba82b1a98755331a3ca297e26ec1d687eb03d8ed841c230d77af317f54c4e"
+    },
+    {
+      "path": "xnu/support/LilacAsmPcm.h",
+      "sha256": "1534d94b8e0ae268edc75f3515af5b6b47dbb0b00ef5266688b2ea635a49fccc"
+    },
+    {
+      "path": "xnu/support/LilacAsmPcmApr.h",
+      "sha256": "a07282f0f0b323faaf26b4d9d0c79cb49939ccada5c7f1e9993b3e61ec5e4b3d"
+    },
+    {
+      "path": "xnu/support/LilacAsmPcmMap.h",
+      "sha256": "703ba5e8bc0c2fb8c93a4625d01f0bcfa829b145c7a5f8847254a963bcffdace"
+    },
+    {
+      "path": "xnu/support/LilacAsmPcmQueue.h",
+      "sha256": "3fb9ab59d7ccf0688ecf8974bb1423df4cebe8aa661aa8e56222d0fcb4ac094d"
+    },
+    {
+      "path": "xnu/support/LilacAsmPcmStream.h",
+      "sha256": "c922efd43e1d80edf657f60d9d0ca4d98b68eaafb9adcb77b3a74c618c1e4610"
+    },
+    {
+      "path": "xnu/support/LilacBacklightProperties.h",
+      "sha256": "40c94bae4d7ba5d7c1ce8f9652b793975d6d2315069639cc26888381f3dbc9d6"
+    },
+    {
+      "path": "xnu/support/LilacBacklightService.h",
+      "sha256": "d6a99809b6da988bf2e1cb055756d6298051b632a660934b75797c15d16d2985"
+    },
+    {
+      "path": "xnu/support/LilacWledDutyPlan.h",
+      "sha256": "450d1a9e409f3807c0bf38d3a26c850327ed07af6e3947d2d9a63cb77c9fe3ed"
+    },
+    {
+      "path": "xnu/support/LilacWledDutyTransaction.h",
+      "sha256": "9341c44209379284dc1dbb68e907b5028f94fcfa76948d0868dd0e4ceaa983dd"
+    },
+    {
+      "path": "xnu/support/LilacWledScreenProbe.h",
+      "sha256": "35c4ae4e9815daa479e8f429d991700d72528fe67405d8ca4710fb176c510ef0"
+    },
+    {
+      "path": "xnu/support/LilacWledSnapshot.h",
+      "sha256": "77c51e06bd55d6752c215f36a4e5346840ea631d662fdf199b9f03a82799fd0d"
+    }
+  ]
+}

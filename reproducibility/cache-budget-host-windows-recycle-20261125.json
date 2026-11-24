@@ -1,0 +1,68 @@
+{
+  "date": "2026-11-25",
+  "scope": "Completed WSL-produced host executables on the shared Windows build filesystem",
+  "native_Windows_Recycle_Bin": true,
+  "items": 9,
+  "files": 9,
+  "logical_bytes": 13062696,
+  "original_failed_compile_and_test_logs_preserved": true,
+  "exact_sources_and_APR_headers_preserved": true,
+  "Recycle_Bin_not_emptied": true,
+  "device_operations": 0,
+  "rows": [
+    {
+      "path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\cache-budget-peripheral-source-check-20261124\\test_lilac_asm_pcm",
+      "bytes": 1420856,
+      "sha256": "c7e479d60fe5a9892496fa814e1c3e5e3360f2cd5923e82db142b9448ca1a50e",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RXHHMQJ"
+    },
+    {
+      "path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\cache-budget-peripheral-source-check-20261124\\test_lilac_asm_pcm_queue",
+      "bytes": 1435248,
+      "sha256": "75d928956cba967b7ffc817e55384595d6dbef0dcaf3c9755ca557188e5c8773",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RXQL698"
+    },
+    {
+      "path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\cache-budget-peripheral-source-check-r2-20261125\\test_lilac_asm_pcm_apr",
+      "bytes": 1466928,
+      "sha256": "cf27e83f1a4248d67ce4e8eed74c74f682e3816bb8b9f177499e604cf12fd27f",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RDJXHQF"
+    },
+    {
+      "path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\cache-budget-peripheral-source-check-r2-20261125\\test_lilac_asm_pcm_map",
+      "bytes": 1493368,
+      "sha256": "f6829c3b10c7be26d3d8a2e74c163637bb272abfcabf23f8c6aab1f229b5bb2f",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RM5OTKM"
+    },
+    {
+      "path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\cache-budget-peripheral-source-check-r2-20261125\\test_lilac_asm_pcm_stream",
+      "bytes": 1561392,
+      "sha256": "95984b988154046230d9e6edb30befc1cf81b667797f06684ad6fe1a4cbd9ca9",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R4HUZ1L"
+    },
+    {
+      "path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\cache-budget-peripheral-source-check-r2-20261125\\test_lilac_backlight_properties",
+      "bytes": 1421072,
+      "sha256": "a4fa31fd81c3b38fb05486a073b68e1c42275bd75e9c249349b1fb65af2e3262",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RTFO7MG"
+    },
+    {
+      "path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\cache-budget-peripheral-source-check-r2-20261125\\test_lilac_wled_duty_plan",
+      "bytes": 1416008,
+      "sha256": "ed9978ef0ead0f2447d1db6c8913c308532b79a9ab95efd629cee33173dddf88",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R76BG6L"
+    },
+    {
+      "path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\cache-budget-peripheral-source-check-r2-20261125\\test_lilac_wled_duty_transaction",
+      "bytes": 1432768,
+      "sha256": "e5b4ca649569e3df272547e4c4783e0c2f2bb6d1636f745f550e76543b12fa7f",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R4FK0ZN"
+    },
+    {
+      "path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\cache-budget-peripheral-source-check-r2-20261125\\test_lilac_wled_snapshot",
+      "bytes": 1415056,
+      "sha256": "6fff6a50663fd193b9cc8cbe0f8057535eb9586ee14ad278e21b34c088ac6c99",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R2LRQPR"
+    }
+  ]
+}

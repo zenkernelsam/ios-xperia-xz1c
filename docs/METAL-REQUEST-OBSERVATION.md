@@ -4,6 +4,8 @@
 
 新库观察的20条原request、128条route、99条environment记录完整，原preview／snapshot返回true、unlock返回0.0、背光progress返回1.0。五次原paused=true、applyMode1沿deactive分支返回；没有新增getter或绘制，没有强制策略。本次唯一缺失准入目标是原pipeline第1次返回，原pipeline BEGIN也未出现，snapshotImage／PNG和draw API均无记录。未观察到调用不推断整个系统没有GPU工作，缓存与原请求链分别验收。该轮原STOP、702521 B raw和39.438秒完整回程保持，失败包不重发。
 
+[同靴扫描](../reproducibility/poster-cache-budget-wallpaper-scanout-actual-20261125.json)与[较小观察包](../reproducibility/poster-cache-budget-minimal-gpu-actual-20261125.json)均复现原pipeline目标未出现，150秒真实帧完整、背景仍黑、原STOP保留。较小包未编译request／route包装，7条库／ColorSync返回完整，仍无snapshot／PNG。不能据此归因为额外观察包装或底层GPU；后续集中核对系统原快照请求入口。两靴分别38.469／38.468秒完整安全回程，失败不重发。
+
 ## 原调用观察
 
 QuadRouteObserve只包装原owner与准确ABI的方法，保持原参数、返回、nil、throw及errno。R13的33／33安装、127条完整route、20条request与150秒home扫描已独立核对，原结果仍STOP／OBSERVATION_INCOMPLETE：[R13](../reproducibility/original-mode-swift-owner-r13-stage-20261122.json)。没有强制原mode、解除Vista paused或绘制替代壁纸。

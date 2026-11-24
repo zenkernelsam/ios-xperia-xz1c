@@ -34,6 +34,8 @@ GPU还需--owner-evidence、--ready-evidence、--rpm-evidence、--cpu-evidence�
 
 ## UI截图和输入
 
+已审核的新库原 Aegir 包也可做150秒单frame，保持三路原进程日志、相同native／PNG先验和原STOP；截图准入不要求原管线一定已调用。v731的sf2x默认0省略仅限精确kernel／相同编译consumer及parser，不改实际几何。
+
 UI／文字／图标／颜色优先串口720×1280／BGR888／stride2160原扫描帧。同kernel完整成功private截图先验先复验；GPU包--screen-evidence默认45秒，--screen-after150为150秒单帧，artifact／plan同值，观察期限内执行。每靴只发一次frame，缺块／失败不补发，最终取证复用本帧。
 
 一个worker排队命令和读取原raw，来源、实际扫描寄存器、逐记录／块／流CRC、FNV和保存BGR／PNG像素全部绑定本token，见[SCANOUT-SCREENSHOT](SCANOUT-SCREENSHOT.md)。不将750×1624 IOSurface／shadow当原扫描。原截图无需rotate90；旧raw可离线重解，明确原日期／token，不能冒充当前实时。fastboot期间没有iOS帧可读，不为截图复发失败boot。

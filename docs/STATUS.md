@@ -1,6 +1,6 @@
 # 当前状态 — 2026-11-25
 
-新缓存库已在 v731 完成自身 CPU、GLES9、完整 native Metal21／PNG6 及真实扫描帧验收；原壁纸还未恢复。最近一次原 Aegir 观察为 STOP／OBSERVATION_INCOMPLETE，已完成四段 0x06 回程、连续健康30秒和串口退出，Sony BH905ND69G 安全停在 fastboot，无在途启动。
+新缓存库已在 v731 完成自身 CPU、GLES9、完整 native Metal21／PNG6 及真实扫描帧验收；原壁纸还未恢复。最近一次原 Aegir 同靴扫描观察为 STOP／OBSERVATION_INCOMPLETE，150秒扫描完整，已完成四段 0x06 回程、连续健康30秒和串口退出，Sony BH905ND69G 安全停在 fastboot，无在途启动。
 
 ## 当前输入与准入
 
@@ -39,7 +39,9 @@
 
 [本次原观察](../reproducibility/poster-cache-budget-wallpaper-observation-20261125.json)raw `c338c9b3…`／702521 B完整保留。Aegir只出现一次exec，登记证明准确，库bundle／URL非空返回；20条原request、128条原route和99条原environment记录均完整，未观察到Aegir签到超时。唯一缺失目标是原pipeline第1次返回；本LIVE内没有pipeline BEGIN、snapshotImage调用、PNG返回或原绘制API。
 
-原环境返回preview／snapshot均true，backlight／linear_backlight均1.0，unlock均0.0；五次原paused=true，applyMode1沿原deactive分支返回。无调用不能推断整个系统没有渲染，亦不授权强制mode／paused。该轮只有串口，没有扫描或光学帧；原STOP不提升、不重发。下一步减少诊断流量并在新的精确包里加入当前扫描帧，核对原快照请求是否真的到达，再定位原UI链。
+原环境返回preview／snapshot均true，backlight／linear_backlight均1.0，unlock均0.0；五次原paused=true，applyMode1沿原deactive分支返回。无调用不能推断整个系统没有渲染，亦不授权强制mode／paused。该轮只有串口，没有扫描或光学帧；原STOP不提升、不重发。随后同靴扫描与较小观察包已完成，见下一段；原STOP均保留。
+
+随后 [原 Aegir 同靴扫描](../reproducibility/poster-cache-budget-wallpaper-scanout-actual-20261125.json) `035142bfce21f792` 再现唯一pipeline目标缺失，原STOP保持。150秒扫描完整3431块，原raw `802745c3…`／1928425 B；9条postdraw、20条request、126条route及99条environment记录均完整，没有原快照／PNG／draw。四段回程、健康30秒及worker退出38.469秒。真实扫描中时间、电池和底条正常，背景仍黑。相同v731编译consumer中sf2x初值0已核验，新的省略绑定保持本kernel SHA和同consumer／parser；不同kernel／显式sf2x仍拒绝。后续较小观察包的 [CPU](../reproducibility/poster-cache-budget-minimal-cpu-actual-20261125.json) `445e94deb747f6f7` 独立PASS／38.047秒；[GPU](../reproducibility/poster-cache-budget-minimal-gpu-actual-20261125.json) `502518c1cac3a3a4` 仍STOP／同一pipeline目标未出现。150秒扫描完整3426块、raw `9d77d6af…`／1791188 B，7条postdraw完整、无原snapshot／PNG。回程、健康30秒及worker退出38.468秒。减少request／route包装未在本靴恢复快照，未把诊断干扰认定为主要原因；下一步独立查PosterBoard→Aegir原快照请求入口，原mode／paused保持。
 
 完整native背景包的扫描图中，锁屏文字、电池和底条颜色正常，背景仍黑。它没有原Aegir登记，因此该图不证明壁纸、LCD实际颜色或亮度。真实UI截图优先串口，光学／背光另用相机。
 
@@ -60,5 +62,7 @@ ADSP stage3只核验固件和AP端准备，没有启动DSP。ASM PCM／映射／
 [AIR固定原object复现](../reproducibility/cache-budget-verified-air-tool-20261124.json)从正式materialize源码得到原`10df4bf0…`，168个原LLVM导入一致；[完整参考manifest](../reproducibility/air-static-half-object-reference-20261124.json)已进入Git。不同object／target不允许复用原审计，新的20H392 exports仍需重新提取。新源码和工具只在正式仓库维护；构建及新包准入见[BUILD](BUILD.md)、[OPERATIONS](OPERATIONS.md)，用户提供SDK／固件等原输入见[LAYOUT](LAYOUT.md)。全新gl5重建首次启动尚未独立验收。
 
 本轮[Mac原生Trash](../reproducibility/cache-budget-macos-native-trash-20261124.json)54项／238文件／287602294 B，233保护文件SHA保持；六份重复HFS从保留blob逐字节复算，原失败包、raw、proof、signed库、AIR、deps和pause保留。两套Ubuntu Trash为空，Windows／Mac垃圾桶未清空；回收仍占磁盘。整合前9份入口原字节及SHA见[本轮归档](archive/20261124/cache-budget-close-out/original-document-manifest.json)，完整历史由[INDEX](INDEX.md)／[ORGANIZATION](ORGANIZATION.md)索引。
+
+本次原观察收尾另把 [Mac46项／88文件／136572265 B](../reproducibility/poster-observation-macos-native-trash-20261125.json) 送入原生Trash，111保护文件一致；[WSL生成的9个主机程序／13062696 B](../reproducibility/cache-budget-host-windows-recycle-20261125.json) 从共享Windows build直接进Windows回收站。原编译失败、源码、固定APR头文件、signed库、原结果／raw／proof都保留。正式主提交`7c02219`已推送origin/main，Mac已同步且135变更文件逐字节一致，旧Mac修改保存在[可恢复stash](../reproducibility/cache-budget-formal-git-sync-20261125.json)。
 
 只操作BH905ND69G，fastboot设备命令显式`-s BH905ND69G`；COM≥10且VID1209／PID0001、一个controller／worker；PON只0x06，单download／boot、失败不重发。ACK／DRAIN／RESET／FINAL_DRAIN、健康30秒及旧worker退出后才下一轮。无本token LIVE的早期E1F4仍可能需物理恢复。SweetGPU SHA `aa2c3679…`及内核GPU底层／allocator／SCM／PON／RPC／VM冻结；gl5／userdata／SD／TA／XFL、校准、备份和救砖输入不flash／erase。Mac旧autobuild保持pause；废弃文件只进原生回收站。

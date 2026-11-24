@@ -51,5 +51,21 @@ class NumericBootArgs(unittest.TestCase):
                     dict(record,numeric_zero_argument_omission=dict(native_zero_binding(),values={'sf2x':1}))]:
             with self.assertRaises(AssertionError):numeric_options(bad)
 
+    def test_v731_zero_omission_keeps_same_consumer_and_its_own_kernel(self):
+        bound=native_zero_binding(731)
+        from diagnostic_candidate import WLED_KERNEL_SHA
+        geometry={'profile':'xz1c-native-2x','parser_sha256':PARSER_SHA,'required_boot_arguments':{'sweetfb_native':1,'sf2x':0}}
+        record={'cmdline':'sweetfb_native shimponly=1','numeric_one_argument_compaction':['sweetfb_native'],
+                'display_geometry_binding':geometry,'version':731,'kernel_sha256':WLED_KERNEL_SHA,
+                'numeric_zero_argument_omission':bound}
+        self.assertEqual(numeric_options(record)['sf2x'],'0')
+        for bad in (dict(record,kernel_sha256=NATIVE_DEFAULT_KERNEL),
+                    dict(record,numeric_zero_argument_omission=native_zero_binding(730)),
+                    dict(record,cmdline=record['cmdline']+' sf2x=1')):
+            with self.assertRaises(AssertionError):
+                numeric_options(bad)
+        with self.assertRaises(AssertionError):
+            native_zero_binding(732)
+
 
 if __name__=='__main__':unittest.main()

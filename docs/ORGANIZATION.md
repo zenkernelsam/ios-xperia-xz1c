@@ -6,6 +6,8 @@
 
 2026-11-24 缓存库验收收尾追加 [54 项／238 文件／287602294 B 的 Mac 原生 Trash 记录](../reproducibility/cache-budget-macos-native-trash-20261124.json)。六份 HFS 重复容器、已结束的 frontend object 和 host fixture／dSYM 已回收；233 个保护文件复算一致。首次调用旧 helper 因计划 schema 不同在任何移动前拒绝，随后从正式 Swift 源码编译当前 helper 并逐项目标验证。签名库、原失败包、raw／proof、manifest、固定 Mesa 输入和 AIR 重建材料均保留；新 [9 份入口原文快照](archive/20261124/cache-budget-close-out/original-document-manifest.json) 保存整合前字节。两套 Ubuntu Trash 实查无内容，Windows 和 Mac Trash 未清空；回收的内容仍占磁盘。
 
+2026-11-25 原壁纸两种观察包收尾追加 [Mac46项／88文件／136572265 B](../reproducibility/poster-observation-macos-native-trash-20261125.json)，111保护文件SHA一致；四份HFS可从保留blob重建，host程序／dSYM已结束后回收。另有 [9个WSL生成的主机程序／13062696 B](../reproducibility/cache-budget-host-windows-recycle-20261125.json) 从共享Windows build进入Windows原生回收站。原失败编译日志、实际源、固定APR头、signed库、manifest、原结果／raw／proof保留。所有垃圾桶未清空。主提交7c02219已推送正式origin/main，[Mac完整135文件同步](../reproducibility/cache-budget-formal-git-sync-20261125.json)通过，原本地修改保存在未删除的stash。
+
 ## 本轮原生回收
 
 | 范围 | 项／文件／逻辑字节 | 原路径、原生目标及SHA |

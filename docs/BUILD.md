@@ -90,6 +90,8 @@ python3 -B tools/build/rebuild_verified_air_object.py \
 
 [工具实编译记录](../reproducibility/cache-budget-verified-air-tool-20261124.json)验证正式 materialize 后 object SHA `10df4bf0…`、168 原导入全部一致。任何 source／object／manifest 差异均拒绝，改动后的库仍须自己的完整 GPU 验收。
 
+v731原壁纸的同靴150秒扫描包仍绑定精确新RAM／native21／PNG6，完整源码和payload复算后单发。command超过607 B时，sf2x默认0的省略只准入精确v731内核与和v730相同的SweetFramebuffer.cpp／parser SHA；numeric_one及helper拟合默认也逐项验证。不能把换token视为新实验，新的扫描取证改变实际串口命令和观察范围。
+
 作者MTLB／AIR fixture均由正式源和LLVM14生成，不提交原Apple shader。basic使用`--fixture basic`，render／constants／narrow／half／mrt／sampler／static-half／multisample使用对应参数；具体choices以make_air_fixture.py为准：
 
 ```powershell

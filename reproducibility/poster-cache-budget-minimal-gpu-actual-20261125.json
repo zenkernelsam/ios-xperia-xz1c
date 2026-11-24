@@ -1,0 +1,151 @@
+{
+  "date": "2026-11-25",
+  "version": 731,
+  "source": "Windows TEMP/lilac-v731-cache-budget-minimal-gpu-live-20261125",
+  "token": "502518c1cac3a3a4",
+  "image_sha256": "abee4d13494d48ba3d045a2849a7e1da4cf4a6c2e65b13bfc41f0a79584a0363",
+  "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+  "original_result": "STOP",
+  "original_reason": "OBSERVATION_INCOMPLETE",
+  "raw_sha256": "9d77d6af2d3f4c5b1c37d3c808a2b5aa60650de00873a427d07c906bac85f8e2",
+  "raw_bytes": 1791188,
+  "return_seconds_with_health": 38.468000000109896,
+  "serial_capture": {
+    "revision": 1,
+    "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+    "event_log_sha256": "fe770901ab3cd4e0039b1928ea0b7550d6f61652e374cdfa74845dae5a08330f",
+    "raw_sha256": "9d77d6af2d3f4c5b1c37d3c808a2b5aa60650de00873a427d07c906bac85f8e2",
+    "serial_port": "COM17",
+    "dtr_low_through_open": true,
+    "raw_log_before_stream": true,
+    "one_continuous_current_boot_stream": true,
+    "replay_commands": 0,
+    "old_failure_not_reclassified": true
+  },
+  "registration": {
+    "exact_prior_native_hardware_proof_logged": true,
+    "proof_sha256": "301c9e969c310ce966e8771633450b88511c7ad959abd19e279cc8704fa9da9e",
+    "prior_native_token": "2d1794b225c1a6c1",
+    "constructor_no_long_diagnostic_probes": true,
+    "current_original_UI_still_requires_separate_evidence": true
+  },
+  "scanout": {
+    "protocol": 1,
+    "frames": [
+      {
+        "id": 1,
+        "token": "502518c1cac3a3a4",
+        "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+        "image_sha256": "abee4d13494d48ba3d045a2849a7e1da4cf4a6c2e65b13bfc41f0a79584a0363",
+        "binding": {
+          "protocol": 1,
+          "width": 720,
+          "height": 1280,
+          "stride": 2160,
+          "format": "BGR888",
+          "codec": "PRLE1",
+          "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+          "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+          "runtime_source_sha256": "2c566a962d61e7b8aebfc88be54d496878821a4c0f5bb439f505198b16adfba2"
+        },
+        "begin": {
+          "token": "502518c1cac3a3a4",
+          "id": "1",
+          "width": "720",
+          "height": "1280",
+          "stride": "2160",
+          "format": "BGR888",
+          "bytes": "2764800",
+          "codec": "PRLE1",
+          "encoded": "438477",
+          "raw_fnv": "c1aac9ed9c976010",
+          "enc_crc": "024c7436",
+          "vsync": "7906",
+          "timestamp": "7600282265",
+          "copy_ticks": "7545888",
+          "power_off": "0",
+          "source_checked": "1",
+          "source_match": "1"
+        },
+        "scan": {
+          "token": "502518c1cac3a3a4",
+          "id": "1",
+          "pa": "0x9d400000",
+          "map_pa": "0x9d400000",
+          "map_bytes": "2764800",
+          "size": "0x50002d0",
+          "img": "0x50002d0",
+          "xy": "0",
+          "out": "0x50002d0",
+          "outxy": "0",
+          "fmt": "0x2243f",
+          "unpack": "0x20001",
+          "op": "0x80000000",
+          "qop": "0",
+          "ctl": "0x20020",
+          "start": "0",
+          "before_after": "1"
+        },
+        "blocks": 3426,
+        "raw_file": "scanout-00000001.bgr",
+        "png_file": "scanout-00000001.png",
+        "raw_sha256": "b078527e8cbd174bd84f721925b530a62eceb2cc1eb442710f69af133cb35d93",
+        "png_sha256": "a0fb113f2dae5ee6dc1c13ef1f5e6cddf3ce77f7ff8ae61453cf4cbda174d643",
+        "pixel_values_preserved": true,
+        "verified": true,
+        "optical_panel_verified": false
+      }
+    ],
+    "verified": true,
+    "optical_panel_verified": false,
+    "current_boot_source_and_payload_checked": true,
+    "format": "BGR888",
+    "width": 720,
+    "height": 1280
+  },
+  "capture_observed_seconds": 150.0779999999795,
+  "missing_original_goals": [
+    "SWEET METAL PIPELINE END call=1 returned_nil=[01] error_pointer=[01] error_code=-?[0-9]+ original_return=1"
+  ],
+  "postdraw_complete_samples": 7,
+  "postdraw_incomplete_samples": 0,
+  "postdraw_observed_apis": [
+    "colorsync",
+    "library_bundle",
+    "library_url"
+  ],
+  "original_snapshot_calls": 0,
+  "original_PNG_calls": 0,
+  "original_pipeline_calls": 0,
+  "Aegir_checkin_timeout_count": 0,
+  "WLED": {
+    "token": "502518c1cac3a3a4",
+    "image_sha256": "abee4d13494d48ba3d045a2849a7e1da4cf4a6c2e65b13bfc41f0a79584a0363",
+    "scanout_raw_sha256": "9d77d6af2d3f4c5b1c37d3c808a2b5aa60650de00873a427d07c906bac85f8e2",
+    "sample": {
+      "token": "502518c1cac3a3a4",
+      "frame_id": 1,
+      "state": 6,
+      "state_name": "CONFIGURED",
+      "faults": 0,
+      "module_enabled": 1,
+      "sink_mask": 3,
+      "modulator_mask": 3,
+      "duty": [
+        1989,
+        1989
+      ]
+    },
+    "same_live_as_complete_scanout": true,
+    "original_trial_result": "STOP",
+    "pwm_current_luminosity_verified": false,
+    "optical_panel_verified": false,
+    "device_operations": 0
+  },
+  "original_UI_policy_unchanged": true,
+  "failed_package_not_replayed": true,
+  "extra_request_route_wrappers_absent": true,
+  "reduced_observer_did_not_restore_original_snapshot_in_this_boot": true,
+  "worker_closed": true,
+  "optical_panel_not_verified": true
+}

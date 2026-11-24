@@ -56,6 +56,8 @@ def validate_wled_gpu_ram(package, binding):
             '1e346d62937f85b21ae807f0164aad7e97c9bb2d94cb79f7e8b05cfc3cd6a4a1',
         'e98ed2cd62595b2b414ef2d04ce1cfa93af34041a99fd6b38691f004314eb83b':
             '55eee7cb15985a1e27c939ae4601ceb104d9d43ae760edb7c6191f450899ec98',
+        '0d4076fd78bc5f9ceae6f3386fcefc16b3f7b5bc20bf93680e8cf8d207f29a04':
+            '82ea4046016e6b136712d905508c4628376acca41bf238ec1ddf967069688d14',
     }
     if binding['blob_sha256'] in poster_packages:
         assert binding['manifest_sha256']==poster_packages[binding['blob_sha256']]
@@ -63,15 +65,19 @@ def validate_wled_gpu_ram(package, binding):
         assert observer['target_process']=='AegirPoster' and observer['registration_only']
         assert observer['prior_native_hardware_proof']['version']==WLED_VERSION
         assert observer['png_filter_encoder'] and observer['snapshot_method_observer']
-        if binding['blob_sha256']=='e98ed2cd62595b2b414ef2d04ce1cfa93af34041a99fd6b38691f004314eb83b':
+        if binding['blob_sha256']!='ab1990dfdaef042c06588d21c78fea999195efeff62b62916d95060879e78f3d':
             gles='6efabfc0627a8818a8c4c45665459cd33d8ee814f2e50a3f3cdc4813bb254325'
             assert binding['library_sha256']==gles and package['metal_resources']['gles_library_sha256']==gles
-            assert observer['library_sha256']=='af1c42dc51fbccab4f6d42461044c14c9913ffa7eaa4b1a480c1b213b24cddd2'
+            minimal=binding['blob_sha256']=='0d4076fd78bc5f9ceae6f3386fcefc16b3f7b5bc20bf93680e8cf8d207f29a04'
+            assert observer['library_sha256']==('3c442f3085c1106d9de233d56fdbed801ea87345a0ec1ea536d0df355ec5ca22' if minimal else 'af1c42dc51fbccab4f6d42461044c14c9913ffa7eaa4b1a480c1b213b24cddd2')
             prior=validate_native(observer['prior_native_hardware_proof'],package['metal_resources'])
             assert len(prior['native_tests'])==21 and prior['native_run_token']=='2d1794b225c1a6c1'
             png=observer['png_encoder_prior_proof']
             assert png['GLES_sha256']==gles and png['reference_token']==prior['native_run_token'] and png['reference_cases']==6
-            assert observer['original_request_observer'] and observer['quad_route_observer'] and observer['poster_state_observer_revision']==1
+            if minimal:
+                assert not any(observer.get(key) for key in ('original_request_observer','quad_route_observer','poster_state_observer_revision'))
+            else:
+                assert observer['original_request_observer'] and observer['quad_route_observer'] and observer['poster_state_observer_revision']==1
         return 'poster'
     budget_native={
         'a8821cead75c078861eed21733c6366b594c8de4a631c3848b8bfd55d3cb66bf':
@@ -124,9 +130,15 @@ def validate_wled_gpu_record(record, package, binding):
     assert record.get('display_geometry_binding',{}).get('profile')=='xz1c-native-2x'
     assert record.get('native_grid_control',{}).get('mode')=='fitted'
     if stage=='poster':
-        assert record.get('poster_startup_serial_only') is True
-        assert not {'screen_snapshot_binding','screen_capture_after_seconds'} & record.keys()
-        assert not any(word.split('=',1)[0]=='sfscreen' for word in record['cmdline'].split())
+        if 'screen_snapshot_binding' in record:
+            assert binding['blob_sha256'] in ('e98ed2cd62595b2b414ef2d04ce1cfa93af34041a99fd6b38691f004314eb83b','0d4076fd78bc5f9ceae6f3386fcefc16b3f7b5bc20bf93680e8cf8d207f29a04'), 'Poster scanout requires the reviewed new-library RAM'
+            assert 'poster_startup_serial_only' not in record
+            from scanout_snapshot import binding as screen_binding
+            assert record['screen_snapshot_binding']==screen_binding(record) and record.get('screen_capture_after_seconds')==150
+        else:
+            assert record.get('poster_startup_serial_only') is True
+            assert 'screen_capture_after_seconds' not in record
+            assert not any(word.split('=',1)[0]=='sfscreen' for word in record['cmdline'].split())
     else:
         assert 'poster_startup_serial_only' not in record
         from scanout_snapshot import binding as screen_binding
@@ -261,9 +273,13 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
         assert mode in ('ramcpu','gpu')
         blob,library_binding,package=load_ram(ram_package)
         if version==WLED_VERSION and mode=='gpu':
-            serial_only=validate_wled_gpu_ram(package,library_binding)=='poster'
+            stage=validate_wled_gpu_ram(package,library_binding)
+            serial_only=stage=='poster' and not screen_evidence
+            if stage=='poster' and screen_evidence:
+                assert library_binding['blob_sha256'] in ('e98ed2cd62595b2b414ef2d04ce1cfa93af34041a99fd6b38691f004314eb83b','0d4076fd78bc5f9ceae6f3386fcefc16b3f7b5bc20bf93680e8cf8d207f29a04')
+                assert capture_after==150, 'Poster scanout requires one frame at 150 seconds'
             if serial_only:
-                assert not screen_evidence, 'Poster startup requires serial evidence without a frame'
+                assert not screen_evidence
             else:
                 assert screen_evidence and capture_after==150, 'v731 graphics suites require the 150-second frame'
         if version>=727:assert 'readonly_probe.c' in package['frontend_build_binding']['source_files']
@@ -323,8 +339,8 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
     zero_binding=None
     if zero_omissions:
         from numeric_boot_args import native_zero_binding
-        zero_binding=native_zero_binding()
-        assert zero_omissions==['sf2x'] and version==730 and sha(kernel.read_bytes())==zero_binding['kernel_sha256']
+        zero_binding=native_zero_binding(version)
+        assert zero_omissions==['sf2x'] and sha(kernel.read_bytes())==zero_binding['kernel_sha256']
     sample_binding=None
     if thread_sample or idle_sample:
         assert mode=='gpu' and screen_evidence and version>=730 and ram_package
