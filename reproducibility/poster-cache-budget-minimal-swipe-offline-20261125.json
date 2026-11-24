@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-25",
+  "token": "6b7a6729c50d0b51",
+  "image_sha256": "2ac358161bf84badd54970365f7343686e21a369327bb0384afbdc62af57b69a",
+  "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+  "exact_RAM_binding": {
+    "library_sha256": "6efabfc0627a8818a8c4c45665459cd33d8ee814f2e50a3f3cdc4813bb254325",
+    "library_bytes": 14801120,
+    "library_fnv64": "2181c45c9f21ee6c",
+    "blob_sha256": "0d4076fd78bc5f9ceae6f3386fcefc16b3f7b5bc20bf93680e8cf8d207f29a04",
+    "raw_sha256": "d534c28d3aef857d646ee146c4671dfe0ddf8cb20d71eb8ed13cdb2189c8b99b",
+    "manifest_sha256": "82ea4046016e6b136712d905508c4628376acca41bf238ec1ddf967069688d14"
+  },
+  "gesture": {
+    "command": "swipe",
+    "max_commands": 1,
+    "after_seconds": 120,
+    "requires_current_LIVE": true,
+    "requires_F12_ready": true,
+    "screen_after_seconds": 150
+  },
+  "screen_capture_after_seconds": 150,
+  "previous_no_swipe_result": "reproducibility/poster-cache-budget-minimal-gpu-actual-20261125.json",
+  "material_difference": "One previously authorized current-LIVE/F12-checked swipe at 120 seconds; one actual 150-second scanout",
+  "original_mode_and_paused_not_forced": true,
+  "failed_prior_package_not_replayed": true,
+  "synthetic_input_not_human_touch_acceptance": true,
+  "device_operations": 0
+}

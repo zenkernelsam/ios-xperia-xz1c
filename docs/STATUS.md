@@ -1,6 +1,6 @@
 # 当前状态 — 2026-11-25
 
-新缓存库已在 v731 完成自身 CPU、GLES9、完整 native Metal21／PNG6 及真实扫描帧验收；原壁纸还未恢复。最近一次原 Aegir 同靴扫描观察为 STOP／OBSERVATION_INCOMPLETE，150秒扫描完整，已完成四段 0x06 回程、连续健康30秒和串口退出，Sony BH905ND69G 安全停在 fastboot，无在途启动。
+新缓存库已在 v731 完成自身 CPU、GLES9、完整 native Metal21／PNG6 及真实扫描帧验收；原壁纸还未恢复。最近一次原 Aegir 单次上滑后的主页扫描观察为 STOP／OBSERVATION_INCOMPLETE，150秒主页扫描完整，已完成四段 0x06 回程、连续健康30秒和串口退出，Sony BH905ND69G 安全停在 fastboot，无在途启动。
 
 ## 当前输入与准入
 
@@ -42,6 +42,8 @@
 原环境返回preview／snapshot均true，backlight／linear_backlight均1.0，unlock均0.0；五次原paused=true，applyMode1沿原deactive分支返回。无调用不能推断整个系统没有渲染，亦不授权强制mode／paused。该轮只有串口，没有扫描或光学帧；原STOP不提升、不重发。随后同靴扫描与较小观察包已完成，见下一段；原STOP均保留。
 
 随后 [原 Aegir 同靴扫描](../reproducibility/poster-cache-budget-wallpaper-scanout-actual-20261125.json) `035142bfce21f792` 再现唯一pipeline目标缺失，原STOP保持。150秒扫描完整3431块，原raw `802745c3…`／1928425 B；9条postdraw、20条request、126条route及99条environment记录均完整，没有原快照／PNG／draw。四段回程、健康30秒及worker退出38.469秒。真实扫描中时间、电池和底条正常，背景仍黑。相同v731编译consumer中sf2x初值0已核验，新的省略绑定保持本kernel SHA和同consumer／parser；不同kernel／显式sf2x仍拒绝。后续较小观察包的 [CPU](../reproducibility/poster-cache-budget-minimal-cpu-actual-20261125.json) `445e94deb747f6f7` 独立PASS／38.047秒；[GPU](../reproducibility/poster-cache-budget-minimal-gpu-actual-20261125.json) `502518c1cac3a3a4` 仍STOP／同一pipeline目标未出现。150秒扫描完整3426块、raw `9d77d6af…`／1791188 B，7条postdraw完整、无原snapshot／PNG。回程、健康30秒及worker退出38.468秒。减少request／route包装未在本靴恢复快照，未把诊断干扰认定为主要原因；下一步独立查PosterBoard→Aegir原快照请求入口，原mode／paused保持。
+
+按现行规则加入一次上滑的 [主页同靴验证](../reproducibility/poster-cache-budget-minimal-swipe-actual-20261125.json) `6b7a6729c50d0b51` 已结束，原结果仍STOP／同一pipeline目标缺失。当前LIVE／F12就绪后120秒只发一次swipe，150秒扫描7980块完整，原raw `a2b7dc9a…`／3484551 B。真实帧已进入主页，图标／小组件／Dock色彩与比例看起来正常；背景仍黑，7条postdraw完整、原snapshot／PNG／pipeline均0。四段回程、连续健康30秒及worker退出38.766秒。合成输入不代替真人触控，扫描不证明LCD光学／FPS；没有强制原mode／paused，失败包不重发。下一步针对PosterBoard发给扩展的原快照请求与回调做有界只读观察。
 
 完整native背景包的扫描图中，锁屏文字、电池和底条颜色正常，背景仍黑。它没有原Aegir登记，因此该图不证明壁纸、LCD实际颜色或亮度。真实UI截图优先串口，光学／背光另用相机。
 

@@ -6,6 +6,8 @@
 
 [同靴扫描](../reproducibility/poster-cache-budget-wallpaper-scanout-actual-20261125.json)与[较小观察包](../reproducibility/poster-cache-budget-minimal-gpu-actual-20261125.json)均复现原pipeline目标未出现，150秒真实帧完整、背景仍黑、原STOP保留。较小包未编译request／route包装，7条库／ColorSync返回完整，仍无snapshot／PNG。不能据此归因为额外观察包装或底层GPU；后续集中核对系统原快照请求入口。两靴分别38.469／38.468秒完整安全回程，失败不重发。
 
+[单次上滑后的原主页帧](../reproducibility/poster-cache-budget-minimal-swipe-actual-20261125.json)确认系统已切到主页，图标／小组件／Dock像素正常，背景仍黑；原pipeline／snapshot／PNG调用仍未出现。原STOP与完整38.766秒回程保持，合成上滑不代替真人触控。这样原请求停点也在主页状态下复现，下一步独立观察PosterBoard到Aegir的快照请求及回调。
+
 ## 原调用观察
 
 QuadRouteObserve只包装原owner与准确ABI的方法，保持原参数、返回、nil、throw及errno。R13的33／33安装、127条完整route、20条request与150秒home扫描已独立核对，原结果仍STOP／OBSERVATION_INCOMPLETE：[R13](../reproducibility/original-mode-swift-owner-r13-stage-20261122.json)。没有强制原mode、解除Vista paused或绘制替代壁纸。

@@ -117,7 +117,10 @@ def validate_wled_gpu_ram(package, binding):
 
 def validate_wled_gpu_record(record, package, binding):
     stage=validate_wled_gpu_ram(package,binding)
-    assert not {'swipe_observation','thread_sample_observation'} & record.keys(), 'v731 GPU trials exclude synthetic input and thread sampling'
+    assert 'thread_sample_observation' not in record, 'v731 GPU trials exclude thread sampling'
+    if 'swipe_observation' in record:
+        assert stage=='poster' and 'screen_snapshot_binding' in record, 'One swipe is restricted to the reviewed original-poster scanout'
+        assert record['swipe_observation']==swipe_once_binding()
     if stage!='gles':
         assert record['exception_observer']==package['exception_observer'] and record['metal_resources']==package['metal_resources']
         assert record['process_log_binding']==observer_log_binding(package)
@@ -243,7 +246,7 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
             assert screen_evidence == (mode=='private'), 'v731 private requires a scanout'
         if mode=='gpu':
             assert ram_package and display_profile=='xz1c-native-2x'
-            assert native_grid_mode in (None,'fitted') and not (thread_sample or idle_sample or swipe_once)
+            assert native_grid_mode in (None,'fitted') and not (thread_sample or idle_sample)
     selected='gpu' if mode=='gpu' else 'ready' if mode in ('owner','ready') else 'private'
     raw,payload,reference,blobs,cmd,shim=baseline(selected,folder)
     files=list(blobs)

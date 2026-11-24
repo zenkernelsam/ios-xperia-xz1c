@@ -316,6 +316,28 @@ class Gates(unittest.TestCase):
         with self.assertRaises(AssertionError):
             validate_wled_gpu_record(record, package, dict(binding, blob_sha256='0'*64))
 
+    def test_poster_one_swipe_requires_exact_existing_gesture_and_frame(self):
+        from controller import swipe_once_binding
+        root = Path(__file__).resolve().parents[2]
+        manifest = root / 'build/poster-cache-budget-minimal-20261125/ram/manifest.json'
+        artifact = root / 'build/poster-cache-budget-minimal-20261125/gpu/artifacts.json'
+        if not manifest.is_file() or not artifact.is_file():
+            self.skipTest('Local exact original poster scanout package is unavailable')
+        package = json.loads(manifest.read_bytes())
+        record = json.loads(artifact.read_bytes())['artifacts'][0]
+        binding = record['ram_library_binding']
+        record['swipe_observation'] = swipe_once_binding()
+        validate_wled_gpu_record(record, package, binding)
+        for field, value in (('after_seconds',119),('max_commands',2),('requires_F12_ready',False)):
+            changed = copy.deepcopy(record)
+            changed['swipe_observation'][field] = value
+            with self.subTest(field=field), self.assertRaises(AssertionError):
+                validate_wled_gpu_record(changed, package, binding)
+        changed = copy.deepcopy(record)
+        changed.pop('screen_snapshot_binding')
+        with self.assertRaises(AssertionError):
+            validate_wled_gpu_record(changed, package, binding)
+
     def test_audit_includes_upstream_memory_descriptor(self):
         first=configuration(725);next_=configuration(726)
         self.assertEqual(len(first['source_hashes']),79)

@@ -40,6 +40,8 @@ UI／文字／图标／颜色优先串口720×1280／BGR888／stride2160原扫�
 
 一个worker排队命令和读取原raw，来源、实际扫描寄存器、逐记录／块／流CRC、FNV和保存BGR／PNG像素全部绑定本token，见[SCANOUT-SCREENSHOT](SCANOUT-SCREENSHOT.md)。不将750×1624 IOSurface／shadow当原扫描。原截图无需rotate90；旧raw可离线重解，明确原日期／token，不能冒充当前实时。fastboot期间没有iOS帧可读，不为截图复发失败boot。
 
+v731已审核的新库原poster扫描包也准入现有 `--swipe-once`，只绑定同RAM自身CPU、完整GLES／native／PNG和相同gesture契约；background作者GPU测试仍不允许该输入。
+
 --swipe-once仅本LIVE／F12实际就绪后120秒一次固定上滑，150秒frame；和sampling独立。核对本靴command／tx／一次注入，合成输入不替代真人触控。--idle-sample仅原Aegir library返回后180秒单sample，与--thread-sample原first-clear触发互斥。原90秒周期样本另列，不能从一次CPU栈推全部耗时或改冻结组件。
 
 扫描帧证明缓冲区内容，不能证明LCD发帧、光学色偏、物理错行、背光／睡眠或FPS；power_off是系统请求，也不是背光实测。原失败提前frame记录其真实时机，不冒充150秒UI图。screen.elapsed_seconds计量请求后单帧捕获、解码与保存耗时，观察时点须以本token的SCREEN_OBSERVATION_POINT核对。
