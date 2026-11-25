@@ -1,0 +1,170 @@
+{
+  "date": "2026-11-25",
+  "before_HEAD": "f8100d243e44afcbde7518d930c0d4d98f34f6fa",
+  "after_HEAD": "7e18b58a4e0a7f675682ff10efb7986f82210ecc",
+  "recoverable_pre_sync_stash": "a408edc63f471884b037943d0364599a9d236230",
+  "stash_not_dropped": true,
+  "pre_sync_source_files": [
+    {
+      "path": "gpu/diagnostics/CIF10PNGReferenceProbe.h",
+      "sha256": "c2f1729f0e051c5b4ca079b63d6d26a9ab20a4996abff42b3309d5d04ee3af5f",
+      "bytes": 9166
+    },
+    {
+      "path": "gpu/diagnostics/MetalRenderProbe.h",
+      "sha256": "5e4565c03fc01faa787604dfc1a6a8670fe77a8dfec9d769322064c57c387547",
+      "bytes": 12661
+    },
+    {
+      "path": "gpu/diagnostics/PostDrawObserve.h",
+      "sha256": "03996b878ecb4ecfa602de6bdc53c1b857e6f22b5bb364c07a67083b1c014ebb",
+      "bytes": 17633
+    },
+    {
+      "path": "gpu/diagnostics/SnapshotMethodObserve.h",
+      "sha256": "0b7d620d59fa414b22f4f90bc7bfa5b248d6c9bb7f50dc62501350cf6ffab200",
+      "bytes": 10389
+    },
+    {
+      "path": "gpu/diagnostics/exception_observe.m",
+      "sha256": "c20f1600d7ff6964cf711d637f4f5ce68ea93cdf2fd4e00cc46612f4d8c19545",
+      "bytes": 21786
+    },
+    {
+      "path": "gpu/metal/MetalRender.inc",
+      "sha256": "837e5a1ba6f87e634ffe227d2fb17702e65f7b296fb3e00c5965f600390c0862",
+      "bytes": 60331
+    },
+    {
+      "path": "tools/build/build_exception_observer.py",
+      "sha256": "4dfa76cb31b4125832ffa4abda23f4e7a55255dd70556d0566f023d73bea4fb6",
+      "bytes": 53619
+    },
+    {
+      "path": "tools/build/build_metal_library.py",
+      "sha256": "3b312cba338c7913b2578ba4014e81842d8fe8e23e3639f3a660bb04016887eb",
+      "bytes": 9239
+    },
+    {
+      "path": "tools/build/check_metal_compute.py",
+      "sha256": "10993dd88e032f0384f856bffac690ffc53ddff93f48ae3ffb35cff9666c3e3d",
+      "bytes": 9679
+    },
+    {
+      "path": "tools/build/test_metal_multisample.mm",
+      "sha256": "5228f37a27a7e68b3289595fa6e8b3e30176d418aa22259396d6e259cfb18394",
+      "bytes": 17670
+    },
+    {
+      "path": "tools/build/test_metal_render.mm",
+      "sha256": "fa901d49533b4df8c5de9647779ae2ee4d3a2090603f28303ee0aec939b19ec1",
+      "bytes": 22926
+    },
+    {
+      "path": "tools/ram_library.py",
+      "sha256": "b8f6651226cbff7365e094f555caae0d546a0d1e62e1f71e800fc0664be3b294",
+      "bytes": 41305
+    },
+    {
+      "path": "gpu/compat/AegirSnapshotCacheScope.h",
+      "sha256": "574975cf44d4ce9f2abb0f0b270fe662b56b03a7ec70645f3556d7d1c19f106e",
+      "bytes": 6841
+    },
+    {
+      "path": "gpu/diagnostics/LoadedSnapshotPNGExport.h",
+      "sha256": "3dd1a852a197a2c245b515edb4e90fcb982dc9c0ddf68eb0b67645ecad627dea",
+      "bytes": 4001
+    },
+    {
+      "path": "gpu/diagnostics/OriginalSnapshotPNGExport.h",
+      "sha256": "ca6437bef203807c8d793682036a5208727f7b8251ebf244f901aefde77a93c1",
+      "bytes": 3535
+    },
+    {
+      "path": "gpu/diagnostics/PosterSnapshotGateObserve.h",
+      "sha256": "ed0037eb7aa3dffcc3c8fd0023d4aee03ce8c03f5286cae02c5d0997e6b2af10",
+      "bytes": 11973
+    },
+    {
+      "path": "gpu/diagnostics/SnapshotRenderQueueObserve.h",
+      "sha256": "3a4621efa78769d250b0187f0f1e78ec94c9791919a391391e1edfdf1dff39bc",
+      "bytes": 8802
+    },
+    {
+      "path": "tools/aegir_snapshot_scope.py",
+      "sha256": "fb74999012527df571a86299dc6c27168853dcd945868cfd0bd23c593071a21f",
+      "bytes": 2045
+    },
+    {
+      "path": "tools/build/check_lilac_afe_slimbus.py",
+      "sha256": "b10916d15c8a715c098a8c6afea83ea7a89cbf59478b658cd4af37dbc06120c6",
+      "bytes": 5102
+    },
+    {
+      "path": "tools/build/inspect_aegir_render_boundary.py",
+      "sha256": "e668de3bc3a5cf30be556bbb7dd041ef804f3d7d11325a8dacdf8d4bc51fa782",
+      "bytes": 4571
+    },
+    {
+      "path": "tools/build/inspect_poster_snapshot_route.py",
+      "sha256": "32e6b97f93f86db66eff94a1a78061bf574cd659807b0db0fb29036fa4e1c227",
+      "bytes": 8891
+    },
+    {
+      "path": "tools/build/test_aegir_snapshot_cache_scope.m",
+      "sha256": "5696c89c7215b64a7f3737a105b722f74e0d96894400820bc56836dcaeef19e6",
+      "bytes": 3976
+    },
+    {
+      "path": "tools/build/test_lilac_afe_slimbus_playback.cpp",
+      "sha256": "9218c4e0c7fb045decc1178842e0eda8eeb4ec6aa918b2bbbe06b95b0ec4a680",
+      "bytes": 5778
+    },
+    {
+      "path": "tools/build/test_loaded_snapshot_png_export.m",
+      "sha256": "b106ee5260883693fa1f7fb9be6ae71792ee7ba9914139e5b3c66738ad4054fd",
+      "bytes": 1832
+    },
+    {
+      "path": "tools/build/test_original_snapshot_png_export.m",
+      "sha256": "d987964c07309a6c9f3183472a70895be4bb12df3c56cf262666194798b31bcf",
+      "bytes": 2144
+    },
+    {
+      "path": "tools/build/test_poster_snapshot_gate.m",
+      "sha256": "15d454bd65ee43e3c701a71a9fa8fc3e123909e5cde8ffc9e9696c430a77a5e3",
+      "bytes": 9290
+    },
+    {
+      "path": "tools/build/test_snapshot_render_queue.m",
+      "sha256": "ca0937579dc3334ecca028aa06d609922b578d06817aa34c0a21884fa3b20f27",
+      "bytes": 4383
+    },
+    {
+      "path": "tools/device/poster_snapshot_gate_evidence.py",
+      "sha256": "9203f37c654f4bb6afd8182be1544f00d2224dbfa591448c2b4ebbc7263df671",
+      "bytes": 16775
+    },
+    {
+      "path": "tools/device/snapshot_render_queue_evidence.py",
+      "sha256": "46b2e5bc1a450ef013fd0503e4a5994e96a0cc370e287d1a3dfa68750b93f791",
+      "bytes": 4077
+    },
+    {
+      "path": "tools/device/test_poster_snapshot_gate_evidence.py",
+      "sha256": "ad67bf073bbc13d1cceec231a6483c9ddc0a53e5b331df03a7926879ce3f5b1b",
+      "bytes": 3541
+    },
+    {
+      "path": "xnu/support/LilacAfeSlimbusPlayback.h",
+      "sha256": "b0727cc8404f45fdbd964517220b664cdd63f29a20fd80db714c8df8e42b147c",
+      "bytes": 6719
+    }
+  ],
+  "fast_forward_verified": true,
+  "changed_files_byte_equal_to_commit": 112,
+  "source_validation_passed": true,
+  "old_source_versions_preserved_in_stash": true,
+  "xnu_autobuild_pause_preserved": true,
+  "phone_operations": 0
+}

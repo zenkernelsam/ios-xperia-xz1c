@@ -4,6 +4,8 @@
 
 两套[Ubuntu Trash实查为空](../reproducibility/render-buffer-close-out-wsl-trash-audit-20261125.json)，Windows／Mac垃圾桶未清空；回收仍占磁盘。10份整合前入口原字节和SHA先[归档](archive/20261125/render-buffer-selection/original-document-manifest.json)，原快照服务、黑PNG和命令队列错误整合入METAL-REQUEST-OBSERVATION，AFE协议入LILAC-PERIPHERALS，当前候选和进程冲突只在STATUS维护。
 
+源码、112份文档／证据与工具已在正式主提交`7e18b58`推送；[Mac同步凭据](../reproducibility/render-buffer-formal-git-sync-20261125.json)核对相同commit和逐文件原字节，pre-sync全部本地修改进可恢复stash`a408edc63f471884b037943d0364599a9d236230`，未drop。Mac旧builder仍pause；原sampler fixture字节及本地输入／binary保持。原生回收helper和本次plan／journal留在build，便于复核回收路径。
+
 本轮在R22新RAM CPU与原GPU均完成0x06回程、连续健康30秒及worker退出后执行。Mac178项／4097文件／179699518B及Windows4项／16文件／29061727B实际进入各自原生回收站；全部原内容SHA和1282个Mac／447个Windows保护文件一致。没有永久删除或清空回收站，R22原REVISE与少量必要证据保持。
 
 2026-11-24，R26 回程后追加 [Mac 原生回收凭据](../reproducibility/poster-cache-r26-macos-native-trash-20261124.json)：28 项、52 文件、135635716 B。R25／R26 的四份重复 RAM 容器均从保留的 blob、manifest 和库范围逐字节复算；另移入已结束的 R26 主机测试可执行文件与 dSYM。候选内核、签名库、构建源、原结果及暂停标志保留。目标逐文件复核，未清空垃圾桶。

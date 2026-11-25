@@ -74,4 +74,6 @@ ADSP stage3只核验固件和AP端准备，没有启动DSP。ASM PCM／映射／
 
 本轮[Mac349项／631文件／1070475061 B](../reproducibility/render-buffer-close-out-macos-native-trash-20261125.json)进原生Trash，967保护文件一致，28份HFS从保留blob复算；[Windows7项／10文件／4780776 B](../reproducibility/render-buffer-close-out-windows-native-recycle-20261125.json)进原生回收站。两套[Ubuntu垃圾桶为空](../reproducibility/render-buffer-close-out-wsl-trash-audit-20261125.json)，Windows／Mac未清空。10份整合前原文与SHA在[本轮归档](archive/20261125/render-buffer-selection/original-document-manifest.json)；更早整理与可恢复Git stash由[ORGANIZATION](ORGANIZATION.md)索引。
 
+正式主提交`7e18b58a4e0a7f675682ff10efb7986f82210ecc`已推送origin/main，[Mac同步](../reproducibility/render-buffer-formal-git-sync-20261125.json)112份变更逐字节一致、source验证通过，原Mac修改以未删除stash`a408edc6…`保留。Windows／WSL使用同一正式目录；原sampler fixture字节保持。当前HEAD包含待实机验收的新Metal，不冒充旧生产基线。
+
 只操作BH905ND69G，fastboot设备命令显式`-s BH905ND69G`；COM≥10且VID1209／PID0001、一个controller／worker；PON只0x06，单download／boot、失败不重发。ACK／DRAIN／RESET／FINAL_DRAIN、健康30秒及旧worker退出后才下一轮。无本token LIVE的早期E1F4仍可能需物理恢复。SweetGPU SHA `aa2c3679…`及内核GPU底层／allocator／SCM／PON／RPC／VM冻结；gl5／userdata／SD／TA／XFL、校准、备份和救砖输入不flash／erase。Mac旧autobuild保持pause；废弃文件只进原生回收站。
