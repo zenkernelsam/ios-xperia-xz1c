@@ -92,6 +92,8 @@ ADSP stage3只核验固件和AP端准备，没有启动DSP。ASM PCM／映射／
 
 PCM与原星点规模主机收尾另回收[Mac51项／97文件／3430430 B](../reproducibility/pcm-session-and-XR-load-macos-native-trash-20261126.json)、[Windows31项／33文件／45242472 B](../reproducibility/pcm-session-and-XR-load-windows-native-recycle-20261126.json)，WSL共享build测试程序进入Windows回收站。目标和保护文件SHA一致，原构建／test日志、manifest、源码备份及r4候选保留；[两套Ubuntu Trash为空](../reproducibility/pcm-session-and-XR-load-wsl-trash-audit-20261126.json)。未永久删除或清空垃圾桶，五份入口原文先归档，由ORGANIZATION／INDEX索引。
 
+PCM／星点主机补充已在正式主提交`d42c453…`推送origin/main，[Mac同源同步](../reproducibility/pcm-session-and-XR-load-formal-git-sync-20261126.json)24份变更逐字节匹配，source验证通过；Mac预同步源保存在未drop的stash`6b2990c0…`，pause及冻结内核保持。本轮没有新的guard／download／boot，r4候选仍须新物理fastboot会话后走原准入顺序。
+
 正式补充主提交`4dc552dba56d156496fea0d0b1919a0de2635893`已推送origin/main，[r4 Mac同步](../reproducibility/ordered-XR-initialized-git-sync-20261126.json)18份变更逐字节一致、source验证通过，原Mac修改以未删除stash`caea8028…`保留。此前[94份变更同步](../reproducibility/ordered-XR-formal-git-sync-20261126.json)原记录保持。Windows／WSL使用同一正式目录，原sampler fixture字节保持。反射Metal组合已完整验收；当前HEAD还有待验的XR barrier候选，不冒充完整生产UI。更早同步与stash由ORGANIZATION索引。
 
 只操作BH905ND69G，fastboot设备命令显式`-s BH905ND69G`；COM≥10且VID1209／PID0001、一个controller／worker；PON只0x06，单download／boot、失败不重发。ACK／DRAIN／RESET／FINAL_DRAIN、健康30秒及旧worker退出后才下一轮。无本token LIVE的早期E1F4仍可能需物理恢复。SweetGPU SHA `aa2c3679…`及内核GPU底层／allocator／SCM／PON／RPC／VM冻结；gl5／userdata／SD／TA／XFL、校准、备份和救砖输入不flash／erase。Mac旧autobuild保持pause；废弃文件只进原生回收站。

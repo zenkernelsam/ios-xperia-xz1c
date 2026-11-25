@@ -1,0 +1,49 @@
+{
+  "date": "2026-11-26",
+  "before_HEAD": "4f33a2a78cbd398afb9f198083bc29f5d48d22c5",
+  "after_HEAD": "d42c4539716a556b9b5b1dfd4067a3940ff1b2f4",
+  "recoverable_pre_sync_stash": "6b2990c0521f51a574bdb566cf13eeab43abc36a",
+  "stash_not_dropped": true,
+  "pre_sync_source_bytes": [
+    {
+      "path": "tools/build/check_lilac_pcm_session.py",
+      "sha256": "833efa5266453a54e0205ec6d46e83cc3931c149e4f90e6c85a59712af163394",
+      "bytes": 6512
+    },
+    {
+      "path": "tools/build/check_ordered_image_barrier.py",
+      "sha256": "d1de2100c91294bac1a969f801f90a01a12921a3a4d929c68e71a29dbb17bc3b",
+      "bytes": 5343
+    },
+    {
+      "path": "tools/build/compile_lilac_pcm_session.cpp",
+      "sha256": "5d3db06696c3979cb83c7004261a9e12077a25872e95a35ed952b64d32e6b6ee",
+      "bytes": 1534
+    },
+    {
+      "path": "tools/build/test_lilac_pcm_playback_session.cpp",
+      "sha256": "1cd381d250e37d29812dec10a8654521ce859a9fa77ce93f46a7ad726ba3bc38",
+      "bytes": 14047
+    },
+    {
+      "path": "tools/build/test_ordered_image_barrier.c",
+      "sha256": "ed0430b08511e48923a2302e12d08370ad219968773725c9548f328c8ab8e8a5",
+      "bytes": 8238
+    },
+    {
+      "path": "xnu/support/LilacAsmPcmStream.h",
+      "sha256": "bfab29d571a1e5dce5522e4919e5d0e6e9fefeb61b3f378a85a6591af3a59670",
+      "bytes": 9049
+    },
+    {
+      "path": "xnu/support/LilacPcmPlaybackSession.h",
+      "sha256": "51704cca5d2465e436e3fa1d8ff3c50c5612edd43d71846a355679d2d2e61fc6",
+      "bytes": 10964
+    }
+  ],
+  "changed_files_byte_equal_to_commit": 24,
+  "source_validation_passed": true,
+  "pause_preserved": true,
+  "frozen_SweetGPU_SHA_preserved": true,
+  "device_operations": 0
+}
