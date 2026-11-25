@@ -1,0 +1,80 @@
+{
+  "date": "2026-11-25",
+  "scope": "finished offline original AFE layout scratch and failed host materialization",
+  "native_recycle_items": 7,
+  "native_recycle_files": 6,
+  "logical_bytes": 144803,
+  "Recycle_Bin_not_emptied": true,
+  "no_permanent_deletion": true,
+  "items": [
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-afe-slimbus-contract-20261125",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R617HV4",
+      "entries": []
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-afe-slimbus-contract-r2-20261125",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R06AYY9",
+      "entries": []
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-afe-slimbus-contract-r3-20261125",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RCU0RYK",
+      "entries": []
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-afe-slimbus-contract-r4-20261125",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RDGQD4T",
+      "entries": []
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-afe-slimbus-contract-r5-20261125",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RC6ZPHK",
+      "entries": [
+        {
+          "relative": "compile.log",
+          "bytes": 269,
+          "sha256": "46b7fa6dbd5ffadf0afd09c0235077a066ebcc5e18f46422274d6b8ba59d2935"
+        },
+        {
+          "relative": "contract.c",
+          "bytes": 71495,
+          "sha256": "a7d7518dd415f99a3e1094f2e7ecc8e405f2e2b7dde946d5d15c7cdd75134815"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-afe-slimbus-contract-r6-20261125",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RXCZVBN",
+      "entries": [
+        {
+          "relative": "compile.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "relative": "contract.c",
+          "bytes": 64671,
+          "sha256": "577a6181a40ff9b9f8c66d8ec2851c80a872dcdb19056a72c6243842f95f520a"
+        },
+        {
+          "relative": "layout.log",
+          "bytes": 43,
+          "sha256": "3c745b268efa2a5291bbc6e195a1aaa481b18e6fc645fe5a24fd90f5b8d1729a"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-afe-slimbus-reproducible-r2-20261125",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RGEQAXM",
+      "entries": [
+        {
+          "relative": "LilacAPRProtocol.h",
+          "bytes": 8325,
+          "sha256": "78e293cf87f0e636aea1f3ee6a0c5a9caf92cf710010b3b4149a42464f9a026e"
+        }
+      ]
+    }
+  ],
+  "device_operations": 0
+}

@@ -1,0 +1,66 @@
+{
+  "date": "2026-11-25",
+  "native_trash_items": 4,
+  "native_trash_files": 6,
+  "logical_bytes": 127067,
+  "scope": "completed offline AFE host and ARM64 object",
+  "Trash_not_emptied": true,
+  "source_build_manifest_logs_preserved": true,
+  "items": [
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-afe-slimbus-macos-20261125/afe-arm64.o",
+      "trash_path": "/Users/ciscohe/.Trash/afe-arm64.o",
+      "entries": [
+        {
+          "relative": "afe-arm64.o",
+          "bytes": 15336,
+          "sha256": "a9decf8de2f0f5140d04c4eaecbf9828a887a93c188cb68094970669a9610343"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-afe-slimbus-macos-20261125/host/test_afe",
+      "trash_path": "/Users/ciscohe/.Trash/test_afe",
+      "entries": [
+        {
+          "relative": "test_afe",
+          "bytes": 50936,
+          "sha256": "5e02f3a9e5a1cf8a8933c1999c89b8432f9ef71b3fefe090b3ba91da9232b721"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-afe-slimbus-macos-20261125/host/test_afe.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_afe.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 637,
+          "sha256": "b0366d73f4625f82831b2152fafb4447420b61da0974d2f9c2bf2783200b6128"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_afe",
+          "bytes": 58764,
+          "sha256": "84bd9377e4179785b7f51e1b4fb0dd949422de2b3f58a9f552f2750d37374abc"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_afe.yml",
+          "bytes": 178,
+          "sha256": "1d3619c4e9316fd354f07520896f73e0a1b136c89f9a488dfb3fd35aea3f5567"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-afe-slimbus-macos-20261125/run.py",
+      "trash_path": "/Users/ciscohe/.Trash/run.py",
+      "entries": [
+        {
+          "relative": "run.py",
+          "bytes": 1216,
+          "sha256": "c6db5b82e4a2ca2af4f0bb02596a20a21c016cfa7c7424ddc519cf6e582ffb48"
+        }
+      ]
+    }
+  ],
+  "device_operations": 0
+}
