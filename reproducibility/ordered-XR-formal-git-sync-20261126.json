@@ -1,0 +1,124 @@
+{
+  "date": "2026-11-26",
+  "before_HEAD": "9ef7351067d8ced909dc5537bcd6aeab3d5613d7",
+  "after_HEAD": "876f73e0d15a0c319ad2acb28b9fea10664e4bf7",
+  "recoverable_pre_sync_stash": "1c50dc5b9b64269bb299439be5f2fdf1e8a188b4",
+  "stash_not_dropped": true,
+  "pre_sync_source_files": [
+    {
+      "path": "gpu/diagnostics/PostDrawObserve.h",
+      "bytes": 17881,
+      "sha256": "0ddae4980b5fb5a249b2160c2d12f8ac7a62517073190aa65bdacd3aaa121a2c"
+    },
+    {
+      "path": "gpu/diagnostics/SnapshotMethodObserve.h",
+      "bytes": 10848,
+      "sha256": "4b5ddeb21849c6195857d442669220b5c6332693ed56bb3e2435084393b6e113"
+    },
+    {
+      "path": "gpu/diagnostics/SnapshotRenderQueueObserve.h",
+      "bytes": 9401,
+      "sha256": "172d9d404ac5fda6ac7383985440211ed4e59f6e5138d7aac8d70c313897ade2"
+    },
+    {
+      "path": "gpu/sweetgl/MetalShaderInternals.h",
+      "bytes": 2606,
+      "sha256": "010b7dcad566da2253d20cb81b24fa9a2eac91bb56d0195c740f4e28feb48c87"
+    },
+    {
+      "path": "gpu/sweetgl/build.sh",
+      "bytes": 5522,
+      "sha256": "2629215b661c0bd87956c0ada0e831fc7bb01828467dec6e7e7ee074cd624d67"
+    },
+    {
+      "path": "gpu/sweetgl/metal_render.c",
+      "bytes": 106982,
+      "sha256": "12ca10bf41744523fe9032b0cf0ae7c0a1961ba45e8a96b162a55aa64a0321bc"
+    },
+    {
+      "path": "reproducibility/source-lock.json",
+      "bytes": 26779,
+      "sha256": "8def01b1bb2cdc1eac3a6c054b9d9ed033c6c483bb158a5f369b605eb89268c9"
+    },
+    {
+      "path": "tools/aegir_snapshot_scope.py",
+      "bytes": 2757,
+      "sha256": "e530d1563aab83a5367b38cb57e932fbe1d381b3d6014f9fa729e74668e04f43"
+    },
+    {
+      "path": "tools/build/build_exception_observer.py",
+      "bytes": 57809,
+      "sha256": "7a9e3872b6c84f7bafbea7df9c21bea95b0723812e00f90f26d353f4b866b23a"
+    },
+    {
+      "path": "tools/build/build_frontend_trial.py",
+      "bytes": 5439,
+      "sha256": "d47b84b8a96f33a100d12b6ea474f967e3feb5dc74c1bd564c4ebd496df1b3f4"
+    },
+    {
+      "path": "tools/build/build_metal_library.py",
+      "bytes": 9742,
+      "sha256": "102cb1f28ed9b3f2264101eb438b1a5346b2d38f9e3cf4ce7bb20b67daad4267"
+    },
+    {
+      "path": "tools/build/test_snapshot_render_queue.m",
+      "bytes": 4806,
+      "sha256": "8a913d77d9810c9fb2df03c6f2c6795eaeaa9f78b42feb2996ae8233e80b3cd4"
+    },
+    {
+      "path": "tools/device/snapshot_render_queue_evidence.py",
+      "bytes": 4961,
+      "sha256": "847847ab3270d58fb35f0c89567849bbda51203d97cc35525a544187cbae4cd9"
+    },
+    {
+      "path": "tools/ram_library.py",
+      "bytes": 44471,
+      "sha256": "878324b43be6484ee9a215eed39159b8be78ff23e24aa8e4b53690e77a7f23d1"
+    },
+    {
+      "path": "gpu/diagnostics/OriginalCGInputObserve.h",
+      "bytes": 1937,
+      "sha256": "b06607b86401f019eeb671313779c788f59f4d89b1c09db54fd6ca8ed2ea4564"
+    },
+    {
+      "path": "gpu/diagnostics/SnapshotReadbackObserve.h",
+      "bytes": 5114,
+      "sha256": "1c2a7b957d415edcdfdac0bfe3d4df7f2dce6ccf69e6a2c06b01c1c432df27ad"
+    },
+    {
+      "path": "gpu/sweetgl/OrderedImageBarrier.h",
+      "bytes": 3693,
+      "sha256": "a4bb1912eb3d6a7e77a1e1e9b0b4b4ff5d22ac3933439cb267128af5dc5dd5f3"
+    },
+    {
+      "path": "tools/build/check_ordered_image_barrier.py",
+      "bytes": 4954,
+      "sha256": "e26932586b40e3c268fde43ca5fddfe5543340bfea14c6ecb279d3be6ee0d8de"
+    },
+    {
+      "path": "tools/build/test_ordered_image_barrier.c",
+      "bytes": 4524,
+      "sha256": "c29da62d611d108040c75da4efb46102b828f7589836fda1ae69d6901755eb87"
+    },
+    {
+      "path": "tools/build/test_original_cg_input.m",
+      "bytes": 1733,
+      "sha256": "bf1cd6830f989c1240eaeb6fea9b2f376bfa3c54ca2c3a8debc53a9b58122f61"
+    },
+    {
+      "path": "tools/build/test_snapshot_readback.m",
+      "bytes": 2146,
+      "sha256": "04200816c5f529303eef891fef95a00100474c586289ce0c4dc2ee4f4e075415"
+    },
+    {
+      "path": "tools/device/snapshot_readback_evidence.py",
+      "bytes": 4930,
+      "sha256": "d873b3890d826c990ebb0c7ad06f1b13ec9e3cf51c832c26e91bb8f529c005de"
+    }
+  ],
+  "changed_files_byte_equal_to_commit": 94,
+  "source_validation_passed": true,
+  "original_Mac_local_source_versions_preserved": true,
+  "xnu_autobuild_pause_preserved": true,
+  "phone_operations": 0
+}
