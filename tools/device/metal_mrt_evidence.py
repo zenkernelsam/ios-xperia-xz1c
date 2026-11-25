@@ -85,8 +85,8 @@ def verify(text,token,fixture,require_xr_clear_elision=False,require_image_barri
         assert len(re.findall(r'SWEET METAL MRT ordered_draw image_mask=1 primitives=2 instances=2 fp32=1 per_primitive_XR_round=1 image_barriers=1',block))==4,'Missing ordered destination updates for actual overlapping draws'
         if require_image_barrier:
             revision=int(require_image_barrier)
-            assert revision in (1,2,3)
-            barriers=re.findall(r'SWEET XR BARRIER revision='+str(revision)+r' primitives=(\d+) instances=(\d+) cached=(\d+) fallback=(\d+) '+('shader_write_wait' if revision==1 else 'timestamp_wait')+r'=1 '+('scratch_initialized=1 ' if revision==3 else '')+r'UCHE_invalidate=1 final_fence_required=1',block)
+            assert revision in (1,2,3,4)
+            barriers=re.findall(r'SWEET XR BARRIER revision='+str(revision)+r' primitives=(\d+) instances=(\d+) cached=(\d+) fallback=(\d+) '+('shader_write_wait' if revision==1 else 'timestamp_wait')+r'=1 '+('scratch_initialized=1 ' if revision>=3 else '')+('dense_image_binding=1 ' if revision==4 else '')+r'UCHE_invalidate=1 final_fence_required=1',block)
             assert len(barriers)==12,'Original optimized XR barrier records missing'
             assert sum((int(n),int(inst),int(cached),int(fallback))==(2,2,4,0) for n,inst,cached,fallback in barriers)==4
             assert all(int(cached)==int(n)*int(inst) and int(fallback)==0 for n,inst,cached,fallback in barriers),'Actual optimized XR path fell back or skipped a primitive barrier'

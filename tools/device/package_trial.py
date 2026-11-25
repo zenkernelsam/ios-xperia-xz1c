@@ -57,6 +57,9 @@ def validate_wled_gles_ram(package, binding):
         ('76f4c32c70aec93954795ed70f48fbc22ef7fd5dd1bc3b0c85eed357b6165e43',
          '1408d3012e9449662bcaa66b35bd0cabe0951d86d39c5dfcde8f76dab1b76c30',
          '9c370eec387015f6c32738cea034395e38de72e5a9a2f7675bd3af308a07d299'),
+        ('dc7113a10542c4b8de2036def8373a4574ab2092d17efd1a39e1c224f1bec308',
+         '31b8ab8196b7bfa84987253b91f8bb7c4b8a3855b37e1eee000dd0f4488cf074',
+         'ad6365ab02e69674f54e35b7f70895afb63b39b72a848b1bceed028d2f7a94e9'),
     ), 'v731 GLES9 RAM identity is not admitted'
     if binding['library_sha256']=='d1f5075c0f35eac56f3d1976775700a36da49bc1c6cb84c7493377592aa31a0b':
         assert frontend['ordered_XR_image_barrier_revision']==1
@@ -73,6 +76,12 @@ def validate_wled_gles_ram(package, binding):
         assert frontend['ordered_XR_image_barrier_revision']==3 and frontend['ordered_XR_requires_synchronous_GL_frontend']
         assert frontend['ordered_XR_monotonic_timestamp_wait_and_separate_scratch_cell']
         assert frontend['ordered_XR_first_timestamp_scratch_initialized_by_GPU']
+    if binding['library_sha256']=='dc7113a10542c4b8de2036def8373a4574ab2092d17efd1a39e1c224f1bec308':
+        assert frontend['ordered_XR_image_barrier_revision']==4 and frontend['ordered_XR_requires_synchronous_GL_frontend']
+        assert frontend['ordered_XR_monotonic_timestamp_wait_and_separate_scratch_cell']
+        assert frontend['ordered_XR_first_timestamp_scratch_initialized_by_GPU']
+        assert frontend['ordered_XR_dense_driver_images_resolved_from_linked_GL_program']
+        assert frontend['ordered_XR_unknown_images_SSBO_writes_or_atomics_use_original_barrier']
 
 def validate_wled_gpu_ram(package, binding):
     if 'exception_observer' not in package and 'metal_resources' not in package:
@@ -87,6 +96,8 @@ def validate_wled_gpu_ram(package, binding):
             ('fde24836e930224b4d71a596307703e5e1d4d6bf2950f926f4c218279dc21f55','467b24f613e75bbe675d8003e47ddca7e1cf649e91340ebb64cc04b0183f86d4','c693131677c34afee7915c8564fb11949318c9e4537eddecebe75330e8bae19b','c3a25c362cfe419ae8871db5718852386568171cb0c57aa67084b86cb6a75811',2),
         'e88507f2743fc2f96479f3890e9cc31812fe7b4b413f36c27d743fa3bf854a1f':
             ('6b3e5c922530389e815942d2013607c1eb5064525f3861e5a6cb5ced36214735','76f4c32c70aec93954795ed70f48fbc22ef7fd5dd1bc3b0c85eed357b6165e43','3354ed72082e6ab5cb87b06919e33882ae73481fe3c47a0427d23d7ea24fcee6','a36b8f40ac78d0a3d5fbe7393915c61e0a75e2cfd51d2f5e2ca38f8da6d0c999',3),
+        '75b8f08201a972f9c67ca1a63110131e05286116bfbf47bb1a8fb19548b354f0':
+            ('ae8acd03c0d7e2ef8a0bec81c01a133c73a3e09228f5beb58b534802a8419e08','dc7113a10542c4b8de2036def8373a4574ab2092d17efd1a39e1c224f1bec308','2f100d56d9ec22bdaca3d01cd8f8b369a24c76ee6d252fd671ffb16da4c561db','dc22fd53f7ba1b6a70e12d50753e19f37cf0a0da97f7a6140afd2bc304b2a60d',4),
     }
     if binding['blob_sha256'] in barrier_native:
         manifest_sha,gles,observer_sha,scope,revision=barrier_native[binding['blob_sha256']]
@@ -107,9 +118,13 @@ def validate_wled_gpu_ram(package, binding):
         assert observer['program_cache_scope']['identity']==scope
         if gles=='467b24f613e75bbe675d8003e47ddca7e1cf649e91340ebb64cc04b0183f86d4':
             assert package['frontend_build_binding']['ordered_XR_requires_synchronous_GL_frontend']
-        if revision==3:
+        if revision>=3:
             assert package['frontend_build_binding']['ordered_XR_requires_synchronous_GL_frontend']
             assert package['frontend_build_binding']['ordered_XR_first_timestamp_scratch_initialized_by_GPU']
+        if revision==4:
+            assert package['frontend_build_binding']['ordered_XR_image_barrier_revision']==4
+            assert package['frontend_build_binding']['ordered_XR_dense_driver_images_resolved_from_linked_GL_program']
+            assert package['frontend_build_binding']['ordered_XR_unknown_images_SSBO_writes_or_atomics_use_original_barrier']
         return 'native'
     reflected_posters={
         '0ff63e76417f8b821c374fb66f2150e3514e530cdcbbeec5f86e70ef7be332ca':

@@ -1,0 +1,37 @@
+{
+  "documents": [
+    {
+      "sha256": "6de8a1e09ffa76b36fc3e60a0e7e9d2cfb6fb19799c805836b58f10549c934c9",
+      "original_path": "docs/STATUS.md",
+      "archived_path": "docs/archive/20261126/dense-image-barrier/originals/docs/STATUS.md",
+      "bytes": 16361
+    },
+    {
+      "sha256": "faaca98c789fc64786f06c3aeaa1c588492a38d1e4b71bebad28b6eada3948ab",
+      "original_path": "docs/BUILD.md",
+      "archived_path": "docs/archive/20261126/dense-image-barrier/originals/docs/BUILD.md",
+      "bytes": 22508
+    },
+    {
+      "sha256": "bfba3f145a1e9b31ef4751a3f09e1f34a385fe4ae87b70380ea18895960ace75",
+      "original_path": "docs/METAL-REQUEST-OBSERVATION.md",
+      "archived_path": "docs/archive/20261126/dense-image-barrier/originals/docs/METAL-REQUEST-OBSERVATION.md",
+      "bytes": 21340
+    },
+    {
+      "sha256": "2a5ef5fb9d85204c26c5163b4a89b506a378e545fd769eadfbbafcddd189e8dc",
+      "original_path": "docs/ORGANIZATION.md",
+      "archived_path": "docs/archive/20261126/dense-image-barrier/originals/docs/ORGANIZATION.md",
+      "bytes": 16334
+    },
+    {
+      "sha256": "6084aa14cdf418ba546d9dd9d83e62954e2be38daf4464625d59cdc3555c2b0b",
+      "original_path": "docs/INDEX.md",
+      "archived_path": "docs/archive/20261126/dense-image-barrier/originals/docs/INDEX.md",
+      "bytes": 7296
+    }
+  ],
+  "date": "2026-11-26",
+  "original_bytes_preserved": true,
+  "reason": "Preserve prior GPU candidate status before dense Mesa image binding repair"
+}

@@ -324,6 +324,30 @@ class Gates(unittest.TestCase):
         with self.assertRaises(AssertionError):
             validate_wled_gpu_ram(package, dict(binding, blob_sha256='a8821cead75c078861eed21733c6366b594c8de4a631c3848b8bfd55d3cb66bf'))
 
+    def test_dense_image_barrier_candidate_keeps_exact_payload_and_mapping_flags(self):
+        root=Path(__file__).resolve().parents[2]
+        base=root/'build/ordered-image-barrier-dense-r5-20261126'
+        if not (base/'native-ram/manifest.json').is_file():
+            self.skipTest('Local signed dense-image barrier RAM is unavailable')
+        from package_trial import validate_wled_gles_ram
+        for folder,validate in [('gles-ram',validate_wled_gles_ram),('native-ram',validate_wled_gpu_ram)]:
+            raw=(base/folder/'manifest.json').read_bytes()
+            package=json.loads(raw)
+            binding={'library_sha256':package['library_sha256'],
+                     'blob_sha256':package['blob_sha256'],
+                     'manifest_sha256':hashlib.sha256(raw).hexdigest()}
+            validate(package,binding)
+            for key,value in [('ordered_XR_image_barrier_revision',3),
+                              ('ordered_XR_dense_driver_images_resolved_from_linked_GL_program',False),
+                              ('ordered_XR_unknown_images_SSBO_writes_or_atomics_use_original_barrier',False),
+                              ('ordered_XR_first_timestamp_scratch_initialized_by_GPU',False)]:
+                altered=copy.deepcopy(package);altered['frontend_build_binding'][key]=value
+                with self.subTest(folder=folder,key=key),self.assertRaises(AssertionError):
+                    validate(altered,binding)
+            for key in ('library_sha256','blob_sha256','manifest_sha256'):
+                altered=dict(binding);altered[key]='0'*64
+                with self.subTest(folder=folder,identity=key),self.assertRaises(AssertionError):
+                    validate(package,altered)
     def test_new_poster_refuses_old_gles_native_and_png_proofs(self):
         manifest = Path(__file__).resolve().parents[2] / 'build/poster-cache-budget-wallpaper-20261124/ram/manifest.json'
         if not manifest.is_file():

@@ -1,5 +1,8 @@
 /* SPDX-License-Identifier: MIT; actual Mesa emitters over an authored ring. */
-#include "../../gpu/sweetgl/OrderedImageBarrier.h"
+#ifndef SWEET_ORDERED_BARRIER_HEADER
+#define SWEET_ORDERED_BARRIER_HEADER "../../gpu/sweetgl/OrderedImageBarrier.h"
+#endif
+#include SWEET_ORDERED_BARRIER_HEADER
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -40,12 +43,25 @@ int main(void)
     struct fd5_context native={0};native.base.base.flush=flush;native.base.screen=&screen;native.blit_mem=&original_bo;
     struct fd_batch batch={.ctx=&native.base,.draw=&ring,.num_draws=1};native.base.batch=&batch;
     static struct gl_context gl;
+    struct gl_pipeline_object shader={0};
+    struct gl_program fragment={0};
+    gl._Shader=&shader;shader.CurrentProgram[MESA_SHADER_FRAGMENT]=&fragment;
+    fragment.info.num_images=2;fragment.sh.ImageUnits[0]=0;fragment.sh.ImageUnits[1]=8;
+    fragment.sh.image_access[0]=ACCESS_COHERENT|ACCESS_NON_WRITEABLE;
+    fragment.sh.image_access[1]=ACCESS_COHERENT|ACCESS_NON_READABLE;
     struct st_context context={.pipe=&native.base.base,.ctx=&gl};
-    struct pipe_resource image={.nr_samples=1};
-    native.base.shaderimg[PIPE_SHADER_FRAGMENT].enabled_mask=0x101;
+    struct pipe_resource image={.target=PIPE_TEXTURE_2D,.nr_samples=1};
+    native.base.shaderimg[PIPE_SHADER_FRAGMENT].enabled_mask=3;
     native.base.shaderimg[PIPE_SHADER_FRAGMENT].si[0]=(struct pipe_image_view){.resource=&image,.format=PIPE_FORMAT_R32G32B32A32_FLOAT,.access=PIPE_IMAGE_ACCESS_READ};
-    native.base.shaderimg[PIPE_SHADER_FRAGMENT].si[8]=(struct pipe_image_view){.resource=&image,.format=PIPE_FORMAT_R32G32B32A32_FLOAT,.access=PIPE_IMAGE_ACCESS_WRITE};
+    native.base.shaderimg[PIPE_SHADER_FRAGMENT].si[1]=(struct pipe_image_view){.resource=&image,.format=PIPE_FORMAT_R32G32B32A32_FLOAT,.access=PIPE_IMAGE_ACCESS_WRITE};
     uint32_t sequence=0;
+#ifdef SWEET_EXPECT_DENSE_REJECTION
+    assert(!sweet_ordered_image_barrier(&context,1,&sequence));
+    assert(!sequence && ring.cur==stream && !flushes && !size_checks);
+    for(unsigned i=0;i<64;++i)assert(stream[i]==0xa5a5a5a5);
+    puts("Prior ordered image barrier PASS: actual dense two-slot layout refused by the old sparse mask check; zero emitted words");
+    return 0;
+#endif
     assert(sweet_ordered_image_barrier(&context,1,&sequence));
     const uint32_t expected[]={0x70268000,0x703d8003,0x41234040,0,0,0x70928000,
         0x70460004,4,0x41234040,0,1,
@@ -69,9 +85,9 @@ int main(void)
     batch.nondraw=true;assert(!sweet_ordered_image_barrier(&context,1,&sequence));batch.nondraw=false;
     batch.framebuffer.samples=2;assert(!sweet_ordered_image_barrier(&context,1,&sequence));batch.framebuffer.samples=1;
     native.base.shaderimg[PIPE_SHADER_FRAGMENT].enabled_mask=1;assert(!sweet_ordered_image_barrier(&context,1,&sequence));
-    native.base.shaderimg[PIPE_SHADER_FRAGMENT].enabled_mask=0x101;
-    native.base.shaderimg[PIPE_SHADER_FRAGMENT].si[8].access=PIPE_IMAGE_ACCESS_READ;assert(!sweet_ordered_image_barrier(&context,1,&sequence));
-    native.base.shaderimg[PIPE_SHADER_FRAGMENT].si[8].access=PIPE_IMAGE_ACCESS_WRITE;
+    native.base.shaderimg[PIPE_SHADER_FRAGMENT].enabled_mask=3;
+    native.base.shaderimg[PIPE_SHADER_FRAGMENT].si[1].access=PIPE_IMAGE_ACCESS_READ;assert(!sweet_ordered_image_barrier(&context,1,&sequence));
+    native.base.shaderimg[PIPE_SHADER_FRAGMENT].si[1].access=PIPE_IMAGE_ACCESS_WRITE;
     assert(!sweet_ordered_image_barrier(&context,0,&sequence) && !sweet_ordered_image_barrier(&context,256,&sequence));
     sequence=UINT32_MAX;assert(!sweet_ordered_image_barrier(&context,1,&sequence) && sequence==UINT32_MAX);
     assert(ring.cur==end && !memcmp(stream,expected,sizeof(expected)) && flushes==0);

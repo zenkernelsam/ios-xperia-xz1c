@@ -1,5 +1,9 @@
 # 本周整理与文档整合 — 2026-11-26
 
+本次Mesa dense image修补收尾：[Mac54项／78文件／204301653 B](../reproducibility/ordered-image-barrier-dense-macos-trash-20261126.json)进入原生Trash，236保护文件SHA一致；六份重复HFS先从保留blob逐字节复算，主机程序／dSYM／frontend object和TEMP传输tar已结束后回收。新r5 signed库、RAM blob／manifest、源码备份、原test／build日志及固定内核保留。
+
+[Windows一个TEMP传输包／两文件／328704 B](../reproducibility/ordered-image-barrier-dense-windows-recycle-20261126.json)进入原生回收站，外层检查误用了此前native命令退出码，随后只读验证原journal和目标全部SHA，未再次回收。[Ubuntu和Ubuntu-22.04全部用户Trash为空](../reproducibility/ordered-image-barrier-dense-wsl-trash-audit-20261126.json)；Windows／Mac未清空。整合前[五份入口原文](archive/20261126/dense-image-barrier/original-document-manifest.json)原字节保持。本轮没有guard／download／boot，原r4／失败与历史证据保持，新r5只在正式仓库维护。
+
 本次PCM统一会话与原星点规模主机验证收尾：[Mac51项／97文件／3430430 B](../reproducibility/pcm-session-and-XR-load-macos-native-trash-20261126.json)移入原生Trash，[Windows31项／33文件／45242472 B](../reproducibility/pcm-session-and-XR-load-windows-native-recycle-20261126.json)移入原生回收站，包含WSL在正式共享build生成的已结束测试程序和TEMP源码传输包。回收目标逐文件SHA一致，Mac114个和Windows9个保护文件保持；候选签名库／准入包、冻结内核、原manifest／编译／test日志和源码备份保留。移动仍占磁盘，未清空垃圾桶。
 
 两套[Ubuntu Trash实查为空](../reproducibility/pcm-session-and-XR-load-wsl-trash-audit-20261126.json)，root和所有/home用户均核对。Windows回收凭据首次核验遇TEMP短路径别名，按准确父目录解析后逐字节确认；首次默认WSL用户无法读root Trash，随后只读root审计通过，均没有重新执行回收或永久删除。整合前[五份入口原文](archive/20261126/pcm-session-and-XR-load/original-document-manifest.json)原字节／SHA已保存。音频协议、验证工具、GPU命令流测试及报告只维护在正式仓库；本轮设备操作0。

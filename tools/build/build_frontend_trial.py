@@ -30,13 +30,15 @@ binding['XR_clear_decode_elision']=True
 binding['Clear_shader_context_cache']=True
 binding['render_target_observation_revision']=1
 if 'OrderedImageBarrier.h' in sources:
-    binding['ordered_XR_image_barrier_revision']=3
+    binding['ordered_XR_image_barrier_revision']=4
     binding['ordered_XR_barrier_exact_A5xx_sysmem_image_contract']=True
     binding['ordered_XR_barrier_waits_shader_and_CP_writes_and_invalidates_UCHE']=True
     binding['ordered_XR_per_primitive_rounding_and_final_fences_preserved']=True
     binding['ordered_XR_monotonic_timestamp_wait_and_separate_scratch_cell']=True
     binding['ordered_XR_requires_synchronous_GL_frontend']=True
     binding['ordered_XR_first_timestamp_scratch_initialized_by_GPU']=True
+    binding['ordered_XR_dense_driver_images_resolved_from_linked_GL_program']=True
+    binding['ordered_XR_unknown_images_SSBO_writes_or_atomics_use_original_barrier']=True
     binding['actual_ordered_XR_image_barrier_GPU_acceptance_pending']=True
 if 'MetalDepthAttachment.h' in sources:
     binding['depth32_attachment_revision']=1

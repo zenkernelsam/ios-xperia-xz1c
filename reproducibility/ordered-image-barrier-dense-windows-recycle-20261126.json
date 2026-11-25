@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-26",
+  "native_recycle_items": 1,
+  "native_recycle_files": 2,
+  "logical_bytes": 328704,
+  "items": [
+    {
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-dense-image-barrier-r1-transfer-20261126",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RHQA9QR",
+      "entries": [
+        {
+          "relative": "final-sources.tar",
+          "bytes": 116736,
+          "sha256": "2989b82c4961961eccf39c1d76f16b382a09cb6fbd008f079ab80f05bd4b6314"
+        },
+        {
+          "relative": "sources.tar",
+          "bytes": 211968,
+          "sha256": "5b9db5f7531a0a2959f49a7fae085acc804c86bb1af2ec5b6ba5633c63691e55"
+        }
+      ]
+    }
+  ],
+  "outer_check_used_stale_native_exit_code_and_stopped_after_success": true,
+  "read_only_receipt_verification_no_repeated_recycle": true,
+  "no_permanent_deletion": true,
+  "Recycle_Bin_not_emptied": true,
+  "current_signed_candidates_and_all_original_evidence_preserved": true,
+  "device_operations": 0
+}

@@ -26,6 +26,10 @@ OrderedImageBarrier候选只在精确gen5／SYSMEM、无Z/S／单样本和一致
 
 后续离线复核补齐两个同步边界：异步GLThread保留原barrier，批次内指令只允许已执行draw的同步前端；私有scratch BO复用时首个timestamp可能与旧字节相同，因此r4先用GPU CP_MEM_WRITE0／WAIT_MEM_WRITES初始化，再事件timestamp1／2与准确WAIT_REG_MEM。独立host核对首次26／随后21个原指令字、原ring外围guard和sequence溢出。原r1／r2／r3产物、报告和实机边界保持，r4尚未实机，不能把该离线检查当XR像素通过。
 
+[r5实际Mesa映射修补](../reproducibility/ordered-image-barrier-dense-r5-offline-20261126.json)发现此前host把GL binding0／8放到driver si[0]／si[8]，而固定`st_bind_images`实际按program ImageUnits把两个active image紧凑放si[0]／si[1]；原enabled_mask0x101条件会错走fallback。新helper从当前linked fragment program反查binding，逐一核对readonly／writeonly coherent access和同一RGBA32F资源，拒绝重复／未知binding、其它stage image、atomic和写SSBO；不改变shader或原draw数量。
+
+主机测试直接编译未改的锁定st_atom_image.c／st_bind_fs_images，核对全部255个mask、两种声明顺序，再用相同dense两槽输入复现旧header零指令。新contract下1404次／29489字／9次guarded ring扩容通过ASan／UBSan。新r5用户态已编译、完整native21／PNG6包已准备，尚无A540缓存／像素／原wallpaper实机证据；旧host结果不提升为实际命中。完整signed／RAM身份和投递順序只由STATUS维护。
+
 新库观察的20条原request、128条route、99条environment记录完整，原preview／snapshot返回true、unlock返回0.0、背光progress返回1.0。五次原paused=true、applyMode1沿deactive分支返回；没有新增getter或绘制，没有强制策略。本次唯一缺失准入目标是原pipeline第1次返回，原pipeline BEGIN也未出现，snapshotImage／PNG和draw API均无记录。未观察到调用不推断整个系统没有GPU工作，缓存与原请求链分别验收。该轮原STOP、702521 B raw和39.438秒完整回程保持，失败包不重发。
 
 [同靴扫描](../reproducibility/poster-cache-budget-wallpaper-scanout-actual-20261125.json)与[较小观察包](../reproducibility/poster-cache-budget-minimal-gpu-actual-20261125.json)均复现原pipeline目标未出现，150秒真实帧完整、背景仍黑、原STOP保留。较小包未编译request／route包装，7条库／ColorSync返回完整，仍无snapshot／PNG。不能据此归因为额外观察包装或底层GPU；后续集中核对系统原快照请求入口。两靴分别38.469／38.468秒完整安全回程，失败不重发。

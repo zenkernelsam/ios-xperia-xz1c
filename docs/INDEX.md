@@ -34,6 +34,8 @@ reproducibility保存原结果摘要、源码锁、精确proof和回收记录；
 
 本次离线补充：[Sony PCM统一会话／rendered EOS](../reproducibility/lilac-pcm-session-offline-20261126.json)记录WSL／Mac七组主机回归及ARM64编译；[原星点规模barrier命令流](../reproducibility/ordered-image-barrier-star-load-host-20261126.json)记录1404次／29489字及guarded ring扩容。两者均无设备操作，实际音频、A540缓存可见性和原壁纸仍按STATUS准入。
 
+后续[r5 dense image映射修补](../reproducibility/ordered-image-barrier-dense-r5-offline-20261126.json)直接用锁定Mesa mapper验证GL binding与紧凑驱动槽位，并复现旧host布局导致的fallback。新候选及其四份包完整离线审计，无实机投递；原host报告保持历史范围。
+
 ## 关键原阶段
 
 | 阶段 | 原报告 |
@@ -61,6 +63,7 @@ reproducibility保存原结果摘要、源码锁、精确proof和回收记录；
 | 新Metal完整验收整合前5份入口 | [reflected-render 20261125](archive/20261125/reflected-render-acceptance/original-document-manifest.json) |
 | XR timestamp候选整合前8份入口 | [ordered-XR 20261126](archive/20261126/ordered-XR-barrier/original-document-manifest.json) |
 | PCM会话／星点规模主机复验整合前5份入口 | [pcm-session 20261126](archive/20261126/pcm-session-and-XR-load/original-document-manifest.json) |
+| Mesa dense image修补整合前5份入口 | [dense-image 20261126](archive/20261126/dense-image-barrier/original-document-manifest.json) |
 | Mac旧38份文档与源文件 | [macos-patch-entry](archive/20261123/macos-patch-entry/original-document-manifest.json) |
 
 旧handover／handout与编号手册在docs/archive；原字节与SHA保持。旧整理报告入口：[2026-11-12](ORGANIZATION-2026-11-12.md)、[2026-11-13](ORGANIZATION-2026-11-13.md)、[2026-11-15](ORGANIZATION-2026-11-15.md)。回收与复原统一由ORGANIZATION／LAYOUT说明，不从旧in-flight恢复执行。

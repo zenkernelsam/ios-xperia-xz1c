@@ -10,10 +10,14 @@ import sys
 
 ROOT=Path(__file__).resolve().parents[2]
 MESA_COMMIT="769e51468b49b2a42f0a0eaf71cf9eed5ff4e5de"
+PRIOR_HEADER_COMMIT="5aeb5417ada81aff446679fcbeb0cc1a6a0bcbda"
+PRIOR_HEADER_SHA="f34cdc163da1b6270919f834c9e698d16f03c15d225780aa0b66103951e9451b"
 REFERENCE_FILES={
     "src/gallium/drivers/freedreno/a5xx/fd5_emit.h":"a73e222a1e19e6449fdce37a0fea1d09c7ff09f60c0ce02a9826221c8dbf7b5d",
     "src/gallium/drivers/freedreno/a5xx/fd5_context.h":"d5c3d03f38dddd6a856b25f1cb2403694dee265ce4396f6c7e82864c559d8bd1",
     "src/gallium/drivers/freedreno/freedreno_context.c":"78f981df0565365f1b889482158e41ffbf0d29c196e44fdd2b16f0e19f890710",
+    "src/mesa/state_tracker/st_atom_image.c":"3d5016983fd427ea2b56ef74f9cadee8e780873c37ddd95a252357c9b16c8755",
+    "src/gallium/drivers/freedreno/freedreno_state.c":"ff7d4f47707c82692c3d60d7cbc3c014abb3e3ada0c51bad92c6bb9a4c2f2ad3",
 }
 
 
@@ -60,6 +64,7 @@ def check(mesa_build,output):
     includes+=["-I"+str(mesa_build/path) for path in include_generated]
     includes+=["-I"+str(ROOT/"gpu/sweetgl/include")]
     files=("gpu/sweetgl/OrderedImageBarrier.h","tools/build/test_ordered_image_barrier.c",
+           "tools/build/test_ordered_image_mapping.c",
            "tools/build/check_ordered_image_barrier.py")
     source_files={path:sha(ROOT/path) for path in files}
     output.mkdir(parents=True)
@@ -70,16 +75,49 @@ def check(mesa_build,output):
     text=run(output,[output/"test_barrier"],"test")
     if "Ordered image barrier PASS:" not in text:
         raise ValueError("Actual command-stream test completion missing")
+    mapping_command=["clang","-std=gnu11","-O1","-g","-fsanitize=address,undefined",
+                     "-fno-sanitize-recover=all","-ffunction-sections","-fdata-sections",
+                     "-Wl,-dead_strip",*defines,*includes,
+                     '-DSWEET_MESA_IMAGE_SOURCE="'+str(mesa/"src/mesa/state_tracker/st_atom_image.c")+'"',
+                     str(ROOT/"tools/build/test_ordered_image_mapping.c"),"-o",str(output/"test_mapping")]
+    run(output,mapping_command,"mapping-compile")
+    mapping_text=run(output,[output/"test_mapping"],"mapping-test")
+    if "Ordered image mapping PASS:" not in mapping_text:
+        raise ValueError("Actual Mesa dense image mapping test completion missing")
+    prior_bytes=subprocess.check_output(["git","-C",str(ROOT),"show",
+                                        PRIOR_HEADER_COMMIT+":gpu/sweetgl/OrderedImageBarrier.h"])
+    if hashlib.sha256(prior_bytes).hexdigest()!=PRIOR_HEADER_SHA:
+        raise ValueError("Prior sparse image-mask source identity differs")
+    prior=output/"PriorOrderedImageBarrier.h"
+    with prior.open("xb") as stream:
+        stream.write(prior_bytes)
+    prior_command=["clang","-std=gnu11","-O1","-g","-fsanitize=address,undefined",
+                   "-fno-sanitize-recover=all",*defines,*includes,
+                   '-DSWEET_ORDERED_BARRIER_HEADER="'+str(prior)+'"',
+                   "-DSWEET_EXPECT_DENSE_REJECTION=1",
+                   str(ROOT/"tools/build/test_ordered_image_barrier.c"),"-o",str(output/"test_prior")]
+    run(output,prior_command,"prior-compile")
+    prior_text=run(output,[output/"test_prior"],"prior-test")
+    if "actual dense two-slot layout refused by the old sparse mask check" not in prior_text:
+        raise ValueError("Prior dense-image fallback regression was not reproduced")
     if source_files!={path:sha(ROOT/path) for path in files}:
         raise ValueError("Barrier sources changed during verification")
-    report=dict(revision=3,source_files=source_files,Mesa_commit=MESA_COMMIT,
-                actual_Mesa_sources=REFERENCE_FILES,commands=[list(map(str,command)),[str(output/"test_barrier")]],
+    report=dict(revision=4,source_files=source_files,Mesa_commit=MESA_COMMIT,
+                actual_Mesa_sources=REFERENCE_FILES,
+                commands=[list(map(str,command)),[str(output/"test_barrier")],
+                          list(map(str,mapping_command)),[str(output/"test_mapping")],
+                          list(map(str,prior_command)),[str(output/"test_prior")]],
                 host_ASan_UBSan_actual_emitters_passed=True,first_barrier_ring_words=26,subsequent_barrier_ring_words=21,
                 first_timestamp_scratch_GPU_initialization_verified=True,
                 monotonic_timestamp_and_exact_wait_verified=True,sequence_overflow_refused=True,
                 star_draw_host_primitives=1404,star_draw_host_ring_words=29489,
                 authored_batch_changes_preserve_context_sequence=11,
                 authored_continuous_ring_guarded_growths=9,
+                actual_Mesa_image_unit_to_dense_driver_slot_mapping_passed=True,
+                image_masks_checked=255,image_declaration_orders_checked=2,
+                unknown_or_duplicate_bindings_access_atomic_and_SSBO_writes_refused=True,
+                prior_sparse_mask_false_fallback_reproduced=True,
+                prior_sparse_header_commit=PRIOR_HEADER_COMMIT,prior_sparse_header_sha256=PRIOR_HEADER_SHA,
                 actual_Mesa_scheduler_or_GPU_execution_verified=False,
                 context_flushes=0,host_command_stream_only=True,device_operations=0)
     with (output/"manifest.json").open("x",encoding="utf-8",newline="\n") as stream:

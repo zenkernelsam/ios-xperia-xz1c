@@ -75,4 +75,11 @@ class MRTEvidence(unittest.TestCase):
         self.assertEqual(verify(initialized,self.token,self.fixture,require_image_barrier=3)['complete_samples'],1)
         with self.assertRaises(AssertionError):
             verify(initialized.replace('scratch_initialized=1','scratch_initialized=0'),self.token,self.fixture,require_image_barrier=3)
+        dense=initialized.replace('revision=3','revision=4').replace('scratch_initialized=1 ','scratch_initialized=1 dense_image_binding=1 ')
+        self.assertEqual(verify(dense,self.token,self.fixture,require_image_barrier=4)['complete_samples'],1)
+        for bad in (dense.replace('dense_image_binding=1','dense_image_binding=0'),
+                    dense.replace('dense_image_binding=1 ',''),dense.replace('cached=4','cached=0'),
+                    dense.replace('revision=4','revision=3')):
+            with self.assertRaises(AssertionError):
+                verify(bad,self.token,self.fixture,require_image_barrier=4)
 if __name__=='__main__':unittest.main()

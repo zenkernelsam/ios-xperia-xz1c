@@ -12,6 +12,48 @@
 #include "state_tracker/st_context.h"
 #include "main/mtypes.h"
 
+static bool sweet_ordered_image_contract(const struct gl_context *gl,
+    const struct fd_shaderimg_stateobj *images,unsigned image_mask)
+{
+    if(!gl || !gl->_Shader || !images || !image_mask || (image_mask&~255u))return false;
+    const struct gl_program *program=gl->_Shader->CurrentProgram[MESA_SHADER_FRAGMENT];
+    const unsigned count=2u*(unsigned)__builtin_popcount(image_mask);
+    // st_bind_images uses dense shader indices, not GL binding numbers:
+    // images[i] comes from ImageUnits[program->sh.ImageUnits[i]].
+    if(!program || program->info.num_images!=count ||
+        program->info.num_abos || program->sh.ShaderStorageBlocksWriteAccess ||
+        images->enabled_mask!=((1u<<count)-1))return false;
+    for(unsigned stage=0;stage<MESA_SHADER_STAGES;++stage)if(stage!=MESA_SHADER_FRAGMENT) {
+        const struct gl_program *other=gl->_Shader->CurrentProgram[stage];
+        if(other && (other->info.num_images || other->info.num_abos ||
+            other->sh.ShaderStorageBlocksWriteAccess))return false;
+    }
+    unsigned reads[8],writes[8];for(unsigned i=0;i<8;++i)reads[i]=writes[i]=~0u;
+    for(unsigned dense=0;dense<count;++dense) {
+        const unsigned binding=program->sh.ImageUnits[dense];
+        if(binding>=16 || !(image_mask&(1u<<(binding&7))))return false;
+        const bool write=binding>=8;
+        unsigned *slot=write?&writes[binding&7]:&reads[binding&7];
+        if(*slot!=~0u)return false;
+        const unsigned access=program->sh.image_access[dense];
+        const unsigned expected=ACCESS_COHERENT|(write?ACCESS_NON_READABLE:ACCESS_NON_WRITEABLE);
+        if(access!=expected)return false;
+        *slot=dense;
+    }
+    for(unsigned slot=0;slot<8;++slot)if(image_mask&(1u<<slot)) {
+        if(reads[slot]==~0u || writes[slot]==~0u)return false;
+        const struct pipe_image_view *read=&images->si[reads[slot]],*write=&images->si[writes[slot]];
+        if(!read->resource || read->resource!=write->resource ||
+            read->resource->target!=PIPE_TEXTURE_2D ||
+            read->format!=PIPE_FORMAT_R32G32B32A32_FLOAT || write->format!=read->format ||
+            read->access!=PIPE_IMAGE_ACCESS_READ || write->access!=PIPE_IMAGE_ACCESS_WRITE ||
+            read->u.tex.level || write->u.tex.level || read->u.tex.first_layer ||
+            read->u.tex.last_layer || write->u.tex.first_layer || write->u.tex.last_layer ||
+            read->resource->nr_samples>1 || read->resource->nr_storage_samples>1)return false;
+    }
+    return true;
+}
+
 static bool sweet_ordered_image_barrier(struct st_context *context,unsigned image_mask,uint32_t *sequence)
 {
     if(!context || !context->ctx || !context->pipe || !image_mask || (image_mask&~255u) ||
@@ -34,16 +76,7 @@ static bool sweet_ordered_image_barrier(struct st_context *context,unsigned imag
     if(!batch || batch->flushed || batch->nondraw || !batch->draw || !batch->num_draws ||
         batch->framebuffer.zsbuf || batch->framebuffer.samples>1)return false;
     struct fd_shaderimg_stateobj *images=&native->shaderimg[PIPE_SHADER_FRAGMENT];
-    if(images->enabled_mask!=(image_mask|(image_mask<<8)))return false;
-    for(unsigned slot=0;slot<8;++slot)if(image_mask&(1u<<slot)) {
-        struct pipe_image_view *read=&images->si[slot],*write=&images->si[8+slot];
-        if(!read->resource || read->resource!=write->resource ||
-            read->format!=PIPE_FORMAT_R32G32B32A32_FLOAT || write->format!=read->format ||
-            read->access!=PIPE_IMAGE_ACCESS_READ || write->access!=PIPE_IMAGE_ACCESS_WRITE ||
-            read->u.tex.level || write->u.tex.level || read->u.tex.first_layer ||
-            read->u.tex.last_layer || write->u.tex.first_layer || write->u.tex.last_layer ||
-            read->resource->nr_samples>1)return false;
-    }
+    if(!sweet_ordered_image_contract(context->ctx,images,image_mask))return false;
     // Publish prior shader writes through a real event timestamp and wait for
     // that exact value before invalidating UCHE. The monotonic sequence is
     // owned by this program/context and never repeats across batches.

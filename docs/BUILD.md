@@ -167,6 +167,8 @@ builder执行真实ObjC转发、原位值缓存／errno的ASan／UBSan和ARM64�
 
 最新候选同时拒绝异步GLThread，原GL barrier负责已排队的前端命令。原context blit scratch64与固定Mesa使用的offset0独立；未知image access／layer／format、非sysmem／gen5、深度或多样本保持原同步路径。r4首次同步先用CP_MEM_WRITE／WAIT_MEM_WRITES初始化scratch，再等待非零单调timestamp，避免新context复用BO的旧值。第一次barrier26指令字、以后21字。r2／r3／r4 signed产物各自绑定源，旧host／device proof不能提升新产物。
 
+当前barrier revision4另从实际linked fragment program读取ImageUnits数组，把GL binding映射为dense Gallium槽位。Mesa的driver image0可能来自binding8，不能按GL binding直接索引si。host工具直接include准确锁定的st_atom_image.c，核对255种mask与两种dense顺序，并编译旧header复现错误fallback；连续1404次指令和ring扩容检查保留。其它stage image、atomic或写SSBO保持原barrier。r5的准确signed库和四份未投递包由STATUS索引，旧r4保持历史。
+
 ```sh
 python3 -B tools/build/check_ordered_image_barrier.py --mesa-build build/mesa-ir3-cache-r1 --output build/my-ordered-XR/host
 python3 -B tools/build/build_frontend_trial.py --mesa-build build/mesa-ir3-cache-r1 --output build/my-ordered-XR/frontend

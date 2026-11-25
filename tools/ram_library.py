@@ -432,7 +432,7 @@ def load(folder,expected=None):
         assert m['frontend_build_binding']['multisample_backend_revision']==1 and m['frontend_build_binding']['multisample_real_sample_count_and_original_page_import']
         assert all(path in source for path in ('MetalMultisampleAPI.h','MultisampleLayout.h','MultisampleResolveGLES.h'))
     if m['frontend_build_binding'].get('ordered_XR_image_barrier_revision'):
-        assert m['frontend_build_binding']['ordered_XR_image_barrier_revision'] in (1,2,3)
+        assert m['frontend_build_binding']['ordered_XR_image_barrier_revision'] in (1,2,3,4)
         assert 'OrderedImageBarrier.h' in source
         assert m['frontend_build_binding']['ordered_XR_barrier_exact_A5xx_sysmem_image_contract']
         assert m['frontend_build_binding']['ordered_XR_barrier_waits_shader_and_CP_writes_and_invalidates_UCHE']
@@ -441,9 +441,12 @@ def load(folder,expected=None):
             assert m['frontend_build_binding']['ordered_XR_monotonic_timestamp_wait_and_separate_scratch_cell']
             if 'ordered_XR_requires_synchronous_GL_frontend' in m['frontend_build_binding']:
                 assert m['frontend_build_binding']['ordered_XR_requires_synchronous_GL_frontend'] is True
-        if m['frontend_build_binding']['ordered_XR_image_barrier_revision']==3:
+        if m['frontend_build_binding']['ordered_XR_image_barrier_revision']>=3:
             assert m['frontend_build_binding']['ordered_XR_first_timestamp_scratch_initialized_by_GPU']
             assert m['frontend_build_binding']['ordered_XR_requires_synchronous_GL_frontend']
+        if m['frontend_build_binding']['ordered_XR_image_barrier_revision']==4:
+            assert m['frontend_build_binding']['ordered_XR_dense_driver_images_resolved_from_linked_GL_program']
+            assert m['frontend_build_binding']['ordered_XR_unknown_images_SSBO_writes_or_atomics_use_original_barrier']
     for path,digest in source.items():
         path=Path(path);assert not path.is_absolute() and '..' not in path.parts
         assert re.fullmatch('[0-9a-f]{64}',digest)
