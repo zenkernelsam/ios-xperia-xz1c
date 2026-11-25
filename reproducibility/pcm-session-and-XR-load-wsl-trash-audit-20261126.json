@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-26",
+  "distributions": [
+    {
+      "distribution": "Ubuntu",
+      "audit_user": "root",
+      "paths": [
+        {
+          "path": "/root/.local/share/Trash",
+          "exists": false,
+          "non_directory_entries": 0
+        },
+        {
+          "path": "/home/cisco/.local/share/Trash",
+          "exists": false,
+          "non_directory_entries": 0
+        }
+      ],
+      "Trash_empty": true
+    },
+    {
+      "distribution": "Ubuntu-22.04",
+      "audit_user": "root",
+      "paths": [
+        {
+          "path": "/root/.local/share/Trash",
+          "exists": false,
+          "non_directory_entries": 0
+        }
+      ],
+      "Trash_empty": true
+    }
+  ],
+  "initial_default_user_audit_could_not_read_root_Trash": true,
+  "read_only_root_and_all_home_user_Trash_audit_passed": true,
+  "WSL_host_executables_in_formal_Windows_build_moved_to_Windows_Recycle_Bin": true,
+  "no_permanent_deletion": true,
+  "Windows_Mac_Trash_not_emptied": true,
+  "device_operations": 0
+}

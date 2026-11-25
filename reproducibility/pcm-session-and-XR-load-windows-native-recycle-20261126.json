@@ -1,0 +1,398 @@
+{
+  "date": "2026-11-26",
+  "native_recycle_items": 31,
+  "native_recycle_files": 33,
+  "logical_bytes": 45242472,
+  "WSL_host_binaries_on_shared_Windows_drive_recycled": true,
+  "protected_files_SHA_preserved": 9,
+  "items": [
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-initial-r1-20261126\\test_session",
+      "original_plan_path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-initial-r1-20261126\\test_session",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R2H564P",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1598856,
+          "sha256": "2dad92df22a10e10d4073af7041c44a09b8cd60042cb6617b6fa4f6c7ea58907"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-initial-r1-20261126\\test_session_eos",
+      "original_plan_path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-initial-r1-20261126\\test_session_eos",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R0TRN2D",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1613232,
+          "sha256": "a9aacb15d7fac3a3f3d1fb5fea247bce6cd2c9afd63b6359eda5b501fea528bd"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r2-20261126\\test_afe",
+      "original_plan_path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r2-20261126\\test_afe",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RTG7T2N",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1485024,
+          "sha256": "86f341ed9664020356bf40d5e73c05d1530014d68beb46692463fe2e62e49a22"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r2-20261126\\test_apr",
+      "original_plan_path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r2-20261126\\test_apr",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RXLYUP6",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1466944,
+          "sha256": "c47d9a4f703c74dbe3376055a270aa0623b361333604618e87d6bb440b9c6318"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r2-20261126\\test_map",
+      "original_plan_path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r2-20261126\\test_map",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R7DUSRU",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1493376,
+          "sha256": "a5c1621f16d60e8e601bc9522a31b8e72d79d5de80c1e1385e457a754ff6f4fe"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r2-20261126\\test_pcm",
+      "original_plan_path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r2-20261126\\test_pcm",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R99UDTP",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1420856,
+          "sha256": "c7e479d60fe5a9892496fa814e1c3e5e3360f2cd5923e82db142b9448ca1a50e"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r2-20261126\\test_queue",
+      "original_plan_path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r2-20261126\\test_queue",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R8N22I6",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1435248,
+          "sha256": "75d928956cba967b7ffc817e55384595d6dbef0dcaf3c9755ca557188e5c8773"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r2-20261126\\test_session",
+      "original_plan_path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r2-20261126\\test_session",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R3X5IOU",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1613680,
+          "sha256": "34aad643ca682c210f9d54125bd738647c66d2afb343ec24628783eee5a27d14"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r2-20261126\\test_stream",
+      "original_plan_path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r2-20261126\\test_stream",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RQ6B1VX",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1562488,
+          "sha256": "309a028e7c9279a6d9d9c6a0d05059eeba1863f6636e885f6d14cffc968592d9"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r3-20261126\\test_afe",
+      "original_plan_path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r3-20261126\\test_afe",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RTA7GZA",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1485024,
+          "sha256": "7c2f494153d912add7bd9f4252aa10d26330c90bbb240bd5635f15c10d034231"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r3-20261126\\test_apr",
+      "original_plan_path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r3-20261126\\test_apr",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RKJ7XKT",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1466944,
+          "sha256": "04d34e7f83b78e62b3d20eb93e5f0275da26c8b99510d5abbc35c264b3a68437"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r3-20261126\\test_map",
+      "original_plan_path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r3-20261126\\test_map",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RIRMFPM",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1493376,
+          "sha256": "b52aef566f43a5006ae59d1cc9037662fc7ed6e1e3203f4a7e81fc68d96d7346"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r3-20261126\\test_pcm",
+      "original_plan_path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r3-20261126\\test_pcm",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R9F3TGK",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1420856,
+          "sha256": "c7e479d60fe5a9892496fa814e1c3e5e3360f2cd5923e82db142b9448ca1a50e"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r3-20261126\\test_queue",
+      "original_plan_path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r3-20261126\\test_queue",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R395GZ1",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1435248,
+          "sha256": "75d928956cba967b7ffc817e55384595d6dbef0dcaf3c9755ca557188e5c8773"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r3-20261126\\test_session",
+      "original_plan_path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r3-20261126\\test_session",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RQ6W66K",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1622600,
+          "sha256": "b5e9d50b7d035396cec7f272a53ccbfb015ba9f41a51961e0fa16b3896222e20"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r3-20261126\\test_stream",
+      "original_plan_path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r3-20261126\\test_stream",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$REQ9MOT",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1562488,
+          "sha256": "84f5cf622f7c740118bb81006d22d79a68a00da42cb91f48e94323dd9c7fcfe5"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r4-20261126\\test_afe",
+      "original_plan_path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r4-20261126\\test_afe",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RA1CTJ1",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1485024,
+          "sha256": "e676c5d4bd31b8f6c1993bb3c5bf831650074076c7e076a7cfaad19354f67d7c"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r4-20261126\\test_apr",
+      "original_plan_path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r4-20261126\\test_apr",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RQDMVE3",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1466944,
+          "sha256": "5087b9b31f037f73de2bb0de25991c48c4d5c7edb990a695da477aa6e6f87bc0"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r4-20261126\\test_map",
+      "original_plan_path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r4-20261126\\test_map",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RCUDAS1",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1493376,
+          "sha256": "e59e36c9ba6081f18599e796e3dd2f81292ef4b912eb133e31741338ab07a795"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r4-20261126\\test_pcm",
+      "original_plan_path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r4-20261126\\test_pcm",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R4FGF1R",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1420856,
+          "sha256": "c7e479d60fe5a9892496fa814e1c3e5e3360f2cd5923e82db142b9448ca1a50e"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r4-20261126\\test_queue",
+      "original_plan_path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r4-20261126\\test_queue",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RESTKF7",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1435248,
+          "sha256": "75d928956cba967b7ffc817e55384595d6dbef0dcaf3c9755ca557188e5c8773"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r4-20261126\\test_session",
+      "original_plan_path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r4-20261126\\test_session",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RLGELW3",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1622600,
+          "sha256": "71f75178aa992c241f55dc6313e1f131f55e202807aeb9a3196c3a3b276e442e"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r4-20261126\\test_stream",
+      "original_plan_path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-reproducible-r4-20261126\\test_stream",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RB50PMQ",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1562488,
+          "sha256": "11cfb8a97303ff63bbf802b06673261d805715cc55e91336520198b1ba9d0ea2"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-final-r5-20261126\\test_afe",
+      "original_plan_path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-final-r5-20261126\\test_afe",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R5N331H",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1485016,
+          "sha256": "c7f0afb76ccbd9864b69ae2c04afc80268fee0c1ab147b327e0a27281c36ce54"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-final-r5-20261126\\test_apr",
+      "original_plan_path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-final-r5-20261126\\test_apr",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RY7MG82",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1466936,
+          "sha256": "d49aaaf121a19d0928c00e54a895905dfe9e27b0180563391dc61c662fdcaa01"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-final-r5-20261126\\test_map",
+      "original_plan_path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-final-r5-20261126\\test_map",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RNJ6O2W",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1493368,
+          "sha256": "aa5baeba7339dfd431c1af3a3b4e42708d916f40060212c1a0a7686d513dba4e"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-final-r5-20261126\\test_pcm",
+      "original_plan_path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-final-r5-20261126\\test_pcm",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RXOSLGX",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1420856,
+          "sha256": "c7e479d60fe5a9892496fa814e1c3e5e3360f2cd5923e82db142b9448ca1a50e"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-final-r5-20261126\\test_queue",
+      "original_plan_path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-final-r5-20261126\\test_queue",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R50C2EZ",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1435248,
+          "sha256": "75d928956cba967b7ffc817e55384595d6dbef0dcaf3c9755ca557188e5c8773"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-final-r5-20261126\\test_session",
+      "original_plan_path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-final-r5-20261126\\test_session",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R1ALPRF",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1622600,
+          "sha256": "5ef1b22e5329ee0308c44ce437822b5990033a4c067697c41ec614cdb7722d2d"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-final-r5-20261126\\test_stream",
+      "original_plan_path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-session-final-r5-20261126\\test_stream",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RDMYLVM",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1562488,
+          "sha256": "b488863432ed123d945b57772799b7d5765655fbc925b8d3339e67da74f69acd"
+        }
+      ]
+    },
+    {
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-pcm-session-and-XR-load-transfer-20261126",
+      "original_plan_path": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-pcm-session-and-XR-load-transfer-20261126",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R3K4ZMD",
+      "entries": [
+        {
+          "relative": "sources-arm64.tar",
+          "bytes": 10240,
+          "sha256": "9d5791a545f37261593207f9b4d671a88078cfaccad58d83acf25857899e8697"
+        },
+        {
+          "relative": "sources-final.tar",
+          "bytes": 26112,
+          "sha256": "3cb8fada70bed2e379acf6ffd113d2c2d57dd93b085b745d110556424d64bbee"
+        },
+        {
+          "relative": "sources.tar",
+          "bytes": 56832,
+          "sha256": "cedcba7c856813ce5eea1913418beeefa1692b65d5e64d799d990e707b9418dd"
+        }
+      ]
+    }
+  ],
+  "first_receipt_verification_rejected_short_TEMP_alias": true,
+  "canonical_parent_resolution_and_all_original_bytes_verified": true,
+  "no_permanent_deletion": true,
+  "Recycle_Bin_not_emptied": true,
+  "source_logs_manifests_and_current_candidates_preserved": true,
+  "device_operations": 0
+}

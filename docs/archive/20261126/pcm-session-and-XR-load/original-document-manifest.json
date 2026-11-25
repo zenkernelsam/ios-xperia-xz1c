@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-26",
+  "reason": "Preserve current entries before offline PCM rendered drain and XR original-load verification",
+  "original_bytes_preserved": true,
+  "documents": [
+    {
+      "original_path": "docs/STATUS.md",
+      "archived_path": "docs/archive/20261126/pcm-session-and-XR-load/originals/docs/STATUS.md",
+      "bytes": 14120,
+      "sha256": "d5372bee8f08ad3e61204a44937e004ec33e8e496c4dd0da93123b59ec5730f1"
+    },
+    {
+      "original_path": "docs/BUILD.md",
+      "archived_path": "docs/archive/20261126/pcm-session-and-XR-load/originals/docs/BUILD.md",
+      "bytes": 21569,
+      "sha256": "332a0236d300202cf38c3bfa9065cb2694c8a94612fd13f98099e60e60dfafa7"
+    },
+    {
+      "original_path": "docs/LILAC-PERIPHERALS.md",
+      "archived_path": "docs/archive/20261126/pcm-session-and-XR-load/originals/docs/LILAC-PERIPHERALS.md",
+      "bytes": 18331,
+      "sha256": "e522b55d1afcbec9c93babd6ee0830615face1f76355adee341ba352c5fc96fb"
+    },
+    {
+      "original_path": "docs/ORGANIZATION.md",
+      "archived_path": "docs/archive/20261126/pcm-session-and-XR-load/originals/docs/ORGANIZATION.md",
+      "bytes": 14626,
+      "sha256": "bcf43734d13f18c2af0c754583b6ac352c06b9b3ba1e4643e4f163a563cfeb5a"
+    },
+    {
+      "original_path": "docs/INDEX.md",
+      "archived_path": "docs/archive/20261126/pcm-session-and-XR-load/originals/docs/INDEX.md",
+      "bytes": 6721,
+      "sha256": "db6efd94cc2daf41dccbee6c041d8ee021d364ba557cb35d69cd623480e46a30"
+    }
+  ]
+}

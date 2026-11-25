@@ -77,6 +77,10 @@ def check(mesa_build,output):
                 host_ASan_UBSan_actual_emitters_passed=True,first_barrier_ring_words=26,subsequent_barrier_ring_words=21,
                 first_timestamp_scratch_GPU_initialization_verified=True,
                 monotonic_timestamp_and_exact_wait_verified=True,sequence_overflow_refused=True,
+                star_draw_host_primitives=1404,star_draw_host_ring_words=29489,
+                authored_batch_changes_preserve_context_sequence=11,
+                authored_continuous_ring_guarded_growths=9,
+                actual_Mesa_scheduler_or_GPU_execution_verified=False,
                 context_flushes=0,host_command_stream_only=True,device_operations=0)
     with (output/"manifest.json").open("x",encoding="utf-8",newline="\n") as stream:
         json.dump(report,stream,indent=2)

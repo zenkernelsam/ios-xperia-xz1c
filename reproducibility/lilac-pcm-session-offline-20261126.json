@@ -1,0 +1,633 @@
+{
+  "date": "2026-11-26",
+  "scope": "Offline one stereo S16/48k playback session over locked Sony APR contracts",
+  "reference_repository": "sony-msm8998/android_kernel_sony_msm8998",
+  "reference_commit": "33dc678e7692f04ecc1eeddeb1cca8a809bc1727",
+  "reference_blobs": {
+    "include/sound/apr_audio-v2.h": "89e05abfd74b5f3a5c68d0eed4d6edb685a17243",
+    "sound/soc/msm/qdsp6v2/q6asm.c": "eb3b42f47974abe76f489433e8a914737eac0af4",
+    "sound/soc/msm/qdsp6v2/q6adm.c": "dc7165263316cc6352dfc63105da9374f03a0e3c",
+    "sound/soc/msm/qdsp6v2/q6afe.c": "7ee774ddccf7e7fefcb57fdd5612f044400ce95c",
+    "sound/soc/msm/qdsp6v2/msm-pcm-q6-v2.c": "b2154620c8ae673ef925008933a9b0ad46d0a931",
+    "COPYING": "ca442d313d86dc67e0a2e5d584b465bd382cbf5c"
+  },
+  "license": "GPL-2.0-only for new audio session and stream support",
+  "WSL_host": {
+    "revision": 1,
+    "source_files": {
+      "iokit/Kernel/arm/LilacAPRProtocol.h": "78e293cf87f0e636aea1f3ee6a0c5a9caf92cf710010b3b4149a42464f9a026e",
+      "iokit/Kernel/arm/LilacAPRBasebandProtocol.h": "3a23a81bcefe65f14c797e1bd4b51505aebf64eca44016a28abcae055cd77420",
+      "xnu/support/LilacAsmPcm.h": "1534d94b8e0ae268edc75f3515af5b6b47dbb0b00ef5266688b2ea635a49fccc",
+      "xnu/support/LilacAsmPcmQueue.h": "3fb9ab59d7ccf0688ecf8974bb1423df4cebe8aa661aa8e56222d0fcb4ac094d",
+      "xnu/support/LilacAsmPcmApr.h": "a07282f0f0b323faaf26b4d9d0c79cb49939ccada5c7f1e9993b3e61ec5e4b3d",
+      "xnu/support/LilacAsmPcmMap.h": "703ba5e8bc0c2fb8c93a4625d01f0bcfa829b145c7a5f8847254a963bcffdace",
+      "xnu/support/LilacAsmPcmStream.h": "bfab29d571a1e5dce5522e4919e5d0e6e9fefeb61b3f378a85a6591af3a59670",
+      "xnu/support/LilacAdmPlaybackDevice.h": "059e9693798b2605bf9ed5bf2941358e21231982ccfa83810db51832ae74cf5c",
+      "xnu/support/LilacAdmPlaybackRoute.h": "8cbba82b1a98755331a3ca297e26ec1d687eb03d8ed841c230d77af317f54c4e",
+      "xnu/support/LilacAfeSlimbusPlayback.h": "b0727cc8404f45fdbd964517220b664cdd63f29a20fd80db714c8df8e42b147c",
+      "xnu/support/LilacPcmPlaybackSession.h": "51704cca5d2465e436e3fa1d8ff3c50c5612edd43d71846a355679d2d2e61fc6",
+      "tools/build/test_lilac_asm_pcm.c": "a20be121a882ec19f3dd139d879c91a38f9140e9ce2f0b1b873d2964967eb864",
+      "tools/build/test_lilac_asm_pcm_queue.c": "f218ca5743436210735e3527fb118c40e898ec4df16f7882d61c17e36519a203",
+      "tools/build/test_lilac_asm_pcm_apr.cpp": "503ef370ed554b00b4b0cd7f9e47b720b33f1570e091fe4d034316cdd80e3332",
+      "tools/build/test_lilac_asm_pcm_map.cpp": "2eee81110dfcfb12f50991666070c741aed2b17fe38cae2350623d3076e6defc",
+      "tools/build/test_lilac_asm_pcm_stream.cpp": "15ca4071d8d925606d162257f7e6e97672356c2c84b64bbdcccb7dd19a1340c1",
+      "tools/build/test_lilac_afe_slimbus_playback.cpp": "9218c4e0c7fb045decc1178842e0eda8eeb4ec6aa918b2bbbe06b95b0ec4a680",
+      "tools/build/test_lilac_pcm_playback_session.cpp": "1cd381d250e37d29812dec10a8654521ce859a9fa77ce93f46a7ad726ba3bc38",
+      "tools/build/check_lilac_pcm_session.py": "833efa5266453a54e0205ec6d46e83cc3931c149e4f90e6c85a59712af163394",
+      "tools/build/check_lilac_afe_slimbus.py": "b10916d15c8a715c098a8c6afea83ea7a89cbf59478b658cd4af37dbc06120c6",
+      "tools/build/compile_lilac_pcm_session.cpp": "5d3db06696c3979cb83c7004261a9e12077a25872e95a35ed952b64d32e6b6ee"
+    },
+    "commands": [
+      [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "clang",
+        "-std=c11",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-pedantic",
+        "-no-pie",
+        "-I",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-session-final-r5-20261126",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/tools/build/test_lilac_asm_pcm.c",
+        "-o",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-session-final-r5-20261126/test_pcm"
+      ],
+      [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-session-final-r5-20261126/test_pcm"
+      ],
+      [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "clang",
+        "-std=c11",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-pedantic",
+        "-no-pie",
+        "-I",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-session-final-r5-20261126",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/tools/build/test_lilac_asm_pcm_queue.c",
+        "-o",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-session-final-r5-20261126/test_queue"
+      ],
+      [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-session-final-r5-20261126/test_queue"
+      ],
+      [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-no-pie",
+        "-I",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-session-final-r5-20261126",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/tools/build/test_lilac_asm_pcm_apr.cpp",
+        "-o",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-session-final-r5-20261126/test_apr"
+      ],
+      [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-session-final-r5-20261126/test_apr"
+      ],
+      [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-no-pie",
+        "-I",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-session-final-r5-20261126",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/tools/build/test_lilac_asm_pcm_map.cpp",
+        "-o",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-session-final-r5-20261126/test_map"
+      ],
+      [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-session-final-r5-20261126/test_map"
+      ],
+      [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-no-pie",
+        "-I",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-session-final-r5-20261126",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/tools/build/test_lilac_asm_pcm_stream.cpp",
+        "-o",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-session-final-r5-20261126/test_stream"
+      ],
+      [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-session-final-r5-20261126/test_stream"
+      ],
+      [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-no-pie",
+        "-I",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-session-final-r5-20261126",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/tools/build/test_lilac_afe_slimbus_playback.cpp",
+        "-o",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-session-final-r5-20261126/test_afe"
+      ],
+      [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-session-final-r5-20261126/test_afe"
+      ],
+      [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-no-pie",
+        "-I",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-session-final-r5-20261126",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/tools/build/test_lilac_pcm_playback_session.cpp",
+        "-o",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-session-final-r5-20261126/test_session"
+      ],
+      [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-session-final-r5-20261126/test_session"
+      ]
+    ],
+    "tests": {
+      "pcm": {
+        "binary_sha256": "c7e479d60fe5a9892496fa814e1c3e5e3360f2cd5923e82db142b9448ca1a50e",
+        "test_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "ASan_UBSan_passed": true
+      },
+      "queue": {
+        "binary_sha256": "75d928956cba967b7ffc817e55384595d6dbef0dcaf3c9755ca557188e5c8773",
+        "test_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "ASan_UBSan_passed": true
+      },
+      "apr": {
+        "binary_sha256": "d49aaaf121a19d0928c00e54a895905dfe9e27b0180563391dc61c662fdcaa01",
+        "test_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "ASan_UBSan_passed": true
+      },
+      "map": {
+        "binary_sha256": "aa5baeba7339dfd431c1af3a3b4e42708d916f40060212c1a0a7686d513dba4e",
+        "test_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "ASan_UBSan_passed": true
+      },
+      "stream": {
+        "binary_sha256": "b488863432ed123d945b57772799b7d5765655fbc925b8d3339e67da74f69acd",
+        "test_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "ASan_UBSan_passed": true
+      },
+      "afe": {
+        "binary_sha256": "c7f0afb76ccbd9864b69ae2c04afc80268fee0c1ab147b327e0a27281c36ce54",
+        "test_log_sha256": "09e19297ab17665052da1002ac7980f83098221a9edca7274c1612435a05129c",
+        "ASan_UBSan_passed": true
+      },
+      "session": {
+        "binary_sha256": "5ef1b22e5329ee0308c44ce437822b5990033a4c067697c41ec614cdb7722d2d",
+        "test_log_sha256": "e4638555f67fdcd662b0d028898aed9a4d4e5852d951e8d5cde0a86a34261d47",
+        "ASan_UBSan_passed": true
+      }
+    },
+    "arm64_object": null,
+    "host_ASan_UBSan_passed": true,
+    "playback_format": {
+      "channels": 2,
+      "bits_per_sample": 16,
+      "sample_rate": 48000
+    },
+    "pending_buffer_capacity": 4,
+    "startup_actions": [
+      "OpenStream",
+      "SetStreamFormat",
+      "MapRegion",
+      "ConfigureAfe",
+      "StartAfe",
+      "OpenOutput",
+      "RouteOutput",
+      "Run"
+    ],
+    "shutdown_actions": [
+      "all WRITE_DONE",
+      "EndOfStream basic reply and RENDERED_EOS",
+      "CloseStream",
+      "UnmapRegion",
+      "CloseOutput",
+      "StopAfe"
+    ],
+    "input_consumption_and_rendered_EOS_checked_separately": true,
+    "basic_EOS_reply_and_rendered_event_either_order": true,
+    "readiness_bound_to_exact_epoch": true,
+    "late_success_does_not_release_uncertain_region": true,
+    "all_13_command_failure_boundaries_and_pending_write_error_checked": true,
+    "exclusive_serialized_transport_owner_required": true,
+    "codec_channels_schema_and_firmware_token_echo_require_hardware_validation": true,
+    "transport_connected": false,
+    "linked_into_device_kernel": false,
+    "DSP_codec_or_physical_audio_verified": false,
+    "device_operations": 0
+  },
+  "Mac_host": {
+    "revision": 1,
+    "source_files": {
+      "iokit/Kernel/arm/LilacAPRProtocol.h": "78e293cf87f0e636aea1f3ee6a0c5a9caf92cf710010b3b4149a42464f9a026e",
+      "iokit/Kernel/arm/LilacAPRBasebandProtocol.h": "3a23a81bcefe65f14c797e1bd4b51505aebf64eca44016a28abcae055cd77420",
+      "xnu/support/LilacAsmPcm.h": "1534d94b8e0ae268edc75f3515af5b6b47dbb0b00ef5266688b2ea635a49fccc",
+      "xnu/support/LilacAsmPcmQueue.h": "3fb9ab59d7ccf0688ecf8974bb1423df4cebe8aa661aa8e56222d0fcb4ac094d",
+      "xnu/support/LilacAsmPcmApr.h": "a07282f0f0b323faaf26b4d9d0c79cb49939ccada5c7f1e9993b3e61ec5e4b3d",
+      "xnu/support/LilacAsmPcmMap.h": "703ba5e8bc0c2fb8c93a4625d01f0bcfa829b145c7a5f8847254a963bcffdace",
+      "xnu/support/LilacAsmPcmStream.h": "bfab29d571a1e5dce5522e4919e5d0e6e9fefeb61b3f378a85a6591af3a59670",
+      "xnu/support/LilacAdmPlaybackDevice.h": "059e9693798b2605bf9ed5bf2941358e21231982ccfa83810db51832ae74cf5c",
+      "xnu/support/LilacAdmPlaybackRoute.h": "8cbba82b1a98755331a3ca297e26ec1d687eb03d8ed841c230d77af317f54c4e",
+      "xnu/support/LilacAfeSlimbusPlayback.h": "b0727cc8404f45fdbd964517220b664cdd63f29a20fd80db714c8df8e42b147c",
+      "xnu/support/LilacPcmPlaybackSession.h": "51704cca5d2465e436e3fa1d8ff3c50c5612edd43d71846a355679d2d2e61fc6",
+      "tools/build/test_lilac_asm_pcm.c": "a20be121a882ec19f3dd139d879c91a38f9140e9ce2f0b1b873d2964967eb864",
+      "tools/build/test_lilac_asm_pcm_queue.c": "f218ca5743436210735e3527fb118c40e898ec4df16f7882d61c17e36519a203",
+      "tools/build/test_lilac_asm_pcm_apr.cpp": "503ef370ed554b00b4b0cd7f9e47b720b33f1570e091fe4d034316cdd80e3332",
+      "tools/build/test_lilac_asm_pcm_map.cpp": "2eee81110dfcfb12f50991666070c741aed2b17fe38cae2350623d3076e6defc",
+      "tools/build/test_lilac_asm_pcm_stream.cpp": "15ca4071d8d925606d162257f7e6e97672356c2c84b64bbdcccb7dd19a1340c1",
+      "tools/build/test_lilac_afe_slimbus_playback.cpp": "9218c4e0c7fb045decc1178842e0eda8eeb4ec6aa918b2bbbe06b95b0ec4a680",
+      "tools/build/test_lilac_pcm_playback_session.cpp": "1cd381d250e37d29812dec10a8654521ce859a9fa77ce93f46a7ad726ba3bc38",
+      "tools/build/check_lilac_pcm_session.py": "833efa5266453a54e0205ec6d46e83cc3931c149e4f90e6c85a59712af163394",
+      "tools/build/check_lilac_afe_slimbus.py": "b10916d15c8a715c098a8c6afea83ea7a89cbf59478b658cd4af37dbc06120c6",
+      "tools/build/compile_lilac_pcm_session.cpp": "5d3db06696c3979cb83c7004261a9e12077a25872e95a35ed952b64d32e6b6ee"
+    },
+    "commands": [
+      [
+        "clang",
+        "-std=c11",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-pedantic",
+        "-I",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-session-and-XR-load-offline-20261126/pcm-final-arm64",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/tools/build/test_lilac_asm_pcm.c",
+        "-o",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-session-and-XR-load-offline-20261126/pcm-final-arm64/test_pcm"
+      ],
+      [
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-session-and-XR-load-offline-20261126/pcm-final-arm64/test_pcm"
+      ],
+      [
+        "clang",
+        "-std=c11",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-pedantic",
+        "-I",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-session-and-XR-load-offline-20261126/pcm-final-arm64",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/tools/build/test_lilac_asm_pcm_queue.c",
+        "-o",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-session-and-XR-load-offline-20261126/pcm-final-arm64/test_queue"
+      ],
+      [
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-session-and-XR-load-offline-20261126/pcm-final-arm64/test_queue"
+      ],
+      [
+        "clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-I",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-session-and-XR-load-offline-20261126/pcm-final-arm64",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/tools/build/test_lilac_asm_pcm_apr.cpp",
+        "-o",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-session-and-XR-load-offline-20261126/pcm-final-arm64/test_apr"
+      ],
+      [
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-session-and-XR-load-offline-20261126/pcm-final-arm64/test_apr"
+      ],
+      [
+        "clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-I",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-session-and-XR-load-offline-20261126/pcm-final-arm64",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/tools/build/test_lilac_asm_pcm_map.cpp",
+        "-o",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-session-and-XR-load-offline-20261126/pcm-final-arm64/test_map"
+      ],
+      [
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-session-and-XR-load-offline-20261126/pcm-final-arm64/test_map"
+      ],
+      [
+        "clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-I",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-session-and-XR-load-offline-20261126/pcm-final-arm64",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/tools/build/test_lilac_asm_pcm_stream.cpp",
+        "-o",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-session-and-XR-load-offline-20261126/pcm-final-arm64/test_stream"
+      ],
+      [
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-session-and-XR-load-offline-20261126/pcm-final-arm64/test_stream"
+      ],
+      [
+        "clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-I",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-session-and-XR-load-offline-20261126/pcm-final-arm64",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/tools/build/test_lilac_afe_slimbus_playback.cpp",
+        "-o",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-session-and-XR-load-offline-20261126/pcm-final-arm64/test_afe"
+      ],
+      [
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-session-and-XR-load-offline-20261126/pcm-final-arm64/test_afe"
+      ],
+      [
+        "clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-I",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-session-and-XR-load-offline-20261126/pcm-final-arm64",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/tools/build/test_lilac_pcm_playback_session.cpp",
+        "-o",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-session-and-XR-load-offline-20261126/pcm-final-arm64/test_session"
+      ],
+      [
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-session-and-XR-load-offline-20261126/pcm-final-arm64/test_session"
+      ],
+      [
+        "xcrun",
+        "--sdk",
+        "iphoneos",
+        "--show-sdk-path"
+      ],
+      [
+        "xcrun",
+        "--sdk",
+        "iphoneos",
+        "clang++",
+        "-target",
+        "arm64-apple-ios16.7",
+        "-isysroot",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk",
+        "-std=c++17",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-ffreestanding",
+        "-fno-exceptions",
+        "-fno-rtti",
+        "-I",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-session-and-XR-load-offline-20261126/pcm-final-arm64",
+        "-c",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/tools/build/compile_lilac_pcm_session.cpp",
+        "-o",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-session-and-XR-load-offline-20261126/pcm-final-arm64/pcm-session.arm64.o"
+      ],
+      [
+        "file",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-session-and-XR-load-offline-20261126/pcm-final-arm64/pcm-session.arm64.o"
+      ],
+      [
+        "nm",
+        "-u",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-session-and-XR-load-offline-20261126/pcm-final-arm64/pcm-session.arm64.o"
+      ]
+    ],
+    "tests": {
+      "pcm": {
+        "binary_sha256": "3e8427d6289664671418968941e9787faf29f10a1566b3d0c47ac0447497c355",
+        "test_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "ASan_UBSan_passed": true
+      },
+      "queue": {
+        "binary_sha256": "7dcc2ff33d4b05e01e31ff5b65144f03564e8728882c6f02305abcb37b2c0b22",
+        "test_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "ASan_UBSan_passed": true
+      },
+      "apr": {
+        "binary_sha256": "63bd16995d0ba94909d128ced10a58aa74004369928ce3224568223321f72840",
+        "test_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "ASan_UBSan_passed": true
+      },
+      "map": {
+        "binary_sha256": "fe24b37999845ef0998ae21870e9d93ad9326ddae5dd5dcc8635da729c627434",
+        "test_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "ASan_UBSan_passed": true
+      },
+      "stream": {
+        "binary_sha256": "a90872bd8597c901f8192e0695042c890c2e3321e9c48e8e42b5fe7629d7e4cb",
+        "test_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "ASan_UBSan_passed": true
+      },
+      "afe": {
+        "binary_sha256": "5e04a29e7da85976525feb77166064d880d1ba6797f9137ff952e599242ea2b8",
+        "test_log_sha256": "09e19297ab17665052da1002ac7980f83098221a9edca7274c1612435a05129c",
+        "ASan_UBSan_passed": true
+      },
+      "session": {
+        "binary_sha256": "e74c324aa981090f5788019f1ebedbded5358ba9c3707a382c3853e08cea2d0d",
+        "test_log_sha256": "e4638555f67fdcd662b0d028898aed9a4d4e5852d951e8d5cde0a86a34261d47",
+        "ASan_UBSan_passed": true
+      }
+    },
+    "arm64_object": {
+      "sha256": "91dd4a9c279f730db9054d3c4bd5843c515ea051dba6dab31a7bbee42807e279",
+      "description": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-session-and-XR-load-offline-20261126/pcm-final-arm64/pcm-session.arm64.o: Mach-O 64-bit object arm64",
+      "undefined_symbols": [
+        "___stack_chk_fail",
+        "___stack_chk_guard"
+      ],
+      "linked_into_kernel": false
+    },
+    "host_ASan_UBSan_passed": true,
+    "playback_format": {
+      "channels": 2,
+      "bits_per_sample": 16,
+      "sample_rate": 48000
+    },
+    "pending_buffer_capacity": 4,
+    "startup_actions": [
+      "OpenStream",
+      "SetStreamFormat",
+      "MapRegion",
+      "ConfigureAfe",
+      "StartAfe",
+      "OpenOutput",
+      "RouteOutput",
+      "Run"
+    ],
+    "shutdown_actions": [
+      "all WRITE_DONE",
+      "EndOfStream basic reply and RENDERED_EOS",
+      "CloseStream",
+      "UnmapRegion",
+      "CloseOutput",
+      "StopAfe"
+    ],
+    "input_consumption_and_rendered_EOS_checked_separately": true,
+    "basic_EOS_reply_and_rendered_event_either_order": true,
+    "readiness_bound_to_exact_epoch": true,
+    "late_success_does_not_release_uncertain_region": true,
+    "all_13_command_failure_boundaries_and_pending_write_error_checked": true,
+    "exclusive_serialized_transport_owner_required": true,
+    "codec_channels_schema_and_firmware_token_echo_require_hardware_validation": true,
+    "transport_connected": false,
+    "linked_into_device_kernel": false,
+    "DSP_codec_or_physical_audio_verified": false,
+    "device_operations": 0
+  },
+  "Eos_opcodes": {
+    "ASM_DATA_CMD_EOS": "0x00010bdb",
+    "ASM_DATA_EVENT_RENDERED_EOS": "0x00010c1c",
+    "ASM_DATA_EVENT_EOS_not_rendered": "0x00010bdd"
+  },
+  "WRITE_DONE_is_not_a_rendered_playback_completion": true,
+  "source_files": {
+    "iokit/Kernel/arm/LilacAPRProtocol.h": "78e293cf87f0e636aea1f3ee6a0c5a9caf92cf710010b3b4149a42464f9a026e",
+    "iokit/Kernel/arm/LilacAPRBasebandProtocol.h": "3a23a81bcefe65f14c797e1bd4b51505aebf64eca44016a28abcae055cd77420",
+    "xnu/support/LilacAsmPcm.h": "1534d94b8e0ae268edc75f3515af5b6b47dbb0b00ef5266688b2ea635a49fccc",
+    "xnu/support/LilacAsmPcmQueue.h": "3fb9ab59d7ccf0688ecf8974bb1423df4cebe8aa661aa8e56222d0fcb4ac094d",
+    "xnu/support/LilacAsmPcmApr.h": "a07282f0f0b323faaf26b4d9d0c79cb49939ccada5c7f1e9993b3e61ec5e4b3d",
+    "xnu/support/LilacAsmPcmMap.h": "703ba5e8bc0c2fb8c93a4625d01f0bcfa829b145c7a5f8847254a963bcffdace",
+    "xnu/support/LilacAsmPcmStream.h": "bfab29d571a1e5dce5522e4919e5d0e6e9fefeb61b3f378a85a6591af3a59670",
+    "xnu/support/LilacAdmPlaybackDevice.h": "059e9693798b2605bf9ed5bf2941358e21231982ccfa83810db51832ae74cf5c",
+    "xnu/support/LilacAdmPlaybackRoute.h": "8cbba82b1a98755331a3ca297e26ec1d687eb03d8ed841c230d77af317f54c4e",
+    "xnu/support/LilacAfeSlimbusPlayback.h": "b0727cc8404f45fdbd964517220b664cdd63f29a20fd80db714c8df8e42b147c",
+    "xnu/support/LilacPcmPlaybackSession.h": "51704cca5d2465e436e3fa1d8ff3c50c5612edd43d71846a355679d2d2e61fc6",
+    "tools/build/test_lilac_asm_pcm.c": "a20be121a882ec19f3dd139d879c91a38f9140e9ce2f0b1b873d2964967eb864",
+    "tools/build/test_lilac_asm_pcm_queue.c": "f218ca5743436210735e3527fb118c40e898ec4df16f7882d61c17e36519a203",
+    "tools/build/test_lilac_asm_pcm_apr.cpp": "503ef370ed554b00b4b0cd7f9e47b720b33f1570e091fe4d034316cdd80e3332",
+    "tools/build/test_lilac_asm_pcm_map.cpp": "2eee81110dfcfb12f50991666070c741aed2b17fe38cae2350623d3076e6defc",
+    "tools/build/test_lilac_asm_pcm_stream.cpp": "15ca4071d8d925606d162257f7e6e97672356c2c84b64bbdcccb7dd19a1340c1",
+    "tools/build/test_lilac_afe_slimbus_playback.cpp": "9218c4e0c7fb045decc1178842e0eda8eeb4ec6aa918b2bbbe06b95b0ec4a680",
+    "tools/build/test_lilac_pcm_playback_session.cpp": "1cd381d250e37d29812dec10a8654521ce859a9fa77ce93f46a7ad726ba3bc38",
+    "tools/build/check_lilac_pcm_session.py": "833efa5266453a54e0205ec6d46e83cc3931c149e4f90e6c85a59712af163394",
+    "tools/build/check_lilac_afe_slimbus.py": "b10916d15c8a715c098a8c6afea83ea7a89cbf59478b658cd4af37dbc06120c6",
+    "tools/build/compile_lilac_pcm_session.cpp": "5d3db06696c3979cb83c7004261a9e12077a25872e95a35ed952b64d32e6b6ee"
+  },
+  "exact_epoch_token_service_port_and_typed_reply_required": true,
+  "device_operations": 0,
+  "actual_audio_output_verified": false,
+  "kernel_unchanged": true,
+  "transport_not_connected": true
+}

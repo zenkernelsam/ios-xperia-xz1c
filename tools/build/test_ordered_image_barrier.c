@@ -2,10 +2,13 @@
 #include "../../gpu/sweetgl/OrderedImageBarrier.h"
 #include <assert.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 int fd_mesa_debug=FD_DBG_SYSMEM;
 static unsigned flushes,wfi_calls,size_checks,relocations;
+static unsigned grows;
+static uint32_t *owned_ring;
 static struct fd_bo original_bo={.iova=UINT64_C(0x41234000)};
 uint32_t fd_bo_size(struct fd_bo *bo){assert(bo==&original_bo);return 4096;}
 struct pipe_context *threaded_context_unwrap_sync(struct pipe_context *pipe){return pipe;}
@@ -17,10 +20,21 @@ static void reloc(struct fd_ringbuffer *ring,const struct fd_reloc *value)
 {assert(value->iova==UINT64_C(0x41234040));OUT_RING(ring,(uint32_t)value->iova);OUT_RING(ring,(uint32_t)(value->iova>>32));++relocations;}
 static void flush(struct pipe_context *pipe,struct pipe_fence_handle **fence,unsigned flags)
 {(void)pipe;(void)fence;(void)flags;++flushes;}
+static void grow(struct fd_ringbuffer *ring,uint32_t bytes)
+{
+    assert(owned_ring && ring->start==owned_ring+8 && bytes==(uint32_t)ring->size);
+    const unsigned capacity=(unsigned)ring->size/4,used=(unsigned)(ring->cur-ring->start);
+    for(unsigned i=0;i<8;++i)assert(owned_ring[i]==0xa5a5a5a5 && owned_ring[capacity+8+i]==0xa5a5a5a5);
+    uint32_t *next=malloc((capacity*2+16)*sizeof(uint32_t));assert(next);
+    memset(next,0xa5,(capacity*2+16)*sizeof(uint32_t));
+    memcpy(next+8,ring->start,used*sizeof(uint32_t));free(owned_ring);owned_ring=next;
+    ring->start=next+8;ring->cur=ring->start+used;ring->end=ring->start+capacity*2;
+    ring->size=(int)(capacity*2*sizeof(uint32_t));++grows;
+}
 int main(void)
 {
     uint32_t stream[64];memset(stream,0xa5,sizeof(stream));
-    const struct fd_ringbuffer_funcs funcs={.emit_reloc=reloc,.assert_attached=attached};
+    const struct fd_ringbuffer_funcs funcs={.grow=grow,.emit_reloc=reloc,.assert_attached=attached};
     struct fd_ringbuffer ring={.cur=stream,.end=stream+64,.start=stream,.funcs=&funcs,.size=256};
     struct fd_screen screen={.gen=5};
     struct fd5_context native={0};native.base.base.flush=flush;native.base.screen=&screen;native.blit_mem=&original_bo;
@@ -61,5 +75,46 @@ int main(void)
     assert(!sweet_ordered_image_barrier(&context,0,&sequence) && !sweet_ordered_image_barrier(&context,256,&sequence));
     sequence=UINT32_MAX;assert(!sweet_ordered_image_barrier(&context,1,&sequence) && sequence==UINT32_MAX);
     assert(ring.cur==end && !memcmp(stream,expected,sizeof(expected)) && flushes==0);
-    puts("Ordered image barrier PASS: exact pinned A5xx first-use scratch CP initialization, monotonic timestamp/WAIT_REG_MEM/UCHE packets, existing ring, zero context flush, guards/overflow and unsupported contract rejection; host command stream only");
+
+    // Match the original star draw's 4212 vertices / 1404 primitives. Rotate
+    // authored batches at irregular boundaries to ensure that a new batch
+    // cannot reset this program/context's timestamp or reinitialize scratch.
+    // This exercises actual emitters, not Mesa's scheduler or GPU execution.
+    struct fd_batch batches[2]={{.ctx=&native.base,.draw=&ring,.num_draws=1},
+                               {.ctx=&native.base,.draw=&ring,.num_draws=1}};
+    owned_ring=malloc(80*sizeof(uint32_t));assert(owned_ring);
+    memset(owned_ring,0xa5,80*sizeof(uint32_t));
+    ring.start=owned_ring+8;ring.cur=ring.start;ring.end=ring.start+64;ring.size=256;
+    sequence=0;
+    unsigned words=0,switches=0;
+    const unsigned initial_checks=size_checks,initial_relocs=relocations;
+    for(unsigned primitive=0;primitive<1404;++primitive) {
+        if(primitive && primitive%127==0)++switches;
+        struct fd_batch *current=&batches[switches%2];
+        current->num_draws=primitive%127+1;
+        native.base.batch=current;
+        uint32_t wanted[26];
+        const unsigned length=primitive?21:26;
+        memcpy(wanted,primitive?next_expected:expected,length*sizeof(uint32_t));
+        wanted[primitive?5:10]=primitive+1;
+        wanted[primitive?10:15]=primitive+1;
+        assert(sweet_ordered_image_barrier(&context,1,&sequence));
+        assert(sequence==primitive+1 && ring.cur==ring.start+words+length);
+        assert(!memcmp(ring.start+words,wanted,length*sizeof(uint32_t)));
+        for(unsigned i=0;i<8;++i)assert(owned_ring[i]==0xa5a5a5a5 && ring.end[i]==0xa5a5a5a5);
+        words+=length;
+    }
+    assert(sequence==1404 && words==29489 && switches==11 && grows==9 && flushes==0);
+    assert(size_checks-initial_checks==1404 && relocations-initial_relocs==2809);
+    assert(!memcmp(ring.start,expected,sizeof(expected)));
+    free(owned_ring);owned_ring=NULL;
+    ring.start=stream;ring.end=stream+64;ring.size=256;
+    // The last representable timestamp still emits; the next call must
+    // leave both the ring and sequence unchanged and use the GL fallback.
+    memset(stream,0xa5,sizeof(stream));ring.cur=stream;
+    sequence=UINT32_MAX-1;
+    assert(sweet_ordered_image_barrier(&context,1,&sequence) && sequence==UINT32_MAX);
+    assert(stream[5]==UINT32_MAX && stream[10]==UINT32_MAX && ring.cur==stream+21);
+    assert(!sweet_ordered_image_barrier(&context,1,&sequence) && ring.cur==stream+21);
+    puts("Ordered image barrier PASS: exact pinned A5xx first-use scratch CP initialization, monotonic timestamp/WAIT_REG_MEM/UCHE packets, 1404 primitives/29489 continuous words across 11 authored batch changes and 9 guarded ring growths, existing ring, zero context flush, guards/overflow and unsupported contract rejection; host command stream only");
 }

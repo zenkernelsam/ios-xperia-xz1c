@@ -32,6 +32,8 @@
 
 reproducibility保存原结果摘要、源码锁、精确proof和回收记录；镜像、signed产物、原日志／扫描帧／失败page和光学媒体保持本地。host或离屏结果、局部字节、seed、GPU Completed及回程各自验收。
 
+本次离线补充：[Sony PCM统一会话／rendered EOS](../reproducibility/lilac-pcm-session-offline-20261126.json)记录WSL／Mac七组主机回归及ARM64编译；[原星点规模barrier命令流](../reproducibility/ordered-image-barrier-star-load-host-20261126.json)记录1404次／29489字及guarded ring扩容。两者均无设备操作，实际音频、A540缓存可见性和原壁纸仍按STATUS准入。
+
 ## 关键原阶段
 
 | 阶段 | 原报告 |
@@ -58,6 +60,7 @@ reproducibility保存原结果摘要、源码锁、精确proof和回收记录；
 | 原队列停点与外设整合前10份入口 | [render-buffer 20261125](archive/20261125/render-buffer-selection/original-document-manifest.json) |
 | 新Metal完整验收整合前5份入口 | [reflected-render 20261125](archive/20261125/reflected-render-acceptance/original-document-manifest.json) |
 | XR timestamp候选整合前8份入口 | [ordered-XR 20261126](archive/20261126/ordered-XR-barrier/original-document-manifest.json) |
+| PCM会话／星点规模主机复验整合前5份入口 | [pcm-session 20261126](archive/20261126/pcm-session-and-XR-load/original-document-manifest.json) |
 | Mac旧38份文档与源文件 | [macos-patch-entry](archive/20261123/macos-patch-entry/original-document-manifest.json) |
 
 旧handover／handout与编号手册在docs/archive；原字节与SHA保持。旧整理报告入口：[2026-11-12](ORGANIZATION-2026-11-12.md)、[2026-11-13](ORGANIZATION-2026-11-13.md)、[2026-11-15](ORGANIZATION-2026-11-15.md)。回收与复原统一由ORGANIZATION／LAYOUT说明，不从旧in-flight恢复执行。

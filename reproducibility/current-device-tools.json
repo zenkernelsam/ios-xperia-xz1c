@@ -329,8 +329,11 @@
     "tools/build/inspect_aegir_render_boundary.py": "e668de3bc3a5cf30be556bbb7dd041ef804f3d7d11325a8dacdf8d4bc51fa782",
     "tools/build/test_snapshot_readback.m": "04200816c5f529303eef891fef95a00100474c586289ce0c4dc2ee4f4e075415",
     "tools/build/test_original_cg_input.m": "bf1cd6830f989c1240eaeb6fea9b2f376bfa3c54ca2c3a8debc53a9b58122f61",
-    "tools/build/test_ordered_image_barrier.c": "3ed2cd47004964801b107db3f9cae60b0720d3cc878a32973cdbf9a41afec4ad",
-    "tools/build/check_ordered_image_barrier.py": "f2e38ef649cc44db8e3b42674c894ce6841b279acc00cb273538d7177930b59f"
+    "tools/build/test_ordered_image_barrier.c": "ed0430b08511e48923a2302e12d08370ad219968773725c9548f328c8ab8e8a5",
+    "tools/build/check_ordered_image_barrier.py": "d1de2100c91294bac1a969f801f90a01a12921a3a4d929c68e71a29dbb17bc3b",
+    "tools/build/check_lilac_pcm_session.py": "833efa5266453a54e0205ec6d46e83cc3931c149e4f90e6c85a59712af163394",
+    "tools/build/compile_lilac_pcm_session.cpp": "5d3db06696c3979cb83c7004261a9e12077a25872e95a35ed952b64d32e6b6ee",
+    "tools/build/test_lilac_pcm_playback_session.cpp": "1cd381d250e37d29812dec10a8654521ce859a9fa77ce93f46a7ad726ba3bc38"
   },
   "gpu_sources": {
     "gpu/diagnostics/exception_observe.m": "c20f1600d7ff6964cf711d637f4f5ce68ea93cdf2fd4e00cc46612f4d8c19545",
@@ -472,7 +475,7 @@
     "xnu/support/LilacAsmPcmQueue.h": "3fb9ab59d7ccf0688ecf8974bb1423df4cebe8aa661aa8e56222d0fcb4ac094d",
     "xnu/support/LilacAsmPcmApr.h": "a07282f0f0b323faaf26b4d9d0c79cb49939ccada5c7f1e9993b3e61ec5e4b3d",
     "xnu/support/LilacAsmPcmMap.h": "703ba5e8bc0c2fb8c93a4625d01f0bcfa829b145c7a5f8847254a963bcffdace",
-    "xnu/support/LilacAsmPcmStream.h": "c922efd43e1d80edf657f60d9d0ca4d98b68eaafb9adcb77b3a74c618c1e4610",
+    "xnu/support/LilacAsmPcmStream.h": "bfab29d571a1e5dce5522e4919e5d0e6e9fefeb61b3f378a85a6591af3a59670",
     "xnu/support/LilacAdmPlaybackRoute.h": "8cbba82b1a98755331a3ca297e26ec1d687eb03d8ed841c230d77af317f54c4e",
     "xnu/support/LilacAdmPlaybackDevice.h": "059e9693798b2605bf9ed5bf2941358e21231982ccfa83810db51832ae74cf5c",
     "xnu/support/vermeer_log_ring.h": "90d341a54fc8819e156f70c603acfa883fc1bd560429545709879cff1c1e335f",
@@ -490,7 +493,8 @@
     "tools/maintenance/recycle_macos.swift": "912027443190d69d9f72ccd43388d5e571feb1571fd986b405859aeb07596915",
     "tools/program_cache_inventory.py": "aea5136cb9014ffd72788b365f04ebc8ff2b995a1b7c0b2ac6ca691268e983aa",
     "tools/aegir_snapshot_scope.py": "e530d1563aab83a5367b38cb57e932fbe1d381b3d6014f9fa729e74668e04f43",
-    "xnu/support/LilacAfeSlimbusPlayback.h": "b0727cc8404f45fdbd964517220b664cdd63f29a20fd80db714c8df8e42b147c"
+    "xnu/support/LilacAfeSlimbusPlayback.h": "b0727cc8404f45fdbd964517220b664cdd63f29a20fd80db714c8df8e42b147c",
+    "xnu/support/LilacPcmPlaybackSession.h": "51704cca5d2465e436e3fa1d8ff3c50c5612edd43d71846a355679d2d2e61fc6"
   },
   "v729_private_actual_return_passed": true,
   "v729_private_owner_ready_actual_return_passed": true,

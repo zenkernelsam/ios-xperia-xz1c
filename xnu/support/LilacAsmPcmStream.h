@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: GPL-2.0-only
+ * Sony ASM PCM protocol lifecycle; no DSP power or transport operations. */
 #ifndef LILAC_ASM_PCM_STREAM_H
 #define LILAC_ASM_PCM_STREAM_H
 
@@ -7,6 +9,7 @@
 class LilacAsmPcmStream {
 public:
     enum class State : uint8_t { Closed, Open, Configured, Running, Uncertain };
+    enum : uint32_t { EndOfStream = 0x10bdb, RenderedEndOfStream = 0x10c1c };
 
     LilacAsmPcmStream(uint64_t epoch, uint16_t port)
     {
@@ -19,7 +22,17 @@ public:
     LilacAsmPcmStream &operator=(const LilacAsmPcmStream &) = delete;
 
     State state() const { return queue.quarantined ? State::Uncertain : current; }
-    bool awaiting_reply() const { return command_opcode != 0; }
+    bool awaiting_reply() const { return command_opcode != 0 || (eos_requested && !eos_rendered); }
+    unsigned pending_buffers() const
+    {
+        unsigned count = 0;
+        for (const auto &entry : queue.pending) count += entry.epoch != 0;
+        return count;
+    }
+    bool render_drain_confirmed() const
+    {
+        return state() == State::Running && eos_requested && eos_rendered && !awaiting_reply();
+    }
 
     size_t open(uint32_t verified_topology, void *packet, size_t capacity)
     {
@@ -30,7 +43,12 @@ public:
         ADSP::write16(payload + 6, 16);
         ADSP::write32(payload + 8, verified_topology);
         ADSP::write32(payload + 12, ADSP::PCMFormat);
-        return begin(ADSP::OpenWrite, State::Open, payload, sizeof(payload), packet, capacity);
+        const size_t size = begin(ADSP::OpenWrite, State::Open, payload, sizeof(payload), packet, capacity);
+        if (size) {
+            eos_requested = eos_rendered = false;
+            eos_token = 0;
+        }
+        return size;
     }
 
     size_t configure(void *packet, size_t capacity)
@@ -76,16 +94,28 @@ public:
         if (state() == State::Uncertain) {
             return LILAC_ASM_QUEUE_QUARANTINED;
         }
-        if (state() != State::Running || awaiting_reply() || running_route != &route ||
+        if (state() != State::Running || eos_requested || awaiting_reply() || running_route != &route ||
             !route.confirmed(queue.epoch, queue.port >> 8)) {
             return LILAC_ASM_QUEUE_INVALID;
         }
         return mapping.write(offset, span, bytes, packet, capacity, token);
     }
 
+    size_t end_of_stream(void *packet, size_t capacity)
+    {
+        if (state() != State::Running || eos_requested || pending_buffers()) return 0;
+        const size_t size = begin(EndOfStream, State::Running, nullptr, 0, packet, capacity);
+        if (size) {
+            eos_requested = true;
+            eos_token = queue.last_token;
+        }
+        return size;
+    }
+
     size_t close(void *packet, size_t capacity)
     {
         if (state() == State::Closed || state() == State::Uncertain ||
+            (eos_requested && !render_drain_confirmed()) ||
             mapping.state() == LilacAsmPcmMap::State::Mapping || mapping.state() == LilacAsmPcmMap::State::Unmapping) {
             return 0;
         }
@@ -135,6 +165,17 @@ public:
         if (received.sourcePort != queue.port || received.destinationPort != queue.port) {
             return Result::Stale;
         }
+        // The pinned Sony PCM driver waits for RENDERED_EOS separately from
+        // the basic EOS command response. Either may arrive first; both must
+        // belong to this request before the stream can be closed as drained.
+        if (received.opcode == RenderedEndOfStream) {
+            if (!eos_requested || eos_rendered || received.token != eos_token ||
+                received.type != ADSP::Message::Event || state() != State::Running)
+                return Result::Stale;
+            if (received.bytes) return Result::Invalid;
+            eos_rendered = true;
+            return command_opcode ? Result::NotReady : Result::OK;
+        }
         if (received.opcode == ADSP::WriteDone && state() == State::Running && !awaiting_reply()) {
             const auto result = lilac_asm_pcm_apr_receive(&queue, epoch, packet, bytes);
             return result == LILAC_ASM_QUEUE_RELEASED ? Result::OK :
@@ -169,7 +210,7 @@ public:
             running_route = nullptr;
         }
         command_opcode = 0;
-        return Result::OK;
+        return awaiting_reply() ? Result::NotReady : Result::OK;
     }
 
 private:
@@ -193,6 +234,8 @@ private:
     const LilacAdmPlaybackRoute *running_route = nullptr;
     State current = State::Closed, next_state = State::Closed;
     uint32_t command_opcode = 0;
+    uint32_t eos_token = 0;
+    bool eos_requested = false, eos_rendered = false;
 };
 
 #endif

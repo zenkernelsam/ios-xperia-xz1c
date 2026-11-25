@@ -23,6 +23,12 @@
 python -B tools/build/check_lilac_afe_slimbus.py --output build/新的-afe-host
 ```
 
+[统一播放会话](../reproducibility/lilac-pcm-session-offline-20261126.json)使用同一Sony固定提交`33dc678e…`，把AFE、ADM输出／路由和ASM开流／映射组合成一条有明确确认顺序的协议流程。`LilacPcmPlaybackSession.h`只拥有协议状态；调用方另行提供已经验证的DSP、codec、topology、SLIMbus channel map、参数schema和4KiB对齐36位地址区域。准备好本epoch后依次确认开流、S16／48k格式、映射、AFE配置／启动、COPP、路由及Run，之后才允许四个互不重叠的PCM缓冲。
+
+关流须先停止新写入，等待全部匹配WRITE_DONE，再发送`ASM_DATA_CMD_EOS`（0x10bdb）。Sony `msm-pcm-q6-v2.c`把`ASM_DATA_EVENT_RENDERED_EOS`（0x10c1c）作为独立播放收尾信号；普通EOS回复或`ASM_DATA_EVENT_EOS`（0x10bdd）均不替代它。会话允许准确普通回复和rendered事件先后两种顺序，两个条件都满足才Close→Unmap→关闭COPP→AFE Stop。全部停止确认后才发布region_release_confirmed；发送状态不明、超时或DSP错误后保留区域所有权，不信任晚到成功。这里验证的是协议条件，尚未听到实际声音，固件EOS token回显也仍需核验。
+
+新正式工具`check_lilac_pcm_session.py`从锁定patch重建APR头，WSL和Mac同源七组ASan／UBSan已通过，覆盖准确包／guard、epoch／token、Accepted／typed回复、四缓冲排空、EOS两种顺序、全部13步命令错误及在途WRITE错误。Mac `--arm64-object`另编译`compile_lilac_pcm_session.cpp`的全部入口，产物为ARM64 Mach-O，未链接内核或接通传输。复现命令见[BUILD](BUILD.md)，新音频会话和流support保留GPL-2.0-only标识，固定参考Git blob与COPYING列于报告。
+
 [PCM 负载核验](../reproducibility/lilac-asm-pcm-offline-20261124.json)实现了无时间戳、双声道 16 位 PCM 的 `WRITE_V2` 负载编码。`WRITE_DONE_V2` 必须匹配端口、token、连接代次、缓冲区地址和映射句柄，且状态为零，才能判为 DSP 消费完成。主机测试覆盖准确字节、越界和外来回复。当前代码不映射内存或发包。复验可在 WSL 用 `cc -std=c11 -Wall -Wextra -Werror -pedantic -fsanitize=address,undefined -fno-sanitize-recover=all -no-pie tools/build/test_lilac_asm_pcm.c -o build/新的-pcm-test` 编译并运行。
 
 [PCM 在途队列](../reproducibility/lilac-asm-pcm-queue-offline-20261124.json)最多保留四个待确认缓冲区。DSP 地址范围重叠时拒绝再次提交；匹配的成功完成只释放一次，旧连接或重复完成不会释放新提交。DSP 错误、超时或发送状态不明后，连接应停止接收新请求并保留待确认缓冲区，直到独立确认 DSP 不再访问它们。主机复验沿用上面的编译选项，将输入换成 `tools/build/test_lilac_asm_pcm_queue.c`，输出使用新路径。

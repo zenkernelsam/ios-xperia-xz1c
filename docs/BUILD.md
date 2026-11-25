@@ -185,9 +185,21 @@ python3 -B tools/build/build_metal_library.py --ram-package build/my-gles/ram --
 
 完整observer沿用前述native21参数、`--cif10-png-reference --program-cache-inventory`；只读inventory不启用空primer。新RAM自身CPU、同GLES完整9组先验、完整native21／PNG6通过后，再构建同库／新proof的short原Aegir队列观察。这里的host和新signed产物不自动获得实机准入。固定原调用点可用`inspect_aegir_render_boundary.py --sparse <gl5> --symbols <A2S> --output <build下新JSON>`复验，不展开16GB镜像，不发布原字节。
 
-## AFE协议离线复现
+## 音频协议离线复现
 
 `check_lilac_afe_slimbus.py --output build/新的-afe-host`从正式patch／source-lock materialize原APR头，再编译运行真实ASan／UBSan包字节与状态用例；Windows用WSL Ubuntu-22.04，Mac直接host clang。它不连接传输或启动DSP。实际codec channel map、参数schema与物理声音另行验收，见[Lilac外设](LILAC-PERIPHERALS.md)。
+
+统一会话工具在同一套锁定APR头下分别编译PCM负载、队列、APR、映射、流、AFE和session七组用例，不依赖历史build展开树。新输出目录须不存在。Windows调用WSL Ubuntu-22.04；Mac可同时用实际iphoneos SDK编译所有会话入口的ARM64对象：
+
+```powershell
+python -B tools/build/check_lilac_pcm_session.py --output build/my-pcm-session
+```
+
+```sh
+python3 -B tools/build/check_lilac_pcm_session.py --arm64-object --output build/my-pcm-session-arm64
+```
+
+manifest绑定全部真实support／test／builder源、原APR头、命令／日志SHA及可选ARM64对象。会话要求独立确认本epoch的DSP／codec就绪，EOS普通回复与RENDERED_EOS均到达后才关流；超时或发送状态不明由串行transport owner标记uncertain并保留区域。该工具不连接硬件，不分配／释放物理页，不加入内核；主机／ARM64结果不准入实际音频启动。
 
 ## 产物和历史手册
 

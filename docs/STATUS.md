@@ -29,6 +29,8 @@ r1 GLES `d1f5075c…`只完成CPU／GLES9，未完成native。r2增加每program
 
 主机调度入口wait_trial_slot只等外部工具退出且空闲30秒，再单个controller；可用--wait-before-guard120在任何guard mutation前重复只读进程预检，guard／boot不重复。原Windows路径空格、进程竞态、MemoryError和Mac SSH拒绝均保留；同一native／PNG原run由完整verifier一次派生两份准确证明，未缓存旧验证。原记录见trial-slot／native-png报告与OPERATIONS。
 
+[本次原星点规模主机复验](../reproducibility/ordered-image-barrier-star-load-host-20261126.json)直接编译固定Mesa emitter，连续生成1404次barrier／29489字／117956 B，逐段核对指令、11次模拟批次切换与9次带guard的ring扩容；timestamp保持1→1404，最终UINT32_MAX及溢出拒绝也通过ASan／UBSan。这轮未改生产barrier源码或重建r4库，四份准入包仍未投递。模拟ring／批次不验证实际Mesa调度、A540缓存可见性、XR像素或壁纸耗时。
+
 ## 当前输入与准入
 
 | 输入 | 精确身份 | 实际范围 |
@@ -78,6 +80,8 @@ v731多靴在首帧后读到WLED模块启用、双灯串／调制器mask3、faul
 
 ADSP stage3只核验固件和AP端准备，没有启动DSP。ASM PCM／映射／APR／ADM路由与COPP层已完成离线模拟和ARM64编译；[本次主机复验](../reproducibility/cache-budget-peripheral-host-validation-20261125.json)保持实际源码。实际传输、AFE、Tasha／Tavil选用和声音未验。Wi-Fi／蓝牙也没有扫描、连接或传输证据。shared-event selectors36／37／38／45仍零输出，presentedTime仍0，未实现项保持明确。
 
+[统一PCM会话](../reproducibility/lilac-pcm-session-offline-20261126.json)把已锁定Sony AFE／ADM／ASM组件串到同一个epoch：开流／格式／映射→AFE配置／启动→COPP／路由→Run，全部准确回复后才允许PCM写入。关流先排空四个在途缓冲，再分别等待EOS普通回复与RENDERED_EOS，最后Close／Unmap／关闭COPP／AFE Stop；WRITE_DONE不冒充声音已播放完。WSL和Mac同源七组ASan／UBSan、两种EOS到达顺序及全部13步命令错误通过，iOS ARM64对象已编译但未链接内核。实际DSP／codec／APR传输和物理声音仍未接通，固件token回显与schema／channel map仍需实机确认。
+
 ## 复现、整理和操作
 
 正式源码、构建与工具只在本仓库；[BUILD](BUILD.md)给固定Mesa、AIR重建／168个LLVM导入、RAM／原snapshot／AFE复现，[OPERATIONS](OPERATIONS.md)给准入与返回，[LAYOUT](LAYOUT.md)给本地SDK／gl5／救砖输入与恢复。全新gl5首次启动仍未独立验收。各失败包raw／完整payload和只读source-map保留。
@@ -85,6 +89,8 @@ ADSP stage3只核验固件和AP端准备，没有启动DSP。ASM PCM／映射／
 本轮[Mac349项／631文件／1070475061 B](../reproducibility/render-buffer-close-out-macos-native-trash-20261125.json)进原生Trash，967保护文件一致，28份HFS从保留blob复算；[Windows7项／10文件／4780776 B](../reproducibility/render-buffer-close-out-windows-native-recycle-20261125.json)进原生回收站。两套[Ubuntu垃圾桶为空](../reproducibility/render-buffer-close-out-wsl-trash-audit-20261125.json)，Windows／Mac未清空。10份整合前原文与SHA在[本轮归档](archive/20261125/render-buffer-selection/original-document-manifest.json)；更早整理与可恢复Git stash由[ORGANIZATION](ORGANIZATION.md)索引。
 
 本轮[Mac311项／521文件／1019811972 B](../reproducibility/ordered-XR-macos-native-trash-20261126.json)进原生Trash，731保护文件保持；[Windows9项／21文件／585102 B](../reproducibility/ordered-XR-windows-native-recycle-20261126.json)进回收站。[Ubuntu Trash为空](../reproducibility/ordered-XR-wsl-trash-audit-20261126.json)，未清空Windows／Mac。新候选、原失败／日志／proof和signed库保留，源代码与复现工具只进入正式Git。
+
+PCM与原星点规模主机收尾另回收[Mac51项／97文件／3430430 B](../reproducibility/pcm-session-and-XR-load-macos-native-trash-20261126.json)、[Windows31项／33文件／45242472 B](../reproducibility/pcm-session-and-XR-load-windows-native-recycle-20261126.json)，WSL共享build测试程序进入Windows回收站。目标和保护文件SHA一致，原构建／test日志、manifest、源码备份及r4候选保留；[两套Ubuntu Trash为空](../reproducibility/pcm-session-and-XR-load-wsl-trash-audit-20261126.json)。未永久删除或清空垃圾桶，五份入口原文先归档，由ORGANIZATION／INDEX索引。
 
 正式补充主提交`4dc552dba56d156496fea0d0b1919a0de2635893`已推送origin/main，[r4 Mac同步](../reproducibility/ordered-XR-initialized-git-sync-20261126.json)18份变更逐字节一致、source验证通过，原Mac修改以未删除stash`caea8028…`保留。此前[94份变更同步](../reproducibility/ordered-XR-formal-git-sync-20261126.json)原记录保持。Windows／WSL使用同一正式目录，原sampler fixture字节保持。反射Metal组合已完整验收；当前HEAD还有待验的XR barrier候选，不冒充完整生产UI。更早同步与stash由ORGANIZATION索引。
 

@@ -1,5 +1,9 @@
 # 本周整理与文档整合 — 2026-11-26
 
+本次PCM统一会话与原星点规模主机验证收尾：[Mac51项／97文件／3430430 B](../reproducibility/pcm-session-and-XR-load-macos-native-trash-20261126.json)移入原生Trash，[Windows31项／33文件／45242472 B](../reproducibility/pcm-session-and-XR-load-windows-native-recycle-20261126.json)移入原生回收站，包含WSL在正式共享build生成的已结束测试程序和TEMP源码传输包。回收目标逐文件SHA一致，Mac114个和Windows9个保护文件保持；候选签名库／准入包、冻结内核、原manifest／编译／test日志和源码备份保留。移动仍占磁盘，未清空垃圾桶。
+
+两套[Ubuntu Trash实查为空](../reproducibility/pcm-session-and-XR-load-wsl-trash-audit-20261126.json)，root和所有/home用户均核对。Windows回收凭据首次核验遇TEMP短路径别名，按准确父目录解析后逐字节确认；首次默认WSL用户无法读root Trash，随后只读root审计通过，均没有重新执行回收或永久删除。整合前[五份入口原文](archive/20261126/pcm-session-and-XR-load/original-document-manifest.json)原字节／SHA已保存。音频协议、验证工具、GPU命令流测试及报告只维护在正式仓库；本轮设备操作0。
+
 反射Metal新库完成native21／PNG6、原壁纸失败与XR同步候选这一轮收尾追加[Mac311项／521文件／1019811972 B](../reproducibility/ordered-XR-macos-native-trash-20261126.json)，731保护文件SHA保持，30份HFS从保留blob完整重建。signed库、候选／失败包、raw／proof、固定Mesa归档、AIR对象／恢复配方和pause保持；回收host程序／dSYM／object及重复传输材料。
 
 [Windows9项／21文件／585102 B](../reproducibility/ordered-XR-windows-native-recycle-20261126.json)包括TEMP传输包和本轮host fixtures，逐SHA核对原生回收位置；两套[Ubuntu Trash为空](../reproducibility/ordered-XR-wsl-trash-audit-20261126.json)，Windows／Mac未清空，回收仍占磁盘。新增host fixture从TEMP分配，完成后由原生回收流程处理。整合前5份[reflected-render原文](archive/20261125/reflected-render-acceptance/original-document-manifest.json)与8份[ordered-XR原文](archive/20261126/ordered-XR-barrier/original-document-manifest.json)字节与SHA保持。
