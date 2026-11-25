@@ -1,0 +1,440 @@
+{
+  "version": 731,
+  "mode": "gpu",
+  "token": "01fa0a69a8ce868f",
+  "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+  "image_sha256": "66afc1ead5d89ca92b00319ad1bcb2135041f2f14f204285266a1092abe1098f",
+  "log_sha256": "581d54a45a82e159cea1b2cf562b288c7b78760ed06b1fbfe267c9569d1e7899",
+  "return_complete": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "01fa0a69a8ce868f",
+    "checkpoint_bytes": 1890905,
+    "log_bytes": 1896142,
+    "log_sha256": "581d54a45a82e159cea1b2cf562b288c7b78760ed06b1fbfe267c9569d1e7899",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      5,
+      82,
+      84
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 40.312000000150874,
+  "ram_library_binding": {
+    "library_sha256": "6efabfc0627a8818a8c4c45665459cd33d8ee814f2e50a3f3cdc4813bb254325",
+    "library_bytes": 14801120,
+    "library_fnv64": "2181c45c9f21ee6c",
+    "blob_sha256": "cf2dae517c3f4c6b2b77ccb480f00069dcc5d366eecc30a8f499df76642c5d13",
+    "raw_sha256": "22a9ebef398bb6320c5830639b9cf3feee3c2a9ecdd82e738b29d1d502ef5cb5",
+    "manifest_sha256": "1feaf85d33002097259260b1cb801a66fc13895f4b665a6037cf15e1c26558e3"
+  },
+  "serial_capture": {
+    "revision": 1,
+    "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+    "event_log_sha256": "787204b471962237a8f92c6defd2aaed3cc2bf6eaa2b17186dd8b20770289491",
+    "raw_sha256": "581d54a45a82e159cea1b2cf562b288c7b78760ed06b1fbfe267c9569d1e7899",
+    "serial_port": "COM17",
+    "dtr_low_through_open": true,
+    "raw_log_before_stream": true,
+    "one_continuous_current_boot_stream": true,
+    "replay_commands": 0,
+    "old_failure_not_reclassified": true
+  },
+  "source": "Windows TEMP/lilac-v731-aegir-logwrite-r3-gpu-live-20261125",
+  "original_result": "PASS",
+  "pipeline_complete_samples": 31,
+  "pipeline_incomplete_samples": 0,
+  "postdraw_complete_samples": 64,
+  "postdraw_incomplete_samples": 0,
+  "snapshot_returns": [
+    {
+      "pid": 288,
+      "tid": 3566,
+      "call": 6,
+      "root": 6,
+      "depth": 1,
+      "api": "snapshot",
+      "begin_ns": 424089124218,
+      "original_forwarded": true,
+      "complete": true,
+      "since_snapshot_observer_init_ns": 3119819583,
+      "object_tag": "0x100c11530",
+      "wall_ns": 1891467864,
+      "thread_cpu_ns": 779815729,
+      "cpu_valid": true,
+      "outcome": "return",
+      "output_bytes": 0,
+      "returned_nil": false,
+      "original_behavior_preserved": true
+    },
+    {
+      "pid": 288,
+      "tid": 3566,
+      "call": 21,
+      "root": 21,
+      "depth": 1,
+      "api": "snapshot",
+      "begin_ns": 429887558489,
+      "original_forwarded": true,
+      "complete": true,
+      "since_snapshot_observer_init_ns": 8918253854,
+      "object_tag": "0x100d110c0",
+      "wall_ns": 9674365261,
+      "thread_cpu_ns": 9039488177,
+      "cpu_valid": true,
+      "outcome": "return",
+      "output_bytes": 0,
+      "returned_nil": false,
+      "original_behavior_preserved": true
+    },
+    {
+      "pid": 288,
+      "tid": 3566,
+      "call": 34,
+      "root": 34,
+      "depth": 1,
+      "api": "snapshot",
+      "begin_ns": 443374037708,
+      "original_forwarded": true,
+      "complete": true,
+      "since_snapshot_observer_init_ns": 22404733073,
+      "object_tag": "0x100c237b0",
+      "wall_ns": 1086113334,
+      "thread_cpu_ns": 317914114,
+      "cpu_valid": true,
+      "outcome": "return",
+      "output_bytes": 0,
+      "returned_nil": false,
+      "original_behavior_preserved": true
+    },
+    {
+      "pid": 288,
+      "tid": 3566,
+      "call": 46,
+      "root": 46,
+      "depth": 1,
+      "api": "snapshot",
+      "begin_ns": 445845466666,
+      "original_forwarded": true,
+      "complete": true,
+      "since_snapshot_observer_init_ns": 24876162031,
+      "object_tag": "0x100e13940",
+      "wall_ns": 3624602448,
+      "thread_cpu_ns": 2994396250,
+      "cpu_valid": true,
+      "outcome": "return",
+      "output_bytes": 0,
+      "returned_nil": false,
+      "original_behavior_preserved": true
+    }
+  ],
+  "PNG_returns": [
+    {
+      "pid": 288,
+      "tid": 3566,
+      "call": 15,
+      "root": 15,
+      "depth": 1,
+      "api": "png",
+      "begin_ns": 425985745520,
+      "original_forwarded": false,
+      "complete": true,
+      "since_snapshot_observer_init_ns": 5016440885,
+      "png_input": {
+        "image_nil": false,
+        "getters_available": true,
+        "getter_error": false,
+        "image_class": "UIImage",
+        "pixels_read": false,
+        "profile_bytes_read": false,
+        "ui": {
+          "width_points": "360",
+          "height_points": "640",
+          "scale": "2",
+          "orientation": 0,
+          "metadata_getter_wall_ns": 39166,
+          "finite_numbers": true
+        },
+        "cgimage": {
+          "nil": false,
+          "width": 720,
+          "height": 1280,
+          "bits_per_component": 10,
+          "bits_per_pixel": 32,
+          "pitch": 2880,
+          "bitmap_info": "0x42000",
+          "alpha_info": 0,
+          "rendering_intent": 0
+        },
+        "color": {
+          "nil": false,
+          "model": 1,
+          "components": 3,
+          "wide_gamut": true,
+          "extended_range": true,
+          "name_available": true,
+          "name_sanitized": false,
+          "name": "kCGColorSpaceExtendedSRGB"
+        }
+      },
+      "png_route": {
+        "route": "ImageIO_UP",
+        "qualified": true,
+        "original_forwarded": false,
+        "source_sha256": "61031999d4ff1d9a2c9c6a564cf229a82c3b9c49998d752ae0bd4d6fd18e1e92",
+        "pixels_profile_metadata_native_prerequisite": true
+      },
+      "wall_ns": 721400157,
+      "thread_cpu_ns": 719486562,
+      "cpu_valid": true,
+      "outcome": "return",
+      "output_bytes": 27208,
+      "returned_nil": false,
+      "original_behavior_preserved": false
+    },
+    {
+      "pid": 288,
+      "tid": 3566,
+      "call": 30,
+      "root": 30,
+      "depth": 1,
+      "api": "png",
+      "begin_ns": 439565714895,
+      "original_forwarded": false,
+      "complete": true,
+      "since_snapshot_observer_init_ns": 18596410260,
+      "png_input": {
+        "image_nil": false,
+        "getters_available": true,
+        "getter_error": false,
+        "image_class": "UIImage",
+        "pixels_read": false,
+        "profile_bytes_read": false,
+        "ui": {
+          "width_points": "360",
+          "height_points": "640",
+          "scale": "2",
+          "orientation": 0,
+          "metadata_getter_wall_ns": 15365,
+          "finite_numbers": true
+        },
+        "cgimage": {
+          "nil": false,
+          "width": 720,
+          "height": 1280,
+          "bits_per_component": 10,
+          "bits_per_pixel": 32,
+          "pitch": 2880,
+          "bitmap_info": "0x42000",
+          "alpha_info": 0,
+          "rendering_intent": 0
+        },
+        "color": {
+          "nil": false,
+          "model": 1,
+          "components": 3,
+          "wide_gamut": true,
+          "extended_range": true,
+          "name_available": true,
+          "name_sanitized": false,
+          "name": "kCGColorSpaceExtendedSRGB"
+        }
+      },
+      "png_route": {
+        "route": "ImageIO_UP",
+        "qualified": true,
+        "original_forwarded": false,
+        "source_sha256": "61031999d4ff1d9a2c9c6a564cf229a82c3b9c49998d752ae0bd4d6fd18e1e92",
+        "pixels_profile_metadata_native_prerequisite": true
+      },
+      "wall_ns": 311387135,
+      "thread_cpu_ns": 309484896,
+      "cpu_valid": true,
+      "outcome": "return",
+      "output_bytes": 27208,
+      "returned_nil": false,
+      "original_behavior_preserved": false
+    },
+    {
+      "pid": 288,
+      "tid": 3566,
+      "call": 43,
+      "root": 43,
+      "depth": 1,
+      "api": "png",
+      "begin_ns": 444462992708,
+      "original_forwarded": false,
+      "complete": true,
+      "since_snapshot_observer_init_ns": 23493688073,
+      "png_input": {
+        "image_nil": false,
+        "getters_available": true,
+        "getter_error": false,
+        "image_class": "UIImage",
+        "pixels_read": false,
+        "profile_bytes_read": false,
+        "ui": {
+          "width_points": "360",
+          "height_points": "640",
+          "scale": "2",
+          "orientation": 0,
+          "metadata_getter_wall_ns": 49479,
+          "finite_numbers": true
+        },
+        "cgimage": {
+          "nil": false,
+          "width": 720,
+          "height": 1280,
+          "bits_per_component": 10,
+          "bits_per_pixel": 32,
+          "pitch": 2880,
+          "bitmap_info": "0x42000",
+          "alpha_info": 0,
+          "rendering_intent": 0
+        },
+        "color": {
+          "nil": false,
+          "model": 1,
+          "components": 3,
+          "wide_gamut": true,
+          "extended_range": true,
+          "name_available": true,
+          "name_sanitized": false,
+          "name": "kCGColorSpaceExtendedSRGB"
+        }
+      },
+      "png_route": {
+        "route": "ImageIO_UP",
+        "qualified": true,
+        "original_forwarded": false,
+        "source_sha256": "61031999d4ff1d9a2c9c6a564cf229a82c3b9c49998d752ae0bd4d6fd18e1e92",
+        "pixels_profile_metadata_native_prerequisite": true
+      },
+      "wall_ns": 385960677,
+      "thread_cpu_ns": 385873073,
+      "cpu_valid": true,
+      "outcome": "return",
+      "output_bytes": 27208,
+      "returned_nil": false,
+      "original_behavior_preserved": false
+    }
+  ],
+  "namespace": {
+    "token": "01fa0a69a8ce868f",
+    "complete_calls": 8,
+    "records": [
+      {
+        "pid": 288,
+        "call": 1,
+        "directory": "/var/mobile/Library/Caches/sweet-aegir-31e2a8bef37463f45aa31d45f7b1fdcf"
+      },
+      {
+        "pid": 288,
+        "call": 2,
+        "directory": "/var/mobile/Library/Caches/sweet-aegir-31e2a8bef37463f45aa31d45f7b1fdcf"
+      },
+      {
+        "pid": 288,
+        "call": 3,
+        "directory": "/var/mobile/Library/Caches/sweet-aegir-31e2a8bef37463f45aa31d45f7b1fdcf"
+      },
+      {
+        "pid": 288,
+        "call": 4,
+        "directory": "/var/mobile/Library/Caches/sweet-aegir-31e2a8bef37463f45aa31d45f7b1fdcf"
+      },
+      {
+        "pid": 288,
+        "call": 5,
+        "directory": "/var/mobile/Library/Caches/sweet-aegir-31e2a8bef37463f45aa31d45f7b1fdcf"
+      },
+      {
+        "pid": 288,
+        "call": 6,
+        "directory": "/var/mobile/Library/Caches/sweet-aegir-31e2a8bef37463f45aa31d45f7b1fdcf"
+      },
+      {
+        "pid": 288,
+        "call": 7,
+        "directory": "/var/mobile/Library/Caches/sweet-aegir-31e2a8bef37463f45aa31d45f7b1fdcf"
+      },
+      {
+        "pid": 288,
+        "call": 8,
+        "directory": "/var/mobile/Library/Caches/sweet-aegir-31e2a8bef37463f45aa31d45f7b1fdcf"
+      }
+    ],
+    "namespace_identity": "31e2a8bef37463f45aa31d45f7b1fdcf9fb502ab2d83686b885b39c244329962",
+    "original_caller_verified": true,
+    "old_files_preserved": true,
+    "original_UI_or_cache_pixels_not_proven": true
+  },
+  "scanout": {
+    "id": 1,
+    "token": "01fa0a69a8ce868f",
+    "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+    "image_sha256": "66afc1ead5d89ca92b00319ad1bcb2135041f2f14f204285266a1092abe1098f",
+    "binding": {
+      "protocol": 1,
+      "width": 720,
+      "height": 1280,
+      "stride": 2160,
+      "format": "BGR888",
+      "codec": "PRLE1",
+      "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+      "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+      "runtime_source_sha256": "2c566a962d61e7b8aebfc88be54d496878821a4c0f5bb439f505198b16adfba2"
+    },
+    "begin": {
+      "token": "01fa0a69a8ce868f",
+      "id": "1",
+      "width": "720",
+      "height": "1280",
+      "stride": "2160",
+      "format": "BGR888",
+      "bytes": "2764800",
+      "codec": "PRLE1",
+      "encoded": "438987",
+      "raw_fnv": "71954ebc9619e09d",
+      "enc_crc": "e06d8784",
+      "vsync": "7909",
+      "timestamp": "9088559219",
+      "copy_ticks": "7590714",
+      "power_off": "0",
+      "source_checked": "1",
+      "source_match": "1"
+    },
+    "scan": {
+      "token": "01fa0a69a8ce868f",
+      "id": "1",
+      "pa": "0x9d400000",
+      "map_pa": "0x9d400000",
+      "map_bytes": "2764800",
+      "size": "0x50002d0",
+      "img": "0x50002d0",
+      "xy": "0",
+      "out": "0x50002d0",
+      "outxy": "0",
+      "fmt": "0x2243f",
+      "unpack": "0x20001",
+      "op": "0x80000000",
+      "qop": "0",
+      "ctl": "0x20020",
+      "start": "0",
+      "before_after": "1"
+    },
+    "blocks": 3430,
+    "raw_file": "scanout-00000001.bgr",
+    "png_file": "scanout-00000001.png",
+    "raw_sha256": "b98a8fe4626ba985f7c5d9728cb50925648ee2d775f4d9175cf9442d75811155",
+    "png_sha256": "1a235ea28a2aab72f7ef53c5354c7384ac1a91bfac871757e35348024bcba05e",
+    "pixel_values_preserved": true,
+    "verified": true,
+    "optical_panel_verified": false
+  },
+  "original_lock_screen_background_still_black": true,
+  "worker_closed": true,
+  "original_wallpaper_not_verified": true
+}

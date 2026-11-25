@@ -6,6 +6,7 @@ from program_request import specification as request_specification,header as req
 from program_cache_scope import specification as cache_scope_specification,header as cache_scope_header
 from program_cache_inventory import specification as inventory_specification,header as inventory_header
 from png_encoder_proof import validate as validate_png,header as png_header
+from aegir_snapshot_scope import specification as aegir_scope_specification,header as aegir_scope_header
 ROOT=Path(__file__).resolve().parents[1]
 API='a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3'
 HELPER='e65bdc7b70d098725918c637cc8cb1c25a8a544186d0f4468b399fda52024898'
@@ -60,9 +61,54 @@ def load(folder,expected=None):
             if observer.get('probe_startup_revision'):
                 assert observer['probe_startup_revision']==1 and observer['actual_startup_readiness_host_asan_ubsan_passed']
                 sources.add('gpu/diagnostics/MetalProbeStartup.h')
+            if observer.get('observer_log_write_revision'):
+                sources.add('gpu/sweetgl/LogWriteAll.h')
+                assert observer['observer_log_write_revision']==1 and observer['observer_log_partial_EINTR_errno_host_passed']
+                assert re.fullmatch('[0-9a-f]{64}',observer['observer_log_host_source_sha256'])
             if observer.get('original_pipeline_observer'):
                 sources.add('gpu/diagnostics/MetalPipelineObserve.h')
                 assert observer.get('registration_only') and observer['actual_factory_return_error_pointer_exception_forwarding_host_passed']
+            if observer.get('poster_snapshot_gate_observer'):
+                sources.add('gpu/diagnostics/PosterSnapshotGateObserve.h')
+                assert observer.get('registration_only') and observer.get('snapshot_method_observer')
+                revision=observer['poster_snapshot_gate_revision']
+                assert revision in (1,2) and observer['poster_snapshot_gate_methods']==(5 if revision==1 else 7)
+                assert observer['poster_snapshot_gate_per_API_calls']==8 and observer['poster_snapshot_gate_max_calls']==(40 if revision==1 else 56) and observer['poster_snapshot_gate_max_replies']==64
+                assert observer['poster_snapshot_gate_extra_getters_or_GPU_work'] is False and observer['poster_snapshot_gate_original_callback_copied_and_forwarded']
+                assert observer['poster_snapshot_gate_host_ASan_UBSan_ABI_bits_nil_throw_errno_deferred_callbacks_passed'] and observer['poster_snapshot_gate_actual_host_decoder_passed']
+                if revision==2:
+                    assert observer['poster_snapshot_gate_bounded_original_path_metadata'] and observer['poster_snapshot_gate_path_bytes_max']==256
+                assert re.fullmatch('[0-9a-f]{64}',observer['poster_snapshot_gate_host_source_sha256'])
+                assert re.fullmatch('[0-9a-f]{64}',observer['poster_snapshot_gate_decoder_source_sha256'])
+            if observer.get('loaded_snapshot_PNG_export'):
+                sources|={'gpu/diagnostics/LoadedSnapshotPNGExport.h','gpu/diagnostics/OriginalSnapshotPNGExport.h'}
+                assert observer.get('poster_snapshot_gate_revision')==2 and not observer.get('original_snapshot_PNG_export')
+                assert observer['loaded_snapshot_PNG_export_revision'] in (1,2) and observer['loaded_snapshot_PNG_export_once']
+                if observer['loaded_snapshot_PNG_export_revision']==2:assert observer['loaded_snapshot_PNG_export_codec']=='ZLIB1'
+                assert observer['loaded_snapshot_PNG_export_max_bytes']==65536 and observer['loaded_snapshot_PNG_export_read_only']
+                assert observer['loaded_snapshot_PNG_export_exact_path_size_signature_nofollow_host_passed']
+                assert re.fullmatch('[0-9a-f]{64}',observer['loaded_snapshot_PNG_export_host_source_sha256'])
+            if observer.get('aegir_snapshot_cache_scope'):
+                sources|={'gpu/compat/AegirSnapshotCacheScope.h','tools/aegir_snapshot_scope.py'}
+                assert observer.get('registration_only') and observer.get('snapshot_method_observer') and observer.get('png_filter_encoder')
+                spec=aegir_scope_specification(observer['metal_resources'],observer['png_imageio_encoder_source_sha256'],
+                    observer['source_files']['gpu/compat/AegirSnapshotCacheScope.h'],
+                    observer['source_files']['gpu/diagnostics/SnapshotRenderQueueObserve.h']
+                    if observer.get('snapshot_render_queue_observer') else None)
+                spec['identity_header_sha256']=sha(aegir_scope_header(spec))
+                assert spec==observer['aegir_snapshot_cache_scope']
+                assert observer['aegir_snapshot_scope_exact_caller_UUID_and_preserved_old_files_host_passed']
+                assert observer['aegir_snapshot_scope_wrong_root_mode_symlink_and_other_URLs_host_passed']
+                assert re.fullmatch('[0-9a-f]{64}',observer['aegir_snapshot_scope_host_source_sha256'])
+            if observer.get('snapshot_render_queue_observer'):
+                sources.add('gpu/diagnostics/SnapshotRenderQueueObserve.h')
+                assert observer.get('registration_only') and observer.get('snapshot_method_observer')
+                assert observer.get('aegir_snapshot_cache_scope') and observer['snapshot_render_queue_revision']==1
+                assert observer['snapshot_render_queue_draws_max']==8 and observer['snapshot_render_queue_results_max']==8
+                assert observer['snapshot_render_queue_original_arguments_errno_throws_and_terminal_getters_host_passed']
+                assert observer['snapshot_render_queue_no_extra_GPU_work'] and observer['snapshot_render_queue_actual_host_decoder_passed']
+                assert re.fullmatch('[0-9a-f]{64}',observer['snapshot_render_queue_host_source_sha256'])
+                assert re.fullmatch('[0-9a-f]{64}',observer['snapshot_render_queue_decoder_source_sha256'])
             if observer.get('original_request_observer'):
                 sources.add('gpu/diagnostics/MetalRequestObserve.h')
                 assert observer.get('registration_only') and observer.get('original_postdraw_observer')
@@ -110,6 +156,14 @@ def load(folder,expected=None):
                     assert observer['png_imageio_encoder_source_sha256']==observer['source_files']['gpu/compat/PNGImageIOEncoder.h']
                     p=validate_png(observer['png_encoder_prior_proof'],observer['png_imageio_encoder_source_sha256'],observer['metal_resources']['gles_library_sha256'],observer['metal_resources']['library_sha256'])
                     assert observer['png_encoder_proof_header_sha256']==sha(png_header(p)) and re.fullmatch('[0-9a-f]{64}',observer['png_encoder_host_test_source_sha256'])
+            if observer.get('original_snapshot_PNG_export'):
+                sources.add('gpu/diagnostics/OriginalSnapshotPNGExport.h')
+                assert observer.get('original_postdraw_observer') and observer.get('snapshot_method_observer')
+                assert observer['original_snapshot_PNG_export_revision'] in (1,2) and observer['original_snapshot_PNG_export_max_bytes']==65536
+                if observer['original_snapshot_PNG_export_revision']==2:assert observer['original_snapshot_PNG_export_codec']=='ZLIB1'
+                assert observer['original_snapshot_PNG_export_chunk_bytes']==48 and observer['original_snapshot_PNG_export_once']
+                assert observer['original_snapshot_PNG_export_background_no_extra_draw'] and observer['original_snapshot_PNG_export_actual_bytes_host_ASan_UBSan_passed']
+                assert re.fullmatch('[0-9a-f]{64}',observer['original_snapshot_PNG_export_host_source_sha256'])
             if observer.get('snapshot_method_observer'):
                 sources.add('gpu/diagnostics/SnapshotMethodObserve.h')
                 assert observer.get('original_postdraw_observer') and observer['snapshot_method_observer_revision']==1
@@ -125,7 +179,8 @@ def load(folder,expected=None):
                 assert observer['cif10_reference_author_pixels_only'] and observer['cif10_reference_original_UIImage_API']
                 assert observer['cif10_reference_converter_not_installed'] and observer['cif10_reference_host_fixture_bounds_nil_throw_input_passed']
                 if observer.get('cif10_export_pacing_revision'):
-                    assert observer['cif10_export_pacing_revision']==1 and observer['cif10_export_pacing_microseconds']==1000 and observer['cif10_export_ranges_emitted_once']
+                    pacing=observer['cif10_export_pacing_revision']
+                    assert pacing in (1,2) and observer['cif10_export_pacing_microseconds']==(1000 if pacing==1 else 3000) and observer['cif10_export_ranges_emitted_once']
                 assert re.fullmatch('[0-9a-f]{64}',observer['cif10_reference_host_test_source_sha256'])
                 if observer['cif10_reference_revision']>=2:
                     sources.add('gpu/diagnostics/CIF10VImageCompare.h')
@@ -270,6 +325,15 @@ def load(folder,expected=None):
     if 'metal_resources' in m:
         names.add('MetalResources.dylib');resources=m['metal_resources']
         assert (m['exception_observer'].get('metal_resource_probe') or m['exception_observer'].get('registration_only')) and m['exception_observer']['metal_resources']==resources
+        if resources.get('native_reflected_render_buffer_selection'):
+            assert resources['render_buffer_selection_revision']==1
+            assert resources['unused_encoder_bindings_retained_and_not_consumed'] and resources['missing_required_render_buffers_rejected']
+            if not observer.get('registration_only'):
+                assert observer['render_unused_buffer_binding_probe_revision'] in (1,2)
+                assert observer['render_unused_buffer_binding_probe_vertex_slot']==7 and observer['render_unused_buffer_binding_probe_fragment_slot']==7
+                assert observer['render_unused_buffer_binding_probe_actual_target_and_guard_bytes_required']
+                if observer['render_unused_buffer_binding_probe_revision']==2:
+                    assert observer['render_pipeline_switch_retains_unused_fragment_slot0']
         if resources.get('native_static_half_bits'):assert observer.get('registration_only') or observer.get('AIR_static_half_probe'),'New static-half RAM package lacks its own probe'
         if resources.get('native_Clear_shader_cache'):assert observer.get('registration_only') or observer.get('Clear_cache_probe'),'New Clear cache RAM package lacks its own repeated-clear GPU probe'
         if resources.get('native_IR3_variant_cache'):assert observer.get('registration_only') or observer.get('IR3_cache_probe'),'New IR3 cache RAM package lacks its own hardware-restore GPU probe'

@@ -1,0 +1,211 @@
+{
+  "date": "2026-11-25",
+  "source": "Windows TEMP/lilac-v731-aegir-warm-snapshot-gpu-live-20261125",
+  "token": "2bf4daa2eb799d4c",
+  "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+  "image_sha256": "95b3bd896d38b4d6224f02dd41d92cea6ffcd73002502955cd89907e6152883b",
+  "raw_sha256": "db7b8ac96592cf80854fea9bbb7301136cb0e05941fd1e7711d23fdc6150815f",
+  "raw_bytes": 1705121,
+  "original_result": "REVISE",
+  "original_reason": "EXTENSION_CHECKIN_TIMEOUT",
+  "return_seconds_with_health": 40.218000000109896,
+  "serial_capture": {
+    "revision": 1,
+    "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+    "event_log_sha256": "1baa17aa8069145f3ac6774ddb9c4b1d9e2fac644d643f63cdbafd3bc576b966",
+    "raw_sha256": "db7b8ac96592cf80854fea9bbb7301136cb0e05941fd1e7711d23fdc6150815f",
+    "serial_port": "COM17",
+    "dtr_low_through_open": true,
+    "raw_log_before_stream": true,
+    "one_continuous_current_boot_stream": true,
+    "replay_commands": 0,
+    "old_failure_not_reclassified": true
+  },
+  "scanout": {
+    "protocol": 1,
+    "frames": [
+      {
+        "id": 1,
+        "token": "2bf4daa2eb799d4c",
+        "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+        "image_sha256": "95b3bd896d38b4d6224f02dd41d92cea6ffcd73002502955cd89907e6152883b",
+        "binding": {
+          "protocol": 1,
+          "width": 720,
+          "height": 1280,
+          "stride": 2160,
+          "format": "BGR888",
+          "codec": "PRLE1",
+          "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+          "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+          "runtime_source_sha256": "2c566a962d61e7b8aebfc88be54d496878821a4c0f5bb439f505198b16adfba2"
+        },
+        "begin": {
+          "token": "2bf4daa2eb799d4c",
+          "id": "1",
+          "width": "720",
+          "height": "1280",
+          "stride": "2160",
+          "format": "BGR888",
+          "bytes": "2764800",
+          "codec": "PRLE1",
+          "encoded": "440027",
+          "raw_fnv": "bd8c547f7bd3f8f3",
+          "enc_crc": "31e49455",
+          "vsync": "4320",
+          "timestamp": "7242488222",
+          "copy_ticks": "7981550",
+          "power_off": "0",
+          "source_checked": "1",
+          "source_match": "1"
+        },
+        "scan": {
+          "token": "2bf4daa2eb799d4c",
+          "id": "1",
+          "pa": "0x9d400000",
+          "map_pa": "0x9d400000",
+          "map_bytes": "2764800",
+          "size": "0x50002d0",
+          "img": "0x50002d0",
+          "xy": "0",
+          "out": "0x50002d0",
+          "outxy": "0",
+          "fmt": "0x2243f",
+          "unpack": "0x20001",
+          "op": "0x80000000",
+          "qop": "0",
+          "ctl": "0x20020",
+          "start": "0",
+          "before_after": "1"
+        },
+        "blocks": 3438,
+        "raw_file": "scanout-00000001.bgr",
+        "png_file": "scanout-00000001.png",
+        "raw_sha256": "edb4ed03ba81a62f950d458d16408ab9f564881bf88edc28392ec73552ff963a",
+        "png_sha256": "6491b58263715f14666586c7c6413b5fb6273a39f64fe112c093ee49856a516b",
+        "pixel_values_preserved": true,
+        "verified": true,
+        "optical_panel_verified": false
+      }
+    ],
+    "verified": true,
+    "optical_panel_verified": false,
+    "current_boot_source_and_payload_checked": true,
+    "format": "BGR888",
+    "width": 720,
+    "height": 1280
+  },
+  "scheduled_150_second_frame": false,
+  "namespace": {
+    "token": "2bf4daa2eb799d4c",
+    "complete_calls": 9,
+    "records": [
+      {
+        "pid": 275,
+        "call": 1,
+        "directory": "/var/mobile/Library/Caches/sweet-aegir-31e2a8bef37463f45aa31d45f7b1fdcf"
+      },
+      {
+        "pid": 277,
+        "call": 1,
+        "directory": "/var/mobile/Library/Caches/sweet-aegir-31e2a8bef37463f45aa31d45f7b1fdcf"
+      },
+      {
+        "pid": 277,
+        "call": 2,
+        "directory": "/var/mobile/Library/Caches/sweet-aegir-31e2a8bef37463f45aa31d45f7b1fdcf"
+      },
+      {
+        "pid": 283,
+        "call": 1,
+        "directory": "/var/mobile/Library/Caches/sweet-aegir-31e2a8bef37463f45aa31d45f7b1fdcf"
+      },
+      {
+        "pid": 283,
+        "call": 2,
+        "directory": "/var/mobile/Library/Caches/sweet-aegir-31e2a8bef37463f45aa31d45f7b1fdcf"
+      },
+      {
+        "pid": 283,
+        "call": 3,
+        "directory": "/var/mobile/Library/Caches/sweet-aegir-31e2a8bef37463f45aa31d45f7b1fdcf"
+      },
+      {
+        "pid": 283,
+        "call": 4,
+        "directory": "/var/mobile/Library/Caches/sweet-aegir-31e2a8bef37463f45aa31d45f7b1fdcf"
+      },
+      {
+        "pid": 283,
+        "call": 5,
+        "directory": "/var/mobile/Library/Caches/sweet-aegir-31e2a8bef37463f45aa31d45f7b1fdcf"
+      },
+      {
+        "pid": 283,
+        "call": 6,
+        "directory": "/var/mobile/Library/Caches/sweet-aegir-31e2a8bef37463f45aa31d45f7b1fdcf"
+      }
+    ],
+    "namespace_identity": "31e2a8bef37463f45aa31d45f7b1fdcf9fb502ab2d83686b885b39c244329962",
+    "original_caller_verified": true,
+    "old_files_preserved": true,
+    "original_UI_or_cache_pixels_not_proven": true
+  },
+  "pipeline_complete_samples": 16,
+  "pipeline_incomplete_samples": 2,
+  "complete_original_snapshot_returns": [
+    {
+      "pid": 277,
+      "call": 3,
+      "wall_ns": 3888018177,
+      "cpu_ns": 2810267552,
+      "bytes": 0,
+      "original_behavior": true,
+      "original_begin_and_end_present": true
+    },
+    {
+      "pid": 283,
+      "call": 3,
+      "wall_ns": 1486682292,
+      "cpu_ns": 722158385,
+      "bytes": 0,
+      "original_behavior": true,
+      "original_begin_and_end_present": true
+    }
+  ],
+  "complete_PNG_returns": [
+    {
+      "pid": 283,
+      "call": 12,
+      "wall_ns": 348343698,
+      "cpu_ns": 345385209,
+      "bytes": 27208,
+      "original_behavior": false,
+      "original_begin_and_end_present": true
+    }
+  ],
+  "raw_global_postdraw_decoder_refused": "Missing original BEGIN for PID275 call6; no record repaired",
+  "original_checkin_timeouts": 2,
+  "actual_new_request_lengths": [
+    {
+      "vertex_bytes": 4840,
+      "fragment_bytes": 7830
+    },
+    {
+      "vertex_bytes": 4840,
+      "fragment_bytes": 9711
+    },
+    {
+      "vertex_bytes": 4840,
+      "fragment_bytes": 38924
+    }
+  ],
+  "new_binary_payload_bytes": [
+    17437,
+    44221
+  ],
+  "worker_closed": true,
+  "original_REVISE_preserved": true,
+  "failed_package_not_replayed": true,
+  "wallpaper_or_UI_not_accepted": true
+}

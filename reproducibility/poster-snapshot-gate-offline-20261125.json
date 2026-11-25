@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-25",
+  "scope": "Observe original SBSWallpaperService cutout requests/replies and PRRenderer/Vista returns before GPU draw",
+  "ram_blob_sha256": "a6e40c574453772f993cb76570f749289281d00e03d45ec57eb2d1bcdcfd7d91",
+  "ram_manifest_sha256": "21ca40cf281038c892a12f852735dd35c054cb1bec37d90874ddd6170374e374",
+  "GLES_sha256": "6efabfc0627a8818a8c4c45665459cd33d8ee814f2e50a3f3cdc4813bb254325",
+  "Metal_sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27",
+  "observer_sha256": "a9641074b83100310d5f455972bb5f9aac0db874049a54986919c52210c4e80f",
+  "gate_revision": 1,
+  "gate_methods": 5,
+  "gate_max_calls": 40,
+  "gate_max_replies": 64,
+  "host_ABI_ASan_UBSan_and_actual_C_decoder_passed": true,
+  "original_callback_CGRect_bits_unchanged": true,
+  "original_UI_modes_and_paused_not_forced": true,
+  "source_contract": "reproducibility/poster-snapshot-route-20H392-offline-20261125.json",
+  "native_proof_token": "2d1794b225c1a6c1",
+  "PNG_proof_token": "2d1794b225c1a6c1",
+  "device_operations": 0,
+  "artifacts": {
+    "cpu": {
+      "token": "83b9a6adc996ffbf",
+      "sha256": "ac7e55c3c6d73bc66cf7188e1d09bfa8975e7547f9470343f8aa77b720227866",
+      "trial_mode": "ramcpu"
+    },
+    "gpu": {
+      "token": "44909d40acc04aac",
+      "sha256": "c34aff1c5c64dcb01ce0c7f079543fd74930d38f0134f70aaf596cdb65a99088",
+      "trial_mode": "gpu"
+    }
+  }
+}

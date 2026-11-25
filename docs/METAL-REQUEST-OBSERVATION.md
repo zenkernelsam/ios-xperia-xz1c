@@ -1,6 +1,16 @@
-# 原壁纸请求、environment与启动耗时 — 2026-11-23
+# 原壁纸请求、快照与绘制停点 — 2026-11-25
 
-原壁纸仍未通过完整UI验收。最新 [2026-11-25 原观察](../reproducibility/poster-cache-budget-wallpaper-observation-20261125.json)为 STOP／OBSERVATION_INCOMPLETE，登记和库返回成功，但本次没有原管线／快照绘制调用；精确产物和设备统一见[STATUS](STATUS.md)。R22 等旧原失败、raw 和少量必要扫描帧保留，旧r1..r6全文与SHA已进入[原文归档](archive/20261123/poster-state-r22-close-out/original-document-manifest.json)。
+原壁纸仍未通过完整UI验收。现已发现磁盘快照复用和原第二次GPU绘制拒绝两个具体停点；新Metal按反射选择缓冲的用户态修补已编译、主机通过，实机准入以[STATUS](STATUS.md)为准。旧无调用STOP、缺块拒绝、签到超时与成功返回均保持原判定；整合前原文和SHA见[本轮归档](archive/20261125/render-buffer-selection/original-document-manifest.json)。
+
+## 原队列失败与修补
+
+[原PNG完整导出](../reproducibility/aegir-loaded-png-compressed-r2-gpu-actual-20261125.json)校验原文件／zlib／FNV／PNG chunk CRC，720×1280 RGB的921600像素全部为黑。黑色已经在原SnapshotManager缓存中，不能从此继续推为LCD扫描stride或光学色偏故障；原PNG编码替换路径的完整PNG6先验仍保持。
+
+新的只读SnapshotRenderQueueObserve包装原四标量draw方法，读取已有绑定dictionary和immutable descriptor，executeOperations原返回后仅读status／error；每进程最多8条draw和8条result，不新增draw或改变原参数。主机验证精确ABI、errno、throw、限制及完整decoder。[原实机](../reproducibility/aegir-render-queue-r4-gpu-refused-20261125.json)编码星空、星点、Earth、阈值、post五项，但只有星空进入后端并退休；队列status5/error9/`AIR render failed result=-22`。同靴随后签到超时，原REVISE、四段0x06回程38.110秒保持。
+
+[固定20H392原调用点](../reproducibility/aegir-render-boundary-original-20H392-20261125.json)复验背景函数完整540B及7处selector branch：第一项绑定vertex0／1和fragment0，第二项星点改变pipeline与vertex0但继续绑定fragment0。原星点反射fragment mask0，因此现后端的“全部buffer mask精确等于输入mask”在第二项返回EINVAL。此前snapshot和wait返回非空／无throw并没有核对终态error，不能证明整个队列成功。
+
+新MetalRender.inc在immutable pipeline保存vertex／fragment反射mask，执行时只选该pipeline需要的buffer；unused绑定仍保留在编码器和命令快照，不消费、不写。缺必需buffer、owner／range／target alias仍拒绝。[免费开源参考](../reproducibility/render-buffer-selection-oss-reference-20261125.json)为固定BSD-2-Clause ios_sagit `QcomMTL.mm:5390/5403`同一按反射输入循环，未更换冻结kernel／Mesa。新完整作者probe另绑定unused两个slot7，实际pipeline切换后保留fragment0，并核对原positionBuffer48B FNV、全部target／guard、fence及资源退休。自己的CPU／native21／PNG6之后才验原壁纸。
 
 新库观察的20条原request、128条route、99条environment记录完整，原preview／snapshot返回true、unlock返回0.0、背光progress返回1.0。五次原paused=true、applyMode1沿deactive分支返回；没有新增getter或绘制，没有强制策略。本次唯一缺失准入目标是原pipeline第1次返回，原pipeline BEGIN也未出现，snapshotImage／PNG和draw API均无记录。未观察到调用不推断整个系统没有GPU工作，缓存与原请求链分别验收。该轮原STOP、702521 B raw和39.438秒完整回程保持，失败包不重发。
 
@@ -9,6 +19,10 @@
 [单次上滑后的原主页帧](../reproducibility/poster-cache-budget-minimal-swipe-actual-20261125.json)确认系统已切到主页，图标／小组件／Dock像素正常，背景仍黑；原pipeline／snapshot／PNG调用仍未出现。原STOP与完整38.766秒回程保持，合成上滑不代替真人触控。这样原请求停点也在主页状态下复现，下一步独立观察PosterBoard到Aegir的快照请求及回调。
 
 ## 原调用观察
+
+[原边界回调观察](../reproducibility/poster-snapshot-gate-gpu-actual-20261125.json) 22条完整call／4条完整reply，背景view／Vista均非空，未卡在边界服务。进一步 [原磁盘快照](../reproducibility/poster-snapshot-cache-gpu-actual-20261125.json) 在2份preview Earth PNG上观察到8次非空原load／8次setImage；一条无关max_cutout BEGIN丢失，整组严格拒绝保持，图片load／path独立逐字节核验，无补日志。
+
+为避免新GPU库沿用早期快照，AegirSnapshotCacheScope只在原20H392 Aegir image UUID／caller+0x63b0改变NSCachesDirectory第一项为本GLES／Metal source-map／PNG encoder／自身源SHA的稳定子目录；启用新队列观察时也绑定其源码SHA，避免复用已经产生的黑PNG。原filename、mode、paused和绘制保持，旧目录／文件不删除。新目录受owner／0700／NOFOLLOW核验，错误时保留原返回并记录失败。首次 [实机](../reproducibility/aegir-snapshot-namespace-gpu-actual-20261125.json)原pipeline开始调用，后续只预热实际缺bin。r3 [31完整pipeline／64完整postdraw](../reproducibility/aegir-warm-snapshot-r3-logwrite-gpu-actual-20261125.json)完成四份原snapshot及三份PNG返回，未证明队列无error；后续原失败定位见本页开头。旧REVISE／STOP不重发。
 
 QuadRouteObserve只包装原owner与准确ABI的方法，保持原参数、返回、nil、throw及errno。R13的33／33安装、127条完整route、20条request与150秒home扫描已独立核对，原结果仍STOP／OBSERVATION_INCOMPLETE：[R13](../reproducibility/original-mode-swift-owner-r13-stage-20261122.json)。没有强制原mode、解除Vista paused或绘制替代壁纸。
 

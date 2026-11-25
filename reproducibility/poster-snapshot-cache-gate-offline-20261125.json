@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-25",
+  "scope": "Original UIImage file load/set after successful cutout callbacks",
+  "revision": 2,
+  "ram_blob_sha256": "0c1f8ccc8f602a939cbf80e1416abc4de709d63f0b1e29bf627b6a554b88c8cf",
+  "ram_manifest_sha256": "d8c15bdcc462a60d09c13e653f4bf6d38e32b8e13d70dbfaa0c92b11bdab1f07",
+  "observer_sha256": "894d04bd46a159a55af93c6b046e9d1b5f6ee0f825a149ce6bc102c251f0393b",
+  "GLES_sha256": "6efabfc0627a8818a8c4c45665459cd33d8ee814f2e50a3f3cdc4813bb254325",
+  "Metal_sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27",
+  "guest_source_sha256": "842c96f009d222a5075dcff4f7e9b802d596b7ed255a19d3bc2c1f1f6e7c8542",
+  "decoder_source_sha256": "32f9f098d2cf8864d0d28cc888c580ea209838550d4a0246b46cd596717124ab",
+  "host_ASan_UBSan_and_actual_C_decoder_passed": true,
+  "source_contract": "reproducibility/poster-snapshot-route-20H392-offline-20261125.json",
+  "original_path_bytes_limit": 256,
+  "original_mode_and_paused_not_forced": true,
+  "prior_failed_package_not_replayed": true,
+  "device_operations": 0,
+  "artifacts": {
+    "cpu": {
+      "trial_mode": "ramcpu",
+      "token": "958ab8f618c7aa53",
+      "sha256": "428239c71353f08e3f023ce90ad4c5574b188745b87d066cbb3abc95125baae0"
+    },
+    "gpu": {
+      "trial_mode": "gpu",
+      "token": "b495a5414dc679c5",
+      "sha256": "2076ccf0ec5f119841c1a3f06de4986752a7087a2af4e893dff7d2461c7bf306"
+    }
+  }
+}

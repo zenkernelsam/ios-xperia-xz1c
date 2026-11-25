@@ -1,5 +1,8 @@
 /* Bound timing of the original snapshot APIs; arguments and results are kept. */
 #pragma once
+#if defined(SWEET_ORIGINAL_SNAPSHOT_PNG_EXPORT)
+#include "OriginalSnapshotPNGExport.h"
+#endif
 #import <Foundation/Foundation.h>
 #include <CoreGraphics/CoreGraphics.h>
 #include <ImageIO/ImageIO.h>
@@ -238,6 +241,9 @@ static NSData *postdraw_png(SweetPostDrawImage image)
         // NSData length is metadata only. No PNG data or pixel pages are read.
         uint64_t bytes = returned && result ? (uint64_t)result.length : 0;
         postdraw_end(call, "png", returned ? "return" : "throw", bytes, result == nil);
+#if defined(SWEET_ORIGINAL_SNAPSHOT_PNG_EXPORT)
+        if(returned && result && call.recorded)original_png_export_once(result,(unsigned)postdraw_pid,call.call,postdraw_emit);
+#endif
         errno = outgoing_errno;
     }
 }

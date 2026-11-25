@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-25",
+  "purpose": "Export one actual returned SnapshotManager PNG without altering original pixels",
+  "ram_blob_sha256": "006333a4c8ec135e23893a7fc07d770f02fdced6b86ab41ff23aed054f27c54e",
+  "ram_manifest_sha256": "96877d4070d120246e7667a49ea8c9c5ff0859a670e1d4800348f0ceb5b66994",
+  "observer_sha256": "c930622d2903483daa5dd994ee4c6a46951bdd9947f05f20a330896180b05a2a",
+  "export_bytes_max": 65536,
+  "export_once_per_process": true,
+  "export_framing": "48-byte hex blocks; original byte FNV and PNG chunk CRC verified",
+  "original_return_preserved": true,
+  "host_ASan_UBSan_unchanged_bytes_passed": true,
+  "device_operations": 0,
+  "artifacts": {
+    "cpu": {
+      "token": "134ded555451c3ce",
+      "sha256": "3678826d4977bfc5e26daa06d4767a53fae3c9559844c72ba32f2b44f465d0b6",
+      "trial_mode": "ramcpu"
+    },
+    "gpu": {
+      "token": "6c8c7e4c596ebff0",
+      "sha256": "c8d9bc2a1ec44087d626e7ed64c4ec65c107a2591d93920c3b8452ea744b1ff8",
+      "trial_mode": "gpu"
+    }
+  }
+}

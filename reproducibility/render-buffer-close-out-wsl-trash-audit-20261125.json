@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-25",
+  "rows": [
+    {
+      "distro": "Ubuntu",
+      "Trash_non_directory_entries": 0,
+      "original_bytes_moved": 0,
+      "Trash_checked_empty": true
+    },
+    {
+      "distro": "Ubuntu-22.04",
+      "Trash_non_directory_entries": 0,
+      "original_bytes_moved": 0,
+      "Trash_checked_empty": true
+    }
+  ],
+  "Windows_and_Mac_Trash_not_emptied": true,
+  "device_operations": 0
+}

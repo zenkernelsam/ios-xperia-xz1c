@@ -90,4 +90,6 @@ report['real_native_Memoryless_public_metadata_per_pass_storage_queue_isolation_
 report['real_native_multisample_2x4x_original_page_samples_resolve_order_and_retirement_ASan_UBSan_passed']=True
 report['real_native_presentation_flags_queue_order_exact_time_options_and_failure_retirement_ASan_UBSan_passed']=True
 report['native_original_queue_FIFO_capacity_callbacks_and_backend_failure_regression_ASan_UBSan_passed']=True
+report['native_render_unused_bindings_retained_reflected_selection_and_missing_input_rejection_ASan_UBSan_passed']=True
+report['host_multisample_final_autorelease_retirement_joins_both_execution_queues']=True
 (out/'manifest.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print(json.dumps(report))

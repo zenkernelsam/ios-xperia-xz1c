@@ -1,0 +1,49 @@
+{
+  "version": 731,
+  "mode": "ramcpu",
+  "token": "e54498acaad1c165",
+  "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+  "image_sha256": "a8d6d26b6151b56f726ba2dbc8584cf8d35d734f61a24084e9a7cc648fb02522",
+  "log_sha256": "c58cc17127222458e2665908b2acd827a02149196c4e9458e7921cfebc9bac63",
+  "return_complete": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "e54498acaad1c165",
+    "checkpoint_bytes": 334661,
+    "log_bytes": 337774,
+    "log_sha256": "c58cc17127222458e2665908b2acd827a02149196c4e9458e7921cfebc9bac63",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      5,
+      58,
+      60
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 39.20299999997951,
+  "ram_library_binding": {
+    "library_sha256": "6efabfc0627a8818a8c4c45665459cd33d8ee814f2e50a3f3cdc4813bb254325",
+    "library_bytes": 14801120,
+    "library_fnv64": "2181c45c9f21ee6c",
+    "blob_sha256": "ce892920c933fdd976a3f35a0a5447f4ef60b5511a6d544bacf34c2d1a825b3a",
+    "raw_sha256": "3064604802a3429129ce655c529bc424ccf8aeb2c15046392c1e33139cea2b42",
+    "manifest_sha256": "d71cb6cb010d78fe949eab9f16d288193a128c6697e5daecef24a7ac5063ee1b"
+  },
+  "serial_capture": {
+    "revision": 1,
+    "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+    "event_log_sha256": "cd2b21cedcf78be170fb38f2f625270f18d70c935f66d995529a5a0ab3aa19b7",
+    "raw_sha256": "c58cc17127222458e2665908b2acd827a02149196c4e9458e7921cfebc9bac63",
+    "serial_port": "COM17",
+    "dtr_low_through_open": true,
+    "raw_log_before_stream": true,
+    "one_continuous_current_boot_stream": true,
+    "replay_commands": 0,
+    "old_failure_not_reclassified": true
+  },
+  "source": "Windows TEMP/lilac-v731-aegir-full-primer-r2-cpu-live-20261125",
+  "original_result": "PASS",
+  "worker_closed": true,
+  "device_GPU_acceptance": false
+}

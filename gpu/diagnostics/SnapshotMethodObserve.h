@@ -1,6 +1,9 @@
 /* Typed original method timing. No instances, buffers or pixels are created. */
 #pragma once
 #include "PostDrawObserve.h"
+#if defined(SWEET_SNAPSHOT_RENDER_QUEUE_OBSERVE)
+#include "SnapshotRenderQueueObserve.h"
+#endif
 #import <Metal/Metal.h>
 #include <objc/runtime.h>
 #include <stdlib.h>
@@ -70,7 +73,12 @@ static void snapshot_void(id object, SEL selector, const char *api, SweetTimedVo
 static void snapshot_wait(id object, SEL selector)
 { snapshot_void(object, selector, "wait", (SweetTimedVoid)snapshot_wait_original); }
 static void snapshot_execute(id object, SEL selector)
-{ snapshot_void(object, selector, "execute", (SweetTimedVoid)snapshot_execute_original); }
+{
+    snapshot_void(object, selector, "execute", (SweetTimedVoid)snapshot_execute_original);
+#if defined(SWEET_SNAPSHOT_RENDER_QUEUE_OBSERVE)
+    snapshot_render_queue_result(object);
+#endif
+}
 static void snapshot_region(SweetPostDrawCall call, MTLRegion region, NSUInteger row, NSUInteger image, NSUInteger level, NSUInteger slice)
 {
     if (call.recorded) postdraw_emit("SWEET SNAPSHOT REGION pid=%d call=%llu width=%lu height=%lu depth=%lu row=%lu image=%lu mip=%lu slice=%lu pixels_read=0",

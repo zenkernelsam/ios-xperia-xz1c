@@ -58,6 +58,24 @@ def validate_wled_gpu_ram(package, binding):
             '55eee7cb15985a1e27c939ae4601ceb104d9d43ae760edb7c6191f450899ec98',
         '0d4076fd78bc5f9ceae6f3386fcefc16b3f7b5bc20bf93680e8cf8d207f29a04':
             '82ea4046016e6b136712d905508c4628376acca41bf238ec1ddf967069688d14',
+        'a6e40c574453772f993cb76570f749289281d00e03d45ec57eb2d1bcdcfd7d91':
+            '21ca40cf281038c892a12f852735dd35c054cb1bec37d90874ddd6170374e374',
+        '0c1f8ccc8f602a939cbf80e1416abc4de709d63f0b1e29bf627b6a554b88c8cf':
+            'd8c15bdcc462a60d09c13e653f4bf6d38e32b8e13d70dbfaa0c92b11bdab1f07',
+        '84a03a910b5fefb6632bf529203ac5ff2ca56646fb10d92a736e45603339d0cf':
+            '0a43524123de0b6fd1959bd1a2d6868dc7c19f6f18eaf4b8db811c5242794593',
+        '82311b6c4ed92cbdc1e3ccd00a7019759998bcbdc35512c190b1f41ce32ec672':
+            '8013c5e5da5a3798b5475b3a6dc7b9ab7684971bd5cf012cc8a0aeacf13542c2',
+        'cf2dae517c3f4c6b2b77ccb480f00069dcc5d366eecc30a8f499df76642c5d13':
+            '1feaf85d33002097259260b1cb801a66fc13895f4b665a6037cf15e1c26558e3',
+        '006333a4c8ec135e23893a7fc07d770f02fdced6b86ab41ff23aed054f27c54e':
+            '96877d4070d120246e7667a49ea8c9c5ff0859a670e1d4800348f0ceb5b66994',
+        '83b36fae6c095bea77e0b4ded6b2de4dea4670974c89dec0f4cff96ce39dca15':
+            '7681e9059ca71d9e405a3322c74a1e81d165139fe9108fca01cff911cfa78347',
+        'bd0ccca991d32c7db3e7ee8c393883b971262ec61970e583ed33696d41b34ddf':
+            '64a29b78488ee81854ff1d12c5a3454736fa353f1cdedb2d0ff06193385b846e',
+        '1b7504a47a614d63a7c89818fee9f2af76570a44ecfe75505c6a53d962d21458':
+            '4d1644260d04ccebc3f18d10697b97e693e172d902a2cd32e7632ae455020b0a',
     }
     if binding['blob_sha256'] in poster_packages:
         assert binding['manifest_sha256']==poster_packages[binding['blob_sha256']]
@@ -68,8 +86,34 @@ def validate_wled_gpu_ram(package, binding):
         if binding['blob_sha256']!='ab1990dfdaef042c06588d21c78fea999195efeff62b62916d95060879e78f3d':
             gles='6efabfc0627a8818a8c4c45665459cd33d8ee814f2e50a3f3cdc4813bb254325'
             assert binding['library_sha256']==gles and package['metal_resources']['gles_library_sha256']==gles
-            minimal=binding['blob_sha256']=='0d4076fd78bc5f9ceae6f3386fcefc16b3f7b5bc20bf93680e8cf8d207f29a04'
-            assert observer['library_sha256']==('3c442f3085c1106d9de233d56fdbed801ea87345a0ec1ea536d0df355ec5ca22' if minimal else 'af1c42dc51fbccab4f6d42461044c14c9913ffa7eaa4b1a480c1b213b24cddd2')
+            compressed_export=binding['blob_sha256']=='bd0ccca991d32c7db3e7ee8c393883b971262ec61970e583ed33696d41b34ddf'
+            queue_observer=binding['blob_sha256']=='1b7504a47a614d63a7c89818fee9f2af76570a44ecfe75505c6a53d962d21458'
+            loaded_export=compressed_export or binding['blob_sha256']=='83b36fae6c095bea77e0b4ded6b2de4dea4670974c89dec0f4cff96ce39dca15'
+            png_export=binding['blob_sha256']=='006333a4c8ec135e23893a7fc07d770f02fdced6b86ab41ff23aed054f27c54e'
+            logwrite=queue_observer or png_export or binding['blob_sha256']=='cf2dae517c3f4c6b2b77ccb480f00069dcc5d366eecc30a8f499df76642c5d13'
+            warm=logwrite or binding['blob_sha256']=='82311b6c4ed92cbdc1e3ccd00a7019759998bcbdc35512c190b1f41ce32ec672'
+            namespace=loaded_export or warm or binding['blob_sha256']=='84a03a910b5fefb6632bf529203ac5ff2ca56646fb10d92a736e45603339d0cf'
+            cache_gate=namespace and not warm or binding['blob_sha256']=='0c1f8ccc8f602a939cbf80e1416abc4de709d63f0b1e29bf627b6a554b88c8cf'
+            gate=cache_gate or binding['blob_sha256']=='a6e40c574453772f993cb76570f749289281d00e03d45ec57eb2d1bcdcfd7d91'
+            minimal=warm or gate or binding['blob_sha256']=='0d4076fd78bc5f9ceae6f3386fcefc16b3f7b5bc20bf93680e8cf8d207f29a04'
+            expected_observer='a73e18addf69c8e8dd017529f46e0a8b4728bd0cb3e0ac054f99123504352536' if queue_observer else 'cd0a2b65ab2abf960ab8a6d08dd734447b3d9494adc540726a893c24c78bc079' if compressed_export else '3e11244af2844e304dd22395cfc68abaff1b8d232d7e7045ab32caf1809d2db1' if loaded_export else 'c930622d2903483daa5dd994ee4c6a46951bdd9947f05f20a330896180b05a2a' if png_export else '503d734bef26021ded302ed44d7c1de51174b258bfd67febf9cf2373b810746e' if logwrite else 'b7b2dc04b3e2551b821e9c13a3d22f35dbd9fe913f72cfc48597c0a999f10045' if warm else '2a8003ea068a5584f110add834c740b42c37cd0bc612440c6502452169a96ee3' if namespace else '894d04bd46a159a55af93c6b046e9d1b5f6ee0f825a149ce6bc102c251f0393b' if cache_gate else 'a9641074b83100310d5f455972bb5f9aac0db874049a54986919c52210c4e80f' if gate else '3c442f3085c1106d9de233d56fdbed801ea87345a0ec1ea536d0df355ec5ca22' if minimal else 'af1c42dc51fbccab4f6d42461044c14c9913ffa7eaa4b1a480c1b213b24cddd2'
+            assert observer['library_sha256']==expected_observer
+            if queue_observer:
+                assert observer['snapshot_render_queue_observer'] and observer['snapshot_render_queue_revision']==1
+                assert observer['snapshot_render_queue_draws_max']==8 and observer['snapshot_render_queue_results_max']==8
+                assert observer['snapshot_render_queue_original_arguments_errno_throws_and_terminal_getters_host_passed']
+                assert observer['snapshot_render_queue_no_extra_GPU_work'] and observer['snapshot_render_queue_actual_host_decoder_passed']
+            else:assert not observer.get('snapshot_render_queue_observer')
+            if logwrite:assert observer['observer_log_write_revision']==1 and observer['observer_log_partial_EINTR_errno_host_passed']
+            if png_export:
+                assert observer['original_snapshot_PNG_export_revision']==1 and observer['original_snapshot_PNG_export_once']
+                assert observer['original_snapshot_PNG_export_max_bytes']==65536 and observer['original_snapshot_PNG_export_chunk_bytes']==48
+            else:assert not observer.get('original_snapshot_PNG_export')
+            if loaded_export:
+                assert observer['loaded_snapshot_PNG_export_revision']==(2 if compressed_export else 1) and observer['loaded_snapshot_PNG_export_once']
+                assert observer['loaded_snapshot_PNG_export_max_bytes']==65536 and observer['loaded_snapshot_PNG_export_read_only']
+                if compressed_export:assert observer['loaded_snapshot_PNG_export_codec']=='ZLIB1'
+            else:assert not observer.get('loaded_snapshot_PNG_export')
             prior=validate_native(observer['prior_native_hardware_proof'],package['metal_resources'])
             assert len(prior['native_tests'])==21 and prior['native_run_token']=='2d1794b225c1a6c1'
             png=observer['png_encoder_prior_proof']
@@ -78,6 +122,21 @@ def validate_wled_gpu_ram(package, binding):
                 assert not any(observer.get(key) for key in ('original_request_observer','quad_route_observer','poster_state_observer_revision'))
             else:
                 assert observer['original_request_observer'] and observer['quad_route_observer'] and observer['poster_state_observer_revision']==1
+            if gate:
+                assert observer['poster_snapshot_gate_observer'] and observer['poster_snapshot_gate_revision']==(2 if cache_gate else 1)
+                assert observer['poster_snapshot_gate_methods']==(7 if cache_gate else 5) and observer['poster_snapshot_gate_extra_getters_or_GPU_work'] is False
+                assert observer['poster_snapshot_gate_max_calls']==(56 if cache_gate else 40) and observer['poster_snapshot_gate_max_replies']==64
+                if cache_gate:assert observer['poster_snapshot_gate_bounded_original_path_metadata'] and observer['poster_snapshot_gate_path_bytes_max']==256
+            else:
+                assert not observer.get('poster_snapshot_gate_observer')
+            if namespace:
+                scope=observer['aegir_snapshot_cache_scope']
+                assert scope['identity']==('9aaef9058e9778c32535c3ab473fd5417268e1a21258cf277954a400afa78767' if queue_observer else '31e2a8bef37463f45aa31d45f7b1fdcf9fb502ab2d83686b885b39c244329962')
+                if queue_observer:assert scope['observation_source_sha256']==observer['source_files']['gpu/diagnostics/SnapshotRenderQueueObserve.h']
+                assert scope['GLES_sha256']==gles and scope['original_caches_root_preserved']
+                assert scope['original_caller_offset']==0x63b0 and scope['directory_mode']==0o700
+            else:
+                assert not observer.get('aegir_snapshot_cache_scope')
         return 'poster'
     budget_native={
         'a8821cead75c078861eed21733c6366b594c8de4a631c3848b8bfd55d3cb66bf':
@@ -86,8 +145,42 @@ def validate_wled_gpu_ram(package, binding):
         'be99855aa1663151815501cb9e5dfac5c960f3457a4611d9d055c4dbb80ae010':
             ('b0c57520ca89071822ac73be41008bc8b78023c898abf0cce882e61e8d486245',
              'c59fa4c83325f4029e99e799e3edb358a8e9fd897f2231071c284c4aae505bb9',True),
+        'd7ad09c89481202c17f8d8e9fb33deb9409616ae6ba2e5b3c54f8cd031ae12c4':
+            ('56b2087210b4eec26d6a02e8ce60c5d9f0e5891dfc969732333212565892cf98',
+             'c59fa4c83325f4029e99e799e3edb358a8e9fd897f2231071c284c4aae505bb9',True),
+        'ce892920c933fdd976a3f35a0a5447f4ef60b5511a6d544bacf34c2d1a825b3a':
+            ('d71cb6cb010d78fe949eab9f16d288193a128c6697e5daecef24a7ac5063ee1b',
+             'c59fa4c83325f4029e99e799e3edb358a8e9fd897f2231071c284c4aae505bb9',True),
     }
-    if binding['blob_sha256'] in budget_native:
+    reflected_packages={
+        '166d4c7db03d9a99a4acb9e7f75fed22f3f06344b401e13159005d5ad30aaf81':
+            ('ea2506260c87455b2019feec088e86928a6a18da6dc1f37218870f7cb69f8f47','ced47032290f2fe28f3ec437ae70ee52371aee15bf68ad4737231e622024dbae'),
+        '63a755ece059bd869be9ae8f86aeb883fdad71ca9da10a08600aa4ee5734a44c':
+            ('52aab45bc2ad022eed980eafccbfad71d179c42be384bfb02ac7cef5e3baff7d','a6e27aae2d6402b102b08552d424b99edcffa2828683210337be0a5bf1f53d2c'),
+        '91ec02d744ce8e645a138005da39a015bfc351f4159a9f74454ca169710e7eaf':
+            ('ffd427114c90a76cc16ad496fe56ad28b5024ff58ab3bea0d3e454fae67ec8d6','819a0ad96666006eff966b7342f388aa317a143de9d1dfa56b501c5c0a90299c'),
+    }
+    reflected_native=binding['blob_sha256'] in reflected_packages
+    if reflected_native:
+        manifest_sha,observer_sha=reflected_packages[binding['blob_sha256']]
+        assert binding['manifest_sha256']==manifest_sha
+        assert binding['library_sha256']=='6efabfc0627a8818a8c4c45665459cd33d8ee814f2e50a3f3cdc4813bb254325'
+        resources=package['metal_resources'];observer=package['exception_observer']
+        assert resources['gles_library_sha256']==binding['library_sha256']
+        assert resources['library_sha256']=='19a08083833851d5a13016473ec3c3db98629d6ce6fc928b70947af114abee49'
+        assert native_digest(resources['source_files'])=='41bdf3e49258c8cf6d57a69beb99d15dec0e1404aec2509725c386941e0f25ee'
+        assert resources['render_buffer_selection_revision']==1 and resources['unused_encoder_bindings_retained_and_not_consumed']
+        assert resources['missing_required_render_buffers_rejected']
+        expected_revision=2 if binding['blob_sha256']=='91ec02d744ce8e645a138005da39a015bfc351f4159a9f74454ca169710e7eaf' else 1
+        assert observer['render_unused_buffer_binding_probe_revision']==expected_revision
+        if expected_revision==2:assert observer['render_pipeline_switch_retains_unused_fragment_slot0']
+        assert observer['render_unused_buffer_binding_probe_vertex_slot']==7 and observer['render_unused_buffer_binding_probe_fragment_slot']==7
+        assert observer['library_sha256']==observer_sha
+        assert not observer.get('program_cache_prime')
+        assert observer['program_cache_inventory']['read_only'] and not observer['program_cache_inventory']['conditional_prime']
+        assert observer['program_cache_inventory']['native_groups_before_inventory']==21 and observer['program_cache_inventory']['PNG_cases_before_inventory']==6
+        assert observer['program_cache_scope']['identity']=='b1aa0e0a92644521ddc4f06ff078c45a04bd8bfe0a73114d584ba75743ee2458'
+    elif binding['blob_sha256'] in budget_native:
         manifest_sha,observer_sha,conditional_prime=budget_native[binding['blob_sha256']]
         assert binding['manifest_sha256']==manifest_sha, 'Cache-budget native RAM manifest differs'
         gles='6efabfc0627a8818a8c4c45665459cd33d8ee814f2e50a3f3cdc4813bb254325'
@@ -134,7 +227,7 @@ def validate_wled_gpu_record(record, package, binding):
     assert record.get('native_grid_control',{}).get('mode')=='fitted'
     if stage=='poster':
         if 'screen_snapshot_binding' in record:
-            assert binding['blob_sha256'] in ('e98ed2cd62595b2b414ef2d04ce1cfa93af34041a99fd6b38691f004314eb83b','0d4076fd78bc5f9ceae6f3386fcefc16b3f7b5bc20bf93680e8cf8d207f29a04'), 'Poster scanout requires the reviewed new-library RAM'
+            assert binding['blob_sha256'] in ('e98ed2cd62595b2b414ef2d04ce1cfa93af34041a99fd6b38691f004314eb83b','0d4076fd78bc5f9ceae6f3386fcefc16b3f7b5bc20bf93680e8cf8d207f29a04','a6e40c574453772f993cb76570f749289281d00e03d45ec57eb2d1bcdcfd7d91','0c1f8ccc8f602a939cbf80e1416abc4de709d63f0b1e29bf627b6a554b88c8cf','84a03a910b5fefb6632bf529203ac5ff2ca56646fb10d92a736e45603339d0cf','82311b6c4ed92cbdc1e3ccd00a7019759998bcbdc35512c190b1f41ce32ec672','cf2dae517c3f4c6b2b77ccb480f00069dcc5d366eecc30a8f499df76642c5d13','006333a4c8ec135e23893a7fc07d770f02fdced6b86ab41ff23aed054f27c54e','83b36fae6c095bea77e0b4ded6b2de4dea4670974c89dec0f4cff96ce39dca15','bd0ccca991d32c7db3e7ee8c393883b971262ec61970e583ed33696d41b34ddf'), 'Poster scanout requires the reviewed new-library RAM'
             assert 'poster_startup_serial_only' not in record
             from scanout_snapshot import binding as screen_binding
             assert record['screen_snapshot_binding']==screen_binding(record) and record.get('screen_capture_after_seconds')==150
@@ -279,7 +372,7 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
             stage=validate_wled_gpu_ram(package,library_binding)
             serial_only=stage=='poster' and not screen_evidence
             if stage=='poster' and screen_evidence:
-                assert library_binding['blob_sha256'] in ('e98ed2cd62595b2b414ef2d04ce1cfa93af34041a99fd6b38691f004314eb83b','0d4076fd78bc5f9ceae6f3386fcefc16b3f7b5bc20bf93680e8cf8d207f29a04')
+                assert library_binding['blob_sha256'] in ('e98ed2cd62595b2b414ef2d04ce1cfa93af34041a99fd6b38691f004314eb83b','0d4076fd78bc5f9ceae6f3386fcefc16b3f7b5bc20bf93680e8cf8d207f29a04','a6e40c574453772f993cb76570f749289281d00e03d45ec57eb2d1bcdcfd7d91','0c1f8ccc8f602a939cbf80e1416abc4de709d63f0b1e29bf627b6a554b88c8cf','84a03a910b5fefb6632bf529203ac5ff2ca56646fb10d92a736e45603339d0cf','82311b6c4ed92cbdc1e3ccd00a7019759998bcbdc35512c190b1f41ce32ec672','cf2dae517c3f4c6b2b77ccb480f00069dcc5d366eecc30a8f499df76642c5d13','006333a4c8ec135e23893a7fc07d770f02fdced6b86ab41ff23aed054f27c54e','83b36fae6c095bea77e0b4ded6b2de4dea4670974c89dec0f4cff96ce39dca15','bd0ccca991d32c7db3e7ee8c393883b971262ec61970e583ed33696d41b34ddf')
                 assert capture_after==150, 'Poster scanout requires one frame at 150 seconds'
             if serial_only:
                 assert not screen_evidence
@@ -450,6 +543,21 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
                     common+=['SWEET POSTDRAW PNG_CONFIG pid=[0-9]+ revision=1 getters_only=1 pixels_read=0 profile_read=0']
                 if m['exception_observer'].get('snapshot_method_observer'):
                     common+=['SWEET SNAPSHOT observer pid=[0-9]+ installed=[1-8] expected=8 limit=64 metadata_only=1 original_arguments_results=1']
+                if m['exception_observer'].get('poster_snapshot_gate_observer'):
+                    q=m['exception_observer'];revision=q['poster_snapshot_gate_revision']
+                    common+=[f"SWEET PSG CONFIG pid=[0-9]+ revision={revision} installed={q['poster_snapshot_gate_methods']} expected={q['poster_snapshot_gate_methods']} per_api=8 max_calls={q['poster_snapshot_gate_max_calls']} max_replies=64 "+('extra_getters=0' if revision==1 else 'scene_getters=0 path_metadata=1')+' GPU_work=0',
+                             'SWEET PSG BEGIN pid=[0-9]+ call=[0-9]+ api=(background|vista)']
+                if m['exception_observer'].get('aegir_snapshot_cache_scope'):
+                    scope=m['exception_observer']['aegir_snapshot_cache_scope']
+                    common+=['SWEET ASCOPE ID pid=[0-9]+ value='+scope['identity'],
+                             'SWEET ASCOPE CONFIG pid=[0-9]+ revision=1 installed=1 caller=00000000000063b0 old_files_preserved=1 other_calls_original=1',
+                             'SWEET ASCOPE CALL pid=[0-9]+ call=[0-9]+ result=0 original_caller=1 old_files_preserved=1']
+                if m['exception_observer'].get('original_snapshot_PNG_export') or m['exception_observer'].get('loaded_snapshot_PNG_export'):
+                    common+=['SWEET OPNG END pid=[0-9]+ call=[0-9]+ bytes=[0-9]+ fnv=[0-9a-f]+ unchanged=1 original_return_bytes=1']
+                if m['exception_observer'].get('snapshot_render_queue_observer'):
+                    common+=['SWEET RQUEUE CONFIG pid=[0-9]+ revision=1 installed=1 limit=8 original_arguments_results=1 extra_GPU_work=0',
+                             'SWEET RQUEUE DRAW_END pid=[0-9]+ call=[0-9]+ outcome=return original_behavior=1',
+                             'SWEET RQUEUE RESULT pid=[0-9]+ call=[0-9]+ status=4 error_nil=1 code=0 terminal_getters_only=1']
                 if m['exception_observer'].get('original_request_observer'):
                     common+=['SWEET METAL REQUEST CONFIG pid=[0-9]+ installed=13 expected=13 limit=64 revision=2 original_behavior=1 no_extra_GPU_work=1' if m['exception_observer']['request_observer_revision']==2 else 'SWEET METAL REQUEST CONFIG pid=[0-9]+ installed=6 expected=6 limit=64 arguments_returns_errors_errno=1 no_GPU_work=1']
                 if m['exception_observer'].get('quad_route_observer'):

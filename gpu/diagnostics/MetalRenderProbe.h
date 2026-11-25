@@ -81,7 +81,20 @@ static bool metal_render_probe(MetalABIEmit emit)
         pass.colorAttachments[0].loadAction=phase==0?MTLLoadActionClear:MTLLoadActionLoad;pass.colorAttachments[0].clearColor=MTLClearColorMake(1,0,0,1);
         id<MTLCommandBuffer> commands=[[queue commandBuffer] retain];id<MTLRenderCommandEncoder> encoder=[commands renderCommandEncoderWithDescriptor:pass];[pass release];
         valid=commands && encoder;
-        if(valid && phase){[encoder setRenderPipelineState:phase==1?solid:sampled];[encoder setVertexBuffer:phase==1?positionBuffer:textureBuffer offset:0 atIndex:0];
+        if(valid && phase){
+            // Preserve binding state across a real encoder pipeline switch,
+            // as the original renderer does for its consecutive passes.
+            [encoder setRenderPipelineState:solid];
+            [encoder setVertexBuffer:positionBuffer offset:0 atIndex:0];
+            [encoder setFragmentBuffer:positionBuffer offset:0 atIndex:0];
+            if(phase>=2){
+                [encoder setRenderPipelineState:sampled];
+                [encoder setVertexBuffer:textureBuffer offset:0 atIndex:0];
+                emit("SWEET AIR RENDER PIPELINE_SWITCH phase=%u fragment_slot0_retained=1 final_fragment_mask=0 original_encoder=1",phase);
+            }
+            [encoder setVertexBuffer:positionBuffer offset:0 atIndex:7];
+            [encoder setFragmentBuffer:positionBuffer offset:0 atIndex:7];
+            emit("SWEET AIR RENDER UNUSED_BIND phase=%u vertex=7 fragment=7 reflected_vertex_mask=1 reflected_fragment_mask=0 retained=1",phase);
             [encoder setCullMode:MTLCullModeBack];[encoder setFrontFacingWinding:MTLWindingClockwise];
             if(phase==1){[encoder setViewport:(MTLViewport){3,2,27,15,0,1}];[encoder setScissorRect:(MTLScissorRect){5,4,23,11}];}
             if(phase>=2){[encoder setFragmentTexture:source atIndex:13];[encoder setFragmentSamplerState:sampler atIndex:3];}
@@ -96,6 +109,14 @@ static bool metal_render_probe(MetalABIEmit emit)
                 if(i>=64 && i<3712){unsigned row=(i-64)/192,column=(i-64)%192;if(column<132){unsigned char bgra[4];render_target_pixel(column/4,row,phase,bgra);expected=bgra[column%4];}}
                 if(originalTarget[i]!=expected){emit("SWEET AIR RENDER mismatch phase=%u target_offset=%u actual=%02x expected=%02x",phase,i,originalTarget[i],expected);++shown;}}}
         uint64_t hash=valid?render_bytes_hash(originalTarget,3776):0,sampleHash=valid?render_bytes_hash(originalSample,512):0;
+        if(valid && phase){
+            const unsigned char *positionBytes=positionBuffer.contents;
+            unsigned mismatches=positionBytes?memcmp(positionBytes,positions,sizeof(positions))!=0:1;
+            uint64_t unusedHash=positionBytes?render_bytes_hash(positionBytes,sizeof(positions)):0;
+            valid=valid && !mismatches;
+            emit("SWEET AIR RENDER UNUSED_RETURN phase=%u bytes=48 hash=%016llx unchanged=%u GPU_completed=1",
+                phase,(unsigned long long)unusedHash,!mismatches);
+        }
         unsigned char output[240];memset(output,0xe7,sizeof(output));unsigned readMismatches=0;
         if(valid){[source getBytes:output+8 bytesPerRow:44 fromRegion:MTLRegionMake2D(0,0,7,5) mipmapLevel:0];
             for(unsigned i=0;i<sizeof(output);++i){unsigned char expected=0xe7;if(i>=8){unsigned y=(i-8)/44,x=(i-8)%44;

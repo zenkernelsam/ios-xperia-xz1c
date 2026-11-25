@@ -1,0 +1,114 @@
+{
+  "source_files": {
+    "iokit/Kernel/arm/LilacAPRProtocol.h": "78e293cf87f0e636aea1f3ee6a0c5a9caf92cf710010b3b4149a42464f9a026e",
+    "iokit/Kernel/arm/LilacAPRBasebandProtocol.h": "3a23a81bcefe65f14c797e1bd4b51505aebf64eca44016a28abcae055cd77420",
+    "tools/build/test_lilac_afe_slimbus_playback.cpp": "9218c4e0c7fb045decc1178842e0eda8eeb4ec6aa918b2bbbe06b95b0ec4a680",
+    "xnu/support/LilacAfeSlimbusPlayback.h": "b0727cc8404f45fdbd964517220b664cdd63f29a20fd80db714c8df8e42b147c",
+    "tools/build/check_lilac_afe_slimbus.py": "b10916d15c8a715c098a8c6afea83ea7a89cbf59478b658cd4af37dbc06120c6"
+  },
+  "commands": [
+    [
+      "wsl.exe",
+      "-d",
+      "Ubuntu-22.04",
+      "--",
+      "clang++",
+      "-std=c++17",
+      "-O1",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=address,undefined",
+      "-fno-sanitize-recover=all",
+      "-no-pie",
+      "-I",
+      "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-afe-slimbus-reproducible-r4-20261125",
+      "/mnt/d/Desktop/Git/ios-xperia-xz1c/tools/build/test_lilac_afe_slimbus_playback.cpp",
+      "-o",
+      "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-afe-slimbus-reproducible-r4-20261125/test_afe"
+    ],
+    [
+      "wsl.exe",
+      "-d",
+      "Ubuntu-22.04",
+      "--",
+      "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-afe-slimbus-reproducible-r4-20261125/test_afe"
+    ]
+  ],
+  "host_ASan_UBSan_passed": true,
+  "config_bytes": 36,
+  "SLIMBUS_member_bytes": 24,
+  "config_packets_V2_V3": [
+    84,
+    92
+  ],
+  "APR_source_and_destination_ports": 0,
+  "start_and_stop_packet_bytes": 24,
+  "codec_channels_and_parameter_schema_require_separate_validation": true,
+  "transport_connected": false,
+  "linked_into_device_kernel": false,
+  "DSP_or_codec_or_physical_audio_verified": false,
+  "device_operations": 0,
+  "reference_repository": "sony-msm8998/android_kernel_sony_msm8998",
+  "reference_commit": "33dc678e7692f04ecc1eeddeb1cca8a809bc1727",
+  "reference_blobs": {
+    "include/sound/apr_audio-v2.h": "89e05abfd74b5f3a5c68d0eed4d6edb685a17243",
+    "sound/soc/msm/qdsp6v2/q6afe.c": "7ee774ddccf7e7fefcb57fdd5612f044400ce95c",
+    "sound/soc/msm/qdsp6v2/q6common.c": "88e9af1cb86bbc28162b51590dab62a61a72f007",
+    "sound/soc/msm/msm8998.c": "1c1f65fb3f5c5bb962d33d0b11434fd2e480f52e"
+  },
+  "header_member_and_union_layout": {
+    "SLIMbus_member_bytes": 24,
+    "union_afe_port_config_bytes": 36,
+    "q6afe_parameter_size": "sizeof(union afe_port_config)",
+    "trailing_unused_bytes_zero": 12
+  },
+  "initial_smaller_packet_host_result_not_hardware_evidence": true,
+  "Mac_host": {
+    "source_files": {
+      "iokit/Kernel/arm/LilacAPRProtocol.h": "78e293cf87f0e636aea1f3ee6a0c5a9caf92cf710010b3b4149a42464f9a026e",
+      "iokit/Kernel/arm/LilacAPRBasebandProtocol.h": "3a23a81bcefe65f14c797e1bd4b51505aebf64eca44016a28abcae055cd77420",
+      "tools/build/test_lilac_afe_slimbus_playback.cpp": "9218c4e0c7fb045decc1178842e0eda8eeb4ec6aa918b2bbbe06b95b0ec4a680",
+      "xnu/support/LilacAfeSlimbusPlayback.h": "b0727cc8404f45fdbd964517220b664cdd63f29a20fd80db714c8df8e42b147c",
+      "tools/build/check_lilac_afe_slimbus.py": "b10916d15c8a715c098a8c6afea83ea7a89cbf59478b658cd4af37dbc06120c6"
+    },
+    "commands": [
+      [
+        "clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-I",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-afe-slimbus-macos-20261125/host",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/tools/build/test_lilac_afe_slimbus_playback.cpp",
+        "-o",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-afe-slimbus-macos-20261125/host/test_afe"
+      ],
+      [
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-afe-slimbus-macos-20261125/host/test_afe"
+      ]
+    ],
+    "host_ASan_UBSan_passed": true,
+    "config_bytes": 36,
+    "SLIMBUS_member_bytes": 24,
+    "config_packets_V2_V3": [
+      84,
+      92
+    ],
+    "APR_source_and_destination_ports": 0,
+    "start_and_stop_packet_bytes": 24,
+    "codec_channels_and_parameter_schema_require_separate_validation": true,
+    "transport_connected": false,
+    "linked_into_device_kernel": false,
+    "DSP_or_codec_or_physical_audio_verified": false,
+    "device_operations": 0
+  },
+  "arm64_object_sha256": "a9decf8de2f0f5140d04c4eaecbf9828a887a93c188cb68094970669a9610343",
+  "arm64_object_not_linked_into_kernel": true
+}

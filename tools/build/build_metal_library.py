@@ -47,6 +47,9 @@ report.update(native_blit_command_queue=True,hardware_queue_blit_acceptance_pend
     system_Metal_shader_rendering_still_pending=True,blit_transport_evidence_revision=1)
 if air_manifest:report.update(AIR_compute_pipeline=True,AIR_frontend=air_manifest,actual_AIR_compute_GPU_acceptance_pending=True,
     native_texture_render_pipeline=True,actual_AIR_render_GPU_acceptance_pending=True)
+if air_manifest:report.update(native_reflected_render_buffer_selection=True,render_buffer_selection_revision=1,
+    unused_encoder_bindings_retained_and_not_consumed=True,missing_required_render_buffers_rejected=True,
+    actual_reflected_render_buffer_GPU_acceptance_pending=True)
 if air_manifest:report.update(native_function_constants=True,actual_specialized_GPU_acceptance_pending=True)
 if air_manifest:report.update(native_XR_code_formats=True,XR_shader_colour_conversion=True,actual_XR_format_acceptance_pending=True)
 if air_manifest:report.update(native_IOSurface_texture_import=True,actual_IOSurface_GPU_acceptance_pending=True)

@@ -14,7 +14,7 @@
 | 当前技术专题 | 内容 |
 | --- | --- |
 | [附件验收](ATTACHMENT-HARDWARE.md) | D32／S8／Memoryless／MSAA原字节、作者page与tiled工作布局 |
-| [原壁纸请求](METAL-REQUEST-OBSERVATION.md) | 原33方法／mode、R22有界environment、Mesa链接超时与原拒绝 |
+| [原壁纸请求](METAL-REQUEST-OBSERVATION.md) | 原33方法／mode、磁盘PNG复用、原队列EINVAL、开源反射绑定修补与原拒绝 |
 | [串口截图](SCANOUT-SCREENSHOT.md) | 无损720×1280、来源／CRC／FNV／保存像素与光学范围 |
 | [Lilac 外设](LILAC-PERIPHERALS.md) | 固定 Sony WLED 来源、背光服务及当前音频／无线日志边界 |
 | [CA矩阵](CA-MATRIX.md) | 完整GLES第9组、准确20H392绑定 |
@@ -54,6 +54,8 @@ reproducibility保存原结果摘要、源码锁、精确proof和回收记录；
 | 本轮50份现行手册／入口 | [poster-state-r22](archive/20261123/poster-state-r22-close-out/original-document-manifest.json) |
 | NOTES／XNU／AIR三份补充入口 | [project-entry-supplement](archive/20261123/project-entry-supplement/original-document-manifest.json) |
 | 缓存库完整验收整合前9份入口 | [cache-budget 20261124](archive/20261124/cache-budget-close-out/original-document-manifest.json) |
+| 原快照来源整合前4份入口 | [snapshot-scope 20261125](archive/20261125/poster-snapshot-scope/original-document-manifest.json) |
+| 原队列停点与外设整合前10份入口 | [render-buffer 20261125](archive/20261125/render-buffer-selection/original-document-manifest.json) |
 | Mac旧38份文档与源文件 | [macos-patch-entry](archive/20261123/macos-patch-entry/original-document-manifest.json) |
 
 旧handover／handout与编号手册在docs/archive；原字节与SHA保持。旧整理报告入口：[2026-11-12](ORGANIZATION-2026-11-12.md)、[2026-11-13](ORGANIZATION-2026-11-13.md)、[2026-11-15](ORGANIZATION-2026-11-15.md)。回收与复原统一由ORGANIZATION／LAYOUT说明，不从旧in-flight恢复执行。

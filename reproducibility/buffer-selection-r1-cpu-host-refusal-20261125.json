@@ -1,0 +1,19 @@
+{
+  "token": "0500922a115a6ceb",
+  "source": "Windows TEMP/lilac-v731-buffer-selection-r1-cpu-live-20261125",
+  "original_result": "STOP_ERROR",
+  "original_error": "Another fastboot/xperable process is running",
+  "phase": "before ABL guard",
+  "events_sha256": "53b6a89fca2397a21a9edd99b58778841ff7451e52081d1d2818496be5d3ffa8",
+  "original_results_sha256": "83e5132d24bdabc1b96b27bafc4038eaa4b31646604972cea731474c51f20130",
+  "download_attempts": 0,
+  "boot_attempts": 0,
+  "other_device_process_observed": {
+    "serial": "HA2A1PT2",
+    "pid": 412612,
+    "operation": "fastboot reboot"
+  },
+  "other_device_not_operated": true,
+  "original_package_not_replayed": true,
+  "next_candidate_change": "Add original unused-buffer byte/FNV evidence after actual GPU retirement"
+}

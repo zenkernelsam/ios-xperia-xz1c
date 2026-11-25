@@ -1,0 +1,238 @@
+{
+  "date": "2026-11-25",
+  "token": "44909d40acc04aac",
+  "source": "Windows TEMP/lilac-v731-poster-snapshot-gate-gpu-live-20261125",
+  "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+  "image_sha256": "c34aff1c5c64dcb01ce0c7f079543fd74930d38f0134f70aaf596cdb65a99088",
+  "raw_sha256": "73927c903bc5c2bdf058a4419a8f7d7db7ecbb1bc40d661b1ab1d8f21a742419",
+  "raw_bytes": 1808631,
+  "original_result": "STOP",
+  "original_reason": "OBSERVATION_INCOMPLETE",
+  "return_seconds_with_health": 38.35899999993853,
+  "serial_capture": {
+    "revision": 1,
+    "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+    "event_log_sha256": "6a1bfd75f039ab4efe0f16a9662b8406199f7923e3697936ed61a3e2f0d81593",
+    "raw_sha256": "73927c903bc5c2bdf058a4419a8f7d7db7ecbb1bc40d661b1ab1d8f21a742419",
+    "serial_port": "COM17",
+    "dtr_low_through_open": true,
+    "raw_log_before_stream": true,
+    "one_continuous_current_boot_stream": true,
+    "replay_commands": 0,
+    "old_failure_not_reclassified": true
+  },
+  "scanout": {
+    "protocol": 1,
+    "frames": [
+      {
+        "id": 1,
+        "token": "44909d40acc04aac",
+        "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+        "image_sha256": "c34aff1c5c64dcb01ce0c7f079543fd74930d38f0134f70aaf596cdb65a99088",
+        "binding": {
+          "protocol": 1,
+          "width": 720,
+          "height": 1280,
+          "stride": 2160,
+          "format": "BGR888",
+          "codec": "PRLE1",
+          "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+          "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+          "runtime_source_sha256": "2c566a962d61e7b8aebfc88be54d496878821a4c0f5bb439f505198b16adfba2"
+        },
+        "begin": {
+          "token": "44909d40acc04aac",
+          "id": "1",
+          "width": "720",
+          "height": "1280",
+          "stride": "2160",
+          "format": "BGR888",
+          "bytes": "2764800",
+          "codec": "PRLE1",
+          "encoded": "441530",
+          "raw_fnv": "5f687b236fe5ba8a",
+          "enc_crc": "b91397ab",
+          "vsync": "7909",
+          "timestamp": "7994087705",
+          "copy_ticks": "4639250",
+          "power_off": "0",
+          "source_checked": "1",
+          "source_match": "1"
+        },
+        "scan": {
+          "token": "44909d40acc04aac",
+          "id": "1",
+          "pa": "0x9d400000",
+          "map_pa": "0x9d400000",
+          "map_bytes": "2764800",
+          "size": "0x50002d0",
+          "img": "0x50002d0",
+          "xy": "0",
+          "out": "0x50002d0",
+          "outxy": "0",
+          "fmt": "0x2243f",
+          "unpack": "0x20001",
+          "op": "0x80000000",
+          "qop": "0",
+          "ctl": "0x20020",
+          "start": "0",
+          "before_after": "1"
+        },
+        "blocks": 3450,
+        "raw_file": "scanout-00000001.bgr",
+        "png_file": "scanout-00000001.png",
+        "raw_sha256": "ad84f9e74b8365aefb18e924aa6682283eb6f1941693ff251a1ccf386676ca62",
+        "png_sha256": "4221bf58abade46b4b88227120914d25caa38b9f7f3f14722b889891a2afd6c4",
+        "pixel_values_preserved": true,
+        "verified": true,
+        "optical_panel_verified": false
+      }
+    ],
+    "verified": true,
+    "optical_panel_verified": false,
+    "current_boot_source_and_payload_checked": true,
+    "format": "BGR888",
+    "width": 720,
+    "height": 1280
+  },
+  "missing_goal_patterns": [
+    "SWEET METAL PIPELINE END call=1 returned_nil=[01] error_pointer=[01] error_code=-?[0-9]+ original_return=1"
+  ],
+  "gate_complete_calls": 22,
+  "gate_incomplete_calls": 0,
+  "gate_complete_replies": 4,
+  "gate_incomplete_replies": 0,
+  "pending_original_requests": [],
+  "all_view_returns_nonnull": true,
+  "vista_frames": [
+    {
+      "x": "0000000000000000",
+      "y": "0000000000000000",
+      "w": "4076800000000000",
+      "h": "4084000000000000"
+    },
+    {
+      "x": "0000000000000000",
+      "y": "0000000000000000",
+      "w": "4076800000000000",
+      "h": "4084000000000000"
+    },
+    {
+      "x": "0000000000000000",
+      "y": "0000000000000000",
+      "w": "4076800000000000",
+      "h": "4084000000000000"
+    },
+    {
+      "x": "0000000000000000",
+      "y": "0000000000000000",
+      "w": "4076800000000000",
+      "h": "4084000000000000"
+    },
+    {
+      "x": "0000000000000000",
+      "y": "0000000000000000",
+      "w": "4076800000000000",
+      "h": "4084000000000000"
+    }
+  ],
+  "original_replies": [
+    {
+      "pid": 282,
+      "call": 14,
+      "reply": 1,
+      "begin_at": 349657,
+      "complete": true,
+      "outcome": "return",
+      "rectangle_bits": {
+        "x": "0000000000000000",
+        "y": "3fd059999999999a",
+        "w": "3ff0000000000000",
+        "h": "3fe7d33333333333"
+      },
+      "end_at": 349916
+    },
+    {
+      "pid": 282,
+      "call": 13,
+      "reply": 2,
+      "begin_at": 350009,
+      "complete": true,
+      "outcome": "return",
+      "rectangle_bits": {
+        "x": "0000000000000000",
+        "y": "3fd059999999999a",
+        "w": "3ff0000000000000",
+        "h": "3fe7d33333333333"
+      },
+      "end_at": 350268
+    },
+    {
+      "pid": 282,
+      "call": 18,
+      "reply": 3,
+      "begin_at": 359483,
+      "complete": true,
+      "outcome": "return",
+      "rectangle_bits": {
+        "x": "0000000000000000",
+        "y": "3fd059999999999a",
+        "w": "3ff0000000000000",
+        "h": "3fe7d33333333333"
+      },
+      "end_at": 359742
+    },
+    {
+      "pid": 282,
+      "call": 17,
+      "reply": 4,
+      "begin_at": 359931,
+      "complete": true,
+      "outcome": "return",
+      "rectangle_bits": {
+        "x": "0000000000000000",
+        "y": "3fd059999999999a",
+        "w": "3ff0000000000000",
+        "h": "3fe7d33333333333"
+      },
+      "end_at": 360190
+    }
+  ],
+  "postdraw_complete_calls": 9,
+  "postdraw_incomplete_calls": 0,
+  "postdraw_observed_apis": [
+    "colorsync",
+    "library_bundle",
+    "library_url"
+  ],
+  "snapshot_or_PNG_calls": 0,
+  "WLED": {
+    "token": "44909d40acc04aac",
+    "image_sha256": "c34aff1c5c64dcb01ce0c7f079543fd74930d38f0134f70aaf596cdb65a99088",
+    "scanout_raw_sha256": "73927c903bc5c2bdf058a4419a8f7d7db7ecbb1bc40d661b1ab1d8f21a742419",
+    "sample": {
+      "token": "44909d40acc04aac",
+      "frame_id": 1,
+      "state": 6,
+      "state_name": "CONFIGURED",
+      "faults": 0,
+      "module_enabled": 1,
+      "sink_mask": 3,
+      "modulator_mask": 3,
+      "duty": [
+        1989,
+        1989
+      ]
+    },
+    "same_live_as_complete_scanout": true,
+    "original_trial_result": "STOP",
+    "pwm_current_luminosity_verified": false,
+    "optical_panel_verified": false,
+    "device_operations": 0
+  },
+  "original_failure_not_promoted": true,
+  "failed_package_not_replayed": true,
+  "worker_closed": true,
+  "next_question": "Original snapshot/cache selection after successful cutout replies",
+  "device_operations": 0
+}

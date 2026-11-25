@@ -1,5 +1,6 @@
 """Verify current-boot original-page AIR render and all logical/padding bytes."""
 import re
+import struct
 
 def fnv(data):
     value=14695981039346656037
@@ -22,7 +23,7 @@ def expected(phase):
             offset=64+y*192+x*4;target[offset:offset+4]=color
     return fnv(target),fnv(sample)
 
-def verify(text,token,fixture):
+def verify(text,token,fixture,unused_bindings_revision=None):
     scope=text[text.index('SWEET LOOP LIVE proto=1 token='+token):text.index('SWEET LOOP ACK FASTBOOT token='+token)]
     starts=list(re.finditer(r'SWEET AIR RENDER begin library_bytes=(\d+) standard_MTLB=1 standard_render_encoder=1 original_textures=1',scope))
     assert starts,'Actual AIR render probe missing'
@@ -54,6 +55,17 @@ def verify(text,token,fixture):
         vertices=re.findall(r'SWEET AIR RENDER vertex_words index=0 handle=(\d+) gpu=(0x[0-9a-f]+) offset=0 bytes=(48|96) logical=\3 integer_texture=1 guarded=1 original_pages=1',block)
         assert len(vertices)==3 and [row[2] for row in vertices]==['48','96','96'] and vertices[1]==vertices[2]
         assert all(int(row[1],16)%16384==0 and row[0] not in (target[0][0],sample[0][0]) for row in vertices)
+        if unused_bindings_revision is not None:
+            assert unused_bindings_revision in (1,2)
+            unused=re.findall(r'SWEET AIR RENDER UNUSED_BIND phase=([1-3]) vertex=7 fragment=7 reflected_vertex_mask=1 reflected_fragment_mask=0 retained=1',block)
+            returned=re.findall(r'SWEET AIR RENDER UNUSED_RETURN phase=([1-3]) bytes=48 hash=([0-9a-f]{16}) unchanged=1 GPU_completed=1',block)
+            expected_unused=fnv(struct.pack('<12f',-1,1,.5,1,3,1,.5,1,-1,-3,.5,1))
+            assert unused==['1','2','3'] and [x[0] for x in returned]==unused
+            assert all(x[1]==expected_unused for x in returned)
+            assert scope.count('SWEET AIR RENDER UNUSED_BIND ')==3 and scope.count('SWEET AIR RENDER UNUSED_RETURN ')==3
+            if unused_bindings_revision==2:
+                switches=re.findall(r'SWEET AIR RENDER PIPELINE_SWITCH phase=([23]) fragment_slot0_retained=1 final_fragment_mask=0 original_encoder=1',block)
+                assert switches==['2','3'] and scope.count('SWEET AIR RENDER PIPELINE_SWITCH ')==2
         records.append(dict(sequences=sequence,target_handle=int(target[0][0]),source_handle=int(sample[0][0]),
             target_original_GPU_address=target[0][1],source_original_GPU_address=sample[0][1],
             target_hashes=[row[4] for row in rows],sample_hashes=[row[5] for row in rows],
@@ -62,4 +74,6 @@ def verify(text,token,fixture):
     assert records,'No complete current-boot AIR render and original texture proof'
     return dict(actual_MTLB_AIR_render_GPU_path_verified=True,complete_samples=len(records),incomplete_samples=incomplete,
         original_Metal_texture_pages_used=True,strided_RGBA_to_BGRA_and_upload_refresh_verified=True,
+        unused_stage_bindings_retained_and_original_bytes_checked=unused_bindings_revision in (1,2),
+        encoder_pipeline_switch_and_retained_fragment_slot0_checked=unused_bindings_revision==2,
         scissor_viewport_winding_and_all_padding_checked=True,records=records,system_Metal_and_complete_UI_pending=True)

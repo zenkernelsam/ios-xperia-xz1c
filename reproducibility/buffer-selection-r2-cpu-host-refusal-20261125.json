@@ -1,0 +1,13 @@
+{
+  "token": "654bc38725826f62",
+  "source": "Windows TEMP/lilac-v731-buffer-selection-r2-cpu-live-20261125",
+  "original_result": "STOP_ERROR",
+  "original_error": "Another fastboot/xperable process is running",
+  "phase": "before ABL guard",
+  "events_sha256": "ad8df30c131562fde0c26b880dec4019fcf54394c88aadb79733a83bf60e3f9e",
+  "original_results_sha256": "baf5cb4a4d24aafe128f7e83735e25874b486f2c461a08112dbb314eb2bd5691",
+  "download_attempts": 0,
+  "boot_attempts": 0,
+  "original_package_not_replayed": true,
+  "new_Metal_device_acceptance": false
+}

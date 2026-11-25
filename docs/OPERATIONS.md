@@ -22,6 +22,8 @@ python -B tools/device/observe_fastboot.py --output "$env:TEMP\新的健康目�
 
 新kernel自身private／owner／ready；新RAM包自身CPU；新GLES自己的完整9组；新Metal／source-map自己的完整能力组与共享PNG6。生产native16、Depth3217、Stencil818、Memoryless19、MSAA20、当前presentation21；旧proof不准入新功能库。short registry必须完整原raw、同kernel／GLES／Metal／source-map精确先验，并与嵌入proof一致。
 
+原snapshot／wait返回和pipeline非空不能证明所有命令已成功。新的原队列观察另核对executeOperations终态status／error，status5或observer拒绝立即进入现有回程，原REVISE保持；自己的full native／PNG6先验仍必须完整。其它手机的fastboot／xperable进程也会在guard前触发冲突拒绝，不终止外部进程、不重发旧失败包；等待冲突退出期间继续离线与归档。
+
 run_trial在手机USB／COM命令前复算完整payload、Mac83实际源、Mesa归档和已编译用户态源码。默认offline，加--live才投递；每包／运行目录必须不存在，运行目录是Windows TEMP子目录。例如，实际路径按已审核的包与同版本原raw填写：
 
 ```powershell

@@ -1,0 +1,120 @@
+{
+  "token": "5e64e7240b822797",
+  "source": "Windows TEMP/lilac-v731-render-queue-r4-gpu-live-20261125",
+  "original_result": "REVISE",
+  "original_reason": "EXTENSION_CHECKIN_TIMEOUT",
+  "raw_sha256": "6aa6cf13b0977e045239dbb9a483992f86e9a02bc12e40cb7129ab4431cb3ad0",
+  "raw_bytes": 510620,
+  "return_complete": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "5e64e7240b822797",
+    "checkpoint_bytes": 500059,
+    "log_bytes": 510620,
+    "log_sha256": "6aa6cf13b0977e045239dbb9a483992f86e9a02bc12e40cb7129ab4431cb3ad0",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      100,
+      145,
+      147
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 38.110000000102445,
+  "payload": {
+    "image_sha256": "0696c9df65f17dc4c42cef20bd626fffcc2c12111ffb35c6b29af9c449326cac",
+    "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+    "blob_count": 8,
+    "complete_payload_reconstructed_from_compiled_kernel": true
+  },
+  "queue": {
+    "token": "5e64e7240b822797",
+    "draws": [
+      {
+        "pid": 332,
+        "call": 1,
+        "primitive": 4,
+        "first": 0,
+        "count": 4,
+        "instances": 1,
+        "vertex_mask": 3,
+        "fragment_mask": 1,
+        "vertex_function": "aegir_pass_vsh",
+        "fragment_function": "aegir_starfield_fsh",
+        "outcome": "return"
+      },
+      {
+        "pid": 332,
+        "call": 2,
+        "primitive": 3,
+        "first": 0,
+        "count": 4212,
+        "instances": 1,
+        "vertex_mask": 3,
+        "fragment_mask": 1,
+        "vertex_function": "aegir_star_vsh",
+        "fragment_function": "aegir_star_fsh",
+        "outcome": "return"
+      },
+      {
+        "pid": 332,
+        "call": 3,
+        "primitive": 4,
+        "first": 0,
+        "count": 4,
+        "instances": 1,
+        "vertex_mask": 3,
+        "fragment_mask": 1,
+        "vertex_function": "aegir_pass_vsh",
+        "fragment_function": "aegir_earth_fsh",
+        "outcome": "return"
+      },
+      {
+        "pid": 332,
+        "call": 4,
+        "primitive": 4,
+        "first": 0,
+        "count": 4,
+        "instances": 1,
+        "vertex_mask": 3,
+        "fragment_mask": 1,
+        "vertex_function": "aegir_pass_vsh",
+        "fragment_function": "aegir_threshold_fsh",
+        "outcome": "return"
+      },
+      {
+        "pid": 332,
+        "call": 5,
+        "primitive": 4,
+        "first": 0,
+        "count": 4,
+        "instances": 1,
+        "vertex_mask": 3,
+        "fragment_mask": 1,
+        "vertex_function": "aegir_pass_vsh",
+        "fragment_function": "aegir_post_fsh",
+        "outcome": "return"
+      }
+    ],
+    "results": [
+      {
+        "pid": 332,
+        "call": 1,
+        "status": 5,
+        "error_nil": false,
+        "code": 9,
+        "description": "AIR_render_failed_result=-22"
+      }
+    ],
+    "failed_commands": 1,
+    "original_arguments_and_errors_preserved": true,
+    "extra_GPU_work": 0,
+    "wallpaper_pixels_or_optical_not_proven": true
+  },
+  "only_first_backend_draw_completed": true,
+  "original_error": "AIR render failed result=-22",
+  "old_shader_geometry_and_kernel_not_changed": true,
+  "original_failure_not_promoted": true,
+  "worker_closed": true
+}

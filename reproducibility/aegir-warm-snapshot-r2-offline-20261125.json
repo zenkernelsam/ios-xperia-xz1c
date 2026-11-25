@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-25",
+  "actual_missing_bin_completed_prior": "reproducibility/aegir-namespace-primer-gpu-actual-20261125.json",
+  "ram_blob_sha256": "82311b6c4ed92cbdc1e3ccd00a7019759998bcbdc35512c190b1f41ce32ec672",
+  "ram_manifest_sha256": "8013c5e5da5a3798b5475b3a6dc7b9ab7684971bd5cf012cc8a0aeacf13542c2",
+  "observer_sha256": "b7b2dc04b3e2551b821e9c13a3d22f35dbd9fe913f72cfc48597c0a999f10045",
+  "same_source_snapshot_namespace": "31e2a8bef37463f45aa31d45f7b1fdcf9fb502ab2d83686b885b39c244329962",
+  "extra_file_view_probes_removed": true,
+  "original_factory_snapshot_PNG_observers_kept": true,
+  "old_failed_package_not_replayed": true,
+  "original_UI_mode_paused_not_forced": true,
+  "device_operations": 0,
+  "artifacts": {
+    "cpu": {
+      "token": "9cc7b6d5eb7c6021",
+      "sha256": "3d0cc10b506ea91c8d4dac8252a0d6bdb0556af1e9024f74ca17a45dcf3949fb",
+      "trial_mode": "ramcpu"
+    },
+    "gpu": {
+      "token": "2bf4daa2eb799d4c",
+      "sha256": "95b3bd896d38b4d6224f02dd41d92cea6ffcd73002502955cd89907e6152883b",
+      "trial_mode": "gpu"
+    }
+  }
+}

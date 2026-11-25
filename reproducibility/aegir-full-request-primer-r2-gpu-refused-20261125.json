@@ -1,0 +1,131 @@
+{
+  "date": "2026-11-25",
+  "source": "Windows TEMP/lilac-v731-aegir-full-primer-r2-gpu-live-20261125",
+  "token": "d64677d5505c299e",
+  "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+  "image_sha256": "efa81d81e0d9214c72dbfad9d5207725a8a88fb3741f42955ef17cd5680080d7",
+  "raw_sha256": "c6968566dabf9efd49e6a3b5df5cc3c81d521222289b9ac53a07a07ad7ca622b",
+  "raw_bytes": 2914588,
+  "original_controller_result": "PASS",
+  "original_reason": "GOALS_STABLE",
+  "stage_accepted": false,
+  "independent_PNG6_refused": true,
+  "refusal": "Missing original PNG pixel block: offset != len(payload)",
+  "serial_capture": {
+    "revision": 1,
+    "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+    "event_log_sha256": "73f6164508362936141b5af8f93c8ebfc4a48ae95ee55d85dca6a24f16828aef",
+    "raw_sha256": "c6968566dabf9efd49e6a3b5df5cc3c81d521222289b9ac53a07a07ad7ca622b",
+    "serial_port": "COM17",
+    "dtr_low_through_open": true,
+    "raw_log_before_stream": true,
+    "one_continuous_current_boot_stream": true,
+    "replay_commands": 0,
+    "old_failure_not_reclassified": true
+  },
+  "scanout": {
+    "protocol": 1,
+    "frames": [
+      {
+        "id": 1,
+        "token": "d64677d5505c299e",
+        "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+        "image_sha256": "efa81d81e0d9214c72dbfad9d5207725a8a88fb3741f42955ef17cd5680080d7",
+        "binding": {
+          "protocol": 1,
+          "width": 720,
+          "height": 1280,
+          "stride": 2160,
+          "format": "BGR888",
+          "codec": "PRLE1",
+          "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+          "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+          "runtime_source_sha256": "2c566a962d61e7b8aebfc88be54d496878821a4c0f5bb439f505198b16adfba2"
+        },
+        "begin": {
+          "token": "d64677d5505c299e",
+          "id": "1",
+          "width": "720",
+          "height": "1280",
+          "stride": "2160",
+          "format": "BGR888",
+          "bytes": "2764800",
+          "codec": "PRLE1",
+          "encoded": "437709",
+          "raw_fnv": "53e4d73041759028",
+          "enc_crc": "a5185795",
+          "vsync": "7906",
+          "timestamp": "7436561891",
+          "copy_ticks": "4826886",
+          "power_off": "0",
+          "source_checked": "1",
+          "source_match": "1"
+        },
+        "scan": {
+          "token": "d64677d5505c299e",
+          "id": "1",
+          "pa": "0x9d400000",
+          "map_pa": "0x9d400000",
+          "map_bytes": "2764800",
+          "size": "0x50002d0",
+          "img": "0x50002d0",
+          "xy": "0",
+          "out": "0x50002d0",
+          "outxy": "0",
+          "fmt": "0x2243f",
+          "unpack": "0x20001",
+          "op": "0x80000000",
+          "qop": "0",
+          "ctl": "0x20020",
+          "start": "0",
+          "before_after": "1"
+        },
+        "blocks": 3420,
+        "raw_file": "scanout-00000001.bgr",
+        "png_file": "scanout-00000001.png",
+        "raw_sha256": "26a1e49addd5d5e39c4c5a9e335997d3b2047271ae336fb177c43a60c6cd306c",
+        "png_sha256": "7fb936238c5d24888b382c1bcf435a489fa8b5a913ee0af87a23838632ba1cce",
+        "pixel_values_preserved": true,
+        "verified": true,
+        "optical_panel_verified": false
+      }
+    ],
+    "verified": true,
+    "optical_panel_verified": false,
+    "current_boot_source_and_payload_checked": true,
+    "format": "BGR888",
+    "width": 720,
+    "height": 1280
+  },
+  "cache_before": {
+    "files": 59,
+    "records": 59,
+    "requests": 30,
+    "bins": 29,
+    "present": 29,
+    "missing": 1
+  },
+  "cache_after": {
+    "files": 60,
+    "records": 60,
+    "requests": 30,
+    "bins": 30,
+    "present": 30,
+    "missing": 0
+  },
+  "action": {
+    "action": "prime",
+    "missing": 1
+  },
+  "prime": {
+    "result": 0,
+    "compiled": 1,
+    "failed": 0,
+    "expected": 1
+  },
+  "existing_records_preserved": true,
+  "worker_closed": true,
+  "return_seconds_with_health": 39.34399999980815,
+  "raw_not_repaired": true,
+  "failed_package_not_replayed": true
+}

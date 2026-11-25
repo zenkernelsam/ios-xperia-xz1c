@@ -7,8 +7,14 @@ from program_request import specification as request_specification,header as req
 from program_cache_scope import specification as cache_scope_specification,header as cache_scope_header
 from png_encoder_proof import validate as validate_png,header as png_header
 from program_cache_inventory import specification as inventory_specification,header as inventory_header
+from aegir_snapshot_scope import specification as aegir_scope_specification,header as aegir_scope_header
 p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--metal-resources');p.add_argument('--air-fixture');p.add_argument('--render-fixture');p.add_argument('--constants-fixture');p.add_argument('--register-device',action='store_true');p.add_argument('--xr-probe',action='store_true');p.add_argument('--surface-probe',action='store_true');p.add_argument('--mip-probe',action='store_true');p.add_argument('--target-process',choices=['AegirPoster','backboardd'],default='AegirPoster');p.add_argument('--gles-ram-package');p.add_argument('--registration-only',action='store_true');p.add_argument('--native-proof');p.add_argument('--pipeline-observe',action='store_true');p.add_argument('--narrow-fixture');p.add_argument('--half-fixture');p.add_argument('--mrt-fixture');p.add_argument('--sampler-fixture');p.add_argument('--program-cache-prime',action='store_true');p.add_argument('--static-half-fixture');p.add_argument('--program-cache-export',action='store_true')
 p.add_argument('--program-cache-inventory',action='store_true')
+p.add_argument('--poster-snapshot-gate',action='store_true')
+p.add_argument('--aegir-snapshot-cache-scope',action='store_true')
+p.add_argument('--original-snapshot-png-export',action='store_true')
+p.add_argument('--loaded-snapshot-png-export',action='store_true')
+p.add_argument('--snapshot-render-queue',action='store_true')
 p.add_argument('--postdraw-observe',action='store_true');p.add_argument('--snapshot-observe',action='store_true');p.add_argument('--cif10-png-reference',action='store_true');p.add_argument('--png-filter-encoder',action='store_true');p.add_argument('--png-proof');p.add_argument('--clear-cache-probe',action='store_true');p.add_argument('--ir3-cache-probe',action='store_true');p.add_argument('--request-observe',action='store_true');p.add_argument('--quad-route-observe',action='store_true');p.add_argument('--depth32-probe',action='store_true');p.add_argument('--stencil8-probe',action='store_true');p.add_argument('--memoryless-probe',action='store_true');p.add_argument('--multisample-fixture');p.add_argument('--presentation-probe',action='store_true');a=p.parse_args()
 if a.memoryless_probe:assert a.stencil8_probe and a.target_process=='backboardd' and not a.registration_only
 if a.presentation_probe:assert a.multisample_fixture and a.target_process=='backboardd' and not a.registration_only
@@ -21,6 +27,11 @@ if a.postdraw_observe:assert a.registration_only and a.pipeline_observe and a.ta
 if a.snapshot_observe:assert a.postdraw_observe
 if a.request_observe:assert a.registration_only and a.postdraw_observe and a.target_process=='AegirPoster'
 if a.quad_route_observe:assert a.request_observe and a.snapshot_observe
+if a.poster_snapshot_gate:assert a.registration_only and a.snapshot_observe and a.target_process=='AegirPoster'
+if a.aegir_snapshot_cache_scope:assert a.registration_only and a.snapshot_observe and a.png_filter_encoder
+if a.original_snapshot_png_export:assert a.registration_only and a.postdraw_observe and a.snapshot_observe
+if a.loaded_snapshot_png_export:assert a.poster_snapshot_gate and not a.original_snapshot_png_export
+if a.snapshot_render_queue:assert a.registration_only and a.snapshot_observe and a.aegir_snapshot_cache_scope
 if a.cif10_png_reference:assert a.target_process=='backboardd' and a.static_half_fixture and not a.registration_only and not a.program_cache_export and (not a.program_cache_prime or a.program_cache_inventory)
 if a.png_filter_encoder:assert a.registration_only and a.postdraw_observe and a.png_proof and not a.cif10_png_reference
 else:assert not a.png_proof
@@ -36,13 +47,18 @@ if a.target_process=='backboardd':
 out=Path(a.output).absolute();assert out.is_relative_to(root/'build') and not out.exists();out.mkdir(parents=True)
 source=root/'gpu/diagnostics/exception_observe.m';before=source.read_bytes()
 (out/'source.m').write_bytes(before)
-headers=['gpu/diagnostics/MetalRuntimeObserve.h','gpu/diagnostics/MetalProbeStartup.h']
+headers=['gpu/diagnostics/MetalRuntimeObserve.h','gpu/diagnostics/MetalProbeStartup.h','gpu/sweetgl/LogWriteAll.h']
 if a.target_process=='backboardd':headers+=['gpu/sweetgl/sweetgl.h']
 if a.pipeline_observe:headers+=['gpu/diagnostics/MetalPipelineObserve.h']
 if a.postdraw_observe:headers+=['gpu/diagnostics/PostDrawObserve.h']
 if a.snapshot_observe:headers+=['gpu/diagnostics/SnapshotMethodObserve.h']
 if a.request_observe:headers+=['gpu/diagnostics/MetalRequestObserve.h']
 if a.quad_route_observe:headers+=['gpu/diagnostics/QuadRouteObserve.h','gpu/diagnostics/PosterStateObserve.h']
+if a.poster_snapshot_gate:headers+=['gpu/diagnostics/PosterSnapshotGateObserve.h']
+if a.aegir_snapshot_cache_scope:headers+=['gpu/compat/AegirSnapshotCacheScope.h','tools/aegir_snapshot_scope.py']
+if a.original_snapshot_png_export:headers+=['gpu/diagnostics/OriginalSnapshotPNGExport.h']
+if a.loaded_snapshot_png_export:headers+=['gpu/diagnostics/OriginalSnapshotPNGExport.h','gpu/diagnostics/LoadedSnapshotPNGExport.h']
+if a.snapshot_render_queue:headers+=['gpu/diagnostics/SnapshotRenderQueueObserve.h']
 if a.png_filter_encoder:headers+=['gpu/compat/PNGImageIOEncoder.h','gpu/compat/PNGImageDispatch.h','tools/png_encoder_proof.py']
 if a.cif10_png_reference:
     headers+=['gpu/diagnostics/CIF10PNGReferenceProbe.h','gpu/diagnostics/CIF10VImageCompare.h','gpu/diagnostics/CIF10PNGFilterCompare.h','gpu/compat/PNGImageIOEncoder.h']
@@ -60,6 +76,7 @@ mrt_fixture_manifest=None
 sampler_fixture_manifest=None
 static_half_fixture_manifest=None
 native_proof=None
+aegir_scope=None
 if a.metal_resources:
     resources=Path(a.metal_resources).resolve();assert resources.is_relative_to(root/'build')
     resource_manifest=json.loads((resources/'manifest.json').read_bytes())
@@ -94,6 +111,14 @@ if a.registration_only:
         png_source_sha=hashlib.sha256((root/'gpu/compat/PNGImageIOEncoder.h').read_bytes()).hexdigest()
         png_proof=validate_png(json.loads(png_file.read_bytes()),png_source_sha,resource_manifest['gles_library_sha256'],resource_manifest['library_sha256'],native_proof['kernel_sha256'])
         (out/'PNGEncoderProof.h').write_bytes(png_header(png_proof))
+    if a.aegir_snapshot_cache_scope:
+        aegir_scope=aegir_scope_specification(resource_manifest,png_source_sha,
+            hashlib.sha256((root/'gpu/compat/AegirSnapshotCacheScope.h').read_bytes()).hexdigest(),
+            hashlib.sha256((root/'gpu/diagnostics/SnapshotRenderQueueObserve.h').read_bytes()).hexdigest()
+            if a.snapshot_render_queue else None)
+        identity=aegir_scope_header(aegir_scope)
+        (out/'AegirSnapshotScopeIdentity.h').write_bytes(identity)
+        aegir_scope['identity_header_sha256']=hashlib.sha256(identity).hexdigest()
 if a.air_fixture:
     assert resource_manifest and resource_manifest.get('AIR_compute_pipeline')
     fixture=Path(a.air_fixture).resolve();assert fixture.is_relative_to(root/'build')
@@ -314,6 +339,46 @@ if a.quad_route_observe:
     run(['clang','-fobjc-exceptions','-O1','-g','-fsanitize=address,undefined','-fno-sanitize-recover=all',root/'tools/build/test_poster_state_observe.m',
         '-framework','Foundation','-o',out/'test_poster_state_observer'],'poster-state-host-compile')
     assert 'Poster state observer PASS:' in run([out/'test_poster_state_observer'],'poster-state-host-test')
+if a.poster_snapshot_gate:
+    run(['clang','-fblocks','-fobjc-exceptions','-O1','-g','-fsanitize=address,undefined','-fno-sanitize-recover=all',
+        root/'tools/build/test_poster_snapshot_gate.m','-framework','Foundation','-framework','CoreGraphics',
+        '-o',out/'test_poster_snapshot_gate'],'poster-snapshot-gate-host-compile')
+    gate_test=run([out/'test_poster_snapshot_gate'],'poster-snapshot-gate-host-test')
+    assert 'poster snapshot gate PASS:' in gate_test
+    gate_rows=gate_test.splitlines();refusals=[i for i,line in enumerate(gate_rows) if line.startswith('SWEET PSG METHOD ') and 'installed=0' in line]
+    assert len(refusals)==3 and refusals==list(range(refusals[0],refusals[0]+3))
+    sys.path.insert(0,str(root/'tools/device'))
+    from poster_snapshot_gate_evidence import inspect as inspect_gate
+    checked_gate=inspect_gate('\n'.join(gate_rows[:refusals[0]]),'',require_current=False)
+    assert checked_gate['complete_calls']==21 and checked_gate['complete_replies']==5
+run(['clang','-O1','-g','-fsanitize=address,undefined',root/'tools/build/test_log_write_remaining.c',
+    '-o',out/'test_log_remaining'],'log-remaining-host-compile')
+assert 'Process log writer PASS cases=10' in run([out/'test_log_remaining'],'log-remaining-host-test')
+if a.aegir_snapshot_cache_scope:
+    run(['clang','-fobjc-exceptions','-O1','-g','-fsanitize=address,undefined','-fno-sanitize-recover=all',
+        root/'tools/build/test_aegir_snapshot_cache_scope.m','-framework','Foundation',
+        '-o',out/'test_aegir_snapshot_scope'],'aegir-snapshot-scope-host-compile')
+    assert 'Aegir snapshot namespace PASS:' in run([out/'test_aegir_snapshot_scope',out/'aegir-scope-host-fixture'],'aegir-snapshot-scope-host-test')
+if a.original_snapshot_png_export:
+    run(['clang','-fblocks','-fobjc-exceptions','-O1','-g','-fsanitize=address,undefined','-fno-sanitize-recover=all',
+        root/'tools/build/test_original_snapshot_png_export.m','-framework','Foundation',
+        '-lz','-o',out/'test_original_png_export'],'original-png-export-host-compile')
+    assert 'original PNG export PASS:' in run([out/'test_original_png_export'],'original-png-export-host-test')
+if a.loaded_snapshot_png_export:
+    run(['clang','-fblocks','-fobjc-exceptions','-O1','-g','-fsanitize=address,undefined','-fno-sanitize-recover=all',
+        root/'tools/build/test_loaded_snapshot_png_export.m','-framework','Foundation',
+        '-lz','-o',out/'test_loaded_png_export'],'loaded-png-export-host-compile')
+    assert 'loaded snapshot PNG PASS:' in run([out/'test_loaded_png_export',out/'loaded-png-fixture'],'loaded-png-export-host-test')
+if a.snapshot_render_queue:
+    run(['clang','-fblocks','-fobjc-exceptions','-O1','-g','-fsanitize=address,undefined','-fno-sanitize-recover=all',
+        root/'tools/build/test_snapshot_render_queue.m','-framework','Foundation','-framework','Metal',
+        '-o',out/'test_snapshot_render_queue'],'snapshot-render-queue-host-compile')
+    queue_text=run([out/'test_snapshot_render_queue'],'snapshot-render-queue-host-test')
+    assert 'Snapshot render queue PASS:' in queue_text
+    sys.path.insert(0,str(root/'tools/device'))
+    from snapshot_render_queue_evidence import inspect as inspect_render_queue
+    queue_report=inspect_render_queue(queue_text,'123456789abcdef0')
+    assert len(queue_report['draws'])==8 and len(queue_report['results'])==8 and queue_report['failed_commands']==8
 library=out/'exception_observe.dylib'
 extra=[resources/'MetalResources.dylib'] if resource_manifest else []
 if resource_manifest and not a.registration_only:extra+=['-DSWEET_METAL_RESOURCE_PROBE=1']
@@ -328,6 +393,11 @@ if a.postdraw_observe:extra+=['-DSWEET_POSTDRAW_OBSERVE=1','-framework','UIKit',
 if a.snapshot_observe:extra+=['-DSWEET_SNAPSHOT_METHOD_OBSERVE=1']
 if a.request_observe:extra+=['-DSWEET_METAL_REQUEST_OBSERVE=1','-framework','QuartzCore']
 if a.quad_route_observe:extra+=['-DSWEET_QUAD_ROUTE_OBSERVE=1']
+if a.poster_snapshot_gate:extra+=['-DSWEET_POSTER_SNAPSHOT_GATE_OBSERVE=1','-fblocks','-framework','CoreGraphics']
+if a.aegir_snapshot_cache_scope:extra+=['-DSWEET_AEGIR_SNAPSHOT_CACHE_SCOPE=1','-I',out]
+if a.original_snapshot_png_export:extra+=['-DSWEET_ORIGINAL_SNAPSHOT_PNG_EXPORT=1','-fblocks','-lz']
+if a.loaded_snapshot_png_export:extra+=['-DSWEET_LOADED_SNAPSHOT_PNG_EXPORT=1','-fblocks','-lz']
+if a.snapshot_render_queue:extra+=['-DSWEET_SNAPSHOT_RENDER_QUEUE_OBSERVE=1','-framework','Metal']
 if a.png_filter_encoder:extra+=['-DSWEET_PNG_FILTER_ENCODER=1','-I',out]
 if a.cif10_png_reference:extra+=['-DSWEET_CIF10_PNG_REFERENCE=1','-DSWEET_PNG_IMAGEIO_SOURCE_SHA="'+png_source_sha+'"','-framework','UIKit','-framework','CoreGraphics','-framework','ImageIO','-framework','Accelerate']
 if a.xr_probe:extra+=['-DSWEET_AIR_XR_PROBE=1']
@@ -376,9 +446,11 @@ if a.depth32_probe:manifest.update(attachment_failure_snapshot_revision=1,attach
     attachment_failure_snapshot_max_page_bytes=4096,attachment_failure_snapshot_author_pages_only=True,
     attachment_failure_snapshot_retired_pages_readonly=True,attachment_failure_snapshot_does_not_change_verdict=True)
 manifest.update(probe_startup_revision=1,actual_startup_readiness_host_asan_ubsan_passed=True,startup_host_source_sha256=hashlib.sha256((root/'tools/build/test_metal_startup.c').read_bytes()).hexdigest())
+manifest.update(observer_log_write_revision=1,observer_log_partial_EINTR_errno_host_passed=True,
+    observer_log_host_source_sha256=hashlib.sha256((root/'tools/build/test_log_write_remaining.c').read_bytes()).hexdigest())
 if a.target_process=='backboardd':manifest.update(background_full_suite=True,waits_for_same_process_GLES_suite=True,original_Aegir_not_modified_or_registered=True)
 if a.cif10_png_reference:manifest.update(cif10_PNG_reference=True,cif10_reference_revision=3,cif10_reference_cases=6,
-    cif10_export_pacing_revision=1,cif10_export_pacing_microseconds=1000,cif10_export_ranges_emitted_once=True,
+    cif10_export_pacing_revision=2,cif10_export_pacing_microseconds=3000,cif10_export_ranges_emitted_once=True,
     cif10_reference_author_pixels_only=True,cif10_reference_original_UIImage_API=True,cif10_reference_converter_not_installed=True,
     cif10_reference_host_fixture_bounds_nil_throw_input_passed=True,cif10_reference_PNG_exports=True,
     cif10_reference_vImage_modes=2,cif10_reference_vImage_guard_buffer_host_passed=True,
@@ -391,7 +463,13 @@ if resource_manifest and not a.registration_only:manifest.update(metal_resource_
 if resource_manifest and resource_manifest.get('native_blit_command_queue') and not a.registration_only:
     manifest.update(metal_queue_probe=True,queue_probe_submits_actual_GPU_commands=True)
 if fixture_manifest:manifest.update(AIR_compute_probe=True,AIR_fixture=fixture_manifest)
-if render_fixture_manifest:manifest.update(AIR_render_probe=True,AIR_render_fixture=render_fixture_manifest)
+if render_fixture_manifest:
+    manifest.update(AIR_render_probe=True,AIR_render_fixture=render_fixture_manifest)
+    if resource_manifest.get('native_reflected_render_buffer_selection'):
+        manifest.update(render_unused_buffer_binding_probe_revision=2,
+            render_unused_buffer_binding_probe_vertex_slot=7,render_unused_buffer_binding_probe_fragment_slot=7,
+            render_unused_buffer_binding_probe_actual_target_and_guard_bytes_required=True,
+            render_pipeline_switch_retains_unused_fragment_slot0=True)
 if constants_fixture_manifest:manifest.update(AIR_constants_probe=True,AIR_constants_fixture=constants_fixture_manifest)
 if a.register_device:manifest.update(original_Metal_registry_probe=True,registry_probe_process='AegirPoster',registry_functions_not_replaced=True)
 if a.xr_probe:manifest['AIR_XR_probe']=True
@@ -441,6 +519,35 @@ if a.request_observe:manifest.update(original_request_observer=True,request_obse
     request_owned_ABI_and_repeat_rejection_host_passed=True,
     request_record_max_bytes=190,request_short_framing=True,
     request_host_test_source_sha256=hashlib.sha256((root/'tools/build/test_metal_request_observe.m').read_bytes()).hexdigest())
+if a.poster_snapshot_gate:manifest.update(poster_snapshot_gate_observer=True,poster_snapshot_gate_revision=2,
+    poster_snapshot_gate_methods=7,poster_snapshot_gate_per_API_calls=8,poster_snapshot_gate_max_calls=56,poster_snapshot_gate_max_replies=64,
+    poster_snapshot_gate_extra_getters_or_GPU_work=False,poster_snapshot_gate_original_callback_copied_and_forwarded=True,
+    poster_snapshot_gate_host_ASan_UBSan_ABI_bits_nil_throw_errno_deferred_callbacks_passed=True,
+    poster_snapshot_gate_actual_host_decoder_passed=True,
+    poster_snapshot_gate_bounded_original_path_metadata=True,poster_snapshot_gate_path_bytes_max=256,
+    poster_snapshot_gate_host_source_sha256=hashlib.sha256((root/'tools/build/test_poster_snapshot_gate.m').read_bytes()).hexdigest(),
+    poster_snapshot_gate_decoder_source_sha256=hashlib.sha256((root/'tools/device/poster_snapshot_gate_evidence.py').read_bytes()).hexdigest())
+if a.aegir_snapshot_cache_scope:manifest.update(aegir_snapshot_cache_scope=aegir_scope,
+    aegir_snapshot_scope_exact_caller_UUID_and_preserved_old_files_host_passed=True,
+    aegir_snapshot_scope_wrong_root_mode_symlink_and_other_URLs_host_passed=True,
+    aegir_snapshot_scope_host_source_sha256=hashlib.sha256((root/'tools/build/test_aegir_snapshot_cache_scope.m').read_bytes()).hexdigest())
+if a.original_snapshot_png_export:manifest.update(original_snapshot_PNG_export=True,original_snapshot_PNG_export_revision=2,
+    original_snapshot_PNG_export_max_bytes=65536,original_snapshot_PNG_export_chunk_bytes=48,original_snapshot_PNG_export_once=True,
+    original_snapshot_PNG_export_background_no_extra_draw=True,original_snapshot_PNG_export_actual_bytes_host_ASan_UBSan_passed=True,
+    original_snapshot_PNG_export_codec='ZLIB1',
+    original_snapshot_PNG_export_host_source_sha256=hashlib.sha256((root/'tools/build/test_original_snapshot_png_export.m').read_bytes()).hexdigest())
+if a.loaded_snapshot_png_export:manifest.update(loaded_snapshot_PNG_export=True,loaded_snapshot_PNG_export_revision=2,
+    loaded_snapshot_PNG_export_once=True,loaded_snapshot_PNG_export_max_bytes=65536,loaded_snapshot_PNG_export_read_only=True,
+    loaded_snapshot_PNG_export_exact_path_size_signature_nofollow_host_passed=True,
+    loaded_snapshot_PNG_export_codec='ZLIB1',
+    loaded_snapshot_PNG_export_host_source_sha256=hashlib.sha256((root/'tools/build/test_loaded_snapshot_png_export.m').read_bytes()).hexdigest())
+if a.snapshot_render_queue:manifest.update(snapshot_render_queue_observer=True,snapshot_render_queue_revision=1,
+    snapshot_render_queue_draws_max=8,snapshot_render_queue_results_max=8,
+    snapshot_render_queue_original_arguments_errno_throws_and_terminal_getters_host_passed=True,
+    snapshot_render_queue_no_extra_GPU_work=True,
+    snapshot_render_queue_actual_host_decoder_passed=True,
+    snapshot_render_queue_host_source_sha256=hashlib.sha256((root/'tools/build/test_snapshot_render_queue.m').read_bytes()).hexdigest(),
+    snapshot_render_queue_decoder_source_sha256=hashlib.sha256((root/'tools/device/snapshot_render_queue_evidence.py').read_bytes()).hexdigest())
 if a.quad_route_observe:manifest.update(quad_route_observer=True,quad_route_revision=5,quad_route_methods=33,
     quad_route_per_API_samples=8,quad_route_max_records=264,quad_route_record_max_bytes=190,
     quad_route_metaclass_owner_and_exact_ABI_host_passed=True,quad_route_original_nil_throws_errno_BOOL_double_block_host_passed=True,

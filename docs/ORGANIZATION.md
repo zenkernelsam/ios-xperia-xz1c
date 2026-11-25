@@ -1,4 +1,8 @@
-# 本周整理与文档整合 — 2026-11-23
+# 本周整理与文档整合 — 2026-11-25
+
+原快照和GPU队列停点这一轮收尾追加[Mac原生Trash349项／631文件／1070475061 B](../reproducibility/render-buffer-close-out-macos-native-trash-20261125.json)，967个保护文件SHA逐一保持。28份HFS重复容器从保留blob逐字节复算后回收，另有已结束host程序／dSYM／object和传输tar；新Metal签名库、当前kernel、原失败包／raw／proof及AIR恢复材料保留。[Windows7项／10文件／4780776 B](../reproducibility/render-buffer-close-out-windows-native-recycle-20261125.json)包括WSL在共享Windows build的主机程序和TEMP传输副本，全部SHA核验原生回收位置。
+
+两套[Ubuntu Trash实查为空](../reproducibility/render-buffer-close-out-wsl-trash-audit-20261125.json)，Windows／Mac垃圾桶未清空；回收仍占磁盘。10份整合前入口原字节和SHA先[归档](archive/20261125/render-buffer-selection/original-document-manifest.json)，原快照服务、黑PNG和命令队列错误整合入METAL-REQUEST-OBSERVATION，AFE协议入LILAC-PERIPHERALS，当前候选和进程冲突只在STATUS维护。
 
 本轮在R22新RAM CPU与原GPU均完成0x06回程、连续健康30秒及worker退出后执行。Mac178项／4097文件／179699518B及Windows4项／16文件／29061727B实际进入各自原生回收站；全部原内容SHA和1282个Mac／447个Windows保护文件一致。没有永久删除或清空回收站，R22原REVISE与少量必要证据保持。
 

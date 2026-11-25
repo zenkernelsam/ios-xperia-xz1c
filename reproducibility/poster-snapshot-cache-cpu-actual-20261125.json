@@ -1,0 +1,49 @@
+{
+  "version": 731,
+  "mode": "ramcpu",
+  "token": "958ab8f618c7aa53",
+  "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+  "image_sha256": "428239c71353f08e3f023ce90ad4c5574b188745b87d066cbb3abc95125baae0",
+  "log_sha256": "8d2dd72629eec9e9c3c04aeda8ee9e8ef1eacb4f28e2be531516bf06a732cab3",
+  "return_complete": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "958ab8f618c7aa53",
+    "checkpoint_bytes": 336286,
+    "log_bytes": 339411,
+    "log_sha256": "8d2dd72629eec9e9c3c04aeda8ee9e8ef1eacb4f28e2be531516bf06a732cab3",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      5,
+      58,
+      60
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 38.78099999995902,
+  "ram_library_binding": {
+    "library_sha256": "6efabfc0627a8818a8c4c45665459cd33d8ee814f2e50a3f3cdc4813bb254325",
+    "library_bytes": 14801120,
+    "library_fnv64": "2181c45c9f21ee6c",
+    "blob_sha256": "0c1f8ccc8f602a939cbf80e1416abc4de709d63f0b1e29bf627b6a554b88c8cf",
+    "raw_sha256": "8d874c408da73bbad98afe583dd5803ca99459abcf41ff57249fd642e1773df0",
+    "manifest_sha256": "d8c15bdcc462a60d09c13e653f4bf6d38e32b8e13d70dbfaa0c92b11bdab1f07"
+  },
+  "serial_capture": {
+    "revision": 1,
+    "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+    "event_log_sha256": "3c7747b7a0a49369ab0dc0dbd871291c8ebaf8f31e0be1447a81436b56446b4d",
+    "raw_sha256": "8d2dd72629eec9e9c3c04aeda8ee9e8ef1eacb4f28e2be531516bf06a732cab3",
+    "serial_port": "COM17",
+    "dtr_low_through_open": true,
+    "raw_log_before_stream": true,
+    "one_continuous_current_boot_stream": true,
+    "replay_commands": 0,
+    "old_failure_not_reclassified": true
+  },
+  "source": "Windows TEMP/lilac-v731-poster-snapshot-cache-cpu-live-20261125",
+  "original_result": "PASS",
+  "worker_closed": true,
+  "cache_gate_GPU_not_accepted": true
+}

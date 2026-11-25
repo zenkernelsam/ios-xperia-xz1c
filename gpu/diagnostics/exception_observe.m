@@ -12,9 +12,17 @@
 #include <string.h>
 #include <pthread.h>
 #include "MetalProbeStartup.h"
+#include "../sweetgl/LogWriteAll.h"
 #if defined(SWEET_PROGRAM_CACHE_SCOPE)
 #include "ProgramCacheScope.h"
 #include "ProgramCacheScopeIdentity.h"
+#endif
+#if defined(SWEET_POSTER_SNAPSHOT_GATE_OBSERVE)
+#include "PosterSnapshotGateObserve.h"
+#endif
+#if defined(SWEET_AEGIR_SNAPSHOT_CACHE_SCOPE)
+#include "AegirSnapshotScopeIdentity.h"
+#include "../compat/AegirSnapshotCacheScope.h"
 #endif
 #if defined(SWEET_PROGRAM_CACHE_EXPORT)
 #include "ProgramRequestExport.h"
@@ -169,11 +177,13 @@ static Ivar renderer_device;
 static atomic_uint uniform_observations;
 static void diagnostic(const char *format, ...)
 {
+    int saved_errno=errno;
     char line[512]; va_list args; va_start(args, format);
     int n = vsnprintf(line, sizeof(line)-1, format, args); va_end(args);
-    if (n < 0) return;
+    if (n < 0) { errno=saved_errno; return; }
     if (n > sizeof(line)-2) n = sizeof(line)-2;
-    line[n++]='\n'; if(log_fd>=0) (void)write(log_fd,line,n);
+    line[n++]='\n'; if(log_fd>=0) (void)sweet_log_write_remaining(log_fd,line,(size_t)n,write);
+    errno=saved_errno;
 }
 static void copy_string(NSString *value, char out[192])
 {
@@ -413,6 +423,17 @@ static void install_observer(void)
 #if defined(SWEET_SNAPSHOT_METHOD_OBSERVE)
     (void)snapshot_methods_observe(objc_lookUpClass("SweetMTLDevice"),objc_lookUpClass("CLKUIMetalQuadView"),
         objc_lookUpClass("SweetMTLCommandBuffer"),objc_lookUpClass("SweetMTLTexture"));
+#endif
+#if defined(SWEET_POSTER_SNAPSHOT_GATE_OBSERVE)
+    (void)poster_snapshot_gate_observe(objc_lookUpClass("SBSWallpaperService"),objc_lookUpClass("PRRenderer"),
+        objc_lookUpClass("NUNIAstronomyVistaView"),objc_lookUpClass("UIImage"),objc_lookUpClass("UIImageView"),diagnostic);
+#endif
+#if defined(SWEET_AEGIR_SNAPSHOT_CACHE_SCOPE)
+    (void)aegir_snapshot_cache_scope_observe(objc_lookUpClass("NSFileManager"),diagnostic);
+#endif
+#if defined(SWEET_SNAPSHOT_RENDER_QUEUE_OBSERVE)
+    (void)snapshot_render_queue_observe(objc_lookUpClass("SweetMTLRenderEncoder"),
+        objc_lookUpClass("SweetMTLRenderPipeline"),diagnostic);
 #endif
 #if defined(SWEET_METAL_REQUEST_OBSERVE)
     (void)metal_request_observe(objc_lookUpClass("SweetMTLLibrary"),objc_lookUpClass("CAMetalLayer"),

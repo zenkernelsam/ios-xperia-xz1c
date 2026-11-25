@@ -1,0 +1,103 @@
+{
+  "revision": 1,
+  "system": "iOS16.7.16/20H392",
+  "sparse_sha256": "e9bf1547b6a7e9a33b51c2749c643bc2eff0134c31cc3a63f9435e4cea1f9b29",
+  "symbols_sha256": "5bf04681af1819e2379319942a97be635100d6ca3844c5a22e372ce78a83b83d",
+  "cache_sha256": "76874e8375252ee643011ff8063f0cce12355f05cf5f9897a34e5679667a65aa",
+  "Aegir_sha256": "a4abba1e22350a5c577dc3ce551da90ab42606d872509cd50859ef63751454a7",
+  "methods": [
+    {
+      "owner": "SBSWallpaperService",
+      "selector": "fetchLockScreenContentCutoutBoundsForOrientation:completionHandler:",
+      "type_encoding": "v32@0:8q16@?24",
+      "implementation": "0x1915309b0",
+      "method_list": "0x191569148",
+      "code_bytes": 180,
+      "code_sha256": "5b881163b3404f11a519e6ac92eb04467b967f82a1aeba10d937fb748641ef69",
+      "exact_original_owner": true
+    },
+    {
+      "owner": "SBSWallpaperService",
+      "selector": "fetchMaximalLockScreenContentCutoutBoundsForOrientation:completionHandler:",
+      "type_encoding": "v32@0:8q16@?24",
+      "implementation": "0x191530b10",
+      "method_list": "0x191569148",
+      "code_bytes": 180,
+      "code_sha256": "9133f23ce9393b408c28bb7508a65c369829d8777e3adc03b3145cabe3c65f51",
+      "exact_original_owner": true
+    },
+    {
+      "owner": "SBSWallpaperClient",
+      "selector": "fetchLockScreenContentCutoutBoundsForOrientation:completionHandler:",
+      "type_encoding": "v28@0:8I16@?20",
+      "implementation": "0x1915319dc",
+      "method_list": "0x191569258",
+      "code_bytes": 16,
+      "code_sha256": "f2060d5821112fe1c01684c9e1ab79a1cc59903fdbcac1ae13612521df3e5d1c",
+      "exact_original_owner": true
+    },
+    {
+      "owner": "SBSWallpaperClient",
+      "selector": "fetchMaximalLockScreenContentCutoutBoundsForOrientation:completionHandler:",
+      "type_encoding": "v28@0:8I16@?20",
+      "implementation": "0x1915319ec",
+      "method_list": "0x191569258",
+      "code_bytes": 16,
+      "code_sha256": "c022241f8174a50fa49d2d6925fb01e3810cfd714843f5e98ad2ded1b7b21a2b",
+      "exact_original_owner": true
+    },
+    {
+      "owner": "PRRenderer",
+      "selector": "backgroundView",
+      "type_encoding": "@16@0:8",
+      "implementation": "0x18eedca6c",
+      "method_list": "0x18eefbf80",
+      "code_bytes": 16,
+      "code_sha256": "395b99ea6a48f5299e4135e53ede66fd089e893af88658e2ff81feb6380f3c53",
+      "exact_original_owner": true
+    },
+    {
+      "owner": "PRRenderer",
+      "selector": "floatingView",
+      "type_encoding": "@16@0:8",
+      "implementation": "0x18eedcbf4",
+      "method_list": "0x18eefbf80",
+      "code_bytes": 64,
+      "code_sha256": "6f0a69f7054aca81e5052b47ddcd03dc6a4efa080e0949bedfc715ada481ead5",
+      "exact_original_owner": true
+    },
+    {
+      "owner": "NUNIAstronomyVistaView",
+      "selector": "initWithFrame:configuration:",
+      "type_encoding": "@56@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16@48",
+      "implementation": "0x1ee946d68",
+      "method_list": "0x1ee9717e0",
+      "code_bytes": 1300,
+      "code_sha256": "bb25c97f2ab00a2eaaf24d89c4ed8ba083139b4c4785fae26afbd7abd3d5b873",
+      "exact_original_owner": true
+    }
+  ],
+  "original_requests": [
+    {
+      "call_address": "0x10000eef0",
+      "selector": "fetchLockScreenContentCutoutBoundsForOrientation:completionHandler:",
+      "original_code_sha256": "e28ee7b51aaf1818bf613bf76cfb24ba5c1a422103950d75368e25d5f07a5767"
+    },
+    {
+      "call_address": "0x10000f010",
+      "selector": "fetchMaximalLockScreenContentCutoutBoundsForOrientation:completionHandler:",
+      "original_code_sha256": "91dd302530d7b322733401835ed56c154786f55dfa9b8c24c3d3dbd683367939"
+    }
+  ],
+  "callback": {
+    "implementation": "0x10000ef58",
+    "argument": "CGRect / four unchanged doubles",
+    "code_sha256": "f9de4445955d8914324166ba5be7e1b29cff1a1abf7b6acbee586cccda00b059"
+  },
+  "service_orientation_bits": 64,
+  "client_orientation_bits": 32,
+  "view_getters_observation_adds_no_getter_calls": true,
+  "asynchronous_reply_and_view_creation_still_require_actual_device_evidence": true,
+  "source_sha256": "6048b51bc112e6fc57bd924121232f85d435c2467dfa826582b4cb882aa99bfa",
+  "device_operations": 0
+}

@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-25",
+  "purpose": "Lossless compressed transmission of the same original loaded cache PNG; missing block failure retained",
+  "ram_blob_sha256": "bd0ccca991d32c7db3e7ee8c393883b971262ec61970e583ed33696d41b34ddf",
+  "ram_manifest_sha256": "64a29b78488ee81854ff1d12c5a3454736fa353f1cdedb2d0ff06193385b846e",
+  "observer_sha256": "cd0a2b65ab2abf960ab8a6d08dd734447b3d9494adc540726a893c24c78bc079",
+  "loaded_PNG_export_revision": 2,
+  "codec": "ZLIB1",
+  "original_FNV_after_decompression_required": true,
+  "PNG_chunk_CRC_required": true,
+  "prior_failure": "reproducibility/aegir-loaded-snapshot-export-gpu-refused-20261125.json",
+  "original_file_not_modified": true,
+  "device_operations": 0,
+  "artifacts": {
+    "cpu": {
+      "token": "cd9df42ec6e89dc9",
+      "sha256": "c3f176ade058a1d8feee2049c388da97b702ba8a5e6ba91215772398fd853cdb",
+      "trial_mode": "ramcpu"
+    },
+    "gpu": {
+      "token": "15480a7a8a23a9ed",
+      "sha256": "6e1429782dce91282f69f027b74980da486b3b70fe487e7c7e053b41f274b296",
+      "trial_mode": "gpu"
+    }
+  }
+}

@@ -33,6 +33,7 @@
 @interface SweetMTLRenderPipeline : NSObject <MTLRenderPipelineState> {
 @public SweetMTLDevice *_owner;SweetMTLFunction *_vertex,*_fragment;SweetMetalProgram *_program;
     MTLRenderPipelineDescriptor *_descriptor;MTLPixelFormat _depthFormat,_stencilFormat;uint32_t _samples;
+    uint32_t _vertexBufferMask,_fragmentBufferMask;
 }
 - (instancetype)initWithOwner:(SweetMTLDevice *)owner descriptor:(MTLRenderPipelineDescriptor *)descriptor error:(NSError **)error;
 @end
@@ -298,6 +299,7 @@ static bool render_entry(SweetMTLFunction *function,unsigned stage,GPU::Compiler
         sweetgl_metal_render_create(vertex_source.c_str(),fragment_source.c_str(),&config,message,sizeof(message));
     if(!_program){if(diagnostic.empty())diagnostic=message;if(diagnostic.empty())diagnostic="Render descriptor or actual AIR interface is unsupported";
         if(error)*error=metal_compile_error(diagnostic);[self release];return nil;}
+    _vertexBufferMask=config.vertex_buffers;_fragmentBufferMask=config.fragment_buffers;
     _owner=[owner retain];_vertex=[vertex retain];_fragment=[fragment retain];_descriptor=[d copy];_depthFormat=d.depthAttachmentPixelFormat;_stencilFormat=d.stencilAttachmentPixelFormat;_samples=(uint32_t)d.rasterSampleCount;return self;
 }
 - (void)dealloc{sweetgl_metal_program_destroy(_program);[_owner release];[_vertex release];[_fragment release];[_descriptor release];[super dealloc];}
@@ -514,13 +516,20 @@ static NSError *execute_metal_render(NSDictionary *operation,id<MTLDevice> devic
     if(pipeline->_samples!=samples)return metal_queue_error(@"Render raster sample count differs from pass");
     SweetRenderDraw draw;memcpy(&draw,drawData.bytes,sizeof(draw));SweetShaderBufferBinding buffers[16]={};SweetShaderTextureBinding textures[32]={};SweetShaderSamplerBinding samplers[16]={};unsigned n=0,t=0,s=0;
     for(unsigned stage=1;stage<=2;++stage){NSDictionary *bindings=operation[stage==1?@"vertexBuffers":@"fragmentBuffers"];
+        uint32_t required=stage==1?pipeline->_vertexBufferMask:pipeline->_fragmentBufferMask,selected=0;
         for(NSNumber *key in bindings){NSDictionary *binding=bindings[key];auto buffer=(SweetMTLBuffer *)binding[@"buffer"];uint64_t offset=[binding[@"offset"] unsignedLongLongValue];
-            if(n>=16 || key.unsignedLongLongValue>=8 || ![buffer isKindOfClass:[SweetMTLBuffer class]] || buffer.device!=device ||
+            if(key.unsignedLongLongValue>=8)return metal_queue_error(@"Render buffer index exceeds the shader namespace");
+            // Metal retains encoder bindings when the pipeline changes. Only
+            // inputs reflected by this immutable pipeline are consumed by its
+            // draw; leave unused bindings in the retained command snapshot.
+            uint32_t bit=1u<<key.unsignedIntValue;if(!(required&bit))continue;
+            if(n>=16 || ![buffer isKindOfClass:[SweetMTLBuffer class]] || buffer.device!=device ||
                 offset>=buffer.length)return metal_queue_error(@"Render buffer owner/range invalid");
             for(id object in targets)if(object!=[NSNull null] && buffer->_backing.handle==[(SweetMTLTexture *)object sweetBacking].handle)return metal_queue_error(@"Render buffer aliases a color target");
             if(depth && buffer->_backing.handle==[depth sweetBacking].handle)return metal_queue_error(@"Render buffer aliases depth target");
             if(stencil && buffer->_backing.handle==[stencil sweetBacking].handle)return metal_queue_error(@"Render buffer aliases stencil target");
-            buffers[n++]={buffer->_backing.handle,key.unsignedIntValue+(stage==2?8:0),offset,buffer.length-offset};}
+            buffers[n++]={buffer->_backing.handle,key.unsignedIntValue+(stage==2?8:0),offset,buffer.length-offset};selected|=bit;}
+        if(selected!=required)return metal_queue_error(@"Render pipeline is missing a required buffer binding");
         bindings=operation[stage==1?@"vertexTextures":@"fragmentTextures"];for(NSNumber *key in bindings){auto texture=(SweetMTLTexture *)bindings[key];
             if(t>=32 || ![texture isKindOfClass:[SweetMTLTexture class]] || texture.device!=device || texture.storageMode==MTLStorageModeMemoryless)return metal_queue_error(@"Render texture owner invalid");
             for(id object in targets)if(object!=[NSNull null]){auto other=(SweetMTLTexture *)object;

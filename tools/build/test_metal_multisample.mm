@@ -88,7 +88,9 @@ int main(int argc,char **argv){@autoreleasepool{
         [encoder drawPrimitives:MTLPrimitiveTypeTriangle vertexStart:0 vertexCount:3];assert(SweetMTLSetDiagnosticSampleMask(encoder,2));[encoder drawPrimitives:MTLPrimitiveTypeTriangle vertexStart:0 vertexCount:3];[encoder endEncoding];
         assert(command->_operations.count==4 && command->_operations[2][@"multisampleResolve"] && command->_operations[3][@"multisampleResolve"]);
         [pass release];[color release];[depth release];[stencil release];[resolved release];[resolvedDepth release];[pipeline release];[single release];[data release];[pd release];[c release];[z release];[s release];[rd release];[zd release];
-        [command commit];[command waitUntilCompleted];assert(command.status==MTLCommandBufferStatusCompleted && command.sweetGPUOperations==4 && !device.currentAllocatedSize && multisamplePages.empty());[command release];
+        [command commit];[command waitUntilCompleted];
+        dispatch_sync(((SweetMTLCommandQueue *)queue)->_execution, ^{});
+        assert(command.status==MTLCommandBufferStatusCompleted && command.sweetGPUOperations==4 && !device.currentAllocatedSize && multisamplePages.empty());[command release];
     }}
     assert(drawCalls==4 && resolveCalls==4 && sampleMasks==std::vector<uint32_t>({1,2,1,2}));
     for(unsigned samples=2;samples<=4;samples*=2){@autoreleasepool{
@@ -117,6 +119,7 @@ int main(int argc,char **argv){@autoreleasepool{
             if(phase==2)assert(resolveCalls==priorResolve);failGPU=false;failResolve=false;[command release];
         }}
         [pass release];[source release];[target release];[d release];[r release];
+        dispatch_sync(((SweetMTLCommandQueue *)queue)->_execution, ^{});
     }}
     assert(multisamplePages.empty() && !device.currentAllocatedSize);
     for(unsigned samples=2;samples<=4;samples*=2){@autoreleasepool{
@@ -133,6 +136,11 @@ int main(int argc,char **argv){@autoreleasepool{
         [ba release];[bb release];[ea endEncoding];[eb endEncoding];[pass release];[original release];[a release];[b release];[d release];[r release];
         [ca commit];[cb commit];[ca waitUntilCompleted];[cb waitUntilCompleted];
         assert(ca.status==MTLCommandBufferStatusCompleted && cb.status==MTLCommandBufferStatusCompleted && ca.sweetGPUOperations==2 && cb.sweetGPUOperations==2);
+        // Terminal status retires operations before its publication. The
+        // serial execution block's autorelease pool may drain immediately
+        // afterwards; join both queues before asserting the final host count.
+        dispatch_sync(((SweetMTLCommandQueue *)queue)->_execution, ^{});
+        dispatch_sync(((SweetMTLCommandQueue *)other)->_execution, ^{});
         assert(multisamplePages.empty() && !device.currentAllocatedSize);[ca release];[cb release];[other release];
     }}
     [queue release];[vertex release];[fragment release];[library release];[device release];assert(createdPrograms==retiredPrograms);

@@ -1,0 +1,44 @@
+{
+  "date": "2026-11-25",
+  "purpose": "Inventory original shader requests left by namespace-enabled snapshots and compile only actual missing binaries",
+  "source_failure": "reproducibility/aegir-snapshot-namespace-gpu-actual-20261125.json",
+  "ram_blob_sha256": "d7ad09c89481202c17f8d8e9fb33deb9409616ae6ba2e5b3c54f8cd031ae12c4",
+  "ram_manifest_sha256": "56b2087210b4eec26d6a02e8ce60c5d9f0e5891dfc969732333212565892cf98",
+  "GLES_sha256": "6efabfc0627a8818a8c4c45665459cd33d8ee814f2e50a3f3cdc4813bb254325",
+  "Metal_sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27",
+  "inventory": {
+    "revision": 1,
+    "context_identity": "477c265eff83f7a885c3cf4938b33482b78c906f7ba3d5d5c086eb61f0dca27b",
+    "build_identity": "16722b126d14e64954fc349d20626f9e639cc726ed1c24856a889b2249efd236",
+    "scope_identity": "9f43d3e226e901f609eeba4b9f348e2050ed7e1bd790ef8f7b422dc31eec892a",
+    "directory": "/private/var/tmp/sgm-9f43d3e226e901f609eeba4b9f348e20",
+    "max_files": 64,
+    "max_seen": 4096,
+    "max_bytes": 33554432,
+    "max_payload": 8388608,
+    "max_line_bytes": 160,
+    "max_prime_entries": 8,
+    "read_only": true,
+    "bin_import_performed": false,
+    "conditional_prime": true,
+    "native_groups_before_inventory": 21,
+    "PNG_cases_before_inventory": 6,
+    "identity_header_sha256": "95b7a1e47cea6de11d6eabb28adcfa00375d05f896c2e18bd4ea4c7932215c31"
+  },
+  "full_native21_PNG6_before_inventory": true,
+  "original_requests_no_substitute_shaders": true,
+  "failed_previous_package_not_replayed": true,
+  "device_operations": 0,
+  "artifacts": {
+    "cpu": {
+      "token": "5fa46638ae1c8472",
+      "sha256": "7478ac023faa6eee8cfe62443292fbb015f517b0fe2a78e9098aa234e432decd",
+      "trial_mode": "ramcpu"
+    },
+    "gpu": {
+      "token": "9c42905a07fa0174",
+      "sha256": "c0e6a1e4768ba158c4d8b798aef291d1dfff91c40c75f38cd1e862c14f126b63",
+      "trial_mode": "gpu"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "date": "2026-11-25",
+  "reason": "Preserve original entries before live snapshot cache namespace results",
+  "documents": [
+    {
+      "original_path": "docs/STATUS.md",
+      "archived_path": "docs/archive/20261125/poster-snapshot-scope/originals/docs/STATUS.md",
+      "sha256": "d2dced4801376e22b41bf7d7b69144dde1879fb76fe0c4a2f845a633c0c2691c",
+      "bytes": 11555
+    },
+    {
+      "original_path": "docs/METAL-REQUEST-OBSERVATION.md",
+      "archived_path": "docs/archive/20261125/poster-snapshot-scope/originals/docs/METAL-REQUEST-OBSERVATION.md",
+      "sha256": "20412dbd6304702376334512bc9ed0951006b6f7d677b63609f4dc4773be7ac7",
+      "bytes": 14492
+    },
+    {
+      "original_path": "docs/OPERATIONS.md",
+      "archived_path": "docs/archive/20261125/poster-snapshot-scope/originals/docs/OPERATIONS.md",
+      "sha256": "f6fe77107e9113e3e40e54c59186adb61ca2116314345125fb3c61f297b22d47",
+      "bytes": 8545
+    },
+    {
+      "original_path": "docs/BUILD.md",
+      "archived_path": "docs/archive/20261125/poster-snapshot-scope/originals/docs/BUILD.md",
+      "sha256": "5f5ded648bd7c49d17b185d97388cf60ffa8fd488fdfdd1bf927466d6649150b",
+      "bytes": 17003
+    }
+  ],
+  "original_bytes_preserved": true
+}

@@ -1,0 +1,140 @@
+{
+  "version": 731,
+  "mode": "gpu",
+  "token": "9c42905a07fa0174",
+  "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+  "image_sha256": "c0e6a1e4768ba158c4d8b798aef291d1dfff91c40c75f38cd1e862c14f126b63",
+  "log_sha256": "553911c87ad414cd6983e3d45d498e5f03f6c3297879fecc88931469134a30f3",
+  "return_complete": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "9c42905a07fa0174",
+    "checkpoint_bytes": 2899669,
+    "log_bytes": 2903727,
+    "log_sha256": "553911c87ad414cd6983e3d45d498e5f03f6c3297879fecc88931469134a30f3",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      20,
+      77,
+      79
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 38.96900000004098,
+  "ram_library_binding": {
+    "library_sha256": "6efabfc0627a8818a8c4c45665459cd33d8ee814f2e50a3f3cdc4813bb254325",
+    "library_bytes": 14801120,
+    "library_fnv64": "2181c45c9f21ee6c",
+    "blob_sha256": "d7ad09c89481202c17f8d8e9fb33deb9409616ae6ba2e5b3c54f8cd031ae12c4",
+    "raw_sha256": "c58a3081c460db502a45a4e86a86af0c2f36002e25b6a5bafae0f580238bc471",
+    "manifest_sha256": "56b2087210b4eec26d6a02e8ce60c5d9f0e5891dfc969732333212565892cf98"
+  },
+  "serial_capture": {
+    "revision": 1,
+    "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+    "event_log_sha256": "5fc7a67cb0c5c5761358f8e88d2380c5cbfc7c949c6776ecd83baad81a0d4228",
+    "raw_sha256": "553911c87ad414cd6983e3d45d498e5f03f6c3297879fecc88931469134a30f3",
+    "serial_port": "COM17",
+    "dtr_low_through_open": true,
+    "raw_log_before_stream": true,
+    "one_continuous_current_boot_stream": true,
+    "replay_commands": 0,
+    "old_failure_not_reclassified": true
+  },
+  "source": "Windows TEMP/lilac-v731-aegir-namespace-primer-gpu-live-20261125",
+  "original_result": "PASS",
+  "cache_before": {
+    "files": 53,
+    "records": 53,
+    "requests": 27,
+    "bins": 26,
+    "present": 26,
+    "missing": 1
+  },
+  "cache_after": {
+    "files": 54,
+    "records": 54,
+    "requests": 27,
+    "bins": 27,
+    "present": 27,
+    "missing": 0
+  },
+  "cache_action": {
+    "action": "prime",
+    "missing": 1
+  },
+  "cache_prime": {
+    "result": 0,
+    "compiled": 1,
+    "failed": 0,
+    "expected": 1
+  },
+  "missing_original_bins_compiled": true,
+  "existing_records_preserved": true,
+  "scanout": {
+    "id": 1,
+    "token": "9c42905a07fa0174",
+    "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+    "image_sha256": "c0e6a1e4768ba158c4d8b798aef291d1dfff91c40c75f38cd1e862c14f126b63",
+    "binding": {
+      "protocol": 1,
+      "width": 720,
+      "height": 1280,
+      "stride": 2160,
+      "format": "BGR888",
+      "codec": "PRLE1",
+      "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+      "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+      "runtime_source_sha256": "2c566a962d61e7b8aebfc88be54d496878821a4c0f5bb439f505198b16adfba2"
+    },
+    "begin": {
+      "token": "9c42905a07fa0174",
+      "id": "1",
+      "width": "720",
+      "height": "1280",
+      "stride": "2160",
+      "format": "BGR888",
+      "bytes": "2764800",
+      "codec": "PRLE1",
+      "encoded": "435672",
+      "raw_fnv": "8f9a3f7790d00790",
+      "enc_crc": "b7816400",
+      "vsync": "7901",
+      "timestamp": "11114339581",
+      "copy_ticks": "7725937",
+      "power_off": "0",
+      "source_checked": "1",
+      "source_match": "1"
+    },
+    "scan": {
+      "token": "9c42905a07fa0174",
+      "id": "1",
+      "pa": "0x9d400000",
+      "map_pa": "0x9d400000",
+      "map_bytes": "2764800",
+      "size": "0x50002d0",
+      "img": "0x50002d0",
+      "xy": "0",
+      "out": "0x50002d0",
+      "outxy": "0",
+      "fmt": "0x2243f",
+      "unpack": "0x20001",
+      "op": "0x80000000",
+      "qop": "0",
+      "ctl": "0x20020",
+      "start": "0",
+      "before_after": "1"
+    },
+    "blocks": 3404,
+    "raw_file": "scanout-00000001.bgr",
+    "png_file": "scanout-00000001.png",
+    "raw_sha256": "51828e4d3142fbddf4ddfa0964af0090fa856043fb45f49d21452a305c96bf43",
+    "png_sha256": "234b1857f9ec61fa93d0400ff5e0189870254c3596ccf296005a6d9b698c3ab8",
+    "pixel_values_preserved": true,
+    "verified": true,
+    "optical_panel_verified": false
+  },
+  "worker_closed": true,
+  "original_wallpaper_not_accepted": true
+}

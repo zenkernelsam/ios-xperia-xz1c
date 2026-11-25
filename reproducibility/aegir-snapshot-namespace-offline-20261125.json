@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-25",
+  "scope": "Bind original SnapshotManager NSCachesDirectory to actual GPU and PNG source identity",
+  "ram_blob_sha256": "84a03a910b5fefb6632bf529203ac5ff2ca56646fb10d92a736e45603339d0cf",
+  "ram_manifest_sha256": "0a43524123de0b6fd1959bd1a2d6868dc7c19f6f18eaf4b8db811c5242794593",
+  "observer_sha256": "2a8003ea068a5584f110add834c740b42c37cd0bc612440c6502452169a96ee3",
+  "snapshot_namespace": {
+    "revision": 1,
+    "Aegir_sha256": "a4abba1e22350a5c577dc3ce551da90ab42606d872509cd50859ef63751454a7",
+    "GLES_sha256": "6efabfc0627a8818a8c4c45665459cd33d8ee814f2e50a3f3cdc4813bb254325",
+    "Metal_sha256": "8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27",
+    "Metal_source_map_sha256": "db1605ef8dae8f8ed0a29999dcb2cf7537457aba7ad428677c21e0e914771b78",
+    "PNG_encoder_sha256": "61031999d4ff1d9a2c9c6a564cf229a82c3b9c49998d752ae0bd4d6fd18e1e92",
+    "scope_source_sha256": "574975cf44d4ce9f2abb0f0b270fe662b56b03a7ec70645f3556d7d1c19f106e",
+    "identity": "31e2a8bef37463f45aa31d45f7b1fdcf9fb502ab2d83686b885b39c244329962",
+    "component": "sweet-aegir-31e2a8bef37463f45aa31d45f7b1fdcf",
+    "exact_Aegir_UUID": "fc5540ca94403f16b365dc94e0701fda",
+    "original_caller_offset": 25520,
+    "directory_mode": 448,
+    "original_caches_root_preserved": true,
+    "identity_header_sha256": "ed4aa024a47c848fc673147876926042aa4fa34958d563b0f69d9f8199bbcd5f"
+  },
+  "host_ASan_UBSan_exact_original_UUID_caller_and_safe_new_directory_passed": true,
+  "observed_old_cache_evidence": "reproducibility/poster-snapshot-cache-gpu-actual-20261125.json",
+  "old_snapshot_files_preserved": true,
+  "original_mode_paused_and_draw_not_forced": true,
+  "device_operations": 0,
+  "artifacts": {
+    "cpu": {
+      "token": "366c2119a6d93ab9",
+      "sha256": "c0100de48cbfdb0f60188a460a3a07b3c579bdb035b64a7f53ad4c22613cf1e3",
+      "trial_mode": "ramcpu"
+    },
+    "gpu": {
+      "token": "17e1ffbc45a8ad69",
+      "sha256": "8ed8146fa7f98162d866ef834a890a8dfbe3af63ea42ed5ba0c2bf8ba7c532cf",
+      "trial_mode": "gpu"
+    }
+  }
+}

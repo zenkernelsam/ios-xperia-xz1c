@@ -1,0 +1,139 @@
+{
+  "date": "2026-11-25",
+  "source": "Windows TEMP/lilac-v731-original-png-export-gpu-live-20261125",
+  "token": "6c8c7e4c596ebff0",
+  "original_result": "STOP",
+  "original_reason": "OBSERVATION_INCOMPLETE",
+  "raw_sha256": "cd6d00ee16198520e7177e3c8d2e80d4d92df817625ff24b50570451225398f2",
+  "raw_bytes": 1794240,
+  "return_seconds_with_health": 38.67199999978766,
+  "scanout": {
+    "protocol": 1,
+    "frames": [
+      {
+        "id": 1,
+        "token": "6c8c7e4c596ebff0",
+        "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+        "image_sha256": "c8d9bc2a1ec44087d626e7ed64c4ec65c107a2591d93920c3b8452ea744b1ff8",
+        "binding": {
+          "protocol": 1,
+          "width": 720,
+          "height": 1280,
+          "stride": 2160,
+          "format": "BGR888",
+          "codec": "PRLE1",
+          "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+          "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+          "runtime_source_sha256": "2c566a962d61e7b8aebfc88be54d496878821a4c0f5bb439f505198b16adfba2"
+        },
+        "begin": {
+          "token": "6c8c7e4c596ebff0",
+          "id": "1",
+          "width": "720",
+          "height": "1280",
+          "stride": "2160",
+          "format": "BGR888",
+          "bytes": "2764800",
+          "codec": "PRLE1",
+          "encoded": "438532",
+          "raw_fnv": "8508b9951c51e07c",
+          "enc_crc": "245f5508",
+          "vsync": "7916",
+          "timestamp": "25415830468",
+          "copy_ticks": "7848323",
+          "power_off": "1",
+          "source_checked": "1",
+          "source_match": "1"
+        },
+        "scan": {
+          "token": "6c8c7e4c596ebff0",
+          "id": "1",
+          "pa": "0x9d400000",
+          "map_pa": "0x9d400000",
+          "map_bytes": "2764800",
+          "size": "0x50002d0",
+          "img": "0x50002d0",
+          "xy": "0",
+          "out": "0x50002d0",
+          "outxy": "0",
+          "fmt": "0x2243f",
+          "unpack": "0x20001",
+          "op": "0x80000000",
+          "qop": "0",
+          "ctl": "0x20020",
+          "start": "0",
+          "before_after": "1"
+        },
+        "blocks": 3427,
+        "raw_file": "scanout-00000001.bgr",
+        "png_file": "scanout-00000001.png",
+        "raw_sha256": "51d4644784fa9df7c5571ec135c0db83505b873c831e6be612fecfac1a5ae741",
+        "png_sha256": "c3c0642848c97acf679e70b1808135bdea9c2a1a9725a2d6ff8ee21ff396b9cb",
+        "pixel_values_preserved": true,
+        "verified": true,
+        "optical_panel_verified": false
+      }
+    ],
+    "verified": true,
+    "optical_panel_verified": false,
+    "current_boot_source_and_payload_checked": true,
+    "format": "BGR888",
+    "width": 720,
+    "height": 1280
+  },
+  "namespace": {
+    "token": "6c8c7e4c596ebff0",
+    "complete_calls": 8,
+    "records": [
+      {
+        "pid": 286,
+        "call": 1,
+        "directory": "/var/mobile/Library/Caches/sweet-aegir-31e2a8bef37463f45aa31d45f7b1fdcf"
+      },
+      {
+        "pid": 286,
+        "call": 2,
+        "directory": "/var/mobile/Library/Caches/sweet-aegir-31e2a8bef37463f45aa31d45f7b1fdcf"
+      },
+      {
+        "pid": 286,
+        "call": 3,
+        "directory": "/var/mobile/Library/Caches/sweet-aegir-31e2a8bef37463f45aa31d45f7b1fdcf"
+      },
+      {
+        "pid": 286,
+        "call": 4,
+        "directory": "/var/mobile/Library/Caches/sweet-aegir-31e2a8bef37463f45aa31d45f7b1fdcf"
+      },
+      {
+        "pid": 286,
+        "call": 5,
+        "directory": "/var/mobile/Library/Caches/sweet-aegir-31e2a8bef37463f45aa31d45f7b1fdcf"
+      },
+      {
+        "pid": 286,
+        "call": 6,
+        "directory": "/var/mobile/Library/Caches/sweet-aegir-31e2a8bef37463f45aa31d45f7b1fdcf"
+      },
+      {
+        "pid": 286,
+        "call": 7,
+        "directory": "/var/mobile/Library/Caches/sweet-aegir-31e2a8bef37463f45aa31d45f7b1fdcf"
+      },
+      {
+        "pid": 286,
+        "call": 8,
+        "directory": "/var/mobile/Library/Caches/sweet-aegir-31e2a8bef37463f45aa31d45f7b1fdcf"
+      }
+    ],
+    "namespace_identity": "31e2a8bef37463f45aa31d45f7b1fdcf9fb502ab2d83686b885b39c244329962",
+    "original_caller_verified": true,
+    "old_files_preserved": true,
+    "original_UI_or_cache_pixels_not_proven": true
+  },
+  "original_PNG_export_not_observed": true,
+  "original_cached_image_reuse_explanation_requires_loaded_file_capture": true,
+  "worker_closed": true,
+  "failed_package_not_replayed": true,
+  "old_pixels_not_repaired": true
+}

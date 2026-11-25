@@ -1,0 +1,42 @@
+{
+  "date": "2026-11-25",
+  "hypothesis": "New original 4840/38924 request is the remaining missing binary after prior warming",
+  "source_original_failure": "reproducibility/aegir-warm-snapshot-r2-gpu-actual-20261125.json",
+  "ram_blob_sha256": "ce892920c933fdd976a3f35a0a5447f4ef60b5511a6d544bacf34c2d1a825b3a",
+  "ram_manifest_sha256": "d71cb6cb010d78fe949eab9f16d288193a128c6697e5daecef24a7ac5063ee1b",
+  "cache": {
+    "revision": 1,
+    "context_identity": "477c265eff83f7a885c3cf4938b33482b78c906f7ba3d5d5c086eb61f0dca27b",
+    "build_identity": "16722b126d14e64954fc349d20626f9e639cc726ed1c24856a889b2249efd236",
+    "scope_identity": "9f43d3e226e901f609eeba4b9f348e2050ed7e1bd790ef8f7b422dc31eec892a",
+    "directory": "/private/var/tmp/sgm-9f43d3e226e901f609eeba4b9f348e20",
+    "max_files": 64,
+    "max_seen": 4096,
+    "max_bytes": 33554432,
+    "max_payload": 8388608,
+    "max_line_bytes": 160,
+    "max_prime_entries": 8,
+    "read_only": true,
+    "bin_import_performed": false,
+    "conditional_prime": true,
+    "native_groups_before_inventory": 21,
+    "PNG_cases_before_inventory": 6,
+    "identity_header_sha256": "95b7a1e47cea6de11d6eabb28adcfa00375d05f896c2e18bd4ea4c7932215c31"
+  },
+  "background_before_after_inventory_and_conditional_prime": true,
+  "actual_original_source_preserved": true,
+  "prior_pass_primer_not_failure_replay": true,
+  "device_operations": 0,
+  "artifacts": {
+    "cpu": {
+      "token": "e54498acaad1c165",
+      "sha256": "a8d6d26b6151b56f726ba2dbc8584cf8d35d734f61a24084e9a7cc648fb02522",
+      "trial_mode": "ramcpu"
+    },
+    "gpu": {
+      "token": "d64677d5505c299e",
+      "sha256": "efa81d81e0d9214c72dbfad9d5207725a8a88fb3741f42955ef17cd5680080d7",
+      "trial_mode": "gpu"
+    }
+  }
+}

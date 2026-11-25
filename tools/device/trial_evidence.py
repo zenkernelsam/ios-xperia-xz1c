@@ -126,11 +126,14 @@ def verify(directory,mode,kernel_sha=None,version=None):
                 if a['exception_observer'].get('metal_resource_probe'):exceptions['Metal_resources']=verify_metal_resources(text,a['token'])
                 if a['exception_observer'].get('metal_queue_probe'):exceptions['Metal_queue']=verify_metal_queue(text,a['token'],a.get('metal_resources',{}).get('blit_transport_evidence_revision'))
                 if a['exception_observer'].get('AIR_compute_probe'):exceptions['AIR_compute']=verify_air_compute(text,a['token'],a['exception_observer']['AIR_fixture'])
-                if a['exception_observer'].get('AIR_render_probe'):exceptions['AIR_render']=verify_air_render(text,a['token'],a['exception_observer']['AIR_render_fixture'])
+                if a['exception_observer'].get('AIR_render_probe'):exceptions['AIR_render']=verify_air_render(text,a['token'],a['exception_observer']['AIR_render_fixture'],a['exception_observer'].get('render_unused_buffer_binding_probe_revision'))
                 if a['exception_observer'].get('AIR_constants_probe'):exceptions['AIR_constants']=verify_air_constants(text,a['token'],a['exception_observer']['AIR_constants_fixture'])
                 if a['exception_observer'].get('original_Metal_registry_probe'):exceptions['Metal_discovery']=verify_metal_discovery(text,a['token'])
                 if a['exception_observer'].get('registration_only'):exceptions['native_prior_binding']=verify_registry_proof(text,a['token'],a['exception_observer']['prior_native_hardware_proof'])
                 if a['exception_observer'].get('original_pipeline_observer'):exceptions['pipeline_factory']=verify_pipeline_observer(text,a['token'])
+                if a['exception_observer'].get('aegir_snapshot_cache_scope'):
+                    from aegir_snapshot_scope_evidence import inspect as inspect_snapshot_scope
+                    exceptions['Aegir_snapshot_namespace']=inspect_snapshot_scope(text,a['token'],a['exception_observer']['aegir_snapshot_cache_scope'])
                 if a['exception_observer'].get('original_request_observer'):
                     exceptions['Metal_requests']=inspect_metal_requests(text,a['token'])
                     assert all(c['installed']==a['exception_observer']['request_methods'] for c in exceptions['Metal_requests']['process_configurations'])
@@ -140,6 +143,16 @@ def verify(directory,mode,kernel_sha=None,version=None):
                     assert exceptions['Quad_route']['revision']==a['exception_observer']['quad_route_revision']
                     assert all(c['installed']==a['exception_observer']['quad_route_methods'] for c in exceptions['Quad_route']['process_configurations'])
                 if a['exception_observer'].get('original_postdraw_observer'):exceptions['postdraw_snapshot']=inspect_postdraw(text,a['token'],method_observer=a['exception_observer'].get('snapshot_method_observer',False),png_input_observer=a['exception_observer'].get('postdraw_png_input_metadata',False),png_encoder=a['exception_observer'].get('png_encoder_prior_proof'))
+                if a['exception_observer'].get('original_snapshot_PNG_export'):
+                    from original_snapshot_png_evidence import inspect as inspect_original_png
+                    _,exceptions['Original_snapshot_PNG']=inspect_original_png(text,a['token'])
+                if a['exception_observer'].get('loaded_snapshot_PNG_export'):
+                    from original_snapshot_png_evidence import inspect as inspect_loaded_png
+                    _,exceptions['Loaded_snapshot_PNG']=inspect_loaded_png(text,a['token'],source='loaded')
+                if a['exception_observer'].get('snapshot_render_queue_observer'):
+                    from snapshot_render_queue_evidence import inspect as inspect_render_queue
+                    exceptions['Original_render_queue']=inspect_render_queue(text,a['token'])
+                    assert exceptions['Original_render_queue']['failed_commands']==0, 'Original Metal command returned an error'
                 if a['exception_observer'].get('AIR_XR_probe'):exceptions['AIR_XR']=verify_air_xr(text,a['token'])
                 if a['exception_observer'].get('Metal_IOSurface_probe'):exceptions['Metal_IOSurface']=verify_metal_surface(text,a['token'])
                 if a['exception_observer'].get('Metal_mipmap_probe'):exceptions['Metal_mipmaps']=verify_metal_mips(text,a['token'])

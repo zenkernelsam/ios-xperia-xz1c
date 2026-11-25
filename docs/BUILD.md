@@ -155,6 +155,23 @@ python3 -B tools/build/package_glram.py --presigned --frontend build/my-gles/ram
 
 builder执行真实ObjC转发、原位值缓存／errno的ASan／UBSan和ARM64签名；manifest绑定全部实际源、库及先验。新RAM先自身CPU，完整回程后才准入新的GPU包。R22原失败及本轮捕获范围见[壁纸专题](METAL-REQUEST-OBSERVATION.md)，不用旧失败包继续投递。
 
+## 原快照与绘制失败复现
+
+原快照来源／bounds回调／PNG／命令队列观察均是独立的observer flag：`--poster-snapshot-gate`、`--aegir-snapshot-cache-scope`、`--original-snapshot-png-export`、`--loaded-snapshot-png-export`、`--snapshot-render-queue`。loaded与original PNG export互斥，loaded要求gate；queue要求short registration／snapshot／namespace。builder对真实ObjC ABI、原返回／errno／throw、有界日志及host原decoder验证后编译签名，RAM manifest绑定实际源与完整先验。PNG transport只无损zlib＋48B分块；缺块原失败不补发。
+
+新Metal反射绑定候选复用精确GLES及已核验AIR object；新Metal自身source-map变化，旧native／PNG proof不准入。构建完整作者observer时保留全部21组／PNG6，额外probe在真实encoder pipeline切换后保留fragment0与unused slot7，核对原48B position buffer、target／guard、fence和最终退休：
+
+```sh
+python3 -B tools/build/check_metal_compute.py --llvm-headers deps/llvm-c-14 --output build/my-buffer-selection/host
+python3 -B tools/build/build_metal_library.py --ram-package build/my-gles/ram --air-package build/my-air/identical-object --output build/my-buffer-selection/library
+```
+
+完整observer沿用前述native21参数、`--cif10-png-reference --program-cache-inventory`；只读inventory不启用空primer。新RAM自身CPU、同GLES完整9组先验、完整native21／PNG6通过后，再构建同库／新proof的short原Aegir队列观察。这里的host和新signed产物不自动获得实机准入。固定原调用点可用`inspect_aegir_render_boundary.py --sparse <gl5> --symbols <A2S> --output <build下新JSON>`复验，不展开16GB镜像，不发布原字节。
+
+## AFE协议离线复现
+
+`check_lilac_afe_slimbus.py --output build/新的-afe-host`从正式patch／source-lock materialize原APR头，再编译运行真实ASan／UBSan包字节与状态用例；Windows用WSL Ubuntu-22.04，Mac直接host clang。它不连接传输或启动DSP。实际codec channel map、参数schema与物理声音另行验收，见[Lilac外设](LILAC-PERIPHERALS.md)。
+
 ## 产物和历史手册
 
 本周Mac重复HFS容器／raw、符号表、旧展开库、主机产物、临时检出及传输tar已进入原生垃圾桶；留存压缩blob／manifest／signed库可按SHA重建原RAM。当前kernel／deps／dxb、gl4／gl5／IPSW和失败证据保持。[LAYOUT](LAYOUT.md)给恢复方法，[ORGANIZATION](ORGANIZATION.md)给实际清单。回收不清空，不把移入垃圾桶称为释放全部空间。

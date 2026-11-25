@@ -1,0 +1,104 @@
+{
+  "date": "2026-11-25",
+  "scope": "WSL host programs on shared Windows build and source-transfer TEMP",
+  "native_recycle_items": 7,
+  "native_recycle_files": 10,
+  "logical_bytes": 4780776,
+  "Recycle_Bin_not_emptied": true,
+  "no_permanent_deletion": true,
+  "items": [
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-afe-slimbus-host-20261125\\test_afe",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R32MN6O",
+      "entries": [
+        {
+          "relative": "test_afe",
+          "bytes": 1484952,
+          "sha256": "13bb07f1a9a7ce42c43b86d10376bbd05da501ca3624a53f25aa693d92a6127b"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-afe-slimbus-reproducible-r3-20261125\\test_afe",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RE9OB6T",
+      "entries": [
+        {
+          "relative": "test_afe",
+          "bytes": 1485024,
+          "sha256": "f0bfa2ced62fb411169561d6118ee4616fb7b45e14105aaaa9d9b6c67d348eaa"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-afe-slimbus-reproducible-r4-20261125\\test_afe",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RR3VNRH",
+      "entries": [
+        {
+          "relative": "test_afe",
+          "bytes": 1485024,
+          "sha256": "41300e1a4047bdd2389caf742e7216514dac40173a252f5a1662761423a0872d"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-afe-slimbus-contract-r6-20261125\\contract",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$ROF389Y",
+      "entries": [
+        {
+          "relative": "contract",
+          "bytes": 15968,
+          "sha256": "445cc4ac61748fcc3c2fcc3faee93a962e3144dac40bf5fa23f8608898c8ecb6"
+        }
+      ]
+    },
+    {
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-render-queue-source-transfer-20261125",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R8ZYE2K",
+      "entries": [
+        {
+          "relative": "install.py",
+          "bytes": 696,
+          "sha256": "3d176df1f8955fae766eb3268773685b60b2fe1ed9870e8ad5b07f85f31f18e7"
+        },
+        {
+          "relative": "source.tar",
+          "bytes": 163840,
+          "sha256": "697773431311ba2566ae8ac89e229b13b81ec22d500089e6955e8a713ef2ffc4"
+        }
+      ]
+    },
+    {
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-buffer-selection-source-transfer-20261125",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RHBRZWE",
+      "entries": [
+        {
+          "relative": "install.py",
+          "bytes": 696,
+          "sha256": "98460299579fc11f32ccff44e1254f336a0fb230078696d93af263771616e05f"
+        },
+        {
+          "relative": "source.tar",
+          "bytes": 112640,
+          "sha256": "261e401c619652a57c54e16cbd0257647a6b4189b31eca84e08e96067dbbd11e"
+        }
+      ]
+    },
+    {
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-afe-source-transfer-20261125",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$REKKF9S",
+      "entries": [
+        {
+          "relative": "run.py",
+          "bytes": 1216,
+          "sha256": "c6db5b82e4a2ca2af4f0bb02596a20a21c016cfa7c7424ddc519cf6e582ffb48"
+        },
+        {
+          "relative": "source.tar",
+          "bytes": 30720,
+          "sha256": "cad99145b56a34e4960752792f2c083e1702251bc3d8209531b1776a399fd169"
+        }
+      ]
+    }
+  ],
+  "device_operations": 0
+}

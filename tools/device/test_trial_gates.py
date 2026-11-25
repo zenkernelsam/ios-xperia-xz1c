@@ -20,6 +20,15 @@ from exception_evidence import inspect_scope,verify_renderer
 
 
 class Gates(unittest.TestCase):
+    def test_original_command_error_routes_safe_return(self):
+        for line, reason in (
+            ('SWEET RQUEUE RESULT pid=7 call=1 status=5 error_nil=0 code=9 terminal_getters_only=1','ORIGINAL_METAL_COMMAND_ERROR'),
+            ('SWEET RQUEUE CONFIG pid=7 revision=1 installed=0 limit=8','ORIGINAL_RENDER_QUEUE_OBSERVER_REFUSED'),
+        ):
+            policy=DiagnosticPolicy('0123456789abcdef',[],0)
+            policy.feed('SWEET LOOP LIVE proto=1 token=0123456789abcdef',0)
+            policy.feed(line,1)
+            self.assertEqual(policy.decision(2).reason,reason)
     def test_extension_checkin_and_mip_failure_route_return(self):
         for line,reason in [('CRASH AegirPoster reason ns 7 code 0x3: extension check-in timeout','EXTENSION_CHECKIN_TIMEOUT'),
             ('SWEET METAL MIPS END result=1 formats=0','METAL_MIPMAP_PROBE_FAILED'),
@@ -232,6 +241,26 @@ class Gates(unittest.TestCase):
         with self.assertRaises(AssertionError):
             validate_wled_gpu_ram(changed, binding)
 
+    def test_reflected_buffer_candidate_requires_own_full_probe_and_scope(self):
+        manifest = Path(__file__).resolve().parents[2] / 'build/buffer-selection-r3-switch-20261125/ram/manifest.json'
+        if not manifest.is_file():
+            self.skipTest('Local signed reflected-buffer RAM is unavailable')
+        package=json.loads(manifest.read_bytes())
+        binding=dict(library_sha256=package['library_sha256'],blob_sha256=package['blob_sha256'],
+                     manifest_sha256=hashlib.sha256(manifest.read_bytes()).hexdigest())
+        self.assertEqual(validate_wled_gpu_ram(package,binding),'native')
+        changes=(
+            ('metal_resources','library_sha256','0'*64),
+            ('metal_resources','missing_required_render_buffers_rejected',False),
+            ('exception_observer','render_unused_buffer_binding_probe_revision',1),
+            ('exception_observer','render_pipeline_switch_retains_unused_fragment_slot0',False),
+            ('exception_observer','program_cache_prime',True),
+            ('exception_observer','cif10_reference_cases',5),
+        )
+        for owner,field,value in changes:
+            changed=copy.deepcopy(package);changed[owner][field]=value
+            with self.subTest(owner=owner,field=field),self.assertRaises(AssertionError):
+                validate_wled_gpu_ram(changed,binding)
     def test_cache_budget_primer_is_bound_to_distinct_reviewed_ram(self):
         manifest = Path(__file__).resolve().parents[2] / 'build/poster-cache-budget-metal-prime-20261124/reference-ram/manifest.json'
         if not manifest.is_file():
@@ -337,6 +366,40 @@ class Gates(unittest.TestCase):
         changed.pop('screen_snapshot_binding')
         with self.assertRaises(AssertionError):
             validate_wled_gpu_record(changed, package, binding)
+
+    def test_snapshot_gate_ram_rejects_changed_limits_or_unbound_observer(self):
+        root = Path(__file__).resolve().parents[2]
+        manifest = root / 'build/poster-snapshot-gate-20261125/ram/manifest.json'
+        if not manifest.is_file():
+            self.skipTest('Local signed original snapshot gate RAM is unavailable')
+        package = json.loads(manifest.read_bytes())
+        binding = dict(library_sha256=package['library_sha256'], blob_sha256=package['blob_sha256'],
+                       manifest_sha256=hashlib.sha256(manifest.read_bytes()).hexdigest())
+        self.assertEqual(validate_wled_gpu_ram(package, binding), 'poster')
+        for field, value in (('poster_snapshot_gate_observer',False),('poster_snapshot_gate_max_calls',41),
+                             ('poster_snapshot_gate_max_replies',65),('poster_snapshot_gate_methods',4),
+                             ('poster_snapshot_gate_extra_getters_or_GPU_work',True),
+                             ('original_request_observer',True),('library_sha256','0'*64)):
+            changed = copy.deepcopy(package)
+            changed['exception_observer'][field] = value
+            with self.subTest(field=field), self.assertRaises(AssertionError):
+                validate_wled_gpu_ram(changed, binding)
+
+    def test_original_snapshot_namespace_requires_reviewed_scope_and_preservation(self):
+        root = Path(__file__).resolve().parents[2]
+        manifest = root / 'build/aegir-snapshot-namespace-20261125/ram/manifest.json'
+        if not manifest.is_file():
+            self.skipTest('Local signed original snapshot namespace RAM is unavailable')
+        package = json.loads(manifest.read_bytes())
+        binding = dict(library_sha256=package['library_sha256'],blob_sha256=package['blob_sha256'],
+                       manifest_sha256=hashlib.sha256(manifest.read_bytes()).hexdigest())
+        self.assertEqual(validate_wled_gpu_ram(package,binding),'poster')
+        for field,value in (('identity','0'*64),('original_caller_offset',0x63b4),
+                            ('directory_mode',0o777),('original_caches_root_preserved',False)):
+            changed=copy.deepcopy(package)
+            changed['exception_observer']['aegir_snapshot_cache_scope'][field]=value
+            with self.subTest(field=field),self.assertRaises(AssertionError):
+                validate_wled_gpu_ram(changed,binding)
 
     def test_audit_includes_upstream_memory_descriptor(self):
         first=configuration(725);next_=configuration(726)

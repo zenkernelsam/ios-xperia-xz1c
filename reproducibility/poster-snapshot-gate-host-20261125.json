@@ -1,0 +1,17 @@
+{
+  "source": "tools/build/test_poster_snapshot_gate.m",
+  "source_sha256": "4de2332badf601092d3a25ac89614e465d6d5ba435c24005f5de736df2be44e4",
+  "observer_source_sha256": "f95812c4826340538b01346678cbec79ce26f88a892ed13fba0701dcc990839b",
+  "decoder_source_sha256": "e93570593d1a6c3e0071a90fffe9b184512f98888cbeb86ec7ae8ba4cdb5d97e",
+  "host_ASan_UBSan_passed": true,
+  "actual_C_to_Python_decoder_passed": true,
+  "checked_original_calls": 17,
+  "checked_original_replies": 5,
+  "exact_CGRect_signed_zero_bits_preserved": true,
+  "nonzero_high_orientation_bits_preserved": true,
+  "deferred_copied_callback_and_throw_errno_forwarding": true,
+  "no_additional_getter_or_GPU_calls": true,
+  "compile_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "test_log_sha256": "06ca520f4f4d1cb1d67935eb3c6b3c453da098b9ea52df8e6e4652c8d77dea19",
+  "device_operations": 0
+}

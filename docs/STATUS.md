@@ -1,6 +1,23 @@
 # 当前状态 — 2026-11-25
 
-新缓存库已在 v731 完成自身 CPU、GLES9、完整 native Metal21／PNG6 及真实扫描帧验收；原壁纸还未恢复。最近一次原 Aegir 单次上滑后的主页扫描观察为 STOP／OBSERVATION_INCOMPLETE，150秒主页扫描完整，已完成四段 0x06 回程、连续健康30秒和串口退出，Sony BH905ND69G 安全停在 fastboot，无在途启动。
+原 Aegir 黑壁纸已定位到命令队列的第二次绘制：原编码器保留上一管线的片元缓冲0，后端却要求全部绑定与新管线反射集合完全相等。新 Metal 用户态已按固定开源参考修正选择，主机 ASan／UBSan 通过；新库尚未完成自身CPU／native21／PNG6，不提升为生产基线。最后实际GPU靴原REVISE与四段0x06回程保持，Sony BH905ND69G停在fastboot，无在途启动。
+
+两次新库CPU投递都在ABL guard前遇到其它设备的fastboot进程，download／boot均0；原失败不重发。独立Sony健康观察通过31.359秒。当前准备候选是带真实管线切换与未使用缓冲原字节核验的r3，后续先重新查进程冲突，再自身CPU，完整回程后native21／PNG6，最后原壁纸。
+
+## 本轮关键结果与候选
+
+| 阶段 | 原结果与证据 | 边界 |
+| --- | --- | --- |
+| 原快照服务 | [22完整调用／4完整回调](../reproducibility/poster-snapshot-gate-gpu-actual-20261125.json) | 原bounds与view创建已返回，未改mode／paused |
+| 原磁盘PNG复用 | [8次非空load／8次setImage](../reproducibility/poster-snapshot-cache-gpu-actual-20261125.json) | 整组缺无关BEGIN仍拒绝；图片路径独立验证 |
+| 新来源原快照 | [31完整pipeline／64完整postdraw](../reproducibility/aegir-warm-snapshot-r3-logwrite-gpu-actual-20261125.json)，`01fa0a69a8ce868f` | 原观察PASS／回程40.312秒；壁纸仍黑，不能当UI通过 |
+| 原加载PNG | [无损压缩导出](../reproducibility/aegir-loaded-png-compressed-r2-gpu-actual-20261125.json)，`15480a7a8a23a9ed` | PNG27208B／720×1280／921600个像素全黑；原STOP保持，回程39.219秒 |
+| 原GPU队列 | [5次编码／仅第一项后端执行](../reproducibility/aegir-render-queue-r4-gpu-refused-20261125.json)，`5e64e7240b822797` | 原status5／error9／`AIR render failed result=-22`；REVISE含签到超时，回程38.110秒 |
+| 新Metal r1／r2 CPU | [r1](../reproducibility/buffer-selection-r1-cpu-host-refusal-20261125.json)、[r2](../reproducibility/buffer-selection-r2-cpu-host-refusal-20261125.json) | guard前冲突，未下载／未boot，不重发 |
+| 新Metal r3 | [主机与包审计](../reproducibility/buffer-selection-r3-switch-offline-20261125.json) | 待自身CPU／完整native21／PNG6／原UI |
+| AFE SLIMBUS协议 | [双平台主机与ARM64对象](../reproducibility/lilac-afe-slimbus-playback-reproducible-20261125.json) | 只协议／状态，无DSP／codec／声音准入 |
+
+新Metal SHA `19a08083833851d5a13016473ec3c3db98629d6ce6fc928b70947af114abee49`；source-map `41bdf3e49258c8cf6d57a69beb99d15dec0e1404aec2509725c386941e0f25ee`。GLES仍`6efabfc0…`、内核仍`15fd8eee…`。r3 RAM blob `91ec02d744ce8e645a138005da39a015bfc351f4159a9f74454ca169710e7eaf`／manifest `ffd427114c90a76cc16ad496fe56ad28b5024ff58ab3bea0d3e454fae67ec8d6`；CPU token `92cd6155d365cbdd`、GPU token `1e1bf33f91081ea2`，尚未实机。新shader-cache来源`b1aa0e0a…`，不预热空请求、不删除旧cache。
 
 ## 当前输入与准入
 
@@ -11,9 +28,9 @@
 | Mesa／Freedreno | 24.3.4／`769e51468b49b2a42f0a0eaf71cf9eed5ff4e5de`／FD540 GLES3.1 | 免费开源 GLES 后端；Vulkan 尚未移植 |
 | 新 GLES 缓存库 | `6efabfc0627a8818a8c4c45665459cd33d8ee814f2e50a3f3cdc4813bb254325`，14801120 B | 自身 CPU／GLES9；与新 RAM 同靴完整 native21／PNG6 |
 | Metal／source-map | `8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27`／`db1605ef8dae8f8ed0a29999dcb2cf7537457aba7ad428677c21e0e914771b78` | 库字节及 source-map 保持；新 GLES 组合已重新完整验收 |
-| 新 cache build／scope | `16722b126d14e64954fc349d20626f9e639cc726ed1c24856a889b2249efd236`／`9f43d3e226e901f609eeba4b9f348e2050ed7e1bd790ef8f7b422dc31eec892a` | 新范围实际24对／48文件、missing0，前后记录 SHA 一致 |
+| 新 cache build／scope | `16722b126d14e64954fc349d20626f9e639cc726ed1c24856a889b2249efd236`／`9f43d3e226e901f609eeba4b9f348e2050ed7e1bd790ef8f7b422dc31eec892a` | 该基线靴24对／48文件、missing0；后续真实请求扩充清单，原记录保持 |
 | R21 geocompat revision4 | `ee7a3207f26af5e9106cbd98c74392153b11a2d345386964db131110a2a6153c`，106544 B | 原生几何、完整应用模型、真实祖先和17.5点标签间距 |
-| 原壁纸观察 RAM | blob `e98ed2cd62595b2b414ef2d04ce1cfa93af34041a99fd6b38691f004314eb83b`／manifest `55eee7cb15985a1e27c939ae4601ceb104d9d43ae760edb7c6191f450899ec98` | 自身 CPU 通过；原 GPU 观察 STOP，失败包不重发 |
+| 历史原壁纸观察 RAM | blob `e98ed2cd62595b2b414ef2d04ce1cfa93af34041a99fd6b38691f004314eb83b`／manifest `55eee7cb15985a1e27c939ae4601ceb104d9d43ae760edb7c6191f450899ec98` | 自身 CPU 通过；原 GPU 观察 STOP，失败包不重发 |
 
 旧 GLES `0766d5c7…` 的生产／原UI和缓存记录仍保留。新库的功能probe成功不自动提升为完整原UI／壁纸、FPS、光学或睡眠基线；不同 RAM／库仍须自己的准入，旧proof不能准入新库。
 
@@ -37,19 +54,11 @@
 
 ## 原壁纸卡点与下一步
 
-[本次原观察](../reproducibility/poster-cache-budget-wallpaper-observation-20261125.json)raw `c338c9b3…`／702521 B完整保留。Aegir只出现一次exec，登记证明准确，库bundle／URL非空返回；20条原request、128条原route和99条原environment记录均完整，未观察到Aegir签到超时。唯一缺失目标是原pipeline第1次返回；本LIVE内没有pipeline BEGIN、snapshotImage调用、PNG返回或原绘制API。
+原SnapshotManager复用旧PNG；限定原Aegir UUID／caller的来源目录让原snapshot／pipeline重新执行，旧文件保持。随后背景只预热真实缺bin请求，原r2 primer的PNG6缺块拒绝及第一次namespace签到超时保留。r3四份snapshot非空／三份PNG返回的原PASS只说明API观察完成；后续queue终态确认原第二draw仍返回EINVAL。原bounds服务和场景并未被强制解除paused。
 
-原环境返回preview／snapshot均true，backlight／linear_backlight均1.0，unlock均0.0；五次原paused=true，applyMode1沿原deactive分支返回。无调用不能推断整个系统没有渲染，亦不授权强制mode／paused。该轮只有串口，没有扫描或光学帧；原STOP不提升、不重发。随后同靴扫描与较小观察包已完成，见下一段；原STOP均保留。
+黑PNG与新队列结果是本轮主要停点。下一阶段先用r3新RAM完成自身CPU，完整回程后验全部native21／PNG6，特别核对真实pipeline切换、unused fragment0／slot7与48B原输入；合格后为新Metal重新生成source-map绑定的native／PNG proof，再运行原Aegir队列和一次scanout。只有原五项draw均实际完成、PNG和扫描真实像素出现，才提升原壁纸；FPS、LCD光学与睡眠另验。
 
-随后 [原 Aegir 同靴扫描](../reproducibility/poster-cache-budget-wallpaper-scanout-actual-20261125.json) `035142bfce21f792` 再现唯一pipeline目标缺失，原STOP保持。150秒扫描完整3431块，原raw `802745c3…`／1928425 B；9条postdraw、20条request、126条route及99条environment记录均完整，没有原快照／PNG／draw。四段回程、健康30秒及worker退出38.469秒。真实扫描中时间、电池和底条正常，背景仍黑。相同v731编译consumer中sf2x初值0已核验，新的省略绑定保持本kernel SHA和同consumer／parser；不同kernel／显式sf2x仍拒绝。后续较小观察包的 [CPU](../reproducibility/poster-cache-budget-minimal-cpu-actual-20261125.json) `445e94deb747f6f7` 独立PASS／38.047秒；[GPU](../reproducibility/poster-cache-budget-minimal-gpu-actual-20261125.json) `502518c1cac3a3a4` 仍STOP／同一pipeline目标未出现。150秒扫描完整3426块、raw `9d77d6af…`／1791188 B，7条postdraw完整、无原snapshot／PNG。回程、健康30秒及worker退出38.468秒。减少request／route包装未在本靴恢复快照，未把诊断干扰认定为主要原因；下一步独立查PosterBoard→Aegir原快照请求入口，原mode／paused保持。
-
-按现行规则加入一次上滑的 [主页同靴验证](../reproducibility/poster-cache-budget-minimal-swipe-actual-20261125.json) `6b7a6729c50d0b51` 已结束，原结果仍STOP／同一pipeline目标缺失。当前LIVE／F12就绪后120秒只发一次swipe，150秒扫描7980块完整，原raw `a2b7dc9a…`／3484551 B。真实帧已进入主页，图标／小组件／Dock色彩与比例看起来正常；背景仍黑，7条postdraw完整、原snapshot／PNG／pipeline均0。四段回程、连续健康30秒及worker退出38.766秒。合成输入不代替真人触控，扫描不证明LCD光学／FPS；没有强制原mode／paused，失败包不重发。下一步针对PosterBoard发给扩展的原快照请求与回调做有界只读观察。
-
-完整native背景包的扫描图中，锁屏文字、电池和底条颜色正常，背景仍黑。它没有原Aegir登记，因此该图不证明壁纸、LCD实际颜色或亮度。真实UI截图优先串口，光学／背光另用相机。
-
-此前 `bb157ab341d460d3` 的GPU包在[Windows主机预检](../reproducibility/poster-cache-budget-native21-host-refusal-20261124.json)超时，download／boot均未发生，原STOP_ERROR与失败包保留。冲突筛选保持，CIM内部20秒／受控子进程外层30秒；后续独立预检及健康32.391秒通过。新条件预热包具有实际功能差别，没有重发该包。
-
-此前旧库原壁纸 `f8d225d5316dfafc` 的[STOP_RESET_UNCONFIRMED](../reproducibility/lilac-wled-v731-poster-startup-actual-20261124.json)保留；之后的健康31.265秒不重分类原失败。R22／R23／R24／R26的原超时和缺块、R25／R27的准确缓存证据在[壁纸专题](METAL-REQUEST-OBSERVATION.md)及历史原文中保留。
+早期无pipeline调用的状态／scanout／单次上滑原STOP、r24／r2的缺块、r26签到超时和旧STOP_RESET_UNCONFIRMED均保持；原token、raw、proof与完整回程在[原壁纸专题](METAL-REQUEST-OBSERVATION.md)和本轮归档索引。新包不得借用旧证明或用新token复发失败包。
 
 ## 显示及其它外设
 
@@ -61,10 +70,8 @@ ADSP stage3只核验固件和AP端准备，没有启动DSP。ASM PCM／映射／
 
 ## 复现、整理和操作
 
-[AIR固定原object复现](../reproducibility/cache-budget-verified-air-tool-20261124.json)从正式materialize源码得到原`10df4bf0…`，168个原LLVM导入一致；[完整参考manifest](../reproducibility/air-static-half-object-reference-20261124.json)已进入Git。不同object／target不允许复用原审计，新的20H392 exports仍需重新提取。新源码和工具只在正式仓库维护；构建及新包准入见[BUILD](BUILD.md)、[OPERATIONS](OPERATIONS.md)，用户提供SDK／固件等原输入见[LAYOUT](LAYOUT.md)。全新gl5重建首次启动尚未独立验收。
+正式源码、构建与工具只在本仓库；[BUILD](BUILD.md)给固定Mesa、AIR重建／168个LLVM导入、RAM／原snapshot／AFE复现，[OPERATIONS](OPERATIONS.md)给准入与返回，[LAYOUT](LAYOUT.md)给本地SDK／gl5／救砖输入与恢复。全新gl5首次启动仍未独立验收。各失败包raw／完整payload和只读source-map保留。
 
-本轮[Mac原生Trash](../reproducibility/cache-budget-macos-native-trash-20261124.json)54项／238文件／287602294 B，233保护文件SHA保持；六份重复HFS从保留blob逐字节复算，原失败包、raw、proof、signed库、AIR、deps和pause保留。两套Ubuntu Trash为空，Windows／Mac垃圾桶未清空；回收仍占磁盘。整合前9份入口原字节及SHA见[本轮归档](archive/20261124/cache-budget-close-out/original-document-manifest.json)，完整历史由[INDEX](INDEX.md)／[ORGANIZATION](ORGANIZATION.md)索引。
-
-本次原观察收尾另把 [Mac46项／88文件／136572265 B](../reproducibility/poster-observation-macos-native-trash-20261125.json) 送入原生Trash，111保护文件一致；[WSL生成的9个主机程序／13062696 B](../reproducibility/cache-budget-host-windows-recycle-20261125.json) 从共享Windows build直接进Windows回收站。原编译失败、源码、固定APR头文件、signed库、原结果／raw／proof都保留。正式主提交`7c02219`已推送origin/main，Mac已同步且135变更文件逐字节一致，旧Mac修改保存在[可恢复stash](../reproducibility/cache-budget-formal-git-sync-20261125.json)。
+本轮[Mac349项／631文件／1070475061 B](../reproducibility/render-buffer-close-out-macos-native-trash-20261125.json)进原生Trash，967保护文件一致，28份HFS从保留blob复算；[Windows7项／10文件／4780776 B](../reproducibility/render-buffer-close-out-windows-native-recycle-20261125.json)进原生回收站。两套[Ubuntu垃圾桶为空](../reproducibility/render-buffer-close-out-wsl-trash-audit-20261125.json)，Windows／Mac未清空。10份整合前原文与SHA在[本轮归档](archive/20261125/render-buffer-selection/original-document-manifest.json)；更早整理与可恢复Git stash由[ORGANIZATION](ORGANIZATION.md)索引。
 
 只操作BH905ND69G，fastboot设备命令显式`-s BH905ND69G`；COM≥10且VID1209／PID0001、一个controller／worker；PON只0x06，单download／boot、失败不重发。ACK／DRAIN／RESET／FINAL_DRAIN、健康30秒及旧worker退出后才下一轮。无本token LIVE的早期E1F4仍可能需物理恢复。SweetGPU SHA `aa2c3679…`及内核GPU底层／allocator／SCM／PON／RPC／VM冻结；gl5／userdata／SD／TA／XFL、校准、备份和救砖输入不flash／erase。Mac旧autobuild保持pause；废弃文件只进原生回收站。

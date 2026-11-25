@@ -1,0 +1,16 @@
+{
+  "repository": "https://github.com/MC-XiaoXiao/ios_sagit",
+  "commit": "898998cf1b74ea103e0c16d6dc0016822d8d644b",
+  "path": "drivers/gpu/QcomMTL/QcomMTL.mm",
+  "git_blob": "7b20cc6e76ee7b859adfb02b131bf0c4780d6c35",
+  "sha256": "6f1aa677a41e2acbbe8c291a4c53e8e1b27d2abe70e7e72b8c45ba25ea4ea010",
+  "license": "BSD-2-Clause",
+  "reference_lines": [
+    5390,
+    5403
+  ],
+  "observed_contract": "iterate only vertex/fragment reflected buffer masks, validate their original ranges",
+  "local_adaptation": "MetalRender.inc stores both immutable reflection masks and selects retained bindings at execution",
+  "raw_source_not_copied_to_device": true,
+  "new_hardware_verification_required": true
+}

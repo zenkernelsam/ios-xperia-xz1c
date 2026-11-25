@@ -1,0 +1,48 @@
+{
+  "version": 731,
+  "mode": "ramcpu",
+  "token": "cd9df42ec6e89dc9",
+  "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+  "image_sha256": "c3f176ade058a1d8feee2049c388da97b702ba8a5e6ba91215772398fd853cdb",
+  "log_sha256": "2d05c422520123f5d65d04d865e502dbe39c0767ceb67fc615ec5c75517628c4",
+  "return_complete": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "cd9df42ec6e89dc9",
+    "checkpoint_bytes": 334002,
+    "log_bytes": 338845,
+    "log_sha256": "2d05c422520123f5d65d04d865e502dbe39c0767ceb67fc615ec5c75517628c4",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      33,
+      83,
+      85
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 42.889999999897555,
+  "ram_library_binding": {
+    "library_sha256": "6efabfc0627a8818a8c4c45665459cd33d8ee814f2e50a3f3cdc4813bb254325",
+    "library_bytes": 14801120,
+    "library_fnv64": "2181c45c9f21ee6c",
+    "blob_sha256": "bd0ccca991d32c7db3e7ee8c393883b971262ec61970e583ed33696d41b34ddf",
+    "raw_sha256": "5b8a0cb2a4c71d62edf556323f3c1b33c25ddedb071baef2bbcea8dafc1c07f3",
+    "manifest_sha256": "64a29b78488ee81854ff1d12c5a3454736fa353f1cdedb2d0ff06193385b846e"
+  },
+  "serial_capture": {
+    "revision": 1,
+    "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+    "event_log_sha256": "d1a616b5fcdaf004a63f033ec195c5d3e8b56a5a25b9ad2735bfe52f98a1f43d",
+    "raw_sha256": "2d05c422520123f5d65d04d865e502dbe39c0767ceb67fc615ec5c75517628c4",
+    "serial_port": "COM17",
+    "dtr_low_through_open": true,
+    "raw_log_before_stream": true,
+    "one_continuous_current_boot_stream": true,
+    "replay_commands": 0,
+    "old_failure_not_reclassified": true
+  },
+  "source": "Windows TEMP/lilac-v731-loaded-png-compressed-r2-cpu-live-20261125",
+  "original_result": "PASS",
+  "worker_closed": true
+}

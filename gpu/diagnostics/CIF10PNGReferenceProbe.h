@@ -46,7 +46,7 @@ static void cif10_reference_export(CIF10ReferenceEmit emit,unsigned index,const 
         emit("SWEET CIF10 DATA case=%u kind=%s offset=%zu bytes=%zu hex=%s",index,kind,at,count,hex);
         /* Give other process logs a bounded slot instead of flooding the tee.
          * Each authored byte range is still emitted exactly once. */
-        int saved=errno;(void)usleep(1000);errno=saved;
+        int saved=errno;(void)usleep(3000);errno=saved;
     }
 }
 #include "CIF10PNGFilterCompare.h"

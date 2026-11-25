@@ -185,10 +185,22 @@ int main(int argc,char **argv){assert(argc==2);@autoreleasepool{
     id<MTLCommandBuffer> commands=[[queue commandBuffer] retain];auto invalid=[MTLRenderPassDescriptor new];assert(![commands renderCommandEncoderWithDescriptor:invalid]);[invalid release];
     id<MTLRenderCommandEncoder> encoder=[[commands renderCommandEncoderWithDescriptor:pass] retain];assert(encoder && ![commands blitCommandEncoder]);
     [encoder setRenderPipelineState:pipeline];[encoder setVertexBuffer:vertices offset:0 atIndex:0];[encoder setFragmentTexture:sample atIndex:13];[encoder setFragmentSamplerState:sampler atIndex:3];
+    // The real backend stub above still requires exactly the reflected
+    // vertex buffer. Encoder state must retain these unused stage bindings.
+    [encoder setVertexBuffer:vertices offset:0 atIndex:7];[encoder setFragmentBuffer:vertices offset:0 atIndex:0];
     [encoder setScissorRect:(MTLScissorRect){1,2,13,5}];[encoder setFrontFacingWinding:MTLWindingCounterClockwise];[encoder setCullMode:MTLCullModeBack];
     exception(^{[encoder setViewport:(MTLViewport){0,0,17,10,0,1}];});exception(^{[encoder setVertexBuffer:vertices offset:1 atIndex:0];});
     [encoder drawPrimitives:MTLPrimitiveTypeTriangle vertexStart:0 vertexCount:3 instanceCount:2];
     [encoder drawPrimitives:MTLPrimitiveTypeTriangle vertexStart:0 vertexCount:3 instanceCount:2];[encoder endEncoding];exception(^{[encoder endEncoding];});
+    id<MTLCommandBuffer> missingCommands=[[queue commandBuffer] retain];
+    id<MTLRenderCommandEncoder> missing=[missingCommands renderCommandEncoderWithDescriptor:pass];
+    [missing setRenderPipelineState:pipeline];[missing setVertexBuffer:vertices offset:0 atIndex:7];
+    [missing setFragmentBuffer:vertices offset:0 atIndex:0];
+    [missing drawPrimitives:MTLPrimitiveTypeTriangle vertexStart:0 vertexCount:3 instanceCount:2];
+    [missing endEncoding];[missingCommands commit];[missingCommands waitUntilCompleted];
+    assert(missingCommands.status==MTLCommandBufferStatusError && missingCommands.error &&
+        [missingCommands.error.localizedDescription isEqualToString:@"Render pipeline is missing a required buffer binding"] && draws==0);
+    [missingCommands release];
     [pass release];[encoder release];[vertices release];[target release];[sample release];[targetBuffer release];[sampleBuffer release];[targetDesc release];[sampleDesc release];
     [pipeline release];[vertex release];[fragment release];[library release];[sampler release];assert(device.currentAllocatedSize==3*16384);
     [commands commit];[commands waitUntilCompleted];uint32_t fence=0,operations=0;assert(SweetMTLCommandResult(commands,&fence,&operations) && operations==2 && fence==2);
@@ -198,5 +210,5 @@ int main(int argc,char **argv){assert(argc==2);@autoreleasepool{
         id<MTLCommandBuffer> c=[[queue commandBuffer] retain];id<MTLRenderCommandEncoder> e=[c renderCommandEncoderWithDescriptor:p];assert(e);[e endEncoding];[t release];[p release];
         [c commit];[c waitUntilCompleted];assert(c.status==MTLCommandBufferStatusCompleted && !c.error && clears==1);[c release];}
     assert(device.currentAllocatedSize==0 && backing.empty());[queue release];[device release];
-    puts("actual Metal render objects: stride/region guards, AIR semantic linking, snapshots, owned textures, clear, factory rollback and final lifetime PASS");
+    puts("actual Metal render objects: stride/region guards, AIR semantic linking, reflected buffer selection with retained unused stage bindings, snapshots, owned textures, clear, factory rollback and final lifetime PASS");
 }return 0;}

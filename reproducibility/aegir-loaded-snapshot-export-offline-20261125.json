@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-25",
+  "purpose": "Read one original successfully loaded Aegir cache PNG without modifying it",
+  "ram_blob_sha256": "83b36fae6c095bea77e0b4ded6b2de4dea4670974c89dec0f4cff96ce39dca15",
+  "ram_manifest_sha256": "7681e9059ca71d9e405a3322c74a1e81d165139fe9108fca01cff911cfa78347",
+  "observer_sha256": "3e11244af2844e304dd22395cfc68abaff1b8d232d7e7045ab32caf1809d2db1",
+  "max_export_bytes": 65536,
+  "read_only_nofollow_original_file": true,
+  "stable_file_stat_before_after": true,
+  "source_bound_to_original_image_load": true,
+  "old_images_not_deleted": true,
+  "prior_failed_export_package_not_replayed": true,
+  "device_operations": 0,
+  "artifacts": {
+    "cpu": {
+      "token": "5576d11b50550105",
+      "sha256": "c5f6eff2b2b3275a4c8ab6dc71133ca6e0006c92c70a67f6b41957b168bf1205",
+      "trial_mode": "ramcpu"
+    },
+    "gpu": {
+      "token": "eb83854cdd46b9e7",
+      "sha256": "ca834fa6d5ac53b83a04ac108cdd35076f78eef131516f749dad4981c99de79c",
+      "trial_mode": "gpu"
+    }
+  }
+}

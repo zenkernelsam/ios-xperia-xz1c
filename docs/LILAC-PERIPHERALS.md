@@ -15,6 +15,14 @@
 
 固定 Sony 开源参考中，`msm8998.c` 为 Tasha 和 Tavil 分别选择编解码器，均有 `SLIMBUS_0_RX` 回放路径；`q6afe.c` 和 `q6asm.c` 分别连接 ADSP 的 AFE 端口与 ASM 音频流。原厂 DTB 同时列出两套候选，因此不能直接套用某一编解码器的初始化。下一步要单独验证 DSP 启动、APR 响应与实际编解码器，之后才验证 PCM 播放和物理输出。stage 3 不作为这些功能的准入。
 
+[AFE SLIMBUS协议](../reproducibility/lilac-afe-slimbus-playback-reproducible-20261125.json)继续使用同一固定Sony开源源。`LilacAfeSlimbusPlayback.h`只构造SLIMBUS_0_RX配置／start／stop与管理原回复状态，没有接入硬件。原q6afe发送36B `union afe_port_config`，其中SLIMbus member24B、余12B清零；V2／V3总包84／92B，start／stop24B，APR源／目标端口均0，AFE port0x4000在payload。模式需调用方提供已验证的DSP参数schema和codec channel map，不能凭Tasha／Tavil节点选值。Accepted不提升为Running；错误／不确定后拒绝late reply和后续发包，stop须先确认播放detached。
+
+正式可复现主机工具从`xnu/lilac-current.patch`和source-lock重建两份APR头，原CRLF只在准确SHA匹配时恢复，不依赖旧build目录。WSL／Mac实际ASan／UBSan、原包／guard／token／epoch／错误边界通过，ARM64对象也已编译；DSP、codec、实机包回复及物理声音仍未验。
+
+```powershell
+python -B tools/build/check_lilac_afe_slimbus.py --output build/新的-afe-host
+```
+
 [PCM 负载核验](../reproducibility/lilac-asm-pcm-offline-20261124.json)实现了无时间戳、双声道 16 位 PCM 的 `WRITE_V2` 负载编码。`WRITE_DONE_V2` 必须匹配端口、token、连接代次、缓冲区地址和映射句柄，且状态为零，才能判为 DSP 消费完成。主机测试覆盖准确字节、越界和外来回复。当前代码不映射内存或发包。复验可在 WSL 用 `cc -std=c11 -Wall -Wextra -Werror -pedantic -fsanitize=address,undefined -fno-sanitize-recover=all -no-pie tools/build/test_lilac_asm_pcm.c -o build/新的-pcm-test` 编译并运行。
 
 [PCM 在途队列](../reproducibility/lilac-asm-pcm-queue-offline-20261124.json)最多保留四个待确认缓冲区。DSP 地址范围重叠时拒绝再次提交；匹配的成功完成只释放一次，旧连接或重复完成不会释放新提交。DSP 错误、超时或发送状态不明后，连接应停止接收新请求并保留待确认缓冲区，直到独立确认 DSP 不再访问它们。主机复验沿用上面的编译选项，将输入换成 `tools/build/test_lilac_asm_pcm_queue.c`，输出使用新路径。

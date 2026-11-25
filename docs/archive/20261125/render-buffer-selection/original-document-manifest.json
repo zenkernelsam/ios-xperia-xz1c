@@ -1,0 +1,67 @@
+{
+  "date": "2026-11-25",
+  "reason": "integrate original snapshot/cache and render queue findings before new Metal acceptance",
+  "original_bytes_preserved": true,
+  "files": [
+    {
+      "original": "AGENTS.md",
+      "archive": "docs/archive/20261125/render-buffer-selection/originals/AGENTS.md",
+      "bytes": 5929,
+      "sha256": "231e659a639fb4ed478cc268de2cc76e6543f00baa3a43c015cdadeaae29d0f4"
+    },
+    {
+      "original": "README.md",
+      "archive": "docs/archive/20261125/render-buffer-selection/originals/README.md",
+      "bytes": 2248,
+      "sha256": "169495d67773bffa618f996f282555f9e9368494b46f992573df4c582c70ddd2"
+    },
+    {
+      "original": "docs/STATUS.md",
+      "archive": "docs/archive/20261125/render-buffer-selection/originals/docs/STATUS.md",
+      "bytes": 12266,
+      "sha256": "28032fa38bc240f3cdac210e217d356ab98ccf99cd76909f2613cc1cb68f35aa"
+    },
+    {
+      "original": "docs/BUILD.md",
+      "archive": "docs/archive/20261125/render-buffer-selection/originals/docs/BUILD.md",
+      "bytes": 17003,
+      "sha256": "5f5ded648bd7c49d17b185d97388cf60ffa8fd488fdfdd1bf927466d6649150b"
+    },
+    {
+      "original": "docs/OPERATIONS.md",
+      "archive": "docs/archive/20261125/render-buffer-selection/originals/docs/OPERATIONS.md",
+      "bytes": 8545,
+      "sha256": "f6fe77107e9113e3e40e54c59186adb61ca2116314345125fb3c61f297b22d47"
+    },
+    {
+      "original": "docs/INDEX.md",
+      "archive": "docs/archive/20261125/render-buffer-selection/originals/docs/INDEX.md",
+      "bytes": 6124,
+      "sha256": "e0d55ef90a13c7b09b0ed693c64757226c3f3e48c2b949e65e8c422c8c064cb2"
+    },
+    {
+      "original": "docs/ORGANIZATION.md",
+      "archive": "docs/archive/20261125/render-buffer-selection/originals/docs/ORGANIZATION.md",
+      "bytes": 10388,
+      "sha256": "5a8cf498a271d6163d939c89b1eccc17cc2a04d35fd13c73cd3503c2a97a6e97"
+    },
+    {
+      "original": "docs/METAL-REQUEST-OBSERVATION.md",
+      "archive": "docs/archive/20261125/render-buffer-selection/originals/docs/METAL-REQUEST-OBSERVATION.md",
+      "bytes": 15772,
+      "sha256": "52da31eaa5c13cfc87bac3c2e9aeeb20aa7ce3870e00400b71c3f89e6d3eaebd"
+    },
+    {
+      "original": "docs/LILAC-PERIPHERALS.md",
+      "archive": "docs/archive/20261125/render-buffer-selection/originals/docs/LILAC-PERIPHERALS.md",
+      "bytes": 17245,
+      "sha256": "3cb2fa3691a6270c6dca758644de325080f1ad2e5ca2162be9bfa0754f297950"
+    },
+    {
+      "original": "gpu/metal/README.md",
+      "archive": "docs/archive/20261125/render-buffer-selection/originals/gpu/metal/README.md",
+      "bytes": 2071,
+      "sha256": "a5df4d0bad1913d6f9275ae1d009bce1e7c9aa1e380f917c62a71d0fc7f8e5e9"
+    }
+  ]
+}

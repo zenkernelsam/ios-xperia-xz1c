@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-25",
+  "real_change": "Use existing bounded remaining-byte log helper and preserve errno; same stable snapshot namespace",
+  "ram_blob_sha256": "cf2dae517c3f4c6b2b77ccb480f00069dcc5d366eecc30a8f499df76642c5d13",
+  "ram_manifest_sha256": "1feaf85d33002097259260b1cb801a66fc13895f4b665a6037cf15e1c26558e3",
+  "observer_sha256": "503d734bef26021ded302ed44d7c1de51174b258bfd67febf9cf2373b810746e",
+  "observer_log_write_revision": 1,
+  "original_snapshot_scope": "31e2a8bef37463f45aa31d45f7b1fdcf9fb502ab2d83686b885b39c244329962",
+  "previous_program_cache_actual_counts": {
+    "files": 60,
+    "requests": 30,
+    "bins": 30,
+    "missing": 0
+  },
+  "latest_native_test_original_rejection": "reproducibility/aegir-full-request-primer-r2-gpu-refused-20261125.json",
+  "original_failure_not_replayed": true,
+  "device_operations": 0,
+  "artifacts": {
+    "cpu": {
+      "token": "8bf32740f2be358a",
+      "sha256": "846f0cf27b1a040f8798ea64fe06cce48a336bee7975ff3fe69c20e2fae77b4d",
+      "trial_mode": "ramcpu"
+    },
+    "gpu": {
+      "token": "01fa0a69a8ce868f",
+      "sha256": "66afc1ead5d89ca92b00319ad1bcb2135041f2f14f204285266a1092abe1098f",
+      "trial_mode": "gpu"
+    }
+  }
+}

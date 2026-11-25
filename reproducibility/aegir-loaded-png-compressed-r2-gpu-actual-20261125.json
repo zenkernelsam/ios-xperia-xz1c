@@ -1,0 +1,146 @@
+{
+  "date": "2026-11-25",
+  "token": "15480a7a8a23a9ed",
+  "source": "Windows TEMP/lilac-v731-loaded-png-compressed-r2-gpu-live-20261125",
+  "original_result": "STOP",
+  "original_reason": "OBSERVATION_INCOMPLETE",
+  "raw_sha256": "1d649576314fac187ad46e1f24b48f4bdb04c8135e29999be9af2a7a1bb2261e",
+  "raw_bytes": 1815598,
+  "return_seconds_with_health": 39.21899999980815,
+  "scanout": {
+    "protocol": 1,
+    "frames": [
+      {
+        "id": 1,
+        "token": "15480a7a8a23a9ed",
+        "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+        "image_sha256": "6e1429782dce91282f69f027b74980da486b3b70fe487e7c7e053b41f274b296",
+        "binding": {
+          "protocol": 1,
+          "width": 720,
+          "height": 1280,
+          "stride": 2160,
+          "format": "BGR888",
+          "codec": "PRLE1",
+          "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+          "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+          "runtime_source_sha256": "2c566a962d61e7b8aebfc88be54d496878821a4c0f5bb439f505198b16adfba2"
+        },
+        "begin": {
+          "token": "15480a7a8a23a9ed",
+          "id": "1",
+          "width": "720",
+          "height": "1280",
+          "stride": "2160",
+          "format": "BGR888",
+          "bytes": "2764800",
+          "codec": "PRLE1",
+          "encoded": "436875",
+          "raw_fnv": "39e44bdab6b9fbc8",
+          "enc_crc": "86c6c5a3",
+          "vsync": "7907",
+          "timestamp": "9556049145",
+          "copy_ticks": "7617420",
+          "power_off": "0",
+          "source_checked": "1",
+          "source_match": "1"
+        },
+        "scan": {
+          "token": "15480a7a8a23a9ed",
+          "id": "1",
+          "pa": "0x9d400000",
+          "map_pa": "0x9d400000",
+          "map_bytes": "2764800",
+          "size": "0x50002d0",
+          "img": "0x50002d0",
+          "xy": "0",
+          "out": "0x50002d0",
+          "outxy": "0",
+          "fmt": "0x2243f",
+          "unpack": "0x20001",
+          "op": "0x80000000",
+          "qop": "0",
+          "ctl": "0x20020",
+          "start": "0",
+          "before_after": "1"
+        },
+        "blocks": 3414,
+        "raw_file": "scanout-00000001.bgr",
+        "png_file": "scanout-00000001.png",
+        "raw_sha256": "5d6bb8e2af9b97ec1d1b5ad64d1629f2e6c6734889ada8d887197db5fca950ce",
+        "png_sha256": "9adc89a6c1f109b9e9ccc17c9ea5428376fbc570033367e2327272ad6870adf9",
+        "pixel_values_preserved": true,
+        "verified": true,
+        "optical_panel_verified": false
+      }
+    ],
+    "verified": true,
+    "optical_panel_verified": false,
+    "current_boot_source_and_payload_checked": true,
+    "format": "BGR888",
+    "width": 720,
+    "height": 1280
+  },
+  "original_cached_PNG": {
+    "token": "15480a7a8a23a9ed",
+    "pid": 281,
+    "call": 9,
+    "bytes": 27208,
+    "sha256": "3ab742136aadb8c636d7f74d887dadf371326764c01c44f94829df204a341403",
+    "fnv64": "8021c3a209c5a843",
+    "blocks": 12,
+    "PNG": {
+      "width": 720,
+      "height": 1280,
+      "chunks": [
+        "IHDR",
+        "sRGB",
+        "eXIf",
+        "pHYs",
+        "IDAT",
+        "IDAT",
+        "IEND"
+      ],
+      "original_loaded_path": "/var/mobile/Library/Caches/sweet-aegir-31e2a8bef37463f45aa31d45f7b1fdcf/aegir-(preview)-(earth)-(full)-(0.3888889)-(-499312323)@2.0x.png"
+    },
+    "original_return_and_export_verified": false,
+    "original_loaded_file_verified": true,
+    "compression": "ZLIB1",
+    "transmitted_bytes": 572,
+    "original_pixels_not_repaired": true,
+    "optical_panel_not_verified": true
+  },
+  "decoded_size": [
+    720,
+    1280
+  ],
+  "decoded_mode": "RGB",
+  "RGB_extrema": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      0
+    ]
+  ],
+  "RGB_unique_colors": 1,
+  "most_common_RGB_colors": [
+    [
+      921600,
+      [
+        0,
+        0,
+        0
+      ]
+    ]
+  ],
+  "original_missing_blocks_not_repaired": true,
+  "worker_closed": true,
+  "original_STOP_not_promoted": true
+}
