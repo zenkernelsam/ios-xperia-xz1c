@@ -1,0 +1,59 @@
+{
+  "date": "2026-11-26",
+  "before_HEAD": "5aeb5417ada81aff446679fcbeb0cc1a6a0bcbda",
+  "after_HEAD": "887348ba6f6cf80d8ad23a5b0a9adb6620d17a7b",
+  "recoverable_pre_sync_stash": "58e25e8e4922d3d43d27ada1947e6c46eb6684df",
+  "stash_not_dropped": true,
+  "original_source_bytes": [
+    {
+      "path": "gpu/sweetgl/OrderedImageBarrier.h",
+      "sha256": "0d9f0631c982d7034af1821c8eb14161e6942a636fce971b0f6756a0c8d70c4b"
+    },
+    {
+      "path": "gpu/sweetgl/metal_render.c",
+      "sha256": "0db73036b9c41665e8728eb19d7e40e8d86b49297d7a4170989ebd46ade19304"
+    },
+    {
+      "path": "reproducibility/current-device-tools.json",
+      "sha256": "bb6c9b42b209c9cf1b613e9b6f16a9300929f8f5eda2d0e045db47ed400d6fec"
+    },
+    {
+      "path": "reproducibility/source-lock.json",
+      "sha256": "c75686d2a2e453e70ff0143bbb6da2a1a0e205e570201b2188563a5c75259e34"
+    },
+    {
+      "path": "tools/build/build_frontend_trial.py",
+      "sha256": "97635c24f1e0f99fe88579229c2d8093f0853035e395fb66f97ca0370e276e13"
+    },
+    {
+      "path": "tools/build/check_ordered_image_barrier.py",
+      "sha256": "88ec73ccb6e32b13521e4d6660a35ab897ac9e305506c326bef4c54e11d7176c"
+    },
+    {
+      "path": "tools/build/test_ordered_image_barrier.c",
+      "sha256": "cebe6391425ca8513f664c6d1c79c57560c4873c811154aa00998373f13dc190"
+    },
+    {
+      "path": "tools/build/test_ordered_image_mapping.c",
+      "sha256": "43ecb564599170f948dfac7fd533d6124d3ed8f44089f965f2e3f672fce6aeea"
+    },
+    {
+      "path": "tools/device/metal_mrt_evidence.py",
+      "sha256": "5644045ea2f75738e977ad54a7f3214acdbc5932d2fb961d3c75cfc704589190"
+    },
+    {
+      "path": "tools/device/test_metal_mrt.py",
+      "sha256": "a1f24453893d02b760f14566a92ad4ce47576d2719fd7fd0baf5cc42268beb36"
+    },
+    {
+      "path": "tools/ram_library.py",
+      "sha256": "439819e927e25d8cf8fa5209cc72f7819f515a73428d30866abb4101cb2e1704"
+    }
+  ],
+  "changed_files_byte_equal_to_commit": 28,
+  "source_validation_passed": true,
+  "compiled_GLES_production_sources_equal": true,
+  "pause_preserved": true,
+  "frozen_GPU_SHA_preserved": true,
+  "device_operations": 0
+}

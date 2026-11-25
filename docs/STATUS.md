@@ -100,6 +100,8 @@ PCM／星点主机补充已在正式主提交`d42c453…`推送origin/main，[Ma
 
 r5收尾[Mac54项／78文件／204301653 B](../reproducibility/ordered-image-barrier-dense-macos-trash-20261126.json)进原生Trash，236保护文件SHA保持；六份重复HFS从保留blob逐字节复算后回收。[Windows一个TEMP包／两文件／328704 B](../reproducibility/ordered-image-barrier-dense-windows-recycle-20261126.json)进原生回收站，外层误读旧退出码后只核验原journal、未重复回收。[两套Ubuntu Trash为空](../reproducibility/ordered-image-barrier-dense-wsl-trash-audit-20261126.json)，Windows／Mac未清空；五份整合前入口原文与SHA已archive。
 
+r5主提交`887348b…`已推送origin/main，[正式Mac同步](../reproducibility/ordered-image-barrier-dense-git-sync-20261126.json)28份变更与commit逐字节一致，实编译GLES源和source-lock通过；预同步修改进未drop的stash`58e25e8e…`。Mac旧builder继续pause，Windows原sampler字节保持，设备操作0。
+
 正式补充主提交`4dc552dba56d156496fea0d0b1919a0de2635893`已推送origin/main，[r4 Mac同步](../reproducibility/ordered-XR-initialized-git-sync-20261126.json)18份变更逐字节一致、source验证通过，原Mac修改以未删除stash`caea8028…`保留。此前[94份变更同步](../reproducibility/ordered-XR-formal-git-sync-20261126.json)原记录保持。Windows／WSL使用同一正式目录，原sampler fixture字节保持。反射Metal组合已完整验收；当前HEAD还有待验的XR barrier候选，不冒充完整生产UI。更早同步与stash由ORGANIZATION索引。
 
 只操作BH905ND69G，fastboot设备命令显式`-s BH905ND69G`；COM≥10且VID1209／PID0001、一个controller／worker；PON只0x06，单download／boot、失败不重发。ACK／DRAIN／RESET／FINAL_DRAIN、健康30秒及旧worker退出后才下一轮。无本token LIVE的早期E1F4仍可能需物理恢复。SweetGPU SHA `aa2c3679…`及内核GPU底层／allocator／SCM／PON／RPC／VM冻结；gl5／userdata／SD／TA／XFL、校准、备份和救砖输入不flash／erase。Mac旧autobuild保持pause；废弃文件只进原生回收站。
