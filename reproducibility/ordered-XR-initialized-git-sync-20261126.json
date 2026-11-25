@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-26",
+  "before_HEAD": "a6f32a78c6a59154c0e94c1a8956c0a39f7b714c",
+  "after_HEAD": "4dc552dba56d156496fea0d0b1919a0de2635893",
+  "recoverable_pre_sync_stash": "caea8028862c3829135a2a9f2f311f617bc611d8",
+  "stash_not_dropped": true,
+  "original_local_source_files": [
+    {
+      "path": "gpu/sweetgl/OrderedImageBarrier.h",
+      "bytes": 4125,
+      "sha256": "f34cdc163da1b6270919f834c9e698d16f03c15d225780aa0b66103951e9451b"
+    },
+    {
+      "path": "gpu/sweetgl/metal_render.c",
+      "bytes": 107041,
+      "sha256": "70429d82798e7697aac2c545e32377418ce0fa362bdf3cb91fd0bb4440c6bc49"
+    },
+    {
+      "path": "reproducibility/source-lock.json",
+      "bytes": 26779,
+      "sha256": "a2839055718ee3633975d35d96ea0f0c6ad0083413bf1c52caa111741482996d"
+    },
+    {
+      "path": "tools/build/build_frontend_trial.py",
+      "bytes": 5513,
+      "sha256": "fc8ceeb292cd348257a7b4cfc75305075a51e25271a79593ce5ea0dbe97746fd"
+    },
+    {
+      "path": "tools/build/check_ordered_image_barrier.py",
+      "bytes": 5063,
+      "sha256": "f2e38ef649cc44db8e3b42674c894ce6841b279acc00cb273538d7177930b59f"
+    },
+    {
+      "path": "tools/build/test_ordered_image_barrier.c",
+      "bytes": 4923,
+      "sha256": "3ed2cd47004964801b107db3f9cae60b0720d3cc878a32973cdbf9a41afec4ad"
+    },
+    {
+      "path": "tools/ram_library.py",
+      "bytes": 44751,
+      "sha256": "ad683dd6e896581304047e649c345dcc48b1cb9698b87188b2030bf3b227d1c2"
+    }
+  ],
+  "changed_files_byte_equal_to_commit": 18,
+  "source_validation_passed": true,
+  "pause_preserved": true,
+  "device_operations": 0
+}

@@ -86,6 +86,6 @@ ADSP stage3只核验固件和AP端准备，没有启动DSP。ASM PCM／映射／
 
 本轮[Mac311项／521文件／1019811972 B](../reproducibility/ordered-XR-macos-native-trash-20261126.json)进原生Trash，731保护文件保持；[Windows9项／21文件／585102 B](../reproducibility/ordered-XR-windows-native-recycle-20261126.json)进回收站。[Ubuntu Trash为空](../reproducibility/ordered-XR-wsl-trash-audit-20261126.json)，未清空Windows／Mac。新候选、原失败／日志／proof和signed库保留，源代码与复现工具只进入正式Git。
 
-正式主提交`876f73e0d15a0c319ad2acb28b9fea10664e4bf7`已推送origin/main，[本轮Mac同步](../reproducibility/ordered-XR-formal-git-sync-20261126.json)94份变更逐字节一致、source验证通过，原Mac修改以未删除stash`1c50dc5b…`保留。Windows／WSL使用同一正式目录，原sampler fixture字节保持。反射Metal组合已完整验收；当前HEAD还有待验的XR barrier候选，不冒充完整生产UI。更早同步与stash由ORGANIZATION索引。
+正式补充主提交`4dc552dba56d156496fea0d0b1919a0de2635893`已推送origin/main，[r4 Mac同步](../reproducibility/ordered-XR-initialized-git-sync-20261126.json)18份变更逐字节一致、source验证通过，原Mac修改以未删除stash`caea8028…`保留。此前[94份变更同步](../reproducibility/ordered-XR-formal-git-sync-20261126.json)原记录保持。Windows／WSL使用同一正式目录，原sampler fixture字节保持。反射Metal组合已完整验收；当前HEAD还有待验的XR barrier候选，不冒充完整生产UI。更早同步与stash由ORGANIZATION索引。
 
 只操作BH905ND69G，fastboot设备命令显式`-s BH905ND69G`；COM≥10且VID1209／PID0001、一个controller／worker；PON只0x06，单download／boot、失败不重发。ACK／DRAIN／RESET／FINAL_DRAIN、健康30秒及旧worker退出后才下一轮。无本token LIVE的早期E1F4仍可能需物理恢复。SweetGPU SHA `aa2c3679…`及内核GPU底层／allocator／SCM／PON／RPC／VM冻结；gl5／userdata／SD／TA／XFL、校准、备份和救砖输入不flash／erase。Mac旧autobuild保持pause；废弃文件只进原生回收站。
