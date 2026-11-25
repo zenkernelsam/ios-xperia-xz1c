@@ -49,6 +49,15 @@ static bool sweet_ordered_image_barrier(struct st_context *context,unsigned imag
     // owned by this program/context and never repeats across batches.
     uint32_t value=++*sequence;
     OUT_WFI5(batch->draw);
+    if(value==1) {
+        // A recycled private BO can contain any earlier value. Publish zero
+        // through CP first so the first nonzero timestamp cannot match stale
+        // data before CACHE_FLUSH_TS has actually completed.
+        OUT_PKT7(batch->draw,CP_MEM_WRITE,3);
+        OUT_RELOC(batch->draw,scratch,scratch_offset,0,0);
+        OUT_RING(batch->draw,0);
+        OUT_PKT7(batch->draw,CP_WAIT_MEM_WRITES,0);
+    }
     OUT_PKT7(batch->draw,CP_EVENT_WRITE,4);
     OUT_RING(batch->draw,CACHE_FLUSH_TS);
     OUT_RELOC(batch->draw,scratch,scratch_offset,0,0);

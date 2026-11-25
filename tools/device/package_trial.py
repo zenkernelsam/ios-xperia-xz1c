@@ -54,6 +54,9 @@ def validate_wled_gles_ram(package, binding):
         ('467b24f613e75bbe675d8003e47ddca7e1cf649e91340ebb64cc04b0183f86d4',
          '7273c98fb29cb050fc6d7272de971c33c7e4f5f44a9dc4e89740e87063fd509a',
          'c7d80ea1cdfddb7918a6102abc3041d1035ea2934178e5097574d168e90b1d98'),
+        ('76f4c32c70aec93954795ed70f48fbc22ef7fd5dd1bc3b0c85eed357b6165e43',
+         '1408d3012e9449662bcaa66b35bd0cabe0951d86d39c5dfcde8f76dab1b76c30',
+         '9c370eec387015f6c32738cea034395e38de72e5a9a2f7675bd3af308a07d299'),
     ), 'v731 GLES9 RAM identity is not admitted'
     if binding['library_sha256']=='d1f5075c0f35eac56f3d1976775700a36da49bc1c6cb84c7493377592aa31a0b':
         assert frontend['ordered_XR_image_barrier_revision']==1
@@ -66,6 +69,10 @@ def validate_wled_gles_ram(package, binding):
     if binding['library_sha256']=='467b24f613e75bbe675d8003e47ddca7e1cf649e91340ebb64cc04b0183f86d4':
         assert frontend['ordered_XR_image_barrier_revision']==2 and frontend['ordered_XR_requires_synchronous_GL_frontend']
         assert frontend['ordered_XR_monotonic_timestamp_wait_and_separate_scratch_cell']
+    if binding['library_sha256']=='76f4c32c70aec93954795ed70f48fbc22ef7fd5dd1bc3b0c85eed357b6165e43':
+        assert frontend['ordered_XR_image_barrier_revision']==3 and frontend['ordered_XR_requires_synchronous_GL_frontend']
+        assert frontend['ordered_XR_monotonic_timestamp_wait_and_separate_scratch_cell']
+        assert frontend['ordered_XR_first_timestamp_scratch_initialized_by_GPU']
 
 def validate_wled_gpu_ram(package, binding):
     if 'exception_observer' not in package and 'metal_resources' not in package:
@@ -78,6 +85,8 @@ def validate_wled_gpu_ram(package, binding):
             ('755b9fa36b95a0118d7405da354d0ed1eb0a2bfcd8c859684a0070294833bc09','3665466730c20fbd2bde2409addd7f9d3bce47888714be37cc3be44a88452970','3e48e7dc5e8147e7a179b8ab6c0306535804afbf559677e21d0d9c8a529482e6','2130525c5693841d9e1dd956ab2d0d50042247a2e7a688c759147470b0f41f2a',2),
         'd08f7734bf5a187fc21c1460bb0685dd00dcb4a4bf95be0bd6e47847cb317c20':
             ('fde24836e930224b4d71a596307703e5e1d4d6bf2950f926f4c218279dc21f55','467b24f613e75bbe675d8003e47ddca7e1cf649e91340ebb64cc04b0183f86d4','c693131677c34afee7915c8564fb11949318c9e4537eddecebe75330e8bae19b','c3a25c362cfe419ae8871db5718852386568171cb0c57aa67084b86cb6a75811',2),
+        'e88507f2743fc2f96479f3890e9cc31812fe7b4b413f36c27d743fa3bf854a1f':
+            ('6b3e5c922530389e815942d2013607c1eb5064525f3861e5a6cb5ced36214735','76f4c32c70aec93954795ed70f48fbc22ef7fd5dd1bc3b0c85eed357b6165e43','3354ed72082e6ab5cb87b06919e33882ae73481fe3c47a0427d23d7ea24fcee6','a36b8f40ac78d0a3d5fbe7393915c61e0a75e2cfd51d2f5e2ca38f8da6d0c999',3),
     }
     if binding['blob_sha256'] in barrier_native:
         manifest_sha,gles,observer_sha,scope,revision=barrier_native[binding['blob_sha256']]
@@ -98,6 +107,9 @@ def validate_wled_gpu_ram(package, binding):
         assert observer['program_cache_scope']['identity']==scope
         if gles=='467b24f613e75bbe675d8003e47ddca7e1cf649e91340ebb64cc04b0183f86d4':
             assert package['frontend_build_binding']['ordered_XR_requires_synchronous_GL_frontend']
+        if revision==3:
+            assert package['frontend_build_binding']['ordered_XR_requires_synchronous_GL_frontend']
+            assert package['frontend_build_binding']['ordered_XR_first_timestamp_scratch_initialized_by_GPU']
         return 'native'
     reflected_posters={
         '0ff63e76417f8b821c374fb66f2150e3514e530cdcbbeec5f86e70ef7be332ca':

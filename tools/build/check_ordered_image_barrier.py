@@ -72,9 +72,10 @@ def check(mesa_build,output):
         raise ValueError("Actual command-stream test completion missing")
     if source_files!={path:sha(ROOT/path) for path in files}:
         raise ValueError("Barrier sources changed during verification")
-    report=dict(revision=2,source_files=source_files,Mesa_commit=MESA_COMMIT,
+    report=dict(revision=3,source_files=source_files,Mesa_commit=MESA_COMMIT,
                 actual_Mesa_sources=REFERENCE_FILES,commands=[list(map(str,command)),[str(output/"test_barrier")]],
-                host_ASan_UBSan_actual_emitters_passed=True,ring_words_per_barrier=21,
+                host_ASan_UBSan_actual_emitters_passed=True,first_barrier_ring_words=26,subsequent_barrier_ring_words=21,
+                first_timestamp_scratch_GPU_initialization_verified=True,
                 monotonic_timestamp_and_exact_wait_verified=True,sequence_overflow_refused=True,
                 context_flushes=0,host_command_stream_only=True,device_operations=0)
     with (output/"manifest.json").open("x",encoding="utf-8",newline="\n") as stream:

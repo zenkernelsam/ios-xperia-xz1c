@@ -71,4 +71,8 @@ class MRTEvidence(unittest.TestCase):
         for changed in (text.replace('cached=4','cached=3'),text.replace('fallback=0','fallback=1'),
                         text.replace('timestamp_wait=1','timestamp_wait=0'),text.replace(record,'',1)):
             with self.assertRaises(AssertionError):verify(changed,self.token,self.fixture,require_image_barrier=2)
+        initialized=text.replace('revision=2','revision=3').replace('timestamp_wait=1 ','timestamp_wait=1 scratch_initialized=1 ')
+        self.assertEqual(verify(initialized,self.token,self.fixture,require_image_barrier=3)['complete_samples'],1)
+        with self.assertRaises(AssertionError):
+            verify(initialized.replace('scratch_initialized=1','scratch_initialized=0'),self.token,self.fixture,require_image_barrier=3)
 if __name__=='__main__':unittest.main()

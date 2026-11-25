@@ -6,6 +6,8 @@
 
 主提交`876f73e`已进入正式origin/main，[Mac同步记录](../reproducibility/ordered-XR-formal-git-sync-20261126.json)核对94份变更与commit原字节及source-lock；旧Mac修改进可恢复stash`1c50dc5b9b64269bb299439be5f2fdf1e8a188b4`，未drop。Mac旧builder继续pause，Windows／WSL使用正式源，不再在Patch目录维护修补；新候选binary仍须自己的实机准入。
 
+最终scratch初始化修补收尾另回收[Mac43项／59文件／202825088 B](../reproducibility/ordered-XR-initialized-macos-native-trash-20261126.json)，207个保护文件一致；新r4签名库、blob／manifest、原host构建日志和回收路径保留，垃圾桶未清空。首次26字／后续21字的CP初始化／timestamp同步host检查和四份未投递准入包由STATUS索引。
+
 原快照和GPU队列停点这一轮收尾追加[Mac原生Trash349项／631文件／1070475061 B](../reproducibility/render-buffer-close-out-macos-native-trash-20261125.json)，967个保护文件SHA逐一保持。28份HFS重复容器从保留blob逐字节复算后回收，另有已结束host程序／dSYM／object和传输tar；新Metal签名库、当前kernel、原失败包／raw／proof及AIR恢复材料保留。[Windows7项／10文件／4780776 B](../reproducibility/render-buffer-close-out-windows-native-recycle-20261125.json)包括WSL在共享Windows build的主机程序和TEMP传输副本，全部SHA核验原生回收位置。
 
 两套[Ubuntu Trash实查为空](../reproducibility/render-buffer-close-out-wsl-trash-audit-20261125.json)，Windows／Mac垃圾桶未清空；回收仍占磁盘。10份整合前入口原字节和SHA先[归档](archive/20261125/render-buffer-selection/original-document-manifest.json)，原快照服务、黑PNG和命令队列错误整合入METAL-REQUEST-OBSERVATION，AFE协议入LILAC-PERIPHERALS，当前候选和进程冲突只在STATUS维护。

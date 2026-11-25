@@ -165,7 +165,7 @@ builder执行真实ObjC转发、原位值缓存／errno的ASan／UBSan和ARM64�
 
 当前源码以每图元XR舍入和严格同步为前提，只有精确A5xx／单样本sysmem／RGBA32F原图像契约采用批次内timestamp wait与UCHE invalidate，其它保持GL MemoryBarrier。host工具直接编译固定Mesa emitter，验证21个指令字、monotonic timestamp和溢出拒绝；host不替代GPU。Mac用现存准确Mesa归档构建，源／archive SHA与新program-cache identity全部绑定：
 
-最新候选同时拒绝异步GLThread，原GL barrier负责已排队的前端命令。原context blit scratch64与固定Mesa使用的offset0独立；query、未知image access／layer／format、非sysmem／gen5、深度或多样本保持原同步路径。r2与r3 signed产物各自绑定源，旧host／device proof不能提升新产物。
+最新候选同时拒绝异步GLThread，原GL barrier负责已排队的前端命令。原context blit scratch64与固定Mesa使用的offset0独立；未知image access／layer／format、非sysmem／gen5、深度或多样本保持原同步路径。r4首次同步先用CP_MEM_WRITE／WAIT_MEM_WRITES初始化scratch，再等待非零单调timestamp，避免新context复用BO的旧值。第一次barrier26指令字、以后21字。r2／r3／r4 signed产物各自绑定源，旧host／device proof不能提升新产物。
 
 ```sh
 python3 -B tools/build/check_ordered_image_barrier.py --mesa-build build/mesa-ir3-cache-r1 --output build/my-ordered-XR/host

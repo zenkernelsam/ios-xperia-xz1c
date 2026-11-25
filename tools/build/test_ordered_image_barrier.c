@@ -33,14 +33,20 @@ int main(void)
     native.base.shaderimg[PIPE_SHADER_FRAGMENT].si[8]=(struct pipe_image_view){.resource=&image,.format=PIPE_FORMAT_R32G32B32A32_FLOAT,.access=PIPE_IMAGE_ACCESS_WRITE};
     uint32_t sequence=0;
     assert(sweet_ordered_image_barrier(&context,1,&sequence));
-    const uint32_t expected[]={0x70268000,0x70460004,4,0x41234040,0,1,
+    const uint32_t expected[]={0x70268000,0x703d8003,0x41234040,0,0,0x70928000,
+        0x70460004,4,0x41234040,0,1,
         0x70bc8006,0x13,0x41234040,0,1,UINT32_MAX,16,0x70928000,
         0x480e9185,0,0,0,0,0x12,0x70268000};
-    assert(ring.cur-stream==21 && !memcmp(stream,expected,sizeof(expected)) && sequence==1);
+    assert(ring.cur-stream==26 && !memcmp(stream,expected,sizeof(expected)) && sequence==1);
     assert(flushes==0 && size_checks==1 && wfi_calls==1);
-    for(unsigned i=21;i<64;++i)assert(stream[i]==0xa5a5a5a5);
+    for(unsigned i=26;i<64;++i)assert(stream[i]==0xa5a5a5a5);
     assert(sweet_ordered_image_barrier(&context,1,&sequence) && sequence==2);
-    assert(ring.cur-stream==42 && stream[21+5]==2 && stream[21+10]==2);
+    assert(ring.cur-stream==47 && stream[26+5]==2 && stream[26+10]==2);
+    const uint32_t next_expected[]={0x70268000,0x70460004,4,0x41234040,0,2,
+        0x70bc8006,0x13,0x41234040,0,2,UINT32_MAX,16,0x70928000,
+        0x480e9185,0,0,0,0,0x12,0x70268000};
+    assert(!memcmp(stream+26,next_expected,sizeof(next_expected)));
+    for(unsigned i=47;i<64;++i)assert(stream[i]==0xa5a5a5a5);
     uint32_t *end=ring.cur;
     gl.GLThread.enabled=true;assert(!sweet_ordered_image_barrier(&context,1,&sequence));gl.GLThread.enabled=false;
     screen.gen=6;assert(!sweet_ordered_image_barrier(&context,1,&sequence));screen.gen=5;
@@ -55,5 +61,5 @@ int main(void)
     assert(!sweet_ordered_image_barrier(&context,0,&sequence) && !sweet_ordered_image_barrier(&context,256,&sequence));
     sequence=UINT32_MAX;assert(!sweet_ordered_image_barrier(&context,1,&sequence) && sequence==UINT32_MAX);
     assert(ring.cur==end && !memcmp(stream,expected,sizeof(expected)) && flushes==0);
-    puts("Ordered image barrier PASS: exact pinned A5xx monotonic timestamp/WAIT_REG_MEM/UCHE packets, existing ring, zero context flush, guards/overflow and unsupported contract rejection; host command stream only");
+    puts("Ordered image barrier PASS: exact pinned A5xx first-use scratch CP initialization, monotonic timestamp/WAIT_REG_MEM/UCHE packets, existing ring, zero context flush, guards/overflow and unsupported contract rejection; host command stream only");
 }

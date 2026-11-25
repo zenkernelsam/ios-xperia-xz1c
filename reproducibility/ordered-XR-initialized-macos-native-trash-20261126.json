@@ -1,0 +1,567 @@
+{
+  "date": "2026-11-26",
+  "scope": "final initialized XR candidate duplicate HFS and completed host objects",
+  "native_trash_items": 43,
+  "native_trash_files": 59,
+  "logical_bytes": 202825088,
+  "protected_files_verified": 207,
+  "candidate_signed_libraries_blobs_and_logs_preserved": true,
+  "Trash_not_emptied": true,
+  "raw_HFS_reconstructable": true,
+  "items": [
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/signed-gles/glram.raw",
+      "trash_path": "/Users/ciscohe/.Trash/glram.raw 04-41-09-623.raw",
+      "entries": [
+        {
+          "relative": "glram.raw",
+          "bytes": 33554432,
+          "sha256": "60f0b43878cb1f302f7372aa2afd2730f3d2a75ad00e7213eff251f14809213e"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/signed-gles/glram.dmg",
+      "trash_path": "/Users/ciscohe/.Trash/glram.dmg 04-41-09-715.dmg",
+      "entries": [
+        {
+          "relative": "glram.dmg",
+          "bytes": 33554432,
+          "sha256": "60f0b43878cb1f302f7372aa2afd2730f3d2a75ad00e7213eff251f14809213e"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/gles-ram/glram.raw",
+      "trash_path": "/Users/ciscohe/.Trash/glram.raw 04-41-09-774.raw",
+      "entries": [
+        {
+          "relative": "glram.raw",
+          "bytes": 33554432,
+          "sha256": "dedcb1294f9dd46993c91a41d51dd17de1cf9f7d8ef1796ddb37cea1d58ed9aa"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/gles-ram/glram.dmg",
+      "trash_path": "/Users/ciscohe/.Trash/glram.dmg 04-41-09-826.dmg",
+      "entries": [
+        {
+          "relative": "glram.dmg",
+          "bytes": 33554432,
+          "sha256": "dedcb1294f9dd46993c91a41d51dd17de1cf9f7d8ef1796ddb37cea1d58ed9aa"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/native-ram/glram.raw",
+      "trash_path": "/Users/ciscohe/.Trash/glram.raw 04-41-09-878.raw",
+      "entries": [
+        {
+          "relative": "glram.raw",
+          "bytes": 33554432,
+          "sha256": "dec53de70d8cb317603aea2a8acaee2a0a8c8fa40f3b2641b825494b466b65aa"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/native-ram/glram.dmg",
+      "trash_path": "/Users/ciscohe/.Trash/glram.dmg 04-41-09-929.dmg",
+      "entries": [
+        {
+          "relative": "glram.dmg",
+          "bytes": 33554432,
+          "sha256": "dec53de70d8cb317603aea2a8acaee2a0a8c8fa40f3b2641b825494b466b65aa"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/frontend/program_lifecycle_probe.o",
+      "trash_path": "/Users/ciscohe/.Trash/program_lifecycle_probe.o 04-41-09-984.o",
+      "entries": [
+        {
+          "relative": "program_lifecycle_probe.o",
+          "bytes": 12648,
+          "sha256": "52ac27f95682555004c0ab8bc5963a5099403ff2d2acc7b217a369968780c4b9"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/frontend/bridge_state_probe.o",
+      "trash_path": "/Users/ciscohe/.Trash/bridge_state_probe.o 04-41-10-036.o",
+      "entries": [
+        {
+          "relative": "bridge_state_probe.o",
+          "bytes": 8928,
+          "sha256": "b45a9d0b19d0f02240f2681c5c3b05d7ea78a8dcd1ebc183889cd5e4a8a0a3fb"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/frontend/program_cache.o",
+      "trash_path": "/Users/ciscohe/.Trash/program_cache.o 04-41-10-087.o",
+      "entries": [
+        {
+          "relative": "program_cache.o",
+          "bytes": 15816,
+          "sha256": "61eb74b8e582ab474f83112b7cec6a7cec3b0576aa05de382b0221d3cd2fbd82"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/frontend/sweetgl.o",
+      "trash_path": "/Users/ciscohe/.Trash/sweetgl.o 04-41-10-139.o",
+      "entries": [
+        {
+          "relative": "sweetgl.o",
+          "bytes": 35192,
+          "sha256": "2b174e17b92911d87570916021b20d4e38cdc0df55956ec86cf23f43ca1896c1"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/frontend/sweet_drm.o",
+      "trash_path": "/Users/ciscohe/.Trash/sweet_drm.o 04-41-10-190.o",
+      "entries": [
+        {
+          "relative": "sweet_drm.o",
+          "bytes": 21464,
+          "sha256": "40fbc77249b6ed73d771319f4ed0e682b061f6d0050bb9167ff10354a4ab5e24"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/frontend/caller_probe.o",
+      "trash_path": "/Users/ciscohe/.Trash/caller_probe.o 04-41-10-242.o",
+      "entries": [
+        {
+          "relative": "caller_probe.o",
+          "bytes": 12672,
+          "sha256": "b72af0511f7e7971a1593e7ec2d1b25c9ab83a263e48426b08536cb0cb2ba347"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/frontend/eagl.o",
+      "trash_path": "/Users/ciscohe/.Trash/eagl.o 04-41-10-294.o",
+      "entries": [
+        {
+          "relative": "eagl.o",
+          "bytes": 91376,
+          "sha256": "395210678842296b281d15205febcd6448bb9a7e6e0d474522d788420d95b36c"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/frontend/metal_render.o",
+      "trash_path": "/Users/ciscohe/.Trash/metal_render.o 04-41-10-351.o",
+      "entries": [
+        {
+          "relative": "metal_render.o",
+          "bytes": 110976,
+          "sha256": "b2ada05eb895334aa4b7909b8a9be7596cd0c141a5b4cd519d6af065b316207c"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/frontend/surface_initial_copy.o",
+      "trash_path": "/Users/ciscohe/.Trash/surface_initial_copy.o 04-41-10-402.o",
+      "entries": [
+        {
+          "relative": "surface_initial_copy.o",
+          "bytes": 6928,
+          "sha256": "bdf2074f0d9c78e9729e6cdb350c3f6f79fa29fbc957fb7671deff18a4030fde"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/frontend/layerdump.o",
+      "trash_path": "/Users/ciscohe/.Trash/layerdump.o 04-41-10-455.o",
+      "entries": [
+        {
+          "relative": "layerdump.o",
+          "bytes": 12184,
+          "sha256": "2a65ea4e54364f6241d0c66b6dc1aee6daf31956c39f995daca700a23231df24"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/frontend/ca_matrix_probe.o",
+      "trash_path": "/Users/ciscohe/.Trash/ca_matrix_probe.o 04-41-10-508.o",
+      "entries": [
+        {
+          "relative": "ca_matrix_probe.o",
+          "bytes": 7776,
+          "sha256": "815a2bbc2801f39e7bdd162459a1450696b4ab4840c88faa1efacfafb818bf31"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/frontend/surface_observe.o",
+      "trash_path": "/Users/ciscohe/.Trash/surface_observe.o 04-41-10-565.o",
+      "entries": [
+        {
+          "relative": "surface_observe.o",
+          "bytes": 7880,
+          "sha256": "5e9149c9c80735b235971fc592828f34e179188049de4308141ce3214e96609e"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/frontend/surface_region_observe.o",
+      "trash_path": "/Users/ciscohe/.Trash/surface_region_observe.o 04-41-10-617.o",
+      "entries": [
+        {
+          "relative": "surface_region_observe.o",
+          "bytes": 5264,
+          "sha256": "a5d5767b6629e75a3b4ec41256e7f0762889533316171a4f47d369bb13afd711"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/frontend/compat.o",
+      "trash_path": "/Users/ciscohe/.Trash/compat.o 04-41-10-669.o",
+      "entries": [
+        {
+          "relative": "compat.o",
+          "bytes": 560,
+          "sha256": "2ea99532d84dfcd3cf420c3c3f3063f8788e81d9df432293a9d454ec443bb119"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/frontend/dispatch.o",
+      "trash_path": "/Users/ciscohe/.Trash/dispatch.o 04-41-10-727.o",
+      "entries": [
+        {
+          "relative": "dispatch.o",
+          "bytes": 249312,
+          "sha256": "704648cf1dcf4b69894c5a5f4c99b7252e869526ba8be137da883411806a2137"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/frontend/readonly_probe.o",
+      "trash_path": "/Users/ciscohe/.Trash/readonly_probe.o 04-41-10-779.o",
+      "entries": [
+        {
+          "relative": "readonly_probe.o",
+          "bytes": 9744,
+          "sha256": "f043178488c3367b9e8504b3e277c721bb6d29ae73ced4a6e644f0689673d61a"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/frontend/metal_compute.o",
+      "trash_path": "/Users/ciscohe/.Trash/metal_compute.o 04-41-10-837.o",
+      "entries": [
+        {
+          "relative": "metal_compute.o",
+          "bytes": 8872,
+          "sha256": "0980ba3667375398e7790d89aed5ce6e5a83c15142f3f837ef9ac72bc6721911"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/frontend/copy_refresh_probe.o",
+      "trash_path": "/Users/ciscohe/.Trash/copy_refresh_probe.o 04-41-10-890.o",
+      "entries": [
+        {
+          "relative": "copy_refresh_probe.o",
+          "bytes": 11640,
+          "sha256": "ee34cc29409c7a7015c08000b66b28378c550bb036ffb476a213b66f27b99227"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/frontend/copy_context_probe.o",
+      "trash_path": "/Users/ciscohe/.Trash/copy_context_probe.o 04-41-10-944.o",
+      "entries": [
+        {
+          "relative": "copy_context_probe.o",
+          "bytes": 6568,
+          "sha256": "da8290fb2fae4f462cedaf09e04de2e6edd14801706591bd4bd71879aef28f0e"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/frontend/surface_probe.o",
+      "trash_path": "/Users/ciscohe/.Trash/surface_probe.o 04-41-10-999.o",
+      "entries": [
+        {
+          "relative": "surface_probe.o",
+          "bytes": 11752,
+          "sha256": "df85e9c5d57eb84c3a8aac5f049c31c07dbf0150b565fcb0b126cea745ce4005"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/frontend/ir3_cache.o",
+      "trash_path": "/Users/ciscohe/.Trash/ir3_cache.o 04-41-11-051.o",
+      "entries": [
+        {
+          "relative": "ir3_cache.o",
+          "bytes": 9488,
+          "sha256": "226a9ce86453754e84c2a5d79f84d68e6f2fb112f114739ffe43ba440e94062b"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/observer/test_startup.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_startup.dSYM 04-41-11-107.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 641,
+          "sha256": "944829fa3c1a4d913161b503f6352fa20f7c101cdeefe97a15208dadbe4a587a"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_startup.yml",
+          "bytes": 199,
+          "sha256": "f9915d95995c5eb2e4a81c7e0e8ae5da2b9e3f606962b6f63b09bbe6c8e487bb"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_startup",
+          "bytes": 14936,
+          "sha256": "61d28aab75e482891092809e35127902109685554e68b40355e77f0cad5d4dea"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/observer/test_cache_scope.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_scope.dSYM 04-41-11-164.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 645,
+          "sha256": "2d56eca2217abc049f49309a8cb04e54f45a4ba11b0491143bbbb28280638af2"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_cache_scope.yml",
+          "bytes": 203,
+          "sha256": "a5f2dfacebbd40a77820d7c6d08ab9cea566bfe85a4e76f9fe8519a1a2c4ee92"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_cache_scope",
+          "bytes": 18224,
+          "sha256": "6fc40c0698ffda37f228907f6b4ff41a64b9b3e02e4346b07bd40560bc91ae9a"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/observer/test_observer.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_observer.dSYM 04-41-11-223.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 642,
+          "sha256": "589d796cebc46abadfe0ec147d2a15f3b4f4f50d2c7edbebfc3cde26f51d66bf"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_observer.yml",
+          "bytes": 200,
+          "sha256": "ae58f8caa96c385d6fc4905bd5895678964b349cc51b6863b9da7d3b70dc2dc1"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_observer",
+          "bytes": 43112,
+          "sha256": "9eb2a38e8cf102684c7661751cd23980a18ea118aa121587692fb4a993c6db60"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/observer/test_attachment_snapshot",
+      "trash_path": "/Users/ciscohe/.Trash/test_attachment_snapshot 04-41-11-275",
+      "entries": [
+        {
+          "relative": "test_attachment_snapshot",
+          "bytes": 27872,
+          "sha256": "f4c3c073017218195493f3c76b846cc5ca86bb6170249d96bc4e8bc0ccc08a66"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/observer/test_log_remaining",
+      "trash_path": "/Users/ciscohe/.Trash/test_log_remaining 04-41-11-330",
+      "entries": [
+        {
+          "relative": "test_log_remaining",
+          "bytes": 21736,
+          "sha256": "ecd944fac6e85e1016ac856c13527e67a3234e8847f99249ac2baf77a5bfdf87"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/observer/test_cif10_png_reference.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_cif10_png_reference.dSYM 04-41-11-384.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 653,
+          "sha256": "8e989f94a66cd0e1d9a42e7c8d6fd05eae260f619024f56a29676dfdceffdade"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_cif10_png_reference.yml",
+          "bytes": 211,
+          "sha256": "ee2113ef4afcc2568c03f9e1a4133fdef634aed66c6137e14d4be45f9eeb781a"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_cif10_png_reference",
+          "bytes": 56040,
+          "sha256": "5536cab95eee16eef601da5b485ae4c0452ddcc7996ea67bd1e57f51710761b5"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/observer/test_cache_scope",
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_scope 04-41-11-436",
+      "entries": [
+        {
+          "relative": "test_cache_scope",
+          "bytes": 28320,
+          "sha256": "abca64679173c6f885438645c6b6dbe912125f74413d8741a5b8538b65863656"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/observer/test_log_remaining.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_log_remaining.dSYM 04-41-11-489.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 647,
+          "sha256": "f6b0d15b02aad8968c6310df05317cf0957820996f413075d5afbc55de97139d"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_log_remaining.yml",
+          "bytes": 205,
+          "sha256": "9a56c4d6f5b4563da5bf40e9824aa7384ade2feac413a87344d5f9e2f93e19ee"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_log_remaining",
+          "bytes": 14068,
+          "sha256": "9dda7bc969f5ffda0b66e358081d287a870826b94b076c8438cfb0692cd82f74"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/observer/test_cache_inventory.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_inventory.dSYM 04-41-11-541.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 649,
+          "sha256": "041737e57c3fa25995fcd3e9a627f228fdd89939dfeae236ec80f786f3ab93e1"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_cache_inventory.yml",
+          "bytes": 207,
+          "sha256": "d30f37050760bcd18799c44466524fcb2d81b1f5bff9d6478c4a6042a9344e0c"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_cache_inventory",
+          "bytes": 61712,
+          "sha256": "da7937b36969377dce5d1d16890df7ae8f4339cdae6c24a04be18f9e59d23c17"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/observer/test_startup",
+      "trash_path": "/Users/ciscohe/.Trash/test_startup 04-41-11-593",
+      "entries": [
+        {
+          "relative": "test_startup",
+          "bytes": 20592,
+          "sha256": "c09005bd82c8d47615096514097abd425c245a8ed5465f39f96911c718070ec6"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/observer/test_cif10_png_reference",
+      "trash_path": "/Users/ciscohe/.Trash/test_cif10_png_reference 04-41-11-651",
+      "entries": [
+        {
+          "relative": "test_cif10_png_reference",
+          "bytes": 64104,
+          "sha256": "71f2cc3a5d25a73cb257c70c266aa7fbd8b73b88f1a542131110b33ae532fe80"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/observer/test_observer",
+      "trash_path": "/Users/ciscohe/.Trash/test_observer 04-41-11-703",
+      "entries": [
+        {
+          "relative": "test_observer",
+          "bytes": 65968,
+          "sha256": "65875d360a62065164b8ce7abef68c9cc6c0e47baed5679d01315050edf19bc9"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/observer/test_cache_inventory",
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_inventory 04-41-11-755",
+      "entries": [
+        {
+          "relative": "test_cache_inventory",
+          "bytes": 93688,
+          "sha256": "607a39a2ef67c3ef749e8d969c678fd193d900cd8dd3d7b577d2caee7f36cd6d"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-r4-20261126/observer/test_attachment_snapshot.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_attachment_snapshot.dSYM 04-41-11-808.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 653,
+          "sha256": "d5f0029ed8ca7a9036c2cab1990c35358da4fe52e5317a53347f17210346329e"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_attachment_snapshot.yml",
+          "bytes": 211,
+          "sha256": "fefbf61da30f364407c5c78b8a06607deb8d97230294e2f113082e07b4dbfb67"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_attachment_snapshot",
+          "bytes": 15996,
+          "sha256": "036049caf39fec096970dc6617ff2bb26fcc718dc26b8235ee38e54b562e40c3"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-host-20261126/host/test_barrier",
+      "trash_path": "/Users/ciscohe/.Trash/test_barrier 04-41-11-864",
+      "entries": [
+        {
+          "relative": "test_barrier",
+          "bytes": 43664,
+          "sha256": "9838ec3761b3ab5a2b8a7419643f216bc785a1cff3bae163b12173e8dbe75d32"
+        }
+      ]
+    },
+    {
+      "path": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/ordered-image-barrier-initialized-host-20261126/host/test_barrier.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_barrier.dSYM 04-41-11-915.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 641,
+          "sha256": "cb5aa745be146fc55dc2e862ea2e8498e40ef630b5dcbc71361d0b4a646baa3b"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_barrier.yml",
+          "bytes": 197,
+          "sha256": "8ee8390746a0b4414f5133762dc45ea7243d85ccd16d04de15ea9a62f5a852ea"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_barrier",
+          "bytes": 244620,
+          "sha256": "fd9d228632bbaa663edd9bd5ea68e997ab8bf46e95495bb5c447a22bbd0cf596"
+        }
+      ]
+    }
+  ],
+  "device_operations": 0
+}

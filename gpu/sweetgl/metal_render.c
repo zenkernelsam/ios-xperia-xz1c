@@ -1004,8 +1004,8 @@ static int render_draw_with_depth(SweetMetalProgram *program,const SweetRenderPa
         }
         if(result)goto done;
         sweet_drm_log("SWEET METAL MRT ordered_draw image_mask=%u primitives=%u instances=%u fp32=1 per_primitive_XR_round=1 image_barriers=1",program->ordered_xr_mask,n,draw->instances);
-        sweet_drm_log("SWEET XR BARRIER revision=2 primitives=%u instances=%u cached=%u fallback=%u timestamp_wait=1 UCHE_invalidate=1 final_fence_required=1",
-            n,draw->instances,cached_barriers,fallback_barriers);
+        sweet_drm_log("SWEET XR BARRIER revision=3 primitives=%u instances=%u cached=%u fallback=%u timestamp_wait=1 scratch_initialized=%u UCHE_invalidate=1 final_fence_required=1",
+            n,draw->instances,cached_barriers,fallback_barriers,program->ordered_barrier_sequence>0);
     }else{glDrawArraysInstanced(primitive[draw->primitive],(GLint)draw->first,(GLsizei)draw->count,(GLsizei)draw->instances);glMemoryBarrier(GL_ALL_BARRIER_BITS);}
     render_stage_end(stage,result);
     stage=render_stage_begin(observation,"gpu_finish");glFinish();result=render_gl_error("draw-finish",-1);render_stage_end(stage,result);if(result)goto done;
