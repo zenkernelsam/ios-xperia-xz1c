@@ -1,0 +1,34 @@
+{
+  "date": "2026-11-26",
+  "scope": "same batch A5xx XR image barrier with monotonic timestamp and UCHE invalidation",
+  "GLES_sha256": "3665466730c20fbd2bde2409addd7f9d3bce47888714be37cc3be44a88452970",
+  "Metal_sha256": "19a08083833851d5a13016473ec3c3db98629d6ce6fc928b70947af114abee49",
+  "Metal_source_map_sha256": "41bdf3e49258c8cf6d57a69beb99d15dec0e1404aec2509725c386941e0f25ee",
+  "gles_RAM_blob_sha256": "50028fb9d6052b29282011b444dccf2026666eef8abd0d7678de155aa5995208",
+  "native_RAM_blob_sha256": "40f3244b0af94151e58f236e125f0e81a4ffd0734b465c57745781eb8bd14db8",
+  "native_RAM_manifest_sha256": "755b9fa36b95a0118d7405da354d0ed1eb0a2bfcd8c859684a0070294833bc09",
+  "host": {
+    "revision": 2,
+    "host_ASan_UBSan_passed": true,
+    "ring_words_per_barrier": 21,
+    "monotonic_timestamp_1_2_verified": true,
+    "sequence_overflow_refused": true,
+    "context_flushes": 0,
+    "source_sha256": {
+      "gpu/sweetgl/OrderedImageBarrier.h": "87239da360eae1b69a0ba5b71ede486e84fd6b519453c118e7e9a48d694c7e2c",
+      "tools/build/test_ordered_image_barrier.c": "2db4efda06527acf861e4fc1eda575b03eaadabee510751033f19eccccf9a602"
+    },
+    "device_operations": 0
+  },
+  "source_files": {
+    "gpu/sweetgl/metal_render.c": "12ca10bf41744523fe9032b0cf0ae7c0a1961ba45e8a96b162a55aa64a0321bc",
+    "gpu/sweetgl/OrderedImageBarrier.h": "87239da360eae1b69a0ba5b71ede486e84fd6b519453c118e7e9a48d694c7e2c",
+    "gpu/sweetgl/MetalShaderInternals.h": "010b7dcad566da2253d20cb81b24fa9a2eac91bb56d0195c740f4e28feb48c87",
+    "gpu/sweetgl/build.sh": "2629215b661c0bd87956c0ada0e831fc7bb01828467dec6e7e7ee074cd624d67"
+  },
+  "all_original_primitives_and_XR_rounding_unchanged": true,
+  "original_kernel_GPU_allocator_SCM_PON_RPC_VM_unchanged": true,
+  "failed_native_CPU_guard_not_repeated": true,
+  "requires_new_physical_fastboot_session_and_own_CPU_GLES9_native21_PNG6": true,
+  "device_operations": 0
+}

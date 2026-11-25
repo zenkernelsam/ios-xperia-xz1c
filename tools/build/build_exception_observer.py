@@ -15,6 +15,9 @@ p.add_argument('--aegir-snapshot-cache-scope',action='store_true')
 p.add_argument('--original-snapshot-png-export',action='store_true')
 p.add_argument('--loaded-snapshot-png-export',action='store_true')
 p.add_argument('--snapshot-render-queue',action='store_true')
+p.add_argument('--snapshot-readback',action='store_true')
+p.add_argument('--original-cg-input',action='store_true')
+p.add_argument('--original-queue-retirement',action='store_true')
 p.add_argument('--postdraw-observe',action='store_true');p.add_argument('--snapshot-observe',action='store_true');p.add_argument('--cif10-png-reference',action='store_true');p.add_argument('--png-filter-encoder',action='store_true');p.add_argument('--png-proof');p.add_argument('--clear-cache-probe',action='store_true');p.add_argument('--ir3-cache-probe',action='store_true');p.add_argument('--request-observe',action='store_true');p.add_argument('--quad-route-observe',action='store_true');p.add_argument('--depth32-probe',action='store_true');p.add_argument('--stencil8-probe',action='store_true');p.add_argument('--memoryless-probe',action='store_true');p.add_argument('--multisample-fixture');p.add_argument('--presentation-probe',action='store_true');a=p.parse_args()
 if a.memoryless_probe:assert a.stencil8_probe and a.target_process=='backboardd' and not a.registration_only
 if a.presentation_probe:assert a.multisample_fixture and a.target_process=='backboardd' and not a.registration_only
@@ -32,6 +35,9 @@ if a.aegir_snapshot_cache_scope:assert a.registration_only and a.snapshot_observ
 if a.original_snapshot_png_export:assert a.registration_only and a.postdraw_observe and a.snapshot_observe
 if a.loaded_snapshot_png_export:assert a.poster_snapshot_gate and not a.original_snapshot_png_export
 if a.snapshot_render_queue:assert a.registration_only and a.snapshot_observe and a.aegir_snapshot_cache_scope
+if a.snapshot_readback:assert a.snapshot_render_queue
+if a.original_cg_input:assert a.snapshot_readback
+if a.original_queue_retirement:assert a.snapshot_render_queue
 if a.cif10_png_reference:assert a.target_process=='backboardd' and a.static_half_fixture and not a.registration_only and not a.program_cache_export and (not a.program_cache_prime or a.program_cache_inventory)
 if a.png_filter_encoder:assert a.registration_only and a.postdraw_observe and a.png_proof and not a.cif10_png_reference
 else:assert not a.png_proof
@@ -59,6 +65,8 @@ if a.aegir_snapshot_cache_scope:headers+=['gpu/compat/AegirSnapshotCacheScope.h'
 if a.original_snapshot_png_export:headers+=['gpu/diagnostics/OriginalSnapshotPNGExport.h']
 if a.loaded_snapshot_png_export:headers+=['gpu/diagnostics/OriginalSnapshotPNGExport.h','gpu/diagnostics/LoadedSnapshotPNGExport.h']
 if a.snapshot_render_queue:headers+=['gpu/diagnostics/SnapshotRenderQueueObserve.h']
+if a.snapshot_readback:headers+=['gpu/diagnostics/SnapshotReadbackObserve.h']
+if a.original_cg_input:headers+=['gpu/diagnostics/OriginalCGInputObserve.h']
 if a.png_filter_encoder:headers+=['gpu/compat/PNGImageIOEncoder.h','gpu/compat/PNGImageDispatch.h','tools/png_encoder_proof.py']
 if a.cif10_png_reference:
     headers+=['gpu/diagnostics/CIF10PNGReferenceProbe.h','gpu/diagnostics/CIF10VImageCompare.h','gpu/diagnostics/CIF10PNGFilterCompare.h','gpu/compat/PNGImageIOEncoder.h']
@@ -115,7 +123,11 @@ if a.registration_only:
         aegir_scope=aegir_scope_specification(resource_manifest,png_source_sha,
             hashlib.sha256((root/'gpu/compat/AegirSnapshotCacheScope.h').read_bytes()).hexdigest(),
             hashlib.sha256((root/'gpu/diagnostics/SnapshotRenderQueueObserve.h').read_bytes()).hexdigest()
-            if a.snapshot_render_queue else None)
+            if a.snapshot_render_queue else None,
+            hashlib.sha256((root/'gpu/diagnostics/SnapshotReadbackObserve.h').read_bytes()).hexdigest()
+            if a.snapshot_readback else None,
+            hashlib.sha256((root/'gpu/diagnostics/OriginalCGInputObserve.h').read_bytes()).hexdigest()
+            if a.original_cg_input else None)
         identity=aegir_scope_header(aegir_scope)
         (out/'AegirSnapshotScopeIdentity.h').write_bytes(identity)
         aegir_scope['identity_header_sha256']=hashlib.sha256(identity).hexdigest()
@@ -370,15 +382,36 @@ if a.loaded_snapshot_png_export:
         '-lz','-o',out/'test_loaded_png_export'],'loaded-png-export-host-compile')
     assert 'loaded snapshot PNG PASS:' in run([out/'test_loaded_png_export',out/'loaded-png-fixture'],'loaded-png-export-host-test')
 if a.snapshot_render_queue:
-    run(['clang','-fblocks','-fobjc-exceptions','-O1','-g','-fsanitize=address,undefined','-fno-sanitize-recover=all',
+    run(['clang',*(['-DSWEET_ORIGINAL_QUEUE_RETIREMENT_OBSERVE=1'] if a.original_queue_retirement else []),
+        '-fblocks','-fobjc-exceptions','-O1','-g','-fsanitize=address,undefined','-fno-sanitize-recover=all',
         root/'tools/build/test_snapshot_render_queue.m','-framework','Foundation','-framework','Metal',
         '-o',out/'test_snapshot_render_queue'],'snapshot-render-queue-host-compile')
     queue_text=run([out/'test_snapshot_render_queue'],'snapshot-render-queue-host-test')
     assert 'Snapshot render queue PASS:' in queue_text
     sys.path.insert(0,str(root/'tools/device'))
     from snapshot_render_queue_evidence import inspect as inspect_render_queue
-    queue_report=inspect_render_queue(queue_text,'123456789abcdef0')
-    assert len(queue_report['draws'])==8 and len(queue_report['results'])==8 and queue_report['failed_commands']==8
+    queue_report=inspect_render_queue(queue_text,'123456789abcdef0',require_retirement=a.original_queue_retirement)
+    assert len(queue_report['draws'])==8 and len(queue_report['results'])==8 and queue_report['failed_commands']==(0 if a.original_queue_retirement else 8)
+    if a.original_queue_retirement:assert all(r['operations']==5 and r['fence']==123 for r in queue_report['results'])
+if a.snapshot_readback:
+    run(['clang','-fobjc-exceptions','-O1','-g','-fsanitize=address,undefined','-fno-sanitize-recover=all',
+        root/'tools/build/test_snapshot_readback.m','-framework','Foundation','-framework','Metal',
+        '-o',out/'test_snapshot_readback'],'snapshot-readback-host-compile')
+    read_text=run([out/'test_snapshot_readback'],'snapshot-readback-host-test')
+    assert 'Snapshot original readback PASS:' in read_text
+    sys.path.insert(0,str(root/'tools/device'))
+    from snapshot_readback_evidence import inspect as inspect_readback
+    read_report=inspect_readback(read_text,'123456789abcdef0')
+    assert len(read_report['records'])==1 and read_report['records'][0]['count']==dict(pixels=6,black=4,nonblack=2,zero_words=1)
+if a.original_cg_input:
+    run(['clang','-fobjc-exceptions','-O1','-g','-fsanitize=address,undefined','-fno-sanitize-recover=all',
+        root/'tools/build/test_original_cg_input.m','-framework','Foundation','-framework','CoreGraphics','-framework','Metal',
+        '-o',out/'test_original_cg_input'],'original-cg-input-host-compile')
+    text=run([out/'test_original_cg_input'],'original-cg-input-host-test')
+    assert 'Original CGImage input PASS:' in text
+    from snapshot_readback_evidence import inspect as inspect_cg_input
+    report=inspect_cg_input(text,'123456789abcdef0',source='cgimage')
+    assert report['records'][0]['count']==dict(pixels=6,black=4,nonblack=2,zero_words=1)
 library=out/'exception_observe.dylib'
 extra=[resources/'MetalResources.dylib'] if resource_manifest else []
 if resource_manifest and not a.registration_only:extra+=['-DSWEET_METAL_RESOURCE_PROBE=1']
@@ -398,6 +431,9 @@ if a.aegir_snapshot_cache_scope:extra+=['-DSWEET_AEGIR_SNAPSHOT_CACHE_SCOPE=1','
 if a.original_snapshot_png_export:extra+=['-DSWEET_ORIGINAL_SNAPSHOT_PNG_EXPORT=1','-fblocks','-lz']
 if a.loaded_snapshot_png_export:extra+=['-DSWEET_LOADED_SNAPSHOT_PNG_EXPORT=1','-fblocks','-lz']
 if a.snapshot_render_queue:extra+=['-DSWEET_SNAPSHOT_RENDER_QUEUE_OBSERVE=1','-framework','Metal']
+if a.snapshot_readback:extra+=['-DSWEET_SNAPSHOT_READBACK_OBSERVE=1']
+if a.original_cg_input:extra+=['-DSWEET_ORIGINAL_CG_INPUT_OBSERVE=1']
+if a.original_queue_retirement:extra+=['-DSWEET_ORIGINAL_QUEUE_RETIREMENT_OBSERVE=1']
 if a.png_filter_encoder:extra+=['-DSWEET_PNG_FILTER_ENCODER=1','-I',out]
 if a.cif10_png_reference:extra+=['-DSWEET_CIF10_PNG_REFERENCE=1','-DSWEET_PNG_IMAGEIO_SOURCE_SHA="'+png_source_sha+'"','-framework','UIKit','-framework','CoreGraphics','-framework','ImageIO','-framework','Accelerate']
 if a.xr_probe:extra+=['-DSWEET_AIR_XR_PROBE=1']
@@ -548,6 +584,19 @@ if a.snapshot_render_queue:manifest.update(snapshot_render_queue_observer=True,s
     snapshot_render_queue_actual_host_decoder_passed=True,
     snapshot_render_queue_host_source_sha256=hashlib.sha256((root/'tools/build/test_snapshot_render_queue.m').read_bytes()).hexdigest(),
     snapshot_render_queue_decoder_source_sha256=hashlib.sha256((root/'tools/device/snapshot_render_queue_evidence.py').read_bytes()).hexdigest())
+if a.snapshot_readback:manifest.update(snapshot_readback_observer=True,snapshot_readback_revision=1,
+    snapshot_readback_max_pixels=1048576,snapshot_readback_once_per_process=True,
+    snapshot_readback_original_returned_bytes_not_changed=True,snapshot_readback_extra_GPU_work=False,
+    snapshot_readback_host_ASan_UBSan_row_FNV_bounds_guards_passed=True,snapshot_readback_actual_host_decoder_passed=True,
+    snapshot_readback_host_source_sha256=hashlib.sha256((root/'tools/build/test_snapshot_readback.m').read_bytes()).hexdigest(),
+    snapshot_readback_decoder_source_sha256=hashlib.sha256((root/'tools/device/snapshot_readback_evidence.py').read_bytes()).hexdigest())
+if a.original_cg_input:manifest.update(original_CG_input_observer=True,original_CG_input_revision=1,
+    original_CG_input_provider_bytes_max=4194304,original_CG_input_once_per_process=True,
+    original_CG_input_no_pixel_conversion_or_extra_GPU_work=True,original_CG_input_host_ASan_UBSan_actual_provider_passed=True,
+    original_CG_input_host_source_sha256=hashlib.sha256((root/'tools/build/test_original_cg_input.m').read_bytes()).hexdigest())
+if a.original_queue_retirement:manifest.update(original_queue_retirement_observer=True,original_queue_retirement_revision=1,
+    original_queue_retirement_completed_fence_and_operation_count_required=True,
+    original_queue_retirement_same_original_command_no_extra_GPU_work=True)
 if a.quad_route_observe:manifest.update(quad_route_observer=True,quad_route_revision=5,quad_route_methods=33,
     quad_route_per_API_samples=8,quad_route_max_records=264,quad_route_record_max_bytes=190,
     quad_route_metaclass_owner_and_exact_ABI_host_passed=True,quad_route_original_nil_throws_errno_BOOL_double_block_host_passed=True,

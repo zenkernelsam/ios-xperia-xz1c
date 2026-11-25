@@ -1,0 +1,11 @@
+{
+  "date": "2026-11-25",
+  "token": "1e1bf33f91081ea2",
+  "raw_sha256": "882969267ed97fd71130e785bad05497b8eac636597aed5cba6120e4dc5d4bdd",
+  "unchanged_full_verifier_calls": 1,
+  "native21_proof_byte_identity": true,
+  "PNG6_proof_byte_identity": true,
+  "no_persistent_cache": true,
+  "source_sha256": "b2808f97163c27a63d7228f28ffb556ee7298c37e680923d44c95f9fe7342485",
+  "device_operations": 0
+}

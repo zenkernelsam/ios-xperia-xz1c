@@ -261,6 +261,50 @@ class Gates(unittest.TestCase):
             changed=copy.deepcopy(package);changed[owner][field]=value
             with self.subTest(owner=owner,field=field),self.assertRaises(AssertionError):
                 validate_wled_gpu_ram(changed,binding)
+
+    def test_original_reflected_buffer_observer_needs_current_native21_and_png6(self):
+        manifest=Path(__file__).resolve().parents[2]/'build/aegir-buffer-selection-r1-20261125/ram/manifest.json'
+        if not manifest.is_file():
+            self.skipTest('Local signed original reflected-buffer observer is unavailable')
+        package=json.loads(manifest.read_bytes())
+        binding=dict(library_sha256=package['library_sha256'],blob_sha256=package['blob_sha256'],
+                     manifest_sha256=hashlib.sha256(manifest.read_bytes()).hexdigest())
+        self.assertEqual(validate_wled_gpu_ram(package,binding),'poster')
+        for owner,field,value in (
+            ('metal_resources','library_sha256','8feea4593116ffe9187204f5dd4cf4dd48d3027816d4763ecef20da200f86a27'),
+            ('exception_observer','snapshot_render_queue_draws_max',9),
+            ('exception_observer','snapshot_render_queue_no_extra_GPU_work',False),
+            ('exception_observer','png_filter_encoder',False),
+            ('exception_observer','quad_route_observer',True),
+        ):
+            changed=copy.deepcopy(package);changed[owner][field]=value
+            with self.subTest(owner=owner,field=field),self.assertRaises(AssertionError):
+                validate_wled_gpu_ram(changed,binding)
+        changed=copy.deepcopy(package)
+        changed['exception_observer']['prior_native_hardware_proof']['native_run_token']='2d1794b225c1a6c1'
+        with self.assertRaises(AssertionError):
+            validate_wled_gpu_ram(changed,binding)
+
+    def test_timestamp_barrier_native_candidate_requires_its_own_exact_payload(self):
+        root=Path(__file__).resolve().parents[2]
+        manifest=root/'build/ordered-image-barrier-timestamp-r2-20261126/native-ram/manifest.json'
+        if not manifest.is_file():
+            self.skipTest('Local signed timestamp barrier native RAM is unavailable')
+        package=json.loads(manifest.read_bytes());binding=dict(
+            library_sha256=package['library_sha256'],blob_sha256=package['blob_sha256'],
+            manifest_sha256=hashlib.sha256(manifest.read_bytes()).hexdigest())
+        self.assertEqual(validate_wled_gpu_ram(package,binding),'native')
+        for owner,field,value in (
+            ('metal_resources','ordered_XR_image_barrier_revision',1),
+            ('metal_resources','native_ordered_XR_image_barrier',False),
+            ('metal_resources','gles_library_sha256','0'*64),
+            ('exception_observer','program_cache_prime',True),
+            ('exception_observer','cif10_reference_cases',5),
+            ('exception_observer','library_sha256','0'*64),
+        ):
+            changed=copy.deepcopy(package);changed[owner][field]=value
+            with self.subTest(owner=owner,field=field),self.assertRaises(AssertionError):
+                validate_wled_gpu_ram(changed,binding)
     def test_cache_budget_primer_is_bound_to_distinct_reviewed_ram(self):
         manifest = Path(__file__).resolve().parents[2] / 'build/poster-cache-budget-metal-prime-20261124/reference-ram/manifest.json'
         if not manifest.is_file():

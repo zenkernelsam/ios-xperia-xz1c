@@ -1,0 +1,171 @@
+{
+  "date": "2026-11-26",
+  "native_recycle_items": 9,
+  "native_recycle_files": 21,
+  "logical_bytes": 585102,
+  "scope": "one-time source transfer and host fixtures in TEMP",
+  "no_permanent_deletion": true,
+  "Recycle_Bin_not_emptied": true,
+  "items": [
+    {
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-readback-source-transfer-20261125",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RNTWMHB",
+      "entries": [
+        {
+          "relative": "run.py",
+          "bytes": 2325,
+          "sha256": "2d3085ea3b966703c6edc5c5a58c3a1bc99589d4729041a23c0c97d1fc8cfe68"
+        },
+        {
+          "relative": "source.tar",
+          "bytes": 143360,
+          "sha256": "9362b7713ddc9345f1dbc2190591d348c794737bd1979a2fe6cfc216dfe98874"
+        }
+      ]
+    },
+    {
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-cg-input-source-transfer-20261125",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RLRTE68",
+      "entries": [
+        {
+          "relative": "run.py",
+          "bytes": 1935,
+          "sha256": "b097eac6dc36e762b24370c24382ed66747f0df9c5a4a73a27fc188b79b785f1"
+        },
+        {
+          "relative": "source.tar",
+          "bytes": 153600,
+          "sha256": "03d28ef125acb5eca3c9b785067344739b88579969a825660e1ec2438332bf16"
+        }
+      ]
+    },
+    {
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-queue-retirement-source-transfer-20261125",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R444L7N",
+      "entries": [
+        {
+          "relative": "run.py",
+          "bytes": 1945,
+          "sha256": "4750e08b4d2429d36b70df0b41a0bf19c46e824ff8eda35cde5230e2e41e5fd9"
+        },
+        {
+          "relative": "source.tar",
+          "bytes": 133120,
+          "sha256": "fe029bb9de4e97d636793ab6fb33464522e66f492a3013169ffdb389d5852ee3"
+        }
+      ]
+    },
+    {
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-barrier-source-transfer-20261126",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RNEBGUU",
+      "entries": [
+        {
+          "relative": "run.py",
+          "bytes": 2035,
+          "sha256": "deddd1099050681ad3580863528081513a5ca2084a654006587eed6bcfda20e3"
+        },
+        {
+          "relative": "source.tar",
+          "bytes": 122880,
+          "sha256": "aac576607b32903d689ab66bf783909e4f259b1d5cf129349f35530a098f31f9"
+        }
+      ]
+    },
+    {
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-mesa-barrier-source-20261126",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RCD33Z5",
+      "entries": [
+        {
+          "relative": "freedreno_context.c",
+          "bytes": 21359,
+          "sha256": "78f981df0565365f1b889482158e41ffbf0d29c196e44fdd2b16f0e19f890710"
+        }
+      ]
+    },
+    {
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-native-png-fixture-fvson4lh",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RQ07VWY",
+      "entries": [
+        {
+          "relative": "results.json",
+          "bytes": 143,
+          "sha256": "d2ebf2ae7fb27c7810e0c49a1c59d4605742c8ef55cf5d34efa7f7638850d924"
+        }
+      ]
+    },
+    {
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-wait-slot-fixture-1dtvh_xf",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RWOEFOF",
+      "entries": [
+        {
+          "relative": "formal/build/candidate/artifacts.json",
+          "bytes": 2,
+          "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "relative": "temp/wait/controller.json",
+          "bytes": 629,
+          "sha256": "07cd135ed71a93a12befb95f4aa360b513236e09ca306f3024cf770849e9db0e"
+        },
+        {
+          "relative": "temp/wait/controller.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "relative": "temp/wait/dispatch.json",
+          "bytes": 751,
+          "sha256": "091094b1845aa5cdee08576ebac10ad5c6bfa7123a275396c092806b14b56477"
+        },
+        {
+          "relative": "temp/wait/events.jsonl",
+          "bytes": 48,
+          "sha256": "21f73d19ef7386f309a696571fafaf514f599bb3329c29d61951944b91ca900b"
+        },
+        {
+          "relative": "temp/wait/legacy-preflight.log",
+          "bytes": 2,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "relative": "temp/wait/progress.json",
+          "bytes": 100,
+          "sha256": "3f50461143d29ecce66a4d47cd287765037b6be4c914d75e9afa3194af8918b3"
+        },
+        {
+          "relative": "temp/wait/request.json",
+          "bytes": 365,
+          "sha256": "836696aa7ff99f5e2f05a8023c1c559ece8cacfed83dd72026a908cc5785017c"
+        },
+        {
+          "relative": "temp/wait/result.json",
+          "bytes": 469,
+          "sha256": "70689aff1a29d4bf9afa187b7de3bd5eedcce4255f25d21a93e556fa12c46353"
+        }
+      ]
+    },
+    {
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-wait-slot-fixture-fs8c146y",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$ROQV664",
+      "entries": [
+        {
+          "relative": "formal/build/candidate/artifacts.json",
+          "bytes": 2,
+          "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        }
+      ]
+    },
+    {
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-wait-slot-space-fixture-sk5tnbz1",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RYLC74B",
+      "entries": [
+        {
+          "relative": "child script.py",
+          "bytes": 32,
+          "sha256": "9983f7b75a72819e147f692401bc0bcaccfc44ea57fdfb20130272f042605a52"
+        }
+      ]
+    }
+  ],
+  "device_operations": 0
+}

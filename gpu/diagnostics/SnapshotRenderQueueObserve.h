@@ -11,6 +11,9 @@
 #include <unistd.h>
 
 typedef void (*SweetRenderQueueEmit)(const char *, ...);
+#if defined(SWEET_ORIGINAL_QUEUE_RETIREMENT_OBSERVE)
+extern BOOL SweetMTLCommandResult(id<MTLCommandBuffer>,uint32_t *,uint32_t *);
+#endif
 static SweetRenderQueueEmit render_queue_emit;
 static IMP render_queue_draw_original;
 static Ivar render_queue_vertex, render_queue_fragment, render_queue_pipeline, render_queue_descriptor;
@@ -132,6 +135,14 @@ static void snapshot_render_queue_result(id receiver)
             render_queue_emit("SWEET RQUEUE RESULT pid=%d call=%u status=%lu error_nil=%u code=%lld terminal_getters_only=1",
                 getpid(), call, (unsigned long)status, error == nil, (long long)(error ? error.code : 0));
             render_queue_emit("SWEET RQUEUE ERROR pid=%d call=%u text=%s", getpid(), call, text);
+#if defined(SWEET_ORIGINAL_QUEUE_RETIREMENT_OBSERVE)
+            if(status==MTLCommandBufferStatusCompleted && !error) {
+                uint32_t fence=0,operations=0;
+                BOOL complete=SweetMTLCommandResult(commands,&fence,&operations);
+                render_queue_emit("SWEET RQUEUE RETIRED pid=%d call=%u fence=%u operations=%u complete=%u original_command=1",
+                    getpid(),call,fence,operations,complete);
+            }
+#endif
         } else render_queue_emit("SWEET RQUEUE RESULT_REFUSED pid=%d call=%u terminal_getters_only=1", getpid(), call);
     } @catch (id diagnostic_error) {
         (void)diagnostic_error;

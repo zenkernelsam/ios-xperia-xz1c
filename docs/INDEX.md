@@ -56,6 +56,8 @@ reproducibility保存原结果摘要、源码锁、精确proof和回收记录；
 | 缓存库完整验收整合前9份入口 | [cache-budget 20261124](archive/20261124/cache-budget-close-out/original-document-manifest.json) |
 | 原快照来源整合前4份入口 | [snapshot-scope 20261125](archive/20261125/poster-snapshot-scope/original-document-manifest.json) |
 | 原队列停点与外设整合前10份入口 | [render-buffer 20261125](archive/20261125/render-buffer-selection/original-document-manifest.json) |
+| 新Metal完整验收整合前5份入口 | [reflected-render 20261125](archive/20261125/reflected-render-acceptance/original-document-manifest.json) |
+| XR timestamp候选整合前8份入口 | [ordered-XR 20261126](archive/20261126/ordered-XR-barrier/original-document-manifest.json) |
 | Mac旧38份文档与源文件 | [macos-patch-entry](archive/20261123/macos-patch-entry/original-document-manifest.json) |
 
 旧handover／handout与编号手册在docs/archive；原字节与SHA保持。旧整理报告入口：[2026-11-12](ORGANIZATION-2026-11-12.md)、[2026-11-13](ORGANIZATION-2026-11-13.md)、[2026-11-15](ORGANIZATION-2026-11-15.md)。回收与复原统一由ORGANIZATION／LAYOUT说明，不从旧in-flight恢复执行。

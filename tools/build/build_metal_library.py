@@ -71,6 +71,11 @@ if air_manifest:
     bindings=manifest['frontend_build_binding']['source_files']
     assert bindings.get('RenderSamplerRules.h')==sha(root/'gpu/sweetgl/RenderSamplerRules.h')
     assert bindings.get('metal_render.c')==sha(root/'gpu/sweetgl/metal_render.c')
+    if manifest['frontend_build_binding'].get('ordered_XR_image_barrier_revision'):
+        assert bindings.get('OrderedImageBarrier.h')==sha(root/'gpu/sweetgl/OrderedImageBarrier.h')
+        report.update(native_ordered_XR_image_barrier=True,ordered_XR_image_barrier_revision=manifest['frontend_build_binding']['ordered_XR_image_barrier_revision'],
+            original_XR_per_primitive_rounding_and_final_fences_preserved=True,
+            actual_ordered_XR_image_barrier_GPU_acceptance_pending=True)
     assert manifest['frontend_build_binding'].get('multisample_backend_revision')==1
     for name in ('MetalMultisampleAPI.h','MultisampleLayout.h','MultisampleResolveGLES.h'):
         assert bindings.get(name)==sha(root/'gpu/sweetgl'/name),'Actual MSAA GLES transport header differs: '+name

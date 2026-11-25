@@ -159,6 +159,23 @@ builder执行真实ObjC转发、原位值缓存／errno的ASan／UBSan和ARM64�
 
 原快照来源／bounds回调／PNG／命令队列观察均是独立的observer flag：`--poster-snapshot-gate`、`--aegir-snapshot-cache-scope`、`--original-snapshot-png-export`、`--loaded-snapshot-png-export`、`--snapshot-render-queue`。loaded与original PNG export互斥，loaded要求gate；queue要求short registration／snapshot／namespace。builder对真实ObjC ABI、原返回／errno／throw、有界日志及host原decoder验证后编译签名，RAM manifest绑定实际源与完整先验。PNG transport只无损zlib＋48B分块；缺块原失败不补发。
 
+`--snapshot-readback --original-cg-input --original-queue-retirement`分别观察原getBytes已返回字节、PNG前原CIF10 CGImage provider与同一Completed队列fence／operations。readback要求queue，CG input要求readback，retirement要求queue；namespace绑定实际观察源，旧黑PNG保持。每源每进程一次，有界像素／provider，不增加draw／转换／回写。新RAM仍自身CPU，不重发旧失败包。
+
+## A5xx ordered XR同步候选
+
+当前源码以每图元XR舍入和严格同步为前提，只有精确A5xx／单样本sysmem／RGBA32F原图像契约采用批次内timestamp wait与UCHE invalidate，其它保持GL MemoryBarrier。host工具直接编译固定Mesa emitter，验证21个指令字、monotonic timestamp和溢出拒绝；host不替代GPU。Mac用现存准确Mesa归档构建，源／archive SHA与新program-cache identity全部绑定：
+
+最新候选同时拒绝异步GLThread，原GL barrier负责已排队的前端命令。原context blit scratch64与固定Mesa使用的offset0独立；query、未知image access／layer／format、非sysmem／gen5、深度或多样本保持原同步路径。r2与r3 signed产物各自绑定源，旧host／device proof不能提升新产物。
+
+```sh
+python3 -B tools/build/check_ordered_image_barrier.py --mesa-build build/mesa-ir3-cache-r1 --output build/my-ordered-XR/host
+python3 -B tools/build/build_frontend_trial.py --mesa-build build/mesa-ir3-cache-r1 --output build/my-ordered-XR/frontend
+python3 -B tools/build/package_glram.py --frontend build/my-ordered-XR/frontend --output build/my-ordered-XR/signed-gles
+python3 -B tools/build/package_glram.py --presigned --frontend build/my-ordered-XR/signed-gles --geocompat-package build/my-native/helper --output build/my-ordered-XR/gles-ram
+```
+
+builder增加固定generated compiler／NIR和Freedreno IR3 header include，不更改Mesa archive。新GLES自身CPU→完整GLES9，新的native RAM自身CPU→完整native21／PNG6。独立MRT除所有原页／mask／低位／guard／fence，还要求12条实际优化barrier记录，其中四种XR各四重叠图元／instances／HDR全部原字节正确。r1 CPU／GLES9不能准入r2，旧proof不能准入新GLES。精确候选与原guard失败见STATUS。
+
 新Metal反射绑定候选复用精确GLES及已核验AIR object；新Metal自身source-map变化，旧native／PNG proof不准入。构建完整作者observer时保留全部21组／PNG6，额外probe在真实encoder pipeline切换后保留fragment0与unused slot7，核对原48B position buffer、target／guard、fence和最终退休：
 
 ```sh

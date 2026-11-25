@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-26",
+  "token": "ef161dc3ab9ce723",
+  "source": "Windows TEMP/lilac-v731-ordered-barrier-r1-native-cpu-live-20261126",
+  "original_result": "STOP_ERROR",
+  "original_error": "patch failed: version-bootloader: 1306-5035_X_Boot_MSM8998_LA2.0_P_114\r\n[+] Starting test4 size = 0xf49880, offset = 0x30, payloadsize = 0xe7000\r\n",
+  "original_results_sha256": "85a336e36d2a173fdb0b49012facd9cd91c269a1cfbe1ce7e430409f5a8fbd3f",
+  "guard_attempts": 1,
+  "guard_two_patch_success_not_confirmed": true,
+  "download_attempts": 0,
+  "boot_attempts": 0,
+  "failed_guard_not_repeated": true,
+  "new_physical_fastboot_session_required_before_next_guard": true,
+  "new_native_GPU_acceptance": false
+}

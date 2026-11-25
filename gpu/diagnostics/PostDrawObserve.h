@@ -3,6 +3,9 @@
 #if defined(SWEET_ORIGINAL_SNAPSHOT_PNG_EXPORT)
 #include "OriginalSnapshotPNGExport.h"
 #endif
+#if defined(SWEET_ORIGINAL_CG_INPUT_OBSERVE)
+#include "OriginalCGInputObserve.h"
+#endif
 #import <Foundation/Foundation.h>
 #include <CoreGraphics/CoreGraphics.h>
 #include <ImageIO/ImageIO.h>
@@ -221,6 +224,9 @@ static NSData *postdraw_png(SweetPostDrawImage image)
     bool returned = false;
     @try {
         postdraw_png_input(call, image);
+#if defined(SWEET_ORIGINAL_CG_INPUT_OBSERVE)
+        if(eligible && call.recorded)(void)snapshot_cg_input_once(cg,postdraw_pid,call.call,postdraw_emit);
+#endif
         postdraw_start(&call);
         errno = incoming_errno;
 #if defined(SWEET_PNG_FILTER_ENCODER)

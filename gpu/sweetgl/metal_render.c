@@ -19,6 +19,7 @@
 #include "XRBlendShader.h"
 #include "RenderUniformRules.h"
 #include "RenderSamplerRules.h"
+#include "OrderedImageBarrier.h"
 #include "sweetgl.h"
 #include "sweet_drm.h"
 #include "pipe/p_screen.h"
@@ -987,6 +988,7 @@ static int render_draw_with_depth(SweetMetalProgram *program,const SweetRenderPa
     glGenVertexArrays(1,&vao);glBindVertexArray(vao);static const GLenum primitive[]={GL_POINTS,GL_LINES,GL_LINE_STRIP,GL_TRIANGLES,GL_TRIANGLE_STRIP};
     stage=render_stage_begin(observation,"submit");
     if(program->ordered_xr_mask){
+        unsigned cached_barriers=0,fallback_barriers=0;
         glUniform4f(program->blend_constant,draw->blend_color[0],draw->blend_color[1],draw->blend_color[2],draw->blend_color[3]);
         images_bound=true;for(unsigned i=0;i<8;++i)if(program->ordered_xr_mask&(1u<<i)){
             glBindImageTexture(i,targets.linear[i],0,GL_FALSE,0,GL_READ_ONLY,GL_RGBA32F);glBindImageTexture(8+i,targets.linear[i],0,GL_FALSE,0,GL_WRITE_ONLY,GL_RGBA32F);}
@@ -995,11 +997,15 @@ static int render_draw_with_depth(SweetMetalProgram *program,const SweetRenderPa
         for(uint32_t instance=0;instance<draw->instances && !result;++instance){glUniform1i(program->instance_base,instance);
             for(uint32_t index=0;index<n;++index){SweetOrderedPrimitive p=sweet_ordered_primitive(draw->primitive,draw->first,index);
                 glFrontFace((draw->winding==1)!=p.reverse_winding?GL_CW:GL_CCW);
-                glDrawArraysInstanced(primitive[p.mode],p.first,p.count,1);glMemoryBarrier(GL_ALL_BARRIER_BITS);
+                glDrawArraysInstanced(primitive[p.mode],p.first,p.count,1);
+                if(sweet_ordered_image_barrier(sweetgl_internal_context(program->context),program->ordered_xr_mask,&program->ordered_barrier_sequence))++cached_barriers;
+                else{glMemoryBarrier(GL_ALL_BARRIER_BITS);++fallback_barriers;}
                 if(render_gl_error("ordered-primitive",(int)index)){result=-EIO;break;}}
         }
         if(result)goto done;
         sweet_drm_log("SWEET METAL MRT ordered_draw image_mask=%u primitives=%u instances=%u fp32=1 per_primitive_XR_round=1 image_barriers=1",program->ordered_xr_mask,n,draw->instances);
+        sweet_drm_log("SWEET XR BARRIER revision=2 primitives=%u instances=%u cached=%u fallback=%u timestamp_wait=1 UCHE_invalidate=1 final_fence_required=1",
+            n,draw->instances,cached_barriers,fallback_barriers);
     }else{glDrawArraysInstanced(primitive[draw->primitive],(GLint)draw->first,(GLsizei)draw->count,(GLsizei)draw->instances);glMemoryBarrier(GL_ALL_BARRIER_BITS);}
     render_stage_end(stage,result);
     stage=render_stage_begin(observation,"gpu_finish");glFinish();result=render_gl_error("draw-finish",-1);render_stage_end(stage,result);if(result)goto done;

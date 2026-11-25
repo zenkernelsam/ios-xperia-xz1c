@@ -203,9 +203,17 @@ class LiveOps:
     def patch(self):
         from sony_usb_guard import validate_inputs
         validate_inputs(PATCH / "assets/device-tools")
-        if active_tool_processes(): raise Refuse("Another fastboot/xperable process is running")
-        text = self.command(["powershell", "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass", "-File", HERE / "preflight_processes.ps1"], 30, "host_process_preflight")
-        if json.loads(text): raise Refuse("A legacy boot/capture loop is running; refusing to interleave")
+        if getattr(self,"wait_before_guard_seconds",0):
+            from host_idle_gate import wait_idle
+            def legacy():
+                return json.loads(self.command(["powershell", "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass", "-File", HERE / "preflight_processes.ps1"], 30, "host_process_preflight"))
+            wait_idle(legacy,check_stop=self.check_stop,
+                emit=lambda **event:self.journal.event(event.pop("event"),**event),
+                timeout_seconds=self.wait_before_guard_seconds)
+        else:
+            if active_tool_processes(): raise Refuse("Another fastboot/xperable process is running")
+            text = self.command(["powershell", "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass", "-File", HERE / "preflight_processes.ps1"], 30, "host_process_preflight")
+            if json.loads(text): raise Refuse("A legacy boot/capture loop is running; refusing to interleave")
         # The task authorizes a targeted Sony operation while other phones may
         # remain attached. This mode still requires exactly one Sony USB device,
         # its readable BH905ND69G identity, and the audited selector binary.

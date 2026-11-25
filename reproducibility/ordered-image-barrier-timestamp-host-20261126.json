@@ -1,0 +1,13 @@
+{
+  "revision": 2,
+  "host_ASan_UBSan_passed": true,
+  "ring_words_per_barrier": 21,
+  "monotonic_timestamp_1_2_verified": true,
+  "sequence_overflow_refused": true,
+  "context_flushes": 0,
+  "source_sha256": {
+    "gpu/sweetgl/OrderedImageBarrier.h": "87239da360eae1b69a0ba5b71ede486e84fd6b519453c118e7e9a48d694c7e2c",
+    "tools/build/test_ordered_image_barrier.c": "2db4efda06527acf861e4fc1eda575b03eaadabee510751033f19eccccf9a602"
+  },
+  "device_operations": 0
+}

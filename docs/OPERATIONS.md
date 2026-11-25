@@ -24,6 +24,10 @@ python -B tools/device/observe_fastboot.py --output "$env:TEMP\新的健康目�
 
 原snapshot／wait返回和pipeline非空不能证明所有命令已成功。新的原队列观察另核对executeOperations终态status／error，status5或observer拒绝立即进入现有回程，原REVISE保持；自己的full native／PNG6先验仍必须完整。其它手机的fastboot／xperable进程也会在guard前触发冲突拒绝，不终止外部进程、不重发旧失败包；等待冲突退出期间继续离线与归档。
 
+`wait_trial_slot.py --request <显式run_trial JSON> --directory <新TEMP等待目录>`只等外部工具退出且空闲30秒，再创建一个受管controller child；helper不持串口、不终止外部进程、不重发失败。request可加`wait_before_guard:120`，run_trial在任何guard mutation前最多120秒重复只读主机冲突查询；本run总期限不延长，guard／download／boot仍各单次。当前LIVE之后不得使用该等待入口绕过原回程。
+
+同一目录的native与PNG先验通过`native_png_prerequisite`一次完整原raw／payload／像素／guard／fence／回程复算后派生两份精确proof，内容与原独立证明一致；不同目录保持分别验证，无持久化缓存。MemoryError／SSH拒绝仍在设备操作前停止，不以旧成功记录绕过。guard本身失败需保留原包和新物理fastboot会话，连续健康观察不重分类guard失败。
+
 run_trial在手机USB／COM命令前复算完整payload、Mac83实际源、Mesa归档和已编译用户态源码。默认offline，加--live才投递；每包／运行目录必须不存在，运行目录是Windows TEMP子目录。例如，实际路径按已审核的包与同版本原raw填写：
 
 ```powershell

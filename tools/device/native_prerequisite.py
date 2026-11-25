@@ -9,6 +9,12 @@ def verify(directory,resources=None,kernel_sha=None,version=None):
     observer=artifact.get('exception_observer',{})
     assert observer.get('target_process')=='backboardd' and observer.get('background_full_suite') and not observer.get('registration_only'),'Prior must be an actual full native background stage'
     evidence=verify_trial(root,'gpu',kernel_sha,version)
+    return from_verified(artifact,evidence,resources)
+
+def from_verified(artifact,evidence,resources=None):
+    """Derive metadata only after the caller performed full original validation."""
+    assert evidence['token']==artifact['token'] and evidence['kernel_sha256']==artifact['kernel_sha256']
+    assert evidence['image_sha256']==artifact['sha256'] and evidence['version']==artifact['version']
     suite=evidence['exceptions'];assert suite['background_probe']['probe_suites']==1
     native_tests=list(NATIVE_TESTS)+(['AIR_narrow'] if artifact['metal_resources'].get('AIR_frontend',{}).get('local_narrow_conversion_adaptation') else [])
     if artifact['metal_resources'].get('AIR_frontend',{}).get('local_half_storage_and_rounding_adaptation'):native_tests.append('AIR_half')

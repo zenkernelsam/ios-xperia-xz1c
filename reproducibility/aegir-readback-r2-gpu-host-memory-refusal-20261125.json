@@ -1,0 +1,11 @@
+{
+  "date": "2026-11-25",
+  "token": "482113da3490aee0",
+  "source": "Windows TEMP/lilac-v731-aegir-readback-r2-gpu-slot-wait-20261125",
+  "original_error": "MemoryError during PNG prerequisite original raw revalidation",
+  "controller_log_sha256": "ae80bc12f4104931d85b851907b46842c82fdaac860199c21cb9971078546cf3",
+  "download_attempts": 0,
+  "boot_attempts": 0,
+  "actual_run_directory_created": false,
+  "original_failed_package_not_replayed": true
+}

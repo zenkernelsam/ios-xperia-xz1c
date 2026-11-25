@@ -12,6 +12,18 @@
 
 新MetalRender.inc在immutable pipeline保存vertex／fragment反射mask，执行时只选该pipeline需要的buffer；unused绑定仍保留在编码器和命令快照，不消费、不写。缺必需buffer、owner／range／target alias仍拒绝。[免费开源参考](../reproducibility/render-buffer-selection-oss-reference-20261125.json)为固定BSD-2-Clause ios_sagit `QcomMTL.mm:5390/5403`同一按反射输入循环，未更换冻结kernel／Mesa。新完整作者probe另绑定unused两个slot7，实际pipeline切换后保留fragment0，并核对原positionBuffer48B FNV、全部target／guard、fence及资源退休。自己的CPU／native21／PNG6之后才验原壁纸。
 
+## 反射输入通过与XR同步停点
+
+[新Metal完整native21／PNG6](../reproducibility/buffer-selection-r3-gpu-actual-20261125.json)已通过，含实际pipeline切换／retained fragment0、unused slot7及48B原输入FNV、全部作者页、guard和最终退休。150秒原scanout完整3460块，39.157秒回程。旧观察PASS不改判；新库组合自己的native／PNG proof由本run重新生成。
+
+原新来源R4首轮产生大shader请求，签到超时3次；后台条件primer报告一项缺bin实际编译，但A/index31 SHA缺失，扫描取证也失败，原STOP保留。[随后R5](../reproducibility/aegir-retirement-r5-gpu-refused-20261126.json)后端call2已经使用buffers2、primitive3/count4212/ordered_mask1，消除了原全mask相等拒绝；两条实际记录进入state之后的submit，没有完整星点退休或后续snapshot。原REVISE／39.281秒回程保持，不能因“进入draw”声称壁纸恢复。
+
+[固定Mesa来源](../reproducibility/ordered-image-barrier-oss-reference-20261126.json)核对`fd_memory_barrier`直接调用`fd_context_flush`；原4212星点顶点分成1404个图元，每个GL barrier都造成批次提交。另有一份[ACK后退出期sig11栈](../reproducibility/aegir-star-r5-post-ACK-ring-symbols-20261126.json)能由实际16KiB对齐base、draw及wrapper返回确定，位于fd_bo_map／fd_submit_sp_new_ringbuffer／fd_batch_create／fd_draw_vbo。它不归入本LIVE的签到超时根因，其它未闭合原栈不推断；不因该栈改冻结底层。source-map与旧原字节保持。
+
+OrderedImageBarrier候选只在精确gen5／SYSMEM、无Z/S／单样本和一致readonly／writeonly RGBA32F图像时执行；它保留每图元单独draw、XR pack/unpack舍入、原输入与final fence。r1只用CACHE_FLUSH_TS／idle／UCHE，已过CPU／GLES9，native CPU guard失败。离线复核后r2增加独立scratch64和per-program单调timestamp，用WAIT_REG_MEM等准确事件写回，再CP memory writes／UCHE invalidate；原21指令字及sequence1→2、溢出拒绝经[实际Mesa host sanitizer](../reproducibility/ordered-image-barrier-canonical-host-20261126.json)通过。来源为MIT Mesa缓存原helper及固定BSD ios_sagit flush契约，不改kernel／Mesa archive。新GLES自己的CPU／GLES9／native21／PNG6与所有重叠图元原字节通过后才验原UI，当前候选精确SHA见STATUS。
+
+原字节观察新增RBYTES／CGBYTES：前者读原getBytes已返回数据，后者只对原CIF10 CGImage读provider bytes，在PNG前记录；logical FNV、black code384计数、RGB范围和三个原word，不转换像素。原OPNG只无损zlib导出返回NSData，缺48B块／CRC／FNV均拒绝。OriginalQueueRetirement读取同一Completed队列的实际fence和operations；它不创建新队列或draw。原GPU靴尚未返回完整这些记录，不以host／partial统计代替wallpaper或LCD验收。
+
 新库观察的20条原request、128条route、99条environment记录完整，原preview／snapshot返回true、unlock返回0.0、背光progress返回1.0。五次原paused=true、applyMode1沿deactive分支返回；没有新增getter或绘制，没有强制策略。本次唯一缺失准入目标是原pipeline第1次返回，原pipeline BEGIN也未出现，snapshotImage／PNG和draw API均无记录。未观察到调用不推断整个系统没有GPU工作，缓存与原请求链分别验收。该轮原STOP、702521 B raw和39.438秒完整回程保持，失败包不重发。
 
 [同靴扫描](../reproducibility/poster-cache-budget-wallpaper-scanout-actual-20261125.json)与[较小观察包](../reproducibility/poster-cache-budget-minimal-gpu-actual-20261125.json)均复现原pipeline目标未出现，150秒真实帧完整、背景仍黑、原STOP保留。较小包未编译request／route包装，7条库／ColorSync返回完整，仍无snapshot／PNG。不能据此归因为额外观察包装或底层GPU；后续集中核对系统原快照请求入口。两靴分别38.469／38.468秒完整安全回程，失败不重发。

@@ -1,0 +1,92 @@
+{
+  "date": "2026-11-25",
+  "source_sha256": "ad1c4954fdfb0d2056b2097293ab10923152765dd89b2372d92b79cca6aa6f96",
+  "rows": [
+    {
+      "source": "Windows TEMP/lilac-v731-buffer-selection-r3-slot-wait-r2-20261125",
+      "report": {
+        "serial": "BH905ND69G",
+        "opens_phone_or_serial": false,
+        "terminates_external_process": false,
+        "dispatched": true,
+        "retries": 0,
+        "stable_seconds": 30,
+        "limit_seconds": 1800,
+        "wait_seconds": 42.156999999890104,
+        "continuous_tool_idle_seconds": 42.156999999890104,
+        "result": "CONTROLLER_EXITED",
+        "controller_exit_code": 0,
+        "trial_directory": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v731-buffer-selection-r3-cpu-live-20261125",
+        "child_fully_exited": true
+      },
+      "result_sha256": "310623e64a5010d62e87fc31ba62d2131f387401cd46e37f08ccc6c8c82f7c55",
+      "one_controller_child": true,
+      "external_processes_not_terminated": true
+    },
+    {
+      "source": "Windows TEMP/lilac-v731-buffer-selection-r3-gpu-slot-wait-20261125",
+      "report": {
+        "serial": "BH905ND69G",
+        "opens_phone_or_serial": false,
+        "terminates_external_process": false,
+        "dispatched": true,
+        "retries": 0,
+        "stable_seconds": 30,
+        "limit_seconds": 1800,
+        "wait_seconds": 47.15599999995902,
+        "continuous_tool_idle_seconds": 47.15599999995902,
+        "result": "CONTROLLER_EXITED",
+        "controller_exit_code": 0,
+        "trial_directory": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v731-buffer-selection-r3-gpu-live-20261125",
+        "child_fully_exited": true
+      },
+      "result_sha256": "332fee25a88b2a199ac501fae0e48b629fe667208bcb2542cdd37cc284825064",
+      "one_controller_child": true,
+      "external_processes_not_terminated": true
+    },
+    {
+      "source": "Windows TEMP/lilac-v731-aegir-readback-r2-cpu-slot-wait-20261125",
+      "report": {
+        "serial": "BH905ND69G",
+        "opens_phone_or_serial": false,
+        "terminates_external_process": false,
+        "dispatched": true,
+        "retries": 0,
+        "stable_seconds": 30,
+        "limit_seconds": 1800,
+        "wait_seconds": 46.92200000002049,
+        "continuous_tool_idle_seconds": 46.92200000002049,
+        "result": "CONTROLLER_EXITED",
+        "controller_exit_code": 0,
+        "trial_directory": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v731-aegir-readback-r2-cpu-live-20261125",
+        "child_fully_exited": true
+      },
+      "result_sha256": "4ee9f6949ad0b38c1cef80a37a2d5d4df7109eec00f45d53facbcb5519306725",
+      "one_controller_child": true,
+      "external_processes_not_terminated": true
+    },
+    {
+      "source": "Windows TEMP/lilac-v731-aegir-cg-input-r3-cpu-slot-wait-20261125",
+      "report": {
+        "serial": "BH905ND69G",
+        "opens_phone_or_serial": false,
+        "terminates_external_process": false,
+        "dispatched": true,
+        "retries": 0,
+        "stable_seconds": 30,
+        "limit_seconds": 1800,
+        "wait_seconds": 40.625,
+        "continuous_tool_idle_seconds": 40.625,
+        "result": "CONTROLLER_EXITED",
+        "controller_exit_code": 0,
+        "trial_directory": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v731-aegir-cg-input-r3-cpu-live-20261125",
+        "child_fully_exited": true
+      },
+      "result_sha256": "10d74ce93daf88c249533853e4f5734531946e1a08bac8d696a24b0f00133c77",
+      "one_controller_child": true,
+      "external_processes_not_terminated": true
+    }
+  ],
+  "all_stage_and_return_evidence_independently_verified": true,
+  "no_failed_package_replay": true
+}

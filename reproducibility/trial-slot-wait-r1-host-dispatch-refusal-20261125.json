@@ -1,0 +1,11 @@
+{
+  "date": "2026-11-25",
+  "source": "Windows TEMP/lilac-v731-buffer-selection-r3-slot-wait-20261125",
+  "wait_completed": true,
+  "controller_launched": false,
+  "download_attempts": 0,
+  "boot_attempts": 0,
+  "original_error": "Windows execv split Python executable path with a space",
+  "original_request_and_dispatch_preserved": true,
+  "new_child_argv_quoting_fix_host_tests_required": true
+}

@@ -58,7 +58,7 @@ def order_expected(format):
             else:stored=struct.pack('<I',(rr<<20)|(gg<<10)|bb|(0xc0000000 if active else 0))
             at=64+y*pitch+x*pixel;raw[at:at+pixel]=stored
     return fnv(raw)
-def verify(text,token,fixture,require_xr_clear_elision=False):
+def verify(text,token,fixture,require_xr_clear_elision=False,require_image_barrier=False):
     scope=text[text.index('SWEET LOOP LIVE proto=1 token='+token):text.index('SWEET LOOP ACK FASTBOOT token='+token)]
     assert not re.search(r'SWEET METAL MRT END result=[1-9]',scope),'MRT probe failure before ACK'
     starts=list(re.finditer(r'SWEET METAL MRT begin XR_formats=552,553,554,555 dual_targets=2 phases=4 eight_targets=8 original_pages=1',scope));assert starts
@@ -83,6 +83,13 @@ def verify(text,token,fixture,require_xr_clear_elision=False):
         assert [int(row[1]) for row in extra]==list(range(8)) and [row[2] for row in extra]==[eight_expected(n) for n in range(8)]
         assert [int(p[1]) for p in ordered]==list(range(552,556)) and [p[3] for p in ordered]==[order_expected(f) for f in range(552,556)],'Original overlapping primitive/instance/HDR/guard bytes differ'
         assert len(re.findall(r'SWEET METAL MRT ordered_draw image_mask=1 primitives=2 instances=2 fp32=1 per_primitive_XR_round=1 image_barriers=1',block))==4,'Missing ordered destination updates for actual overlapping draws'
+        if require_image_barrier:
+            revision=int(require_image_barrier)
+            assert revision in (1,2)
+            barriers=re.findall(r'SWEET XR BARRIER revision='+str(revision)+r' primitives=(\d+) instances=(\d+) cached=(\d+) fallback=(\d+) '+('shader_write_wait' if revision==1 else 'timestamp_wait')+r'=1 UCHE_invalidate=1 final_fence_required=1',block)
+            assert len(barriers)==12,'Original optimized XR barrier records missing'
+            assert sum((int(n),int(inst),int(cached),int(fallback))==(2,2,4,0) for n,inst,cached,fallback in barriers)==4
+            assert all(int(cached)==int(n)*int(inst) and int(fallback)==0 for n,inst,cached,fallback in barriers),'Actual optimized XR path fell back or skipped a primitive barrier'
         assert re.search(r'SWEET METAL MRT caps targets=8 fp32_rt=1 fp32_blend=0 fp32_image=1 independent_enable=1 independent_func=1 float_blend=0 fbfetch=0 no_attachment=1 fragment_images=\d+ image_units=\d+',block),'Actual A5xx capability record missing'
         seq=[int(p[3]) for p in phases]+[int(eight[1])]+[int(p[2]) for p in ordered];assert seq==sorted(set(seq)) and seq[0]>0
         # Each complete original target gets an independently retired submission.
@@ -113,7 +120,7 @@ def verify(text,token,fixture,require_xr_clear_elision=False):
             overlapping_primitives_and_instance_ID_and_nonzero_vertex_start_and_HDR_verified=True,
             all_four_original_buffers_and_padding_checked=True,unchanged_XR_lowbits_and_masked_channels_preserved=True,
             per_attachment_retirement_verified=True,XR_clear_decode_elision_verified=require_xr_clear_elision,
-            original_Load_decode_preserved=require_xr_clear_elision,final_allocated=0))
+            original_Load_decode_preserved=require_xr_clear_elision,optimized_A5xx_image_barrier_verified=require_image_barrier,final_allocated=0))
     assert records,'No complete real simultaneous MRT/XR blend/guards sample'
     return dict(actual_native_MRT_XR_blend_channel_masks_and_eight_targets_verified=True,complete_samples=len(records),incomplete_samples=incomplete,records=records,
         full_original_UI_and_general_blend_factors_still_pending=True)

@@ -1,0 +1,52 @@
+{
+  "date": "2026-11-25",
+  "source": "Windows TEMP/lilac-v731-buffer-primer-r4-gpu-live-20261125",
+  "token": "d3b95d9a5e462ae1",
+  "original_result": "STOP",
+  "original_reason": "SCREEN_EVIDENCE_MISSING",
+  "raw_sha256": "5dd55716053bd11f4bc95ce23c28489334227c6ac42511e9751a2d89a0f9f53e",
+  "raw_bytes": 2891648,
+  "strict_return": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "d3b95d9a5e462ae1",
+    "checkpoint_bytes": 2885847,
+    "log_bytes": 2891648,
+    "log_sha256": "5dd55716053bd11f4bc95ce23c28489334227c6ac42511e9751a2d89a0f9f53e",
+    "require_final_drain": true,
+    "marker_positions": [
+      4,
+      34,
+      104,
+      106
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 40.281999999890104,
+  "inventory_original_refusal": "Missing complete cache digest capture",
+  "missing_original_cache_records": [
+    {
+      "phase": "A",
+      "index": 31,
+      "label": "SHA"
+    }
+  ],
+  "reported_before": [
+    "SWEET PCINV END pid=56 phase=B result=0 files=53 records=53 requests=27 bins=26 present=26 missing=1"
+  ],
+  "reported_after": [
+    "SWEET PCINV END pid=56 phase=A result=0 files=54 records=54 requests=27 bins=27 present=27 missing=0"
+  ],
+  "reported_prime": [
+    "SWEET PCINV PRIME pid=56 result=0 compiled=1 failed=0 expected=1"
+  ],
+  "payload": {
+    "image_sha256": "50d7e60041d962ddee7cebd0fe6590bc8b369e06ee38dc1cb6a2d03cc2fb041e",
+    "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+    "blob_count": 8,
+    "complete_payload_reconstructed_from_compiled_kernel": true
+  },
+  "original_missing_bytes_not_repaired": true,
+  "native_stage_not_promoted": true,
+  "worker_closed": true
+}

@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-26",
+  "Mesa_commit": "769e51468b49b2a42f0a0eaf71cf9eed5ff4e5de",
+  "reference_files": {
+    "src/gallium/drivers/freedreno/freedreno_context.c": {
+      "git_blob": "a77d08366985d62db44a9a01d6e29c63f3eafc7e",
+      "sha256": "78f981df0565365f1b889482158e41ffbf0d29c196e44fdd2b16f0e19f890710"
+    },
+    "src/gallium/drivers/freedreno/a5xx/fd5_emit.h": {
+      "git_blob": "29509e0c21bb1d8e687904331922144072687daa",
+      "sha256": "a73e222a1e19e6449fdce37a0fea1d09c7ff09f60c0ce02a9826221c8dbf7b5d"
+    },
+    "src/gallium/drivers/freedreno/a5xx/fd5_context.h": {
+      "git_blob": "3da433326756a68176dbcce2501c12f81be250af",
+      "sha256": "d5c3d03f38dddd6a856b25f1cb2403694dee265ce4396f6c7e82864c559d8bd1"
+    },
+    "src/gallium/drivers/freedreno/freedreno_batch.c": {
+      "git_blob": "bc2a109b9644cd9402352f28f00cf668cc3c5c2a",
+      "sha256": "a9eca484367b2d43aa3e25acdcfc170383b63c4ba6d61c03a30fcddc97fef635"
+    },
+    "src/gallium/drivers/freedreno/freedreno_gmem.c": {
+      "git_blob": "f7fa59788cf10b017a95a7ba1f14549bcef45dc3",
+      "sha256": "65316cc532f356425482268824fcf251db6e9d2f29edf6bec915e037d3b8249d"
+    }
+  },
+  "reference_ios_sagit_commit": "673f85070fe9f7872793015eb230a5c3987d4a8c",
+  "reference_ios_sagit_path": "drivers/gpu/QcomGPU/AdrenoPipeline.h",
+  "reference_ios_sagit_lines": [
+    308,
+    311
+  ],
+  "generic_MemoryBarrier_flushes_context": true,
+  "starfield_triangle_vertices": 4212,
+  "ordered_primitives": 1404,
+  "original_per_primitive_XR_rounding_unchanged": true,
+  "new_timestamp_wait_revision": 2,
+  "private_existing_scratch_offset": 64,
+  "standalone_host_ASan_UBSan_actual_Mesa_emitters_passed": true,
+  "new_native_GPU_acceptance_pending": true,
+  "device_operations": 0
+}

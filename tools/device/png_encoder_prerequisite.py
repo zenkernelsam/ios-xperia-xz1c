@@ -12,7 +12,13 @@ def inspect(directory,resources,kernel_sha256,encoder_source_sha256,version=None
     expected_version=actual_version if version is None else version
     assert type(expected_version) is int and expected_version>=729 and actual_version==expected_version, 'PNG reference kernel version differs'
     actual=verify(directory,'gpu',kernel_sha256,expected_version)
-    observer=row['artifact']['exception_observer']
+    return from_verified(row['artifact'],actual,resources,kernel_sha256,encoder_source_sha256)
+
+def from_verified(artifact,actual,resources,kernel_sha256,encoder_source_sha256):
+    """Derive PNG identity from the same already validated full original run."""
+    assert actual['token']==artifact['token'] and actual['kernel_sha256']==artifact['kernel_sha256']==kernel_sha256
+    assert actual['image_sha256']==artifact['sha256'] and actual['version']==artifact['version']
+    observer=artifact['exception_observer']
     assert observer['target_process']=='backboardd' and observer.get('cif10_reference_shared_encoder')
     assert observer['png_imageio_encoder_source_sha256']==encoder_source_sha256
     png=actual['exceptions']['CIF10_PNG_reference']
@@ -25,7 +31,7 @@ def inspect(directory,resources,kernel_sha256,encoder_source_sha256,version=None
     if resources.get('native_IR3_variant_cache'):
         cache=actual['exceptions']['IR3_cache'];assert cache['complete_samples']==1 and cache['incomplete_samples']==0
     proof=dict(revision=1,kernel_sha256=kernel_sha256,GLES_sha256=actual['ram_library_binding']['library_sha256'],
-        Metal_sha256=row['artifact']['metal_resources']['library_sha256'],encoder_source_sha256=encoder_source_sha256,
+        Metal_sha256=artifact['metal_resources']['library_sha256'],encoder_source_sha256=encoder_source_sha256,
         reference_token=actual['token'],reference_image_sha256=actual['image_sha256'],reference_raw_sha256=actual['log_sha256'],
         reference_cases=6,filter=32,pixels_ICC_metadata_equal=True)
     return validate(proof,encoder_source_sha256,resources['gles_library_sha256'],resources['library_sha256'],kernel_sha256)

@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-26",
+  "reason": "preserve prior entries before reflected Metal21 proof and ordered XR timestamp candidate integration",
+  "original_bytes_preserved": true,
+  "documents": [
+    {
+      "original_path": "AGENTS.md",
+      "archived_path": "docs/archive/20261126/ordered-XR-barrier/originals/AGENTS.md",
+      "bytes": 5929,
+      "sha256": "231e659a639fb4ed478cc268de2cc76e6543f00baa3a43c015cdadeaae29d0f4"
+    },
+    {
+      "original_path": "README.md",
+      "archived_path": "docs/archive/20261126/ordered-XR-barrier/originals/README.md",
+      "bytes": 2248,
+      "sha256": "169495d67773bffa618f996f282555f9e9368494b46f992573df4c582c70ddd2"
+    },
+    {
+      "original_path": "docs/STATUS.md",
+      "archived_path": "docs/archive/20261126/ordered-XR-barrier/originals/docs/STATUS.md",
+      "bytes": 11260,
+      "sha256": "5d3649fbf7af12f05cc80cf962793a5c2d31c37c5fc52d7619a31f37d09216f7"
+    },
+    {
+      "original_path": "docs/BUILD.md",
+      "archived_path": "docs/archive/20261126/ordered-XR-barrier/originals/docs/BUILD.md",
+      "bytes": 19136,
+      "sha256": "6c34496f66f6b532025746aa2f3d40829f56ff2fb610cf8c24ab4dfbfa302953"
+    },
+    {
+      "original_path": "docs/OPERATIONS.md",
+      "archived_path": "docs/archive/20261126/ordered-XR-barrier/originals/docs/OPERATIONS.md",
+      "bytes": 8988,
+      "sha256": "6cd6dcd61a203125324434226423294c2a35dfce60f52c57be498237854feb55"
+    },
+    {
+      "original_path": "docs/METAL-REQUEST-OBSERVATION.md",
+      "archived_path": "docs/archive/20261126/ordered-XR-barrier/originals/docs/METAL-REQUEST-OBSERVATION.md",
+      "bytes": 17928,
+      "sha256": "8b6d8ae0ad43397f787c3832abf1757b09da1eb2e96f25555b3f3f2e089cdbca"
+    },
+    {
+      "original_path": "docs/ORGANIZATION.md",
+      "archived_path": "docs/archive/20261126/ordered-XR-barrier/originals/docs/ORGANIZATION.md",
+      "bytes": 12429,
+      "sha256": "08a244f371bd0e2c66f8c8b11e3b065fa37594af3aeefe4e0d4a511c6ee35008"
+    },
+    {
+      "original_path": "docs/INDEX.md",
+      "archived_path": "docs/archive/20261126/ordered-XR-barrier/originals/docs/INDEX.md",
+      "bytes": 6434,
+      "sha256": "43967359c688e1538f141426df9eaee8a07e1d94992149afe31339acc005e53a"
+    }
+  ]
+}

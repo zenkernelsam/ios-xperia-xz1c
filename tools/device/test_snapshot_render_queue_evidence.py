@@ -28,6 +28,13 @@ class OriginalRenderQueueEvidence(unittest.TestCase):
                         text.replace("vertex=3 fragment=1", "vertex=256 fragment=1")):
             with self.subTest(changed=changed), self.assertRaises(ValueError):
                 inspect(changed, token)
+        complete=text.replace("status=5 error_nil=0 code=9","status=4 error_nil=1 code=0")
+        complete=complete.replace("text=AIR_render_failed_result=-22",
+            "text=none\nSWEET RQUEUE RETIRED pid=7 call=1 fence=123 operations=5 complete=1 original_command=1")
+        self.assertEqual(inspect(complete,token,require_retirement=True)["results"][0]["operations"],5)
+        for changed in (complete.replace("fence=123","fence=0"),complete.replace("operations=5","operations=0"),
+                        complete.replace("RETIRED pid=7","RETIRED pid=8"),complete.replace("complete=1","complete=0")):
+            with self.assertRaises(ValueError):inspect(changed,token,require_retirement=True)
 
 
 if __name__ == "__main__":

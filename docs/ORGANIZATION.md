@@ -1,4 +1,8 @@
-# 本周整理与文档整合 — 2026-11-25
+# 本周整理与文档整合 — 2026-11-26
+
+反射Metal新库完成native21／PNG6、原壁纸失败与XR同步候选这一轮收尾追加[Mac311项／521文件／1019811972 B](../reproducibility/ordered-XR-macos-native-trash-20261126.json)，731保护文件SHA保持，30份HFS从保留blob完整重建。signed库、候选／失败包、raw／proof、固定Mesa归档、AIR对象／恢复配方和pause保持；回收host程序／dSYM／object及重复传输材料。
+
+[Windows9项／21文件／585102 B](../reproducibility/ordered-XR-windows-native-recycle-20261126.json)包括TEMP传输包和本轮host fixtures，逐SHA核对原生回收位置；两套[Ubuntu Trash为空](../reproducibility/ordered-XR-wsl-trash-audit-20261126.json)，Windows／Mac未清空，回收仍占磁盘。新增host fixture从TEMP分配，完成后由原生回收流程处理。整合前5份[reflected-render原文](archive/20261125/reflected-render-acceptance/original-document-manifest.json)与8份[ordered-XR原文](archive/20261126/ordered-XR-barrier/original-document-manifest.json)字节与SHA保持。
 
 原快照和GPU队列停点这一轮收尾追加[Mac原生Trash349项／631文件／1070475061 B](../reproducibility/render-buffer-close-out-macos-native-trash-20261125.json)，967个保护文件SHA逐一保持。28份HFS重复容器从保留blob逐字节复算后回收，另有已结束host程序／dSYM／object和传输tar；新Metal签名库、当前kernel、原失败包／raw／proof及AIR恢复材料保留。[Windows7项／10文件／4780776 B](../reproducibility/render-buffer-close-out-windows-native-recycle-20261125.json)包括WSL在共享Windows build的主机程序和TEMP传输副本，全部SHA核验原生回收位置。
 

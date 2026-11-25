@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-25",
+  "token": "d67c0c3a7f4b499f",
+  "source": "Windows TEMP/lilac-v731-aegir-buffer-selection-r1-cpu-live-20261125",
+  "original_result": "STOP_ERROR",
+  "original_error": "A legacy boot/capture loop is running; refusing to interleave",
+  "download_attempts": 0,
+  "boot_attempts": 0,
+  "phase": "host preflight before guard",
+  "original_failed_package_not_replayed": true,
+  "new_observation_required": true
+}

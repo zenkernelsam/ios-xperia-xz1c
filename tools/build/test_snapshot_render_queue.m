@@ -5,6 +5,7 @@
 #include <stdio.h>
 
 static unsigned originals;
+static bool completed_queue;
 static bool throwing;
 static NSException *original_exception;
 @interface QueueFunctionHost : NSObject
@@ -49,9 +50,13 @@ static NSException *original_exception;
 - (NSError *)error;
 @end
 @implementation SweetMTLCommandBuffer
-- (MTLCommandBufferStatus)status { errno = 120; return MTLCommandBufferStatusError; }
-- (NSError *)error { errno = 121; return [NSError errorWithDomain:@"original" code:9 userInfo:@{NSLocalizedDescriptionKey: @"AIR render failed result=-22"}]; }
+- (MTLCommandBufferStatus)status { errno = 120; return completed_queue?MTLCommandBufferStatusCompleted:MTLCommandBufferStatusError; }
+- (NSError *)error { errno = 121; return completed_queue?nil:[NSError errorWithDomain:@"original" code:9 userInfo:@{NSLocalizedDescriptionKey: @"AIR render failed result=-22"}]; }
 @end
+#if defined(SWEET_ORIGINAL_QUEUE_RETIREMENT_OBSERVE)
+BOOL SweetMTLCommandResult(id<MTLCommandBuffer> commands,uint32_t *fence,uint32_t *operations)
+{assert(commands && completed_queue);*fence=123;*operations=5;errno=131;return YES;}
+#endif
 static void emit(const char *format, ...)
 {
     char text[400]; va_list arguments; va_start(arguments, format);
@@ -71,6 +76,9 @@ int main(void) { @autoreleasepool {
     encoder->_fragmentBuffers = @{@0:@{}};
     encoder->_pipeline = pipeline;
     SweetMTLCommandBuffer *commands = [SweetMTLCommandBuffer new];
+#if defined(SWEET_ORIGINAL_QUEUE_RETIREMENT_OBSERVE)
+    completed_queue=true;
+#endif
     for (unsigned i = 0; i < 12; ++i) {
         errno = 73; [encoder drawPrimitives:MTLPrimitiveTypeTriangleStrip vertexStart:0 vertexCount:4 instanceCount:1];
         assert(errno == 91);

@@ -9,9 +9,10 @@ PIPE = re.compile(r"SWEET RQUEUE PIPE pid=(\d+) call=(\d+) vertex=([A-Za-z0-9_]{
 DRAW_END = re.compile(r"SWEET RQUEUE DRAW_END pid=(\d+) call=(\d+) outcome=(return|throw) original_behavior=1")
 RESULT = re.compile(r"SWEET RQUEUE RESULT pid=(\d+) call=(\d+) status=([45]) error_nil=([01]) code=(-?\d+) terminal_getters_only=1")
 ERROR = re.compile(r"SWEET RQUEUE ERROR pid=(\d+) call=(\d+) text=([\x21-\x7e]{1,128})")
+RETIRED = re.compile(r"SWEET RQUEUE RETIRED pid=(\d+) call=(\d+) fence=(\d+) operations=(\d+) complete=1 original_command=1")
 
 
-def inspect(text, token):
+def inspect(text, token,require_retirement=False):
     live, ack = "SWEET LOOP LIVE proto=1 token=" + token, "SWEET LOOP ACK FASTBOOT token=" + token
     if not re.fullmatch("[0-9a-f]{16}", token) or text.count(live) != 1 or text.count(ack) != 1 or text.index(live) >= text.index(ack):
         raise ValueError("Need one original render queue interval")
@@ -21,7 +22,8 @@ def inspect(text, token):
     if not configs or len(configs) != len(pids):
         raise ValueError("Original render queue installation differs")
     groups = [[*pattern.finditer(scope)] for pattern in (DRAW, BIND, PIPE, DRAW_END, RESULT, ERROR)]
-    if scope.count("SWEET RQUEUE ") != len(configs) + sum(map(len, groups)):
+    retired=list(RETIRED.finditer(scope))
+    if scope.count("SWEET RQUEUE ") != len(configs) + sum(map(len, groups))+len(retired):
         raise ValueError("Unknown, refused or truncated render queue records")
     draws, bindings, pipelines, ends, results, errors = groups
     if not draws or not results or len({len(draws), len(bindings), len(pipelines), len(ends)}) != 1 or len(results) != len(errors):
@@ -51,6 +53,15 @@ def inspect(text, token):
             raise ValueError("Original terminal command error differs")
         result_rows.append(dict(pid=int(key[0]), call=int(key[1]), status=status,
                                 error_nil=bool(nil), code=code, description=error[3]))
+        matching=[r for r in retired if r.groups()[:2]==key]
+        if status==4 and require_retirement:
+            if len(matching)!=1 or matching[0].start()<=error.end() or int(matching[0][3])<=0 or int(matching[0][4])<=0:
+                raise ValueError("Original completed queue has no valid retirement")
+            result_rows[-1].update(fence=int(matching[0][3]),operations=int(matching[0][4]))
+        elif matching:
+            raise ValueError("Unexpected original queue retirement")
+    if len(retired)!=(sum(r["status"]==4 for r in result_rows) if require_retirement else 0):
+        raise ValueError("Foreign, duplicate or incomplete original queue retirement")
     return dict(token=token, draws=draw_rows, results=result_rows,
                 failed_commands=sum(r["status"] == 5 for r in result_rows),
                 original_arguments_and_errors_preserved=True, extra_GPU_work=0,

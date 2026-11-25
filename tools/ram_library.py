@@ -94,7 +94,11 @@ def load(folder,expected=None):
                 spec=aegir_scope_specification(observer['metal_resources'],observer['png_imageio_encoder_source_sha256'],
                     observer['source_files']['gpu/compat/AegirSnapshotCacheScope.h'],
                     observer['source_files']['gpu/diagnostics/SnapshotRenderQueueObserve.h']
-                    if observer.get('snapshot_render_queue_observer') else None)
+                    if observer.get('snapshot_render_queue_observer') else None,
+                    observer['source_files']['gpu/diagnostics/SnapshotReadbackObserve.h']
+                    if observer.get('snapshot_readback_observer') else None,
+                    observer['source_files']['gpu/diagnostics/OriginalCGInputObserve.h']
+                    if observer.get('original_CG_input_observer') else None)
                 spec['identity_header_sha256']=sha(aegir_scope_header(spec))
                 assert spec==observer['aegir_snapshot_cache_scope']
                 assert observer['aegir_snapshot_scope_exact_caller_UUID_and_preserved_old_files_host_passed']
@@ -109,6 +113,24 @@ def load(folder,expected=None):
                 assert observer['snapshot_render_queue_no_extra_GPU_work'] and observer['snapshot_render_queue_actual_host_decoder_passed']
                 assert re.fullmatch('[0-9a-f]{64}',observer['snapshot_render_queue_host_source_sha256'])
                 assert re.fullmatch('[0-9a-f]{64}',observer['snapshot_render_queue_decoder_source_sha256'])
+            if observer.get('snapshot_readback_observer'):
+                sources.add('gpu/diagnostics/SnapshotReadbackObserve.h')
+                assert observer['snapshot_render_queue_observer'] and observer['snapshot_readback_revision']==1
+                assert observer['snapshot_readback_max_pixels']==1048576 and observer['snapshot_readback_once_per_process']
+                assert observer['snapshot_readback_original_returned_bytes_not_changed'] and observer['snapshot_readback_extra_GPU_work'] is False
+                assert observer['snapshot_readback_host_ASan_UBSan_row_FNV_bounds_guards_passed'] and observer['snapshot_readback_actual_host_decoder_passed']
+                assert re.fullmatch('[0-9a-f]{64}',observer['snapshot_readback_host_source_sha256'])
+                assert re.fullmatch('[0-9a-f]{64}',observer['snapshot_readback_decoder_source_sha256'])
+            if observer.get('original_queue_retirement_observer'):
+                assert observer['snapshot_render_queue_observer'] and observer['original_queue_retirement_revision']==1
+                assert observer['original_queue_retirement_completed_fence_and_operation_count_required']
+                assert observer['original_queue_retirement_same_original_command_no_extra_GPU_work']
+            if observer.get('original_CG_input_observer'):
+                sources.add('gpu/diagnostics/OriginalCGInputObserve.h')
+                assert observer['snapshot_readback_observer'] and observer['original_CG_input_revision']==1
+                assert observer['original_CG_input_provider_bytes_max']==4194304 and observer['original_CG_input_once_per_process']
+                assert observer['original_CG_input_no_pixel_conversion_or_extra_GPU_work'] and observer['original_CG_input_host_ASan_UBSan_actual_provider_passed']
+                assert re.fullmatch('[0-9a-f]{64}',observer['original_CG_input_host_source_sha256'])
             if observer.get('original_request_observer'):
                 sources.add('gpu/diagnostics/MetalRequestObserve.h')
                 assert observer.get('registration_only') and observer.get('original_postdraw_observer')
@@ -409,6 +431,16 @@ def load(folder,expected=None):
     if m['frontend_build_binding'].get('multisample_backend_revision'):
         assert m['frontend_build_binding']['multisample_backend_revision']==1 and m['frontend_build_binding']['multisample_real_sample_count_and_original_page_import']
         assert all(path in source for path in ('MetalMultisampleAPI.h','MultisampleLayout.h','MultisampleResolveGLES.h'))
+    if m['frontend_build_binding'].get('ordered_XR_image_barrier_revision'):
+        assert m['frontend_build_binding']['ordered_XR_image_barrier_revision'] in (1,2)
+        assert 'OrderedImageBarrier.h' in source
+        assert m['frontend_build_binding']['ordered_XR_barrier_exact_A5xx_sysmem_image_contract']
+        assert m['frontend_build_binding']['ordered_XR_barrier_waits_shader_and_CP_writes_and_invalidates_UCHE']
+        assert m['frontend_build_binding']['ordered_XR_per_primitive_rounding_and_final_fences_preserved']
+        if m['frontend_build_binding']['ordered_XR_image_barrier_revision']==2:
+            assert m['frontend_build_binding']['ordered_XR_monotonic_timestamp_wait_and_separate_scratch_cell']
+            if 'ordered_XR_requires_synchronous_GL_frontend' in m['frontend_build_binding']:
+                assert m['frontend_build_binding']['ordered_XR_requires_synchronous_GL_frontend'] is True
     for path,digest in source.items():
         path=Path(path);assert not path.is_absolute() and '..' not in path.parts
         assert re.fullmatch('[0-9a-f]{64}',digest)

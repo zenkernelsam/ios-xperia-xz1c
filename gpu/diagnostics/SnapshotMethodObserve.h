@@ -4,6 +4,9 @@
 #if defined(SWEET_SNAPSHOT_RENDER_QUEUE_OBSERVE)
 #include "SnapshotRenderQueueObserve.h"
 #endif
+#if defined(SWEET_SNAPSHOT_READBACK_OBSERVE)
+#include "SnapshotReadbackObserve.h"
+#endif
 #import <Metal/Metal.h>
 #include <objc/runtime.h>
 #include <stdlib.h>
@@ -96,6 +99,9 @@ static void snapshot_read(id object, SEL selector, void *bytes, NSUInteger row, 
     @finally {
         int outgoing_errno = errno;
         postdraw_end(call, "read", returned ? "return" : "throw", 0, false);
+#if defined(SWEET_SNAPSHOT_READBACK_OBSERVE)
+        if(returned && call.recorded)snapshot_readback_once(object,bytes,row,region,level,0,postdraw_pid,call.call,postdraw_emit);
+#endif
         errno = outgoing_errno;
     }
 }
@@ -110,6 +116,9 @@ static void snapshot_read_full(id object, SEL selector, void *bytes, NSUInteger 
     @finally {
         int outgoing_errno = errno;
         postdraw_end(call, "read_full", returned ? "return" : "throw", 0, false);
+#if defined(SWEET_SNAPSHOT_READBACK_OBSERVE)
+        if(returned && call.recorded)snapshot_readback_once(object,bytes,row,region,level,slice,postdraw_pid,call.call,postdraw_emit);
+#endif
         errno = outgoing_errno;
     }
 }

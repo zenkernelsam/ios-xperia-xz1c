@@ -1,0 +1,78 @@
+{
+  "date": "2026-11-26",
+  "token": "454044d0bb3177b8",
+  "raw_sha256": "9afbbafd41c78cef4c0593d2787137836c432d79cdc5f92c31674849b5ae8ddc",
+  "GLES_sha256": "6efabfc0627a8818a8c4c45665459cd33d8ee814f2e50a3f3cdc4813bb254325",
+  "pid": 296,
+  "actual_sig": 11,
+  "post_ACK_exit_period": true,
+  "record_character_offset": 1762368,
+  "ACK_character_offset": 1758483,
+  "base": "0x101844000",
+  "base_verified_by_draw_and_wrapper_return_PCs": true,
+  "relative_return_anchors": [
+    "0xba08",
+    "0xab2c"
+  ],
+  "actual_disassembly_sha256": "271009fba09044c33ee7c4e5c6e08a57c3feba2ad37b878d144381d8574924dd",
+  "frames": [
+    {
+      "offset": "0x41498c",
+      "symbol": "_fd_bo_map",
+      "symbol_offset": "0x0"
+    },
+    {
+      "offset": "0x4175c8",
+      "symbol": "_fd_submit_sp_new_ringbuffer",
+      "symbol_offset": "0x100"
+    },
+    {
+      "offset": "0x416cfc",
+      "symbol": "_fd_submit_new_ringbuffer",
+      "symbol_offset": "0x20"
+    },
+    {
+      "offset": "0x3869a8",
+      "symbol": "_fd_batch_create",
+      "symbol_offset": "0x150"
+    },
+    {
+      "offset": "0x388fec",
+      "symbol": "_alloc_batch_locked",
+      "symbol_offset": "0x40"
+    },
+    {
+      "offset": "0x3893c4",
+      "symbol": "_fd_batch_from_fb",
+      "symbol_offset": "0x1a8"
+    },
+    {
+      "offset": "0x38ad10",
+      "symbol": "_fd_context_batch",
+      "symbol_offset": "0xac"
+    },
+    {
+      "offset": "0x38c430",
+      "symbol": "_fd_draw_vbo",
+      "symbol_offset": "0x134"
+    },
+    {
+      "offset": "0xf636c",
+      "symbol": "__mesa_DrawArraysInstancedBaseInstance",
+      "symbol_offset": "0x154"
+    },
+    {
+      "offset": "0xba08",
+      "symbol": "_render_draw_with_depth",
+      "symbol_offset": "0xed0"
+    },
+    {
+      "offset": "0xab2c",
+      "symbol": "_sweetgl_metal_render_draw",
+      "symbol_offset": "0x50"
+    }
+  ],
+  "current_LIVE_failure_root_cause_not_inferred": true,
+  "no_kernel_or_allocator_change_authorized": true,
+  "device_operations": 0
+}

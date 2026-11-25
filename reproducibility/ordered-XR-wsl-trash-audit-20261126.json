@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-26",
+  "distributions": [
+    {
+      "distribution": "Ubuntu",
+      "non_directory_Trash_entries": 0
+    },
+    {
+      "distribution": "Ubuntu-22.04",
+      "non_directory_Trash_entries": 0
+    }
+  ],
+  "Windows_Mac_Trash_not_emptied": true,
+  "device_operations": 0
+}

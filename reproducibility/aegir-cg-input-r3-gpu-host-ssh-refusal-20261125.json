@@ -1,0 +1,11 @@
+{
+  "date": "2026-11-25",
+  "token": "228fe8b4a5528eb4",
+  "source": "Windows TEMP/lilac-v731-aegir-cg-input-r3-gpu-slot-wait-20261125",
+  "original_error": "Mac source audit SSH connection timed out before device operations",
+  "controller_log_sha256": "e46097880995314cef8463ce4df98163f3840b9dfca6a1a836d5f92b21290e06",
+  "download_attempts": 0,
+  "boot_attempts": 0,
+  "actual_run_directory_created": false,
+  "original_failed_package_not_replayed": true
+}

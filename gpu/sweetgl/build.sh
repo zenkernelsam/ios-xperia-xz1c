@@ -24,6 +24,7 @@ INC="-I$H/include -I$M/include -I$M/src -I$M/src/mesa -I$M/src/mapi
 	-I$M/src/gallium/include -I$M/src/gallium/auxiliary
 	-I$M/src/gallium/drivers -I$M/src/gallium/winsys -I$M/src/freedreno -I$M/src/freedreno/common -I$M/src/freedreno/drm -I$B/src -I$B/src/mesa
 	-I$B/src/mapi -I$B/src/freedreno/registers/adreno -I$M/src/gallium/drivers/freedreno -I$M/include/drm-uapi"
+INC="$INC -I$M/src/gallium/drivers/freedreno/ir3 -I$B/src/compiler -I$B/src/compiler/nir"
 O=${SWEETGL_OUTPUT:-$H/out}
 mkdir -p "$O"
 cp "$B/src/mapi/shared-glapi/libglapi.0.dylib" "$O/libglapi.0.dylib"

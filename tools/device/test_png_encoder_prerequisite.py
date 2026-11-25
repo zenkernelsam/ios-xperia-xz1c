@@ -13,12 +13,14 @@ class PNGReferenceVersion(unittest.TestCase):
     def fixture(self):
         source='4'*64;kernel='1'*64
         observer=dict(target_process='backboardd',cif10_reference_shared_encoder=True,png_imageio_encoder_source_sha256=source)
-        row=dict(artifact=dict(version=730,exception_observer=observer,metal_resources=dict(library_sha256='3'*64)))
+        row=dict(artifact=dict(version=730,token='5'*16,kernel_sha256=kernel,sha256='6'*64,
+                               exception_observer=observer,metal_resources=dict(library_sha256='3'*64)))
         names=('Metal_resources','Metal_queue','AIR_compute','AIR_render','AIR_constants','AIR_XR','Metal_IOSurface','Metal_mipmaps','AIR_narrow','AIR_half','Metal_MRT','AIR_sampler','Program_cache','AIR_static_half')
         png=dict(encoder_source_sha256=source,filter_policies_match_original=dict(up=True),
             cases=[dict(filters=dict(up=dict(pixels_equal=True,ICC_equal=True,metadata_equal=True))) for _ in range(6)])
         actual=dict(exceptions={**{name:{} for name in names},'CIF10_PNG_reference':png},
-            ram_library_binding=dict(library_sha256='2'*64),token='5'*16,image_sha256='6'*64,log_sha256='7'*64)
+            ram_library_binding=dict(library_sha256='2'*64),token='5'*16,kernel_sha256=kernel,version=730,
+            image_sha256='6'*64,log_sha256='7'*64)
         resources=dict(gles_library_sha256='2'*64,library_sha256='3'*64)
         return row,actual,resources,kernel,source
 

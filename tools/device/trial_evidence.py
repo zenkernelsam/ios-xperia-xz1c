@@ -151,14 +151,20 @@ def verify(directory,mode,kernel_sha=None,version=None):
                     _,exceptions['Loaded_snapshot_PNG']=inspect_loaded_png(text,a['token'],source='loaded')
                 if a['exception_observer'].get('snapshot_render_queue_observer'):
                     from snapshot_render_queue_evidence import inspect as inspect_render_queue
-                    exceptions['Original_render_queue']=inspect_render_queue(text,a['token'])
+                    exceptions['Original_render_queue']=inspect_render_queue(text,a['token'],require_retirement=bool(a['exception_observer'].get('original_queue_retirement_observer')))
                     assert exceptions['Original_render_queue']['failed_commands']==0, 'Original Metal command returned an error'
+                if a['exception_observer'].get('snapshot_readback_observer'):
+                    from snapshot_readback_evidence import inspect as inspect_readback
+                    exceptions['Original_snapshot_readback']=inspect_readback(text,a['token'])
+                if a['exception_observer'].get('original_CG_input_observer'):
+                    from snapshot_readback_evidence import inspect as inspect_cg_input
+                    exceptions['Original_CG_input']=inspect_cg_input(text,a['token'],source='cgimage')
                 if a['exception_observer'].get('AIR_XR_probe'):exceptions['AIR_XR']=verify_air_xr(text,a['token'])
                 if a['exception_observer'].get('Metal_IOSurface_probe'):exceptions['Metal_IOSurface']=verify_metal_surface(text,a['token'])
                 if a['exception_observer'].get('Metal_mipmap_probe'):exceptions['Metal_mipmaps']=verify_metal_mips(text,a['token'])
                 if a['exception_observer'].get('AIR_narrow_probe'):exceptions['AIR_narrow']=verify_air_narrow(text,a['token'],a['exception_observer']['AIR_narrow_fixture'])
                 if a['exception_observer'].get('AIR_half_probe'):exceptions['AIR_half']=verify_air_half(text,a['token'],a['exception_observer']['AIR_half_fixture'])
-                if a['exception_observer'].get('AIR_MRT_probe'):exceptions['Metal_MRT']=verify_metal_mrt(text,a['token'],a['exception_observer']['AIR_MRT_fixture'],require_xr_clear_elision=a.get('metal_resources',{}).get('native_XR_clear_decode_elision',False))
+                if a['exception_observer'].get('AIR_MRT_probe'):exceptions['Metal_MRT']=verify_metal_mrt(text,a['token'],a['exception_observer']['AIR_MRT_fixture'],require_xr_clear_elision=a.get('metal_resources',{}).get('native_XR_clear_decode_elision',False),require_image_barrier=a.get('metal_resources',{}).get('ordered_XR_image_barrier_revision',0))
                 if a['exception_observer'].get('AIR_sampler_probe'):exceptions['AIR_sampler']=verify_air_sampler(text,a['token'],a['exception_observer']['AIR_sampler_fixture'])
                 if a['exception_observer'].get('program_cache_probe'):exceptions['Program_cache']=verify_program_cache(text,a['token'],a['exception_observer']['AIR_sampler_fixture'])
                 if a['exception_observer'].get('AIR_static_half_probe'):exceptions['AIR_static_half']=verify_static_half(text,a['token'],a['exception_observer']['AIR_static_half_fixture'])

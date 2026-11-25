@@ -13,6 +13,7 @@ from ram_library import load as load_ram,require_same_library
 from owner_metadata import verify as verify_owner_metadata
 from native_prerequisite import verify as verify_native_prerequisite
 from png_encoder_prerequisite import inspect as verify_png_prerequisite
+from native_png_prerequisite import verify as verify_native_png_prerequisite
 
 def prerequisites(record, args):
     mode=record['trial_mode'];kernel=record['kernel_sha256'];version=record.get('version');proof={}
@@ -28,6 +29,7 @@ def prerequisites(record, args):
         assert args.owner_evidence, 'Same-kernel owner evidence is required'
         proof['owner']=verify(args.owner_evidence,'owner',kernel,version)
     if mode=='gpu':
+        joint_native_png=None
         assert args.ready_evidence and args.cpu_evidence
         proof['ready']=verify(args.ready_evidence,'ready',kernel,version)
         proof['ramcpu']=verify(args.cpu_evidence,'ramcpu',kernel,version)
@@ -38,11 +40,15 @@ def prerequisites(record, args):
             assert proof['gles']['ram_library_binding']['library_sha256']==record['metal_resources']['gles_library_sha256']
         if record.get('exception_observer',{}).get('registration_only'):
             assert getattr(args,'native_evidence',None),'Short registration needs exact complete native hardware evidence'
-            proof['native']=verify_native_prerequisite(args.native_evidence,record['metal_resources'],kernel,version)
+            if (record.get('exception_observer',{}).get('png_filter_encoder') and getattr(args,'png_evidence',None)
+                and Path(args.native_evidence).resolve()==Path(args.png_evidence).resolve()):
+                joint_native_png=verify_native_png_prerequisite(args.native_evidence,record['metal_resources'],kernel,
+                    record['exception_observer']['png_imageio_encoder_source_sha256'],version)
+            proof['native']=joint_native_png[0] if joint_native_png else verify_native_prerequisite(args.native_evidence,record['metal_resources'],kernel,version)
             assert proof['native']==record['exception_observer']['prior_native_hardware_proof'],'Embedded native proof differs from original actual stage'
         if record.get('exception_observer',{}).get('png_filter_encoder'):
             assert getattr(args,'png_evidence',None),'PNG encoder requires exact shared-source native pixel/profile/metadata reference'
-            proof['png_encoder']=verify_png_prerequisite(args.png_evidence,record['metal_resources'],kernel,record['exception_observer']['png_imageio_encoder_source_sha256'],version=version)
+            proof['png_encoder']=joint_native_png[1] if joint_native_png else verify_png_prerequisite(args.png_evidence,record['metal_resources'],kernel,record['exception_observer']['png_imageio_encoder_source_sha256'],version=version)
             assert proof['png_encoder']==record['exception_observer']['png_encoder_prior_proof']
     return proof
 
@@ -93,6 +99,7 @@ class DiagnosticPolicy(LogPolicy):
             if re.search(r'SWEET ASCOPE CALL pid=\d+ call=\d+ result=-[1-9]',line):self.recoverable='AEGIR_SNAPSHOT_SCOPE_DIRECTORY_FAILED'
             if re.search(r'SWEET RQUEUE CONFIG pid=\d+ revision=1 installed=0',line):self.recoverable='ORIGINAL_RENDER_QUEUE_OBSERVER_REFUSED'
             if re.search(r'SWEET RQUEUE RESULT pid=\d+ call=\d+ status=5 error_nil=0',line):self.recoverable='ORIGINAL_METAL_COMMAND_ERROR'
+            if re.search(r'SWEET RBYTES REFUSED pid=\d+ call=\d+',line):self.recoverable='ORIGINAL_READBACK_OBSERVER_REFUSED'
             if re.search(r'SWEET QUAD ROUTE CONFIG pid=\d+ installed=(?:[0-9]|1[01]) expected=12',line):self.recoverable='QUAD_ROUTE_OBSERVER_INSTALL_INCOMPLETE'
             if re.search(r'SWEET QUAD ROUTE CONFIG pid=\d+ installed=(?:[0-9]|1[0-9]|2[0-5]) expected=26',line):self.recoverable='QUAD_ROUTE_OBSERVER_INSTALL_INCOMPLETE'
             if re.search(r'SWEET QUAD ROUTE CONFIG pid=\d+ installed=(?:[0-9]|1[0-9]|2[0-6]) expected=27',line):self.recoverable='QUAD_ROUTE_OBSERVER_INSTALL_INCOMPLETE'
@@ -175,7 +182,9 @@ def main():
     p.add_argument('--gles-evidence')
     p.add_argument('--native-evidence')
     p.add_argument('--png-evidence')
+    p.add_argument('--wait-before-guard',type=int,default=0)
     a=p.parse_args();bundle=Path(a.bundle)
+    assert a.wait_before_guard==0 or 30<=a.wait_before_guard<=120, 'Pre-guard wait must leave the full current-boot return budget'
     record=json.loads((bundle/'artifacts.json').read_text())['artifacts'][0]
     Artifact(record).validate();mode=record['trial_mode'];kernel=record['kernel_sha256']
     if a.live:
@@ -238,6 +247,7 @@ def main():
     write_json(directory/'payload-audit.json',payload_proof)
     (directory/'source-audit.log').write_text(audit.stdout+audit.stderr)
     journal=Journal(directory);lock=LiveLock(directory/'device.lock');ops=DiagnosticOps(journal)
+    ops.wait_before_guard_seconds=a.wait_before_guard
     write_json(directory/'owner.json',{'pid':os.getpid(),'token':record['token'],'mode':mode,'max_cycles':1})
     print('RUN_DIR='+str(directory),flush=True);print(json.dumps({k:record[k] for k in ('token','kernel_sha256','sha256','trial_mode')}),flush=True)
     try:

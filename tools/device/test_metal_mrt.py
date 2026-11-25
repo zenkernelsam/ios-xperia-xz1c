@@ -52,4 +52,23 @@ class MRTEvidence(unittest.TestCase):
         for bad in (text.replace(order_expected(555),'0'*16),text.replace('primitives=2 instances=2','primitives=2 instances=1'),
             text.replace('first=3 count=6','first=0 count=6'),text.replace('fp32_blend=0','fp32_blend=1'),text.replace('HDR_negative=1','HDR_negative=0')):
             with self.assertRaises(AssertionError):verify(bad,self.token,self.fixture)
+    def test_timestamp_barriers_require_every_ordered_update(self):
+        text=self.sample()
+        for f in range(552,556):
+            for phase in (1,2):
+                key=f'SWEET METAL MRT writeback format={f} handle=1 mask={15 if phase==1 else 10}'
+                record='SWEET XR BARRIER revision=2 primitives=1 instances=1 cached=1 fallback=0 timestamp_wait=1 UCHE_invalidate=1 final_fence_required=1\n'
+                # The first mask15 is Clear; insert at the second mask15 for Load.
+                if phase==1:
+                    first=text.index(key);second=text.index(key,first+1)
+                    text=text[:second]+record+text[second:]
+                else:text=text.replace(key,record+key,1)
+        marker='SWEET METAL MRT ordered_draw image_mask=1 primitives=2 instances=2 fp32=1 per_primitive_XR_round=1 image_barriers=1'
+        record='SWEET XR BARRIER revision=2 primitives=2 instances=2 cached=4 fallback=0 timestamp_wait=1 UCHE_invalidate=1 final_fence_required=1'
+        text=text.replace(marker,marker+'\n'+record)
+        result=verify(text,self.token,self.fixture,require_image_barrier=2)
+        self.assertTrue(result['records'][0]['optimized_A5xx_image_barrier_verified'])
+        for changed in (text.replace('cached=4','cached=3'),text.replace('fallback=0','fallback=1'),
+                        text.replace('timestamp_wait=1','timestamp_wait=0'),text.replace(record,'',1)):
+            with self.assertRaises(AssertionError):verify(changed,self.token,self.fixture,require_image_barrier=2)
 if __name__=='__main__':unittest.main()
