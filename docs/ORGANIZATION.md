@@ -6,6 +6,8 @@ PCM保留运行时／实时clock和cache交接收尾：[Mac54项／98文件／75
 
 提交diff检查首次拒绝共享peer头的EOF空行，修正后按最终字节重做WSL／Mac十一组和四个对象验证，ARM64 runtime代码SHA未变。[前一报告](../reproducibility/lilac-pcm-runtime-cache-offline-20261126.json)原文保留，[最终准确源报告](../reproducibility/lilac-pcm-runtime-cache-final-20261126.json)记录两者身份。补回收[Mac27项／50文件／3722214 B](../reproducibility/pcm-runtime-eof-macos-trash-20261126.json)及[Windows12项／13文件／17818937 B](../reproducibility/pcm-runtime-eof-windows-recycle-20261126.json)，包含复验host产物和一次性传输副本；原日志／manifest／旧源码备份保留，native目标SHA一致，垃圾桶未清空。
 
+主提交`fd89415286bbcd2599e49d7d59fbeb758c4e9fb7`已推送origin/main，[Mac源同步凭据](../reproducibility/pcm-runtime-formal-git-sync-20261126.json)28份变更与commit逐字节一致，实际runtime／clock／cache源与正式source验证通过。预同步原文先保存，再进未drop的可恢复stash`220b8c174f04ecc5d9db8e45444e265983b7d28e`；Mac旧builder保持pause，GPU r5／冻结SweetGPU及Windows原sampler保持。
+
 具体SMEM FIFO收尾：[Mac24项／44文件／2801648 B](../reproducibility/pcm-smem-fifo-macos-trash-20261126.json)进入原生Trash，[Windows23项／23文件／35077856 B](../reproducibility/pcm-smem-fifo-windows-recycle-20261126.json)进入原生回收站，包含WSL在正式共享build的已结束主机程序、三个ARM64 object／dSYM和TEMP传输tar。回收目标逐字节SHA一致，45个Mac和61个Windows保护文件保持；准确源码、原编译／test日志、五份展开头文件、manifest、源码备份和GPU r5候选保留。
 
 [两套Ubuntu全部用户Trash为空](../reproducibility/pcm-smem-fifo-wsl-trash-audit-20261126.json)，Windows／Mac未清空。整合前[五份入口原文](archive/20261126/pcm-smem-fifo/original-document-manifest.json)原字节／SHA保存；STATUS从20354 B整理为约10KiB，只保留设备、已验准确组合、r5候选和外设待验门槛，旧逐轮回程／回收／同步日志由topic／原报告和本页索引。GPU候选与失败证据未改，设备操作0。

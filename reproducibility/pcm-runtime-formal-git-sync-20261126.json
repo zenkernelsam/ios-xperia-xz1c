@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-26",
+  "before_HEAD": "f8971c5736a994ac284fee9d73b1b3c791003111",
+  "after_HEAD": "fd89415286bbcd2599e49d7d59fbeb758c4e9fb7",
+  "recoverable_pre_sync_stash": "220b8c174f04ecc5d9db8e45444e265983b7d28e",
+  "stash_not_dropped": true,
+  "original_source_bytes": [
+    {
+      "path": "reproducibility/current-device-tools.json",
+      "sha256": "3f9721d0099b5bb94e1bbfa3b093b24476003a48a133500c9795705bfccd7e3e"
+    },
+    {
+      "path": "tools/build/LilacPcmSmemPeerFixture.h",
+      "sha256": "64f2a03d17e035bcaf7ca859bab812a45cd926b0d4db04c27773adc8c536a2e1"
+    },
+    {
+      "path": "tools/build/check_lilac_pcm_session.py",
+      "sha256": "d12faa10eccc09289eaaabba125e8ef6340accc6e0095d2162300a3a34b39e46"
+    },
+    {
+      "path": "tools/build/compile_lilac_pcm_runtime.cpp",
+      "sha256": "35ecdd1cfdf021133de60b6d4cc28c6149cacf2c94abd765be83325c5d57bb8b"
+    },
+    {
+      "path": "tools/build/test_lilac_pcm_runtime.cpp",
+      "sha256": "00f98091e2b91c4d4bc0191276feeb90948fa794dd0dc863845e502ff6365202"
+    },
+    {
+      "path": "tools/build/test_lilac_pcm_smem_transport.cpp",
+      "sha256": "4bab3a6ac7c70ec41f02c37f68448c3439c816f4fdde8087e899f62745a7e84a"
+    },
+    {
+      "path": "xnu/support/LilacAsmPcmStream.h",
+      "sha256": "b3710f67b00a155ffb65dc0437cbbd35120a06c36520dc09154c791efc738b9a"
+    },
+    {
+      "path": "xnu/support/LilacPcmPlaybackRuntime.h",
+      "sha256": "94c2a5e2b4455c5d2b4a5690a696399dbd8d0778046bdd13875e91e8aacf87b9"
+    },
+    {
+      "path": "xnu/support/LilacPcmPlaybackSession.h",
+      "sha256": "7db2638e0edd0902a2525b785a07ace7066e796cec6ab5680a704c6be7420d30"
+    },
+    {
+      "path": "xnu/support/LilacPcmPlaybackTransport.h",
+      "sha256": "6387b42b3730c366b4c507d790aef474a1a6b01dd34137fb8af5942595f5ba83"
+    }
+  ],
+  "changed_files_byte_equal_to_commit": 28,
+  "source_validation_passed": true,
+  "compiled_final_runtime_clock_cache_sources_equal": true,
+  "pause_preserved": true,
+  "frozen_GPU_SHA_preserved": true,
+  "device_operations": 0
+}

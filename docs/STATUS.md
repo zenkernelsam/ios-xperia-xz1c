@@ -74,7 +74,7 @@ WSL／Mac同源十一组ASan／UBSan及四个ARM64对象通过，保留原2048�
 
 正式源码、增量、工具、锁和报告只在本仓库。Windows／WSL使用同一正式目录，Mac为`~/Desktop/ios-xperia-xz1c`且旧autobuild保持pause。[BUILD](BUILD.md)给准确源码复现，[OPERATIONS](OPERATIONS.md)给准入与回程，[INDEX](INDEX.md)串技术和历史，[ORGANIZATION](ORGANIZATION.md)维护回收与可恢复stash凭据。所有已验binary仅准入自己的准确组合；HEAD候选不冒充生产UI。SDK／签名变化须新产物实机验证，全新gl5首次启动仍未独立验收。
 
-本轮具体FIFO主提交`68c0035…`已推送，[Mac正式同步](../reproducibility/pcm-smem-fifo-formal-git-sync-20261126.json)22份变更逐字节一致，实际十组／ARM64编译源和source验证通过；pre-sync源以未drop的stash保存。GPU候选及冻结内核保持。
+本轮运行时／clock／cache主提交`fd89415…`已推送，[Mac正式同步](../reproducibility/pcm-runtime-formal-git-sync-20261126.json)28份变更逐字节一致，实际十一组／四对象编译源和source验证通过；pre-sync源以未drop的stash保存。GPU候选及冻结内核保持。
 
 只操作BH905ND69G，fastboot设备命令显式`-s`；COM≥10、VID1209/PID0001且一个worker；PON只0x06，单download／boot、失败不重发。内核GPU底层／allocator／SCM／PON／RPC／VM冻结，SweetGPU.cpp SHA **`aa2c36792a2298b060aa858eabdc039522fcdde3cfdbafd453c5fc6c0683c157`**。gl5／userdata／SD／TA／XFL／校准／备份／救砖输入受保护。
 
