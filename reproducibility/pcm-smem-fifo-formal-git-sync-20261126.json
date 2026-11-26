@@ -1,0 +1,43 @@
+{
+  "date": "2026-11-26",
+  "before_HEAD": "9a67a603337f7c8702ae0cefcc21c387c06cda08",
+  "after_HEAD": "68c00352548785fd76ad892336c5136d3b01bfd0",
+  "recoverable_pre_sync_stash": "db9a7ff895dce3e87ac7fd1e39317713846c34d6",
+  "stash_not_dropped": true,
+  "original_source_bytes": [
+    {
+      "path": "reproducibility/current-device-tools.json",
+      "sha256": "f4a2667f5a86ac311cfc2ac2bc162d81d229359564afa1174054bde1cbd317b8"
+    },
+    {
+      "path": "tools/build/check_lilac_afe_slimbus.py",
+      "sha256": "cc6e8176582a23d01387d126dff857e95a3085d1d3c24ff4bb86d0154f97b3a5"
+    },
+    {
+      "path": "tools/build/check_lilac_pcm_session.py",
+      "sha256": "3afb85b5481317c84bcebef8459682cbb8a9d79588aa015e9e6b35cf63a717df"
+    },
+    {
+      "path": "tools/build/compile_lilac_pcm_smem.cpp",
+      "sha256": "9bbcc12f02a7b3684c1a907833d36ddace81740792a51f55c4eb59d9e532214b"
+    },
+    {
+      "path": "tools/build/test_lilac_apr_smem_fifo.cpp",
+      "sha256": "a5ab9597dbb4bf90a63aeecf469670e00369a604cc14ae85b322a7bbe887e4ed"
+    },
+    {
+      "path": "tools/build/test_lilac_pcm_smem_transport.cpp",
+      "sha256": "5e2c06888fd81bf8b2cd97565c1da184d63ee93c4e3c2c1e270ea9057bad806a"
+    },
+    {
+      "path": "xnu/support/LilacAprSmemFifo.h",
+      "sha256": "020433c695256e71db0c72c50a89b56866ca16ed9e219ffd023413291fcc1563"
+    }
+  ],
+  "changed_files_byte_equal_to_commit": 22,
+  "source_validation_passed": true,
+  "compiled_PCM_FIFO_chain_sources_equal": true,
+  "pause_preserved": true,
+  "frozen_GPU_SHA_preserved": true,
+  "device_operations": 0
+}

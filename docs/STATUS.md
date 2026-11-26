@@ -72,6 +72,8 @@ barrier revision4从当前linked fragment program的ImageUnits映射GL binding�
 
 正式源码、增量、工具、锁和报告只在本仓库。Windows／WSL使用同一正式目录，Mac为`~/Desktop/ios-xperia-xz1c`且旧autobuild保持pause。[BUILD](BUILD.md)给准确源码复现，[OPERATIONS](OPERATIONS.md)给准入与回程，[INDEX](INDEX.md)串技术和历史，[ORGANIZATION](ORGANIZATION.md)维护回收与可恢复stash凭据。所有已验binary仅准入自己的准确组合；HEAD候选不冒充生产UI。SDK／签名变化须新产物实机验证，全新gl5首次启动仍未独立验收。
 
+本轮具体FIFO主提交`68c0035…`已推送，[Mac正式同步](../reproducibility/pcm-smem-fifo-formal-git-sync-20261126.json)22份变更逐字节一致，实际十组／ARM64编译源和source验证通过；pre-sync源以未drop的stash保存。GPU候选及冻结内核保持。
+
 只操作BH905ND69G，fastboot设备命令显式`-s`；COM≥10、VID1209/PID0001且一个worker；PON只0x06，单download／boot、失败不重发。内核GPU底层／allocator／SCM／PON／RPC／VM冻结，SweetGPU.cpp SHA **`aa2c36792a2298b060aa858eabdc039522fcdde3cfdbafd453c5fc6c0683c157`**。gl5／userdata／SD／TA／XFL／校准／备份／救砖输入受保护。
 
 本轮废弃host产物进入[Mac原生Trash](../reproducibility/pcm-smem-fifo-macos-trash-20261126.json)和[Windows回收站](../reproducibility/pcm-smem-fifo-windows-recycle-20261126.json)，WSL共享build产物也进Windows回收站；[两套Ubuntu Trash为空](../reproducibility/pcm-smem-fifo-wsl-trash-audit-20261126.json)，未永久删除或清空Windows／Mac垃圾桶。整合前五份入口和原SHA在[本轮原文archive](archive/20261126/pcm-smem-fifo/original-document-manifest.json)。原失败、准确候选、少量所需raw／proof和受保护输入保留，旧多轮状态与回收日志不再复制到此入口。
