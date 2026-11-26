@@ -1,0 +1,27 @@
+[
+  {
+    "source": "docs/STATUS.md",
+    "archive": "docs/archive/20261126/adsp-boot-source-audit/originals/STATUS.md",
+    "sha256": "27891aff62a86ce8cc0f525ebc5828bb24ab6d7c5cb691ecf2ee8592b9a4e730"
+  },
+  {
+    "source": "docs/BUILD.md",
+    "archive": "docs/archive/20261126/adsp-boot-source-audit/originals/BUILD.md",
+    "sha256": "4a33a8aef3ca2d0adcb0a5c982dcbad20f272a3aa2cd4b1d6f326b40f0319cd5"
+  },
+  {
+    "source": "docs/LILAC-PERIPHERALS.md",
+    "archive": "docs/archive/20261126/adsp-boot-source-audit/originals/LILAC-PERIPHERALS.md",
+    "sha256": "dbf90850f074aafa7df4e18af5a3d0dd18c3baa3818e24c5187e57abf26af0fe"
+  },
+  {
+    "source": "docs/INDEX.md",
+    "archive": "docs/archive/20261126/adsp-boot-source-audit/originals/INDEX.md",
+    "sha256": "4f805037f9c1baf5428224613d67e190d385bda1715f8cd67eceeffe45a37bd1"
+  },
+  {
+    "source": "docs/ORGANIZATION.md",
+    "archive": "docs/archive/20261126/adsp-boot-source-audit/originals/ORGANIZATION.md",
+    "sha256": "3fd5fcd05f4746a5a92854e5aed845051533d46d18b1ad1e45c81af5618b36ee"
+  }
+]

@@ -1,5 +1,7 @@
 # 本周整理与文档整合 — 2026-11-26
 
+ADSP启动依赖与生命周期源码审计的[五份入口原文](archive/20261126/adsp-boot-source-audit/original-document-manifest.json)已按原字节／SHA保留，现行证据整合进LILAC-PERIPHERALS／BUILD／STATUS／INDEX。新增工具只读锁定Sony Git blob和formal patch，输出仅为所需manifest，没有新增编译镜像／host程序／TEMP传输包或设备命令；前轮回收站保持。初次审计拒绝把arm64 DTS symlink子路径当直接Git blob，随后改读实际arm DTS blob并保存alias；块提取器也收紧函数参数匹配，最终审计通过。
+
 C11音频运行时接口收尾：[Mac66项／110文件／10,424,504 B](../reproducibility/pcm-c-abi-macos-trash-20261126.json)进入原生Trash，[Windows45项／48文件／60,236,387 B](../reproducibility/pcm-c-abi-windows-recycle-20261126.json)进入原生回收站，包含WSL共享build的已结束测试程序、三次host验证objects、Mac六类ARM64对象／dSYM和TEMP源码传输副本。所有目标逐字节SHA一致，Windows138个、Mac156个保护文件保持；原编译失败／成功日志、精确manifest、源码备份、GPU r5包、原guard失败及冻结SweetGPU保留。
 
 [Ubuntu与Ubuntu-22.04全部用户Trash为空](../reproducibility/pcm-c-abi-wsl-trash-audit-20261126.json)，没有清空Windows／Mac回收站。整合前[五份入口原文与SHA](archive/20261126/pcm-c-abi/original-document-manifest.json)已保存。现行音频复现为十二组ASan／UBSan和六个ARM64对象，40份源跨WSL／Mac一致；C11 caller实际链接C++接口，构造不做IO，context复制／重入／输出alias与在途销毁拒绝，不宣称真实DSP／codec／声音通过。

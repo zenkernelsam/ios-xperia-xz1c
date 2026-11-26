@@ -345,7 +345,8 @@
     "tools/build/compile_lilac_pcm_runtime.cpp": "35ecdd1cfdf021133de60b6d4cc28c6149cacf2c94abd765be83325c5d57bb8b",
     "tools/build/LilacPcmRuntimeCTest.h": "aa34d3d9dcb8d85f2fc67c3650745282bef7f8245f48ddbe6197b6e0bf2fb94b",
     "tools/build/test_lilac_pcm_runtime_c.c": "e66101e2e714e34d935a317e2e342a17c75bc82113673fd043fc86689f90def2",
-    "tools/build/test_lilac_pcm_runtime_api.cpp": "7c2e2b449e76e896523b59b78167b48991dca3153da9105f873a83dff2b19284"
+    "tools/build/test_lilac_pcm_runtime_api.cpp": "7c2e2b449e76e896523b59b78167b48991dca3153da9105f873a83dff2b19284",
+    "tools/build/inspect_lilac_adsp_boot.py": "6ebe2f3527427d5c3076513eb08f109f5f215c1b7f1c114c750dd03c89b03c3f"
   },
   "gpu_sources": {
     "gpu/diagnostics/exception_observe.m": "c20f1600d7ff6964cf711d637f4f5ce68ea93cdf2fd4e00cc46612f4d8c19545",

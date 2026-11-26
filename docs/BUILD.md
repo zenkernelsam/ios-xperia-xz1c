@@ -189,6 +189,14 @@ python3 -B tools/build/build_metal_library.py --ram-package build/my-gles/ram --
 
 ## 音频协议离线复现
 
+ADSP实际启动前置和诊断生命周期可独立核对：
+
+```powershell
+python -B tools/build/inspect_lilac_adsp_boot.py --reference D:/Desktop/Git/Patch/Xperia/research/lilac-kernel-8.4 --output build/my-adsp-boot-audit
+```
+
+工具要求Sony固定commit `33dc678e7692f04ecc1eeddeb1cca8a809bc1727`、当前formal patch与source-lock准确SHA，直接读取上游Git blob，不依赖参考工作树中的Windows symlink展开副本。新输出只含manifest／源码片段及SHA；不编译／修改内核、映射寄存器、调用RPM／PIL或连接设备。stage4～7成功诊断最终shutdown，不能作为持续运行的DSP准入；详见LILAC-PERIPHERALS。
+
 `check_lilac_afe_slimbus.py --output build/新的-afe-host`从正式patch／source-lock materialize原APR头，再编译运行真实ASan／UBSan包字节与状态用例；Windows用WSL Ubuntu-22.04，Mac直接host clang。它不连接传输或启动DSP。实际codec channel map、参数schema与物理声音另行验收，见[Lilac外设](LILAC-PERIPHERALS.md)。
 
 统一会话工具在同一套锁定APR／GLINK／回调ABI头下编译PCM负载、队列、APR、映射、流、AFE、session、transport、FIFO、SMEM链路、保留运行时及C接口十二组用例，不依赖历史build展开树。C11 caller、C++ peer测试与实际API实现分成三个translation unit再链接。新输出目录须不存在。Windows调用WSL Ubuntu-22.04；Mac可同时用实际iphoneos SDK编译会话、GLINK适配、SMEM链路、运行时、实际C接口与C11 caller的六个ARM64对象：

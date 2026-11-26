@@ -1,0 +1,152 @@
+{
+  "revision": 1,
+  "inspector": "tools/build/inspect_lilac_adsp_boot.py",
+  "inspector_sha256": "6ebe2f3527427d5c3076513eb08f109f5f215c1b7f1c114c750dd03c89b03c3f",
+  "source_lock_sha256": "c75686d2a2e453e70ff0143bbb6da2a1a0e205e570201b2188563a5c75259e34",
+  "formal_patch_sha256": "ef0cf0576d5fb40595ba3cf4a385d7814dc728acda887a9d001c37ee972e8c54",
+  "formal_source_files": {
+    "bsd/dev/sweet_sample.c": "31aa916d336073a10c4ed0ab9b5066de1c858e9e00f625c1c41c4a703dbe4e3b",
+    "bsd/dev/sweet_rpm.c": "f304909e856ad90b2c8ce49d59437cfa45fb30109615af4205537f1669c0419f"
+  },
+  "reference_repository": "sony-msm8998/android_kernel_sony_msm8998",
+  "reference_commit": "33dc678e7692f04ecc1eeddeb1cca8a809bc1727",
+  "reference_sources": {
+    "drivers/soc/qcom/subsys-pil-tz.c": {
+      "git_blob": "c6dff952ff3a0732792023220bd6522ba3088133",
+      "sha256": "38fe31f3a30106c650eaed5d3258c8a7b37b8a09f4c58ebc40aacbe77fd61739"
+    },
+    "drivers/soc/qcom/peripheral-loader.c": {
+      "git_blob": "2a3b2a313c69312588eb9b85a1c59257a39d71a7",
+      "sha256": "1142132e117f2067f72730d14f39ab92586b6b6dbcbd002568fd2e00cb2a4876"
+    },
+    "drivers/clk/msm/clock-gcc-8998.c": {
+      "git_blob": "b1c8cc43769f823896c4b3383b2228b584ad02f9",
+      "sha256": "c56f9115bba341c8ff30017164a30cc99750ce88a3c69b00d50b3adbc18aa68c"
+    },
+    "arch/arm/boot/dts/qcom/msm8998.dtsi": {
+      "git_blob": "7f87a45509e6e60482017fbeef76455ea78b6043",
+      "sha256": "93178ef0123a020bd02ba5d1b0e0c5229603a6d075382b9195907fc4c96b2235"
+    },
+    "arch/arm/boot/dts/qcom/msm8998-smp2p.dtsi": {
+      "git_blob": "2926a6889395272ebc00af6d31bdf6e4e7cafa98",
+      "sha256": "ebd45bf4484fc35800e54ccadb003388fc42d56238ff0c2425899ba234de7f80"
+    },
+    "include/dt-bindings/regulator/qcom,rpm-smd-regulator.h": {
+      "git_blob": "cd38c026f815a09affed62dbcdd11e95f5b995a3",
+      "sha256": "e5959869ee99a8020129336218dda7df8f15caf3e62ebc51a35e90252cedbd4d"
+    },
+    "COPYING": {
+      "git_blob": "ca442d313d86dc67e0a2e5d584b465bd382cbf5c",
+      "sha256": "af8067302947c01fd9eee72befa54c7e3ef8a48fecde7fd71277f2290b2bf0f7"
+    }
+  },
+  "ARM64_DTS_git_symlink": {
+    "path": "arch/arm64/boot/dts/qcom",
+    "git_blob": "d1df723919973484d9e61f237a9d9d5a4377b4fd",
+    "target": "../../../../arch/arm/boot/dts/qcom"
+  },
+  "source_blocks": {
+    "formal_cold_pilot": {
+      "first_line": 882,
+      "last_line": 941,
+      "source": "adsp_cold_pilot_mapped(vm_offset_t destination)\n{\n    if(!adsp_fw_expanded || !adsp_fw_metadata || !adsp_fw_metadata_pa)return 40;\n    struct adsp_rw_map map={0};map.private_offset=adsp_last_private_offset;map.private_bytes=adsp_last_private_bytes;\n    map.private_page=map.private_offset&~0x3fffu;\n    map.private=ml_io_map(0x86000000u+map.private_page,(map.private_offset-map.private_page+map.private_bytes+0x3fffu)&~0x3fffu);\n    if(!map.private)return 42;\n    adsp_power_attempted=1;\n    int level=sweet_rpm_request(0x61706d73u,1u,0x6c766c76u,384u,0u);\n    int sleep=level==0?sweet_rpm_request(0x61706d73u,1u,0x6c766c76u,384u,1u):-99;\n    printf(\"SWEET ADSP COLD PROXY level=%d sleep=%d retained=1\\n\",level,sleep);\n    if(level || sleep)return 43;\n    int clocks=sweet_rpm_vote_gpu_clocks();printf(\"SWEET ADSP COLD CLOCKS result=%d\\n\",clocks);if(clocks)return 44;\n    /* DT logical master55->RPM23, slave512->RPM0; RPM BW is sum_ab, not IB. */\n    int b0=sweet_rpm_bus_request(0x73616d62u,23u,393600000ull,0u);\n    int b1=b0==0?sweet_rpm_bus_request(0x73616d62u,23u,393600000ull,1u):-99;\n    int s0=b0==0&&b1==0?sweet_rpm_bus_request(0x766c7362u,0u,393600000ull,0u):-99;\n    int s1=b0==0&&b1==0&&s0==0?sweet_rpm_bus_request(0x766c7362u,0u,393600000ull,1u):-99;\n    printf(\"SWEET ADSP COLD BANDWIDTH master=%d/%d slave=%d/%d\\n\",b0,b1,s0,s1);\n    if(b0||b1||s0||s1)return 45;\n    adsp_flush_virtual((vm_offset_t)adsp_fw_metadata,ADSP_MDT_BYTES,\"metadata\");\n    printf(\"SWEET ADSP COLD INIT_BEGIN pas_id=1 metadata=%#llx bytes=%u at_ms=%llu\\n\",\n        (unsigned long long)adsp_fw_metadata_pa,ADSP_MDT_BYTES,(unsigned long long)boot_ms());\n    uint64_t value=0;int64_t call=sweet_adsp_pil_command(1,adsp_fw_metadata_pa,&value);\n    printf(\"SWEET ADSP COLD INIT result=%lld value=%llu\\n\",(long long)call,(unsigned long long)value);\n    if(call || value)return 50;\n    printf(\"SWEET ADSP COLD MEMORY_BEGIN base=%#x bytes=%u at_ms=%llu\\n\",\n        ADSP_RESERVED_BASE,ADSP_RAW_BYTES,(unsigned long long)boot_ms());\n    call=sweet_adsp_pil_command(2,0,&value);\n    printf(\"SWEET ADSP COLD MEMORY result=%lld value=%llu base=%#x bytes=%u\\n\",(long long)call,\n        (unsigned long long)value,ADSP_RESERVED_BASE,ADSP_RAW_BYTES);\n    if(call || value)return 51;\n    printf(\"SWEET ADSP COLD COPY_BEGIN base=%#x bytes=%u at_ms=%llu\\n\",\n        ADSP_RESERVED_BASE,ADSP_RAW_BYTES,(unsigned long long)boot_ms());\n    memcpy((void *)destination,(const void *)adsp_fw_expanded,ADSP_RAW_BYTES);\n    adsp_flush_virtual(destination,ADSP_RAW_BYTES,\"firmware\");\n    __asm__ volatile(\"dsb sy\" ::: \"memory\");\n    uint64_t hash=adsp_fnv(14695981039346656037ull,(const uint8_t *)destination,ADSP_RAW_BYTES);\n    printf(\"SWEET ADSP COLD COPY bytes=%u fnv=%016llx verified=%u\\n\",ADSP_RAW_BYTES,(unsigned long long)hash,hash==ADSP_RAW_FNV);\n    if(hash!=ADSP_RAW_FNV)return 52;\n    unsigned authenticated=0,ready=0;uint32_t slave=0;int result;\n    printf(\"SWEET ADSP COLD AUTH_BEGIN pas_id=1 at_ms=%llu\\n\",(unsigned long long)boot_ms());\n    call=sweet_adsp_pil_command(5,0,&value);authenticated=call==0 && value==0;adsp_auth_succeeded=authenticated;\n    printf(\"SWEET ADSP COLD AUTH result=%lld value=%llu\\n\",(long long)call,(unsigned long long)value);\n    if(authenticated)printf(\"SWEET ADSP COLD READY_BEGIN timeout_ms=10000 at_ms=%llu\\n\",(unsigned long long)boot_ms());\n    result=authenticated?adsp_wait_private_ready(&map,10000,&slave):53;ready=result==0;adsp_ready_observed=ready;\n    printf(\"SWEET ADSP COLD READY observed=%u result=%d slave=%#x\\n\",ready,result,slave);\n    int profile=0;PE_parse_boot_argn(\"sweetadspboot\",&profile,sizeof(profile));\n    if(ready && profile==5)result=adsp_glink_negotiate(&map);\n    if(ready && (profile==6 || profile==7))result=adsp_apr_probe(&map,profile==7);\n    printf(\"SWEET ADSP COLD SHUTDOWN_BEGIN pas_id=1 at_ms=%llu\\n\",(unsigned long long)boot_ms());\n    uint64_t shut_value=0;int64_t shut=sweet_adsp_pil_command(6,0,&shut_value);\n    printf(\"SWEET ADSP COLD SHUTDOWN result=%lld value=%llu\\n\",(long long)shut,(unsigned long long)shut_value);\n    adsp_shutdown_ok=shut==0&&shut_value==0;\n    if(profile==6 || profile==7)adsp_apr_finish(adsp_shutdown_ok);\n    if(shut || shut_value)result=74;\n    printf(\"SWEET ADSP COLD END result=%d authenticated=%u ready_observed=%u stopped=%u audio_output_verified=0\\n\",\n        result,authenticated,ready,shut==0&&shut_value==0);\n    return result;\n}"
+    },
+    "formal_bootstrap": {
+      "first_line": 961,
+      "last_line": 984,
+      "source": "adsp_bootstrap_once(void)\n{\n    static unsigned attempted;int stage=0,norpm=0;\n    PE_parse_boot_argn(\"sweetadspboot\",&stage,sizeof(stage));PE_parse_boot_argn(\"sweetgpunorpm\",&norpm,sizeof(norpm));\n    if((stage!=3 && stage!=4 && stage!=5 && stage!=6 && stage!=7)||norpm!=1||attempted||get_system_inshutdown())return;\n    attempted=1;printf(\"SWEET ADSP BEGIN stage=%d pas_id=1 power_writes=0 firmware_started=0\\n\",stage);\n    if(!adsp_verify_bundle(stage>=4)){printf(\"SWEET ADSP END stage=%d result=10 verified=0 prepared=0\\n\",stage);return;}\n    static const unsigned commands[]={1,2,5,6};unsigned available=0;\n    for(unsigned i=0;i<(stage>=4?4u:3u);i++) {\n        uint64_t value=0;int64_t result=sweet_pil_api_available(commands[i],&value);\n        printf(\"SWEET ADSP API cmd=%u result=%lld available=%llu\\n\",commands[i],(long long)result,(unsigned long long)value);\n        if(result==0 && value==1)available++;\n    }\n    int result=available==(stage>=4?4u:3u)?0:11,prepared=0;\n    if(result==0){result=adsp_prepare_ap();prepared=result==0;}\n    if(result==0 && stage>=4)result=adsp_cold_pilot();\n    printf(\"SWEET ADSP END stage=%d result=%d verified=1 api_count=%u prepared=%d authenticated=%u ready_observed=%u stopped=%u power_requests=%u\\n\",\n        stage,result,available,prepared,adsp_auth_succeeded,adsp_ready_observed,adsp_shutdown_ok,adsp_power_attempted);\n    if(stage==5)printf(\"SWEET ADSP GLINK ACCEPT version_verified=%u apr_verified=0 audio_output_verified=0\\n\",adsp_glink_verified);\n    if(stage==6)printf(\"SWEET ADSP APR ACCEPT response_verified=%u state=%u link_closed=%u audio_output_verified=0\\n\",adsp_apr_out.response_verified,adsp_apr_out.state,adsp_apr_out.glink_closed);\n    if(stage==7)printf(\"SWEET ADSP APR LEGACY_ACCEPT response_verified=%u legacy_verified=%u generation=%u version_id=%#x link_closed=%u audio_output_verified=0\\n\",\n        adsp_apr_out.response_verified,adsp_apr_out.legacy_verified,adsp_apr_out.legacy.generation,adsp_apr_out.legacy.version_id,adsp_apr_out.glink_closed);\n    if (adsp_fw_expanded) { kmem_free(kernel_map,adsp_fw_expanded,ADSP_RAW_BYTES);adsp_fw_expanded=0; }\n}"
+    },
+    "formal_clock_helper": {
+      "first_line": 566,
+      "last_line": 574,
+      "source": "sweet_rpm_vote_gpu_clocks(void)\n{\n    int xo=-99,ce=-99,ag=-99;\n    xo=sweet_rpm_request(0x306b6c63u,0u,0x62616e45u,1u,0u);\n    if(xo==0)ce=sweet_rpm_request(0x00006563u,0u,0x007a484bu,sweet_rpm_rate_khz(85710000u),0u);\n    if(xo==0 && ce==0)ag=sweet_rpm_request(0x72676761u,2u,0x007a484bu,sweet_rpm_rate_khz(300000000u),0u);\n    printf(\"SWEET RPM: gpu clocks xo=%d ce=%d aggr2=%d (not-attempted=-99)\\n\",xo,ce,ag);\n    return (xo || ce || ag)?-1:0;\n}"
+    },
+    "formal_ready": {
+      "first_line": 635,
+      "last_line": 666,
+      "source": "adsp_wait_private_ready(struct adsp_rw_map *map,unsigned milliseconds,uint32_t *last)\n{\n    struct sweet_smem_part part={.offset=map->private_offset,.size=map->private_bytes,.host0=0,.host1=2};\n    uint64_t interval;nanoseconds_to_absolutetime((uint64_t)milliseconds*1000000ull,&interval);\n    uint64_t deadline=mach_absolute_time()+interval;static uint32_t buffer[128];\n    unsigned printed=0;\n    while(mach_absolute_time()<deadline && !get_system_inshutdown()) {\n        struct adsp_private_item item={0};int found=adsp_private_find(&part,adsp_rw_read,map,443,&item);\n        if(found<0)return 70;\n        if(found==1 && item.size>=20 && item.size<=sizeof(buffer) && !(item.size&3u)) {\n            volatile uint32_t *p=adsp_rw_address(map,item.offset,item.size);\n            if(!p)return 71;\n            __asm__ volatile(\"dmb oshld\" ::: \"memory\");\n            for(unsigned i=0;i<item.size/4;i++)buffer[i]=p[i];\n            struct sweet_smem_smp h={0};\n            if(sweet_smem_smp_read((const uint8_t *)buffer,item.size,2,0,&h)) {\n                for(unsigned i=0;i<h.valid;i++) {\n                    const uint8_t *entry=(const uint8_t *)buffer+20+i*20;\n                    if(!strncmp((const char *)entry,\"slave-kernel\",16)) {\n                        uint32_t value=sweet_smem_u32(entry+16);*last=value;\n                        if(printed<8){printf(\"SWEET ADSP COLD SLAVE value=%#x ready=%u fatal=%u proxy_unvote=%u\\n\",\n                            value,!!(value&2u),!!(value&1u),!!(value&4u));printed++;}\n                        if(value&1u)return 72;\n                        if(value&2u)return 0;\n                    }\n                }\n            }\n        }\n        delay(1000);\n    }\n    return 73;\n}"
+    },
+    "Sony_LPASS_node": {
+      "first_line": 2040,
+      "last_line": 2070,
+      "source": "qcom,lpass@17300000 {\n\t\tcompatible = \"qcom,pil-tz-generic\";\n\t\treg = <0x17300000 0x00100>;\n\t\tinterrupts = <0 162 1>;\n\n\t\tvdd_cx-supply = <&pm8998_s1_level>;\n\t\tqcom,proxy-reg-names = \"vdd_cx\";\n\t\tqcom,vdd_cx-uV-uA = <RPM_SMD_REGULATOR_LEVEL_TURBO 100000>;\n\n\t\tclocks = <&clock_gcc clk_cxo_pil_lpass_clk>;\n\t\tclock-names = \"xo\";\n\t\tqcom,proxy-clock-names = \"xo\";\n\n\t\tqcom,pas-id = <1>;\n\t\tqcom,proxy-timeout-ms = <10000>;\n\t\tqcom,smem-id = <423>;\n\t\tqcom,sysmon-id = <1>;\n\t\tstatus = \"ok\";\n\t\tqcom,ssctl-instance-id = <0x14>;\n\t\tqcom,firmware-name = \"adsp\";\n\t\tmemory-region = <&pil_adsp_mem>;\n\n\t\t/* GPIO inputs from lpass */\n\t\tqcom,gpio-err-fatal = <&smp2pgpio_ssr_smp2p_2_in 0 0>;\n\t\tqcom,gpio-proxy-unvote = <&smp2pgpio_ssr_smp2p_2_in 2 0>;\n\t\tqcom,gpio-err-ready = <&smp2pgpio_ssr_smp2p_2_in 1 0>;\n\t\tqcom,gpio-stop-ack = <&smp2pgpio_ssr_smp2p_2_in 3 0>;\n\n\t\t/* GPIO output to lpass */\n\t\tqcom,gpio-force-stop = <&smp2pgpio_ssr_smp2p_2_out 0 0>;\n\t}"
+    },
+    "Sony_proxy": {
+      "first_line": 528,
+      "last_line": 564,
+      "source": "pil_make_proxy_vote(struct pil_desc *pil)\n{\n\tstruct pil_tz_data *d = desc_to_data(pil);\n\tint rc;\n\n\tif (d->subsys_desc.no_auth)\n\t\treturn 0;\n\n\trc = enable_regulators(d, pil->dev, d->proxy_regs,\n\t\t\t\t\td->proxy_reg_count, false);\n\tif (rc)\n\t\treturn rc;\n\n\trc = prepare_enable_clocks(pil->dev, d->proxy_clks,\n\t\t\t\t\t\t\td->proxy_clk_count);\n\tif (rc)\n\t\tgoto err_clks;\n\n\tif (d->bus_client) {\n\t\trc = msm_bus_scale_client_update_request(d->bus_client, 1);\n\t\tif (rc) {\n\t\t\tdev_err(pil->dev, \"bandwidth request failed(rc:%d)\\n\",\n\t\t\t\t\t\t\t\t\trc);\n\t\t\tgoto err_bw;\n\t\t}\n\t} else\n\t\tWARN(d->enable_bus_scaling, \"Bus scaling not set up for %s!\\n\",\n\t\t\t\t\td->subsys_desc.name);\n\n\treturn 0;\nerr_bw:\n\tdisable_unprepare_clocks(d->proxy_clks, d->proxy_clk_count);\nerr_clks:\n\tdisable_regulators(d, d->proxy_regs, d->proxy_reg_count, false);\n\n\treturn rc;\n}"
+    },
+    "Sony_init": {
+      "first_line": 584,
+      "last_line": 646,
+      "source": "pil_init_image_trusted(struct pil_desc *pil,\n\t\tconst u8 *metadata, size_t size,\n\t\t phys_addr_t addr, size_t sz)\n{\n\tstruct pil_tz_data *d = desc_to_data(pil);\n\tstruct pas_init_image_req {\n\t\tu32\tproc;\n\t\tu32\timage_addr;\n\t} request;\n\tu32 scm_ret = 0;\n\tvoid *mdata_buf;\n\tdma_addr_t mdata_phys;\n\tint ret;\n\tDEFINE_DMA_ATTRS(attrs);\n\tstruct device dev = {0};\n\tstruct scm_desc desc = {0};\n\n\tif (d->subsys_desc.no_auth)\n\t\treturn 0;\n\n\tret = scm_pas_enable_bw();\n\tif (ret)\n\t\treturn ret;\n\tarch_setup_dma_ops(&dev, 0, 0, NULL, 0);\n\n\tdev.coherent_dma_mask =\n\t\tDMA_BIT_MASK(sizeof(dma_addr_t) * 8);\n\tdma_set_attr(DMA_ATTR_STRONGLY_ORDERED, &attrs);\n\tmdata_buf = dma_alloc_attrs(&dev, size, &mdata_phys, GFP_KERNEL,\n\t\t\t\t\t&attrs);\n\tif (!mdata_buf) {\n\t\tpr_err(\"scm-pas: Allocation for metadata failed.\\n\");\n\t\tscm_pas_disable_bw();\n\t\treturn -ENOMEM;\n\t}\n\n\t/* Make sure there are no mappings in PKMAP and fixmap */\n\tkmap_flush_unused();\n\tkmap_atomic_flush_unused();\n\n\tmemcpy(mdata_buf, metadata, size);\n\n\trequest.proc = d->pas_id;\n\trequest.image_addr = mdata_phys;\n\n\tif (!is_scm_armv8()) {\n\t\tret = scm_call(SCM_SVC_PIL, PAS_INIT_IMAGE_CMD, &request,\n\t\t\t\tsizeof(request), &scm_ret, sizeof(scm_ret));\n\t} else {\n\t\tdesc.args[0] = d->pas_id;\n\t\tdesc.args[1] = mdata_phys;\n\t\tdesc.arginfo = SCM_ARGS(2, SCM_VAL, SCM_RW);\n\t\tret = scm_call2(SCM_SIP_FNID(SCM_SVC_PIL, PAS_INIT_IMAGE_CMD),\n\t\t\t\t&desc);\n\t\tscm_ret = desc.ret[0];\n\t}\n\n\tdma_free_attrs(&dev, size, mdata_buf, mdata_phys, &attrs);\n\tscm_pas_disable_bw();\n\tif (ret)\n\t\treturn ret;\n\treturn scm_ret;\n}"
+    },
+    "Sony_auth": {
+      "first_line": 685,
+      "last_line": 729,
+      "source": "pil_auth_and_reset(struct pil_desc *pil)\n{\n\tstruct pil_tz_data *d = desc_to_data(pil);\n\tint rc;\n\tu32 proc, scm_ret = 0;\n\tstruct scm_desc desc = {0};\n\n\tif (d->subsys_desc.no_auth)\n\t\treturn 0;\n\n\tdesc.args[0] = proc = d->pas_id;\n\tdesc.arginfo = SCM_ARGS(1);\n\n\trc = enable_regulators(d, pil->dev, d->regs, d->reg_count, false);\n\tif (rc)\n\t\treturn rc;\n\n\trc = prepare_enable_clocks(pil->dev, d->clks, d->clk_count);\n\tif (rc)\n\t\tgoto err_clks;\n\n\trc = scm_pas_enable_bw();\n\tif (rc)\n\t\tgoto err_reset;\n\n\tif (!is_scm_armv8()) {\n\t\trc = scm_call(SCM_SVC_PIL, PAS_AUTH_AND_RESET_CMD, &proc,\n\t\t\t\tsizeof(proc), &scm_ret, sizeof(scm_ret));\n\t} else {\n\t\trc = scm_call2(SCM_SIP_FNID(SCM_SVC_PIL,\n\t\t\t       PAS_AUTH_AND_RESET_CMD), &desc);\n\t\tscm_ret = desc.ret[0];\n\t}\n\tscm_pas_disable_bw();\n\tif (rc)\n\t\tgoto err_reset;\n\n\treturn scm_ret;\nerr_reset:\n\tdisable_unprepare_clocks(d->clks, d->clk_count);\nerr_clks:\n\tdisable_regulators(d, d->regs, d->reg_count, false);\n\n\treturn rc;\n}"
+    }
+  },
+  "findings": {
+    "Linux_lpass_proxy": {
+      "PAS_id": 1,
+      "vdd_cx_level": 384,
+      "proxy_xo_Hz": 19200000,
+      "timeout_ms": 10000,
+      "XO_parent_is_RPM_SMD": true
+    },
+    "Linux_PIL_order": [
+      "proxy regulators and clocks",
+      "metadata init with SCM bandwidth",
+      "memory setup",
+      "load segments",
+      "auth/reset with SCM bandwidth"
+    ],
+    "formal_pilot_order": [
+      "RPM vdd_cx active and sleep",
+      "RPM XO/CE1/aggre2 clock helper",
+      "RPM master/slave bandwidth active and sleep",
+      "PIL init",
+      "PIL memory setup",
+      "copy and cache flush",
+      "PIL auth/reset",
+      "SMP2P ready or fatal",
+      "optional GLINK/APR probe",
+      "PIL shutdown"
+    ],
+    "formal_pre_PIL_failure_codes": {
+      "proxy": 43,
+      "clocks": 44,
+      "bandwidth": 45
+    },
+    "formal_clock_helper": {
+      "XO_enable": 1,
+      "CE1_Hz": 85710000,
+      "aggre2_Hz": 300000000,
+      "all_requests_use_RPM": true
+    },
+    "CE1_aggre2_are_not_listed_as_LPASS_node_proxy_clocks": true,
+    "helper_reuse_does_not_prove_extra_clocks_are_required_for_ADSP": true,
+    "SMP2P_slave_kernel": {
+      "fatal_bit": 0,
+      "ready_bit": 1,
+      "proxy_unvote_bit": 2
+    },
+    "supported_diagnostic_stages": [
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "stage3_does_not_start_DSP": true,
+    "stages4_to7_are_transient_pilots_not_retained_audio_endpoints": true,
+    "successful_cold_pilot_always_reaches_PIL_shutdown": true,
+    "existing_pilot_cannot_supply_a_live_DSP_to_later_PCM_runtime": true,
+    "production_audio_needs_explicit_DSP_power_lifetime_and_cleanup": true,
+    "source_dependency_does_not_prove_current_RPM_health_or_DSP_state": true
+  },
+  "compiled_or_changed_kernel": false,
+  "device_operations": 0,
+  "DSP_started_or_PCM_sound_verified": false
+}

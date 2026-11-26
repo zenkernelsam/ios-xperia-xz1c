@@ -60,7 +60,7 @@ barrier revision4从当前linked fragment program的ImageUnits映射GL binding�
 | 外设 | 当前实现／实际证据 | 仍待完成 |
 | --- | --- | --- |
 | WLED／背光 | v731首帧后只读fault0、enable／strings mask3、duty1989／1989；属性service与非零调光事务离线通过 | 实际注册／SPMI写入、亮度／灭屏／唤醒及光学 |
-| ADSP／音频 | 实机只stage3固件核验和AP准备；AFE／ADM／ASM、GLINK／FIFO及带PCM缓存交接的保留运行时完成主机和ARM64验证 | 真正DSP启动、endpoint／schema／token回显、Tasha／Tavil选用、实际mapping／cache回调、codec和物理声音 |
+| ADSP／音频 | 实机只stage3固件核验和AP准备；AFE／ADM／ASM、GLINK／FIFO及PCM C接口完成主机和ARM64验证；启动源码审计确认RPM前置及stage4～7最终shutdown | 持续DSP供电／启动／关闭生命周期、endpoint／schema／token回显、Tasha／Tavil选用、实际mapping／cache回调、codec和物理声音 |
 | Wi-Fi／蓝牙 | 原DTB和开源路径已核对，进程有启动日志 | 控制器初始化、扫描／连接和真实数据传输 |
 | shared event／presentedTime | selectors36／37／38／45仍零输出，presentedTime0 | 端口／mapped page及实际呈现时间未实现；旧草稿不算通过 |
 
@@ -69,6 +69,8 @@ barrier revision4从当前linked fragment program的ImageUnits映射GL binding�
 WSL／Mac同源十二组ASan／UBSan及六个ARM64对象通过，C11 caller和C++实现独立编译／链接；具体ARM64 C接口只留下正常stack guard导入，没有分配器或未实现FIFO符号。保留原2048环位置／逐字故障／EOS／关闭测试，另核对PCM字节和guard、重叠复制、外来token、缓存交接顺序与IO／cache回调内部过期。真实时钟在receive、poll后、publish后和cache回调后重采样；轮询入口的旧时间不能准入迟到回复或CloseAck。旧仅手动时间的transport接口仍供离线测试，实际运行时始终绑定clock hook。GPU r5源码与包未改。
 
 原session／GLINK适配保证Busy只发同一未发布包、成功publication才开始回复deadline，Accepted／typed等待不延长；控制与WRITE完成必须匹配已发布token／epoch／端口。四WRITE排空、EOS普通回复及RENDERED_EOS都确认，再Close／Unmap／COPP／AFE Stop和双向GLINK关闭后才确认region可释放。细节与历史协议证据由[LILAC-PERIPHERALS](LILAC-PERIPHERALS.md)索引。
+
+[ADSP启动源码审计](../reproducibility/lilac-adsp-boot-source-audit-20261126.json)确认当前cold pilot先要求RPM电压／时钟／带宽；stage4～7成功后也最终PIL shutdown，不能给后续PCM runtime提供持续运行的DSP。真实音频接入须另定义保留的DSP生命周期与当前readiness；本次没有改冻结RPM／SCM或调用PIL，不把源依赖当当前RPM故障／健康证据。
 
 ## 正式复现与规则
 
