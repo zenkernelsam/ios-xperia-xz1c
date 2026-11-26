@@ -106,6 +106,8 @@ r5主提交`887348b…`已推送origin/main，[正式Mac同步](../reproducibili
 
 PCM传输收尾另回收[Mac38项／70文件／3412804 B](../reproducibility/pcm-glink-transport-macos-trash-20261126.json)、[Windows26项／27文件／38847808 B](../reproducibility/pcm-glink-transport-windows-recycle-20261126.json)，包括WSL在正式共享build的已结束测试程序；69个Mac和73个Windows保护文件SHA保持，原构建／test日志、混合行尾头文件、源码备份和r5候选保留。[两套Ubuntu Trash为空](../reproducibility/pcm-glink-transport-wsl-trash-audit-20261126.json)，未永久删除或清空Windows／Mac垃圾桶；五份入口原文与SHA先archive。
 
+PCM GLINK主提交`67ffb76…`已推送origin/main，[Mac同步凭据](../reproducibility/pcm-glink-transport-formal-git-sync-20261126.json)21份变更与commit逐字节匹配，实际主机／ARM64源及正式source验证通过；预同步源在未drop的stash`a22a59a2…`。GPU r5和冻结内核保持，本轮无新的guard／download／boot。
+
 正式补充主提交`4dc552dba56d156496fea0d0b1919a0de2635893`已推送origin/main，[r4 Mac同步](../reproducibility/ordered-XR-initialized-git-sync-20261126.json)18份变更逐字节一致、source验证通过，原Mac修改以未删除stash`caea8028…`保留。此前[94份变更同步](../reproducibility/ordered-XR-formal-git-sync-20261126.json)原记录保持。Windows／WSL使用同一正式目录，原sampler fixture字节保持。反射Metal组合已完整验收；当前HEAD还有待验的XR barrier候选，不冒充完整生产UI。更早同步与stash由ORGANIZATION索引。
 
 只操作BH905ND69G，fastboot设备命令显式`-s BH905ND69G`；COM≥10且VID1209／PID0001、一个controller／worker；PON只0x06，单download／boot、失败不重发。ACK／DRAIN／RESET／FINAL_DRAIN、健康30秒及旧worker退出后才下一轮。无本token LIVE的早期E1F4仍可能需物理恢复。SweetGPU SHA `aa2c3679…`及内核GPU底层／allocator／SCM／PON／RPC／VM冻结；gl5／userdata／SD／TA／XFL、校准、备份和救砖输入不flash／erase。Mac旧autobuild保持pause；废弃文件只进原生回收站。

@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-26",
+  "before_HEAD": "0d3ba014ca2736e20abfc532e7db4fef51c9d834",
+  "after_HEAD": "67ffb766bb14831a4759bfaf8d38d6ee46fdb999",
+  "recoverable_pre_sync_stash": "a22a59a207754ef6c538b1d5db85f84b233be3da",
+  "stash_not_dropped": true,
+  "original_source_bytes": [
+    {
+      "path": "reproducibility/current-device-tools.json",
+      "sha256": "6ca4137c1d3d3646f1766e160c0625643de4e9ed183f2a3d27f67ac9df637258"
+    },
+    {
+      "path": "tools/build/check_lilac_afe_slimbus.py",
+      "sha256": "4d69b241c33bc09f2a3aa0add2740df6a5499849f8b5966bfda1aa9eaff20e05"
+    },
+    {
+      "path": "tools/build/check_lilac_pcm_session.py",
+      "sha256": "a76d3f081899e0e734e695b12f0f75a0b36ca4227029dba11787f59022c7c031"
+    },
+    {
+      "path": "tools/build/compile_lilac_pcm_transport.cpp",
+      "sha256": "fa2eb328032d3352df2b40dc3ab41dd965c0289e3bfdd688e1b0b94d19eb9f45"
+    },
+    {
+      "path": "tools/build/test_lilac_pcm_playback_transport.cpp",
+      "sha256": "23257dbe8dea1368a92d54bd1eed237b6f27a0fb6862a0e426c213de2b7179af"
+    },
+    {
+      "path": "xnu/support/LilacPcmPlaybackTransport.h",
+      "sha256": "3bbe2939273d86b659e635bdbb6bd5197115f89d2a69e1fb95ada0bd9cb62898"
+    }
+  ],
+  "changed_files_byte_equal_to_commit": 21,
+  "source_validation_passed": true,
+  "compiled_PCM_session_and_transport_sources_equal": true,
+  "pause_preserved": true,
+  "frozen_GPU_SHA_preserved": true,
+  "device_operations": 0
+}
