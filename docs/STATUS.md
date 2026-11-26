@@ -1,4 +1,4 @@
-# 当前状态 — 2026-11-26
+# 当前状态 — 2026-11-27
 
 CPU／launchd、触控／音量键、完整GLES9、Metal21／PNG6和原生720×1280几何已有真机证据。原Aegir壁纸仍未通过：星点4212顶点／1404图元停在逐图元同步提交。当前GPU r5已修正Mesa图像binding与紧凑驱动槽位的对应，完整主机检查和四份新包离线审计通过，尚未实机。音频现已具备AFE／ADM／ASM会话、GLINK适配及具体SMEM FIFO回调代码；真实DSP／codec／声音仍未接通。
 
@@ -76,7 +76,7 @@ WSL／Mac同源十二组ASan／UBSan及六个ARM64对象通过，C11 caller和C+
 
 正式源码、增量、工具、锁和报告只在本仓库。Windows／WSL使用同一正式目录，Mac为`~/Desktop/ios-xperia-xz1c`且旧autobuild保持pause。[BUILD](BUILD.md)给准确源码复现，[OPERATIONS](OPERATIONS.md)给准入与回程，[INDEX](INDEX.md)串技术和历史，[ORGANIZATION](ORGANIZATION.md)维护回收与可恢复stash凭据。所有已验binary仅准入自己的准确组合；HEAD候选不冒充生产UI。SDK／签名变化须新产物实机验证，全新gl5首次启动仍未独立验收。
 
-本轮C接口源码与准确编译报告只在正式仓库维护，WSL与Mac的40份编译输入逐字节一致；提交、Mac正式同步和回收凭据由[ORGANIZATION](ORGANIZATION.md)索引。前轮[运行时同步](../reproducibility/pcm-runtime-formal-git-sync-20261126.json)与原stash继续保留。GPU候选及冻结内核保持。
+本轮C接口源码与准确编译报告只在正式仓库维护，WSL与Mac的40份编译输入逐字节一致；提交、Mac正式同步和回收凭据由[ORGANIZATION](ORGANIZATION.md)索引。前轮[运行时同步](../reproducibility/pcm-runtime-formal-git-sync-20261126.json)与原stash继续保留。GPU候选及冻结内核保持。 [最新Mac核验](../reproducibility/adsp-boot-audit-pause-recovery-20261127.json)确认源码审计同步及24份Mesa归档／v731／冻结SweetGPU SHA；发现缺失的旧autobuild pause已恢复，检查时无相关构建进程。
 
 只操作BH905ND69G，fastboot设备命令显式`-s`；COM≥10、VID1209/PID0001且一个worker；PON只0x06，单download／boot、失败不重发。内核GPU底层／allocator／SCM／PON／RPC／VM冻结，SweetGPU.cpp SHA **`aa2c36792a2298b060aa858eabdc039522fcdde3cfdbafd453c5fc6c0683c157`**。gl5／userdata／SD／TA／XFL／校准／备份／救砖输入受保护。
 

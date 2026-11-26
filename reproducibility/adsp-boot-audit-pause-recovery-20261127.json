@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-27T00:05:08.956139+08:00",
+  "HEAD": "be45fffe4ecccdd3a9cae79e2bb525c9b2f60f26",
+  "changed_files_byte_equal_to_commit": 14,
+  "source_validation": {
+    "canonical_xnu_patch_paths": 404,
+    "audited_xnu_sources": 78,
+    "python_scripts_syntax_checked": 279,
+    "canonical_sources_match_current_lock": true,
+    "runtime_acceptance_requires_actual_evidence": true,
+    "source_only_validation": true,
+    "device_operations": 0
+  },
+  "pause_recovery": {
+    "observed_at": "2026-11-26T23:59:31.173582+08:00",
+    "pause_marker_previously_existed": false,
+    "pause_marker_now_exists": true,
+    "pause_marker_restored_under_formal_AGENTS": true,
+    "related_build_processes": [],
+    "processes_terminated": 0,
+    "device_operations": 0
+  },
+  "final_pause_exists": true,
+  "related_build_processes_when_checked": [],
+  "frozen_SweetGPU_and_v731_kernel_SHA_preserved": true,
+  "actual_Mesa_archive_count_SHA_preserved": 24,
+  "GPU_r5_sources_SHA_preserved": true,
+  "device_operations": 0
+}
