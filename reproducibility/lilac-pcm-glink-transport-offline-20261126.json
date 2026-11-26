@@ -1,0 +1,767 @@
+{
+  "date": "2026-11-26",
+  "scope": "Serialized PCM playback session pump over source-locked ADSP::Link with authored FIFO",
+  "source_files": {
+    "iokit/Kernel/arm/LilacAPRProtocol.h": "78e293cf87f0e636aea1f3ee6a0c5a9caf92cf710010b3b4149a42464f9a026e",
+    "iokit/Kernel/arm/LilacAPRBasebandProtocol.h": "3a23a81bcefe65f14c797e1bd4b51505aebf64eca44016a28abcae055cd77420",
+    "iokit/Kernel/arm/LilacAPRBasebandGLINK.h": "bcce892c1e57f9c9e4a667f05559f2356e031192c29ce9dc1f5d5d1c5e55dbb1",
+    "iokit/Kernel/arm/LilacAPRLink.h": "b02e04e1c25ff3b47bdeeba37d39fcab7a036678585b7eb9ed9d88b75ed4a0c9",
+    "xnu/support/LilacAsmPcm.h": "1534d94b8e0ae268edc75f3515af5b6b47dbb0b00ef5266688b2ea635a49fccc",
+    "xnu/support/LilacAsmPcmQueue.h": "3fb9ab59d7ccf0688ecf8974bb1423df4cebe8aa661aa8e56222d0fcb4ac094d",
+    "xnu/support/LilacAsmPcmApr.h": "a07282f0f0b323faaf26b4d9d0c79cb49939ccada5c7f1e9993b3e61ec5e4b3d",
+    "xnu/support/LilacAsmPcmMap.h": "703ba5e8bc0c2fb8c93a4625d01f0bcfa829b145c7a5f8847254a963bcffdace",
+    "xnu/support/LilacAsmPcmStream.h": "bfab29d571a1e5dce5522e4919e5d0e6e9fefeb61b3f378a85a6591af3a59670",
+    "xnu/support/LilacAdmPlaybackDevice.h": "059e9693798b2605bf9ed5bf2941358e21231982ccfa83810db51832ae74cf5c",
+    "xnu/support/LilacAdmPlaybackRoute.h": "8cbba82b1a98755331a3ca297e26ec1d687eb03d8ed841c230d77af317f54c4e",
+    "xnu/support/LilacAfeSlimbusPlayback.h": "b0727cc8404f45fdbd964517220b664cdd63f29a20fd80db714c8df8e42b147c",
+    "xnu/support/LilacPcmPlaybackSession.h": "51704cca5d2465e436e3fa1d8ff3c50c5612edd43d71846a355679d2d2e61fc6",
+    "xnu/support/LilacPcmPlaybackTransport.h": "3bbe2939273d86b659e635bdbb6bd5197115f89d2a69e1fb95ada0bd9cb62898",
+    "tools/build/test_lilac_asm_pcm.c": "a20be121a882ec19f3dd139d879c91a38f9140e9ce2f0b1b873d2964967eb864",
+    "tools/build/test_lilac_asm_pcm_queue.c": "f218ca5743436210735e3527fb118c40e898ec4df16f7882d61c17e36519a203",
+    "tools/build/test_lilac_asm_pcm_apr.cpp": "503ef370ed554b00b4b0cd7f9e47b720b33f1570e091fe4d034316cdd80e3332",
+    "tools/build/test_lilac_asm_pcm_map.cpp": "2eee81110dfcfb12f50991666070c741aed2b17fe38cae2350623d3076e6defc",
+    "tools/build/test_lilac_asm_pcm_stream.cpp": "15ca4071d8d925606d162257f7e6e97672356c2c84b64bbdcccb7dd19a1340c1",
+    "tools/build/test_lilac_afe_slimbus_playback.cpp": "9218c4e0c7fb045decc1178842e0eda8eeb4ec6aa918b2bbbe06b95b0ec4a680",
+    "tools/build/test_lilac_pcm_playback_session.cpp": "1cd381d250e37d29812dec10a8654521ce859a9fa77ce93f46a7ad726ba3bc38",
+    "tools/build/test_lilac_pcm_playback_transport.cpp": "23257dbe8dea1368a92d54bd1eed237b6f27a0fb6862a0e426c213de2b7179af",
+    "tools/build/check_lilac_pcm_session.py": "a76d3f081899e0e734e695b12f0f75a0b36ca4227029dba11787f59022c7c031",
+    "tools/build/check_lilac_afe_slimbus.py": "4d69b241c33bc09f2a3aa0add2740df6a5499849f8b5966bfda1aa9eaff20e05",
+    "tools/build/compile_lilac_pcm_session.cpp": "5d3db06696c3979cb83c7004261a9e12077a25872e95a35ed952b64d32e6b6ee",
+    "tools/build/compile_lilac_pcm_transport.cpp": "fa2eb328032d3352df2b40dc3ab41dd965c0289e3bfdd688e1b0b94d19eb9f45"
+  },
+  "WSL_host": {
+    "revision": 2,
+    "source_files": {
+      "iokit/Kernel/arm/LilacAPRProtocol.h": "78e293cf87f0e636aea1f3ee6a0c5a9caf92cf710010b3b4149a42464f9a026e",
+      "iokit/Kernel/arm/LilacAPRBasebandProtocol.h": "3a23a81bcefe65f14c797e1bd4b51505aebf64eca44016a28abcae055cd77420",
+      "iokit/Kernel/arm/LilacAPRBasebandGLINK.h": "bcce892c1e57f9c9e4a667f05559f2356e031192c29ce9dc1f5d5d1c5e55dbb1",
+      "iokit/Kernel/arm/LilacAPRLink.h": "b02e04e1c25ff3b47bdeeba37d39fcab7a036678585b7eb9ed9d88b75ed4a0c9",
+      "xnu/support/LilacAsmPcm.h": "1534d94b8e0ae268edc75f3515af5b6b47dbb0b00ef5266688b2ea635a49fccc",
+      "xnu/support/LilacAsmPcmQueue.h": "3fb9ab59d7ccf0688ecf8974bb1423df4cebe8aa661aa8e56222d0fcb4ac094d",
+      "xnu/support/LilacAsmPcmApr.h": "a07282f0f0b323faaf26b4d9d0c79cb49939ccada5c7f1e9993b3e61ec5e4b3d",
+      "xnu/support/LilacAsmPcmMap.h": "703ba5e8bc0c2fb8c93a4625d01f0bcfa829b145c7a5f8847254a963bcffdace",
+      "xnu/support/LilacAsmPcmStream.h": "bfab29d571a1e5dce5522e4919e5d0e6e9fefeb61b3f378a85a6591af3a59670",
+      "xnu/support/LilacAdmPlaybackDevice.h": "059e9693798b2605bf9ed5bf2941358e21231982ccfa83810db51832ae74cf5c",
+      "xnu/support/LilacAdmPlaybackRoute.h": "8cbba82b1a98755331a3ca297e26ec1d687eb03d8ed841c230d77af317f54c4e",
+      "xnu/support/LilacAfeSlimbusPlayback.h": "b0727cc8404f45fdbd964517220b664cdd63f29a20fd80db714c8df8e42b147c",
+      "xnu/support/LilacPcmPlaybackSession.h": "51704cca5d2465e436e3fa1d8ff3c50c5612edd43d71846a355679d2d2e61fc6",
+      "xnu/support/LilacPcmPlaybackTransport.h": "3bbe2939273d86b659e635bdbb6bd5197115f89d2a69e1fb95ada0bd9cb62898",
+      "tools/build/test_lilac_asm_pcm.c": "a20be121a882ec19f3dd139d879c91a38f9140e9ce2f0b1b873d2964967eb864",
+      "tools/build/test_lilac_asm_pcm_queue.c": "f218ca5743436210735e3527fb118c40e898ec4df16f7882d61c17e36519a203",
+      "tools/build/test_lilac_asm_pcm_apr.cpp": "503ef370ed554b00b4b0cd7f9e47b720b33f1570e091fe4d034316cdd80e3332",
+      "tools/build/test_lilac_asm_pcm_map.cpp": "2eee81110dfcfb12f50991666070c741aed2b17fe38cae2350623d3076e6defc",
+      "tools/build/test_lilac_asm_pcm_stream.cpp": "15ca4071d8d925606d162257f7e6e97672356c2c84b64bbdcccb7dd19a1340c1",
+      "tools/build/test_lilac_afe_slimbus_playback.cpp": "9218c4e0c7fb045decc1178842e0eda8eeb4ec6aa918b2bbbe06b95b0ec4a680",
+      "tools/build/test_lilac_pcm_playback_session.cpp": "1cd381d250e37d29812dec10a8654521ce859a9fa77ce93f46a7ad726ba3bc38",
+      "tools/build/test_lilac_pcm_playback_transport.cpp": "23257dbe8dea1368a92d54bd1eed237b6f27a0fb6862a0e426c213de2b7179af",
+      "tools/build/check_lilac_pcm_session.py": "a76d3f081899e0e734e695b12f0f75a0b36ca4227029dba11787f59022c7c031",
+      "tools/build/check_lilac_afe_slimbus.py": "4d69b241c33bc09f2a3aa0add2740df6a5499849f8b5966bfda1aa9eaff20e05",
+      "tools/build/compile_lilac_pcm_session.cpp": "5d3db06696c3979cb83c7004261a9e12077a25872e95a35ed952b64d32e6b6ee",
+      "tools/build/compile_lilac_pcm_transport.cpp": "fa2eb328032d3352df2b40dc3ab41dd965c0289e3bfdd688e1b0b94d19eb9f45"
+    },
+    "commands": [
+      [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "clang",
+        "-std=c11",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-pedantic",
+        "-no-pie",
+        "-I",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-glink-transport-final-r5-20261126",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/tools/build/test_lilac_asm_pcm.c",
+        "-o",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-glink-transport-final-r5-20261126/test_pcm"
+      ],
+      [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-glink-transport-final-r5-20261126/test_pcm"
+      ],
+      [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "clang",
+        "-std=c11",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-pedantic",
+        "-no-pie",
+        "-I",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-glink-transport-final-r5-20261126",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/tools/build/test_lilac_asm_pcm_queue.c",
+        "-o",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-glink-transport-final-r5-20261126/test_queue"
+      ],
+      [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-glink-transport-final-r5-20261126/test_queue"
+      ],
+      [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-no-pie",
+        "-I",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-glink-transport-final-r5-20261126",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/tools/build/test_lilac_asm_pcm_apr.cpp",
+        "-o",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-glink-transport-final-r5-20261126/test_apr"
+      ],
+      [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-glink-transport-final-r5-20261126/test_apr"
+      ],
+      [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-no-pie",
+        "-I",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-glink-transport-final-r5-20261126",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/tools/build/test_lilac_asm_pcm_map.cpp",
+        "-o",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-glink-transport-final-r5-20261126/test_map"
+      ],
+      [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-glink-transport-final-r5-20261126/test_map"
+      ],
+      [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-no-pie",
+        "-I",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-glink-transport-final-r5-20261126",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/tools/build/test_lilac_asm_pcm_stream.cpp",
+        "-o",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-glink-transport-final-r5-20261126/test_stream"
+      ],
+      [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-glink-transport-final-r5-20261126/test_stream"
+      ],
+      [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-no-pie",
+        "-I",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-glink-transport-final-r5-20261126",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/tools/build/test_lilac_afe_slimbus_playback.cpp",
+        "-o",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-glink-transport-final-r5-20261126/test_afe"
+      ],
+      [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-glink-transport-final-r5-20261126/test_afe"
+      ],
+      [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-no-pie",
+        "-I",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-glink-transport-final-r5-20261126",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/tools/build/test_lilac_pcm_playback_session.cpp",
+        "-o",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-glink-transport-final-r5-20261126/test_session"
+      ],
+      [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-glink-transport-final-r5-20261126/test_session"
+      ],
+      [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-no-pie",
+        "-I",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-glink-transport-final-r5-20261126",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/tools/build/test_lilac_pcm_playback_transport.cpp",
+        "-o",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-glink-transport-final-r5-20261126/test_transport"
+      ],
+      [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "/mnt/d/Desktop/Git/ios-xperia-xz1c/build/lilac-pcm-glink-transport-final-r5-20261126/test_transport"
+      ]
+    ],
+    "tests": {
+      "pcm": {
+        "binary_sha256": "c7e479d60fe5a9892496fa814e1c3e5e3360f2cd5923e82db142b9448ca1a50e",
+        "test_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "ASan_UBSan_passed": true
+      },
+      "queue": {
+        "binary_sha256": "75d928956cba967b7ffc817e55384595d6dbef0dcaf3c9755ca557188e5c8773",
+        "test_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "ASan_UBSan_passed": true
+      },
+      "apr": {
+        "binary_sha256": "efbe58d97cf24bc5e89193759deb5183625c2188e56ebba49b1ae2c09927a822",
+        "test_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "ASan_UBSan_passed": true
+      },
+      "map": {
+        "binary_sha256": "5bf7b7ef1cdf68f8b181c39f8ff525215f9859bd0cab02e44dc8ba4067837d89",
+        "test_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "ASan_UBSan_passed": true
+      },
+      "stream": {
+        "binary_sha256": "7e1b4dfa45be4e4036de5df9c11cebf025856fed203f1a49f020a5a2df8c6145",
+        "test_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "ASan_UBSan_passed": true
+      },
+      "afe": {
+        "binary_sha256": "4f165f17b57ccec372382e9bb6ed962b67774673dc03b70b60174f479a15c829",
+        "test_log_sha256": "09e19297ab17665052da1002ac7980f83098221a9edca7274c1612435a05129c",
+        "ASan_UBSan_passed": true
+      },
+      "session": {
+        "binary_sha256": "6c0c12e8a3f1f9326aa06fb67e01fb3bd85f180b391ac24c2e10f738e8897919",
+        "test_log_sha256": "e4638555f67fdcd662b0d028898aed9a4d4e5852d951e8d5cde0a86a34261d47",
+        "ASan_UBSan_passed": true
+      },
+      "transport": {
+        "binary_sha256": "8271599deadf4e22c11928af209f41d7fdd7f6a7a6cd898d1d819befbc5b6c14",
+        "test_log_sha256": "285584de87336be5dad698bafac839385e56e036a39b33ce7326dca0cce45f13",
+        "ASan_UBSan_passed": true
+      }
+    },
+    "arm64_objects": {},
+    "host_ASan_UBSan_passed": true,
+    "playback_format": {
+      "channels": 2,
+      "bits_per_sample": 16,
+      "sample_rate": 48000
+    },
+    "pending_buffer_capacity": 4,
+    "startup_actions": [
+      "OpenStream",
+      "SetStreamFormat",
+      "MapRegion",
+      "ConfigureAfe",
+      "StartAfe",
+      "OpenOutput",
+      "RouteOutput",
+      "Run"
+    ],
+    "shutdown_actions": [
+      "all WRITE_DONE",
+      "EndOfStream basic reply and RENDERED_EOS",
+      "CloseStream",
+      "UnmapRegion",
+      "CloseOutput",
+      "StopAfe"
+    ],
+    "input_consumption_and_rendered_EOS_checked_separately": true,
+    "basic_EOS_reply_and_rendered_event_either_order": true,
+    "readiness_bound_to_exact_epoch": true,
+    "late_success_does_not_release_uncertain_region": true,
+    "all_13_command_failure_boundaries_and_pending_write_error_checked": true,
+    "exclusive_serialized_transport_owner_required": true,
+    "actual_locked_GLINK_transport_used_with_authored_FIFO": true,
+    "immutable_APR_busy_retry_without_new_token": true,
+    "incomplete_APR_transaction_consumed_without_link_fault": true,
+    "direct_session_sink_Map_basic_ACK_fault_reproduced": true,
+    "command_and_write_completions_require_prior_publication": true,
+    "fragmented_GLINK_response_waits_for_complete_APR_packet": true,
+    "ambiguous_FIFO_publication_not_retried_or_released": true,
+    "clock_regression_epoch_change_and_readiness_loss_stop_progress": true,
+    "original_publish_reply_write_and_close_deadlines_not_extended": true,
+    "GLINK_close_ack_and_remote_close_required_before_region_release": true,
+    "codec_channels_schema_and_firmware_token_echo_require_hardware_validation": true,
+    "transport_connected": false,
+    "linked_into_device_kernel": false,
+    "DSP_codec_or_physical_audio_verified": false,
+    "device_operations": 0
+  },
+  "Mac_host": {
+    "revision": 2,
+    "source_files": {
+      "iokit/Kernel/arm/LilacAPRProtocol.h": "78e293cf87f0e636aea1f3ee6a0c5a9caf92cf710010b3b4149a42464f9a026e",
+      "iokit/Kernel/arm/LilacAPRBasebandProtocol.h": "3a23a81bcefe65f14c797e1bd4b51505aebf64eca44016a28abcae055cd77420",
+      "iokit/Kernel/arm/LilacAPRBasebandGLINK.h": "bcce892c1e57f9c9e4a667f05559f2356e031192c29ce9dc1f5d5d1c5e55dbb1",
+      "iokit/Kernel/arm/LilacAPRLink.h": "b02e04e1c25ff3b47bdeeba37d39fcab7a036678585b7eb9ed9d88b75ed4a0c9",
+      "xnu/support/LilacAsmPcm.h": "1534d94b8e0ae268edc75f3515af5b6b47dbb0b00ef5266688b2ea635a49fccc",
+      "xnu/support/LilacAsmPcmQueue.h": "3fb9ab59d7ccf0688ecf8974bb1423df4cebe8aa661aa8e56222d0fcb4ac094d",
+      "xnu/support/LilacAsmPcmApr.h": "a07282f0f0b323faaf26b4d9d0c79cb49939ccada5c7f1e9993b3e61ec5e4b3d",
+      "xnu/support/LilacAsmPcmMap.h": "703ba5e8bc0c2fb8c93a4625d01f0bcfa829b145c7a5f8847254a963bcffdace",
+      "xnu/support/LilacAsmPcmStream.h": "bfab29d571a1e5dce5522e4919e5d0e6e9fefeb61b3f378a85a6591af3a59670",
+      "xnu/support/LilacAdmPlaybackDevice.h": "059e9693798b2605bf9ed5bf2941358e21231982ccfa83810db51832ae74cf5c",
+      "xnu/support/LilacAdmPlaybackRoute.h": "8cbba82b1a98755331a3ca297e26ec1d687eb03d8ed841c230d77af317f54c4e",
+      "xnu/support/LilacAfeSlimbusPlayback.h": "b0727cc8404f45fdbd964517220b664cdd63f29a20fd80db714c8df8e42b147c",
+      "xnu/support/LilacPcmPlaybackSession.h": "51704cca5d2465e436e3fa1d8ff3c50c5612edd43d71846a355679d2d2e61fc6",
+      "xnu/support/LilacPcmPlaybackTransport.h": "3bbe2939273d86b659e635bdbb6bd5197115f89d2a69e1fb95ada0bd9cb62898",
+      "tools/build/test_lilac_asm_pcm.c": "a20be121a882ec19f3dd139d879c91a38f9140e9ce2f0b1b873d2964967eb864",
+      "tools/build/test_lilac_asm_pcm_queue.c": "f218ca5743436210735e3527fb118c40e898ec4df16f7882d61c17e36519a203",
+      "tools/build/test_lilac_asm_pcm_apr.cpp": "503ef370ed554b00b4b0cd7f9e47b720b33f1570e091fe4d034316cdd80e3332",
+      "tools/build/test_lilac_asm_pcm_map.cpp": "2eee81110dfcfb12f50991666070c741aed2b17fe38cae2350623d3076e6defc",
+      "tools/build/test_lilac_asm_pcm_stream.cpp": "15ca4071d8d925606d162257f7e6e97672356c2c84b64bbdcccb7dd19a1340c1",
+      "tools/build/test_lilac_afe_slimbus_playback.cpp": "9218c4e0c7fb045decc1178842e0eda8eeb4ec6aa918b2bbbe06b95b0ec4a680",
+      "tools/build/test_lilac_pcm_playback_session.cpp": "1cd381d250e37d29812dec10a8654521ce859a9fa77ce93f46a7ad726ba3bc38",
+      "tools/build/test_lilac_pcm_playback_transport.cpp": "23257dbe8dea1368a92d54bd1eed237b6f27a0fb6862a0e426c213de2b7179af",
+      "tools/build/check_lilac_pcm_session.py": "a76d3f081899e0e734e695b12f0f75a0b36ca4227029dba11787f59022c7c031",
+      "tools/build/check_lilac_afe_slimbus.py": "4d69b241c33bc09f2a3aa0add2740df6a5499849f8b5966bfda1aa9eaff20e05",
+      "tools/build/compile_lilac_pcm_session.cpp": "5d3db06696c3979cb83c7004261a9e12077a25872e95a35ed952b64d32e6b6ee",
+      "tools/build/compile_lilac_pcm_transport.cpp": "fa2eb328032d3352df2b40dc3ab41dd965c0289e3bfdd688e1b0b94d19eb9f45"
+    },
+    "commands": [
+      [
+        "clang",
+        "-std=c11",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-pedantic",
+        "-I",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/tools/build/test_lilac_asm_pcm.c",
+        "-o",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64/test_pcm"
+      ],
+      [
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64/test_pcm"
+      ],
+      [
+        "clang",
+        "-std=c11",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-pedantic",
+        "-I",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/tools/build/test_lilac_asm_pcm_queue.c",
+        "-o",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64/test_queue"
+      ],
+      [
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64/test_queue"
+      ],
+      [
+        "clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-I",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/tools/build/test_lilac_asm_pcm_apr.cpp",
+        "-o",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64/test_apr"
+      ],
+      [
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64/test_apr"
+      ],
+      [
+        "clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-I",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/tools/build/test_lilac_asm_pcm_map.cpp",
+        "-o",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64/test_map"
+      ],
+      [
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64/test_map"
+      ],
+      [
+        "clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-I",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/tools/build/test_lilac_asm_pcm_stream.cpp",
+        "-o",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64/test_stream"
+      ],
+      [
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64/test_stream"
+      ],
+      [
+        "clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-I",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/tools/build/test_lilac_afe_slimbus_playback.cpp",
+        "-o",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64/test_afe"
+      ],
+      [
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64/test_afe"
+      ],
+      [
+        "clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-I",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/tools/build/test_lilac_pcm_playback_session.cpp",
+        "-o",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64/test_session"
+      ],
+      [
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64/test_session"
+      ],
+      [
+        "clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-I",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/tools/build/test_lilac_pcm_playback_transport.cpp",
+        "-o",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64/test_transport"
+      ],
+      [
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64/test_transport"
+      ],
+      [
+        "xcrun",
+        "--sdk",
+        "iphoneos",
+        "--show-sdk-path"
+      ],
+      [
+        "xcrun",
+        "--sdk",
+        "iphoneos",
+        "clang++",
+        "-target",
+        "arm64-apple-ios16.7",
+        "-isysroot",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk",
+        "-std=c++17",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-ffreestanding",
+        "-fno-exceptions",
+        "-fno-rtti",
+        "-I",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64",
+        "-c",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/tools/build/compile_lilac_pcm_session.cpp",
+        "-o",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64/pcm-session.arm64.o"
+      ],
+      [
+        "file",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64/pcm-session.arm64.o"
+      ],
+      [
+        "nm",
+        "-u",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64/pcm-session.arm64.o"
+      ],
+      [
+        "xcrun",
+        "--sdk",
+        "iphoneos",
+        "clang++",
+        "-target",
+        "arm64-apple-ios16.7",
+        "-isysroot",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk",
+        "-std=c++17",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-ffreestanding",
+        "-fno-exceptions",
+        "-fno-rtti",
+        "-I",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64",
+        "-c",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/tools/build/compile_lilac_pcm_transport.cpp",
+        "-o",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64/pcm-transport.arm64.o"
+      ],
+      [
+        "file",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64/pcm-transport.arm64.o"
+      ],
+      [
+        "nm",
+        "-u",
+        "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64/pcm-transport.arm64.o"
+      ]
+    ],
+    "tests": {
+      "pcm": {
+        "binary_sha256": "b930096fee6640b42ce0a11d3c074f21b3c1fd164a8856cc3b9da9d32183eb70",
+        "test_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "ASan_UBSan_passed": true
+      },
+      "queue": {
+        "binary_sha256": "3c18d4bae6aea4242f63ad6c2130be708ed2bd133a3513b6d3f2d4058192a261",
+        "test_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "ASan_UBSan_passed": true
+      },
+      "apr": {
+        "binary_sha256": "427e80b9aa818819acba1b03c52619ac084dd726cc5d212c9254cb197b98ab66",
+        "test_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "ASan_UBSan_passed": true
+      },
+      "map": {
+        "binary_sha256": "ae6578539822bd1f3a4ac9e3e8d34c1dab71a8cbc5219bb8bc52074938232c7a",
+        "test_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "ASan_UBSan_passed": true
+      },
+      "stream": {
+        "binary_sha256": "788102e5a7d95b1f315e69f8b376fcf57cb8538c13f0f7cacd062f12d383d545",
+        "test_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "ASan_UBSan_passed": true
+      },
+      "afe": {
+        "binary_sha256": "39ff98190246f43ce9fd57b0eb5226e26899786209f00bae9a28f18d542161fb",
+        "test_log_sha256": "09e19297ab17665052da1002ac7980f83098221a9edca7274c1612435a05129c",
+        "ASan_UBSan_passed": true
+      },
+      "session": {
+        "binary_sha256": "6af6d1f09a7adf750bb6d9fefdbe394d77b6d690b4b2df55b504fa373af84ef2",
+        "test_log_sha256": "e4638555f67fdcd662b0d028898aed9a4d4e5852d951e8d5cde0a86a34261d47",
+        "ASan_UBSan_passed": true
+      },
+      "transport": {
+        "binary_sha256": "535ea9cb46a91fa47ae42988910782050458d93b3b73cf29f6f2bae91885078a",
+        "test_log_sha256": "285584de87336be5dad698bafac839385e56e036a39b33ce7326dca0cce45f13",
+        "ASan_UBSan_passed": true
+      }
+    },
+    "arm64_objects": {
+      "session": {
+        "sha256": "91dd4a9c279f730db9054d3c4bd5843c515ea051dba6dab31a7bbee42807e279",
+        "description": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64/pcm-session.arm64.o: Mach-O 64-bit object arm64",
+        "undefined_symbols": [
+          "___stack_chk_fail",
+          "___stack_chk_guard"
+        ],
+        "linked_into_kernel": false
+      },
+      "transport": {
+        "sha256": "a73ce9c799906f0dff0702a504e959d41d51396e35c6da7b20b6f37ffbaff4c9",
+        "description": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-glink-transport-20261126/host-final-arm64/pcm-transport.arm64.o: Mach-O 64-bit object arm64",
+        "undefined_symbols": [
+          "__ZN17LilacPcmCompileIO4peekEPvm",
+          "__ZN17LilacPcmCompileIO4sendEPKvm",
+          "__ZN17LilacPcmCompileIO7consumeEm",
+          "__ZN17LilacPcmCompileIO9availableERm",
+          "___stack_chk_fail",
+          "___stack_chk_guard"
+        ],
+        "linked_into_kernel": false
+      }
+    },
+    "host_ASan_UBSan_passed": true,
+    "playback_format": {
+      "channels": 2,
+      "bits_per_sample": 16,
+      "sample_rate": 48000
+    },
+    "pending_buffer_capacity": 4,
+    "startup_actions": [
+      "OpenStream",
+      "SetStreamFormat",
+      "MapRegion",
+      "ConfigureAfe",
+      "StartAfe",
+      "OpenOutput",
+      "RouteOutput",
+      "Run"
+    ],
+    "shutdown_actions": [
+      "all WRITE_DONE",
+      "EndOfStream basic reply and RENDERED_EOS",
+      "CloseStream",
+      "UnmapRegion",
+      "CloseOutput",
+      "StopAfe"
+    ],
+    "input_consumption_and_rendered_EOS_checked_separately": true,
+    "basic_EOS_reply_and_rendered_event_either_order": true,
+    "readiness_bound_to_exact_epoch": true,
+    "late_success_does_not_release_uncertain_region": true,
+    "all_13_command_failure_boundaries_and_pending_write_error_checked": true,
+    "exclusive_serialized_transport_owner_required": true,
+    "actual_locked_GLINK_transport_used_with_authored_FIFO": true,
+    "immutable_APR_busy_retry_without_new_token": true,
+    "incomplete_APR_transaction_consumed_without_link_fault": true,
+    "direct_session_sink_Map_basic_ACK_fault_reproduced": true,
+    "command_and_write_completions_require_prior_publication": true,
+    "fragmented_GLINK_response_waits_for_complete_APR_packet": true,
+    "ambiguous_FIFO_publication_not_retried_or_released": true,
+    "clock_regression_epoch_change_and_readiness_loss_stop_progress": true,
+    "original_publish_reply_write_and_close_deadlines_not_extended": true,
+    "GLINK_close_ack_and_remote_close_required_before_region_release": true,
+    "codec_channels_schema_and_firmware_token_echo_require_hardware_validation": true,
+    "transport_connected": false,
+    "linked_into_device_kernel": false,
+    "DSP_codec_or_physical_audio_verified": false,
+    "device_operations": 0
+  },
+  "direct_session_sink_NotReady_caused_GLINK_fault_reproduced": true,
+  "adapter_consumes_incomplete_reply_while_preserving_pending_session": true,
+  "control_and_PCM_replies_require_actual_successful_publication": true,
+  "only_explicit_unpublished_Busy_allows_same_packet_retry": true,
+  "publication_error_does_not_regenerate_token_or_release_region": true,
+  "all_four_deadline_classes_and_clock_epoch_readiness_refused": true,
+  "GLINK_version_open_intent_RXdone_and_close_used": true,
+  "GLINK_headers_reconstructed_from_formal_patch_and_locked_mixed_newlines": true,
+  "initial_uniform_CRLF_materialization_refused": true,
+  "initial_failed_output_retained": true,
+  "physical_FIFO_driver_implemented": false,
+  "DSP_started": false,
+  "codec_configured": false,
+  "physical_audio_output_verified": false,
+  "GPU_candidate_unchanged": true,
+  "device_operations": 0
+}

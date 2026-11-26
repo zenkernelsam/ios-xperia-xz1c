@@ -1,0 +1,37 @@
+{
+  "original_bytes_preserved": true,
+  "documents": [
+    {
+      "original_path": "docs/STATUS.md",
+      "sha256": "cda693136f69bd1996a34e2817cf94297683f0eab0b0fc59c5207813bc14225a",
+      "bytes": 18480,
+      "archived_path": "docs/archive/20261126/pcm-glink-transport/originals/docs/STATUS.md"
+    },
+    {
+      "original_path": "docs/BUILD.md",
+      "sha256": "def2cd2dfacedeb9d4db11ebe207415af783eb329705a8908d2e9e891f257d1b",
+      "bytes": 23033,
+      "archived_path": "docs/archive/20261126/pcm-glink-transport/originals/docs/BUILD.md"
+    },
+    {
+      "original_path": "docs/LILAC-PERIPHERALS.md",
+      "sha256": "4d9428255e4ad6bfb400b12f1797b07ee71be9e1720f64be97cf916be317d1b1",
+      "bytes": 20088,
+      "archived_path": "docs/archive/20261126/pcm-glink-transport/originals/docs/LILAC-PERIPHERALS.md"
+    },
+    {
+      "original_path": "docs/ORGANIZATION.md",
+      "sha256": "164f278b20e90ba6e0426a73af4b6f9d7e870a4f9491a3a422a8af469089049a",
+      "bytes": 17835,
+      "archived_path": "docs/archive/20261126/pcm-glink-transport/originals/docs/ORGANIZATION.md"
+    },
+    {
+      "original_path": "docs/INDEX.md",
+      "sha256": "6b98f761619236ed0be012e913d0e9705828f6353760dd913f553c6605f031d6",
+      "bytes": 7751,
+      "archived_path": "docs/archive/20261126/pcm-glink-transport/originals/docs/INDEX.md"
+    }
+  ],
+  "date": "2026-11-26",
+  "reason": "Preserve current entries before bounded PCM GLINK transport integration"
+}

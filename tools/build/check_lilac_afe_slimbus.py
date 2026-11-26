@@ -9,20 +9,23 @@ import subprocess
 
 ROOT = Path(__file__).resolve().parents[2]
 HEADERS = ("LilacAPRProtocol.h", "LilacAPRBasebandProtocol.h")
+LINK_HEADERS = HEADERS + ("LilacAPRBasebandGLINK.h", "LilacAPRLink.h")
 
 
 def digest(data):
     return hashlib.sha256(data).hexdigest()
 
 
-def materialize_headers(output):
+def materialize_headers(output, headers=HEADERS):
+    if not headers or len(set(headers)) != len(headers) or any(name not in LINK_HEADERS for name in headers):
+        raise ValueError("Use unique locked APR/GLINK header names")
     lock = json.loads((ROOT / "reproducibility/source-lock.json").read_bytes())
     patch = (ROOT / "xnu/lilac-current.patch").read_bytes()
     if digest(patch) != lock["xnu"]["patch_sha256"]:
         raise ValueError("Use the locked formal XNU patch")
     sections = patch.split(b"diff --git ")
     sources = {}
-    for name in HEADERS:
+    for name in headers:
         path = "iokit/Kernel/arm/" + name
         prefix = ("a/" + path + " b/" + path + "\n").encode()
         matches = [s for s in sections if s.startswith(prefix)]
@@ -36,12 +39,22 @@ def materialize_headers(output):
                 raise ValueError("Unexpected original APR patch context")
         data = b"".join(lines)
         if digest(data) != lock["audited_xnu_files"][path]:
-            crlf = data.replace(b"\n", b"\r\n")
-            if b"\r" in data or digest(crlf) != lock["audited_xnu_files"][path]:
-                raise ValueError("Original APR header digest differs: " + name)
-            # The audited native tree retained this original header's CRLF.
-            # Restore only when both exact forms are source-lock checked.
-            data = crlf
+            endings = lock["xnu"]["baseline_source_newlines"]["sources"].get(path)
+            if endings and digest(data) == endings["before_sha256"]:
+                native_lines = data.splitlines()
+                if b"\r" in data or len(native_lines) != endings["line_count"]:
+                    raise ValueError("Original APR source-line layout differs: " + name)
+                lf_only = set(endings["lf_only_indices"])
+                data = b"".join(line + (b"\n" if index in lf_only else b"\r\n")
+                                for index, line in enumerate(native_lines))
+                if digest(data) != endings["after_sha256"] or digest(data) != lock["audited_xnu_files"][path]:
+                    raise ValueError("Original APR native newline reconstruction differs: " + name)
+            else:
+                crlf = data.replace(b"\n", b"\r\n")
+                if b"\r" in data or digest(crlf) != lock["audited_xnu_files"][path]:
+                    raise ValueError("Original APR header digest differs: " + name)
+                # Restore line endings only when the exact form is locked.
+                data = crlf
         with (output / name).open("xb") as stream:
             stream.write(data)
         sources[path] = digest(data)

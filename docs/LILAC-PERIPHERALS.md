@@ -29,6 +29,12 @@ python -B tools/build/check_lilac_afe_slimbus.py --output build/新的-afe-host
 
 新正式工具`check_lilac_pcm_session.py`从锁定patch重建APR头，WSL和Mac同源七组ASan／UBSan已通过，覆盖准确包／guard、epoch／token、Accepted／typed回复、四缓冲排空、EOS两种顺序、全部13步命令错误及在途WRITE错误。Mac `--arm64-object`另编译`compile_lilac_pcm_session.cpp`的全部入口，产物为ARM64 Mach-O，未链接内核或接通传输。复现命令见[BUILD](BUILD.md)，新音频会话和流support保留GPL-2.0-only标识，固定参考Git blob与COPYING列于报告。
 
+[串行GLINK适配](../reproducibility/lilac-pcm-glink-transport-offline-20261126.json)将该session接到原正式patch的ADSP::Link，未改底层传输实现。直接session sink在Map普通ACK后返回NotReady，原Link会fault；对照测试已复现。`LilacPcmPlaybackTransport.h`把合法待完成回复转换成Link可消费的OK，session继续等准确最终回复。分段GLINK包只有拼成完整APR后才处理，不接受未发布控制包或WRITE的伪完成。
+
+适配层在调用方确认本epoch的DSP／codec／link就绪后串行推进；待发APR字节和token保持，只有Link返回Busy（保证未发布）允许再发送相同包。成功publication后记录控制／PCM deadline，Accepted／普通Map ACK不刷新它；IO错误可能发生在FIFO／head已发布后，绝不重试或释放区域。四个已发布WRITE分别限时，session排空／rendered EOS／Stop完整成功后还要等GLINK CloseAck和远端Close，最终才确认region可释放。超时、时钟倒退、epoch或readiness变化保留所有权，需要调用方独立恢复，适配层不启动或复位DSP。
+
+本次复现工具revision2编译八组ASan／UBSan，直接使用锁定的GLINK／intent／RX ACK代码和模拟FIFO，WSL／Mac准确源一致；另编译session与transport两个ARM64 Mach-O。四份APR头来自正式patch，BasebandGLINK的混合行尾按锁定before／after SHA复建；首次仅CRLF重建的拒绝保持，未改原内核源。ARM64 transport对象明确留下四个真实FIFO外部函数未定义，实际SMEM IO／codec／PCM页缓存仍待接入。本次没有物理声音、DSP启动或手机操作。
+
 [PCM 负载核验](../reproducibility/lilac-asm-pcm-offline-20261124.json)实现了无时间戳、双声道 16 位 PCM 的 `WRITE_V2` 负载编码。`WRITE_DONE_V2` 必须匹配端口、token、连接代次、缓冲区地址和映射句柄，且状态为零，才能判为 DSP 消费完成。主机测试覆盖准确字节、越界和外来回复。当前代码不映射内存或发包。复验可在 WSL 用 `cc -std=c11 -Wall -Wextra -Werror -pedantic -fsanitize=address,undefined -fno-sanitize-recover=all -no-pie tools/build/test_lilac_asm_pcm.c -o build/新的-pcm-test` 编译并运行。
 
 [PCM 在途队列](../reproducibility/lilac-asm-pcm-queue-offline-20261124.json)最多保留四个待确认缓冲区。DSP 地址范围重叠时拒绝再次提交；匹配的成功完成只释放一次，旧连接或重复完成不会释放新提交。DSP 错误、超时或发送状态不明后，连接应停止接收新请求并保留待确认缓冲区，直到独立确认 DSP 不再访问它们。主机复验沿用上面的编译选项，将输入换成 `tools/build/test_lilac_asm_pcm_queue.c`，输出使用新路径。

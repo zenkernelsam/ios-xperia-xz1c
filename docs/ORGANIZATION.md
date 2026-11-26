@@ -1,5 +1,9 @@
 # 本周整理与文档整合 — 2026-11-26
 
+PCM／GLINK适配收尾：[Mac38项／70文件／3412804 B](../reproducibility/pcm-glink-transport-macos-trash-20261126.json)进入原生Trash，[Windows26项／27文件／38847808 B](../reproducibility/pcm-glink-transport-windows-recycle-20261126.json)进入原生回收站，含WSL共享build已结束主机程序、两套ARM64 object／dSYM及TEMP传输tar。目标逐字节SHA核验，69个Mac和73个Windows保护文件保持；原失败输出、混合行尾头文件、构建／test日志、manifest、源码备份、r5 GPU包与冻结内核保留。
+
+[Ubuntu／Ubuntu-22.04全部用户Trash为空](../reproducibility/pcm-glink-transport-wsl-trash-audit-20261126.json)，未清空Windows／Mac垃圾桶。整合前[五份现行入口](archive/20261126/pcm-glink-transport/original-document-manifest.json)已按原字节／SHA归档，音频技术与现行八组复现入口归入LILAC-PERIPHERALS／BUILD；源码只在正式仓库维护，设备操作0。
+
 本次Mesa dense image修补收尾：[Mac54项／78文件／204301653 B](../reproducibility/ordered-image-barrier-dense-macos-trash-20261126.json)进入原生Trash，236保护文件SHA一致；六份重复HFS先从保留blob逐字节复算，主机程序／dSYM／frontend object和TEMP传输tar已结束后回收。新r5 signed库、RAM blob／manifest、源码备份、原test／build日志及固定内核保留。
 
 [Windows一个TEMP传输包／两文件／328704 B](../reproducibility/ordered-image-barrier-dense-windows-recycle-20261126.json)进入原生回收站，外层检查误用了此前native命令退出码，随后只读验证原journal和目标全部SHA，未再次回收。[Ubuntu和Ubuntu-22.04全部用户Trash为空](../reproducibility/ordered-image-barrier-dense-wsl-trash-audit-20261126.json)；Windows／Mac未清空。整合前[五份入口原文](archive/20261126/dense-image-barrier/original-document-manifest.json)原字节保持。本轮没有guard／download／boot，原r4／失败与历史证据保持，新r5只在正式仓库维护。

@@ -7,7 +7,7 @@ import os
 from pathlib import Path
 import sys
 
-from check_lilac_afe_slimbus import materialize_headers, run
+from check_lilac_afe_slimbus import LINK_HEADERS, materialize_headers, run
 
 ROOT = Path(__file__).resolve().parents[2]
 TESTS = (
@@ -18,12 +18,14 @@ TESTS = (
     ("stream", "test_lilac_asm_pcm_stream.cpp"),
     ("afe", "test_lilac_afe_slimbus_playback.cpp"),
     ("session", "test_lilac_pcm_playback_session.cpp"),
+    ("transport", "test_lilac_pcm_playback_transport.cpp"),
 )
 SUPPORT = (
     "LilacAsmPcm.h", "LilacAsmPcmQueue.h", "LilacAsmPcmApr.h",
     "LilacAsmPcmMap.h", "LilacAsmPcmStream.h",
     "LilacAdmPlaybackDevice.h", "LilacAdmPlaybackRoute.h",
     "LilacAfeSlimbusPlayback.h", "LilacPcmPlaybackSession.h",
+    "LilacPcmPlaybackTransport.h",
 )
 
 
@@ -42,10 +44,10 @@ def check(output, arm64_object=False):
     source_paths = ["xnu/support/" + name for name in SUPPORT]
     source_paths += ["tools/build/" + name for _, name in TESTS]
     source_paths += ["tools/build/check_lilac_pcm_session.py", "tools/build/check_lilac_afe_slimbus.py",
-                     "tools/build/compile_lilac_pcm_session.cpp"]
+                     "tools/build/compile_lilac_pcm_session.cpp", "tools/build/compile_lilac_pcm_transport.cpp"]
     source_files = {path: sha(ROOT / path) for path in source_paths}
     output.mkdir(parents=True)
-    headers = materialize_headers(output)
+    headers = materialize_headers(output, LINK_HEADERS)
 
     def local_path(path):
         path = Path(path).resolve()
@@ -72,37 +74,41 @@ def check(output, arm64_object=False):
         text = run(output, execution, name + "-test")
         if name == "session" and "Lilac PCM session PASS:" not in text:
             raise ValueError("Actual session test did not complete")
+        if name == "transport" and "Lilac PCM transport PASS:" not in text:
+            raise ValueError("Actual GLINK PCM transport test did not complete")
         commands.extend([command, execution])
         outputs[name] = {
             "binary_sha256": sha(binary),
             "test_log_sha256": sha(output / (name + "-test.log")),
             "ASan_UBSan_passed": True,
         }
-    target_object = None
+    target_objects = {}
     if arm64_object:
         sdk_command = ["xcrun", "--sdk", "iphoneos", "--show-sdk-path"]
         sdk = run(output, sdk_command, "arm64-sdk").strip()
         if not Path(sdk).is_dir():
             raise ValueError("iOS SDK directory not found")
-        binary = output / "pcm-session.arm64.o"
-        command = ["xcrun", "--sdk", "iphoneos", "clang++", "-target", "arm64-apple-ios16.7",
-                   "-isysroot", sdk, "-std=c++17", "-O1", "-Wall", "-Wextra", "-Werror",
-                   "-ffreestanding", "-fno-exceptions", "-fno-rtti", "-I", str(output), "-c",
-                   str(ROOT / "tools/build/compile_lilac_pcm_session.cpp"), "-o", str(binary)]
-        run(output, command, "arm64-compile")
-        file_command, symbols_command = ["file", str(binary)], ["nm", "-u", str(binary)]
-        description = run(output, file_command, "arm64-file")
-        undefined = run(output, symbols_command, "arm64-undefined")
-        if "Mach-O 64-bit object arm64" not in description:
-            raise ValueError("Expected an ARM64 Mach-O object")
-        commands.extend([sdk_command, command, file_command, symbols_command])
-        target_object = dict(sha256=sha(binary), description=description.strip(),
-                             undefined_symbols=undefined.splitlines(), linked_into_kernel=False)
+        commands.append(sdk_command)
+        for name in ("session", "transport"):
+            binary = output / ("pcm-" + name + ".arm64.o")
+            command = ["xcrun", "--sdk", "iphoneos", "clang++", "-target", "arm64-apple-ios16.7",
+                       "-isysroot", sdk, "-std=c++17", "-O1", "-Wall", "-Wextra", "-Werror",
+                       "-ffreestanding", "-fno-exceptions", "-fno-rtti", "-I", str(output), "-c",
+                       str(ROOT / ("tools/build/compile_lilac_pcm_" + name + ".cpp")), "-o", str(binary)]
+            run(output, command, "arm64-" + name + "-compile")
+            file_command, symbols_command = ["file", str(binary)], ["nm", "-u", str(binary)]
+            description = run(output, file_command, "arm64-" + name + "-file")
+            undefined = run(output, symbols_command, "arm64-" + name + "-undefined")
+            if "Mach-O 64-bit object arm64" not in description:
+                raise ValueError("Expected an ARM64 Mach-O object")
+            commands.extend([command, file_command, symbols_command])
+            target_objects[name] = dict(sha256=sha(binary), description=description.strip(),
+                                       undefined_symbols=undefined.splitlines(), linked_into_kernel=False)
     if source_files != {path: sha(ROOT / path) for path in source_paths}:
         raise ValueError("Playback sources changed during verification")
     report = dict(
-        revision=1, source_files={**headers, **source_files}, commands=commands, tests=outputs,
-        arm64_object=target_object,
+        revision=2, source_files={**headers, **source_files}, commands=commands, tests=outputs,
+        arm64_objects=target_objects,
         host_ASan_UBSan_passed=True,
         playback_format={"channels": 2, "bits_per_sample": 16, "sample_rate": 48000},
         pending_buffer_capacity=4,
@@ -116,6 +122,16 @@ def check(output, arm64_object=False):
         late_success_does_not_release_uncertain_region=True,
         all_13_command_failure_boundaries_and_pending_write_error_checked=True,
         exclusive_serialized_transport_owner_required=True,
+        actual_locked_GLINK_transport_used_with_authored_FIFO=True,
+        immutable_APR_busy_retry_without_new_token=True,
+        incomplete_APR_transaction_consumed_without_link_fault=True,
+        direct_session_sink_Map_basic_ACK_fault_reproduced=True,
+        command_and_write_completions_require_prior_publication=True,
+        fragmented_GLINK_response_waits_for_complete_APR_packet=True,
+        ambiguous_FIFO_publication_not_retried_or_released=True,
+        clock_regression_epoch_change_and_readiness_loss_stop_progress=True,
+        original_publish_reply_write_and_close_deadlines_not_extended=True,
+        GLINK_close_ack_and_remote_close_required_before_region_release=True,
         codec_channels_schema_and_firmware_token_echo_require_hardware_validation=True,
         transport_connected=False, linked_into_device_kernel=False,
         DSP_codec_or_physical_audio_verified=False, device_operations=0,

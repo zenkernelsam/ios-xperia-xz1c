@@ -86,6 +86,8 @@ ADSP stage3只核验固件和AP端准备，没有启动DSP。ASM PCM／映射／
 
 [统一PCM会话](../reproducibility/lilac-pcm-session-offline-20261126.json)把已锁定Sony AFE／ADM／ASM组件串到同一个epoch：开流／格式／映射→AFE配置／启动→COPP／路由→Run，全部准确回复后才允许PCM写入。关流先排空四个在途缓冲，再分别等待EOS普通回复与RENDERED_EOS，最后Close／Unmap／关闭COPP／AFE Stop；WRITE_DONE不冒充声音已播放完。WSL和Mac同源七组ASan／UBSan、两种EOS到达顺序及全部13步命令错误通过，iOS ARM64对象已编译但未链接内核。实际DSP／codec／APR传输和物理声音仍未接通，固件token回显与schema／channel map仍需实机确认。
 
+[PCM／GLINK串行适配](../reproducibility/lilac-pcm-glink-transport-offline-20261126.json)继续使用正式锁定的ADSP::Link。原session直接接sink时，Map普通ACK的NotReady会让Link误判故障；新适配层正常消费／ACK该包，同时保持准确typed回复等待。Busy只保留同一份未发布APR包，不生成新token；控制与PCM完成必须先有成功publication，发布状态不明／回复／PCM／关通道超时、时钟倒退或epoch／readiness变化都保留区域并停止。session完整关闭后还须GLINK CloseAck与远端Close，才发布释放确认。WSL／Mac同源八组ASan／UBSan和session／transport两个iOS ARM64对象通过，包含分段APR、未发布伪完成、Map误判对照及四类deadline。真实FIFO函数仍未实现，未链接内核、未启动DSP或codec，没有物理声音证据。r5 GPU源码／signed包未改，本轮无设备操作。
+
 ## 复现、整理和操作
 
 正式源码、构建与工具只在本仓库；[BUILD](BUILD.md)给固定Mesa、AIR重建／168个LLVM导入、RAM／原snapshot／AFE复现，[OPERATIONS](OPERATIONS.md)给准入与返回，[LAYOUT](LAYOUT.md)给本地SDK／gl5／救砖输入与恢复。全新gl5首次启动仍未独立验收。各失败包raw／完整payload和只读source-map保留。
@@ -101,6 +103,8 @@ PCM／星点主机补充已在正式主提交`d42c453…`推送origin/main，[Ma
 r5收尾[Mac54项／78文件／204301653 B](../reproducibility/ordered-image-barrier-dense-macos-trash-20261126.json)进原生Trash，236保护文件SHA保持；六份重复HFS从保留blob逐字节复算后回收。[Windows一个TEMP包／两文件／328704 B](../reproducibility/ordered-image-barrier-dense-windows-recycle-20261126.json)进原生回收站，外层误读旧退出码后只核验原journal、未重复回收。[两套Ubuntu Trash为空](../reproducibility/ordered-image-barrier-dense-wsl-trash-audit-20261126.json)，Windows／Mac未清空；五份整合前入口原文与SHA已archive。
 
 r5主提交`887348b…`已推送origin/main，[正式Mac同步](../reproducibility/ordered-image-barrier-dense-git-sync-20261126.json)28份变更与commit逐字节一致，实编译GLES源和source-lock通过；预同步修改进未drop的stash`58e25e8e…`。Mac旧builder继续pause，Windows原sampler字节保持，设备操作0。
+
+PCM传输收尾另回收[Mac38项／70文件／3412804 B](../reproducibility/pcm-glink-transport-macos-trash-20261126.json)、[Windows26项／27文件／38847808 B](../reproducibility/pcm-glink-transport-windows-recycle-20261126.json)，包括WSL在正式共享build的已结束测试程序；69个Mac和73个Windows保护文件SHA保持，原构建／test日志、混合行尾头文件、源码备份和r5候选保留。[两套Ubuntu Trash为空](../reproducibility/pcm-glink-transport-wsl-trash-audit-20261126.json)，未永久删除或清空Windows／Mac垃圾桶；五份入口原文与SHA先archive。
 
 正式补充主提交`4dc552dba56d156496fea0d0b1919a0de2635893`已推送origin/main，[r4 Mac同步](../reproducibility/ordered-XR-initialized-git-sync-20261126.json)18份变更逐字节一致、source验证通过，原Mac修改以未删除stash`caea8028…`保留。此前[94份变更同步](../reproducibility/ordered-XR-formal-git-sync-20261126.json)原记录保持。Windows／WSL使用同一正式目录，原sampler fixture字节保持。反射Metal组合已完整验收；当前HEAD还有待验的XR barrier候选，不冒充完整生产UI。更早同步与stash由ORGANIZATION索引。
 

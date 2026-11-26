@@ -1,0 +1,304 @@
+{
+  "date": "2026-11-26",
+  "native_recycle_items": 26,
+  "native_recycle_files": 27,
+  "logical_bytes": 38847808,
+  "protected_files_SHA_preserved": 73,
+  "WSL_binaries_on_formal_Windows_drive_recycled": true,
+  "no_permanent_deletion": true,
+  "Recycle_Bin_not_emptied": true,
+  "items": [
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-transport-initial-r2-20261126\\test_transport",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RPVB4W9",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1775408,
+          "sha256": "1bb89b9855992439f593d2f861c1821d1850dd3e91abd9a269ca4abf13c467b5"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-transport-reproducible-r3-20261126\\test_afe",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RS54ZED",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1485024,
+          "sha256": "1d4223f93d51c7549f39eb141895956ce73e1239d1321d49e6a4720f53abec67"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-transport-reproducible-r3-20261126\\test_apr",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RVVWHOH",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1466944,
+          "sha256": "64b2522ae4115a0056b859f72bfa52615e5440c9d0427aaa924846f60f8ca63e"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-transport-reproducible-r3-20261126\\test_map",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RKH7YRM",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1493384,
+          "sha256": "5a0ac5e0a665c9a24cfaf964f700523d2114b3c82da5764aecd0a287b1807f19"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-transport-reproducible-r3-20261126\\test_pcm",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R8VDD50",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1420856,
+          "sha256": "c7e479d60fe5a9892496fa814e1c3e5e3360f2cd5923e82db142b9448ca1a50e"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-transport-reproducible-r3-20261126\\test_queue",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$REOJDJB",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1435248,
+          "sha256": "75d928956cba967b7ffc817e55384595d6dbef0dcaf3c9755ca557188e5c8773"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-transport-reproducible-r3-20261126\\test_session",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RFDGPVE",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1622608,
+          "sha256": "c32e16f90e02ef0800b69d9b9fa285e98674c50d8df04194c5b95d74d207e587"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-transport-reproducible-r3-20261126\\test_stream",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R3U2COE",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1562496,
+          "sha256": "b057563df11347a8742e9fde2b2cbd37f5e05f127bd1afd260a2f8c3aea102a6"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-transport-reproducible-r3-20261126\\test_transport",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RD5B6ZR",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1791024,
+          "sha256": "7231c67c1eeb815d001f967223b00fb77eb8fe67edce3396733daf24ff97f35e"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-glink-transport-final-r4-20261126\\test_afe",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RB33NKY",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1485024,
+          "sha256": "e6de1b3b26467549f3f30363a86dc19632ff0f809b3a0e13c3d5e8b61cb6b5d6"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-glink-transport-final-r4-20261126\\test_apr",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R8QCNIV",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1466944,
+          "sha256": "81c8e97120c2a736201c16e76cc28647f766ec19473212eca5f586f569fc3ff1"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-glink-transport-final-r4-20261126\\test_map",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R95HG9K",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1493376,
+          "sha256": "ac1254b0c42f21872fa64c87287e44463b33a88299ba9a5836e32bfc458dcee2"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-glink-transport-final-r4-20261126\\test_pcm",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RNQKIMP",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1420856,
+          "sha256": "c7e479d60fe5a9892496fa814e1c3e5e3360f2cd5923e82db142b9448ca1a50e"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-glink-transport-final-r4-20261126\\test_queue",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R73IIU2",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1435248,
+          "sha256": "75d928956cba967b7ffc817e55384595d6dbef0dcaf3c9755ca557188e5c8773"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-glink-transport-final-r4-20261126\\test_session",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R2TQ173",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1622608,
+          "sha256": "130cba4bfc4e058c6da92fae4a6b92abbef1988844c1d6a7dbd37c3ca2114ae5"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-glink-transport-final-r4-20261126\\test_stream",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RIGB8PW",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1562496,
+          "sha256": "1e841fc7d81885576e57da06da38afb26bc24266ce6b465c84570b6bae0d6801"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-glink-transport-final-r4-20261126\\test_transport",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RT88HIH",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1793608,
+          "sha256": "a20e85241b7e93547e42e36b12d03e89f664dabbc126a5c9d2b11e90215bf63b"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-glink-transport-final-r5-20261126\\test_afe",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R01I0WJ",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1485024,
+          "sha256": "4f165f17b57ccec372382e9bb6ed962b67774673dc03b70b60174f479a15c829"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-glink-transport-final-r5-20261126\\test_apr",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RTPY3F2",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1466944,
+          "sha256": "efbe58d97cf24bc5e89193759deb5183625c2188e56ebba49b1ae2c09927a822"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-glink-transport-final-r5-20261126\\test_map",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RVMKKBY",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1493376,
+          "sha256": "5bf7b7ef1cdf68f8b181c39f8ff525215f9859bd0cab02e44dc8ba4067837d89"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-glink-transport-final-r5-20261126\\test_pcm",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RWDHXVI",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1420856,
+          "sha256": "c7e479d60fe5a9892496fa814e1c3e5e3360f2cd5923e82db142b9448ca1a50e"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-glink-transport-final-r5-20261126\\test_queue",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RZZWDRL",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1435248,
+          "sha256": "75d928956cba967b7ffc817e55384595d6dbef0dcaf3c9755ca557188e5c8773"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-glink-transport-final-r5-20261126\\test_session",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RTOZNXJ",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1622608,
+          "sha256": "6c0c12e8a3f1f9326aa06fb67e01fb3bd85f180b391ac24c2e10f738e8897919"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-glink-transport-final-r5-20261126\\test_stream",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$REHL2EG",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1562496,
+          "sha256": "7e1b4dfa45be4e4036de5df9c11cebf025856fed203f1a49f020a5a2df8c6145"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\lilac-pcm-glink-transport-final-r5-20261126\\test_transport",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RM7BXZE",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1841736,
+          "sha256": "8271599deadf4e22c11928af209f41d7fdd7f6a7a6cd898d1d819befbc5b6c14"
+        }
+      ]
+    },
+    {
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-pcm-glink-transport-transfer-20261126",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RNZQ2XH",
+      "entries": [
+        {
+          "relative": "sources-final.tar",
+          "bytes": 83968,
+          "sha256": "274bbf781dd4a9222307d37c21262d344fcd49c7fc4cdd309b1bc9b33ed81b73"
+        },
+        {
+          "relative": "sources.tar",
+          "bytes": 102400,
+          "sha256": "1a6fc4c1cf9ca4ba8a0c623c8544c160764a98515e8e2cbe7bbb030e414310e3"
+        }
+      ]
+    }
+  ],
+  "device_operations": 0
+}
