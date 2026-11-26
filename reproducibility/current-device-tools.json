@@ -331,7 +331,7 @@
     "tools/build/test_original_cg_input.m": "bf1cd6830f989c1240eaeb6fea9b2f376bfa3c54ca2c3a8debc53a9b58122f61",
     "tools/build/test_ordered_image_barrier.c": "cebe6391425ca8513f664c6d1c79c57560c4873c811154aa00998373f13dc190",
     "tools/build/check_ordered_image_barrier.py": "88ec73ccb6e32b13521e4d6660a35ab897ac9e305506c326bef4c54e11d7176c",
-    "tools/build/check_lilac_pcm_session.py": "d12faa10eccc09289eaaabba125e8ef6340accc6e0095d2162300a3a34b39e46",
+    "tools/build/check_lilac_pcm_session.py": "3bc9d89bc5a660c65694199c59583f604ffbf96b5499624fe1f532a1ae0911a6",
     "tools/build/compile_lilac_pcm_session.cpp": "5d3db06696c3979cb83c7004261a9e12077a25872e95a35ed952b64d32e6b6ee",
     "tools/build/test_lilac_pcm_playback_session.cpp": "1cd381d250e37d29812dec10a8654521ce859a9fa77ce93f46a7ad726ba3bc38",
     "tools/build/test_ordered_image_mapping.c": "43ecb564599170f948dfac7fd533d6124d3ed8f44089f965f2e3f672fce6aeea",
@@ -341,8 +341,11 @@
     "tools/build/test_lilac_pcm_smem_transport.cpp": "4bab3a6ac7c70ec41f02c37f68448c3439c816f4fdde8087e899f62745a7e84a",
     "tools/build/compile_lilac_pcm_smem.cpp": "9bbcc12f02a7b3684c1a907833d36ddace81740792a51f55c4eb59d9e532214b",
     "tools/build/LilacPcmSmemPeerFixture.h": "64f2a03d17e035bcaf7ca859bab812a45cd926b0d4db04c27773adc8c536a2e1",
-    "tools/build/test_lilac_pcm_runtime.cpp": "00f98091e2b91c4d4bc0191276feeb90948fa794dd0dc863845e502ff6365202",
-    "tools/build/compile_lilac_pcm_runtime.cpp": "35ecdd1cfdf021133de60b6d4cc28c6149cacf2c94abd765be83325c5d57bb8b"
+    "tools/build/test_lilac_pcm_runtime.cpp": "02cc044e230ad5618d0a764f3c2cc1bd85c7b340dc03cfe5484039f4909993d6",
+    "tools/build/compile_lilac_pcm_runtime.cpp": "35ecdd1cfdf021133de60b6d4cc28c6149cacf2c94abd765be83325c5d57bb8b",
+    "tools/build/LilacPcmRuntimeCTest.h": "aa34d3d9dcb8d85f2fc67c3650745282bef7f8245f48ddbe6197b6e0bf2fb94b",
+    "tools/build/test_lilac_pcm_runtime_c.c": "e66101e2e714e34d935a317e2e342a17c75bc82113673fd043fc86689f90def2",
+    "tools/build/test_lilac_pcm_runtime_api.cpp": "7c2e2b449e76e896523b59b78167b48991dca3153da9105f873a83dff2b19284"
   },
   "gpu_sources": {
     "gpu/diagnostics/exception_observe.m": "c20f1600d7ff6964cf711d637f4f5ce68ea93cdf2fd4e00cc46612f4d8c19545",
@@ -505,8 +508,10 @@
     "xnu/support/LilacAfeSlimbusPlayback.h": "b0727cc8404f45fdbd964517220b664cdd63f29a20fd80db714c8df8e42b147c",
     "xnu/support/LilacPcmPlaybackSession.h": "7db2638e0edd0902a2525b785a07ace7066e796cec6ab5680a704c6be7420d30",
     "xnu/support/LilacPcmPlaybackTransport.h": "6387b42b3730c366b4c507d790aef474a1a6b01dd34137fb8af5942595f5ba83",
-    "xnu/support/LilacAprSmemFifo.h": "020433c695256e71db0c72c50a89b56866ca16ed9e219ffd023413291fcc1563",
-    "xnu/support/LilacPcmPlaybackRuntime.h": "94c2a5e2b4455c5d2b4a5690a696399dbd8d0778046bdd13875e91e8aacf87b9"
+    "xnu/support/LilacAprSmemFifo.h": "9a79470a5a5004c962efc07d6ec658b5599a2fdd803dc430abdc72270958b4f2",
+    "xnu/support/LilacPcmPlaybackRuntime.h": "fc095411875b7dd169aab1915c43af74f18d0735f859a037bd13e3a9318e1d3b",
+    "xnu/support/LilacPcmRuntimeAPI.h": "bf9f8c4c7a7f8ead6f214e4be7cb28e313cf8d02c66aeea8e37d12abcf34234b",
+    "xnu/support/LilacPcmRuntimeAPI.cpp": "86242e985e7a58d9277106500e97963da65dd215b1a75a2719be9c3e44df607c"
   },
   "v729_private_actual_return_passed": true,
   "v729_private_owner_ready_actual_return_passed": true,

@@ -1,0 +1,522 @@
+{
+  "date": "2026-11-26",
+  "native_recycle_items": 45,
+  "native_recycle_files": 48,
+  "logical_bytes": 60236387,
+  "protected_files_SHA_preserved": 138,
+  "WSL_host_outputs_enter_Windows_Recycle_Bin": true,
+  "no_permanent_deletion": true,
+  "Recycle_Bin_not_emptied": true,
+  "items": [
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r1-20261126\\runtime-api.o",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RVEHB39.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 547432,
+          "sha256": "17f960007ff41201813a8c8b1cba5ce59f67a177f833cb464ba486776a53c516"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r1-20261126\\runtime-c.o",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RKSC1CD.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 13648,
+          "sha256": "cf44db7afdbd6d7b84c04d79694f8c42af3f26464bd04244b698d5f2948aa2aa"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r1-20261126\\test_afe",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RUVURV8",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1485008,
+          "sha256": "ac94cefe53d8f8b04d26068ac53c60b6c4a5f523443ad7821f993d4a5962691d"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r1-20261126\\test_apr",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RSUZ9UG",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1466920,
+          "sha256": "e96daccb8524a1265ce5e93a6a53941dcbef460849bb6c8cbc3c1e63462b0dee"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r1-20261126\\test_fifo",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RMSPR9C",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1607840,
+          "sha256": "875b06bb68db3bac150675bcd3a3cf1055e3cae7013584cb6aba49ad45a60dc6"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r1-20261126\\test_map",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R4KRTEC",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1493360,
+          "sha256": "7f72001f1abd9e362ba13197aab633b4cba2b85800264bf9dd1069b7459ede33"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r1-20261126\\test_pcm",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RZZS5WJ",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1420856,
+          "sha256": "c7e479d60fe5a9892496fa814e1c3e5e3360f2cd5923e82db142b9448ca1a50e"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r1-20261126\\test_queue",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RNL4P4U",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1435248,
+          "sha256": "75d928956cba967b7ffc817e55384595d6dbef0dcaf3c9755ca557188e5c8773"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r1-20261126\\test_runtime",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RR1MGRZ",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1981400,
+          "sha256": "d65d70b3ccf1a526302683ce8e0088819cde2a53c4ddee2127886797ec17b627"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r1-20261126\\test_session",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R16BLM3",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1622848,
+          "sha256": "4c19dc21693b6d8bebc8bfcead29a8f1c89d01e5ada861020cd8fa6a38029f53"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r1-20261126\\test_smem",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RTUKFSV",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1839792,
+          "sha256": "e852ab249286c5876ebbff09927912d0b0aa823ce0ebddae41b65d0a0691b60d"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r1-20261126\\test_stream",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RBSZ0OW",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1562544,
+          "sha256": "1157cbb0c5d8aba930549da1f11e77707a2362048009bfa68145cf9da4cfe33a"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r1-20261126\\test_transport",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R7EK2QD",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1842088,
+          "sha256": "fe56242a1d964b7c80a00c948a0da38a4c3fd349b7796efe3ef1ac4584cf3260"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r2-20261126\\runtime-api-test.o",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RBKMGQ7.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 427504,
+          "sha256": "634c558426bd964f954cfd9a9462cb2267142e0d87fef50a0a738edecc185031"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r2-20261126\\runtime-api.o",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RNNW6S4.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 547432,
+          "sha256": "d014508f14323886a83c9aad3a49daf61b8c25f5b8ac7b45d2f1eab780b2820f"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r2-20261126\\runtime-c.o",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RWWO1IK.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 13648,
+          "sha256": "64605ee29c66ed833dc7ef377cd85369b23a2776aea72bb2a5ac3ded77f6fe23"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r2-20261126\\test_afe",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RFJ7HQH",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1485008,
+          "sha256": "b67e96d29dc4a84ad89628fb25065f3443b8520ac9c95876d0d38e848e482604"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r2-20261126\\test_apr",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RH4GFOX",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1466920,
+          "sha256": "32942b9137db3a2c024170c0d7a77158f149076e2d8e4407d127fa2ab8123b74"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r2-20261126\\test_fifo",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R70127G",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1607840,
+          "sha256": "8c8c866004c85b3f041203ac80fc14cceb0be502365537b2a05e91f4557397a1"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r2-20261126\\test_map",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RDZ04CE",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1493360,
+          "sha256": "db70911450b351d627fda1c27a3ade28452c322e3e65786a7102144b41b8054b"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r2-20261126\\test_pcm",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RUYAJZT",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1420856,
+          "sha256": "c7e479d60fe5a9892496fa814e1c3e5e3360f2cd5923e82db142b9448ca1a50e"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r2-20261126\\test_queue",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RMTWUW6",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1435248,
+          "sha256": "75d928956cba967b7ffc817e55384595d6dbef0dcaf3c9755ca557188e5c8773"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r2-20261126\\test_runtime",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RS01UM6",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1981400,
+          "sha256": "71308802c4a5abb71b347f80f9d7afa2b1ad11d6209edc2aba420696d71d003a"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r2-20261126\\test_runtime_api",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RY62XB7",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 2022464,
+          "sha256": "caacec6259d5c4f6e10e62652c49be81213ad8dd90a264daffa77fe1e5fe7242"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r2-20261126\\test_session",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R5GPHUH",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1622848,
+          "sha256": "09d980ddaa80e56106a24193fd28877dd299568a019fe6014513630f23bd028f"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r2-20261126\\test_smem",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RTHECZP",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1839792,
+          "sha256": "122a372300b112e3748b7ae794eb92e1e53a789f64053975a10bac8045f1e429"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r2-20261126\\test_stream",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RW3PSQO",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1562544,
+          "sha256": "67afea5bf97b57361aeee4af4eecff6f5994930bf9ed43905040764d2b6dd3dd"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r2-20261126\\test_transport",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RTLPGV1",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1842088,
+          "sha256": "fca3de0d1bc6c44ef8c9a9e4099eaad689cfd9c181e3ee703ae70d0099804a16"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r3-20261126\\runtime-api-test.o",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RBUCBKJ.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 433472,
+          "sha256": "5baa11c969073f1f3b99d7a8480f9787bf33ce0db68f524abbe4bfbca1819de0"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r3-20261126\\runtime-api.o",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RO2DO2C.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 548320,
+          "sha256": "8652058d8e85ca1d98538db0b27ceddd21c9f60482a4247ae419474715b2a7ee"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r3-20261126\\runtime-c.o",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RJCDKU4.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 13648,
+          "sha256": "8dee43364f684b2ad3ae57554542f08e13853556eea4246f3cf3f60bfda47840"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r3-20261126\\test_afe",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RJ16S7X",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1485008,
+          "sha256": "aafed247b25941451169081f5f054225d72aed43a96800695123276e07da68dc"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r3-20261126\\test_apr",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RFBOMDI",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1466920,
+          "sha256": "7afdd28a7ac8d5d3ba4fb904763afc54ba3866b9d6cdb88a83c369984a406002"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r3-20261126\\test_fifo",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RK0NQK6",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1607840,
+          "sha256": "19239b311a115377a83e5d16e9108c3440ff68f3c0c8f837e32e9574601689aa"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r3-20261126\\test_map",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RSFPQX4",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1493360,
+          "sha256": "0a519bada130305783725e556767be8cb488f7973088386e40de7cb26e50129f"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r3-20261126\\test_pcm",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RHSH8GE",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1420856,
+          "sha256": "c7e479d60fe5a9892496fa814e1c3e5e3360f2cd5923e82db142b9448ca1a50e"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r3-20261126\\test_queue",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RUFO969",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1435248,
+          "sha256": "75d928956cba967b7ffc817e55384595d6dbef0dcaf3c9755ca557188e5c8773"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r3-20261126\\test_runtime",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RONLFIC",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1981400,
+          "sha256": "9d4b1a52704d06527a0921eb629e541087a3512d86077640cd66e321a180f8d2"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r3-20261126\\test_runtime_api",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RRCD340",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 2028088,
+          "sha256": "e959752955710a205dc8247c712898cdb68d533f682fb1e9e3cc0c868d930e2c"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r3-20261126\\test_session",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$REXV058",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1622848,
+          "sha256": "087e793dea19e9f18634fbc9953c530375ab40eee5c083062db72fdf2aa84dea"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r3-20261126\\test_smem",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RJKIZA5",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1839792,
+          "sha256": "d25645697de7b1fe143d5e77a54472cbd91385d2bb868a5ffea3101609b4ad49"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r3-20261126\\test_stream",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RNKMZUX",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1562544,
+          "sha256": "ff76e41380253eb752dccd2ceeaae6cd360eb5a522622d562f38a81a028eb72c"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r3-20261126\\test_transport",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RHXLFH2",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1842088,
+          "sha256": "436fb2b65280afc9c9c3a2e2cc752b208e026d5f037502d77e409c410561afe1"
+        }
+      ]
+    },
+    {
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-pcm-c-abi-20261126",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RZ9X7PH",
+      "entries": [
+        {
+          "relative": "macos-manifest.json",
+          "bytes": 28059,
+          "sha256": "eba799c4427b496fe710062e2f235b96ea309c55cefccb1eccfb832ba24e1b1c"
+        },
+        {
+          "relative": "source-manifest.json",
+          "bytes": 1119,
+          "sha256": "3b1168af684c7be2576729e2c29248aaa7c6e191f3d2f540ec077aff1d41ef0e"
+        },
+        {
+          "relative": "sources.tar",
+          "bytes": 163840,
+          "sha256": "94a1820a9b2b5128bf53ddbfda141822a91526372181de58011d160826ce7075"
+        },
+        {
+          "relative": "update-r2.py",
+          "bytes": 156342,
+          "sha256": "e6c8094057ba7c358417c7a6647b7735382339f5bc1a09d8c12cfd465b0075fc"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\pcm-c-abi-r3-summary-20261126.json",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RF57G6V.json",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 17659,
+          "sha256": "e61b17bca67fda07bf194c92296403e90edb1d60c2f26397ef2b543553e3d2d0"
+        }
+      ]
+    }
+  ]
+}

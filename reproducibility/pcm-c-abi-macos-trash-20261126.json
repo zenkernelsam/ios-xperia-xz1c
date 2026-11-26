@@ -1,0 +1,958 @@
+{
+  "date": "2026-11-26",
+  "native_trash_items": 66,
+  "native_trash_files": 110,
+  "logical_bytes": 10424504,
+  "protected_files_SHA_preserved": 156,
+  "no_permanent_deletion": true,
+  "Mac_Trash_not_emptied": true,
+  "SweetGPU_SHA_preserved": "aa2c36792a2298b060aa858eabdc039522fcdde3cfdbafd453c5fc6c0683c157",
+  "items": [
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/test_session.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_session.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 641,
+          "sha256": "6884307ca5abb10098164d610758a34628cfebe788718ca81395bddb86a158d1"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_session.yml",
+          "bytes": 172,
+          "sha256": "db2d4e6c03c972e4421c1d094b4e19b6c39f3332a7896c895b6754d4f501397e"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_session",
+          "bytes": 152076,
+          "sha256": "ea15b88cc5de2eaeb4f2121a3b9437346e0ad3d2c9063a9ac94246e9732f8805"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/test_stream",
+      "trash_path": "/Users/ciscohe/.Trash/test_stream",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 97128,
+          "sha256": "b3ceed0b73025bdc038dd33f79dc7bcd840630e0186faeab756e1e94f475e965"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/test_smem",
+      "trash_path": "/Users/ciscohe/.Trash/test_smem",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 234376,
+          "sha256": "1bd019436cbc4136e90a5f0ab3d39fdc16b444ad28a63b24880bbca8bed66945"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/runtime-c.o",
+      "trash_path": "/Users/ciscohe/.Trash/runtime-c.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 9928,
+          "sha256": "a31aab48e4ae1c0f5cc78e111c60b9d9a22df00a64b5e82a5963c29f7e86ca00"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/pcm-runtime.arm64.o",
+      "trash_path": "/Users/ciscohe/.Trash/pcm-runtime.arm64.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 39248,
+          "sha256": "b8394bd5c0a6f4d0f7aac64381bcfefb2136f333a91bb68d7855e94d6efab287"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/test_queue.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_queue.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 639,
+          "sha256": "c2d97e0873906d14cd75ff18326ff0e2faeb568c78f2149e27821851f4020c82"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_queue.yml",
+          "bytes": 170,
+          "sha256": "d8531145d70285c5767f0d2a4491132e1f9e83ff6b02bca61ab7f1116bc24319"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_queue",
+          "bytes": 26220,
+          "sha256": "4a701480a21dedf33a8a643c9fef750ce55c5108fbf5e79b9f919c1ca813f1a3"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/test_fifo",
+      "trash_path": "/Users/ciscohe/.Trash/test_fifo",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 114128,
+          "sha256": "5c10b5c0268265dfdc137bbf9fb175d380bcc924245547f113a2e9144c170b0c"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/pcm-session.arm64.o",
+      "trash_path": "/Users/ciscohe/.Trash/pcm-session.arm64.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 18168,
+          "sha256": "91dd4a9c279f730db9054d3c4bd5843c515ea051dba6dab31a7bbee42807e279"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/test_smem.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_smem.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 638,
+          "sha256": "8cfff1a3d64a35d22f3c62e87235f7a627dcaa7f038453cd75d261b8368d8566"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_smem.yml",
+          "bytes": 169,
+          "sha256": "92a55dff969c9679afc63a80bda32f19a7ac76aa624330d6110af67620fab531"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_smem",
+          "bytes": 445976,
+          "sha256": "961da760348e8a131c6be7df4c7a91cf79ec9e4da767dbe1cbc9c40f60fba3a5"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/test_runtime.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_runtime.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 641,
+          "sha256": "707d99b81850309dac6a5c8efe8b49b097233d4bda8a73f777da22ae5367160f"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_runtime.yml",
+          "bytes": 172,
+          "sha256": "7ee39b3d8b065b62e1abda9d94eaf5919b75cd3bd84f1049bff8beeec42ad5a2"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_runtime",
+          "bytes": 603544,
+          "sha256": "5569984b829cdab16ddae5dac02efe1d97f39de27c6678001178ab12d5d27f21"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/test_transport.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_transport.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 643,
+          "sha256": "47fe30e6a77bddcf2ae9c3b692bec16dc8388b83f0970571abe587de9b138431"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_transport.yml",
+          "bytes": 174,
+          "sha256": "8b68dff522646783813453c9ef3284035124476306784029cf7660d587d5415e"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_transport",
+          "bytes": 439080,
+          "sha256": "74ebb647c1bf4ee47ace58d8d0cced6116cef2790f6fbb6460d5e51d5d115d56"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/pcm-transport.arm64.o",
+      "trash_path": "/Users/ciscohe/.Trash/pcm-transport.arm64.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 31224,
+          "sha256": "2cc2c98de93cdeb41b12410b9ab84bdb6bd54eddceb51d84e225e7eff25ca9da"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/test_afe",
+      "trash_path": "/Users/ciscohe/.Trash/test_afe",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 50936,
+          "sha256": "6a71c17b1983b0d1bc60e6c98c020dbf967951b22bb5c4bca7c4f9a716864cea"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/test_runtime",
+      "trash_path": "/Users/ciscohe/.Trash/test_runtime",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 325512,
+          "sha256": "6d1e9e26092566a739d6c6a8161b2d40f4fb567cdde5188d739deb509bf8964e"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/test_runtime_api",
+      "trash_path": "/Users/ciscohe/.Trash/test_runtime_api",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 331360,
+          "sha256": "a4c9e5665a5c37c826c10f05643da3957f836e259abc896c86ebe8be94acb408"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/test_afe.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_afe.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 637,
+          "sha256": "b0366d73f4625f82831b2152fafb4447420b61da0974d2f9c2bf2783200b6128"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_afe.yml",
+          "bytes": 168,
+          "sha256": "0ae5818c1fb7fd7b106f666186cfe48b46464a2115b323349eb9897ab9bcfd2b"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_afe",
+          "bytes": 58752,
+          "sha256": "677c2544a177e916f25bdc1d6b97b91d9b4bbb95d59dfdf78f2dea6cfeaefddc"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/test_pcm.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_pcm.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 637,
+          "sha256": "275f0b672028bdef74b38d025385519b18c67173db3a61c6227e7b8e90ac2f26"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_pcm.yml",
+          "bytes": 168,
+          "sha256": "23152e32e7a00ca64372d1b658ac4b36bb6416216114b8b6c44a3e0fa18f1d55"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_pcm",
+          "bytes": 18704,
+          "sha256": "bb01f30456cfe4b259671de18acc2d7c48b05935ac8ddd6e93998e993ad829f0"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/runtime-api.o",
+      "trash_path": "/Users/ciscohe/.Trash/runtime-api.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 463944,
+          "sha256": "5790b19491edd715a8a3b7c36daa6b2fa5f466eb4f8123741a797f12920d7655"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/test_pcm",
+      "trash_path": "/Users/ciscohe/.Trash/test_pcm",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 26112,
+          "sha256": "a78b0e6cbfb1b89cfdaaf6a3a468ef2b6d55b4a0b28ed83fd7dc27e52cda694f"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/test_queue",
+      "trash_path": "/Users/ciscohe/.Trash/test_queue",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 36168,
+          "sha256": "cd328f29898922a8875ae8ad458d117ffc6c0e444cdc55c23edbe54401a9ee15"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/pcm-runtime-c.arm64.o",
+      "trash_path": "/Users/ciscohe/.Trash/pcm-runtime-c.arm64.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1208,
+          "sha256": "9940476f71f4edad4975fa839b1681ff66d217c080412b2e4860066b973b18f7"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/test_map",
+      "trash_path": "/Users/ciscohe/.Trash/test_map",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 56936,
+          "sha256": "04536c14ca8eebc95403b774c84c8020b4fbd4b21faec6cf64c85108592a5dd2"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/test_stream.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_stream.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 640,
+          "sha256": "1514db4c7d4b3b3387fee95d328f5d859ce908c974e18220e472dfa1164e4d57"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_stream.yml",
+          "bytes": 171,
+          "sha256": "d24716a3bc19f153382198b43aef70779f7183d87649061d62cd9cc0444d4e03"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_stream",
+          "bytes": 108596,
+          "sha256": "f76fd0a99383c0cdde559eb882e69a372eadd53be4e6fc608af031dfecf65205"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/test_transport",
+      "trash_path": "/Users/ciscohe/.Trash/test_transport",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 250024,
+          "sha256": "256e67125cd716cd53ed8f8c9fbefce200a09e815202931287e734395ac5f536"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/test_apr",
+      "trash_path": "/Users/ciscohe/.Trash/test_apr",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 40176,
+          "sha256": "00d7e9e5737e59c48cb67c67a5567debbe525c04d59cb4be5ecb1cef21aa65a4"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/test_session",
+      "trash_path": "/Users/ciscohe/.Trash/test_session",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 127808,
+          "sha256": "0ce65e27c3312569e423962c85f807a86d634547a85e8266cb8cfa9e7ddf1078"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/pcm-runtime-api.arm64.o",
+      "trash_path": "/Users/ciscohe/.Trash/pcm-runtime-api.arm64.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 45176,
+          "sha256": "731ab5fa98f595d73360dd57c990de20fc6bb9cb24d773b96aaa7bdbf40f673d"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/pcm-smem.arm64.o",
+      "trash_path": "/Users/ciscohe/.Trash/pcm-smem.arm64.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 33552,
+          "sha256": "4f0d980cbcdcdd9de8c308908bed8461dcf6ad1fe0eaf92089a80be3b8974199"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/test_fifo.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_fifo.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 638,
+          "sha256": "c5a596e57d33760fa1ad2a7e1cb58fa9888a932ff826186ef4a3957235f507ce"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_fifo.yml",
+          "bytes": 169,
+          "sha256": "12a393013b8caf04ae7a5f39e9e9ec2041cd757cd645e2f1167786ea65495386"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_fifo",
+          "bytes": 226840,
+          "sha256": "860fea1fe1934adfb931f973a28de89194b8eacb0b10b1dbbb4755787aec9525"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/test_apr.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_apr.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 637,
+          "sha256": "93af5d18353f2db3de6c9d019445f07f9cd77fa387d2306b2133d0228af86d04"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_apr.yml",
+          "bytes": 168,
+          "sha256": "d90bd166bfa96c78113dd22a8740b31e5bfde70c3cd53cff1776a48ee295c3d7"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_apr",
+          "bytes": 38496,
+          "sha256": "eb93e43c838b027764d34ef8a4fbe68d929dc3b08e78b02c76d8172a0a189aae"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/runtime-api-test.o",
+      "trash_path": "/Users/ciscohe/.Trash/runtime-api-test.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 527224,
+          "sha256": "954f9ac8bbf9916f6e452e20b35612d678d5675e0f6f0a97aa19e62eefc93850"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r1-20261126/test_map.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_map.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 637,
+          "sha256": "18473a4bfea93a8a9463cd04533e5898d2a72f1deb14f4a0940ffa52b05e922e"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_map.yml",
+          "bytes": 168,
+          "sha256": "2c58bdfe3a36fb776db2a60dd0e6c8cabed4016c172601af7741d55c52c2b567"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_map",
+          "bytes": 57836,
+          "sha256": "4da75358779a61db8ed927a713f9423a23e9bb7fa8414a40ea0853ae8307c156"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/test_session.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_session.dSYM 22-46-40-267.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 641,
+          "sha256": "6884307ca5abb10098164d610758a34628cfebe788718ca81395bddb86a158d1"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_session.yml",
+          "bytes": 172,
+          "sha256": "8d884d181d8d83d2d38df096587bc746c8bfb58fea83262bbe64821667516ec4"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_session",
+          "bytes": 152076,
+          "sha256": "9d14b6a1d42ac436e600d5c28b20dda757c4a4fc04eae484ebac730abedf190c"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/test_stream",
+      "trash_path": "/Users/ciscohe/.Trash/test_stream 22-46-40-319",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 97128,
+          "sha256": "56eb16782a812159fd33f677611fdf60b04278ab706efdc6e83b95bbb7995ad7"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/test_smem",
+      "trash_path": "/Users/ciscohe/.Trash/test_smem 22-46-40-378",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 234376,
+          "sha256": "61327427981ee8cfc4ded1c540daa3ff2c172175ec5ce9cc85829cf1a45fbf9b"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/runtime-c.o",
+      "trash_path": "/Users/ciscohe/.Trash/runtime-c.o 22-46-40-431.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 9928,
+          "sha256": "f978d865a1912abf454ed7ee79967428ad1a33f1609bf58223fa7a05bc5f870b"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/pcm-runtime.arm64.o",
+      "trash_path": "/Users/ciscohe/.Trash/pcm-runtime.arm64.o 22-46-40-490.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 39248,
+          "sha256": "b8394bd5c0a6f4d0f7aac64381bcfefb2136f333a91bb68d7855e94d6efab287"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/test_queue.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_queue.dSYM 22-46-40-543.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 639,
+          "sha256": "c2d97e0873906d14cd75ff18326ff0e2faeb568c78f2149e27821851f4020c82"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_queue.yml",
+          "bytes": 170,
+          "sha256": "26af4e4b8041e31c8866872f84949625c615a2f020f05174d5b6c239a911dc1d"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_queue",
+          "bytes": 26220,
+          "sha256": "6148e78fa8cb435a3d80662429a1543f0136d015b84e538946ce52f73f55c5ff"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/test_fifo",
+      "trash_path": "/Users/ciscohe/.Trash/test_fifo 22-46-40-603",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 114128,
+          "sha256": "9f1375cab78180a03a6dba32796bcc80cee6ceed4109c49115db62d151672495"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/pcm-session.arm64.o",
+      "trash_path": "/Users/ciscohe/.Trash/pcm-session.arm64.o 22-46-40-662.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 18168,
+          "sha256": "91dd4a9c279f730db9054d3c4bd5843c515ea051dba6dab31a7bbee42807e279"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/test_smem.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_smem.dSYM 22-46-40-721.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 638,
+          "sha256": "8cfff1a3d64a35d22f3c62e87235f7a627dcaa7f038453cd75d261b8368d8566"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_smem.yml",
+          "bytes": 169,
+          "sha256": "4e12ee7e97afd8b197b534bf871d0d4583949fceeb37f30df195f73cf76b752c"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_smem",
+          "bytes": 445976,
+          "sha256": "88d213d9840dcf76f09afb0ebb76c74c9815600b39f5f08928e57476717ecfdc"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/test_runtime.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_runtime.dSYM 22-46-40-778.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 641,
+          "sha256": "707d99b81850309dac6a5c8efe8b49b097233d4bda8a73f777da22ae5367160f"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_runtime.yml",
+          "bytes": 172,
+          "sha256": "1783d777814ed7f8838e6116a842706c9bacf4b8918f56c5e5a466c9400a5e4c"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_runtime",
+          "bytes": 603544,
+          "sha256": "19866c790c05d07662d70f05ccf63050aa3d019f3ce77a1fee0607390b4f7772"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/test_transport.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_transport.dSYM 22-46-40-837.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 643,
+          "sha256": "47fe30e6a77bddcf2ae9c3b692bec16dc8388b83f0970571abe587de9b138431"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_transport.yml",
+          "bytes": 174,
+          "sha256": "27d8eb646bdd2b39d8597356f9e46a0a37e5bb952b6e65b87150940424fbc79a"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_transport",
+          "bytes": 439080,
+          "sha256": "39445c7a9c5a3d92776b30251c9ca72925160abc329f9ce4bbe4f7ed747275bf"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/pcm-transport.arm64.o",
+      "trash_path": "/Users/ciscohe/.Trash/pcm-transport.arm64.o 22-46-40-891.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 31224,
+          "sha256": "2cc2c98de93cdeb41b12410b9ab84bdb6bd54eddceb51d84e225e7eff25ca9da"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/test_afe",
+      "trash_path": "/Users/ciscohe/.Trash/test_afe 22-46-40-950",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 50936,
+          "sha256": "c7a956286d9794a19f108533c976148defc74c8660c169190488cbbb6e2adf8c"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/test_runtime",
+      "trash_path": "/Users/ciscohe/.Trash/test_runtime 22-46-41-002",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 325512,
+          "sha256": "16ff39b29c63cb1973375475e2e2b43576c7bb380549a0abebc89653fb58cf2b"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/test_runtime_api",
+      "trash_path": "/Users/ciscohe/.Trash/test_runtime_api 22-46-41-059",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 336072,
+          "sha256": "9426d0e7f410f8d067143e5a222c21ca1bd91483fd1fd05899a064bc3feebef0"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/test_afe.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_afe.dSYM 22-46-41-111.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 637,
+          "sha256": "b0366d73f4625f82831b2152fafb4447420b61da0974d2f9c2bf2783200b6128"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_afe.yml",
+          "bytes": 168,
+          "sha256": "fb91a3c76ddefec3a77731b01bae980a306b8d82287dbc3834ec5258cf8d45d0"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_afe",
+          "bytes": 58752,
+          "sha256": "b884a3158a45894415a9e57fba8ea42376c01c9803d78974f964bdb70fe74c33"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/test_pcm.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_pcm.dSYM 22-46-41-169.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 637,
+          "sha256": "275f0b672028bdef74b38d025385519b18c67173db3a61c6227e7b8e90ac2f26"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_pcm.yml",
+          "bytes": 168,
+          "sha256": "103726d4b23bb8020d0e4b19b4323525b7cb4d418e67a80a6d74466a16433143"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_pcm",
+          "bytes": 18704,
+          "sha256": "2bc26407ae1dd4df6e0d1f2325f771acd5d765d1570847bc5ef1e0645ab744cd"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/runtime-api.o",
+      "trash_path": "/Users/ciscohe/.Trash/runtime-api.o 22-46-41-223.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 464368,
+          "sha256": "41adf7d80c87df72cf10816e92d2dafb56c538ea29d895289183fece2b3c3d96"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/test_pcm",
+      "trash_path": "/Users/ciscohe/.Trash/test_pcm 22-46-41-282",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 26112,
+          "sha256": "eacc7885bb4981fe91f3e129f764d5dce06931e82101f69cfa621c6badc5eecd"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/test_queue",
+      "trash_path": "/Users/ciscohe/.Trash/test_queue 22-46-41-336",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 36168,
+          "sha256": "a77c34c574a8836452f1a44b74846b0a86c15472c4f3a6bcfcecdf7743436287"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/pcm-runtime-c.arm64.o",
+      "trash_path": "/Users/ciscohe/.Trash/pcm-runtime-c.arm64.o 22-46-41-392.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1208,
+          "sha256": "9940476f71f4edad4975fa839b1681ff66d217c080412b2e4860066b973b18f7"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/test_map",
+      "trash_path": "/Users/ciscohe/.Trash/test_map 22-46-41-449",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 56936,
+          "sha256": "7b76fe2485e5ad9721b2c7ea49c46a4ab111914c629804556f8792029334e7fc"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/test_stream.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_stream.dSYM 22-46-41-504.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 640,
+          "sha256": "1514db4c7d4b3b3387fee95d328f5d859ce908c974e18220e472dfa1164e4d57"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_stream.yml",
+          "bytes": 171,
+          "sha256": "9eab134c904bff9ff93a0951978356514eaa5422bf1d4ab791122ec9c88250bd"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_stream",
+          "bytes": 108596,
+          "sha256": "8423276a52a6dea9435163b2002bb757c32709bb5772c2c7a1c12081e3d2af8f"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/test_transport",
+      "trash_path": "/Users/ciscohe/.Trash/test_transport 22-46-41-564",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 250024,
+          "sha256": "e3e7f43646c464f95f39dd29e6ddd7b6e1c0eab625a6de51b38aa329b52f6d62"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/test_apr",
+      "trash_path": "/Users/ciscohe/.Trash/test_apr 22-46-41-617",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 40176,
+          "sha256": "826e981aa403c6de0580bd6fedea24e0e818afe7cef218a217d74ff947eb8ff6"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/test_session",
+      "trash_path": "/Users/ciscohe/.Trash/test_session 22-46-41-674",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 127808,
+          "sha256": "fd1741edce880d93cb219e7e91e37b6a70635fc014e16332905fda5c311a7351"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/pcm-runtime-api.arm64.o",
+      "trash_path": "/Users/ciscohe/.Trash/pcm-runtime-api.arm64.o 22-46-41-733.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 44016,
+          "sha256": "b1bade518dc9531de3361c2e7103df8366d1f462478271524a777db071891056"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/pcm-smem.arm64.o",
+      "trash_path": "/Users/ciscohe/.Trash/pcm-smem.arm64.o 22-46-41-789.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 33552,
+          "sha256": "4f0d980cbcdcdd9de8c308908bed8461dcf6ad1fe0eaf92089a80be3b8974199"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/test_fifo.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_fifo.dSYM 22-46-41-847.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 638,
+          "sha256": "c5a596e57d33760fa1ad2a7e1cb58fa9888a932ff826186ef4a3957235f507ce"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_fifo.yml",
+          "bytes": 169,
+          "sha256": "41e2bc0c24039b6abc16808a221b0e325be3d130af85df9508f7541b2ae89536"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_fifo",
+          "bytes": 226840,
+          "sha256": "616d1c6816408a56e93467d17e6a7a4c83e37b49bc72d417152c91dba5c15ba6"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/test_apr.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_apr.dSYM 22-46-41-903.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 637,
+          "sha256": "93af5d18353f2db3de6c9d019445f07f9cd77fa387d2306b2133d0228af86d04"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_apr.yml",
+          "bytes": 168,
+          "sha256": "7ab952ee342dcd1a9693583523d4361c29facda4ff00f294952177f7d47f0c67"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_apr",
+          "bytes": 38496,
+          "sha256": "3d7374cabf35caabeb4391189574bb918abff2a4bfaebe61659e272c520f2742"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/runtime-api-test.o",
+      "trash_path": "/Users/ciscohe/.Trash/runtime-api-test.o 22-46-41-954.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 536864,
+          "sha256": "8d4f0f335c4b68a180b244801c02c883244bd6aa875e9e8789782e9938970e93"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/test_map.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_map.dSYM 22-46-42-014.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 637,
+          "sha256": "18473a4bfea93a8a9463cd04533e5898d2a72f1deb14f4a0940ffa52b05e922e"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_map.yml",
+          "bytes": 168,
+          "sha256": "005da136611746b7cf066dc0f77c7907eea393aee6c44c39765e355faed09d6b"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_map",
+          "bytes": 57836,
+          "sha256": "f41094f336ef0179af445272b0d671d41416e28d62c7de27370c615e376d8bc3"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-source-20261126/sources.tar",
+      "trash_path": "/Users/ciscohe/.Trash/sources.tar",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 163840,
+          "sha256": "94a1820a9b2b5128bf53ddbfda141822a91526372181de58011d160826ce7075"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-source-r2-20261126/update-r2.py",
+      "trash_path": "/Users/ciscohe/.Trash/update-r2.py",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 156342,
+          "sha256": "e6c8094057ba7c358417c7a6647b7735382339f5bc1a09d8c12cfd465b0075fc"
+        }
+      ]
+    }
+  ]
+}

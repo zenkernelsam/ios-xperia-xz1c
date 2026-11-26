@@ -29,6 +29,7 @@ public:
     LilacAprSmemFifo &operator=(const LilacAprSmemFifo &) = delete;
 
     State state() const { return current; }
+    bool configuration_valid() const { return valid(); }
     uint64_t generation() const { return ops.generation; }
     const Progress &progress() const { return counts; }
 

@@ -1,0 +1,132 @@
+{
+  "date": "2026-11-26",
+  "source_files": {
+    "iokit/Kernel/arm/LilacAPRProtocol.h": "78e293cf87f0e636aea1f3ee6a0c5a9caf92cf710010b3b4149a42464f9a026e",
+    "iokit/Kernel/arm/LilacAPRBasebandProtocol.h": "3a23a81bcefe65f14c797e1bd4b51505aebf64eca44016a28abcae055cd77420",
+    "iokit/Kernel/arm/LilacAPRBasebandGLINK.h": "bcce892c1e57f9c9e4a667f05559f2356e031192c29ce9dc1f5d5d1c5e55dbb1",
+    "iokit/Kernel/arm/LilacAPRLink.h": "b02e04e1c25ff3b47bdeeba37d39fcab7a036678585b7eb9ed9d88b75ed4a0c9",
+    "iokit/Kernel/arm/ADSPAPRProbe.h": "8e79f5fa3c39a96c6a4fea920d4c47cd8bef8014aac689f0c3ba4b033e068941",
+    "xnu/support/LilacAsmPcm.h": "1534d94b8e0ae268edc75f3515af5b6b47dbb0b00ef5266688b2ea635a49fccc",
+    "xnu/support/LilacAsmPcmQueue.h": "3fb9ab59d7ccf0688ecf8974bb1423df4cebe8aa661aa8e56222d0fcb4ac094d",
+    "xnu/support/LilacAsmPcmApr.h": "a07282f0f0b323faaf26b4d9d0c79cb49939ccada5c7f1e9993b3e61ec5e4b3d",
+    "xnu/support/LilacAsmPcmMap.h": "703ba5e8bc0c2fb8c93a4625d01f0bcfa829b145c7a5f8847254a963bcffdace",
+    "xnu/support/LilacAsmPcmStream.h": "b3710f67b00a155ffb65dc0437cbbd35120a06c36520dc09154c791efc738b9a",
+    "xnu/support/LilacAdmPlaybackDevice.h": "059e9693798b2605bf9ed5bf2941358e21231982ccfa83810db51832ae74cf5c",
+    "xnu/support/LilacAdmPlaybackRoute.h": "8cbba82b1a98755331a3ca297e26ec1d687eb03d8ed841c230d77af317f54c4e",
+    "xnu/support/LilacAfeSlimbusPlayback.h": "b0727cc8404f45fdbd964517220b664cdd63f29a20fd80db714c8df8e42b147c",
+    "xnu/support/LilacPcmPlaybackSession.h": "7db2638e0edd0902a2525b785a07ace7066e796cec6ab5680a704c6be7420d30",
+    "xnu/support/LilacPcmPlaybackTransport.h": "6387b42b3730c366b4c507d790aef474a1a6b01dd34137fb8af5942595f5ba83",
+    "xnu/support/LilacAprSmemFifo.h": "9a79470a5a5004c962efc07d6ec658b5599a2fdd803dc430abdc72270958b4f2",
+    "xnu/support/LilacPcmPlaybackRuntime.h": "fc095411875b7dd169aab1915c43af74f18d0735f859a037bd13e3a9318e1d3b",
+    "xnu/support/LilacPcmRuntimeAPI.h": "bf9f8c4c7a7f8ead6f214e4be7cb28e313cf8d02c66aeea8e37d12abcf34234b",
+    "xnu/support/LilacPcmRuntimeAPI.cpp": "86242e985e7a58d9277106500e97963da65dd215b1a75a2719be9c3e44df607c",
+    "tools/build/test_lilac_asm_pcm.c": "a20be121a882ec19f3dd139d879c91a38f9140e9ce2f0b1b873d2964967eb864",
+    "tools/build/test_lilac_asm_pcm_queue.c": "f218ca5743436210735e3527fb118c40e898ec4df16f7882d61c17e36519a203",
+    "tools/build/test_lilac_asm_pcm_apr.cpp": "503ef370ed554b00b4b0cd7f9e47b720b33f1570e091fe4d034316cdd80e3332",
+    "tools/build/test_lilac_asm_pcm_map.cpp": "2eee81110dfcfb12f50991666070c741aed2b17fe38cae2350623d3076e6defc",
+    "tools/build/test_lilac_asm_pcm_stream.cpp": "15ca4071d8d925606d162257f7e6e97672356c2c84b64bbdcccb7dd19a1340c1",
+    "tools/build/test_lilac_afe_slimbus_playback.cpp": "9218c4e0c7fb045decc1178842e0eda8eeb4ec6aa918b2bbbe06b95b0ec4a680",
+    "tools/build/test_lilac_pcm_playback_session.cpp": "1cd381d250e37d29812dec10a8654521ce859a9fa77ce93f46a7ad726ba3bc38",
+    "tools/build/test_lilac_pcm_playback_transport.cpp": "23257dbe8dea1368a92d54bd1eed237b6f27a0fb6862a0e426c213de2b7179af",
+    "tools/build/test_lilac_apr_smem_fifo.cpp": "a5ab9597dbb4bf90a63aeecf469670e00369a604cc14ae85b322a7bbe887e4ed",
+    "tools/build/test_lilac_pcm_smem_transport.cpp": "4bab3a6ac7c70ec41f02c37f68448c3439c816f4fdde8087e899f62745a7e84a",
+    "tools/build/test_lilac_pcm_runtime.cpp": "02cc044e230ad5618d0a764f3c2cc1bd85c7b340dc03cfe5484039f4909993d6",
+    "tools/build/check_lilac_pcm_session.py": "3bc9d89bc5a660c65694199c59583f604ffbf96b5499624fe1f532a1ae0911a6",
+    "tools/build/check_lilac_afe_slimbus.py": "cc6e8176582a23d01387d126dff857e95a3085d1d3c24ff4bb86d0154f97b3a5",
+    "tools/build/compile_lilac_pcm_session.cpp": "5d3db06696c3979cb83c7004261a9e12077a25872e95a35ed952b64d32e6b6ee",
+    "tools/build/compile_lilac_pcm_transport.cpp": "fa2eb328032d3352df2b40dc3ab41dd965c0289e3bfdd688e1b0b94d19eb9f45",
+    "tools/build/compile_lilac_pcm_smem.cpp": "9bbcc12f02a7b3684c1a907833d36ddace81740792a51f55c4eb59d9e532214b",
+    "tools/build/compile_lilac_pcm_runtime.cpp": "35ecdd1cfdf021133de60b6d4cc28c6149cacf2c94abd765be83325c5d57bb8b",
+    "tools/build/LilacPcmSmemPeerFixture.h": "64f2a03d17e035bcaf7ca859bab812a45cd926b0d4db04c27773adc8c536a2e1",
+    "tools/build/LilacPcmRuntimeCTest.h": "aa34d3d9dcb8d85f2fc67c3650745282bef7f8245f48ddbe6197b6e0bf2fb94b",
+    "tools/build/test_lilac_pcm_runtime_c.c": "e66101e2e714e34d935a317e2e342a17c75bc82113673fd043fc86689f90def2",
+    "tools/build/test_lilac_pcm_runtime_api.cpp": "7c2e2b449e76e896523b59b78167b48991dca3153da9105f873a83dff2b19284"
+  },
+  "WSL_report": "reproducibility/lilac-pcm-c-abi-wsl-20261126.json",
+  "macOS_report": "reproducibility/lilac-pcm-c-abi-macos-20261126.json",
+  "source_byte_equal_on_both_hosts": true,
+  "ASan_UBSan_test_groups_each_host": 12,
+  "ARM64_objects": {
+    "session": {
+      "sha256": "91dd4a9c279f730db9054d3c4bd5843c515ea051dba6dab31a7bbee42807e279",
+      "description": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/pcm-session.arm64.o: Mach-O 64-bit object arm64",
+      "undefined_symbols": [
+        "___stack_chk_fail",
+        "___stack_chk_guard"
+      ],
+      "linked_into_kernel": false
+    },
+    "transport": {
+      "sha256": "2cc2c98de93cdeb41b12410b9ab84bdb6bd54eddceb51d84e225e7eff25ca9da",
+      "description": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/pcm-transport.arm64.o: Mach-O 64-bit object arm64",
+      "undefined_symbols": [
+        "__ZN17LilacPcmCompileIO4peekEPvm",
+        "__ZN17LilacPcmCompileIO4sendEPKvm",
+        "__ZN17LilacPcmCompileIO7consumeEm",
+        "__ZN17LilacPcmCompileIO9availableERm",
+        "___stack_chk_fail",
+        "___stack_chk_guard"
+      ],
+      "linked_into_kernel": false
+    },
+    "smem": {
+      "sha256": "4f0d980cbcdcdd9de8c308908bed8461dcf6ad1fe0eaf92089a80be3b8974199",
+      "description": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/pcm-smem.arm64.o: Mach-O 64-bit object arm64",
+      "undefined_symbols": [
+        "___stack_chk_fail",
+        "___stack_chk_guard"
+      ],
+      "linked_into_kernel": false
+    },
+    "runtime": {
+      "sha256": "b8394bd5c0a6f4d0f7aac64381bcfefb2136f333a91bb68d7855e94d6efab287",
+      "description": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/pcm-runtime.arm64.o: Mach-O 64-bit object arm64",
+      "undefined_symbols": [
+        "___stack_chk_fail",
+        "___stack_chk_guard"
+      ],
+      "linked_into_kernel": false
+    },
+    "runtime-api": {
+      "sha256": "b1bade518dc9531de3361c2e7103df8366d1f462478271524a777db071891056",
+      "description": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/pcm-runtime-api.arm64.o: Mach-O 64-bit object arm64",
+      "undefined_symbols": [
+        "___stack_chk_fail",
+        "___stack_chk_guard"
+      ],
+      "linked_into_kernel": false
+    },
+    "runtime-c": {
+      "sha256": "9940476f71f4edad4975fa839b1681ff66d217c080412b2e4860066b973b18f7",
+      "description": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/pcm-c-abi-macos-r2-20261126/pcm-runtime-c.arm64.o: Mach-O 64-bit object arm64",
+      "undefined_symbols": [
+        "_lilac_pcm_runtime_advance",
+        "_lilac_pcm_runtime_construct",
+        "_lilac_pcm_runtime_context_alignment",
+        "_lilac_pcm_runtime_context_bytes",
+        "_lilac_pcm_runtime_destroy",
+        "_lilac_pcm_runtime_drain",
+        "_lilac_pcm_runtime_queue",
+        "_lilac_pcm_runtime_start",
+        "_lilac_pcm_runtime_status",
+        "_lilac_pcm_runtime_uncertain"
+      ],
+      "linked_into_kernel": false
+    }
+  },
+  "C11_caller_and_CXX_implementation_separate_translation_units": true,
+  "context_bytes": 60624,
+  "context_alignment": 8,
+  "stable_zeroed_caller_storage_outside_kernel_stack_required": true,
+  "copied_storage_rejected_before_IO": true,
+  "callback_tables_copied_backend_contexts_retained": true,
+  "pure_construct_status_destroy_without_IO": true,
+  "malformed_ring_hook_schema_policy_version_alignment_and_output_aliases_refused": true,
+  "reentrant_entry_refused": true,
+  "four_PCM_writes_and_two_EOS_orders_checked": true,
+  "uncertain_and_in_flight_destruction_refused": true,
+  "no_dynamic_allocation_imports_in_concrete_ARM64_API": true,
+  "hardware_mapping_cache_mailbox_DSP_codec_and_physical_sound_connected": false,
+  "linked_into_device_kernel": false,
+  "device_operations": 0
+}

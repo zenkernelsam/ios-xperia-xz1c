@@ -48,8 +48,11 @@ public:
           sink{*this}, link(fifo,sink), fifo_epoch(fifo_callbacks.generation) {}
     LilacPcmPlaybackRuntime(const LilacPcmPlaybackRuntime &) = delete;
     LilacPcmPlaybackRuntime &operator=(const LilacPcmPlaybackRuntime &) = delete;
+    static void *operator new(size_t,void *memory) { return memory; }
+    static void operator delete(void *,void *) {}
 
     State state() const { return phase; }
+    bool configuration_valid() const { return valid(); }
     Failure failure() const { return failed_at; }
     Result failure_result() const { return failed_result; }
     Transport::Failure transport_failure() const { return transport.failure(); }
@@ -138,6 +141,11 @@ public:
             bytes>span_bytes || !span_bytes || (offset&31u) || ((offset|span_bytes)&(pcm.cache_line_bytes-1)) ||
             offset>pcm.bytes || span_bytes>pcm.bytes-offset ||
             bytes>UINTPTR_MAX-reinterpret_cast<uintptr_t>(source)) return LILAC_ASM_QUEUE_INVALID;
+        const uintptr_t output=reinterpret_cast<uintptr_t>(token),cpu=reinterpret_cast<uintptr_t>(pcm.cpu),
+            object=reinterpret_cast<uintptr_t>(this);
+        if (output%alignof(uint32_t) || sizeof(*token)>UINTPTR_MAX-output ||
+            (output<cpu+pcm.bytes && cpu<output+sizeof(*token)) ||
+            (output<object+sizeof(*this) && object<output+sizeof(*token))) return LILAC_ASM_QUEUE_INVALID;
         uint64_t now=0;Readiness ready;
         if (!time(now) || !readiness(ready)) return LILAC_ASM_QUEUE_QUARANTINED;
         if (transport.check_time(now)!=Result::OK) {
@@ -215,9 +223,11 @@ private:
     bool valid() const
     {
         const uintptr_t cpu=reinterpret_cast<uintptr_t>(pcm.cpu);
-        return transport.configuration_valid() && timeouts.negotiation_ms &&
+        const uintptr_t object=reinterpret_cast<uintptr_t>(this);
+        return fifo.configuration_valid() && transport.configuration_valid() && timeouts.negotiation_ms &&
             config.epoch==fifo_epoch && pcm.epoch==config.epoch && pcm.device_address==config.region_address &&
             cpu && pcm.bytes==config.region_bytes && pcm.bytes<=UINTPTR_MAX-cpu &&
+            !(cpu<object+sizeof(*this) && object<cpu+pcm.bytes) &&
             pcm.cache_line_bytes>=4 && pcm.cache_line_bytes<=4096 &&
             !(pcm.cache_line_bytes&(pcm.cache_line_bytes-1)) &&
             !((cpu|pcm.bytes)&(pcm.cache_line_bytes-1)) &&

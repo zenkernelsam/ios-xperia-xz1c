@@ -4,7 +4,7 @@ CPU／launchd、触控／音量键、完整GLES9、Metal21／PNG6和原生720×1
 
 ## 设备与下一轮
 
-最后实机观察为Sony **BH905ND69G**安全停在fastboot，无在途启动。原native CPU token `ef161dc3ab9ce723`的guard未取得2/2成功，download／boot均0；[原拒绝](../reproducibility/ordered-barrier-r1-native-cpu-guard-refusal-20261126.json)保留且不重发。随后只读健康32.156秒通过，不能提升guard失败。尚无新的物理fastboot会话确认，本轮全部离线、设备操作0。
+最后实机观察为Sony **BH905ND69G**安全停在fastboot，无在途启动。原native CPU token `ef161dc3ab9ce723`的guard未取得2/2成功，download／boot均0；[原拒绝](../reproducibility/ordered-barrier-r1-native-cpu-guard-refusal-20261126.json)保留且不重发。随后只读健康32.156秒通过，不能提升guard失败。[本轮只读PnP](../reproducibility/pcm-c-abi-pnp-observation-20261126.json)仍显示到达时间02:05:52，早于02:18:31失败guard；未确认新的物理会话，本轮没有guard／串口／download／boot。
 
 新的物理会话确认后依次：r5自身CPU→GLES9→native RAM自身CPU→完整native21／PNG6，再按新证明构建原Aegir／PNG／150秒scanout包。每轮ACK／DRAIN／RESET／FINAL_DRAIN、连续健康30秒及旧worker退出均独立通过才下一轮。新GLES不能借旧native／PNG proof准入；失败包不换token重发，缺扫描块不补发。
 
@@ -64,9 +64,9 @@ barrier revision4从当前linked fragment program的ImageUnits映射GL binding�
 | Wi-Fi／蓝牙 | 原DTB和开源路径已核对，进程有启动日志 | 控制器初始化、扫描／连接和真实数据传输 |
 | shared event／presentedTime | selectors36／37／38／45仍零输出，presentedTime0 | 端口／mapped page及实际呈现时间未实现；旧草稿不算通过 |
 
-音频当前入口为[运行时／PCM缓存离线报告](../reproducibility/lilac-pcm-runtime-cache-final-20261126.json)：一个60,352 B保留对象拥有具体FIFO、原Link及transport，须放内核栈外且由owner串行、非重入驱动。准确epoch／DSP／codec／SMEM readiness、CPU映射／device地址和cache-line边界先验证；输入字节复制及release-to-device回调完成才允许APR排队，成功匹配WRITE_DONE和acquire-from-device回调都完成才复用跨度。四份跨度不能相交，包括cacheline；回调失败、身份变化或超时不自动释放。真实cache指令／mapping／mailbox／驱动注册仍未连接，未启动DSP或产生物理声音。
+音频当前入口为[C ABI／运行时离线报告](../reproducibility/lilac-pcm-c-abi-offline-20261126.json)：60,624 B／8 B对齐的C接口context内含60,352 B运行时，拥有具体FIFO、原Link及transport。owner提供内核栈外、清零且不搬移的稳定存储，串行驱动；配置和回调表复制，backend contexts与PCM mapping继续保留。构造先纯验证FIFO／PCM／schema／policy和回调，不执行IO；复制的context、重入操作及覆盖PCM／context的输出指针均拒绝。准确epoch／DSP／codec／SMEM readiness、CPU映射／device地址和cache-line边界先验证；输入字节复制及release-to-device回调完成才允许APR排队，成功匹配WRITE_DONE和acquire-from-device回调都完成才复用跨度。四份跨度不能相交；在途／uncertain context拒绝销毁，只有未启动或完整会话及双向GLINK关闭后才能结束对象。真实cache指令／mapping／mailbox／驱动注册仍未连接，未启动DSP或产生物理声音。
 
-WSL／Mac同源十一组ASan／UBSan及四个ARM64对象通过，保留原2048环位置／逐字故障／EOS／关闭测试，另核对PCM字节和guard、重叠复制、外来token、缓存交接顺序与IO／cache回调内部过期。真实时钟在receive、poll后、publish后和cache回调后重采样；轮询入口的旧时间不能准入迟到回复或CloseAck。旧仅手动时间的transport接口仍供离线测试，实际运行时始终绑定clock hook。GPU r5源码与包未改。
+WSL／Mac同源十二组ASan／UBSan及六个ARM64对象通过，C11 caller和C++实现独立编译／链接；具体ARM64 C接口只留下正常stack guard导入，没有分配器或未实现FIFO符号。保留原2048环位置／逐字故障／EOS／关闭测试，另核对PCM字节和guard、重叠复制、外来token、缓存交接顺序与IO／cache回调内部过期。真实时钟在receive、poll后、publish后和cache回调后重采样；轮询入口的旧时间不能准入迟到回复或CloseAck。旧仅手动时间的transport接口仍供离线测试，实际运行时始终绑定clock hook。GPU r5源码与包未改。
 
 原session／GLINK适配保证Busy只发同一未发布包、成功publication才开始回复deadline，Accepted／typed等待不延长；控制与WRITE完成必须匹配已发布token／epoch／端口。四WRITE排空、EOS普通回复及RENDERED_EOS都确认，再Close／Unmap／COPP／AFE Stop和双向GLINK关闭后才确认region可释放。细节与历史协议证据由[LILAC-PERIPHERALS](LILAC-PERIPHERALS.md)索引。
 
@@ -74,8 +74,8 @@ WSL／Mac同源十一组ASan／UBSan及四个ARM64对象通过，保留原2048�
 
 正式源码、增量、工具、锁和报告只在本仓库。Windows／WSL使用同一正式目录，Mac为`~/Desktop/ios-xperia-xz1c`且旧autobuild保持pause。[BUILD](BUILD.md)给准确源码复现，[OPERATIONS](OPERATIONS.md)给准入与回程，[INDEX](INDEX.md)串技术和历史，[ORGANIZATION](ORGANIZATION.md)维护回收与可恢复stash凭据。所有已验binary仅准入自己的准确组合；HEAD候选不冒充生产UI。SDK／签名变化须新产物实机验证，全新gl5首次启动仍未独立验收。
 
-本轮运行时／clock／cache主提交`fd89415…`已推送，[Mac正式同步](../reproducibility/pcm-runtime-formal-git-sync-20261126.json)28份变更逐字节一致，实际十一组／四对象编译源和source验证通过；pre-sync源以未drop的stash保存。GPU候选及冻结内核保持。
+本轮C接口源码与准确编译报告只在正式仓库维护，WSL与Mac的40份编译输入逐字节一致；提交、Mac正式同步和回收凭据由[ORGANIZATION](ORGANIZATION.md)索引。前轮[运行时同步](../reproducibility/pcm-runtime-formal-git-sync-20261126.json)与原stash继续保留。GPU候选及冻结内核保持。
 
 只操作BH905ND69G，fastboot设备命令显式`-s`；COM≥10、VID1209/PID0001且一个worker；PON只0x06，单download／boot、失败不重发。内核GPU底层／allocator／SCM／PON／RPC／VM冻结，SweetGPU.cpp SHA **`aa2c36792a2298b060aa858eabdc039522fcdde3cfdbafd453c5fc6c0683c157`**。gl5／userdata／SD／TA／XFL／校准／备份／救砖输入受保护。
 
-本轮废弃host产物进入[Mac原生Trash](../reproducibility/pcm-runtime-macos-trash-20261126.json)和[Windows回收站](../reproducibility/pcm-runtime-windows-recycle-20261126.json)，WSL共享build产物也进Windows回收站；[两套Ubuntu Trash为空](../reproducibility/pcm-runtime-wsl-trash-audit-20261126.json)，未永久删除或清空Windows／Mac垃圾桶。整合前五份入口和原SHA在[本轮原文archive](archive/20261126/pcm-runtime-cache/original-document-manifest.json)。原失败、准确候选、少量所需raw／proof和受保护输入保留，旧多轮状态与回收日志不再复制到此入口。
+本轮整合前五份入口与原SHA在[原文archive](archive/20261126/pcm-c-abi/original-document-manifest.json)。废弃host产物进入原生回收站，WSL共享build产物走Windows回收站，准确receipt由ORGANIZATION索引；不永久删除或清空Windows／Mac垃圾桶。原失败、准确候选、少量所需raw／proof和受保护输入保留。

@@ -31,6 +31,7 @@ SUPPORT = (
     "LilacPcmPlaybackTransport.h",
     "LilacAprSmemFifo.h",
     "LilacPcmPlaybackRuntime.h",
+    "LilacPcmRuntimeAPI.h", "LilacPcmRuntimeAPI.cpp",
 )
 
 
@@ -51,7 +52,8 @@ def check(output, arm64_object=False):
     source_paths += ["tools/build/check_lilac_pcm_session.py", "tools/build/check_lilac_afe_slimbus.py",
                      "tools/build/compile_lilac_pcm_session.cpp", "tools/build/compile_lilac_pcm_transport.cpp",
                      "tools/build/compile_lilac_pcm_smem.cpp", "tools/build/compile_lilac_pcm_runtime.cpp",
-                     "tools/build/LilacPcmSmemPeerFixture.h"]
+                     "tools/build/LilacPcmSmemPeerFixture.h", "tools/build/LilacPcmRuntimeCTest.h",
+                     "tools/build/test_lilac_pcm_runtime_c.c", "tools/build/test_lilac_pcm_runtime_api.cpp"]
     source_files = {path: sha(ROOT / path) for path in source_paths}
     output.mkdir(parents=True)
     headers = materialize_headers(output, FIFO_HEADERS)
@@ -96,31 +98,80 @@ def check(output, arm64_object=False):
             "ASan_UBSan_passed": True,
         }
     target_objects = {}
+    # A separate strict C11 object calls every public C ABI operation; the
+    # peer harness and production implementation are separately compiled C++.
+    common = ["-O1", "-g", "-Wall", "-Wextra", "-Werror", "-fsanitize=address,undefined",
+              "-fno-sanitize-recover=all", "-I", local_path(output)]
+    objects = []
+    for name, path, cpp in (
+        ("runtime-api", "xnu/support/LilacPcmRuntimeAPI.cpp", True),
+        ("runtime-c", "tools/build/test_lilac_pcm_runtime_c.c", False),
+        ("runtime-api-test", "tools/build/test_lilac_pcm_runtime_api.cpp", True),
+    ):
+        obj = output / (name + ".o")
+        command = prefix + ["clang++" if cpp else "clang", "-std=c++17" if cpp else "-std=c11"] + common
+        if not cpp:
+            command += ["-pedantic"]
+        command += ["-c", local_path(ROOT / path), "-o", local_path(obj)]
+        run(output, command, name + "-compile")
+        commands.append(command)
+        objects.append(obj)
+    binary = output / "test_runtime_api"
+    link_command = prefix + ["clang++", "-fsanitize=address,undefined"]
+    if os.name == "nt":
+        link_command += ["-no-pie"]
+    link_command += [local_path(obj) for obj in objects] + ["-o", local_path(binary)]
+    run(output, link_command, "runtime-api-link")
+    execution = prefix + [local_path(binary)]
+    text = run(output, execution, "runtime-api-test")
+    if "Lilac PCM C ABI PASS:" not in text:
+        raise ValueError("Actual C11 caller/runtime integration did not complete")
+    commands.extend([link_command, execution])
+    outputs["runtime-api"] = {
+        "binary_sha256": sha(binary),
+        "test_log_sha256": sha(output / "runtime-api-test.log"),
+        "ASan_UBSan_passed": True,
+        "separately_compiled_C11_caller": True,
+        "translation_unit_objects": {obj.name: sha(obj) for obj in objects},
+    }
     if arm64_object:
         sdk_command = ["xcrun", "--sdk", "iphoneos", "--show-sdk-path"]
         sdk = run(output, sdk_command, "arm64-sdk").strip()
         if not Path(sdk).is_dir():
             raise ValueError("iOS SDK directory not found")
         commands.append(sdk_command)
-        for name in ("session", "transport", "smem", "runtime"):
+        for name in ("session", "transport", "smem", "runtime", "runtime-api", "runtime-c"):
             binary = output / ("pcm-" + name + ".arm64.o")
-            command = ["xcrun", "--sdk", "iphoneos", "clang++", "-target", "arm64-apple-ios16.7",
-                       "-isysroot", sdk, "-std=c++17", "-O1", "-Wall", "-Wextra", "-Werror",
-                       "-ffreestanding", "-fno-exceptions", "-fno-rtti", "-I", str(output), "-c",
-                       str(ROOT / ("tools/build/compile_lilac_pcm_" + name + ".cpp")), "-o", str(binary)]
+            cpp = name != "runtime-c"
+            source = ("xnu/support/LilacPcmRuntimeAPI.cpp" if name == "runtime-api" else
+                      "tools/build/test_lilac_pcm_runtime_c.c" if not cpp else
+                      "tools/build/compile_lilac_pcm_" + name + ".cpp")
+            command = ["xcrun", "--sdk", "iphoneos", "clang++" if cpp else "clang",
+                       "-target", "arm64-apple-ios16.7", "-isysroot", sdk,
+                       "-std=c++17" if cpp else "-std=c11", "-O1", "-Wall", "-Wextra", "-Werror",
+                       "-ffreestanding", "-I", str(output)]
+            command += ["-fno-exceptions", "-fno-rtti"] if cpp else ["-pedantic"]
+            command += ["-c", str(ROOT / source), "-o", str(binary)]
             run(output, command, "arm64-" + name + "-compile")
             file_command, symbols_command = ["file", str(binary)], ["nm", "-u", str(binary)]
             description = run(output, file_command, "arm64-" + name + "-file")
             undefined = run(output, symbols_command, "arm64-" + name + "-undefined")
             if "Mach-O 64-bit object arm64" not in description:
                 raise ValueError("Expected an ARM64 Mach-O object")
+            imports = [line.split()[-1] for line in undefined.splitlines() if line.strip()]
+            if name == "runtime-api" and any(symbol not in
+                    ("___stack_chk_fail", "___stack_chk_guard", "_memcpy", "_memset", "_memmove")
+                    for symbol in imports):
+                raise ValueError("C ABI implementation has unexpected undefined runtime imports")
+            if name == "runtime-c" and any(not symbol.startswith("_lilac_pcm_runtime_") for symbol in imports):
+                raise ValueError("C11 caller has unexpected undefined imports")
             commands.extend([command, file_command, symbols_command])
             target_objects[name] = dict(sha256=sha(binary), description=description.strip(),
                                        undefined_symbols=undefined.splitlines(), linked_into_kernel=False)
     if source_files != {path: sha(ROOT / path) for path in source_paths}:
         raise ValueError("Playback sources changed during verification")
     report = dict(
-        revision=4, source_files={**headers, **source_files}, commands=commands, tests=outputs,
+        revision=5, source_files={**headers, **source_files}, commands=commands, tests=outputs,
         arm64_objects=target_objects,
         host_ASan_UBSan_passed=True,
         playback_format={"channels": 2, "bits_per_sample": 16, "sample_rate": 48000},
@@ -156,6 +207,11 @@ def check(output, arm64_object=False):
         overlapping_PCM_copy_and_foreign_completion_ownership_checked=True,
         real_clock_rechecked_during_receive_poll_send_and_cache_callbacks=True,
         late_reply_late_close_and_blocked_cache_callback_deadlines_refused=True,
+        C11_caller_and_CXX_implementation_separate_translation_units=True,
+        retained_C_ABI_storage_no_allocation_and_callback_tables_copied=True,
+        pure_configuration_validation_without_IO_and_reentry_refused=True,
+        PCM_and_context_output_aliases_refused=True,
+        uncertain_and_in_flight_C_ABI_destruction_refused=True,
         codec_channels_schema_and_firmware_token_echo_require_hardware_validation=True,
         transport_connected=False, linked_into_device_kernel=False,
         DSP_codec_or_physical_audio_verified=False, device_operations=0,

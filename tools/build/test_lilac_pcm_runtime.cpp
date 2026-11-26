@@ -141,6 +141,13 @@ int main()
      for(auto offset:{1u,32u,8192u})assert(h.runtime.queue_pcm(offset,1024,input.data(),256,&token)==LILAC_ASM_QUEUE_INVALID);
      assert(h.runtime.queue_pcm(0,1024,input.data(),255,&token)==LILAC_ASM_QUEUE_INVALID);
      assert(h.backing==before && h.releases==0);}
+    {Harness h;h.start();const auto before=h.backing;const auto input=h.samples(3);
+     for(auto *token:{reinterpret_cast<uint32_t *>(h.backing.data()+64),
+                     reinterpret_cast<uint32_t *>(&h.runtime),
+                     reinterpret_cast<uint32_t *>(h.backing.data()+1)}) {
+         assert(h.runtime.queue_pcm(0,1024,input.data(),256,token)==LILAC_ASM_QUEUE_INVALID);
+     }
+     assert(h.backing==before && h.releases==0 && !h.runtime.retained_spans());}
     {Harness h;h.start();h.queue(0);assert(!h.runtime.begin_drain());
      assert(h.tick()==Result::OK);h.peer.complete_writes();assert(h.tick()==Result::OK);
      assert(h.acquires==1 && !h.runtime.retained_spans());

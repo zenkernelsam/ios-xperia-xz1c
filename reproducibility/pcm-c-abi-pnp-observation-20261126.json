@@ -1,0 +1,15 @@
+{
+  "observed_at": "2026-11-26T22:27:38.4389673+08:00",
+  "instance": "USB\\VID_0FCE&PID_0DDE\\BH905ND69G",
+  "status": "OK",
+  "name": "Android",
+  "last_arrival": "2026-11-26T02:05:52.3103170+08:00",
+  "query": "Get-PnpDevice and DEVPKEY_Device_LastArrivalDate; read-only PnP metadata",
+  "guard_or_serial_or_boot_commands": 0,
+  "prior_failed_guard": "reproducibility/ordered-barrier-r1-native-cpu-guard-refusal-20261126.json",
+  "prior_failure_result_unchanged": true,
+  "new_physical_fastboot_session_confirmed": false,
+  "prior_guard_failed_at": "2026-11-26T02:18:31.575930+08:00",
+  "prior_guard_events_sha256": "a07d18699ca65c4c2ed33e9c8abd31ac527bf17f70205c44ec3a3dec2caa9017",
+  "last_arrival_precedes_guard_failure": true
+}

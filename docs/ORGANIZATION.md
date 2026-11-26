@@ -1,5 +1,11 @@
 # 本周整理与文档整合 — 2026-11-26
 
+C11音频运行时接口收尾：[Mac66项／110文件／10,424,504 B](../reproducibility/pcm-c-abi-macos-trash-20261126.json)进入原生Trash，[Windows45项／48文件／60,236,387 B](../reproducibility/pcm-c-abi-windows-recycle-20261126.json)进入原生回收站，包含WSL共享build的已结束测试程序、三次host验证objects、Mac六类ARM64对象／dSYM和TEMP源码传输副本。所有目标逐字节SHA一致，Windows138个、Mac156个保护文件保持；原编译失败／成功日志、精确manifest、源码备份、GPU r5包、原guard失败及冻结SweetGPU保留。
+
+[Ubuntu与Ubuntu-22.04全部用户Trash为空](../reproducibility/pcm-c-abi-wsl-trash-audit-20261126.json)，没有清空Windows／Mac回收站。整合前[五份入口原文与SHA](archive/20261126/pcm-c-abi/original-document-manifest.json)已保存。现行音频复现为十二组ASan／UBSan和六个ARM64对象，40份源跨WSL／Mac一致；C11 caller实际链接C++接口，构造不做IO，context复制／重入／输出alias与在途销毁拒绝，不宣称真实DSP／codec／声音通过。
+
+第一次C caller整合编译因共享fixture配置函数未使用而失败，按真实session配置修正后全套通过；加入固定存储身份校验后，又按最终源重新完成两端检查。初始失败和中间成功的原日志保留。一次Mac传输因Windows命令行长度限制在SSH启动前退出，随后改用TEMP脚本和新Mac build目录成功，无设备命令。最终实际源及报告只进入正式仓库，Patch没有新修补。
+
 PCM保留运行时／实时clock和cache交接收尾：[Mac54项／98文件／7524860 B](../reproducibility/pcm-runtime-macos-trash-20261126.json)进入原生Trash，[Windows25项／26文件／37697590 B](../reproducibility/pcm-runtime-windows-recycle-20261126.json)进入原生回收站，包含WSL共享build已结束主机程序、两套ARM64 object／dSYM、TEMP传输tar和原peer重构的一次性源码副本。全部目标SHA一致，98个Mac和65个Windows保护文件保持；原test／build日志、准确manifest、src备份及GPU r5／冻结kernel保留。
 
 [两套Ubuntu全部用户Trash为空](../reproducibility/pcm-runtime-wsl-trash-audit-20261126.json)，Windows／Mac未清空。整合前[五份入口原文](archive/20261126/pcm-runtime-cache/original-document-manifest.json)原字节与SHA已保存；现行音频复现更新为十一组／四对象，不把host缓存回调成功当物理声音。新代码只在正式仓库维护，设备操作0。

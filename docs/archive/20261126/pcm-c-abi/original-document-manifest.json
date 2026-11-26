@@ -1,0 +1,27 @@
+[
+  {
+    "source": "docs/STATUS.md",
+    "archive": "docs/archive/20261126/pcm-c-abi/STATUS.md",
+    "sha256": "c12afa226349256037ce4857f71d3a4a04910c5471b6fb109f3417f7e5707615"
+  },
+  {
+    "source": "docs/BUILD.md",
+    "archive": "docs/archive/20261126/pcm-c-abi/BUILD.md",
+    "sha256": "1cb9c6b6e05fc2151b006f8f62046e6db6449d9fe831a09f7db818e4e51b8b46"
+  },
+  {
+    "source": "docs/LILAC-PERIPHERALS.md",
+    "archive": "docs/archive/20261126/pcm-c-abi/LILAC-PERIPHERALS.md",
+    "sha256": "a073e7e6966a094c240ef4ad9a65b0aa21c8c4f34415b1fd0d542b3993d6b4f2"
+  },
+  {
+    "source": "docs/INDEX.md",
+    "archive": "docs/archive/20261126/pcm-c-abi/INDEX.md",
+    "sha256": "4b3f24af93774a8e2da9eca3a58975a81916199878a9f34454e4f4e9c44af675"
+  },
+  {
+    "source": "docs/ORGANIZATION.md",
+    "archive": "docs/archive/20261126/pcm-c-abi/ORGANIZATION.md",
+    "sha256": "df7ab0fe14ee2c80f19945b30521019154c75c0521e9564594a270d5df3977d4"
+  }
+]
