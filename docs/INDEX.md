@@ -35,9 +35,13 @@ reproducibility保存原结果摘要、源码锁、精确proof和回收记录；
 | 当前离线实现 | 准确证据／范围 |
 | --- | --- |
 | GPU r5 dense image映射 | [r5报告](../reproducibility/ordered-image-barrier-dense-r5-offline-20261126.json)：真实Mesa mapper／255 mask、CP命令流及四份未投递包；A540缓存／原像素待验 |
-| PCM具体SMEM FIFO与GLINK链路 | [FIFO报告](../reproducibility/lilac-pcm-smem-fifo-offline-20261126.json)：十组主机回归、2048环位置和三个ARM64对象；真实mapping／mailbox／DSP／codec／声音待接 |
+| PCM保留运行时／当前clock／cache交接 | [运行时报告](../reproducibility/lilac-pcm-runtime-cache-final-20261126.json)：十一组回归、四个ARM64对象、复制→cache交接→publication／完成→acquire；真实mapping／cache指令／DSP／codec／声音待接 |
 
 原[PCM session七组](../reproducibility/lilac-pcm-session-offline-20261126.json)、[GLINK适配八组](../reproducibility/lilac-pcm-glink-transport-offline-20261126.json)和[人工sparse槽位barrier流](../reproducibility/ordered-image-barrier-star-load-host-20261126.json)保持历史边界，不作为不同新产物的实机准入。现行步骤只由STATUS／BUILD维护。
+
+[具体FIFO十组／2048环位置](../reproducibility/lilac-pcm-smem-fifo-offline-20261126.json)是当前运行时保留的底层证据；实时clock与PCM跨度管理的新边界由上述runtime报告验证。
+
+runtime的[EOF收尾前报告](../reproducibility/lilac-pcm-runtime-cache-offline-20261126.json)保留原编译源身份，最终报告另绑定去除EOF空行后的准确源码及完整复验；不覆盖旧记录。
 
 ## 关键原阶段
 
@@ -69,6 +73,7 @@ reproducibility保存原结果摘要、源码锁、精确proof和回收记录；
 | Mesa dense image修补整合前5份入口 | [dense-image 20261126](archive/20261126/dense-image-barrier/original-document-manifest.json) |
 | PCM GLINK适配整合前5份入口 | [pcm-glink 20261126](archive/20261126/pcm-glink-transport/original-document-manifest.json) |
 | SMEM FIFO实现及STATUS整合前5份入口 | [pcm-smem 20261126](archive/20261126/pcm-smem-fifo/original-document-manifest.json) |
+| PCM运行时／缓存交接整合前5份入口 | [pcm-runtime 20261126](archive/20261126/pcm-runtime-cache/original-document-manifest.json) |
 | Mac旧38份文档与源文件 | [macos-patch-entry](archive/20261123/macos-patch-entry/original-document-manifest.json) |
 
 旧handover／handout与编号手册在docs/archive；原字节与SHA保持。旧整理报告入口：[2026-11-12](ORGANIZATION-2026-11-12.md)、[2026-11-13](ORGANIZATION-2026-11-13.md)、[2026-11-15](ORGANIZATION-2026-11-15.md)。回收与复原统一由ORGANIZATION／LAYOUT说明，不从旧in-flight恢复执行。

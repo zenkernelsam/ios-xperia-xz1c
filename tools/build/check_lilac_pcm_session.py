@@ -21,6 +21,7 @@ TESTS = (
     ("transport", "test_lilac_pcm_playback_transport.cpp"),
     ("fifo", "test_lilac_apr_smem_fifo.cpp"),
     ("smem", "test_lilac_pcm_smem_transport.cpp"),
+    ("runtime", "test_lilac_pcm_runtime.cpp"),
 )
 SUPPORT = (
     "LilacAsmPcm.h", "LilacAsmPcmQueue.h", "LilacAsmPcmApr.h",
@@ -29,6 +30,7 @@ SUPPORT = (
     "LilacAfeSlimbusPlayback.h", "LilacPcmPlaybackSession.h",
     "LilacPcmPlaybackTransport.h",
     "LilacAprSmemFifo.h",
+    "LilacPcmPlaybackRuntime.h",
 )
 
 
@@ -48,7 +50,8 @@ def check(output, arm64_object=False):
     source_paths += ["tools/build/" + name for _, name in TESTS]
     source_paths += ["tools/build/check_lilac_pcm_session.py", "tools/build/check_lilac_afe_slimbus.py",
                      "tools/build/compile_lilac_pcm_session.cpp", "tools/build/compile_lilac_pcm_transport.cpp",
-                     "tools/build/compile_lilac_pcm_smem.cpp"]
+                     "tools/build/compile_lilac_pcm_smem.cpp", "tools/build/compile_lilac_pcm_runtime.cpp",
+                     "tools/build/LilacPcmSmemPeerFixture.h"]
     source_files = {path: sha(ROOT / path) for path in source_paths}
     output.mkdir(parents=True)
     headers = materialize_headers(output, FIFO_HEADERS)
@@ -84,6 +87,8 @@ def check(output, arm64_object=False):
             raise ValueError("Actual callback FIFO test did not complete")
         if name == "smem" and "Lilac PCM SMEM chain PASS:" not in text:
             raise ValueError("Actual callback FIFO/GLINK PCM chain test did not complete")
+        if name == "runtime" and "Lilac PCM runtime PASS:" not in text:
+            raise ValueError("Actual retained PCM runtime test did not complete")
         commands.extend([command, execution])
         outputs[name] = {
             "binary_sha256": sha(binary),
@@ -97,7 +102,7 @@ def check(output, arm64_object=False):
         if not Path(sdk).is_dir():
             raise ValueError("iOS SDK directory not found")
         commands.append(sdk_command)
-        for name in ("session", "transport", "smem"):
+        for name in ("session", "transport", "smem", "runtime"):
             binary = output / ("pcm-" + name + ".arm64.o")
             command = ["xcrun", "--sdk", "iphoneos", "clang++", "-target", "arm64-apple-ios16.7",
                        "-isysroot", sdk, "-std=c++17", "-O1", "-Wall", "-Wextra", "-Werror",
@@ -115,7 +120,7 @@ def check(output, arm64_object=False):
     if source_files != {path: sha(ROOT / path) for path in source_paths}:
         raise ValueError("Playback sources changed during verification")
     report = dict(
-        revision=3, source_files={**headers, **source_files}, commands=commands, tests=outputs,
+        revision=4, source_files={**headers, **source_files}, commands=commands, tests=outputs,
         arm64_objects=target_objects,
         host_ASan_UBSan_passed=True,
         playback_format={"channels": 2, "bits_per_sample": 16, "sample_rate": 48000},
@@ -145,6 +150,12 @@ def check(output, arm64_object=False):
         AP_only_cursors_and_exact_16_byte_TX_reserve_verified=True,
         staged_RX_and_FIFO_barrier_publication_notification_order_verified=True,
         complete_wrapped_PCM_GLINK_FIFO_chain_passed=True,
+        retained_runtime_owns_link_readiness_and_four_PCM_spans=True,
+        PCM_bytes_and_cache_release_precede_APR_publication=True,
+        matched_completion_and_cache_acquire_precede_CPU_reuse=True,
+        overlapping_PCM_copy_and_foreign_completion_ownership_checked=True,
+        real_clock_rechecked_during_receive_poll_send_and_cache_callbacks=True,
+        late_reply_late_close_and_blocked_cache_callback_deadlines_refused=True,
         codec_channels_schema_and_firmware_token_echo_require_hardware_validation=True,
         transport_connected=False, linked_into_device_kernel=False,
         DSP_codec_or_physical_audio_verified=False, device_operations=0,

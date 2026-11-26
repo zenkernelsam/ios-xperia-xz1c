@@ -1,5 +1,11 @@
 # 本周整理与文档整合 — 2026-11-26
 
+PCM保留运行时／实时clock和cache交接收尾：[Mac54项／98文件／7524860 B](../reproducibility/pcm-runtime-macos-trash-20261126.json)进入原生Trash，[Windows25项／26文件／37697590 B](../reproducibility/pcm-runtime-windows-recycle-20261126.json)进入原生回收站，包含WSL共享build已结束主机程序、两套ARM64 object／dSYM、TEMP传输tar和原peer重构的一次性源码副本。全部目标SHA一致，98个Mac和65个Windows保护文件保持；原test／build日志、准确manifest、src备份及GPU r5／冻结kernel保留。
+
+[两套Ubuntu全部用户Trash为空](../reproducibility/pcm-runtime-wsl-trash-audit-20261126.json)，Windows／Mac未清空。整合前[五份入口原文](archive/20261126/pcm-runtime-cache/original-document-manifest.json)原字节与SHA已保存；现行音频复现更新为十一组／四对象，不把host缓存回调成功当物理声音。新代码只在正式仓库维护，设备操作0。
+
+提交diff检查首次拒绝共享peer头的EOF空行，修正后按最终字节重做WSL／Mac十一组和四个对象验证，ARM64 runtime代码SHA未变。[前一报告](../reproducibility/lilac-pcm-runtime-cache-offline-20261126.json)原文保留，[最终准确源报告](../reproducibility/lilac-pcm-runtime-cache-final-20261126.json)记录两者身份。补回收[Mac27项／50文件／3722214 B](../reproducibility/pcm-runtime-eof-macos-trash-20261126.json)及[Windows12项／13文件／17818937 B](../reproducibility/pcm-runtime-eof-windows-recycle-20261126.json)，包含复验host产物和一次性传输副本；原日志／manifest／旧源码备份保留，native目标SHA一致，垃圾桶未清空。
+
 具体SMEM FIFO收尾：[Mac24项／44文件／2801648 B](../reproducibility/pcm-smem-fifo-macos-trash-20261126.json)进入原生Trash，[Windows23项／23文件／35077856 B](../reproducibility/pcm-smem-fifo-windows-recycle-20261126.json)进入原生回收站，包含WSL在正式共享build的已结束主机程序、三个ARM64 object／dSYM和TEMP传输tar。回收目标逐字节SHA一致，45个Mac和61个Windows保护文件保持；准确源码、原编译／test日志、五份展开头文件、manifest、源码备份和GPU r5候选保留。
 
 [两套Ubuntu全部用户Trash为空](../reproducibility/pcm-smem-fifo-wsl-trash-audit-20261126.json)，Windows／Mac未清空。整合前[五份入口原文](archive/20261126/pcm-smem-fifo/original-document-manifest.json)原字节／SHA保存；STATUS从20354 B整理为约10KiB，只保留设备、已验准确组合、r5候选和外设待验门槛，旧逐轮回程／回收／同步日志由topic／原报告和本页索引。GPU候选与失败证据未改，设备操作0。

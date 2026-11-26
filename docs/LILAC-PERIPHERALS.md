@@ -41,6 +41,12 @@ RX使用有界snapshot，全部word read成功才输出，保留调用方外围g
 
 现行check_lilac_pcm_session.py revision3从正式patch复建五份准确APR／GLINK／回调ABI头，WSL／Mac同源十组ASan／UBSan通过。三个ARM64对象已编译；新增具体SMEM对象只留下正常stack guard符号，无四个未实现FIFO函数导入。代码没有加入内核，真实SMEM映射、uncached／屏障语义、mailbox回调和DSP／codec准入仍待连接。没有实际音频播放、DSP启动或手机IO证据；当前运行范围见STATUS，现行复现命令见BUILD。
 
+[保留运行时与缓存交接](../reproducibility/lilac-pcm-runtime-cache-final-20261126.json)把FIFO、原ADSP::Link和transport放入单个60,352 B对象，由owner在内核栈外保留并串行调用。readiness回调每次给出准确epoch、独占endpoint、uncached SMEM、DSP及codec状态；PCM CPU映射／device地址、字节长度、明确WriteCombined或CacheMaintenance策略和cache-line边界在任何FIFO IO前检查。构造不会映射／分配／复位硬件。
+
+queue_pcm在准确Run确认后检查四份独立cache-line跨度，复制实际双声道S16字节，然后完成release-to-device回调，才排入同一WRITE。旧span仍在途时拒绝覆盖；成功WRITE_DONE还要完成acquire-from-device回调才复用。回调失败或readiness／epoch变化保留跨度与整段region。给出的sync回调必须完成真实clean／barrier或write-combined发布语义，当前测试用独立CPU／DSP字节视图验证顺序，没有执行实际cache指令。
+
+transport新增当前clock hook，在receive处理前、poll后、send／close后及cache回调后重采样。原publication／reply／WRITE／关闭deadline不延长；IO内迟到回复、迟到CloseAck和cache回调阻塞超过另一在途WRITE期限均拒绝。现行工具revision4编译十一组ASan／UBSan和四个ARM64对象，WSL／Mac源逐字节一致；原peer提取为共享测试头，重叠源数据、外来token和callback失败均检查。具体runtime对象无未实现FIFO导入，未加入当前kernel音频service，也没有DSP／codec／实际声音证据。
+
 [PCM 负载核验](../reproducibility/lilac-asm-pcm-offline-20261124.json)实现了无时间戳、双声道 16 位 PCM 的 `WRITE_V2` 负载编码。`WRITE_DONE_V2` 必须匹配端口、token、连接代次、缓冲区地址和映射句柄，且状态为零，才能判为 DSP 消费完成。主机测试覆盖准确字节、越界和外来回复。当前代码不映射内存或发包。复验可在 WSL 用 `cc -std=c11 -Wall -Wextra -Werror -pedantic -fsanitize=address,undefined -fno-sanitize-recover=all -no-pie tools/build/test_lilac_asm_pcm.c -o build/新的-pcm-test` 编译并运行。
 
 [PCM 在途队列](../reproducibility/lilac-asm-pcm-queue-offline-20261124.json)最多保留四个待确认缓冲区。DSP 地址范围重叠时拒绝再次提交；匹配的成功完成只释放一次，旧连接或重复完成不会释放新提交。DSP 错误、超时或发送状态不明后，连接应停止接收新请求并保留待确认缓冲区，直到独立确认 DSP 不再访问它们。主机复验沿用上面的编译选项，将输入换成 `tools/build/test_lilac_asm_pcm_queue.c`，输出使用新路径。

@@ -29,6 +29,13 @@ public:
         for (const auto &entry : queue.pending) count += entry.epoch != 0;
         return count;
     }
+    bool buffer_pending(uint32_t token) const
+    {
+        if (!token) return false;
+        for (const auto &entry : queue.pending)
+            if (entry.epoch && entry.token == token) return true;
+        return false;
+    }
     bool render_drain_confirmed() const
     {
         return state() == State::Running && eos_requested && eos_rendered && !awaiting_reply();

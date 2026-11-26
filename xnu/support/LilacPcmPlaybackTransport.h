@@ -21,9 +21,15 @@ public:
     struct Timeouts {
         uint32_t publish_ms, reply_ms, write_ms, close_ms;
     };
+    struct Clock {
+        void *context;
+        bool (*now_ms)(void *,uint64_t *);
+    };
 
     LilacPcmPlaybackTransport(const Session::Configuration &configuration, Timeouts limits)
-        : session(configuration), epoch(configuration.epoch), timeouts(limits)
+        : LilacPcmPlaybackTransport(configuration,limits,{nullptr,nullptr}) {}
+    LilacPcmPlaybackTransport(const Session::Configuration &configuration, Timeouts limits, Clock clock_source)
+        : session(configuration), epoch(configuration.epoch), timeouts(limits), timer(clock_source)
     {
         valid = limits.publish_ms && limits.reply_ms && limits.write_ms && limits.close_ms;
     }
@@ -31,19 +37,28 @@ public:
     LilacPcmPlaybackTransport(const LilacPcmPlaybackTransport &) = delete;
     LilacPcmPlaybackTransport &operator=(const LilacPcmPlaybackTransport &) = delete;
     State state() const { return phase; }
+    bool configuration_valid() const { return valid && session.configuration_valid(); }
     Session::State session_state() const { return session.state(); }
     Failure failure() const { return failed_at; }
     Result failure_result() const { return failed_result; }
     unsigned pending_buffers() const { return session.pending_buffers(); }
+    bool buffer_pending(uint32_t token) const { return session.buffer_pending(token); }
     bool pending_publication() const { return pending.bytes != 0; }
     uint64_t published_packets() const { return publications; }
+    Result check_time(uint64_t now_ms)
+    {
+        if (phase == State::Uncertain) return Result::Quarantined;
+        if (phase == State::NotReady) return Result::NotReady;
+        if (phase == State::Stopped) return Result::OK;
+        return observe(now_ms) ? Result::OK : failed_result;
+    }
 
     template<class Link>
     bool admit(const Link &link, bool dsp_ready, bool codec_ready, uint64_t now_ms)
     {
         if (phase != State::NotReady || !valid || !link.ready() || link.quarantined() ||
-            link.generation() != epoch ||
-            !session.admit(epoch, dsp_ready, codec_ready)) return false;
+            link.generation() != epoch) return false;
+        if (!observe(now_ms) || !session.admit(epoch, dsp_ready, codec_ready)) return false;
         last_ms = now_ms;
         phase = State::Active;
         return true;
@@ -58,15 +73,15 @@ public:
         if (phase == State::Uncertain) return Result::Quarantined;
         if (phase == State::Stopped) return Result::OK;
         if (phase == State::NotReady) return Result::NotReady;
-        if (!clock(now_ms)) return failed_result;
+        if (!observe(now_ms)) return failed_result;
         if (link.generation() != epoch) return fail(Failure::Epoch, Result::Stale);
         if (!dsp_ready || !codec_ready) return fail(Failure::Readiness, Result::NotReady);
         if (link.quarantined()) return fail(Failure::Poll, Result::Quarantined);
         if (phase == State::Active && !link.ready()) return fail(Failure::Readiness, Result::NotReady);
-        if (!deadlines(now_ms)) return failed_result;
         Result result = link.poll();
         if (phase == State::Uncertain) return failed_result;
         if (result != Result::OK) return fail(Failure::Poll, result);
+        if (!observe(now_ms)) return failed_result;
         if (link.generation() != epoch) return fail(Failure::Epoch, Result::Stale);
         if (link.quarantined()) return fail(Failure::Poll, Result::Quarantined);
         if (phase == State::Closing) {
@@ -80,6 +95,7 @@ public:
                 result = link.close();
                 if (result == Result::OK) close_queued = true;
                 else if (result != Result::Busy) return fail(Failure::Poll, result);
+                if (!observe(now_ms)) return failed_result;
             }
             return Result::NotReady;
         }
@@ -90,6 +106,7 @@ public:
             result = link.close();
             if (result == Result::OK) close_queued = true;
             else if (result != Result::Busy) return fail(Failure::Poll, result);
+            if (!observe(now_ms)) return failed_result;
             return Result::NotReady;
         }
         if (!pending.bytes && !control_sent &&
@@ -104,23 +121,25 @@ public:
             }
         }
         if (!pending.bytes) return Result::OK;
+        const uint64_t publication_started_ms=now_ms;
         result = link.send(packet, pending.bytes);
-        if (result == Result::Busy) return result;
+        if (result == Result::Busy) return observe(now_ms) ? result : failed_result;
         if (result != Result::OK) return fail(Failure::Publish, result);
         ++publications;
         if (pending.write) {
             bool installed = false;
             for (auto &write : writes) if (!write.token) {
-                write = {pending.token, now_ms};
+                write = {pending.token, publication_started_ms};
                 installed = true;
                 break;
             }
             if (!installed) return fail(Failure::SessionError, Result::Invalid);
         } else {
             control_sent = true;
-            control_started_ms = now_ms;
+            control_started_ms = publication_started_ms;
         }
         pending = {};
+        if (!observe(now_ms)) return failed_result;
         return Result::OK;
     }
 
@@ -129,7 +148,7 @@ public:
     {
         if (phase == State::Uncertain) return LILAC_ASM_QUEUE_QUARANTINED;
         if (phase != State::Active || !token) return LILAC_ASM_QUEUE_INVALID;
-        if (!clock(now_ms) || !deadlines(now_ms)) return LILAC_ASM_QUEUE_QUARANTINED;
+        if (!observe(now_ms)) return LILAC_ASM_QUEUE_QUARANTINED;
         if (pending.bytes) return LILAC_ASM_QUEUE_BUSY;
         uint32_t reserved = 0;
         const auto result = session.write(offset, span, bytes, packet, sizeof(packet), &reserved);
@@ -144,7 +163,7 @@ public:
 
     bool begin_drain(uint64_t now_ms)
     {
-        return phase == State::Active && clock(now_ms) && deadlines(now_ms) &&
+        return phase == State::Active && observe(now_ms) &&
             !pending.bytes && !control_sent && session.begin_drain();
     }
 
@@ -155,6 +174,8 @@ public:
     {
         if (phase == State::Uncertain) return Result::Quarantined;
         if (phase != State::Active) return Result::Stale;
+        uint64_t receive_ms=last_ms;
+        if (!observe(receive_ms)) return failed_result;
         ADSP::Packet reply;
         if (ADSP::parseAPR(data, bytes, reply) != Result::OK)
             return fail(Failure::SessionError, Result::Invalid);
@@ -211,6 +232,14 @@ private:
         last_ms = now_ms;
         return true;
     }
+    bool observe(uint64_t &now_ms)
+    {
+        if (timer.now_ms && !timer.now_ms(timer.context,&now_ms)) {
+            fail(Failure::Clock,Result::IO);
+            return false;
+        }
+        return clock(now_ms) && deadlines(now_ms);
+    }
     bool deadlines(uint64_t now_ms)
     {
         if (pending.bytes && now_ms - pending.since_ms >= timeouts.publish_ms) {
@@ -235,6 +264,7 @@ private:
     Session session;
     const uint64_t epoch;
     const Timeouts timeouts;
+    const Clock timer;
     uint8_t packet[104]{};
     Pending pending;
     Write writes[LILAC_ASM_PCM_MAX_PENDING]{};

@@ -60,11 +60,13 @@ barrier revision4从当前linked fragment program的ImageUnits映射GL binding�
 | 外设 | 当前实现／实际证据 | 仍待完成 |
 | --- | --- | --- |
 | WLED／背光 | v731首帧后只读fault0、enable／strings mask3、duty1989／1989；属性service与非零调光事务离线通过 | 实际注册／SPMI写入、亮度／灭屏／唤醒及光学 |
-| ADSP／音频 | 实机只stage3固件核验和AP准备；AFE／ADM／ASM会话、GLINK适配、具体SMEM FIFO回调实现完成主机和ARM64验证 | 真正DSP启动、endpoint／schema／token回显、Tasha／Tavil选用、codec／PCM缓存和物理声音 |
+| ADSP／音频 | 实机只stage3固件核验和AP准备；AFE／ADM／ASM、GLINK／FIFO及带PCM缓存交接的保留运行时完成主机和ARM64验证 | 真正DSP启动、endpoint／schema／token回显、Tasha／Tavil选用、实际mapping／cache回调、codec和物理声音 |
 | Wi-Fi／蓝牙 | 原DTB和开源路径已核对，进程有启动日志 | 控制器初始化、扫描／连接和真实数据传输 |
 | shared event／presentedTime | selectors36／37／38／45仍零输出，presentedTime0 | 端口／mapped page及实际呈现时间未实现；旧草稿不算通过 |
 
-音频当前入口为[lilac-pcm-smem-fifo离线报告](../reproducibility/lilac-pcm-smem-fifo-offline-20261126.json)：具体FIFO沿用sweet_adsp_apr_ops回调，16KiB双环／8字节对齐／16字节TX余量，只写AP的TX head和RX tail；完整数据读完才输出，准确已观察frame才能消费，发布／通知失败保留所有权。全2048环位置、最大包／部分包、逐字故障及完整PCM→GLINK→FIFO链路由WSL／Mac同源十组ASan／UBSan通过，三个ARM64对象编译。具体SMEM对象已无未实现FIFO函数导入，但实际mapping／mailbox回调尚未连接，未加入内核或启动DSP。
+音频当前入口为[运行时／PCM缓存离线报告](../reproducibility/lilac-pcm-runtime-cache-final-20261126.json)：一个60,352 B保留对象拥有具体FIFO、原Link及transport，须放内核栈外且由owner串行、非重入驱动。准确epoch／DSP／codec／SMEM readiness、CPU映射／device地址和cache-line边界先验证；输入字节复制及release-to-device回调完成才允许APR排队，成功匹配WRITE_DONE和acquire-from-device回调都完成才复用跨度。四份跨度不能相交，包括cacheline；回调失败、身份变化或超时不自动释放。真实cache指令／mapping／mailbox／驱动注册仍未连接，未启动DSP或产生物理声音。
+
+WSL／Mac同源十一组ASan／UBSan及四个ARM64对象通过，保留原2048环位置／逐字故障／EOS／关闭测试，另核对PCM字节和guard、重叠复制、外来token、缓存交接顺序与IO／cache回调内部过期。真实时钟在receive、poll后、publish后和cache回调后重采样；轮询入口的旧时间不能准入迟到回复或CloseAck。旧仅手动时间的transport接口仍供离线测试，实际运行时始终绑定clock hook。GPU r5源码与包未改。
 
 原session／GLINK适配保证Busy只发同一未发布包、成功publication才开始回复deadline，Accepted／typed等待不延长；控制与WRITE完成必须匹配已发布token／epoch／端口。四WRITE排空、EOS普通回复及RENDERED_EOS都确认，再Close／Unmap／COPP／AFE Stop和双向GLINK关闭后才确认region可释放。细节与历史协议证据由[LILAC-PERIPHERALS](LILAC-PERIPHERALS.md)索引。
 
@@ -76,4 +78,4 @@ barrier revision4从当前linked fragment program的ImageUnits映射GL binding�
 
 只操作BH905ND69G，fastboot设备命令显式`-s`；COM≥10、VID1209/PID0001且一个worker；PON只0x06，单download／boot、失败不重发。内核GPU底层／allocator／SCM／PON／RPC／VM冻结，SweetGPU.cpp SHA **`aa2c36792a2298b060aa858eabdc039522fcdde3cfdbafd453c5fc6c0683c157`**。gl5／userdata／SD／TA／XFL／校准／备份／救砖输入受保护。
 
-本轮废弃host产物进入[Mac原生Trash](../reproducibility/pcm-smem-fifo-macos-trash-20261126.json)和[Windows回收站](../reproducibility/pcm-smem-fifo-windows-recycle-20261126.json)，WSL共享build产物也进Windows回收站；[两套Ubuntu Trash为空](../reproducibility/pcm-smem-fifo-wsl-trash-audit-20261126.json)，未永久删除或清空Windows／Mac垃圾桶。整合前五份入口和原SHA在[本轮原文archive](archive/20261126/pcm-smem-fifo/original-document-manifest.json)。原失败、准确候选、少量所需raw／proof和受保护输入保留，旧多轮状态与回收日志不再复制到此入口。
+本轮废弃host产物进入[Mac原生Trash](../reproducibility/pcm-runtime-macos-trash-20261126.json)和[Windows回收站](../reproducibility/pcm-runtime-windows-recycle-20261126.json)，WSL共享build产物也进Windows回收站；[两套Ubuntu Trash为空](../reproducibility/pcm-runtime-wsl-trash-audit-20261126.json)，未永久删除或清空Windows／Mac垃圾桶。整合前五份入口和原SHA在[本轮原文archive](archive/20261126/pcm-runtime-cache/original-document-manifest.json)。原失败、准确候选、少量所需raw／proof和受保护输入保留，旧多轮状态与回收日志不再复制到此入口。

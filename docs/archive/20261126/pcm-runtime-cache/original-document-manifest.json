@@ -1,0 +1,37 @@
+{
+  "original_bytes_preserved": true,
+  "date": "2026-11-26",
+  "documents": [
+    {
+      "archived_path": "docs/archive/20261126/pcm-runtime-cache/originals/docs/STATUS.md",
+      "original_path": "docs/STATUS.md",
+      "bytes": 10633,
+      "sha256": "be46a3ffbc054a6abc8a6775d8b8f1bbd5913b8134f8aa9b0d47bd8bf8b24308"
+    },
+    {
+      "archived_path": "docs/archive/20261126/pcm-runtime-cache/originals/docs/BUILD.md",
+      "original_path": "docs/BUILD.md",
+      "bytes": 24576,
+      "sha256": "4e20519d9e4e07d4c6df05d4be70bac26286f7af7872d7c7d10f5e8732756b68"
+    },
+    {
+      "archived_path": "docs/archive/20261126/pcm-runtime-cache/originals/docs/LILAC-PERIPHERALS.md",
+      "original_path": "docs/LILAC-PERIPHERALS.md",
+      "bytes": 23223,
+      "sha256": "10c9f2988832d4fa7ac3948dca22037ecc712f82a892615eea90b384c75648a2"
+    },
+    {
+      "archived_path": "docs/archive/20261126/pcm-runtime-cache/originals/docs/INDEX.md",
+      "original_path": "docs/INDEX.md",
+      "bytes": 8169,
+      "sha256": "1977ca278be7b2b8ad200ecc9b65d8f5481eaf4dc8e9f7039d90950ccfa83d3a"
+    },
+    {
+      "archived_path": "docs/archive/20261126/pcm-runtime-cache/originals/docs/ORGANIZATION.md",
+      "original_path": "docs/ORGANIZATION.md",
+      "bytes": 20704,
+      "sha256": "94cf531f1d82f2bd911b7e37f1f3d11266911faf76ae4da07d4f1f874f654428"
+    }
+  ],
+  "reason": "Preserve current entries before retained PCM runtime and live clock/cache ownership integration"
+}

@@ -51,8 +51,10 @@ public:
     LilacPcmPlaybackSession(const LilacPcmPlaybackSession &) = delete;
     LilacPcmPlaybackSession &operator=(const LilacPcmPlaybackSession &) = delete;
     State state() const { return phase; }
+    bool configuration_valid() const { return valid; }
     Action next_action() const { return next; }
     unsigned pending_buffers() const { return stream.pending_buffers(); }
+    bool buffer_pending(uint32_t token) const { return stream.buffer_pending(token); }
 
     // The transport owner supplies readiness from this exact connection
     // epoch after its separate DSP/codec validation, before any APR command.
