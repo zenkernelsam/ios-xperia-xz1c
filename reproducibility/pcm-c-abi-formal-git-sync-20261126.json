@@ -1,0 +1,67 @@
+{
+  "date": "2026-11-26",
+  "before_HEAD": "d57fee92da8416872159fa0712bcec85dedd3594",
+  "after_HEAD": "37d22c8ec403a352efffce5b4d40e53daff45147",
+  "recoverable_pre_sync_stash": "c9d6098aa2229cd01a6282baa1bf8cc0d89892c9",
+  "stash_not_dropped": true,
+  "original_source_bytes": [
+    {
+      "path": "reproducibility/current-device-tools.json",
+      "sha256": "3b81d02b9c861e12240573b59bef301ee618e2ddaf952432b81bd4e92a0dcb7b"
+    },
+    {
+      "path": "reproducibility/pcm-c-abi-macos-trash-20261126.json",
+      "sha256": "0fea8bdef61790bf2fbda09214fc780525c12ead19f890478c7d6672f2e78667"
+    },
+    {
+      "path": "tools/build/LilacPcmRuntimeCTest.h",
+      "sha256": "aa34d3d9dcb8d85f2fc67c3650745282bef7f8245f48ddbe6197b6e0bf2fb94b"
+    },
+    {
+      "path": "tools/build/check_lilac_pcm_session.py",
+      "sha256": "3bc9d89bc5a660c65694199c59583f604ffbf96b5499624fe1f532a1ae0911a6"
+    },
+    {
+      "path": "tools/build/test_lilac_pcm_runtime.cpp",
+      "sha256": "02cc044e230ad5618d0a764f3c2cc1bd85c7b340dc03cfe5484039f4909993d6"
+    },
+    {
+      "path": "tools/build/test_lilac_pcm_runtime_api.cpp",
+      "sha256": "7c2e2b449e76e896523b59b78167b48991dca3153da9105f873a83dff2b19284"
+    },
+    {
+      "path": "tools/build/test_lilac_pcm_runtime_c.c",
+      "sha256": "e66101e2e714e34d935a317e2e342a17c75bc82113673fd043fc86689f90def2"
+    },
+    {
+      "path": "xnu/support/LilacAprSmemFifo.h",
+      "sha256": "9a79470a5a5004c962efc07d6ec658b5599a2fdd803dc430abdc72270958b4f2"
+    },
+    {
+      "path": "xnu/support/LilacPcmPlaybackRuntime.h",
+      "sha256": "fc095411875b7dd169aab1915c43af74f18d0735f859a037bd13e3a9318e1d3b"
+    },
+    {
+      "path": "xnu/support/LilacPcmRuntimeAPI.cpp",
+      "sha256": "86242e985e7a58d9277106500e97963da65dd215b1a75a2719be9c3e44df607c"
+    },
+    {
+      "path": "xnu/support/LilacPcmRuntimeAPI.h",
+      "sha256": "bf9f8c4c7a7f8ead6f214e4be7cb28e313cf8d02c66aeea8e37d12abcf34234b"
+    }
+  ],
+  "changed_files_byte_equal_to_commit": 28,
+  "actual_final_C_ABI_compiled_sources_equal": true,
+  "source_validation": {
+    "canonical_xnu_patch_paths": 404,
+    "audited_xnu_sources": 78,
+    "python_scripts_syntax_checked": 278,
+    "canonical_sources_match_current_lock": true,
+    "runtime_acceptance_requires_actual_evidence": true,
+    "source_only_validation": true,
+    "device_operations": 0
+  },
+  "pause_preserved": true,
+  "frozen_GPU_SHA_preserved": true,
+  "device_operations": 0
+}
