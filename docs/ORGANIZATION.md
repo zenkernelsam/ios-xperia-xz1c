@@ -1,5 +1,9 @@
 # 本周整理与文档整合 — 2026-11-26
 
+具体SMEM FIFO收尾：[Mac24项／44文件／2801648 B](../reproducibility/pcm-smem-fifo-macos-trash-20261126.json)进入原生Trash，[Windows23项／23文件／35077856 B](../reproducibility/pcm-smem-fifo-windows-recycle-20261126.json)进入原生回收站，包含WSL在正式共享build的已结束主机程序、三个ARM64 object／dSYM和TEMP传输tar。回收目标逐字节SHA一致，45个Mac和61个Windows保护文件保持；准确源码、原编译／test日志、五份展开头文件、manifest、源码备份和GPU r5候选保留。
+
+[两套Ubuntu全部用户Trash为空](../reproducibility/pcm-smem-fifo-wsl-trash-audit-20261126.json)，Windows／Mac未清空。整合前[五份入口原文](archive/20261126/pcm-smem-fifo/original-document-manifest.json)原字节／SHA保存；STATUS从20354 B整理为约10KiB，只保留设备、已验准确组合、r5候选和外设待验门槛，旧逐轮回程／回收／同步日志由topic／原报告和本页索引。GPU候选与失败证据未改，设备操作0。
+
 PCM／GLINK适配收尾：[Mac38项／70文件／3412804 B](../reproducibility/pcm-glink-transport-macos-trash-20261126.json)进入原生Trash，[Windows26项／27文件／38847808 B](../reproducibility/pcm-glink-transport-windows-recycle-20261126.json)进入原生回收站，含WSL共享build已结束主机程序、两套ARM64 object／dSYM及TEMP传输tar。目标逐字节SHA核验，69个Mac和73个Windows保护文件保持；原失败输出、混合行尾头文件、构建／test日志、manifest、源码备份、r5 GPU包与冻结内核保留。
 
 [Ubuntu／Ubuntu-22.04全部用户Trash为空](../reproducibility/pcm-glink-transport-wsl-trash-audit-20261126.json)，未清空Windows／Mac垃圾桶。整合前[五份现行入口](archive/20261126/pcm-glink-transport/original-document-manifest.json)已按原字节／SHA归档，音频技术与现行八组复现入口归入LILAC-PERIPHERALS／BUILD；源码只在正式仓库维护，设备操作0。

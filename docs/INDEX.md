@@ -32,11 +32,12 @@
 
 reproducibility保存原结果摘要、源码锁、精确proof和回收记录；镜像、signed产物、原日志／扫描帧／失败page和光学媒体保持本地。host或离屏结果、局部字节、seed、GPU Completed及回程各自验收。
 
-本次离线补充：[Sony PCM统一会话／rendered EOS](../reproducibility/lilac-pcm-session-offline-20261126.json)记录WSL／Mac七组主机回归及ARM64编译；[原星点规模barrier命令流](../reproducibility/ordered-image-barrier-star-load-host-20261126.json)记录1404次／29489字及guarded ring扩容。两者均无设备操作，实际音频、A540缓存可见性和原壁纸仍按STATUS准入。
+| 当前离线实现 | 准确证据／范围 |
+| --- | --- |
+| GPU r5 dense image映射 | [r5报告](../reproducibility/ordered-image-barrier-dense-r5-offline-20261126.json)：真实Mesa mapper／255 mask、CP命令流及四份未投递包；A540缓存／原像素待验 |
+| PCM具体SMEM FIFO与GLINK链路 | [FIFO报告](../reproducibility/lilac-pcm-smem-fifo-offline-20261126.json)：十组主机回归、2048环位置和三个ARM64对象；真实mapping／mailbox／DSP／codec／声音待接 |
 
-后续[r5 dense image映射修补](../reproducibility/ordered-image-barrier-dense-r5-offline-20261126.json)直接用锁定Mesa mapper验证GL binding与紧凑驱动槽位，并复现旧host布局导致的fallback。新候选及其四份包完整离线审计，无实机投递；原host报告保持历史范围。
-
-[PCM串行GLINK接入](../reproducibility/lilac-pcm-glink-transport-offline-20261126.json)新增publication、回复／WRITE／关通道deadline与准确sink处理，复现直接session接Link的Map误判。WSL／Mac八组主机回归及两个ARM64对象通过，真实FIFO／DSP／codec／声音仍未接通。
+原[PCM session七组](../reproducibility/lilac-pcm-session-offline-20261126.json)、[GLINK适配八组](../reproducibility/lilac-pcm-glink-transport-offline-20261126.json)和[人工sparse槽位barrier流](../reproducibility/ordered-image-barrier-star-load-host-20261126.json)保持历史边界，不作为不同新产物的实机准入。现行步骤只由STATUS／BUILD维护。
 
 ## 关键原阶段
 
@@ -67,6 +68,7 @@ reproducibility保存原结果摘要、源码锁、精确proof和回收记录；
 | PCM会话／星点规模主机复验整合前5份入口 | [pcm-session 20261126](archive/20261126/pcm-session-and-XR-load/original-document-manifest.json) |
 | Mesa dense image修补整合前5份入口 | [dense-image 20261126](archive/20261126/dense-image-barrier/original-document-manifest.json) |
 | PCM GLINK适配整合前5份入口 | [pcm-glink 20261126](archive/20261126/pcm-glink-transport/original-document-manifest.json) |
+| SMEM FIFO实现及STATUS整合前5份入口 | [pcm-smem 20261126](archive/20261126/pcm-smem-fifo/original-document-manifest.json) |
 | Mac旧38份文档与源文件 | [macos-patch-entry](archive/20261123/macos-patch-entry/original-document-manifest.json) |
 
 旧handover／handout与编号手册在docs/archive；原字节与SHA保持。旧整理报告入口：[2026-11-12](ORGANIZATION-2026-11-12.md)、[2026-11-13](ORGANIZATION-2026-11-13.md)、[2026-11-15](ORGANIZATION-2026-11-15.md)。回收与复原统一由ORGANIZATION／LAYOUT说明，不从旧in-flight恢复执行。

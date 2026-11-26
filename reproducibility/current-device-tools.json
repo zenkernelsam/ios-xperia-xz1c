@@ -324,19 +324,22 @@
     "tools/build/test_loaded_snapshot_png_export.m": "b106ee5260883693fa1f7fb9be6ae71792ee7ba9914139e5b3c66738ad4054fd",
     "tools/build/test_snapshot_render_queue.m": "8a913d77d9810c9fb2df03c6f2c6795eaeaa9f78b42feb2996ae8233e80b3cd4",
     "tools/aegir_snapshot_scope.py": "e530d1563aab83a5367b38cb57e932fbe1d381b3d6014f9fa729e74668e04f43",
-    "tools/build/check_lilac_afe_slimbus.py": "4d69b241c33bc09f2a3aa0add2740df6a5499849f8b5966bfda1aa9eaff20e05",
+    "tools/build/check_lilac_afe_slimbus.py": "cc6e8176582a23d01387d126dff857e95a3085d1d3c24ff4bb86d0154f97b3a5",
     "tools/build/test_lilac_afe_slimbus_playback.cpp": "9218c4e0c7fb045decc1178842e0eda8eeb4ec6aa918b2bbbe06b95b0ec4a680",
     "tools/build/inspect_aegir_render_boundary.py": "e668de3bc3a5cf30be556bbb7dd041ef804f3d7d11325a8dacdf8d4bc51fa782",
     "tools/build/test_snapshot_readback.m": "04200816c5f529303eef891fef95a00100474c586289ce0c4dc2ee4f4e075415",
     "tools/build/test_original_cg_input.m": "bf1cd6830f989c1240eaeb6fea9b2f376bfa3c54ca2c3a8debc53a9b58122f61",
     "tools/build/test_ordered_image_barrier.c": "cebe6391425ca8513f664c6d1c79c57560c4873c811154aa00998373f13dc190",
     "tools/build/check_ordered_image_barrier.py": "88ec73ccb6e32b13521e4d6660a35ab897ac9e305506c326bef4c54e11d7176c",
-    "tools/build/check_lilac_pcm_session.py": "a76d3f081899e0e734e695b12f0f75a0b36ca4227029dba11787f59022c7c031",
+    "tools/build/check_lilac_pcm_session.py": "3afb85b5481317c84bcebef8459682cbb8a9d79588aa015e9e6b35cf63a717df",
     "tools/build/compile_lilac_pcm_session.cpp": "5d3db06696c3979cb83c7004261a9e12077a25872e95a35ed952b64d32e6b6ee",
     "tools/build/test_lilac_pcm_playback_session.cpp": "1cd381d250e37d29812dec10a8654521ce859a9fa77ce93f46a7ad726ba3bc38",
     "tools/build/test_ordered_image_mapping.c": "43ecb564599170f948dfac7fd533d6124d3ed8f44089f965f2e3f672fce6aeea",
     "tools/build/compile_lilac_pcm_transport.cpp": "fa2eb328032d3352df2b40dc3ab41dd965c0289e3bfdd688e1b0b94d19eb9f45",
-    "tools/build/test_lilac_pcm_playback_transport.cpp": "23257dbe8dea1368a92d54bd1eed237b6f27a0fb6862a0e426c213de2b7179af"
+    "tools/build/test_lilac_pcm_playback_transport.cpp": "23257dbe8dea1368a92d54bd1eed237b6f27a0fb6862a0e426c213de2b7179af",
+    "tools/build/test_lilac_apr_smem_fifo.cpp": "a5ab9597dbb4bf90a63aeecf469670e00369a604cc14ae85b322a7bbe887e4ed",
+    "tools/build/test_lilac_pcm_smem_transport.cpp": "5e2c06888fd81bf8b2cd97565c1da184d63ee93c4e3c2c1e270ea9057bad806a",
+    "tools/build/compile_lilac_pcm_smem.cpp": "9bbcc12f02a7b3684c1a907833d36ddace81740792a51f55c4eb59d9e532214b"
   },
   "gpu_sources": {
     "gpu/diagnostics/exception_observe.m": "c20f1600d7ff6964cf711d637f4f5ce68ea93cdf2fd4e00cc46612f4d8c19545",
@@ -498,7 +501,8 @@
     "tools/aegir_snapshot_scope.py": "e530d1563aab83a5367b38cb57e932fbe1d381b3d6014f9fa729e74668e04f43",
     "xnu/support/LilacAfeSlimbusPlayback.h": "b0727cc8404f45fdbd964517220b664cdd63f29a20fd80db714c8df8e42b147c",
     "xnu/support/LilacPcmPlaybackSession.h": "51704cca5d2465e436e3fa1d8ff3c50c5612edd43d71846a355679d2d2e61fc6",
-    "xnu/support/LilacPcmPlaybackTransport.h": "3bbe2939273d86b659e635bdbb6bd5197115f89d2a69e1fb95ada0bd9cb62898"
+    "xnu/support/LilacPcmPlaybackTransport.h": "3bbe2939273d86b659e635bdbb6bd5197115f89d2a69e1fb95ada0bd9cb62898",
+    "xnu/support/LilacAprSmemFifo.h": "020433c695256e71db0c72c50a89b56866ca16ed9e219ffd023413291fcc1563"
   },
   "v729_private_actual_return_passed": true,
   "v729_private_owner_ready_actual_return_passed": true,

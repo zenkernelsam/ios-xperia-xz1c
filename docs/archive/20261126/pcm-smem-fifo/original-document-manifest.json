@@ -1,0 +1,37 @@
+{
+  "documents": [
+    {
+      "original_path": "docs/STATUS.md",
+      "bytes": 20354,
+      "sha256": "b4720091bc06fc5a8233b23bfc79fee688e0d441e593e7174359de8de20a0a33",
+      "archived_path": "docs/archive/20261126/pcm-smem-fifo/originals/docs/STATUS.md"
+    },
+    {
+      "original_path": "docs/BUILD.md",
+      "bytes": 23783,
+      "sha256": "a7b04ab269243698c17eca9a9627261e6db9680f620cbc68dc1632209e74b881",
+      "archived_path": "docs/archive/20261126/pcm-smem-fifo/originals/docs/BUILD.md"
+    },
+    {
+      "original_path": "docs/LILAC-PERIPHERALS.md",
+      "bytes": 21734,
+      "sha256": "a71e99e8eae99ab695bb970316f4fd1ccbfb372af87b14b85d0ffe8e34b95983",
+      "archived_path": "docs/archive/20261126/pcm-smem-fifo/originals/docs/LILAC-PERIPHERALS.md"
+    },
+    {
+      "original_path": "docs/ORGANIZATION.md",
+      "bytes": 19228,
+      "sha256": "15fb81df6ad1f76d0badd0e02b30eccf5c112dc3f2439376b5e3f5cc22686874",
+      "archived_path": "docs/archive/20261126/pcm-smem-fifo/originals/docs/ORGANIZATION.md"
+    },
+    {
+      "original_path": "docs/INDEX.md",
+      "bytes": 8196,
+      "sha256": "62d6e4d113fc47346f0e2c429d7eea448346d1bf35ad8c00821b7e6ad2834402",
+      "archived_path": "docs/archive/20261126/pcm-smem-fifo/originals/docs/INDEX.md"
+    }
+  ],
+  "date": "2026-11-26",
+  "original_bytes_preserved": true,
+  "reason": "Preserve original entries before concrete callback SMEM FIFO integration"
+}

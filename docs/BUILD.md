@@ -191,7 +191,7 @@ python3 -B tools/build/build_metal_library.py --ram-package build/my-gles/ram --
 
 `check_lilac_afe_slimbus.py --output build/新的-afe-host`从正式patch／source-lock materialize原APR头，再编译运行真实ASan／UBSan包字节与状态用例；Windows用WSL Ubuntu-22.04，Mac直接host clang。它不连接传输或启动DSP。实际codec channel map、参数schema与物理声音另行验收，见[Lilac外设](LILAC-PERIPHERALS.md)。
 
-统一会话工具在同一套锁定APR／GLINK头下分别编译PCM负载、队列、APR、映射、流、AFE、session和transport八组用例，不依赖历史build展开树。新输出目录须不存在。Windows调用WSL Ubuntu-22.04；Mac可同时用实际iphoneos SDK编译会话和GLINK适配入口的两个ARM64对象：
+统一会话工具在同一套锁定APR／GLINK／回调ABI头下编译PCM负载、队列、APR、映射、流、AFE、session、transport、FIFO和完整SMEM链路十组用例，不依赖历史build展开树。新输出目录须不存在。Windows调用WSL Ubuntu-22.04；Mac可同时用实际iphoneos SDK编译会话、GLINK适配和具体SMEM链路的三个ARM64对象：
 
 ```powershell
 python -B tools/build/check_lilac_pcm_session.py --output build/my-pcm-session
@@ -201,9 +201,13 @@ python -B tools/build/check_lilac_pcm_session.py --output build/my-pcm-session
 python3 -B tools/build/check_lilac_pcm_session.py --arm64-object --output build/my-pcm-session-arm64
 ```
 
-manifest revision2绑定全部真实support／test／builder源、四份原APR／GLINK头、命令／日志SHA及可选ARM64对象。BasebandGLINK的混合CRLF／LF按source-lock中准确before／after SHA和三个LF行位置复建，字符不变；首次全CRLF假设失败的输出保留。会话要求独立确认本epoch的DSP／codec就绪，EOS普通回复与RENDERED_EOS均到达后才关流。
+manifest revision3绑定全部真实support／test／builder源、五份原APR／GLINK／ADSPAPRProbe头、命令／日志SHA及可选ARM64对象。BasebandGLINK的混合CRLF／LF按source-lock中准确before／after SHA和三个LF行位置复建，字符不变；首次全CRLF假设失败的输出保留。会话要求独立确认本epoch的DSP／codec就绪，EOS普通回复与RENDERED_EOS均到达后才关流。
 
-`LilacPcmPlaybackTransport`只拥有一份104 B待发APR包和四个已发布WRITE时间记录，实际Link仍由调用方持有。admit之后只让advance轮询／send／close该Link；Busy保留同一token和字节，成功发布才开始回复deadline；Accepted及typed回复等待不延长deadline。queue_write只预留，不等于DSP收到。失去readiness／epoch、超时、时钟倒退或发布状态不明都会uncertain，物理页保留。session停好之后另确认原GLINK的双向关闭。调用方仍需实现真实FIFO、串行化、当前monotonic时间、页面／缓存管理和DSP／codec准入；该工具不连接硬件、不分配／释放物理页、不加入内核，主机／ARM64结果不准入实际声音。
+`LilacPcmPlaybackTransport`只拥有一份104 B待发APR包和四个已发布WRITE时间记录，实际Link仍由调用方持有。admit之后只让advance轮询／send／close该Link；Busy保留同一token和字节，成功发布才开始回复deadline；Accepted及typed回复等待不延长deadline。queue_write只预留，不等于DSP收到。失去readiness／epoch、超时、时钟倒退或发布状态不明都会uncertain，物理页保留。session停好之后另确认原GLINK的双向关闭。
+
+具体`LilacAprSmemFifo`沿用正式patch的sweet_adsp_apr_ops回调，先只读验证布局与四个cursor，并由调用方确认独占／uncached／DSP就绪；不会映射内存、清cursor或初始化硬件。16KiB双环和8 B对齐保持，TX保留16 B，发送数据→fence→TX head→fence→notify。RX先复制完整有界prefix，所有read成功才交给Link；consume须与当前观察的完整frame大小／tail一致，再RX tail→notify。逐字故障、cursor／通知失败使FIFO不确定，不能重发。工具直接测试全部2048环位置和完整PCM／GLINK／FIFO链路，ARM64具体SMEM对象不再留下未实现FIFO函数导入。
+
+调用方仍需连接真实read32／write32／fence／notify到已准入SMEM映射与mailbox，串行调用、提供monotonic时间、管理PCM页面／缓存并确认DSP／codec。该工具不连接硬件、不分配／释放物理页、不加入内核，主机／ARM64结果不准入实际声音。
 
 ## 产物和历史手册
 

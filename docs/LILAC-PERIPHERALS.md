@@ -33,7 +33,13 @@ python -B tools/build/check_lilac_afe_slimbus.py --output build/新的-afe-host
 
 适配层在调用方确认本epoch的DSP／codec／link就绪后串行推进；待发APR字节和token保持，只有Link返回Busy（保证未发布）允许再发送相同包。成功publication后记录控制／PCM deadline，Accepted／普通Map ACK不刷新它；IO错误可能发生在FIFO／head已发布后，绝不重试或释放区域。四个已发布WRITE分别限时，session排空／rendered EOS／Stop完整成功后还要等GLINK CloseAck和远端Close，最终才确认region可释放。超时、时钟倒退、epoch或readiness变化保留所有权，需要调用方独立恢复，适配层不启动或复位DSP。
 
-本次复现工具revision2编译八组ASan／UBSan，直接使用锁定的GLINK／intent／RX ACK代码和模拟FIFO，WSL／Mac准确源一致；另编译session与transport两个ARM64 Mach-O。四份APR头来自正式patch，BasebandGLINK的混合行尾按锁定before／after SHA复建；首次仅CRLF重建的拒绝保持，未改原内核源。ARM64 transport对象明确留下四个真实FIFO外部函数未定义，实际SMEM IO／codec／PCM页缓存仍待接入。本次没有物理声音、DSP启动或手机操作。
+原revision2复现编译八组ASan／UBSan，直接使用锁定的GLINK／intent／RX ACK代码和模拟FIFO，WSL／Mac准确源一致；session与transport两个ARM64 Mach-O通过。其transport对象留下四个FIFO外部函数未定义，是原接入边界，不算实际SMEM IO。四份APR头来自正式patch，混合行尾按锁定before／after SHA复建；首次仅CRLF重建的拒绝保留，未改原内核源。
+
+[具体SMEM FIFO](../reproducibility/lilac-pcm-smem-fifo-offline-20261126.json)实现了发送、available、peek和consume，沿用正式sweet_adsp_apr_ops回调。固定Sony `glink_smem_native_xprt.c`与原SweetADSPAPR代码均为来源：16KiB双环、8 B对齐、TX留16 B；AP只写descriptor+4的TX head和descriptor+8的RX tail，不写远端cursor、RX数据或reset。发送时先复制并检查完整GLINK frame，空间不足只返回Busy且无IO写入；写完数据并fence后才发布head和notify。发布cursor或通知失败保持不确定，不能重试。
+
+RX使用有界snapshot，全部word read成功才输出，保留调用方外围guard；只准consume最近成功观察的完整frame大小和同一tail。部分／损坏prefix可交给原Link拒绝，不能提前消费。主机验证覆盖全部2048个TX／RX环位置、最大4112 B包、partial／格式错误、逐word IO失败、head／tail可能已更新后的失败和通知错误。完整PCM→原Link→具体FIFO在模拟SMEM中走两种EOS顺序及四个缓冲乱序完成，最后双向Close通过。
+
+现行check_lilac_pcm_session.py revision3从正式patch复建五份准确APR／GLINK／回调ABI头，WSL／Mac同源十组ASan／UBSan通过。三个ARM64对象已编译；新增具体SMEM对象只留下正常stack guard符号，无四个未实现FIFO函数导入。代码没有加入内核，真实SMEM映射、uncached／屏障语义、mailbox回调和DSP／codec准入仍待连接。没有实际音频播放、DSP启动或手机IO证据；当前运行范围见STATUS，现行复现命令见BUILD。
 
 [PCM 负载核验](../reproducibility/lilac-asm-pcm-offline-20261124.json)实现了无时间戳、双声道 16 位 PCM 的 `WRITE_V2` 负载编码。`WRITE_DONE_V2` 必须匹配端口、token、连接代次、缓冲区地址和映射句柄，且状态为零，才能判为 DSP 消费完成。主机测试覆盖准确字节、越界和外来回复。当前代码不映射内存或发包。复验可在 WSL 用 `cc -std=c11 -Wall -Wextra -Werror -pedantic -fsanitize=address,undefined -fno-sanitize-recover=all -no-pie tools/build/test_lilac_asm_pcm.c -o build/新的-pcm-test` 编译并运行。
 

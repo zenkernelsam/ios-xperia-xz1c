@@ -10,6 +10,7 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[2]
 HEADERS = ("LilacAPRProtocol.h", "LilacAPRBasebandProtocol.h")
 LINK_HEADERS = HEADERS + ("LilacAPRBasebandGLINK.h", "LilacAPRLink.h")
+FIFO_HEADERS = LINK_HEADERS + ("ADSPAPRProbe.h",)
 
 
 def digest(data):
@@ -17,7 +18,7 @@ def digest(data):
 
 
 def materialize_headers(output, headers=HEADERS):
-    if not headers or len(set(headers)) != len(headers) or any(name not in LINK_HEADERS for name in headers):
+    if not headers or len(set(headers)) != len(headers) or any(name not in FIFO_HEADERS for name in headers):
         raise ValueError("Use unique locked APR/GLINK header names")
     lock = json.loads((ROOT / "reproducibility/source-lock.json").read_bytes())
     patch = (ROOT / "xnu/lilac-current.patch").read_bytes()

@@ -1,0 +1,378 @@
+{
+  "date": "2026-11-26",
+  "native_trash_items": 24,
+  "native_trash_files": 44,
+  "logical_bytes": 2801648,
+  "protected_files_SHA_preserved": 45,
+  "current_GPU_candidates_and_frozen_kernel_preserved": true,
+  "source_backups_and_original_logs_preserved": true,
+  "no_permanent_deletion": true,
+  "Mac_Trash_not_emptied": true,
+  "items": [
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-smem-fifo-20261126/host-arm64/test_session.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_session.dSYM 09-30-21-757.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 641,
+          "sha256": "6884307ca5abb10098164d610758a34628cfebe788718ca81395bddb86a158d1"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_session",
+          "bytes": 151824,
+          "sha256": "82ae200918bad84257dc8ee32f2076848749f9ad4f31439594caf5399126f4c5"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_session.yml",
+          "bytes": 184,
+          "sha256": "1fbab8a9407c18817e9b85bac42f3e53078a48f7ea2e78d698847b14fb4bf28c"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-smem-fifo-20261126/host-arm64/test_stream",
+      "trash_path": "/Users/ciscohe/.Trash/test_stream 09-30-21-819",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 97128,
+          "sha256": "641bdce22657b4073d74c3d9f787088b7fe487872aecbb107e1317cd5857c512"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-smem-fifo-20261126/host-arm64/test_smem",
+      "trash_path": "/Users/ciscohe/.Trash/test_smem",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 230016,
+          "sha256": "1fc6daef98b129e7144d2fc06a196871f98ce69d3ac61dedc33d7dbfc76fdcf8"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-smem-fifo-20261126/host-arm64/test_queue.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_queue.dSYM 09-30-21-923.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 639,
+          "sha256": "c2d97e0873906d14cd75ff18326ff0e2faeb568c78f2149e27821851f4020c82"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_queue",
+          "bytes": 26220,
+          "sha256": "7d3d1a0bdfb7e65bac9ef11dbb543c619c28e0fcc5f1d7cbc206c8b54987709d"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_queue.yml",
+          "bytes": 182,
+          "sha256": "b9ab38ba91980c33e3bd0b9d303b841d2790a81e373cceee30c73f5e03f404d7"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-smem-fifo-20261126/host-arm64/test_fifo",
+      "trash_path": "/Users/ciscohe/.Trash/test_fifo",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 114128,
+          "sha256": "4933db7001a8f8a3c29f14d63e9563db8a28fb03e72bdf4b917193499f81ca76"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-smem-fifo-20261126/host-arm64/pcm-session.arm64.o",
+      "trash_path": "/Users/ciscohe/.Trash/pcm-session.arm64.o 09-30-22-026.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 18168,
+          "sha256": "91dd4a9c279f730db9054d3c4bd5843c515ea051dba6dab31a7bbee42807e279"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-smem-fifo-20261126/host-arm64/test_smem.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_smem.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 638,
+          "sha256": "8cfff1a3d64a35d22f3c62e87235f7a627dcaa7f038453cd75d261b8368d8566"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_smem",
+          "bytes": 444348,
+          "sha256": "11f8f0e710b2e3627233bb0df436e7322741747a470155157eb3bcd87234dbaf"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_smem.yml",
+          "bytes": 181,
+          "sha256": "608fe82a0e4cf5c27536d9d3223ba0c172b48f9b2df2dc24adcfdb5a9a429d1f"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-smem-fifo-20261126/host-arm64/test_transport.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_transport.dSYM 09-30-22-129.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 643,
+          "sha256": "47fe30e6a77bddcf2ae9c3b692bec16dc8388b83f0970571abe587de9b138431"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_transport",
+          "bytes": 438312,
+          "sha256": "2fcc006d88150af8b0f137652c2f123d311870e31bb616fa0bb667160d114ac4"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_transport.yml",
+          "bytes": 186,
+          "sha256": "10eca928dbd93367ce0d0a94ff2f35a554f8d6d25708a98255635a5efa5a2325"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-smem-fifo-20261126/host-arm64/pcm-transport.arm64.o",
+      "trash_path": "/Users/ciscohe/.Trash/pcm-transport.arm64.o 09-30-22-180.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 31112,
+          "sha256": "a73ce9c799906f0dff0702a504e959d41d51396e35c6da7b20b6f37ffbaff4c9"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-smem-fifo-20261126/host-arm64/test_afe",
+      "trash_path": "/Users/ciscohe/.Trash/test_afe 09-30-22-232",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 50936,
+          "sha256": "ce4d3afd702b3da308144cc6caf79074e9c7f1d7b6f9f7c1955217bb608e33c8"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-smem-fifo-20261126/host-arm64/test_afe.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_afe.dSYM 09-30-22-284.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 637,
+          "sha256": "b0366d73f4625f82831b2152fafb4447420b61da0974d2f9c2bf2783200b6128"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_afe",
+          "bytes": 58764,
+          "sha256": "5f107799bcb453f9a4259e5d97df5600f116a357ffd58ec883018a2206747ba6"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_afe.yml",
+          "bytes": 180,
+          "sha256": "96471f279d736f8eefe8c6e8b7df016c715e98ead99ad207cdad76cbad455d60"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-smem-fifo-20261126/host-arm64/test_pcm.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_pcm.dSYM 09-30-22-343.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 637,
+          "sha256": "275f0b672028bdef74b38d025385519b18c67173db3a61c6227e7b8e90ac2f26"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_pcm",
+          "bytes": 18704,
+          "sha256": "91642b8fd4ebf9366c0cbd9be71666e97447238a4b6e9b582229d482dc3da879"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_pcm.yml",
+          "bytes": 180,
+          "sha256": "d4c859f7b19b3a9c7ec9d123f6be833215f2f83f043afa3daf0dad42ed0403f6"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-smem-fifo-20261126/host-arm64/test_pcm",
+      "trash_path": "/Users/ciscohe/.Trash/test_pcm 09-30-22-395",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 26112,
+          "sha256": "94e5aa5cf3236922ac30b6d5da3a2543f6264ac987bc1fc43500a5153b4194fb"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-smem-fifo-20261126/host-arm64/test_queue",
+      "trash_path": "/Users/ciscohe/.Trash/test_queue 09-30-22-449",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 36168,
+          "sha256": "bab1bc14baef7dd0cfb40b4302092174006c53d14a7cad70790204787f2e462a"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-smem-fifo-20261126/host-arm64/test_map",
+      "trash_path": "/Users/ciscohe/.Trash/test_map 09-30-22-501",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 56936,
+          "sha256": "0482265b204e09630fae8ecdd47e85f437d7d028643f49588c102da5b61b836a"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-smem-fifo-20261126/host-arm64/test_stream.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_stream.dSYM 09-30-22-554.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 640,
+          "sha256": "1514db4c7d4b3b3387fee95d328f5d859ce908c974e18220e472dfa1164e4d57"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_stream",
+          "bytes": 108512,
+          "sha256": "96457772ae3345bf2694d0ae83ec63879123177c4861ab55bb02caf1a1278b93"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_stream.yml",
+          "bytes": 183,
+          "sha256": "a01e3db850a00046f131d80bbf298dee27ea842aed6b6ba80ff843f94ff48062"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-smem-fifo-20261126/host-arm64/test_transport",
+      "trash_path": "/Users/ciscohe/.Trash/test_transport 09-30-22-613",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 249896,
+          "sha256": "6aba798b45406af3ea019f6a36f45ab698f6463d0f518d2092debf5481504157"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-smem-fifo-20261126/host-arm64/test_apr",
+      "trash_path": "/Users/ciscohe/.Trash/test_apr 09-30-22-673",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 40176,
+          "sha256": "e59cd01d571f3b84b31f474ae7b1f11ea3973d86a428b37e475d5044cfb2eac1"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-smem-fifo-20261126/host-arm64/test_session",
+      "trash_path": "/Users/ciscohe/.Trash/test_session 09-30-22-726",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 127808,
+          "sha256": "0f2acc6102210442f41335ab8544044e5fc2a207ad403859f976069ca9662d5e"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-smem-fifo-20261126/host-arm64/pcm-smem.arm64.o",
+      "trash_path": "/Users/ciscohe/.Trash/pcm-smem.arm64.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 33448,
+          "sha256": "b220e0cb2e5c8480cf497bdf17eb6b49ac2d7b060605c6a9e999d0eba642cbda"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-smem-fifo-20261126/host-arm64/test_fifo.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_fifo.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 638,
+          "sha256": "c5a596e57d33760fa1ad2a7e1cb58fa9888a932ff826186ef4a3957235f507ce"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_fifo",
+          "bytes": 226756,
+          "sha256": "653979fd34d2f99d8bcdd9a9db441d066d1dd13288a901656091f8b38e43276f"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_fifo.yml",
+          "bytes": 181,
+          "sha256": "fdd81d203970e0d88bec64a5660f2a5c66e2b1f54344be85d8bd4ea46f45b356"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-smem-fifo-20261126/host-arm64/test_apr.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_apr.dSYM 09-30-22-889.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 637,
+          "sha256": "93af5d18353f2db3de6c9d019445f07f9cd77fa387d2306b2133d0228af86d04"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_apr",
+          "bytes": 38508,
+          "sha256": "d9d49ad1c03a711be65d71c1bc476fcb00626dac67c9ee9ac9f2ab5cc107c1fc"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_apr.yml",
+          "bytes": 180,
+          "sha256": "d1bb824cc1542c78eed171bf2c02529e794de462e4ca3953cf9cc77b20fe8f99"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-smem-fifo-20261126/host-arm64/test_map.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_map.dSYM 09-30-22-941.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 637,
+          "sha256": "18473a4bfea93a8a9463cd04533e5898d2a72f1deb14f4a0940ffa52b05e922e"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_map",
+          "bytes": 57848,
+          "sha256": "6e47b691c4ca05676903e9093a17bcdaa5398dc761dff927b595049dafa1dc0b"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_map.yml",
+          "bytes": 180,
+          "sha256": "1a9d7fe77810ac606f74e83f1d19fc65bab808dd8c940b8137f1323fa060c464"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/lilac-pcm-smem-fifo-20261126/sources.tar",
+      "trash_path": "/Users/ciscohe/.Trash/sources.tar 09-30-22-997.tar",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 111616,
+          "sha256": "ecadbf47a3ac39785a5f2a7c4816b2204a9a3c5fd1fdaef02c125356376eca32"
+        }
+      ]
+    }
+  ],
+  "device_operations": 0
+}

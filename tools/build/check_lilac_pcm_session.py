@@ -7,7 +7,7 @@ import os
 from pathlib import Path
 import sys
 
-from check_lilac_afe_slimbus import LINK_HEADERS, materialize_headers, run
+from check_lilac_afe_slimbus import FIFO_HEADERS, materialize_headers, run
 
 ROOT = Path(__file__).resolve().parents[2]
 TESTS = (
@@ -19,6 +19,8 @@ TESTS = (
     ("afe", "test_lilac_afe_slimbus_playback.cpp"),
     ("session", "test_lilac_pcm_playback_session.cpp"),
     ("transport", "test_lilac_pcm_playback_transport.cpp"),
+    ("fifo", "test_lilac_apr_smem_fifo.cpp"),
+    ("smem", "test_lilac_pcm_smem_transport.cpp"),
 )
 SUPPORT = (
     "LilacAsmPcm.h", "LilacAsmPcmQueue.h", "LilacAsmPcmApr.h",
@@ -26,6 +28,7 @@ SUPPORT = (
     "LilacAdmPlaybackDevice.h", "LilacAdmPlaybackRoute.h",
     "LilacAfeSlimbusPlayback.h", "LilacPcmPlaybackSession.h",
     "LilacPcmPlaybackTransport.h",
+    "LilacAprSmemFifo.h",
 )
 
 
@@ -44,10 +47,11 @@ def check(output, arm64_object=False):
     source_paths = ["xnu/support/" + name for name in SUPPORT]
     source_paths += ["tools/build/" + name for _, name in TESTS]
     source_paths += ["tools/build/check_lilac_pcm_session.py", "tools/build/check_lilac_afe_slimbus.py",
-                     "tools/build/compile_lilac_pcm_session.cpp", "tools/build/compile_lilac_pcm_transport.cpp"]
+                     "tools/build/compile_lilac_pcm_session.cpp", "tools/build/compile_lilac_pcm_transport.cpp",
+                     "tools/build/compile_lilac_pcm_smem.cpp"]
     source_files = {path: sha(ROOT / path) for path in source_paths}
     output.mkdir(parents=True)
-    headers = materialize_headers(output, LINK_HEADERS)
+    headers = materialize_headers(output, FIFO_HEADERS)
 
     def local_path(path):
         path = Path(path).resolve()
@@ -76,6 +80,10 @@ def check(output, arm64_object=False):
             raise ValueError("Actual session test did not complete")
         if name == "transport" and "Lilac PCM transport PASS:" not in text:
             raise ValueError("Actual GLINK PCM transport test did not complete")
+        if name == "fifo" and "Lilac APR SMEM FIFO PASS:" not in text:
+            raise ValueError("Actual callback FIFO test did not complete")
+        if name == "smem" and "Lilac PCM SMEM chain PASS:" not in text:
+            raise ValueError("Actual callback FIFO/GLINK PCM chain test did not complete")
         commands.extend([command, execution])
         outputs[name] = {
             "binary_sha256": sha(binary),
@@ -89,7 +97,7 @@ def check(output, arm64_object=False):
         if not Path(sdk).is_dir():
             raise ValueError("iOS SDK directory not found")
         commands.append(sdk_command)
-        for name in ("session", "transport"):
+        for name in ("session", "transport", "smem"):
             binary = output / ("pcm-" + name + ".arm64.o")
             command = ["xcrun", "--sdk", "iphoneos", "clang++", "-target", "arm64-apple-ios16.7",
                        "-isysroot", sdk, "-std=c++17", "-O1", "-Wall", "-Wextra", "-Werror",
@@ -107,7 +115,7 @@ def check(output, arm64_object=False):
     if source_files != {path: sha(ROOT / path) for path in source_paths}:
         raise ValueError("Playback sources changed during verification")
     report = dict(
-        revision=2, source_files={**headers, **source_files}, commands=commands, tests=outputs,
+        revision=3, source_files={**headers, **source_files}, commands=commands, tests=outputs,
         arm64_objects=target_objects,
         host_ASan_UBSan_passed=True,
         playback_format={"channels": 2, "bits_per_sample": 16, "sample_rate": 48000},
@@ -132,6 +140,11 @@ def check(output, arm64_object=False):
         clock_regression_epoch_change_and_readiness_loss_stop_progress=True,
         original_publish_reply_write_and_close_deadlines_not_extended=True,
         GLINK_close_ack_and_remote_close_required_before_region_release=True,
+        concrete_SMEM_callback_FIFO_used_with_host_memory=True,
+        all_2048_TX_and_RX_ring_positions_verified=True,
+        AP_only_cursors_and_exact_16_byte_TX_reserve_verified=True,
+        staged_RX_and_FIFO_barrier_publication_notification_order_verified=True,
+        complete_wrapped_PCM_GLINK_FIFO_chain_passed=True,
         codec_channels_schema_and_firmware_token_echo_require_hardware_validation=True,
         transport_connected=False, linked_into_device_kernel=False,
         DSP_codec_or_physical_audio_verified=False, device_operations=0,
