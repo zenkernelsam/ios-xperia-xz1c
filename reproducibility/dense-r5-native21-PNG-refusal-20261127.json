@@ -1,0 +1,86 @@
+{
+  "date": "2026-11-27",
+  "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v731-dense-r5-native21-live-20261127",
+  "token": "2fb820a1d5198d03",
+  "raw_sha256": "44aa7a99e0407ed4735d521859d80847981dc56a2e1e439282d8c387bfbf5c13",
+  "controller_result": "PASS",
+  "independent_native_PNG_acceptance": false,
+  "missing_original_PNG_records": [
+    {
+      "case": 2,
+      "expected_bytes": 1522,
+      "received_bytes": 1488,
+      "missing_offsets": [
+        1488
+      ],
+      "expected_fnv": "9dc54de6c8003d69",
+      "received_fnv": "1f791f9bd951e61a"
+    },
+    {
+      "case": 4,
+      "expected_bytes": 4355,
+      "received_bytes": 4307,
+      "missing_offsets": [
+        3888
+      ],
+      "expected_fnv": "b040f3fea32731ab",
+      "received_fnv": "69b8834f5ca940b5"
+    }
+  ],
+  "MRT_subset": {
+    "actual_native_MRT_XR_blend_channel_masks_and_eight_targets_verified": true,
+    "complete_samples": 1,
+    "incomplete_samples": 0,
+    "records": [
+      {
+        "sequences": [
+          744,
+          748,
+          752,
+          755,
+          758,
+          762,
+          766,
+          769,
+          771,
+          774,
+          777,
+          780,
+          782,
+          785,
+          788,
+          791,
+          793,
+          797,
+          801,
+          804,
+          807
+        ],
+        "XR_formats": [
+          552,
+          553,
+          554,
+          555
+        ],
+        "dual_passes": 16,
+        "eight_targets": 8,
+        "ordered_formats": 4,
+        "checked_bytes": 1245184,
+        "overlapping_primitives_and_instance_ID_and_nonzero_vertex_start_and_HDR_verified": true,
+        "all_four_original_buffers_and_padding_checked": true,
+        "unchanged_XR_lowbits_and_masked_channels_preserved": true,
+        "per_attachment_retirement_verified": true,
+        "XR_clear_decode_elision_verified": true,
+        "original_Load_decode_preserved": true,
+        "optimized_A5xx_image_barrier_verified": 4,
+        "final_allocated": 0
+      }
+    ],
+    "full_original_UI_and_general_blend_factors_still_pending": true
+  },
+  "MRT_subset_not_full_native_or_UI_proof": true,
+  "returned_fastboot": true,
+  "return_seconds_with_health": 40.40599999995902,
+  "original_failed_bundle_not_replayed": true,
+  "missing_bytes_not_reconstructed": true
+}

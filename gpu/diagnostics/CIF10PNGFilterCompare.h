@@ -43,10 +43,11 @@ static bool cif10_png_filter_record(CIF10ReferenceEmit emit,unsigned index,CGIma
             index,policy==0?"baseline":policy==1?"none":"up",(unsigned long long)elapsed,(unsigned long long)cpu_ns,cpu_valid);
         if(index==1 && !result && output.length<=32768) {
             const char *kind=policy==0?"baseline_png":policy==1?"none_png":"up_png";
-            cif10_reference_export(emit,index,kind,(CFDataRef)output);
+            if(!cif10_reference_export(emit,index,kind,(CFDataRef)output))safe=false;
         }
         if(icc)CFRelease(icc);if(pixels)CFRelease(pixels);if(decoded)CGImageRelease(decoded);if(metadata)CFRelease(metadata);
         if(source)CFRelease(source);
+        if(!safe)break;
         // Failures or unequal pixels remain rejected candidates, never an
         // installed encoder. The original reference is still mandatory.
     }}

@@ -65,6 +65,8 @@ def load(folder,expected=None):
                 sources.add('gpu/sweetgl/LogWriteAll.h')
                 assert observer['observer_log_write_revision']==1 and observer['observer_log_partial_EINTR_errno_host_passed']
                 assert re.fullmatch('[0-9a-f]{64}',observer['observer_log_host_source_sha256'])
+            if observer.get('observer_log_write_failures_checked'):
+                assert observer['observer_log_write_failures_checked'] is True and observer['observer_log_summary_revision']==1
             if observer.get('original_pipeline_observer'):
                 sources.add('gpu/diagnostics/MetalPipelineObserve.h')
                 assert observer.get('registration_only') and observer['actual_factory_return_error_pointer_exception_forwarding_host_passed']
@@ -202,7 +204,12 @@ def load(folder,expected=None):
                 assert observer['cif10_reference_converter_not_installed'] and observer['cif10_reference_host_fixture_bounds_nil_throw_input_passed']
                 if observer.get('cif10_export_pacing_revision'):
                     pacing=observer['cif10_export_pacing_revision']
-                    assert pacing in (1,2) and observer['cif10_export_pacing_microseconds']==(1000 if pacing==1 else 3000) and observer['cif10_export_ranges_emitted_once']
+                    assert pacing in (1,2,3) and observer['cif10_export_pacing_microseconds']=={1:1000,2:3000,3:15000}[pacing] and observer['cif10_export_ranges_emitted_once']
+                    if pacing==3:
+                        sources.add('gpu/diagnostics/CIF10ExportWait.h')
+                        assert observer['cif10_export_remaining_time_EINTR_and_failure_host_passed']
+                        assert observer.get('observer_log_write_failures_checked') is True
+                        assert re.fullmatch('[0-9a-f]{64}',observer['cif10_export_wait_host_source_sha256'])
                 assert re.fullmatch('[0-9a-f]{64}',observer['cif10_reference_host_test_source_sha256'])
                 if observer['cif10_reference_revision']>=2:
                     sources.add('gpu/diagnostics/CIF10VImageCompare.h')

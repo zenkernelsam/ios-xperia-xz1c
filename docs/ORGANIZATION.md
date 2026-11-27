@@ -1,5 +1,9 @@
 # 本周整理与文档整合 — 2026-11-27
 
+r5真机与日志候选整合：[三项实际准入](../reproducibility/dense-r5-CPU-GLES9-actual-20261127.json)完成CPU／GLES9／native CPU，[原native PNG拒绝](../reproducibility/dense-r5-native21-PNG-refusal-20261127.json)保留controller PASS和缺失DATA事实，MRT子集不代替完整native／PNG。五份整合前入口和原SHA在[本轮archive](archive/20261127/dense-barrier-actual/original-document-manifest.json)。新[15ms日志候选离线报告](../reproducibility/cif10-export-paced-r3-offline-20261127.json)绑定实际Mac observer、ImageIO及写错误检查、WSL等待故障用例和39项gate回归，原PNG decoder未放宽。
+
+初次Mac构建拒绝Windows fixture路径，后续拒绝仅header相同但源SHA不符的旧sampler；按header／metallib／当前源SHA完整匹配选择。首次RAM复制helper但未显式绑定geocompat而被本地门槛拒绝，重新用已验helper组包；新RAM精确SHA、15ms／错误summary及原21组／PNG6已按reviewed identity准入。所有原host失败输出保留；没有重发原失败设备包或补造PNG字节。当前候选、原raw／扫描帧及所需源码备份保留，废弃本轮产物在验收后按原生回收流程收尾。
+
 [Mac同步与暂停标记修复](../reproducibility/adsp-boot-audit-pause-recovery-20261127.json)确认源码审计主提交`be45fffe4ecccdd3a9cae79e2bb525c9b2f60f26`已推送，Mac的14份变化逐字节一致、279个Python源码核验通过。同步末检查发现旧autobuild pause缺失，因而拒绝第一次最终验收；随后按AGENTS恢复标记。检查时无相关旧构建进程，没有终止外部进程。重新核对冻结SweetGPU、v731内核、24份实际Mesa归档和GPU r5源码SHA均保持，未改GPU候选或操作设备。两份更新前入口原字节见[恢复前archive](archive/20261127/adsp-pause-recovery/original-document-manifest.json)。本次仅新manifest和小型原文归档，没有新增需回收的编译或TEMP产物，所有回收站仍保持。
 
 ADSP启动依赖与生命周期源码审计的[五份入口原文](archive/20261126/adsp-boot-source-audit/original-document-manifest.json)已按原字节／SHA保留，现行证据整合进LILAC-PERIPHERALS／BUILD／STATUS／INDEX。新增工具只读锁定Sony Git blob和formal patch，输出仅为所需manifest，没有新增编译镜像／host程序／TEMP传输包或设备命令；前轮回收站保持。初次审计拒绝把arm64 DTS symlink子路径当直接Git blob，随后改读实际arm DTS blob并保存alias；块提取器也收紧函数参数匹配，最终审计通过。

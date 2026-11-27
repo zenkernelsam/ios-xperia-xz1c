@@ -1,12 +1,12 @@
 # 当前状态 — 2026-11-27
 
-CPU／launchd、触控／音量键、完整GLES9、Metal21／PNG6和原生720×1280几何已有真机证据。原Aegir壁纸仍未通过：星点4212顶点／1404图元停在逐图元同步提交。当前GPU r5已修正Mesa图像binding与紧凑驱动槽位的对应，完整主机检查和四份新包离线审计通过，尚未实机。音频现已具备AFE／ADM／ASM会话、GLINK适配及具体SMEM FIFO回调代码；真实DSP／codec／声音仍未接通。
+CPU／launchd、触控／音量键、完整GLES9、Metal21／PNG6和原生720×1280几何已有真机证据。原Aegir壁纸仍未通过：星点4212顶点／1404图元停在逐图元同步提交。当前GPU r5的CPU／GLES9／native CPU已实机通过；XR／MRT子集命中dense图像同步且原字节通过，完整native／PNG因两条DATA缺失尚未准入。音频现已具备AFE／ADM／ASM会话、GLINK适配及具体SMEM FIFO回调代码；真实DSP／codec／声音仍未接通。
 
 ## 设备与下一轮
 
-最后实机观察为Sony **BH905ND69G**安全停在fastboot，无在途启动。原native CPU token `ef161dc3ab9ce723`的guard未取得2/2成功，download／boot均0；[原拒绝](../reproducibility/ordered-barrier-r1-native-cpu-guard-refusal-20261126.json)保留且不重发。随后只读健康32.156秒通过，不能提升guard失败。[本轮只读PnP](../reproducibility/pcm-c-abi-pnp-observation-20261126.json)仍显示到达时间02:05:52，早于02:18:31失败guard；未确认新的物理会话，本轮没有guard／串口／download／boot。
+2026-11-27用户重新插拔并确认Sony **BH905ND69G**蓝灯fastboot，PnP到达时间07:56:44；独立健康32.297秒通过。r5 CPU、GLES9、native RAM CPU均已单发通过并完整回程，原证据见[三项实机报告](../reproducibility/dense-r5-CPU-GLES9-actual-20261127.json)。完整native21这轮controller PASS，但独立PNG校验拒绝：case2缺34 B、case4缺48 B；[原拒绝及MRT子集](../reproducibility/dense-r5-native21-PNG-refusal-20261127.json)保留，不重发或补造字节。该靴完整返回并健康30秒，当前安全fastboot，无在途启动。更早guard失败及原包继续保留。
 
-新的物理会话确认后依次：r5自身CPU→GLES9→native RAM自身CPU→完整native21／PNG6，再按新证明构建原Aegir／PNG／150秒scanout包。每轮ACK／DRAIN／RESET／FINAL_DRAIN、连续健康30秒及旧worker退出均独立通过才下一轮。新GLES不能借旧native／PNG proof准入；失败包不换token重发，缺扫描块不补发。
+下一轮为`build/cif10-export-paced-r3-20261127`的日志候选：CPU `0dba048078c21cbf`自身准入→native21 `65bdaf95ba7f2d03`完整原21组／PNG6及150秒scanout。新observer `8e795108…`、RAM blob `eee6db38…`，明确保留已验revision4几何helper；r5 GLES及Metal源／签名不变。每条作者导出只发一次，15ms剩余时间等待处理EINTR，失败计数须零；原缺字节严格拒绝。成功新证明后再构建原Aegir包。每轮四marker、健康30秒及旧worker退出均独立通过才下一轮。
 
 ## 已验基线
 
@@ -34,14 +34,14 @@ GLES SHA **`dc7113a10542c4b8de2036def8373a4574ab2092d17efd1a39e1c224f1bec308`**�
 | native RAM blob | `75b8f08201a972f9c67ca1a63110131e05286116bfbf47bb1a8fb19548b354f0` |
 | native RAM manifest | `ae8acd03c0d7e2ef8a0bec81c01a133c73a3e09228f5beb58b534802a8419e08` |
 
-四包在`build/ordered-image-barrier-dense-r5-20261126`，均**未投递**：
+r5四包已各单发一次，原结果保留：
 
 | 顺序／目录 | token | 当前证据 |
 | --- | --- | --- |
-| CPU／cpu | `549746d4b51a7668` | 完整payload和run_trial离线门槛、Mac85源及新用户态审计通过 |
-| GLES9／gles9 | `b5eea38cb400afa4` | 完整payload通过；等待自身CPU实机先验 |
-| native CPU／native-cpu | `a0c42c1d43ab5734` | 完整payload和run_trial离线门槛、Mac85源及新用户态审计通过 |
-| native21／native21 | `2fb820a1d5198d03` | 完整Metal21／PNG6包，等待新CPU／GLES9先验 |
+| CPU／cpu | `549746d4b51a7668` | 完整payload／85源及实机CPU通过，回程38.109秒 |
+| GLES9／gles9 | `b5eea38cb400afa4` | 完整GLES9及3445块150秒scanout通过，回程39.172秒 |
+| native CPU／native-cpu | `a0c42c1d43ab5734` | native RAM自身CPU通过，回程38.657秒 |
+| native21／native21 | `2fb820a1d5198d03` | controller PASS，独立PNG缺块拒绝；无完整native／PNG准入 |
 
 barrier revision4从当前linked fragment program的ImageUnits映射GL binding到dense Gallium槽位，按准确readonly／writeonly coherent RGBA32F资源检查。旧r4人为si[0]／si[8]布局会错走fallback，已用相同真实两槽输入复现，r4保留历史且不作为下一轮候选。新host直接编译锁定Mesa mapper核对255种mask／两种声明顺序，并生成1404次／29489字／117956 B连续CP流，11次模拟批次切换和9次guarded ring扩容通过ASan／UBSan。
 

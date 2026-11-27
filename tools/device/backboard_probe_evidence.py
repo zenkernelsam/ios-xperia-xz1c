@@ -1,6 +1,6 @@
 """Require the same-process real GLES pass before the complete background suite."""
 import re
-def verify(text,token,gles_tests=8):
+def verify(text,token,gles_tests=8,require_log_status=False):
     assert type(gles_tests) is int and gles_tests in (8,9)
     scope=text[text.index('SWEET LOOP LIVE proto=1 token='+token):text.index('SWEET LOOP ACK FASTBOOT token='+token)]
     assert 'SWEET ENV: backboardd += DYLD_INSERT_LIBRARIES=/dev/sglram/m:/dev/sglram/e' in scope
@@ -15,9 +15,13 @@ def verify(text,token,gles_tests=8):
     assert len(installed)==len(scheduled)==len(ready)==len(begins)==len(ends)==1,'Exactly one current-process suite required'
     assert installed[0].start()<scheduled[0].start()<begins[0].start()<ends[0].start() and ready[0].end()<begins[0].start()
     block=scope[begins[0].end():ends[0].start()]
+    if require_log_status:
+        summary='SWEET OBSERVER LOG SUMMARY revision=1 failures=0 first_error=0 original_bytes_once=1'
+        assert block.count('SWEET OBSERVER LOG SUMMARY ')==1 and summary in block,'Successful original writes required'
     for marker in ('SWEET METAL RESOURCE END result=0','SWEET METAL QUEUE END result=0','SWEET AIR COMPUTE END result=0','SWEET AIR RENDER END result=0',
         'SWEET AIR CONSTANTS END result=0','SWEET AIR XR END result=0','SWEET METAL SURFACE END result=0','SWEET METAL MIPS END result=0'):
         assert marker in block,marker
     assert 'SWEET METAL DISCOVERY END' not in block
     return dict(background_probe_process='backboardd',actual_GLES_suite_before_native_work=True,all_native_probes_present=True,
-        constructor_did_not_wait_for_probe=True,original_Aegir_not_injected_or_registered=True,probe_suites=1,full_UI_not_verified=True)
+        constructor_did_not_wait_for_probe=True,original_Aegir_not_injected_or_registered=True,probe_suites=1,
+        observer_write_status_checked=require_log_status,full_UI_not_verified=True)

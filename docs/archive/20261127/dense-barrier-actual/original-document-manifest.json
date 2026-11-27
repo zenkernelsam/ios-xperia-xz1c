@@ -1,0 +1,27 @@
+[
+  {
+    "source": "docs/STATUS.md",
+    "archive": "docs/archive/20261127/dense-barrier-actual/originals/STATUS.md",
+    "sha256": "58664c1ce3bfa62e5ecec876e745971ded55fabc05676ef0a5d29ecdb08aae6e"
+  },
+  {
+    "source": "docs/BUILD.md",
+    "archive": "docs/archive/20261127/dense-barrier-actual/originals/BUILD.md",
+    "sha256": "0b83ffe360d0569b721eb00c734b0c69981c7b9a5efe3f290ef02dc7d52a6d24"
+  },
+  {
+    "source": "docs/INDEX.md",
+    "archive": "docs/archive/20261127/dense-barrier-actual/originals/INDEX.md",
+    "sha256": "1b91593d4da6ce95d08679af138c62e50f3cd715b265c96c390d977cc04a952f"
+  },
+  {
+    "source": "docs/METAL-REQUEST-OBSERVATION.md",
+    "archive": "docs/archive/20261127/dense-barrier-actual/originals/METAL-REQUEST-OBSERVATION.md",
+    "sha256": "1f3a875175de1ca74417297fc19ef25603b6f8dfd0d8f9076b21794b055bb8ed"
+  },
+  {
+    "source": "docs/ORGANIZATION.md",
+    "archive": "docs/archive/20261127/dense-barrier-actual/originals/ORGANIZATION.md",
+    "sha256": "acb2d1b87492b1da0927cada1544bfbd892c792e7ec9cb0f0ae90647ec38b2d7"
+  }
+]

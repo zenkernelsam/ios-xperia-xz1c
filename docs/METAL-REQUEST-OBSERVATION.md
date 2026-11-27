@@ -1,5 +1,9 @@
 # 原壁纸请求、快照与绘制停点 — 2026-11-25
 
+2026-11-27 [r5三项准入](../reproducibility/dense-r5-CPU-GLES9-actual-20261127.json)完成CPU／GLES9／native CPU。[native原拒绝](../reproducibility/dense-r5-native21-PNG-refusal-20261127.json)中MRT子集按准确原页／XR字节／fence独立通过，12条revision4 barrier记录均fallback0、dense映射1；后四条双图元／双instance各cached4。完整native／PNG仍拒绝：PNG case2缺offset1488的34 B，case4缺offset3888的48 B，原raw不修补，不能从已验case1复制同值补齐case2。尚未使用r5新证明投递原壁纸。
+
+新日志候选只调整作者reference导出节奏与观察写入错误，GLES／Metal及冻结内核保持。每段15ms nanosleep处理剩余EINTR时间，超过64次中断或等待错误使probe失败；write失败累加并要求单一零错误summary。严格PNG长度／FNV／CRC／像素／ICC／metadata及scope未放宽。此改动用于定位／减少记录丢失，不保证已找到内核tee／CDC链路的具体丢失层；新RAM仍须自身CPU和完整native21／PNG6。
+
 原壁纸仍未通过完整UI验收。现已发现磁盘快照复用和原第二次GPU绘制拒绝两个具体停点；新Metal按反射选择缓冲的用户态修补已编译、主机通过，实机准入以[STATUS](STATUS.md)为准。旧无调用STOP、缺块拒绝、签到超时与成功返回均保持原判定；整合前原文和SHA见[本轮归档](archive/20261125/render-buffer-selection/original-document-manifest.json)。
 
 ## 原队列失败与修补

@@ -172,6 +172,13 @@ static objc_exception_preprocessor previous;
 static atomic_uint observations;
 static _Thread_local bool logging_exception;
 static int log_fd = -1;
+static atomic_uint log_write_failures;
+static atomic_int log_first_error;
+#if defined(LILAC_EXCEPTION_TEST)
+static SweetLogWriter diagnostic_writer=write;
+#else
+#define diagnostic_writer write
+#endif
 static id (*uniform_original)(id,SEL,NSUInteger);
 static Ivar renderer_device;
 static atomic_uint uniform_observations;
@@ -182,7 +189,12 @@ static void diagnostic(const char *format, ...)
     int n = vsnprintf(line, sizeof(line)-1, format, args); va_end(args);
     if (n < 0) { errno=saved_errno; return; }
     if (n > sizeof(line)-2) n = sizeof(line)-2;
-    line[n++]='\n'; if(log_fd>=0) (void)sweet_log_write_remaining(log_fd,line,(size_t)n,write);
+    line[n++]='\n';
+    const int result=log_fd>=0?sweet_log_write_remaining(log_fd,line,(size_t)n,diagnostic_writer):-EBADF;
+    if(result) {
+        atomic_fetch_add_explicit(&log_write_failures,1,memory_order_relaxed);
+        int expected=0;(void)atomic_compare_exchange_strong(&log_first_error,&expected,result);
+    }
     errno=saved_errno;
 }
 static void copy_string(NSString *value, char out[192])
@@ -375,6 +387,9 @@ static void *background_probes(void *unused)
         if(ready){diagnostic("SWEET METAL PROBES END process=backboardd result=1 prerequisite=%d full_suite=1 background=1",ready);return NULL;}
         diagnostic("SWEET METAL PROBES begin process=backboardd GLES_state=2 full_suite=1 background=1");
         bool valid=run_native_probes();
+        unsigned failures=atomic_load(&log_write_failures);
+        diagnostic("SWEET OBSERVER LOG SUMMARY revision=1 failures=%u first_error=%d original_bytes_once=1",failures,atomic_load(&log_first_error));
+        valid=valid && !atomic_load(&log_write_failures);
         diagnostic("SWEET METAL PROBES END process=backboardd result=%u prerequisite=0 full_suite=1 background=1",valid?0:1);
     }return NULL;
 }
@@ -456,8 +471,15 @@ __attribute__((constructor)) static void exception_load(void){install_observer()
 #else
 static unsigned chain_calls;static id original;
 static id prior(id exception){assert(exception==original);++chain_calls;return exception;}
+static ssize_t fail_diagnostic_write(int fd,const void *p,size_t n)
+{(void)fd;(void)p;(void)n;errno=EIO;return -1;}
 int main(void){@autoreleasepool{
     objc_setExceptionPreprocessor(prior);install_observer();
+    diagnostic_writer=fail_diagnostic_write;errno=ENOTTY;diagnostic("authored diagnostic failure");
+    assert(errno==ENOTTY && atomic_load(&log_write_failures)==1 && atomic_load(&log_first_error)==-EIO);
+    diagnostic("second authored diagnostic failure");assert(atomic_load(&log_write_failures)==2);
+    atomic_store(&log_write_failures,0);atomic_store(&log_first_error,0);diagnostic_writer=write;
+    puts("observer log failure accounting and original errno PASS");
     original=[NSException exceptionWithName:@"LilacObserverTest" reason:@"line1\nline2" userInfo:nil];
     for(unsigned i=0;i<20;++i){@try{@throw original;}@catch(id caught){assert(caught==original);}}
     assert(chain_calls==20 && atomic_load(&observations)==20);

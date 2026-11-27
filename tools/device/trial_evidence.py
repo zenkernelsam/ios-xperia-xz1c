@@ -114,7 +114,7 @@ def verify(directory,mode,kernel_sha=None,version=None):
             if a['version']>=727:
                 readonly=verify_readonly(re.sub(r'\r?\n(?!SWEET|CRASH|Process|\||exec|IOK|MESA)', '', text),a['token'])
             if 'exception_observer' in a:
-                if a['exception_observer']['target_process']=='backboardd':exceptions={'background_probe':verify_backboard_probe(text,a['token'],gles_tests=ram['frontend_build_binding'].get('GLES_suite_tests',8))}
+                if a['exception_observer']['target_process']=='backboardd':exceptions={'background_probe':verify_backboard_probe(text,a['token'],gles_tests=ram['frontend_build_binding'].get('GLES_suite_tests',8),require_log_status=a['exception_observer'].get('observer_log_write_failures_checked',False))}
                 elif a['exception_observer'].get('registration_only') and 'SWEET EXCEPTION begin call=' not in scope:
                     assert 'SWEET EXCEPTION observer installed process=AegirPoster limit=16 original_chain=1' in scope
                     # An original application succeeding need not throw. Native

@@ -348,6 +348,23 @@ class Gates(unittest.TestCase):
                 altered=dict(binding);altered[key]='0'*64
                 with self.subTest(folder=folder,identity=key),self.assertRaises(AssertionError):
                     validate(package,altered)
+    def test_paced_reference_keeps_exact_identity_and_failure_gates(self):
+        p=Path(__file__).resolve().parents[2]/'build/cif10-export-paced-r3-20261127/ram-r2/manifest.json'
+        if not p.is_file():self.skipTest('Local paced reference RAM is unavailable')
+        raw=p.read_bytes();package=json.loads(raw)
+        binding=dict(library_sha256=package['library_sha256'],blob_sha256=package['blob_sha256'],
+                     manifest_sha256=hashlib.sha256(raw).hexdigest())
+        self.assertEqual(validate_wled_gpu_ram(package,binding),'native')
+        for key,value in [('cif10_export_pacing_revision',2),('cif10_export_pacing_microseconds',3000),
+                          ('cif10_export_ranges_emitted_once',False),('cif10_export_remaining_time_EINTR_and_failure_host_passed',False),
+                          ('observer_log_write_failures_checked',False),('observer_log_summary_revision',2),
+                          ('cif10_reference_shared_encoder',False),('presentation_probe_phases',4)]:
+            bad=copy.deepcopy(package);bad['exception_observer'][key]=value
+            with self.subTest(key=key),self.assertRaises(AssertionError):validate_wled_gpu_ram(bad,binding)
+        for key in ('library_sha256','blob_sha256','manifest_sha256'):
+            bad=dict(binding);bad[key]='0'*64
+            with self.subTest(identity=key),self.assertRaises(AssertionError):validate_wled_gpu_ram(package,bad)
+
     def test_new_poster_refuses_old_gles_native_and_png_proofs(self):
         manifest = Path(__file__).resolve().parents[2] / 'build/poster-cache-budget-wallpaper-20261124/ram/manifest.json'
         if not manifest.is_file():

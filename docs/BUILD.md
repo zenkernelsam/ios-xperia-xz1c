@@ -187,6 +187,12 @@ python3 -B tools/build/build_metal_library.py --ram-package build/my-gles/ram --
 
 完整observer沿用前述native21参数、`--cif10-png-reference --program-cache-inventory`；只读inventory不启用空primer。新RAM自身CPU、同GLES完整9组先验、完整native21／PNG6通过后，再构建同库／新proof的short原Aegir队列观察。这里的host和新signed产物不自动获得实机准入。固定原调用点可用`inspect_aegir_render_boundary.py --sparse <gl5> --symbols <A2S> --output <build下新JSON>`复验，不展开16GB镜像，不发布原字节。
 
+## 作者PNG导出日志候选
+
+`CIF10ExportWait.h`将每份48 B原导出后的等待改为15ms、按nanosleep剩余时间处理EINTR且最多64次。错误保留errno并使reference失败；诊断写入错误另计数，新background准入必须有零错误summary。原PNG decoder不放宽。构建完整作者observer沿用全部21组／PNG6参数；`build_exception_observer.py`同时执行真实ImageIO fixture、等待故障ASan／UBSan、日志错误与原exception ABI检查。
+
+从已有presigned RAM生成新包时，必须显式传入已验`--geocompat-package`，使复制的helper与manifest绑定一致。Mac和Windows的fixture路径不保证相同，应按header／metallib／当前源SHA全部一致选择，不能只按header挑旧CRLF副本。精确新候选和实机顺序由STATUS维护，失败包不重发。
+
 ## 音频协议离线复现
 
 ADSP实际启动前置和诊断生命周期可独立核对：

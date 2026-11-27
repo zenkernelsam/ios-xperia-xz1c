@@ -36,7 +36,8 @@ static uint64_t cif10_reference_cpu(bool *valid)
     return *valid?(uint64_t)value.tv_sec*1000000000+value.tv_nsec:0;
 }
 #include "CIF10VImageCompare.h"
-static void cif10_reference_export(CIF10ReferenceEmit emit,unsigned index,const char *kind,CFDataRef data)
+#include "CIF10ExportWait.h"
+static bool cif10_reference_export(CIF10ReferenceEmit emit,unsigned index,const char *kind,CFDataRef data)
 {
     const uint8_t *bytes=CFDataGetBytePtr(data);size_t length=(size_t)CFDataGetLength(data);
     for(size_t at=0;at<length;at+=48) {
@@ -46,8 +47,9 @@ static void cif10_reference_export(CIF10ReferenceEmit emit,unsigned index,const 
         emit("SWEET CIF10 DATA case=%u kind=%s offset=%zu bytes=%zu hex=%s",index,kind,at,count,hex);
         /* Give other process logs a bounded slot instead of flooding the tee.
          * Each authored byte range is still emitted exactly once. */
-        int saved=errno;(void)usleep(3000);errno=saved;
+        if(!cif10_export_wait(nanosleep))return false;
     }
+    return true;
 }
 #include "CIF10PNGFilterCompare.h"
 static bool cif10_png_reference_probe(CIF10ReferenceEmit emit)
@@ -115,10 +117,10 @@ static bool cif10_png_reference_probe(CIF10ReferenceEmit emit)
             if(!cif10_png_filter_record(emit,index,image,png,decoded,pixels,icc,timebase)){result=14;break;}
             if(index<=4) {
                 if(CFDataGetLength(pixels)>32768 || png.length>32768){result=10;break;}
-                cif10_reference_export(emit,index,"pixels",pixels);
-                cif10_reference_export(emit,index,"png",(CFDataRef)png);
+                if(!cif10_reference_export(emit,index,"pixels",pixels) ||
+                   !cif10_reference_export(emit,index,"png",(CFDataRef)png)){result=15;break;}
             }
-            if(index==1 && icc)cif10_reference_export(emit,index,"icc",icc);
+            if(index==1 && icc && !cif10_reference_export(emit,index,"icc",icc)){result=15;break;}
             if(cif10_reference_fnv(input.bytes,input.length)!=input_hash){result=11;break;}
             emit("SWEET CIF10 CASE END case=%u result=0 input_unchanged=1 API_forwarded=1 prediction_used=0",index);++completed;
         } @catch(NSException *exception) {

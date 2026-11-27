@@ -1,0 +1,170 @@
+{
+  "date": "2026-11-27",
+  "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+  "stages": [
+    {
+      "token": "549746d4b51a7668",
+      "image_sha256": "5ed992365cb3554cdc2e810d28acb79a403fbfc772b0b77d8961a12f5ef1d3dd",
+      "log_sha256": "299e163683832b159fdb18a6e9d0d68bf2cf47a645f4ae873e759355e6fe8252",
+      "return_seconds_with_health": 38.10899999993853,
+      "ram_library_binding": {
+        "library_sha256": "dc7113a10542c4b8de2036def8373a4574ab2092d17efd1a39e1c224f1bec308",
+        "library_bytes": 14801248,
+        "library_fnv64": "aeef240c4b8cc06b",
+        "blob_sha256": "31b8ab8196b7bfa84987253b91f8bb7c4b8a3855b37e1eee000dd0f4488cf074",
+        "raw_sha256": "2c373c6135406493399b802e61578c346dc162145515596e5b4078f5206592ed",
+        "manifest_sha256": "ad6365ab02e69674f54e35b7f70895afb63b39b72a848b1bceed028d2f7a94e9"
+      },
+      "serial_capture": {
+        "revision": 1,
+        "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+        "event_log_sha256": "c4128702205a9dd8e55f79bc20ad922feea3f4b0eff3095e5777d17e8aff534c",
+        "raw_sha256": "299e163683832b159fdb18a6e9d0d68bf2cf47a645f4ae873e759355e6fe8252",
+        "serial_port": "COM17",
+        "dtr_low_through_open": true,
+        "raw_log_before_stream": true,
+        "one_continuous_current_boot_stream": true,
+        "replay_commands": 0,
+        "old_failure_not_reclassified": true
+      },
+      "stage": "cpu",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v731-dense-r5-cpu-live-20261127",
+      "worker_exited": true
+    },
+    {
+      "token": "b5eea38cb400afa4",
+      "image_sha256": "edd5165b28b5ddbe3279f80940649af94dba275d4809d71bf5092cd9d4e8dd2f",
+      "log_sha256": "35f061876924599451bbb57ce8677f298e238671a95601700bcfde9b3787e6d2",
+      "return_seconds_with_health": 39.17200000002049,
+      "ram_library_binding": {
+        "library_sha256": "dc7113a10542c4b8de2036def8373a4574ab2092d17efd1a39e1c224f1bec308",
+        "library_bytes": 14801248,
+        "library_fnv64": "aeef240c4b8cc06b",
+        "blob_sha256": "31b8ab8196b7bfa84987253b91f8bb7c4b8a3855b37e1eee000dd0f4488cf074",
+        "raw_sha256": "2c373c6135406493399b802e61578c346dc162145515596e5b4078f5206592ed",
+        "manifest_sha256": "ad6365ab02e69674f54e35b7f70895afb63b39b72a848b1bceed028d2f7a94e9"
+      },
+      "serial_capture": {
+        "revision": 1,
+        "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+        "event_log_sha256": "9202dd3d7b2ab30d24183f03e7d064ac82b96dac0e23cf96205adf2cae4e9ca7",
+        "raw_sha256": "35f061876924599451bbb57ce8677f298e238671a95601700bcfde9b3787e6d2",
+        "serial_port": "COM17",
+        "dtr_low_through_open": true,
+        "raw_log_before_stream": true,
+        "one_continuous_current_boot_stream": true,
+        "replay_commands": 0,
+        "old_failure_not_reclassified": true
+      },
+      "stage": "gles9",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v731-dense-r5-gles9-live-20261127",
+      "worker_exited": true,
+      "screen": {
+        "protocol": 1,
+        "frames": [
+          {
+            "id": 1,
+            "token": "b5eea38cb400afa4",
+            "kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+            "image_sha256": "edd5165b28b5ddbe3279f80940649af94dba275d4809d71bf5092cd9d4e8dd2f",
+            "binding": {
+              "protocol": 1,
+              "width": 720,
+              "height": 1280,
+              "stride": 2160,
+              "format": "BGR888",
+              "codec": "PRLE1",
+              "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+              "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+              "runtime_source_sha256": "2c566a962d61e7b8aebfc88be54d496878821a4c0f5bb439f505198b16adfba2"
+            },
+            "begin": {
+              "token": "b5eea38cb400afa4",
+              "id": "1",
+              "width": "720",
+              "height": "1280",
+              "stride": "2160",
+              "format": "BGR888",
+              "bytes": "2764800",
+              "codec": "PRLE1",
+              "encoded": "440921",
+              "raw_fnv": "6a3a5033e44c0685",
+              "enc_crc": "0df1259b",
+              "vsync": "7918",
+              "timestamp": "7652667786",
+              "copy_ticks": "4721357",
+              "power_off": "0",
+              "source_checked": "1",
+              "source_match": "1"
+            },
+            "scan": {
+              "token": "b5eea38cb400afa4",
+              "id": "1",
+              "pa": "0x9d400000",
+              "map_pa": "0x9d400000",
+              "map_bytes": "2764800",
+              "size": "0x50002d0",
+              "img": "0x50002d0",
+              "xy": "0",
+              "out": "0x50002d0",
+              "outxy": "0",
+              "fmt": "0x2243f",
+              "unpack": "0x20001",
+              "op": "0x80000000",
+              "qop": "0",
+              "ctl": "0x20020",
+              "start": "0",
+              "before_after": "1"
+            },
+            "blocks": 3445,
+            "raw_file": "scanout-00000001.bgr",
+            "png_file": "scanout-00000001.png",
+            "raw_sha256": "3eb646899b6642310071096d2bc270ebe8fdef654eddc7fa0800e639c506969f",
+            "png_sha256": "260b09b5fd8b170a846ef155563165890cbe3778619e9c642d834c88ae36cac0",
+            "pixel_values_preserved": true,
+            "verified": true,
+            "optical_panel_verified": false
+          }
+        ],
+        "verified": true,
+        "optical_panel_verified": false,
+        "current_boot_source_and_payload_checked": true,
+        "format": "BGR888",
+        "width": 720,
+        "height": 1280
+      }
+    },
+    {
+      "token": "a0c42c1d43ab5734",
+      "image_sha256": "d01d7c1559118c3b836c3349cefee8f7b605544875337e629ce4740aa756a7b6",
+      "log_sha256": "6a22171d315efa85cad3c8927b0122b9e21611f84b3fff7d5928173d0a1e9889",
+      "return_seconds_with_health": 38.656999999890104,
+      "ram_library_binding": {
+        "library_sha256": "dc7113a10542c4b8de2036def8373a4574ab2092d17efd1a39e1c224f1bec308",
+        "library_bytes": 14801248,
+        "library_fnv64": "aeef240c4b8cc06b",
+        "blob_sha256": "75b8f08201a972f9c67ca1a63110131e05286116bfbf47bb1a8fb19548b354f0",
+        "raw_sha256": "d7a14ab42fd3def75a60095ebb1ece7aaa5fe838daae62fd51fa6693ccccdbef",
+        "manifest_sha256": "ae8acd03c0d7e2ef8a0bec81c01a133c73a3e09228f5beb58b534802a8419e08"
+      },
+      "serial_capture": {
+        "revision": 1,
+        "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+        "event_log_sha256": "f212c3f16d061813e1575891e90ed61e9963ec578eabecee6433a2f789c649ee",
+        "raw_sha256": "6a22171d315efa85cad3c8927b0122b9e21611f84b3fff7d5928173d0a1e9889",
+        "serial_port": "COM17",
+        "dtr_low_through_open": true,
+        "raw_log_before_stream": true,
+        "one_continuous_current_boot_stream": true,
+        "replay_commands": 0,
+        "old_failure_not_reclassified": true
+      },
+      "stage": "native_cpu",
+      "source": "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp\\lilac-v731-dense-r5-native-cpu-live-20261127",
+      "worker_exited": true
+    }
+  ],
+  "original_native21_shared_PNG_not_accepted": true,
+  "full_original_UI_not_verified": true,
+  "failed_guard_from_20261126_preserved": true
+}

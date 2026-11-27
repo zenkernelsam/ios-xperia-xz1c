@@ -69,7 +69,7 @@ if a.snapshot_readback:headers+=['gpu/diagnostics/SnapshotReadbackObserve.h']
 if a.original_cg_input:headers+=['gpu/diagnostics/OriginalCGInputObserve.h']
 if a.png_filter_encoder:headers+=['gpu/compat/PNGImageIOEncoder.h','gpu/compat/PNGImageDispatch.h','tools/png_encoder_proof.py']
 if a.cif10_png_reference:
-    headers+=['gpu/diagnostics/CIF10PNGReferenceProbe.h','gpu/diagnostics/CIF10VImageCompare.h','gpu/diagnostics/CIF10PNGFilterCompare.h','gpu/compat/PNGImageIOEncoder.h']
+    headers+=['gpu/diagnostics/CIF10PNGReferenceProbe.h','gpu/diagnostics/CIF10ExportWait.h','gpu/diagnostics/CIF10VImageCompare.h','gpu/diagnostics/CIF10PNGFilterCompare.h','gpu/compat/PNGImageIOEncoder.h']
     png_source_sha=hashlib.sha256((root/'gpu/compat/PNGImageIOEncoder.h').read_bytes()).hexdigest()
 if a.program_cache_export:headers+=['gpu/diagnostics/ProgramRequestExport.h','gpu/sweetgl/ProgramCacheCodec.h','gpu/sweetgl/MetalShaderAPI.h','tools/program_request.py']
 resource_manifest=None
@@ -312,6 +312,9 @@ if a.pipeline_observe:
     run(['clang','-O1','-g','-fsanitize=address,undefined',root/'tools/build/test_metal_pipeline_observe.m','-framework','Foundation','-framework','Metal','-o',out/'test_pipeline_observer'],'pipeline-host-compile')
     assert 'PASS' in run([out/'test_pipeline_observer'],'pipeline-host-test')
 if a.cif10_png_reference:
+    run(['clang','-std=c11','-O1','-g','-Wall','-Wextra','-Werror','-fsanitize=address,undefined',
+        root/'tools/build/test_cif10_export_wait.c','-o',out/'test_cif10_wait'],'cif10-wait-host-compile')
+    assert 'CIF10 export pacing PASS:' in run([out/'test_cif10_wait'],'cif10-wait-host-test')
     run(['clang','-fobjc-exceptions','-O1','-g','-fsanitize=address,undefined',root/'tools/build/test_cif10_png_reference.m',
         '-framework','Foundation','-framework','CoreGraphics','-framework','ImageIO','-framework','Accelerate','-o',out/'test_cif10_png_reference'],'cif10-reference-host-compile')
     assert 'CIF10 PNG reference PASS:' in run([out/'test_cif10_png_reference'],'cif10-reference-host-test')
@@ -483,10 +486,13 @@ if a.depth32_probe:manifest.update(attachment_failure_snapshot_revision=1,attach
     attachment_failure_snapshot_retired_pages_readonly=True,attachment_failure_snapshot_does_not_change_verdict=True)
 manifest.update(probe_startup_revision=1,actual_startup_readiness_host_asan_ubsan_passed=True,startup_host_source_sha256=hashlib.sha256((root/'tools/build/test_metal_startup.c').read_bytes()).hexdigest())
 manifest.update(observer_log_write_revision=1,observer_log_partial_EINTR_errno_host_passed=True,
+    observer_log_write_failures_checked=True,observer_log_summary_revision=1,
     observer_log_host_source_sha256=hashlib.sha256((root/'tools/build/test_log_write_remaining.c').read_bytes()).hexdigest())
 if a.target_process=='backboardd':manifest.update(background_full_suite=True,waits_for_same_process_GLES_suite=True,original_Aegir_not_modified_or_registered=True)
 if a.cif10_png_reference:manifest.update(cif10_PNG_reference=True,cif10_reference_revision=3,cif10_reference_cases=6,
-    cif10_export_pacing_revision=2,cif10_export_pacing_microseconds=3000,cif10_export_ranges_emitted_once=True,
+    cif10_export_pacing_revision=3,cif10_export_pacing_microseconds=15000,cif10_export_ranges_emitted_once=True,
+    cif10_export_remaining_time_EINTR_and_failure_host_passed=True,
+    cif10_export_wait_host_source_sha256=hashlib.sha256((root/'tools/build/test_cif10_export_wait.c').read_bytes()).hexdigest(),
     cif10_reference_author_pixels_only=True,cif10_reference_original_UIImage_API=True,cif10_reference_converter_not_installed=True,
     cif10_reference_host_fixture_bounds_nil_throw_input_passed=True,cif10_reference_PNG_exports=True,
     cif10_reference_vImage_modes=2,cif10_reference_vImage_guard_buffer_host_passed=True,

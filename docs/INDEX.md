@@ -34,7 +34,7 @@ reproducibility保存原结果摘要、源码锁、精确proof和回收记录；
 
 | 当前离线实现 | 准确证据／范围 |
 | --- | --- |
-| GPU r5 dense image映射 | [r5报告](../reproducibility/ordered-image-barrier-dense-r5-offline-20261126.json)：真实Mesa mapper／255 mask、CP命令流及四份未投递包；A540缓存／原像素待验 |
+| GPU r5 dense image映射 | [离线报告](../reproducibility/ordered-image-barrier-dense-r5-offline-20261126.json)、[CPU／GLES9实机](../reproducibility/dense-r5-CPU-GLES9-actual-20261127.json)、[MRT子集及PNG原拒绝](../reproducibility/dense-r5-native21-PNG-refusal-20261127.json)；完整native／PNG和原壁纸待验 |
 | PCM运行时／C11接口／clock／cache交接 | [C接口报告](../reproducibility/lilac-pcm-c-abi-offline-20261126.json)：十二组回归、六个ARM64对象、稳定caller storage／重入和销毁门槛、复制→cache交接→publication／完成→acquire；真实mapping／cache指令／DSP／codec／声音待接 |
 | ADSP启动依赖与实际生命周期 | [源码审计](../reproducibility/lilac-adsp-boot-source-audit-20261126.json)：固定Sony Git blob和准确formal源，RPM前置／stage4～7最终shutdown；当前DSP状态与声音未验 |
 
