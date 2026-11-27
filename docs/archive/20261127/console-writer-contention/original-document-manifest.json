@@ -1,0 +1,27 @@
+[
+  {
+    "source": "docs/STATUS.md",
+    "archive": "docs/archive/20261127/console-writer-contention/originals/STATUS.md",
+    "sha256": "a34dde9218678002b29ce23ae41945c3c19643fc1d927cddba2d57edbc2e561b"
+  },
+  {
+    "source": "docs/BUILD.md",
+    "archive": "docs/archive/20261127/console-writer-contention/originals/BUILD.md",
+    "sha256": "0ae1277c26d96b289f2b162d9db7397da9b32dd2a24f9e3588cd4f3010009789"
+  },
+  {
+    "source": "docs/INDEX.md",
+    "archive": "docs/archive/20261127/console-writer-contention/originals/INDEX.md",
+    "sha256": "af4233ab250ddce330541b15a93ed3a4e2b9717ba4203c24ffc8d495108d9a93"
+  },
+  {
+    "source": "docs/METAL-REQUEST-OBSERVATION.md",
+    "archive": "docs/archive/20261127/console-writer-contention/originals/METAL-REQUEST-OBSERVATION.md",
+    "sha256": "7d6152b486a9a1c66eef483e550c2710dcad44af052b9d1ca41a3ef846e25381"
+  },
+  {
+    "source": "docs/ORGANIZATION.md",
+    "archive": "docs/archive/20261127/console-writer-contention/originals/ORGANIZATION.md",
+    "sha256": "8c2e2c8cf6208e51d525f2043c8934eef3a7fc58b8c85baae8e9f09ff8cdf91c"
+  }
+]

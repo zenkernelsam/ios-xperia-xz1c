@@ -4,9 +4,11 @@ CPU／launchd、触控／音量键、完整GLES9、Metal21／PNG6和原生720×1
 
 ## 设备与下一轮
 
-2026-11-27用户重新插拔并确认Sony **BH905ND69G**蓝灯fastboot，PnP到达时间07:56:44；独立健康32.297秒通过。r5 CPU、GLES9、native RAM CPU均已单发通过并完整回程，原证据见[三项实机报告](../reproducibility/dense-r5-CPU-GLES9-actual-20261127.json)。完整native21这轮controller PASS，但独立PNG校验拒绝：case2缺34 B、case4缺48 B；[原拒绝及MRT子集](../reproducibility/dense-r5-native21-PNG-refusal-20261127.json)保留，不重发或补造字节。该靴完整返回并健康30秒，当前安全fastboot，无在途启动。更早guard失败及原包继续保留。
+2026-11-27用户重新插拔并确认Sony **BH905ND69G**蓝灯fastboot，独立健康32.297秒通过。r5 CPU／GLES9／native CPU均实际通过；首个native21缺两条PNG DATA，被独立校验拒绝，[原三项准入](../reproducibility/dense-r5-CPU-GLES9-actual-20261127.json)和[原拒绝](../reproducibility/dense-r5-native21-PNG-refusal-20261127.json)保留。
 
-下一轮为`build/cif10-export-paced-r3-20261127`的日志候选：CPU `0dba048078c21cbf`自身准入→native21 `65bdaf95ba7f2d03`完整原21组／PNG6及150秒scanout。新observer `8e795108…`、RAM blob `eee6db38…`，明确保留已验revision4几何helper；r5 GLES及Metal源／签名不变。每条作者导出只发一次，15ms剩余时间等待处理EINTR，失败计数须零；原缺字节严格拒绝。成功新证明后再构建原Aegir包。每轮四marker、健康30秒及旧worker退出均独立通过才下一轮。
+15ms日志候选CPU `0dba048078c21cbf`通过，回程38.141秒；native `65bdaf95ba7f2d03`controller PASS、完整返回fastboot，但独立Stencil工作PAGE校验拒绝：phase41缺original50／work9的一条PAGE，实际PAGE196、MAP197、RETIRE197、预期197。[新原拒绝](../reproducibility/cif10-paced-r3-native-stencil-log-refusal-20261127.json)中PNG6原字节／容器校验单独通过，不能代替完整native／PNG准入。当前无在途启动，手机安全fastboot；两包均不重发，原字节不修补。
+
+[当前logger审计与并发重现](../reproducibility/console-log-current-writer-contention-20261127.json)已核对v731实际链接object72d971…，与重编译当前源码的代码段一致；读锁移除属于正式v729增量，当前85源绑定已包含两份logger源。初次仅看base patch的读锁重现不用于归因当前实机。当前非阻塞writer锁在并发写入时仍能丢弃整条记录，已在主机用准确v729源重现；实机native结束后的dropped计数尚未取得。下一步定位／处理当前写入竞争，保持RPC／PON／GPU／allocator／SCM／VM冻结。串行writer快照原型经三套sanitizer及真实kernel头ARM64 object验证，未接入内核，不能当多writer修复；完整native／PNG未通过前不构建原Aegir包。
 
 ## 已验基线
 

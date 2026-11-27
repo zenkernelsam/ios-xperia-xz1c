@@ -1,5 +1,9 @@
 # 原壁纸请求、快照与绘制停点 — 2026-11-25
 
+2026-11-27 [15ms日志候选原拒绝](../reproducibility/cif10-paced-r3-native-stencil-log-refusal-20261127.json)保留controller PASS和独立Stencil失败：phase41缺一条PAGE，MAP／RETIRE及99相位hash仍在原流。PNG6原字节／CRC／容器／像素检查已单独通过，尚不能生成完整native或PNG准入。两轮原缺失记录均不补造、不重发原包。
+
+[logger当前源／对象审计](../reproducibility/console-log-current-writer-contention-20261127.json)明确区分base patch、正式v729增量和真实v731链接object。v729已经移除reader锁；初次只查base的归因已修正，源码并非缺失。准确当前logger的writer try-lock失败仍直接增加dropped并丢弃整段；主机重现该路径不等于实机最终dropped已观测。后续应针对当前生产者竞争／写入链路，不能把新串行writer快照原型或单项PNG通过提升成完整GPU／原UI。
+
 2026-11-27 [r5三项准入](../reproducibility/dense-r5-CPU-GLES9-actual-20261127.json)完成CPU／GLES9／native CPU。[native原拒绝](../reproducibility/dense-r5-native21-PNG-refusal-20261127.json)中MRT子集按准确原页／XR字节／fence独立通过，12条revision4 barrier记录均fallback0、dense映射1；后四条双图元／双instance各cached4。完整native／PNG仍拒绝：PNG case2缺offset1488的34 B，case4缺offset3888的48 B，原raw不修补，不能从已验case1复制同值补齐case2。尚未使用r5新证明投递原壁纸。
 
 新日志候选只调整作者reference导出节奏与观察写入错误，GLES／Metal及冻结内核保持。每段15ms nanosleep处理剩余EINTR时间，超过64次中断或等待错误使probe失败；write失败累加并要求单一零错误summary。严格PNG长度／FNV／CRC／像素／ICC／metadata及scope未放宽。此改动用于定位／减少记录丢失，不保证已找到内核tee／CDC链路的具体丢失层；新RAM仍须自身CPU和完整native21／PNG6。

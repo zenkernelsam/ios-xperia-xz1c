@@ -1,0 +1,227 @@
+{
+  "date": "2026-11-27",
+  "native_trash_items": 16,
+  "native_trash_files": 24,
+  "logical_bytes": 336443,
+  "protected_source_logs_and_manifests_SHA_preserved": 30,
+  "no_permanent_deletion": true,
+  "Mac_Trash_not_emptied": true,
+  "items": [
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/log-reader-snapshot-r1-20261127/tsan-macos/legacy.o",
+      "trash_path": "/Users/ciscohe/.Trash/legacy.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 7744,
+          "sha256": "fcc41ab71164bc134194fff48c261de01c3351a938e6d199444504ccb496491b"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/log-reader-snapshot-r1-20261127/tsan-macos/test",
+      "trash_path": "/Users/ciscohe/.Trash/test",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 24968,
+          "sha256": "2ce0c6efc7895923371cbb56338a8caf09b21defe6a27717c06995f5f5db8ad5"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/log-reader-snapshot-r1-20261127/tsan-macos/test.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 633,
+          "sha256": "ba820782da2c966e230b338c1aa38733a2d9ca556e581aef1df842fbe38ea313"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test.yml",
+          "bytes": 179,
+          "sha256": "4ff503b782d608e56ff1010d9bce153addeaaa6b6d88b932df0c861d9fd67a9b"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test",
+          "bytes": 24216,
+          "sha256": "8a1d5ac6b08ec13e75d0fd1f561bd484736d61529af8ffccb32287a818a1e808"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/log-reader-snapshot-r1-20261127/asan-macos-r2/legacy.o",
+      "trash_path": "/Users/ciscohe/.Trash/legacy.o 13-43-48-351.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 10592,
+          "sha256": "151511fbfb8dcfe8dfeb0d28f25fb170673b4b449ab5bd09180424c7a712b525"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/log-reader-snapshot-r1-20261127/asan-macos-r2/test",
+      "trash_path": "/Users/ciscohe/.Trash/test 13-43-48-409",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 40096,
+          "sha256": "0a821e610430c545b91144ffd849e85f34254845a3b8de4429ac916e065203b2"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/log-reader-snapshot-r1-20261127/asan-macos-r2/test.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test.dSYM 13-43-48-468.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 633,
+          "sha256": "ba820782da2c966e230b338c1aa38733a2d9ca556e581aef1df842fbe38ea313"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test.yml",
+          "bytes": 182,
+          "sha256": "a0e7e7446c0bae2db807bbad6f4d9f05e3a2b51ee9337eb9f315af89cadc4980"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test",
+          "bytes": 28636,
+          "sha256": "2567cadf0911b45b60b0ba84c5d09b14bd9d7a5c586de286a3f5dac2289e47e4"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/log-reader-snapshot-r1-20261127/deployed-tsan-macos/current.o",
+      "trash_path": "/Users/ciscohe/.Trash/current.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 8264,
+          "sha256": "b3bad6c3b2c8212fb4fcc269a8738ee80c083807fecba781c4a763b5de3156fc"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/log-reader-snapshot-r1-20261127/deployed-tsan-macos/legacy.o",
+      "trash_path": "/Users/ciscohe/.Trash/legacy.o 13-43-48-571.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 7768,
+          "sha256": "98b650fbd0490a5765cca84ad7c2279864dcbf705a991a60db600fbb264d20e6"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/log-reader-snapshot-r1-20261127/deployed-tsan-macos/test",
+      "trash_path": "/Users/ciscohe/.Trash/test 13-43-48-623",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 30408,
+          "sha256": "cc406b96ddfeaf24b31f79b3deb990015f358b201bf65145f28af29252b3659a"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/log-reader-snapshot-r1-20261127/deployed-tsan-macos/test.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test.dSYM 13-43-48-679.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 633,
+          "sha256": "ba820782da2c966e230b338c1aa38733a2d9ca556e581aef1df842fbe38ea313"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test.yml",
+          "bytes": 188,
+          "sha256": "94dd2df0276b17e128449310f3663c53c4df082a5b7bae7754d9e3935ee98879"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test",
+          "bytes": 28164,
+          "sha256": "f519d8c71ad9934850b7f640479d30b4ae9e2d66b1d4789d489df06cbc26d9dd"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/log-reader-snapshot-r1-20261127/deployed-asan-macos/current.o",
+      "trash_path": "/Users/ciscohe/.Trash/current.o 13-43-48-738.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 10952,
+          "sha256": "20646cbdc4810ca13390c02f7446a3c8f03a2cedc86ddbaad0d89b1f6ef1f0a2"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/log-reader-snapshot-r1-20261127/deployed-asan-macos/legacy.o",
+      "trash_path": "/Users/ciscohe/.Trash/legacy.o 13-43-48-792.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 10624,
+          "sha256": "773cc413de9ff1bbbab0ae96e77a320fdeb62b868fe94b81ee00f50e24c51c11"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/log-reader-snapshot-r1-20261127/deployed-asan-macos/test",
+      "trash_path": "/Users/ciscohe/.Trash/test 13-43-48-846",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 42392,
+          "sha256": "6d6eef4e0d6c073213e2427a2f584b7ee3f946d6aab820f254b4b7744f714156"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/log-reader-snapshot-r1-20261127/deployed-asan-macos/test.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test.dSYM 13-43-48-903.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 633,
+          "sha256": "ba820782da2c966e230b338c1aa38733a2d9ca556e581aef1df842fbe38ea313"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test.yml",
+          "bytes": 188,
+          "sha256": "54c6cd6b86a0372fc0af8ffea25b96c116a2374db88d39de6ebadcba32a0f9f6"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test",
+          "bytes": 33252,
+          "sha256": "0ceb1444090ff0823c2c04ed76fc8614c941c8eff7aaeff907ca123d579ab602"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/log-reader-snapshot-r1-20261127/sources.tar",
+      "trash_path": "/Users/ciscohe/.Trash/sources.tar 13-43-48-955.tar",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 20480,
+          "sha256": "52948be2ef4b52c76768d375d59e8d7c7eaf5eb9b51f40d92ca8fa2a83005e41"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/log-reader-snapshot-r1-20261127/check-log-snapshot-r2.py",
+      "trash_path": "/Users/ciscohe/.Trash/check-log-snapshot-r2.py",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 4618,
+          "sha256": "b663b4a5641f1f7cb7581d5cbd311d35d00fea91523dc9a2975b513da1731808"
+        }
+      ]
+    }
+  ]
+}

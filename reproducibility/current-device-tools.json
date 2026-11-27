@@ -347,7 +347,9 @@
     "tools/build/test_lilac_pcm_runtime_c.c": "e66101e2e714e34d935a317e2e342a17c75bc82113673fd043fc86689f90def2",
     "tools/build/test_lilac_pcm_runtime_api.cpp": "7c2e2b449e76e896523b59b78167b48991dca3153da9105f873a83dff2b19284",
     "tools/build/inspect_lilac_adsp_boot.py": "6ebe2f3527427d5c3076513eb08f109f5f215c1b7f1c114c750dd03c89b03c3f",
-    "tools/build/test_cif10_export_wait.c": "f9ab4a83cfe43577e56ccbe751604dab9247426d1ca144e86c35066c153e9697"
+    "tools/build/test_cif10_export_wait.c": "f9ab4a83cfe43577e56ccbe751604dab9247426d1ca144e86c35066c153e9697",
+    "tools/build/test_log_snapshot.c": "11e4eb8897f205ee194ee42c1df8176cc8eec6b03dae7a92ff76ad415edd0c7e",
+    "tools/build/check_log_snapshot.py": "786155fe955ed13d7e7e88eac534d8b8697c8423c5e3765037f241edf94f891d"
   },
   "gpu_sources": {
     "gpu/diagnostics/exception_observe.m": "530e8ab3b6fdbb22ebabee3a31ce9d14b039b0a66e2691fdfd68e9c5597f1167",
@@ -514,7 +516,8 @@
     "xnu/support/LilacAprSmemFifo.h": "9a79470a5a5004c962efc07d6ec658b5599a2fdd803dc430abdc72270958b4f2",
     "xnu/support/LilacPcmPlaybackRuntime.h": "fc095411875b7dd169aab1915c43af74f18d0735f859a037bd13e3a9318e1d3b",
     "xnu/support/LilacPcmRuntimeAPI.h": "bf9f8c4c7a7f8ead6f214e4be7cb28e313cf8d02c66aeea8e37d12abcf34234b",
-    "xnu/support/LilacPcmRuntimeAPI.cpp": "86242e985e7a58d9277106500e97963da65dd215b1a75a2719be9c3e44df607c"
+    "xnu/support/LilacPcmRuntimeAPI.cpp": "86242e985e7a58d9277106500e97963da65dd215b1a75a2719be9c3e44df607c",
+    "xnu/support/SweetLogSnapshot.h": "d4402a4a541960c89e7c6e9051797f8f376407a9447ecb2e7405163405e8aed3"
   },
   "v729_private_actual_return_passed": true,
   "v729_private_owner_ready_actual_return_passed": true,

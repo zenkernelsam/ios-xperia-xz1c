@@ -1,0 +1,463 @@
+{
+  "date": "2026-11-27",
+  "native_trash_items": 26,
+  "native_trash_files": 59,
+  "logical_bytes": 197739175,
+  "protected_files_SHA_preserved": 222,
+  "current_HFS_raw_exactly_recoverable_from_retained_blob": true,
+  "no_permanent_deletion": true,
+  "Mac_Trash_not_emptied": true,
+  "items": [
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cif10-export-paced-r3-20261127/ram",
+      "trash_path": "/Users/ciscohe/.Trash/ram",
+      "entries": [
+        {
+          "relative": "glram.dmg",
+          "bytes": 33554432,
+          "sha256": "9ee66226497f497eb39a6ab3f1b32e7cf3ae5a78b295be8396cf1791b62d5a2b"
+        },
+        {
+          "relative": "sweetgl.dylib",
+          "bytes": 14801248,
+          "sha256": "dc7113a10542c4b8de2036def8373a4574ab2092d17efd1a39e1c224f1bec308"
+        },
+        {
+          "relative": "glram.raw",
+          "bytes": 33554432,
+          "sha256": "9ee66226497f497eb39a6ab3f1b32e7cf3ae5a78b295be8396cf1791b62d5a2b"
+        },
+        {
+          "relative": "libglapi.0.dylib",
+          "bytes": 344544,
+          "sha256": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3"
+        },
+        {
+          "relative": "manifest.json",
+          "bytes": 86547,
+          "sha256": "0f99c9b45e3f6d6c4f07c477a34c03a63ca20cd65b4dfa4ca6e7a91343ab9bd6"
+        },
+        {
+          "relative": "glram.zblob",
+          "bytes": 4328582,
+          "sha256": "b5dfa0fc4feb17857a61971472e47d1e48d0e94dc4d5c5fa9f4c81e2979357f6"
+        },
+        {
+          "relative": "exception_observe.dylib",
+          "bytes": 258000,
+          "sha256": "8e7951086923e0886bcfe836cee8a2268591cda8bab4f4de4eb2eb26139093c9"
+        },
+        {
+          "relative": "georead.dylib",
+          "bytes": 106544,
+          "sha256": "ee7a3207f26af5e9106cbd98c74392153b11a2d345386964db131110a2a6153c"
+        },
+        {
+          "relative": "MetalResources.dylib",
+          "bytes": 810480,
+          "sha256": "19a08083833851d5a13016473ec3c3db98629d6ce6fc928b70947af114abee49"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cif10-export-paced-r3-20261127/observer",
+      "trash_path": "/Users/ciscohe/.Trash/observer",
+      "entries": [
+        {
+          "relative": "ProgramCacheScopeIdentity.h",
+          "bytes": 255,
+          "sha256": "21f4995e6f2907ce5e86c7364014d70094f1f4f7a5ca300d50c8e4815f07c43a"
+        },
+        {
+          "relative": "source.m",
+          "bytes": 23067,
+          "sha256": "530e8ab3b6fdbb22ebabee3a31ce9d14b039b0a66e2691fdfd68e9c5597f1167"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cif10-export-paced-r3-20261127/observer-r2",
+      "trash_path": "/Users/ciscohe/.Trash/observer-r2",
+      "entries": [
+        {
+          "relative": "AIRConstantsFixture.h",
+          "bytes": 11689,
+          "sha256": "a6fd4b1ab2810d92957cc092f72dc5d7d5fadcb78e62177b24aea6bd850f17bf"
+        },
+        {
+          "relative": "AIRRenderFixture.h",
+          "bytes": 19336,
+          "sha256": "ecbc386917efa7a57db2a904cc12a09ece2962b84c6da787518f9cf9c6467225"
+        },
+        {
+          "relative": "AIRMultisampleFixture.h",
+          "bytes": 12791,
+          "sha256": "7c3caaae06c35ed66ee50df19df4a0de3dfeea751e7fe81b45726f8b2ef59a4c"
+        },
+        {
+          "relative": "AIRNarrowFixture.h",
+          "bytes": 16401,
+          "sha256": "3bb67b4f5fb701a11d61c3ff843ce142d95301c2f90a41510363da10d2917c58"
+        },
+        {
+          "relative": "AIRHalfFixture.h",
+          "bytes": 16114,
+          "sha256": "9d8052b4292d20c879ce79a2927b8a669d353ef08d4700c5a5fcc680c0508160"
+        },
+        {
+          "relative": "ProgramCacheScopeIdentity.h",
+          "bytes": 255,
+          "sha256": "21f4995e6f2907ce5e86c7364014d70094f1f4f7a5ca300d50c8e4815f07c43a"
+        },
+        {
+          "relative": "AIRMRTFixture.h",
+          "bytes": 23583,
+          "sha256": "7ef6fb5424edb024bec6c9468b477fff1d48d9fcc0dde1ebadb2890e8700df62"
+        },
+        {
+          "relative": "source.m",
+          "bytes": 23067,
+          "sha256": "530e8ab3b6fdbb22ebabee3a31ce9d14b039b0a66e2691fdfd68e9c5597f1167"
+        },
+        {
+          "relative": "AIRFixture.h",
+          "bytes": 14424,
+          "sha256": "7e59f9fc565d1b3e18bbf2a12ec6b6a422f26b7f2c7bc33df661858d9f2a0f48"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cif10-export-paced-r3-20261127/ram-r2/glram.dmg",
+      "trash_path": "/Users/ciscohe/.Trash/glram.dmg",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 33554432,
+          "sha256": "ad6d5155aebc8abf0489d46b1fa0c9f95bc6e93e8bcbe862c4961d3d25820b22"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cif10-export-paced-r3-20261127/ram-r2/glram.raw",
+      "trash_path": "/Users/ciscohe/.Trash/glram.raw",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 33554432,
+          "sha256": "ad6d5155aebc8abf0489d46b1fa0c9f95bc6e93e8bcbe862c4961d3d25820b22"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cif10-export-paced-r3-20261127/observer-r3/test_startup.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_startup.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 641,
+          "sha256": "944829fa3c1a4d913161b503f6352fa20f7c101cdeefe97a15208dadbe4a587a"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_startup.yml",
+          "bytes": 187,
+          "sha256": "18ec32a1c570dd1a46e2b6cdc8bd6168ad6e64636bb8e8d8ae6a3ee724ae5c79"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_startup",
+          "bytes": 14936,
+          "sha256": "6269e2badbdd11b508b40282b8abee57bee7807555f923459d2466b198477d55"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cif10-export-paced-r3-20261127/observer-r3/test_cache_scope.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_scope.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 645,
+          "sha256": "2d56eca2217abc049f49309a8cb04e54f45a4ba11b0491143bbbb28280638af2"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_cache_scope.yml",
+          "bytes": 191,
+          "sha256": "3710cc0724d0d7aff0e37a53a7a3da5f3c68050320aa1ee902cdeef7c1d8a369"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_cache_scope",
+          "bytes": 18224,
+          "sha256": "d43c99bbdeb9286c91d5c02f6af32654770674b53cfd61847d5f3c00a0d75af5"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cif10-export-paced-r3-20261127/observer-r3/test_observer.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_observer.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 642,
+          "sha256": "589d796cebc46abadfe0ec147d2a15f3b4f4f50d2c7edbebfc3cde26f51d66bf"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_observer.yml",
+          "bytes": 188,
+          "sha256": "f1489f36069d9d1662840b1181e285112c57a4402871156c4676dd810bb86de9"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_observer",
+          "bytes": 44220,
+          "sha256": "c44efa663f3e234a2c86ddc0a12dcbd695a25cc7ef4957034988cfcb4984f4ee"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cif10-export-paced-r3-20261127/observer-r3/test_cif10_wait",
+      "trash_path": "/Users/ciscohe/.Trash/test_cif10_wait",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 21360,
+          "sha256": "51705b50e99d67ce9ca7211ca13544705022056e500a08c7d3c658b0389a699a"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cif10-export-paced-r3-20261127/observer-r3/test_attachment_snapshot",
+      "trash_path": "/Users/ciscohe/.Trash/test_attachment_snapshot",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 27872,
+          "sha256": "0846dab119739b60a5a4c15bc50b7182ad7bebb1ebf687a0cc0b574a13c498bf"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cif10-export-paced-r3-20261127/observer-r3/test_log_remaining",
+      "trash_path": "/Users/ciscohe/.Trash/test_log_remaining",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 21736,
+          "sha256": "12856deba8cf968f65aa223bef6d108a422f313e1f3def1052206953d19c76aa"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cif10-export-paced-r3-20261127/observer-r3/test_cif10_png_reference.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_cif10_png_reference.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 653,
+          "sha256": "8e989f94a66cd0e1d9a42e7c8d6fd05eae260f619024f56a29676dfdceffdade"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_cif10_png_reference.yml",
+          "bytes": 199,
+          "sha256": "cdcda1496bcb9e5120bb985566452f89379e1dfdf9c510e9d296e35559783d50"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_cif10_png_reference",
+          "bytes": 56680,
+          "sha256": "d65537600aab9a89638b88520fd2e1a2858fad3a6e3a432703231102cb73e4f2"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cif10-export-paced-r3-20261127/observer-r3/test_cache_scope",
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_scope",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 28320,
+          "sha256": "9a5e580aeb12c14b28b8a3d28c41c41d3acc3f70be56277c528bcf15a6496daf"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cif10-export-paced-r3-20261127/observer-r3/test_cif10_wait.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_cif10_wait.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 644,
+          "sha256": "0206aa92203110e4cbf34e29d094ddd92b7f5133362ca0ee939fb7ce1d1a2ef6"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_cif10_wait.yml",
+          "bytes": 190,
+          "sha256": "72c51365ee34462a45516a2ec43ce8b7ade2c9bf75958d1c48ce616551c278af"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_cif10_wait",
+          "bytes": 13444,
+          "sha256": "b2bff98a03d4fb6710883312bcb91fe197a6eab7f75765a7d6be6575c262f19d"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cif10-export-paced-r3-20261127/observer-r3/test_log_remaining.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_log_remaining.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 647,
+          "sha256": "f6b0d15b02aad8968c6310df05317cf0957820996f413075d5afbc55de97139d"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_log_remaining.yml",
+          "bytes": 193,
+          "sha256": "317075149cd0551cc3db268715dda9fd107bd2cf2c0610848136adc88515ba79"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_log_remaining",
+          "bytes": 14068,
+          "sha256": "b24b5da8c0dbdacb4bba9661200bb583480acfc7c19057c367aa0d5463fbbfb3"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cif10-export-paced-r3-20261127/observer-r3/test_cache_inventory.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_inventory.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 649,
+          "sha256": "041737e57c3fa25995fcd3e9a627f228fdd89939dfeae236ec80f786f3ab93e1"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_cache_inventory.yml",
+          "bytes": 195,
+          "sha256": "759fb8eaaa6977989698cd2cc46ff3e2cdac691a68b6047b7a6d3aea736c65f5"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_cache_inventory",
+          "bytes": 61712,
+          "sha256": "51d25d7d64a9cd0d7d729a3fd1fabcad2ed28eebf4cd87c07887c0cf95176b0e"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cif10-export-paced-r3-20261127/observer-r3/test_program_cache_inventory.c",
+      "trash_path": "/Users/ciscohe/.Trash/test_program_cache_inventory.c",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 8284,
+          "sha256": "412786bd04c18cff676e3b3c00cdee81605101477561d5c61d14ffa666d6704d"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cif10-export-paced-r3-20261127/observer-r3/test_startup",
+      "trash_path": "/Users/ciscohe/.Trash/test_startup",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 20592,
+          "sha256": "9fada8e43aa2a19acda24595446108ee309b48a067c8aa954fcff600146c5ac3"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cif10-export-paced-r3-20261127/observer-r3/test_cif10_png_reference",
+      "trash_path": "/Users/ciscohe/.Trash/test_cif10_png_reference",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 64336,
+          "sha256": "4dfee6d12c2eb97c0b8e40218712a3239ca93661141652603c5d3f90c43fb661"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cif10-export-paced-r3-20261127/observer-r3/test_observer",
+      "trash_path": "/Users/ciscohe/.Trash/test_observer",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 67376,
+          "sha256": "8bfc5c18c539adcef437a5c379a9afdf90350fccbdd3cd0dee81178ec2ce3bd4"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cif10-export-paced-r3-20261127/observer-r3/test_cache_inventory",
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_inventory",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 93688,
+          "sha256": "a6b2c8271fcb552b25db6bb1f84dc5ae0cc2576ebd583633f6fc9b91f6735881"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cif10-export-paced-r3-20261127/observer-r3/test_attachment_snapshot.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_attachment_snapshot.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 653,
+          "sha256": "d5f0029ed8ca7a9036c2cab1990c35358da4fe52e5317a53347f17210346329e"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_attachment_snapshot.yml",
+          "bytes": 199,
+          "sha256": "a831c128f6e018e68a3068cfbc5dd3fdde789768ebb109a59481dfe17db987aa"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_attachment_snapshot",
+          "bytes": 15996,
+          "sha256": "19cf2ad69d6aa19123793fa0e9cc083d5d45692eeda2cdf6510cc392fbfb8dc0"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cif10-export-paced-r3-20261127/source-stage/gate-update.tar",
+      "trash_path": "/Users/ciscohe/.Trash/gate-update.tar",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 184320,
+          "sha256": "ca9bef9ba5351e57a44be76b6344c820aebafa1048f1c7f0e3cb88c316155e3a"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cif10-export-paced-r3-20261127/source-stage/ram-transfer.tar",
+      "trash_path": "/Users/ciscohe/.Trash/ram-transfer.tar",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 20756480,
+          "sha256": "1d968cfb2f1036f4ce6c1bd51031fc7e9e016a105e425207a394e7afa7bc4e21"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cif10-export-paced-r3-20261127/source-stage/ram-r2-transfer.tar",
+      "trash_path": "/Users/ciscohe/.Trash/ram-r2-transfer.tar",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 20756480,
+          "sha256": "0fa0de84411b0e1f750133a590e5f2f4807a0d260c255f1e1658087bdc7f8ba1"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/cif10-export-paced-r3-20261127/source-stage/sources.tar",
+      "trash_path": "/Users/ciscohe/.Trash/sources.tar",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 327680,
+          "sha256": "3ca34ad6d3dea9d340df00bed6140868ca081e25bfd31958fba94134c5a5bd9c"
+        }
+      ]
+    }
+  ]
+}

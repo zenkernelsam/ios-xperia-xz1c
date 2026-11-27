@@ -187,6 +187,14 @@ python3 -B tools/build/build_metal_library.py --ram-package build/my-gles/ram --
 
 完整observer沿用前述native21参数、`--cif10-png-reference --program-cache-inventory`；只读inventory不启用空primer。新RAM自身CPU、同GLES完整9组先验、完整native21／PNG6通过后，再构建同库／新proof的short原Aegir队列观察。这里的host和新signed产物不自动获得实机准入。固定原调用点可用`inspect_aegir_render_boundary.py --sparse <gl5> --symbols <A2S> --output <build下新JSON>`复验，不展开16GB镜像，不发布原字节。
 
+## 当前console logger并发复验
+
+```powershell
+python -B tools/build/check_log_snapshot.py --output build/my-console-check
+```
+
+工具从锁定base patch及v729增量复建两版logger，准确核对v729源SHA；控制读取／写入暂停的hook仅属host测试。当前版本的writer争用丢记录与旧base读锁争用分别重现，外部串行writer原型另核对10000条并发字节和cursor，不能宣称多writer设备修复。Mac可加`--sanitizer thread`；WSL TSan若出现unexpected memory mapping即保留运行时失败，不作为通过。当前ARM64头编译与v731对象代码段核验见专题报告，未链接新内核。
+
 ## 作者PNG导出日志候选
 
 `CIF10ExportWait.h`将每份48 B原导出后的等待改为15ms、按nanosleep剩余时间处理EINTR且最多64次。错误保留errno并使reference失败；诊断写入错误另计数，新background准入必须有零错误summary。原PNG decoder不放宽。构建完整作者observer沿用全部21组／PNG6参数；`build_exception_observer.py`同时执行真实ImageIO fixture、等待故障ASan／UBSan、日志错误与原exception ABI检查。

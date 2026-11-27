@@ -37,6 +37,7 @@ reproducibility保存原结果摘要、源码锁、精确proof和回收记录；
 | GPU r5 dense image映射 | [离线报告](../reproducibility/ordered-image-barrier-dense-r5-offline-20261126.json)、[CPU／GLES9实机](../reproducibility/dense-r5-CPU-GLES9-actual-20261127.json)、[MRT子集及PNG原拒绝](../reproducibility/dense-r5-native21-PNG-refusal-20261127.json)；完整native／PNG和原壁纸待验 |
 | PCM运行时／C11接口／clock／cache交接 | [C接口报告](../reproducibility/lilac-pcm-c-abi-offline-20261126.json)：十二组回归、六个ARM64对象、稳定caller storage／重入和销毁门槛、复制→cache交接→publication／完成→acquire；真实mapping／cache指令／DSP／codec／声音待接 |
 | ADSP启动依赖与实际生命周期 | [源码审计](../reproducibility/lilac-adsp-boot-source-audit-20261126.json)：固定Sony Git blob和准确formal源，RPM前置／stage4～7最终shutdown；当前DSP状态与声音未验 |
+| console日志完整性 | [当前writer争用报告](../reproducibility/console-log-current-writer-contention-20261127.json)、[新native原拒绝](../reproducibility/cif10-paced-r3-native-stencil-log-refusal-20261127.json)：v729源／真实链接object已核对；当前writer竞争待处理 |
 
 原[PCM session七组](../reproducibility/lilac-pcm-session-offline-20261126.json)、[GLINK适配八组](../reproducibility/lilac-pcm-glink-transport-offline-20261126.json)和[人工sparse槽位barrier流](../reproducibility/ordered-image-barrier-star-load-host-20261126.json)保持历史边界，不作为不同新产物的实机准入。现行步骤只由STATUS／BUILD维护。
 

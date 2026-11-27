@@ -1,0 +1,132 @@
+{
+  "date": "2026-11-27",
+  "native_recycle_items": 10,
+  "native_recycle_files": 12,
+  "logical_bytes": 5744614,
+  "source_logs_and_manifests_SHA_preserved": 31,
+  "WSL_shared_outputs_recycled_in_Windows": true,
+  "no_permanent_deletion": true,
+  "Recycle_Bin_not_emptied": true,
+  "items": [
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\log-reader-snapshot-r1-20261127\\asan-wsl-r2\\legacy.o",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RMH8ZYO.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 13432,
+          "sha256": "f9e759020f9792f73e9f2bef3c22b050049e6cfa6dac4f32aeada20e2e34382b"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\log-reader-snapshot-r1-20261127\\asan-wsl-r2\\test",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R6AF8D9",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1425128,
+          "sha256": "f49092e8a59c3b972df46cb369fa2b8854b9fa3ee7ca971af35eef934924daaf"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\log-reader-snapshot-r1-20261127\\asan-wsl-r3\\legacy.o",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RXBV1TU.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 13432,
+          "sha256": "9c451aa8081d01f8240b04431ea1a0f0aaf23534d1d4880d1e9843f70c61fe5d"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\log-reader-snapshot-r1-20261127\\asan-wsl-r3\\test",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RCOT98D",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1425128,
+          "sha256": "21b5bfb9defb5b8c471662158d72cf7ba3bc89d4b71b00350a0c8ac45968c945"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\log-reader-snapshot-r1-20261127\\deployed-asan-wsl-r2\\current.o",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RP9MWS1.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 13568,
+          "sha256": "ecac0c9907f33201cfd822f0d48503c1d9788bd24b0a910fab1f2f6e2545bd64"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\log-reader-snapshot-r1-20261127\\deployed-asan-wsl-r2\\legacy.o",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RVLQ828.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 13472,
+          "sha256": "0f5abb197021c796708f2a004cccd0ac3c13f6edc4123834ad95425e427ab3cc"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\log-reader-snapshot-r1-20261127\\deployed-asan-wsl-r2\\test",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R6RXYPZ",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1434712,
+          "sha256": "ba653281d63fdc601cd9527a47f5fc289e175ac39a0a5b7a255a79ae640059ed"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\log-reader-snapshot-r1-20261127\\tsan-wsl\\legacy.o",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RID6015.o",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 10624,
+          "sha256": "0d4c52a6d2f03655760713a94303e3497d7f1ff587146ead9d183660a9257b48"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\log-reader-snapshot-r1-20261127\\tsan-wsl\\test",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R3G18DN",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1369696,
+          "sha256": "ff67b0208b16c8706165829b5111937e0f821eb36aff06bfa02b49d8b43660ed"
+        }
+      ]
+    },
+    {
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-log-snapshot-r1-20261127",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RAU64GJ",
+      "entries": [
+        {
+          "relative": "check-log-snapshot-r2.py",
+          "bytes": 4618,
+          "sha256": "b663b4a5641f1f7cb7581d5cbd311d35d00fea91523dc9a2975b513da1731808"
+        },
+        {
+          "relative": "source-manifest.json",
+          "bytes": 324,
+          "sha256": "82451d44b2508712049afb587969d7c762062b425b93602d9242cb62f1c08363"
+        },
+        {
+          "relative": "sources.tar",
+          "bytes": 20480,
+          "sha256": "52948be2ef4b52c76768d375d59e8d7c7eaf5eb9b51f40d92ca8fa2a83005e41"
+        }
+      ]
+    }
+  ]
+}

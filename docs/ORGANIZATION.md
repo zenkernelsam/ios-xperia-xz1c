@@ -1,5 +1,11 @@
 # 本周整理与文档整合 — 2026-11-27
 
+并发核验补回收：[Mac16项／24文件／336,443 B](../reproducibility/console-writer-check-macos-trash-20261127.json)进入原生Trash，[Windows／WSL10项／12文件／5,744,614 B](../reproducibility/console-writer-check-windows-recycle-20261127.json)进入Windows回收站；30个Mac、31个Windows源／日志／manifest SHA保持。实际ARM64头编译对象、当前v731对象代码段核验和所有原失败保留；垃圾桶均未清空。新串行writer原型明确未接入内核，不作为当前writer竞争修复。
+
+本轮设备与日志收尾：[Mac26项／59文件／197,739,175 B](../reproducibility/cif10-paced-r3-macos-trash-20261127.json)进入原生Trash，[Windows／WSL6项／16文件／64,166,100 B](../reproducibility/cif10-paced-r3-windows-recycle-20261127.json)进入Windows回收站；222个Mac、48个Windows保护文件SHA保持。[两套Ubuntu Trash为空](../reproducibility/cif10-paced-r3-wsl-trash-audit-20261127.json)，Windows／Mac垃圾桶未清空。当前HFS raw从保留blob逐字节重建验证后回收，签名候选、原失败／raw／scanout和源码／stash备份保留。
+
+新logger审计原文五份与SHA在[本轮archive](archive/20261127/console-writer-contention/original-document-manifest.json)。准确v729源码及v731实际链接object核对后，修正了仅查base patch产生的读锁归因；没有重做已有正式修补或改冻结内核。WSL ASan／UBSan和Mac ASan／UBSan、TSan重现当前writer争用及串行writer原型10000条记录，WSL TSan内存映射失败原文保留。Mac Python3.9写文件接口及Windows git apply行尾问题修正后，用最终源重新复验；所有原输出保留。
+
 r5真机与日志候选整合：[三项实际准入](../reproducibility/dense-r5-CPU-GLES9-actual-20261127.json)完成CPU／GLES9／native CPU，[原native PNG拒绝](../reproducibility/dense-r5-native21-PNG-refusal-20261127.json)保留controller PASS和缺失DATA事实，MRT子集不代替完整native／PNG。五份整合前入口和原SHA在[本轮archive](archive/20261127/dense-barrier-actual/original-document-manifest.json)。新[15ms日志候选离线报告](../reproducibility/cif10-export-paced-r3-offline-20261127.json)绑定实际Mac observer、ImageIO及写错误检查、WSL等待故障用例和39项gate回归，原PNG decoder未放宽。
 
 初次Mac构建拒绝Windows fixture路径，后续拒绝仅header相同但源SHA不符的旧sampler；按header／metallib／当前源SHA完整匹配选择。首次RAM复制helper但未显式绑定geocompat而被本地门槛拒绝，重新用已验helper组包；新RAM精确SHA、15ms／错误summary及原21组／PNG6已按reviewed identity准入。所有原host失败输出保留；没有重发原失败设备包或补造PNG字节。当前候选、原raw／扫描帧及所需源码备份保留，废弃本轮产物在验收后按原生回收流程收尾。

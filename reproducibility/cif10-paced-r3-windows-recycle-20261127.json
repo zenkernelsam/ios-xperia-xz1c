@@ -1,0 +1,125 @@
+{
+  "date": "2026-11-27",
+  "native_recycle_items": 6,
+  "native_recycle_files": 16,
+  "logical_bytes": 64166100,
+  "protected_files_SHA_preserved": 48,
+  "WSL_outputs_entered_Windows_Recycle_Bin": true,
+  "no_permanent_deletion": true,
+  "Recycle_Bin_not_emptied": true,
+  "items": [
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\cif10-export-paced-r3-20261127\\host-wsl\\test_wait",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R137PFI",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1402280,
+          "sha256": "8ad14edf8aaef652c471d1b5cb68a258c5d5cd593edd69ef22e180104633e886"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\cif10-export-paced-r3-20261127\\ram",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RLVQR7P",
+      "entries": [
+        {
+          "relative": "exception_observe.dylib",
+          "bytes": 258000,
+          "sha256": "8e7951086923e0886bcfe836cee8a2268591cda8bab4f4de4eb2eb26139093c9"
+        },
+        {
+          "relative": "georead.dylib",
+          "bytes": 106544,
+          "sha256": "ee7a3207f26af5e9106cbd98c74392153b11a2d345386964db131110a2a6153c"
+        },
+        {
+          "relative": "glram.zblob",
+          "bytes": 4328582,
+          "sha256": "b5dfa0fc4feb17857a61971472e47d1e48d0e94dc4d5c5fa9f4c81e2979357f6"
+        },
+        {
+          "relative": "libglapi.0.dylib",
+          "bytes": 344544,
+          "sha256": "a8f1e5a6693c82fbf34c438868723bcd61cc30f1829e57f17519277dba252bb3"
+        },
+        {
+          "relative": "manifest.json",
+          "bytes": 86547,
+          "sha256": "0f99c9b45e3f6d6c4f07c477a34c03a63ca20cd65b4dfa4ca6e7a91343ab9bd6"
+        },
+        {
+          "relative": "MetalResources.dylib",
+          "bytes": 810480,
+          "sha256": "19a08083833851d5a13016473ec3c3db98629d6ce6fc928b70947af114abee49"
+        },
+        {
+          "relative": "sweetgl.dylib",
+          "bytes": 14801248,
+          "sha256": "dc7113a10542c4b8de2036def8373a4574ab2092d17efd1a39e1c224f1bec308"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\cif10-export-paced-r3-20261127\\cpu",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RU7G4IN",
+      "entries": []
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\cif10-export-paced-r3-20261127\\native21",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R6OSDT0",
+      "entries": []
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\cif10-export-paced-r3-20261127\\native21-r2",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RSX3VXH",
+      "entries": []
+    },
+    {
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-cif10-export-paced-r3-20261127",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RG1EXNB",
+      "entries": [
+        {
+          "relative": "gate-update-manifest.json",
+          "bytes": 332,
+          "sha256": "076b48d1ee010cdee58a08bd3b33ea9fd31b53f9f73f5d607275b8d0cf999454"
+        },
+        {
+          "relative": "gate-update.tar",
+          "bytes": 184320,
+          "sha256": "ca9bef9ba5351e57a44be76b6344c820aebafa1048f1c7f0e3cb88c316155e3a"
+        },
+        {
+          "relative": "ram-r2-transfer-manifest.json",
+          "bytes": 630,
+          "sha256": "6c41b1e71cdc425c07ecb3929428916506584ebf9b0db43a70f7e309c4dda2da"
+        },
+        {
+          "relative": "ram-r2-transfer.tar",
+          "bytes": 20756480,
+          "sha256": "0fa0de84411b0e1f750133a590e5f2f4807a0d260c255f1e1658087bdc7f8ba1"
+        },
+        {
+          "relative": "ram-transfer-manifest.json",
+          "bytes": 630,
+          "sha256": "d4b6255ec030dc35a53a50d56403c328befe872fa6e201fa6aa14b414eb8063e"
+        },
+        {
+          "relative": "ram-transfer.tar",
+          "bytes": 20756480,
+          "sha256": "1d968cfb2f1036f4ce6c1bd51031fc7e9e016a105e425207a394e7afa7bc4e21"
+        },
+        {
+          "relative": "source-manifest.json",
+          "bytes": 1323,
+          "sha256": "a37786539cbedb3528269c2f761ad8da5355d114c72081055f4d969bb338ea31"
+        },
+        {
+          "relative": "sources.tar",
+          "bytes": 327680,
+          "sha256": "3ca34ad6d3dea9d340df00bed6140868ca081e25bfd31958fba94134c5a5bd9c"
+        }
+      ]
+    }
+  ]
+}
