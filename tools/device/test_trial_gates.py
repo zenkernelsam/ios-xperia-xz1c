@@ -20,6 +20,30 @@ from exception_evidence import inspect_scope,verify_renderer
 
 
 class Gates(unittest.TestCase):
+    def test_current_r5_conditional_primer_keeps_exact_scope_and_full_groups(self):
+        path=Path(__file__).resolve().parents[2]/'build/earth-cache-prime-r1-20261127/ram/manifest.json'
+        if not path.is_file():self.skipTest('Current Earth primer RAM unavailable')
+        raw=path.read_bytes();package=json.loads(raw)
+        binding=dict(library_sha256=package['library_sha256'],blob_sha256=package['blob_sha256'],manifest_sha256=hashlib.sha256(raw).hexdigest())
+        self.assertEqual(validate_wled_gpu_ram(package,binding),'native')
+        changes=[('context_identity','0'*64),('build_identity','0'*64),('scope_identity','0'*64),
+                 ('directory','/private/var/tmp'),('max_prime_entries',9),('max_files',65),
+                 ('max_bytes',33554433),('conditional_prime',False),
+                 ('native_groups_before_inventory',20),('PNG_cases_before_inventory',5)]
+        for key,value in changes:
+            bad=copy.deepcopy(package);bad['exception_observer']['program_cache_inventory'][key]=value
+            with self.subTest(inventory=key),self.assertRaises(AssertionError):validate_wled_gpu_ram(bad,binding)
+        for key,value in [('program_cache_prime',False),('empty_primer_not_dispatched',False),
+                          ('cache_inventory_after_complete_native21_PNG6',False),
+                          ('cif10_export_pacing_microseconds',1),('cif10_reference_cases',5)]:
+            bad=copy.deepcopy(package);bad['exception_observer'][key]=value
+            with self.subTest(observer=key),self.assertRaises(AssertionError):validate_wled_gpu_ram(bad,binding)
+        for key in ('manifest_sha256','blob_sha256','library_sha256'):
+            bad=dict(binding);bad[key]='0'*64
+            with self.subTest(binding=key),self.assertRaises(AssertionError):validate_wled_gpu_ram(package,bad)
+        with self.assertRaises(AssertionError):
+            validate_wled_gpu_record(dict(version=WLED_VERSION,kernel_sha256=WLED_KERNEL_SHA),package,binding)
+
     def test_logger_kernel_keeps_new_identity_and_prior_kernel_gates(self):
         from diagnostic_candidate import LOG_VERSION,LOG_KERNEL_SHA
         base=configuration(WLED_VERSION);new=configuration(LOG_VERSION)

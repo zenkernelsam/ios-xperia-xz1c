@@ -120,9 +120,14 @@ def validate_wled_gpu_ram(package, binding):
             ('ae8acd03c0d7e2ef8a0bec81c01a133c73a3e09228f5beb58b534802a8419e08','dc7113a10542c4b8de2036def8373a4574ab2092d17efd1a39e1c224f1bec308','2f100d56d9ec22bdaca3d01cd8f8b369a24c76ee6d252fd671ffb16da4c561db','dc22fd53f7ba1b6a70e12d50753e19f37cf0a0da97f7a6140afd2bc304b2a60d',4),
         'eee6db388a4e3adfb04c27bd7e4a433a4649efd2d216f2d0cb139a210874d01b':
             ('656f254be2bd6adad3742b83839d61e3633ad9461da009400f4339a37354951f','dc7113a10542c4b8de2036def8373a4574ab2092d17efd1a39e1c224f1bec308','8e7951086923e0886bcfe836cee8a2268591cda8bab4f4de4eb2eb26139093c9','dc22fd53f7ba1b6a70e12d50753e19f37cf0a0da97f7a6140afd2bc304b2a60d',4),
+        '10b9da760c42fe3524d3f6ff59b119b9771d0e43d2c0f5193af9cb9f9b7be74e':
+            ('cb9ea3e6b4152a3ee41e10d35888dadda18ec0419b8080371510e8847f1847cf','dc7113a10542c4b8de2036def8373a4574ab2092d17efd1a39e1c224f1bec308','e30dba715e7e57dd97416e913946a29a916efbd7c055251f078c0f27c0b6edbe','dc22fd53f7ba1b6a70e12d50753e19f37cf0a0da97f7a6140afd2bc304b2a60d',4,True),
     }
     if binding['blob_sha256'] in barrier_native:
-        manifest_sha,gles,observer_sha,scope,revision=barrier_native[binding['blob_sha256']]
+        reviewed=barrier_native[binding['blob_sha256']]
+        assert len(reviewed) in (5,6)
+        manifest_sha,gles,observer_sha,scope,revision=reviewed[:5]
+        conditional_prime=len(reviewed)==6 and reviewed[5] is True
         assert binding['manifest_sha256']==manifest_sha
         assert binding['library_sha256']==gles
         resources=package['metal_resources'];observer=package['exception_observer']
@@ -135,9 +140,16 @@ def validate_wled_gpu_ram(package, binding):
         assert observer['library_sha256']==observer_sha
         assert observer['render_unused_buffer_binding_probe_revision']==2 and observer['render_pipeline_switch_retains_unused_fragment_slot0']
         assert observer['presentation_probe'] and observer['cif10_reference_cases']==6
-        assert not observer.get('program_cache_prime')
-        assert observer['program_cache_inventory']['read_only'] and observer['program_cache_inventory']['conditional_prime'] is False
+        assert bool(observer.get('program_cache_prime')) is conditional_prime
+        assert observer['program_cache_inventory']['read_only'] and observer['program_cache_inventory']['conditional_prime'] is conditional_prime
         assert observer['program_cache_scope']['identity']==scope
+        if conditional_prime:
+            inventory=observer['program_cache_inventory']
+            assert inventory['context_identity']=='b2d3872d86da13a0ec1db5c198f56ffd1fcf1fa2905314824a1cf33ea41ca9c1'
+            assert inventory['build_identity']=='19fd0e76cce2eb272390f11d3880c31b1599a7cb0bda7b1192d0e79d6f0a573c'
+            assert inventory['scope_identity']==scope and inventory['directory']=='/private/var/tmp/sgm-dc22fd53f7ba1b6a70e12d50753e19f3'
+            assert inventory['max_prime_entries']==8 and inventory['max_files']==64 and inventory['max_bytes']==33554432
+            assert observer['empty_primer_not_dispatched'] and observer['cache_inventory_after_complete_native21_PNG6']
         if gles=='467b24f613e75bbe675d8003e47ddca7e1cf649e91340ebb64cc04b0183f86d4':
             assert package['frontend_build_binding']['ordered_XR_requires_synchronous_GL_frontend']
         if revision>=3:
@@ -147,7 +159,7 @@ def validate_wled_gpu_ram(package, binding):
             assert package['frontend_build_binding']['ordered_XR_image_barrier_revision']==4
             assert package['frontend_build_binding']['ordered_XR_dense_driver_images_resolved_from_linked_GL_program']
             assert package['frontend_build_binding']['ordered_XR_unknown_images_SSBO_writes_or_atomics_use_original_barrier']
-        if binding['blob_sha256']=='eee6db388a4e3adfb04c27bd7e4a433a4649efd2d216f2d0cb139a210874d01b':
+        if binding['blob_sha256'] in ('eee6db388a4e3adfb04c27bd7e4a433a4649efd2d216f2d0cb139a210874d01b','10b9da760c42fe3524d3f6ff59b119b9771d0e43d2c0f5193af9cb9f9b7be74e'):
             assert observer['cif10_export_pacing_revision']==3 and observer['cif10_export_pacing_microseconds']==15000
             assert observer['cif10_export_ranges_emitted_once'] and observer['cif10_export_remaining_time_EINTR_and_failure_host_passed']
             assert observer['observer_log_write_failures_checked'] is True and observer['observer_log_summary_revision']==1
@@ -378,7 +390,7 @@ def validate_wled_gpu_ram(package, binding):
 
 def validate_wled_gpu_record(record, package, binding):
     stage=validate_wled_gpu_ram(package,binding)
-    if binding['blob_sha256']=='c6aab7f471247d3e8da7bebf3ac6a1885b9c9625ab9b02ee95413478d6ce2959':
+    if binding['blob_sha256'] in ('c6aab7f471247d3e8da7bebf3ac6a1885b9c9625ab9b02ee95413478d6ce2959','10b9da760c42fe3524d3f6ff59b119b9771d0e43d2c0f5193af9cb9f9b7be74e'):
         assert record['version']==LOG_VERSION and record['kernel_sha256']==LOG_KERNEL_SHA
     assert 'thread_sample_observation' not in record, 'v731 GPU trials exclude thread sampling'
     if 'swipe_observation' in record:
