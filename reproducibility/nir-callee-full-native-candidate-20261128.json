@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-28",
+  "candidate_only": true,
+  "device_operations": 0,
+  "RAM_blob_sha256": "6bfe39ba8aa094fc9235181cd7ba633ea8ac7629a69bd5f8f3ab947b0d62f2e3",
+  "RAM_manifest_sha256": "45629ea392f03d38878a51d8fb810b472bf3a092a887c5fd8ba1f56e642771e7",
+  "GLES_sha256": "dd3ffb371577fc1f158a59c722e5750db24c41511b2f2ac6732e35846bbc8887",
+  "Metal_sha256": "19a08083833851d5a13016473ec3c3db98629d6ce6fc928b70947af114abee49",
+  "observer_sha256": "2d0c846af5036af3817f967f0e2eda5d5748ab7ed3c9a0718e3d15bb3c424a93",
+  "source_map_sha256": "41bdf3e49258c8cf6d57a69beb99d15dec0e1404aec2509725c386941e0f25ee",
+  "native_groups": 21,
+  "PNG_cases": 6,
+  "read_only_inventory": true,
+  "conditional_prime": false,
+  "packages": {
+    "native-cpu": {
+      "token": "b4b87a99ca59d79e",
+      "sha256": "97b3317c5503a53ab96e0c9f880f83aec08d0e18d1adfb5d2ded655c380fb202",
+      "kernel_sha256": "f1d485a4f0306bcef003783ea9b2338188a6c8b65a4300fb207acbb15e9b387b",
+      "trial_mode": "ramcpu"
+    },
+    "native21": {
+      "token": "53fec6c3efa6d843",
+      "sha256": "40cc279e9886deeecce41f2848bb1283318575004e5ce6adb9098ecef8970266",
+      "kernel_sha256": "f1d485a4f0306bcef003783ea9b2338188a6c8b65a4300fb207acbb15e9b387b",
+      "trial_mode": "gpu"
+    }
+  },
+  "new_GLES9_required_before_native_GPU": true,
+  "new_native_RAM_CPU_required": true,
+  "no_original_UI_or_device_native_admission": true
+}

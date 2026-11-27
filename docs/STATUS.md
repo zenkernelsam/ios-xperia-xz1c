@@ -12,7 +12,7 @@ CPU／launchd、触控／音量键、完整GLES9、Metal21／PNG6和原生720×1
 
 单块NIR内联原型通过真实debug validator、ASan／UBSan及1／64／4096次嵌套／分支图的完整序列化字节对照，未安装生产源。固定Mesa的准确Earth链接阶段2.568→2.345秒、约8.7%改善，但两侧整进程都在LLVM14 host退出期失败；不提升为host GL／真机GPU通过。当前生产Mesa不变。
 
-下一轮优先现有标准程序缓存：本原靴星空／星点已存bin，Earth73444B实际request已持久化而未存bin。新完整backboard native21／PNG6包先自身CPU，再按本build／source-map只读inventory；只有准确missing请求才conditional prime。需核对实际bin／原pipeline／draw／扫描，不能空跑primer、改旧cache或以新token重发原失败。旧r5及日志缺条原拒绝由[GPU专题](METAL-REQUEST-OBSERVATION.md)与原报告索引，不再作为当前未准入状态。
+下一次恢复合法实机会话后，按新GLES RAM自身CPU→完整GLES9→新native RAM自身CPU→完整native21／PNG6顺序单发；各轮四回程／健康／worker退出均通过后才下一轮。新原Aegir观察包须嵌入上述组合自己的fresh proof，不能复用旧r5证明；只有该build实际出现missing request时才另建conditional primer。旧r5原请求／失败保留，不重发。
 
 ## 当前编译器与监督进程候选
 
@@ -21,6 +21,10 @@ CPU／launchd、触控／音量键、完整GLES9、Metal21／PNG6和原生720×1
 [局部SSA编译器候选](../reproducibility/nir-callee-local-ssa-host-20261128.json)只修改固定免费Mesa的GLSL／NIR四文件，先降低函数局部变量，再在callee递归内联后整理SSA。准确Earth的release host链接阶段2.936→1.383秒，约52.9%减少；原shader长度／FNV匹配关系保持。before／after原NIR结构及支配关系4点检查、768个作者调用／3120字检查／48guard及131072个half／float32边界模式全字节对照通过。原LLVM14 host退出期失败仍保留，不作为完整host GL或真机通过。
 
 Mac已用实际iPhoneOS SDK／ARM64只重编三个compiler objects，制作独立archive overlay；原deps／档案不改，SweetGPU／allocator／SCM／PON／RPC／VM冻结。[准确ARM64／guest候选](../reproducibility/nir-callee-local-ssa-ios-candidate-20261128.json)已打包：GLES `dd3ffb371577fc1f158a59c722e5750db24c41511b2f2ac6732e35846bbc8887`／14801296B，RAM blob `30a5bf63ddfa56fb9587c4308c6eb92525616c69ac4d062ada88ce6cb1ff00b7`。新CPU单发token `92b7017cc30e02bd`、GLES9 `999c9b10a80fc321`已准备，均未投递，尚无新CPU／GLES9／native21／PNG6／原UI准入。详见BUILD，生产基线保持。
+
+[完整新native候选](../reproducibility/nir-callee-full-native-candidate-20261128.json)已离线准备：Metal仍为19a08083…，new GLES dd3ffb37…；native CPU token `b4b87a99ca59d79e`、native21／PNG6 `53fec6c3efa6d843`均未投递。该observer只读inventory，不运行无缺失请求的primer。43→44项准入测试通过（旧缺输入2项skip）；实际GPU及原UI仍未验。
+
+[实际编译输入投递前审计](../reproducibility/compiler-overlay-actual-audit-20261128.json)已补充4源、3 ARM64对象、24当前／原archive和overlay原manifest核对；Mac正例及source／object／archive／manifest破坏和错误CPU用例通过。live／offline使用同一检查，结果进入payload-audit，所有USB／COM操作之前执行。
 
 ## v732日志票号候选
 

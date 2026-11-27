@@ -233,6 +233,8 @@ def main():
         wanted=ram['frontend_build_binding']
         relative=Path(record['ram_package']).resolve().relative_to(ROOT).as_posix()+'/manifest.json'
         remote="import sys,json,hashlib;from pathlib import Path;r=Path('Desktop/ios-xperia-xz1c');m=json.load(open(r/"+repr(relative)+"));b=m['frontend_build_binding'];s=b['source_files'];d=b['mesa_dependencies'];mb=Path(b.get('mesa_build_directory','build/mesa-ios'));assert not mb.is_absolute() and mb.parts[0]=='build' and '..' not in mb.parts;assert all(hashlib.sha256((r/'gpu/sweetgl'/p).read_bytes()).hexdigest()==h for p,h in s.items());assert all(hashlib.sha256((r/mb/p).read_bytes()).hexdigest()==h for p,h in d.items());print(json.dumps(b))"
+        if wanted.get('Mesa_shader_compiler_overlay'):
+            remote=remote.replace('print(json.dumps(b))',"sys.path.insert(0,str(r/'tools'));from mesa_compiler_overlay import verify as verify_compiler_overlay;ca=verify_compiler_overlay(r,b);print(json.dumps(dict(frontend_binding=b,compiler_overlay_audit=ca)))")
         if wanted.get('IR3_variant_cache'):
             spec=wanted['IR3_variant_cache']
             remote="import hashlib;from pathlib import Path;r=Path('Desktop/ios-xperia-xz1c');sp="+repr(spec)+";assert hashlib.sha256((r/sp['patch']).read_bytes()).hexdigest()==sp['patch_sha256'];assert hashlib.sha256((r/sp['header']).read_bytes()).hexdigest()==sp['header_sha256'];assert all(hashlib.sha256((r/'deps/mesa'/p).read_bytes()).hexdigest()==h for p,h in sp['patched_sources'].items());assert hashlib.sha256((r/'deps/mesa/src/freedreno/ir3/lilac_ir3_variant_cache.h').read_bytes()).hexdigest()==sp['header_sha256'];"+remote
@@ -247,7 +249,14 @@ def main():
             remote="import hashlib;from pathlib import Path;r=Path('Desktop/ios-xperia-xz1c');s="+repr(sources)+";assert all(hashlib.sha256((r/p).read_bytes()).hexdigest()==h for p,h in s.items());assert hashlib.sha256((r/"+repr(helper)+").read_bytes()).hexdigest()=="+repr(geo['library_sha256'])+";"+remote
         check=subprocess.run(['ssh','-o','BatchMode=yes','-o','ConnectTimeout=8','ciscohe@192.168.68.54','python3 -c '+__import__('shlex').quote(remote)],capture_output=True,text=True,timeout=25)
         assert check.returncode==0,check.stdout+check.stderr
-        assert json.loads(check.stdout)==wanted
+        returned=json.loads(check.stdout)
+        if wanted.get('Mesa_shader_compiler_overlay'):
+            assert returned['frontend_binding']==wanted
+            compiled=returned['compiler_overlay_audit']
+            assert compiled['actual_sources_checked']==4 and compiled['actual_ARM64_objects_checked']==3
+            assert compiled['actual_archives_checked']==len(wanted['mesa_dependencies']) and compiled['original_archives_unchanged']
+            payload_proof['Mesa_shader_compiler_overlay_audit']=compiled
+        else:assert returned==wanted
     if not a.live:print('OFFLINE: stage gates, artifact and '+str(actual['audited_sources'])+' actual Mac sources/kernel verified');return 0
     directory=Path(a.directory).resolve()
     assert directory.is_relative_to(Path(os.environ['TEMP']).resolve()) and not directory.exists()

@@ -83,3 +83,5 @@ powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File tools/device
 ```
 
 原request保留原字节，规范化路径另存；stdout／stderr由Python监督进程自己持有真实文件。PowerShell的RedirectStandardOutput方式曾让启动shell等整个子进程，已用0.75秒启动／20秒owned worker／另一shell取证复验修正。核对完整原run仍按上文；launch成功或正常fastboot枚举不能替代四回程marker或准入原中断阶段。
+
+带局部SSA compiler overlay的新包在USB／COM之前另外核对Mac实际4源、3 ARM64 object、24原／当前archive及原overlay manifest，审计结果保留到payload-audit。修改声明hash不能跳过实际文件／架构检查；完整新GLES9／native21／PNG6准入条件保持。

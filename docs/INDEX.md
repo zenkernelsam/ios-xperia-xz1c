@@ -85,3 +85,5 @@ runtime的[EOF收尾前报告](../reproducibility/lilac-pcm-runtime-cache-offlin
 原Earth当前输入重放与未采用NIR原型见[离线报告](../reproducibility/earth-link-host-offline-20261127.json)；本轮入口原文／SHA见[归档manifest](archive/20261127/earth-host-link-close-out/original-document-manifest.json)。
 
 2026-11-28局部SSA／独立后台监督进程：见[host编译器证据](../reproducibility/nir-callee-local-ssa-host-20261128.json)和[生命周期证据](../reproducibility/hidden-trial-supervisor-host-20261128.json)；五份入口原文／SHA见[本轮归档](archive/20261128/callee-ssa-and-background/original-document-manifest.json)。
+
+2026-11-28完整native候选／投递前实际compiler审计见[候选](../reproducibility/nir-callee-full-native-candidate-20261128.json)和[审计](../reproducibility/compiler-overlay-actual-audit-20261128.json)；入口原文／SHA见[归档](archive/20261128/compiler-overlay-audit/original-document-manifest.json)。

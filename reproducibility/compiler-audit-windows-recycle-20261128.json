@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-28",
+  "items": [
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T01:22:51.9716430+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RKODNV4",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-overlay-audit-f9kixlev",
+      "files": 21,
+      "bytes": 4401,
+      "all_contents_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T01:22:52.5634612+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R56FK4A",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-overlay-audit-qfbwa6wo",
+      "files": 21,
+      "bytes": 4401,
+      "all_contents_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T01:22:52.8623270+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RYB4JNO",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-overlay-audit-xtiw38h_",
+      "files": 21,
+      "bytes": 4401,
+      "all_contents_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T01:22:53.1698984+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RCHBVG8",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-overlay-audit-_ga93le6",
+      "files": 21,
+      "bytes": 4400,
+      "all_contents_verified": true
+    }
+  ],
+  "files": 84,
+  "bytes": 17603,
+  "Windows_Recycle_Bin_not_emptied": true,
+  "no_permanent_delete": true
+}

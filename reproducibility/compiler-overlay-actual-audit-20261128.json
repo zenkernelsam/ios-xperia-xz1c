@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-28",
+  "actual_overlay_sources_checked": 4,
+  "actual_ARM64_objects_checked": 3,
+  "actual_Mesa_archives_checked": 24,
+  "actual_original_archives_checked": 24,
+  "actual_overlay_manifest_checked": true,
+  "actual_Mac_positive_check_passed": true,
+  "host_corruption_tests": 4,
+  "refuses_source_object_archive_manifest_mutation": true,
+  "wrong_cpu_rejected_even_if_claimed_hash_updated": true,
+  "pre_device_audit": true,
+  "source_files": {
+    "tools/mesa_compiler_overlay.py": "43de75b4cd46922cf7e9e8ec6eb4eb47e09ee3a6b34bc9579e24b30cce97fa81",
+    "tools/build/test_mesa_compiler_overlay.py": "b9c19ce1ba8eaa120ddb1675f137bf895c97b7d2f20c149c079eb0729d8b0e69",
+    "tools/device/run_trial.py": "b366f918e376fe9f25ebecd113d2f37c865d4f3cadd804be1c139d7b27f19b3c"
+  },
+  "device_operations": 0
+}
