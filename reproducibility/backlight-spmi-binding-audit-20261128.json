@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-28",
+  "source_path": "bsd/dev/sweet_spmi.c",
+  "source_sha256": "78e81f5826347e3589691e3cedfa71d78dab716ca66753f0830c35def74ce334",
+  "source_lock_matched": true,
+  "observed_contract": {
+    "observer_reads_use_existing_APID_mapping": true,
+    "write_helper_lazily_maps_write_lane": true,
+    "read_write_timeouts_poison_APID": true,
+    "owner_selection_prefers_EE0": true,
+    "describe_returns_mapping_count_not_structured_owner": true,
+    "owner_reassignment_is_separate_mutating_API": true
+  },
+  "remaining_backlight_hardware_dependencies": [
+    "current 0x3d8/0x3d9 APID ownership and unpoisoned lanes",
+    "owner-verified range/current epoch",
+    "actual bounded SPMI callbacks and registration",
+    "optical response and power/fade/auxiliary level paths"
+  ],
+  "no_owner_reassignment_or_bus_initialization_attempted": true,
+  "current_SPMI_and_PON_source_not_modified": true,
+  "device_operations": 0,
+  "hardware_test_gate": "Fresh physical fastboot session / strict return provenance remains unavailable; old failed packages must not be replayed"
+}

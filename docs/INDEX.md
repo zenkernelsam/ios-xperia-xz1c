@@ -91,3 +91,5 @@ runtime的[EOF收尾前报告](../reproducibility/lilac-pcm-runtime-cache-offlin
 2026-11-28非零backlight property→duty候选：见[Lilac外设](LILAC-PERIPHERALS.md)与[离线证明](../reproducibility/backlight-nonzero-duty-backend-20261128.json)；六份入口原文／SHA见[归档](archive/20261128/backlight-duty-backend/original-document-manifest.json)。
 
 逐IO背光epoch候选见[新证据](../reproducibility/backlight-duty-per-io-epoch-20261128.json)，五份入口原文／SHA见[归档](archive/20261128/backlight-per-io-epoch/original-document-manifest.json)。
+
+WLED实际SPMI接入依赖审计见[报告](../reproducibility/backlight-spmi-binding-audit-20261128.json)，四份入口原文／SHA见[归档](archive/20261128/wled-spmi-binding/original-document-manifest.json)。

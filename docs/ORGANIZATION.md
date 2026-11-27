@@ -172,3 +172,5 @@ Windows Patch/Xperia/research实查仍为89个参考Git仓库、非仓库0。Ubu
 2026-11-28非零backlight后端轮：六份入口原文／SHA先存backlight-duty-backend归档。独立service链接验证的两个20MB派生产物共41,370,168B已进入[Mac原生垃圾桶](../reproducibility/backlight-duty-macos-trash-20261128.json)，全部SHA及原v732／冻结SweetGPU／新service object核对不变；当前object／源码／recipe／proof保留，验证副本未投递。两个已完成host test executable进入[Windows原生回收站](../reproducibility/backlight-duty-windows-recycle-20261128.json)。原候选／baseline／救砖输入及回收站未清空。
 
 2026-11-28逐IO背光epoch修正：五份入口原文及SHA在backlight-per-io-epoch归档。已完成ARM64链接验证的两个派生kernel共41,370,168B进入[Mac原生垃圾桶](../reproducibility/backlight-epoch-macos-trash-20261128.json)，全部内容SHA及原v732／SweetGPU／新service object核对一致；源码／object／recipe／proof保留。两个host测试程序进入[Windows原生回收站](../reproducibility/backlight-epoch-windows-recycle-20261128.json)。没有永久删除或清空回收站，没有设备投递。
+
+2026-11-28WLED SPMI依赖轮只有锁定源读取／metadata审计；四份入口原文已保留wled-spmi-binding归档，无新binary／kernel／设备操作，没有新增待回收产物。

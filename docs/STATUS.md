@@ -117,3 +117,5 @@ WSL／Mac同源十二组ASan／UBSan及六个ARM64对象通过，C11 caller和C+
 [当前非零背光候选](../reproducibility/backlight-nonzero-duty-backend-20261128.json)已接通可选service后端代码，构造不做硬件IO；成功要完整事务／读回／同epoch。缺实际owner／SPMI／注册，brightness0／fade／辅助level仍Unsupported，无面板调光或睡眠实测。kernel GPU／allocator／SCM／PON／RPC／VM冻结，新service未加入启动。
 
 [背光最新逐IO epoch候选](../reproducibility/backlight-duty-per-io-epoch-20261128.json)已补上每次read／write／wait前后readiness／epoch检查；中途变化及时停止后续IO并保留uncertain。38／6／1故障位置、65535请求映射及重入回归通过，独立ARM64链接已验；没有新kernel投递、真实bus回调或光学，brightness0／fade／level保持待实现。GPU候选包及合法新会话待验条件保持。
+
+[WLED真实SPMI依赖](../reproducibility/backlight-spmi-binding-audit-20261128.json)已核对锁定源码：observer样本不能准入write ownership。现有describe只返回映射数量，真实backend尚缺当前APID owner／unpoisoned／bounded callback验证。未重分配owner或改共享SPMI／PON源码；当前新GPU和WLED候选仍待恢复合法实机会话及完整回程条件。
