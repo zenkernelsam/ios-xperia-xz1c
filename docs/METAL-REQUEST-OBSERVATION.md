@@ -1,5 +1,7 @@
 # 原壁纸请求、快照与绘制停点 — 2026-11-25
 
+[v732完整native21／PNG6](../reproducibility/v732-log-tickets-full-actual-20261127.json)已通过，Stencil工作PAGE／MAP／RETIRE、99相位原hash和六个PNG原字节／ICC／metadata全部齐；七轮logger状态dropped0。证明来自token1cfd34d92fe4f08d当前LIVE→ACK原流，旧两次缺记录失败不提升。新原Aegir observer／RAM嵌入同一完整证明，继续观察原snapshot／CG输入／queue退休，不能把作者probe成功当原壁纸成功；保持原paused／mode。
+
 2026-11-27 [多writer票号候选](../reproducibility/log-tickets-r1-offline-20261127.json)针对当前logger producer争用路径，保持原GPU／native／PNG字节验证不变。v732仅更换日志object，不能把host并发、基线链接或新status响应当完整native成功。必须先新kernel private／owner／ready和新RAM自身CPU，再其自身GLES9／native21／PNG6；原两次native缺记录继续保持拒绝。
 
 2026-11-27 [15ms日志候选原拒绝](../reproducibility/cif10-paced-r3-native-stencil-log-refusal-20261127.json)保留controller PASS和独立Stencil失败：phase41缺一条PAGE，MAP／RETIRE及99相位hash仍在原流。PNG6原字节／CRC／容器／像素检查已单独通过，尚不能生成完整native或PNG准入。两轮原缺失记录均不补造、不重发原包。

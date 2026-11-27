@@ -1,0 +1,108 @@
+{
+  "date": "2026-11-27",
+  "native_trash_items": 7,
+  "native_trash_files": 11,
+  "logical_bytes": 21120908,
+  "protected_files_SHA_preserved": 60,
+  "no_permanent_deletion": true,
+  "Mac_Trash_not_emptied": true,
+  "items": [
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/log-tickets-r1-20261127/asan-macos/test",
+      "trash_path": "/Users/ciscohe/.Trash/test 18-25-09-885",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 33264,
+          "sha256": "8e180411d76ce2079b92732b379318b3c50434ccef68e8a861c63bc74a930a7d"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/log-tickets-r1-20261127/asan-macos/test.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test.dSYM 18-25-09-956.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 633,
+          "sha256": "ba820782da2c966e230b338c1aa38733a2d9ca556e581aef1df842fbe38ea313"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test.yml",
+          "bytes": 171,
+          "sha256": "ed9a66ced1aa643ce209af3446ac177726f5d05b6cee70bac4318ef593fb1f72"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test",
+          "bytes": 24856,
+          "sha256": "fb32654d640d1298aed9141d25609fd7971ee3459739344ebe9423a46e265fe9"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/log-tickets-r1-20261127/tsan-macos/test",
+      "trash_path": "/Users/ciscohe/.Trash/test 18-25-10-009",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 18792,
+          "sha256": "a8686e77eca3c8cee90b30efad491f36ba04a78f006eebc0965c9a56b0107d25"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/log-tickets-r1-20261127/tsan-macos/test.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test.dSYM 18-25-10-060.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 633,
+          "sha256": "ba820782da2c966e230b338c1aa38733a2d9ca556e581aef1df842fbe38ea313"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test.yml",
+          "bytes": 171,
+          "sha256": "5982a762c775f29b55b1c564d7dae4e0da3ae8da02c72b867d5de7a686a405d9"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test",
+          "bytes": 22716,
+          "sha256": "207419473707c3de0a76ecbf7d2788fec7a4e8db8a33336a4e15f8e01edae135"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/log-tickets-r1-20261127/sources.tar",
+      "trash_path": "/Users/ciscohe/.Trash/sources.tar 18-25-10-115.tar",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 20480,
+          "sha256": "bcfd188f517fe6054bdebe764692b30ff375cc218e31487f666a284443981369"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/log-tickets-r1-20261127/tool-update.tar",
+      "trash_path": "/Users/ciscohe/.Trash/tool-update.tar",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 317440,
+          "sha256": "0df47d0c464bf88acc54c9eb493afdde24b30be8913ad251f780827efaeba607"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/log-tickets-r1-20261127/link/baseline-v731.macho",
+      "trash_path": "/Users/ciscohe/.Trash/baseline-v731.macho",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 20681752,
+          "sha256": "1d4c2ec294ba4e5e9a0b95a3f1e895036301575f3f2f2fa1172feed456d9420b"
+        }
+      ]
+    }
+  ]
+}

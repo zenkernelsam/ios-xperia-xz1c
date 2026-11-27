@@ -1,5 +1,9 @@
 # 本周整理与文档整合 — 2026-11-27
 
+v732完整七项实机收尾：[Mac7项／11文件／21,120,908 B](../reproducibility/v732-log-tickets-macos-trash-20261127.json)和[Windows／WSL4项／10文件／55,826,986 B](../reproducibility/v732-log-tickets-windows-recycle-20261127.json)实际进入原生回收站，60个Mac和37个Windows保护文件SHA保持。[两套Ubuntu Trash为空](../reproducibility/v732-log-tickets-wsl-trash-audit-20261127.json)，未清空Windows／Mac垃圾桶。所有原失败、七轮当前raw／scanout／证明、签名库与新logger object、源码／stash备份保留。
+
+本次整合前[五份入口原文](archive/20261127/v732-full-actual/original-document-manifest.json)原字节与SHA已保存。新完整native／PNG6原证据均在正式仓库，原Aegir新observer已使用其准确证明构建；新原包仍先自身CPU，未借旧native。旧w731失败、缺PAGE／DATA及错误归因修正历史保持，SourceMap／GPU底层／RPC／PON等冻结源码不改。
+
 多writer票号候选整合前五份入口原文及SHA在[新archive](archive/20261127/log-tickets-r1/original-document-manifest.json)。新源／builder／status准入及报告均在正式仓库，research没有新增实验。Windows／Mac源和host sanitizer检查、实际ARM64 object及v731精确链接输入保留；新kernel候选与原失败不同，不借旧proof。当前新增host产物与传输副本在本轮验收结束后按原生回收规则处理，受保护输入与既有回收站保持。
 
 并发核验补回收：[Mac16项／24文件／336,443 B](../reproducibility/console-writer-check-macos-trash-20261127.json)进入原生Trash，[Windows／WSL10项／12文件／5,744,614 B](../reproducibility/console-writer-check-windows-recycle-20261127.json)进入Windows回收站；30个Mac、31个Windows源／日志／manifest SHA保持。实际ARM64头编译对象、当前v731对象代码段核验和所有原失败保留；垃圾桶均未清空。新串行writer原型明确未接入内核，不作为当前writer竞争修复。

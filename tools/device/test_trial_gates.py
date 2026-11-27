@@ -31,6 +31,22 @@ class Gates(unittest.TestCase):
         for bad in (dict(record,kernel_sha256=WLED_KERNEL_SHA),dict(record,version=WLED_VERSION),
                     dict(record,diagnostic_binding=base['binding']),dict(record,source_revision='0'*64)):
             with self.assertRaises(AssertionError):verify_record(bad)
+    def test_v732_original_poster_requires_its_actual_native_and_png(self):
+        path=Path(__file__).resolve().parents[2]/'build/aegir-log-tickets-r1-20261127/ram/manifest.json'
+        if not path.is_file():self.skipTest('Original v732 RAM unavailable')
+        raw=path.read_bytes();package=json.loads(raw)
+        binding=dict(library_sha256=package['library_sha256'],blob_sha256=package['blob_sha256'],manifest_sha256=hashlib.sha256(raw).hexdigest())
+        self.assertEqual(validate_wled_gpu_ram(package,binding),'poster')
+        changes=[('prior_native_hardware_proof','version',731),('prior_native_hardware_proof','kernel_sha256',WLED_KERNEL_SHA),
+                 ('prior_native_hardware_proof','native_run_token','1e1bf33f91081ea2'),
+                 ('prior_native_hardware_proof','native_tests',package['exception_observer']['prior_native_hardware_proof']['native_tests'][:20]),
+                 ('png_encoder_prior_proof','kernel_sha256',WLED_KERNEL_SHA),('png_encoder_prior_proof','reference_raw_sha256','0'*64)]
+        for section,key,value in changes:
+            bad=copy.deepcopy(package);bad['exception_observer'][section][key]=value
+            with self.subTest(section=section,key=key),self.assertRaises(AssertionError):validate_wled_gpu_ram(bad,binding)
+        for key in ('blob_sha256','manifest_sha256','library_sha256'):
+            bad=dict(binding);bad[key]='0'*64
+            with self.subTest(identity=key),self.assertRaises(AssertionError):validate_wled_gpu_ram(package,bad)
     def test_original_command_error_routes_safe_return(self):
         for line, reason in (
             ('SWEET RQUEUE RESULT pid=7 call=1 status=5 error_nil=0 code=9 terminal_getters_only=1','ORIGINAL_METAL_COMMAND_ERROR'),

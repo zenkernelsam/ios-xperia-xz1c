@@ -1,0 +1,27 @@
+[
+  {
+    "source": "docs/STATUS.md",
+    "archive": "docs/archive/20261127/v732-full-actual/originals/STATUS.md",
+    "sha256": "5c69d1b416816c4b608c2188039a7eb1e49ef69656fb7c0159c5bfcfdf08cce9"
+  },
+  {
+    "source": "docs/BUILD.md",
+    "archive": "docs/archive/20261127/v732-full-actual/originals/BUILD.md",
+    "sha256": "ced40647dd9706a4c9295e4b8e115de2a97f3bde293ef9f3c75338b073615f9f"
+  },
+  {
+    "source": "docs/INDEX.md",
+    "archive": "docs/archive/20261127/v732-full-actual/originals/INDEX.md",
+    "sha256": "7a9484c36be6571be16688b9e64f473e71064c3c91ba2ed530b5dc4b04e3a9a6"
+  },
+  {
+    "source": "docs/METAL-REQUEST-OBSERVATION.md",
+    "archive": "docs/archive/20261127/v732-full-actual/originals/METAL-REQUEST-OBSERVATION.md",
+    "sha256": "f1b96b1abf2a6a1614d88b72a8512738b78b96c28244c2649168b52e8f3dda10"
+  },
+  {
+    "source": "docs/ORGANIZATION.md",
+    "archive": "docs/archive/20261127/v732-full-actual/originals/ORGANIZATION.md",
+    "sha256": "678755fe0ea3341b365fcd94b46241d7165a7caf47db459ad7e94df2199319f1"
+  }
+]

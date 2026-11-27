@@ -16,7 +16,13 @@ CPU／launchd、触控／音量键、完整GLES9、Metal21／PNG6和原生720×1
 
 新kernel SHA `f1d485a4f0306bcef003783ea9b2338188a6c8b65a4300fb207acbb15e9b387b`，20681712 B；v731基线重链接除UUID外完全一致，仅替换logger.o，原1112项filelist及4个额外link objects均保持。静态DATA虚拟区增长3MiB，非空vm span低于32MiB；无allocator／VM／GPU／SCM／PON／RPC代码修改。新版本单独为732、86源，不能借731准入。
 
-下一轮private `cfc7bfafb0c3c165`先核对当前VM／SMEM、F12及单次原scanout，180秒一次现有status查询读取log／dropped；之后仍需新732 owner→ready→RAM自身CPU→GLES9→native21／PNG6。新内核尚未实机，原失败包保持，不重发。当前手机安全fastboot，无在途启动。
+下一轮private `cfc7bfafb0c3c165`先核对当前VM／SMEM、F12及单次原scanout，180秒一次现有status查询读取log／dropped；之后仍需新732 owner→ready→RAM自身CPU→GLES9→native21／PNG6。[v732完整实机报告](../reproducibility/v732-log-tickets-full-actual-20261127.json)已验private／owner／ready／GLES RAM CPU／GLES9／native RAM CPU／完整native21及PNG6，七轮都单发完整回程，每次180秒状态dropped0、tx=log。完整native token `1cfd34d92fe4f08d`，raw SHA `697d3124f5888bb8bf53292c41c4fcf83b0fa47b9fe06c6f7d72954f27755025`，回程38.453秒；[native21 proof](../reproducibility/v732-native21-proof-20261127.json)和[PNG6 proof](../reproducibility/v732-PNG6-proof-20261127.json)同一原流，缺失Stencil PAGE／PNG DATA已在新靴完整核对。旧失败不提升、不重发。当前手机安全fastboot，无在途启动。
+
+## 原Aegir下一轮
+
+新`build/aegir-log-tickets-r1-20261127`保持v732／r5 GLES／原反射Metal，short observer SHA `2ec05f92…`、RAM blob `c6aab7f4…`、manifest `48ca18e9…`，嵌入上述新完整native／PNG6证明。原request／renderer／paused／mode保持，旧cache不改删；原snapshot／queue退休、真实原PNG及CG输入仍按原返回观察。
+
+先CPU `f1fd4ad7957b84a5`自身准入，再原GPU `02758c66f824e349`；GPU只在本LIVE／F12120秒一次既定上滑、150秒一次原scanout、180秒一次现有只读status。未投递，完整原UI／壁纸、FPS、光学／睡眠及其它外设仍待实机。
 
 ## 已验基线
 

@@ -1,0 +1,86 @@
+{
+  "date": "2026-11-27",
+  "native_recycle_items": 4,
+  "native_recycle_files": 10,
+  "logical_bytes": 55826986,
+  "protected_files_SHA_preserved": 37,
+  "WSL_shared_outputs_entered_Windows_Recycle_Bin": true,
+  "no_permanent_deletion": true,
+  "Recycle_Bin_not_emptied": true,
+  "items": [
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\log-tickets-r1-20261127\\asan-wsl\\test",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RYFPP2Y",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 1422464,
+          "sha256": "381e292eee6b5b9ae8344bd723db6c3e496ede6503e09f4c24ec4aeeaa89471f"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\log-tickets-r1-20261127\\private",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RS4DA0I",
+      "entries": [
+        {
+          "relative": "trial.img",
+          "bytes": 27029504,
+          "sha256": "37adc817b98507de6fc6e27bdc9eb2dc2fee22376b9395aca13a93d1a65194eb"
+        }
+      ]
+    },
+    {
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\log-tickets-r1-20261127\\private-r2",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RFTC72A",
+      "entries": [
+        {
+          "relative": "artifacts.json",
+          "bytes": 4922,
+          "sha256": "86eeab377e276094d31778777e5576c1e4b78817c8e0ab9755202126c7c86e3a"
+        },
+        {
+          "relative": "package-proof.json",
+          "bytes": 403,
+          "sha256": "8e8a23cf780f1951d72d9bf5f1aa03e6f2cfe95d5980b791d0a1c2f74efa1948"
+        },
+        {
+          "relative": "plan.json",
+          "bytes": 742,
+          "sha256": "2bdd2aee47858efc39cd97b52bcf8d5a566851bdc8bdef678a7b3fde92e1f5e0"
+        },
+        {
+          "relative": "trial.img",
+          "bytes": 27029504,
+          "sha256": "31c54b53b5afe77ba6a92936da8429dd84c71b599fd43eac5ba08f6041c0534c"
+        }
+      ]
+    },
+    {
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-log-tickets-r1-20261127",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RV7R8K8",
+      "entries": [
+        {
+          "relative": "source-manifest.json",
+          "bytes": 321,
+          "sha256": "d71b20848870c0a084f96c6fecd736c149ad9d525d1a2cb62ddeadb159aec764"
+        },
+        {
+          "relative": "sources.tar",
+          "bytes": 20480,
+          "sha256": "bcfd188f517fe6054bdebe764692b30ff375cc218e31487f666a284443981369"
+        },
+        {
+          "relative": "tool-update-manifest.json",
+          "bytes": 1206,
+          "sha256": "27a1936ebb82ca3e79259377d633f53dc7bc9f1641955c6d742bd5b520b80250"
+        },
+        {
+          "relative": "tool-update.tar",
+          "bytes": 317440,
+          "sha256": "0df47d0c464bf88acc54c9eb493afdde24b30be8913ad251f780827efaeba607"
+        }
+      ]
+    }
+  ]
+}
