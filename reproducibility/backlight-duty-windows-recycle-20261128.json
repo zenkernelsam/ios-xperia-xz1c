@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-28",
+  "items": [
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T02:01:39.2215062+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RU98OQE",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\backlight-duty-backend-r1-20261128\\host-test",
+      "bytes": 116304,
+      "sha256": "a1d454bf36b04a338d283e971e38dac010902a9a3d6e75fad42ef1b9ff218dd9"
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T02:01:39.4103346+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RPUQCSN",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\backlight-duty-backend-check-r1-20261128\\host-test",
+      "bytes": 116304,
+      "sha256": "a1d454bf36b04a338d283e971e38dac010902a9a3d6e75fad42ef1b9ff218dd9"
+    }
+  ],
+  "files": 2,
+  "bytes": 232608,
+  "contents_verified": true,
+  "Windows_Recycle_Bin_not_emptied": true,
+  "no_permanent_delete": true
+}

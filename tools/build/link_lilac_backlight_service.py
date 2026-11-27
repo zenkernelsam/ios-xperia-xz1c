@@ -15,7 +15,9 @@ RECIPES = {
     "wled-link.argv.json": "9e0975b9ea4c9cfb8b4778f69e967e659b92a32af624809b607cc80162ba86fd",
     "wled.link.filelist": "a861ce2a6506fce38d23f90bd3b4fd77523a5a72220930fae7bc7ef6784c30b5",
 }
-SOURCES = ("AppleARMBacklight.cpp", "LilacBacklightService.h", "LilacBacklightProperties.h")
+SOURCES = ("AppleARMBacklight.cpp", "LilacBacklightService.h", "LilacBacklightProperties.h",
+           "LilacBacklightDutyBackend.h", "LilacWledDutyTransaction.h",
+           "LilacWledDutyPlan.h", "LilacWledSnapshot.h")
 
 
 def build(source_directory, output):
@@ -86,7 +88,8 @@ def build(source_directory, output):
     run(link, object_root, "service-link")
     symbols = subprocess.check_output(["xcrun", "nm", str(candidate)], text=True, timeout=20)
     require("__ZN17AppleARMBacklight13setPropertiesEP8OSObject" in symbols
-            and "lilac_backlight_create_service" in symbols, "Service class or registration entry missing")
+            and "lilac_backlight_create_service_with_duty_backend" in symbols,
+            "Service class or duty-backend registration entry missing")
     check_inputs()
     report = {
         "base_kernel_sha256": WLED_KERNEL_SHA,
@@ -97,6 +100,9 @@ def build(source_directory, output):
         "linked_kernel_sha256": sha(candidate),
         "linked_kernel_bytes": candidate.stat().st_size,
         "service_and_factory_symbols_found": True,
+        "nonzero_duty_backend_factory_symbol_found": True,
+        "unimplemented_zero_fade_level_are_not_reported_success": True,
+        "epoch_and_readback_required_before_property_cache_update": True,
         "spmi_wled_or_mmio_imports": False,
         "publication_hook_present": False,
         "device_operations": 0,

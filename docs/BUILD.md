@@ -311,3 +311,5 @@ builder锁定四个源before／after、实际SDK命令、三个ARM64 object、�
 新compiler overlay的实际源／object／archive校验由`tools/mesa_compiler_overlay.py`统一执行；run_trial再次读取Mac materialized源和ARM64对象、原／当前archive及manifest，不能只验证RAM里声明的SHA。结果写入payload-audit，SHA或CPU类型差异在任何设备操作前拒绝。host验证用`python -B -m unittest discover -s tools/build -p test_mesa_compiler_overlay.py`，fixture只在TEMP，完成后走原生回收站。
 
 新GLES组合的完整native RAM重用当前源码生成的全部21组与PNG6；标准库与Metal仍按实际签名／source-map绑定。新source-scope首次运行只读inventory，不预设存在需要prime的请求。own RAM CPU和该GLES自身9组都需原raw准入；随后新native／PNG原proof才能用于原UI short observer。四个显式单发request已保存在本轮build/planned-requests，未启动；实际SHA和token只由STATUS维护。
+
+非零backlight duty后端host复现用`check_lilac_backlight_duty_backend.py --reference <固定Sony Git> --output <新build目录>`，核对固定DTB／Git blob、65535请求值、epoch／重入／写失败。`link_lilac_backlight_service.py`现复制并核对七份真实support源，新增duty factory只在独立service对象里；旧kernel原对象保持，链接验证副本不可当已准入设备kernel。

@@ -254,7 +254,7 @@
     "tools/build/prepare_screen_snapshot.py": "f019ddbfae7fba46a0ffe9af53c375fab64e500b110fdd4dbdbbd2ad91709278",
     "tools/build/prepare_lilac_wled_observer.py": "a887ccdd9188db452b0fb519cda02c951314a65da061ece2ed55a1dbbc963f32",
     "tools/build/link_lilac_wled_candidate.py": "3e73c9ab8c33139a21065420601c4be75f2dd6e2d2c58ccf5512272b7606927d",
-    "tools/build/link_lilac_backlight_service.py": "abc4d65a0fd13e76c16bb1b51faa201bb1625545397f97678d835a3e2afc3464",
+    "tools/build/link_lilac_backlight_service.py": "69c458512f557ec7d51e419636091b79744a8a8eaf909f0bd702e9875bee82ba",
     "tools/build/test_lilac_wled_screen_probe.cpp": "cfc466a64192069d92bc6fec8ffb705695fe5dfeacbb53ed609e255c2248a821",
     "tools/build/test_screen_codec.c": "3d7edfd19904d5e557af8e18ac337bd05a99987fe3aaf0adebd739eb57cedf35",
     "tools/build/test_lilac_wled_snapshot.c": "e0a45b19165f0c691369e2e2fe85a57c71932956ddbaf92f9a31f0876f10a0b2",
@@ -363,7 +363,9 @@
     "tools/build/build_callee_ssa_overlay.py": "0afb4e366b378f7060a30aa3b99b8a65f64ee44b04c1278fee2fc04bd2336674",
     "tools/build/test_glsl_local_ssa.c": "1cced57cd9fc0efb5870f668ab044559c29271dd6cb598ace8434702f4434ede",
     "tools/mesa_compiler_overlay.py": "43de75b4cd46922cf7e9e8ec6eb4eb47e09ee3a6b34bc9579e24b30cce97fa81",
-    "tools/build/test_mesa_compiler_overlay.py": "b9c19ce1ba8eaa120ddb1675f137bf895c97b7d2f20c149c079eb0729d8b0e69"
+    "tools/build/test_mesa_compiler_overlay.py": "b9c19ce1ba8eaa120ddb1675f137bf895c97b7d2f20c149c079eb0729d8b0e69",
+    "tools/build/test_lilac_backlight_duty_backend.cpp": "d5693b37bc6e5159a3d40c14167f912ddaf661f8857152e2d57543254370eaf7",
+    "tools/build/check_lilac_backlight_duty_backend.py": "7df6dfd9e676db11f302821ff1c678c5533d994b28c53f0cdafdddb083206e19"
   },
   "gpu_sources": {
     "gpu/diagnostics/exception_observe.m": "530e8ab3b6fdbb22ebabee3a31ce9d14b039b0a66e2691fdfd68e9c5597f1167",
@@ -519,8 +521,8 @@
     "xnu/support/LilacWledDutyPlan.h": "450d1a9e409f3807c0bf38d3a26c850327ed07af6e3947d2d9a63cb77c9fe3ed",
     "xnu/support/LilacWledDutyTransaction.h": "9341c44209379284dc1dbb68e907b5028f94fcfa76948d0868dd0e4ceaa983dd",
     "xnu/support/LilacBacklightProperties.h": "40c94bae4d7ba5d7c1ce8f9652b793975d6d2315069639cc26888381f3dbc9d6",
-    "xnu/support/AppleARMBacklight.cpp": "4d9f500f4e56c54e80fdac518c7e715095e24a7d31f7bb45e190c9f43e78a778",
-    "xnu/support/LilacBacklightService.h": "d6a99809b6da988bf2e1cb055756d6298051b632a660934b75797c15d16d2985",
+    "xnu/support/AppleARMBacklight.cpp": "7860bc9208ae86848e41684c6d3449110e41cf6247b93512ccecd44322630fee",
+    "xnu/support/LilacBacklightService.h": "095fbfe86b9fc94644358addec6be08c602dc2590ac2eff9b1d6372ff1aa1695",
     "xnu/support/LilacWledScreenProbe.h": "35c4ae4e9815daa479e8f429d991700d72528fe67405d8ca4710fb176c510ef0",
     "tools/maintenance/recycle_macos.swift": "912027443190d69d9f72ccd43388d5e571feb1571fd986b405859aeb07596915",
     "tools/program_cache_inventory.py": "aea5136cb9014ffd72788b365f04ebc8ff2b995a1b7c0b2ac6ca691268e983aa",
@@ -533,7 +535,8 @@
     "xnu/support/LilacPcmRuntimeAPI.h": "bf9f8c4c7a7f8ead6f214e4be7cb28e313cf8d02c66aeea8e37d12abcf34234b",
     "xnu/support/LilacPcmRuntimeAPI.cpp": "86242e985e7a58d9277106500e97963da65dd215b1a75a2719be9c3e44df607c",
     "xnu/support/SweetLogSnapshot.h": "d4402a4a541960c89e7c6e9051797f8f376407a9447ecb2e7405163405e8aed3",
-    "xnu/support/SweetLogTickets.h": "0da971a692de1f887bf36b03a0a5b2d8126c20f1ef65add0bfa750455d399d18"
+    "xnu/support/SweetLogTickets.h": "0da971a692de1f887bf36b03a0a5b2d8126c20f1ef65add0bfa750455d399d18",
+    "xnu/support/LilacBacklightDutyBackend.h": "6c42e8e743c9fb4755207c1ecff7f53361d7a6ef650b417891f332b15c365b59"
   },
   "v729_private_actual_return_passed": true,
   "v729_private_owner_ready_actual_return_passed": true,

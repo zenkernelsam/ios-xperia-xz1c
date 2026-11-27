@@ -166,3 +166,17 @@ python -B tools/device/run_trial.py --bundle build/my-wled-private --directory "
 主机在首帧结束后最多等两秒，并受原帧截止时间约束，不补发截图。未收到样本时仍保存已验扫描帧，读数单列为不可用。回程后的 WLED 核验使用 `tools/device/lilac_wled_evidence.py --directory <原运行目录> --image-sha256 <该包SHA> --output <新报告>`。
 
 v731 的两种图形验收包均使用 `xz1c-native-2x` 拟合布局和 150 秒单帧。固定 R21 RAM 只跑 GLES；固定 R25 RAM 在 backboardd 运行完整 Metal21／PNG6 背景测试，另须提供同核 GLES9 先验。使用各自的 RAM 先跑同镜像内容的 v731 CPU 准入，再依操作手册提供 v731 的 private／owner／ready／CPU 和保存的 RPM 时钟证据。参见 [GLES9 实测](../reproducibility/lilac-wled-v731-gles9-actual-20261124.json)和 [Metal21／PNG6 实测](../reproducibility/lilac-wled-v731-metal21-actual-20261124.json)。原壁纸启动诊断是独立的串口试验，不取扫描帧或 WLED 样本。
+
+## 非零属性到占空比的候选后端
+
+[本轮离线证明](../reproducibility/backlight-nonzero-duty-backend-20261128.json)补充旧属性service：`LilacBacklightDutyBackend.h`把已验证、明确advertised min/max的非零整数按整数ceiling归一到owner给定的12位上限，再复用原4/1000下限和六步占空比事务。固定原厂DTB没有`qcom,wled-brightness-map`或stepper，SYNC延迟1000us；21项somc区域电流表仍单列，不当作256项亮度LUT或光学线性曲线。caller仍须验证物理范围／回调／串行所有权。
+
+IOService新增可选duty-backend factory，旧无backend入口仍NotReady。try-lock拒绝并发／重入，backend在readiness回调前设置busy；要求准确同epoch，事务后复核epoch和总线读回。只有VERIFIED／稳定UNCHANGED才更新IODisplayParameters.value并返回成功。属性dictionary提前分配，后写registry失败使backend不确定；任何已开始写入的失败保持锁定，不重发／回滚。backend及bus context由owner保留到service detach，构造不初始化或映射SPMI。
+
+brightness0、非零FadePeriod及辅助backlight-level需要各自真实电源／渐变／等级路径，目前明确Unsupported且无IO。此候选只完成已启用模块的非零即时占空比通路，不证明灭屏、唤醒、光学亮度或全背光API。65535个属性值以独立long-double ceiling对照、极值、六个写失败、epoch变化与回调重入通过ASan／UBSan。新service以实际v731 recipe独立ARM64编译并追加链接，原1116链接输入保持；没有开机注册调用或实际bus回调，没有新设备内核投递。
+
+```powershell
+python -B tools/build/check_lilac_backlight_duty_backend.py --reference D:/Desktop/Git/Patch/Xperia/research/lilac-kernel-8.4 --output build/新的-duty-backend-host
+```
+
+Mac独立链接使用现行`link_lilac_backlight_service.py`，输出新build目录；原kernel和GPU／allocator／SCM／PON／RPC／VM不改。下一步仍是带真实owner/readiness的backlight注册／非零调光验收及光学，再单独处理模块电源与睡眠恢复。

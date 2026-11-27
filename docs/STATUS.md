@@ -91,7 +91,7 @@ barrier revision4从当前linked fragment program的ImageUnits映射GL binding�
 
 | 外设 | 当前实现／实际证据 | 仍待完成 |
 | --- | --- | --- |
-| WLED／背光 | v731首帧后只读fault0、enable／strings mask3、duty1989／1989；属性service与非零调光事务离线通过 | 实际注册／SPMI写入、亮度／灭屏／唤醒及光学 |
+| WLED／背光 | v731首帧后只读fault0、mask3、duty1989／1989；非零属性／duty后端65535值及epoch／重入／写失败离线通过，service独立ARM64链接 | 实际注册／SPMI写入、亮度／灭屏／唤醒及光学 |
 | ADSP／音频 | 实机只stage3固件核验和AP准备；AFE／ADM／ASM、GLINK／FIFO及PCM C接口完成主机和ARM64验证；启动源码审计确认RPM前置及stage4～7最终shutdown | 持续DSP供电／启动／关闭生命周期、endpoint／schema／token回显、Tasha／Tavil选用、实际mapping／cache回调、codec和物理声音 |
 | Wi-Fi／蓝牙 | 原DTB和开源路径已核对，进程有启动日志 | 控制器初始化、扫描／连接和真实数据传输 |
 | shared event／presentedTime | selectors36／37／38／45仍零输出，presentedTime0 | 端口／mapped page及实际呈现时间未实现；旧草稿不算通过 |
@@ -113,3 +113,5 @@ WSL／Mac同源十二组ASan／UBSan及六个ARM64对象通过，C11 caller和C+
 只操作BH905ND69G，fastboot设备命令显式`-s`；COM≥10、VID1209/PID0001且一个worker；PON只0x06，单download／boot、失败不重发。内核GPU底层／allocator／SCM／PON／RPC／VM冻结，SweetGPU.cpp SHA **`aa2c36792a2298b060aa858eabdc039522fcdde3cfdbafd453c5fc6c0683c157`**。gl5／userdata／SD／TA／XFL／校准／备份／救砖输入受保护。
 
 本轮整合前五份入口与原SHA在[原文archive](archive/20261126/pcm-c-abi/original-document-manifest.json)。废弃host产物进入原生回收站，WSL共享build产物走Windows回收站，准确receipt由ORGANIZATION索引；不永久删除或清空Windows／Mac垃圾桶。原失败、准确候选、少量所需raw／proof和受保护输入保留。
+
+[当前非零背光候选](../reproducibility/backlight-nonzero-duty-backend-20261128.json)已接通可选service后端代码，构造不做硬件IO；成功要完整事务／读回／同epoch。缺实际owner／SPMI／注册，brightness0／fade／辅助level仍Unsupported，无面板调光或睡眠实测。kernel GPU／allocator／SCM／PON／RPC／VM冻结，新service未加入启动。
