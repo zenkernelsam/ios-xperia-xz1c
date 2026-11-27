@@ -1,0 +1,275 @@
+{
+  "date": "2026-11-28",
+  "items": [
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T00:49:35.8748944+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RRT6VIS",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-preinline-ssa-r1-20261127\\check-r1\\baseline",
+      "contents": {
+        "files": 4,
+        "bytes": 18560851,
+        "recursive_manifest_sha256": "8344199f28a3d1dabb5dc5f0062aabd19b76f97308bdc3a7f851b18a516fd577"
+      },
+      "content_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T00:49:36.3666500+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RB30AN2",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-preinline-ssa-r1-20261127\\check-r1\\early-local-ssa",
+      "contents": {
+        "files": 4,
+        "bytes": 18560985,
+        "recursive_manifest_sha256": "64fe9fcd270d6316f7617c0d65cc4607e635b0d630a3a985bb75d5a41e91bb1f"
+      },
+      "content_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T00:49:36.5848609+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R3IAQGK",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-callee-ssa-r1-20261128\\check\\baseline",
+      "contents": {
+        "files": 5,
+        "bytes": 18626011,
+        "recursive_manifest_sha256": "0271fad63d591f20e1b39d8f783817eedae34b6486afb8efe95053900ec94e76"
+      },
+      "content_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T00:49:36.8492547+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RWFCI3Z",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-callee-ssa-r1-20261128\\check\\early-local-ssa-callee",
+      "contents": {
+        "files": 10,
+        "bytes": 18713400,
+        "recursive_manifest_sha256": "3588e207ffada4c172737b6d93dd44f3dbb4f44eea3bfcdd403345c4e89e20f0"
+      },
+      "content_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T00:49:37.0886015+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RU6N1K2",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-callee-ssa-r1-20261128\\validation\\baseline",
+      "contents": {
+        "files": 4,
+        "bytes": 19727142,
+        "recursive_manifest_sha256": "d025c73b81f5d3c38bfe10ed739a83abab7ac7e7fe9a275f471387282ddb6986"
+      },
+      "content_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T00:49:37.3231223+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RZ5UIU6",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-callee-ssa-r1-20261128\\validation\\early-local-ssa-callee",
+      "contents": {
+        "files": 9,
+        "bytes": 19814531,
+        "recursive_manifest_sha256": "f92b9ed58dc09a7fc2c986d057a2f44c3604892353128e4195f6f862f5f353a7"
+      },
+      "content_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T00:49:37.5442804+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RLNMKA0",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-callee-ssa-r1-20261128\\combined\\baseline",
+      "contents": {
+        "files": 4,
+        "bytes": 18560851,
+        "recursive_manifest_sha256": "8344199f28a3d1dabb5dc5f0062aabd19b76f97308bdc3a7f851b18a516fd577"
+      },
+      "content_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T00:49:37.7656380+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RQQCDHJ",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-callee-ssa-r1-20261128\\combined\\early-local-ssa-callee-straightline",
+      "contents": {
+        "files": 9,
+        "bytes": 18649049,
+        "recursive_manifest_sha256": "0ebc4fa202a23da1fec9fdc151760b600d47dc18e205fad5d4601634f2b6d908"
+      },
+      "content_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T00:49:37.9976675+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RM1KD7O",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-callee-ssa-r1-20261128\\half-check\\baseline-half",
+      "contents": {
+        "files": 1,
+        "bytes": 75896,
+        "recursive_manifest_sha256": "3cbfede9b25888ffe71ad3755219aed42e72a8ac3382c83eb1635b184dd3a110"
+      },
+      "content_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T00:49:38.0342701+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RJBU7MG.bin",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-callee-ssa-r1-20261128\\half-check\\baseline.bin",
+      "contents": {
+        "files": 1,
+        "bytes": 2097152,
+        "recursive_manifest_sha256": "0eb50def654829023ed15e1a4e9268afd6ff949e0e0d7ef76625222b71bdc01f"
+      },
+      "content_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T00:49:38.0732551+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R0RP2G3",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-callee-ssa-r1-20261128\\half-check\\early-local-ssa-callee-half",
+      "contents": {
+        "files": 1,
+        "bytes": 75896,
+        "recursive_manifest_sha256": "3cbfede9b25888ffe71ad3755219aed42e72a8ac3382c83eb1635b184dd3a110"
+      },
+      "content_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T00:49:38.1132307+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RSGX8FX.bin",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-callee-ssa-r1-20261128\\half-check\\early-local-ssa-callee.bin",
+      "contents": {
+        "files": 1,
+        "bytes": 2097152,
+        "recursive_manifest_sha256": "0eb50def654829023ed15e1a4e9268afd6ff949e0e0d7ef76625222b71bdc01f"
+      },
+      "content_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T00:49:38.1488401+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RK4MMBG",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-callee-ssa-r1-20261128\\half-check\\half-target",
+      "contents": {
+        "files": 1,
+        "bytes": 886000,
+        "recursive_manifest_sha256": "0f59098953190ed0ae0c2d7ff1050d44e75469b4171bcba26dcffc79bab4f5a3"
+      },
+      "content_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T00:49:38.1887741+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RQ6AZJX",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-callee-ssa-r1-20261128\\half-check\\unchanged-egl",
+      "contents": {
+        "files": 1,
+        "bytes": 76256,
+        "recursive_manifest_sha256": "b0d637cb6d4f30bec21de1d25cc10a6f1ad9b5da04afb2f9ed26b0f3ac80e635"
+      },
+      "content_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T00:49:38.2293437+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RVUA6F7.bin",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-callee-ssa-r1-20261128\\baseline-semantics.bin",
+      "contents": {
+        "files": 1,
+        "bytes": 12480,
+        "recursive_manifest_sha256": "bb781a9c3e7461ba333fd297fd992425ed456c05c34d6e04939d34f7b7d4e959"
+      },
+      "content_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T00:49:38.2667161+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RI5FMPU.bin",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-callee-ssa-r1-20261128\\early-local-ssa-callee-semantics.bin",
+      "contents": {
+        "files": 1,
+        "bytes": 12480,
+        "recursive_manifest_sha256": "bb781a9c3e7461ba333fd297fd992425ed456c05c34d6e04939d34f7b7d4e959"
+      },
+      "content_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T00:49:38.3827743+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RC7QGWZ",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-background-lifecycle-host-20261127-r1",
+      "contents": {
+        "files": 3,
+        "bytes": 2394,
+        "recursive_manifest_sha256": "eda9f530c5c8a2d84910f3882472a7d9dd633ffd2db1af84d1e647f9d2c5747e"
+      },
+      "content_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T00:49:38.6455568+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R2M619V",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-start-trial-host-20261127-r1",
+      "contents": {
+        "files": 8,
+        "bytes": 7318,
+        "recursive_manifest_sha256": "f2907639b0cb17939791c43c782d23768e1e83730313f174a84f54357293d37c"
+      },
+      "content_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T00:49:38.9143286+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RLYFR1K",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-start-trial-host-20261127-r2",
+      "contents": {
+        "files": 9,
+        "bytes": 7976,
+        "recursive_manifest_sha256": "2dbd6a3d2d2d2f6988e332d05b281c384048b4da0edea34804601f76f8a47bbe"
+      },
+      "content_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T00:49:39.2061126+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R9E0TO7",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-start-trial-host-20261127-r3",
+      "contents": {
+        "files": 12,
+        "bytes": 8938,
+        "recursive_manifest_sha256": "4d169f92768fb385a12df2fd760eecee0293c770324ea256bf64ab1adba7d0d2"
+      },
+      "content_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T00:49:39.5202351+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RWX1XE6",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-start-trial-host-20261127-r4",
+      "contents": {
+        "files": 20,
+        "bytes": 15038,
+        "recursive_manifest_sha256": "ba2a15bae550e3b208055e8dc7e25bedec967c805db172d6c1410d912ffb44b9"
+      },
+      "content_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T00:49:39.8247453+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RX1I700",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v732-native-return-only-20261127-r1",
+      "contents": {
+        "files": 1,
+        "bytes": 5949,
+        "recursive_manifest_sha256": "5a50bcf5f809901a8e4c9f7ee1ac471347a9d8ace8d73f06b1016cb4a1f2fe39"
+      },
+      "content_verified": true
+    }
+  ],
+  "native_recycle_items": 22,
+  "files": 110,
+  "bytes": 156593745,
+  "Windows_Recycle_Bin_not_emptied": true,
+  "no_permanent_delete": true,
+  "current_ARM64_guest_and_failure_evidence_retained": true
+}

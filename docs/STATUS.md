@@ -1,16 +1,26 @@
-# 当前状态 — 2026-11-27
+# 当前状态 — 2026-11-28
 
 CPU／launchd、触控／音量键、完整GLES9、Metal21／PNG6和原生720×1280几何已有真机证据。当前v732日志队列／r5 GLES／反射Metal组合七轮准入通过且dropped0；原Aegir仍在Earth的NIR链接阶段超时，原UI／FPS／睡眠／光学和其它外设保持未完成。内核GPU／allocator／SCM／PON／RPC／VM冻结。
 
 ## 设备与下一轮
 
-2026-11-27用户已重新插拔并确认Sony **BH905ND69G**蓝灯fastboot；本轮独立只读健康32.750秒通过，未download／boot，无在途进程。最新原失败token `02758c66f824e349`已完整0x06回程，失败包不重发；准确原记录见下节。
+2026-11-27用户已重新插拔并确认Sony **BH905ND69G**蓝灯fastboot；本轮先独立只读健康32.750秒通过，随后按下述候选单发。最新原失败token `02758c66f824e349`已完整0x06回程，失败包不重发；准确原记录见下节。
+
+新标准bin预热候选 `build/earth-cache-prime-r1-20261127`已完成离线审计；CPU单发token `3579aca49123dae0`已通过独立准入，39.703秒完整回程／健康且worker退出，日志dropped0；[原CPU报告](../reproducibility/earth-cache-prime-cpu-actual-20261127.json)保留。后台GPU单发 `e7c201e4f261e7ec`捕获在约90秒停止，原controller／worker PID已不存在且无results.json；[原中断观察](../reproducibility/earth-cache-prime-interrupted-observation-20261127.json)保持未准入。当前Sony独立只读fastboot健康31.015秒通过，无在途进程；四回程marker未捕获，不用枚举正常提升原阶段，也不重发该包。当前继续离线处理后台生命周期和NIR链接；下一次实机仍须满足OPERATIONS的会话及完整回程条件。
 
 [Earth离线核对](../reproducibility/earth-link-host-offline-20261127.json)从当前gl5只读核对230044B原库，再用完整旧request与正式HalfESSL／XRBlend重放。重放VS4879B／FNVf2eef44db6a198a7、FS76869B／FNV27c2d57438bf46fe，均与最新LIVE→ACK日志一致；`bytes=74672`是原转换GLSL，原AIR20624B。代表function constants不当真实值使用。
 
 单块NIR内联原型通过真实debug validator、ASan／UBSan及1／64／4096次嵌套／分支图的完整序列化字节对照，未安装生产源。固定Mesa的准确Earth链接阶段2.568→2.345秒、约8.7%改善，但两侧整进程都在LLVM14 host退出期失败；不提升为host GL／真机GPU通过。当前生产Mesa不变。
 
 下一轮优先现有标准程序缓存：本原靴星空／星点已存bin，Earth73444B实际request已持久化而未存bin。新完整backboard native21／PNG6包先自身CPU，再按本build／source-map只读inventory；只有准确missing请求才conditional prime。需核对实际bin／原pipeline／draw／扫描，不能空跑primer、改旧cache或以新token重发原失败。旧r5及日志缺条原拒绝由[GPU专题](METAL-REQUEST-OBSERVATION.md)与原报告索引，不再作为当前未准入状态。
+
+## 当前编译器与监督进程候选
+
+[独立后台监督进程](../reproducibility/hidden-trial-supervisor-host-20261128.json)经真实两个shell测试：启动0.75秒返回，监督进程／owned worker继续运行20秒，晚到stdout完整；live:false／未知字段在启动前拒绝。正式入口start_trial.ps1只启动一次background_trial.py，后者直接调用原run_trial；没有新USB／串口操作或重试，PON／RPC／kernel保持。中断原GPU不提升，下一轮仍需会话及完整回程准入。
+
+[局部SSA编译器候选](../reproducibility/nir-callee-local-ssa-host-20261128.json)只修改固定免费Mesa的GLSL／NIR四文件，先降低函数局部变量，再在callee递归内联后整理SSA。准确Earth的release host链接阶段2.936→1.383秒，约52.9%减少；原shader长度／FNV匹配关系保持。before／after原NIR结构及支配关系4点检查、768个作者调用／3120字检查／48guard及131072个half／float32边界模式全字节对照通过。原LLVM14 host退出期失败仍保留，不作为完整host GL或真机通过。
+
+Mac已用实际iPhoneOS SDK／ARM64只重编三个compiler objects，制作独立archive overlay；原deps／档案不改，SweetGPU／allocator／SCM／PON／RPC／VM冻结。[准确ARM64／guest候选](../reproducibility/nir-callee-local-ssa-ios-candidate-20261128.json)已打包：GLES `dd3ffb371577fc1f158a59c722e5750db24c41511b2f2ac6732e35846bbc8887`／14801296B，RAM blob `30a5bf63ddfa56fb9587c4308c6eb92525616c69ac4d062ada88ce6cb1ff00b7`。新CPU单发token `92b7017cc30e02bd`、GLES9 `999c9b10a80fc321`已准备，均未投递，尚无新CPU／GLES9／native21／PNG6／原UI准入。详见BUILD，生产基线保持。
 
 ## v732日志票号候选
 

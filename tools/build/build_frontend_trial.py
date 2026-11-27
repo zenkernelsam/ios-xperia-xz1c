@@ -16,6 +16,23 @@ for path,wanted in lock['sweetgl']['files'].items():
 archives=re.search(r'LIBS="([^"]+)"',(source/'build.sh').read_text()).group(1).split()
 archives+=['src/mapi/shared-glapi/libglapi.0.dylib']
 dependencies={path:sha(build/path) for path in archives}
+compiler_overlay=None
+overlay_manifest=build/'nir-callee-local-ssa-inputs.json'
+if overlay_manifest.exists():
+    compiler_overlay=json.loads(overlay_manifest.read_bytes())
+    assert compiler_overlay['revision']==1 and compiler_overlay['link_input_overlay_only']
+    assert compiler_overlay['Mesa_commit']==lock['mesa']['base']
+    assert compiler_overlay['patch']=='gpu/nir-callee-local-ssa.patch'
+    assert compiler_overlay['patch_sha256']==sha(root/compiler_overlay['patch'])
+    assert compiler_overlay['builder_sha256']==sha(root/'tools/build/build_callee_ssa_overlay.py')
+    assert compiler_overlay['source_binding_sha256']==sha(root/'reproducibility/nir-callee-local-ssa-source-binding-20261128.json')
+    assert dependencies==compiler_overlay['overlay_archives']
+    assert set(compiler_overlay['updated_archives'])=={'src/compiler/glsl/libglsl.a','src/compiler/nir/libnir.a'}
+    for path,row in compiler_overlay['sources'].items():
+        assert sha(mesa/path)==row['before_sha256']
+        assert sha(build.parent/'sources'/path)==row['after_sha256']
+    for row in compiler_overlay['compiled_objects'].values():
+        assert row['architecture']=='arm64' and sha(root/row['object'])==row['sha256']
 env=dict(os.environ,SWEETGL_MESA_SOURCE=str(mesa),SWEETGL_MESA_BUILD=str(build),SWEETGL_OUTPUT=str(out))
 with (out/'build.log').open('wb') as log:
     result=subprocess.run(['bash',str(source/'build.sh')],env=env,stdout=log,stderr=subprocess.STDOUT)
@@ -26,6 +43,10 @@ for path,digest in dependencies.items():assert sha(build/path)==digest,path
 binding={'source_files':sources,'mesa_dependencies':dependencies,'mesa_base':lock['mesa']['base'],
          'mesa_patch_sha256':lock['mesa']['patch_sha256'],'only_frontend_recompiled':True,
          'library_sha256':sha(out/'sweetgl.dylib'),'device_operations':0}
+if compiler_overlay:
+    binding['Mesa_shader_compiler_overlay']=compiler_overlay
+    binding['Mesa_shader_compiler_overlay_manifest_sha256']=sha(overlay_manifest)
+    binding['actual_compiler_local_SSA_GPU_acceptance_pending']=True
 binding['XR_clear_decode_elision']=True
 binding['Clear_shader_context_cache']=True
 binding['render_target_observation_revision']=1

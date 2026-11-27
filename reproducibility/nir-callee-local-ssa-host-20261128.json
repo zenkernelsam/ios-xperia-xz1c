@@ -1,0 +1,131 @@
+{
+  "date": "2026-11-28",
+  "free_OSS_Mesa": "24.3.4",
+  "Mesa_commit": "769e51468b49b2a42f0a0eaf71cf9eed5ff4e5de",
+  "exact_current_Earth_inputs": true,
+  "release_link_observations": [
+    {
+      "variant": "baseline",
+      "source_sha256": "c94f11dbbb5284c82caab9fc86e1b20c34b3c8b84aa9ecc914dac6a517e18dcc",
+      "callee_source_sha256": {},
+      "object_sha256": "0f0a7434a1c20bf85c2bdd5da2741a83e0352c2325a67312170c74bc0e44d98a",
+      "library_sha256": "f9748cdfe72ed508e1e3d684319635fb7aa6f1416f42a69f359a1a109450ea0d",
+      "process_returncode": 1,
+      "link_return_observed": true,
+      "link": {
+        "wall_ns": 2935599869,
+        "cpu_ns": 2910675863,
+        "status": 1
+      },
+      "original_host_LLVM14_teardown_failure_seen": true,
+      "full_host_process_passed": false
+    },
+    {
+      "variant": "early-local-ssa-callee",
+      "source_sha256": "af39013a9224a097765d6cf608d49de654d2a13e0d64d1c76335e92a4e03f2ba",
+      "callee_source_sha256": {
+        "nir_functions.c": "9df5b4293b50be68b93703d5175a690ca0cd15ae439dc75aeb6e039c142e5c68",
+        "nir_lower_vars_to_ssa.c": "288e337b5695987f60e772a6c84a6b163f9949b41a1d332aba0b5bf8ac257598"
+      },
+      "object_sha256": "e8b34443692353c333c12eb801885ccb7b875b6bf687e87ef9cffd7b8ad44905",
+      "library_sha256": "96be7afe4471774b4c653fb6b980db74673d575408e90e3e853a7bdbaa2dc565",
+      "process_returncode": 1,
+      "link_return_observed": true,
+      "link": {
+        "wall_ns": 1382702227,
+        "cpu_ns": 1355747577,
+        "status": 1
+      },
+      "original_host_LLVM14_teardown_failure_seen": true,
+      "full_host_process_passed": false
+    }
+  ],
+  "link_phase_reduction_fraction": 0.5289881834369301,
+  "exact_Earth_structural_and_dominance_validation": [
+    {
+      "variant": "baseline",
+      "source_sha256": "bbfade6f0529d4b61663bbdfc61f7a3342d37c83d58b94aaf04c3f4ce9341389",
+      "callee_source_sha256": {},
+      "object_sha256": "54469cdae33641a917c3c31345065ba99b4ab10b8f017f03b3405c0d5f9ea08d",
+      "library_sha256": "50da5a9265f3712870ec203a6fe6eb7d9833beda644b591b88906c68276a6417",
+      "process_returncode": 1,
+      "link_return_observed": true,
+      "link": {
+        "wall_ns": 3393919855,
+        "cpu_ns": 3365414895,
+        "status": 1
+      },
+      "NIR_validation_checks": 4,
+      "original_host_LLVM14_teardown_failure_seen": true,
+      "full_host_process_passed": false
+    },
+    {
+      "variant": "early-local-ssa-callee",
+      "source_sha256": "428cd4554ab0a732d61aaa41018bfb7ffa108a5b7715dcc0eccf8c2a167bde37",
+      "callee_source_sha256": {
+        "nir_functions.c": "9df5b4293b50be68b93703d5175a690ca0cd15ae439dc75aeb6e039c142e5c68",
+        "nir_lower_vars_to_ssa.c": "288e337b5695987f60e772a6c84a6b163f9949b41a1d332aba0b5bf8ac257598"
+      },
+      "object_sha256": "f59393ffa5e60ceca5fb37bd77c22ba17b7168cc8f41f853f6dd91fd52bc5dca",
+      "library_sha256": "99d06ef49121c38dc431255d7ae6c03f423e6a0b1a6fac65fefa4b4d13845610",
+      "process_returncode": 1,
+      "link_return_observed": true,
+      "link": {
+        "wall_ns": 1495533752,
+        "cpu_ns": 1462487335,
+        "status": 1
+      },
+      "NIR_validation_checks": 4,
+      "original_host_LLVM14_teardown_failure_seen": true,
+      "full_host_process_passed": false
+    }
+  ],
+  "actual_debug_validator_asan_ubsan": true,
+  "authored_uint_semantics": {
+    "invocations": 768,
+    "word_checks": 3120,
+    "guard_words": 48,
+    "full_output_bytes_equal": true,
+    "baseline_sha256": "02d5754a79e08bfe6922ecb98a1939d8244de58b6b176c03cfd131a181c6b686",
+    "candidate_sha256": "02d5754a79e08bfe6922ecb98a1939d8244de58b6b176c03cfd131a181c6b686"
+  },
+  "production_half_patterns": {
+    "checks": [
+      {
+        "variant": "baseline",
+        "bytes": 2097152,
+        "sha256": "fc3a6d2a4c7f404f1bb40b27fc3c403db6eca2b70b637c0b0c1bb526f20075d6",
+        "patterns": 131072
+      },
+      {
+        "variant": "early-local-ssa-callee",
+        "bytes": 2097152,
+        "sha256": "fc3a6d2a4c7f404f1bb40b27fc3c403db6eca2b70b637c0b0c1bb526f20075d6",
+        "patterns": 131072
+      }
+    ],
+    "baseline_candidate_all_output_bytes_equal": true,
+    "finite_exact_and_NaN_class_checked": true,
+    "host_context_process_owned": true,
+    "context_destroy_not_tested": true,
+    "source_files": {
+      "tools/build/test_half_gles.c": "9aaff45093b9d37d2c27ef5e12cdbb1f8dee0b5f533ce8e3db752449d9569573",
+      "tools/build/test_half_target.cpp": "266fa6d49d5177a63cb3cfb7581da2660a7a9a62ddd609aa76dee7babeff3603",
+      "gpu/metal/air/HalfESSL.h": "6c10c9bc5e0f7051cc6275adb4e85ff21e7226b62910537fc4acfa7f3a69dbb4"
+    },
+    "device_operations": 0
+  },
+  "whole_GL_context_destroy_not_verified": true,
+  "original_host_LLVM14_teardown_failure_retained": true,
+  "source_files": {
+    "gpu/nir-callee-local-ssa.patch": "7743cef60d7206a583ba18d856389a325bedb56069b4ec44fea9e51e075e7403",
+    "tools/build/check_preinline_ssa.py": "b49a9ca5d08faf3bf6f6f4a2299d680eb314356dfcce7d967fc709158b9f8e7c",
+    "tools/build/build_callee_ssa_overlay.py": "0afb4e366b378f7060a30aa3b99b8a65f64ee44b04c1278fee2fc04bd2336674",
+    "tools/build/test_glsl_local_ssa.c": "1cced57cd9fc0efb5870f668ab044559c29271dd6cb598ace8434702f4434ede",
+    "tools/build/test_half_gles.c": "9aaff45093b9d37d2c27ef5e12cdbb1f8dee0b5f533ce8e3db752449d9569573",
+    "tools/build/build_frontend_trial.py": "57afe8a9d45b84372462bf049c156f5761554a2aee3b5e82b9bb668441a5188e"
+  },
+  "new_shader_compiler_archives_are_candidate_only": true,
+  "actual_GPU_UI_FPS_sleep_audio_wireless_still_pending": true,
+  "device_boots_for_compiler_candidate": 0
+}

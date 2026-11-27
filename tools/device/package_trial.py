@@ -60,6 +60,9 @@ def validate_wled_gles_ram(package, binding):
         ('dc7113a10542c4b8de2036def8373a4574ab2092d17efd1a39e1c224f1bec308',
          '31b8ab8196b7bfa84987253b91f8bb7c4b8a3855b37e1eee000dd0f4488cf074',
          'ad6365ab02e69674f54e35b7f70895afb63b39b72a848b1bceed028d2f7a94e9'),
+        ('dd3ffb371577fc1f158a59c722e5750db24c41511b2f2ac6732e35846bbc8887',
+         '30a5bf63ddfa56fb9587c4308c6eb92525616c69ac4d062ada88ce6cb1ff00b7',
+         '1073f71fe836322ef7357dd2276305b26f3dc6e16b73db96105f9c78956284d2'),
     ), 'v731 GLES9 RAM identity is not admitted'
     if binding['library_sha256']=='d1f5075c0f35eac56f3d1976775700a36da49bc1c6cb84c7493377592aa31a0b':
         assert frontend['ordered_XR_image_barrier_revision']==1
@@ -76,12 +79,24 @@ def validate_wled_gles_ram(package, binding):
         assert frontend['ordered_XR_image_barrier_revision']==3 and frontend['ordered_XR_requires_synchronous_GL_frontend']
         assert frontend['ordered_XR_monotonic_timestamp_wait_and_separate_scratch_cell']
         assert frontend['ordered_XR_first_timestamp_scratch_initialized_by_GPU']
-    if binding['library_sha256']=='dc7113a10542c4b8de2036def8373a4574ab2092d17efd1a39e1c224f1bec308':
+    if binding['library_sha256'] in ('dc7113a10542c4b8de2036def8373a4574ab2092d17efd1a39e1c224f1bec308','dd3ffb371577fc1f158a59c722e5750db24c41511b2f2ac6732e35846bbc8887'):
         assert frontend['ordered_XR_image_barrier_revision']==4 and frontend['ordered_XR_requires_synchronous_GL_frontend']
         assert frontend['ordered_XR_monotonic_timestamp_wait_and_separate_scratch_cell']
         assert frontend['ordered_XR_first_timestamp_scratch_initialized_by_GPU']
         assert frontend['ordered_XR_dense_driver_images_resolved_from_linked_GL_program']
         assert frontend['ordered_XR_unknown_images_SSBO_writes_or_atomics_use_original_barrier']
+    if binding['library_sha256']=='dd3ffb371577fc1f158a59c722e5750db24c41511b2f2ac6732e35846bbc8887':
+        overlay=frontend['Mesa_shader_compiler_overlay']
+        expected=json.loads((ROOT/'reproducibility/nir-callee-local-ssa-source-binding-20261128.json').read_bytes())
+        assert overlay['revision']==1 and overlay['link_input_overlay_only'] and overlay['device_operations']==0
+        assert overlay['patch']=='gpu/nir-callee-local-ssa.patch' and overlay['patch_sha256']==sha((ROOT/overlay['patch']).read_bytes())
+        assert overlay['source_binding_sha256']==sha((ROOT/'reproducibility/nir-callee-local-ssa-source-binding-20261128.json').read_bytes())
+        assert overlay['sources']==expected['sources']
+        assert overlay['overlay_archives']==frontend['mesa_dependencies']
+        assert {p:v['after_sha256'] for p,v in overlay['updated_archives'].items()}=={
+            'src/compiler/glsl/libglsl.a':'1c4b7b108a4083662d97b6a3d8916b81e7b149f04095e56dcd7f2adef5ed724b',
+            'src/compiler/nir/libnir.a':'9e9014305de600628cc35590aac7c23f4729d09cb70a364a9a908e217f7df2df'}
+        assert len(overlay['compiled_objects'])==3 and all(v['architecture']=='arm64' for v in overlay['compiled_objects'].values())
 
 def validate_wled_gpu_ram(package, binding):
     if 'exception_observer' not in package and 'metal_resources' not in package:
@@ -390,7 +405,7 @@ def validate_wled_gpu_ram(package, binding):
 
 def validate_wled_gpu_record(record, package, binding):
     stage=validate_wled_gpu_ram(package,binding)
-    if binding['blob_sha256'] in ('c6aab7f471247d3e8da7bebf3ac6a1885b9c9625ab9b02ee95413478d6ce2959','10b9da760c42fe3524d3f6ff59b119b9771d0e43d2c0f5193af9cb9f9b7be74e'):
+    if binding['blob_sha256'] in ('c6aab7f471247d3e8da7bebf3ac6a1885b9c9625ab9b02ee95413478d6ce2959','10b9da760c42fe3524d3f6ff59b119b9771d0e43d2c0f5193af9cb9f9b7be74e','30a5bf63ddfa56fb9587c4308c6eb92525616c69ac4d062ada88ce6cb1ff00b7'):
         assert record['version']==LOG_VERSION and record['kernel_sha256']==LOG_KERNEL_SHA
     assert 'thread_sample_observation' not in record, 'v731 GPU trials exclude thread sampling'
     if 'swipe_observation' in record:

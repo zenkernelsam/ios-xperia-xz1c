@@ -296,3 +296,14 @@ python3 -B tools/build/check_nir_straight_inline.py --mesa-source build/my-nativ
 ```
 
 输入须为固定24.3.4的native host build及compile_commands，准确原NIR源SHA被锁定；工具独立实编译debug validator、原／原型函数与作者测试，核对1／64／4096次图的完整序列化字节，原source／archives不变。[本轮报告](../reproducibility/earth-link-host-offline-20261127.json)保留整进程失败和链接阶段计量；局部变快不准入设备。下一轮现有缓存准入仍按OPERATIONS及实际完整native21／PNG6／inventory，不采用该小收益原型。
+
+## 函数局部SSA编译器候选
+
+免费Mesa24.3.4的`gpu/nir-callee-local-ssa.patch`只涉及GLSL／NIR及一个内部SSA声明。原／改host分别用同一准确原Earth重放字节；host tool可加--callee／--validate做内联局部优化及实际debug结构／支配关系检查。新archive overlay只是frontend输入，不能对它运行ninja；所有未修改archive与生成header继续指向原基线，两个compiler archive是独立副本。
+
+```sh
+python3 -B tools/build/build_callee_ssa_overlay.py --mesa-build build/mesa-ir3-cache-r1 --output build/my-callee-ssa
+python3 -B tools/build/build_frontend_trial.py --mesa-build build/my-callee-ssa/mesa-overlay --output build/my-callee-frontend
+```
+
+builder锁定四个源before／after、实际SDK命令、三个ARM64 object、原archive成员和顺序；原source／archive SHA不变。frontend再次核对patch／builder／源binding／objects及24份链接输入。新程序cache身份取实际archive／frontend源码；旧cache不删改。新guest仍须自身CPU→完整GLES9→新Metal／source-map对应native21及PNG6→原UI，不用host的约53%链接阶段改善提升基线。作者局部变量／循环／inout／全局SSBO与half模式输出只做host语义证明；原context destroy失败另列。当前SHA及设备状态只看STATUS。

@@ -1,0 +1,30 @@
+{
+  "originals": [
+    {
+      "path": "docs/STATUS.md",
+      "bytes": 16644,
+      "sha256": "0824f0c64c5ba8ed3d9ce35fe5c8453e0b496437074a0cc45dc094214297234f"
+    },
+    {
+      "path": "docs/BUILD.md",
+      "bytes": 31368,
+      "sha256": "c12dd0b49e274a8fa0cea82b1d0dae5aae26fcc7375cc8dc9b3ae888facde3e7"
+    },
+    {
+      "path": "docs/OPERATIONS.md",
+      "bytes": 9904,
+      "sha256": "68a387b4b481516856f74f46cd2dc279d8d366e53c81115493b4253bf6769276"
+    },
+    {
+      "path": "docs/INDEX.md",
+      "bytes": 10299,
+      "sha256": "8e422b742ddfd0e7bdaae0312053a74f3187acc003daaa7e8297f16a8b4a3ed6"
+    },
+    {
+      "path": "docs/ORGANIZATION.md",
+      "bytes": 32732,
+      "sha256": "bde2f18adad8fecbae0dc08997fd0c55d42dca24c4e7a7c4b80990aa52d307d8"
+    }
+  ],
+  "original_bytes_preserved": true
+}

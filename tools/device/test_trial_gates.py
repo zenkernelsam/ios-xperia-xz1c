@@ -20,6 +20,19 @@ from exception_evidence import inspect_scope,verify_renderer
 
 
 class Gates(unittest.TestCase):
+    def test_callee_ssa_gles_requires_exact_archives_and_current_kernel(self):
+        path=Path(__file__).resolve().parents[2]/'build/nir-callee-ssa-ios-r1-20261128/gles-ram/manifest.json'
+        if not path.is_file():self.skipTest('Callee SSA GLES RAM unavailable')
+        raw=path.read_bytes();package=json.loads(raw)
+        binding=dict(library_sha256=package['library_sha256'],blob_sha256=package['blob_sha256'],manifest_sha256=hashlib.sha256(raw).hexdigest())
+        self.assertEqual(validate_wled_gpu_ram(package,binding),'gles')
+        for key,value in [('patch_sha256','0'*64),('source_binding_sha256','0'*64),('sources',{}),('device_operations',1),('link_input_overlay_only',False)]:
+            bad=copy.deepcopy(package);bad['frontend_build_binding']['Mesa_shader_compiler_overlay'][key]=value
+            with self.subTest(field=key),self.assertRaises(AssertionError):validate_wled_gpu_ram(bad,binding)
+        bad=copy.deepcopy(package);bad['frontend_build_binding']['Mesa_shader_compiler_overlay']['updated_archives']['src/compiler/nir/libnir.a']['after_sha256']='0'*64
+        with self.assertRaises(AssertionError):validate_wled_gpu_ram(bad,binding)
+        with self.assertRaises(AssertionError):validate_wled_gpu_record(dict(version=WLED_VERSION,kernel_sha256=WLED_KERNEL_SHA),package,binding)
+
     def test_current_r5_conditional_primer_keeps_exact_scope_and_full_groups(self):
         path=Path(__file__).resolve().parents[2]/'build/earth-cache-prime-r1-20261127/ram/manifest.json'
         if not path.is_file():self.skipTest('Current Earth primer RAM unavailable')

@@ -83,3 +83,5 @@ runtime的[EOF收尾前报告](../reproducibility/lilac-pcm-runtime-cache-offlin
 旧handover／handout与编号手册在docs/archive；原字节与SHA保持。旧整理报告入口：[2026-11-12](ORGANIZATION-2026-11-12.md)、[2026-11-13](ORGANIZATION-2026-11-13.md)、[2026-11-15](ORGANIZATION-2026-11-15.md)。回收与复原统一由ORGANIZATION／LAYOUT说明，不从旧in-flight恢复执行。
 
 原Earth当前输入重放与未采用NIR原型见[离线报告](../reproducibility/earth-link-host-offline-20261127.json)；本轮入口原文／SHA见[归档manifest](archive/20261127/earth-host-link-close-out/original-document-manifest.json)。
+
+2026-11-28局部SSA／独立后台监督进程：见[host编译器证据](../reproducibility/nir-callee-local-ssa-host-20261128.json)和[生命周期证据](../reproducibility/hidden-trial-supervisor-host-20261128.json)；五份入口原文／SHA见[本轮归档](archive/20261128/callee-ssa-and-background/original-document-manifest.json)。

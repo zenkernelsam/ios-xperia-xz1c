@@ -1,0 +1,47 @@
+{
+  "date": "2026-11-28",
+  "items": [
+    {
+      "native_trash_verified": "true",
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/nir-callee-ssa-ios-r1-20261128/signed-gles/glram.raw",
+      "trash_path": "/Users/ciscohe/.Trash/glram.raw 00-52-54-754.raw",
+      "bytes": 33554432,
+      "sha256": "03639adb1eafb0d9b5ceabf5676429edae459aebf8255b93eee6ba8dafdcf27d"
+    },
+    {
+      "native_trash_verified": "true",
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/nir-callee-ssa-ios-r1-20261128/signed-gles/glram.dmg",
+      "trash_path": "/Users/ciscohe/.Trash/glram.dmg 00-52-54-829.dmg",
+      "bytes": 33554432,
+      "sha256": "03639adb1eafb0d9b5ceabf5676429edae459aebf8255b93eee6ba8dafdcf27d"
+    },
+    {
+      "native_trash_verified": "true",
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/nir-callee-ssa-ios-r1-20261128/gles-ram/glram.raw",
+      "trash_path": "/Users/ciscohe/.Trash/glram.raw 00-52-54-880.raw",
+      "bytes": 33554432,
+      "sha256": "dd3b6848bbf9aa0f5678fa9987f8f370c634a79bdfbf852950e599a779ba4cd9"
+    },
+    {
+      "native_trash_verified": "true",
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/nir-callee-ssa-ios-r1-20261128/gles-ram/glram.dmg",
+      "trash_path": "/Users/ciscohe/.Trash/glram.dmg 00-52-54-931.dmg",
+      "bytes": 33554432,
+      "sha256": "dd3b6848bbf9aa0f5678fa9987f8f370c634a79bdfbf852950e599a779ba4cd9"
+    }
+  ],
+  "files": 4,
+  "bytes": 134217728,
+  "all_native_trash_contents_verified": true,
+  "original_raw_reconstructed_exactly_from_retained_blobs": true,
+  "protected_candidate_and_kernel_SHA_unchanged": {
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/log-tickets-r1-20261127/link/kernel.log-tickets.macho": "f1d485a4f0306bcef003783ea9b2338188a6c8b65a4300fb207acbb15e9b387b",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/dxb/xnu/iokit/Kernel/arm/SweetGPU.cpp": "aa2c36792a2298b060aa858eabdc039522fcdde3cfdbafd453c5fc6c0683c157",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/nir-callee-ssa-ios-r1-20261128/gles-ram/glram.zblob": "30a5bf63ddfa56fb9587c4308c6eb92525616c69ac4d062ada88ce6cb1ff00b7",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/nir-callee-ssa-ios-r1-20261128/gles-ram/sweetgl.dylib": "dd3ffb371577fc1f158a59c722e5750db24c41511b2f2ac6732e35846bbc8887",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/nir-callee-ssa-ios-r1-20261128/mesa-overlay/src/compiler/glsl/libglsl.a": "1c4b7b108a4083662d97b6a3d8916b81e7b149f04095e56dcd7f2adef5ed724b",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/nir-callee-ssa-ios-r1-20261128/mesa-overlay/src/compiler/nir/libnir.a": "9e9014305de600628cc35590aac7c23f4729d09cb70a364a9a908e217f7df2df"
+  },
+  "Mac_Trash_not_emptied": true,
+  "no_permanent_delete": true
+}

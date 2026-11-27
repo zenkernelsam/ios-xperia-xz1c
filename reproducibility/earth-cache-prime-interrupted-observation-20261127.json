@@ -1,0 +1,93 @@
+{
+  "date": "2026-11-27",
+  "token": "e7c201e4f261e7ec",
+  "original_controller_result_missing": true,
+  "classification": "INCOMPLETE_CAPTURE_NO_NATIVE_ADMISSION",
+  "controller_pid": 451696,
+  "controller_and_worker_processes_observed_absent": true,
+  "raw_bytes": 1443367,
+  "raw_sha256": "c8faec9e623cee70b94f3f86ec806dbbcb1a6a0a2b63455fa6bf87192e703192",
+  "last_progress": {
+    "token": "e7c201e4f261e7ec",
+    "elapsed_seconds": 90.12,
+    "live": true,
+    "serial_bytes": 1382331
+  },
+  "single_boot_wire": {
+    "serial": "BH905ND69G",
+    "download_command_attempts": 1,
+    "boot_command_attempts": 1,
+    "boot_write_completed": true,
+    "payload_bytes_written": 31358976,
+    "payload_acknowledged": true,
+    "payload_bytes_are_lower_bound": false,
+    "retries": 0,
+    "kernel_live_verified": false,
+    "result": "BOOT_ACKNOWLEDGED",
+    "image_sha256": "abccc47d5b5a02a1d8135d83fe8382a226668b841ae861fce6034ab478a33eeb",
+    "sender_sha256": "e862e430514f7aaceb5ac5b2037a19770ba91889cb0088438e925b920dcde83c"
+  },
+  "missing_ACK_DRAIN_RESET_FINAL_DRAIN": true,
+  "independent_fastboot_health": {
+    "serial": "BH905ND69G",
+    "usb_vid": "0fce",
+    "usb_pid": "0dde",
+    "download_commands": 0,
+    "boot_commands": 0,
+    "reset_commands": 0,
+    "independent_health_only": true,
+    "previous_trial_result_unchanged": true,
+    "result": "PASS",
+    "continuous_health_seconds": 31.015000000130385,
+    "samples": [
+      {
+        "elapsed_seconds": 2.109999999869615,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 5.203999999910593,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 8.406999999890104,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 11.468999999808148,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 14.578999999910593,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 17.718999999808148,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 20.781999999890104,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 23.937999999849126,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 27.015999999828637,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 30.062999999849126,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 33.125,
+        "healthy": true
+      }
+    ]
+  },
+  "return_cause_not_inferred_from_USB_enumeration": true,
+  "old_package_not_replayed": true,
+  "original_raw_results_unchanged": true,
+  "remaining_GPU_UI_and_peripheral_goal_not_achieved": true
+}

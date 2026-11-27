@@ -1,0 +1,18 @@
+{
+  "hidden_supervisor_and_owned_worker_survived_prepare_shell_exit": true,
+  "stdout_after_prepare_exit_captured": true,
+  "quoted_space_paths_passed": true,
+  "prepare_shell_seconds": 0.75,
+  "worker_seconds": 20,
+  "rejected_before_launch": [
+    "offline",
+    "unknown_field"
+  ],
+  "launcher_sha256": "179188f4b7ceafe40eb7e0b16fd0f16d82a71078330396538756b6c7d3d86d96",
+  "fake_runner_sha256": "bfab405363eea21af5b1c2f94e1abec503a5ed25d65c6b9128b217f2ec0e03f6",
+  "fixture_is_not_real_device_runner": true,
+  "device_operations": 0,
+  "integration_date": "2026-11-28",
+  "background_supervisor_sha256": "e5fccd6f85fd7a7be45f3edfbdc844434c7301202285effd2a798ff7102da2d8",
+  "check_tool_sha256": "f7043f5e7a255d420bb3f4658f93c56215189e615ae8bd1375b69871d4a86e86"
+}

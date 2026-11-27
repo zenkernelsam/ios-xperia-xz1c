@@ -1,6 +1,12 @@
 /* Production shader binary16 pack/unpack/round under actual host Mesa. */
+#if defined(SWEET_HOST_OSMESA)
+#define GL_GLEXT_PROTOTYPES
+#include <GL/osmesa.h>
+#include <GL/glext.h>
+#else
 #include <EGL/egl.h>
 #include <GLES3/gl31.h>
+#endif
 #include <assert.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -29,9 +35,16 @@ static uint16_t reference_pack(float value)
 }
 int main(int argc,char **argv)
 {
-    assert(argc==2);EGLDisplay display=eglGetDisplay(EGL_DEFAULT_DISPLAY);assert(eglInitialize(display,NULL,NULL) && eglBindAPI(EGL_OPENGL_ES_API));EGLConfig cfg;EGLint count;
+    assert(argc==2 || argc==3);FILE *export_=argc==3?fopen(argv[2],"wbx"):NULL;if(argc==3)assert(export_);
+#if defined(SWEET_HOST_OSMESA)
+    const int attrs[]={OSMESA_FORMAT,OSMESA_RGBA,OSMESA_PROFILE,OSMESA_CORE_PROFILE,OSMESA_CONTEXT_MAJOR_VERSION,4,OSMESA_CONTEXT_MINOR_VERSION,3,0};
+    OSMesaContext ctx=OSMesaCreateContextAttribs(attrs,NULL);unsigned char framebuffer[4]={0};assert(ctx && OSMesaMakeCurrent(ctx,framebuffer,GL_UNSIGNED_BYTE,1,1));
+    fprintf(stderr,"half host core=%s ESSL_input=1 context_process_owned=1\n",glGetString(GL_VERSION));
+#else
+    EGLDisplay display=eglGetDisplay(EGL_DEFAULT_DISPLAY);assert(eglInitialize(display,NULL,NULL) && eglBindAPI(EGL_OPENGL_ES_API));EGLConfig cfg;EGLint count;
     EGLint attrs[]={EGL_SURFACE_TYPE,EGL_PBUFFER_BIT,EGL_RENDERABLE_TYPE,EGL_OPENGL_ES3_BIT,EGL_NONE};assert(eglChooseConfig(display,attrs,&cfg,1,&count) && count);
     EGLint version[]={EGL_CONTEXT_CLIENT_VERSION,3,EGL_NONE};EGLContext ctx=eglCreateContext(display,cfg,EGL_NO_CONTEXT,version);assert(ctx!=EGL_NO_CONTEXT && eglMakeCurrent(display,EGL_NO_SURFACE,EGL_NO_SURFACE,ctx));
+#endif
     char *helpers=source(argv[1]);const char *head="#version 310 es\nprecision highp float;precision highp int;\nlayout(local_size_x=64) in;\n";
     const char *body="layout(std430,binding=0) readonly buffer Input {uint data[];} input_;layout(std430,binding=1) writeonly buffer Output {uvec4 data[];} output_;"
         "uniform uint mode;void main(){uint i=gl_GlobalInvocationID.x;uint value=input_.data[i];float unpacked=_smtl_half_unpack(value);float v=uintBitsToFloat(value);"
@@ -57,7 +70,7 @@ int main(int argc,char **argv)
             bool nan=isnan(value);uint32_t actual=output[i*4+(mode?0:1)],bits=output[i*4+(mode?1:0)];
             if(nan){if((actual&31744)!=31744 || !(actual&1023) || (bits&2139095040u)!=2139095040u || !(bits&8388607u))++mismatch;}
             else if(actual!=expected || bits!=float_bits(reference_unpack(expected))){if(mismatch<4)fprintf(stderr,"half mismatch mode=%u i=%u value=%08x actual=%x expected=%x float=%08x wanted=%08x\n",mode,i,input[i],actual,expected,bits,float_bits(reference_unpack(expected)));++mismatch;}
-        }assert(!mismatch);checked+=n;glUnmapBuffer(GL_SHADER_STORAGE_BUFFER);fprintf(stderr,"actual binary16 mode=%u values=%u mismatches=%u\n",mode,n,mismatch);
+        }assert(!mismatch);if(export_)assert(fwrite(output,16,n,export_)==n);checked+=n;glUnmapBuffer(GL_SHADER_STORAGE_BUFFER);fprintf(stderr,"actual binary16 mode=%u values=%u mismatches=%u\n",mode,n,mismatch);
     }
-    free(input);printf("production half shader: %u values all16-bit patterns + float32 half-ties/subnormal/overflow/random, finite exact/NaN class PASS (host Mesa)\n",checked);return 0;
+    if(export_)assert(!fclose(export_));free(input);printf("production half shader: %u values all16-bit patterns + float32 half-ties/subnormal/overflow/random, finite exact/NaN class PASS (host Mesa)\n",checked);return 0;
 }

@@ -19,7 +19,7 @@
     "metal_resource_evidence.py": "e3737afff830f8d7466fddf67f4980d33dc9cf54fe89079828aa603fa9ddd35c",
     "observe_fastboot.py": "6ec4ad97b40dbc377a1168d5931449030405dbe52c05ca1fdb3c81a53c0a6b3c",
     "owner_metadata.py": "e0f4e4fa2d54381d63128a39fbcabfe6c3ab9468a99f44cd44c37d86af84d564",
-    "package_trial.py": "06ec6e1b29765d540ae9a028fa833598ea9e6652d4e0bc094e5e63be4f858d62",
+    "package_trial.py": "42c8d5ba7349f2684fd4151904d1cce64e4cf9ebcbbb94514bfafb91561a60ec",
     "policy.py": "788151bcae524eb1dbb58e21743e957cf4ff2e819247dcf74db05e173cf00365",
     "preflight_processes.ps1": "695f84b442a3408c0081401380b18d0f4e80dcfa80cda7f401d88653b987a617",
     "procguard.py": "7cc150c13ca8d6fce28ec9784af8886eaaa4cdd8fad9cb3ff6befa9fd67d116d",
@@ -37,7 +37,7 @@
     "test_metal_abi.py": "c9c3e37c494ee0940726f8357b4e3c8e5a823a367d9f900f5cabe252f51fae3f",
     "test_metal_queue.py": "256875e78c1275f04f2d24abbc1b9283782f11c0846fb421e8db77ca9db3ab5a",
     "test_metal_resources.py": "703326750212def783aa6aa95dc55f78028eb4f7149171aecb34797e15815f99",
-    "test_trial_gates.py": "645afa7459dbc54c7a69fde6e38ac697b4561b154d36a708537c1b9b8a7db857",
+    "test_trial_gates.py": "a6acfbc21195472bf9bf33b4c422fce8bdfd8965e673a4919221833be76e06d7",
     "texture_offset_evidence.py": "73e50f64af52491a94464d13268c44a8d917175926bdd92caf260eced329f230",
     "trial_evidence.py": "9d671a6e05c87b99d7ec75c66b19e597afa45badcae29b6af2c145c1fc46456f",
     "air_render_evidence.py": "e8d76d04961ff1c102da214f9b47d147f93b07eaf127257a646bb652d1d16e4f",
@@ -148,7 +148,10 @@
     "test_snapshot_readback_evidence.py": "bb68a1d8a18f7cf39a6af0c553e59aefe358cc90fb9a6f90e0f2575e4891e888",
     "native_png_prerequisite.py": "b2808f97163c27a63d7228f28ffb556ee7298c37e680923d44c95f9fe7342485",
     "test_native_png_prerequisite.py": "08ea0ea04c5c5c3994dd5ce347f41cca073fc60e33df81ec7f8803be4a98ecd4",
-    "test_console_status.py": "8d427452c2aab44a6d022061726fbf97f76921c75504df815295dc29e6c91d66"
+    "test_console_status.py": "8d427452c2aab44a6d022061726fbf97f76921c75504df815295dc29e6c91d66",
+    "start_trial.ps1": "179188f4b7ceafe40eb7e0b16fd0f16d82a71078330396538756b6c7d3d86d96",
+    "background_trial.py": "e5fccd6f85fd7a7be45f3edfbdc844434c7301202285effd2a798ff7102da2d8",
+    "check_start_trial.py": "f7043f5e7a255d420bb3f4658f93c56215189e615ae8bd1375b69871d4a86e86"
   },
   "supervisor_based_on_actual_tested_one_shot": true,
   "platform_tools_from_environment_or_PATH": true,
@@ -218,7 +221,7 @@
     "tools/build/test_air_narrow_gles.c": "afa5b350ba7dc28275df90a9216cd2da150d8bcea78b48ca70f5682b8ab9cac6",
     "tools/build/air_extract_cli.cpp": "e98622dc830f2157b389d723e1317deef42110ddfa88795ac5a2ec948a435cda",
     "tools/build/test_half_target.cpp": "266fa6d49d5177a63cb3cfb7581da2660a7a9a62ddd609aa76dee7babeff3603",
-    "tools/build/test_half_gles.c": "fe6c11a7ef1815c18225a39f8fdf2740812c3655a3473bb62b1579dca2658437",
+    "tools/build/test_half_gles.c": "9aaff45093b9d37d2c27ef5e12cdbb1f8dee0b5f533ce8e3db752449d9569573",
     "tools/build/test_air_half_gles.c": "a12187f17fe2b0829e5914acab96612207dba74ada4511fa1c886477ad6668ae",
     "tools/build/check_air_half.py": "18d0049d1b13f4b4ba2c05570702103a7a6e448292782c5d702205efd6693132",
     "tools/build/import_half_reference.py": "1f0f71345833dc0e1d8aa22903e35f9a4d315481c8ba43e8ea2806eecc4cafb4",
@@ -240,7 +243,7 @@
     "tools/build/test_postdraw_observe.m": "144605ebf1d6baf35c69f3a332e0b5fb036a7fe12d0636a9da84330c40e1b4f1",
     "tools/program_cache_scope.py": "9fcd14133fa3e0531f5cc0a01fb6d8b84d62432df41f3d0e688df7e151c097e9",
     "tools/build/test_snapshot_method_observe.m": "76c919a8884d0dea06d8ec66f831ec029c060f0b4cb157cf15263b38116a917f",
-    "tools/build/build_frontend_trial.py": "97635c24f1e0f99fe88579229c2d8093f0853035e395fb66f97ca0370e276e13",
+    "tools/build/build_frontend_trial.py": "57afe8a9d45b84372462bf049c156f5761554a2aee3b5e82b9bb668441a5188e",
     "tools/build/test_png_input_observe.m": "71ec1a803770e24e342c275ee8fa17e86adc60655675d4c700665ca37047c171",
     "tools/build/test_cif10_png_reference.m": "8b814b5d031a5418eb4117934f21121212959a7179645ef6b519b28eed2a0871",
     "tools/build/profile_cif10_png.m": "c8daee07eafe5dc7c524041d1efe194c821318bb68481cea934e16862f42ab7e",
@@ -355,7 +358,10 @@
     "tools/build/test_log_tickets.c": "40f1535e17ea31683c626a1e85fbcd7ac06f8747e66e2fba1d669372d51e2cb5",
     "tools/build/prepare_log_tickets.py": "c0d621b28d36617147f80e52fe0bd906fe06d02b88763ab7c7654cfc2aa92fda",
     "tools/build/link_log_tickets.py": "81d110ed5f3e6215e0e5c572627aa64ec0d140116c0be80d2a80c2c7b5723c0e",
-    "tools/build/compile_log_tickets.py": "b98d58185bc6920a9c70d363f5664b86ce4454f043846dfa5f38cafbb79091e6"
+    "tools/build/compile_log_tickets.py": "b98d58185bc6920a9c70d363f5664b86ce4454f043846dfa5f38cafbb79091e6",
+    "tools/build/check_preinline_ssa.py": "b49a9ca5d08faf3bf6f6f4a2299d680eb314356dfcce7d967fc709158b9f8e7c",
+    "tools/build/build_callee_ssa_overlay.py": "0afb4e366b378f7060a30aa3b99b8a65f64ee44b04c1278fee2fc04bd2336674",
+    "tools/build/test_glsl_local_ssa.c": "1cced57cd9fc0efb5870f668ab044559c29271dd6cb598ace8434702f4434ede"
   },
   "gpu_sources": {
     "gpu/diagnostics/exception_observe.m": "530e8ab3b6fdbb22ebabee3a31ce9d14b039b0a66e2691fdfd68e9c5597f1167",
@@ -487,7 +493,8 @@
     "gpu/diagnostics/SnapshotReadbackObserve.h": "1c2a7b957d415edcdfdac0bfe3d4df7f2dce6ccf69e6a2c06b01c1c432df27ad",
     "gpu/diagnostics/OriginalCGInputObserve.h": "b06607b86401f019eeb671313779c788f59f4d89b1c09db54fd6ca8ed2ea4564",
     "gpu/sweetgl/OrderedImageBarrier.h": "0d9f0631c982d7034af1821c8eb14161e6942a636fce971b0f6756a0c8d70c4b",
-    "gpu/diagnostics/CIF10ExportWait.h": "9237db2b491711fe438ef80a20f9455450456641e5fd92f8f1e4055b9d8cdacd"
+    "gpu/diagnostics/CIF10ExportWait.h": "9237db2b491711fe438ef80a20f9455450456641e5fd92f8f1e4055b9d8cdacd",
+    "gpu/nir-callee-local-ssa.patch": "7743cef60d7206a583ba18d856389a325bedb56069b4ec44fea9e51e075e7403"
   },
   "tests_skipped_without_optional_old_evidence": 2,
   "sony_specific_multi_device_return_fault_replay_passed": true,

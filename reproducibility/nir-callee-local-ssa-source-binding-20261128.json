@@ -1,0 +1,24 @@
+{
+  "Mesa_version": "24.3.4",
+  "Mesa_commit": "769e51468b49b2a42f0a0eaf71cf9eed5ff4e5de",
+  "sources": {
+    "src/compiler/glsl/gl_nir_linker.c": {
+      "before_sha256": "c94f11dbbb5284c82caab9fc86e1b20c34b3c8b84aa9ecc914dac6a517e18dcc",
+      "after_sha256": "af39013a9224a097765d6cf608d49de654d2a13e0d64d1c76335e92a4e03f2ba"
+    },
+    "src/compiler/nir/nir_functions.c": {
+      "before_sha256": "be2167eda3bcb39dc62762fbc0d7b016e6b59798f33c8d20775b48c50e9dbba1",
+      "after_sha256": "fb9d2696d3cc4b8aeb75129746508bbd5ddf8e3a84dbc41425d5d59cb136f608"
+    },
+    "src/compiler/nir/nir_lower_vars_to_ssa.c": {
+      "before_sha256": "f49286fb4332b62a32946587dad3e6fb0a74e1fb4e8ab72981a6a505d047dcd3",
+      "after_sha256": "288e337b5695987f60e772a6c84a6b163f9949b41a1d332aba0b5bf8ac257598"
+    },
+    "src/compiler/nir/nir.h": {
+      "before_sha256": "1cb8dc96ab9654e56a5c11ccf557d7ec907e3c56d73caf2fd3942e94a387de9c",
+      "after_sha256": "150670c6f9e555cc373e4e6e221ef28fdbed1d2c300fb165301117d07e3d2e0a"
+    }
+  },
+  "production_not_applied": true,
+  "kernel_not_changed": true
+}

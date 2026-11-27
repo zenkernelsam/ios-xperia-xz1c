@@ -73,3 +73,13 @@ DroidCam只用于LCD光学／背光／物理错行，唯一流程override→AF(/
 Windows 进程预检使用 CIM 内部 20 秒、受控子进程外层 30 秒上限，保持原冲突进程筛选；超时、失败或非空结果都在 ABL guard 前停止。本次 [原拒绝](../reproducibility/poster-cache-budget-native21-host-refusal-20261124.json) 未到 download／boot，原结果和失败包仍保留，不因主机健康恢复而重发。
 
 原失败／raw／退出期记录不覆盖；one-time staging在TEMP、Mac build。所有废弃文件进原生回收站，WSL废弃内容转Windows回收站，Windows／Mac都不清空，路径先核对。救砖／XFL／flash/fw／unlock／备份和当前基线证据受保护。回收／恢复见[LAYOUT](LAYOUT.md)，旧操作手册原文与SHA见[本周归档](archive/20261121/weekly-integration/original-document-manifest.json)。
+
+## 独立后台单发监督进程
+
+长实机任务用`start_trial.ps1`从显式run_trial JSON启动隐藏的background_trial.py，launch与run分别是新的TEMP目录。JSON只接受bundle／directory、对应private／owner／ready／RPM／CPU／GLES／native／PNG evidence、wait_before_guard及显式live:true；仍是原run_trial的单次guard／download／boot／四回程／健康／worker策略。启动器不打开USB／COM，unknown字段／旧目录拒绝，不重发子进程。每次从launch.json的PID／start_time和supervisor.json／实际进程核对状态，不因tool handle丢失重启。
+
+```powershell
+powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File tools/device/start_trial.ps1 -Request build/本轮-live-request.json -Directory "$env:TEMP\新的launch目录"
+```
+
+原request保留原字节，规范化路径另存；stdout／stderr由Python监督进程自己持有真实文件。PowerShell的RedirectStandardOutput方式曾让启动shell等整个子进程，已用0.75秒启动／20秒owned worker／另一shell取证复验修正。核对完整原run仍按上文；launch成功或正常fastboot枚举不能替代四回程marker或准入原中断阶段。
