@@ -115,3 +115,5 @@ WSL／Mac同源十二组ASan／UBSan及六个ARM64对象通过，C11 caller和C+
 本轮整合前五份入口与原SHA在[原文archive](archive/20261126/pcm-c-abi/original-document-manifest.json)。废弃host产物进入原生回收站，WSL共享build产物走Windows回收站，准确receipt由ORGANIZATION索引；不永久删除或清空Windows／Mac垃圾桶。原失败、准确候选、少量所需raw／proof和受保护输入保留。
 
 [当前非零背光候选](../reproducibility/backlight-nonzero-duty-backend-20261128.json)已接通可选service后端代码，构造不做硬件IO；成功要完整事务／读回／同epoch。缺实际owner／SPMI／注册，brightness0／fade／辅助level仍Unsupported，无面板调光或睡眠实测。kernel GPU／allocator／SCM／PON／RPC／VM冻结，新service未加入启动。
+
+[背光最新逐IO epoch候选](../reproducibility/backlight-duty-per-io-epoch-20261128.json)已补上每次read／write／wait前后readiness／epoch检查；中途变化及时停止后续IO并保留uncertain。38／6／1故障位置、65535请求映射及重入回归通过，独立ARM64链接已验；没有新kernel投递、真实bus回调或光学，brightness0／fade／level保持待实现。GPU候选包及合法新会话待验条件保持。

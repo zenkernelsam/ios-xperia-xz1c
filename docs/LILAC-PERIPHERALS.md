@@ -180,3 +180,5 @@ python -B tools/build/check_lilac_backlight_duty_backend.py --reference D:/Deskt
 ```
 
 Mac独立链接使用现行`link_lilac_backlight_service.py`，输出新build目录；原kernel和GPU／allocator／SCM／PON／RPC／VM不改。下一步仍是带真实owner/readiness的backlight注册／非零调光验收及光学，再单独处理模块电源与睡眠恢复。
+
+2026-11-28：[逐IO epoch边界修正](../reproducibility/backlight-duty-per-io-epoch-20261128.json)复用原事务，但read／write／wait回调两侧均检查当前readiness与同epoch。原先只在事务首尾复核，IO中域变化后仍可能继续后面的写入；现在任何边界丢失都停止剩余IO，锁定不确定状态。38个read、6个write及1个wait中途epoch变化位置逐一验证，失败后不重发、不回滚、不更新属性cache；65535映射值／重入／原写故障回归保持。独立ARM64 service编译和v731链接重现通过，原输入与当前kernel不变，无新的boot／真实SPMI或光学证据。渐变、电源、辅助level及注册仍待各自实现／验收。

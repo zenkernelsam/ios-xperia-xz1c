@@ -1,0 +1,61 @@
+{
+  "date": "2026-11-28",
+  "host": {
+    "Sony_commit": "33dc678e7692f04ecc1eeddeb1cca8a809bc1727",
+    "Sony_driver_sha256": "959f4a4a7fed4bf18f61d1b60785b0517e3da9ae361ee1355d548c50d1127a6b",
+    "stock_dtb_sha256": "06f4c3493aad91d2240508b0c5788d4799c9c2a58357462507b3bc5e28bf6669",
+    "stock_optional_256_entry_map_absent": true,
+    "stock_stepper_absent": true,
+    "stock_sync_delay_us": 1000,
+    "source_files": {
+      "xnu/support/LilacBacklightDutyBackend.h": "cd032627e9adc8c309c2615dbbd63b05b1c3cb34cab6e5bef520d4891d86c23e",
+      "xnu/support/LilacBacklightProperties.h": "40c94bae4d7ba5d7c1ce8f9652b793975d6d2315069639cc26888381f3dbc9d6",
+      "xnu/support/LilacWledDutyTransaction.h": "9341c44209379284dc1dbb68e907b5028f94fcfa76948d0868dd0e4ceaa983dd",
+      "xnu/support/LilacWledDutyPlan.h": "450d1a9e409f3807c0bf38d3a26c850327ed07af6e3947d2d9a63cb77c9fe3ed",
+      "xnu/support/LilacWledSnapshot.h": "77c51e06bd55d6752c215f36a4e5346840ea631d662fdf199b9f03a82799fd0d",
+      "tools/build/test_lilac_backlight_duty_backend.cpp": "8710f1d0f425b756198bda6e9f045f4e6b4cc3c914a21b6a9361301142c3ad8d",
+      "tools/build/check_lilac_backlight_duty_backend.py": "79a09987401f89b904b7863c5f0764b1979785bac8a70a9a7d6df993ea6cb0c2"
+    },
+    "host_ASan_UBSan": true,
+    "property_values_checked": 65535,
+    "epoch_reentry_write_fault_checks_passed": true,
+    "per_IO_epoch_checks": true,
+    "epoch_loss_read_positions": 38,
+    "epoch_loss_write_positions": 6,
+    "epoch_loss_wait_positions": 1,
+    "unsupported_power_fade_level_do_not_write": true,
+    "no_control_power_writes": true,
+    "physical_brightness_mapping_and_IO_callbacks_NOT_verified": true,
+    "device_operations": 0
+  },
+  "ARM64_service_link": {
+    "base_kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+    "base_bytes_match_except_lc_uuid": true,
+    "v731_link_inputs_unchanged": 1117,
+    "compiled_sources_sha256": {
+      "AppleARMBacklight.cpp": "7860bc9208ae86848e41684c6d3449110e41cf6247b93512ccecd44322630fee",
+      "LilacBacklightService.h": "095fbfe86b9fc94644358addec6be08c602dc2590ac2eff9b1d6372ff1aa1695",
+      "LilacBacklightProperties.h": "40c94bae4d7ba5d7c1ce8f9652b793975d6d2315069639cc26888381f3dbc9d6",
+      "LilacBacklightDutyBackend.h": "cd032627e9adc8c309c2615dbbd63b05b1c3cb34cab6e5bef520d4891d86c23e",
+      "LilacWledDutyTransaction.h": "9341c44209379284dc1dbb68e907b5028f94fcfa76948d0868dd0e4ceaa983dd",
+      "LilacWledDutyPlan.h": "450d1a9e409f3807c0bf38d3a26c850327ed07af6e3947d2d9a63cb77c9fe3ed",
+      "LilacWledSnapshot.h": "77c51e06bd55d6752c215f36a4e5346840ea631d662fdf199b9f03a82799fd0d"
+    },
+    "appended_object_sha256": "d37f59b9e7f063782aeb174a57cf9318678d752aef200333d0dd13a53c386c1c",
+    "linked_kernel_sha256": "0683ff5bd73f5f4ffe9bdf96baf8423c7269b5eb3dd4efb87d2aca9087ac855a",
+    "linked_kernel_bytes": 20688416,
+    "service_and_factory_symbols_found": true,
+    "nonzero_duty_backend_factory_symbol_found": true,
+    "unimplemented_zero_fade_level_are_not_reported_success": true,
+    "epoch_and_readback_required_before_property_cache_update": true,
+    "spmi_wled_or_mmio_imports": false,
+    "publication_hook_present": false,
+    "device_operations": 0
+  },
+  "epoch_checked_before_and_after_each_read_write_wait": true,
+  "epoch_loss_stops_remaining_IO": true,
+  "original_kernel_GPU_and_PON_unchanged": true,
+  "service_not_added_to_startup": true,
+  "physical_bus_range_optics_sleep_NOT_verified": true,
+  "device_operations": 0
+}

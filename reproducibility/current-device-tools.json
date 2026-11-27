@@ -364,8 +364,8 @@
     "tools/build/test_glsl_local_ssa.c": "1cced57cd9fc0efb5870f668ab044559c29271dd6cb598ace8434702f4434ede",
     "tools/mesa_compiler_overlay.py": "43de75b4cd46922cf7e9e8ec6eb4eb47e09ee3a6b34bc9579e24b30cce97fa81",
     "tools/build/test_mesa_compiler_overlay.py": "b9c19ce1ba8eaa120ddb1675f137bf895c97b7d2f20c149c079eb0729d8b0e69",
-    "tools/build/test_lilac_backlight_duty_backend.cpp": "d5693b37bc6e5159a3d40c14167f912ddaf661f8857152e2d57543254370eaf7",
-    "tools/build/check_lilac_backlight_duty_backend.py": "7df6dfd9e676db11f302821ff1c678c5533d994b28c53f0cdafdddb083206e19"
+    "tools/build/test_lilac_backlight_duty_backend.cpp": "8710f1d0f425b756198bda6e9f045f4e6b4cc3c914a21b6a9361301142c3ad8d",
+    "tools/build/check_lilac_backlight_duty_backend.py": "79a09987401f89b904b7863c5f0764b1979785bac8a70a9a7d6df993ea6cb0c2"
   },
   "gpu_sources": {
     "gpu/diagnostics/exception_observe.m": "530e8ab3b6fdbb22ebabee3a31ce9d14b039b0a66e2691fdfd68e9c5597f1167",
@@ -536,7 +536,7 @@
     "xnu/support/LilacPcmRuntimeAPI.cpp": "86242e985e7a58d9277106500e97963da65dd215b1a75a2719be9c3e44df607c",
     "xnu/support/SweetLogSnapshot.h": "d4402a4a541960c89e7c6e9051797f8f376407a9447ecb2e7405163405e8aed3",
     "xnu/support/SweetLogTickets.h": "0da971a692de1f887bf36b03a0a5b2d8126c20f1ef65add0bfa750455d399d18",
-    "xnu/support/LilacBacklightDutyBackend.h": "6c42e8e743c9fb4755207c1ecff7f53361d7a6ef650b417891f332b15c365b59"
+    "xnu/support/LilacBacklightDutyBackend.h": "cd032627e9adc8c309c2615dbbd63b05b1c3cb34cab6e5bef520d4891d86c23e"
   },
   "v729_private_actual_return_passed": true,
   "v729_private_owner_ready_actual_return_passed": true,

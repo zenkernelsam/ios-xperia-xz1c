@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-28",
+  "files": 2,
+  "bytes": 41370168,
+  "items": [
+    {
+      "native_trash_verified": "true",
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/backlight-duty-service-epoch-link-r1-20261128/baseline.relinked.macho",
+      "trash_path": "/Users/ciscohe/.Trash/baseline.relinked.macho 02-25-25-444.macho",
+      "bytes": 20681752,
+      "sha256": "7950efdcf735d8e211754f03fb9cc724e544c3b397ecdd72c5a8a4d9da4ccf34"
+    },
+    {
+      "native_trash_verified": "true",
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/backlight-duty-service-epoch-link-r1-20261128/kernel.backlight-service.linkcheck.macho",
+      "trash_path": "/Users/ciscohe/.Trash/kernel.backlight-service.linkcheck.macho 02-25-25-502.macho",
+      "bytes": 20688416,
+      "sha256": "0683ff5bd73f5f4ffe9bdf96baf8423c7269b5eb3dd4efb87d2aca9087ac855a"
+    }
+  ],
+  "native_trash_contents_verified": true,
+  "compile_object_recipe_sources_preserved": true,
+  "current_kernel_GPU_SHA_unchanged": {
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/log-tickets-r1-20261127/link/kernel.log-tickets.macho": "f1d485a4f0306bcef003783ea9b2338188a6c8b65a4300fb207acbb15e9b387b",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/dxb/xnu/iokit/Kernel/arm/SweetGPU.cpp": "aa2c36792a2298b060aa858eabdc039522fcdde3cfdbafd453c5fc6c0683c157",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/backlight-duty-service-epoch-link-r1-20261128/AppleARMBacklight.cpo": "d37f59b9e7f063782aeb174a57cf9318678d752aef200333d0dd13a53c386c1c"
+  },
+  "Mac_Trash_not_emptied": true,
+  "no_permanent_delete": true
+}
