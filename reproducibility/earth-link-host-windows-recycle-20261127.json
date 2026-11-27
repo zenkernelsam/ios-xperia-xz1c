@@ -1,0 +1,551 @@
+{
+  "date": "2026-11-27",
+  "native_recycle_items": 45,
+  "files": 12440,
+  "logical_bytes": 743175596,
+  "items": [
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:02.4956611+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R6WBJ67",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\earth-link-host-r1-20261127\\mesa-src",
+      "contents": {
+        "files": 10649,
+        "bytes": 259328300,
+        "recursive_manifest_sha256": "4999a6c2bbcfa110e94170f58f6af478774c1643de4818b338cdcc2fb9b0d5b8"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:04.3205178+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$REXGX3W",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\earth-link-host-r1-20261127\\mesa-build",
+      "contents": {
+        "files": 1086,
+        "bytes": 114945141,
+        "recursive_manifest_sha256": "3918aa5fdb6a90a0c7269c42f745199258b8815cdae6ee9f9bc785e2c8f05d94"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:04.7290613+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RTEIW6R",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\earth-link-host-r1-20261127\\python-deps",
+      "contents": {
+        "files": 652,
+        "bytes": 10273514,
+        "recursive_manifest_sha256": "5bf14a4f103905f6d52b7c7469e5859c7be112acb5809f95889a86ffe1b27209"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:05.0865890+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R12DTMZ",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\earth-link-host-r1-20261127\\extracted",
+      "contents": {
+        "files": 0,
+        "bytes": 0,
+        "recursive_manifest_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:05.3380689+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R3WKV66",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\earth-link-host-r1-20261127\\shaders",
+      "contents": {
+        "files": 13,
+        "bytes": 692997,
+        "recursive_manifest_sha256": "78ce70c75636e2e1ea17f4fc7a689962e13341fd1e8eecd5e1c957f5297a8776"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:05.5819428+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RM0SEBJ.0",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\earth-link-host-r1-20261127\\before-libOSMesa.so.8.0.0",
+      "contents": {
+        "files": 1,
+        "bytes": 17987728,
+        "recursive_manifest_sha256": "79064bb5673ef6d0828692966bbe63df8b96d85a226b1df416b46e6c1ef2d84e"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:05.6036856+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RXFR7MX.metallib",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\earth-link-host-r1-20261127\\default.metallib",
+      "contents": {
+        "files": 1,
+        "bytes": 230044,
+        "recursive_manifest_sha256": "c9810a3ed40ff3f7f9d34d5c5c388d385e09e5757087d3b0e6d52354348f8eb2"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:05.6350121+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RUMM64Q.bin",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\earth-link-host-r1-20261127\\inline-baseline-1.bin",
+      "contents": {
+        "files": 1,
+        "bytes": 1144,
+        "recursive_manifest_sha256": "327ee95f844f413b2efd07f995c444f994219ed513a0536fcd63f109f708ea54"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:05.6564010+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$REWP3E1.bin",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\earth-link-host-r1-20261127\\inline-baseline-4096.bin",
+      "contents": {
+        "files": 1,
+        "bytes": 468364,
+        "recursive_manifest_sha256": "26d1235893f045e4a555f2372d53a587efb36b8259a3db53954c85e10cfdb856"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:05.6757253+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RBY9ZE2.bin",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\earth-link-host-r1-20261127\\inline-baseline-64.bin",
+      "contents": {
+        "files": 1,
+        "bytes": 8260,
+        "recursive_manifest_sha256": "98b887d634092f834843ff67caed9f082bb2c8b8d0bf9ea8f8a2b34520ee4455"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:05.6973154+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RZBKWVM.bin",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\earth-link-host-r1-20261127\\inline-fastpath-1.bin",
+      "contents": {
+        "files": 1,
+        "bytes": 1144,
+        "recursive_manifest_sha256": "327ee95f844f413b2efd07f995c444f994219ed513a0536fcd63f109f708ea54"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:05.7219374+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RCI46K4.bin",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\earth-link-host-r1-20261127\\inline-fastpath-4096.bin",
+      "contents": {
+        "files": 1,
+        "bytes": 468364,
+        "recursive_manifest_sha256": "26d1235893f045e4a555f2372d53a587efb36b8259a3db53954c85e10cfdb856"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:05.7490373+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RRH6DHM.bin",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\earth-link-host-r1-20261127\\inline-fastpath-64.bin",
+      "contents": {
+        "files": 1,
+        "bytes": 8260,
+        "recursive_manifest_sha256": "98b887d634092f834843ff67caed9f082bb2c8b8d0bf9ea8f8a2b34520ee4455"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:05.7730836+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RTDYDJY",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\earth-link-host-r1-20261127\\inline-test-baseline",
+      "contents": {
+        "files": 1,
+        "bytes": 4209984,
+        "recursive_manifest_sha256": "38dfd1d347dce94c1a1ae3c803540daf7386d9cb0a5bb5ae0dc481b029347373"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:05.7988389+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RLNYB97",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\earth-link-host-r1-20261127\\inline-test-fastpath",
+      "contents": {
+        "files": 1,
+        "bytes": 4209984,
+        "recursive_manifest_sha256": "85014352efb9e63730e0ee59a67f1f0eed614c94e7ef2652740b51d0e0cdfc3f"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:05.8235743+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R4XF9D0.o",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\earth-link-host-r1-20261127\\inline-test.o",
+      "contents": {
+        "files": 1,
+        "bytes": 401896,
+        "recursive_manifest_sha256": "a3fde6dae25b89b55c78cac4c18396828a40abafc4045e9e70fab24768a779b2"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:05.8482670+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RBC92R0",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\earth-link-host-r1-20261127\\link-probe-egl",
+      "contents": {
+        "files": 1,
+        "bytes": 117128,
+        "recursive_manifest_sha256": "3ef947929b42058f4648ee7d3bc98b763fcf25481256a247f80d5974d8c8d665"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:05.8750213+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R04LW9Q",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\earth-link-host-r1-20261127\\link-probe-osmesa-r2",
+      "contents": {
+        "files": 1,
+        "bytes": 124520,
+        "recursive_manifest_sha256": "d0613b58fd10314b8bb30d936924f000bcd56680fe53c49e19fd6128ccac8539"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:05.9296105+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R8HA55P",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\earth-link-host-r1-20261127\\link-probe-osmesa-r3",
+      "contents": {
+        "files": 1,
+        "bytes": 125064,
+        "recursive_manifest_sha256": "c1a10c937b1e9cb84321365affe9bc3512d7b8f3800f49743648ae38a3bbf5de"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:05.9561894+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R2RX560.tar",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\earth-link-host-r1-20261127\\mesa-pinned.tar",
+      "contents": {
+        "files": 1,
+        "bytes": 267509760,
+        "recursive_manifest_sha256": "ffd7ce35a072a4e3c1a2270ba62c6cdbfeafb0d3c1fb24ef5ec6a7486e5cd4fd"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:06.0015969+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RUIEEVC",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\earth-link-host-r1-20261127\\profile-existing",
+      "contents": {
+        "files": 1,
+        "bytes": 46528,
+        "recursive_manifest_sha256": "129d8ddfe9217aa7c6c6a0f2dca36fa0986e31086c8454c2e9c458beea79fd25"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:06.0389286+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RK3KXL1",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\earth-link-host-r1-20261127\\replay-cli",
+      "contents": {
+        "files": 1,
+        "bytes": 642808,
+        "recursive_manifest_sha256": "f91971dff61e022405e3fa1cf5ea4111d575fd2eba8eaae03b2091d5b28d9a8a"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:06.0679726+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RNV3ZR9.0",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\earth-link-host-r1-20261127\\softpipe-baseline-libOSMesa.so.8.0.0",
+      "contents": {
+        "files": 1,
+        "bytes": 18183520,
+        "recursive_manifest_sha256": "93c4f6fb783fab345b766aa0016c7bafa65b11f0f9dea9904c350e576ebbd3e5"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:06.0934750+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R3BT454.0",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\earth-link-host-r1-20261127\\straight-prototype-libOSMesa.so.8.0.0",
+      "contents": {
+        "files": 1,
+        "bytes": 18183520,
+        "recursive_manifest_sha256": "e6745c0b409187712b9679b8e4d1ef7325968f046b2fe4d56165568fcfff00c5"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:06.1201147+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RY7BFMV.o",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\earth-link-host-r1-20261127\\validator.o",
+      "contents": {
+        "files": 1,
+        "bytes": 2092960,
+        "recursive_manifest_sha256": "4342fb19c0bbd91a62c17f4b1b4ab2583d126b62622c5c149c736d52b72d0c43"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:06.1456681+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RBHHYDH",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-straight-check-r1-20261127\\baseline",
+      "contents": {
+        "files": 1,
+        "bytes": 4514384,
+        "recursive_manifest_sha256": "7f3a0077c4b19aa6deafd6d3583e876890dd85acbdb785bebcca3c4d8686abf7"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:06.1730667+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RR9PQI6.bin",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-straight-check-r1-20261127\\baseline-1.bin",
+      "contents": {
+        "files": 1,
+        "bytes": 1144,
+        "recursive_manifest_sha256": "327ee95f844f413b2efd07f995c444f994219ed513a0536fcd63f109f708ea54"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:06.1988357+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RR0RQ55.bin",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-straight-check-r1-20261127\\baseline-4096.bin",
+      "contents": {
+        "files": 1,
+        "bytes": 468364,
+        "recursive_manifest_sha256": "26d1235893f045e4a555f2372d53a587efb36b8259a3db53954c85e10cfdb856"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:06.2266738+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RAWHRWZ.bin",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-straight-check-r1-20261127\\baseline-64.bin",
+      "contents": {
+        "files": 1,
+        "bytes": 8260,
+        "recursive_manifest_sha256": "98b887d634092f834843ff67caed9f082bb2c8b8d0bf9ea8f8a2b34520ee4455"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:06.2545024+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RPBTONR.o",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-straight-check-r1-20261127\\baseline.o",
+      "contents": {
+        "files": 1,
+        "bytes": 718288,
+        "recursive_manifest_sha256": "f24d84cd9693952d420b45933790580d8a552c2a993c58cca5032bf920859bb8"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:06.2817696+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R774NHU.o",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-straight-check-r1-20261127\\prototype.o",
+      "contents": {
+        "files": 1,
+        "bytes": 748864,
+        "recursive_manifest_sha256": "f46d957e55eac4b493ccef83a2d35b716169825dbc6bc831978832f49edcad59"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:06.3079327+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RRDDQ8H.o",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-straight-check-r1-20261127\\test.o",
+      "contents": {
+        "files": 1,
+        "bytes": 401896,
+        "recursive_manifest_sha256": "a3fde6dae25b89b55c78cac4c18396828a40abafc4045e9e70fab24768a779b2"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:06.3345166+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RT86URZ.o",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-straight-check-r1-20261127\\validator.o",
+      "contents": {
+        "files": 1,
+        "bytes": 2093288,
+        "recursive_manifest_sha256": "46900cccb4c8d15bf80b62bebd7ae363d2f6d6f5e117d238df62ec5f2d781e5c"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:06.3633405+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RJCC32Q.bin",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-straight-check-r2-20261127\\baseline-1.bin",
+      "contents": {
+        "files": 1,
+        "bytes": 1144,
+        "recursive_manifest_sha256": "327ee95f844f413b2efd07f995c444f994219ed513a0536fcd63f109f708ea54"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:06.3899724+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R5CTBVV.bin",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-straight-check-r2-20261127\\baseline-4096.bin",
+      "contents": {
+        "files": 1,
+        "bytes": 468364,
+        "recursive_manifest_sha256": "26d1235893f045e4a555f2372d53a587efb36b8259a3db53954c85e10cfdb856"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:06.4186391+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RZK3TFA.bin",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-straight-check-r2-20261127\\baseline-64.bin",
+      "contents": {
+        "files": 1,
+        "bytes": 8260,
+        "recursive_manifest_sha256": "98b887d634092f834843ff67caed9f082bb2c8b8d0bf9ea8f8a2b34520ee4455"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:06.4505846+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RYDXCL0.o",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-straight-check-r2-20261127\\baseline.o",
+      "contents": {
+        "files": 1,
+        "bytes": 718288,
+        "recursive_manifest_sha256": "aebb86b4253a12e8dc719d76624ba586902aab2bf4c57c11c499a59a8fc0a49d"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:06.4827684+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RL8PDTN.bin",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-straight-check-r2-20261127\\prototype-1.bin",
+      "contents": {
+        "files": 1,
+        "bytes": 1144,
+        "recursive_manifest_sha256": "327ee95f844f413b2efd07f995c444f994219ed513a0536fcd63f109f708ea54"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:06.5177529+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RLLNM79.bin",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-straight-check-r2-20261127\\prototype-4096.bin",
+      "contents": {
+        "files": 1,
+        "bytes": 468364,
+        "recursive_manifest_sha256": "26d1235893f045e4a555f2372d53a587efb36b8259a3db53954c85e10cfdb856"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:06.5481944+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RA8FOTH.bin",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-straight-check-r2-20261127\\prototype-64.bin",
+      "contents": {
+        "files": 1,
+        "bytes": 8260,
+        "recursive_manifest_sha256": "98b887d634092f834843ff67caed9f082bb2c8b8d0bf9ea8f8a2b34520ee4455"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:06.5777138+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RG0QWJ4.o",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-straight-check-r2-20261127\\prototype.o",
+      "contents": {
+        "files": 1,
+        "bytes": 748864,
+        "recursive_manifest_sha256": "e424099ed91bfffdb87b4341016998a0b95a463e770204234dacdc62edc2f3e0"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:06.6059775+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R1YUR63",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-straight-check-r2-20261127\\test-baseline",
+      "contents": {
+        "files": 1,
+        "bytes": 4514384,
+        "recursive_manifest_sha256": "9ba6d3a1bf234e76f530c9f02b8574335223a7d28a4bf7727ee6072a7a8bbc30"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:06.6374428+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R69KW91",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-straight-check-r2-20261127\\test-prototype",
+      "contents": {
+        "files": 1,
+        "bytes": 4527920,
+        "recursive_manifest_sha256": "a5cb9358c3c182b7f19256338412eaf2c9e9deb5599205ecb48e311fe2197c97"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:06.6701860+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R5ZAKRU.o",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-straight-check-r2-20261127\\test.o",
+      "contents": {
+        "files": 1,
+        "bytes": 401896,
+        "recursive_manifest_sha256": "a3fde6dae25b89b55c78cac4c18396828a40abafc4045e9e70fab24768a779b2"
+      },
+      "all_recycled_bytes_verified": true
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-27T22:46:06.6999776+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RY90NEU.o",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\nir-straight-check-r2-20261127\\validator.o",
+      "contents": {
+        "files": 1,
+        "bytes": 2093288,
+        "recursive_manifest_sha256": "46900cccb4c8d15bf80b62bebd7ae363d2f6d6f5e117d238df62ec5f2d781e5c"
+      },
+      "all_recycled_bytes_verified": true
+    }
+  ],
+  "no_permanent_delete": true,
+  "Windows_Recycle_Bin_not_emptied": true,
+  "WSL_build_symlinks_and_bytes_verified": true
+}

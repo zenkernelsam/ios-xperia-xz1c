@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-27",
+  "items": [
+    {
+      "native_trash_verified": "true",
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/earth-link-host-r1-20261127",
+      "trash_path": "/Users/ciscohe/.Trash/earth-link-host-r1-20261127"
+    }
+  ],
+  "contents": {
+    "files": 72,
+    "bytes": 289651687,
+    "recursive_manifest_sha256": "6a76a435f03d5f001edf0d7af0429e9bbbf3c6730fc0aa1673ba8963d741c93c"
+  },
+  "all_recycled_bytes_verified": true,
+  "protected_sources_and_kernel_SHA_unchanged": {
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/log-tickets-r1-20261127/link/kernel.log-tickets.macho": "f1d485a4f0306bcef003783ea9b2338188a6c8b65a4300fb207acbb15e9b387b",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/dxb/xnu/iokit/Kernel/arm/SweetGPU.cpp": "aa2c36792a2298b060aa858eabdc039522fcdde3cfdbafd453c5fc6c0683c157",
+    "/Users/ciscohe/Desktop/ios-xperia-xz1c/deps/mesa/src/compiler/nir/nir_functions.c": "be2167eda3bcb39dc62762fbc0d7b016e6b59798f33c8d20775b48c50e9dbba1"
+  },
+  "Mac_Trash_not_emptied": true,
+  "no_permanent_deletion": true
+}

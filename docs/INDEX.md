@@ -81,3 +81,5 @@ runtime的[EOF收尾前报告](../reproducibility/lilac-pcm-runtime-cache-offlin
 | Mac旧38份文档与源文件 | [macos-patch-entry](archive/20261123/macos-patch-entry/original-document-manifest.json) |
 
 旧handover／handout与编号手册在docs/archive；原字节与SHA保持。旧整理报告入口：[2026-11-12](ORGANIZATION-2026-11-12.md)、[2026-11-13](ORGANIZATION-2026-11-13.md)、[2026-11-15](ORGANIZATION-2026-11-15.md)。回收与复原统一由ORGANIZATION／LAYOUT说明，不从旧in-flight恢复执行。
+
+原Earth当前输入重放与未采用NIR原型见[离线报告](../reproducibility/earth-link-host-offline-20261127.json)；本轮入口原文／SHA见[归档manifest](archive/20261127/earth-host-link-close-out/original-document-manifest.json)。

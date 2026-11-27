@@ -4,6 +4,8 @@
 *.patch text eol=lf
 # Unified-diff context prefixes unchanged tabs and blank lines with one space.
 *.patch whitespace=-space-before-tab,-blank-at-eol
+# This test patch ends in an unchanged blank context line.
+tools/build/fixtures/nir-straight-inline-prototype.patch whitespace=-space-before-tab,-blank-at-eol,-blank-at-eof
 xnu/patches/** text eol=lf
 *.diff  text eol=lf
 *.py    text eol=lf

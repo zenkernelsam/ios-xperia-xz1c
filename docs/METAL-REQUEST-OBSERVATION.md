@@ -130,3 +130,5 @@ python -B tools/device/poster_cache_comparison.py --observation "$env:TEMP\lilac
 新缓存末槽修复后的 GLES 已完成自身 CPU／GLES9；[新 Metal21／PNG6 原字节验收](../reproducibility/poster-cache-budget-native21-prime-actual-20261124.json)另绑定新库及本靴 token。实际新来源清单为24对／48文件、missing0、条件预热跳过，150秒扫描完整。该背景包没有原 Aegir 登记，因此锁屏黑背景仍保留为下一轮原请求问题；原 Vista paused／mode 保持，不替换壁纸或强行解除策略。不同 build 的旧 cache 未改、旧失败未重发。
 
 历史原请求／ABI拒绝、USB打开拒绝、mode修正及原STOP都保留在原报告和归档。新的构建与单发规则见[BUILD](BUILD.md)、[OPERATIONS](OPERATIONS.md)。
+
+2026-11-27：[原Earth离线核对](../reproducibility/earth-link-host-offline-20261127.json)已按完整旧request的payload／key及现行正式变换重建准确VS／FS，长度和FNV匹配最新原靴；不是代表常量替代。NIR单块原型完整作者图序列化相同，但准确Earth链接阶段只约8.7%改善且host退出仍失败，未安装生产源。下一轮现有标准bin路径须本身份真实missing请求／完整native21和PNG6及独立inventory，原壁纸／FPS仍未完成。

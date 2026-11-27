@@ -1,0 +1,34 @@
+{
+  "date": "2026-11-27",
+  "audits": [
+    {
+      "distribution": "Ubuntu",
+      "trash": [
+        {
+          "path": "/home/cisco/.local/share/Trash",
+          "files": 0,
+          "info": 0
+        },
+        {
+          "path": "/home/cisco/.local/share/Trash",
+          "files": 0,
+          "info": 0
+        }
+      ],
+      "empty": true
+    },
+    {
+      "distribution": "Ubuntu-22.04",
+      "trash": [
+        {
+          "path": "/root/.local/share/Trash",
+          "files": 0,
+          "info": 0
+        }
+      ],
+      "empty": true
+    }
+  ],
+  "WSL_host_build_outputs_on_D_use_Windows_Recycle_Bin": true,
+  "no_Linux_recursive_delete": true
+}

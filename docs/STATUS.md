@@ -1,14 +1,16 @@
 # 当前状态 — 2026-11-27
 
-CPU／launchd、触控／音量键、完整GLES9、Metal21／PNG6和原生720×1280几何已有真机证据。原Aegir壁纸仍未通过：星点4212顶点／1404图元停在逐图元同步提交。当前GPU r5的CPU／GLES9／native CPU已实机通过；XR／MRT子集命中dense图像同步且原字节通过，完整native／PNG因两条DATA缺失尚未准入。音频现已具备AFE／ADM／ASM会话、GLINK适配及具体SMEM FIFO回调代码；真实DSP／codec／声音仍未接通。
+CPU／launchd、触控／音量键、完整GLES9、Metal21／PNG6和原生720×1280几何已有真机证据。当前v732日志队列／r5 GLES／反射Metal组合七轮准入通过且dropped0；原Aegir仍在Earth的NIR链接阶段超时，原UI／FPS／睡眠／光学和其它外设保持未完成。内核GPU／allocator／SCM／PON／RPC／VM冻结。
 
 ## 设备与下一轮
 
-2026-11-27用户重新插拔并确认Sony **BH905ND69G**蓝灯fastboot，独立健康32.297秒通过。r5 CPU／GLES9／native CPU均实际通过；首个native21缺两条PNG DATA，被独立校验拒绝，[原三项准入](../reproducibility/dense-r5-CPU-GLES9-actual-20261127.json)和[原拒绝](../reproducibility/dense-r5-native21-PNG-refusal-20261127.json)保留。
+2026-11-27用户已重新插拔并确认Sony **BH905ND69G**蓝灯fastboot；本轮独立只读健康32.750秒通过，未download／boot，无在途进程。最新原失败token `02758c66f824e349`已完整0x06回程，失败包不重发；准确原记录见下节。
 
-15ms日志候选CPU `0dba048078c21cbf`通过，回程38.141秒；native `65bdaf95ba7f2d03`controller PASS、完整返回fastboot，但独立Stencil工作PAGE校验拒绝：phase41缺original50／work9的一条PAGE，实际PAGE196、MAP197、RETIRE197、预期197。[新原拒绝](../reproducibility/cif10-paced-r3-native-stencil-log-refusal-20261127.json)中PNG6原字节／容器校验单独通过，不能代替完整native／PNG准入。当前无在途启动，手机安全fastboot；两包均不重发，原字节不修补。
+[Earth离线核对](../reproducibility/earth-link-host-offline-20261127.json)从当前gl5只读核对230044B原库，再用完整旧request与正式HalfESSL／XRBlend重放。重放VS4879B／FNVf2eef44db6a198a7、FS76869B／FNV27c2d57438bf46fe，均与最新LIVE→ACK日志一致；`bytes=74672`是原转换GLSL，原AIR20624B。代表function constants不当真实值使用。
 
-[当前logger审计与并发重现](../reproducibility/console-log-current-writer-contention-20261127.json)已核对v731实际链接object72d971…，与重编译当前源码的代码段一致；读锁移除属于正式v729增量，当前85源绑定已包含两份logger源。初次仅看base patch的读锁重现不用于归因当前实机。当前非阻塞writer锁在并发写入时仍能丢弃整条记录，已在主机用准确v729源重现；实机native结束后的dropped计数尚未取得。下一步定位／处理当前写入竞争，保持RPC／PON／GPU／allocator／SCM／VM冻结。串行writer快照原型经三套sanitizer及真实kernel头ARM64 object验证，未接入内核，不能当多writer修复；完整native／PNG未通过前不构建原Aegir包。
+单块NIR内联原型通过真实debug validator、ASan／UBSan及1／64／4096次嵌套／分支图的完整序列化字节对照，未安装生产源。固定Mesa的准确Earth链接阶段2.568→2.345秒、约8.7%改善，但两侧整进程都在LLVM14 host退出期失败；不提升为host GL／真机GPU通过。当前生产Mesa不变。
+
+下一轮优先现有标准程序缓存：本原靴星空／星点已存bin，Earth73444B实际request已持久化而未存bin。新完整backboard native21／PNG6包先自身CPU，再按本build／source-map只读inventory；只有准确missing请求才conditional prime。需核对实际bin／原pipeline／draw／扫描，不能空跑primer、改旧cache或以新token重发原失败。旧r5及日志缺条原拒绝由[GPU专题](METAL-REQUEST-OBSERVATION.md)与原报告索引，不再作为当前未准入状态。
 
 ## v732日志票号候选
 
@@ -16,13 +18,13 @@ CPU／launchd、触控／音量键、完整GLES9、Metal21／PNG6和原生720×1
 
 新kernel SHA `f1d485a4f0306bcef003783ea9b2338188a6c8b65a4300fb207acbb15e9b387b`，20681712 B；v731基线重链接除UUID外完全一致，仅替换logger.o，原1112项filelist及4个额外link objects均保持。静态DATA虚拟区增长3MiB，非空vm span低于32MiB；无allocator／VM／GPU／SCM／PON／RPC代码修改。新版本单独为732、86源，不能借731准入。
 
-下一轮private `cfc7bfafb0c3c165`先核对当前VM／SMEM、F12及单次原scanout，180秒一次现有status查询读取log／dropped；之后仍需新732 owner→ready→RAM自身CPU→GLES9→native21／PNG6。[v732完整实机报告](../reproducibility/v732-log-tickets-full-actual-20261127.json)已验private／owner／ready／GLES RAM CPU／GLES9／native RAM CPU／完整native21及PNG6，七轮都单发完整回程，每次180秒状态dropped0、tx=log。完整native token `1cfd34d92fe4f08d`，raw SHA `697d3124f5888bb8bf53292c41c4fcf83b0fa47b9fe06c6f7d72954f27755025`，回程38.453秒；[native21 proof](../reproducibility/v732-native21-proof-20261127.json)和[PNG6 proof](../reproducibility/v732-PNG6-proof-20261127.json)同一原流，缺失Stencil PAGE／PNG DATA已在新靴完整核对。旧失败不提升、不重发。当前手机安全fastboot，无在途启动。
+v732已单发private `cfc7bfafb0c3c165`核对当前VM／SMEM、F12及单次原scanout，180秒一次现有status查询读取log／dropped；随后新732 owner→ready→RAM自身CPU→GLES9→native21／PNG6也已完成。[v732完整实机报告](../reproducibility/v732-log-tickets-full-actual-20261127.json)已验private／owner／ready／GLES RAM CPU／GLES9／native RAM CPU／完整native21及PNG6，七轮都单发完整回程，每次180秒状态dropped0、tx=log。完整native token `1cfd34d92fe4f08d`，raw SHA `697d3124f5888bb8bf53292c41c4fcf83b0fa47b9fe06c6f7d72954f27755025`，回程38.453秒；[native21 proof](../reproducibility/v732-native21-proof-20261127.json)和[PNG6 proof](../reproducibility/v732-PNG6-proof-20261127.json)同一原流，缺失Stencil PAGE／PNG DATA已在新靴完整核对。旧失败不提升、不重发。当前手机安全fastboot，无在途启动。
 
 ## 原Aegir下一轮
 
 新`build/aegir-log-tickets-r1-20261127`保持v732／r5 GLES／原反射Metal，short observer SHA `2ec05f92…`、RAM blob `c6aab7f4…`、manifest `48ca18e9…`，嵌入上述新完整native／PNG6证明。原request／renderer／paused／mode保持，旧cache不改删；原snapshot／queue退休、真实原PNG及CG输入仍按原返回观察。
 
-先CPU `f1fd4ad7957b84a5`自身准入，再原GPU `02758c66f824e349`；GPU只在本LIVE／F12120秒一次既定上滑、150秒一次原scanout、180秒一次现有只读status。[原Aegir实机观察](../reproducibility/v732-aegir-earth-link-observation-20261127.json)已单发：CPU通过，回程38.156秒；GPU token02758c66f824e349为REVISE／EXTENSION_CHECKIN_TIMEOUT，原3431块扫描帧及39.844秒完整回程保留。原encoder4212星点draw返回只证明方法返回，尚无该原draw的GPU执行／像素证明；本靴在第三个aegir_earth_fsh pipeline中，VS／FS编译返回后glLinkProgram未返回。可靠sig9样本落在NIR inline_function／block split／reinsert；另两条短栈无唯一base锚点保持未解析。原包不重发，下一步离线复现Earth的链接热路径；原UI／壁纸、FPS、光学／睡眠及其它外设仍未完成。
+先CPU `f1fd4ad7957b84a5`自身准入，再原GPU `02758c66f824e349`；GPU只在本LIVE／F12120秒一次既定上滑、150秒一次原scanout、180秒一次现有只读status。[原Aegir实机观察](../reproducibility/v732-aegir-earth-link-observation-20261127.json)已单发：CPU通过，回程38.156秒；GPU token02758c66f824e349为REVISE／EXTENSION_CHECKIN_TIMEOUT，原3431块扫描帧及39.844秒完整回程保留。原encoder4212星点draw返回只证明方法返回，尚无该原draw的GPU执行／像素证明；本靴在第三个aegir_earth_fsh pipeline中，VS／FS编译返回后glLinkProgram未返回。可靠sig9样本落在NIR inline_function／block split／reinsert；另两条短栈无唯一base锚点保持未解析。原包不重发，离线准确输入重放已完成，下一步核对现有身份的真实missing request／标准bin预热；原UI／壁纸、FPS、光学／睡眠及其它外设仍未完成。
 
 ## 已验基线
 

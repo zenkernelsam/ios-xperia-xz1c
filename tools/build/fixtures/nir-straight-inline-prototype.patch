@@ -1,0 +1,22 @@
+--- a/nir_functions.c
++++ b/nir_functions.c
+@@ -160,6 +160,19 @@
+          default:
+             break;
+          }
++      }
++   }
++
++   /* Straight-line cloned bodies can move instructions without a CFG split. */
++   if (exec_list_is_singular(&copy->body) && !function_ends_in_jump(copy)) {
++      nir_block *block = nir_start_block(copy);
++      nir_instr *head = nir_block_first_instr(block);
++      if (!head || head->type != nir_instr_type_phi) {
++         nir_foreach_instr_safe(instr, block) {
++            nir_instr_remove(instr);
++            nir_builder_instr_insert(b, instr);
++         }
++         return;
+       }
+    }
+ 

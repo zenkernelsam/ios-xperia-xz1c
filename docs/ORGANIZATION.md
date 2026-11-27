@@ -162,3 +162,5 @@ Windows Patch/Xperia/research实查仍为89个参考Git仓库、非仓库0。Ubu
 | environment r22 | 178／4097／179699518 | 本页主记录与helper记录 |
 
 主体四项Finder元数据差异与partial journal仍按原记录保存，不提升为整批SHA通过。复原方法见LAYOUT；当前新回收目标的复核与历史累计保持各自范围。
+
+2026-11-27原Earth离线轮已整合五份入口，原文／SHA在[本轮归档](archive/20261127/earth-host-link-close-out/original-document-manifest.json)。正式测试源及未接入NIR原型进入tools/build；原Apple request／shader仅本地留存。一次性WSL host编译树位于D盘，连同重复Mesa tar／库／object／NIR测试容器共12,440文件、743,175,596B已[实际进入Windows回收站](../reproducibility/earth-link-host-windows-recycle-20261127.json)，原生入口、symlink及递归内容digest复核一致。Mac本轮host目录72文件、289,651,687B已[实际进入Mac垃圾桶](../reproducibility/earth-link-host-macos-trash-20261127.json)，内容digest及v732／SweetGPU／生产NIR源码SHA保持；[两套Ubuntu Trash仍空](../reproducibility/earth-link-host-wsl-trash-audit-20261127.json)。Windows／Mac回收站未清空，回收不是释放这些空间；最新原raw、完整proof、v732／当前RAM／固定deps及gl5保护输入保留。

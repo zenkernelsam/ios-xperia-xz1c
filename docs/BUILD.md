@@ -284,3 +284,15 @@ python -B tools/device/package_trial.py --mode gpu --version 730 --kernel build/
 ```
 
 独立后处理入口为geometry_layout_evidence.py --directory <原run> --output <新文件>及native_grid_profile_evidence.py --directory <fitted原run> --baseline <original原run> --output <新文件>。完整应用multiset、Dock顺序及Folder内容由原model比较，Root允许原系统分页重排。原标签归属不明仍REVISE；下一只读capture和新helper须再走host／新RAM自身CPU及新的原／拟合对照。详见[DISPLAY-GEOMETRY](DISPLAY-GEOMETRY.md)。
+
+## 原Earth离线链接复现
+
+`replay_render_request_cli.cpp`对本地完整原SGPB request重用现行HalfESSL／fold及XRBlend。先独立核对payload SHA／context-source-config key，再将输出长度／FNV与本LIVE→ACK日志比较；原request／shader只存本地，不能用代表function constants冒充实际原输入。`air_graphics_constants_cli.cpp`接受明确index/type/十六进制紧凑字节表，不提供默认值；代表输入必须单列。
+
+NIR单块原型仅在host override objects中核对，不应用生产Mesa或重编设备GLES：
+
+```sh
+python3 -B tools/build/check_nir_straight_inline.py --mesa-source build/my-native-mesa-src --mesa-build build/my-native-mesa --output build/my-nir-inline-check
+```
+
+输入须为固定24.3.4的native host build及compile_commands，准确原NIR源SHA被锁定；工具独立实编译debug validator、原／原型函数与作者测试，核对1／64／4096次图的完整序列化字节，原source／archives不变。[本轮报告](../reproducibility/earth-link-host-offline-20261127.json)保留整进程失败和链接阶段计量；局部变快不准入设备。下一轮现有缓存准入仍按OPERATIONS及实际完整native21／PNG6／inventory，不采用该小收益原型。

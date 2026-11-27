@@ -1,0 +1,62 @@
+{
+  "serial": "BH905ND69G",
+  "usb_vid": "0fce",
+  "usb_pid": "0dde",
+  "download_commands": 0,
+  "boot_commands": 0,
+  "reset_commands": 0,
+  "independent_health_only": true,
+  "previous_trial_result_unchanged": true,
+  "result": "PASS",
+  "continuous_health_seconds": 32.75,
+  "samples": [
+    {
+      "elapsed_seconds": 2.219000000040978,
+      "healthy": true
+    },
+    {
+      "elapsed_seconds": 5.219000000040978,
+      "healthy": true
+    },
+    {
+      "elapsed_seconds": 8.202999999979511,
+      "healthy": true
+    },
+    {
+      "elapsed_seconds": 11.156000000191852,
+      "healthy": true
+    },
+    {
+      "elapsed_seconds": 14.063000000081956,
+      "healthy": true
+    },
+    {
+      "elapsed_seconds": 16.969000000040978,
+      "healthy": true
+    },
+    {
+      "elapsed_seconds": 19.984000000171363,
+      "healthy": true
+    },
+    {
+      "elapsed_seconds": 22.906000000191852,
+      "healthy": true
+    },
+    {
+      "elapsed_seconds": 26.141000000061467,
+      "healthy": true
+    },
+    {
+      "elapsed_seconds": 29.125,
+      "healthy": true
+    },
+    {
+      "elapsed_seconds": 32.03100000019185,
+      "healthy": true
+    },
+    {
+      "elapsed_seconds": 34.96900000004098,
+      "healthy": true
+    }
+  ]
+}
