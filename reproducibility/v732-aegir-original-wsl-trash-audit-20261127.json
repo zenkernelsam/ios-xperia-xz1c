@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-27",
+  "distributions": [
+    {
+      "distribution": "Ubuntu",
+      "paths": [
+        {
+          "path": "/root/.local/share/Trash",
+          "non_directory_entries": 0
+        },
+        {
+          "path": "/home/cisco/.local/share/Trash",
+          "non_directory_entries": 0
+        }
+      ],
+      "Trash_empty": true
+    },
+    {
+      "distribution": "Ubuntu-22.04",
+      "paths": [
+        {
+          "path": "/root/.local/share/Trash",
+          "non_directory_entries": 0
+        }
+      ],
+      "Trash_empty": true
+    }
+  ],
+  "Windows_Mac_Trash_not_emptied": true
+}

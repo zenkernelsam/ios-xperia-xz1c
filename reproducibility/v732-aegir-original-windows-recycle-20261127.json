@@ -1,0 +1,88 @@
+{
+  "date": "2026-11-27",
+  "native_recycle_items": 6,
+  "native_recycle_files": 8,
+  "logical_bytes": 20562683,
+  "protected_files_SHA_preserved": 18,
+  "one_time_stage_and_retained_test_fixtures_recycled": true,
+  "no_permanent_deletion": true,
+  "Recycle_Bin_not_emptied": true,
+  "items": [
+    {
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-aegir-log-tickets-r1-20261127",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R8P8ZUY",
+      "entries": [
+        {
+          "relative": "ram-transfer-manifest.json",
+          "bytes": 630,
+          "sha256": "38ff2eed58ca3f9f4b3b4a7fae2e2bacfb677841e86746212290aa5163836b25"
+        },
+        {
+          "relative": "ram-transfer.tar",
+          "bytes": 20561920,
+          "sha256": "78010fae38356185f3c22d902eae7277e99179ccb9e4e6e012bacec3e985f0ce"
+        }
+      ]
+    },
+    {
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-console-status-test-1c6lphq2",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RQQ76NM",
+      "entries": [
+        {
+          "relative": "serial.raw.log",
+          "bytes": 22,
+          "sha256": "f43cbfe45ad95efc15f289d9febdb9ae5923a7c00a713cc85cd97547b1862a6e"
+        }
+      ]
+    },
+    {
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-console-status-test-8v91i0e6",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RC06115",
+      "entries": [
+        {
+          "relative": "serial-commands.jsonl",
+          "bytes": 23,
+          "sha256": "1a24bdbe8fadfe35ddca081ded9bc9a5553878d470a2f67d49b4de962829f963"
+        },
+        {
+          "relative": "serial.raw.log",
+          "bytes": 22,
+          "sha256": "f43cbfe45ad95efc15f289d9febdb9ae5923a7c00a713cc85cd97547b1862a6e"
+        }
+      ]
+    },
+    {
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-console-status-test-acm1svru",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R17UNXV",
+      "entries": [
+        {
+          "relative": "serial.raw.log",
+          "bytes": 22,
+          "sha256": "f43cbfe45ad95efc15f289d9febdb9ae5923a7c00a713cc85cd97547b1862a6e"
+        }
+      ]
+    },
+    {
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-console-status-test-b1j9fiyv",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RJ4EVLA",
+      "entries": [
+        {
+          "relative": "serial.raw.log",
+          "bytes": 22,
+          "sha256": "f43cbfe45ad95efc15f289d9febdb9ae5923a7c00a713cc85cd97547b1862a6e"
+        }
+      ]
+    },
+    {
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-console-status-test-g5yajvef",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RSQNRF1",
+      "entries": [
+        {
+          "relative": "serial.raw.log",
+          "bytes": 22,
+          "sha256": "f43cbfe45ad95efc15f289d9febdb9ae5923a7c00a713cc85cd97547b1862a6e"
+        }
+      ]
+    }
+  ]
+}

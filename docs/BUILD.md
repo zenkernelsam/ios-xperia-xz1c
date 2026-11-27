@@ -205,6 +205,10 @@ python3 -B tools/build/link_log_tickets.py --candidate build/my-log-tickets --ou
 
 当前已审核输出在build/log-tickets-r1-20261127：基线v731重链接除UUID外一致、仅logger object替换，原树不改。来源、实际ARM64／host检查及完整链接object SHA由专题报告绑定。新732记录必须包含自己的source binding和180秒一次当前LIVE status查询；查询走现有唯一serial worker，不改内核命令或回程。private仍要求完整scanout，四回程marker／健康30秒／worker退出均保持。
 
+## 当前Earth link栈解析
+
+symbolicate_link_crash.py新增可选`--token`裁定本LIVE→ACK及`--retain-unresolved`保留无唯一锚点样本。当前r5函数已拆出_render_create_samples，工具从实际符号选择该共同创建函数的glLinkProgram返回点；旧库仍按原函数锚点。库SHA、唯一16K对齐base和精确return offset均必须成立；无锚点不能猜位置，原raw不重写。原输入shader／shared-cache范围只保留本地，Git只放诊断元数据及源。报告由METAL-REQUEST-OBSERVATION索引。
+
 ## 当前console logger并发复验
 
 ```powershell

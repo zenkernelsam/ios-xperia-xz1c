@@ -1,5 +1,9 @@
 # 本周整理与文档整合 — 2026-11-27
 
+原Aegir新失败收尾：[Mac33项／63文件／88,968,328 B](../reproducibility/v732-aegir-original-macos-trash-20261127.json)与[Windows6项／8文件／20,562,683 B](../reproducibility/v732-aegir-original-windows-recycle-20261127.json)进入原生回收站，74个Mac／18个Windows保护文件SHA保持；一份HFS raw从保留blob逐字节复算后回收。保留原failed raw／scanout、签名observer／RAM、v732完整证明及源／stash备份。[两套Ubuntu Trash为空](../reproducibility/v732-aegir-original-wsl-trash-audit-20261127.json)，垃圾桶未清空。当前CPU测试fixture的五个TEMP目录一并回收，source测试只保留需要的源／报告。
+
+本次整合前[五份原文与SHA](archive/20261127/aegir-earth-link/original-document-manifest.json)已保存。符号工具第一遍依赖旧函数锚点被拒绝，按当前实库共同render_create_samples修正后，pid287唯一base成立，另外两条短栈保留未解析。仅发布元数据，不发布原Apple shader／绝对进程地址或把方法返回冒充GPU执行。新scope的原缓存保持；本轮原失败包没有再次投递。
+
 v732完整七项实机收尾：[Mac7项／11文件／21,120,908 B](../reproducibility/v732-log-tickets-macos-trash-20261127.json)和[Windows／WSL4项／10文件／55,826,986 B](../reproducibility/v732-log-tickets-windows-recycle-20261127.json)实际进入原生回收站，60个Mac和37个Windows保护文件SHA保持。[两套Ubuntu Trash为空](../reproducibility/v732-log-tickets-wsl-trash-audit-20261127.json)，未清空Windows／Mac垃圾桶。所有原失败、七轮当前raw／scanout／证明、签名库与新logger object、源码／stash备份保留。
 
 本次整合前[五份入口原文](archive/20261127/v732-full-actual/original-document-manifest.json)原字节与SHA已保存。新完整native／PNG6原证据均在正式仓库，原Aegir新observer已使用其准确证明构建；新原包仍先自身CPU，未借旧native。旧w731失败、缺PAGE／DATA及错误归因修正历史保持，SourceMap／GPU底层／RPC／PON等冻结源码不改。

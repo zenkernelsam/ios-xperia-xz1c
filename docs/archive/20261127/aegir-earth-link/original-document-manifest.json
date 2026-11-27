@@ -1,0 +1,27 @@
+[
+  {
+    "source": "docs/STATUS.md",
+    "archive": "docs/archive/20261127/aegir-earth-link/originals/STATUS.md",
+    "sha256": "5f53183589ddc54e7d00a5334f8592c3e210265f7747d78ae174697628bd396a"
+  },
+  {
+    "source": "docs/BUILD.md",
+    "archive": "docs/archive/20261127/aegir-earth-link/originals/BUILD.md",
+    "sha256": "ced40647dd9706a4c9295e4b8e115de2a97f3bde293ef9f3c75338b073615f9f"
+  },
+  {
+    "source": "docs/INDEX.md",
+    "archive": "docs/archive/20261127/aegir-earth-link/originals/INDEX.md",
+    "sha256": "a739f61e8f341bd847e2f76660950c70fdce92f5e765c9785a3f95f97e3a7812"
+  },
+  {
+    "source": "docs/METAL-REQUEST-OBSERVATION.md",
+    "archive": "docs/archive/20261127/aegir-earth-link/originals/METAL-REQUEST-OBSERVATION.md",
+    "sha256": "56e562db4c2e24d289e469c6f6b1cfa35993c9a35786e7e0a9fe454db9766749"
+  },
+  {
+    "source": "docs/ORGANIZATION.md",
+    "archive": "docs/archive/20261127/aegir-earth-link/originals/ORGANIZATION.md",
+    "sha256": "412d19bb610a29bcde29c92da2a5c5fbda2f11abecc9d4b860f8ba515f1b7ee9"
+  }
+]

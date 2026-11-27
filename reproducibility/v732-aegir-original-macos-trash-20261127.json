@@ -1,0 +1,525 @@
+{
+  "date": "2026-11-27",
+  "native_trash_items": 33,
+  "native_trash_files": 63,
+  "logical_bytes": 88968328,
+  "protected_files_SHA_preserved": 74,
+  "current_raw_HFS_exactly_recoverable_from_blob": true,
+  "no_permanent_deletion": true,
+  "Mac_Trash_not_emptied": true,
+  "items": [
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/observer/test_snapshot_readback.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_snapshot_readback.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 651,
+          "sha256": "e70702d187023243ecfbf669a6de55ac9ba065419e6c3fe04ee2c8480efb0a8f"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_snapshot_readback.yml",
+          "bytes": 193,
+          "sha256": "d77a84f632724949b97e02bc5b6249e156cfcfc788cd2f71c6a9ad6cf4d93efd"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_snapshot_readback",
+          "bytes": 20656,
+          "sha256": "7e0326c5818f9b74a7023d44c2563924a8321804fa6e18baba5a91f44e1b5dc9"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/observer/test_startup.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_startup.dSYM 20-34-50-840.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 641,
+          "sha256": "944829fa3c1a4d913161b503f6352fa20f7c101cdeefe97a15208dadbe4a587a"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_startup.yml",
+          "bytes": 183,
+          "sha256": "d58ac20d6120e575e4bc39aa8f60ebcf414e5919c18f4b7fb1ce25faedfc505a"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_startup",
+          "bytes": 14936,
+          "sha256": "26c38d84960775aebf3ce4d1eed8aac2f6ba8683bfe38e8cdf6ab16ab787f91d"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/observer/test_snapshot_render_queue.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_snapshot_render_queue.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 655,
+          "sha256": "b0bd1a4d4c9ea2688bef69c54821421c74fc8230cf84936f1040eb208d9222e4"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_snapshot_render_queue.yml",
+          "bytes": 197,
+          "sha256": "42e743e935140ae91babfabc2fefe90a322c7d7e5b8c6a1b66d99e4b5cfaf51f"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_snapshot_render_queue",
+          "bytes": 50652,
+          "sha256": "6c49b614d1f0df0e8380bf0847c59d0de8fe778b22ea7e7337c6325bdf784e7c"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/observer/test_png_image_dispatch.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_png_image_dispatch.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 652,
+          "sha256": "236aaeedc10009a032529be8c502cc8b58a5893578cf1d5354ab805ee898134f"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_png_image_dispatch.yml",
+          "bytes": 194,
+          "sha256": "9e3404a533623a474613e05dbc2f174e87710cd66a4d37bb08b52d0572c60a5a"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_png_image_dispatch",
+          "bytes": 38656,
+          "sha256": "f289c8e52efd1475cd4112caf91f4475202ce2677376fb3b826e0e45e7753b09"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/observer/test_snapshot_method_observer",
+      "trash_path": "/Users/ciscohe/.Trash/test_snapshot_method_observer",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 98096,
+          "sha256": "d6d2d3b1e1a3b31010cbfc8173e8de278a6e27e4a9eacd4ec2646e3f5276eb6a"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/observer/test_snapshot_method_observer.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_snapshot_method_observer.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 658,
+          "sha256": "04e828e1d0fd7bec7384bf92308830a990c1237423b15ef3c49b301d6f9934dd"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_snapshot_method_observer.yml",
+          "bytes": 200,
+          "sha256": "5a4a41e04f05c222726ba640165582133ee7ac95e3a9724a54ad884c28557c35"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_snapshot_method_observer",
+          "bytes": 63344,
+          "sha256": "d4af81ff3ad8b83715ad09e2d55c1e9f7fac88be409f7b13e0b64e0122897b8b"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/observer/test_aegir_snapshot_scope.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_aegir_snapshot_scope.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 654,
+          "sha256": "56a899a2f15efcff37a7f40043873db4e488854129dc46a1f3771be1c49582be"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_aegir_snapshot_scope.yml",
+          "bytes": 196,
+          "sha256": "4b2bb7cb2766306f7c0093d5cb92121b85df17dbe78a7e8d2dd645121d6cb71f"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_aegir_snapshot_scope",
+          "bytes": 25124,
+          "sha256": "e343373f7fadfe5cc657732a64606345328d9130b5f1db581ab69d5543681a53"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/observer/test_cache_scope.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_scope.dSYM 20-34-51-169.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 645,
+          "sha256": "2d56eca2217abc049f49309a8cb04e54f45a4ba11b0491143bbbb28280638af2"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_cache_scope.yml",
+          "bytes": 187,
+          "sha256": "3a7af1c2aeeb08eb6e5a6ab6f778916ef0efbbef8668ed22549ec0d3d428b8a1"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_cache_scope",
+          "bytes": 18224,
+          "sha256": "da00395df6c9f9136555af183c32b610b74957db4126c61e1ebcef1e366ea1bd"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/observer/test_postdraw_observer",
+      "trash_path": "/Users/ciscohe/.Trash/test_postdraw_observer",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 76096,
+          "sha256": "ccbb5dd3c4023b7cb3abe3b409268da1bfd823b9b7438cb5a4e90d260a7b5596"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/observer/test_observer.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_observer.dSYM 20-34-51-275.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 642,
+          "sha256": "589d796cebc46abadfe0ec147d2a15f3b4f4f50d2c7edbebfc3cde26f51d66bf"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_observer.yml",
+          "bytes": 184,
+          "sha256": "bf8f0185c731f2af3ead461819731ba3fc0f05ecf9b5839f66bc84eff4f8517c"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_observer",
+          "bytes": 44220,
+          "sha256": "1ecb24f813a4eed34bb12eac6626f7e02712d6494d385a05cc2ddcaa18aa5bdd"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/observer/test_png_input_observer",
+      "trash_path": "/Users/ciscohe/.Trash/test_png_input_observer",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 83672,
+          "sha256": "1ca52b2fbd82c9012f3fc7b10c0804c703c7f96180ddef59f80bb6c52978607d"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/observer/test_png_postdraw_encoder",
+      "trash_path": "/Users/ciscohe/.Trash/test_png_postdraw_encoder",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 65744,
+          "sha256": "0e50da0548879ea876513dcc3b1b1e46796a5fbae10eb63bcfc5df0ef91b9551"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/observer/test_log_remaining",
+      "trash_path": "/Users/ciscohe/.Trash/test_log_remaining 20-34-51-429",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 21736,
+          "sha256": "5ba2d0dafa6e301da95e3be749eb6a6e9fb471e3b1a1a89ac3b398f63a54f9c0"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/observer/test_snapshot_render_queue",
+      "trash_path": "/Users/ciscohe/.Trash/test_snapshot_render_queue",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 57232,
+          "sha256": "99365dabd70cdd652e8d2e4749ed10c5e288aaff4be910c63ffa0f980f96663e"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/observer/test_original_png_export",
+      "trash_path": "/Users/ciscohe/.Trash/test_original_png_export",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 29872,
+          "sha256": "d6ad086c793cd658547b19197f2ac6d702f1f603aaffa29ddb019ff6a24b7fdb"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/observer/test_snapshot_readback",
+      "trash_path": "/Users/ciscohe/.Trash/test_snapshot_readback",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 27432,
+          "sha256": "49f51890d19db30d3f5327929e45b92f8f95b05ca232226f6b81c820b8578a35"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/observer/test_cache_scope",
+      "trash_path": "/Users/ciscohe/.Trash/test_cache_scope 20-34-51-653",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 28320,
+          "sha256": "a96f28e01dc758496ff01937190cd294f52b5945d40319e5732f4e74668f514e"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/observer/test_original_png_export.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_original_png_export.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 653,
+          "sha256": "eb3f6bf01c216733db0c7f9e244f4cf02b98178c851e6c176e49f7ffb2afe1a3"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_original_png_export.yml",
+          "bytes": 195,
+          "sha256": "8a97f52e0cdd635a9b10e8d86da9106a52a526de2e597c12e92e1228fb6814e4"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_original_png_export",
+          "bytes": 19544,
+          "sha256": "2cb181e7f22fef67749d64cc18bf1eed9536c3c6d6dd4ca1dab4268925375951"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/observer/test_aegir_snapshot_scope",
+      "trash_path": "/Users/ciscohe/.Trash/test_aegir_snapshot_scope",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 34016,
+          "sha256": "130e1e5b10fd81f8c66d898383e14eea0bf7297aad32c00a5f3897dee82e8147"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/observer/test_pipeline_observer",
+      "trash_path": "/Users/ciscohe/.Trash/test_pipeline_observer",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 48464,
+          "sha256": "271fc03d6ac546485d6d5f72c54cc68bae80c2a5881085de911349ffdb4d16ec"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/observer/test_png_postdraw_encoder.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_png_postdraw_encoder.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 654,
+          "sha256": "7dd79ab1dac553ea05bede2be726273fc5fd3b229c2068fc14aa7fc0d3d50003"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_png_postdraw_encoder.yml",
+          "bytes": 196,
+          "sha256": "57b03dabd2f330cb32f8b99fb87c78ce7e0317769a5baea89738bc337652b6c9"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_png_postdraw_encoder",
+          "bytes": 50704,
+          "sha256": "c974ea86af84c99d6a04b3c374dfee5a7dfdbf9898bde9a9d3dc0d7f3781df36"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/observer/test_original_cg_input",
+      "trash_path": "/Users/ciscohe/.Trash/test_original_cg_input",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 29336,
+          "sha256": "1fc854bd9358bdb403d1c339aa7b6e143c2d3777e5db57fca26110d554ac3afe"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/observer/test_original_cg_input.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_original_cg_input.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 651,
+          "sha256": "9d71615ca53d03d665fac37be83a2ac2305d9702b43e93bf09ddb376a1f300e1"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_original_cg_input.yml",
+          "bytes": 193,
+          "sha256": "503eb9eb003e59d1c69896d0054487a3ebec7f8551a25337aac160072598a266"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_original_cg_input",
+          "bytes": 22324,
+          "sha256": "15bbcb79db8f71daae2acda6261a8a007d356a33dd886706171dcfbef2407b9a"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/observer/test_log_remaining.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_log_remaining.dSYM 20-34-52-024.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 647,
+          "sha256": "f6b0d15b02aad8968c6310df05317cf0957820996f413075d5afbc55de97139d"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_log_remaining.yml",
+          "bytes": 189,
+          "sha256": "c36c9002674c809e33dd8077ee385b966d14b128420bcbd620ddfc702aeaaa34"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_log_remaining",
+          "bytes": 14068,
+          "sha256": "f6370aa4e20e3f2e7551cbdf1e7f03ed4404eae1c1c821f113ccc5a808e4ed96"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/observer/test_postdraw_observer.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_postdraw_observer.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 651,
+          "sha256": "ba5e540d03716130925c52e316c17d80e78fd08101eb2aa21e1bf0abadadb191"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_postdraw_observer.yml",
+          "bytes": 193,
+          "sha256": "581d5d38bb77660cc5d875612cc17a4216ea8584a7d581435c6c6105aa9ac689"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_postdraw_observer",
+          "bytes": 57716,
+          "sha256": "364dca724d4912bb114bb4283dc335699ae25c5abed1e340d48aea79231253bf"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/observer/test_pipeline_observer.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_pipeline_observer.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 651,
+          "sha256": "14a5e51d08a5bf0856f6e93830a9fde78a537ae439cf8dfa4bd0dc8268cf1dc6"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_pipeline_observer.yml",
+          "bytes": 193,
+          "sha256": "257cc81a87f90bf6ffaf0cded9be794dded16cb19cc26f9711ab556ea64e8c95"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_pipeline_observer",
+          "bytes": 45512,
+          "sha256": "00f400edf654339390d12d844ae3bc4f6dcf1cd43c417dfdfa9cf095692672b0"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/observer/test_png_input_observer.dSYM",
+      "trash_path": "/Users/ciscohe/.Trash/test_png_input_observer.dSYM",
+      "entries": [
+        {
+          "relative": "Contents/Info.plist",
+          "bytes": 652,
+          "sha256": "4eea09a4e0f1cd19994e51f233c52e59224b7eceb46e1da9e1c6b4275173a70f"
+        },
+        {
+          "relative": "Contents/Resources/Relocations/x86_64/test_png_input_observer.yml",
+          "bytes": 194,
+          "sha256": "70e4225873818d10520b8d3e0a247949be907e4ce6f5e13fcd084f15328270bf"
+        },
+        {
+          "relative": "Contents/Resources/DWARF/test_png_input_observer",
+          "bytes": 58948,
+          "sha256": "cf7762033102aaa267c5803186ad09bee8d5db47f21273c5b8120c45a52748bf"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/observer/test_startup",
+      "trash_path": "/Users/ciscohe/.Trash/test_startup 20-34-52-238",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 20592,
+          "sha256": "aba887ade92fcb7be827cd72c1f0c0fa13ceae994387677831800faba510cee2"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/observer/test_observer",
+      "trash_path": "/Users/ciscohe/.Trash/test_observer 20-34-52-292",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 67376,
+          "sha256": "bc957fc97d330474382b010113638a86a818f9e586ee743618eb6f1531f82891"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/observer/test_png_image_dispatch",
+      "trash_path": "/Users/ciscohe/.Trash/test_png_image_dispatch",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 52288,
+          "sha256": "536016d9bd15aac85c8e7c1e572f978858aff618259db0f6b3c4d5a9f1dce6a0"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/ram-transfer.tar",
+      "trash_path": "/Users/ciscohe/.Trash/ram-transfer.tar 20-34-52-398.tar",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 20561920,
+          "sha256": "78010fae38356185f3c22d902eae7277e99179ccb9e4e6e012bacec3e985f0ce"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/ram/glram.dmg",
+      "trash_path": "/Users/ciscohe/.Trash/glram.dmg 20-34-52-450.dmg",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 33554432,
+          "sha256": "81b90399b9d412ff62b42d441b4e4c1da332b8e1832412758c424bde6fa8b909"
+        }
+      ]
+    },
+    {
+      "source": "/Users/ciscohe/Desktop/ios-xperia-xz1c/build/aegir-log-tickets-r1-20261127/ram/glram.raw",
+      "trash_path": "/Users/ciscohe/.Trash/glram.raw 20-34-52-501.raw",
+      "entries": [
+        {
+          "relative": ".",
+          "bytes": 33554432,
+          "sha256": "81b90399b9d412ff62b42d441b4e4c1da332b8e1832412758c424bde6fa8b909"
+        }
+      ]
+    }
+  ]
+}

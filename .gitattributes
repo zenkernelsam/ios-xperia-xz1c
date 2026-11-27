@@ -37,6 +37,7 @@ docs/archive/20261124/cache-budget-close-out/original-document-manifest.json tex
 reproducibility/cache-budget-peripheral-host-validation-20261125.json -text -eol whitespace=cr-at-eol
 reproducibility/cache-export-paced-r25-gpu-actual-20261123.json -text -eol whitespace=cr-at-eol
 reproducibility/poster-cache-budget-gles9-actual-20261124.json -text -eol whitespace=cr-at-eol
+reproducibility/v732-aegir-earth-link-symbols-20261127.json -text -eol whitespace=cr-at-eol
 # Archive manifests are current metadata, not copies of historical sources.
 docs/archive/20261120/attachment-hardware-r1/original-documents.json text eol=lf
 docs/archive/20261121/weekly-integration/original-document-manifest.json text eol=lf

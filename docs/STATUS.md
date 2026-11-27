@@ -22,7 +22,7 @@ CPU／launchd、触控／音量键、完整GLES9、Metal21／PNG6和原生720×1
 
 新`build/aegir-log-tickets-r1-20261127`保持v732／r5 GLES／原反射Metal，short observer SHA `2ec05f92…`、RAM blob `c6aab7f4…`、manifest `48ca18e9…`，嵌入上述新完整native／PNG6证明。原request／renderer／paused／mode保持，旧cache不改删；原snapshot／queue退休、真实原PNG及CG输入仍按原返回观察。
 
-先CPU `f1fd4ad7957b84a5`自身准入，再原GPU `02758c66f824e349`；GPU只在本LIVE／F12120秒一次既定上滑、150秒一次原scanout、180秒一次现有只读status。未投递，完整原UI／壁纸、FPS、光学／睡眠及其它外设仍待实机。
+先CPU `f1fd4ad7957b84a5`自身准入，再原GPU `02758c66f824e349`；GPU只在本LIVE／F12120秒一次既定上滑、150秒一次原scanout、180秒一次现有只读status。[原Aegir实机观察](../reproducibility/v732-aegir-earth-link-observation-20261127.json)已单发：CPU通过，回程38.156秒；GPU token02758c66f824e349为REVISE／EXTENSION_CHECKIN_TIMEOUT，原3431块扫描帧及39.844秒完整回程保留。原encoder4212星点draw返回只证明方法返回，尚无该原draw的GPU执行／像素证明；本靴在第三个aegir_earth_fsh pipeline中，VS／FS编译返回后glLinkProgram未返回。可靠sig9样本落在NIR inline_function／block split／reinsert；另两条短栈无唯一base锚点保持未解析。原包不重发，下一步离线复现Earth的链接热路径；原UI／壁纸、FPS、光学／睡眠及其它外设仍未完成。
 
 ## 已验基线
 

@@ -1,0 +1,61 @@
+{
+  "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v732-aegir-log-tickets-gpu-live-20261127",
+  "version": 732,
+  "token": "02758c66f824e349",
+  "kernel_sha256": "f1d485a4f0306bcef003783ea9b2338188a6c8b65a4300fb207acbb15e9b387b",
+  "image_sha256": "6e2e5c8654063363385463fc55656bf47617376c241a74e5c6d28720a37c73e7",
+  "log_sha256": "393dfc3d7b133770fc27b57928a7a533f489fa6dc70da9a8955792770969c835",
+  "original_result": "REVISE",
+  "original_reason": "EXTENSION_CHECKIN_TIMEOUT",
+  "actual_failures": [],
+  "native_GPU_failure_results": [],
+  "attachment_failure_results": [],
+  "actual_program_cache_failures": [],
+  "registry_assertions": [],
+  "actual_AIR_render_failure_results": [],
+  "actual_MRT_context_capability_records": [
+    {
+      "targets": 8,
+      "fp32_rt": 1,
+      "fp32_blend": 0,
+      "fp32_image": 1,
+      "independent_enable": 1,
+      "independent_func": 1,
+      "float_blend": 0,
+      "fbfetch": 0,
+      "no_attachment": 1,
+      "fragment_images": 24,
+      "image_units": 192
+    }
+  ],
+  "actual_MRT_GL_errors": [],
+  "missing_device_API": [],
+  "original_exception_missing_API": [],
+  "original_extension_checkin_timeout_count": 3,
+  "actual_program_prime_incomplete": [],
+  "actual_program_cache_scope_errors": [],
+  "payload_audit": {
+    "image_sha256": "6e2e5c8654063363385463fc55656bf47617376c241a74e5c6d28720a37c73e7",
+    "kernel_sha256": "f1d485a4f0306bcef003783ea9b2338188a6c8b65a4300fb207acbb15e9b387b",
+    "blob_count": 8,
+    "complete_payload_reconstructed_from_compiled_kernel": true
+  },
+  "strict_return": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "02758c66f824e349",
+    "checkpoint_bytes": 1674599,
+    "log_bytes": 1679490,
+    "log_sha256": "393dfc3d7b133770fc27b57928a7a533f489fa6dc70da9a8955792770969c835",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      9,
+      85,
+      87
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 39.84399999980815,
+  "failed_stage_not_accepted": true
+}

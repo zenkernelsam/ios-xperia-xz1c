@@ -229,7 +229,7 @@
     "tools/build/profile_gles_shader.c": "5beb33e2545ba387cb9c2c17cb0e2fad190b15c3a6bfe620db31e0ce84313e51",
     "tools/build/test_sampler_gles.c": "a8e17b2cba12780940c20e70f6a0e07785ccd82a6ccee9c012e88234c2eef780",
     "tools/build/check_sampler_gles.py": "d2e9711e25f0ce6ad335ab5aaadbdedf908e9f479da9d93900f88aa253f9a554",
-    "tools/build/symbolicate_link_crash.py": "df8677c6b4673e81299358b553648e4e8a118c02219b8bfead90e03aacb5b218",
+    "tools/build/symbolicate_link_crash.py": "dcfacd0e4272299d9056fdb21d2ec16d5753b13ae662040b7c89839956227e20",
     "tools/build/test_program_cache.c": "9c7ef4f60c5d2c817aed7a9485504b8bd40c0f82859411d0ba5590f1a6cdc082",
     "tools/build/test_program_cache_budget.c": "891992a718a1bd985c8914b5d8f55babce1656b098e5cde14c344ea9302daba5",
     "tools/build/prepare_sources.py": "3f9918db3b1b7e5337483d8064257e22a1514d763a2f9fc2591f1cac9ce00629",

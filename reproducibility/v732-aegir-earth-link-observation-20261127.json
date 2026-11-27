@@ -1,0 +1,161 @@
+{
+  "date": "2026-11-27",
+  "token": "02758c66f824e349",
+  "raw_sha256": "393dfc3d7b133770fc27b57928a7a533f489fa6dc70da9a8955792770969c835",
+  "original_result": "REVISE",
+  "original_reason": "EXTENSION_CHECKIN_TIMEOUT",
+  "return_seconds_with_health": 39.84399999980815,
+  "original_encoder_star_draw_count": 4212,
+  "original_encoder_draw_method_return_seen": true,
+  "encoder_return_not_GPU_execution_or_original_pixels_proof": true,
+  "original_Earth_pipeline_link_begin_without_end_observed": true,
+  "resolved_link_sample": [
+    {
+      "pid": 287,
+      "frames": [
+        {
+          "relative_pc": "0x592a48",
+          "symbol": "_split_block_cursor",
+          "offset": "0xb4"
+        },
+        {
+          "relative_pc": "0x5929dc",
+          "symbol": "_split_block_cursor",
+          "offset": "0x48"
+        },
+        {
+          "relative_pc": "0x59303c",
+          "symbol": "_nir_cf_reinsert",
+          "offset": "0x94"
+        },
+        {
+          "relative_pc": "0x5a049c",
+          "symbol": "_nir_inline_function_impl",
+          "offset": "0x43c"
+        },
+        {
+          "relative_pc": "0x5a0ab8",
+          "symbol": "_inline_functions_pass",
+          "offset": "0x1cc"
+        },
+        {
+          "relative_pc": "0x5a0708",
+          "symbol": "_nir_inline_functions",
+          "offset": "0x10c"
+        },
+        {
+          "relative_pc": "0x518c6c",
+          "symbol": "_gl_nir_inline_functions",
+          "offset": "0x3c"
+        },
+        {
+          "relative_pc": "0x51cd54",
+          "symbol": "_gl_nir_link_glsl",
+          "offset": "0x1934"
+        },
+        {
+          "relative_pc": "0x2460e4",
+          "symbol": "_st_link_shader",
+          "offset": "0x1b0"
+        },
+        {
+          "relative_pc": "0x195dd8",
+          "symbol": "_link_program_error",
+          "offset": "0x144"
+        },
+        {
+          "relative_pc": "0xa8a8",
+          "symbol": "_render_create_samples",
+          "offset": "0xb4c"
+        }
+      ],
+      "current_library_base_inferred_from_unique_16K_aligned_return": true
+    }
+  ],
+  "unresolved_samples": [
+    {
+      "pid": 284,
+      "reason": "No unique 16K-aligned glLinkProgram return anchor",
+      "candidate_bases": 0
+    },
+    {
+      "pid": 292,
+      "reason": "No unique 16K-aligned glLinkProgram return anchor",
+      "candidate_bases": 0
+    }
+  ],
+  "inlining_stack_observed_not_entire_wait_root_cause_proof": true,
+  "new_original_packet_not_replayed": true,
+  "original_screen": {
+    "protocol": 1,
+    "verified": true,
+    "frames": [
+      {
+        "id": 1,
+        "token": "02758c66f824e349",
+        "kernel_sha256": "f1d485a4f0306bcef003783ea9b2338188a6c8b65a4300fb207acbb15e9b387b",
+        "image_sha256": "6e2e5c8654063363385463fc55656bf47617376c241a74e5c6d28720a37c73e7",
+        "binding": {
+          "protocol": 1,
+          "width": 720,
+          "height": 1280,
+          "stride": 2160,
+          "format": "BGR888",
+          "codec": "PRLE1",
+          "reader_source_sha256": "e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7d97071ad2",
+          "codec_source_sha256": "9cf2223956242bd2bfbb6445f00e20eb4c12e3e8dfe3c22df246fe369a5b69ea",
+          "runtime_source_sha256": "2c566a962d61e7b8aebfc88be54d496878821a4c0f5bb439f505198b16adfba2"
+        },
+        "begin": {
+          "token": "02758c66f824e349",
+          "id": "1",
+          "width": "720",
+          "height": "1280",
+          "stride": "2160",
+          "format": "BGR888",
+          "bytes": "2764800",
+          "codec": "PRLE1",
+          "encoded": "439072",
+          "raw_fnv": "1d188ed4e74bc6d1",
+          "enc_crc": "6c42f730",
+          "vsync": "5036",
+          "timestamp": "6700640507",
+          "copy_ticks": "4992774",
+          "power_off": "1",
+          "source_checked": "1",
+          "source_match": "1"
+        },
+        "scan": {
+          "token": "02758c66f824e349",
+          "id": "1",
+          "pa": "0x9d400000",
+          "map_pa": "0x9d400000",
+          "map_bytes": "2764800",
+          "size": "0x50002d0",
+          "img": "0x50002d0",
+          "xy": "0",
+          "out": "0x50002d0",
+          "outxy": "0",
+          "fmt": "0x2243f",
+          "unpack": "0x20001",
+          "op": "0x80000000",
+          "qop": "0",
+          "ctl": "0x20020",
+          "start": "0",
+          "before_after": "1"
+        },
+        "blocks": 3431,
+        "raw_file": "scanout-00000001.bgr",
+        "png_file": "scanout-00000001.png",
+        "raw_sha256": "00fc4e29bf871aa013222dda3afd0f709c2a3357d92e10179482075b930f44c5",
+        "png_sha256": "aeaa611f4256666cbea84df71353722cd1b493a82eb50100b056d1dc9531a223",
+        "pixel_values_preserved": true,
+        "verified": true,
+        "optical_panel_verified": false
+      }
+    ],
+    "optical_panel_verified": false,
+    "elapsed_seconds": 14.609999999869615
+  },
+  "original_scene_paused_mode_not_forced": true
+}

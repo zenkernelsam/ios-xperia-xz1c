@@ -1,5 +1,9 @@
 # 原壁纸请求、快照与绘制停点 — 2026-11-25
 
+[v732原Aegir新观察](../reproducibility/v732-aegir-earth-link-observation-20261127.json)继续保留REVISE：三次extension check-in timeout，本靴原snapshot／registry／library读取已调用，第三个Earth pipeline的VS4879 B／FS76869 B编译均返回，link_begin后未见link_end。4212星点encoder方法返回不代替executeOperations、GPU提交、fence或原页；本次不能宣称原壁纸或GPU星点已恢复。
+
+[准确当前库符号化](../reproducibility/v732-aegir-earth-link-symbols-20261127.json)用新GLES的_render_create_samples→glLinkProgram唯一16K对齐返回offset0xa8a8推断pid287库base，得到split_block_cursor／nir_cf_reinsert／nir_inline_function_impl／nir_inline_functions／gl_nir_link_glsl／st_link_shader。pid284／292短栈无唯一锚点，原文保留未解析，不能猜base。源原raw393dfc…只用本LIVE→ACK；堆栈样本不推全部等待时间。下一步从锁定Mesa及准确原Earth输入离线复现，不改冻结kernel底层或用新token重发旧失败。
+
 [v732完整native21／PNG6](../reproducibility/v732-log-tickets-full-actual-20261127.json)已通过，Stencil工作PAGE／MAP／RETIRE、99相位原hash和六个PNG原字节／ICC／metadata全部齐；七轮logger状态dropped0。证明来自token1cfd34d92fe4f08d当前LIVE→ACK原流，旧两次缺记录失败不提升。新原Aegir observer／RAM嵌入同一完整证明，继续观察原snapshot／CG输入／queue退休，不能把作者probe成功当原壁纸成功；保持原paused／mode。
 
 2026-11-27 [多writer票号候选](../reproducibility/log-tickets-r1-offline-20261127.json)针对当前logger producer争用路径，保持原GPU／native／PNG字节验证不变。v732仅更换日志object，不能把host并发、基线链接或新status响应当完整native成功。必须先新kernel private／owner／ready和新RAM自身CPU，再其自身GLES9／native21／PNG6；原两次native缺记录继续保持拒绝。
