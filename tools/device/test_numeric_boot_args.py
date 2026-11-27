@@ -65,7 +65,7 @@ class NumericBootArgs(unittest.TestCase):
             with self.assertRaises(AssertionError):
                 numeric_options(bad)
         with self.assertRaises(AssertionError):
-            native_zero_binding(732)
+            native_zero_binding(733)
 
 
 if __name__=='__main__':unittest.main()

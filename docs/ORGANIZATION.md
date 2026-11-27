@@ -1,5 +1,7 @@
 # 本周整理与文档整合 — 2026-11-27
 
+多writer票号候选整合前五份入口原文及SHA在[新archive](archive/20261127/log-tickets-r1/original-document-manifest.json)。新源／builder／status准入及报告均在正式仓库，research没有新增实验。Windows／Mac源和host sanitizer检查、实际ARM64 object及v731精确链接输入保留；新kernel候选与原失败不同，不借旧proof。当前新增host产物与传输副本在本轮验收结束后按原生回收规则处理，受保护输入与既有回收站保持。
+
 并发核验补回收：[Mac16项／24文件／336,443 B](../reproducibility/console-writer-check-macos-trash-20261127.json)进入原生Trash，[Windows／WSL10项／12文件／5,744,614 B](../reproducibility/console-writer-check-windows-recycle-20261127.json)进入Windows回收站；30个Mac、31个Windows源／日志／manifest SHA保持。实际ARM64头编译对象、当前v731对象代码段核验和所有原失败保留；垃圾桶均未清空。新串行writer原型明确未接入内核，不作为当前writer竞争修复。
 
 本轮设备与日志收尾：[Mac26项／59文件／197,739,175 B](../reproducibility/cif10-paced-r3-macos-trash-20261127.json)进入原生Trash，[Windows／WSL6项／16文件／64,166,100 B](../reproducibility/cif10-paced-r3-windows-recycle-20261127.json)进入Windows回收站；222个Mac、48个Windows保护文件SHA保持。[两套Ubuntu Trash为空](../reproducibility/cif10-paced-r3-wsl-trash-audit-20261127.json)，Windows／Mac垃圾桶未清空。当前HFS raw从保留blob逐字节重建验证后回收，签名候选、原失败／raw／scanout和源码／stash备份保留。

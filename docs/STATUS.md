@@ -10,6 +10,14 @@ CPU／launchd、触控／音量键、完整GLES9、Metal21／PNG6和原生720×1
 
 [当前logger审计与并发重现](../reproducibility/console-log-current-writer-contention-20261127.json)已核对v731实际链接object72d971…，与重编译当前源码的代码段一致；读锁移除属于正式v729增量，当前85源绑定已包含两份logger源。初次仅看base patch的读锁重现不用于归因当前实机。当前非阻塞writer锁在并发写入时仍能丢弃整条记录，已在主机用准确v729源重现；实机native结束后的dropped计数尚未取得。下一步定位／处理当前写入竞争，保持RPC／PON／GPU／allocator／SCM／VM冻结。串行writer快照原型经三套sanitizer及真实kernel头ARM64 object验证，未接入内核，不能当多writer修复；完整native／PNG未通过前不构建原Aegir包。
 
+## v732日志票号候选
+
+[离线报告](../reproducibility/log-tickets-r1-offline-20261127.json)与[准确内核身份](../reproducibility/log-tickets-linked-candidate-20261127.json)绑定多producer票号队列：8个并发writer／16000条／256000原字节通过WSL／Mac ASan／UBSan及Mac TSan。暂停前缀只等待，不读取未发布字节；超出一整圈的旧writer不能覆盖新generation。旧共享writer锁移除，RPC回调尾部逐字节保持；logger ARM64 object只导入原有printf。
+
+新kernel SHA `f1d485a4f0306bcef003783ea9b2338188a6c8b65a4300fb207acbb15e9b387b`，20681712 B；v731基线重链接除UUID外完全一致，仅替换logger.o，原1112项filelist及4个额外link objects均保持。静态DATA虚拟区增长3MiB，非空vm span低于32MiB；无allocator／VM／GPU／SCM／PON／RPC代码修改。新版本单独为732、86源，不能借731准入。
+
+下一轮private `cfc7bfafb0c3c165`先核对当前VM／SMEM、F12及单次原scanout，180秒一次现有status查询读取log／dropped；之后仍需新732 owner→ready→RAM自身CPU→GLES9→native21／PNG6。新内核尚未实机，原失败包保持，不重发。当前手机安全fastboot，无在途启动。
+
 ## 已验基线
 
 | 输入 | 精确身份 | 已验证范围 |

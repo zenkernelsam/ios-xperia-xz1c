@@ -193,6 +193,18 @@ def verify(directory,mode,kernel_sha=None,version=None):
             'single_download_boot_verified':True,'actual_stage_verified':True,
             'complete_panel_and_peripheral_goal_not_achieved':True}
     report['payload_audit']=payload_proof
+    if a.get('console_status_observation'):
+        from controller import console_status_binding
+        assert a['console_status_observation']==console_status_binding()
+        commands=[json.loads(s)['command'] for s in (root/'cycle-01/serial-commands.jsonl').read_text().splitlines()]
+        assert commands.count('status')==1,'One source-bound post-LIVE status query required'
+        events=[json.loads(s) for s in (root/'events.jsonl').read_text().splitlines()]
+        requests=[e for e in events if e['state']=='CONSOLE_STATUS_REQUESTED'];assert len(requests)==1
+        request=requests[0];assert request['token']==a['token'] and request['current_LIVE'] and request['command_dispatches']==1
+        offset=request['raw_offset'];assert start<offset<ack
+        statuses=re.findall(r'VERMEER DEBUG: K70DBG004 events=(\d+) tx=(\d+) rx=(\d+) log=(\d+) dropped=(\d+)',text[offset:ack]);assert len(statuses)==1
+        report['console_status']={k:int(v) for k,v in zip(('events','tx','rx','log','dropped'),statuses[0])}
+        report['console_status']['one_current_LIVE_query']=True
     if 'screen_snapshot_binding' in a:
         from scanout_snapshot import verify_saved
         commands=[json.loads(line)['command'] for line in (root/'cycle-01/serial-commands.jsonl').read_text(encoding='utf-8').splitlines()]

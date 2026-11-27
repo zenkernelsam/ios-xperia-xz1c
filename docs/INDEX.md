@@ -38,6 +38,7 @@ reproducibility保存原结果摘要、源码锁、精确proof和回收记录；
 | PCM运行时／C11接口／clock／cache交接 | [C接口报告](../reproducibility/lilac-pcm-c-abi-offline-20261126.json)：十二组回归、六个ARM64对象、稳定caller storage／重入和销毁门槛、复制→cache交接→publication／完成→acquire；真实mapping／cache指令／DSP／codec／声音待接 |
 | ADSP启动依赖与实际生命周期 | [源码审计](../reproducibility/lilac-adsp-boot-source-audit-20261126.json)：固定Sony Git blob和准确formal源，RPM前置／stage4～7最终shutdown；当前DSP状态与声音未验 |
 | console日志完整性 | [当前writer争用报告](../reproducibility/console-log-current-writer-contention-20261127.json)、[新native原拒绝](../reproducibility/cif10-paced-r3-native-stencil-log-refusal-20261127.json)：v729源／真实链接object已核对；当前writer竞争待处理 |
+| v732票号日志候选 | [离线并发／链接报告](../reproducibility/log-tickets-r1-offline-20261127.json)、[单独内核身份](../reproducibility/log-tickets-linked-candidate-20261127.json)；尚未设备准入 |
 
 原[PCM session七组](../reproducibility/lilac-pcm-session-offline-20261126.json)、[GLINK适配八组](../reproducibility/lilac-pcm-glink-transport-offline-20261126.json)和[人工sparse槽位barrier流](../reproducibility/ordered-image-barrier-star-load-host-20261126.json)保持历史边界，不作为不同新产物的实机准入。现行步骤只由STATUS／BUILD维护。
 

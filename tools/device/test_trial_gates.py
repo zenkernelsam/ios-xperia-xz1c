@@ -20,6 +20,17 @@ from exception_evidence import inspect_scope,verify_renderer
 
 
 class Gates(unittest.TestCase):
+    def test_logger_kernel_keeps_new_identity_and_prior_kernel_gates(self):
+        from diagnostic_candidate import LOG_VERSION,LOG_KERNEL_SHA
+        base=configuration(WLED_VERSION);new=configuration(LOG_VERSION)
+        self.assertNotEqual(base['binding'],new['binding'])
+        self.assertEqual(new['source_hashes']['iokit/Kernel/arm/SweetGPU.cpp'],base['source_hashes']['iokit/Kernel/arm/SweetGPU.cpp'])
+        self.assertEqual(set(new['changed_sources']),{'bsd/dev/vermeer_debug.c','bsd/dev/SweetLogTickets.h'})
+        record=dict(version=LOG_VERSION,diagnostic_binding=new['binding'],kernel_sha256=LOG_KERNEL_SHA,source_revision=new['binding']['manifest_sha256'])
+        self.assertEqual(verify_record(record)['kernel_sha256'],LOG_KERNEL_SHA)
+        for bad in (dict(record,kernel_sha256=WLED_KERNEL_SHA),dict(record,version=WLED_VERSION),
+                    dict(record,diagnostic_binding=base['binding']),dict(record,source_revision='0'*64)):
+            with self.assertRaises(AssertionError):verify_record(bad)
     def test_original_command_error_routes_safe_return(self):
         for line, reason in (
             ('SWEET RQUEUE RESULT pid=7 call=1 status=5 error_nil=0 code=9 terminal_getters_only=1','ORIGINAL_METAL_COMMAND_ERROR'),
@@ -137,7 +148,7 @@ class Gates(unittest.TestCase):
         self.assertEqual(screen['manifest']['base_version'],729)
         self.assertEqual(len(screen['source_hashes']),83)
         self.assertEqual(screen['source_hashes']['iokit/Kernel/arm/SweetGPU.cpp'],configuration(729)['source_hashes']['iokit/Kernel/arm/SweetGPU.cpp'])
-        with self.assertRaises(AssertionError):configuration(732)
+        with self.assertRaises(AssertionError):configuration(733)
 
     def test_wled_has_its_own_kernel_and_scanout_source_identity(self):
         baseline = configuration(730)

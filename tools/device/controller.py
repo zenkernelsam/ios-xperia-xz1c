@@ -25,10 +25,12 @@ HERE = Path(__file__).resolve().parent
 PATCH = HERE.parent.parent
 IOS = PATCH
 sys.path.insert(0, str(IOS / "tools"))
-from diagnostic_candidate import WLED_MARKER, WLED_VERSION, verify_record
+from diagnostic_candidate import WLED_MARKER, WLED_VERSION, LOG_VERSION, verify_record
 
 SHIM_SHA = "e1369bff6498d6f03f4ae29559bb99ebc7f3f9a7eee71a0f0d6a9e68ff73d7c3"
 SCREEN_CAPTURE_TIMES = (45, 150)
+def console_status_binding():
+    return dict(revision=1,command='status',max_commands=1,after_seconds=180,requires_current_LIVE=True)
 
 def swipe_once_binding():
     return dict(command='swipe',max_commands=1,after_seconds=120,requires_current_LIVE=True,
@@ -70,10 +72,13 @@ class Artifact:
         if hashlib.sha256(raw[4096:4096 + ks]).hexdigest() != SHIM_SHA:
             raise Refuse("Shim differs from the verified PON06 v648 shim")
         if payload[:8] != b"SWEETXNU" or len(payload) != rs: raise Refuse("Incomplete payload")
-        if self.data.get('version') == WLED_VERSION or WLED_MARKER in payload:
-            if self.data.get('version') != WLED_VERSION or WLED_MARKER not in payload:
+        if self.data.get('version') in (WLED_VERSION,LOG_VERSION) or WLED_MARKER in payload:
+            if self.data.get('version') not in (WLED_VERSION,LOG_VERSION) or WLED_MARKER not in payload:
                 raise Refuse('WLED payload and diagnostic version differ')
             verify_record(self.data)
+        if self.data.get('version')==LOG_VERSION:
+            if self.data.get('console_status_observation')!=console_status_binding():raise Refuse('Console candidate needs its own status observation')
+        elif self.data.get('console_status_observation') is not None:raise Refuse('Console status observation is restricted to the reviewed log candidate')
         cmd = payload[72:680].split(b"\0", 1)[0].decode("ascii")
         if cmd != self.data["cmdline"]: raise Refuse("Embedded command differs from manifest")
         words = cmd.split(); options = {}
@@ -372,6 +377,15 @@ class LiveOps:
         with (self.directory/'serial-commands.jsonl').open('a',encoding='utf-8') as file:
             file.write(json.dumps({'command':'swipe'})+'\n');file.flush();os.fsync(file.fileno())
         self.journal.event('SWIPE_REQUESTED',token=artifact.token,command_dispatches=1,synthetic_input=True)
+    def request_console_status(self,artifact,current_live):
+        self.check_stop()
+        if not current_live or artifact.data.get('version')!=LOG_VERSION or artifact.data.get('console_status_observation')!=console_status_binding():raise Refuse('No current LIVE console-status binding')
+        if getattr(self,'console_status_requested',False):raise Refuse('Console status already requested; no resend')
+        if self.capture_process.process.poll() is not None:raise Refuse('Serial worker exited before console status')
+        offset=(self.directory/'serial.raw.log').stat().st_size;self.console_status_requested=True
+        with (self.directory/'serial-commands.jsonl').open('a',encoding='utf-8') as file:
+            file.write(json.dumps({'command':'status'})+'\n');file.flush();os.fsync(file.fileno())
+        self.journal.event('CONSOLE_STATUS_REQUESTED',token=artifact.token,raw_offset=offset,command_dispatches=1,current_LIVE=True,read_only=True)
     def wait_return(self, artifact, seconds):
         ack = False; start = time.monotonic(); last_probe = 0; stability=FastbootStability(30)
         while time.monotonic() - start < seconds:
@@ -590,7 +604,7 @@ def main():
     if catalog.get("target_serial") != SERIAL or catalog.get("pon_route") != 6: raise Refuse("Artifact catalog policy mismatch")
     artifacts = {a["id"]: a for a in catalog["artifacts"]}
     if args.live:
-        if any(artifacts[step["artifact_id"]].get("version") == WLED_VERSION for step in plan["steps"]):
+        if any(artifacts[step["artifact_id"]].get("version") in (WLED_VERSION,LOG_VERSION) for step in plan["steps"]):
             raise Refuse("WLED trials require the source audit and prerequisites in run_trial.py")
     for step in plan["steps"]: Artifact(artifacts[step["artifact_id"]]).validate()
     if not args.live and not args.replay:

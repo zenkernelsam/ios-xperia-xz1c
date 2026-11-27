@@ -1,0 +1,27 @@
+[
+  {
+    "source": "docs/STATUS.md",
+    "archive": "docs/archive/20261127/log-tickets-r1/originals/STATUS.md",
+    "sha256": "8cdb18f52591830bfa79faaa1d42428c044e77587061b19cff3ef50638b1e992"
+  },
+  {
+    "source": "docs/BUILD.md",
+    "archive": "docs/archive/20261127/log-tickets-r1/originals/BUILD.md",
+    "sha256": "8877844d1c3bfe027cc6ee6cd6c78a413054ec8e24818167dde4246835e3eb05"
+  },
+  {
+    "source": "docs/INDEX.md",
+    "archive": "docs/archive/20261127/log-tickets-r1/originals/INDEX.md",
+    "sha256": "c76f02682f325bcb27f5a43e840533a3a8c3703d5a15f3df71bea5300786204e"
+  },
+  {
+    "source": "docs/METAL-REQUEST-OBSERVATION.md",
+    "archive": "docs/archive/20261127/log-tickets-r1/originals/METAL-REQUEST-OBSERVATION.md",
+    "sha256": "93335cccd12d022f0bddfc0db4eaede6d7c5a7172b5280dbb8caedcadc8b3afe"
+  },
+  {
+    "source": "docs/ORGANIZATION.md",
+    "archive": "docs/archive/20261127/log-tickets-r1/originals/ORGANIZATION.md",
+    "sha256": "5296a1666055b5aff98dd9f3d397b0211faad00cec01132ad79ea39c17ba9da3"
+  }
+]

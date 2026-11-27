@@ -1,0 +1,18 @@
+{
+  "version": 732,
+  "kernel_sha256": "f1d485a4f0306bcef003783ea9b2338188a6c8b65a4300fb207acbb15e9b387b",
+  "kernel_bytes": 20681712,
+  "build": "build/log-tickets-r1-20261127/link",
+  "link_manifest_sha256": "cab28235fb6a636016dc90e46082124c20a1170ca8e33d256d8620f8a08b45ff",
+  "overlay_manifest_sha256": "b3467cde73b186156e0fa1a644485543bcd4f08f0227b6e4ff53ec5e4c1cef18",
+  "source_overrides": {
+    "bsd/dev/vermeer_debug.c": "cc200bc9da474f38fb76fb60e0b4221ded003a379bc94a017342dbc3ee6a0724",
+    "bsd/dev/SweetLogTickets.h": "0da971a692de1f887bf36b03a0a5b2d8126c20f1ef65add0bfa750455d399d18"
+  },
+  "logger_object_sha256": "21b3ee5aacedc8916ade53f5cc8403f293c84d8301ef38a15aa83f22321484e8",
+  "base_kernel_sha256": "15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69",
+  "base_version": 731,
+  "logging_only": true,
+  "RPC_callback_tail_exact": true,
+  "device_not_booted": true
+}

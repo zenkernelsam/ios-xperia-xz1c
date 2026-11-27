@@ -8,6 +8,10 @@ MEMORY_SOURCE = 'iokit/Kernel/IOMemoryDescriptor.cpp'
 MEMORY_BASE = '9963ef1a82cfe5e1bfca797c17c686c54eeea6e631ed349babfc80ac8c824379'
 PATCHES = {725: 'lilac-surface-diagnostics.patch', 726: 'lilac-surface-memref-diagnostics.patch',727:'lilac-surface-readonly.patch',728:'lilac-surface-region64.patch',729:'lilac-console-snapshot.patch',730:'lilac-scanout-snapshot.patch'}
 WLED_VERSION = 731
+LOG_VERSION = 732
+LOG_BUILD = 'build/log-tickets-r1-20261127/link'
+LOG_KERNEL_SHA = 'f1d485a4f0306bcef003783ea9b2338188a6c8b65a4300fb207acbb15e9b387b'
+LOG_REPORT = 'reproducibility/log-tickets-linked-candidate-20261127.json'
 WLED_BUILD = 'build/lilac-wled-isolated-link-r3-20261124'
 WLED_KERNEL_SHA = '15fd8eee111bc880b9b54aeee284f9dc91cd2b7dbbbe302dc944b00d8d2d3e69'
 WLED_LINK_PROOF_SHA = '933c7d0bd9ece16e86f26992a8df13cc95c9e91d0c72fdf6fb8e0a8409a319ad'
@@ -24,6 +28,17 @@ def sha(data):
 
 
 def configuration(version):
+    if type(version) is int and version == LOG_VERSION:
+        base=configuration(WLED_VERSION);raw=(ROOT/LOG_REPORT).read_bytes();m=json.loads(raw)
+        assert m['version']==LOG_VERSION and m['kernel_sha256']==LOG_KERNEL_SHA and m['base_kernel_sha256']==WLED_KERNEL_SHA
+        assert m['logging_only'] and m['RPC_callback_tail_exact']
+        assert set(m['source_overrides'])=={'bsd/dev/vermeer_debug.c','bsd/dev/SweetLogTickets.h'}
+        binding={**base['binding'],'version':LOG_VERSION,'manifest_sha256':sha(raw),
+                 'base_manifest_sha256':base['binding']['manifest_sha256'],
+                 'logger_link_manifest_sha256':m['link_manifest_sha256'],'logger_overlay_manifest_sha256':m['overlay_manifest_sha256']}
+        return {'manifest':m,'binding':binding,'kernel_sha256':LOG_KERNEL_SHA,
+                'source_hashes':{**base['source_hashes'],**m['source_overrides']},
+                'changed_sources':list(m['source_overrides']),'stage':ROOT/LOG_BUILD}
     if type(version) is int and version == WLED_VERSION:
         base = configuration(730)
         raw = (ROOT / 'reproducibility/lilac-wled-isolated-link-20261124.json').read_bytes()
@@ -105,7 +120,7 @@ def verify_record(record):
     # evidence remain independently checked. New versions require the binding.
     if record['version'] >= 726 or 'diagnostic_binding' in record:
         assert record['diagnostic_binding'] == config['binding'], 'Diagnostic source binding differs'
-    if record['version'] == WLED_VERSION:
+    if record['version'] in (WLED_VERSION,LOG_VERSION):
         assert record['kernel_sha256'] == config['kernel_sha256'], 'WLED kernel identity differs'
         assert record['source_revision'] == config['binding']['manifest_sha256'], 'WLED source revision differs'
     return config
@@ -113,12 +128,14 @@ def verify_record(record):
 
 def kernel_path(version):
     config = configuration(version)
-    name = 'kernel.wled-observer.macho' if version == WLED_VERSION else f'kernel.v{version}.macho'
+    name = 'kernel.log-tickets.macho' if version==LOG_VERSION else 'kernel.wled-observer.macho' if version == WLED_VERSION else f'kernel.v{version}.macho'
     return config['stage'] / name
 
 
 def verify_wled_kernel(version, raw):
-    if version == WLED_VERSION:
+    if version==LOG_VERSION:
+        assert sha(raw)==LOG_KERNEL_SHA and WLED_MARKER in raw,'Expected the exact linked console candidate'
+    elif version == WLED_VERSION:
         assert sha(raw) == WLED_KERNEL_SHA and WLED_MARKER in raw, 'Expected the exact linked WLED candidate'
     elif WLED_MARKER in raw:
         raise ValueError('The WLED candidate requires its own diagnostic version')
@@ -126,6 +143,23 @@ def verify_wled_kernel(version, raw):
 
 def audit(version, kernel_sha=None):
     config = configuration(version)
+    if version==LOG_VERSION:
+        base=audit(WLED_VERSION,WLED_KERNEL_SHA);root=ROOT/'build/log-tickets-r1-20261127';m=config['manifest']
+        link_raw=(root/'link/manifest.json').read_bytes();overlay_raw=(root/'overlay/manifest.json').read_bytes()
+        assert sha(link_raw)==m['link_manifest_sha256'] and sha(overlay_raw)==m['overlay_manifest_sha256']
+        link=json.loads(link_raw);overlay=json.loads(overlay_raw)
+        assert link['baseline_exact_except_UUID'] and link['frozen_sources_and_objects_preserved'] and link['logging_only']
+        assert link['candidate_kernel_sha256']==LOG_KERNEL_SHA and link['new_logger_object_sha256']==m['logger_object_sha256']
+        assert link['only_replaced_object'].endswith('/bsd/DEVELOPMENT/vermeer_debug.o')
+        assert sha((root/'logger.arm64.o').read_bytes())==m['logger_object_sha256']
+        assert overlay['overlay_sources']==m['source_overrides'] and overlay['RPC_callback_tail_exact_byte_equal']
+        for p,h in m['source_overrides'].items():assert sha((root/'overlay/overlay'/p).read_bytes())==h,p
+        for p,h in link['original_link_inputs_sha256'].items():assert sha(Path(p).read_bytes())==h,p
+        verify_wled_kernel(version,kernel_path(version).read_bytes())
+        assert kernel_sha is None or kernel_sha==LOG_KERNEL_SHA
+        return {'version':version,'audited_sources':len(config['source_hashes']),'source_binding':config['binding'],
+                'actual_sources_match':True,'kernel_sha256':LOG_KERNEL_SHA,'diagnostic_markers_linked':True,
+                'logger_only_object_replacement_checked':True,'base_frozen_source_audit':base}
     if version == WLED_VERSION:
         audit(730, config['manifest']['base_kernel_sha256'])
         stage = config['stage']

@@ -8,7 +8,7 @@ from procguard import LiveLock
 from startup_watch import StartupObservation
 from trial_evidence import verify
 from clock_evidence import verify as verify_clock
-from diagnostic_candidate import WLED_VERSION, verify_record
+from diagnostic_candidate import WLED_VERSION, LOG_VERSION, verify_record
 from ram_library import load as load_ram,require_same_library
 from owner_metadata import verify as verify_owner_metadata
 from native_prerequisite import verify as verify_native_prerequisite
@@ -119,11 +119,15 @@ class DiagnosticOps(StartupObservation,LiveOps):
         start=time.monotonic();next_progress=0
         original_library_returned=False
         F12_ready=False
+        console_status_response=False
         while time.monotonic()-start<step['observe_seconds']:
             self.check_stop();now=time.monotonic()-start
             for line in self.lines():
                 policy.feed(line,now)
                 if policy.live and 'SWEET RMI4: F12 page=' in line:F12_ready=True
+                if (policy.live and getattr(self,'console_status_requested',False) and
+                    re.search(r'VERMEER DEBUG: K70DBG004 events=\d+ tx=\d+ rx=\d+ log=\d+ dropped=\d+',line)):
+                    console_status_response=True
                 if policy.live and re.search(r'\|AegirPoster\| SWEET METAL LIBRARY END call=\d+ kind=bundle returned_nil=0 ',line):
                     original_library_returned=True
                 if (policy.live and artifact.data.get('thread_sample_observation') and not getattr(self,'sample_requested',False) and
@@ -147,6 +151,9 @@ class DiagnosticOps(StartupObservation,LiveOps):
                     if policy.live and re.search(r'\|AegirPoster\| SWEET METAL LIBRARY END call=\d+ kind=bundle returned_nil=0 ',line):
                         original_library_returned=True
             sampling=artifact.data.get('thread_sample_observation',{})
+            status=artifact.data.get('console_status_observation')
+            if policy.live and status and now>=status['after_seconds'] and not getattr(self,'console_status_requested',False):
+                self.request_console_status(artifact,policy.live)
             if (policy.live and original_library_returned and sampling.get('trigger')=='after_library_idle' and
                 now>=sampling['after_seconds'] and not getattr(self,'sample_requested',False)):
                 self.journal.event('THREAD_SAMPLE_OBSERVATION_POINT',token=artifact.token,elapsed_seconds=now,
@@ -155,6 +162,7 @@ class DiagnosticOps(StartupObservation,LiveOps):
             if policy.actual_watchdog is not None and policy.actual_watchdog!=artifact.watchdog:
                 return Decision('STOP','WATCHDOG_CONFIG_MISMATCH'),policy.live
             result=policy.decision(now)
+            if result.kind=='PASS' and status and not console_status_response:result=Decision('WAIT','CONSOLE_STATUS_RESPONSE_REQUIRED')
             if result.kind=='PASS' and artifact.data['trial_mode']=='owner':
                 raw=(self.directory/'serial.raw.log').read_bytes().decode('ascii','replace')
                 live_offset=raw.index('SWEET LOOP LIVE proto=1 token='+artifact.token)
@@ -199,6 +207,7 @@ def main():
     assert plan.get('screen_required',False)==('screen_snapshot_binding' in record), 'Plan screenshot requirement differs from the actual artifact'
     assert plan.get('screen_capture_after_seconds')==record.get('screen_capture_after_seconds'), 'Screenshot observation time differs'
     assert plan.get('native_grid_control')==record.get('native_grid_control'), 'Plan native grid control differs from the actual boot env'
+    assert plan.get('console_status_observation')==record.get('console_status_observation'),'Console status plan differs'
     if 'swipe_observation' in record:
         assert mode=='gpu' and record['swipe_observation']==swipe_once_binding()
         assert record.get('screen_capture_after_seconds')==150 and not record.get('thread_sample_observation')
@@ -210,7 +219,7 @@ def main():
     if record.get('poster_startup_serial_only'):
         assert record['version']==WLED_VERSION and mode=='gpu' and plan.get('camera_required') is False
     proof=prerequisites(record,a)
-    if record['version']==WLED_VERSION and mode=='private':
+    if record['version'] in (WLED_VERSION,LOG_VERSION) and mode=='private':
         assert plan.get('screen_required') is True, 'v731 private requires the single scanout and WLED observation'
     # Audit actual Mac compile inputs before any phone/COM/camera command.
     assert re.fullmatch('[0-9a-f]{64}',kernel)

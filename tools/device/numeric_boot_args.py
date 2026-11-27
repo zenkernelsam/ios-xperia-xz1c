@@ -9,15 +9,15 @@ NATIVE_DEFAULT_CONSUMER='e5b0a52ad5f6608589dbb12f890fa096845463187d78805d673caf7
 def native_zero_binding(version=730):
     # Exact compiled v730 SweetFramebuffer: int render2x=0, then the pinned
     # PE_parse_boot_argn("sf2x",...) leaves that value unchanged when absent.
-    assert version in (730,731)
+    assert version in (730,731,732)
     kernel=NATIVE_DEFAULT_KERNEL
-    if version==731:
+    if version in (731,732):
         import sys
         from pathlib import Path
         sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-        from diagnostic_candidate import WLED_KERNEL_SHA,configuration
-        assert configuration(731)['source_hashes']['iokit/Kernel/arm/SweetFramebuffer.cpp']==NATIVE_DEFAULT_CONSUMER
-        kernel=WLED_KERNEL_SHA
+        from diagnostic_candidate import WLED_KERNEL_SHA,LOG_KERNEL_SHA,configuration
+        assert configuration(version)['source_hashes']['iokit/Kernel/arm/SweetFramebuffer.cpp']==NATIVE_DEFAULT_CONSUMER
+        kernel=LOG_KERNEL_SHA if version==732 else WLED_KERNEL_SHA
     return dict(revision=1,values={'sf2x':0},kernel_sha256=kernel,
                 consumer='iokit/Kernel/arm/SweetFramebuffer.cpp',consumer_sha256=NATIVE_DEFAULT_CONSUMER,
                 parser_sha256=PARSER_SHA)

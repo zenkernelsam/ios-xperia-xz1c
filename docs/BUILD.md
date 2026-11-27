@@ -187,6 +187,24 @@ python3 -B tools/build/build_metal_library.py --ram-package build/my-gles/ram --
 
 完整observer沿用前述native21参数、`--cif10-png-reference --program-cache-inventory`；只读inventory不启用空primer。新RAM自身CPU、同GLES完整9组先验、完整native21／PNG6通过后，再构建同库／新proof的short原Aegir队列观察。这里的host和新signed产物不自动获得实机准入。固定原调用点可用`inspect_aegir_render_boundary.py --sparse <gl5> --symbols <A2S> --output <build下新JSON>`复验，不展开16GB镜像，不发布原字节。
 
+## 多写入方日志票号候选
+
+```powershell
+python -B tools/build/check_log_tickets.py --output build/my-log-tickets-host
+```
+
+源`SweetLogTickets.h`预留唯一字节ticket，atomic32 cell同时发布generation和byte；reader只接受匹配的ticket。Producer保留128次原子预留上限，发布过程不持互斥锁；pending前缀返回已就绪的原字节，旧writer被整圈超越后不覆盖新数据。Tag horizon远大于每靴128MiB捕获上限。原型为caller-retained静态存储，尚需新kernel完整准入。
+
+Mac现行v731源码准备与隔离链接：
+
+```sh
+python3 -B tools/build/prepare_log_tickets.py --tree build/dxb/xnu --output build/my-log-tickets/overlay
+python3 -B tools/build/compile_log_tickets.py --candidate build/my-log-tickets
+python3 -B tools/build/link_log_tickets.py --candidate build/my-log-tickets --output build/my-log-tickets/link
+```
+
+当前已审核输出在build/log-tickets-r1-20261127：基线v731重链接除UUID外一致、仅logger object替换，原树不改。来源、实际ARM64／host检查及完整链接object SHA由专题报告绑定。新732记录必须包含自己的source binding和180秒一次当前LIVE status查询；查询走现有唯一serial worker，不改内核命令或回程。private仍要求完整scanout，四回程marker／健康30秒／worker退出均保持。
+
 ## 当前console logger并发复验
 
 ```powershell

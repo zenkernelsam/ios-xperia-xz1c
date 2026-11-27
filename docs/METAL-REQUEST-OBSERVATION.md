@@ -1,5 +1,7 @@
 # 原壁纸请求、快照与绘制停点 — 2026-11-25
 
+2026-11-27 [多writer票号候选](../reproducibility/log-tickets-r1-offline-20261127.json)针对当前logger producer争用路径，保持原GPU／native／PNG字节验证不变。v732仅更换日志object，不能把host并发、基线链接或新status响应当完整native成功。必须先新kernel private／owner／ready和新RAM自身CPU，再其自身GLES9／native21／PNG6；原两次native缺记录继续保持拒绝。
+
 2026-11-27 [15ms日志候选原拒绝](../reproducibility/cif10-paced-r3-native-stencil-log-refusal-20261127.json)保留controller PASS和独立Stencil失败：phase41缺一条PAGE，MAP／RETIRE及99相位hash仍在原流。PNG6原字节／CRC／容器／像素检查已单独通过，尚不能生成完整native或PNG准入。两轮原缺失记录均不补造、不重发原包。
 
 [logger当前源／对象审计](../reproducibility/console-log-current-writer-contention-20261127.json)明确区分base patch、正式v729增量和真实v731链接object。v729已经移除reader锁；初次只查base的归因已修正，源码并非缺失。准确当前logger的writer try-lock失败仍直接增加dropped并丢弃整段；主机重现该路径不等于实机最终dropped已观测。后续应针对当前生产者竞争／写入链路，不能把新串行writer快照原型或单项PNG通过提升成完整GPU／原UI。

@@ -3,10 +3,10 @@ import argparse,hashlib,json,re,secrets,struct,sys,time
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT/'tools'));import adt,mkpayload
-from diagnostic_candidate import WLED_VERSION, configuration, kernel_path, verify_record, verify_wled_kernel
+from diagnostic_candidate import WLED_VERSION, LOG_VERSION, configuration, kernel_path, verify_record, verify_wled_kernel
 from ram_library import load as load_ram
 from native_proof import validate as validate_native,digest as native_digest
-from controller import Artifact,SHIM_SHA,SCREEN_CAPTURE_TIMES,checked_screen_capture_after,swipe_once_binding
+from controller import Artifact,SHIM_SHA,SCREEN_CAPTURE_TIMES,checked_screen_capture_after,swipe_once_binding,console_status_binding
 from numeric_boot_args import add_sampler
 from serial_worker import capture_binding
 from display_geometry_binding import CommandTooLong,transform as display_transform,arguments as display_arguments,compact as display_compact
@@ -402,7 +402,7 @@ def assemble_image(header,shim,payload):
 def prove_payload(record):
     """Bind the entire embedded image to the compiled kernel and exact tested input blobs."""
     mode=record['trial_mode'];version=record['version']
-    if version==WLED_VERSION:
+    if version in (WLED_VERSION,LOG_VERSION):
         verify_record(record)
         if mode=='gpu':
             assert 'ram_library_binding' in record, 'v731 GPU requires an exact RAM binding'
@@ -416,7 +416,7 @@ def prove_payload(record):
     if 'ram_library_binding' in record:
         assert mode in ('ramcpu','gpu')
         blob,ram_binding,ram_package=load_ram(record['ram_package'],record['ram_library_binding'])
-        if version==WLED_VERSION and mode=='gpu':
+        if version in (WLED_VERSION,LOG_VERSION) and mode=='gpu':
             validate_wled_gpu_record(record,ram_package,ram_binding)
         if record.get('exception_observer',{}).get('program_cache_inventory') or ram_package.get('exception_observer',{}).get('program_cache_inventory'):
             assert record.get('exception_observer')==ram_package.get('exception_observer'), 'Inventory observer metadata differs from the exact signed RAM manifest'
@@ -482,7 +482,7 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
     capture_after=(45 if screen_after is None else screen_after) if mode=='gpu' and screen_evidence else None
     config=configuration(version)
     verify_wled_kernel(version,kernel.read_bytes())
-    if version==WLED_VERSION:
+    if version in (WLED_VERSION,LOG_VERSION):
         if mode!='gpu':
             assert screen_evidence == (mode=='private'), 'v731 private requires a scanout'
         if mode=='gpu':
@@ -516,7 +516,7 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
     if ram_package:
         assert mode in ('ramcpu','gpu')
         blob,library_binding,package=load_ram(ram_package)
-        if version==WLED_VERSION and mode=='gpu':
+        if version in (WLED_VERSION,LOG_VERSION) and mode=='gpu':
             stage=validate_wled_gpu_ram(package,library_binding)
             serial_only=stage=='poster' and not screen_evidence
             if stage=='poster' and screen_evidence:
@@ -612,6 +612,7 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
     if grid_control:m['native_grid_control']=grid_control
     if sample_binding:m['thread_sample_observation']=sample_binding
     if swipe_once:m['swipe_observation']=swipe_once_binding()
+    if version==LOG_VERSION:m['console_status_observation']=console_status_binding()
     Artifact(m).validate()
     if library_binding:
         m.update(ram_package=str(Path(ram_package).resolve()),ram_library_binding=library_binding)
@@ -627,8 +628,9 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
         m['screen_snapshot_binding']=screen_binding(m)
         if mode=='gpu':m['screen_capture_after_seconds']=capture_after
     if serial_only:m['poster_startup_serial_only']=True
-    if version==WLED_VERSION and mode=='gpu':
+    if version in (WLED_VERSION,LOG_VERSION) and mode=='gpu':
         validate_wled_gpu_record(m,package,library_binding)
+    if version==LOG_VERSION:m['console_status_observation']=console_status_binding()
     (output/'artifacts.json').write_text(json.dumps({'target_serial':'BH905ND69G','pon_route':6,'artifacts':[m]},indent=2)+'\n')
     common=['SWEET LOOP LIVE proto=1 token='+token,'SWEET RMI4: F12 page=']
     if grid_control:
@@ -796,6 +798,7 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
     if screen_evidence:plan.update(screen_required=True,screen_timeout_seconds=100)
     if mode=='gpu' and screen_evidence:plan['screen_capture_after_seconds']=capture_after
     if grid_control:plan['native_grid_control']=grid_control
+    if version==LOG_VERSION:plan['console_status_observation']=console_status_binding()
     (output/'plan.json').write_text(json.dumps(plan,indent=2)+'\n')
     (output/'package-proof.json').write_text(json.dumps({'baseline':selected,'baseline_sha256':BASE_HASHES[selected],
        'baseline_payload_exact':True,'kernel_sha256':m['kernel_sha256'],'image_sha256':m['sha256'],'cmdline_bytes':len(cmd),
@@ -804,7 +807,7 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--mode',choices=['private','owner','ready','ramcpu','gpu'],required=True)
     p.add_argument('--kernel',required=True);p.add_argument('--baselines',default=str(ROOT/'assets/baselines'));p.add_argument('--output',required=True)
-    p.add_argument('--version',type=int,choices=[725,726,727,728,729,730,WLED_VERSION],default=725)
+    p.add_argument('--version',type=int,choices=[725,726,727,728,729,730,WLED_VERSION,LOG_VERSION],default=725)
     p.add_argument('--ram-package')
     p.add_argument('--owner-interval',type=int,choices=[90])
     p.add_argument('--screen-evidence',action='store_true')
