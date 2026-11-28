@@ -1,0 +1,25 @@
+{
+  "originals": [
+    {
+      "path": "docs/STATUS.md",
+      "bytes": 20302,
+      "sha256": "51b515f62153789a4df70ea1c8d28f506126d7dbc0e25cca28835c03be7db67f"
+    },
+    {
+      "path": "docs/INDEX.md",
+      "bytes": 11683,
+      "sha256": "e5e854e06941ef84ce0f97800b312dca155af6e10c2701fa961b86430d6d810c"
+    },
+    {
+      "path": "docs/ORGANIZATION.md",
+      "bytes": 35631,
+      "sha256": "5abcd4d04b0a0f8824e6ad4446094c4c4e7c13a263568414c38da18dc1ce6547"
+    },
+    {
+      "path": "docs/METAL-REQUEST-OBSERVATION.md",
+      "bytes": 26811,
+      "sha256": "118a353f477791d5f902d31bb15502196400bcb9eef708894bf5ee36d67f2223"
+    }
+  ],
+  "original_bytes_preserved": true
+}

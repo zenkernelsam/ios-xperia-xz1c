@@ -2445,8 +2445,6 @@ static const struct {
 	uint8_t uniforms;       /* uniform switch case: 0 color_matrix, 0x95 minmax_dir/bgcolor/map/args, 0xde none */
 } sgl_texfns[] = {{0x2d, "sgl_vcm(s0)", 0}, {0x14, "sgl_cm4(s0)", 0}};
 static bool sgl_ca_matrix_ready;
-bool sweetgl_ca_matrix_install_state(void)
-{return __atomic_load_n(&sgl_ca_matrix_ready,__ATOMIC_ACQUIRE);}
 
 static bool sgl_ca_span(const struct mach_header_64 *header,intptr_t slide,
     const char *name,const void *pointer,size_t bytes)
@@ -2534,6 +2532,34 @@ sgl_install_texfns(void)
     __atomic_store_n(&sgl_ca_matrix_ready,ok,__ATOMIC_RELEASE);
     sweet_drm_log("SWEET CA MATRIX INSTALL result=%u uuid=%s table=0x1d5b48a10 cases=0x18855e1e4 slots=%u original_empty_checked=1 code_anchors=2 rollback=%u",
         ok?0:1,SWEET_CA_UUID_TEXT,ok?2:0,rollback);errno=incoming;
+}
+
+/* The constructor can precede LIVE. The probe reads the current installation
+ * again, so its admission never depends on moving an old INSTALL log record. */
+bool sweetgl_ca_matrix_install_state(void)
+{
+    int incoming=errno;intptr_t slide=0;uint8_t uuid[16];
+    bool prior=__atomic_load_n(&sgl_ca_matrix_ready,__ATOMIC_ACQUIRE),ok=false;
+    const struct mach_header_64 *header=prior?sgl_ca_image(&slide,uuid):NULL;
+    if(header && !memcmp(uuid,sweet_ca_uuid,16)){
+        const char *const *table=(const void *)(uintptr_t)(SWEET_CA_TABLE+(uint64_t)slide);
+        const uint8_t *cases=(const void *)(uintptr_t)(SWEET_CA_CASES-0x11+(uint64_t)slide);
+        const void *prologue=(const void *)(uintptr_t)(SWEET_CA_SHADER+(uint64_t)slide);
+        const void *ta=(const void *)(uintptr_t)(SWEET_CA_ANCHOR_TABLE+(uint64_t)slide);
+        const void *ca=(const void *)(uintptr_t)(SWEET_CA_ANCHOR_CASES+(uint64_t)slide);
+        bool ranges=sgl_ca_span(header,slide,"__DATA_CONST",table,90*sizeof(*table)) &&
+            sgl_ca_span(header,slide,"__TEXT",cases,90-0x11) &&
+            sgl_ca_span(header,slide,"__TEXT",prologue,sizeof(sweet_ca_prologue)) &&
+            sgl_ca_span(header,slide,"__TEXT",ta,sizeof(sweet_ca_table_anchor)) &&
+            sgl_ca_span(header,slide,"__TEXT",ca,sizeof(sweet_ca_cases_anchor));
+        ok=ranges && table[0x13] &&
+            sgl_ca_span(header,slide,"__TEXT",table[0x13],sizeof(sweet_ca_identity_expression)) &&
+            sweet_ca_matrix_installed_matches(prior,uuid,prologue,ta,ca,table[0x13],cases[0x13],
+                table[0x14],cases[0x14],table[0x2d],cases[0x2d],sgl_texfns[1].expr,sgl_texfns[0].expr);
+    }
+    if(ok)sweet_drm_log("SWEET CA MATRIX VERIFY result=0 uuid=%s table=0x1d5b48a10 cases=0x18855e1e4 slots=2 original_empty_checked=1 current_slots_checked=2 code_anchors=2 writes=0",SWEET_CA_UUID_TEXT);
+    else sweet_drm_log("SWEET CA MATRIX VERIFY result=1 prior_install_checked=%u current_slots_checked=0 writes=0",prior);
+    errno=incoming;return ok;
 }
 
 /* Called at load. CA picks its GLES renderer by itself once initWithAPI:3 succeeds. */

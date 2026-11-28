@@ -1,0 +1,89 @@
+{
+  "originals": [
+    {
+      "path": "reproducibility/source-lock.json",
+      "bytes": 26779,
+      "sha256": "c75686d2a2e453e70ff0143bbb6da2a1a0e205e570201b2188563a5c75259e34"
+    },
+    {
+      "path": "reproducibility/current-device-tools.json",
+      "bytes": 59496,
+      "sha256": "6df4111df5b7ec9c0693b9621cdf2376d45c23d9e44425321c5b47da6f74b652"
+    }
+  ],
+  "changes": [
+    {
+      "lock": "source-lock.json",
+      "path": "gpu/sweetgl/eagl.c",
+      "before_sha256": "b5c7672cb0c7d919ff0b181c740396fc8b972dca17922efc8316c299fe1f5e5d",
+      "after_sha256": "e70950925e9f041cf99ad403ddb5fa30d57c70a058d80be06e948ac3b9524fd4"
+    },
+    {
+      "lock": "source-lock.json",
+      "path": "gpu/sweetgl/QuartzCoreMatrixLayout.h",
+      "before_sha256": "b367d643fa616a4c3051a519bd31885ccdf0841f368347bba2942c96d2834912",
+      "after_sha256": "1d1d9e01a6c9c533f6f7d81b7246a574a1d05eeb0947f846e8289d6474f39117"
+    },
+    {
+      "lock": "current-device-tools.json",
+      "path": "tools/device/run_trial.py",
+      "before_sha256": "b366f918e376fe9f25ebecd113d2f37c865d4f3cadd804be1c139d7b27f19b3c",
+      "after_sha256": "0d8bf27dfe94438e1c85479dd28f7f8843f717b76405f7e2e859b47cc758d1c1"
+    },
+    {
+      "lock": "current-device-tools.json",
+      "path": "tools/device/trial_evidence.py",
+      "before_sha256": "9d671a6e05c87b99d7ec75c66b19e597afa45badcae29b6af2c145c1fc46456f",
+      "after_sha256": "40a9b496dba0a1c4d8fc54c32207ea219c3d484b725f35c4851a70eab4a0c00a"
+    },
+    {
+      "lock": "current-device-tools.json",
+      "path": "tools/device/ca_matrix_evidence.py",
+      "before_sha256": "5019d86e3c86ec8accf7152a9b7ac93fca4e9ad69b0ef8da7b29d2e3eb7e8a53",
+      "after_sha256": "d564efee6234553a85cc5e4b4288fb4da86dba2517de472d5af7e44275d3a1be"
+    },
+    {
+      "lock": "current-device-tools.json",
+      "path": "tools/device/test_ca_matrix_evidence.py",
+      "before_sha256": "09d796c8a70193cb87ae35abea24404799a96491ea4a953e26c5aac243769fa8",
+      "after_sha256": "5ab85f29c6c7960952bc52d5265ffbf6a345c6e3e10d4ec0c29cfb0919706860"
+    },
+    {
+      "lock": "current-device-tools.json",
+      "path": "tools/ram_library.py",
+      "before_sha256": "dec2974cbe4a9dd129c841cc96626b36eb70fd2586b7dd7e9775c5e30a04ffb3",
+      "after_sha256": "039d98bcd9223f2506c4bb5c90569085bbbfd79ecd11daf51cb0564b84cdd6ad"
+    },
+    {
+      "lock": "current-device-tools.json",
+      "path": "tools/build/build_frontend_trial.py",
+      "before_sha256": "57afe8a9d45b84372462bf049c156f5761554a2aee3b5e82b9bb668441a5188e",
+      "after_sha256": "6bf106f9d058878c26958c2da35b365f0cc51db3733fe549c4b2b5df1eccf8a6"
+    },
+    {
+      "lock": "current-device-tools.json",
+      "path": "tools/build/check_ca_matrix.py",
+      "before_sha256": "efd603d60fe4ff8ee8731aa87549a53872f4a884008359e74fd00d3d3c41f98e",
+      "after_sha256": "183716820f0b07a0b9c686c4c5d2a28b075b0460b6d72eecde0eba605f240c47"
+    },
+    {
+      "lock": "current-device-tools.json",
+      "path": "tools/build/test_ca_matrix_layout.c",
+      "before_sha256": "2cf22f616b4cc256d7ba6d7910efde31538bb4203524b69b4ee4b49b7591ce20",
+      "after_sha256": "f6c5e3bec9b2a8917075d5f94a718cb3ee8eaa0adba1c5b88def5c4a77c9610c"
+    },
+    {
+      "lock": "current-device-tools.json",
+      "path": "gpu/sweetgl/eagl.c",
+      "before_sha256": "b5c7672cb0c7d919ff0b181c740396fc8b972dca17922efc8316c299fe1f5e5d",
+      "after_sha256": "e70950925e9f041cf99ad403ddb5fa30d57c70a058d80be06e948ac3b9524fd4"
+    },
+    {
+      "lock": "current-device-tools.json",
+      "path": "gpu/sweetgl/QuartzCoreMatrixLayout.h",
+      "before_sha256": "b367d643fa616a4c3051a519bd31885ccdf0841f368347bba2942c96d2834912",
+      "after_sha256": "1d1d9e01a6c9c533f6f7d81b7246a574a1d05eeb0947f846e8289d6474f39117"
+    }
+  ],
+  "original_bytes_preserved": true
+}

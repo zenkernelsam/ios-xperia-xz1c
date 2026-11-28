@@ -4,6 +4,10 @@ CPU／launchd、触控／音量键、完整GLES9、Metal21／PNG6和原生720×1
 
 ## 设备与下一轮
 
+2026-11-28用户确认物理会话已恢复；Sony独立只读健康30.75秒通过。新局部SSA组合自身CPU token `92b7017cc30e02bd`已独立准入，日志dropped0、37.641秒完整回程／健康。GLES9 token `999c9b10a80fc321`控制器PASS，但[独立验收拒绝](../reproducibility/nir-callee-ssa-gles9-refused-20261128.json)：本靴CA安装记录在LIVE前，旧revision1不能准入；LIVE后六阶段原像素max_diff0、dropped0及308块扫描另存，不能提升完整GLES。37.922秒完整四marker／健康与旧supervisor／owned workers退出已独立核对，Sony健康fastboot，无在途。native CPU／native21未投递。[本轮结果索引](../reproducibility/nir-callee-ssa-device-round-20261128.json)保持原拒绝；该包不重发。
+
+新CA observation revision2只在probe入口重新读取当前QuartzCore UUID／有界segment／代码锚点／原identity和两个实际已安装pointer／case，日志VERIFY在像素phase0前；不重装、不搬移旧INSTALL日志。原revision1仍要求LIVE内INSTALL，原失败不重新分类。[主机六阶段／只读表项检查](../reproducibility/ca-current-slots-host-20261128.json)与5组decoder、44组准入（2旧输入skip）、native／PNG回归通过。新GLES仍须实际构建并走自身CPU→完整GLES9→新native CPU→native21／PNG6，不能用原r1局部结果跳过；内核冻结保持。
+
 2026-11-27用户已重新插拔并确认Sony **BH905ND69G**蓝灯fastboot；本轮先独立只读健康32.750秒通过，随后按下述候选单发。最新原失败token `02758c66f824e349`已完整0x06回程，失败包不重发；准确原记录见下节。
 
 新标准bin预热候选 `build/earth-cache-prime-r1-20261127`已完成离线审计；CPU单发token `3579aca49123dae0`已通过独立准入，39.703秒完整回程／健康且worker退出，日志dropped0；[原CPU报告](../reproducibility/earth-cache-prime-cpu-actual-20261127.json)保留。后台GPU单发 `e7c201e4f261e7ec`捕获在约90秒停止，原controller／worker PID已不存在且无results.json；[原中断观察](../reproducibility/earth-cache-prime-interrupted-observation-20261127.json)保持未准入。当前Sony独立只读fastboot健康31.015秒通过，无在途进程；四回程marker未捕获，不用枚举正常提升原阶段，也不重发该包。当前继续离线处理后台生命周期和NIR链接；下一次实机仍须满足OPERATIONS的会话及完整回程条件。
@@ -20,7 +24,7 @@ CPU／launchd、触控／音量键、完整GLES9、Metal21／PNG6和原生720×1
 
 [局部SSA编译器候选](../reproducibility/nir-callee-local-ssa-host-20261128.json)只修改固定免费Mesa的GLSL／NIR四文件，先降低函数局部变量，再在callee递归内联后整理SSA。准确Earth的release host链接阶段2.936→1.383秒，约52.9%减少；原shader长度／FNV匹配关系保持。before／after原NIR结构及支配关系4点检查、768个作者调用／3120字检查／48guard及131072个half／float32边界模式全字节对照通过。原LLVM14 host退出期失败仍保留，不作为完整host GL或真机通过。
 
-Mac已用实际iPhoneOS SDK／ARM64只重编三个compiler objects，制作独立archive overlay；原deps／档案不改，SweetGPU／allocator／SCM／PON／RPC／VM冻结。[准确ARM64／guest候选](../reproducibility/nir-callee-local-ssa-ios-candidate-20261128.json)已打包：GLES `dd3ffb371577fc1f158a59c722e5750db24c41511b2f2ac6732e35846bbc8887`／14801296B，RAM blob `30a5bf63ddfa56fb9587c4308c6eb92525616c69ac4d062ada88ce6cb1ff00b7`。新CPU单发token `92b7017cc30e02bd`、GLES9 `999c9b10a80fc321`已准备，均未投递，尚无新CPU／GLES9／native21／PNG6／原UI准入。详见BUILD，生产基线保持。
+Mac已用实际iPhoneOS SDK／ARM64只重编三个compiler objects，制作独立archive overlay；原deps／档案不改，SweetGPU／allocator／SCM／PON／RPC／VM冻结。[原r1 ARM64／guest候选](../reproducibility/nir-callee-local-ssa-ios-candidate-20261128.json)：GLES `dd3ffb371577fc1f158a59c722e5750db24c41511b2f2ac6732e35846bbc8887`／14801296B，RAM blob `30a5bf63ddfa56fb9587c4308c6eb92525616c69ac4d062ada88ce6cb1ff00b7`。CPU单发token `92b7017cc30e02bd`通过；GLES9 `999c9b10a80fc321`原拒绝见上节，没有该组合完整GLES／native／PNG／原UI准入。SSA compiler objects／archive可作新revision2前端链接输入；旧失败镜像不重发。详见BUILD，生产基线保持。
 
 [完整新native候选](../reproducibility/nir-callee-full-native-candidate-20261128.json)已离线准备：Metal仍为19a08083…，new GLES dd3ffb37…；native CPU token `b4b87a99ca59d79e`、native21／PNG6 `53fec6c3efa6d843`均未投递。该observer只读inventory，不运行无缺失请求的primer。43→44项准入测试通过（旧缺输入2项skip）；实际GPU及原UI仍未验。
 

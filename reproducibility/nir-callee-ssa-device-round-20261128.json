@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-28",
+  "target_serial": "BH905ND69G",
+  "source_head_at_start": "2d3d470d75f419f3c1566cca2a58602be175f91e",
+  "kernel_sha256": "f1d485a4f0306bcef003783ea9b2338188a6c8b65a4300fb207acbb15e9b387b",
+  "GLES_sha256": "dd3ffb371577fc1f158a59c722e5750db24c41511b2f2ac6732e35846bbc8887",
+  "fresh_physical_session_confirmed_by_user": true,
+  "independent_initial_health": {
+    "directory": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-fastboot-restored-health-20261128-1024",
+    "result": "PASS",
+    "continuous_health_seconds": 30.75,
+    "download_commands": 0,
+    "boot_commands": 0,
+    "reset_commands": 0
+  },
+  "stages": {
+    "cpu": {
+      "token": "92b7017cc30e02bd",
+      "result": "PASS",
+      "independent_report": "reproducibility/nir-callee-ssa-cpu-actual-20261128.json",
+      "raw_sha256": "a680db5a700a28ad3f93f9c62a625e8ca287c86d9b42058f316e7edc0e201657",
+      "return_seconds_with_health": 37.64100000006147,
+      "dropped": 0,
+      "supervisor_pid": 454428,
+      "supervisor_exit_code": 0,
+      "supervisor_and_owned_workers_exit_independently_checked": true
+    },
+    "gles9": {
+      "token": "999c9b10a80fc321",
+      "state": "REJECTED_AFTER_CONTROLLER_PASS",
+      "supervisor_pid": 460164,
+      "launch_directory": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-callee-ssa-gles9-launch-20261128-r1",
+      "independent_report": "reproducibility/nir-callee-ssa-gles9-refused-20261128.json",
+      "return_seconds_with_health": 37.92200000002049,
+      "raw_sha256": "2cad626a62b20d4b812a568e756e56c56280176b6802a810a5a160e3e714a544",
+      "supervisor_exit_code": 1,
+      "supervisor_and_owned_workers_exit_independently_checked": true
+    },
+    "native-cpu": {
+      "token": "b4b87a99ca59d79e",
+      "state": "UNSTARTED"
+    },
+    "native21": {
+      "token": "53fec6c3efa6d843",
+      "state": "UNSTARTED"
+    }
+  },
+  "kernel_GPU_allocator_SCM_PON_RPC_VM_unchanged": true,
+  "old_failed_packets_not_replayed": true,
+  "original_UI_FPS_optics_sleep_and_other_peripherals_not_accepted": true,
+  "prior_document_archive": "docs/archive/20261128/callee-ssa-device-round/original-document-manifest.json",
+  "device_state": "HEALTHY_FASTBOOT_NO_IN_FLIGHT"
+}

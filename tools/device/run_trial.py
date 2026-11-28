@@ -90,7 +90,7 @@ class DiagnosticPolicy(LogPolicy):
             if re.search(r'SWEET PRESENT PROBE END result=[1-9]',line):self.recoverable='PRESENTATION_PROBE_FAILED'
             if re.search(r'SWEET METAL PROBES END process=backboardd result=[1-9]',line):self.recoverable='BACKGROUND_METAL_SUITE_FAILED'
             if re.search(r'SWEET GLES SUITE END result=[1-9]',line):self.recoverable='GPU_SELFTEST_FAILED'
-            if re.search(r'SWEET CA MATRIX (?:INSTALL|END) result=[1-9]',line):self.recoverable='CA_MATRIX_PROBE_FAILED'
+            if re.search(r'SWEET CA MATRIX (?:INSTALL|VERIFY|END) result=[1-9]',line):self.recoverable='CA_MATRIX_PROBE_FAILED'
             if re.search(r'SWEET METAL REQUEST CONFIG pid=\d+ installed=[0-5] expected=6',line):self.recoverable='REQUEST_OBSERVER_INSTALL_INCOMPLETE'
             if re.search(r'SWEET METAL REQUEST CONFIG pid=\d+ installed=(?:[0-9]|1[0-2]) expected=13',line):self.recoverable='REQUEST_OBSERVER_INSTALL_INCOMPLETE'
             if re.search(r'SWEET PSG CONFIG pid=\d+ revision=1 installed=[0-4] expected=5',line):self.recoverable='POSTER_SNAPSHOT_GATE_INSTALL_INCOMPLETE'

@@ -40,6 +40,7 @@ reproducibility保存原结果摘要、源码锁、精确proof和回收记录；
 | console日志完整性 | [当前writer争用报告](../reproducibility/console-log-current-writer-contention-20261127.json)、[新native原拒绝](../reproducibility/cif10-paced-r3-native-stencil-log-refusal-20261127.json)：v729源／真实链接object已核对；当前writer竞争待处理 |
 | v732票号日志／完整新GPU组合 | [完整实机报告](../reproducibility/v732-log-tickets-full-actual-20261127.json)、[native21](../reproducibility/v732-native21-proof-20261127.json)、[PNG6](../reproducibility/v732-PNG6-proof-20261127.json)；原壁纸／FPS／睡眠仍待验 |
 | v732原Earth链接卡点 | [原失败及方法返回范围](../reproducibility/v732-aegir-earth-link-observation-20261127.json)、[准确库锚点符号](../reproducibility/v732-aegir-earth-link-symbols-20261127.json)；NIR inlining样本，原壁纸未通过 |
+| SSA设备轮／CA当前表项 | [原阶段索引](../reproducibility/nir-callee-ssa-device-round-20261128.json)、[CA原拒绝](../reproducibility/nir-callee-ssa-gles9-refused-20261128.json)、[只读表项及六阶段host](../reproducibility/ca-current-slots-host-20261128.json)；新revision2实际准入见STATUS |
 
 原[PCM session七组](../reproducibility/lilac-pcm-session-offline-20261126.json)、[GLINK适配八组](../reproducibility/lilac-pcm-glink-transport-offline-20261126.json)和[人工sparse槽位barrier流](../reproducibility/ordered-image-barrier-star-load-host-20261126.json)保持历史边界，不作为不同新产物的实机准入。现行步骤只由STATUS／BUILD维护。
 

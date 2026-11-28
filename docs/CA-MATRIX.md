@@ -26,6 +26,10 @@ GLES CPU908bb4fa／38.359秒、GLES9组4946e854／39.390秒、reference CPU59cca
 
 ## 构建与下一步
 
+2026-11-28的[原拒绝](../reproducibility/nir-callee-ssa-gles9-refused-20261128.json)保留：constructor安装早于LIVE，旧观察revision1即使六阶段max_diff0也不准入。本轮新增只读`VERIFY`：probe在phase0前重新发现准确QuartzCore image，验证原UUID、segment范围、代码锚点、identity表达式、当前两个pointer和case0，以及已成功核对原空项的安装状态。它不写入／重装表项，保留原constructor时机及矩阵公式。
+
+新frontend manifest明确绑定`CA_matrix_observation_revision=2`及实际源；decoder只接受本LIVE→ACK里一次完整VERIFY且先于六阶段。旧revision1仍要求本LIVE内INSTALL，不提升原失败。缺记录、重复、错误UUID／表项计数／write标志、晚于phase0或错误phase／像素／guard都拒绝。[主机报告](../reproducibility/ca-current-slots-host-20261128.json)核对原生产GLI改写的六阶段与当前pointer／case／prior-state故障；实际手机新库仍按BUILD走自身完整准入。
+
 Mac按BUILD重编当前前端、包只读RAM。完整后台参考在已安装fixture的主机可用：
 
 ```sh

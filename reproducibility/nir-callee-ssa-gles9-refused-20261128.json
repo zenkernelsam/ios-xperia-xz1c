@@ -1,0 +1,67 @@
+{
+  "date": "2026-11-28",
+  "token": "999c9b10a80fc321",
+  "original_controller_result": "PASS",
+  "independent_admission": "REJECTED_CA_INSTALL_OUTSIDE_LIVE",
+  "failed_package_not_replayed": true,
+  "raw_sha256": "2cad626a62b20d4b812a568e756e56c56280176b6802a810a5a160e3e714a544",
+  "raw_bytes": 707569,
+  "install_offset": 46305,
+  "LIVE_offset": 55141,
+  "ACK_offset": 702179,
+  "observed_six_phase_metadata": [
+    [
+      "0",
+      "0",
+      "e002c8c736038125"
+    ],
+    [
+      "1",
+      "0",
+      "3db840f69453cf25"
+    ],
+    [
+      "2",
+      "0",
+      "417f4a85b435ed25"
+    ],
+    [
+      "3",
+      "0",
+      "7cbef14f14a7cd45"
+    ],
+    [
+      "4",
+      "0",
+      "adfac8854eef9b45"
+    ],
+    [
+      "5",
+      "0",
+      "afde0606ecb79345"
+    ]
+  ],
+  "phase_metadata_not_full_GLES_admission": true,
+  "return_seconds_with_health": 37.92200000002049,
+  "return_log_evidence": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "999c9b10a80fc321",
+    "checkpoint_bytes": 702107,
+    "log_bytes": 707569,
+    "log_sha256": "2cad626a62b20d4b812a568e756e56c56280176b6802a810a5a160e3e714a544",
+    "require_final_drain": true,
+    "marker_positions": [
+      3,
+      33,
+      89,
+      91
+    ],
+    "final_reset_marker_seen": true
+  },
+  "serial_worker_closed": true,
+  "supervisor_pid": 460164,
+  "supervisor_exit_code": 1,
+  "supervisor_and_workers_exit_independently_checked": true,
+  "new_native_packages_not_dispatched": true
+}

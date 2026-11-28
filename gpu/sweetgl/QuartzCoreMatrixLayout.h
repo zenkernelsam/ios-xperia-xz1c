@@ -18,14 +18,30 @@ static const uint32_t sweet_ca_prologue[4]={0xa9ba6ffc,0xa90167fa,0xa9025ff8,0xa
 static const uint32_t sweet_ca_table_anchor[6]={0xb026b4a9,0x91284129,0xf8767920,0x5100aac9,0x71000d3f,0x1a882508};
 static const uint32_t sweet_ca_cases_anchor[6]={0xf0000549,0x91079129,0x1000008a,0x3868692b,0x8b0b094a,0xd61f0140};
 static const char sweet_ca_identity_expression[]="colorMatrix4x4Bias(s0)";
-static inline bool sweet_ca_matrix_layout_matches(const uint8_t uuid[16],const void *prologue,
-    const void *table_anchor,const void *cases_anchor,const char *identity,uint8_t identity_case,
-    const char *matrix4,uint8_t matrix4_case,const char *vibrant,uint8_t vibrant_case)
+static inline bool sweet_ca_matrix_core_matches(const uint8_t uuid[16],const void *prologue,
+    const void *table_anchor,const void *cases_anchor,const char *identity,uint8_t identity_case)
 {
     return uuid && prologue && table_anchor && cases_anchor && identity &&
         !memcmp(uuid,sweet_ca_uuid,16) && !memcmp(prologue,sweet_ca_prologue,sizeof(sweet_ca_prologue)) &&
         !memcmp(table_anchor,sweet_ca_table_anchor,sizeof(sweet_ca_table_anchor)) &&
         !memcmp(cases_anchor,sweet_ca_cases_anchor,sizeof(sweet_ca_cases_anchor)) &&
         !memcmp(identity,sweet_ca_identity_expression,sizeof(sweet_ca_identity_expression)) &&
-        identity_case==0 && !matrix4 && matrix4_case==0xde && !vibrant && vibrant_case==0xde;
+        identity_case==0;
+}
+static inline bool sweet_ca_matrix_layout_matches(const uint8_t uuid[16],const void *prologue,
+    const void *table_anchor,const void *cases_anchor,const char *identity,uint8_t identity_case,
+    const char *matrix4,uint8_t matrix4_case,const char *vibrant,uint8_t vibrant_case)
+{
+    return sweet_ca_matrix_core_matches(uuid,prologue,table_anchor,cases_anchor,identity,identity_case) &&
+        !matrix4 && matrix4_case==0xde && !vibrant && vibrant_case==0xde;
+}
+/* Current slot identity is checked without writing or re-installing anything. */
+static inline bool sweet_ca_matrix_installed_matches(bool prior_install_checked,
+    const uint8_t uuid[16],const void *prologue,const void *table_anchor,const void *cases_anchor,
+    const char *identity,uint8_t identity_case,const char *matrix4,uint8_t matrix4_case,
+    const char *vibrant,uint8_t vibrant_case,const char *expected_matrix4,const char *expected_vibrant)
+{
+    return prior_install_checked && expected_matrix4 && expected_vibrant &&
+        sweet_ca_matrix_core_matches(uuid,prologue,table_anchor,cases_anchor,identity,identity_case) &&
+        matrix4==expected_matrix4 && matrix4_case==0 && vibrant==expected_vibrant && vibrant_case==0;
 }

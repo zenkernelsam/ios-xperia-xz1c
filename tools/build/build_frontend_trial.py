@@ -92,6 +92,8 @@ if 'QuartzCoreMatrixLayout.h' in sources:
     binding['CA_matrix_revision']=1
     binding['GLES_suite_tests']=9
     binding['CA_matrix_original_empty_slots']=2
+    binding['CA_matrix_observation_revision']=2
+    binding['CA_matrix_current_slots_read_only_revalidation']=True
     binding['actual_CA_matrix_GPU_acceptance_pending']=True
 binding['mesa_build_directory']=build.relative_to(root).as_posix()
 if (build/'ir3-variant-cache-inputs.json').exists():

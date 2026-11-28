@@ -110,7 +110,7 @@ def verify(directory,mode,kernel_sha=None,version=None):
             _,_,ram=load_ram(a['ram_package'],a['ram_library_binding'])
             if ram['frontend_build_binding'].get('CA_matrix_revision'):
                 assert ram['frontend_build_binding']['CA_matrix_revision']==1 and ram['frontend_build_binding']['GLES_suite_tests']==9
-                pixels['CA_matrix']=verify_ca_matrix(text,a['token'])
+                pixels['CA_matrix']=verify_ca_matrix(text,a['token'],ram['frontend_build_binding'].get('CA_matrix_observation_revision',1))
             if a['version']>=727:
                 readonly=verify_readonly(re.sub(r'\r?\n(?!SWEET|CRASH|Process|\||exec|IOK|MESA)', '', text),a['token'])
             if 'exception_observer' in a:

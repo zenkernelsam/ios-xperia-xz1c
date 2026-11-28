@@ -1,0 +1,15 @@
+{
+  "originals": [
+    {
+      "path": "docs/CA-MATRIX.md",
+      "bytes": 6199,
+      "sha256": "42510cc458bf9d9f79464125a6def8c53c2ef1a9e92af181e189c266585b5cb3"
+    },
+    {
+      "path": "docs/BUILD.md",
+      "bytes": 34334,
+      "sha256": "3366d67e430b3fc6c55b267af53ca35ebd3b86890bde9492a997b983b8070df0"
+    }
+  ],
+  "original_bytes_preserved": true
+}

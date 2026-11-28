@@ -429,6 +429,9 @@ def load(folder,expected=None):
     if m['frontend_build_binding'].get('CA_matrix_revision'):
         assert m['frontend_build_binding']['CA_matrix_revision']==1 and m['frontend_build_binding']['GLES_suite_tests']==9
         assert all(path in source for path in ('ca_matrix_probe.c','CAMatrixProbeValues.h','CAMatrixShaders.h','QuartzCoreMatrixLayout.h'))
+        observation=m['frontend_build_binding'].get('CA_matrix_observation_revision',1)
+        assert type(observation) is int and observation in (1,2)
+        if observation==2:assert m['frontend_build_binding']['CA_matrix_current_slots_read_only_revalidation'] is True
     if m['frontend_build_binding'].get('depth32_attachment_revision'):
         assert m['frontend_build_binding']['depth32_attachment_revision']==1 and m['frontend_build_binding']['depth_stencil_state_mapping']
         assert all(path in source for path in ('MetalDepthAttachment.h','MetalDepthStencilRules.h','DepthStencilGLES.h','Depth32ClearGLES.h'))
