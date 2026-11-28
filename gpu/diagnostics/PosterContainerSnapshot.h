@@ -3,10 +3,16 @@
 #pragma once
 #include "PosterConfigSnapshot.h"
 
-enum { PCON_ROOTS=4, PCON_ENTRIES=256, PCON_FILES=64 };
+enum { PCON_ROOTS=4, PCON_ENTRIES=256, PCON_FILES=128, PCON_TOTAL_BYTES=262144 };
 struct SweetPosterContainerSummary {
     unsigned roots,opened,examined,files,bytes,skipped,errors;int result;
 };
+static inline bool pcon_plist_signature(const unsigned char *p,size_t n)
+{
+    if(n>=8 && !memcmp(p,"bplist00",8))return true;
+    size_t at=0;while(at<n && (p[at]==' ' || p[at]=='\n' || p[at]=='\r' || p[at]=='\t'))++at;
+    return (n-at>=5 && !memcmp(p+at,"<?xml",5)) || (n-at>=6 && !memcmp(p+at,"<plist",6));
+}
 static inline void pcon_ranges(SweetPosterConfigLog log,SweetPosterConfigPause pause,
     const char *kind,unsigned id,const unsigned char *bytes,size_t length)
 {
@@ -27,7 +33,7 @@ static inline struct SweetPosterContainerSummary sweet_poster_container_snapshot
         s.result=-EINVAL;errno=incoming;return s;}
     s.roots=(unsigned)count;reader.buffer=malloc(PCFG_FILE_BYTES);
     if(!reader.buffer)s.result=-ENOMEM;
-    log("SWEET PCON BEGIN revision=1 roots=4 max_entries=256 max_files=64 max_bytes=131072 read_only=1");
+    log("SWEET PCON BEGIN revision=2 roots=4 max_entries=256 max_files=128 max_bytes=262144 read_only=1");
     for(unsigned root=0;root<count;++root){
         int fd=s.result?-1:pcfg_open_root(roots[root]);int error=s.result?-s.result:fd<0?errno:0;
         log("SWEET PCON ROOT index=%u path_bytes=%zu result=%d",root,strlen(roots[root]),-error);
@@ -60,12 +66,13 @@ static inline struct SweetPosterContainerSummary sweet_poster_container_snapshot
                         const char *metadata=".com.apple.mobile_container_manager.metadata.plist";
                         struct stat file;
                         if(fstatat(child,metadata,&file,AT_SYMLINK_NOFOLLOW))result=errno==ENOENT?1:-errno;
-                        else if(!S_ISREG(file.st_mode))result=1;
+                        else if(!S_ISREG(file.st_mode))result=S_ISLNK(file.st_mode)?-ELOOP:-EINVAL;
                         else if(file.st_size<=0 || file.st_size>PCFG_FILE_BYTES)result=-EFBIG;
-                        else if(s.files==PCON_FILES || (uint64_t)file.st_size>PCFG_TOTAL_BYTES-s.bytes){
+                        else if(s.files==PCON_FILES || (uint64_t)file.st_size>PCON_TOTAL_BYTES-s.bytes){
                             s.result=-E2BIG;result=-E2BIG;
                         }else{
                             result=pcfg_read_file(&reader,child,metadata,&file,&bytes);
+                            if(result==1 || (!result && !pcon_plist_signature(reader.buffer,bytes)))result=-EBADMSG;
                             captured=!result;
                         }
                     }

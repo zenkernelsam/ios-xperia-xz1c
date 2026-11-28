@@ -1,0 +1,143 @@
+{
+  "date": "2026-11-28",
+  "source_files": {
+    "gpu/diagnostics/PosterContainerSnapshot.h": "59a43dbf7ffed16daf3bdf67a9da50e42d5b4de7eb7ac2c117c4d3eae8021ec2",
+    "gpu/diagnostics/exception_observe.m": "282543c5b5374fcf3d2f77a18eae277e4debcd2e5ea2eb291f0af41d9c7dc546",
+    "tools/poster_container_contract.py": "a5355674785e98608de0f630fc0934b63e1f68cdc3660df29f46d890e2969297",
+    "tools/build/build_exception_observer.py": "8eed9461554528ff6f578e715424037505d697e6b00626a80e946e8eaae8de1a",
+    "tools/ram_library.py": "b80bbc069baca8b1b0354be9e58dd5048f92f4a7a39a63161e3e26786fb14cf2",
+    "tools/device/package_trial.py": "628d4eb7608aa8e8e368d06ed2b422df1a6f403898e530eb63c0dc6b891ebafc",
+    "tools/device/trial_evidence.py": "ca9ceb53d7778b97a411152c3557246ead64374640f1c073f1142d1e6bd37d62",
+    "tools/device/poster_container_evidence.py": "b5c5eae10774d980f3ea3cdc3b17c60c1b535d9168ed1c975cd891797c5b0a74",
+    "tools/build/check_poster_container_snapshot.py": "78158204ca2a989ee269ff184fd21f516b516a0713868a267b3fd28bf57aef86",
+    "tools/build/test_poster_container_integration.py": "9d6d4973e792866bfacbd980aaf5834df4bdd37f126bfb5c2c800f628fc4ef6b"
+  },
+  "source_wiring_completed": true,
+  "protocol_revision": 2,
+  "limits": {
+    "roots": 4,
+    "entries": 256,
+    "files": 128,
+    "file_bytes": 65536,
+    "total_bytes": 262144
+  },
+  "host_reader_ASan_UBSan": {
+    "source_files": {
+      "gpu/diagnostics/PosterContainerSnapshot.h": "59a43dbf7ffed16daf3bdf67a9da50e42d5b4de7eb7ac2c117c4d3eae8021ec2",
+      "gpu/diagnostics/PosterConfigSnapshot.h": "026637365ee99bb5a9db9b01df637e2d7a3ca33861225bf5fc6714d2ada47d57",
+      "gpu/sweetgl/ProgramCacheCodec.h": "1d8e5299f54dd0e6eb28e3cc5a98eb01bf1da2a163bb135fe7f40226c8101b44",
+      "gpu/sweetgl/MetalShaderAPI.h": "3eebe9013770eff5c1092c8ccc50b4cd6ad931986f109573f74905d16dd1c23b",
+      "tools/build/test_poster_container_snapshot.c": "38271649c1e0e6949039c3622974558c2e3f9869ead18071f561ed55267f6201",
+      "tools/build/check_poster_container_snapshot.py": "78158204ca2a989ee269ff184fd21f516b516a0713868a267b3fd28bf57aef86",
+      "tools/device/poster_container_evidence.py": "b5c5eae10774d980f3ea3cdc3b17c60c1b535d9168ed1c975cd891797c5b0a74"
+    },
+    "host_ASan_UBSan_passed": true,
+    "actual_filesystem_cases": 13,
+    "corruption_rejections": {
+      "missing_data": "Missing/repeated/out-of-order range",
+      "duplicate_data": "Missing/repeated/out-of-order range",
+      "changed_data": "Metadata SHA/length/result mismatch",
+      "missing_END": "Missing END",
+      "wrong_count": "END count/limits mismatch",
+      "wrong_root": "Invalid root order/bounds",
+      "unknown_record": "Unknown or truncated PCON record",
+      "late_record": "Record after END"
+    },
+    "metadata_only_readonly_nofollow_FIFO_and_limits_checked": true,
+    "original_configuration_files_and_images_not_captured": true,
+    "fixtures": "/tmp/lilac-pcon-integration-20261128-r3",
+    "device_operations": 0,
+    "ARM64_compilation_not_done": true,
+    "observer_integration_not_done": true,
+    "current_phone_container_not_captured": true,
+    "selected_wallpaper_not_inferred": true,
+    "permanent_deletions": 0
+  },
+  "actual_integration_tests": {
+    "groups": 4,
+    "manifest_and_role_mutations": 21,
+    "builder_invalid_requests_rejected_before_output": 4,
+    "C_transcript_boundary_rejections": 9,
+    "actual_old_signed_RAM_injection_rejected": true,
+    "log_sha256": "6f8fff5d04bec9d63e42ae9c92af4022342612e3d71c7516f61bcabdbb2d71cc"
+  },
+  "existing_trial_gates": {
+    "tests": 47,
+    "skipped": 2,
+    "passed": true,
+    "log_sha256": "db7a8fc608ce005f208615c0bb50e7c2d8439c857ad94822a6db714daec33143"
+  },
+  "guest_ARM64_build_completed": false,
+  "new_RAM_created": false,
+  "new_signed_candidate_admitted": false,
+  "current_phone_container_not_captured": true,
+  "native21_PNG6_not_rerun": true,
+  "original_UI_FPS_peripheral_goal_not_achieved": true,
+  "Mac_network_check": {
+    "client": "Git OpenSSH 10.3p1",
+    "target": "192.168.68.54:22",
+    "result": "connection timed out",
+    "neighbor_MAC_unavailable": true
+  },
+  "device_download_boot_reset_commands": 0,
+  "named_metadata_link_unknown_format_and_JSON_errors_fail_closed": true,
+  "pre_tightening_report_preserved": "poster-container-source-integration-20261128.json",
+  "phone_health": {
+    "serial": "BH905ND69G",
+    "usb_vid": "0fce",
+    "usb_pid": "0dde",
+    "download_commands": 0,
+    "boot_commands": 0,
+    "reset_commands": 0,
+    "independent_health_only": true,
+    "previous_trial_result_unchanged": true,
+    "result": "PASS",
+    "continuous_health_seconds": 30.094000000040978,
+    "samples": [
+      {
+        "elapsed_seconds": 2.109999999869615,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 5.078999999910593,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 8.015999999828637,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 10.984999999869615,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 14.015999999828637,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 16.953999999910593,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 19.890999999828637,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 22.890999999828637,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 25.828999999910593,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 29.140999999828637,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 32.20399999991059,
+        "healthy": true
+      }
+    ]
+  }
+}

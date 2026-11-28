@@ -326,11 +326,17 @@ builder锁定四个源before／after、实际SDK命令、三个ARM64 object、�
 
 本轮实际仅采得偏好，当前选择未识别。后续容器探针须先验证MCM身份和元数据格式，独立绑定新源、协议与host／ARM64输入；不得只修改旧manifest或重发已运行包。
 
-`PosterContainerSnapshot.h`是后续独立候选，当前observer尚未包含它。它只枚举四个固定容器根的直接子目录，读取固定 `.com.apple.mobile_container_manager.metadata.plist`；不递归应用数据、不读取配置图片。上限256项／64文件／128KiB，逐级nofollow／元数据打开前后stat；记录路径和原字节范围及SHA。decoder按顶层MCMMetadataIdentifier核对身份；目录截断／错误或重复身份均不能宣称唯一PosterBoard，更不能推断选中壁纸。
+### 当前容器采集源码接入
+
+现行完整backboardd native21／PNG6的build_exception_observer命令可添加 `--poster-container-snapshot`；它和 `--poster-config-snapshot`、`--program-cache-prime`互斥。builder先执行同源C reader／decoder主机检查，再编译实际ARM64 observer，绑定8份容器相关源及完整原生源表。最终manifest由poster_container_contract复验；RAM loader复算source-set，signed包投递仍由package_trial的准确SHA准入，目前尚无已审核的新容器RAM。
+
+revision2只枚举四个固定容器根的直接子目录，读取固定 `.com.apple.mobile_container_manager.metadata.plist`；上限256项／128文件／每文件64KiB／总256KiB。逐级nofollow、打开前后stat与原字节SHA保持；命名元数据的链接、特殊文件、未知签名及JSON不作为有效plist静默跳过。错误或截断让observer完整suite返回失败，并使用现有回程，不改变原renderer／paused／mode或读取应用图片。
 
 ```powershell
 python -B tools/build/check_poster_container_snapshot.py --output build/新的-container-host --fixtures "$env:TEMP\新的-container-fixtures"
 python -B tools/build/inspect_poster_container_metadata.py --image assets/root-build/ipsw-x/ios16-root-lilac-gl5.simg --output build/新的-gl5-container.json
 ```
 
-第一条在Windows自动用Ubuntu-22.04实编译同一C reader，11组真实文件系统ASan／UBSan与8类损坏流拒绝；fixture原件保留后走Windows回收站。第二条先核对完整受保护gl5 SHA，再直接读取HFS catalog及小元数据，不挂载／展开／修改镜像；原镜像MCM元数据0项不说明运行后没有容器。真实ARM64、observer／RAM接入和自身CPU／完整native21／PNG6尚待进行，host候选不能直接投递。
+第一条在Windows用Ubuntu-22.04实编译同一C reader，13组文件系统ASan／UBSan及8类损坏流拒绝；WSL直接运行可把fixture放在其/tmp，结束后无损转Windows原生回收站。第二条先核对完整受保护gl5 SHA，再直接读取HFS catalog及小元数据，不挂载／展开／修改镜像；原镜像MCM元数据0项不代表运行后没有容器。
+
+源码接入测试以实际C输出和旧signed RAM为输入。运行test_poster_container_integration.py前设置LILAC_CONTAINER_HOST_LOG为本host的normal.log，LILAC_CONTAINER_FIXTURES为其实际fixture绝对根；4组验证包括旧signed包字段污染拒绝、4个无效CLI在输出创建前拒绝、21个contract／source／角色破坏和9个LIVE／ACK／PNG6边界拒绝。生产后处理还独立复验全部native21及PNG6原字节，边界标记不代替GPU证明。新ARM64／RAM及实机验收仍待完成。

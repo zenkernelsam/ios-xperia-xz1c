@@ -188,6 +188,10 @@ def verify(directory,mode,kernel_sha=None,version=None):
                 if a['exception_observer'].get('poster_config_snapshot_revision'):
                     from poster_config_evidence import inspect as inspect_config
                     exceptions['Poster_configuration_metadata']=inspect_config(text,a['token'])
+                if a['exception_observer'].get('poster_container_snapshot_revision'):
+                    from poster_container_evidence import inspect as inspect_containers
+                    exceptions['Poster_container_metadata']=inspect_containers(text,a['token'])
+                    assert exceptions['Poster_container_metadata']['catalog_enumeration_complete'], 'Container metadata enumeration incomplete'
     boundary='serialized=1' if mode in ('ready','gpu') else 'serialized=0'
     assert re.search(r'SWEET LOOP MAP_BOUNDARY token='+a['token']+' '+boundary+r' claimed=1',scope)
     report={'version':a['version'],'mode':mode,'source':str(root.resolve()),'token':a['token'],'kernel_sha256':a['kernel_sha256'],

@@ -114,6 +114,7 @@ def validate_wled_gles_ram(package, binding):
         validate_ca_current_slots_binding(frontend)
 
 def validate_wled_gpu_ram(package, binding):
+    assert not package.get('exception_observer',{}).get('poster_container_snapshot_revision'), 'Container RAM has no reviewed signed candidate'
     if 'exception_observer' not in package and 'metal_resources' not in package:
         validate_wled_gles_ram(package,binding)
         return 'gles'

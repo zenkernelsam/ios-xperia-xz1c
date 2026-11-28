@@ -66,7 +66,6 @@ def main():
     (target/'opaque.png').write_bytes(b'not-an-image-read')
     (normal[1]/'missing-metadata').mkdir()
     (normal[1]/'outside-link').symlink_to(target,target_is_directory=True)
-    (normal[1]/'metadata-link').mkdir();(normal[1]/'metadata-link'/META).symlink_to(target/META)
     text,a=capture('normal',normal)
     assert a['summary']['result']==0 and a['summary']['files']==3 and not a['summary']['errors']
     assert a['exact_PosterBoard_identity_unique'] and a['exact_PosterBoard_containers'][0]['container_path']==str(target)
@@ -74,12 +73,21 @@ def main():
     _,a=capture('EINTR',normal,1);assert a['summary']['files']==3 and a['summary']['errors']==0
     _,a=capture('read-EIO',normal,2);assert a['summary']['files']==0 and a['summary']['errors']==3
     _,a=capture('FIFO-open-race',normal,3);assert a['summary']['files']==0 and a['summary']['errors']==3
+    linked=roots('linked-metadata');linked_target=put(linked[0],'poster')
+    (linked[1]/'linked').mkdir();(linked[1]/'linked'/META).symlink_to(linked_target/META)
+    _,a=capture('linked-metadata',linked)
+    assert a['summary']['files']==1 and a['summary']['errors']==1 and not a['exact_PosterBoard_identity_unique']
+    signature=roots('bad-signature');(signature[0]/'unknown').mkdir()
+    (signature[0]/'unknown'/META).write_bytes(b'unknown format')
+    (signature[1]/'json').mkdir();(signature[1]/'json'/META).write_bytes(b'{"MCMMetadataIdentifier":"com.apple.PosterBoard"}')
+    _,a=capture('bad-signature',signature)
+    assert a['summary']['files']==0 and a['summary']['errors']==2 and not a['catalog_enumeration_complete']
     oversized=roots('oversized');put(oversized[0],'too-big',size=65537)
     _,a=capture('oversized',oversized);assert a['summary']['files']==0 and a['summary']['errors']==1
     count=roots('file-limit')
-    for i in range(65):put(count[0],'uuid-%03d'%i,'com.apple.Other' if i else 'com.apple.PosterBoard')
+    for i in range(129):put(count[0],'uuid-%03d'%i,'com.apple.Other' if i else 'com.apple.PosterBoard')
     _,a=capture('file-limit',count)
-    assert a['summary']['result']<0 and a['summary']['files']==64 and not a['exact_PosterBoard_identity_unique']
+    assert a['summary']['result']<0 and a['summary']['files']==128 and not a['exact_PosterBoard_identity_unique']
     assert not a['catalog_enumeration_complete']
     entries=roots('entry-limit')
     for i in range(257):(entries[0]/('entry-%03d'%i)).mkdir()
@@ -91,11 +99,11 @@ def main():
     missing=roots('missing-root');put(missing[0],'poster');missing[2]=missing[2].parent/'absent'
     _,a=capture('missing-root',missing);assert a['summary']['opened']==3 and a['summary']['errors']==0
     budget=roots('byte-limit')
-    for i in range(4):
+    for i in range(7):
         p=budget[0]/('uuid-%d'%i);p.mkdir()
         (p/META).write_bytes(plistlib.dumps({'MCMMetadataIdentifier':'com.apple.Other','padding':bytes(40000)},fmt=plistlib.FMT_BINARY))
     _,a=capture('byte-limit',budget)
-    assert a['summary']['result']<0 and a['summary']['files']==3 and a['summary']['bytes']<=131072
+    assert a['summary']['result']<0 and a['summary']['files']==6 and a['summary']['bytes']<=262144
     rejected={}
     data=re.search(r'SWEET PCON DATA[^\n]*',text)[0]
     corruptions=dict(missing_data=text.replace(data+'\n','',1),duplicate_data=text.replace(data,data+'\n'+data,1),
@@ -112,7 +120,7 @@ def main():
         except ValueError as error:rejected[name]=str(error)
         else:raise AssertionError('Accepted corruption '+name)
     assert before=={p:sha(ROOT/p) for p in sources}
-    report=dict(source_files=before,host_ASan_UBSan_passed=True,actual_filesystem_cases=11,
+    report=dict(source_files=before,host_ASan_UBSan_passed=True,actual_filesystem_cases=13,
         corruption_rejections=rejected,metadata_only_readonly_nofollow_FIFO_and_limits_checked=True,
         original_configuration_files_and_images_not_captured=True,fixtures=str(fixtures),
         device_operations=0,ARM64_compilation_not_done=True,observer_integration_not_done=True,

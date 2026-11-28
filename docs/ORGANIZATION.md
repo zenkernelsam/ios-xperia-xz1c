@@ -188,3 +188,7 @@ Windows Patch/Xperia/research实查仍为89个参考Git仓库、非仓库0。Ubu
 [Ubuntu与Ubuntu-22.04所有用户Trash检查](../reproducibility/poster-config-wsl-trash-audit-20261128.json)的files／info均为空或不存在。Windows垃圾桶未清空，回收不等于释放空间。本轮Mac SSH不可达，因此当前配置RAM的raw／dmg重复容器及完成的observer host程序／dSYM尚未回收，新Git也未同步到Mac；不能宣称Mac整理已完成。恢复连接后先核对正式源与autobuild.pause，再按保留blob重建SHA验证后走NSWorkspace Trash。
 
 整合前五份入口完整原文／SHA见[poster-config-reader归档](archive/20261128/poster-config-reader/document-manifest.json)。STATUS已归并过时的r1／r2下一轮指令，原失败、原包及原证明未改写；新MCM采集器只作host候选，未加入现行observer或硬件投递。
+
+2026-11-28容器源码接入轮：WSL三份/tmp fixture、三个完成的host ELF、六份Windows TEMP故障fixture及两个已空暂存根，共14项／389文件／4340635B进入Windows原生回收站；[前段记录](../reproducibility/poster-container-integration-windows-recycle-20261128.json)与[最终收紧复验记录](../reproducibility/poster-container-integration-final-windows-recycle-20261128.json)逐字节核对内容与链接目标。原编译／C输出／解码／准入日志、源码before快照、当前signed库／RAM和所有原实机raw保留，无永久删除，垃圾桶未清空。
+
+[两套Ubuntu所有用户Trash](../reproducibility/poster-container-integration-wsl-trash-audit-20261128.json)的files／info均为空；源码、原结果与report只在正式仓库。本轮五份文档原文／SHA在[归档](archive/20261128/poster-container-integration/document-manifest.json)。收紧前的接入报告原文保留，最终源及13组host由新r2报告绑定；未重写旧实际GPU判定。Mac网络不可达，新的Git同步、ARM64构建与Mac本轮原生Trash工作仍待完成。

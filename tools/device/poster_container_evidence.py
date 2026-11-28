@@ -9,7 +9,7 @@ ROOTS=('/private/var/mobile/Containers/Data/Application',
        '/private/var/containers/Data/System',
        '/private/var/containers/Shared/SystemGroup')
 PATTERNS=(
- re.compile(r'SWEET PCON BEGIN revision=1 roots=4 max_entries=256 max_files=64 max_bytes=131072 read_only=1'),
+ re.compile(r'SWEET PCON BEGIN revision=2 roots=4 max_entries=256 max_files=128 max_bytes=262144 read_only=1'),
  re.compile(r'SWEET PCON ROOT index=(\d+) path_bytes=(\d+) result=(-?\d+)'),
  re.compile(r'SWEET PCON (ROOTPATH|PATH|DATA) id=(\d+) offset=(\d+) bytes=(\d+) hex=([0-9a-f]+)'),
  re.compile(r'SWEET PCON ENTRY id=(\d+) root=(\d+) kind=([DFLOE]) path_bytes=(\d+) result=(-?\d+)'),
@@ -95,7 +95,7 @@ def inspect_scope(text,expected_roots=ROOTS):
             result,nroots,opened,examined,nfiles,total,skipped,errors=map(int,m.groups())
             if active is not None or nroots!=4 or len(roots)!=4 or any(len(r['path'])!=r['length'] for r in roots.values()):
                 raise ValueError('Incomplete roots/items at END')
-            if examined!=len(items) or nfiles!=len(files) or total!=sum(f['bytes'] for f in files) or nfiles>64 or total>131072:
+            if examined!=len(items) or nfiles!=len(files) or total!=sum(f['bytes'] for f in files) or nfiles>128 or total>262144:
                 raise ValueError('END count/limits mismatch')
             expected_errors=sum(r['result'] not in (0,-2) for r in roots.values())+len(walk)+sum(r['end_result']<0 for r in items.values())
             expected_skipped=sum(r['end_result']>=0 and r['sha256'] is None for r in items.values())
@@ -115,7 +115,19 @@ def inspect_scope(text,expected_roots=ROOTS):
                 readonly_complete_stream_checked=True,selected_wallpaper_not_inferred=True)
 
 
-def inspect(text,token):
+def inspect(text,token,expected_roots=ROOTS):
+    if not isinstance(token,str) or not re.fullmatch('[0-9a-f]{16}',token):raise ValueError('Invalid current token')
     live='SWEET LOOP LIVE proto=1 token='+token;ack='SWEET LOOP ACK FASTBOOT token='+token
-    if text.count(live)!=1 or text.count(ack)!=1 or text.index(live)>=text.index(ack):raise ValueError('Need one current LIVE before ACK')
-    return inspect_scope(text[text.index(live):text.index(ack)])
+    live_records=list(re.finditer(re.escape(live)+r'(?=\s|$)',text))
+    ack_records=list(re.finditer(re.escape(ack)+r'(?=\s|$)',text))
+    if len(live_records)!=1 or len(ack_records)!=1 or live_records[0].start()>=ack_records[0].start():
+        raise ValueError('Need one exact current LIVE before ACK')
+    scope=text[live_records[0].start():ack_records[0].start()]
+    result=inspect_scope(scope,expected_roots)
+    png_end='SWEET CIF10 REFERENCE END result=0 cases=6 original_API=1 author_generated=1 original_UI_pixels_read=0 converter_installed=0'
+    suite_end='SWEET METAL PROBES END process=backboardd result=0 prerequisite=0 full_suite=1 background=1'
+    if scope.count(png_end)!=1 or scope.count(suite_end)!=1:raise ValueError('Need one PNG6 and full native suite end')
+    if not scope.index(png_end)<scope.index('SWEET PCON BEGIN ')<scope.index('SWEET PCON END ')<scope.index(suite_end):
+        raise ValueError('Native PNG6/metadata/suite boundary order changed')
+    result['native_PNG6_then_metadata_then_suite_boundary_order_checked']=True
+    return result

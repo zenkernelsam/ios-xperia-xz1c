@@ -23,7 +23,11 @@ CPU／launchd、触控／音量键、完整GLES9、Metal21／PNG6和原生720×1
 
 [实际采集](../reproducibility/poster-config-current-observation-20261128.json)只有两份偏好／209B：AegirRenderingReset=true；PosterBoard版本20H392及en_US区域记录。mobile Library下PosterBoard、Application Support/PosterBoard及Wallpaper三个目录ENOENT，没有选中配置或provider证明。[完整gl5 SHA核对](../reproducibility/poster-container-gl5-static-20261128.json)确认原镜像内MCM元数据0项，不能代替运行后容器。
 
-下一步按[固定开源容器身份方案](../reproducibility/poster-container-OSS-schema-reference-20261128.json)只读定位MCMMetadataIdentifier，再读取真正的PosterBoard配置／索引。新的[有界容器采集器host证明](../reproducibility/poster-container-host-20261128.json)通过11组真实文件系统ASan／UBSan和8类损坏流拒绝；只读固定MCM元数据，4根／256项／64文件／128KiB，截断或错误不能宣称唯一容器。它尚未接入observer、未编译ARM64或制作／投递RAM，当前包不重发。Mac SSH本次多次不可达；新构建前须重新核对正式Git、实际源和autobuild.pause，再走自身CPU→完整native21／PNG6，随后才按实际配置恢复原渲染观察。原UI／FPS／睡眠／光学及声音／无线仍未完成。
+下一步仍先按[固定开源容器身份方案](../reproducibility/poster-container-OSS-schema-reference-20261128.json)定位MCMMetadataIdentifier，再读取实际PosterBoard配置／索引。新的[源码接入及最终host证明](../reproducibility/poster-container-source-integration-r2-20261128.json)已把revision2采集接到完整native21／PNG6之后，四根／256项／128文件／每文件64KiB／总256KiB；命名元数据若是链接、未知签名或JSON均明确失败，不静默跳过后宣称唯一。13组真实文件系统ASan／UBSan、8类流损坏拒绝和4组源码接入检查通过；已验证精确16位LIVE token、PNG6→采集→完整suite end顺序，旧签名RAM不能靠增添字段得到新能力。已有47项准入／回程检查通过，2项按原规则skip。
+
+新builder flag、observer调用、RAM字段／source-set校验及原流后处理均已接入源码；当前仍无新ARM64 observer、RAM或已审核signed candidate。package_trial明确拒绝所有未审核container RAM，旧config轮与原Aegir包不重发。新库仍需Mac实际SDK／host ABI编译、真实源／archive审计、准确SHA准入、自身CPU及完整native21／PNG6，随后才观察原配置和渲染。
+
+本轮Sony独立只读健康30.094秒通过，download／boot／reset均0，无新GPU靴。Git附带SSH客户端已验证正常，但192.168.68.54:22实际连接超时、邻居MAC不可用；Mac新源码同步／编译／本轮回收仍未完成，恢复连接后先核对正式Git与autobuild.pause。原UI／FPS／睡眠／光学及声音／无线保持未完成。
 
 ## 当前编译器与监督进程
 

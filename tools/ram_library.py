@@ -298,6 +298,9 @@ def load(folder,expected=None):
                 sources|={'gpu/diagnostics/PosterConfigSnapshot.h','gpu/sweetgl/ProgramCacheCodec.h','gpu/sweetgl/MetalShaderAPI.h',
                     'tools/device/poster_config_evidence.py','tools/build/test_poster_config_snapshot.c',
                     'tools/build/check_poster_config_snapshot.py','tools/build/check_poster_config_evidence.py'}
+            if observer.get('poster_container_snapshot_revision'):
+                from poster_container_contract import validate as validate_container
+                sources|=validate_container(observer)
             if observer.get('program_cache_scope'):
                 sources|={'gpu/diagnostics/ProgramCacheScope.h','tools/program_cache_scope.py'}
                 assert observer['metal_resources'].get('requires_source_scoped_cache') and observer['metal_resources'].get('native_program_binary_cache')
