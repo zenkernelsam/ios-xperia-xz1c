@@ -152,7 +152,8 @@
     "start_trial.ps1": "179188f4b7ceafe40eb7e0b16fd0f16d82a71078330396538756b6c7d3d86d96",
     "background_trial.py": "e5fccd6f85fd7a7be45f3edfbdc844434c7301202285effd2a798ff7102da2d8",
     "check_start_trial.py": "f7043f5e7a255d420bb3f4658f93c56215189e615ae8bd1375b69871d4a86e86",
-    "test_scanout_status_command.py": "8facf47f25ed1239540a3ed633cbf30b7983471c4ebb0ec2de70912901991233"
+    "test_scanout_status_command.py": "8facf47f25ed1239540a3ed633cbf30b7983471c4ebb0ec2de70912901991233",
+    "poster_config_evidence.py": "08bf66b42f78dbdfb00c9d51460efd31ca09d78c387392124d5513314e19fe2c"
   },
   "supervisor_based_on_actual_tested_one_shot": true,
   "platform_tools_from_environment_or_PATH": true,
@@ -167,7 +168,7 @@
   "shared_sources": {
     "tools/diagnostic_candidate.py": "d6118dfb2fc22a2fa40985e4bb3843dfe21650258a6728e596fb2bf4f534e89a",
     "tools/mkpayload.py": "5c9a3dacbdf877ffded27971ad2e737e5ee4296fada247d14d5c6051ff1f47ff",
-    "tools/ram_library.py": "039d98bcd9223f2506c4bb5c90569085bbbfd79ecd11daf51cb0564b84cdd6ad",
+    "tools/ram_library.py": "8faf3ef8bdf46aee776ccc964a1e1f27d5fc1906cad883db7cec94b50c97afe4",
     "tools/native_proof.py": "409e67ccd2d8ebca21a3d2668c295e6e9231396f43f6e1690f380fef06321615"
   },
   "formal_v726_five_stages_actual_return": true,
@@ -183,7 +184,7 @@
     "tools/build/build_air_frontend.py": "a21f6e3f977e13549eb3fe5371d3a9402e271d84c6df189c05bd5f569e30f00b",
     "tools/build/build_diagnostic_kernel.py": "d6f86fb55f36d1b0dd971973e7cc6d05c25f90004af712c90bb307e325ac09d7",
     "tools/build/build_diagnostics.sh": "ec361280b6f23ea3f114b762df5f22def9b94d7d1105d39bcd5684bd43214118",
-    "tools/build/build_exception_observer.py": "a74e433475eaaa4531c50304a822bdd3c1ddc7b38d5a2ce20aa42d3431aa9ab8",
+    "tools/build/build_exception_observer.py": "0b8d419d718158ae8512392699844a667f8626327369a1e869c3eedc82958d34",
     "tools/build/build_metal_library.py": "102cb1f28ed9b3f2264101eb438b1a5346b2d38f9e3cf4ce7bb20b67daad4267",
     "tools/build/check_console_snapshot.py": "fa9bf2299cf0beec9894df9bc47ec2902262dfaab2396776f0bc422c7fe5f9b2",
     "tools/build/check_metal16_projection.py": "9ab528a51bd5bb6fc58ad243410c488304261622baccfa054d101935f8d27e82",
@@ -366,10 +367,13 @@
     "tools/mesa_compiler_overlay.py": "43de75b4cd46922cf7e9e8ec6eb4eb47e09ee3a6b34bc9579e24b30cce97fa81",
     "tools/build/test_mesa_compiler_overlay.py": "b9c19ce1ba8eaa120ddb1675f137bf895c97b7d2f20c149c079eb0729d8b0e69",
     "tools/build/test_lilac_backlight_duty_backend.cpp": "8710f1d0f425b756198bda6e9f045f4e6b4cc3c914a21b6a9361301142c3ad8d",
-    "tools/build/check_lilac_backlight_duty_backend.py": "79a09987401f89b904b7863c5f0764b1979785bac8a70a9a7d6df993ea6cb0c2"
+    "tools/build/check_lilac_backlight_duty_backend.py": "79a09987401f89b904b7863c5f0764b1979785bac8a70a9a7d6df993ea6cb0c2",
+    "tools/build/test_poster_config_snapshot.c": "8f5171ea38e311e1f9f81c94a4d8896733a6d70035a13f57f0a6e727d6cba7d7",
+    "tools/build/check_poster_config_snapshot.py": "235f0e9c38b88943772931c71fdbeffad0ac51da768d11f5c79c76449f22ee93",
+    "tools/build/check_poster_config_evidence.py": "3112bcc9e23973c65c679408c88ef3c548ae52cfcc32c8a9c6afda6e28441783"
   },
   "gpu_sources": {
-    "gpu/diagnostics/exception_observe.m": "530e8ab3b6fdbb22ebabee3a31ce9d14b039b0a66e2691fdfd68e9c5597f1167",
+    "gpu/diagnostics/exception_observe.m": "19740444c984b36eb91d751336cb44508972cc46335c3b105fd81e9d44b261bb",
     "gpu/diagnostics/MetalComputeProbe.h": "836c4cdc513c5d2827f4b5cab3d10d944d3487d1d5245e45e964f70dee5299d7",
     "gpu/diagnostics/MetalQueueProbe.h": "1866ff8605bf68f40ae0b83e58c7b95e07fdda1f18c0efc0357d194ef0068d54",
     "gpu/diagnostics/MetalResourceProbe.h": "5f57f18df728f3027cc3c5ae3b316b1b5a23be8ac161d2c390597f735d8d7b17",
@@ -499,7 +503,8 @@
     "gpu/diagnostics/OriginalCGInputObserve.h": "b06607b86401f019eeb671313779c788f59f4d89b1c09db54fd6ca8ed2ea4564",
     "gpu/sweetgl/OrderedImageBarrier.h": "0d9f0631c982d7034af1821c8eb14161e6942a636fce971b0f6756a0c8d70c4b",
     "gpu/diagnostics/CIF10ExportWait.h": "9237db2b491711fe438ef80a20f9455450456641e5fd92f8f1e4055b9d8cdacd",
-    "gpu/nir-callee-local-ssa.patch": "7743cef60d7206a583ba18d856389a325bedb56069b4ec44fea9e51e075e7403"
+    "gpu/nir-callee-local-ssa.patch": "7743cef60d7206a583ba18d856389a325bedb56069b4ec44fea9e51e075e7403",
+    "gpu/diagnostics/PosterConfigSnapshot.h": "026637365ee99bb5a9db9b01df637e2d7a3ca33861225bf5fc6714d2ada47d57"
   },
   "tests_skipped_without_optional_old_evidence": 2,
   "sony_specific_multi_device_return_fault_replay_passed": true,

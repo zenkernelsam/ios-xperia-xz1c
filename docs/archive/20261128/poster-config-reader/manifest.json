@@ -1,0 +1,45 @@
+{
+  "original_sha256": "b89e89bcc17eade827235f7e7efd3c33f12316db63854da189cac74d232de31a",
+  "changes": [
+    {
+      "path": "tools/device/poster_config_evidence.py",
+      "before_sha256": null,
+      "after_sha256": "08bf66b42f78dbdfb00c9d51460efd31ca09d78c387392124d5513314e19fe2c"
+    },
+    {
+      "path": "tools/build/build_exception_observer.py",
+      "before_sha256": "a74e433475eaaa4531c50304a822bdd3c1ddc7b38d5a2ce20aa42d3431aa9ab8",
+      "after_sha256": "0b8d419d718158ae8512392699844a667f8626327369a1e869c3eedc82958d34"
+    },
+    {
+      "path": "tools/build/test_poster_config_snapshot.c",
+      "before_sha256": null,
+      "after_sha256": "8f5171ea38e311e1f9f81c94a4d8896733a6d70035a13f57f0a6e727d6cba7d7"
+    },
+    {
+      "path": "tools/build/check_poster_config_snapshot.py",
+      "before_sha256": null,
+      "after_sha256": "235f0e9c38b88943772931c71fdbeffad0ac51da768d11f5c79c76449f22ee93"
+    },
+    {
+      "path": "tools/build/check_poster_config_evidence.py",
+      "before_sha256": null,
+      "after_sha256": "3112bcc9e23973c65c679408c88ef3c548ae52cfcc32c8a9c6afda6e28441783"
+    },
+    {
+      "path": "gpu/diagnostics/exception_observe.m",
+      "before_sha256": "530e8ab3b6fdbb22ebabee3a31ce9d14b039b0a66e2691fdfd68e9c5597f1167",
+      "after_sha256": "19740444c984b36eb91d751336cb44508972cc46335c3b105fd81e9d44b261bb"
+    },
+    {
+      "path": "gpu/diagnostics/PosterConfigSnapshot.h",
+      "before_sha256": null,
+      "after_sha256": "026637365ee99bb5a9db9b01df637e2d7a3ca33861225bf5fc6714d2ada47d57"
+    },
+    {
+      "path": "tools/ram_library.py",
+      "before_sha256": "039d98bcd9223f2506c4bb5c90569085bbbfd79ecd11daf51cb0564b84cdd6ad",
+      "after_sha256": "8faf3ef8bdf46aee776ccc964a1e1f27d5fc1906cad883db7cec94b50c97afe4"
+    }
+  ]
+}

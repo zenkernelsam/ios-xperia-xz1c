@@ -32,6 +32,9 @@
 #include "ProgramCacheInventory.h"
 #include "ProgramCacheInventoryIdentity.h"
 #endif
+#if defined(SWEET_POSTER_CONFIG_SNAPSHOT)
+#include "PosterConfigSnapshot.h"
+#endif
 #if defined(SWEET_METAL_BACKGROUND_PROBE)
 #include "../sweetgl/sweetgl.h"
 #endif
@@ -379,6 +382,9 @@ static bool run_native_probes(void)
 #if defined(SWEET_METAL_BACKGROUND_PROBE)
 static _Atomic bool background_scheduled;
 static void probe_pause(void){usleep(10000);}
+#if defined(SWEET_POSTER_CONFIG_SNAPSHOT)
+static void config_pause(void){usleep(1000);}
+#endif
 static void *background_probes(void *unused)
 {
     (void)unused;@autoreleasepool{
@@ -387,6 +393,10 @@ static void *background_probes(void *unused)
         if(ready){diagnostic("SWEET METAL PROBES END process=backboardd result=1 prerequisite=%d full_suite=1 background=1",ready);return NULL;}
         diagnostic("SWEET METAL PROBES begin process=backboardd GLES_state=2 full_suite=1 background=1");
         bool valid=run_native_probes();
+#if defined(SWEET_POSTER_CONFIG_SNAPSHOT)
+        if(valid){struct SweetPosterConfigSummary config=sweet_poster_config_snapshot(diagnostic,config_pause);
+            (void)config;}
+#endif
         unsigned failures=atomic_load(&log_write_failures);
         diagnostic("SWEET OBSERVER LOG SUMMARY revision=1 failures=%u first_error=%d original_bytes_once=1",failures,atomic_load(&log_first_error));
         valid=valid && !atomic_load(&log_write_failures);

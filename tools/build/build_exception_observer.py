@@ -10,6 +10,7 @@ from program_cache_inventory import specification as inventory_specification,hea
 from aegir_snapshot_scope import specification as aegir_scope_specification,header as aegir_scope_header
 p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--metal-resources');p.add_argument('--air-fixture');p.add_argument('--render-fixture');p.add_argument('--constants-fixture');p.add_argument('--register-device',action='store_true');p.add_argument('--xr-probe',action='store_true');p.add_argument('--surface-probe',action='store_true');p.add_argument('--mip-probe',action='store_true');p.add_argument('--target-process',choices=['AegirPoster','backboardd'],default='AegirPoster');p.add_argument('--gles-ram-package');p.add_argument('--registration-only',action='store_true');p.add_argument('--native-proof');p.add_argument('--pipeline-observe',action='store_true');p.add_argument('--narrow-fixture');p.add_argument('--half-fixture');p.add_argument('--mrt-fixture');p.add_argument('--sampler-fixture');p.add_argument('--program-cache-prime',action='store_true');p.add_argument('--static-half-fixture');p.add_argument('--program-cache-export',action='store_true')
 p.add_argument('--program-cache-inventory',action='store_true')
+p.add_argument('--poster-config-snapshot',action='store_true')
 p.add_argument('--poster-snapshot-gate',action='store_true')
 p.add_argument('--aegir-snapshot-cache-scope',action='store_true')
 p.add_argument('--original-snapshot-png-export',action='store_true')
@@ -43,6 +44,7 @@ if a.png_filter_encoder:assert a.registration_only and a.postdraw_observe and a.
 else:assert not a.png_proof
 if a.program_cache_prime:assert a.target_process=='backboardd' and a.sampler_fixture and not a.registration_only and a.program_cache_inventory,'New primers require actual before/after cache inventory'
 if a.program_cache_inventory:assert a.target_process=='backboardd' and a.presentation_probe and a.cif10_png_reference and not a.registration_only,'Inventory follows complete native21 and PNG6'
+if a.poster_config_snapshot:assert a.target_process=='backboardd' and a.presentation_probe and a.cif10_png_reference and not a.registration_only,'Metadata snapshot follows complete native21 and PNG6'
 if a.program_cache_export:assert a.target_process=='backboardd' and a.static_half_fixture and not a.registration_only and not a.program_cache_prime
 if a.registration_only:
     assert a.target_process=='AegirPoster' and a.metal_resources and a.register_device and a.native_proof
@@ -249,6 +251,10 @@ if a.ir3_cache_probe:headers+=['gpu/diagnostics/MetalIR3CacheProbe.h']
 if a.program_cache_inventory:
     headers+=['gpu/diagnostics/ProgramCacheInventory.h','gpu/sweetgl/ProgramCacheCodec.h','gpu/sweetgl/MetalShaderAPI.h','tools/program_cache_inventory.py','tools/program_request.py',
         'tools/build/test_program_cache_inventory.c','tools/build/check_program_cache_inventory.py','tools/device/program_cache_inventory_evidence.py']
+if a.poster_config_snapshot:
+    headers+=['gpu/diagnostics/PosterConfigSnapshot.h','gpu/sweetgl/ProgramCacheCodec.h','gpu/sweetgl/MetalShaderAPI.h',
+        'tools/device/poster_config_evidence.py','tools/build/test_poster_config_snapshot.c',
+        'tools/build/check_poster_config_snapshot.py','tools/build/check_poster_config_evidence.py']
 headers=list(dict.fromkeys(headers))
 request_export=None
 if a.program_cache_export:
@@ -457,7 +463,12 @@ if multisample_fixture_manifest:extra+=['-DSWEET_METAL_MULTISAMPLE_PROBE=1','-I'
 if a.presentation_probe:extra+=['-DSWEET_METAL_PRESENTATION_PROBE=1','-framework','QuartzCore']
 if a.program_cache_prime:extra+=['-DSWEET_PROGRAM_CACHE_PRIME=1']
 if a.program_cache_export:extra+=['-DSWEET_PROGRAM_CACHE_EXPORT=1','-I',out]
+if a.poster_config_snapshot:
+    run([sys.executable,'-B',root/'tools/build/check_poster_config_snapshot.py','--output',out/'poster-config-host'],'poster-config-host-check')
+    run([sys.executable,'-B',root/'tools/build/check_poster_config_evidence.py','--transcript',out/'poster-config-host/run.log',
+         '--output',out/'poster-config-host/decoder-proof.json'],'poster-config-decoder-check')
 if a.program_cache_inventory:extra+=['-DSWEET_PROGRAM_CACHE_INVENTORY=1','-I',out]
+if a.poster_config_snapshot:extra+=['-DSWEET_POSTER_CONFIG_SNAPSHOT=1','-I',out]
 if cache_scope:extra+=['-DSWEET_PROGRAM_CACHE_SCOPE=1','-I',out]
 if a.target_process=='backboardd':
     gles=Path(a.gles_ram_package).resolve();assert gles.is_relative_to(root/'build')
@@ -476,6 +487,10 @@ manifest=dict(source='gpu/diagnostics/exception_observe.m',source_sha256=hashlib
 if a.target_process=='AegirPoster':manifest.update(renderer_abi_and_device_observer_test_passed=True,renderer_observations_max=32,
     metadata_only_no_buffer_allocation=True,original_renderer_return_and_exception_preserved=True)
 manifest.update(source_files=source_files,runtime_Metal_ABI_methods=22,metadata_observer_no_device_calls_test_passed=True)
+if a.poster_config_snapshot:manifest.update(poster_config_snapshot_revision=1,poster_config_snapshot_roots=5,
+    poster_config_snapshot_max_bytes=131072,poster_config_snapshot_readonly=True,
+    poster_config_snapshot_after_native21_PNG6=True,poster_config_snapshot_changes_UI_policy=False,
+    poster_config_snapshot_host_FS_and_decoder_checked=True)
 if cache_inventory:manifest.update(program_cache_inventory=cache_inventory,
     cache_inventory_host_asan_ubsan_and_actual_C_decoder_passed=True,
     cache_inventory_host_test_source_sha256=hashlib.sha256((root/'tools/build/test_program_cache_inventory.c').read_bytes()).hexdigest(),

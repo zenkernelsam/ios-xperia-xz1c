@@ -289,6 +289,15 @@ def load(folder,expected=None):
                 spec=inventory_specification(m,observer['metal_resources'],prime=bool(observer.get('program_cache_prime')))
                 spec['identity_header_sha256']=sha(inventory_header(spec))
                 assert observer['program_cache_inventory']==spec
+            if observer.get('poster_config_snapshot_revision'):
+                assert observer['poster_config_snapshot_revision']==1 and observer['target_process']=='backboardd'
+                assert observer['poster_config_snapshot_roots']==5 and observer['poster_config_snapshot_max_bytes']==131072
+                assert observer['poster_config_snapshot_readonly'] and observer['poster_config_snapshot_after_native21_PNG6']
+                assert observer['poster_config_snapshot_host_FS_and_decoder_checked']
+                assert observer['poster_config_snapshot_changes_UI_policy'] is False
+                sources|={'gpu/diagnostics/PosterConfigSnapshot.h','gpu/sweetgl/ProgramCacheCodec.h','gpu/sweetgl/MetalShaderAPI.h',
+                    'tools/device/poster_config_evidence.py','tools/build/test_poster_config_snapshot.c',
+                    'tools/build/check_poster_config_snapshot.py','tools/build/check_poster_config_evidence.py'}
             if observer.get('program_cache_scope'):
                 sources|={'gpu/diagnostics/ProgramCacheScope.h','tools/program_cache_scope.py'}
                 assert observer['metal_resources'].get('requires_source_scoped_cache') and observer['metal_resources'].get('native_program_binary_cache')
