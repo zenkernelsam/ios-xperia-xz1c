@@ -4,11 +4,13 @@ CPU／launchd、触控／音量键、完整GLES9、Metal21／PNG6和原生720×1
 
 ## 设备与下一轮
 
+当前Sony健康fastboot，无在途手机进程。新SSA／CA组合四轮独立通过：[实机索引](../reproducibility/ca-current-slots-SSA-device-round-20261128.json)。CPU、GLES9、native CPU、native21／PNG6各自完整四回程／健康与worker退出，180秒状态均dropped0、tx=log；回程分别37.921／39.266／39.438／38.375秒。完整native token `66a0459acc20c392`、raw SHA `ddf4b1b96b4a6949e0cb3179c8d7e701cef5c719afaaf267bb088f70b3551731`；[native21 proof](../reproducibility/ca-current-slots-SSA-native21-proof-20261128.json)和[PNG6 proof](../reproducibility/ca-current-slots-SSA-png6-proof-20261128.json)由同一完整原流复算，原r1拒绝不提升。下一步只用这套新证明制作原Aegir观察包，再走自身CPU／原GPU；原壁纸、FPS、睡眠和外设仍未完成。
+
 2026-11-28用户确认物理会话已恢复；Sony独立只读健康30.75秒通过。新局部SSA组合自身CPU token `92b7017cc30e02bd`已独立准入，日志dropped0、37.641秒完整回程／健康。GLES9 token `999c9b10a80fc321`控制器PASS，但[独立验收拒绝](../reproducibility/nir-callee-ssa-gles9-refused-20261128.json)：本靴CA安装记录在LIVE前，旧revision1不能准入；LIVE后六阶段原像素max_diff0、dropped0及308块扫描另存，不能提升完整GLES。37.922秒完整四marker／健康与旧supervisor／owned workers退出已独立核对，Sony健康fastboot，无在途。native CPU／native21未投递。[本轮结果索引](../reproducibility/nir-callee-ssa-device-round-20261128.json)保持原拒绝；该包不重发。
 
 新CA observation revision2只在probe入口重新读取当前QuartzCore UUID／有界segment／代码锚点／原identity和两个实际已安装pointer／case，日志VERIFY在像素phase0前；不重装、不搬移旧INSTALL日志。原revision1仍要求LIVE内INSTALL，原失败不重新分类。[主机六阶段／只读表项检查](../reproducibility/ca-current-slots-host-20261128.json)与5组decoder、45组准入（2旧输入skip）、native／PNG回归通过。内核冻结保持。
 
-[新SSA／CA候选](../reproducibility/ca-current-slots-SSA-candidate-20261128.json)已实编译、签名及完整打包：GLES `e7cf76d676f9211e3f87bf8ae8c420dc590488cd51e8f711a7c0b66ec01c0c2e`／14801376B，保留已验API和revision4几何helper原字节；两个正确RAM为gles-ram-r3／native-ram-r2。CPU `bffe3867a5cd1b92`、GLES9 `052e16406b2c1148`、native CPU `8a8656341d01c0d0`、native21／PNG6 `66a0459acc20c392`四包均未投递，CPU离线实际86源／compiler overlay审计通过。新完整组合仍依次验自身CPU→GLES9→native CPU→native21／PNG6；9个fixture与AIR object准确SHA复核，inventory只读，无primer。原r1局部结果不跳级；完整回程、健康及worker退出后才下一轮。
+[新SSA／CA产物](../reproducibility/ca-current-slots-SSA-candidate-20261128.json)：GLES `e7cf76d676f9211e3f87bf8ae8c420dc590488cd51e8f711a7c0b66ec01c0c2e`／14801376B，保留已验API和revision4几何helper原字节；正确RAM为gles-ram-r3／native-ram-r2。CPU `bffe3867a5cd1b92`、GLES9 `052e16406b2c1148`、native CPU `8a8656341d01c0d0`、native21／PNG6 `66a0459acc20c392`各单发一次并独立通过，实际86源／compiler overlay审计保持。9个fixture与AIR object准确SHA复核，inventory只读，未运行primer；原r1局部结果没有用于跳级。
 
 2026-11-27用户已重新插拔并确认Sony **BH905ND69G**蓝灯fastboot；本轮先独立只读健康32.750秒通过，随后按下述候选单发。最新原失败token `02758c66f824e349`已完整0x06回程，失败包不重发；准确原记录见下节。
 

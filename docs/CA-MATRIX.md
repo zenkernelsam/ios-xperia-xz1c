@@ -30,6 +30,8 @@ GLES CPU908bb4fa／38.359秒、GLES9组4946e854／39.390秒、reference CPU59cca
 
 新frontend manifest明确绑定`CA_matrix_observation_revision=2`及实际源；decoder只接受本LIVE→ACK里一次完整VERIFY且先于六阶段。旧revision1仍要求本LIVE内INSTALL，不提升原失败。缺记录、重复、错误UUID／表项计数／write标志、晚于phase0或错误phase／像素／guard都拒绝。[主机报告](../reproducibility/ca-current-slots-host-20261128.json)核对原生产GLI改写的六阶段与当前pointer／case／prior-state故障；实际手机新库仍按BUILD走自身完整准入。
 
+新revision2组合的[完整实机索引](../reproducibility/ca-current-slots-SSA-device-round-20261128.json)已验自身CPU／GLES9／native CPU／native21及PNG6。GLES9 token052e16406b2c1148在本LIVE后、phase0前完成一次只读VERIFY，六阶段max_diff0及1536／192B通过；3413块真实扫描、39.266秒完整回程、dropped0与worker退出独立复核。锁屏保存帧时间灰色、电池绿色；黑壁纸、日期／时间间距、LCD光学和FPS不因该组通过而提升。
+
 Mac按BUILD重编当前前端、包只读RAM。完整后台参考在已安装fixture的主机可用：
 
 ```sh

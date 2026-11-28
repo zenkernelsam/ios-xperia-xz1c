@@ -132,3 +132,5 @@ python -B tools/device/poster_cache_comparison.py --observation "$env:TEMP\lilac
 历史原请求／ABI拒绝、USB打开拒绝、mode修正及原STOP都保留在原报告和归档。新的构建与单发规则见[BUILD](BUILD.md)、[OPERATIONS](OPERATIONS.md)。
 
 2026-11-27：[原Earth离线核对](../reproducibility/earth-link-host-offline-20261127.json)已按完整旧request的payload／key及现行正式变换重建准确VS／FS，长度和FNV匹配最新原靴；不是代表常量替代。NIR单块原型完整作者图序列化相同，但准确Earth链接阶段只约8.7%改善且host退出仍失败，未安装生产源。下一轮现有标准bin路径须本身份真实missing请求／完整native21和PNG6及独立inventory，原壁纸／FPS仍未完成。
+
+2026-11-28：[局部SSA／CA组合实机](../reproducibility/ca-current-slots-SSA-device-round-20261128.json)完成新GLES自身CPU／GLES9、native RAM自身CPU／native21／PNG6。原r1的CA安装范围拒绝保留，新revision2在像素前只读复验当前安装，不改矩阵公式。新native token66a0459acc20c392／原raw ddf4b1b9…形成该e7cf76d6… GLES与原19a08083… Metal自己的完整证明；新原Aegir必须嵌入它们，并再走自身CPU。host Earth链接阶段约53%改善没有用于提升原壁纸或FPS；原renderer／paused／mode、失败包及旧cache保持。

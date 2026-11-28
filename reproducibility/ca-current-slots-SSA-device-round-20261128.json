@@ -1,0 +1,75 @@
+{
+  "date": "2026-11-28",
+  "target_serial": "BH905ND69G",
+  "candidate": "reproducibility/ca-current-slots-SSA-candidate-20261128.json",
+  "source_head_at_launch": "6fcbc9b",
+  "prior_rejection": "reproducibility/nir-callee-ssa-gles9-refused-20261128.json",
+  "stages": {
+    "cpu": {
+      "token": "bffe3867a5cd1b92",
+      "state": "PASS",
+      "supervisor_pid": 38432,
+      "launch_directory": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-callee-ssa-r2-cpu-launch-20261128-r1",
+      "run_directory": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-v732-callee-ssa-r2-cpu-live-20261128",
+      "independent_report": "reproducibility/ca-current-slots-SSA-cpu-actual-20261128.json",
+      "raw_sha256": "2dadb551e989704ccacc1e52eff2c24e7d0d143dc960da1c04fa8863d02600d4",
+      "return_seconds_with_health": 37.92100000008941,
+      "dropped": 0,
+      "supervisor_exit_code": 0,
+      "supervisor_and_owned_workers_exit_independently_checked": true
+    },
+    "gles9": {
+      "token": "052e16406b2c1148",
+      "state": "PASS",
+      "supervisor_pid": 448500,
+      "launch_directory": "C:/Users/Cisco He/AppData/Local/Temp/lilac-callee-ssa-r2-gles9-launch-20261128-r1",
+      "run_directory": "C:/Users/Cisco He/AppData/Local/Temp/lilac-v732-callee-ssa-r2-gles9-live-20261128",
+      "independent_report": "reproducibility/ca-current-slots-SSA-gles9-actual-20261128.json",
+      "raw_sha256": "8b4f45ab1f0547ca43fb1a99b5cda7d3a02b7936479e9a0766908c8c45fd1add",
+      "return_seconds_with_health": 39.26599999982864,
+      "dropped": 0,
+      "supervisor_exit_code": 0,
+      "supervisor_and_owned_workers_exit_independently_checked": true
+    },
+    "native-cpu": {
+      "token": "8a8656341d01c0d0",
+      "state": "PASS",
+      "supervisor_pid": 436148,
+      "launch_directory": "C:/Users/Cisco He/AppData/Local/Temp/lilac-callee-ssa-r2-native-cpu-launch-20261128-r1",
+      "run_directory": "C:/Users/Cisco He/AppData/Local/Temp/lilac-v732-callee-ssa-r2-native-cpu-live-20261128",
+      "independent_report": "reproducibility/ca-current-slots-SSA-native-cpu-actual-20261128.json",
+      "raw_sha256": "1154cbc7d33b717f9d319963a33469f9f2536b79c8968bbafa26c77864b28a51",
+      "return_seconds_with_health": 39.437999999849126,
+      "dropped": 0,
+      "supervisor_exit_code": 0,
+      "supervisor_and_owned_workers_exit_independently_checked": true
+    },
+    "native21": {
+      "token": "66a0459acc20c392",
+      "state": "PASS",
+      "supervisor_pid": 456752,
+      "launch_directory": "C:/Users/Cisco He/AppData/Local/Temp/lilac-callee-ssa-r2-native21-launch-20261128-r1",
+      "run_directory": "C:/Users/Cisco He/AppData/Local/Temp/lilac-v732-callee-ssa-r2-native21-live-20261128",
+      "independent_report": "reproducibility/ca-current-slots-SSA-native21-actual-20261128.json",
+      "raw_sha256": "ddf4b1b96b4a6949e0cb3179c8d7e701cef5c719afaaf267bb088f70b3551731",
+      "return_seconds_with_health": 38.375,
+      "dropped": 0,
+      "supervisor_exit_code": 0,
+      "supervisor_and_owned_workers_exit_independently_checked": true,
+      "native_groups": 21,
+      "PNG_cases": 6
+    }
+  },
+  "old_failed_packets_not_replayed": true,
+  "kernel_GPU_allocator_SCM_PON_RPC_VM_unchanged": true,
+  "original_UI_FPS_optics_sleep_and_other_peripherals_not_accepted": true,
+  "pre_round_cleanup": {
+    "windows": "reproducibility/ca-current-slots-windows-native-recycle-20261128.json",
+    "macos": "reproducibility/ca-current-slots-macos-native-trash-20261128.json",
+    "Ubuntu_Trash_empty": true,
+    "Ubuntu_22_04_Trash_empty": true,
+    "Windows_and_Mac_bins_not_emptied": true
+  },
+  "device_state": "HEALTHY_FASTBOOT_NO_IN_FLIGHT",
+  "all_four_current_candidate_stages_passed": true
+}
