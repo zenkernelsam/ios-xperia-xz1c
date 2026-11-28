@@ -1,0 +1,82 @@
+{
+  "date": "2026-11-28",
+  "frozen_formal_export": {
+    "frozen_export_sha256": "aa2c36792a2298b060aa858eabdc039522fcdde3cfdbafd453c5fc6c0683c157",
+    "source_bytes": 13095,
+    "current_Mac_materialized_source_not_rechecked": true
+  },
+  "original_documents_checked": 5,
+  "current_host_sources_checked": 7,
+  "current_RAM_SHA256": {
+    "exception_observe.dylib": "bc977b0cf67b442e30ca6e1b7ec2c4e530cdf2f62e5de106f28ea9463246f4c0",
+    "glram.zblob": "6da9e8801d0adfd883b35969d87a3bddaa7e982e56742940b24ee9ee0aa3a2e0",
+    "manifest.json": "50ad033ed84a53df5f77b190b10019c69468820e2d6acfcd3edf196dc8576504"
+  },
+  "phone_health": {
+    "serial": "BH905ND69G",
+    "usb_vid": "0fce",
+    "usb_pid": "0dde",
+    "download_commands": 0,
+    "boot_commands": 0,
+    "reset_commands": 0,
+    "independent_health_only": true,
+    "previous_trial_result_unchanged": true,
+    "result": "PASS",
+    "continuous_health_seconds": 31.812999999849126,
+    "samples": [
+      {
+        "elapsed_seconds": 1.968000000109896,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 4.875,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 7.811999999918044,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 10.702999999979511,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 13.577999999979511,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 16.468000000109896,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 19.32799999997951,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 22.218000000109896,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 25.093000000109896,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 27.905999999959022,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 30.70299999997951,
+        "healthy": true
+      },
+      {
+        "elapsed_seconds": 33.78099999995902,
+        "healthy": true
+      }
+    ]
+  },
+  "original_host_report_preserved": true,
+  "new_container_observer_not_integrated": true,
+  "ARM64_container_build_not_done": true,
+  "Mac_formal_sync_and_native_cleanup_pending": true,
+  "device_download_boot_reset_commands_this_continuation": 0
+}

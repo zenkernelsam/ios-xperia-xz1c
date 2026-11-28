@@ -1,0 +1,77 @@
+{
+  "date": "2026-11-28",
+  "token": "82eb8d92345155c0",
+  "raw_sha256": "8de88bc106018ba4f004e2737bfb5fb9530859a0b87e8ec754ead54638284a81",
+  "return_seconds_with_health": 43.03100000019185,
+  "console_status": {
+    "events": 9146,
+    "tx": 2882294,
+    "rx": 42,
+    "log": 2882294,
+    "dropped": 0,
+    "one_current_LIVE_query": true
+  },
+  "readonly_metadata": {
+    "summary": {
+      "result": 0,
+      "roots": 5,
+      "opened": 2,
+      "entries": 2,
+      "files": 2,
+      "bytes": 209,
+      "skipped": 0,
+      "errors": 0
+    },
+    "roots": [
+      {
+        "path": "/private/var/mobile/Library/PosterBoard",
+        "result": -2
+      },
+      {
+        "path": "/private/var/mobile/Library/Application Support/PosterBoard",
+        "result": -2
+      },
+      {
+        "path": "/private/var/mobile/Library/SpringBoard",
+        "result": 0
+      },
+      {
+        "path": "/private/var/mobile/Library/Preferences",
+        "result": 0
+      },
+      {
+        "path": "/private/var/mobile/Library/Wallpaper",
+        "result": -2
+      }
+    ],
+    "files": [
+      {
+        "path": "/private/var/mobile/Library/Preferences/com.apple.NanoUniverse.AegirProxyApp.AegirPoster.plist",
+        "bytes": 69,
+        "sha256": "4fb485b670827efdc734df1e5445894053b8aa204763828253b1062a964aefbd",
+        "metadata": {
+          "parsed": true,
+          "references": [],
+          "provider_references_are_not_selection_proof": true
+        }
+      },
+      {
+        "path": "/private/var/mobile/Library/Preferences/com.apple.PosterBoard.plist",
+        "bytes": 140,
+        "sha256": "10fb9456c049dcd373b4940e491b181485dc8d88257ce38aea4dc081f47947d1",
+        "metadata": {
+          "parsed": true,
+          "references": [],
+          "provider_references_are_not_selection_proof": true
+        }
+      }
+    ],
+    "walk_errors": [],
+    "readonly_complete_stream_checked": true,
+    "selected_wallpaper_not_inferred": true
+  },
+  "actual_current_configuration_not_identified": true,
+  "provider_selection_not_changed": true,
+  "next_step": "Read PosterBoard app data container metadata; standard mobile Library paths were absent",
+  "original_GPU_UI_FPS_not_accepted": true
+}

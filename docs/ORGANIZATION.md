@@ -180,3 +180,11 @@ Windows Patch/Xperia/research实查仍为89个参考Git仓库、非仓库0。Ubu
 新CA候选准备完成后，已把错误／不再使用的打包、未投递且已替代的两张r1 native镜像、一次性WSL host程序和TEMP故障fixture共38文件／107,286,575B送入[Windows原生回收站](../reproducibility/ca-current-slots-windows-native-recycle-20261128.json)。Mac错误RAM／签名副本、已完成host程序／dSYM及四个可从压缩blob逐字节重建的raw／dmg共64文件／410,677,693B送入[原生垃圾桶](../reproducibility/ca-current-slots-macos-native-trash-20261128.json)。全部回收后内容SHA复核一致，Ubuntu与Ubuntu-22.04 Trash files／info均空；Windows／Mac垃圾桶未清空，无永久删除。当前正确RAM、四张新镜像、compiler sources／objects／archive、基线及原失败raw／扫描帧保留。回收不等于释放这些空间；package-admission另保留身份清单更新前的锁和两处SHA。
 
 原Aegir收尾另把一次性TEMP故障fixture与未投递的打包失败目录共24文件／5,981,464B送入[Windows回收站](../reproducibility/aegir-callee-ssa-windows-native-recycle-20261128.json)；Mac当前RAM可精确重建的raw／dmg、已完成host程序／dSYM共62文件／68,406,393B送入[原生垃圾桶](../reproducibility/aegir-callee-ssa-macos-native-trash-20261128.json)。全部回收后内容SHA一致；原CPU／GPU镜像、完整raw／扫描帧、原STOP、signed库／压缩blob／manifest与native／PNG证明保留，所有垃圾桶未清空。scanout-status另保留解码器更新前的源码锁与两个源SHA；没有新的硬件投递或永久删除。
+
+2026-11-28配置采集收尾：已完成的WSL共享build测试程序／fixture共10项、552文件、920803B进入[Windows原生回收站](../reproducibility/poster-config-windows-native-recycle-20261128.json)，全部内容SHA和链接目标复核一致。原失败／成功compile、run、manifest、decoder记录保留；配置CPU／GPU两张镜像、RAM／签名库／observer、原raw和冻结源均保留。
+
+后续容器候选的host程序／TEMP fixture共9项、314文件、1127173B进入[Windows回收站](../reproducibility/poster-container-windows-native-recycle-20261128.json)。C盘原生回收因WSL链接返回0x80070780；原partial receipt及全部剩余原件先独立核对。四个fixture无损移至D盘明确暂存范围后进原生回收站；最后一次跨盘移动在已有完整副本时中断，残余子集另无损保留、一起回收，314文件计数包含该重复子集。来源／暂存／native位置、每文件SHA和链接目标均记录，编译与解码原日志、host manifest及正式源不变，没有永久删除或清空。
+
+[Ubuntu与Ubuntu-22.04所有用户Trash检查](../reproducibility/poster-config-wsl-trash-audit-20261128.json)的files／info均为空或不存在。Windows垃圾桶未清空，回收不等于释放空间。本轮Mac SSH不可达，因此当前配置RAM的raw／dmg重复容器及完成的observer host程序／dSYM尚未回收，新Git也未同步到Mac；不能宣称Mac整理已完成。恢复连接后先核对正式源与autobuild.pause，再按保留blob重建SHA验证后走NSWorkspace Trash。
+
+整合前五份入口完整原文／SHA见[poster-config-reader归档](archive/20261128/poster-config-reader/document-manifest.json)。STATUS已归并过时的r1／r2下一轮指令，原失败、原包及原证明未改写；新MCM采集器只作host候选，未加入现行observer或硬件投递。

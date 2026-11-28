@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-28",
+  "distributions": [
+    {
+      "distribution": "Ubuntu",
+      "result": [
+        {
+          "path": "/root/.local/share/Trash",
+          "exists": false,
+          "files_entries": 0,
+          "info_entries": 0
+        },
+        {
+          "path": "/home/cisco/.local/share/Trash",
+          "exists": false,
+          "files_entries": 0,
+          "info_entries": 0
+        }
+      ]
+    },
+    {
+      "distribution": "Ubuntu-22.04",
+      "result": [
+        {
+          "path": "/root/.local/share/Trash",
+          "exists": false,
+          "files_entries": 0,
+          "info_entries": 0
+        }
+      ]
+    }
+  ],
+  "readonly_audit": true,
+  "bins_emptied": false,
+  "permanent_deletions": 0
+}

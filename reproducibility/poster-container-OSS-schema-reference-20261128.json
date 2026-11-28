@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-28",
+  "reference_repository": "https://github.com/anoshmisiosdev/ios-fajita",
+  "commit": "11da58bd050672960c0a83b5bef2176047eea479",
+  "file": "tools/sweet-root-tweaks.py",
+  "git_blob_sha256": "d604e9fd74f8344b87a351cf573346f4b8d2a3f73e9b3948cb720abcefd56398",
+  "observed_metadata_leaf": ".com.apple.mobile_container_manager.metadata.plist",
+  "observed_identity_key": "MCMMetadataIdentifier",
+  "upstream_function": "find_container",
+  "upstream_paths": [
+    "/private/var/containers/Data/System"
+  ],
+  "supports_container_identity_lookup": true,
+  "current_PosterBoard_container_not_proven": true,
+  "original_gl5_metadata_count": 0,
+  "device_operations": 0,
+  "upstream_write_functions_not_executed": true
+}

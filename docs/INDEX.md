@@ -43,6 +43,8 @@ reproducibility保存原结果摘要、源码锁、精确proof和回收记录；
 | SSA设备轮／CA当前表项 | [原阶段索引](../reproducibility/nir-callee-ssa-device-round-20261128.json)、[CA原拒绝](../reproducibility/nir-callee-ssa-gles9-refused-20261128.json)、[只读表项及六阶段host](../reproducibility/ca-current-slots-host-20261128.json)；新revision2实际准入见STATUS |
 | 新SSA／CA完整组合 | [实际产物](../reproducibility/ca-current-slots-SSA-candidate-20261128.json)、[四轮实机](../reproducibility/ca-current-slots-SSA-device-round-20261128.json)、[native21](../reproducibility/ca-current-slots-SSA-native21-proof-20261128.json)、[PNG6](../reproducibility/ca-current-slots-SSA-png6-proof-20261128.json)；自己的完整准入通过，原壁纸／FPS未提升 |
 | 新原Aegir触发观察 | [原STOP与启动记录](../reproducibility/aegir-callee-ssa-original-observation-20261128.json)、[原扫描／回程](../reproducibility/aegir-callee-ssa-scanout-20261128.json)；本靴未见Aegir执行，不作Earth链接结论 |
+| 原壁纸配置只读采集 | [CPU准入](../reproducibility/poster-config-cpu-actual-20261128.json)、[完整native21／PNG6与采集准入](../reproducibility/poster-config-gpu-actual-20261128.json)、[两份实际偏好](../reproducibility/poster-config-current-observation-20261128.json)；当前选中provider仍未识别 |
+| 有界MCM容器只读候选 | [固定OSS身份方案](../reproducibility/poster-container-OSS-schema-reference-20261128.json)、[完整gl5静态核对](../reproducibility/poster-container-gl5-static-20261128.json)、[11组host／8类损坏拒绝](../reproducibility/poster-container-host-20261128.json)；未接入observer或投递 |
 
 原[PCM session七组](../reproducibility/lilac-pcm-session-offline-20261126.json)、[GLINK适配八组](../reproducibility/lilac-pcm-glink-transport-offline-20261126.json)和[人工sparse槽位barrier流](../reproducibility/ordered-image-barrier-star-load-host-20261126.json)保持历史边界，不作为不同新产物的实机准入。现行步骤只由STATUS／BUILD维护。
 
@@ -96,3 +98,5 @@ runtime的[EOF收尾前报告](../reproducibility/lilac-pcm-runtime-cache-offlin
 逐IO背光epoch候选见[新证据](../reproducibility/backlight-duty-per-io-epoch-20261128.json)，五份入口原文／SHA见[归档](archive/20261128/backlight-per-io-epoch/original-document-manifest.json)。
 
 WLED实际SPMI接入依赖审计见[报告](../reproducibility/backlight-spmi-binding-audit-20261128.json)，四份入口原文／SHA见[归档](archive/20261128/wled-spmi-binding/original-document-manifest.json)。
+
+配置读取轮整合前五份入口原文／SHA见[归档manifest](archive/20261128/poster-config-reader/document-manifest.json)。实际设备／下一步只由STATUS维护，读取及严格解码复现由BUILD说明。

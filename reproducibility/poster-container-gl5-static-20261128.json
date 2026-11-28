@@ -1,0 +1,20 @@
+{
+  "metadata_files_checked": 0,
+  "relevant_containers": [],
+  "exact_PosterBoard_containers": [],
+  "exact_PosterBoard_container_files": [],
+  "expected_current_roots": [
+    "/private/var/mobile/Containers/Data/Application",
+    "/private/var/mobile/Containers/Shared/AppGroup",
+    "/private/var/containers/Data/System",
+    "/private/var/containers/Shared/SystemGroup"
+  ],
+  "original_image_only": true,
+  "current_phone_configuration_not_proven": true,
+  "selected_wallpaper_not_inferred": true,
+  "device_operations": 0,
+  "image_writes": 0,
+  "image_sha256": "e9bf1547b6a7e9a33b51c2749c643bc2eff0134c31cc3a63f9435e4cea1f9b29",
+  "image_bytes": 12195431400,
+  "source_sha256": "1d26e964a1954baa2b8c722fbb299c7b4544b507c6954c873fa14d235278c772"
+}

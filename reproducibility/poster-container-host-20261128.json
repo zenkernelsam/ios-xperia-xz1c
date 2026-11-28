@@ -1,0 +1,32 @@
+{
+  "source_files": {
+    "gpu/diagnostics/PosterContainerSnapshot.h": "5b21bea366fe064085c0c62be3a3619780567641bd8c31497367595da3cd6427",
+    "gpu/diagnostics/PosterConfigSnapshot.h": "026637365ee99bb5a9db9b01df637e2d7a3ca33861225bf5fc6714d2ada47d57",
+    "gpu/sweetgl/ProgramCacheCodec.h": "1d8e5299f54dd0e6eb28e3cc5a98eb01bf1da2a163bb135fe7f40226c8101b44",
+    "gpu/sweetgl/MetalShaderAPI.h": "3eebe9013770eff5c1092c8ccc50b4cd6ad931986f109573f74905d16dd1c23b",
+    "tools/build/test_poster_container_snapshot.c": "38271649c1e0e6949039c3622974558c2e3f9869ead18071f561ed55267f6201",
+    "tools/build/check_poster_container_snapshot.py": "dcb64023e580bd18a65bd55272d334e95f7b31b6fb5b3a9f9cbcd20c72b6b6ab",
+    "tools/device/poster_container_evidence.py": "9b9e5df9b51d118ce5343a5d7fcdaed4befb6a35592e3b45df26b25373d32c74"
+  },
+  "host_ASan_UBSan_passed": true,
+  "actual_filesystem_cases": 11,
+  "corruption_rejections": {
+    "missing_data": "Missing/repeated/out-of-order range",
+    "duplicate_data": "Missing/repeated/out-of-order range",
+    "changed_data": "Metadata SHA/length/result mismatch",
+    "missing_END": "Missing END",
+    "wrong_count": "END count/limits mismatch",
+    "wrong_root": "Invalid root order/bounds",
+    "unknown_record": "Unknown or truncated PCON record",
+    "late_record": "Record after END"
+  },
+  "metadata_only_readonly_nofollow_FIFO_and_limits_checked": true,
+  "original_configuration_files_and_images_not_captured": true,
+  "fixtures": "/mnt/c/Users/Cisco He/AppData/Local/Temp/lilac-pcon-fixtures-20261128-r4",
+  "device_operations": 0,
+  "ARM64_compilation_not_done": true,
+  "observer_integration_not_done": true,
+  "current_phone_container_not_captured": true,
+  "selected_wallpaper_not_inferred": true,
+  "permanent_deletions": 0
+}

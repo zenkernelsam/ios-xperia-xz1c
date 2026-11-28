@@ -317,3 +317,20 @@ builder锁定四个源before／after、实际SDK命令、三个ARM64 object、�
 非零backlight duty后端host复现用`check_lilac_backlight_duty_backend.py --reference <固定Sony Git> --output <新build目录>`，核对固定DTB／Git blob、65535请求值、epoch／重入／写失败。`link_lilac_backlight_service.py`现复制并核对七份真实support源，新增duty factory只在独立service对象里；旧kernel原对象保持，链接验证副本不可当已准入设备kernel。
 
 非零背光host checker现在另要求epoch_read_positions38／write_positions6／wait_position1的成功总结，覆盖IO内部状态变化，不只事务首尾。ARM64链接仍复用原v731 recipe、源和object库存；source／object／proof绑定新支持头，验证副本不提升为可投递kernel。
+
+## 原壁纸配置只读采集
+
+`PosterConfigSnapshot.h`只读枚举固定五个mobile Library根，限256项／16文件／每文件64KiB／总128KiB／深度4；逐级O_NOFOLLOW，打开前后stat核对，已知图像不读取，其它文件先读取8B签名。`build_exception_observer.py --poster-config-snapshot`只允许完整backboardd native21／PNG6观察包，在完整原生组后执行采集；不调用UI getter或改变选择／paused／mode。新observer及RAM仍须自身CPU和完整native组准入。
+
+主机复现用 `python -B tools/build/check_poster_config_snapshot.py --output build/新的-reader目录`，再以 `check_poster_config_evidence.py --transcript <该目录/run.log> --output <新的decoder报告>` 解码实际C输出。八组真实文件系统及非法API、FIFO打开竞态、EINTR／读失败／读取中变化、symlink与限额已验；解码器拒绝缺块／重复／SHA破坏／错计数和提前结束。生产 `poster_config_evidence.inspect(text, token)`只接受本LIVE→ACK和准确五根。
+
+本轮实际仅采得偏好，当前选择未识别。后续容器探针须先验证MCM身份和元数据格式，独立绑定新源、协议与host／ARM64输入；不得只修改旧manifest或重发已运行包。
+
+`PosterContainerSnapshot.h`是后续独立候选，当前observer尚未包含它。它只枚举四个固定容器根的直接子目录，读取固定 `.com.apple.mobile_container_manager.metadata.plist`；不递归应用数据、不读取配置图片。上限256项／64文件／128KiB，逐级nofollow／元数据打开前后stat；记录路径和原字节范围及SHA。decoder按顶层MCMMetadataIdentifier核对身份；目录截断／错误或重复身份均不能宣称唯一PosterBoard，更不能推断选中壁纸。
+
+```powershell
+python -B tools/build/check_poster_container_snapshot.py --output build/新的-container-host --fixtures "$env:TEMP\新的-container-fixtures"
+python -B tools/build/inspect_poster_container_metadata.py --image assets/root-build/ipsw-x/ios16-root-lilac-gl5.simg --output build/新的-gl5-container.json
+```
+
+第一条在Windows自动用Ubuntu-22.04实编译同一C reader，11组真实文件系统ASan／UBSan与8类损坏流拒绝；fixture原件保留后走Windows回收站。第二条先核对完整受保护gl5 SHA，再直接读取HFS catalog及小元数据，不挂载／展开／修改镜像；原镜像MCM元数据0项不说明运行后没有容器。真实ARM64、observer／RAM接入和自身CPU／完整native21／PNG6尚待进行，host候选不能直接投递。

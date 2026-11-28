@@ -1,0 +1,39 @@
+{
+  "host": {
+    "source_files": {
+      "gpu/diagnostics/PosterConfigSnapshot.h": "026637365ee99bb5a9db9b01df637e2d7a3ca33861225bf5fc6714d2ada47d57",
+      "gpu/sweetgl/ProgramCacheCodec.h": "1d8e5299f54dd0e6eb28e3cc5a98eb01bf1da2a163bb135fe7f40226c8101b44",
+      "gpu/sweetgl/MetalShaderAPI.h": "3eebe9013770eff5c1092c8ccc50b4cd6ad931986f109573f74905d16dd1c23b",
+      "tools/build/test_poster_config_snapshot.c": "8f5171ea38e311e1f9f81c94a4d8896733a6d70035a13f57f0a6e727d6cba7d7",
+      "tools/build/check_poster_config_snapshot.py": "235f0e9c38b88943772931c71fdbeffad0ac51da768d11f5c79c76449f22ee93"
+    },
+    "host_ASan_UBSan_passed": true,
+    "real_filesystem_fixture_cases": 8,
+    "invalid_API_case": 1,
+    "production_reader_readonly_nofollow_and_FIFO_refusal_checked": true,
+    "filename_filter_hex_framing_EINTR_read_error_and_mid_read_mutation_checked": true,
+    "captured_current_phone_configuration": false,
+    "device_operations": 0,
+    "permanent_deletions": 0,
+    "transcript_sha256": "43c5b411289152dfb590e03c12637c9aa8881708c2d4963ebe2fedfa1dea70b7"
+  },
+  "decoder": {
+    "production_C_transcript_sha256": "43c5b411289152dfb590e03c12637c9aa8881708c2d4963ebe2fedfa1dea70b7",
+    "actual_files_decoded": 4,
+    "actual_filesystem_cases_decoded": 7,
+    "corruptions_rejected": {
+      "missing_data": "Missing/repeated/out-of-order chunk",
+      "duplicate_data": "Missing/repeated/out-of-order chunk",
+      "changed_data": "Captured data length/SHA/result mismatch",
+      "wrong_sha": "Unknown or truncated PCFG record",
+      "duplicate_root": "Root order/bounds changed",
+      "wrong_count": "END count mismatch",
+      "unknown_record": "Unknown or truncated PCFG record",
+      "missing_END": "Missing END",
+      "early_END": "Record before BEGIN"
+    },
+    "readonly_metadata_not_selected_wallpaper_proof": true,
+    "current_phone_configuration_not_captured": true,
+    "device_operations": 0
+  }
+}
