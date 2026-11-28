@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-28",
+  "candidate_only": true,
+  "device_operations": 0,
+  "packages": {
+    "cpu": {
+      "token": "b3a1648b9a925df6",
+      "sha256": "15aed4fb3dca32891c61319455111c4f56e7fe98790ff8fd651519c242ec000d",
+      "kernel_sha256": "f1d485a4f0306bcef003783ea9b2338188a6c8b65a4300fb207acbb15e9b387b",
+      "trial_mode": "ramcpu"
+    },
+    "gpu": {
+      "token": "82eb8d92345155c0",
+      "sha256": "36690d24fa8f320cc13ffccd6cdc530bc45d5ea0fcab88e10f7abe28ab3b670a",
+      "kernel_sha256": "f1d485a4f0306bcef003783ea9b2338188a6c8b65a4300fb207acbb15e9b387b",
+      "trial_mode": "gpu"
+    }
+  },
+  "blob_sha256": "6da9e8801d0adfd883b35969d87a3bddaa7e982e56742940b24ee9ee0aa3a2e0",
+  "manifest_sha256": "50ad033ed84a53df5f77b190b10019c69468820e2d6acfcd3edf196dc8576504",
+  "GLES_sha256": "e7cf76d676f9211e3f87bf8ae8c420dc590488cd51e8f711a7c0b66ec01c0c2e",
+  "Metal_sha256": "19a08083833851d5a13016473ec3c3db98629d6ce6fc928b70947af114abee49",
+  "observer_sha256": "bc977b0cf67b442e30ca6e1b7ec2c4e530cdf2f62e5de106f28ea9463246f4c0",
+  "configuration_metadata_readonly": true,
+  "configuration_not_yet_captured_from_phone": true,
+  "original_UI_policy_not_changed": true
+}

@@ -20,6 +20,18 @@ from exception_evidence import inspect_scope,verify_renderer
 
 
 class Gates(unittest.TestCase):
+    def test_poster_config_reader_keeps_full_native_suite_and_readonly_policy(self):
+        path=Path(__file__).resolve().parents[2]/'build/poster-config-r1-20261128/ram/manifest.json'
+        if not path.is_file():self.skipTest('Config snapshot RAM unavailable')
+        raw=path.read_bytes();package=json.loads(raw)
+        binding=dict(library_sha256=package['library_sha256'],blob_sha256=package['blob_sha256'],manifest_sha256=hashlib.sha256(raw).hexdigest())
+        self.assertEqual(validate_wled_gpu_ram(package,binding),'native')
+        for key,value in [('poster_config_snapshot_readonly',False),('poster_config_snapshot_changes_UI_policy',True),
+            ('poster_config_snapshot_roots',6),('poster_config_snapshot_max_bytes',131073),
+            ('poster_config_snapshot_after_native21_PNG6',False),('cif10_reference_cases',5),('program_cache_prime',True)]:
+            bad=copy.deepcopy(package);bad['exception_observer'][key]=value
+            with self.subTest(field=key),self.assertRaises(AssertionError):validate_wled_gpu_ram(bad,binding)
+
     def test_current_SSA_poster_requires_own_native_and_PNG_proofs(self):
         path=Path(__file__).resolve().parents[2]/'build/aegir-callee-ssa-r2-20261128/ram/manifest.json'
         if not path.is_file():self.skipTest('Current SSA original observer RAM unavailable')

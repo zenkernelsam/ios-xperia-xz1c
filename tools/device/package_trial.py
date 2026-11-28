@@ -178,6 +178,8 @@ def validate_wled_gpu_ram(package, binding):
             ('45629ea392f03d38878a51d8fb810b472bf3a092a887c5fd8ba1f56e642771e7','dd3ffb371577fc1f158a59c722e5750db24c41511b2f2ac6732e35846bbc8887','2d0c846af5036af3817f967f0e2eda5d5748ab7ed3c9a0718e3d15bb3c424a93','a12b24b9d1d82720b769f70d55dec41fc797109ad371d50c8b235008dff27010',4),
         'd4b7185fb1aff42b7ed09e686be0d1e454974c08bad6a999d6cbcfe420560b0b':
             ('c35f8eed58e8de3e600129dd1859b70ec45a87db7f3e01e940314191928aaffe','e7cf76d676f9211e3f87bf8ae8c420dc590488cd51e8f711a7c0b66ec01c0c2e','6628cee594a5f869765b32e914f8773ea9d292b4337fd8ed239a704d4de5b607','e8bc5ec11770891598a0eff837ff303567977da68a81af6d1cf89b271a66a972',4),
+        '6da9e8801d0adfd883b35969d87a3bddaa7e982e56742940b24ee9ee0aa3a2e0':
+            ('50ad033ed84a53df5f77b190b10019c69468820e2d6acfcd3edf196dc8576504','e7cf76d676f9211e3f87bf8ae8c420dc590488cd51e8f711a7c0b66ec01c0c2e','bc977b0cf67b442e30ca6e1b7ec2c4e530cdf2f62e5de106f28ea9463246f4c0','e8bc5ec11770891598a0eff837ff303567977da68a81af6d1cf89b271a66a972',4),
     }
     if binding['blob_sha256'] in barrier_native:
         reviewed=barrier_native[binding['blob_sha256']]
@@ -203,6 +205,11 @@ def validate_wled_gpu_ram(package, binding):
             validate_callee_compiler_binding(package['frontend_build_binding'])
         if gles=='e7cf76d676f9211e3f87bf8ae8c420dc590488cd51e8f711a7c0b66ec01c0c2e':
             validate_ca_current_slots_binding(package['frontend_build_binding'])
+        if binding['blob_sha256']=='6da9e8801d0adfd883b35969d87a3bddaa7e982e56742940b24ee9ee0aa3a2e0':
+            assert observer['poster_config_snapshot_revision']==1 and observer['poster_config_snapshot_roots']==5
+            assert observer['poster_config_snapshot_max_bytes']==131072 and observer['poster_config_snapshot_readonly']
+            assert observer['poster_config_snapshot_after_native21_PNG6'] and observer['poster_config_snapshot_changes_UI_policy'] is False
+            assert observer['poster_config_snapshot_host_FS_and_decoder_checked']
         if conditional_prime:
             inventory=observer['program_cache_inventory']
             assert inventory['context_identity']=='b2d3872d86da13a0ec1db5c198f56ffd1fcf1fa2905314824a1cf33ea41ca9c1'
@@ -450,7 +457,7 @@ def validate_wled_gpu_ram(package, binding):
 
 def validate_wled_gpu_record(record, package, binding):
     stage=validate_wled_gpu_ram(package,binding)
-    if binding['blob_sha256'] in ('c6aab7f471247d3e8da7bebf3ac6a1885b9c9625ab9b02ee95413478d6ce2959','10b9da760c42fe3524d3f6ff59b119b9771d0e43d2c0f5193af9cb9f9b7be74e','30a5bf63ddfa56fb9587c4308c6eb92525616c69ac4d062ada88ce6cb1ff00b7','6bfe39ba8aa094fc9235181cd7ba633ea8ac7629a69bd5f8f3ab947b0d62f2e3','49b6bd0547405cf3632104f8dcaf4c9fe3a29a4df4f09b870414c515c44e8c47','d4b7185fb1aff42b7ed09e686be0d1e454974c08bad6a999d6cbcfe420560b0b','2234fdec29ad5d8b8cc86728eba858988ecc26329d6cb70e5bfac648633ac79c'):
+    if binding['blob_sha256'] in ('c6aab7f471247d3e8da7bebf3ac6a1885b9c9625ab9b02ee95413478d6ce2959','10b9da760c42fe3524d3f6ff59b119b9771d0e43d2c0f5193af9cb9f9b7be74e','30a5bf63ddfa56fb9587c4308c6eb92525616c69ac4d062ada88ce6cb1ff00b7','6bfe39ba8aa094fc9235181cd7ba633ea8ac7629a69bd5f8f3ab947b0d62f2e3','49b6bd0547405cf3632104f8dcaf4c9fe3a29a4df4f09b870414c515c44e8c47','d4b7185fb1aff42b7ed09e686be0d1e454974c08bad6a999d6cbcfe420560b0b','2234fdec29ad5d8b8cc86728eba858988ecc26329d6cb70e5bfac648633ac79c','6da9e8801d0adfd883b35969d87a3bddaa7e982e56742940b24ee9ee0aa3a2e0'):
         assert record['version']==LOG_VERSION and record['kernel_sha256']==LOG_KERNEL_SHA
     assert 'thread_sample_observation' not in record, 'v731 GPU trials exclude thread sampling'
     if 'swipe_observation' in record:
