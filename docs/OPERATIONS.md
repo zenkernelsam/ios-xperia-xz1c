@@ -46,6 +46,8 @@ UI／文字／图标／颜色优先串口720×1280／BGR888／stride2160原扫�
 
 一个worker排队命令和读取原raw，来源、实际扫描寄存器、逐记录／块／流CRC、FNV和保存BGR／PNG像素全部绑定本token，见[SCANOUT-SCREENSHOT](SCANOUT-SCREENSHOT.md)。不将750×1624 IOSurface／shadow当原扫描。原截图无需rotate90；旧raw可离线重解，明确原日期／token，不能冒充当前实时。fastboot期间没有iOS帧可读，不为截图复发失败boot。
 
+v732的返回后scanout复验另核对一次已绑定的180秒只读status：同token／LIVE、单dispatch、原raw offset在LIVE→ACK内、唯一K70DBG004回复和命令顺序必须一致。它只补齐新日志观察命令的验证，原PASS／STOP／REVISE不改；旧无status流保持原检查。
+
 v731已审核的新库原poster扫描包也准入现有 `--swipe-once`，只绑定同RAM自身CPU、完整GLES／native／PNG和相同gesture契约；background作者GPU测试仍不允许该输入。
 
 --swipe-once仅本LIVE／F12实际就绪后120秒一次固定上滑，150秒frame；和sampling独立。核对本靴command／tx／一次注入，合成输入不替代真人触控。--idle-sample仅原Aegir library返回后180秒单sample，与--thread-sample原first-clear触发互斥。原90秒周期样本另列，不能从一次CPU栈推全部耗时或改冻结组件。

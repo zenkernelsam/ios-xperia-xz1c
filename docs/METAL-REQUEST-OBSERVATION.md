@@ -134,3 +134,5 @@ python -B tools/device/poster_cache_comparison.py --observation "$env:TEMP\lilac
 2026-11-27：[原Earth离线核对](../reproducibility/earth-link-host-offline-20261127.json)已按完整旧request的payload／key及现行正式变换重建准确VS／FS，长度和FNV匹配最新原靴；不是代表常量替代。NIR单块原型完整作者图序列化相同，但准确Earth链接阶段只约8.7%改善且host退出仍失败，未安装生产源。下一轮现有标准bin路径须本身份真实missing请求／完整native21和PNG6及独立inventory，原壁纸／FPS仍未完成。
 
 2026-11-28：[局部SSA／CA组合实机](../reproducibility/ca-current-slots-SSA-device-round-20261128.json)完成新GLES自身CPU／GLES9、native RAM自身CPU／native21／PNG6。原r1的CA安装范围拒绝保留，新revision2在像素前只读复验当前安装，不改矩阵公式。新native token66a0459acc20c392／原raw ddf4b1b9…形成该e7cf76d6… GLES与原19a08083… Metal自己的完整证明；新原Aegir必须嵌入它们，并再走自身CPU。host Earth链接阶段约53%改善没有用于提升原壁纸或FPS；原renderer／paused／mode、失败包及旧cache保持。
+
+[新原Aegir实机观察](../reproducibility/aegir-callee-ssa-original-observation-20261128.json)token9a48ab546cabbc23保持STOP／OBSERVATION_INCOMPLETE：本LIVE→ACK没有Aegir exec或原Earth编译／链接；有PosterBoard、Collections／Extragalactic／Weather等poster进程记录，启动清单不证明实际选中provider。原上滑与150秒主页扫描完整、dropped0、39.25秒完整回程；主页图标／Dock颜色正常、背景仍黑。该包不重发，原shader链未执行，因此没有本轮Earth设备耗时或成功结论。下一步先只读核对当前配置／触发路径，保持原renderer／paused／mode与旧cache。

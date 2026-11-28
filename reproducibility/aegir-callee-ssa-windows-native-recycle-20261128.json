@@ -1,0 +1,295 @@
+{
+  "date": "2026-11-28",
+  "kind": "windows-native-recycle",
+  "items": 13,
+  "files": 24,
+  "logical_bytes": 5981464,
+  "plan": {
+    "allowed_roots": [
+      "D:\\Desktop\\Git\\ios-xperia-xz1c\\build",
+      "C:\\Users\\CISCOH~1\\AppData\\Local\\Temp"
+    ],
+    "items": [
+      {
+        "path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\aegir-callee-ssa-r2-20261128\\gpu",
+        "files": [],
+        "logical_bytes": 0
+      },
+      {
+        "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-clock-fault-071e25f6",
+        "files": [
+          {
+            "path": "cycle-01\\serial.raw.log",
+            "bytes": 491688,
+            "sha256": "2edf3b3874d087ffbd8ef1e5f5c6dca41d48b6684d74bac6fca425ac6f0fefe7"
+          },
+          {
+            "path": "results.json",
+            "bytes": 6769,
+            "sha256": "182b69a794b7e5341757075357c6d00ab553bd0573d4d51385f7811dd6e06dae"
+          }
+        ],
+        "logical_bytes": 498457
+      },
+      {
+        "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-clock-fault-5hon5hde",
+        "files": [
+          {
+            "path": "cycle-01\\serial.raw.log",
+            "bytes": 491688,
+            "sha256": "adcbe2aa03b041d022d6864aed05be641e9940fcb9ac473475e90ad9817b3f79"
+          },
+          {
+            "path": "results.json",
+            "bytes": 6753,
+            "sha256": "2c6b51b0487ae1198ac7638ecc965ec278a9d3972423d63860b9f5aa8f9f61b5"
+          }
+        ],
+        "logical_bytes": 498441
+      },
+      {
+        "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-clock-fault-7g4dyuf9",
+        "files": [
+          {
+            "path": "cycle-01\\serial.raw.log",
+            "bytes": 491688,
+            "sha256": "adcbe2aa03b041d022d6864aed05be641e9940fcb9ac473475e90ad9817b3f79"
+          },
+          {
+            "path": "results.json",
+            "bytes": 6769,
+            "sha256": "67697a3b4fcefb5974fc870d37c0c66bfb5843fd71ae22711329456eaff05ded"
+          }
+        ],
+        "logical_bytes": 498457
+      },
+      {
+        "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-clock-fault-cae931g3",
+        "files": [
+          {
+            "path": "cycle-01\\serial.raw.log",
+            "bytes": 491688,
+            "sha256": "33a5a47a8b735ca7aaea968cc478e652ea74c91f3be02ddfa62e029c51279ecb"
+          },
+          {
+            "path": "results.json",
+            "bytes": 6769,
+            "sha256": "4b4274d536ab334dbe4b983ed8385d0826cdf66f23ee3e4574343b31ef9e04f8"
+          }
+        ],
+        "logical_bytes": 498457
+      },
+      {
+        "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-clock-fault-dy3a2sh5",
+        "files": [
+          {
+            "path": "cycle-01\\serial.raw.log",
+            "bytes": 491688,
+            "sha256": "33a5a47a8b735ca7aaea968cc478e652ea74c91f3be02ddfa62e029c51279ecb"
+          },
+          {
+            "path": "results.json",
+            "bytes": 6769,
+            "sha256": "4b4274d536ab334dbe4b983ed8385d0826cdf66f23ee3e4574343b31ef9e04f8"
+          }
+        ],
+        "logical_bytes": 498457
+      },
+      {
+        "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-clock-fault-dynz50nn",
+        "files": [
+          {
+            "path": "cycle-01\\serial.raw.log",
+            "bytes": 491688,
+            "sha256": "adcbe2aa03b041d022d6864aed05be641e9940fcb9ac473475e90ad9817b3f79"
+          },
+          {
+            "path": "results.json",
+            "bytes": 6753,
+            "sha256": "2c6b51b0487ae1198ac7638ecc965ec278a9d3972423d63860b9f5aa8f9f61b5"
+          }
+        ],
+        "logical_bytes": 498441
+      },
+      {
+        "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-clock-fault-ia9jx5ds",
+        "files": [
+          {
+            "path": "cycle-01\\serial.raw.log",
+            "bytes": 491695,
+            "sha256": "5b45b408cf59fc51473c92b085e1ecdd8d9d51bd425a4fff429856dade4a188c"
+          },
+          {
+            "path": "results.json",
+            "bytes": 6769,
+            "sha256": "c6cda4fc665a5a857f0cd34010160a9e492b8b20fd14f2edcb5a332f243e7c5e"
+          }
+        ],
+        "logical_bytes": 498464
+      },
+      {
+        "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-clock-fault-pehv5ojy",
+        "files": [
+          {
+            "path": "cycle-01\\serial.raw.log",
+            "bytes": 491695,
+            "sha256": "5b45b408cf59fc51473c92b085e1ecdd8d9d51bd425a4fff429856dade4a188c"
+          },
+          {
+            "path": "results.json",
+            "bytes": 6769,
+            "sha256": "c6cda4fc665a5a857f0cd34010160a9e492b8b20fd14f2edcb5a332f243e7c5e"
+          }
+        ],
+        "logical_bytes": 498464
+      },
+      {
+        "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-clock-fault-pwlltf65",
+        "files": [
+          {
+            "path": "cycle-01\\serial.raw.log",
+            "bytes": 491688,
+            "sha256": "adcbe2aa03b041d022d6864aed05be641e9940fcb9ac473475e90ad9817b3f79"
+          },
+          {
+            "path": "results.json",
+            "bytes": 6769,
+            "sha256": "67697a3b4fcefb5974fc870d37c0c66bfb5843fd71ae22711329456eaff05ded"
+          }
+        ],
+        "logical_bytes": 498457
+      },
+      {
+        "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-clock-fault-q995lud_",
+        "files": [
+          {
+            "path": "cycle-01\\serial.raw.log",
+            "bytes": 491688,
+            "sha256": "2edf3b3874d087ffbd8ef1e5f5c6dca41d48b6684d74bac6fca425ac6f0fefe7"
+          },
+          {
+            "path": "results.json",
+            "bytes": 6769,
+            "sha256": "182b69a794b7e5341757075357c6d00ab553bd0573d4d51385f7811dd6e06dae"
+          }
+        ],
+        "logical_bytes": 498457
+      },
+      {
+        "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-clock-fault-signkawo",
+        "files": [
+          {
+            "path": "cycle-01\\serial.raw.log",
+            "bytes": 491688,
+            "sha256": "adcbe2aa03b041d022d6864aed05be641e9940fcb9ac473475e90ad9817b3f79"
+          },
+          {
+            "path": "results.json",
+            "bytes": 6768,
+            "sha256": "de942b9ec196405e9fe7a546d3addda3e437d2db22a5050cb65dbbf13e433948"
+          }
+        ],
+        "logical_bytes": 498456
+      },
+      {
+        "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-clock-fault-t_qxvj9i",
+        "files": [
+          {
+            "path": "cycle-01\\serial.raw.log",
+            "bytes": 491688,
+            "sha256": "adcbe2aa03b041d022d6864aed05be641e9940fcb9ac473475e90ad9817b3f79"
+          },
+          {
+            "path": "results.json",
+            "bytes": 6768,
+            "sha256": "de942b9ec196405e9fe7a546d3addda3e437d2db22a5050cb65dbbf13e433948"
+          }
+        ],
+        "logical_bytes": 498456
+      }
+    ]
+  },
+  "journal": [
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T12:15:41.7750619+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RQWOGD0",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\aegir-callee-ssa-r2-20261128\\gpu"
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T12:15:42.2560325+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R4X119C",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-clock-fault-071e25f6"
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T12:15:42.5058538+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R7WWY7Z",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-clock-fault-5hon5hde"
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T12:15:42.7698079+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RDV50XR",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-clock-fault-7g4dyuf9"
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T12:15:43.0052402+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RNVCWLZ",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-clock-fault-cae931g3"
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T12:15:43.2430242+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RB4ML4K",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-clock-fault-dy3a2sh5"
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T12:15:43.4770134+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RV6VYGZ",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-clock-fault-dynz50nn"
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T12:15:43.7015431+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RXT2XJR",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-clock-fault-ia9jx5ds"
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T12:15:43.9426232+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R77NYF4",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-clock-fault-pehv5ojy"
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T12:15:44.1816119+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RKYYM6Z",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-clock-fault-pwlltf65"
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T12:15:44.4246930+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R5ONAUN",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-clock-fault-q995lud_"
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T12:15:44.6636629+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RB72UXJ",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-clock-fault-signkawo"
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T12:15:44.9180294+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RPETSSL",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-clock-fault-t_qxvj9i"
+    }
+  ],
+  "all_native_content_hashes_verified": true,
+  "bins_emptied": false,
+  "permanent_deletions": 0
+}

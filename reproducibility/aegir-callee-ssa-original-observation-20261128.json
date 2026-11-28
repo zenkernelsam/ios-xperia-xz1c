@@ -1,0 +1,75 @@
+{
+  "date": "2026-11-28",
+  "token": "9a48ab546cabbc23",
+  "original_result": "STOP",
+  "original_reason": "OBSERVATION_INCOMPLETE",
+  "raw_sha256": "bc46f5ffc2aef39927562f3aa9a1fc9340954db31ebd4194e336c209ff514e82",
+  "raw_bytes": 3409580,
+  "original_Aegir_exec_observed": false,
+  "original_Earth_link_exercised": false,
+  "original_pipeline_draw_snapshot_or_PNG_not_observed": true,
+  "observed_poster_execs": [
+    "PosterBoard",
+    "GradientPosterExtension",
+    "CollectionsPoster",
+    "ExtragalacticPoster",
+    "WeatherPoster",
+    "EmojiPosterExtension",
+    "PridePosterExtension",
+    "UnityPosterExtension",
+    "PhotosPosterProvider",
+    "CollectionsPoster"
+  ],
+  "observed_extension_execs": [
+    "CalendarWidgetExtension",
+    "GradientPosterExtension",
+    "EmojiPosterExtension",
+    "PridePosterExtension",
+    "UnityPosterExtension",
+    "ScreenTimeWidgetExtension",
+    "SafariLinkExtension",
+    "MailShortcutsExtension"
+  ],
+  "console_status": {
+    "events": 7190,
+    "tx": 3352480,
+    "rx": 48,
+    "log": 3352480,
+    "dropped": 0
+  },
+  "serial_capture": {
+    "revision": 1,
+    "worker_sha256": "b37f33c1c2ce24a0f68be536fcc4e9e95c89f0d259df4817ef62f9c145a55c06",
+    "event_log_sha256": "05f7a1483703d459c6a0f5b353e5afa8bbdea1e43067ea75a5ff8468b1ec55cc",
+    "raw_sha256": "bc46f5ffc2aef39927562f3aa9a1fc9340954db31ebd4194e336c209ff514e82",
+    "serial_port": "COM17",
+    "dtr_low_through_open": true,
+    "raw_log_before_stream": true,
+    "one_continuous_current_boot_stream": true,
+    "replay_commands": 0,
+    "old_failure_not_reclassified": true
+  },
+  "independent_scanout": "reproducibility/aegir-callee-ssa-scanout-20261128.json",
+  "full_return": {
+    "complete": true,
+    "reason": "COMPLETE_CURRENT_BOOT_RETURN",
+    "current_token": "9a48ab546cabbc23",
+    "checkpoint_bytes": 3391403,
+    "log_bytes": 3409580,
+    "log_sha256": "bc46f5ffc2aef39927562f3aa9a1fc9340954db31ebd4194e336c209ff514e82",
+    "require_final_drain": true,
+    "marker_positions": [
+      4,
+      187,
+      239,
+      241
+    ],
+    "final_reset_marker_seen": true
+  },
+  "return_seconds_with_health": 39.25,
+  "supervisor_pid": 406444,
+  "supervisor_exit_code": 1,
+  "supervisor_and_workers_exit_independently_checked": true,
+  "old_failed_package_not_replayed": true,
+  "original_GPU_UI_FPS_not_accepted": true
+}

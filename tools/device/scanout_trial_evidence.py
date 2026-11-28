@@ -3,9 +3,11 @@ import argparse
 import hashlib
 import json
 import re
+from datetime import datetime
 from pathlib import Path
 
-from controller import Artifact, checked_screen_capture_after, validate_plan, swipe_once_binding
+from controller import Artifact, checked_screen_capture_after, validate_plan, swipe_once_binding, console_status_binding
+from diagnostic_candidate import LOG_VERSION
 from package_trial import ROOT, prove_payload
 from return_evidence import inspect_return
 from scanout_snapshot import verify_saved
@@ -13,6 +15,31 @@ from scanout_snapshot import verify_saved
 
 def sha(data):
     return hashlib.sha256(data).hexdigest()
+
+
+def check_status_command(artifact,commands,events,raw):
+    requests=[e for e in events if e['state']=='CONSOLE_STATUS_REQUESTED']
+    if 'status' not in commands:
+        assert not requests
+        return commands,None
+    assert artifact['version']==LOG_VERSION and artifact.get('console_status_observation')==console_status_binding()
+    assert commands.count('status')==1 and commands[-2:]==['status','fastboot '+artifact['token']]
+    assert len(requests)==1
+    request=requests[0]
+    assert request['token']==artifact['token'] and request['current_LIVE'] is True and request['read_only'] is True
+    assert request['command_dispatches']==1
+    observing=[e for e in events if e['state']=='OBSERVING'];assert len(observing)==1
+    elapsed=(datetime.fromisoformat(request['time'])-datetime.fromisoformat(observing[0]['time'])).total_seconds()
+    assert elapsed>=console_status_binding()['after_seconds']
+    live=('SWEET LOOP LIVE proto=1 token='+artifact['token']).encode()
+    ack=('SWEET LOOP ACK FASTBOOT token='+artifact['token']).encode()
+    assert raw.count(live)==raw.count(ack)==1
+    offset=request['raw_offset'];assert type(offset) is int and raw.index(live)<offset<raw.index(ack)
+    records=re.findall(rb'VERMEER DEBUG: K70DBG004 events=(\d+) tx=(\d+) rx=(\d+) log=(\d+) dropped=(\d+)',raw[offset:raw.index(ack)])
+    assert len(records)==1
+    proof={k:int(v) for k,v in zip(('events','tx','rx','log','dropped'),records[0])}
+    proof.update(one_current_LIVE_query=True,after_seconds=elapsed)
+    return [command for command in commands if command!='status'],proof
 
 
 def verify(directory):
@@ -41,6 +68,8 @@ def verify(directory):
     assert returned['complete']
     commands = [json.loads(line)['command'] for line in
                 (root/'cycle-01/serial-commands.jsonl').read_text(encoding='utf-8').splitlines()]
+    events = [json.loads(line) for line in (root/'events.jsonl').read_text(encoding='utf-8').splitlines()]
+    commands,status_proof=check_status_command(artifact,commands,events,raw)
     allowed=['frame', 'fastboot '+artifact['token']]
     sampling=artifact.get('thread_sample_observation')
     gesture=artifact.get('swipe_observation')
@@ -66,7 +95,6 @@ def verify(directory):
     assert plan['camera_required'] is False and plan['screen_timeout_seconds'] == 100
     scheduled = checked_screen_capture_after(artifact['screen_capture_after_seconds'])
     assert plan['screen_capture_after_seconds'] == scheduled
-    events = [json.loads(line) for line in (root/'events.jsonl').read_text(encoding='utf-8').splitlines()]
     requested = [event for event in events if event['state'] == 'SCREEN_REQUESTED']
     verified = [event for event in events if event['state'] == 'SCREEN_VERIFIED']
     assert len(requested) == len(verified) == 1
@@ -106,6 +134,7 @@ def verify(directory):
         original_recorded_goal_patterns_not_observed=missing,
         stage_decision_not_promoted=True, single_frame_and_return_command_verified=True,
         synthetic_swipe_command_observed='swipe' in commands,
+        console_status=status_proof,
         screenshot_verified_independently_of_trial_result=True, screen=screen,
         payload_audit=payload, strict_return=returned,
         return_seconds_with_health=row['reset_to_fastboot_seconds'],

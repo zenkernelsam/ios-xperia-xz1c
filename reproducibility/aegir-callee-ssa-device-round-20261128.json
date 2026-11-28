@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-28",
+  "target_serial": "BH905ND69G",
+  "candidate": "reproducibility/aegir-callee-ssa-candidate-20261128.json",
+  "source_head_at_launch": "13dab24",
+  "own_full_GPU_reference": "reproducibility/ca-current-slots-SSA-device-round-20261128.json",
+  "stages": {
+    "cpu": {
+      "token": "e478417e4f751eea",
+      "state": "PASS",
+      "supervisor_pid": 445028,
+      "launch_directory": "C:/Users/Cisco He/AppData/Local/Temp/lilac-aegir-callee-ssa-cpu-launch-20261128-r1",
+      "run_directory": "C:/Users/Cisco He/AppData/Local/Temp/lilac-v732-aegir-callee-ssa-cpu-live-20261128",
+      "independent_report": "reproducibility/aegir-callee-ssa-cpu-actual-20261128.json",
+      "raw_sha256": "c801666711eba8c2da040934d274c8dca7f760ce80c8c8e7bef8808f0cf800c3",
+      "return_seconds_with_health": 39.187000000150874,
+      "dropped": 0,
+      "supervisor_exit_code": 0,
+      "supervisor_and_owned_workers_exit_independently_checked": true
+    },
+    "gpu": {
+      "token": "9a48ab546cabbc23",
+      "state": "STOP_OBSERVATION_INCOMPLETE",
+      "supervisor_pid": 406444,
+      "launch_directory": "C:/Users/Cisco He/AppData/Local/Temp/lilac-aegir-callee-ssa-gpu-launch-20261128-r1",
+      "run_directory": "C:/Users/Cisco He/AppData/Local/Temp/lilac-v732-aegir-callee-ssa-gpu-live-20261128",
+      "independent_report": "reproducibility/aegir-callee-ssa-original-observation-20261128.json",
+      "raw_sha256": "bc46f5ffc2aef39927562f3aa9a1fc9340954db31ebd4194e336c209ff514e82",
+      "return_seconds_with_health": 39.25,
+      "dropped": 0,
+      "supervisor_exit_code": 1,
+      "supervisor_and_owned_workers_exit_independently_checked": true
+    }
+  },
+  "old_failed_packets_not_replayed": true,
+  "original_renderer_paused_mode_preserved": true,
+  "kernel_GPU_allocator_SCM_PON_RPC_VM_unchanged": true,
+  "original_UI_FPS_optics_sleep_and_other_peripherals_not_accepted": true,
+  "device_state": "HEALTHY_FASTBOOT_NO_IN_FLIGHT"
+}

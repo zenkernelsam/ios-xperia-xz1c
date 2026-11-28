@@ -42,6 +42,7 @@ reproducibility保存原结果摘要、源码锁、精确proof和回收记录；
 | v732原Earth链接卡点 | [原失败及方法返回范围](../reproducibility/v732-aegir-earth-link-observation-20261127.json)、[准确库锚点符号](../reproducibility/v732-aegir-earth-link-symbols-20261127.json)；NIR inlining样本，原壁纸未通过 |
 | SSA设备轮／CA当前表项 | [原阶段索引](../reproducibility/nir-callee-ssa-device-round-20261128.json)、[CA原拒绝](../reproducibility/nir-callee-ssa-gles9-refused-20261128.json)、[只读表项及六阶段host](../reproducibility/ca-current-slots-host-20261128.json)；新revision2实际准入见STATUS |
 | 新SSA／CA完整组合 | [实际产物](../reproducibility/ca-current-slots-SSA-candidate-20261128.json)、[四轮实机](../reproducibility/ca-current-slots-SSA-device-round-20261128.json)、[native21](../reproducibility/ca-current-slots-SSA-native21-proof-20261128.json)、[PNG6](../reproducibility/ca-current-slots-SSA-png6-proof-20261128.json)；自己的完整准入通过，原壁纸／FPS未提升 |
+| 新原Aegir触发观察 | [原STOP与启动记录](../reproducibility/aegir-callee-ssa-original-observation-20261128.json)、[原扫描／回程](../reproducibility/aegir-callee-ssa-scanout-20261128.json)；本靴未见Aegir执行，不作Earth链接结论 |
 
 原[PCM session七组](../reproducibility/lilac-pcm-session-offline-20261126.json)、[GLINK适配八组](../reproducibility/lilac-pcm-glink-transport-offline-20261126.json)和[人工sparse槽位barrier流](../reproducibility/ordered-image-barrier-star-load-host-20261126.json)保持历史边界，不作为不同新产物的实机准入。现行步骤只由STATUS／BUILD维护。
 

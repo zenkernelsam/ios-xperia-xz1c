@@ -1,0 +1,15 @@
+{
+  "original_sha256": "72676f16bc37fe561e4b1eb53eab480319d385d3dfc1e550fff908c19c179851",
+  "changes": [
+    {
+      "path": "tools/device/scanout_trial_evidence.py",
+      "before_sha256": "bec2ec52d0c29cff0fd1b2267bb547aa17260f851193436c10f7dd6d38357c8b",
+      "after_sha256": "34addfd2e27c215142e2efa0269103377c9b5fc7a3bdd86786f658b2f8c48e99"
+    },
+    {
+      "path": "tools/device/test_scanout_status_command.py",
+      "before_sha256": null,
+      "after_sha256": "8facf47f25ed1239540a3ed633cbf30b7983471c4ebb0ec2de70912901991233"
+    }
+  ]
+}
