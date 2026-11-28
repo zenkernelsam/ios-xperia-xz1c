@@ -176,3 +176,5 @@ Windows Patch/Xperia/research实查仍为89个参考Git仓库、非仓库0。Ubu
 2026-11-28WLED SPMI依赖轮只有锁定源读取／metadata审计；四份入口原文已保留wled-spmi-binding归档，无新binary／kernel／设备操作，没有新增待回收产物。
 
 2026-11-28 SSA设备轮：四份入口原文／SHA先存[本轮archive](archive/20261128/callee-ssa-device-round/original-document-manifest.json)，CA／BUILD原文另存ca-supplement，更新前两个源码锁及准确12处before／after SHA保存在source-locks。原CPU、GLES独立拒绝、完整回程、真实扫描帧和日志均保留；旧native包未投递，新候选输出只建新build目录。垃圾桶未清空，当前原证据与compiler archive保持受保护。
+
+新CA候选准备完成后，已把错误／不再使用的打包、未投递且已替代的两张r1 native镜像、一次性WSL host程序和TEMP故障fixture共38文件／107,286,575B送入[Windows原生回收站](../reproducibility/ca-current-slots-windows-native-recycle-20261128.json)。Mac错误RAM／签名副本、已完成host程序／dSYM及四个可从压缩blob逐字节重建的raw／dmg共64文件／410,677,693B送入[原生垃圾桶](../reproducibility/ca-current-slots-macos-native-trash-20261128.json)。全部回收后内容SHA复核一致，Ubuntu与Ubuntu-22.04 Trash files／info均空；Windows／Mac垃圾桶未清空，无永久删除。当前正确RAM、四张新镜像、compiler sources／objects／archive、基线及原失败raw／扫描帧保留。回收不等于释放这些空间；package-admission另保留身份清单更新前的锁和两处SHA。

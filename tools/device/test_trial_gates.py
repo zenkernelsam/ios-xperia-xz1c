@@ -20,6 +20,26 @@ from exception_evidence import inspect_scope,verify_renderer
 
 
 class Gates(unittest.TestCase):
+    def test_current_CA_slots_requires_new_sources_and_complete_inventory(self):
+        root=Path(__file__).resolve().parents[2]/'build/nir-callee-ssa-ios-r2-20261128'
+        for folder,stage in [('gles-ram-r3','gles'),('native-ram-r2','native')]:
+            path=root/folder/'manifest.json'
+            if not path.is_file():self.skipTest('CA current-slot RAM unavailable')
+            raw=path.read_bytes();package=json.loads(raw)
+            binding=dict(library_sha256=package['library_sha256'],blob_sha256=package['blob_sha256'],manifest_sha256=hashlib.sha256(raw).hexdigest())
+            self.assertEqual(validate_wled_gpu_ram(package,binding),stage)
+            for key,value in [('CA_matrix_observation_revision',1),('CA_matrix_current_slots_read_only_revalidation',False)]:
+                bad=copy.deepcopy(package);bad['frontend_build_binding'][key]=value
+                with self.subTest(stage=stage,field=key),self.assertRaises(AssertionError):validate_wled_gpu_ram(bad,binding)
+            for source in ('eagl.c','QuartzCoreMatrixLayout.h'):
+                bad=copy.deepcopy(package);bad['frontend_build_binding']['source_files'][source]='0'*64
+                with self.subTest(stage=stage,source=source),self.assertRaises(AssertionError):validate_wled_gpu_ram(bad,binding)
+            with self.assertRaises(AssertionError):validate_wled_gpu_ram(package,dict(binding,blob_sha256='0'*64))
+            if stage=='native':
+                for key,value in [('program_cache_prime',True),('cif10_reference_cases',5),('cif10_export_pacing_microseconds',1)]:
+                    bad=copy.deepcopy(package);bad['exception_observer'][key]=value
+                    with self.subTest(stage=stage,field=key),self.assertRaises(AssertionError):validate_wled_gpu_ram(bad,binding)
+
     def test_callee_ssa_native_keeps_full_suite_readonly_inventory(self):
         path=Path(__file__).resolve().parents[2]/'build/nir-callee-ssa-ios-r1-20261128/native-ram/manifest.json'
         if not path.is_file():self.skipTest('Callee SSA native RAM unavailable')

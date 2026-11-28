@@ -1,0 +1,47 @@
+{
+  "date": "2026-11-28",
+  "candidate_only": true,
+  "device_operations": 0,
+  "source_head_at_guest_compile": "bc9e9f2179dff91fb61fb618121f44fc2c882116",
+  "packages": {
+    "cpu": {
+      "token": "bffe3867a5cd1b92",
+      "sha256": "f6329706a4e24ae68d5a17b7651ac8918728ab1ec6eae6e0c05d08c7717e4d7c",
+      "kernel_sha256": "f1d485a4f0306bcef003783ea9b2338188a6c8b65a4300fb207acbb15e9b387b",
+      "trial_mode": "ramcpu"
+    },
+    "gles9": {
+      "token": "052e16406b2c1148",
+      "sha256": "171cd25f0601889120246def6799ce5cdc55ebb1ce46e16bbe5b8b5ff7fe04ac",
+      "kernel_sha256": "f1d485a4f0306bcef003783ea9b2338188a6c8b65a4300fb207acbb15e9b387b",
+      "trial_mode": "gpu"
+    },
+    "native-cpu": {
+      "token": "8a8656341d01c0d0",
+      "sha256": "77958332408fe494671a6595c8052859f55ec670a4319903a3a0557a92d47604",
+      "kernel_sha256": "f1d485a4f0306bcef003783ea9b2338188a6c8b65a4300fb207acbb15e9b387b",
+      "trial_mode": "ramcpu"
+    },
+    "native21": {
+      "token": "66a0459acc20c392",
+      "sha256": "1242be188436ea7a30624e5719a22f89ab64fba3abba3af58f96bcaa9589042f",
+      "kernel_sha256": "f1d485a4f0306bcef003783ea9b2338188a6c8b65a4300fb207acbb15e9b387b",
+      "trial_mode": "gpu"
+    }
+  },
+  "GLES_sha256": "e7cf76d676f9211e3f87bf8ae8c420dc590488cd51e8f711a7c0b66ec01c0c2e",
+  "GLES_RAM_blob_sha256": "49b6bd0547405cf3632104f8dcaf4c9fe3a29a4df4f09b870414c515c44e8c47",
+  "GLES_RAM_manifest_sha256": "e290bb172be6b0840af1c41ce650b027416dcc24a1f562d8cef743051b898265",
+  "native_RAM_blob_sha256": "d4b7185fb1aff42b7ed09e686be0d1e454974c08bad6a999d6cbcfe420560b0b",
+  "native_RAM_manifest_sha256": "c35f8eed58e8de3e600129dd1859b70ec45a87db7f3e01e940314191928aaffe",
+  "Metal_sha256": "19a08083833851d5a13016473ec3c3db98629d6ce6fc928b70947af114abee49",
+  "source_map_sha256": "41bdf3e49258c8cf6d57a69beb99d15dec0e1404aec2509725c386941e0f25ee",
+  "observer_sha256": "6628cee594a5f869765b32e914f8773ea9d292b4337fd8ed239a704d4de5b607",
+  "CA_matrix_observation_revision": 2,
+  "complete_native_groups": 21,
+  "PNG_cases": 6,
+  "read_only_inventory": true,
+  "prime": false,
+  "exact_API_and_revision4_geometry_helper_retained": true,
+  "own_CPU_GLES_native_PNG_and_original_UI_required": true
+}

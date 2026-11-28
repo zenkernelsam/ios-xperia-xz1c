@@ -46,6 +46,13 @@ def validate_callee_compiler_binding(frontend):
         'src/compiler/nir/libnir.a':'9e9014305de600628cc35590aac7c23f4729d09cb70a364a9a908e217f7df2df'}
     assert len(overlay['compiled_objects'])==3 and all(v['architecture']=='arm64' for v in overlay['compiled_objects'].values())
 
+def validate_ca_current_slots_binding(frontend):
+    assert frontend['CA_matrix_observation_revision']==2
+    assert frontend['CA_matrix_current_slots_read_only_revalidation'] is True
+    sources=frontend['source_files']
+    assert sources['eagl.c']=='e70950925e9f041cf99ad403ddb5fa30d57c70a058d80be06e948ac3b9524fd4'
+    assert sources['QuartzCoreMatrixLayout.h']=='1d1d9e01a6c9c533f6f7d81b7246a574a1d05eeb0947f846e8289d6474f39117'
+
 def validate_wled_gles_ram(package, binding):
     """Admit only the reviewed GLES/geometry payloads on v731."""
     assert 'exception_observer' not in package and 'metal_resources' not in package, 'v731 GLES9 does not admit Metal or an exception observer'
@@ -76,6 +83,9 @@ def validate_wled_gles_ram(package, binding):
         ('dd3ffb371577fc1f158a59c722e5750db24c41511b2f2ac6732e35846bbc8887',
          '30a5bf63ddfa56fb9587c4308c6eb92525616c69ac4d062ada88ce6cb1ff00b7',
          '1073f71fe836322ef7357dd2276305b26f3dc6e16b73db96105f9c78956284d2'),
+        ('e7cf76d676f9211e3f87bf8ae8c420dc590488cd51e8f711a7c0b66ec01c0c2e',
+         '49b6bd0547405cf3632104f8dcaf4c9fe3a29a4df4f09b870414c515c44e8c47',
+         'e290bb172be6b0840af1c41ce650b027416dcc24a1f562d8cef743051b898265'),
     ), 'v731 GLES9 RAM identity is not admitted'
     if binding['library_sha256']=='d1f5075c0f35eac56f3d1976775700a36da49bc1c6cb84c7493377592aa31a0b':
         assert frontend['ordered_XR_image_barrier_revision']==1
@@ -92,14 +102,16 @@ def validate_wled_gles_ram(package, binding):
         assert frontend['ordered_XR_image_barrier_revision']==3 and frontend['ordered_XR_requires_synchronous_GL_frontend']
         assert frontend['ordered_XR_monotonic_timestamp_wait_and_separate_scratch_cell']
         assert frontend['ordered_XR_first_timestamp_scratch_initialized_by_GPU']
-    if binding['library_sha256'] in ('dc7113a10542c4b8de2036def8373a4574ab2092d17efd1a39e1c224f1bec308','dd3ffb371577fc1f158a59c722e5750db24c41511b2f2ac6732e35846bbc8887'):
+    if binding['library_sha256'] in ('dc7113a10542c4b8de2036def8373a4574ab2092d17efd1a39e1c224f1bec308','dd3ffb371577fc1f158a59c722e5750db24c41511b2f2ac6732e35846bbc8887','e7cf76d676f9211e3f87bf8ae8c420dc590488cd51e8f711a7c0b66ec01c0c2e'):
         assert frontend['ordered_XR_image_barrier_revision']==4 and frontend['ordered_XR_requires_synchronous_GL_frontend']
         assert frontend['ordered_XR_monotonic_timestamp_wait_and_separate_scratch_cell']
         assert frontend['ordered_XR_first_timestamp_scratch_initialized_by_GPU']
         assert frontend['ordered_XR_dense_driver_images_resolved_from_linked_GL_program']
         assert frontend['ordered_XR_unknown_images_SSBO_writes_or_atomics_use_original_barrier']
-    if binding['library_sha256']=='dd3ffb371577fc1f158a59c722e5750db24c41511b2f2ac6732e35846bbc8887':
+    if binding['library_sha256'] in ('dd3ffb371577fc1f158a59c722e5750db24c41511b2f2ac6732e35846bbc8887','e7cf76d676f9211e3f87bf8ae8c420dc590488cd51e8f711a7c0b66ec01c0c2e'):
         validate_callee_compiler_binding(frontend)
+    if binding['library_sha256']=='e7cf76d676f9211e3f87bf8ae8c420dc590488cd51e8f711a7c0b66ec01c0c2e':
+        validate_ca_current_slots_binding(frontend)
 
 def validate_wled_gpu_ram(package, binding):
     if 'exception_observer' not in package and 'metal_resources' not in package:
@@ -142,6 +154,8 @@ def validate_wled_gpu_ram(package, binding):
             ('cb9ea3e6b4152a3ee41e10d35888dadda18ec0419b8080371510e8847f1847cf','dc7113a10542c4b8de2036def8373a4574ab2092d17efd1a39e1c224f1bec308','e30dba715e7e57dd97416e913946a29a916efbd7c055251f078c0f27c0b6edbe','dc22fd53f7ba1b6a70e12d50753e19f37cf0a0da97f7a6140afd2bc304b2a60d',4,True),
         '6bfe39ba8aa094fc9235181cd7ba633ea8ac7629a69bd5f8f3ab947b0d62f2e3':
             ('45629ea392f03d38878a51d8fb810b472bf3a092a887c5fd8ba1f56e642771e7','dd3ffb371577fc1f158a59c722e5750db24c41511b2f2ac6732e35846bbc8887','2d0c846af5036af3817f967f0e2eda5d5748ab7ed3c9a0718e3d15bb3c424a93','a12b24b9d1d82720b769f70d55dec41fc797109ad371d50c8b235008dff27010',4),
+        'd4b7185fb1aff42b7ed09e686be0d1e454974c08bad6a999d6cbcfe420560b0b':
+            ('c35f8eed58e8de3e600129dd1859b70ec45a87db7f3e01e940314191928aaffe','e7cf76d676f9211e3f87bf8ae8c420dc590488cd51e8f711a7c0b66ec01c0c2e','6628cee594a5f869765b32e914f8773ea9d292b4337fd8ed239a704d4de5b607','e8bc5ec11770891598a0eff837ff303567977da68a81af6d1cf89b271a66a972',4),
     }
     if binding['blob_sha256'] in barrier_native:
         reviewed=barrier_native[binding['blob_sha256']]
@@ -163,8 +177,10 @@ def validate_wled_gpu_ram(package, binding):
         assert bool(observer.get('program_cache_prime')) is conditional_prime
         assert observer['program_cache_inventory']['read_only'] and observer['program_cache_inventory']['conditional_prime'] is conditional_prime
         assert observer['program_cache_scope']['identity']==scope
-        if gles=='dd3ffb371577fc1f158a59c722e5750db24c41511b2f2ac6732e35846bbc8887':
+        if gles in ('dd3ffb371577fc1f158a59c722e5750db24c41511b2f2ac6732e35846bbc8887','e7cf76d676f9211e3f87bf8ae8c420dc590488cd51e8f711a7c0b66ec01c0c2e'):
             validate_callee_compiler_binding(package['frontend_build_binding'])
+        if gles=='e7cf76d676f9211e3f87bf8ae8c420dc590488cd51e8f711a7c0b66ec01c0c2e':
+            validate_ca_current_slots_binding(package['frontend_build_binding'])
         if conditional_prime:
             inventory=observer['program_cache_inventory']
             assert inventory['context_identity']=='b2d3872d86da13a0ec1db5c198f56ffd1fcf1fa2905314824a1cf33ea41ca9c1'
@@ -181,7 +197,7 @@ def validate_wled_gpu_ram(package, binding):
             assert package['frontend_build_binding']['ordered_XR_image_barrier_revision']==4
             assert package['frontend_build_binding']['ordered_XR_dense_driver_images_resolved_from_linked_GL_program']
             assert package['frontend_build_binding']['ordered_XR_unknown_images_SSBO_writes_or_atomics_use_original_barrier']
-        if binding['blob_sha256'] in ('eee6db388a4e3adfb04c27bd7e4a433a4649efd2d216f2d0cb139a210874d01b','10b9da760c42fe3524d3f6ff59b119b9771d0e43d2c0f5193af9cb9f9b7be74e','6bfe39ba8aa094fc9235181cd7ba633ea8ac7629a69bd5f8f3ab947b0d62f2e3'):
+        if binding['blob_sha256'] in ('eee6db388a4e3adfb04c27bd7e4a433a4649efd2d216f2d0cb139a210874d01b','10b9da760c42fe3524d3f6ff59b119b9771d0e43d2c0f5193af9cb9f9b7be74e','6bfe39ba8aa094fc9235181cd7ba633ea8ac7629a69bd5f8f3ab947b0d62f2e3','d4b7185fb1aff42b7ed09e686be0d1e454974c08bad6a999d6cbcfe420560b0b'):
             assert observer['cif10_export_pacing_revision']==3 and observer['cif10_export_pacing_microseconds']==15000
             assert observer['cif10_export_ranges_emitted_once'] and observer['cif10_export_remaining_time_EINTR_and_failure_host_passed']
             assert observer['observer_log_write_failures_checked'] is True and observer['observer_log_summary_revision']==1

@@ -1,0 +1,15 @@
+{
+  "original_sha256": "d9ef7342f374e86e5ee2ecf5e3c9109b3ee651202df0f10a4d105b3e8acf000e",
+  "changes": [
+    {
+      "path": "tools/device/package_trial.py",
+      "before_sha256": "fb1e8fd83b80c02e6f5ec9faa136f35ee64d8ba0877419c38c75200e7111286e",
+      "after_sha256": "148825cf25c15f36aa21e721ffb7ef8c7b00dd9e7abf3f1f9db0ae1d63a03297"
+    },
+    {
+      "path": "tools/device/test_trial_gates.py",
+      "before_sha256": "fa44c1be418c98c34c17b4dfc2cc12759ac3ae6bb39427098d8523c20d3abd8d",
+      "after_sha256": "a4a4ead98c3ee47d338ca6b5ca32b01f0825769cf9256bf9658d8453c29b6969"
+    }
+  ]
+}
