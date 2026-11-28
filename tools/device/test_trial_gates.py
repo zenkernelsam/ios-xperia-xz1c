@@ -20,6 +20,25 @@ from exception_evidence import inspect_scope,verify_renderer
 
 
 class Gates(unittest.TestCase):
+    def test_current_SSA_poster_requires_own_native_and_PNG_proofs(self):
+        path=Path(__file__).resolve().parents[2]/'build/aegir-callee-ssa-r2-20261128/ram/manifest.json'
+        if not path.is_file():self.skipTest('Current SSA original observer RAM unavailable')
+        raw=path.read_bytes();package=json.loads(raw)
+        binding=dict(library_sha256=package['library_sha256'],blob_sha256=package['blob_sha256'],manifest_sha256=hashlib.sha256(raw).hexdigest())
+        self.assertEqual(validate_wled_gpu_ram(package,binding),'poster')
+        for field in ('native_run_token','native_run_log_sha256'):
+            bad=copy.deepcopy(package);bad['exception_observer']['prior_native_hardware_proof'][field]='0'*len(bad['exception_observer']['prior_native_hardware_proof'][field])
+            with self.subTest(native_field=field),self.assertRaises(AssertionError):validate_wled_gpu_ram(bad,binding)
+        for field in ('reference_token','reference_raw_sha256'):
+            bad=copy.deepcopy(package);bad['exception_observer']['png_encoder_prior_proof'][field]='0'*len(bad['exception_observer']['png_encoder_prior_proof'][field])
+            with self.subTest(PNG_field=field),self.assertRaises(AssertionError):validate_wled_gpu_ram(bad,binding)
+        for key,value in [('poster_snapshot_gate_observer',True),('program_cache_prime',True),('registration_only',False)]:
+            bad=copy.deepcopy(package);bad['exception_observer'][key]=value
+            with self.subTest(observer=key),self.assertRaises(AssertionError):validate_wled_gpu_ram(bad,binding)
+        bad=copy.deepcopy(package);bad['exception_observer']['program_cache_scope']['identity']='0'*64
+        with self.assertRaises(AssertionError):validate_wled_gpu_ram(bad,binding)
+        with self.assertRaises(AssertionError):validate_wled_gpu_ram(package,dict(binding,manifest_sha256='0'*64))
+
     def test_current_CA_slots_requires_new_sources_and_complete_inventory(self):
         root=Path(__file__).resolve().parents[2]/'build/nir-callee-ssa-ios-r2-20261128'
         for folder,stage in [('gles-ram-r3','gles'),('native-ram-r2','native')]:

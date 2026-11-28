@@ -117,6 +117,28 @@ def validate_wled_gpu_ram(package, binding):
     if 'exception_observer' not in package and 'metal_resources' not in package:
         validate_wled_gles_ram(package,binding)
         return 'gles'
+    if binding['blob_sha256']=='2234fdec29ad5d8b8cc86728eba858988ecc26329d6cb70e5bfac648633ac79c':
+        assert binding['manifest_sha256']=='f5dc6132c3714c2385061af2da231c440fe6908838ce49cd39a6852ca9ebdc2d'
+        gles='e7cf76d676f9211e3f87bf8ae8c420dc590488cd51e8f711a7c0b66ec01c0c2e'
+        resources=package['metal_resources'];o=package['exception_observer'];frontend=package['frontend_build_binding']
+        assert binding['library_sha256']==resources['gles_library_sha256']==gles
+        assert resources['library_sha256']=='19a08083833851d5a13016473ec3c3db98629d6ce6fc928b70947af114abee49'
+        assert native_digest(resources['source_files'])=='41bdf3e49258c8cf6d57a69beb99d15dec0e1404aec2509725c386941e0f25ee'
+        assert resources['native_ordered_XR_image_barrier'] and resources['ordered_XR_image_barrier_revision']==4
+        assert frontend['ordered_XR_dense_driver_images_resolved_from_linked_GL_program']
+        validate_callee_compiler_binding(frontend);validate_ca_current_slots_binding(frontend)
+        assert o['library_sha256']=='3d9d3d07a438ca597c6c6499cb5dc1e966ecc439a490739ac06bfbb196b20789'
+        assert o['target_process']=='AegirPoster' and o['registration_only'] and o['snapshot_method_observer'] and o['png_filter_encoder']
+        assert o['snapshot_readback_observer'] and o['original_CG_input_observer'] and o['original_queue_retirement_observer']
+        native=validate_native(o['prior_native_hardware_proof'],resources);png=o['png_encoder_prior_proof']
+        assert native['version']==LOG_VERSION and native['kernel_sha256']==LOG_KERNEL_SHA and len(native['native_tests'])==21
+        assert native['native_run_token']==png['reference_token']=='66a0459acc20c392'
+        assert native['native_run_log_sha256']==png['reference_raw_sha256']=='ddf4b1b96b4a6949e0cb3179c8d7e701cef5c719afaaf267bb088f70b3551731'
+        assert png['kernel_sha256']==LOG_KERNEL_SHA and png['GLES_sha256']==gles and png['reference_cases']==6
+        assert o['aegir_snapshot_cache_scope']['identity']=='fe2b9fcebe1b7f76256555f6b0e29d40416ab3356b76d17568ee4bebacd25f53'
+        assert o['program_cache_scope']['identity']=='e8bc5ec11770891598a0eff837ff303567977da68a81af6d1cf89b271a66a972'
+        assert not any(o.get(k) for k in ('poster_snapshot_gate_observer','quad_route_observer','loaded_snapshot_PNG_export','program_cache_prime'))
+        return 'poster'
     if binding['blob_sha256']=='c6aab7f471247d3e8da7bebf3ac6a1885b9c9625ab9b02ee95413478d6ce2959':
         assert binding['manifest_sha256']=='48ca18e9d25762d0e75a61230f49f50a6443f419d383d00ed66cdcf6a584955d'
         gles='dc7113a10542c4b8de2036def8373a4574ab2092d17efd1a39e1c224f1bec308'
@@ -428,7 +450,7 @@ def validate_wled_gpu_ram(package, binding):
 
 def validate_wled_gpu_record(record, package, binding):
     stage=validate_wled_gpu_ram(package,binding)
-    if binding['blob_sha256'] in ('c6aab7f471247d3e8da7bebf3ac6a1885b9c9625ab9b02ee95413478d6ce2959','10b9da760c42fe3524d3f6ff59b119b9771d0e43d2c0f5193af9cb9f9b7be74e','30a5bf63ddfa56fb9587c4308c6eb92525616c69ac4d062ada88ce6cb1ff00b7','6bfe39ba8aa094fc9235181cd7ba633ea8ac7629a69bd5f8f3ab947b0d62f2e3'):
+    if binding['blob_sha256'] in ('c6aab7f471247d3e8da7bebf3ac6a1885b9c9625ab9b02ee95413478d6ce2959','10b9da760c42fe3524d3f6ff59b119b9771d0e43d2c0f5193af9cb9f9b7be74e','30a5bf63ddfa56fb9587c4308c6eb92525616c69ac4d062ada88ce6cb1ff00b7','6bfe39ba8aa094fc9235181cd7ba633ea8ac7629a69bd5f8f3ab947b0d62f2e3','49b6bd0547405cf3632104f8dcaf4c9fe3a29a4df4f09b870414c515c44e8c47','d4b7185fb1aff42b7ed09e686be0d1e454974c08bad6a999d6cbcfe420560b0b','2234fdec29ad5d8b8cc86728eba858988ecc26329d6cb70e5bfac648633ac79c'):
         assert record['version']==LOG_VERSION and record['kernel_sha256']==LOG_KERNEL_SHA
     assert 'thread_sample_observation' not in record, 'v731 GPU trials exclude thread sampling'
     if 'swipe_observation' in record:
@@ -447,7 +469,7 @@ def validate_wled_gpu_record(record, package, binding):
     assert record.get('native_grid_control',{}).get('mode')=='fitted'
     if stage=='poster':
         if 'screen_snapshot_binding' in record:
-            assert binding['blob_sha256'] in ('e98ed2cd62595b2b414ef2d04ce1cfa93af34041a99fd6b38691f004314eb83b','0d4076fd78bc5f9ceae6f3386fcefc16b3f7b5bc20bf93680e8cf8d207f29a04','a6e40c574453772f993cb76570f749289281d00e03d45ec57eb2d1bcdcfd7d91','0c1f8ccc8f602a939cbf80e1416abc4de709d63f0b1e29bf627b6a554b88c8cf','84a03a910b5fefb6632bf529203ac5ff2ca56646fb10d92a736e45603339d0cf','82311b6c4ed92cbdc1e3ccd00a7019759998bcbdc35512c190b1f41ce32ec672','cf2dae517c3f4c6b2b77ccb480f00069dcc5d366eecc30a8f499df76642c5d13','006333a4c8ec135e23893a7fc07d770f02fdced6b86ab41ff23aed054f27c54e','83b36fae6c095bea77e0b4ded6b2de4dea4670974c89dec0f4cff96ce39dca15','bd0ccca991d32c7db3e7ee8c393883b971262ec61970e583ed33696d41b34ddf','0ff63e76417f8b821c374fb66f2150e3514e530cdcbbeec5f86e70ef7be332ca','f2ac192e04c4ad62c24a6cc06d8b5709c2efa5c999946bbae47bb60cf076e926','1b44a30dd5a3ca167ed22cb1dad43cf256434a0120265296b95b62b90f832741','358a2121bbc6a2fb0ca41f3cb550d2430b414bab91e3d8af844e7fed817187e6','61cbcf2c67cf63fb6eaf76c4114aeadb2d55d6b8f50a23bbdd3cf4f81798d1fd','c6aab7f471247d3e8da7bebf3ac6a1885b9c9625ab9b02ee95413478d6ce2959'), 'Poster scanout requires the reviewed new-library RAM'
+            assert binding['blob_sha256'] in ('e98ed2cd62595b2b414ef2d04ce1cfa93af34041a99fd6b38691f004314eb83b','0d4076fd78bc5f9ceae6f3386fcefc16b3f7b5bc20bf93680e8cf8d207f29a04','a6e40c574453772f993cb76570f749289281d00e03d45ec57eb2d1bcdcfd7d91','0c1f8ccc8f602a939cbf80e1416abc4de709d63f0b1e29bf627b6a554b88c8cf','84a03a910b5fefb6632bf529203ac5ff2ca56646fb10d92a736e45603339d0cf','82311b6c4ed92cbdc1e3ccd00a7019759998bcbdc35512c190b1f41ce32ec672','cf2dae517c3f4c6b2b77ccb480f00069dcc5d366eecc30a8f499df76642c5d13','006333a4c8ec135e23893a7fc07d770f02fdced6b86ab41ff23aed054f27c54e','83b36fae6c095bea77e0b4ded6b2de4dea4670974c89dec0f4cff96ce39dca15','bd0ccca991d32c7db3e7ee8c393883b971262ec61970e583ed33696d41b34ddf','0ff63e76417f8b821c374fb66f2150e3514e530cdcbbeec5f86e70ef7be332ca','f2ac192e04c4ad62c24a6cc06d8b5709c2efa5c999946bbae47bb60cf076e926','1b44a30dd5a3ca167ed22cb1dad43cf256434a0120265296b95b62b90f832741','358a2121bbc6a2fb0ca41f3cb550d2430b414bab91e3d8af844e7fed817187e6','61cbcf2c67cf63fb6eaf76c4114aeadb2d55d6b8f50a23bbdd3cf4f81798d1fd','c6aab7f471247d3e8da7bebf3ac6a1885b9c9625ab9b02ee95413478d6ce2959','2234fdec29ad5d8b8cc86728eba858988ecc26329d6cb70e5bfac648633ac79c'), 'Poster scanout requires the reviewed new-library RAM'
             assert 'poster_startup_serial_only' not in record
             from scanout_snapshot import binding as screen_binding
             assert record['screen_snapshot_binding']==screen_binding(record) and record.get('screen_capture_after_seconds')==150
@@ -592,7 +614,7 @@ def prepare(mode,kernel,folder,output,version=725,ram_package=None,owner_interva
             stage=validate_wled_gpu_ram(package,library_binding)
             serial_only=stage=='poster' and not screen_evidence
             if stage=='poster' and screen_evidence:
-                assert library_binding['blob_sha256'] in ('e98ed2cd62595b2b414ef2d04ce1cfa93af34041a99fd6b38691f004314eb83b','0d4076fd78bc5f9ceae6f3386fcefc16b3f7b5bc20bf93680e8cf8d207f29a04','a6e40c574453772f993cb76570f749289281d00e03d45ec57eb2d1bcdcfd7d91','0c1f8ccc8f602a939cbf80e1416abc4de709d63f0b1e29bf627b6a554b88c8cf','84a03a910b5fefb6632bf529203ac5ff2ca56646fb10d92a736e45603339d0cf','82311b6c4ed92cbdc1e3ccd00a7019759998bcbdc35512c190b1f41ce32ec672','cf2dae517c3f4c6b2b77ccb480f00069dcc5d366eecc30a8f499df76642c5d13','006333a4c8ec135e23893a7fc07d770f02fdced6b86ab41ff23aed054f27c54e','83b36fae6c095bea77e0b4ded6b2de4dea4670974c89dec0f4cff96ce39dca15','bd0ccca991d32c7db3e7ee8c393883b971262ec61970e583ed33696d41b34ddf','0ff63e76417f8b821c374fb66f2150e3514e530cdcbbeec5f86e70ef7be332ca','f2ac192e04c4ad62c24a6cc06d8b5709c2efa5c999946bbae47bb60cf076e926','1b44a30dd5a3ca167ed22cb1dad43cf256434a0120265296b95b62b90f832741','358a2121bbc6a2fb0ca41f3cb550d2430b414bab91e3d8af844e7fed817187e6','61cbcf2c67cf63fb6eaf76c4114aeadb2d55d6b8f50a23bbdd3cf4f81798d1fd','c6aab7f471247d3e8da7bebf3ac6a1885b9c9625ab9b02ee95413478d6ce2959')
+                assert library_binding['blob_sha256'] in ('e98ed2cd62595b2b414ef2d04ce1cfa93af34041a99fd6b38691f004314eb83b','0d4076fd78bc5f9ceae6f3386fcefc16b3f7b5bc20bf93680e8cf8d207f29a04','a6e40c574453772f993cb76570f749289281d00e03d45ec57eb2d1bcdcfd7d91','0c1f8ccc8f602a939cbf80e1416abc4de709d63f0b1e29bf627b6a554b88c8cf','84a03a910b5fefb6632bf529203ac5ff2ca56646fb10d92a736e45603339d0cf','82311b6c4ed92cbdc1e3ccd00a7019759998bcbdc35512c190b1f41ce32ec672','cf2dae517c3f4c6b2b77ccb480f00069dcc5d366eecc30a8f499df76642c5d13','006333a4c8ec135e23893a7fc07d770f02fdced6b86ab41ff23aed054f27c54e','83b36fae6c095bea77e0b4ded6b2de4dea4670974c89dec0f4cff96ce39dca15','bd0ccca991d32c7db3e7ee8c393883b971262ec61970e583ed33696d41b34ddf','0ff63e76417f8b821c374fb66f2150e3514e530cdcbbeec5f86e70ef7be332ca','f2ac192e04c4ad62c24a6cc06d8b5709c2efa5c999946bbae47bb60cf076e926','1b44a30dd5a3ca167ed22cb1dad43cf256434a0120265296b95b62b90f832741','358a2121bbc6a2fb0ca41f3cb550d2430b414bab91e3d8af844e7fed817187e6','61cbcf2c67cf63fb6eaf76c4114aeadb2d55d6b8f50a23bbdd3cf4f81798d1fd','c6aab7f471247d3e8da7bebf3ac6a1885b9c9625ab9b02ee95413478d6ce2959','2234fdec29ad5d8b8cc86728eba858988ecc26329d6cb70e5bfac648633ac79c')
                 assert capture_after==150, 'Poster scanout requires one frame at 150 seconds'
             if serial_only:
                 assert not screen_evidence
