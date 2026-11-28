@@ -192,3 +192,5 @@ Windows Patch/Xperia/research实查仍为89个参考Git仓库、非仓库0。Ubu
 2026-11-28容器源码接入轮：WSL三份/tmp fixture、三个完成的host ELF、六份Windows TEMP故障fixture及两个已空暂存根，共14项／389文件／4340635B进入Windows原生回收站；[前段记录](../reproducibility/poster-container-integration-windows-recycle-20261128.json)与[最终收紧复验记录](../reproducibility/poster-container-integration-final-windows-recycle-20261128.json)逐字节核对内容与链接目标。原编译／C输出／解码／准入日志、源码before快照、当前signed库／RAM和所有原实机raw保留，无永久删除，垃圾桶未清空。
 
 [两套Ubuntu所有用户Trash](../reproducibility/poster-container-integration-wsl-trash-audit-20261128.json)的files／info均为空；源码、原结果与report只在正式仓库。本轮五份文档原文／SHA在[归档](archive/20261128/poster-container-integration/document-manifest.json)。收紧前的接入报告原文保留，最终源及13组host由新r2报告绑定；未重写旧实际GPU判定。Mac网络不可达，新的Git同步、ARM64构建与Mac本轮原生Trash工作仍待完成。
+
+2026-11-28 WLED只读lane接口轮：三个TEMP源shadow和一个已结束WSL host ELF，共4项／4文件／114047B已进入[Windows原生回收站](../reproducibility/spmi-wled-lane-snapshot-windows-recycle-20261128.json)，全部内容SHA复核，源码和失败／成功apply及compile／run日志、原选择器头、manifest保留。两个初次字节校验拒绝的记录未改写；git apply自动CRLF转换已在本次命令中关闭，不修改全局Git配置。五份现行文档原文／SHA在[本轮归档](archive/20261128/spmi-lane-snapshot/document-manifest.json)，垃圾桶未清空，无永久删除。Mac仍网络不可达，没有新的Mac构建／回收或手机boot。

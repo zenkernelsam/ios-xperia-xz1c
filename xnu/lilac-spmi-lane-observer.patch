@@ -1,0 +1,6 @@
+diff --git a/bsd/dev/sweet_spmi.c b/bsd/dev/sweet_spmi.c
+--- a/bsd/dev/sweet_spmi.c
++++ b/bsd/dev/sweet_spmi.c
+@@ -270,1 +270,2 @@
++#include "LilacSpmiLaneSnapshot.inc"
+ #endif /* ARM64_BOARD_CONFIG_SWEET */

@@ -340,3 +340,13 @@ python -B tools/build/inspect_poster_container_metadata.py --image assets/root-b
 第一条在Windows用Ubuntu-22.04实编译同一C reader，13组文件系统ASan／UBSan及8类损坏流拒绝；WSL直接运行可把fixture放在其/tmp，结束后无损转Windows原生回收站。第二条先核对完整受保护gl5 SHA，再直接读取HFS catalog及小元数据，不挂载／展开／修改镜像；原镜像MCM元数据0项不代表运行后没有容器。
 
 源码接入测试以实际C输出和旧signed RAM为输入。运行test_poster_container_integration.py前设置LILAC_CONTAINER_HOST_LOG为本host的normal.log，LILAC_CONTAINER_FIXTURES为其实际fixture绝对根；4组验证包括旧signed包字段污染拒绝、4个无效CLI在输出创建前拒绝、21个contract／source／角色破坏和9个LIVE／ACK／PNG6边界拒绝。生产后处理还独立复验全部native21及PNG6原字节，边界标记不代替GPU证明。新ARM64／RAM及实机验收仍待完成。
+
+### WLED APID状态只读接口候选
+
+`xnu/lilac-spmi-lane-observer.patch`只向锁定的bsd/dev/sweet_spmi.c加入LilacSpmiLaneSnapshot.inc。候选构建需把support下同名.h／.inc复制到该源目录并核对SHA；默认lilac-current.patch和当前kernel没有应用它。API只接受两个WLED PPID，在现有IOLock下观察core／cfg与软件lane／poison状态，两份完整结构相同才输出，不调用init／map／read_ppid／write_ppid／set_owner。
+
+```powershell
+python -B tools/build/check_lilac_spmi_lane_snapshot.py --output build/新的-spmi-state-host --shadow "$env:TEMP\新的-spmi-state-shadow"
+```
+
+checker先按原SHA导出实际SPMI源，关闭本次git apply的autocrlf后仅加入include，复核其余源字节保持；再编译实际.inc和原sp_find_apid代码。14个状态／API用例及7个无效结构覆盖EE0优先／最后EE0选择、非EE0、poison／未映射状态、观察中变化、超限和失败输出不变。新kernel仍需实际ARM64／source及link审计、新版本private／owner／ready和对应全部GPU先验，当前没有可投递镜像。这个112B快照不提供epoch或保留write lease，实际总线回调与服务注册仍须独立接入和验收。

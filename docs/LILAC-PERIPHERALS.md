@@ -184,3 +184,9 @@ Mac独立链接使用现行`link_lilac_backlight_service.py`，输出新build目
 2026-11-28：[逐IO epoch边界修正](../reproducibility/backlight-duty-per-io-epoch-20261128.json)复用原事务，但read／write／wait回调两侧均检查当前readiness与同epoch。原先只在事务首尾复核，IO中域变化后仍可能继续后面的写入；现在任何边界丢失都停止剩余IO，锁定不确定状态。38个read、6个write及1个wait中途epoch变化位置逐一验证，失败后不重发、不回滚、不更新属性cache；65535映射值／重入／原写故障回归保持。独立ARM64 service编译和v731链接重现通过，原输入与当前kernel不变，无新的boot／真实SPMI或光学证据。渐变、电源、辅助level及注册仍待各自实现／验收。
 
 [当前SPMI接入依赖审计](../reproducibility/backlight-spmi-binding-audit-20261128.json)从锁定formal patch重建实际sweet_spmi.c，逐字节符合source-lock。observer读通不证明EE0 write lane可用；write helper懒映射独立窗口，APID选择偏好owner0但仍可能找到其它owner，超时会poison lane。现有describe仅返回mapping数量并打印owner，不能给backend结构化owner证明；set_owner是另一路真实mutating API，未调用或修改。实际接入前还需同epoch、0x3d8／0x3d9映射／owner／unpoisoned状态及物理范围／光学。旧非零callback代码不替代这些证明，原GPU／PON／SPMI源保持。
+
+## WLED lane状态接口候选
+
+[本轮精确源码与主机验证](../reproducibility/spmi-wled-lane-snapshot-host-20261128.json)补上现有describe只有数量／printf的接口缺口。sweet_lilac_wled_lane_snapshot只接受0x3d8／0x3d9，返回最多4个匹配APID及原sp_find_apid选择、owner原字、poison和observer／writer映射标志；在现有锁下连续两次相同才输出，任何失败保持调用方原输出。API不初始化总线、做虚拟映射、发PMIC命令或改owner，快照也不是epoch／保留lease或写入授权。
+
+14组状态／API及7个错误快照用例用实际.inc和锁定原选择器编译通过ASan／UBSan；生产源其余字节保持。当前只有正式support源和独立候选include patch，没有实际ARM64／kernel链接或调用／日志采样。后续先接只读取证并按新kernel完整准入取得实际lane状态，再完成真实epoch、owner校验、bounded IO callbacks及注册；brightness0／fade／level、睡眠和光学继续未完成。

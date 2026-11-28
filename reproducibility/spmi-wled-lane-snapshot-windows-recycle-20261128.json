@@ -1,0 +1,104 @@
+{
+  "date": "2026-11-28",
+  "kind": "windows-native-recycle",
+  "items": 4,
+  "files": 4,
+  "logical_bytes": 114047,
+  "plan": {
+    "allowed_roots": [
+      "D:\\Desktop\\Git\\ios-xperia-xz1c\\build",
+      "C:\\Users\\Cisco He\\AppData\\Local\\Temp"
+    ],
+    "items": [
+      {
+        "path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\spmi-lane-snapshot-host-r3-20261128\\test-lane-snapshot",
+        "files": [
+          {
+            "path": ".",
+            "bytes": 90168,
+            "sha256": "92d4166ea3fc1d66a04ff69ae96d03445d3f68d945e09276d86d5c746905295d"
+          }
+        ]
+      },
+      {
+        "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-spmi-shadow-20261128-r1",
+        "files": [
+          {
+            "path": "bsd/dev/sweet_spmi.c",
+            "bytes": 8052,
+            "sha256": "4f648fedcdf6387dc5c9b3001028195d1df4eece3d02027d482a9e178662abbb"
+          }
+        ]
+      },
+      {
+        "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-spmi-shadow-20261128-r2",
+        "files": [
+          {
+            "path": "bsd/dev/sweet_spmi.c",
+            "bytes": 8052,
+            "sha256": "4f648fedcdf6387dc5c9b3001028195d1df4eece3d02027d482a9e178662abbb"
+          }
+        ]
+      },
+      {
+        "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-spmi-shadow-20261128-r3",
+        "files": [
+          {
+            "path": "bsd/dev/sweet_spmi.c",
+            "bytes": 7775,
+            "sha256": "a09fbbeb8d8fbc6de5666309b048dc2a2998e731606b82c805a5e7ec00c1197f"
+          }
+        ]
+      }
+    ]
+  },
+  "receipts": [
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T21:03:46.4003257+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R4WE28X",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\spmi-lane-snapshot-host-r3-20261128\\test-lane-snapshot"
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T21:03:46.7103168+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$RBBUHF9",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-spmi-shadow-20261128-r1"
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T21:03:47.0647853+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R99ZWVR",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-spmi-shadow-20261128-r2"
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T21:03:47.4749503+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R3XTD93",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-spmi-shadow-20261128-r3"
+    }
+  ],
+  "all_native_contents_verified": true,
+  "protected_files": {
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\spmi-lane-snapshot-host-r1-20261128\\apply-check.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\spmi-lane-snapshot-host-r1-20261128\\apply.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\spmi-lane-snapshot-host-r2-20261128\\apply-check.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\spmi-lane-snapshot-host-r2-20261128\\apply.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\spmi-lane-snapshot-host-r3-20261128\\apply-check.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\spmi-lane-snapshot-host-r3-20261128\\apply.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\spmi-lane-snapshot-host-r3-20261128\\compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\spmi-lane-snapshot-host-r3-20261128\\manifest.json": "b17ab8903a6200f9e760dde3a183ab7c53fa706e3bbd3b8a9f033595cefb32cf",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\spmi-lane-snapshot-host-r3-20261128\\PinnedSpmiFind.h": "74e89eab99df0778c80cce844da7024785a8c2fdd639e69e4164b72376e97bdf",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\spmi-lane-snapshot-host-r3-20261128\\run.log": "a5431c2b3f170475605e1a1ed2d3934fa59efb6ff05389e1ea67b9199a209213",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\xnu\\lilac-current.patch": "ef0cf0576d5fb40595ba3cf4a385d7814dc728acda887a9d001c37ee972e8c54",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\xnu\\lilac-spmi-lane-observer.patch": "3e395be347acae85e60327198551f73cb25f81b1a51b0822c28f281f9154217d",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\xnu\\support\\LilacSpmiLaneSnapshot.h": "3cc1a0b2efb401e2574e6abd0178417de1c0c567bc44dc41fd789093e58495dd",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\xnu\\support\\LilacSpmiLaneSnapshot.inc": "6dc65f9064808fdd1e7d45e7740baa5d9cfa19dc5ded606edde252cca30ee2a8",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\tools\\build\\test_lilac_spmi_lane_snapshot.c": "1d41f609e0c1c47f8a7927698d854c5b343c1edb944fdd3f55273b1d7bf16422",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\tools\\build\\check_lilac_spmi_lane_snapshot.py": "056ca00dec789a6bc09a9426526a8b11e1bc53bb108d8d7adba9a9e9d60df095",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\gpu\\metal\\air\\fixtures\\sampler.air.ll": "7b849ba218ffb3525e598637ef39003937b8dd5bc2df396291d65302b0ae8eca"
+  },
+  "bins_emptied": false,
+  "permanent_deletions": 0,
+  "device_operations": 0
+}

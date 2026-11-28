@@ -128,3 +128,5 @@ WSL／Mac同源十二组ASan／UBSan及六个ARM64对象通过，C11 caller和C+
 [背光最新逐IO epoch候选](../reproducibility/backlight-duty-per-io-epoch-20261128.json)已补上每次read／write／wait前后readiness／epoch检查；中途变化及时停止后续IO并保留uncertain。38／6／1故障位置、65535请求映射及重入回归通过，独立ARM64链接已验；没有新kernel投递、真实bus回调或光学，brightness0／fade／level保持待实现。GPU候选包及合法新会话待验条件保持。
 
 [WLED真实SPMI依赖](../reproducibility/backlight-spmi-binding-audit-20261128.json)已核对锁定源码：observer样本不能准入write ownership。现有describe只返回映射数量，真实backend尚缺当前APID owner／unpoisoned／bounded callback验证。未重分配owner或改共享SPMI／PON源码；当前新GPU和WLED候选仍待恢复合法实机会话及完整回程条件。
+
+[WLED只读APID状态接口候选](../reproducibility/spmi-wled-lane-snapshot-host-20261128.json)已按锁定SPMI源导出：14组实际状态／API和7组错误结构ASan／UBSan通过，112B结构包含匹配APID、原选择结果、owner原字、poison和读写lane是否已映射。两次观察在现有锁下相同才发布，失败不修改输出；只限定0x3d8／0x3d9，不初始化／映射／改owner或发PMIC命令。候选只加include，生产lilac-current.patch及当前kernel未改；尚未编ARM64、接入当前内核／实际采样、提供epoch／保留write lease或连接背光回调／注册。当前原UI／GPU新包仍等待Mac恢复网络，不把状态观察当写入授权。

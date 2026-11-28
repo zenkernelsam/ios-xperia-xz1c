@@ -1,0 +1,30 @@
+{
+  "source_files": {
+    "xnu/lilac-current.patch": "ef0cf0576d5fb40595ba3cf4a385d7814dc728acda887a9d001c37ee972e8c54",
+    "xnu/lilac-spmi-lane-observer.patch": "3e395be347acae85e60327198551f73cb25f81b1a51b0822c28f281f9154217d",
+    "xnu/support/LilacSpmiLaneSnapshot.h": "3cc1a0b2efb401e2574e6abd0178417de1c0c567bc44dc41fd789093e58495dd",
+    "xnu/support/LilacSpmiLaneSnapshot.inc": "6dc65f9064808fdd1e7d45e7740baa5d9cfa19dc5ded606edde252cca30ee2a8",
+    "tools/build/test_lilac_spmi_lane_snapshot.c": "1d41f609e0c1c47f8a7927698d854c5b343c1edb944fdd3f55273b1d7bf16422",
+    "tools/build/check_lilac_spmi_lane_snapshot.py": "056ca00dec789a6bc09a9426526a8b11e1bc53bb108d8d7adba9a9e9d60df095"
+  },
+  "base_SPMI_sha256": "78e81f5826347e3589691e3cedfa71d78dab716ca66753f0830c35def74ce334",
+  "candidate_SPMI_sha256": "a09fbbeb8d8fbc6de5666309b048dc2a2998e731606b82c805a5e7ec00c1197f",
+  "exact_existing_selector_sha256": "fbb2113cd003f7706f4e79289eb4feb02264914879e644408f8333f80c14d6d6",
+  "candidate_patch_apply_checked": true,
+  "only_added_include_baseline_body_preserved": true,
+  "actual_getter_host_ASan_UBSan_passed": true,
+  "actual_state_API_cases": 14,
+  "malformed_snapshot_cases": 7,
+  "snapshot_bytes": 112,
+  "two_equal_observations_existing_lock_checked": true,
+  "failed_output_untouched": true,
+  "no_bus_commands_mapping_initialization_or_owner_writes": true,
+  "no_epoch_or_retained_write_lease_provided": true,
+  "backend_callbacks_and_registration_not_connected": true,
+  "current_kernel_unchanged": true,
+  "ARM64_kernel_build_not_done": true,
+  "device_operations": 0,
+  "permanent_deletions": 0,
+  "shadow": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-spmi-shadow-20261128-r3",
+  "transcript_sha256": "a5431c2b3f170475605e1a1ed2d3934fa59efb6ff05389e1ea67b9199a209213"
+}

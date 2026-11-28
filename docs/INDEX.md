@@ -102,3 +102,5 @@ WLED实际SPMI接入依赖审计见[报告](../reproducibility/backlight-spmi-bi
 配置读取轮整合前五份入口原文／SHA见[归档manifest](archive/20261128/poster-config-reader/document-manifest.json)。实际设备／下一步只由STATUS维护，读取及严格解码复现由BUILD说明。
 
 容器采集源码接入revision2：[最终host／准入边界报告](../reproducibility/poster-container-source-integration-r2-20261128.json)。整合前五份入口原文／SHA见[本轮归档](archive/20261128/poster-container-integration/document-manifest.json)；旧revision1 host报告保留，不作为新guest准入。
+
+WLED只读lane接口：[准确源码／原选择器／14+7组host证据](../reproducibility/spmi-wled-lane-snapshot-host-20261128.json)。五份整合前入口原文／SHA见[归档](archive/20261128/spmi-lane-snapshot/document-manifest.json)；候选未加入当前kernel，写入及光学未验。
