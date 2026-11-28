@@ -1,0 +1,13 @@
+diff --git a/iokit/Kernel/arm/LilacWledScreenProbe.h b/iokit/Kernel/arm/LilacWledScreenProbe.h
+--- a/iokit/Kernel/arm/LilacWledScreenProbe.h
++++ b/iokit/Kernel/arm/LilacWledScreenProbe.h
+@@ -3,3 +3,4 @@
+ 
+ #include "LilacWledSnapshot.h"
++#include "LilacWledLaneScreenProbe.h"
+ 
+@@ -49,3 +50,4 @@
+         (unsigned)snapshot.module_enabled, (unsigned)snapshot.sink_mask,
+         (unsigned)snapshot.modulator_mask, (unsigned)snapshot.duty[0], (unsigned)snapshot.duty[1]);
++    lilac_wled_lane_screen_probe(token, frame_id);
+ }

@@ -350,3 +350,13 @@ python -B tools/build/check_lilac_spmi_lane_snapshot.py --output build/新的-sp
 ```
 
 checker先按原SHA导出实际SPMI源，关闭本次git apply的autocrlf后仅加入include，复核其余源字节保持；再编译实际.inc和原sp_find_apid代码。14个状态／API用例及7个无效结构覆盖EE0优先／最后EE0选择、非EE0、poison／未映射状态、观察中变化、超限和失败输出不变。新kernel仍需实际ARM64／source及link审计、新版本private／owner／ready和对应全部GPU先验，当前没有可投递镜像。这个112B快照不提供epoch或保留write lease，实际总线回调与服务注册仍须独立接入和验收。
+
+### 首帧后 WLED lane 记录候选
+
+在只读SPMI getter候选之上，lilac-wled-lane-screen.patch仅向克隆的LilacWledScreenProbe.h加入新header和末尾调用。新header／getter声明应复制到对应编译源目录；默认生产源未应用两个候选patch。记录只限本LIVE、精确16位token和frame_id1，每boot只执行一次；不发PMIC命令，getter失败保留失败，LIVE中止不补发。
+
+```powershell
+python -B tools/build/check_lilac_wled_lane_screen.py --output build/新的-lane-screen-host --shadow "$env:TEMP\新的-lane-screen-shadow"
+```
+
+工具复验克隆header只有include／调用增量，再执行实际C++生产器及同源解码器：8组生产器、4组完整记录和12种损坏／边界拒绝。wled_lane_evidence.inspect只接受本LIVE→ACK且SCREEN END首帧完成标记在记录之前；它明确不验证原帧bytes，实际准入仍需独立scanout来源／寄存器／块／CRC和回程验证。记录没有epoch／write lease，不能用于直接开启背光写入。当前未编ARM64／新kernel或进行实机采样。

@@ -1,0 +1,73 @@
+{
+  "date": "2026-11-28",
+  "kind": "windows-native-recycle",
+  "items": 2,
+  "files": 2,
+  "logical_bytes": 245382,
+  "plan": {
+    "allowed_roots": [
+      "D:\\Desktop\\Git\\ios-xperia-xz1c\\build",
+      "C:\\Users\\Cisco He\\AppData\\Local\\Temp"
+    ],
+    "items": [
+      {
+        "path": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\wled-lane-screen-host-r1-20261128\\test-producer",
+        "files": [
+          {
+            "path": ".",
+            "bytes": 243448,
+            "sha256": "53818aac804e3ff8ac12da992b85cb601a45b25ed70ea84b0f8a1bdc19f6c3b9"
+          }
+        ]
+      },
+      {
+        "path": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-wled-lane-screen-shadow-20261128-r1",
+        "files": [
+          {
+            "path": "iokit/Kernel/arm/LilacWledScreenProbe.h",
+            "bytes": 1934,
+            "sha256": "66b6dba0e3bd783e0ae6438949ee75e3f47df295c12d5424ee2524277802c668"
+          }
+        ]
+      }
+    ]
+  },
+  "receipts": [
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T21:52:45.2453607+08:00",
+      "recycle_path": "D:\\$RECYCLE.BIN\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R9F7MGQ",
+      "source": "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\wled-lane-screen-host-r1-20261128\\test-producer"
+    },
+    {
+      "verified_native_recycle": true,
+      "time": "2026-11-28T21:52:45.4572573+08:00",
+      "recycle_path": "C:\\$Recycle.Bin\\S-1-5-21-2808486422-2822496995-2260509244-1001\\$R1MNNBT",
+      "source": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-wled-lane-screen-shadow-20261128-r1"
+    }
+  ],
+  "all_native_contents_verified": true,
+  "protected_files": {
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\wled-lane-screen-host-r1-20261128\\apply-check.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\wled-lane-screen-host-r1-20261128\\apply.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\wled-lane-screen-host-r1-20261128\\compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\wled-lane-screen-host-r1-20261128\\manifest.json": "8024ec0750b7433ffd0d27533a1b5a29b5df976384a465a602d216ddd8e35c65",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\build\\wled-lane-screen-host-r1-20261128\\run.log": "b2cabc9bd9618c2decc5523a365cf6d003224406dfe4be610eaec71183e471ac",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\xnu\\support\\LilacWledScreenProbe.h": "35c4ae4e9815daa479e8f429d991700d72528fe67405d8ca4710fb176c510ef0",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\xnu\\support\\LilacWledLaneScreenProbe.h": "1dbbec7b8b6d898e2cf6ceb14b47409da7a7162d3b09e33f2de5021d574c9f83",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\xnu\\support\\LilacSpmiLaneSnapshot.h": "3cc1a0b2efb401e2574e6abd0178417de1c0c567bc44dc41fd789093e58495dd",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\xnu\\lilac-wled-lane-screen.patch": "d32628f89048c088fac7bc44231f3568b966be1ba7701c0bb66e804b5f0def7e",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\tools\\build\\test_lilac_wled_lane_screen.cpp": "0058103b9bae18b470270872de6fdc403dff47fabbae2fa0e033ad2bfbe7b750",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\tools\\build\\check_lilac_wled_lane_screen.py": "2d283fbe907c9b9f9b17f047ddfd4c564d98791210b2fe8d8e1eb7e63201bf57",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\tools\\device\\wled_lane_evidence.py": "3442ec224f1450dc6387e0ee9da3bdaba63b70088e234a327ed31e4e9f0bc1b4",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\xnu\\lilac-current.patch": "ef0cf0576d5fb40595ba3cf4a385d7814dc728acda887a9d001c37ee972e8c54",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\xnu\\lilac-spmi-lane-observer.patch": "3e395be347acae85e60327198551f73cb25f81b1a51b0822c28f281f9154217d",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\xnu\\support\\LilacSpmiLaneSnapshot.inc": "6dc65f9064808fdd1e7d45e7740baa5d9cfa19dc5ded606edde252cca30ee2a8",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\tools\\build\\test_lilac_spmi_lane_snapshot.c": "1d41f609e0c1c47f8a7927698d854c5b343c1edb944fdd3f55273b1d7bf16422",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\tools\\build\\check_lilac_spmi_lane_snapshot.py": "056ca00dec789a6bc09a9426526a8b11e1bc53bb108d8d7adba9a9e9d60df095",
+    "D:\\Desktop\\Git\\ios-xperia-xz1c\\gpu\\metal\\air\\fixtures\\sampler.air.ll": "7b849ba218ffb3525e598637ef39003937b8dd5bc2df396291d65302b0ae8eca"
+  },
+  "bins_emptied": false,
+  "permanent_deletions": 0,
+  "device_operations": 0
+}

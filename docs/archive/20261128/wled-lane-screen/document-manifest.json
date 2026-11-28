@@ -1,0 +1,30 @@
+{
+  "originals": [
+    {
+      "path": "docs/STATUS.md",
+      "bytes": 21744,
+      "sha256": "8a80ea33a9a952829dc12ad761d3b8a1f45da3aeec6ebaa236a33eba4fd28b2f"
+    },
+    {
+      "path": "docs/BUILD.md",
+      "bytes": 39602,
+      "sha256": "3ccb3e07f9c5dafe5a53bdc72a0a78725129bbb6aa280690b790482848d58c12"
+    },
+    {
+      "path": "docs/INDEX.md",
+      "bytes": 14193,
+      "sha256": "67b7bf800132ce50a158f5629c349323ebb96d19ed2230472b5ccd41cefdec56"
+    },
+    {
+      "path": "docs/LILAC-PERIPHERALS.md",
+      "bytes": 32432,
+      "sha256": "3a968ae237a0e70bb30b1c8cb2036889919884b98cdf00534c01cf3b2085a781"
+    },
+    {
+      "path": "docs/ORGANIZATION.md",
+      "bytes": 41374,
+      "sha256": "a4cdb791997b564bae3f72e4061140e8a3b304ccffe9352459834b6a76913c5b"
+    }
+  ],
+  "original_bytes_preserved": true
+}

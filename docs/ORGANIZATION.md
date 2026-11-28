@@ -194,3 +194,7 @@ Windows Patch/Xperia/research实查仍为89个参考Git仓库、非仓库0。Ubu
 [两套Ubuntu所有用户Trash](../reproducibility/poster-container-integration-wsl-trash-audit-20261128.json)的files／info均为空；源码、原结果与report只在正式仓库。本轮五份文档原文／SHA在[归档](archive/20261128/poster-container-integration/document-manifest.json)。收紧前的接入报告原文保留，最终源及13组host由新r2报告绑定；未重写旧实际GPU判定。Mac网络不可达，新的Git同步、ARM64构建与Mac本轮原生Trash工作仍待完成。
 
 2026-11-28 WLED只读lane接口轮：三个TEMP源shadow和一个已结束WSL host ELF，共4项／4文件／114047B已进入[Windows原生回收站](../reproducibility/spmi-wled-lane-snapshot-windows-recycle-20261128.json)，全部内容SHA复核，源码和失败／成功apply及compile／run日志、原选择器头、manifest保留。两个初次字节校验拒绝的记录未改写；git apply自动CRLF转换已在本次命令中关闭，不修改全局Git配置。五份现行文档原文／SHA在[本轮归档](archive/20261128/spmi-lane-snapshot/document-manifest.json)，垃圾桶未清空，无永久删除。Mac仍网络不可达，没有新的Mac构建／回收或手机boot。
+
+2026-11-28 WLED首帧lane记录轮：一个完成的WSL ELF和TEMP header shadow，共2项／2文件／245382B进入[Windows原生回收站](../reproducibility/wled-lane-screen-windows-recycle-20261128.json)，全部内容SHA复核，源／manifest／apply／compile／run记录保留。五份入口原文／SHA在[本轮归档](archive/20261128/wled-lane-screen/document-manifest.json)。没有手机boot或Mac构建／回收，未永久删除或清空垃圾桶；真实ARM64／kernel及硬件验证等待Mac恢复SSH。
+
+提交校验拒绝候选patch末尾的空上下文行；去除该行后复验准确patch、实际生产器及全部decoder，生成独立r2报告。两个源header／实际patched-header和生产器原输出SHA保持，原r1报告不覆盖。复验的ELF／TEMP shadow共2项／2文件／245382B进入[追加原生回收记录](../reproducibility/wled-lane-screen-r2-windows-recycle-20261128.json)，当前源码由r2报告绑定，垃圾桶未清空。

@@ -130,3 +130,7 @@ WSL／Mac同源十二组ASan／UBSan及六个ARM64对象通过，C11 caller和C+
 [WLED真实SPMI依赖](../reproducibility/backlight-spmi-binding-audit-20261128.json)已核对锁定源码：observer样本不能准入write ownership。现有describe只返回映射数量，真实backend尚缺当前APID owner／unpoisoned／bounded callback验证。未重分配owner或改共享SPMI／PON源码；当前新GPU和WLED候选仍待恢复合法实机会话及完整回程条件。
 
 [WLED只读APID状态接口候选](../reproducibility/spmi-wled-lane-snapshot-host-20261128.json)已按锁定SPMI源导出：14组实际状态／API和7组错误结构ASan／UBSan通过，112B结构包含匹配APID、原选择结果、owner原字、poison和读写lane是否已映射。两次观察在现有锁下相同才发布，失败不修改输出；只限定0x3d8／0x3d9，不初始化／映射／改owner或发PMIC命令。候选只加include，生产lilac-current.patch及当前kernel未改；尚未编ARM64、接入当前内核／实际采样、提供epoch／保留write lease或连接背光回调／注册。当前原UI／GPU新包仍等待Mac恢复网络，不把状态观察当写入授权。
+
+[首帧后WLED lane记录候选](../reproducibility/wled-lane-screen-host-r2-20261128.json)已完成源码及host验证：8组实际生产器、4组完整解码和12类损坏／边界拒绝；只在首帧完成后的本LIVE记录两块状态，不重复查询，getter失败／LIVE结束不补造记录。候选header patch未应用到生产源，实际ARM64／新kernel和原帧字节／真实APID均未验，记录始终声明epoch0／write_lease0。
+
+当前实际构建阻断：[Mac可用性审计](../reproducibility/mac-build-blocker-audit-20261128.json)。同一Mac编译／源码审计条件已跨连续多个goal turn失败，最新22端口拒绝连接；当前没有可跟踪的远端构建进程。上述源码与离线验证准备完成，后续必须取得真实SDK编译及当前设备数据，才能决定原UI和硬件后端；不能用更多模拟或旧失败包代替。待恢复Mac远程登录后继续，Sony无需离开fastboot。

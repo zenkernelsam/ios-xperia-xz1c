@@ -1,0 +1,39 @@
+{
+  "source_files": {
+    "xnu/support/LilacWledScreenProbe.h": "35c4ae4e9815daa479e8f429d991700d72528fe67405d8ca4710fb176c510ef0",
+    "xnu/support/LilacWledLaneScreenProbe.h": "1dbbec7b8b6d898e2cf6ceb14b47409da7a7162d3b09e33f2de5021d574c9f83",
+    "xnu/support/LilacSpmiLaneSnapshot.h": "3cc1a0b2efb401e2574e6abd0178417de1c0c567bc44dc41fd789093e58495dd",
+    "xnu/lilac-wled-lane-screen.patch": "d32628f89048c088fac7bc44231f3568b966be1ba7701c0bb66e804b5f0def7e",
+    "tools/build/test_lilac_wled_lane_screen.cpp": "0058103b9bae18b470270872de6fdc403dff47fabbae2fa0e033ad2bfbe7b750",
+    "tools/build/check_lilac_wled_lane_screen.py": "2d283fbe907c9b9f9b17f047ddfd4c564d98791210b2fe8d8e1eb7e63201bf57",
+    "tools/device/wled_lane_evidence.py": "3442ec224f1450dc6387e0ee9da3bdaba63b70088e234a327ed31e4e9f0bc1b4"
+  },
+  "actual_producer_ASan_UBSan_passed": true,
+  "producer_cases": 8,
+  "decoder_completed_cases": 4,
+  "corruption_and_boundary_rejections": {
+    "live_dropped": "Missing END",
+    "missing_item": "Incomplete prior root",
+    "missing_END": "Missing END",
+    "wrong_token": "Foreign token",
+    "wrong_count": "Incomplete prior root",
+    "selected_changed": "Original selector result changed",
+    "claim_write_lease": "Unknown or truncated lane record",
+    "unknown_record": "Unknown or truncated lane record",
+    "frame_late": "Need completed first-frame boundary before lane observations",
+    "missing_frame": "Need completed first-frame boundary before lane observations",
+    "token_prefix": "Need one exact LIVE before ACK",
+    "ACK_first": "Need one exact LIVE before ACK"
+  },
+  "exact_header_delta_checked": true,
+  "patched_header_sha256": "66b6dba0e3bd783e0ae6438949ee75e3f47df295c12d5424ee2524277802c668",
+  "token_current_LIVE_first_frame_and_no_repeat_checked": true,
+  "frame_bytes_not_verified_by_host_marker_cases": true,
+  "no_epoch_or_write_lease": true,
+  "ARM64_build_not_done": true,
+  "current_kernel_not_changed": true,
+  "device_operations": 0,
+  "permanent_deletions": 0,
+  "shadow": "C:\\Users\\Cisco He\\AppData\\Local\\Temp\\lilac-wled-lane-screen-shadow-20261128-r1",
+  "transcript_sha256": "b2cabc9bd9618c2decc5523a365cf6d003224406dfe4be610eaec71183e471ac"
+}

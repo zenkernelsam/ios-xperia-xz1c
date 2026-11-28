@@ -190,3 +190,5 @@ Mac独立链接使用现行`link_lilac_backlight_service.py`，输出新build目
 [本轮精确源码与主机验证](../reproducibility/spmi-wled-lane-snapshot-host-20261128.json)补上现有describe只有数量／printf的接口缺口。sweet_lilac_wled_lane_snapshot只接受0x3d8／0x3d9，返回最多4个匹配APID及原sp_find_apid选择、owner原字、poison和observer／writer映射标志；在现有锁下连续两次相同才输出，任何失败保持调用方原输出。API不初始化总线、做虚拟映射、发PMIC命令或改owner，快照也不是epoch／保留lease或写入授权。
 
 14组状态／API及7个错误快照用例用实际.inc和锁定原选择器编译通过ASan／UBSan；生产源其余字节保持。当前只有正式support源和独立候选include patch，没有实际ARM64／kernel链接或调用／日志采样。后续先接只读取证并按新kernel完整准入取得实际lane状态，再完成真实epoch、owner校验、bounded IO callbacks及注册；brightness0／fade／level、睡眠和光学继续未完成。
+
+只读lane首帧记录及解码已准备：[host报告](../reproducibility/wled-lane-screen-host-r2-20261128.json)。候选patch将它接在原完成首帧WLED sample之后；每boot仅一次，记录APID／原map与owner字／poison／observer与writer映射标志，始终声明无epoch／write lease。4组解码包含真实生产器的getter失败／无效结构／wrong PPID结果，12种损坏或时序拒绝保持失败；host首帧标记不能证明真实scanout。当前只有候选源，真实kernel采样、lease、callback、注册及光学仍未完成。

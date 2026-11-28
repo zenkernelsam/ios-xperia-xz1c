@@ -1,0 +1,46 @@
+{
+  "date": "2026-11-28",
+  "checked_at": "2026-11-28T21:58:52.739507+08:00",
+  "condition": "Required Mac build/source-audit host remains unavailable",
+  "host": "ciscohe@192.168.68.54",
+  "port": 22,
+  "current_SSH_result": "Connection refused",
+  "verified_client": "C:/Program Files/Git/usr/bin/ssh.exe",
+  "repeated_goal_turn_evidence": [
+    {
+      "commit": "f036fc9",
+      "evidence": "reproducibility/poster-config-closeout-verification-20261128.json",
+      "condition": "Mac formal sync, actual compilation and cleanup pending"
+    },
+    {
+      "commit": "b106f74",
+      "evidence": "reproducibility/poster-container-source-integration-r2-20261128.json",
+      "condition": "Verified Git SSH TCP connection timed out"
+    },
+    {
+      "commit": "ac42c5c",
+      "evidence": "docs/STATUS.md",
+      "condition": "Mac remained network unavailable; readonly lane candidate not compiled on ARM64"
+    },
+    {
+      "commit": "current round",
+      "condition": "Verified Git SSH connection refused; no remote build process available"
+    }
+  ],
+  "completed_preparation": [
+    "MCM observer and exact-token/PNG6 boundary source wiring",
+    "Readonly SPMI lane-state candidate",
+    "First-frame lane record producer and strict decoder"
+  ],
+  "cannot_verify_without_host": [
+    "Actual Mac SDK/ARM64 compilation and source/archive audit",
+    "New RAM and new kernel exact signed identities and own prerequisites",
+    "Actual current PosterBoard configuration and original UI GPU/FPS",
+    "Actual WLED ownership, epoch, callbacks, sleep/wake and optical response",
+    "Mac native Trash closeout"
+  ],
+  "full_goal_not_achieved": true,
+  "no_new_download_boot_or_reset_this_round": true,
+  "no_failed_package_replayed": true,
+  "required_external_change": "Restore Mac power/network and Remote Login/SSH at the configured host"
+}
